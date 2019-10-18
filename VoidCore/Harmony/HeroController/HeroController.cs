@@ -14,7 +14,7 @@ namespace VoidCore.Harmony
     {
         static void Postfix(HeroController __instance)
         {
-            VoidModLog.Log("HERO START");
+            ModLog.Log("HERO START");
             foreach (var hook in PlayerHook.AvailableHooks)
             {
                 __instance.gameObject.AddComponent(hook);

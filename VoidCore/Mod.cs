@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using Modding;
 using VoidCore.Hooks;
+using VoidCore.Hooks.Utility;
 
 namespace VoidCore
 {
@@ -49,7 +50,7 @@ namespace VoidCore
         /// </example>
         public override void Initialize()
         {
-            VoidModLog.Log("LOADING HOOKS");
+            ModLog.Log("LOADING HOOKS");
             LoadHooks(Assembly.GetAssembly(GetType()));
         }
 
@@ -98,17 +99,17 @@ namespace VoidCore
             {
                 HooksLoaded.Add(assembly, false);
             }
-            VoidModLog.Log("LOAD TESTA");
+            ModLog.Log("LOAD TESTA");
             if (HooksLoaded[assembly] == false)
             {
                 foreach (var type in assembly.GetTypes())
                 {
-                    VoidModLog.Log("POTENTIAL HOOK = " + type);
-                    VoidModLog.Log("INHERITS IHOOK = " + typeof(IHook).IsAssignableFrom(type));
-                    VoidModLog.Log("INHERITS IHOOK Generic = " + InheritsGeneric(type, typeof(IHook<>)));
+                    ModLog.Log("POTENTIAL HOOK = " + type);
+                    ModLog.Log("INHERITS IHOOK = " + typeof(IHook).IsAssignableFrom(type));
+                    ModLog.Log("INHERITS IHOOK Generic = " + InheritsGeneric(type, typeof(IHook<>)));
                     foreach (var inter in type.GetInterfaces())
                     {
-                        VoidModLog.Log("INTERFACE = " + inter);
+                        global::VoidCore.ModLog.Log("INTERFACE = " + inter);
                     }
                     if (!type.IsAbstract)
                     {
@@ -122,7 +123,7 @@ namespace VoidCore
                                     var allocatorType = inter.GetGenericArguments()[0];
                                     var allocator = (Allocator)Activator.CreateInstance(allocatorType);
                                     var hook = (IHook)allocator.Allocate(type);
-                                    VoidModLog.Log("STARTING HOOK2 = " + type.FullName);
+                                    ModLog.Log("STARTING HOOK2 = " + type.FullName);
                                     if (hook != null)
                                     {
                                         Hooks.Add(hook);
@@ -136,7 +137,7 @@ namespace VoidCore
                         else if (typeof(IHook).IsAssignableFrom(type))
                         {
                             var hook = (IHook)Activator.CreateInstance(type);
-                            VoidModLog.Log("STARTING HOOK = " + type.FullName);
+                            ModLog.Log("STARTING HOOK = " + type.FullName);
                             Hooks.Add(hook);
                             hook.LoadHook();
                         }

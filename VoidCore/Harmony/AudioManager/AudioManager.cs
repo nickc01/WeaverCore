@@ -19,20 +19,20 @@ namespace VoidCore.Harmony
             {
                 foreach (var music in ___musicSources)
                 {
-                    VoidModLog.Log("MUSIC = " + music);
+                    ModLog.Log("MUSIC = " + music);
                 }
 
                 var channels = typeof(MusicCue).GetField("channelInfos", BindingFlags.NonPublic | BindingFlags.Instance);
                 var info = (MusicCue.MusicChannelInfo[])channels.GetValue(musicCue);
                 foreach (var i in info)
                 {
-                    VoidModLog.Log("CLIP = " + i.Clip?.name);
+                    ModLog.Log("CLIP = " + i.Clip?.name);
                 }
                 return true;
             }
             catch (Exception e)
             {
-                VoidModLog.LogError(e);
+                ModLog.LogError(e);
             }
             return true;
         }

@@ -13,8 +13,8 @@ namespace VoidCore.Harmony
     {
         static void Postfix(UIManager __instance)
         {
-            VoidModLog.Log("UI START");
-            foreach (var hook in UIManagerHook.AvailableHooks)
+            ModLog.Log("UI START");
+            foreach (var hook in UIHook.AvailableHooks)
             {
                 __instance.gameObject.AddComponent(hook);
             }

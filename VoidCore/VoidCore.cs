@@ -6,7 +6,7 @@ using Harmony;
 
 namespace VoidCore
 {
-    public class VoidCore : Mod
+    internal class VoidCore : Mod
     {
         static internal VoidCore Instance;
 
@@ -19,7 +19,7 @@ namespace VoidCore
             var harmony = HarmonyInstance.Create("com.nccore.nickc01");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-            Hooks.SceneHook.OnGameLoad();
+            //Hooks.SceneHook.OnGameLoad();
         }
     }
 

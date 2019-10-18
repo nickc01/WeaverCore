@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VoidCore
 {
-    public static class VoidModLog
+    public static class ModLog
     {
         public static void Log(object message)
         {

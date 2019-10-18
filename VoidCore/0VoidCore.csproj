@@ -316,14 +316,15 @@
     <Compile Include="Harmony\AudioManager\AudioManager.cs" />
     <Compile Include="Harmony\HeroController\HeroController.cs" />
     <Compile Include="Harmony\UIManager\UIManager.cs" />
-    <Compile Include="Hooks\HookBase.cs" />
-    <Compile Include="Hooks\SceneHooker.cs" />
-    <Compile Include="Hooks\UIManagerHook.cs" />
+    <Compile Include="Hooks\Utility\IHook.cs" />
+    <Compile Include="Hooks\Utility\Allocator.cs" />
+    <Compile Include="Hooks\SceneHook.cs" />
+    <Compile Include="Hooks\UIHook.cs" />
     <Compile Include="VoidCore.cs" />
     <Compile Include="Harmony\HealthManager\HealthManager.cs" />
     <Compile Include="Hooks\PlayerHook.cs" />
     <Compile Include="Mod.cs" />
-    <Compile Include="VoidModLog.cs" />
+    <Compile Include="ModLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -340,6 +341,7 @@
     <Content Include=".gitignore" />
     <Content Include="api\.gitignore" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>SET APP_NAME=$(TargetFileName)

@@ -17,7 +17,7 @@ namespace TestMod
 
         public override void Initialize()
         {
-            VoidModLog.Log("LOADING TESTMOD");
+            VoidCore.ModLog.Log("LOADING TESTMOD");
             base.Initialize();
         }
     }
@@ -27,43 +27,43 @@ namespace TestMod
     {
         
 
-        public override void ChangedActiveScene(UnityEngine.SceneManagement.Scene prev, UnityEngine.SceneManagement.Scene now)
+        public override void OnActiveSceneChange(UnityEngine.SceneManagement.Scene prev, UnityEngine.SceneManagement.Scene now)
         {
-            VoidModLog.Log("TEST2");
-            VoidModLog.Log("ACTIVE CHANGED");
+            ModLog.Log("TEST2");
+            ModLog.Log("ACTIVE CHANGED");
         }
 
-        public override void SceneAdd(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadMode)
+        public override void OnSceneAddition(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadMode)
         {
             if (scene.name == "Town")
             {
                 //GameObject Knight = null;
-                VoidModLog.Log("-----------------------TOWN LOADED");
+                ModLog.Log("-----------------------TOWN LOADED");
                 foreach (var obj in UnityEngine.GameObject.FindObjectsOfType<GameObject>())
                 {
-                    VoidModLog.Log("OBJ = " + obj);
+                    ModLog.Log("OBJ = " + obj);
                 }
             }
         }
 
-        public override void SceneRemove(UnityEngine.SceneManagement.Scene scene)
+        public override void OnSceneRemoval(UnityEngine.SceneManagement.Scene scene)
         {
-            VoidModLog.Log("TEST");
-            VoidModLog.Log("TEST2");
+            ModLog.Log("TEST");
+            ModLog.Log("TEST2");
         }
     }
 
-    public class UI : UIManagerHook
+    public class UI : UIHook
     {
         void Start()
         {
 
-            VoidModLog.Log("UISTART");
-            VoidModLog.Log(Environment.StackTrace);
+            ModLog.Log("UISTART");
+            ModLog.Log(Environment.StackTrace);
             var test = new StackTrace(true);
             foreach (var r in test.GetFrames())
             {
-                VoidModLog.Log($"Filename: {r.GetFileName()} Method: {r.GetMethod()} Line: {r.GetFileLineNumber()} Column: {r.GetFileColumnNumber()}  ");
+                ModLog.Log($"Filename: {r.GetFileName()} Method: {r.GetMethod()} Line: {r.GetFileLineNumber()} Column: {r.GetFileColumnNumber()}  ");
             }
             /*UIManager Manager = GetComponent<UIManager>();
             foreach (var obj in GameObject.FindObjectsOfType<GameObject>())
@@ -86,20 +86,20 @@ namespace TestMod
         {
             try
             {
-                VoidModLog.Log("PLAYER START");
+                ModLog.Log("PLAYER START");
                 foreach (var item in gameObject.GetComponents<Component>())
                 {
-                    VoidModLog.Log("PLAYER COMPONENT = " + item);
-                    VoidModLog.Log("COMPONENT TYPE = " + item.GetType().FullName);
-                    VoidModLog.Log("FSM = " + (item is PlayMakerFSM));
+                    ModLog.Log("PLAYER COMPONENT = " + item);
+                    ModLog.Log("COMPONENT TYPE = " + item.GetType().FullName);
+                    ModLog.Log("FSM = " + (item is PlayMakerFSM));
                     if (item is PlayMakerFSM fsm)
                     {
                         foreach (var state in fsm.FsmEvents)
                         {
-                            VoidModLog.Log("State = " + state.Name);
+                            ModLog.Log("State = " + state.Name);
                         }
                         
-                        VoidModLog.Log("IS FSM");
+                        ModLog.Log("IS FSM");
                         //HutongGames.PlayMaker.Actions.string
                         //XmlSerializer xml = new XmlSerializer(typeof(PlayMakerFSM));
 
@@ -115,7 +115,7 @@ namespace TestMod
             }
             catch (Exception e)
             {
-                VoidModLog.Log("Exception = " + e);
+                ModLog.Log("Exception = " + e);
             }
         }
     }

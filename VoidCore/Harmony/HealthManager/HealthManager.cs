@@ -15,7 +15,7 @@ namespace VoidCore.Harmony
         //HealthManager __instance,HitInstance hitInstance
         static bool Prefix()
         {
-            VoidModLog.Log("ENEMY IS HIT");
+            ModLog.Log("ENEMY IS HIT");
             return true;
         }
     }

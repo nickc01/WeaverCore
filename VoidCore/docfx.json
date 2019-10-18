@@ -4,7 +4,7 @@
       "src": [
         {
           "files": [
-            "*.csproj"
+            "**.csproj"
           ],
           "cwd": ".",
           "exclude": [
@@ -21,9 +21,8 @@
     "content": [
       {
         "files": [
-          "api/**.yml"
-        ],
-        "cwd": "obj"
+          "obj/api/**.yml"
+        ]
       },
       {
         "files": [
@@ -60,7 +59,7 @@
         ]
       }
     ],
-    "dest": "_site",
+    "dest": "docs",
     "template": [
       "default"
     ]

@@ -14,14 +14,14 @@
           ]
         }
       ],
-      "dest": "obj/api"
+      "dest": "api"
     }
   ],
   "build": {
     "content": [
       {
         "files": [
-          "obj/api/**.yml"
+          "api/**.yml"
         ]
       },
       {
@@ -32,7 +32,6 @@
           "*.md"
         ],
         "exclude": [
-          "obj/**",
           "_site/**"
         ]
       }
@@ -59,7 +58,7 @@
         ]
       }
     ],
-    "dest": "../docs",
+    "dest": "_site",
     "template": [
       "default"
     ]

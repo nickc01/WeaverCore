@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using Harmony;
+
+namespace VoidCore.Harmony
+{
+    [HarmonyPatch(typeof(HealthManager))]
+    [HarmonyPatch("Hit")]
+    [HarmonyPatch(new Type[] { typeof(HitInstance)})]
+    internal class HealthManagerHit
+    {
+        //HealthManager __instance,HitInstance hitInstance
+        static bool Prefix()
+        {
+            VoidModLog.Log("ENEMY IS HIT");
+            return true;
+        }
+    }
+}

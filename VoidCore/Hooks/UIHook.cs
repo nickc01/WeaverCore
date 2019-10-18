@@ -35,6 +35,7 @@ namespace VoidCore.Hooks
     /// Hooks into the UI Manager. Inheriting from this will add the class as a component to the UI Manager GameObject.
     /// </summary>
     /// <example>
+    /// <code>
     /// public class ExampleHook : UIHook
     /// {
     ///     void Start()
@@ -47,8 +48,9 @@ namespace VoidCore.Hooks
     ///         //Called each frame on the UI Manager GameObject
     ///     }
     /// }
+    /// </code>
     ///</example>
-public abstract class UIHook : MonoBehaviour, IHook<UIAllocator>
+    public abstract class UIHook : MonoBehaviour, IHook<UIAllocator>
     {
         internal static List<Type> AvailableHooks = new List<Type>();
         void IHook.LoadHook() { }

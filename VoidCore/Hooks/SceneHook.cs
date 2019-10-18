@@ -14,6 +14,7 @@ namespace VoidCore.Hooks
     /// Hooks into the Scene Loading Process.
     /// </summary>
     /// <example>
+    /// <code>
     ///public class ExampleHook : SceneHook
     ///{
     ///    public override void OnActiveSceneChange(Scene prev, Scene now)
@@ -31,6 +32,7 @@ namespace VoidCore.Hooks
     ///        //Called when a scene is unloaded from the game
     ///    }
     ///}
+    ///</code>
     ///</example>
     public abstract class SceneHook : IHook
     {

@@ -34,6 +34,22 @@ namespace VoidCore.Hooks
     /// <summary>
     /// Hooks into the Hero Controller. Inheriting from this will have this class added as a component to the HeroController
     /// </summary>
+    /// <example>
+    /// <code>
+    ///public class ExampleHook : PlayerHook
+    ///{
+    ///    void Start()
+    ///    {
+    ///        //Called when the HeroController Starts
+    ///    }
+    ///
+    ///    void Update()
+    ///    {
+    ///        //Called each frame on the HeroController
+    ///    }
+    ///}
+    /// </code>
+    /// </example>
     public abstract class PlayerHook : MonoBehaviour, IHook<PlayerAllocator>
     {
         internal static List<Type> AvailableHooks = new List<Type>();

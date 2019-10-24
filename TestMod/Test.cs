@@ -19,6 +19,9 @@ namespace TestMod
         {
             VoidCore.ModLog.Log("LOADING TESTMOD");
             base.Initialize();
+
+            VoidCore.Settings.DebugMode = true;
+            VoidCore.Settings.GameObjectTracking = true;
         }
     }
 
@@ -59,12 +62,12 @@ namespace TestMod
         {
 
             ModLog.Log("UISTART");
-            ModLog.Log(Environment.StackTrace);
+            /*ModLog.Log(Environment.StackTrace);
             var test = new StackTrace(true);
             foreach (var r in test.GetFrames())
             {
                 ModLog.Log($"Filename: {r.GetFileName()} Method: {r.GetMethod()} Line: {r.GetFileLineNumber()} Column: {r.GetFileColumnNumber()}  ");
-            }
+            }*/
             /*UIManager Manager = GetComponent<UIManager>();
             foreach (var obj in GameObject.FindObjectsOfType<GameObject>())
             {

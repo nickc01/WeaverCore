@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Modding;
+using UnityEngine.SceneManagement;
+using VoidCore;
 using VoidCore.Hooks;
 using VoidCore.Hooks.Utility;
 
@@ -28,9 +30,14 @@ namespace VoidCore
     /// </example>
     public abstract class Mod : Modding.Mod
     {
+
+
         static Dictionary<Assembly, bool> HooksLoaded = new Dictionary<Assembly, bool>();
 
         List<IHook> Hooks = new List<IHook>();
+
+        static List<(Type modType,Action executer)> ModStartFunctions = new List<(Type, Action)>();
+        static bool FoundStartFunctions = false;
 
 
         /// <summary>
@@ -50,8 +57,36 @@ namespace VoidCore
         /// </example>
         public override void Initialize()
         {
+            FindModStartFunctions();
             ModLog.Log("LOADING HOOKS");
-            LoadHooks(Assembly.GetAssembly(GetType()));
+            var assembly = Assembly.GetAssembly(GetType());
+            DoModStartFunctions(assembly);
+            LoadHooks(assembly);
+        }
+
+        private static void FindModStartFunctions()
+        {
+            if (!FoundStartFunctions)
+            {
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    foreach (var type in assembly.GetTypes())
+                    {
+                        foreach (var method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+                        {
+                            if (method.GetParameters().GetLength(0) == 0)
+                            {
+                                foreach (var attribute in (OnModStartAttribute[])method.GetCustomAttributes(typeof(OnModStartAttribute), true))
+                                {
+                                    ModStartFunctions.Add((attribute.ModType, () => method.Invoke(null, null)));
+                                }
+                            }
+
+                        }
+                    }
+                }
+                FoundStartFunctions = true;
+            }
         }
 
 
@@ -78,19 +113,41 @@ namespace VoidCore
             return false;
         }
 
-        /*private static bool IsSubclassOfRawGeneric(Type generic, Type toCheck)
+
+        private void DoModStartFunctions(Assembly assembly)
         {
-            while (toCheck != null && toCheck != typeof(object))
+            var modType = GetType();
+            for (int i = ModStartFunctions.Count - 1; i >= 0; i--)
             {
-                var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
-                if (generic == cur)
+                var pair = ModStartFunctions[i];
+                if (pair.modType == typeof(object) || modType.IsAssignableFrom(pair.modType))
                 {
-                    return true;
+                    ModStartFunctions.RemoveAt(i);
+                    pair.executer();
                 }
-                toCheck = toCheck.BaseType;
             }
-            return false;
-        }*/
+            /*foreach (var pair in ModStartFunctions)
+            {
+                if (modType.IsAssignableFrom(pair.Key))
+                {
+
+                }
+            }*/
+            /*if (!HooksLoaded.ContainsKey(assembly) || HooksLoaded[assembly] == false)
+            {
+                foreach (var type in assembly.GetTypes())
+                {
+                    foreach (var method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+                    {
+                        if (method.GetParameters().GetLength(0) == 0 && method.GetCustomAttributes(typeof(OnModStartAttribute), false).GetLength(0) > 0)
+                        {
+                            method.Invoke(null, null);
+                        }
+                        
+                    }
+                }
+            }*/
+        }
 
 
         private void LoadHooks(Assembly assembly)
@@ -99,18 +156,10 @@ namespace VoidCore
             {
                 HooksLoaded.Add(assembly, false);
             }
-            ModLog.Log("LOAD TESTA");
             if (HooksLoaded[assembly] == false)
             {
                 foreach (var type in assembly.GetTypes())
                 {
-                    ModLog.Log("POTENTIAL HOOK = " + type);
-                    ModLog.Log("INHERITS IHOOK = " + typeof(IHook).IsAssignableFrom(type));
-                    ModLog.Log("INHERITS IHOOK Generic = " + InheritsGeneric(type, typeof(IHook<>)));
-                    foreach (var inter in type.GetInterfaces())
-                    {
-                        global::VoidCore.ModLog.Log("INTERFACE = " + inter);
-                    }
                     if (!type.IsAbstract)
                     {
                         //type.IsSubclassOf(typeof(IHook<>))
@@ -123,7 +172,6 @@ namespace VoidCore
                                     var allocatorType = inter.GetGenericArguments()[0];
                                     var allocator = (Allocator)Activator.CreateInstance(allocatorType);
                                     var hook = (IHook)allocator.Allocate(type);
-                                    ModLog.Log("STARTING HOOK2 = " + type.FullName);
                                     if (hook != null)
                                     {
                                         Hooks.Add(hook);
@@ -137,7 +185,6 @@ namespace VoidCore
                         else if (typeof(IHook).IsAssignableFrom(type))
                         {
                             var hook = (IHook)Activator.CreateInstance(type);
-                            ModLog.Log("STARTING HOOK = " + type.FullName);
                             Hooks.Add(hook);
                             hook.LoadHook();
                         }
@@ -149,3 +196,4 @@ namespace VoidCore
 
     }
 }
+

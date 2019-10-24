@@ -57,7 +57,8 @@ namespace VoidCore.Hooks
         }
 
         //Called when the game initially loads up and is called only once
-        internal static void OnGameLoad()
+        [OnModStart(typeof(VoidCore))]
+        static void OnGameLoad()
         {
             //Add current scenes
             for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)

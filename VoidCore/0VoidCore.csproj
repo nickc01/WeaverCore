@@ -45,11 +45,13 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="NAudio, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.9.0\lib\net35\NAudio.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -313,13 +315,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\OnModStart.cs" />
+    <Compile Include="Audio\Audio.cs" />
+    <Compile Include="Debug\PlayerDebug.cs" />
+    <Compile Include="Debug\VoidMonitor.cs" />
+    <Compile Include="Events\Events.cs" />
     <Compile Include="Harmony\AudioManager\AudioManager.cs" />
+    <Compile Include="Harmony\GameObject\GameObject.cs" />
+    <Compile Include="Debug\GameObjectTracker.cs" />
     <Compile Include="Harmony\HeroController\HeroController.cs" />
     <Compile Include="Harmony\UIManager\UIManager.cs" />
     <Compile Include="Hooks\Utility\IHook.cs" />
     <Compile Include="Hooks\Utility\Allocator.cs" />
     <Compile Include="Hooks\SceneHook.cs" />
     <Compile Include="Hooks\UIHook.cs" />
+    <Compile Include="Internal\CollisionDebugger.cs" />
+    <Compile Include="Internal\SceneEventHandler.cs" />
+    <Compile Include="Resources\ResourceLoader.cs" />
+    <Compile Include="Settings\Settings.cs" />
     <Compile Include="VoidCore.cs" />
     <Compile Include="Harmony\HealthManager\HealthManager.cs" />
     <Compile Include="Hooks\PlayerHook.cs" />
@@ -340,6 +353,8 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="api\.gitignore" />
+    <EmbeddedResource Include="Resources\TestText.txt" />
+    <EmbeddedResource Include="Resources\DebugBox.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -347,12 +362,15 @@
     <PostBuildEvent>SET APP_NAME=$(TargetFileName)
 SET ILMERGE_VERSION=3.0.29
 SET ILMERGE_PATH=%25USERPROFILE%25\.nuget\packages\ilmerge\%25ILMERGE_VERSION%25\tools\net452
-SET DLLS=0Harmony.dll
+SET DLLS=0Harmony.dll NAudio.dll
+
+SET LIBDIRS=/lib:"C:\\Users\\Nicholas\\source\\repos\\VoidCore\\packages\\NAudio.1.9.0\\lib\\net35\\"  /lib:"$(TargetDir)..\\" /lib:"$(SolutionDir)References\\"
+SET TARGETPF=/targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727
 
 mkdir temp
 
 REM -----This command runs the ILMerge command, which merges the specified libraries into the final build-----
-"%25ILMERGE_PATH%25"\ILMerge.exe /targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727 /out:temp\\%25APP_NAME%25 "$(TargetPath)" /lib:"$(SolutionDir)References\\" /lib:"$(TargetDir)..\\" %25DLLS%25
+"%25ILMERGE_PATH%25"\ILMerge.exe %25TARGETPL%25 /out:temp\\%25APP_NAME%25 "$(TargetPath)" %25LIBDIRS%25  %25DLLS%25
 
 REM -----Deletes the old build if there is one-----
 REM del %25APP_NAME%25

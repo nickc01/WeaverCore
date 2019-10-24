@@ -30,8 +30,6 @@ namespace VoidCore
     /// </example>
     public abstract class Mod : Modding.Mod
     {
-
-
         static Dictionary<Assembly, bool> HooksLoaded = new Dictionary<Assembly, bool>();
 
         List<IHook> Hooks = new List<IHook>();

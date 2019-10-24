@@ -5,11 +5,9 @@ using Modding;
 using Harmony;
 using UnityEngine;
 using VoidCore;
-using System.Reflection.Emit;
 using VoidCore.Hooks;
 using System.Collections;
 using System.IO;
-using NAudio;
 
 namespace VoidCore
 {

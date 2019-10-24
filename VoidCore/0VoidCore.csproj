@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VoidCore</RootNamespace>
     <AssemblyName>0VoidCore</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -39,14 +39,14 @@
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>..\References\0Harmony.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="NAudio, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NAudio.1.9.0\lib\net35\NAudio.dll</HintPath>
+    <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -359,40 +359,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>SET APP_NAME=$(TargetFileName)
-SET ILMERGE_VERSION=3.0.29
-SET ILMERGE_PATH=%25USERPROFILE%25\.nuget\packages\ilmerge\%25ILMERGE_VERSION%25\tools\net452
-SET DLLS=0Harmony.dll NAudio.dll
-
-SET LIBDIRS=/lib:"C:\\Users\\Nicholas\\source\\repos\\VoidCore\\packages\\NAudio.1.9.0\\lib\\net35\\"  /lib:"$(TargetDir)..\\" /lib:"$(SolutionDir)References\\"
-SET TARGETPF=/targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727
-
-mkdir temp
-
-REM -----This command runs the ILMerge command, which merges the specified libraries into the final build-----
-"%25ILMERGE_PATH%25"\ILMerge.exe %25TARGETPL%25 /out:temp\\%25APP_NAME%25 "$(TargetPath)" %25LIBDIRS%25  %25DLLS%25
-
-REM -----Deletes the old build if there is one-----
-REM del %25APP_NAME%25
-
-REM -----Deletes the old pdb if there is one-----
-REM del $(TargetName).pdb
-
-move /Y temp\\%25APP_NAME%25 .
-move /Y temp\\$(TargetName).pdb .
-
-REM -----Renames the final merged build to the original name-----
-REM ren MERGED%25APP_NAME%25 %25APP_NAME%25
-
-
-REM -----Renames the final merged pdb to the original pdb name-----
-REM ren MERGED$(TargetName).pdb $(TargetName).pdb
-
-
-rmdir /S /Q temp
-
-
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -400,6 +368,10 @@ rmdir /S /Q temp
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
     <Error Condition="!Exists('..\packages\docfx.console.2.46.0\build\docfx.console.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\docfx.console.2.46.0\build\docfx.console.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.2.5.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.5.0\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets'))" />
   </Target>
   <Import Project="..\packages\docfx.console.2.46.0\build\docfx.console.targets" Condition="Exists('..\packages\docfx.console.2.46.0\build\docfx.console.targets')" />
+  <Import Project="..\packages\Fody.2.5.0\build\Fody.targets" Condition="Exists('..\packages\Fody.2.5.0\build\Fody.targets')" />
+  <Import Project="..\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets')" />
 </Project>

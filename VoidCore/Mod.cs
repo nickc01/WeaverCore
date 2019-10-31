@@ -55,34 +55,54 @@ namespace VoidCore
         /// </example>
         public override void Initialize()
         {
-            FindModStartFunctions();
-            ModLog.Log("LOADING HOOKS");
             var assembly = Assembly.GetAssembly(GetType());
+            Logger.Log("AA");
+            FindModStartFunctions(assembly);
+            Logger.Log("BB");
+            ModLog.Log("LOADING HOOKS");
+            Logger.Log("CC");
             DoModStartFunctions(assembly);
+            Logger.Log("DD");
             LoadHooks(assembly);
+            Logger.Log("EE");
         }
 
-        private static void FindModStartFunctions()
+        private static void FindModStartFunctions(Assembly assembly)
         {
+            Logger.Log("AB");
             if (!FoundStartFunctions)
             {
-                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                Logger.Log("AC");
+                //foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                //{
+                Logger.Log("AD");
+                foreach (var type in assembly.GetTypesSafe())
                 {
-                    foreach (var type in assembly.GetTypes())
+                    Logger.Log("AE");
+                    foreach (var method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
                     {
-                        foreach (var method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+                        Logger.Log("AF");
+                        Logger.Log("Method = " + method.Name);
+                        Logger.Log("Type = " + type.Name);
+                        Logger.Log("Assembly = " + assembly);
+                        Logger.Log("MethodType = " + method.GetType());
+                        if (method.Name.Contains("LoadResourceAudio"))
                         {
-                            if (method.GetParameters().GetLength(0) == 0)
-                            {
-                                foreach (var attribute in (OnModStartAttribute[])method.GetCustomAttributes(typeof(OnModStartAttribute), true))
-                                {
-                                    ModStartFunctions.Add((attribute.ModType, () => method.Invoke(null, null)));
-                                }
-                            }
-
+                            continue;
                         }
+                        if (method.GetParameters().GetLength(0) == 0)
+                        {
+                            Logger.Log("AG");
+                            foreach (var attribute in (OnModStartAttribute[])method.GetCustomAttributes(typeof(OnModStartAttribute), true))
+                            {
+                                Logger.Log("AH");
+                                ModStartFunctions.Add((attribute.ModType, () => method.Invoke(null, null)));
+                            }
+                        }
+
                     }
                 }
+                //}
                 FoundStartFunctions = true;
             }
         }
@@ -156,7 +176,7 @@ namespace VoidCore
             }
             if (HooksLoaded[assembly] == false)
             {
-                foreach (var type in assembly.GetTypes())
+                foreach (var type in assembly.GetTypesSafe())
                 {
                     if (!type.IsAbstract)
                     {
@@ -167,6 +187,7 @@ namespace VoidCore
                             {
                                 if (inter.IsGenericType && inter.GetGenericTypeDefinition() == typeof(IHook<>))
                                 {
+                                    Logger.Log("FOUND_HOOK1 = " + type);
                                     var allocatorType = inter.GetGenericArguments()[0];
                                     var allocator = (Allocator)Activator.CreateInstance(allocatorType);
                                     var hook = (IHook)allocator.Allocate(type);
@@ -182,6 +203,7 @@ namespace VoidCore
                         //type.IsSubclassOf(typeof(IHook))
                         else if (typeof(IHook).IsAssignableFrom(type))
                         {
+                            Logger.Log("FOUND_HOOK2 = " + type);
                             var hook = (IHook)Activator.CreateInstance(type);
                             Hooks.Add(hook);
                             hook.LoadHook();

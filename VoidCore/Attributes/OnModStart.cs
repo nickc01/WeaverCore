@@ -10,7 +10,7 @@ namespace VoidCore
     /// When added onto a static method, that method will be called when any mod in the current assembly is loaded
     /// </summary>
     [System.AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
-    public sealed class OnModStartAttribute : Attribute
+    internal sealed class OnModStartAttribute : Attribute
     {
         /// <summary>
         /// Specifies the mod that, when it's loaded, will call the method that is attached with this attribute

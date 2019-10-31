@@ -13,6 +13,17 @@ namespace VoidCore
 {
     internal class VoidCore : Mod
     {
+        public VoidCore()
+        {
+            Modding.Logger.Log("VOIDCORE_CTOR");
+        }
+
+        public override int LoadPriority()
+        {
+            return int.MinValue;
+        }
+
+
         static internal VoidCore Instance;
 
         public override string GetVersion() => Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -23,10 +34,15 @@ namespace VoidCore
         public override void Initialize()
         {
             Instance = this;
+            ModLog.Log("TESTING");
 
-            var harmony = HarmonyInstance.Create("com.nccore.nickc01");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            
 
+            //BuiltInLoader.AssemblyLoader(null, null);
+
+            var harmony = HarmonyInstance.Create("com." + nameof(VoidCore).ToLower() + ".nickc01");
+            harmony.PatchAllSafe();
+            //harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             //SceneHook.OnGameLoad();
 
@@ -63,28 +79,50 @@ namespace VoidCore
 
 internal class PlayerTest : PlayerHook
 {
+    LoadedAudio loadedAudio = null;
+    AudioSource source;
+    GameObject audioObject;
+
     void Start()
     {
-        ModLog.Log("PLAYER TEST LOADED_____");
-        ModLog.Log("THIS SHOULD BE IN THE LOG");
-        foreach (var component in GetComponents<Component>())
+        try
         {
-            ModLog.Log("PLAYER COMPONENT = " + component.name);
-            ModLog.Log("COMPONENT TYPE = " + component.GetType());
-            ModLog.Log("TESTING");
-            try
+            ModLog.Log("T1");
+            loadedAudio = ResourceLoader.LoadResourceAudio("Resources.Audio.kevintest.mp3");
+            audioObject = new GameObject("TESTAUDIO");
+            ModLog.Log("T2");
+            audioObject.transform.position = Camera.main.transform.position;
+            source = audioObject.AddComponent<AudioSource>();
+            ModLog.Log("T3");
+            source.volume = 1.0f;
+            source.clip = loadedAudio.clip;
+            source.Play();
+            ModLog.Log("T4");
+            ModLog.Log("PLAYER TEST LOADED_____");
+            ModLog.Log("THIS SHOULD BE IN THE LOG");
+            foreach (var component in GetComponents<Component>())
             {
-                string test = JsonUtility.ToJson(component);
-                ModLog.Log("JSON = " + test);
+                ModLog.Log("PLAYER COMPONENT = " + component.name);
+                ModLog.Log("COMPONENT TYPE = " + component.GetType());
+                ModLog.Log("TESTING");
+                try
+                {
+                    string test = JsonUtility.ToJson(component);
+                    ModLog.Log("JSON = " + test);
+                }
+                catch (Exception e)
+                {
+                    ModLog.LogError(e);
+                }
             }
-            catch(Exception e)
-            {
-                ModLog.LogError(e);
-            }
-        }
 
-        ModLog.Log("PLAYER LAYER = " + gameObject.layer);
-        ModLog.Log("PLAYER LAYER Name = " + LayerMask.LayerToName(gameObject.layer));
+            ModLog.Log("PLAYER LAYER = " + gameObject.layer);
+            ModLog.Log("PLAYER LAYER Name = " + LayerMask.LayerToName(gameObject.layer));
+        }
+        catch (Exception e)
+        {
+            Modding.Logger.LogError("PLAYER EXCEPTION = " + e);
+        }
 
         // ModLog.Log("TK2D Sprite = " + JsonUtility.ToJson(GetComponent<tk2dSprite>()));
 
@@ -94,8 +132,17 @@ internal class PlayerTest : PlayerHook
         //VoidCore.VoidCore.testObject.GetComponent<SpriteRenderer>().sortingLayerID = GetComponent<SpriteRenderer>().sortingLayerID;
     }
 
+    void OnDestroy()
+    {
+        source.Stop();
+        source.clip = null;
+        loadedAudio.Dispose();
+        Destroy(audioObject);
+    }
+
     void Update()
     {
+        //audioObject.transform.position = Camera.main.transform.position;
         //VoidCore.VoidCore.testObject.transform.position = transform.position;
         //VoidCore.VoidCore.testObject.layer = gameObject.layer;
         //var setZ = GetComponent<SetZ>();

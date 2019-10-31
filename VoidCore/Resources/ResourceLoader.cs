@@ -11,7 +11,7 @@ namespace VoidCore
 {
 
 
-    public static class ResourceLoader
+    public static partial class ResourceLoader
     {
         static Dictionary<Assembly, string> ResourceStartName = new Dictionary<Assembly, string>();
 

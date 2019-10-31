@@ -15,7 +15,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,9 +37,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\References\0Harmony.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\BuiltinDependencies\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -49,10 +49,18 @@
       <HintPath>..\packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="NAudio">
+      <HintPath>Resources\BuiltinDependencies\NAudio.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.dll</HintPath>
@@ -320,6 +328,8 @@
     <Compile Include="Debug\PlayerDebug.cs" />
     <Compile Include="Debug\VoidMonitor.cs" />
     <Compile Include="Events\Events.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
+    <Compile Include="Extensions\HarmonyExtensions.cs" />
     <Compile Include="Harmony\AudioManager\AudioManager.cs" />
     <Compile Include="Harmony\GameObject\GameObject.cs" />
     <Compile Include="Debug\GameObjectTracker.cs" />
@@ -329,9 +339,12 @@
     <Compile Include="Hooks\Utility\Allocator.cs" />
     <Compile Include="Hooks\SceneHook.cs" />
     <Compile Include="Hooks\UIHook.cs" />
+    <Compile Include="Internal\BuiltInLoader.cs" />
     <Compile Include="Internal\CollisionDebugger.cs" />
     <Compile Include="Internal\SceneEventHandler.cs" />
+    <Compile Include="Module\ModuleInitializer.cs" />
     <Compile Include="Resources\ResourceLoader.cs" />
+    <Compile Include="Resources\ResourceLoader.NAudio.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="VoidCore.cs" />
     <Compile Include="Harmony\HealthManager\HealthManager.cs" />
@@ -353,10 +366,25 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="api\.gitignore" />
+    <Content Include="Resources\Audio\kevintest.mp3" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\System.Security.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\Accessibility.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\Mono.Data.Tds.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\Mono.Posix.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\Mono.WebBrowser.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\System.Configuration.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\System.EnterpriseServices.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\System.Transactions.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\0Harmony.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\NAudio.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\System.Data.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\System.Drawing.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\System.Runtime.Serialization.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\System.Windows.Forms.dll" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\System.Xml.Linq.dll" />
     <EmbeddedResource Include="Resources\TestText.txt" />
     <EmbeddedResource Include="Resources\DebugBox.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

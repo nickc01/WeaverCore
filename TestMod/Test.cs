@@ -85,10 +85,13 @@ namespace TestMod
 
     public class Player : PlayerHook
     {
+
+
         private void Start()
         {
             try
             {
+                
                 ModLog.Log("PLAYER START");
                 foreach (var item in gameObject.GetComponents<Component>())
                 {

@@ -10,4 +10,7 @@
     <StartProgram>C:\Program Files %28x86%29\Steam\Steam.exe</StartProgram>
     <StartArguments>-applaunch 367520 -dev -console -condebug</StartArguments>
   </PropertyGroup>
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
 </Project>

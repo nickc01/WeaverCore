@@ -21,7 +21,7 @@ namespace VoidCore
             DontDestroyOnLoad(CollisionPrefab);
             var renderer = CollisionPrefab.AddComponent<SpriteRenderer>();
             renderer.drawMode = SpriteDrawMode.Sliced;
-            renderer.sprite = ResourceLoader.LoadResourceSprite("Resources.DebugBox.png", border: new Vector4(19, 19, 19, 19));
+            renderer.sprite = ResourceLoader.LoadResourceSprite("Resources.Images.DebugBox.png", border: new Vector4(19, 19, 19, 19));
             CollisionPrefab.SetActive(false);
         }
 

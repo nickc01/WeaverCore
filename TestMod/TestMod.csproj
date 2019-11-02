@@ -309,9 +309,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VoidCore\0VoidCore.csproj">
+    <ProjectReference Include="..\VoidCore\VoidCore.csproj">
       <Project>{1a29dd9a-55d2-471d-985e-9d97fe9666f2}</Project>
-      <Name>0VoidCore</Name>
+      <Name>VoidCore</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

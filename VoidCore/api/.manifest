@@ -43,6 +43,7 @@
   "VoidCore.ModLog.LogError(System.String)": "VoidCore.ModLog.yml",
   "VoidCore.ResourceLoader": "VoidCore.ResourceLoader.yml",
   "VoidCore.ResourceLoader.LoadResource(System.String,System.Reflection.Assembly)": "VoidCore.ResourceLoader.yml",
+  "VoidCore.ResourceLoader.LoadResourceAudio(System.String,System.Reflection.Assembly)": "VoidCore.ResourceLoader.yml",
   "VoidCore.ResourceLoader.LoadResourceRaw(System.String,System.Reflection.Assembly)": "VoidCore.ResourceLoader.yml",
   "VoidCore.ResourceLoader.LoadResourceSprite(System.String,System.Reflection.Assembly,UnityEngine.SpriteMeshType,System.Nullable{UnityEngine.Vector4})": "VoidCore.ResourceLoader.yml",
   "VoidCore.ResourceLoader.LoadResourceTexture(System.String,System.Reflection.Assembly)": "VoidCore.ResourceLoader.yml",

@@ -15,7 +15,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,7 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>C:\Program Files %28x86%29\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\0VoidCore.xml</DocumentationFile>
+    <DocumentationFile>C:\Program Files %28x86%29\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\VoidCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,9 +37,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\References\0Harmony.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -49,189 +48,14 @@
       <HintPath>..\packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.AddIn">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.AddIn.Contract">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.configuration">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Configuration.Install">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.Entity">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.Entity.Design">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.Linq">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.OracleClient">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.Services">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.Services.Client">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.Services.Design">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.SqlXml">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Deployment">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Design">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.DirectoryServices">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.DirectoryServices.AccountManagement">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.DirectoryServices.Protocols">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Drawing.Design">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.EnterpriseServices">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.IdentityModel">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.IdentityModel.Selectors">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.IO.Log">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Management">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Management.Instrumentation">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Messaging">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Printing">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Runtime.Remoting">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Security">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.ServiceModel">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.ServiceModel.Web">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.ServiceProcess">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Speech">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Transactions">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Abstractions">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.DynamicData">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.DynamicData.Design">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Entity">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Entity.Design">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Extensions">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Extensions.Design">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Mobile">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.RegularExpressions">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Routing">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Services">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Windows.Forms">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Windows.Presentation">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Workflow.Activities">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Workflow.ComponentModel">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Workflow.Runtime">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.WorkflowServices">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.XML, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.dll</HintPath>
@@ -494,29 +318,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\OnModStart.cs" />
-    <Compile Include="Audio\Audio.cs" />
-    <Compile Include="Debug\PlayerDebug.cs" />
-    <Compile Include="Debug\VoidMonitor.cs" />
-    <Compile Include="Events\Events.cs" />
-    <Compile Include="Harmony\AudioManager\AudioManager.cs" />
-    <Compile Include="Harmony\GameObject\GameObject.cs" />
-    <Compile Include="Debug\GameObjectTracker.cs" />
-    <Compile Include="Harmony\HeroController\HeroController.cs" />
-    <Compile Include="Harmony\UIManager\UIManager.cs" />
-    <Compile Include="Hooks\Utility\IHook.cs" />
-    <Compile Include="Hooks\Utility\Allocator.cs" />
-    <Compile Include="Hooks\SceneHook.cs" />
-    <Compile Include="Hooks\UIHook.cs" />
-    <Compile Include="Internal\CollisionDebugger.cs" />
-    <Compile Include="Internal\SceneEventHandler.cs" />
-    <Compile Include="Resources\ResourceLoader.cs" />
-    <Compile Include="Settings\Settings.cs" />
-    <Compile Include="VoidCore.cs" />
-    <Compile Include="Harmony\HealthManager\HealthManager.cs" />
-    <Compile Include="Hooks\PlayerHook.cs" />
-    <Compile Include="Mod.cs" />
-    <Compile Include="ModLog.cs" />
+    <Compile Include="src\Attributes\OnModStart.cs" />
+    <Compile Include="src\Audio\Audio.cs" />
+    <Compile Include="src\Debug\PlayerDebug.cs" />
+    <Compile Include="src\Debug\VoidMonitor.cs" />
+    <Compile Include="src\Events\Events.cs" />
+    <Compile Include="src\Harmony\AudioManager\AudioManager.cs" />
+    <Compile Include="src\Harmony\GameObject\GameObject.cs" />
+    <Compile Include="src\Debug\GameObjectTracker.cs" />
+    <Compile Include="src\Harmony\HeroController\HeroController.cs" />
+    <Compile Include="src\Harmony\UIManager\UIManager.cs" />
+    <Compile Include="src\Hooks\Utility\IHook.cs" />
+    <Compile Include="src\Hooks\Utility\Allocator.cs" />
+    <Compile Include="src\Hooks\SceneHook.cs" />
+    <Compile Include="src\Hooks\UIHook.cs" />
+    <Compile Include="src\Internal\BuiltInLoader.cs" />
+    <Compile Include="src\Internal\CollisionDebugger.cs" />
+    <Compile Include="src\Internal\SceneEventHandler.cs" />
+    <Compile Include="src\Module\ModuleInitializer.cs" />
+    <Compile Include="src\Resources\ResourceLoader.cs" />
+    <Compile Include="src\Resources\ResourceLoader.NLayer.cs" />
+    <Compile Include="src\Settings\Settings.cs" />
+    <Compile Include="src\VoidCore.cs" />
+    <Compile Include="src\Harmony\HealthManager\HealthManager.cs" />
+    <Compile Include="src\Hooks\PlayerHook.cs" />
+    <Compile Include="src\Mod.cs" />
+    <Compile Include="src\ModLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -532,10 +359,17 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="api\.gitignore" />
-    <EmbeddedResource Include="Resources\TestText.txt" />
-    <EmbeddedResource Include="Resources\DebugBox.png" />
+    <EmbeddedResource Include="Resources\Audio\kevinMusic.mp3" />
+    <EmbeddedResource Include="Dependencies\NLayer.dll" />
+    <EmbeddedResource Include="Resources\Images\DebugBox.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\VoidCore.NLayer\VoidCore.NLayer.csproj">
+      <Project>{452814d0-3908-4037-b45d-2ff064eed936}</Project>
+      <Name>VoidCore.NLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

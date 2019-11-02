@@ -49,10 +49,6 @@
       <HintPath>..\packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="NAudio">
-      <HintPath>Resources\BuiltinDependencies\NAudio.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -328,8 +324,6 @@
     <Compile Include="Debug\PlayerDebug.cs" />
     <Compile Include="Debug\VoidMonitor.cs" />
     <Compile Include="Events\Events.cs" />
-    <Compile Include="Extensions\AssemblyExtensions.cs" />
-    <Compile Include="Extensions\HarmonyExtensions.cs" />
     <Compile Include="Harmony\AudioManager\AudioManager.cs" />
     <Compile Include="Harmony\GameObject\GameObject.cs" />
     <Compile Include="Debug\GameObjectTracker.cs" />
@@ -344,7 +338,7 @@
     <Compile Include="Internal\SceneEventHandler.cs" />
     <Compile Include="Module\ModuleInitializer.cs" />
     <Compile Include="Resources\ResourceLoader.cs" />
-    <Compile Include="Resources\ResourceLoader.NAudio.cs" />
+    <Compile Include="Resources\ResourceLoader.NLayer.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="VoidCore.cs" />
     <Compile Include="Harmony\HealthManager\HealthManager.cs" />
@@ -366,7 +360,8 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="api\.gitignore" />
-    <Content Include="Resources\Audio\kevintest.mp3" />
+    <EmbeddedResource Include="Resources\Audio\kevinMusic.mp3" />
+    <EmbeddedResource Include="Resources\BuiltinDependencies\NLayer.dll" />
     <EmbeddedResource Include="Resources\BuiltinDependencies\System.Security.dll" />
     <EmbeddedResource Include="Resources\BuiltinDependencies\Accessibility.dll" />
     <EmbeddedResource Include="Resources\BuiltinDependencies\Mono.Data.Tds.dll" />
@@ -376,7 +371,6 @@
     <EmbeddedResource Include="Resources\BuiltinDependencies\System.EnterpriseServices.dll" />
     <EmbeddedResource Include="Resources\BuiltinDependencies\System.Transactions.dll" />
     <EmbeddedResource Include="Resources\BuiltinDependencies\0Harmony.dll" />
-    <EmbeddedResource Include="Resources\BuiltinDependencies\NAudio.dll" />
     <EmbeddedResource Include="Resources\BuiltinDependencies\System.Data.dll" />
     <EmbeddedResource Include="Resources\BuiltinDependencies\System.Drawing.dll" />
     <EmbeddedResource Include="Resources\BuiltinDependencies\System.Runtime.Serialization.dll" />
@@ -384,6 +378,15 @@
     <EmbeddedResource Include="Resources\BuiltinDependencies\System.Xml.Linq.dll" />
     <EmbeddedResource Include="Resources\TestText.txt" />
     <EmbeddedResource Include="Resources\DebugBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VoidCore.NVorbis\VoidCore.NLayer.csproj">
+      <Project>{452814d0-3908-4037-b45d-2ff064eed936}</Project>
+      <Name>VoidCore.NLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

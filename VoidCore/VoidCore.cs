@@ -33,6 +33,7 @@ namespace VoidCore
 
         public override void Initialize()
         {
+            AppDomain.CurrentDomain.AssemblyResolve += BuiltInLoader.AssemblyLoader;
             Instance = this;
             ModLog.Log("TESTING");
 
@@ -41,8 +42,8 @@ namespace VoidCore
             //BuiltInLoader.AssemblyLoader(null, null);
 
             var harmony = HarmonyInstance.Create("com." + nameof(VoidCore).ToLower() + ".nickc01");
-            harmony.PatchAllSafe();
-            //harmony.PatchAll(Assembly.GetExecutingAssembly());
+            //harmony.PatchAllSafe();
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             //SceneHook.OnGameLoad();
 
@@ -88,16 +89,17 @@ internal class PlayerTest : PlayerHook
         try
         {
             ModLog.Log("T1");
-            loadedAudio = ResourceLoader.LoadResourceAudio("Resources.Audio.kevintest.mp3");
+            loadedAudio = ResourceLoader.LoadResourceAudio("Resources.Audio.kevinMusic.mp3");
             audioObject = new GameObject("TESTAUDIO");
+            DontDestroyOnLoad(audioObject);
             ModLog.Log("T2");
             audioObject.transform.position = Camera.main.transform.position;
             source = audioObject.AddComponent<AudioSource>();
             ModLog.Log("T3");
             source.volume = 1.0f;
-            source.clip = loadedAudio.clip;
+            source.clip = loadedAudio.Clip;
             source.Play();
-            ModLog.Log("T4");
+            /*ModLog.Log("T4");
             ModLog.Log("PLAYER TEST LOADED_____");
             ModLog.Log("THIS SHOULD BE IN THE LOG");
             foreach (var component in GetComponents<Component>())
@@ -117,7 +119,7 @@ internal class PlayerTest : PlayerHook
             }
 
             ModLog.Log("PLAYER LAYER = " + gameObject.layer);
-            ModLog.Log("PLAYER LAYER Name = " + LayerMask.LayerToName(gameObject.layer));
+            ModLog.Log("PLAYER LAYER Name = " + LayerMask.LayerToName(gameObject.layer));*/
         }
         catch (Exception e)
         {
@@ -142,7 +144,7 @@ internal class PlayerTest : PlayerHook
 
     void Update()
     {
-        //audioObject.transform.position = Camera.main.transform.position;
+        audioObject.transform.position = Camera.main.transform.position;
         //VoidCore.VoidCore.testObject.transform.position = transform.position;
         //VoidCore.VoidCore.testObject.layer = gameObject.layer;
         //var setZ = GetComponent<SetZ>();

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0VoidCore", "VoidCore\0Void
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMod", "TestMod\TestMod.csproj", "{F16367B9-6F3D-42A0-A5CF-A45B273DB108}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0000VoidPreload", "0000VoidPreload\0000VoidPreload.csproj", "{2DC7BE9F-D1E8-4769-91A9-8917B4097BF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoidCore.NLayer", "VoidCore.NLayer\VoidCore.NLayer.csproj", "{452814D0-3908-4037-B45D-2FF064EED936}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{F16367B9-6F3D-42A0-A5CF-A45B273DB108}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F16367B9-6F3D-42A0-A5CF-A45B273DB108}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F16367B9-6F3D-42A0-A5CF-A45B273DB108}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DC7BE9F-D1E8-4769-91A9-8917B4097BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DC7BE9F-D1E8-4769-91A9-8917B4097BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DC7BE9F-D1E8-4769-91A9-8917B4097BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DC7BE9F-D1E8-4769-91A9-8917B4097BF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{452814D0-3908-4037-B45D-2FF064EED936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{452814D0-3908-4037-B45D-2FF064EED936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{452814D0-3908-4037-B45D-2FF064EED936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{452814D0-3908-4037-B45D-2FF064EED936}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -56,46 +56,46 @@ namespace VoidCore
         public override void Initialize()
         {
             var assembly = Assembly.GetAssembly(GetType());
-            Logger.Log("AA");
+            //Logger.Log("AA");
             FindModStartFunctions(assembly);
-            Logger.Log("BB");
-            ModLog.Log("LOADING HOOKS");
-            Logger.Log("CC");
+           // Logger.Log("BB");
+            //ModLog.Log("LOADING HOOKS");
+            //Logger.Log("CC");
             DoModStartFunctions(assembly);
-            Logger.Log("DD");
+            //Logger.Log("DD");
             LoadHooks(assembly);
-            Logger.Log("EE");
+            //Logger.Log("EE");
         }
 
         private static void FindModStartFunctions(Assembly assembly)
         {
-            Logger.Log("AB");
+           //Logger.Log("AB");
             if (!FoundStartFunctions)
             {
-                Logger.Log("AC");
+               // Logger.Log("AC");
                 //foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                 //{
-                Logger.Log("AD");
-                foreach (var type in assembly.GetTypesSafe())
+                //Logger.Log("AD");
+                foreach (var type in assembly.GetTypes())
                 {
-                    Logger.Log("AE");
+                    //Logger.Log("AE");
                     foreach (var method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
                     {
-                        Logger.Log("AF");
-                        Logger.Log("Method = " + method.Name);
-                        Logger.Log("Type = " + type.Name);
-                        Logger.Log("Assembly = " + assembly);
-                        Logger.Log("MethodType = " + method.GetType());
+                       // Logger.Log("AF");
+                        //Logger.Log("Method = " + method.Name);
+                        //Logger.Log("Type = " + type.Name);
+                        //Logger.Log("Assembly = " + assembly);
+                        //Logger.Log("MethodType = " + method.GetType());
                         if (method.Name.Contains("LoadResourceAudio"))
                         {
                             continue;
                         }
                         if (method.GetParameters().GetLength(0) == 0)
                         {
-                            Logger.Log("AG");
+                            //Logger.Log("AG");
                             foreach (var attribute in (OnModStartAttribute[])method.GetCustomAttributes(typeof(OnModStartAttribute), true))
                             {
-                                Logger.Log("AH");
+                                //Logger.Log("AH");
                                 ModStartFunctions.Add((attribute.ModType, () => method.Invoke(null, null)));
                             }
                         }
@@ -144,27 +144,6 @@ namespace VoidCore
                     pair.executer();
                 }
             }
-            /*foreach (var pair in ModStartFunctions)
-            {
-                if (modType.IsAssignableFrom(pair.Key))
-                {
-
-                }
-            }*/
-            /*if (!HooksLoaded.ContainsKey(assembly) || HooksLoaded[assembly] == false)
-            {
-                foreach (var type in assembly.GetTypes())
-                {
-                    foreach (var method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
-                    {
-                        if (method.GetParameters().GetLength(0) == 0 && method.GetCustomAttributes(typeof(OnModStartAttribute), false).GetLength(0) > 0)
-                        {
-                            method.Invoke(null, null);
-                        }
-                        
-                    }
-                }
-            }*/
         }
 
 
@@ -176,7 +155,7 @@ namespace VoidCore
             }
             if (HooksLoaded[assembly] == false)
             {
-                foreach (var type in assembly.GetTypesSafe())
+                foreach (var type in assembly.GetTypes())
                 {
                     if (!type.IsAbstract)
                     {

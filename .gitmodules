@@ -1,0 +1,4 @@
+[submodule "VoidCore/_site"]
+	path = VoidCore/_site
+	url = https://github.com/nickc01/Void-Core.git
+	branch = gh-pages

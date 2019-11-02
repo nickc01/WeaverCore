@@ -383,7 +383,7 @@
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VoidCore.NVorbis\VoidCore.NLayer.csproj">
+    <ProjectReference Include="..\VoidCore.NLayer\VoidCore.NLayer.csproj">
       <Project>{452814d0-3908-4037-b45d-2ff064eed936}</Project>
       <Name>VoidCore.NLayer</Name>
     </ProjectReference>

@@ -13,7 +13,7 @@ namespace VoidCore
         public Collider2D collider;
         public SpriteRenderer renderer;
 
-        [OnModStart(typeof(VoidCore))]
+        [ModStart(typeof(VoidCore))]
         static void ModStart()
         {
             Events.GameObjectCreated += OnNewGameObject;

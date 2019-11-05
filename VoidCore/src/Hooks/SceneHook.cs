@@ -57,7 +57,7 @@ namespace VoidCore.Hooks
         }
 
         //Called when the game initially loads up and is called only once
-        [OnModStart(typeof(VoidCore))]
+        [ModStart(typeof(VoidCore))]
         static void OnGameLoad()
         {
             //Add current scenes

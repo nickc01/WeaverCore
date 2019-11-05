@@ -33,17 +33,16 @@ namespace VoidCore
 
         public override void Initialize()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += BuiltInLoader.AssemblyLoader;
             Instance = this;
-            ModLog.Log("TESTING");
+            //ModLog.Log("TESTING");
 
             
 
             //BuiltInLoader.AssemblyLoader(null, null);
 
-            var harmony = HarmonyInstance.Create("com." + nameof(VoidCore).ToLower() + ".nickc01");
+            //var harmony = HarmonyInstance.Create("com." + nameof(VoidCore).ToLower() + ".nickc01");
             //harmony.PatchAllSafe();
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            //harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             //SceneHook.OnGameLoad();
 

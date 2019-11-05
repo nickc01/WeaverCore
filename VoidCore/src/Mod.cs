@@ -55,15 +55,15 @@ namespace VoidCore
         /// </example>
         public override void Initialize()
         {
-            var assembly = Assembly.GetAssembly(GetType());
+            //var assembly = Assembly.GetAssembly(GetType());
             //Logger.Log("AA");
-            FindModStartFunctions(assembly);
+            //FindModStartFunctions(assembly);
            // Logger.Log("BB");
             //ModLog.Log("LOADING HOOKS");
             //Logger.Log("CC");
-            DoModStartFunctions(assembly);
+            //DoModStartFunctions(assembly);
             //Logger.Log("DD");
-            LoadHooks(assembly);
+            //LoadHooks(assembly);
             //Logger.Log("EE");
         }
 
@@ -93,7 +93,7 @@ namespace VoidCore
                         if (method.GetParameters().GetLength(0) == 0)
                         {
                             //Logger.Log("AG");
-                            foreach (var attribute in (OnModStartAttribute[])method.GetCustomAttributes(typeof(OnModStartAttribute), true))
+                            foreach (var attribute in (ModStartAttribute[])method.GetCustomAttributes(typeof(ModStartAttribute), true))
                             {
                                 //Logger.Log("AH");
                                 ModStartFunctions.Add((attribute.ModType, () => method.Invoke(null, null)));
@@ -192,7 +192,7 @@ namespace VoidCore
                 HooksLoaded[assembly] = true;
             }
         }
-
     }
+
 }
 

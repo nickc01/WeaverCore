@@ -13,7 +13,7 @@ namespace VoidCore
     {
         static bool started = false;
 
-        [OnModStart(typeof(VoidCore))]
+        [ModStart(typeof(VoidCore))]
         static void SettingsStart()
         {
             if (DebugMode)

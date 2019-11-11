@@ -1,31 +1,33 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using VoidCore.Hooks.Internal;
 using VoidCore.Hooks.Utility;
 
 namespace VoidCore.Hooks
 {
-    namespace Utility
+    namespace Internal
     {
         /// <summary>
-        /// Determines how the UIHooks are loaded into the game.
+        /// An injector implementation for the <see cref="UIManager"/>
         /// </summary>
-        public class UIAllocator : Allocator
+        public class UIInjector : HookInjector
         {
             /// <summary>
-            /// This is an internal method used to determine how the Hooks are created
-            /// When the mod is loaded, this determines how the UIHook is created.
-            /// This method returns null, meaning that the hook will be allocated later.
-            /// They are instead allocated when the UIManager starts.
+            /// Called when the UIInjector is initialized. Used to add the hooks into the <see cref="UIManager"/>
             /// </summary>
-            /// <param name="hookType">The UIHook type</param>
-            /// <returns></returns>
-            public override object Allocate(Type hookType)
+            public override void Initialize()
             {
-                UIHook.AvailableHooks.Add(hookType);
-                return null;
+                On.UIManager.Start += UIManagerStart;
+            }
+
+            private void UIManagerStart(On.UIManager.orig_Start orig, UIManager self)
+            {
+                orig(self);
+                InjectInto(self);
             }
         }
     }
@@ -50,9 +52,17 @@ namespace VoidCore.Hooks
     /// }
     /// </code>
     ///</example>
-    public abstract class UIHook : MonoBehaviour, IHook<UIAllocator>
+    public abstract class UIHook<Mod> : MonoBehaviour, IHook<Mod, InjectionAllocator<UIInjector>> where Mod : IMod
     {
-        internal static List<Type> AvailableHooks = new List<Type>();
-        void IHook.LoadHook() { }
+        /// <summary>
+        /// Called when the PlayerHook is loading
+        /// </summary>
+        /// <param name="mod">The mod that the UIHook is bound to</param>
+        public abstract void LoadHook(IMod mod);
+        /// <summary>
+        /// Called when the PlayerHook is unloading
+        /// </summary>
+        /// <param name="mod">The mod that the UIHook is bound to</param>
+        public abstract void UnloadHook(IMod mod);
     }
 }

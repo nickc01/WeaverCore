@@ -10,11 +10,23 @@ using UnityEngine;
 namespace VoidCore
 {
 
-
+    /// <summary>
+    /// Used to load resources into the game, such as Textures, Sprites, and Audio
+    /// </summary>
     public static partial class ResourceLoader
     {
         static Dictionary<Assembly, string> ResourceStartName = new Dictionary<Assembly, string>();
 
+        /// <summary>
+        /// Loads a resource as a stream
+        /// </summary>
+        /// <example>
+        /// //If there is a texture resource located at "Resources/Images/test.png"
+        /// Texture2D texture = LoadResource("Resources.Images.test.png", Assembly.GetExecutingAssembly());
+        /// </example>
+        /// <param name="ResourcePath">The path to the resource in the project</param>
+        /// <param name="searchAssembly">The assembly to search in. If left null, it searches the Executing Assembly</param>
+        /// <returns>The stream to the resource file</returns>
         public static Stream LoadResource(string ResourcePath,Assembly searchAssembly = null)
         {
             if (searchAssembly == null)
@@ -37,7 +49,12 @@ namespace VoidCore
             }
             return stream;
         }
-
+        /// <summary>
+        /// Loads a resource as a raw byte array
+        /// </summary>
+        /// <param name="ResourcePath">The path to the resource in the project</param>
+        /// <param name="searchAssembly">The assembly to search in. If left null, it searches the Executing Assembly</param>
+        /// <returns>The stream to the resource file</returns>
         public static byte[] LoadResourceRaw(string ResourcePath,Assembly searchAssembly = null)
         {
             byte[] memory = null;
@@ -51,6 +68,12 @@ namespace VoidCore
             return memory;
         }
 
+        /// <summary>
+        /// Loads a resource as a texture
+        /// </summary>
+        /// <param name="ResourcePath">The path to the resource in the project</param>
+        /// <param name="searchAssembly">The assembly to search in. If left null, it searches the Executing Assembly</param>
+        /// <returns>The stream to the resource file</returns>
         public static Texture2D LoadResourceTexture(string ResourcePath, Assembly searchAssembly = null)
         {
             var imageMemory = LoadResourceRaw(ResourcePath, searchAssembly);
@@ -69,6 +92,14 @@ namespace VoidCore
             return texture;
         }
 
+        /// <summary>
+        /// Loads a resource as a sprite
+        /// </summary>
+        /// <param name="ResourcePath">The path to the resource in the project</param>
+        /// <param name="searchAssembly">The assembly to search in. If left null, it searches the Executing Assembly</param>
+        /// <param name="meshType">The mesh type of the sprite</param>
+        /// <param name="border">The border of the sprite</param>
+        /// <returns></returns>
         public static Sprite LoadResourceSprite(string ResourcePath, Assembly searchAssembly = null,SpriteMeshType meshType = SpriteMeshType.FullRect,Vector4? border = null)
         {
             var texture = LoadResourceTexture(ResourcePath, searchAssembly);

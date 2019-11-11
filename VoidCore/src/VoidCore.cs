@@ -8,15 +8,15 @@ using VoidCore;
 using VoidCore.Hooks;
 using System.Collections;
 using System.IO;
+using Logger = Modding.Logger;
+
+
 
 namespace VoidCore
 {
-    internal class VoidCore : Mod
+
+    internal class VoidCore : Mod, ITogglableMod
     {
-        public VoidCore()
-        {
-            Modding.Logger.Log("VOIDCORE_CTOR");
-        }
 
         public override int LoadPriority()
         {
@@ -28,56 +28,24 @@ namespace VoidCore
 
         public override string GetVersion() => Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-
-        //static internal GameObject testObject;
-
         public override void Initialize()
         {
             Instance = this;
-            //ModLog.Log("TESTING");
 
-            
-
-            //BuiltInLoader.AssemblyLoader(null, null);
-
-            //var harmony = HarmonyInstance.Create("com." + nameof(VoidCore).ToLower() + ".nickc01");
-            //harmony.PatchAllSafe();
-            //harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-            //SceneHook.OnGameLoad();
+            var harmony = ModuleInitializer.GetVoidCoreHarmony() as HarmonyInstance;
+            harmony.PatchAll();
 
             base.Initialize();
-
-            /*testObject = new GameObject();
-            GameObject.DontDestroyOnLoad(testObject);
-            testObject.transform.position = Vector3.forward;
-            var renderer = testObject.AddComponent<SpriteRenderer>();
-            renderer.drawMode = SpriteDrawMode.Sliced;
-            renderer.sprite = ResourceLoader.LoadResourceSprite("Resources.White Box.png",border: new Vector4(19,19,19,19));
-            renderer.size = new Vector2(10, 10);*/
         }
-        //Events.ComponentCreated += Testing;
+
+        public void Unload()
+        {
+            
+        }
     }
-
-        //static void Collision(On.MusicRegion.orig_OnTriggerEnter2D original, MusicRegion instance, Collider2D collision)
-        //{
-            //ModLog.Log($"COLLISION WITH MUSIC REGION, NAME ({collision.name}), Type ({collision.GetType()})");
-        //}
-
-        //static void Testing(Component c)
-        //{
-            //ModLog.Log($"----COMPONENT Name({c.name}) Type({c.GetType()}) ");
-        //    if (c is BoxCollider2D collider)
-        //    {
-                //ModLog.Log($"___COLLIDER Name({collider.name}) Type({collider.GetType()}) ");
-        //    }
-            //ModLog.Log("Created Component = " + c.name);
-        //}
-    //}
-
 }
 
-internal class PlayerTest : PlayerHook
+internal class PlayerTest : PlayerHook<VoidCore.VoidCore>
 {
     LoadedAudio loadedAudio = null;
     AudioSource source;
@@ -152,6 +120,16 @@ internal class PlayerTest : PlayerHook
         //setZ.enabled = true;
         //ModLog.Log("Z = " + setZ.z);
         //VoidCore.VoidCore.testObject.transform.position = transform.position - Vector3.one;
+    }
+
+    public override void LoadHook(IMod mod)
+    {
+        
+    }
+
+    public override void UnloadHook(IMod mod)
+    {
+        
     }
 }
 

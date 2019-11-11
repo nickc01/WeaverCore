@@ -7,7 +7,7 @@ namespace VoidCore
 {
 
     /// <summary>
-    /// When added onto a static method, that method will be called when any mod in the current assembly is loaded
+    /// When added onto a static method, that method will be called when a mod is loaded
     /// </summary>
     [System.AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
     internal sealed class ModStartAttribute : Attribute

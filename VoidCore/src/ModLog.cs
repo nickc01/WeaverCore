@@ -9,20 +9,20 @@ namespace VoidCore
     {
         public static void Log(object message)
         {
-            VoidCore.Instance.Log(message);
+            Modding.Logger.Log(message);
         }
 
         public static void Log(string message)
         {
-            VoidCore.Instance.Log(message);
+            Modding.Logger.Log(message);
         }
         public static void LogError(string message)
         {
-            VoidCore.Instance.LogError(message);
+            Modding.Logger.LogError(message);
         }
         public static void LogError(object message)
         {
-            VoidCore.Instance.LogError(message);
+            Modding.Logger.LogError(message);
         }
     }
 }

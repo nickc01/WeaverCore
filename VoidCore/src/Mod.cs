@@ -7,9 +7,9 @@ using Modding;
 using UnityEngine.SceneManagement;
 using VoidCore;
 using VoidCore.Hooks;
-using VoidCore.Hooks.Utility;
+using VoidCore.Hooks.Internal;
 
-namespace VoidCore
+/*namespace VoidCore
 {
     /// <summary>
     /// Inherit this class to create a mod of your own
@@ -196,3 +196,4 @@ namespace VoidCore
 
 }
 
+*/

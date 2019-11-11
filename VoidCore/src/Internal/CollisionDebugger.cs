@@ -29,10 +29,10 @@ namespace VoidCore
 
         static void OnNewGameObject(GameObject g)
         {
-            ModLog.Log("NEW GAMEOBJECT = " + g.name);
+            //ModLog.Log("NEW GAMEOBJECT = " + g.name);
             if (Settings.DebugMode && g.GetComponent<Collider2D>() != null)
             {
-                ModLog.Log("HAS COLLIDER");
+                //ModLog.Log("HAS COLLIDER");
                 var collisionDebugger = Instantiate(CollisionPrefab);
                 collisionDebugger.AddComponent<CollisionDebugger>();
                 collisionDebugger.transform.SetParent(g.transform);

@@ -1,31 +1,33 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using VoidCore.Hooks.Internal;
 using VoidCore.Hooks.Utility;
 
 namespace VoidCore.Hooks
 {
-    namespace Utility
+    namespace Internal
     {
         /// <summary>
-        /// Determines how the PlayerHooks are loaded into the game
+        /// An injector implementation for the <see cref="HeroController"/>
         /// </summary>
-        public class PlayerAllocator : Allocator
+        public class PlayerInjector : HookInjector
         {
             /// <summary>
-            /// This is an internal method used to determine how the Hooks are created
-            /// When the mod is loaded, this determines how the PlayerHook is created.
-            /// This method returns null, meaning that the hook will be allocated later.
-            /// They are instead allocated when the HeroController starts.
+            /// Called when the HeroController is initialized. Used to add the hooks into the <see cref="HeroController"/>
             /// </summary>
-            /// <param name="originalType">The PlayerHook Type</param>
-            /// <returns></returns>
-            public override object Allocate(Type originalType)
+            public override void Initialize()
             {
-                PlayerHook.AvailableHooks.Add(originalType);
-                return null;
+                On.HeroController.Start += PlayerStart;
+            }
+
+            private void PlayerStart(On.HeroController.orig_Start orig, HeroController self)
+            {
+                orig(self);
+                InjectInto(self);
             }
         }
     }
@@ -50,10 +52,17 @@ namespace VoidCore.Hooks
     ///}
     /// </code>
     /// </example>
-    public abstract class PlayerHook : MonoBehaviour, IHook<PlayerAllocator>
+    public abstract class PlayerHook<Mod> : MonoBehaviour, IHook<Mod, InjectionAllocator<PlayerInjector>> where Mod : IMod
     {
-        internal static List<Type> AvailableHooks = new List<Type>();
-
-        void IHook.LoadHook() { }
+        /// <summary>
+        /// Called when the PlayerHook is loading
+        /// </summary>
+        /// <param name="mod">The mod that the PlayerHook is bound to</param>
+        public virtual void LoadHook(IMod mod) { }
+        /// <summary>
+        /// Called when the PlayerHook is unloading
+        /// </summary>
+        /// <param name="mod">The mod that the PlayerHook is bound to</param>
+        public virtual void UnloadHook(IMod mod) { }
     }
 }

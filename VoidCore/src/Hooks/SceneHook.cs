@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using VoidCore.Hooks.Internal;
+using Modding;
 using VoidCore.Hooks.Utility;
 
 namespace VoidCore.Hooks
@@ -34,10 +36,10 @@ namespace VoidCore.Hooks
     ///}
     ///</code>
     ///</example>
-    public abstract class SceneHook : IHook
+    public abstract class SceneHook<Mod> : IHook<Mod> where Mod : IMod
     {
-        internal static List<Scene> Scenes = new List<Scene>();
-        private static Scene activeScene;
+        static List<Scene> Scenes = new List<Scene>();
+        static Scene activeScene;
 
         /// <summary>
         /// All currently loaded scenes in the game
@@ -48,12 +50,18 @@ namespace VoidCore.Hooks
         /// </summary>
         public static Scene ActiveScene => activeScene;
 
-        void IHook.LoadHook()
+        void IHookBase.LoadHook(IMod mod)
         {
-
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneAddition;
             UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneRemoval;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += OnActiveSceneChange;
+        }
+
+        void IHookBase.UnloadHook(IMod mod)
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneAddition;
+            UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneRemoval;
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= OnActiveSceneChange;
         }
 
         //Called when the game initially loads up and is called only once
@@ -74,19 +82,16 @@ namespace VoidCore.Hooks
 
         internal static void AddScene(Scene scene,LoadSceneMode mode)
         {
-            ModLog.Log("Added Scene = " + scene.name);
             Scenes.Add(scene);
         }
 
         internal static void RemoveScene(Scene scene)
         {
-            ModLog.Log("Removed Scene = " + scene.name);
             Scenes.Remove(scene);
         }
 
         internal static void ChangeActiveScene(Scene prev, Scene now)
         {
-            ModLog.Log("Active Scene = " + now.name);
             activeScene = now;
         }
 

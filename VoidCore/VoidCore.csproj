@@ -318,18 +318,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Attributes\OnModEnd.cs" />
     <Compile Include="src\Attributes\OnModStart.cs" />
     <Compile Include="src\Audio\Audio.cs" />
     <Compile Include="src\Debug\PlayerDebug.cs" />
     <Compile Include="src\Debug\VoidMonitor.cs" />
     <Compile Include="src\Events\Events.cs" />
     <Compile Include="src\Harmony\AudioManager\AudioManager.cs" />
-    <Compile Include="src\Harmony\GameObject\GameObject.cs" />
     <Compile Include="src\Debug\GameObjectTracker.cs" />
-    <Compile Include="src\Harmony\HeroController\HeroController.cs" />
-    <Compile Include="src\Harmony\UIManager\UIManager.cs" />
+    <Compile Include="src\Hooks\Utility\HookInjector.cs" />
+    <Compile Include="src\Hooks\Internal\IHookBase.cs" />
+    <Compile Include="src\Hooks\Utility\InjectionAllocator.cs" />
     <Compile Include="src\Hooks\Utility\IHook.cs" />
-    <Compile Include="src\Hooks\Utility\Allocator.cs" />
+    <Compile Include="src\Hooks\Utility\IAllocator.cs" />
     <Compile Include="src\Hooks\SceneHook.cs" />
     <Compile Include="src\Hooks\UIHook.cs" />
     <Compile Include="src\Internal\BuiltInLoader.cs" />

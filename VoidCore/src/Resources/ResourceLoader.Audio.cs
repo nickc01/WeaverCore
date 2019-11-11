@@ -53,6 +53,12 @@ namespace VoidCore
 
         static bool Started = false;
 
+        /// <summary>
+        /// Loads a resource as a AudioClip
+        /// </summary>
+        /// <param name="ResourcePath">The path to the resource in the project</param>
+        /// <param name="searchAssembly">The assembly to search in. If left null, it searches the Executing Assembly</param>
+        /// <returns>The stream to the resource file</returns>
         public static LoadedAudio LoadResourceAudio(string ResourcePath, Assembly searchAssembly = null)
         {
             if (!Started)

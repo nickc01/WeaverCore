@@ -2,13 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Modding;
 using UnityEngine;
 using VoidCore.Hooks;
 
 namespace VoidCore.Debug
 {
-    internal class PlayerDebug : PlayerHook
+    internal class PlayerDebug : PlayerHook<VoidCore>
     {
+        public override void LoadHook(IMod mod)
+        {
+            
+        }
+
+        public override void UnloadHook(IMod mod)
+        {
+            
+        }
+
         void OnCollisionEnter2D(Collision2D collision)
         {
             if (Settings.DebugMode)

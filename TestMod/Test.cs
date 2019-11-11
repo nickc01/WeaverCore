@@ -8,10 +8,11 @@ using VoidCore;
 using VoidCore.Hooks;
 using UnityEngine;
 using System.Diagnostics;
+using Modding;
 
 namespace TestMod
 {
-    public class TestMod : Mod
+    public class TestMod : Mod, ITogglableMod
     {
         public override string GetVersion() => "0.0.1";
 
@@ -23,10 +24,15 @@ namespace TestMod
             VoidCore.Settings.DebugMode = true;
             VoidCore.Settings.GameObjectTracking = true;
         }
+
+        public void Unload()
+        {
+            
+        }
     }
 
 
-    public class Scenes : VoidCore.Hooks.SceneHook
+    /*public class Scenes : VoidCore.Hooks.SceneHook<TestMod>
     {
         
 
@@ -54,36 +60,34 @@ namespace TestMod
             ModLog.Log("TEST");
             ModLog.Log("TEST2");
         }
-    }
+    }*/
 
-    public class UI : UIHook
+    public class UI : UIHook<TestMod>
     {
         void Start()
         {
-
             ModLog.Log("UISTART");
-            /*ModLog.Log(Environment.StackTrace);
-            var test = new StackTrace(true);
-            foreach (var r in test.GetFrames())
-            {
-                ModLog.Log($"Filename: {r.GetFileName()} Method: {r.GetMethod()} Line: {r.GetFileLineNumber()} Column: {r.GetFileColumnNumber()}  ");
-            }*/
-            /*UIManager Manager = GetComponent<UIManager>();
-            foreach (var obj in GameObject.FindObjectsOfType<GameObject>())
-            {
-                VoidModLog.Log("OBJ = " + obj.name);
-                foreach (var com in obj.GetComponents<Component>())
-                {
-                    VoidModLog.Log("COM = " + com);
-                    VoidModLog.Log("COM NAME = " + com.name);
-                }
-            }*/
+        }
+
+        void OnDestroy()
+        {
+            ModLog.Log("UIEND");
+        }
+
+        public override void LoadHook(IMod mod)
+        {
+            
+        }
+
+        public override void UnloadHook(IMod mod)
+        {
+            
         }
     }
 
 
 
-    public class Player : PlayerHook
+    /*public class Player : PlayerHook<TestMod>
     {
 
 
@@ -115,7 +119,7 @@ namespace TestMod
                             ModLog.Log("SERIALIZATION = ");
                             ModLog.Log(textWriter.ToString());
                         }
-                        ModLog.Log("TEST");*/
+                        ModLog.Log("TEST");
                     }
                 }
             }
@@ -124,6 +128,6 @@ namespace TestMod
                 ModLog.Log("Exception = " + e);
             }
         }
-    }
+    }*/
 
 }

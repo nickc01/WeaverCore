@@ -14,8 +14,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +47,7 @@
       <HintPath>..\packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="PlayMaker, Version=1.6.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -321,11 +321,15 @@
     <Compile Include="src\Attributes\OnModEnd.cs" />
     <Compile Include="src\Attributes\OnModStart.cs" />
     <Compile Include="src\Audio\Audio.cs" />
-    <Compile Include="src\Debug\PlayerDebug.cs" />
-    <Compile Include="src\Debug\VoidMonitor.cs" />
+    <Compile Include="src\Debug\GMTrackingPatches.cs" />
+    <Compile Include="src\Debug\Internal\PlayerDebug.cs" />
     <Compile Include="src\Events\Events.cs" />
     <Compile Include="src\Harmony\AudioManager\AudioManager.cs" />
-    <Compile Include="src\Debug\GameObjectTracker.cs" />
+    <Compile Include="src\Debug\GMTracker.cs" />
+    <Compile Include="src\Helpers\Fields.cs" />
+    <Compile Include="src\Hooks\DebugHook.cs" />
+    <Compile Include="src\Hooks\EnemyHook.cs" />
+    <Compile Include="src\Hooks\GameObjectTrackingHook.cs" />
     <Compile Include="src\Hooks\Utility\HookInjector.cs" />
     <Compile Include="src\Hooks\Internal\IHookBase.cs" />
     <Compile Include="src\Hooks\Utility\InjectionAllocator.cs" />
@@ -333,9 +337,11 @@
     <Compile Include="src\Hooks\Utility\IAllocator.cs" />
     <Compile Include="src\Hooks\SceneHook.cs" />
     <Compile Include="src\Hooks\UIHook.cs" />
+    <Compile Include="src\Internal\ActionDataLoader.cs" />
     <Compile Include="src\Internal\BuiltInLoader.cs" />
-    <Compile Include="src\Internal\CollisionDebugger.cs" />
-    <Compile Include="src\Internal\SceneEventHandler.cs" />
+    <Compile Include="src\Debug\Internal\CollisionDebugger.cs" />
+    <Compile Include="src\Debug\Internal\SceneEventHandler.cs" />
+    <Compile Include="src\Internal\WeakDictionary.cs" />
     <Compile Include="src\Module\ModuleInitializer.cs" />
     <Compile Include="src\Resources\ResourceLoader.cs" />
     <Compile Include="src\Resources\ResourceLoader.Audio.cs" />

@@ -16,6 +16,9 @@ using Logger = Modding.Logger;
 
 internal static class ModuleInitializer
 {
+    public static Assembly TheraotCore { get; private set; } = null;
+
+
     internal static object GetVoidCoreHarmony()
     {
         return harmony;
@@ -46,7 +49,6 @@ internal static class ModuleInitializer
         AppDomain.CurrentDomain.AssemblyResolve += BuiltInLoader.AssemblyLoader;
         AppDomain.CurrentDomain.AssemblyLoad += (s, a) => OnNewAssembly(a.LoadedAssembly, false);
 
-
         //Moves the resolve event from "Assembly-CSharp" to the back to prevent false errors
         try
         {
@@ -75,6 +77,7 @@ internal static class ModuleInitializer
 
         //Load Harmony and run all patches
         var harmonyAssembly = Assembly.Load("0Harmony");
+        TheraotCore = Assembly.Load("Theraot.Core");
 
         var harmonyInstance = harmonyAssembly.GetType("Harmony.HarmonyInstance");
         var harmonyMethod = harmonyAssembly.GetType("Harmony.HarmonyMethod");
@@ -103,8 +106,8 @@ internal static class ModuleInitializer
         var patchAll = harmonyInstance.GetMethod("PatchAll", new Type[] { typeof(Assembly) });
         patchAll.Invoke(harmony, new object[] { typeof(VoidCore.VoidCore).Assembly });
 
-
         Logger.Log("Loaded VoidCore Backend. Load Info : " + LoadInfo);
+        //VoidCore.Internal.ActionDataLoader.Start();
     }
 
 

@@ -12,31 +12,37 @@ namespace VoidCore
     public static class Events
     {
         /// <summary>
-        /// Called whenever a gameObject is created in the game
+        /// Called whenever a gameobject is either created or enabled. If the boolean is true, then the gameObject is being created. If it's false, then that gameObject is being enabled
         /// </summary>
-        /// <remarks>
-        /// Note that this could be called multiple times for a single gameobject
-        /// </remarks>
-        public static event Action<GameObject> GameObjectCreated
+        public static event Action<GameObject,bool> GameObjectCreated
         {
             add => InternalGameObjectCreated += value;
             remove => InternalGameObjectCreated -= value;
         }
-        internal static Action<GameObject> InternalGameObjectCreated;
+        internal static Action<GameObject,bool> InternalGameObjectCreated;
 
-        public static event Action OnDebugStart
+        /// <summary>
+        /// Called whenever a gameobject is either destroyed or disabled. If the boolean is true, then the gameObject is being destroyed. If it's false, then that gameObject is being disabled
+        /// </summary>
+        public static event Action<GameObject,bool> GameObjectRemoved
         {
-            add => InternalOnDebugStart += value;
-            remove => InternalOnDebugStart -= value;
+            add => InternalGameObjectRemoved += value;
+            remove => InternalGameObjectRemoved -= value;
         }
+        internal static Action<GameObject,bool> InternalGameObjectRemoved;
 
-        internal static Action InternalOnDebugStart;
-
-        public static event Action OnDebugEnd
+        public static event Action<bool> DebugEvent
         {
-            add => InternalOnDebugEnd += value;
-            remove => InternalOnDebugEnd -= value;
+            add => InternalDebugEvent += value;
+            remove => InternalDebugEvent -= value;
         }
-        internal static Action InternalOnDebugEnd;
+        internal static Action<bool> InternalDebugEvent;
+
+        public static event Action<bool> GMTrackingEvent
+        {
+            add => InternalGMTrackingEvent += value;
+            remove => InternalGMTrackingEvent -= value;
+        }
+        internal static Action<bool> InternalGMTrackingEvent;
     }
 }

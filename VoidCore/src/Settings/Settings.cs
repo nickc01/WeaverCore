@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using VoidCore.Hooks.Utility;
+using Modding;
+using VoidCore.Hooks.Internal;
 
 namespace VoidCore
 {
+
     /// <summary>
     /// Settings used to control the behaviour of VoidCore, such as turning on debug mode or enabling gameObject tracking
     /// </summary>
@@ -13,49 +17,61 @@ namespace VoidCore
     {
         static bool started = false;
 
-        [ModStart(typeof(VoidCore))]
-        static void SettingsStart()
+        internal class SettingsStart : IHook<VoidCore>
         {
-            if (DebugMode)
+            void IHookBase.LoadHook(IMod mod)
             {
-                InternalGameObjectTracking = true;
+                if (InternalGMTracking)
+                {
+                    Events.InternalGMTrackingEvent?.Invoke(true);
+                }
+                if (InternalDebugMode)
+                {
+                    Events.InternalDebugEvent?.Invoke(true);
+                }
+                started = true;
             }
-            if (InternalGameObjectTracking)
+
+            void IHookBase.UnloadHook(IMod mod)
             {
-                GameObjectTracker.StartTracker();
+                started = false;
+                if (InternalDebugMode)
+                {
+                    Events.InternalDebugEvent?.Invoke(false);
+                }
+                if (InternalGMTracking)
+                {
+                    Events.InternalGMTrackingEvent?.Invoke(false);
+                }
             }
-            if (InternalDebugMode)
-            {
-                Events.InternalOnDebugStart?.Invoke();
-            }
-            started = true;
         }
 
 
-
-        private static bool InternalGameObjectTracking = false;
+        private static bool InternalGMTracking = false;
         /// <summary>
-        /// Whether GameObject Tracking is enabled or not. If enabled, the <see cref="Events.GameObjectCreated"/> will also be enabled
+        /// Whether GameObject Tracking is enabled or not. If enabled, the <see cref="Events.GameObjectCreated"/> will also be enabled, but can cause the game to run slower, so use this only for debugging purposes
         /// </summary>
         /// <remarks>
         /// This must be enabled for <see cref="DebugMode"/> to work.
         /// </remarks>
-        public static bool GameObjectTracking
+        public static bool GMTracking
         {
-            get => InternalGameObjectTracking;
+            get => InternalGMTracking;
             set
             {
-                if (started && value != InternalGameObjectTracking)
+                if (started && value != InternalGMTracking)
                 {
-                    InternalGameObjectTracking = value;
+                    InternalGMTracking = value;
                     if (value)
                     {
-                        GameObjectTracker.StartTracker();
+                        //GameObjectTracker.StartTracker();
+                        Events.InternalGMTrackingEvent?.Invoke(true);
                     }
                     else
                     {
                         DebugMode = false;
-                        GameObjectTracker.StopTracker();
+                        //GameObjectTracker.StopTracker();
+                        Events.InternalGMTrackingEvent?.Invoke(false);
                     }
                 }
             }
@@ -64,7 +80,7 @@ namespace VoidCore
 
         private static bool InternalDebugMode = false;
         /// <summary>
-        /// Whether DebugMode is enabled or not. If it's enabled, things such as collision box visualization will also be enabled
+        /// Whether Debug Mode is enabled or not. If it's enabled, things such as collision box visualization will also be enabled
         /// </summary>
         public static bool DebugMode
         {
@@ -76,12 +92,12 @@ namespace VoidCore
                     InternalDebugMode = value;
                     if (value)
                     {
-                        GameObjectTracking = true;
-                        Events.InternalOnDebugStart?.Invoke();
+                        GMTracking = true;
+                        Events.InternalDebugEvent?.Invoke(true);
                     }
                     else
                     {
-                        Events.InternalOnDebugEnd?.Invoke();
+                        Events.InternalDebugEvent?.Invoke(false);
                     }
                 }
             }

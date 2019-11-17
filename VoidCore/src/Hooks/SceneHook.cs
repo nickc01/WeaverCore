@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
@@ -38,17 +37,7 @@ namespace VoidCore.Hooks
     ///</example>
     public abstract class SceneHook<Mod> : IHook<Mod> where Mod : IMod
     {
-        static List<Scene> Scenes = new List<Scene>();
-        static Scene activeScene;
 
-        /// <summary>
-        /// All currently loaded scenes in the game
-        /// </summary>
-        public static IEnumerable<Scene> LoadedScenes => Scenes;
-        /// <summary>
-        /// The currently active scene. Any new GameObjects that are created are put into this scene
-        /// </summary>
-        public static Scene ActiveScene => activeScene;
 
         void IHookBase.LoadHook(IMod mod)
         {
@@ -62,37 +51,6 @@ namespace VoidCore.Hooks
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneAddition;
             UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneRemoval;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= OnActiveSceneChange;
-        }
-
-        //Called when the game initially loads up and is called only once
-        [ModStart(typeof(VoidCore))]
-        static void OnGameLoad()
-        {
-            //Add current scenes
-            for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
-            {
-                var scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
-                Scenes.Add(scene);
-            }
-            activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += AddScene;
-            UnityEngine.SceneManagement.SceneManager.sceneUnloaded += RemoveScene;
-            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += ChangeActiveScene;
-        }
-
-        internal static void AddScene(Scene scene,LoadSceneMode mode)
-        {
-            Scenes.Add(scene);
-        }
-
-        internal static void RemoveScene(Scene scene)
-        {
-            Scenes.Remove(scene);
-        }
-
-        internal static void ChangeActiveScene(Scene prev, Scene now)
-        {
-            activeScene = now;
         }
 
 

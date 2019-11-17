@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fdbd5a74-f0bb-4d47-98f9-7b9f1b10fe83" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/TestMod/Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestMod/Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/VoidCore.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/VoidCore.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Events.html" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Events.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Hooks.Internal.html" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Hooks.Internal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Hooks.SceneHook-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Hooks.SceneHook-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Hooks.Utility.HookInjector.html" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Hooks.Utility.HookInjector.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Hooks.html" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Hooks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.Settings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.VoidCore.html" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.VoidCore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.html" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/api/VoidCore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/api/toc.html" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/api/toc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/_site/xrefmap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/_site/xrefmap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/api/.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/api/.manifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/Debug/GameObjectTracker.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/Debug/PlayerDebug.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/Debug/VoidMonitor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/Events/Events.cs" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/src/Events/Events.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/Hooks/SceneHook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/src/Hooks/SceneHook.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/Internal/CollisionDebugger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/Internal/SceneEventHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/ModLog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/src/ModLog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/Module/ModuleInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/src/Module/ModuleInitializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/Settings/Settings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/src/Settings/Settings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VoidCore/src/VoidCore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/VoidCore/src/VoidCore.cs" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/VoidCore/src/Module/ModuleInitializer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/VoidCore/src/VoidCore.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="1TgafQ3QFODzj9PXJmaU2vhT1rO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected=".NET Project.Default">
+    <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="userSelectedPid" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="userSelectedPid" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fdbd5a74-f0bb-4d47-98f9-7b9f1b10fe83" name="Default Changelist" comment="" />
+      <created>1573884295842</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1573884295842</updated>
+      <workItem from="1573884299811" duration="186000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

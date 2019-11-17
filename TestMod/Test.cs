@@ -9,6 +9,9 @@ using VoidCore.Hooks;
 using UnityEngine;
 using System.Diagnostics;
 using Modding;
+using Logger = Modding.Logger;
+using System.Collections;
+using HutongGames.PlayMaker;
 
 namespace TestMod
 {
@@ -18,11 +21,11 @@ namespace TestMod
 
         public override void Initialize()
         {
-            VoidCore.ModLog.Log("LOADING TESTMOD");
+            Logger.Log("LOADING TESTMOD");
             base.Initialize();
 
-            VoidCore.Settings.DebugMode = true;
-            VoidCore.Settings.GameObjectTracking = true;
+            //Settings.DebugMode = true;
+            //Settings.GMTracking = true;
         }
 
         public void Unload()
@@ -31,47 +34,16 @@ namespace TestMod
         }
     }
 
-
-    /*public class Scenes : VoidCore.Hooks.SceneHook<TestMod>
-    {
-        
-
-        public override void OnActiveSceneChange(UnityEngine.SceneManagement.Scene prev, UnityEngine.SceneManagement.Scene now)
-        {
-            ModLog.Log("TEST2");
-            ModLog.Log("ACTIVE CHANGED");
-        }
-
-        public override void OnSceneAddition(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadMode)
-        {
-            if (scene.name == "Town")
-            {
-                //GameObject Knight = null;
-                ModLog.Log("-----------------------TOWN LOADED");
-                foreach (var obj in UnityEngine.GameObject.FindObjectsOfType<GameObject>())
-                {
-                    ModLog.Log("OBJ = " + obj);
-                }
-            }
-        }
-
-        public override void OnSceneRemoval(UnityEngine.SceneManagement.Scene scene)
-        {
-            ModLog.Log("TEST");
-            ModLog.Log("TEST2");
-        }
-    }*/
-
     public class UI : UIHook<TestMod>
     {
         void Start()
         {
-            ModLog.Log("UISTART");
+            Logger.Log("UISTART");
         }
 
         void OnDestroy()
         {
-            ModLog.Log("UIEND");
+            Logger.Log("UIEND");
         }
 
         public override void LoadHook(IMod mod)
@@ -82,6 +54,44 @@ namespace TestMod
         public override void UnloadHook(IMod mod)
         {
             
+        }
+    }
+
+
+    public class EnemyTester : EnemyHook<VoidCore.VoidCore>
+    {
+        static void PrintList(string pre, IEnumerable list)
+        {
+            foreach (var item in list)
+            {
+                Modding.Logger.Log(pre + item.ToString());
+            }
+        }
+        static void PrintList<T>(string pre, IEnumerable<T> list, Func<T,string> printer)
+        {
+            foreach (var item in list)
+            {
+                Modding.Logger.Log(pre + printer(item));
+            }
+        }
+
+        void Start()
+        {
+            var fsm = GetComponent<PlayMakerFSM>();
+            Modding.Logger.Log("\n\nFSM = " + fsm.FsmName);
+            Modding.Logger.Log("TEST OUTPUT = " + JsonUtility.ToJson(fsm, true));
+            PrintList("Events = ", fsm.FsmEvents,e => $"Name = {e.Name}, IsApplicationEvent = {e.IsApplicationEvent}, IsGlobal = {e.IsGlobal}, IsMouseEvent {e.IsMouseEvent}, IsSystemEvent = {e.IsSystemEvent}, Path = {e.Path}");
+            //Modding.Logger.Log("Events 2 = " + fsm.FsmEvents)
+            PrintList("Global Transitions = ", fsm.FsmGlobalTransitions,t => $" EventName = {t.EventName} FSMEvent = {t.FsmEvent} ToState = {t.ToState} LinkStyle = {t.LinkStyle}, LinkConstraint = {t.LinkConstraint}");
+            PrintList("Variables = ", fsm.FsmVariables.GetAllNamedVariables(),v => $"IsNone = {v.IsNone}, Name = {v.Name}, ObjectType = {v.ObjectType}, RawValue = {v.RawValue}, TypeConstraint = {v.TypeConstraint}, UsesVariable = {v.UsesVariable}, UseVariable = {v.UseVariable}, VariableType = {v.VariableType}");
+            PrintList("States = ", fsm.FsmStates);
+            Modding.Logger.Log("Template = " + fsm.FsmTemplate);
+            Modding.Logger.Log("Start State = " + fsm.Fsm.StartState);
+            /*Modding.Logger.Log("ENEMY = " + gameObject.name);
+            foreach (var component in GetComponents<Component>())
+            {
+                Modding.Logger.Log("Component = " + component);
+            }*/
         }
     }
 

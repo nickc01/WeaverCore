@@ -23,11 +23,11 @@ namespace VoidCore
             {
                 if (InternalGMTracking)
                 {
-                    Events.InternalGMTrackingEvent?.Invoke(true);
+                    Events.GMTrackingEvent.Invoker?.Invoke(true);
                 }
                 if (InternalDebugMode)
                 {
-                    Events.InternalDebugEvent?.Invoke(true);
+                    Events.DebugEvent.Invoker?.Invoke(true);
                 }
                 started = true;
             }
@@ -37,11 +37,11 @@ namespace VoidCore
                 started = false;
                 if (InternalDebugMode)
                 {
-                    Events.InternalDebugEvent?.Invoke(false);
+                    Events.DebugEvent.Invoker?.Invoke(false);
                 }
                 if (InternalGMTracking)
                 {
-                    Events.InternalGMTrackingEvent?.Invoke(false);
+                    Events.GMTrackingEvent.Invoker?.Invoke(false);
                 }
             }
         }
@@ -65,13 +65,13 @@ namespace VoidCore
                     if (value)
                     {
                         //GameObjectTracker.StartTracker();
-                        Events.InternalGMTrackingEvent?.Invoke(true);
+                        Events.GMTrackingEvent.Invoker?.Invoke(true);
                     }
                     else
                     {
                         DebugMode = false;
                         //GameObjectTracker.StopTracker();
-                        Events.InternalGMTrackingEvent?.Invoke(false);
+                        Events.GMTrackingEvent.Invoker?.Invoke(false);
                     }
                 }
             }
@@ -93,11 +93,11 @@ namespace VoidCore
                     if (value)
                     {
                         GMTracking = true;
-                        Events.InternalDebugEvent?.Invoke(true);
+                        Events.DebugEvent.Invoker?.Invoke(true);
                     }
                     else
                     {
-                        Events.InternalDebugEvent?.Invoke(false);
+                        Events.DebugEvent.Invoker?.Invoke(false);
                     }
                 }
             }

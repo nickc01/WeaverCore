@@ -245,7 +245,7 @@ namespace VoidCore
                     Added = true;
                     //Modding.Logger.Log("AWAKE = " + gameObject.name);
                     AllGameObjects.Add(gameObject);
-                    Events.InternalGameObjectCreated?.Invoke(gameObject, true);
+                    Events.GameObjectCreated.Invoker?.Invoke(gameObject, true);
                 }
             }
 
@@ -256,7 +256,7 @@ namespace VoidCore
                     Added = true;
                     //Modding.Logger.Log("START = " + gameObject.name);
                     AllGameObjects.Add(gameObject);
-                    Events.InternalGameObjectCreated?.Invoke(gameObject, true);
+                    Events.GameObjectCreated.Invoker?.Invoke(gameObject, true);
                 }
             }
 
@@ -267,7 +267,7 @@ namespace VoidCore
                     Added = true;
                     //Modding.Logger.Log("ENABLED = " + gameObject.name);
                     AllGameObjects.Add(gameObject);
-                    Events.InternalGameObjectCreated?.Invoke(gameObject, false);
+                    Events.GameObjectCreated.Invoker?.Invoke(gameObject, false);
                 }
             }
 
@@ -275,10 +275,10 @@ namespace VoidCore
             {
                 if (Added)
                 {
+
                     Added = false;
-                    //Modding.Logger.Log("DISABLED = " + gameObject.name);
                     RemoveObject(gameObject);
-                    Events.InternalGameObjectRemoved?.Invoke(gameObject, true);
+                    Events.GameObjectRemoved.Invoker?.Invoke(gameObject, true);
                 }
             }
 
@@ -289,7 +289,7 @@ namespace VoidCore
                     Added = false;
                     //Modding.Logger.Log("DESTROYED = " + gameObject.name);
                     RemoveObject(gameObject);
-                    Events.InternalGameObjectRemoved?.Invoke(gameObject, false);
+                    Events.GameObjectRemoved.Invoker?.Invoke(gameObject, false);
                 }
             }
         }

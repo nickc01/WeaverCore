@@ -16,9 +16,7 @@ using Logger = Modding.Logger;
 
 internal static class ModuleInitializer
 {
-    public static Assembly TheraotCore { get; private set; } = null;
-
-
+    internal static Thread UnityThread { get; private set; }
     internal static object GetVoidCoreHarmony()
     {
         return harmony;
@@ -46,6 +44,7 @@ internal static class ModuleInitializer
 
     public static void Initialize()
     {
+        UnityThread = Thread.CurrentThread;
         AppDomain.CurrentDomain.AssemblyResolve += BuiltInLoader.AssemblyLoader;
         AppDomain.CurrentDomain.AssemblyLoad += (s, a) => OnNewAssembly(a.LoadedAssembly, false);
 
@@ -77,7 +76,6 @@ internal static class ModuleInitializer
 
         //Load Harmony and run all patches
         var harmonyAssembly = Assembly.Load("0Harmony");
-        TheraotCore = Assembly.Load("Theraot.Core");
 
         var harmonyInstance = harmonyAssembly.GetType("Harmony.HarmonyInstance");
         var harmonyMethod = harmonyAssembly.GetType("Harmony.HarmonyMethod");

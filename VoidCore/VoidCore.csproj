@@ -323,6 +323,9 @@
     <Compile Include="src\Audio\Audio.cs" />
     <Compile Include="src\Debug\GMTrackingPatches.cs" />
     <Compile Include="src\Debug\Internal\PlayerDebug.cs" />
+    <Compile Include="src\Helpers\InternalEvent.cs" />
+    <Compile Include="src\Helpers\Methods.cs" />
+    <Compile Include="src\Internal\ErrorPatcher.cs" />
     <Compile Include="src\Events\Events.cs" />
     <Compile Include="src\Harmony\AudioManager\AudioManager.cs" />
     <Compile Include="src\Debug\GMTracker.cs" />
@@ -343,6 +346,7 @@
     <Compile Include="src\Debug\Internal\SceneEventHandler.cs" />
     <Compile Include="src\Internal\WeakDictionary.cs" />
     <Compile Include="src\Module\ModuleInitializer.cs" />
+    <Compile Include="src\PropertyTable.cs" />
     <Compile Include="src\Resources\ResourceLoader.cs" />
     <Compile Include="src\Resources\ResourceLoader.Audio.cs" />
     <Compile Include="src\Settings\Settings.cs" />

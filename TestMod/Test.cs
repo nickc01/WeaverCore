@@ -24,8 +24,8 @@ namespace TestMod
             Logger.Log("LOADING TESTMOD");
             base.Initialize();
 
-            //Settings.DebugMode = true;
-            //Settings.GMTracking = true;
+            Settings.DebugMode = true;
+            Settings.GMTracking = true;
         }
 
         public void Unload()

@@ -6,6 +6,8 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VoidCore.Hooks;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace VoidCore
 {
@@ -13,7 +15,27 @@ namespace VoidCore
     {
         public override void OnActiveSceneChange(Scene prev, Scene now)
         {
+            /*try
+            {
+                foreach (var invo in eInstance.GetInvocationList())
+                {
+                    Modding.Logger.Log("INVO = " + invo.Method.Name);
+                    Modding.Logger.Log(invo.Method.Module.Assembly);
+                    Modding.Logger.Log(invo.Target);
+                    Modding.Logger.Log(invo.Method.DeclaringType);
+                    invo.DynamicInvoke(now, LoadSceneMode.Additive);
+                    Modding.Logger.Log("INVO END");
+                }
+            }
+            catch (Exception e)
+            {
+                Modding.Logger.Log("Exception = " + e);
+            }*/
+            /*foreach (var invo in e.)
+            {
 
+            }*/
+            
         }
 
         public override void OnSceneAddition(Scene scene, LoadSceneMode loadMode)
@@ -48,7 +70,7 @@ namespace VoidCore
 
         public override void OnSceneRemoval(Scene scene)
         {
-
+            
         }
     }
 }

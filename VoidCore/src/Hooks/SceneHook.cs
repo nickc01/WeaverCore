@@ -41,6 +41,7 @@ namespace VoidCore.Hooks
 
         void IHookBase.LoadHook(IMod mod)
         {
+            //Modding.Logger.Log("LOADING HOOK = " + GetType());
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneAddition;
             UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneRemoval;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += OnActiveSceneChange;

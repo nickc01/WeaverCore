@@ -77,7 +77,7 @@ namespace TestMod
 
         void Start()
         {
-            var fsm = GetComponent<PlayMakerFSM>();
+            /*var fsm = GetComponent<PlayMakerFSM>();
             Modding.Logger.Log("\n\nFSM = " + fsm.FsmName);
             Modding.Logger.Log("TEST OUTPUT = " + JsonUtility.ToJson(fsm, true));
             PrintList("Events = ", fsm.FsmEvents,e => $"Name = {e.Name}, IsApplicationEvent = {e.IsApplicationEvent}, IsGlobal = {e.IsGlobal}, IsMouseEvent {e.IsMouseEvent}, IsSystemEvent = {e.IsSystemEvent}, Path = {e.Path}");
@@ -86,7 +86,7 @@ namespace TestMod
             PrintList("Variables = ", fsm.FsmVariables.GetAllNamedVariables(),v => $"IsNone = {v.IsNone}, Name = {v.Name}, ObjectType = {v.ObjectType}, RawValue = {v.RawValue}, TypeConstraint = {v.TypeConstraint}, UsesVariable = {v.UsesVariable}, UseVariable = {v.UseVariable}, VariableType = {v.VariableType}");
             PrintList("States = ", fsm.FsmStates);
             Modding.Logger.Log("Template = " + fsm.FsmTemplate);
-            Modding.Logger.Log("Start State = " + fsm.Fsm.StartState);
+            Modding.Logger.Log("Start State = " + fsm.Fsm.StartState);*/
             /*Modding.Logger.Log("ENEMY = " + gameObject.name);
             foreach (var component in GetComponents<Component>())
             {

@@ -15,7 +15,7 @@ using Logger = Modding.Logger;
 namespace VoidCore
 {
 
-    public class VoidCore : Mod, ITogglableMod
+    public class VoidCore : Mod
     {
         static bool Patched = false;
         public override int LoadPriority()
@@ -40,11 +40,6 @@ namespace VoidCore
             }
 
             base.Initialize();
-        }
-
-        public void Unload()
-        {
-            
         }
     }
 }

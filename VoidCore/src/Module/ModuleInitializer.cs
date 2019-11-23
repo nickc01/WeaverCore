@@ -346,11 +346,13 @@ internal static class ModuleInitializer
     {
         public static void Postfix(IMod __instance)
         {
+            Modding.Logger.Log("IN IMOD POSTFIX");
             if (LoadedMods.Add(__instance))
             {
                 CallStarters(__instance);
                 LoadHooks(__instance);
             }
+            Modding.Logger.Log("IMOD POSTFIX END");
         }
     }
 

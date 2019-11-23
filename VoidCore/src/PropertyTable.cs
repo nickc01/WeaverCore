@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
-using System.Linq;
 using System.Reflection;
 using VoidCore.Helpers;
 
@@ -37,7 +36,7 @@ namespace VoidCore
     }
 
 
-    class WeakReference<T>
+    public class WeakReference<T>
     {
         public EquatableWeakReference Reference { get; private set; }
 
@@ -139,19 +138,6 @@ namespace VoidCore
         {
             lock (table.Lock)
             {
-                /*KeyCount = 0;
-                foreach (var key in table.Keys)
-                {
-                    KeyList[KeyCount] = key;
-                    KeyCount++;
-                }
-                for (int i = 0; i < KeyCount; i++)
-                {
-                    if (!table.Validate(KeyList[i]))
-                    {
-                        table.Remove(KeyList[i]);
-                    }
-                }*/
                 foreach (var key in table.Keys.ToList())
                 {
                     if (!table.Validate(key))
@@ -159,7 +145,6 @@ namespace VoidCore
                         table.Remove(key);
                     }
                 }
-                //var KeyCountPost = table.Keys.ToList().Count;
             }
         }
     }
@@ -226,6 +211,7 @@ namespace VoidCore
                 else
                 {
                     var prop = Factory();
+                    OnAdd(reference, prop);
                     properties.Add(reference, prop);
                     return prop;
                 }
@@ -264,6 +250,7 @@ namespace VoidCore
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
+                    OnRemoval(reference, properties[reference]);
                     properties.Remove(reference);
                     return true;
                 }
@@ -287,8 +274,23 @@ namespace VoidCore
         {
             lock (Lock)
             {
-                properties.Remove(new WeakReference<InstanceType>(instance));
+                var reference = new WeakReference<InstanceType>(instance);
+                if (properties.ContainsKey(reference))
+                {
+                    OnRemoval(reference, properties[reference]);
+                    properties.Remove(reference);
+                }
             }
+        }
+
+        protected virtual void OnRemoval(WeakReference<InstanceType> instance, PropertyType properties )
+        {
+
+        }
+
+        protected virtual void OnAdd(WeakReference<InstanceType> instance, PropertyType properties)
+        {
+
         }
 
         bool IPropertyTableBase.Validate(EquatableWeakReference instance)

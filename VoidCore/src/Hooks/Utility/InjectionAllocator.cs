@@ -7,10 +7,10 @@ namespace VoidCore.Hooks
 {
     namespace Utility
     {
-        /// <summary>
-        /// An allocator that is used to hook into gameObjects. It does this by injecting the hooks as components onto it
-        /// </summary>
-        /// <typeparam name="Injector">The injector that is used to determine what gameObjects get the hooks</typeparam>
+        
+        
+        
+        
         public class InjectionAllocator<Injector> : IAllocator where Injector : HookInjector, new()
         {
 

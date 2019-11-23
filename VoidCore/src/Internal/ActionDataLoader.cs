@@ -19,21 +19,21 @@ namespace VoidCore.Internal
 
         public static void ModifyActions(List<FsmStateAction> Actions,FsmState state,GameObject obj)
         {
-            try
+            /*try
             {
-
+                Modding.Logger.Log("ACTION H");
             }
             catch(Exception e)
             {
                 Modding.Logger.Log("Modify Actions Exception = " + e);
                 StackTrace trace = new StackTrace(true);
                 Modding.Logger.Log("Stack Trace = " + trace);
-            }
+            }*/
         }
     }
 
 
-    [HarmonyPatch]
+    //[HarmonyPatch]
     static class ActionsGetterPatch
     {
         static MethodBase TargetMethod()
@@ -43,17 +43,34 @@ namespace VoidCore.Internal
 
         static bool Prefix(ref bool __state,ref FsmStateAction[] ___actions)
         {
-            return ActionsLoaderPatch.Prefix(ref __state, ref ___actions);
+            //Modding.Logger.Log("ACTION F");
+            //Modding.Logger.Log("STATE = " + __state);
+            //Modding.Logger.Log("Actionsk = " + (___actions != null));
+            __state = ___actions == null;
+            //Modding.Logger.Log("PREFIX END 1");
+            //Modding.Logger.Log("STACK TRACE = " + new StackTrace(true));
+            return true;
+            //return ActionsLoaderPatch.Prefix(ref __state, ref ___actions);
         }
 
         static void Postfix(ref bool __state,ref FsmStateAction[] ___actions,FsmState __instance)
         {
-            ActionsLoaderPatch.Postfix(ref __state, ref ___actions, __instance);
+            //Modding.Logger.Log("ACTION G");
+            //Modding.Logger.Log("STATE = " + __state);
+            //Modding.Logger.Log("NOT ON MAIN THREAD = " + PlayMakerFSM.NotMainThread);
+            //Modding.Logger.Log("ACTION U");
+            if (__state && !PlayMakerFSM.NotMainThread)
+            {
+                //Modding.Logger.Log("ACTION Z");
+                ActionsLoaderPatch.ApplyActionMods(__instance, ref ___actions);
+            }
+            //Modding.Logger.Log("ACTION V");
+            //ActionsLoaderPatch.Postfix(ref __state, ref ___actions, __instance);
         }
     }
 
-    [HarmonyPatch(typeof(FsmState))]
-    [HarmonyPatch("LoadActions")]
+    //[HarmonyPatch(typeof(FsmState))]
+    //[HarmonyPatch("LoadActions")]
     static class ActionsLoaderPatch
     {
         class Props
@@ -66,15 +83,18 @@ namespace VoidCore.Internal
 
         public static bool Prefix(ref bool __state,ref FsmStateAction[] ___actions)
         {
+            //Modding.Logger.Log("ACTION A");
             __state = ___actions == null;
             return true;
         }
 
         public static void ApplyActionMods(FsmState state, ref FsmStateAction[] ___actions)
         {
+            //Modding.Logger.Log("ACTION B");
             var properties = PropertyTable.GetOrCreate(state);
             if (!properties.Modified)
             {
+                //Modding.Logger.Log("ACTION E");
                 properties.Modified = true;
                 List<FsmStateAction> actions;
                 if (___actions == null)
@@ -96,8 +116,10 @@ namespace VoidCore.Internal
 
         public static void Postfix(ref bool __state, ref FsmStateAction[] ___actions, FsmState __instance)
         {
+            //Modding.Logger.Log("ACTION C");
             if (__state && !PlayMakerFSM.NotMainThread)
             {
+                //Modding.Logger.Log("ACTION D");
                 ApplyActionMods(__instance, ref ___actions);
             }
         }

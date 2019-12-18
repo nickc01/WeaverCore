@@ -47,15 +47,23 @@
       <HintPath>..\packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PlayMaker, Version=1.6.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.dll</HintPath>
@@ -324,6 +332,7 @@
     <Compile Include="src\Features\GMTracking\Internal\GMTrackingPatches.cs" />
     <Compile Include="src\Debug\Internal\PlayerDebug.cs" />
     <Compile Include="src\Helpers\InternalEvent.cs" />
+    <Compile Include="src\Helpers\Json.cs" />
     <Compile Include="src\Helpers\Methods.cs" />
     <Compile Include="src\Helpers\UnityHelpers.cs" />
     <Compile Include="src\Hooks\GMTrackerHook.cs" />
@@ -347,6 +356,7 @@
     <Compile Include="src\Debug\Internal\SceneEventHandler.cs" />
     <Compile Include="src\Features\GMTracking\GMTracker.cs" />
     <Compile Include="src\Internal\WeakDictionary.cs" />
+    <Compile Include="src\Machine\Machine.cs" />
     <Compile Include="src\Module\ModuleInitializer.cs" />
     <Compile Include="src\PropertyTable.cs" />
     <Compile Include="src\Resources\ResourceLoader.cs" />

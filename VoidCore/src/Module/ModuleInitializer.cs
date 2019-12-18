@@ -13,9 +13,14 @@ using UnityEngine;
 using VoidCore.Hooks.Utility;
 
 using Logger = Modding.Logger;
+using VoidCore.Helpers;
 
 internal static class ModuleInitializer
 {
+    internal static Assembly NewtonsoftJson;
+    internal static Type JsonConvert;
+    internal static Func<object, string> Serialize;
+
     internal static Thread UnityThread { get; private set; }
     internal static object GetVoidCoreHarmony()
     {
@@ -73,6 +78,13 @@ internal static class ModuleInitializer
             LoadInfo += "Assembly-CSharp AssemblyResolve event is first;";
         }
 
+        if (NewtonsoftJson == null)
+        {
+            NewtonsoftJson = Assembly.Load("Newtonsoft.Json");
+            JsonConvert = NewtonsoftJson.GetType("Newtonsoft.Json.JsonConvert");
+            Serialize = Methods.GetFunction<Func<object, string>>(JsonConvert.GetMethod("SerializeObject", new Type[] { typeof(object) }));
+            //Newtonsoft.Json.JsonConvert.SerializeObject()
+        }
 
         //Load Harmony and run all patches
         var harmonyAssembly = Assembly.Load("0Harmony");
@@ -127,7 +139,7 @@ internal static class ModuleInitializer
         }
         catch (Exception e)
         {
-            Modding.Logger.LogError($"Failed to get VoidCore attributes for Assembly {assembly.FullName}. Exception Details -> " + e);
+            Modding.Logger.LogError($"Failed to get VoidCore attributes for the following assembly: {assembly.FullName}. Exception Details -> " + e);
         }
     }
 

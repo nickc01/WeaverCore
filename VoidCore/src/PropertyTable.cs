@@ -201,11 +201,13 @@ namespace VoidCore
 
         public PropertyType GetOrCreate(InstanceType instance, Func<PropertyType> Factory)
         {
+            //Modding.Logger.Log("LOCKERA = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
+                    //Modding.Logger.Log("UNLOCKA = " + Thread.CurrentThread.GetHashCode());
                     return properties[reference];
                 }
                 else
@@ -213,6 +215,7 @@ namespace VoidCore
                     var prop = Factory();
                     OnAdd(reference, prop);
                     properties.Add(reference, prop);
+                    //Modding.Logger.Log("UNLOCKA = " + Thread.CurrentThread.GetHashCode());
                     return prop;
                 }
             }
@@ -220,24 +223,29 @@ namespace VoidCore
 
         public bool Contains(InstanceType instance)
         {
+            //Modding.Logger.Log("LOCKERB = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
                 var reference = new WeakReference<InstanceType>(instance);
+                //Modding.Logger.Log("UNLOCKB = " + Thread.CurrentThread.GetHashCode());
                 return properties.ContainsKey(reference);
             }
         }
 
         public PropertyType Get(InstanceType instance)
         {
+            //Modding.Logger.Log("LOCKERC = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
+                    //Modding.Logger.Log("UNLOCKC = " + Thread.CurrentThread.GetHashCode());
                     return properties[reference];
                 }
                 else
                 {
+                    //Modding.Logger.Log("UNLOCKC = " + Thread.CurrentThread.GetHashCode());
                     return null;
                 }
             }
@@ -245,6 +253,7 @@ namespace VoidCore
 
         public bool Remove(InstanceType instance)
         {
+            //Modding.Logger.Log("LOCKERD = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
                 var reference = new WeakReference<InstanceType>(instance);
@@ -252,10 +261,12 @@ namespace VoidCore
                 {
                     OnRemoval(reference, properties[reference]);
                     properties.Remove(reference);
+                    //Modding.Logger.Log("UNLOCKD = " + Thread.CurrentThread.GetHashCode());
                     return true;
                 }
                 else
                 {
+                    //Modding.Logger.Log("UNLOCK = " + Thread.CurrentThread.GetHashCode());
                     return false;
                 }
             }
@@ -263,15 +274,18 @@ namespace VoidCore
 
         public void Dispose()
         {
+            //Modding.Logger.Log("LOCKERE = " + Thread.CurrentThread.GetHashCode());
             lock (PropertyHolder.TableLock)
             {
                 PropertyHolder.propertyTables.Remove(this);
+                //Modding.Logger.Log("UNLOCKE = " + Thread.CurrentThread.GetHashCode());
             }
             GC.SuppressFinalize(this);
         }
 
         void IPropertyTableBase.Remove(EquatableWeakReference instance)
         {
+            //Modding.Logger.Log("LOCKERF = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
                 var reference = new WeakReference<InstanceType>(instance);
@@ -280,6 +294,7 @@ namespace VoidCore
                     OnRemoval(reference, properties[reference]);
                     properties.Remove(reference);
                 }
+               // Modding.Logger.Log("UNLOCKF = " + Thread.CurrentThread.GetHashCode());
             }
         }
 

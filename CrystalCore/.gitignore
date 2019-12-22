@@ -1,0 +1,13 @@
+
+###############
+#    folder   #
+###############
+/**/DROP/
+/**/TEMP/
+/**/packages/
+/**/bin/
+/**/obj/
+_siteOLD
+_api
+
+log.txt

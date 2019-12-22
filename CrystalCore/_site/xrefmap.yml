@@ -1,0 +1,2459 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: CrystalCore
+  name: CrystalCore
+  href: api/CrystalCore.html
+  commentId: N:CrystalCore
+  fullName: CrystalCore
+  nameWithType: CrystalCore
+- uid: CrystalCore.Audio
+  name: Audio
+  href: api/CrystalCore.Audio.html
+  commentId: T:CrystalCore.Audio
+  fullName: CrystalCore.Audio
+  nameWithType: Audio
+- uid: CrystalCore.Audio.MusicCueFactory
+  name: Audio.MusicCueFactory
+  href: api/CrystalCore.Audio.MusicCueFactory.html
+  commentId: T:CrystalCore.Audio.MusicCueFactory
+  fullName: CrystalCore.Audio.MusicCueFactory
+  nameWithType: Audio.MusicCueFactory
+- uid: CrystalCore.Audio.MusicPack
+  name: Audio.MusicPack
+  href: api/CrystalCore.Audio.MusicPack.html
+  commentId: T:CrystalCore.Audio.MusicPack
+  fullName: CrystalCore.Audio.MusicPack
+  nameWithType: Audio.MusicPack
+- uid: CrystalCore.EquatableWeakReference
+  name: EquatableWeakReference
+  href: api/CrystalCore.EquatableWeakReference.html
+  commentId: T:CrystalCore.EquatableWeakReference
+  fullName: CrystalCore.EquatableWeakReference
+  nameWithType: EquatableWeakReference
+- uid: CrystalCore.EquatableWeakReference.#ctor(System.Object)
+  name: EquatableWeakReference(Object)
+  href: api/CrystalCore.EquatableWeakReference.html#CrystalCore_EquatableWeakReference__ctor_System_Object_
+  commentId: M:CrystalCore.EquatableWeakReference.#ctor(System.Object)
+  fullName: CrystalCore.EquatableWeakReference.EquatableWeakReference(System.Object)
+  nameWithType: EquatableWeakReference.EquatableWeakReference(Object)
+- uid: CrystalCore.EquatableWeakReference.#ctor(System.Object,System.Boolean)
+  name: EquatableWeakReference(Object, Boolean)
+  href: api/CrystalCore.EquatableWeakReference.html#CrystalCore_EquatableWeakReference__ctor_System_Object_System_Boolean_
+  commentId: M:CrystalCore.EquatableWeakReference.#ctor(System.Object,System.Boolean)
+  fullName: CrystalCore.EquatableWeakReference.EquatableWeakReference(System.Object, System.Boolean)
+  nameWithType: EquatableWeakReference.EquatableWeakReference(Object, Boolean)
+- uid: CrystalCore.EquatableWeakReference.#ctor*
+  name: EquatableWeakReference
+  href: api/CrystalCore.EquatableWeakReference.html#CrystalCore_EquatableWeakReference__ctor_
+  commentId: Overload:CrystalCore.EquatableWeakReference.#ctor
+  isSpec: "True"
+  fullName: CrystalCore.EquatableWeakReference.EquatableWeakReference
+  nameWithType: EquatableWeakReference.EquatableWeakReference
+- uid: CrystalCore.EquatableWeakReference.Equals(System.Object)
+  name: Equals(Object)
+  href: api/CrystalCore.EquatableWeakReference.html#CrystalCore_EquatableWeakReference_Equals_System_Object_
+  commentId: M:CrystalCore.EquatableWeakReference.Equals(System.Object)
+  fullName: CrystalCore.EquatableWeakReference.Equals(System.Object)
+  nameWithType: EquatableWeakReference.Equals(Object)
+- uid: CrystalCore.EquatableWeakReference.Equals*
+  name: Equals
+  href: api/CrystalCore.EquatableWeakReference.html#CrystalCore_EquatableWeakReference_Equals_
+  commentId: Overload:CrystalCore.EquatableWeakReference.Equals
+  isSpec: "True"
+  fullName: CrystalCore.EquatableWeakReference.Equals
+  nameWithType: EquatableWeakReference.Equals
+- uid: CrystalCore.EquatableWeakReference.GetHashCode
+  name: GetHashCode()
+  href: api/CrystalCore.EquatableWeakReference.html#CrystalCore_EquatableWeakReference_GetHashCode
+  commentId: M:CrystalCore.EquatableWeakReference.GetHashCode
+  fullName: CrystalCore.EquatableWeakReference.GetHashCode()
+  nameWithType: EquatableWeakReference.GetHashCode()
+- uid: CrystalCore.EquatableWeakReference.GetHashCode*
+  name: GetHashCode
+  href: api/CrystalCore.EquatableWeakReference.html#CrystalCore_EquatableWeakReference_GetHashCode_
+  commentId: Overload:CrystalCore.EquatableWeakReference.GetHashCode
+  isSpec: "True"
+  fullName: CrystalCore.EquatableWeakReference.GetHashCode
+  nameWithType: EquatableWeakReference.GetHashCode
+- uid: CrystalCore.Events
+  name: Events
+  href: api/CrystalCore.Events.html
+  commentId: T:CrystalCore.Events
+  fullName: CrystalCore.Events
+  nameWithType: Events
+- uid: CrystalCore.Events.DebugEvent
+  name: DebugEvent
+  href: api/CrystalCore.Events.html#CrystalCore_Events_DebugEvent
+  commentId: F:CrystalCore.Events.DebugEvent
+  fullName: CrystalCore.Events.DebugEvent
+  nameWithType: Events.DebugEvent
+- uid: CrystalCore.Events.GMCreated
+  name: GMCreated
+  href: api/CrystalCore.Events.html#CrystalCore_Events_GMCreated
+  commentId: F:CrystalCore.Events.GMCreated
+  fullName: CrystalCore.Events.GMCreated
+  nameWithType: Events.GMCreated
+- uid: CrystalCore.Events.GMDisabled
+  name: GMDisabled
+  href: api/CrystalCore.Events.html#CrystalCore_Events_GMDisabled
+  commentId: F:CrystalCore.Events.GMDisabled
+  fullName: CrystalCore.Events.GMDisabled
+  nameWithType: Events.GMDisabled
+- uid: CrystalCore.Events.GMEnabled
+  name: GMEnabled
+  href: api/CrystalCore.Events.html#CrystalCore_Events_GMEnabled
+  commentId: F:CrystalCore.Events.GMEnabled
+  fullName: CrystalCore.Events.GMEnabled
+  nameWithType: Events.GMEnabled
+- uid: CrystalCore.Events.GMTrackingEvent
+  name: GMTrackingEvent
+  href: api/CrystalCore.Events.html#CrystalCore_Events_GMTrackingEvent
+  commentId: F:CrystalCore.Events.GMTrackingEvent
+  fullName: CrystalCore.Events.GMTrackingEvent
+  nameWithType: Events.GMTrackingEvent
+- uid: CrystalCore.GMTracker
+  name: GMTracker
+  href: api/CrystalCore.GMTracker.html
+  commentId: T:CrystalCore.GMTracker
+  fullName: CrystalCore.GMTracker
+  nameWithType: GMTracker
+- uid: CrystalCore.GMTracker.ActiveHooks
+  name: ActiveHooks
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_ActiveHooks
+  commentId: P:CrystalCore.GMTracker.ActiveHooks
+  fullName: CrystalCore.GMTracker.ActiveHooks
+  nameWithType: GMTracker.ActiveHooks
+- uid: CrystalCore.GMTracker.ActiveHooks*
+  name: ActiveHooks
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_ActiveHooks_
+  commentId: Overload:CrystalCore.GMTracker.ActiveHooks
+  isSpec: "True"
+  fullName: CrystalCore.GMTracker.ActiveHooks
+  nameWithType: GMTracker.ActiveHooks
+- uid: CrystalCore.GMTracker.Create(UnityEngine.GameObject)
+  name: Create(GameObject)
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_Create_UnityEngine_GameObject_
+  commentId: M:CrystalCore.GMTracker.Create(UnityEngine.GameObject)
+  fullName: CrystalCore.GMTracker.Create(UnityEngine.GameObject)
+  nameWithType: GMTracker.Create(GameObject)
+- uid: CrystalCore.GMTracker.Create*
+  name: Create
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_Create_
+  commentId: Overload:CrystalCore.GMTracker.Create
+  isSpec: "True"
+  fullName: CrystalCore.GMTracker.Create
+  nameWithType: GMTracker.Create
+- uid: CrystalCore.GMTracker.IsActive
+  name: IsActive
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_IsActive
+  commentId: P:CrystalCore.GMTracker.IsActive
+  fullName: CrystalCore.GMTracker.IsActive
+  nameWithType: GMTracker.IsActive
+- uid: CrystalCore.GMTracker.IsActive*
+  name: IsActive
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_IsActive_
+  commentId: Overload:CrystalCore.GMTracker.IsActive
+  isSpec: "True"
+  fullName: CrystalCore.GMTracker.IsActive
+  nameWithType: GMTracker.IsActive
+- uid: CrystalCore.GMTracker.SourceObject
+  name: SourceObject
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_SourceObject
+  commentId: P:CrystalCore.GMTracker.SourceObject
+  fullName: CrystalCore.GMTracker.SourceObject
+  nameWithType: GMTracker.SourceObject
+- uid: CrystalCore.GMTracker.SourceObject*
+  name: SourceObject
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_SourceObject_
+  commentId: Overload:CrystalCore.GMTracker.SourceObject
+  isSpec: "True"
+  fullName: CrystalCore.GMTracker.SourceObject
+  nameWithType: GMTracker.SourceObject
+- uid: CrystalCore.GMTracker.Stop(CrystalCore.GMTracker)
+  name: Stop(GMTracker)
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_Stop_CrystalCore_GMTracker_
+  commentId: M:CrystalCore.GMTracker.Stop(CrystalCore.GMTracker)
+  fullName: CrystalCore.GMTracker.Stop(CrystalCore.GMTracker)
+  nameWithType: GMTracker.Stop(GMTracker)
+- uid: CrystalCore.GMTracker.Stop*
+  name: Stop
+  href: api/CrystalCore.GMTracker.html#CrystalCore_GMTracker_Stop_
+  commentId: Overload:CrystalCore.GMTracker.Stop
+  isSpec: "True"
+  fullName: CrystalCore.GMTracker.Stop
+  nameWithType: GMTracker.Stop
+- uid: CrystalCore.Helpers
+  name: CrystalCore.Helpers
+  href: api/CrystalCore.Helpers.html
+  commentId: N:CrystalCore.Helpers
+  fullName: CrystalCore.Helpers
+  nameWithType: CrystalCore.Helpers
+- uid: CrystalCore.Helpers.Fields
+  name: Fields
+  href: api/CrystalCore.Helpers.Fields.html
+  commentId: T:CrystalCore.Helpers.Fields
+  fullName: CrystalCore.Helpers.Fields
+  nameWithType: Fields
+- uid: CrystalCore.Helpers.Fields.CreateGetter*
+  name: CreateGetter
+  href: api/CrystalCore.Helpers.Fields.html#CrystalCore_Helpers_Fields_CreateGetter_
+  commentId: Overload:CrystalCore.Helpers.Fields.CreateGetter
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.Fields.CreateGetter
+  nameWithType: Fields.CreateGetter
+- uid: CrystalCore.Helpers.Fields.CreateGetter``2(System.Reflection.FieldInfo)
+  name: CreateGetter<S, T>(FieldInfo)
+  href: api/CrystalCore.Helpers.Fields.html#CrystalCore_Helpers_Fields_CreateGetter__2_System_Reflection_FieldInfo_
+  commentId: M:CrystalCore.Helpers.Fields.CreateGetter``2(System.Reflection.FieldInfo)
+  name.vb: CreateGetter(Of S, T)(FieldInfo)
+  fullName: CrystalCore.Helpers.Fields.CreateGetter<S, T>(System.Reflection.FieldInfo)
+  fullName.vb: CrystalCore.Helpers.Fields.CreateGetter(Of S, T)(System.Reflection.FieldInfo)
+  nameWithType: Fields.CreateGetter<S, T>(FieldInfo)
+  nameWithType.vb: Fields.CreateGetter(Of S, T)(FieldInfo)
+- uid: CrystalCore.Helpers.Fields.CreateSetter*
+  name: CreateSetter
+  href: api/CrystalCore.Helpers.Fields.html#CrystalCore_Helpers_Fields_CreateSetter_
+  commentId: Overload:CrystalCore.Helpers.Fields.CreateSetter
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.Fields.CreateSetter
+  nameWithType: Fields.CreateSetter
+- uid: CrystalCore.Helpers.Fields.CreateSetter``2(System.Reflection.FieldInfo)
+  name: CreateSetter<S, T>(FieldInfo)
+  href: api/CrystalCore.Helpers.Fields.html#CrystalCore_Helpers_Fields_CreateSetter__2_System_Reflection_FieldInfo_
+  commentId: M:CrystalCore.Helpers.Fields.CreateSetter``2(System.Reflection.FieldInfo)
+  name.vb: CreateSetter(Of S, T)(FieldInfo)
+  fullName: CrystalCore.Helpers.Fields.CreateSetter<S, T>(System.Reflection.FieldInfo)
+  fullName.vb: CrystalCore.Helpers.Fields.CreateSetter(Of S, T)(System.Reflection.FieldInfo)
+  nameWithType: Fields.CreateSetter<S, T>(FieldInfo)
+  nameWithType.vb: Fields.CreateSetter(Of S, T)(FieldInfo)
+- uid: CrystalCore.Helpers.InternalEvent`1
+  name: InternalEvent<FuncT>
+  href: api/CrystalCore.Helpers.InternalEvent-1.html
+  commentId: T:CrystalCore.Helpers.InternalEvent`1
+  name.vb: InternalEvent(Of FuncT)
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT)
+  nameWithType: InternalEvent<FuncT>
+  nameWithType.vb: InternalEvent(Of FuncT)
+- uid: CrystalCore.Helpers.InternalEvent`1.Equals(System.Object)
+  name: Equals(Object)
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_Equals_System_Object_
+  commentId: M:CrystalCore.Helpers.InternalEvent`1.Equals(System.Object)
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Equals(System.Object)
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Equals(System.Object)
+  nameWithType: InternalEvent<FuncT>.Equals(Object)
+  nameWithType.vb: InternalEvent(Of FuncT).Equals(Object)
+- uid: CrystalCore.Helpers.InternalEvent`1.Equals*
+  name: Equals
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_Equals_
+  commentId: Overload:CrystalCore.Helpers.InternalEvent`1.Equals
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Equals
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Equals
+  nameWithType: InternalEvent<FuncT>.Equals
+  nameWithType.vb: InternalEvent(Of FuncT).Equals
+- uid: CrystalCore.Helpers.InternalEvent`1.GetHashCode
+  name: GetHashCode()
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_GetHashCode
+  commentId: M:CrystalCore.Helpers.InternalEvent`1.GetHashCode
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.GetHashCode()
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).GetHashCode()
+  nameWithType: InternalEvent<FuncT>.GetHashCode()
+  nameWithType.vb: InternalEvent(Of FuncT).GetHashCode()
+- uid: CrystalCore.Helpers.InternalEvent`1.GetHashCode*
+  name: GetHashCode
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_GetHashCode_
+  commentId: Overload:CrystalCore.Helpers.InternalEvent`1.GetHashCode
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.GetHashCode
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).GetHashCode
+  nameWithType: InternalEvent<FuncT>.GetHashCode
+  nameWithType.vb: InternalEvent(Of FuncT).GetHashCode
+- uid: CrystalCore.Helpers.InternalEvent`1.op_Addition(CrystalCore.Helpers.InternalEvent{`0},`0)
+  name: Addition(InternalEvent<FuncT>, FuncT)
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_op_Addition_CrystalCore_Helpers_InternalEvent__0___0_
+  commentId: M:CrystalCore.Helpers.InternalEvent`1.op_Addition(CrystalCore.Helpers.InternalEvent{`0},`0)
+  name.vb: Addition(InternalEvent(Of FuncT), FuncT)
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Addition(CrystalCore.Helpers.InternalEvent<FuncT>, FuncT)
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Addition(CrystalCore.Helpers.InternalEvent(Of FuncT), FuncT)
+  nameWithType: InternalEvent<FuncT>.Addition(InternalEvent<FuncT>, FuncT)
+  nameWithType.vb: InternalEvent(Of FuncT).Addition(InternalEvent(Of FuncT), FuncT)
+- uid: CrystalCore.Helpers.InternalEvent`1.op_Addition*
+  name: Addition
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_op_Addition_
+  commentId: Overload:CrystalCore.Helpers.InternalEvent`1.op_Addition
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Addition
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Addition
+  nameWithType: InternalEvent<FuncT>.Addition
+  nameWithType.vb: InternalEvent(Of FuncT).Addition
+- uid: CrystalCore.Helpers.InternalEvent`1.op_Equality(CrystalCore.Helpers.InternalEvent{`0},CrystalCore.Helpers.InternalEvent{`0})
+  name: Equality(InternalEvent<FuncT>, InternalEvent<FuncT>)
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_op_Equality_CrystalCore_Helpers_InternalEvent__0__CrystalCore_Helpers_InternalEvent__0__
+  commentId: M:CrystalCore.Helpers.InternalEvent`1.op_Equality(CrystalCore.Helpers.InternalEvent{`0},CrystalCore.Helpers.InternalEvent{`0})
+  name.vb: Equality(InternalEvent(Of FuncT), InternalEvent(Of FuncT))
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Equality(CrystalCore.Helpers.InternalEvent<FuncT>, CrystalCore.Helpers.InternalEvent<FuncT>)
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Equality(CrystalCore.Helpers.InternalEvent(Of FuncT), CrystalCore.Helpers.InternalEvent(Of FuncT))
+  nameWithType: InternalEvent<FuncT>.Equality(InternalEvent<FuncT>, InternalEvent<FuncT>)
+  nameWithType.vb: InternalEvent(Of FuncT).Equality(InternalEvent(Of FuncT), InternalEvent(Of FuncT))
+- uid: CrystalCore.Helpers.InternalEvent`1.op_Equality*
+  name: Equality
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_op_Equality_
+  commentId: Overload:CrystalCore.Helpers.InternalEvent`1.op_Equality
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Equality
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Equality
+  nameWithType: InternalEvent<FuncT>.Equality
+  nameWithType.vb: InternalEvent(Of FuncT).Equality
+- uid: CrystalCore.Helpers.InternalEvent`1.op_Inequality(CrystalCore.Helpers.InternalEvent{`0},CrystalCore.Helpers.InternalEvent{`0})
+  name: Inequality(InternalEvent<FuncT>, InternalEvent<FuncT>)
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_op_Inequality_CrystalCore_Helpers_InternalEvent__0__CrystalCore_Helpers_InternalEvent__0__
+  commentId: M:CrystalCore.Helpers.InternalEvent`1.op_Inequality(CrystalCore.Helpers.InternalEvent{`0},CrystalCore.Helpers.InternalEvent{`0})
+  name.vb: Inequality(InternalEvent(Of FuncT), InternalEvent(Of FuncT))
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Inequality(CrystalCore.Helpers.InternalEvent<FuncT>, CrystalCore.Helpers.InternalEvent<FuncT>)
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Inequality(CrystalCore.Helpers.InternalEvent(Of FuncT), CrystalCore.Helpers.InternalEvent(Of FuncT))
+  nameWithType: InternalEvent<FuncT>.Inequality(InternalEvent<FuncT>, InternalEvent<FuncT>)
+  nameWithType.vb: InternalEvent(Of FuncT).Inequality(InternalEvent(Of FuncT), InternalEvent(Of FuncT))
+- uid: CrystalCore.Helpers.InternalEvent`1.op_Inequality*
+  name: Inequality
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_op_Inequality_
+  commentId: Overload:CrystalCore.Helpers.InternalEvent`1.op_Inequality
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Inequality
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Inequality
+  nameWithType: InternalEvent<FuncT>.Inequality
+  nameWithType.vb: InternalEvent(Of FuncT).Inequality
+- uid: CrystalCore.Helpers.InternalEvent`1.op_Subtraction(CrystalCore.Helpers.InternalEvent{`0},`0)
+  name: Subtraction(InternalEvent<FuncT>, FuncT)
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_op_Subtraction_CrystalCore_Helpers_InternalEvent__0___0_
+  commentId: M:CrystalCore.Helpers.InternalEvent`1.op_Subtraction(CrystalCore.Helpers.InternalEvent{`0},`0)
+  name.vb: Subtraction(InternalEvent(Of FuncT), FuncT)
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Subtraction(CrystalCore.Helpers.InternalEvent<FuncT>, FuncT)
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Subtraction(CrystalCore.Helpers.InternalEvent(Of FuncT), FuncT)
+  nameWithType: InternalEvent<FuncT>.Subtraction(InternalEvent<FuncT>, FuncT)
+  nameWithType.vb: InternalEvent(Of FuncT).Subtraction(InternalEvent(Of FuncT), FuncT)
+- uid: CrystalCore.Helpers.InternalEvent`1.op_Subtraction*
+  name: Subtraction
+  href: api/CrystalCore.Helpers.InternalEvent-1.html#CrystalCore_Helpers_InternalEvent_1_op_Subtraction_
+  commentId: Overload:CrystalCore.Helpers.InternalEvent`1.op_Subtraction
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.InternalEvent<FuncT>.Subtraction
+  fullName.vb: CrystalCore.Helpers.InternalEvent(Of FuncT).Subtraction
+  nameWithType: InternalEvent<FuncT>.Subtraction
+  nameWithType.vb: InternalEvent(Of FuncT).Subtraction
+- uid: CrystalCore.Helpers.Json
+  name: Json
+  href: api/CrystalCore.Helpers.Json.html
+  commentId: T:CrystalCore.Helpers.Json
+  fullName: CrystalCore.Helpers.Json
+  nameWithType: Json
+- uid: CrystalCore.Helpers.Json.Serialize(System.Object)
+  name: Serialize(Object)
+  href: api/CrystalCore.Helpers.Json.html#CrystalCore_Helpers_Json_Serialize_System_Object_
+  commentId: M:CrystalCore.Helpers.Json.Serialize(System.Object)
+  fullName: CrystalCore.Helpers.Json.Serialize(System.Object)
+  nameWithType: Json.Serialize(Object)
+- uid: CrystalCore.Helpers.Json.Serialize*
+  name: Serialize
+  href: api/CrystalCore.Helpers.Json.html#CrystalCore_Helpers_Json_Serialize_
+  commentId: Overload:CrystalCore.Helpers.Json.Serialize
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.Json.Serialize
+  nameWithType: Json.Serialize
+- uid: CrystalCore.Helpers.Methods
+  name: Methods
+  href: api/CrystalCore.Helpers.Methods.html
+  commentId: T:CrystalCore.Helpers.Methods
+  fullName: CrystalCore.Helpers.Methods
+  nameWithType: Methods
+- uid: CrystalCore.Helpers.Methods.GetFunction*
+  name: GetFunction
+  href: api/CrystalCore.Helpers.Methods.html#CrystalCore_Helpers_Methods_GetFunction_
+  commentId: Overload:CrystalCore.Helpers.Methods.GetFunction
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.Methods.GetFunction
+  nameWithType: Methods.GetFunction
+- uid: CrystalCore.Helpers.Methods.GetFunction``1(System.Reflection.MethodInfo)
+  name: GetFunction<R>(MethodInfo)
+  href: api/CrystalCore.Helpers.Methods.html#CrystalCore_Helpers_Methods_GetFunction__1_System_Reflection_MethodInfo_
+  commentId: M:CrystalCore.Helpers.Methods.GetFunction``1(System.Reflection.MethodInfo)
+  name.vb: GetFunction(Of R)(MethodInfo)
+  fullName: CrystalCore.Helpers.Methods.GetFunction<R>(System.Reflection.MethodInfo)
+  fullName.vb: CrystalCore.Helpers.Methods.GetFunction(Of R)(System.Reflection.MethodInfo)
+  nameWithType: Methods.GetFunction<R>(MethodInfo)
+  nameWithType.vb: Methods.GetFunction(Of R)(MethodInfo)
+- uid: CrystalCore.Helpers.Methods.GetFunction``1(System.Reflection.MethodInfo,System.Object)
+  name: GetFunction<R>(MethodInfo, Object)
+  href: api/CrystalCore.Helpers.Methods.html#CrystalCore_Helpers_Methods_GetFunction__1_System_Reflection_MethodInfo_System_Object_
+  commentId: M:CrystalCore.Helpers.Methods.GetFunction``1(System.Reflection.MethodInfo,System.Object)
+  name.vb: GetFunction(Of R)(MethodInfo, Object)
+  fullName: CrystalCore.Helpers.Methods.GetFunction<R>(System.Reflection.MethodInfo, System.Object)
+  fullName.vb: CrystalCore.Helpers.Methods.GetFunction(Of R)(System.Reflection.MethodInfo, System.Object)
+  nameWithType: Methods.GetFunction<R>(MethodInfo, Object)
+  nameWithType.vb: Methods.GetFunction(Of R)(MethodInfo, Object)
+- uid: CrystalCore.Helpers.Methods.GetFunction``2(System.String,``1,System.Reflection.BindingFlags)
+  name: GetFunction<R, T>(String, T, BindingFlags)
+  href: api/CrystalCore.Helpers.Methods.html#CrystalCore_Helpers_Methods_GetFunction__2_System_String___1_System_Reflection_BindingFlags_
+  commentId: M:CrystalCore.Helpers.Methods.GetFunction``2(System.String,``1,System.Reflection.BindingFlags)
+  name.vb: GetFunction(Of R, T)(String, T, BindingFlags)
+  fullName: CrystalCore.Helpers.Methods.GetFunction<R, T>(System.String, T, System.Reflection.BindingFlags)
+  fullName.vb: CrystalCore.Helpers.Methods.GetFunction(Of R, T)(System.String, T, System.Reflection.BindingFlags)
+  nameWithType: Methods.GetFunction<R, T>(String, T, BindingFlags)
+  nameWithType.vb: Methods.GetFunction(Of R, T)(String, T, BindingFlags)
+- uid: CrystalCore.Helpers.Methods.GetFunction``2(System.String,System.Reflection.BindingFlags)
+  name: GetFunction<R, T>(String, BindingFlags)
+  href: api/CrystalCore.Helpers.Methods.html#CrystalCore_Helpers_Methods_GetFunction__2_System_String_System_Reflection_BindingFlags_
+  commentId: M:CrystalCore.Helpers.Methods.GetFunction``2(System.String,System.Reflection.BindingFlags)
+  name.vb: GetFunction(Of R, T)(String, BindingFlags)
+  fullName: CrystalCore.Helpers.Methods.GetFunction<R, T>(System.String, System.Reflection.BindingFlags)
+  fullName.vb: CrystalCore.Helpers.Methods.GetFunction(Of R, T)(System.String, System.Reflection.BindingFlags)
+  nameWithType: Methods.GetFunction<R, T>(String, BindingFlags)
+  nameWithType.vb: Methods.GetFunction(Of R, T)(String, BindingFlags)
+- uid: CrystalCore.Helpers.UnityHelpers
+  name: UnityHelpers
+  href: api/CrystalCore.Helpers.UnityHelpers.html
+  commentId: T:CrystalCore.Helpers.UnityHelpers
+  fullName: CrystalCore.Helpers.UnityHelpers
+  nameWithType: UnityHelpers
+- uid: CrystalCore.Helpers.UnityHelpers.IsNativeObjectAlive
+  name: IsNativeObjectAlive
+  href: api/CrystalCore.Helpers.UnityHelpers.html#CrystalCore_Helpers_UnityHelpers_IsNativeObjectAlive
+  commentId: P:CrystalCore.Helpers.UnityHelpers.IsNativeObjectAlive
+  fullName: CrystalCore.Helpers.UnityHelpers.IsNativeObjectAlive
+  nameWithType: UnityHelpers.IsNativeObjectAlive
+- uid: CrystalCore.Helpers.UnityHelpers.IsNativeObjectAlive*
+  name: IsNativeObjectAlive
+  href: api/CrystalCore.Helpers.UnityHelpers.html#CrystalCore_Helpers_UnityHelpers_IsNativeObjectAlive_
+  commentId: Overload:CrystalCore.Helpers.UnityHelpers.IsNativeObjectAlive
+  isSpec: "True"
+  fullName: CrystalCore.Helpers.UnityHelpers.IsNativeObjectAlive
+  nameWithType: UnityHelpers.IsNativeObjectAlive
+- uid: CrystalCore.Hooks
+  name: CrystalCore.Hooks
+  href: api/CrystalCore.Hooks.html
+  commentId: N:CrystalCore.Hooks
+  fullName: CrystalCore.Hooks
+  nameWithType: CrystalCore.Hooks
+- uid: CrystalCore.Hooks.DebugHook`1
+  name: DebugHook<Mod>
+  href: api/CrystalCore.Hooks.DebugHook-1.html
+  commentId: T:CrystalCore.Hooks.DebugHook`1
+  name.vb: DebugHook(Of Mod)
+  fullName: CrystalCore.Hooks.DebugHook<Mod>
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod)
+  nameWithType: DebugHook<Mod>
+  nameWithType.vb: DebugHook(Of Mod)
+- uid: CrystalCore.Hooks.DebugHook`1.DebugDisabled
+  name: DebugDisabled()
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_DebugDisabled
+  commentId: M:CrystalCore.Hooks.DebugHook`1.DebugDisabled
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.DebugDisabled()
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).DebugDisabled()
+  nameWithType: DebugHook<Mod>.DebugDisabled()
+  nameWithType.vb: DebugHook(Of Mod).DebugDisabled()
+- uid: CrystalCore.Hooks.DebugHook`1.DebugDisabled*
+  name: DebugDisabled
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_DebugDisabled_
+  commentId: Overload:CrystalCore.Hooks.DebugHook`1.DebugDisabled
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.DebugDisabled
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).DebugDisabled
+  nameWithType: DebugHook<Mod>.DebugDisabled
+  nameWithType.vb: DebugHook(Of Mod).DebugDisabled
+- uid: CrystalCore.Hooks.DebugHook`1.DebugEnabled
+  name: DebugEnabled()
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_DebugEnabled
+  commentId: M:CrystalCore.Hooks.DebugHook`1.DebugEnabled
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.DebugEnabled()
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).DebugEnabled()
+  nameWithType: DebugHook<Mod>.DebugEnabled()
+  nameWithType.vb: DebugHook(Of Mod).DebugEnabled()
+- uid: CrystalCore.Hooks.DebugHook`1.DebugEnabled*
+  name: DebugEnabled
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_DebugEnabled_
+  commentId: Overload:CrystalCore.Hooks.DebugHook`1.DebugEnabled
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.DebugEnabled
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).DebugEnabled
+  nameWithType: DebugHook<Mod>.DebugEnabled
+  nameWithType.vb: DebugHook(Of Mod).DebugEnabled
+- uid: CrystalCore.Hooks.DebugHook`1.Initialize
+  name: Initialize()
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_Initialize
+  commentId: M:CrystalCore.Hooks.DebugHook`1.Initialize
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.Initialize()
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).Initialize()
+  nameWithType: DebugHook<Mod>.Initialize()
+  nameWithType.vb: DebugHook(Of Mod).Initialize()
+- uid: CrystalCore.Hooks.DebugHook`1.Initialize*
+  name: Initialize
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_Initialize_
+  commentId: Overload:CrystalCore.Hooks.DebugHook`1.Initialize
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.Initialize
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).Initialize
+  nameWithType: DebugHook<Mod>.Initialize
+  nameWithType.vb: DebugHook(Of Mod).Initialize
+- uid: CrystalCore.Hooks.DebugHook`1.Uninitialize
+  name: Uninitialize()
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_Uninitialize
+  commentId: M:CrystalCore.Hooks.DebugHook`1.Uninitialize
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.Uninitialize()
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).Uninitialize()
+  nameWithType: DebugHook<Mod>.Uninitialize()
+  nameWithType.vb: DebugHook(Of Mod).Uninitialize()
+- uid: CrystalCore.Hooks.DebugHook`1.Uninitialize*
+  name: Uninitialize
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_Uninitialize_
+  commentId: Overload:CrystalCore.Hooks.DebugHook`1.Uninitialize
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.Uninitialize
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).Uninitialize
+  nameWithType: DebugHook<Mod>.Uninitialize
+  nameWithType.vb: DebugHook(Of Mod).Uninitialize
+- uid: CrystalCore.Hooks.DebugHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook(Modding.IMod)
+  name: IHookBase.LoadHook(IMod)
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_CrystalCore_Hooks_Internal_IHookBase_LoadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.DebugHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook(Modding.IMod)
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.LoadHook(IMod)
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  nameWithType: DebugHook<Mod>.IHookBase.LoadHook(IMod)
+  nameWithType.vb: DebugHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook(IMod)
+- uid: CrystalCore.Hooks.DebugHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook*
+  name: IHookBase.LoadHook
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_CrystalCore_Hooks_Internal_IHookBase_LoadHook_
+  commentId: Overload:CrystalCore.Hooks.DebugHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  nameWithType: DebugHook<Mod>.IHookBase.LoadHook
+  nameWithType.vb: DebugHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook
+- uid: CrystalCore.Hooks.DebugHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook(Modding.IMod)
+  name: IHookBase.UnloadHook(IMod)
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_CrystalCore_Hooks_Internal_IHookBase_UnloadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.DebugHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook(Modding.IMod)
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.UnloadHook(IMod)
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  nameWithType: DebugHook<Mod>.IHookBase.UnloadHook(IMod)
+  nameWithType.vb: DebugHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook(IMod)
+- uid: CrystalCore.Hooks.DebugHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook*
+  name: IHookBase.UnloadHook
+  href: api/CrystalCore.Hooks.DebugHook-1.html#CrystalCore_Hooks_DebugHook_1_CrystalCore_Hooks_Internal_IHookBase_UnloadHook_
+  commentId: Overload:CrystalCore.Hooks.DebugHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  fullName: CrystalCore.Hooks.DebugHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  fullName.vb: CrystalCore.Hooks.DebugHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  nameWithType: DebugHook<Mod>.IHookBase.UnloadHook
+  nameWithType.vb: DebugHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+- uid: CrystalCore.Hooks.EnemyHook`1
+  name: EnemyHook<Mod>
+  href: api/CrystalCore.Hooks.EnemyHook-1.html
+  commentId: T:CrystalCore.Hooks.EnemyHook`1
+  name.vb: EnemyHook(Of Mod)
+  fullName: CrystalCore.Hooks.EnemyHook<Mod>
+  fullName.vb: CrystalCore.Hooks.EnemyHook(Of Mod)
+  nameWithType: EnemyHook<Mod>
+  nameWithType.vb: EnemyHook(Of Mod)
+- uid: CrystalCore.Hooks.EnemyHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook(Modding.IMod)
+  name: IHookBase.LoadHook(IMod)
+  href: api/CrystalCore.Hooks.EnemyHook-1.html#CrystalCore_Hooks_EnemyHook_1_CrystalCore_Hooks_Internal_IHookBase_LoadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.EnemyHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook(Modding.IMod)
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.LoadHook(IMod)
+  fullName: CrystalCore.Hooks.EnemyHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.EnemyHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  nameWithType: EnemyHook<Mod>.IHookBase.LoadHook(IMod)
+  nameWithType.vb: EnemyHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook(IMod)
+- uid: CrystalCore.Hooks.EnemyHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook*
+  name: IHookBase.LoadHook
+  href: api/CrystalCore.Hooks.EnemyHook-1.html#CrystalCore_Hooks_EnemyHook_1_CrystalCore_Hooks_Internal_IHookBase_LoadHook_
+  commentId: Overload:CrystalCore.Hooks.EnemyHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  fullName: CrystalCore.Hooks.EnemyHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  fullName.vb: CrystalCore.Hooks.EnemyHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  nameWithType: EnemyHook<Mod>.IHookBase.LoadHook
+  nameWithType.vb: EnemyHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook
+- uid: CrystalCore.Hooks.EnemyHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook(Modding.IMod)
+  name: IHookBase.UnloadHook(IMod)
+  href: api/CrystalCore.Hooks.EnemyHook-1.html#CrystalCore_Hooks_EnemyHook_1_CrystalCore_Hooks_Internal_IHookBase_UnloadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.EnemyHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook(Modding.IMod)
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.UnloadHook(IMod)
+  fullName: CrystalCore.Hooks.EnemyHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.EnemyHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  nameWithType: EnemyHook<Mod>.IHookBase.UnloadHook(IMod)
+  nameWithType.vb: EnemyHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook(IMod)
+- uid: CrystalCore.Hooks.EnemyHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook*
+  name: IHookBase.UnloadHook
+  href: api/CrystalCore.Hooks.EnemyHook-1.html#CrystalCore_Hooks_EnemyHook_1_CrystalCore_Hooks_Internal_IHookBase_UnloadHook_
+  commentId: Overload:CrystalCore.Hooks.EnemyHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  fullName: CrystalCore.Hooks.EnemyHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  fullName.vb: CrystalCore.Hooks.EnemyHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  nameWithType: EnemyHook<Mod>.IHookBase.UnloadHook
+  nameWithType.vb: EnemyHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+- uid: CrystalCore.Hooks.GMTrackerHook`1
+  name: GMTrackerHook<TMod>
+  href: api/CrystalCore.Hooks.GMTrackerHook-1.html
+  commentId: T:CrystalCore.Hooks.GMTrackerHook`1
+  name.vb: GMTrackerHook(Of TMod)
+  fullName: CrystalCore.Hooks.GMTrackerHook<TMod>
+  fullName.vb: CrystalCore.Hooks.GMTrackerHook(Of TMod)
+  nameWithType: GMTrackerHook<TMod>
+  nameWithType.vb: GMTrackerHook(Of TMod)
+- uid: CrystalCore.Hooks.GMTrackerHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook(Modding.IMod)
+  name: IHookBase.LoadHook(IMod)
+  href: api/CrystalCore.Hooks.GMTrackerHook-1.html#CrystalCore_Hooks_GMTrackerHook_1_CrystalCore_Hooks_Internal_IHookBase_LoadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.GMTrackerHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook(Modding.IMod)
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.LoadHook(IMod)
+  fullName: CrystalCore.Hooks.GMTrackerHook<TMod>.CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.GMTrackerHook(Of TMod).CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  nameWithType: GMTrackerHook<TMod>.IHookBase.LoadHook(IMod)
+  nameWithType.vb: GMTrackerHook(Of TMod).CrystalCore.Hooks.Internal.IHookBase.LoadHook(IMod)
+- uid: CrystalCore.Hooks.GMTrackerHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook*
+  name: IHookBase.LoadHook
+  href: api/CrystalCore.Hooks.GMTrackerHook-1.html#CrystalCore_Hooks_GMTrackerHook_1_CrystalCore_Hooks_Internal_IHookBase_LoadHook_
+  commentId: Overload:CrystalCore.Hooks.GMTrackerHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  fullName: CrystalCore.Hooks.GMTrackerHook<TMod>.CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  fullName.vb: CrystalCore.Hooks.GMTrackerHook(Of TMod).CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  nameWithType: GMTrackerHook<TMod>.IHookBase.LoadHook
+  nameWithType.vb: GMTrackerHook(Of TMod).CrystalCore.Hooks.Internal.IHookBase.LoadHook
+- uid: CrystalCore.Hooks.GMTrackerHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook(Modding.IMod)
+  name: IHookBase.UnloadHook(IMod)
+  href: api/CrystalCore.Hooks.GMTrackerHook-1.html#CrystalCore_Hooks_GMTrackerHook_1_CrystalCore_Hooks_Internal_IHookBase_UnloadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.GMTrackerHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook(Modding.IMod)
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.UnloadHook(IMod)
+  fullName: CrystalCore.Hooks.GMTrackerHook<TMod>.CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.GMTrackerHook(Of TMod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  nameWithType: GMTrackerHook<TMod>.IHookBase.UnloadHook(IMod)
+  nameWithType.vb: GMTrackerHook(Of TMod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook(IMod)
+- uid: CrystalCore.Hooks.GMTrackerHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook*
+  name: IHookBase.UnloadHook
+  href: api/CrystalCore.Hooks.GMTrackerHook-1.html#CrystalCore_Hooks_GMTrackerHook_1_CrystalCore_Hooks_Internal_IHookBase_UnloadHook_
+  commentId: Overload:CrystalCore.Hooks.GMTrackerHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  fullName: CrystalCore.Hooks.GMTrackerHook<TMod>.CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  fullName.vb: CrystalCore.Hooks.GMTrackerHook(Of TMod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  nameWithType: GMTrackerHook<TMod>.IHookBase.UnloadHook
+  nameWithType.vb: GMTrackerHook(Of TMod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+- uid: CrystalCore.Hooks.Internal
+  name: CrystalCore.Hooks.Internal
+  href: api/CrystalCore.Hooks.Internal.html
+  commentId: N:CrystalCore.Hooks.Internal
+  fullName: CrystalCore.Hooks.Internal
+  nameWithType: CrystalCore.Hooks.Internal
+- uid: CrystalCore.Hooks.Internal.EnemyInjector
+  name: EnemyInjector
+  href: api/CrystalCore.Hooks.Internal.EnemyInjector.html
+  commentId: T:CrystalCore.Hooks.Internal.EnemyInjector
+  fullName: CrystalCore.Hooks.Internal.EnemyInjector
+  nameWithType: EnemyInjector
+- uid: CrystalCore.Hooks.Internal.EnemyInjector.Initialize
+  name: Initialize()
+  href: api/CrystalCore.Hooks.Internal.EnemyInjector.html#CrystalCore_Hooks_Internal_EnemyInjector_Initialize
+  commentId: M:CrystalCore.Hooks.Internal.EnemyInjector.Initialize
+  fullName: CrystalCore.Hooks.Internal.EnemyInjector.Initialize()
+  nameWithType: EnemyInjector.Initialize()
+- uid: CrystalCore.Hooks.Internal.EnemyInjector.Initialize*
+  name: Initialize
+  href: api/CrystalCore.Hooks.Internal.EnemyInjector.html#CrystalCore_Hooks_Internal_EnemyInjector_Initialize_
+  commentId: Overload:CrystalCore.Hooks.Internal.EnemyInjector.Initialize
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.EnemyInjector.Initialize
+  nameWithType: EnemyInjector.Initialize
+- uid: CrystalCore.Hooks.Internal.GMTrackerAllocator
+  name: GMTrackerAllocator
+  href: api/CrystalCore.Hooks.Internal.GMTrackerAllocator.html
+  commentId: T:CrystalCore.Hooks.Internal.GMTrackerAllocator
+  fullName: CrystalCore.Hooks.Internal.GMTrackerAllocator
+  nameWithType: GMTrackerAllocator
+- uid: CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore#Hooks#Utility#IAllocator#Allocate(System.Type,Modding.IMod)
+  name: IAllocator.Allocate(Type, IMod)
+  href: api/CrystalCore.Hooks.Internal.GMTrackerAllocator.html#CrystalCore_Hooks_Internal_GMTrackerAllocator_CrystalCore_Hooks_Utility_IAllocator_Allocate_System_Type_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore#Hooks#Utility#IAllocator#Allocate(System.Type,Modding.IMod)
+  name.vb: CrystalCore.Hooks.Utility.IAllocator.Allocate(Type, IMod)
+  fullName: CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore.Hooks.Utility.IAllocator.Allocate(System.Type, Modding.IMod)
+  nameWithType: GMTrackerAllocator.IAllocator.Allocate(Type, IMod)
+  nameWithType.vb: GMTrackerAllocator.CrystalCore.Hooks.Utility.IAllocator.Allocate(Type, IMod)
+- uid: CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore#Hooks#Utility#IAllocator#Allocate*
+  name: IAllocator.Allocate
+  href: api/CrystalCore.Hooks.Internal.GMTrackerAllocator.html#CrystalCore_Hooks_Internal_GMTrackerAllocator_CrystalCore_Hooks_Utility_IAllocator_Allocate_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore#Hooks#Utility#IAllocator#Allocate
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Utility.IAllocator.Allocate
+  fullName: CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore.Hooks.Utility.IAllocator.Allocate
+  nameWithType: GMTrackerAllocator.IAllocator.Allocate
+  nameWithType.vb: GMTrackerAllocator.CrystalCore.Hooks.Utility.IAllocator.Allocate
+- uid: CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore#Hooks#Utility#IAllocator#Deallocate(CrystalCore.Hooks.Internal.IHookBase,Modding.IMod)
+  name: IAllocator.Deallocate(IHookBase, IMod)
+  href: api/CrystalCore.Hooks.Internal.GMTrackerAllocator.html#CrystalCore_Hooks_Internal_GMTrackerAllocator_CrystalCore_Hooks_Utility_IAllocator_Deallocate_CrystalCore_Hooks_Internal_IHookBase_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore#Hooks#Utility#IAllocator#Deallocate(CrystalCore.Hooks.Internal.IHookBase,Modding.IMod)
+  name.vb: CrystalCore.Hooks.Utility.IAllocator.Deallocate(IHookBase, IMod)
+  fullName: CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore.Hooks.Utility.IAllocator.Deallocate(CrystalCore.Hooks.Internal.IHookBase, Modding.IMod)
+  nameWithType: GMTrackerAllocator.IAllocator.Deallocate(IHookBase, IMod)
+  nameWithType.vb: GMTrackerAllocator.CrystalCore.Hooks.Utility.IAllocator.Deallocate(IHookBase, IMod)
+- uid: CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore#Hooks#Utility#IAllocator#Deallocate*
+  name: IAllocator.Deallocate
+  href: api/CrystalCore.Hooks.Internal.GMTrackerAllocator.html#CrystalCore_Hooks_Internal_GMTrackerAllocator_CrystalCore_Hooks_Utility_IAllocator_Deallocate_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore#Hooks#Utility#IAllocator#Deallocate
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Utility.IAllocator.Deallocate
+  fullName: CrystalCore.Hooks.Internal.GMTrackerAllocator.CrystalCore.Hooks.Utility.IAllocator.Deallocate
+  nameWithType: GMTrackerAllocator.IAllocator.Deallocate
+  nameWithType.vb: GMTrackerAllocator.CrystalCore.Hooks.Utility.IAllocator.Deallocate
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase
+  name: GMTrackerHookBase
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html
+  commentId: T:CrystalCore.Hooks.Internal.GMTrackerHookBase
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase
+  nameWithType: GMTrackerHookBase
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent(System.Type)
+  name: AddWatcherComponent(Type)
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_AddWatcherComponent_System_Type_
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent(System.Type)
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent(System.Type)
+  nameWithType: GMTrackerHookBase.AddWatcherComponent(Type)
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent*
+  name: AddWatcherComponent
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_AddWatcherComponent_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent
+  nameWithType: GMTrackerHookBase.AddWatcherComponent
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent``1
+  name: AddWatcherComponent<T>()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_AddWatcherComponent__1
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent``1
+  name.vb: AddWatcherComponent(Of T)()
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent<T>()
+  fullName.vb: CrystalCore.Hooks.Internal.GMTrackerHookBase.AddWatcherComponent(Of T)()
+  nameWithType: GMTrackerHookBase.AddWatcherComponent<T>()
+  nameWithType.vb: GMTrackerHookBase.AddWatcherComponent(Of T)()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Awake
+  name: Awake()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Awake
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.Awake
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Awake()
+  nameWithType: GMTrackerHookBase.Awake()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Awake*
+  name: Awake
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Awake_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.Awake
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Awake
+  nameWithType: GMTrackerHookBase.Awake
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Enabled
+  name: Enabled
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Enabled
+  commentId: P:CrystalCore.Hooks.Internal.GMTrackerHookBase.Enabled
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Enabled
+  nameWithType: GMTrackerHookBase.Enabled
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Enabled*
+  name: Enabled
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Enabled_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.Enabled
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Enabled
+  nameWithType: GMTrackerHookBase.Enabled
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.gameObject
+  name: gameObject
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_gameObject
+  commentId: P:CrystalCore.Hooks.Internal.GMTrackerHookBase.gameObject
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.gameObject
+  nameWithType: GMTrackerHookBase.gameObject
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.gameObject*
+  name: gameObject
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_gameObject_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.gameObject
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.gameObject
+  nameWithType: GMTrackerHookBase.gameObject
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent(System.Type)
+  name: GetComponent(Type)
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_GetComponent_System_Type_
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent(System.Type)
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent(System.Type)
+  nameWithType: GMTrackerHookBase.GetComponent(Type)
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent*
+  name: GetComponent
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_GetComponent_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent
+  nameWithType: GMTrackerHookBase.GetComponent
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent``1
+  name: GetComponent<T>()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_GetComponent__1
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent``1
+  name.vb: GetComponent(Of T)()
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent<T>()
+  fullName.vb: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponent(Of T)()
+  nameWithType: GMTrackerHookBase.GetComponent<T>()
+  nameWithType.vb: GMTrackerHookBase.GetComponent(Of T)()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent(System.Type)
+  name: GetComponentInParent(Type)
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_GetComponentInParent_System_Type_
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent(System.Type)
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent(System.Type)
+  nameWithType: GMTrackerHookBase.GetComponentInParent(Type)
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent*
+  name: GetComponentInParent
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_GetComponentInParent_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent
+  nameWithType: GMTrackerHookBase.GetComponentInParent
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent``1
+  name: GetComponentInParent<T>()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_GetComponentInParent__1
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent``1
+  name.vb: GetComponentInParent(Of T)()
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent<T>()
+  fullName.vb: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetComponentInParent(Of T)()
+  nameWithType: GMTrackerHookBase.GetComponentInParent<T>()
+  nameWithType.vb: GMTrackerHookBase.GetComponentInParent(Of T)()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent(System.Type)
+  name: GetWatcherComponent(Type)
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_GetWatcherComponent_System_Type_
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent(System.Type)
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent(System.Type)
+  nameWithType: GMTrackerHookBase.GetWatcherComponent(Type)
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent*
+  name: GetWatcherComponent
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_GetWatcherComponent_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent
+  nameWithType: GMTrackerHookBase.GetWatcherComponent
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent``1
+  name: GetWatcherComponent<T>()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_GetWatcherComponent__1
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent``1
+  name.vb: GetWatcherComponent(Of T)()
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent<T>()
+  fullName.vb: CrystalCore.Hooks.Internal.GMTrackerHookBase.GetWatcherComponent(Of T)()
+  nameWithType: GMTrackerHookBase.GetWatcherComponent<T>()
+  nameWithType.vb: GMTrackerHookBase.GetWatcherComponent(Of T)()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDestroy
+  name: OnDestroy()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_OnDestroy
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDestroy
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDestroy()
+  nameWithType: GMTrackerHookBase.OnDestroy()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDestroy*
+  name: OnDestroy
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_OnDestroy_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDestroy
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDestroy
+  nameWithType: GMTrackerHookBase.OnDestroy
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDisable
+  name: OnDisable()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_OnDisable
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDisable
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDisable()
+  nameWithType: GMTrackerHookBase.OnDisable()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDisable*
+  name: OnDisable
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_OnDisable_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDisable
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnDisable
+  nameWithType: GMTrackerHookBase.OnDisable
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnEnable
+  name: OnEnable()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_OnEnable
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.OnEnable
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnEnable()
+  nameWithType: GMTrackerHookBase.OnEnable()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnEnable*
+  name: OnEnable
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_OnEnable_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.OnEnable
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.OnEnable
+  nameWithType: GMTrackerHookBase.OnEnable
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Reset
+  name: Reset()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Reset
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.Reset
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Reset()
+  nameWithType: GMTrackerHookBase.Reset()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Reset*
+  name: Reset
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Reset_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.Reset
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Reset
+  nameWithType: GMTrackerHookBase.Reset
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Start
+  name: Start()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Start
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.Start
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Start()
+  nameWithType: GMTrackerHookBase.Start()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Start*
+  name: Start
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Start_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.Start
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Start
+  nameWithType: GMTrackerHookBase.Start
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.StopHook
+  name: StopHook()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_StopHook
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.StopHook
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.StopHook()
+  nameWithType: GMTrackerHookBase.StopHook()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.StopHook*
+  name: StopHook
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_StopHook_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.StopHook
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.StopHook
+  nameWithType: GMTrackerHookBase.StopHook
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.transform
+  name: transform
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_transform
+  commentId: P:CrystalCore.Hooks.Internal.GMTrackerHookBase.transform
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.transform
+  nameWithType: GMTrackerHookBase.transform
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.transform*
+  name: transform
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_transform_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.transform
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.transform
+  nameWithType: GMTrackerHookBase.transform
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Update
+  name: Update()
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Update
+  commentId: M:CrystalCore.Hooks.Internal.GMTrackerHookBase.Update
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Update()
+  nameWithType: GMTrackerHookBase.Update()
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Update*
+  name: Update
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Update_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.Update
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Update
+  nameWithType: GMTrackerHookBase.Update
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Watcher
+  name: Watcher
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Watcher
+  commentId: P:CrystalCore.Hooks.Internal.GMTrackerHookBase.Watcher
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Watcher
+  nameWithType: GMTrackerHookBase.Watcher
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.Watcher*
+  name: Watcher
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_Watcher_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.Watcher
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.Watcher
+  nameWithType: GMTrackerHookBase.Watcher
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherObject
+  name: WatcherObject
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_WatcherObject
+  commentId: P:CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherObject
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherObject
+  nameWithType: GMTrackerHookBase.WatcherObject
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherObject*
+  name: WatcherObject
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_WatcherObject_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherObject
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherObject
+  nameWithType: GMTrackerHookBase.WatcherObject
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherTransform
+  name: WatcherTransform
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_WatcherTransform
+  commentId: P:CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherTransform
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherTransform
+  nameWithType: GMTrackerHookBase.WatcherTransform
+- uid: CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherTransform*
+  name: WatcherTransform
+  href: api/CrystalCore.Hooks.Internal.GMTrackerHookBase.html#CrystalCore_Hooks_Internal_GMTrackerHookBase_WatcherTransform_
+  commentId: Overload:CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherTransform
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.GMTrackerHookBase.WatcherTransform
+  nameWithType: GMTrackerHookBase.WatcherTransform
+- uid: CrystalCore.Hooks.Internal.IHookBase
+  name: IHookBase
+  href: api/CrystalCore.Hooks.Internal.IHookBase.html
+  commentId: T:CrystalCore.Hooks.Internal.IHookBase
+  fullName: CrystalCore.Hooks.Internal.IHookBase
+  nameWithType: IHookBase
+- uid: CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  name: LoadHook(IMod)
+  href: api/CrystalCore.Hooks.Internal.IHookBase.html#CrystalCore_Hooks_Internal_IHookBase_LoadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  fullName: CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  nameWithType: IHookBase.LoadHook(IMod)
+- uid: CrystalCore.Hooks.Internal.IHookBase.LoadHook*
+  name: LoadHook
+  href: api/CrystalCore.Hooks.Internal.IHookBase.html#CrystalCore_Hooks_Internal_IHookBase_LoadHook_
+  commentId: Overload:CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  nameWithType: IHookBase.LoadHook
+- uid: CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  name: UnloadHook(IMod)
+  href: api/CrystalCore.Hooks.Internal.IHookBase.html#CrystalCore_Hooks_Internal_IHookBase_UnloadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  fullName: CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  nameWithType: IHookBase.UnloadHook(IMod)
+- uid: CrystalCore.Hooks.Internal.IHookBase.UnloadHook*
+  name: UnloadHook
+  href: api/CrystalCore.Hooks.Internal.IHookBase.html#CrystalCore_Hooks_Internal_IHookBase_UnloadHook_
+  commentId: Overload:CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  nameWithType: IHookBase.UnloadHook
+- uid: CrystalCore.Hooks.Internal.PlayerInjector
+  name: PlayerInjector
+  href: api/CrystalCore.Hooks.Internal.PlayerInjector.html
+  commentId: T:CrystalCore.Hooks.Internal.PlayerInjector
+  fullName: CrystalCore.Hooks.Internal.PlayerInjector
+  nameWithType: PlayerInjector
+- uid: CrystalCore.Hooks.Internal.PlayerInjector.Initialize
+  name: Initialize()
+  href: api/CrystalCore.Hooks.Internal.PlayerInjector.html#CrystalCore_Hooks_Internal_PlayerInjector_Initialize
+  commentId: M:CrystalCore.Hooks.Internal.PlayerInjector.Initialize
+  fullName: CrystalCore.Hooks.Internal.PlayerInjector.Initialize()
+  nameWithType: PlayerInjector.Initialize()
+- uid: CrystalCore.Hooks.Internal.PlayerInjector.Initialize*
+  name: Initialize
+  href: api/CrystalCore.Hooks.Internal.PlayerInjector.html#CrystalCore_Hooks_Internal_PlayerInjector_Initialize_
+  commentId: Overload:CrystalCore.Hooks.Internal.PlayerInjector.Initialize
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.PlayerInjector.Initialize
+  nameWithType: PlayerInjector.Initialize
+- uid: CrystalCore.Hooks.Internal.UIInjector
+  name: UIInjector
+  href: api/CrystalCore.Hooks.Internal.UIInjector.html
+  commentId: T:CrystalCore.Hooks.Internal.UIInjector
+  fullName: CrystalCore.Hooks.Internal.UIInjector
+  nameWithType: UIInjector
+- uid: CrystalCore.Hooks.Internal.UIInjector.Initialize
+  name: Initialize()
+  href: api/CrystalCore.Hooks.Internal.UIInjector.html#CrystalCore_Hooks_Internal_UIInjector_Initialize
+  commentId: M:CrystalCore.Hooks.Internal.UIInjector.Initialize
+  fullName: CrystalCore.Hooks.Internal.UIInjector.Initialize()
+  nameWithType: UIInjector.Initialize()
+- uid: CrystalCore.Hooks.Internal.UIInjector.Initialize*
+  name: Initialize
+  href: api/CrystalCore.Hooks.Internal.UIInjector.html#CrystalCore_Hooks_Internal_UIInjector_Initialize_
+  commentId: Overload:CrystalCore.Hooks.Internal.UIInjector.Initialize
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Internal.UIInjector.Initialize
+  nameWithType: UIInjector.Initialize
+- uid: CrystalCore.Hooks.PlayerHook`1
+  name: PlayerHook<Mod>
+  href: api/CrystalCore.Hooks.PlayerHook-1.html
+  commentId: T:CrystalCore.Hooks.PlayerHook`1
+  name.vb: PlayerHook(Of Mod)
+  fullName: CrystalCore.Hooks.PlayerHook<Mod>
+  fullName.vb: CrystalCore.Hooks.PlayerHook(Of Mod)
+  nameWithType: PlayerHook<Mod>
+  nameWithType.vb: PlayerHook(Of Mod)
+- uid: CrystalCore.Hooks.PlayerHook`1.LoadHook(Modding.IMod)
+  name: LoadHook(IMod)
+  href: api/CrystalCore.Hooks.PlayerHook-1.html#CrystalCore_Hooks_PlayerHook_1_LoadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.PlayerHook`1.LoadHook(Modding.IMod)
+  fullName: CrystalCore.Hooks.PlayerHook<Mod>.LoadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.PlayerHook(Of Mod).LoadHook(Modding.IMod)
+  nameWithType: PlayerHook<Mod>.LoadHook(IMod)
+  nameWithType.vb: PlayerHook(Of Mod).LoadHook(IMod)
+- uid: CrystalCore.Hooks.PlayerHook`1.LoadHook*
+  name: LoadHook
+  href: api/CrystalCore.Hooks.PlayerHook-1.html#CrystalCore_Hooks_PlayerHook_1_LoadHook_
+  commentId: Overload:CrystalCore.Hooks.PlayerHook`1.LoadHook
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.PlayerHook<Mod>.LoadHook
+  fullName.vb: CrystalCore.Hooks.PlayerHook(Of Mod).LoadHook
+  nameWithType: PlayerHook<Mod>.LoadHook
+  nameWithType.vb: PlayerHook(Of Mod).LoadHook
+- uid: CrystalCore.Hooks.PlayerHook`1.UnloadHook(Modding.IMod)
+  name: UnloadHook(IMod)
+  href: api/CrystalCore.Hooks.PlayerHook-1.html#CrystalCore_Hooks_PlayerHook_1_UnloadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.PlayerHook`1.UnloadHook(Modding.IMod)
+  fullName: CrystalCore.Hooks.PlayerHook<Mod>.UnloadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.PlayerHook(Of Mod).UnloadHook(Modding.IMod)
+  nameWithType: PlayerHook<Mod>.UnloadHook(IMod)
+  nameWithType.vb: PlayerHook(Of Mod).UnloadHook(IMod)
+- uid: CrystalCore.Hooks.PlayerHook`1.UnloadHook*
+  name: UnloadHook
+  href: api/CrystalCore.Hooks.PlayerHook-1.html#CrystalCore_Hooks_PlayerHook_1_UnloadHook_
+  commentId: Overload:CrystalCore.Hooks.PlayerHook`1.UnloadHook
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.PlayerHook<Mod>.UnloadHook
+  fullName.vb: CrystalCore.Hooks.PlayerHook(Of Mod).UnloadHook
+  nameWithType: PlayerHook<Mod>.UnloadHook
+  nameWithType.vb: PlayerHook(Of Mod).UnloadHook
+- uid: CrystalCore.Hooks.SceneHook`1
+  name: SceneHook<Mod>
+  href: api/CrystalCore.Hooks.SceneHook-1.html
+  commentId: T:CrystalCore.Hooks.SceneHook`1
+  name.vb: SceneHook(Of Mod)
+  fullName: CrystalCore.Hooks.SceneHook<Mod>
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod)
+  nameWithType: SceneHook<Mod>
+  nameWithType.vb: SceneHook(Of Mod)
+- uid: CrystalCore.Hooks.SceneHook`1.OnActiveSceneChange(UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.Scene)
+  name: OnActiveSceneChange(Scene, Scene)
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_OnActiveSceneChange_UnityEngine_SceneManagement_Scene_UnityEngine_SceneManagement_Scene_
+  commentId: M:CrystalCore.Hooks.SceneHook`1.OnActiveSceneChange(UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.Scene)
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.OnActiveSceneChange(UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.Scene)
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).OnActiveSceneChange(UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.Scene)
+  nameWithType: SceneHook<Mod>.OnActiveSceneChange(Scene, Scene)
+  nameWithType.vb: SceneHook(Of Mod).OnActiveSceneChange(Scene, Scene)
+- uid: CrystalCore.Hooks.SceneHook`1.OnActiveSceneChange*
+  name: OnActiveSceneChange
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_OnActiveSceneChange_
+  commentId: Overload:CrystalCore.Hooks.SceneHook`1.OnActiveSceneChange
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.OnActiveSceneChange
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).OnActiveSceneChange
+  nameWithType: SceneHook<Mod>.OnActiveSceneChange
+  nameWithType.vb: SceneHook(Of Mod).OnActiveSceneChange
+- uid: CrystalCore.Hooks.SceneHook`1.OnSceneAddition(UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode)
+  name: OnSceneAddition(Scene, LoadSceneMode)
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_OnSceneAddition_UnityEngine_SceneManagement_Scene_UnityEngine_SceneManagement_LoadSceneMode_
+  commentId: M:CrystalCore.Hooks.SceneHook`1.OnSceneAddition(UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode)
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.OnSceneAddition(UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.LoadSceneMode)
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).OnSceneAddition(UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.LoadSceneMode)
+  nameWithType: SceneHook<Mod>.OnSceneAddition(Scene, LoadSceneMode)
+  nameWithType.vb: SceneHook(Of Mod).OnSceneAddition(Scene, LoadSceneMode)
+- uid: CrystalCore.Hooks.SceneHook`1.OnSceneAddition*
+  name: OnSceneAddition
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_OnSceneAddition_
+  commentId: Overload:CrystalCore.Hooks.SceneHook`1.OnSceneAddition
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.OnSceneAddition
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).OnSceneAddition
+  nameWithType: SceneHook<Mod>.OnSceneAddition
+  nameWithType.vb: SceneHook(Of Mod).OnSceneAddition
+- uid: CrystalCore.Hooks.SceneHook`1.OnSceneRemoval(UnityEngine.SceneManagement.Scene)
+  name: OnSceneRemoval(Scene)
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_OnSceneRemoval_UnityEngine_SceneManagement_Scene_
+  commentId: M:CrystalCore.Hooks.SceneHook`1.OnSceneRemoval(UnityEngine.SceneManagement.Scene)
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.OnSceneRemoval(UnityEngine.SceneManagement.Scene)
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).OnSceneRemoval(UnityEngine.SceneManagement.Scene)
+  nameWithType: SceneHook<Mod>.OnSceneRemoval(Scene)
+  nameWithType.vb: SceneHook(Of Mod).OnSceneRemoval(Scene)
+- uid: CrystalCore.Hooks.SceneHook`1.OnSceneRemoval*
+  name: OnSceneRemoval
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_OnSceneRemoval_
+  commentId: Overload:CrystalCore.Hooks.SceneHook`1.OnSceneRemoval
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.OnSceneRemoval
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).OnSceneRemoval
+  nameWithType: SceneHook<Mod>.OnSceneRemoval
+  nameWithType.vb: SceneHook(Of Mod).OnSceneRemoval
+- uid: CrystalCore.Hooks.SceneHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook(Modding.IMod)
+  name: IHookBase.LoadHook(IMod)
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_CrystalCore_Hooks_Internal_IHookBase_LoadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.SceneHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook(Modding.IMod)
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.LoadHook(IMod)
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook(Modding.IMod)
+  nameWithType: SceneHook<Mod>.IHookBase.LoadHook(IMod)
+  nameWithType.vb: SceneHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook(IMod)
+- uid: CrystalCore.Hooks.SceneHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook*
+  name: IHookBase.LoadHook
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_CrystalCore_Hooks_Internal_IHookBase_LoadHook_
+  commentId: Overload:CrystalCore.Hooks.SceneHook`1.CrystalCore#Hooks#Internal#IHookBase#LoadHook
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook
+  nameWithType: SceneHook<Mod>.IHookBase.LoadHook
+  nameWithType.vb: SceneHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.LoadHook
+- uid: CrystalCore.Hooks.SceneHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook(Modding.IMod)
+  name: IHookBase.UnloadHook(IMod)
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_CrystalCore_Hooks_Internal_IHookBase_UnloadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.SceneHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook(Modding.IMod)
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.UnloadHook(IMod)
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook(Modding.IMod)
+  nameWithType: SceneHook<Mod>.IHookBase.UnloadHook(IMod)
+  nameWithType.vb: SceneHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook(IMod)
+- uid: CrystalCore.Hooks.SceneHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook*
+  name: IHookBase.UnloadHook
+  href: api/CrystalCore.Hooks.SceneHook-1.html#CrystalCore_Hooks_SceneHook_1_CrystalCore_Hooks_Internal_IHookBase_UnloadHook_
+  commentId: Overload:CrystalCore.Hooks.SceneHook`1.CrystalCore#Hooks#Internal#IHookBase#UnloadHook
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  fullName: CrystalCore.Hooks.SceneHook<Mod>.CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  fullName.vb: CrystalCore.Hooks.SceneHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+  nameWithType: SceneHook<Mod>.IHookBase.UnloadHook
+  nameWithType.vb: SceneHook(Of Mod).CrystalCore.Hooks.Internal.IHookBase.UnloadHook
+- uid: CrystalCore.Hooks.UIHook`1
+  name: UIHook<Mod>
+  href: api/CrystalCore.Hooks.UIHook-1.html
+  commentId: T:CrystalCore.Hooks.UIHook`1
+  name.vb: UIHook(Of Mod)
+  fullName: CrystalCore.Hooks.UIHook<Mod>
+  fullName.vb: CrystalCore.Hooks.UIHook(Of Mod)
+  nameWithType: UIHook<Mod>
+  nameWithType.vb: UIHook(Of Mod)
+- uid: CrystalCore.Hooks.UIHook`1.LoadHook(Modding.IMod)
+  name: LoadHook(IMod)
+  href: api/CrystalCore.Hooks.UIHook-1.html#CrystalCore_Hooks_UIHook_1_LoadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.UIHook`1.LoadHook(Modding.IMod)
+  fullName: CrystalCore.Hooks.UIHook<Mod>.LoadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.UIHook(Of Mod).LoadHook(Modding.IMod)
+  nameWithType: UIHook<Mod>.LoadHook(IMod)
+  nameWithType.vb: UIHook(Of Mod).LoadHook(IMod)
+- uid: CrystalCore.Hooks.UIHook`1.LoadHook*
+  name: LoadHook
+  href: api/CrystalCore.Hooks.UIHook-1.html#CrystalCore_Hooks_UIHook_1_LoadHook_
+  commentId: Overload:CrystalCore.Hooks.UIHook`1.LoadHook
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.UIHook<Mod>.LoadHook
+  fullName.vb: CrystalCore.Hooks.UIHook(Of Mod).LoadHook
+  nameWithType: UIHook<Mod>.LoadHook
+  nameWithType.vb: UIHook(Of Mod).LoadHook
+- uid: CrystalCore.Hooks.UIHook`1.UnloadHook(Modding.IMod)
+  name: UnloadHook(IMod)
+  href: api/CrystalCore.Hooks.UIHook-1.html#CrystalCore_Hooks_UIHook_1_UnloadHook_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.UIHook`1.UnloadHook(Modding.IMod)
+  fullName: CrystalCore.Hooks.UIHook<Mod>.UnloadHook(Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.UIHook(Of Mod).UnloadHook(Modding.IMod)
+  nameWithType: UIHook<Mod>.UnloadHook(IMod)
+  nameWithType.vb: UIHook(Of Mod).UnloadHook(IMod)
+- uid: CrystalCore.Hooks.UIHook`1.UnloadHook*
+  name: UnloadHook
+  href: api/CrystalCore.Hooks.UIHook-1.html#CrystalCore_Hooks_UIHook_1_UnloadHook_
+  commentId: Overload:CrystalCore.Hooks.UIHook`1.UnloadHook
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.UIHook<Mod>.UnloadHook
+  fullName.vb: CrystalCore.Hooks.UIHook(Of Mod).UnloadHook
+  nameWithType: UIHook<Mod>.UnloadHook
+  nameWithType.vb: UIHook(Of Mod).UnloadHook
+- uid: CrystalCore.Hooks.Utility
+  name: CrystalCore.Hooks.Utility
+  href: api/CrystalCore.Hooks.Utility.html
+  commentId: N:CrystalCore.Hooks.Utility
+  fullName: CrystalCore.Hooks.Utility
+  nameWithType: CrystalCore.Hooks.Utility
+- uid: CrystalCore.Hooks.Utility.HookInjector
+  name: HookInjector
+  href: api/CrystalCore.Hooks.Utility.HookInjector.html
+  commentId: T:CrystalCore.Hooks.Utility.HookInjector
+  fullName: CrystalCore.Hooks.Utility.HookInjector
+  nameWithType: HookInjector
+- uid: CrystalCore.Hooks.Utility.HookInjector.Initialize
+  name: Initialize()
+  href: api/CrystalCore.Hooks.Utility.HookInjector.html#CrystalCore_Hooks_Utility_HookInjector_Initialize
+  commentId: M:CrystalCore.Hooks.Utility.HookInjector.Initialize
+  fullName: CrystalCore.Hooks.Utility.HookInjector.Initialize()
+  nameWithType: HookInjector.Initialize()
+- uid: CrystalCore.Hooks.Utility.HookInjector.Initialize*
+  name: Initialize
+  href: api/CrystalCore.Hooks.Utility.HookInjector.html#CrystalCore_Hooks_Utility_HookInjector_Initialize_
+  commentId: Overload:CrystalCore.Hooks.Utility.HookInjector.Initialize
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Utility.HookInjector.Initialize
+  nameWithType: HookInjector.Initialize
+- uid: CrystalCore.Hooks.Utility.HookInjector.InjectInto(UnityEngine.GameObject)
+  name: InjectInto(GameObject)
+  href: api/CrystalCore.Hooks.Utility.HookInjector.html#CrystalCore_Hooks_Utility_HookInjector_InjectInto_UnityEngine_GameObject_
+  commentId: M:CrystalCore.Hooks.Utility.HookInjector.InjectInto(UnityEngine.GameObject)
+  fullName: CrystalCore.Hooks.Utility.HookInjector.InjectInto(UnityEngine.GameObject)
+  nameWithType: HookInjector.InjectInto(GameObject)
+- uid: CrystalCore.Hooks.Utility.HookInjector.InjectInto*
+  name: InjectInto
+  href: api/CrystalCore.Hooks.Utility.HookInjector.html#CrystalCore_Hooks_Utility_HookInjector_InjectInto_
+  commentId: Overload:CrystalCore.Hooks.Utility.HookInjector.InjectInto
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Utility.HookInjector.InjectInto
+  nameWithType: HookInjector.InjectInto
+- uid: CrystalCore.Hooks.Utility.HookInjector.InjectInto``1(``0)
+  name: InjectInto<T>(T)
+  href: api/CrystalCore.Hooks.Utility.HookInjector.html#CrystalCore_Hooks_Utility_HookInjector_InjectInto__1___0_
+  commentId: M:CrystalCore.Hooks.Utility.HookInjector.InjectInto``1(``0)
+  name.vb: InjectInto(Of T)(T)
+  fullName: CrystalCore.Hooks.Utility.HookInjector.InjectInto<T>(T)
+  fullName.vb: CrystalCore.Hooks.Utility.HookInjector.InjectInto(Of T)(T)
+  nameWithType: HookInjector.InjectInto<T>(T)
+  nameWithType.vb: HookInjector.InjectInto(Of T)(T)
+- uid: CrystalCore.Hooks.Utility.IAllocator
+  name: IAllocator
+  href: api/CrystalCore.Hooks.Utility.IAllocator.html
+  commentId: T:CrystalCore.Hooks.Utility.IAllocator
+  fullName: CrystalCore.Hooks.Utility.IAllocator
+  nameWithType: IAllocator
+- uid: CrystalCore.Hooks.Utility.IAllocator.Allocate(System.Type,Modding.IMod)
+  name: Allocate(Type, IMod)
+  href: api/CrystalCore.Hooks.Utility.IAllocator.html#CrystalCore_Hooks_Utility_IAllocator_Allocate_System_Type_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.Utility.IAllocator.Allocate(System.Type,Modding.IMod)
+  fullName: CrystalCore.Hooks.Utility.IAllocator.Allocate(System.Type, Modding.IMod)
+  nameWithType: IAllocator.Allocate(Type, IMod)
+- uid: CrystalCore.Hooks.Utility.IAllocator.Allocate*
+  name: Allocate
+  href: api/CrystalCore.Hooks.Utility.IAllocator.html#CrystalCore_Hooks_Utility_IAllocator_Allocate_
+  commentId: Overload:CrystalCore.Hooks.Utility.IAllocator.Allocate
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Utility.IAllocator.Allocate
+  nameWithType: IAllocator.Allocate
+- uid: CrystalCore.Hooks.Utility.IAllocator.Deallocate(CrystalCore.Hooks.Internal.IHookBase,Modding.IMod)
+  name: Deallocate(IHookBase, IMod)
+  href: api/CrystalCore.Hooks.Utility.IAllocator.html#CrystalCore_Hooks_Utility_IAllocator_Deallocate_CrystalCore_Hooks_Internal_IHookBase_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.Utility.IAllocator.Deallocate(CrystalCore.Hooks.Internal.IHookBase,Modding.IMod)
+  fullName: CrystalCore.Hooks.Utility.IAllocator.Deallocate(CrystalCore.Hooks.Internal.IHookBase, Modding.IMod)
+  nameWithType: IAllocator.Deallocate(IHookBase, IMod)
+- uid: CrystalCore.Hooks.Utility.IAllocator.Deallocate*
+  name: Deallocate
+  href: api/CrystalCore.Hooks.Utility.IAllocator.html#CrystalCore_Hooks_Utility_IAllocator_Deallocate_
+  commentId: Overload:CrystalCore.Hooks.Utility.IAllocator.Deallocate
+  isSpec: "True"
+  fullName: CrystalCore.Hooks.Utility.IAllocator.Deallocate
+  nameWithType: IAllocator.Deallocate
+- uid: CrystalCore.Hooks.Utility.IHook`1
+  name: IHook<TMod>
+  href: api/CrystalCore.Hooks.Utility.IHook-1.html
+  commentId: T:CrystalCore.Hooks.Utility.IHook`1
+  name.vb: IHook(Of TMod)
+  fullName: CrystalCore.Hooks.Utility.IHook<TMod>
+  fullName.vb: CrystalCore.Hooks.Utility.IHook(Of TMod)
+  nameWithType: IHook<TMod>
+  nameWithType.vb: IHook(Of TMod)
+- uid: CrystalCore.Hooks.Utility.IHook`2
+  name: IHook<TMod, Alloc>
+  href: api/CrystalCore.Hooks.Utility.IHook-2.html
+  commentId: T:CrystalCore.Hooks.Utility.IHook`2
+  name.vb: IHook(Of TMod, Alloc)
+  fullName: CrystalCore.Hooks.Utility.IHook<TMod, Alloc>
+  fullName.vb: CrystalCore.Hooks.Utility.IHook(Of TMod, Alloc)
+  nameWithType: IHook<TMod, Alloc>
+  nameWithType.vb: IHook(Of TMod, Alloc)
+- uid: CrystalCore.Hooks.Utility.InjectionAllocator`1
+  name: InjectionAllocator<Injector>
+  href: api/CrystalCore.Hooks.Utility.InjectionAllocator-1.html
+  commentId: T:CrystalCore.Hooks.Utility.InjectionAllocator`1
+  name.vb: InjectionAllocator(Of Injector)
+  fullName: CrystalCore.Hooks.Utility.InjectionAllocator<Injector>
+  fullName.vb: CrystalCore.Hooks.Utility.InjectionAllocator(Of Injector)
+  nameWithType: InjectionAllocator<Injector>
+  nameWithType.vb: InjectionAllocator(Of Injector)
+- uid: CrystalCore.Hooks.Utility.InjectionAllocator`1.CrystalCore#Hooks#Utility#IAllocator#Allocate(System.Type,Modding.IMod)
+  name: IAllocator.Allocate(Type, IMod)
+  href: api/CrystalCore.Hooks.Utility.InjectionAllocator-1.html#CrystalCore_Hooks_Utility_InjectionAllocator_1_CrystalCore_Hooks_Utility_IAllocator_Allocate_System_Type_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.Utility.InjectionAllocator`1.CrystalCore#Hooks#Utility#IAllocator#Allocate(System.Type,Modding.IMod)
+  name.vb: CrystalCore.Hooks.Utility.IAllocator.Allocate(Type, IMod)
+  fullName: CrystalCore.Hooks.Utility.InjectionAllocator<Injector>.CrystalCore.Hooks.Utility.IAllocator.Allocate(System.Type, Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.Utility.InjectionAllocator(Of Injector).CrystalCore.Hooks.Utility.IAllocator.Allocate(System.Type, Modding.IMod)
+  nameWithType: InjectionAllocator<Injector>.IAllocator.Allocate(Type, IMod)
+  nameWithType.vb: InjectionAllocator(Of Injector).CrystalCore.Hooks.Utility.IAllocator.Allocate(Type, IMod)
+- uid: CrystalCore.Hooks.Utility.InjectionAllocator`1.CrystalCore#Hooks#Utility#IAllocator#Allocate*
+  name: IAllocator.Allocate
+  href: api/CrystalCore.Hooks.Utility.InjectionAllocator-1.html#CrystalCore_Hooks_Utility_InjectionAllocator_1_CrystalCore_Hooks_Utility_IAllocator_Allocate_
+  commentId: Overload:CrystalCore.Hooks.Utility.InjectionAllocator`1.CrystalCore#Hooks#Utility#IAllocator#Allocate
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Utility.IAllocator.Allocate
+  fullName: CrystalCore.Hooks.Utility.InjectionAllocator<Injector>.CrystalCore.Hooks.Utility.IAllocator.Allocate
+  fullName.vb: CrystalCore.Hooks.Utility.InjectionAllocator(Of Injector).CrystalCore.Hooks.Utility.IAllocator.Allocate
+  nameWithType: InjectionAllocator<Injector>.IAllocator.Allocate
+  nameWithType.vb: InjectionAllocator(Of Injector).CrystalCore.Hooks.Utility.IAllocator.Allocate
+- uid: CrystalCore.Hooks.Utility.InjectionAllocator`1.CrystalCore#Hooks#Utility#IAllocator#Deallocate(CrystalCore.Hooks.Internal.IHookBase,Modding.IMod)
+  name: IAllocator.Deallocate(IHookBase, IMod)
+  href: api/CrystalCore.Hooks.Utility.InjectionAllocator-1.html#CrystalCore_Hooks_Utility_InjectionAllocator_1_CrystalCore_Hooks_Utility_IAllocator_Deallocate_CrystalCore_Hooks_Internal_IHookBase_Modding_IMod_
+  commentId: M:CrystalCore.Hooks.Utility.InjectionAllocator`1.CrystalCore#Hooks#Utility#IAllocator#Deallocate(CrystalCore.Hooks.Internal.IHookBase,Modding.IMod)
+  name.vb: CrystalCore.Hooks.Utility.IAllocator.Deallocate(IHookBase, IMod)
+  fullName: CrystalCore.Hooks.Utility.InjectionAllocator<Injector>.CrystalCore.Hooks.Utility.IAllocator.Deallocate(CrystalCore.Hooks.Internal.IHookBase, Modding.IMod)
+  fullName.vb: CrystalCore.Hooks.Utility.InjectionAllocator(Of Injector).CrystalCore.Hooks.Utility.IAllocator.Deallocate(CrystalCore.Hooks.Internal.IHookBase, Modding.IMod)
+  nameWithType: InjectionAllocator<Injector>.IAllocator.Deallocate(IHookBase, IMod)
+  nameWithType.vb: InjectionAllocator(Of Injector).CrystalCore.Hooks.Utility.IAllocator.Deallocate(IHookBase, IMod)
+- uid: CrystalCore.Hooks.Utility.InjectionAllocator`1.CrystalCore#Hooks#Utility#IAllocator#Deallocate*
+  name: IAllocator.Deallocate
+  href: api/CrystalCore.Hooks.Utility.InjectionAllocator-1.html#CrystalCore_Hooks_Utility_InjectionAllocator_1_CrystalCore_Hooks_Utility_IAllocator_Deallocate_
+  commentId: Overload:CrystalCore.Hooks.Utility.InjectionAllocator`1.CrystalCore#Hooks#Utility#IAllocator#Deallocate
+  isSpec: "True"
+  name.vb: CrystalCore.Hooks.Utility.IAllocator.Deallocate
+  fullName: CrystalCore.Hooks.Utility.InjectionAllocator<Injector>.CrystalCore.Hooks.Utility.IAllocator.Deallocate
+  fullName.vb: CrystalCore.Hooks.Utility.InjectionAllocator(Of Injector).CrystalCore.Hooks.Utility.IAllocator.Deallocate
+  nameWithType: InjectionAllocator<Injector>.IAllocator.Deallocate
+  nameWithType.vb: InjectionAllocator(Of Injector).CrystalCore.Hooks.Utility.IAllocator.Deallocate
+- uid: CrystalCore.IPropertyTableBase
+  name: IPropertyTableBase
+  href: api/CrystalCore.IPropertyTableBase.html
+  commentId: T:CrystalCore.IPropertyTableBase
+  fullName: CrystalCore.IPropertyTableBase
+  nameWithType: IPropertyTableBase
+- uid: CrystalCore.IPropertyTableBase.Keys
+  name: Keys
+  href: api/CrystalCore.IPropertyTableBase.html#CrystalCore_IPropertyTableBase_Keys
+  commentId: P:CrystalCore.IPropertyTableBase.Keys
+  fullName: CrystalCore.IPropertyTableBase.Keys
+  nameWithType: IPropertyTableBase.Keys
+- uid: CrystalCore.IPropertyTableBase.Keys*
+  name: Keys
+  href: api/CrystalCore.IPropertyTableBase.html#CrystalCore_IPropertyTableBase_Keys_
+  commentId: Overload:CrystalCore.IPropertyTableBase.Keys
+  isSpec: "True"
+  fullName: CrystalCore.IPropertyTableBase.Keys
+  nameWithType: IPropertyTableBase.Keys
+- uid: CrystalCore.IPropertyTableBase.Lock
+  name: Lock
+  href: api/CrystalCore.IPropertyTableBase.html#CrystalCore_IPropertyTableBase_Lock
+  commentId: P:CrystalCore.IPropertyTableBase.Lock
+  fullName: CrystalCore.IPropertyTableBase.Lock
+  nameWithType: IPropertyTableBase.Lock
+- uid: CrystalCore.IPropertyTableBase.Lock*
+  name: Lock
+  href: api/CrystalCore.IPropertyTableBase.html#CrystalCore_IPropertyTableBase_Lock_
+  commentId: Overload:CrystalCore.IPropertyTableBase.Lock
+  isSpec: "True"
+  fullName: CrystalCore.IPropertyTableBase.Lock
+  nameWithType: IPropertyTableBase.Lock
+- uid: CrystalCore.IPropertyTableBase.Remove(CrystalCore.EquatableWeakReference)
+  name: Remove(EquatableWeakReference)
+  href: api/CrystalCore.IPropertyTableBase.html#CrystalCore_IPropertyTableBase_Remove_CrystalCore_EquatableWeakReference_
+  commentId: M:CrystalCore.IPropertyTableBase.Remove(CrystalCore.EquatableWeakReference)
+  fullName: CrystalCore.IPropertyTableBase.Remove(CrystalCore.EquatableWeakReference)
+  nameWithType: IPropertyTableBase.Remove(EquatableWeakReference)
+- uid: CrystalCore.IPropertyTableBase.Remove*
+  name: Remove
+  href: api/CrystalCore.IPropertyTableBase.html#CrystalCore_IPropertyTableBase_Remove_
+  commentId: Overload:CrystalCore.IPropertyTableBase.Remove
+  isSpec: "True"
+  fullName: CrystalCore.IPropertyTableBase.Remove
+  nameWithType: IPropertyTableBase.Remove
+- uid: CrystalCore.IPropertyTableBase.Validate(CrystalCore.EquatableWeakReference)
+  name: Validate(EquatableWeakReference)
+  href: api/CrystalCore.IPropertyTableBase.html#CrystalCore_IPropertyTableBase_Validate_CrystalCore_EquatableWeakReference_
+  commentId: M:CrystalCore.IPropertyTableBase.Validate(CrystalCore.EquatableWeakReference)
+  fullName: CrystalCore.IPropertyTableBase.Validate(CrystalCore.EquatableWeakReference)
+  nameWithType: IPropertyTableBase.Validate(EquatableWeakReference)
+- uid: CrystalCore.IPropertyTableBase.Validate*
+  name: Validate
+  href: api/CrystalCore.IPropertyTableBase.html#CrystalCore_IPropertyTableBase_Validate_
+  commentId: Overload:CrystalCore.IPropertyTableBase.Validate
+  isSpec: "True"
+  fullName: CrystalCore.IPropertyTableBase.Validate
+  nameWithType: IPropertyTableBase.Validate
+- uid: CrystalCore.LoadedAudio
+  name: LoadedAudio
+  href: api/CrystalCore.LoadedAudio.html
+  commentId: T:CrystalCore.LoadedAudio
+  fullName: CrystalCore.LoadedAudio
+  nameWithType: LoadedAudio
+- uid: CrystalCore.LoadedAudio.Clip
+  name: Clip
+  href: api/CrystalCore.LoadedAudio.html#CrystalCore_LoadedAudio_Clip
+  commentId: P:CrystalCore.LoadedAudio.Clip
+  fullName: CrystalCore.LoadedAudio.Clip
+  nameWithType: LoadedAudio.Clip
+- uid: CrystalCore.LoadedAudio.Clip*
+  name: Clip
+  href: api/CrystalCore.LoadedAudio.html#CrystalCore_LoadedAudio_Clip_
+  commentId: Overload:CrystalCore.LoadedAudio.Clip
+  isSpec: "True"
+  fullName: CrystalCore.LoadedAudio.Clip
+  nameWithType: LoadedAudio.Clip
+- uid: CrystalCore.LoadedAudio.Dispose
+  name: Dispose()
+  href: api/CrystalCore.LoadedAudio.html#CrystalCore_LoadedAudio_Dispose
+  commentId: M:CrystalCore.LoadedAudio.Dispose
+  fullName: CrystalCore.LoadedAudio.Dispose()
+  nameWithType: LoadedAudio.Dispose()
+- uid: CrystalCore.LoadedAudio.Dispose*
+  name: Dispose
+  href: api/CrystalCore.LoadedAudio.html#CrystalCore_LoadedAudio_Dispose_
+  commentId: Overload:CrystalCore.LoadedAudio.Dispose
+  isSpec: "True"
+  fullName: CrystalCore.LoadedAudio.Dispose
+  nameWithType: LoadedAudio.Dispose
+- uid: CrystalCore.LoadedAudio.Finalize
+  name: Finalize()
+  href: api/CrystalCore.LoadedAudio.html#CrystalCore_LoadedAudio_Finalize
+  commentId: M:CrystalCore.LoadedAudio.Finalize
+  fullName: CrystalCore.LoadedAudio.Finalize()
+  nameWithType: LoadedAudio.Finalize()
+- uid: CrystalCore.LoadedAudio.Finalize*
+  name: Finalize
+  href: api/CrystalCore.LoadedAudio.html#CrystalCore_LoadedAudio_Finalize_
+  commentId: Overload:CrystalCore.LoadedAudio.Finalize
+  isSpec: "True"
+  fullName: CrystalCore.LoadedAudio.Finalize
+  nameWithType: LoadedAudio.Finalize
+- uid: CrystalCore.Machine
+  name: CrystalCore.Machine
+  href: api/CrystalCore.Machine.html
+  commentId: N:CrystalCore.Machine
+  fullName: CrystalCore.Machine
+  nameWithType: CrystalCore.Machine
+- uid: CrystalCore.Machine.XEvent
+  name: XEvent
+  href: api/CrystalCore.Machine.XEvent.html
+  commentId: T:CrystalCore.Machine.XEvent
+  fullName: CrystalCore.Machine.XEvent
+  nameWithType: XEvent
+- uid: CrystalCore.Machine.XEvent.#ctor(System.String,CrystalCore.Machine.XState)
+  name: XEvent(String, XState)
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent__ctor_System_String_CrystalCore_Machine_XState_
+  commentId: M:CrystalCore.Machine.XEvent.#ctor(System.String,CrystalCore.Machine.XState)
+  fullName: CrystalCore.Machine.XEvent.XEvent(System.String, CrystalCore.Machine.XState)
+  nameWithType: XEvent.XEvent(String, XState)
+- uid: CrystalCore.Machine.XEvent.#ctor*
+  name: XEvent
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent__ctor_
+  commentId: Overload:CrystalCore.Machine.XEvent.#ctor
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XEvent.XEvent
+  nameWithType: XEvent.XEvent
+- uid: CrystalCore.Machine.XEvent.Equals(System.Object)
+  name: Equals(Object)
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_Equals_System_Object_
+  commentId: M:CrystalCore.Machine.XEvent.Equals(System.Object)
+  fullName: CrystalCore.Machine.XEvent.Equals(System.Object)
+  nameWithType: XEvent.Equals(Object)
+- uid: CrystalCore.Machine.XEvent.Equals*
+  name: Equals
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_Equals_
+  commentId: Overload:CrystalCore.Machine.XEvent.Equals
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XEvent.Equals
+  nameWithType: XEvent.Equals
+- uid: CrystalCore.Machine.XEvent.GetHashCode
+  name: GetHashCode()
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_GetHashCode
+  commentId: M:CrystalCore.Machine.XEvent.GetHashCode
+  fullName: CrystalCore.Machine.XEvent.GetHashCode()
+  nameWithType: XEvent.GetHashCode()
+- uid: CrystalCore.Machine.XEvent.GetHashCode*
+  name: GetHashCode
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_GetHashCode_
+  commentId: Overload:CrystalCore.Machine.XEvent.GetHashCode
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XEvent.GetHashCode
+  nameWithType: XEvent.GetHashCode
+- uid: CrystalCore.Machine.XEvent.Name
+  name: Name
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_Name
+  commentId: P:CrystalCore.Machine.XEvent.Name
+  fullName: CrystalCore.Machine.XEvent.Name
+  nameWithType: XEvent.Name
+- uid: CrystalCore.Machine.XEvent.Name*
+  name: Name
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_Name_
+  commentId: Overload:CrystalCore.Machine.XEvent.Name
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XEvent.Name
+  nameWithType: XEvent.Name
+- uid: CrystalCore.Machine.XEvent.ToState
+  name: ToState
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_ToState
+  commentId: P:CrystalCore.Machine.XEvent.ToState
+  fullName: CrystalCore.Machine.XEvent.ToState
+  nameWithType: XEvent.ToState
+- uid: CrystalCore.Machine.XEvent.ToState*
+  name: ToState
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_ToState_
+  commentId: Overload:CrystalCore.Machine.XEvent.ToState
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XEvent.ToState
+  nameWithType: XEvent.ToState
+- uid: CrystalCore.Machine.XEvent.ToString
+  name: ToString()
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_ToString
+  commentId: M:CrystalCore.Machine.XEvent.ToString
+  fullName: CrystalCore.Machine.XEvent.ToString()
+  nameWithType: XEvent.ToString()
+- uid: CrystalCore.Machine.XEvent.ToString*
+  name: ToString
+  href: api/CrystalCore.Machine.XEvent.html#CrystalCore_Machine_XEvent_ToString_
+  commentId: Overload:CrystalCore.Machine.XEvent.ToString
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XEvent.ToString
+  nameWithType: XEvent.ToString
+- uid: CrystalCore.Machine.XMachine
+  name: XMachine
+  href: api/CrystalCore.Machine.XMachine.html
+  commentId: T:CrystalCore.Machine.XMachine
+  fullName: CrystalCore.Machine.XMachine
+  nameWithType: XMachine
+- uid: CrystalCore.Machine.XMachine.#ctor(System.String)
+  name: XMachine(String)
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine__ctor_System_String_
+  commentId: M:CrystalCore.Machine.XMachine.#ctor(System.String)
+  fullName: CrystalCore.Machine.XMachine.XMachine(System.String)
+  nameWithType: XMachine.XMachine(String)
+- uid: CrystalCore.Machine.XMachine.#ctor(System.String,CrystalCore.Machine.XState,System.Collections.Generic.List{CrystalCore.Machine.XState})
+  name: XMachine(String, XState, List<XState>)
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine__ctor_System_String_CrystalCore_Machine_XState_System_Collections_Generic_List_CrystalCore_Machine_XState__
+  commentId: M:CrystalCore.Machine.XMachine.#ctor(System.String,CrystalCore.Machine.XState,System.Collections.Generic.List{CrystalCore.Machine.XState})
+  name.vb: XMachine(String, XState, List(Of XState))
+  fullName: CrystalCore.Machine.XMachine.XMachine(System.String, CrystalCore.Machine.XState, System.Collections.Generic.List<CrystalCore.Machine.XState>)
+  fullName.vb: CrystalCore.Machine.XMachine.XMachine(System.String, CrystalCore.Machine.XState, System.Collections.Generic.List(Of CrystalCore.Machine.XState))
+  nameWithType: XMachine.XMachine(String, XState, List<XState>)
+  nameWithType.vb: XMachine.XMachine(String, XState, List(Of XState))
+- uid: CrystalCore.Machine.XMachine.#ctor*
+  name: XMachine
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine__ctor_
+  commentId: Overload:CrystalCore.Machine.XMachine.#ctor
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XMachine.XMachine
+  nameWithType: XMachine.XMachine
+- uid: CrystalCore.Machine.XMachine.Add(CrystalCore.Machine.XState)
+  name: Add(XState)
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_Add_CrystalCore_Machine_XState_
+  commentId: M:CrystalCore.Machine.XMachine.Add(CrystalCore.Machine.XState)
+  fullName: CrystalCore.Machine.XMachine.Add(CrystalCore.Machine.XState)
+  nameWithType: XMachine.Add(XState)
+- uid: CrystalCore.Machine.XMachine.Add*
+  name: Add
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_Add_
+  commentId: Overload:CrystalCore.Machine.XMachine.Add
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XMachine.Add
+  nameWithType: XMachine.Add
+- uid: CrystalCore.Machine.XMachine.AddState(CrystalCore.Machine.XState)
+  name: AddState(XState)
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_AddState_CrystalCore_Machine_XState_
+  commentId: M:CrystalCore.Machine.XMachine.AddState(CrystalCore.Machine.XState)
+  fullName: CrystalCore.Machine.XMachine.AddState(CrystalCore.Machine.XState)
+  nameWithType: XMachine.AddState(XState)
+- uid: CrystalCore.Machine.XMachine.AddState*
+  name: AddState
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_AddState_
+  commentId: Overload:CrystalCore.Machine.XMachine.AddState
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XMachine.AddState
+  nameWithType: XMachine.AddState
+- uid: CrystalCore.Machine.XMachine.InitialState
+  name: InitialState
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_InitialState
+  commentId: P:CrystalCore.Machine.XMachine.InitialState
+  fullName: CrystalCore.Machine.XMachine.InitialState
+  nameWithType: XMachine.InitialState
+- uid: CrystalCore.Machine.XMachine.InitialState*
+  name: InitialState
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_InitialState_
+  commentId: Overload:CrystalCore.Machine.XMachine.InitialState
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XMachine.InitialState
+  nameWithType: XMachine.InitialState
+- uid: CrystalCore.Machine.XMachine.Name
+  name: Name
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_Name
+  commentId: P:CrystalCore.Machine.XMachine.Name
+  fullName: CrystalCore.Machine.XMachine.Name
+  nameWithType: XMachine.Name
+- uid: CrystalCore.Machine.XMachine.Name*
+  name: Name
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_Name_
+  commentId: Overload:CrystalCore.Machine.XMachine.Name
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XMachine.Name
+  nameWithType: XMachine.Name
+- uid: CrystalCore.Machine.XMachine.RemoveState(CrystalCore.Machine.XState)
+  name: RemoveState(XState)
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_RemoveState_CrystalCore_Machine_XState_
+  commentId: M:CrystalCore.Machine.XMachine.RemoveState(CrystalCore.Machine.XState)
+  fullName: CrystalCore.Machine.XMachine.RemoveState(CrystalCore.Machine.XState)
+  nameWithType: XMachine.RemoveState(XState)
+- uid: CrystalCore.Machine.XMachine.RemoveState*
+  name: RemoveState
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_RemoveState_
+  commentId: Overload:CrystalCore.Machine.XMachine.RemoveState
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XMachine.RemoveState
+  nameWithType: XMachine.RemoveState
+- uid: CrystalCore.Machine.XMachine.System#Collections#Generic#IEnumerable{CrystalCore#Machine#XState}#GetEnumerator
+  name: IEnumerable<XState>.GetEnumerator()
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_System_Collections_Generic_IEnumerable_CrystalCore_Machine_XState__GetEnumerator
+  commentId: M:CrystalCore.Machine.XMachine.System#Collections#Generic#IEnumerable{CrystalCore#Machine#XState}#GetEnumerator
+  name.vb: System.Collections.Generic.IEnumerable<CrystalCore.Machine.XState>.GetEnumerator()
+  fullName: CrystalCore.Machine.XMachine.System.Collections.Generic.IEnumerable<CrystalCore.Machine.XState>.GetEnumerator()
+  nameWithType: XMachine.IEnumerable<XState>.GetEnumerator()
+  nameWithType.vb: XMachine.System.Collections.Generic.IEnumerable<CrystalCore.Machine.XState>.GetEnumerator()
+- uid: CrystalCore.Machine.XMachine.System#Collections#Generic#IEnumerable{CrystalCore#Machine#XState}#GetEnumerator*
+  name: IEnumerable<XState>.GetEnumerator
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_System_Collections_Generic_IEnumerable_CrystalCore_Machine_XState__GetEnumerator_
+  commentId: Overload:CrystalCore.Machine.XMachine.System#Collections#Generic#IEnumerable{CrystalCore#Machine#XState}#GetEnumerator
+  isSpec: "True"
+  name.vb: System.Collections.Generic.IEnumerable<CrystalCore.Machine.XState>.GetEnumerator
+  fullName: CrystalCore.Machine.XMachine.System.Collections.Generic.IEnumerable<CrystalCore.Machine.XState>.GetEnumerator
+  nameWithType: XMachine.IEnumerable<XState>.GetEnumerator
+  nameWithType.vb: XMachine.System.Collections.Generic.IEnumerable<CrystalCore.Machine.XState>.GetEnumerator
+- uid: CrystalCore.Machine.XMachine.System#Collections#IEnumerable#GetEnumerator
+  name: IEnumerable.GetEnumerator()
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_System_Collections_IEnumerable_GetEnumerator
+  commentId: M:CrystalCore.Machine.XMachine.System#Collections#IEnumerable#GetEnumerator
+  name.vb: System.Collections.IEnumerable.GetEnumerator()
+  fullName: CrystalCore.Machine.XMachine.System.Collections.IEnumerable.GetEnumerator()
+  nameWithType: XMachine.IEnumerable.GetEnumerator()
+  nameWithType.vb: XMachine.System.Collections.IEnumerable.GetEnumerator()
+- uid: CrystalCore.Machine.XMachine.System#Collections#IEnumerable#GetEnumerator*
+  name: IEnumerable.GetEnumerator
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_System_Collections_IEnumerable_GetEnumerator_
+  commentId: Overload:CrystalCore.Machine.XMachine.System#Collections#IEnumerable#GetEnumerator
+  isSpec: "True"
+  name.vb: System.Collections.IEnumerable.GetEnumerator
+  fullName: CrystalCore.Machine.XMachine.System.Collections.IEnumerable.GetEnumerator
+  nameWithType: XMachine.IEnumerable.GetEnumerator
+  nameWithType.vb: XMachine.System.Collections.IEnumerable.GetEnumerator
+- uid: CrystalCore.Machine.XMachine.ToString
+  name: ToString()
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_ToString
+  commentId: M:CrystalCore.Machine.XMachine.ToString
+  fullName: CrystalCore.Machine.XMachine.ToString()
+  nameWithType: XMachine.ToString()
+- uid: CrystalCore.Machine.XMachine.ToString*
+  name: ToString
+  href: api/CrystalCore.Machine.XMachine.html#CrystalCore_Machine_XMachine_ToString_
+  commentId: Overload:CrystalCore.Machine.XMachine.ToString
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XMachine.ToString
+  nameWithType: XMachine.ToString
+- uid: CrystalCore.Machine.XState
+  name: XState
+  href: api/CrystalCore.Machine.XState.html
+  commentId: T:CrystalCore.Machine.XState
+  fullName: CrystalCore.Machine.XState
+  nameWithType: XState
+- uid: CrystalCore.Machine.XState.#ctor(System.String,System.Collections.Generic.List{CrystalCore.Machine.XEvent},System.Collections.Generic.List{System.String})
+  name: XState(String, List<XEvent>, List<String>)
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState__ctor_System_String_System_Collections_Generic_List_CrystalCore_Machine_XEvent__System_Collections_Generic_List_System_String__
+  commentId: M:CrystalCore.Machine.XState.#ctor(System.String,System.Collections.Generic.List{CrystalCore.Machine.XEvent},System.Collections.Generic.List{System.String})
+  name.vb: XState(String, List(Of XEvent), List(Of String))
+  fullName: CrystalCore.Machine.XState.XState(System.String, System.Collections.Generic.List<CrystalCore.Machine.XEvent>, System.Collections.Generic.List<System.String>)
+  fullName.vb: CrystalCore.Machine.XState.XState(System.String, System.Collections.Generic.List(Of CrystalCore.Machine.XEvent), System.Collections.Generic.List(Of System.String))
+  nameWithType: XState.XState(String, List<XEvent>, List<String>)
+  nameWithType.vb: XState.XState(String, List(Of XEvent), List(Of String))
+- uid: CrystalCore.Machine.XState.#ctor(System.String,CrystalCore.Machine.XEvent[],System.String[])
+  name: XState(String, XEvent[], String[])
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState__ctor_System_String_CrystalCore_Machine_XEvent___System_String___
+  commentId: M:CrystalCore.Machine.XState.#ctor(System.String,CrystalCore.Machine.XEvent[],System.String[])
+  name.vb: XState(String, XEvent(), String())
+  fullName: CrystalCore.Machine.XState.XState(System.String, CrystalCore.Machine.XEvent[], System.String[])
+  fullName.vb: CrystalCore.Machine.XState.XState(System.String, CrystalCore.Machine.XEvent(), System.String())
+  nameWithType: XState.XState(String, XEvent[], String[])
+  nameWithType.vb: XState.XState(String, XEvent(), String())
+- uid: CrystalCore.Machine.XState.#ctor*
+  name: XState
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState__ctor_
+  commentId: Overload:CrystalCore.Machine.XState.#ctor
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.XState
+  nameWithType: XState.XState
+- uid: CrystalCore.Machine.XState.Add(CrystalCore.Machine.XEvent)
+  name: Add(XEvent)
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_Add_CrystalCore_Machine_XEvent_
+  commentId: M:CrystalCore.Machine.XState.Add(CrystalCore.Machine.XEvent)
+  fullName: CrystalCore.Machine.XState.Add(CrystalCore.Machine.XEvent)
+  nameWithType: XState.Add(XEvent)
+- uid: CrystalCore.Machine.XState.Add*
+  name: Add
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_Add_
+  commentId: Overload:CrystalCore.Machine.XState.Add
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.Add
+  nameWithType: XState.Add
+- uid: CrystalCore.Machine.XState.AddAction(System.String)
+  name: AddAction(String)
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_AddAction_System_String_
+  commentId: M:CrystalCore.Machine.XState.AddAction(System.String)
+  fullName: CrystalCore.Machine.XState.AddAction(System.String)
+  nameWithType: XState.AddAction(String)
+- uid: CrystalCore.Machine.XState.AddAction*
+  name: AddAction
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_AddAction_
+  commentId: Overload:CrystalCore.Machine.XState.AddAction
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.AddAction
+  nameWithType: XState.AddAction
+- uid: CrystalCore.Machine.XState.AddEvent(CrystalCore.Machine.XEvent)
+  name: AddEvent(XEvent)
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_AddEvent_CrystalCore_Machine_XEvent_
+  commentId: M:CrystalCore.Machine.XState.AddEvent(CrystalCore.Machine.XEvent)
+  fullName: CrystalCore.Machine.XState.AddEvent(CrystalCore.Machine.XEvent)
+  nameWithType: XState.AddEvent(XEvent)
+- uid: CrystalCore.Machine.XState.AddEvent*
+  name: AddEvent
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_AddEvent_
+  commentId: Overload:CrystalCore.Machine.XState.AddEvent
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.AddEvent
+  nameWithType: XState.AddEvent
+- uid: CrystalCore.Machine.XState.Equals(System.Object)
+  name: Equals(Object)
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_Equals_System_Object_
+  commentId: M:CrystalCore.Machine.XState.Equals(System.Object)
+  fullName: CrystalCore.Machine.XState.Equals(System.Object)
+  nameWithType: XState.Equals(Object)
+- uid: CrystalCore.Machine.XState.Equals*
+  name: Equals
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_Equals_
+  commentId: Overload:CrystalCore.Machine.XState.Equals
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.Equals
+  nameWithType: XState.Equals
+- uid: CrystalCore.Machine.XState.GetHashCode
+  name: GetHashCode()
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_GetHashCode
+  commentId: M:CrystalCore.Machine.XState.GetHashCode
+  fullName: CrystalCore.Machine.XState.GetHashCode()
+  nameWithType: XState.GetHashCode()
+- uid: CrystalCore.Machine.XState.GetHashCode*
+  name: GetHashCode
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_GetHashCode_
+  commentId: Overload:CrystalCore.Machine.XState.GetHashCode
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.GetHashCode
+  nameWithType: XState.GetHashCode
+- uid: CrystalCore.Machine.XState.Name
+  name: Name
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_Name
+  commentId: P:CrystalCore.Machine.XState.Name
+  fullName: CrystalCore.Machine.XState.Name
+  nameWithType: XState.Name
+- uid: CrystalCore.Machine.XState.Name*
+  name: Name
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_Name_
+  commentId: Overload:CrystalCore.Machine.XState.Name
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.Name
+  nameWithType: XState.Name
+- uid: CrystalCore.Machine.XState.RemoveAction(System.String)
+  name: RemoveAction(String)
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_RemoveAction_System_String_
+  commentId: M:CrystalCore.Machine.XState.RemoveAction(System.String)
+  fullName: CrystalCore.Machine.XState.RemoveAction(System.String)
+  nameWithType: XState.RemoveAction(String)
+- uid: CrystalCore.Machine.XState.RemoveAction*
+  name: RemoveAction
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_RemoveAction_
+  commentId: Overload:CrystalCore.Machine.XState.RemoveAction
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.RemoveAction
+  nameWithType: XState.RemoveAction
+- uid: CrystalCore.Machine.XState.RemoveEvent(CrystalCore.Machine.XEvent)
+  name: RemoveEvent(XEvent)
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_RemoveEvent_CrystalCore_Machine_XEvent_
+  commentId: M:CrystalCore.Machine.XState.RemoveEvent(CrystalCore.Machine.XEvent)
+  fullName: CrystalCore.Machine.XState.RemoveEvent(CrystalCore.Machine.XEvent)
+  nameWithType: XState.RemoveEvent(XEvent)
+- uid: CrystalCore.Machine.XState.RemoveEvent*
+  name: RemoveEvent
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_RemoveEvent_
+  commentId: Overload:CrystalCore.Machine.XState.RemoveEvent
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.RemoveEvent
+  nameWithType: XState.RemoveEvent
+- uid: CrystalCore.Machine.XState.System#Collections#Generic#IEnumerable{CrystalCore#Machine#XEvent}#GetEnumerator
+  name: IEnumerable<XEvent>.GetEnumerator()
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_System_Collections_Generic_IEnumerable_CrystalCore_Machine_XEvent__GetEnumerator
+  commentId: M:CrystalCore.Machine.XState.System#Collections#Generic#IEnumerable{CrystalCore#Machine#XEvent}#GetEnumerator
+  name.vb: System.Collections.Generic.IEnumerable<CrystalCore.Machine.XEvent>.GetEnumerator()
+  fullName: CrystalCore.Machine.XState.System.Collections.Generic.IEnumerable<CrystalCore.Machine.XEvent>.GetEnumerator()
+  nameWithType: XState.IEnumerable<XEvent>.GetEnumerator()
+  nameWithType.vb: XState.System.Collections.Generic.IEnumerable<CrystalCore.Machine.XEvent>.GetEnumerator()
+- uid: CrystalCore.Machine.XState.System#Collections#Generic#IEnumerable{CrystalCore#Machine#XEvent}#GetEnumerator*
+  name: IEnumerable<XEvent>.GetEnumerator
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_System_Collections_Generic_IEnumerable_CrystalCore_Machine_XEvent__GetEnumerator_
+  commentId: Overload:CrystalCore.Machine.XState.System#Collections#Generic#IEnumerable{CrystalCore#Machine#XEvent}#GetEnumerator
+  isSpec: "True"
+  name.vb: System.Collections.Generic.IEnumerable<CrystalCore.Machine.XEvent>.GetEnumerator
+  fullName: CrystalCore.Machine.XState.System.Collections.Generic.IEnumerable<CrystalCore.Machine.XEvent>.GetEnumerator
+  nameWithType: XState.IEnumerable<XEvent>.GetEnumerator
+  nameWithType.vb: XState.System.Collections.Generic.IEnumerable<CrystalCore.Machine.XEvent>.GetEnumerator
+- uid: CrystalCore.Machine.XState.System#Collections#IEnumerable#GetEnumerator
+  name: IEnumerable.GetEnumerator()
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_System_Collections_IEnumerable_GetEnumerator
+  commentId: M:CrystalCore.Machine.XState.System#Collections#IEnumerable#GetEnumerator
+  name.vb: System.Collections.IEnumerable.GetEnumerator()
+  fullName: CrystalCore.Machine.XState.System.Collections.IEnumerable.GetEnumerator()
+  nameWithType: XState.IEnumerable.GetEnumerator()
+  nameWithType.vb: XState.System.Collections.IEnumerable.GetEnumerator()
+- uid: CrystalCore.Machine.XState.System#Collections#IEnumerable#GetEnumerator*
+  name: IEnumerable.GetEnumerator
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_System_Collections_IEnumerable_GetEnumerator_
+  commentId: Overload:CrystalCore.Machine.XState.System#Collections#IEnumerable#GetEnumerator
+  isSpec: "True"
+  name.vb: System.Collections.IEnumerable.GetEnumerator
+  fullName: CrystalCore.Machine.XState.System.Collections.IEnumerable.GetEnumerator
+  nameWithType: XState.IEnumerable.GetEnumerator
+  nameWithType.vb: XState.System.Collections.IEnumerable.GetEnumerator
+- uid: CrystalCore.Machine.XState.ToString
+  name: ToString()
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_ToString
+  commentId: M:CrystalCore.Machine.XState.ToString
+  fullName: CrystalCore.Machine.XState.ToString()
+  nameWithType: XState.ToString()
+- uid: CrystalCore.Machine.XState.ToString*
+  name: ToString
+  href: api/CrystalCore.Machine.XState.html#CrystalCore_Machine_XState_ToString_
+  commentId: Overload:CrystalCore.Machine.XState.ToString
+  isSpec: "True"
+  fullName: CrystalCore.Machine.XState.ToString
+  nameWithType: XState.ToString
+- uid: CrystalCore.PropertyTable`2
+  name: PropertyTable<InstanceType, PropertyType>
+  href: api/CrystalCore.PropertyTable-2.html
+  commentId: T:CrystalCore.PropertyTable`2
+  name.vb: PropertyTable(Of InstanceType, PropertyType)
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType)
+  nameWithType: PropertyTable<InstanceType, PropertyType>
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType)
+- uid: CrystalCore.PropertyTable`2.#ctor
+  name: PropertyTable()
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2__ctor
+  commentId: M:CrystalCore.PropertyTable`2.#ctor
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.PropertyTable()
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).PropertyTable()
+  nameWithType: PropertyTable<InstanceType, PropertyType>.PropertyTable()
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).PropertyTable()
+- uid: CrystalCore.PropertyTable`2.#ctor*
+  name: PropertyTable
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2__ctor_
+  commentId: Overload:CrystalCore.PropertyTable`2.#ctor
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.PropertyTable
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).PropertyTable
+  nameWithType: PropertyTable<InstanceType, PropertyType>.PropertyTable
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).PropertyTable
+- uid: CrystalCore.PropertyTable`2.Contains(`0)
+  name: Contains(InstanceType)
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Contains__0_
+  commentId: M:CrystalCore.PropertyTable`2.Contains(`0)
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Contains(InstanceType)
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Contains(InstanceType)
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Contains(InstanceType)
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Contains(InstanceType)
+- uid: CrystalCore.PropertyTable`2.Contains*
+  name: Contains
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Contains_
+  commentId: Overload:CrystalCore.PropertyTable`2.Contains
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Contains
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Contains
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Contains
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Contains
+- uid: CrystalCore.PropertyTable`2.Dispose
+  name: Dispose()
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Dispose
+  commentId: M:CrystalCore.PropertyTable`2.Dispose
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Dispose()
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Dispose()
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Dispose()
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Dispose()
+- uid: CrystalCore.PropertyTable`2.Dispose*
+  name: Dispose
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Dispose_
+  commentId: Overload:CrystalCore.PropertyTable`2.Dispose
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Dispose
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Dispose
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Dispose
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Dispose
+- uid: CrystalCore.PropertyTable`2.Finalize
+  name: Finalize()
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Finalize
+  commentId: M:CrystalCore.PropertyTable`2.Finalize
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Finalize()
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Finalize()
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Finalize()
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Finalize()
+- uid: CrystalCore.PropertyTable`2.Finalize*
+  name: Finalize
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Finalize_
+  commentId: Overload:CrystalCore.PropertyTable`2.Finalize
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Finalize
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Finalize
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Finalize
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Finalize
+- uid: CrystalCore.PropertyTable`2.Get(`0)
+  name: Get(InstanceType)
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Get__0_
+  commentId: M:CrystalCore.PropertyTable`2.Get(`0)
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Get(InstanceType)
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Get(InstanceType)
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Get(InstanceType)
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Get(InstanceType)
+- uid: CrystalCore.PropertyTable`2.Get*
+  name: Get
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Get_
+  commentId: Overload:CrystalCore.PropertyTable`2.Get
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Get
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Get
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Get
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Get
+- uid: CrystalCore.PropertyTable`2.GetOrCreate(`0)
+  name: GetOrCreate(InstanceType)
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_GetOrCreate__0_
+  commentId: M:CrystalCore.PropertyTable`2.GetOrCreate(`0)
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.GetOrCreate(InstanceType)
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).GetOrCreate(InstanceType)
+  nameWithType: PropertyTable<InstanceType, PropertyType>.GetOrCreate(InstanceType)
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).GetOrCreate(InstanceType)
+- uid: CrystalCore.PropertyTable`2.GetOrCreate(`0,System.Func{`1})
+  name: GetOrCreate(InstanceType, Func<PropertyType>)
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_GetOrCreate__0_System_Func__1__
+  commentId: M:CrystalCore.PropertyTable`2.GetOrCreate(`0,System.Func{`1})
+  name.vb: GetOrCreate(InstanceType, Func(Of PropertyType))
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.GetOrCreate(InstanceType, System.Func<PropertyType>)
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).GetOrCreate(InstanceType, System.Func(Of PropertyType))
+  nameWithType: PropertyTable<InstanceType, PropertyType>.GetOrCreate(InstanceType, Func<PropertyType>)
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).GetOrCreate(InstanceType, Func(Of PropertyType))
+- uid: CrystalCore.PropertyTable`2.GetOrCreate*
+  name: GetOrCreate
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_GetOrCreate_
+  commentId: Overload:CrystalCore.PropertyTable`2.GetOrCreate
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.GetOrCreate
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).GetOrCreate
+  nameWithType: PropertyTable<InstanceType, PropertyType>.GetOrCreate
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).GetOrCreate
+- uid: CrystalCore.PropertyTable`2.Lock
+  name: Lock
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Lock
+  commentId: P:CrystalCore.PropertyTable`2.Lock
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Lock
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Lock
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Lock
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Lock
+- uid: CrystalCore.PropertyTable`2.Lock*
+  name: Lock
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Lock_
+  commentId: Overload:CrystalCore.PropertyTable`2.Lock
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Lock
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Lock
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Lock
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Lock
+- uid: CrystalCore.PropertyTable`2.OnAdd(CrystalCore.WeakReference{`0},`1)
+  name: OnAdd(WeakReference<InstanceType>, PropertyType)
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_OnAdd_CrystalCore_WeakReference__0___1_
+  commentId: M:CrystalCore.PropertyTable`2.OnAdd(CrystalCore.WeakReference{`0},`1)
+  name.vb: OnAdd(WeakReference(Of InstanceType), PropertyType)
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.OnAdd(CrystalCore.WeakReference<InstanceType>, PropertyType)
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).OnAdd(CrystalCore.WeakReference(Of InstanceType), PropertyType)
+  nameWithType: PropertyTable<InstanceType, PropertyType>.OnAdd(WeakReference<InstanceType>, PropertyType)
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).OnAdd(WeakReference(Of InstanceType), PropertyType)
+- uid: CrystalCore.PropertyTable`2.OnAdd*
+  name: OnAdd
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_OnAdd_
+  commentId: Overload:CrystalCore.PropertyTable`2.OnAdd
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.OnAdd
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).OnAdd
+  nameWithType: PropertyTable<InstanceType, PropertyType>.OnAdd
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).OnAdd
+- uid: CrystalCore.PropertyTable`2.OnRemoval(CrystalCore.WeakReference{`0},`1)
+  name: OnRemoval(WeakReference<InstanceType>, PropertyType)
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_OnRemoval_CrystalCore_WeakReference__0___1_
+  commentId: M:CrystalCore.PropertyTable`2.OnRemoval(CrystalCore.WeakReference{`0},`1)
+  name.vb: OnRemoval(WeakReference(Of InstanceType), PropertyType)
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.OnRemoval(CrystalCore.WeakReference<InstanceType>, PropertyType)
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).OnRemoval(CrystalCore.WeakReference(Of InstanceType), PropertyType)
+  nameWithType: PropertyTable<InstanceType, PropertyType>.OnRemoval(WeakReference<InstanceType>, PropertyType)
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).OnRemoval(WeakReference(Of InstanceType), PropertyType)
+- uid: CrystalCore.PropertyTable`2.OnRemoval*
+  name: OnRemoval
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_OnRemoval_
+  commentId: Overload:CrystalCore.PropertyTable`2.OnRemoval
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.OnRemoval
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).OnRemoval
+  nameWithType: PropertyTable<InstanceType, PropertyType>.OnRemoval
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).OnRemoval
+- uid: CrystalCore.PropertyTable`2.Remove(`0)
+  name: Remove(InstanceType)
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Remove__0_
+  commentId: M:CrystalCore.PropertyTable`2.Remove(`0)
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Remove(InstanceType)
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Remove(InstanceType)
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Remove(InstanceType)
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Remove(InstanceType)
+- uid: CrystalCore.PropertyTable`2.Remove*
+  name: Remove
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_Remove_
+  commentId: Overload:CrystalCore.PropertyTable`2.Remove
+  isSpec: "True"
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.Remove
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).Remove
+  nameWithType: PropertyTable<InstanceType, PropertyType>.Remove
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).Remove
+- uid: CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Keys
+  name: IPropertyTableBase.Keys
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_CrystalCore_IPropertyTableBase_Keys
+  commentId: P:CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Keys
+  name.vb: CrystalCore.IPropertyTableBase.Keys
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.CrystalCore.IPropertyTableBase.Keys
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Keys
+  nameWithType: PropertyTable<InstanceType, PropertyType>.IPropertyTableBase.Keys
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Keys
+- uid: CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Keys*
+  name: IPropertyTableBase.Keys
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_CrystalCore_IPropertyTableBase_Keys_
+  commentId: Overload:CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Keys
+  isSpec: "True"
+  name.vb: CrystalCore.IPropertyTableBase.Keys
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.CrystalCore.IPropertyTableBase.Keys
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Keys
+  nameWithType: PropertyTable<InstanceType, PropertyType>.IPropertyTableBase.Keys
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Keys
+- uid: CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Remove(CrystalCore.EquatableWeakReference)
+  name: IPropertyTableBase.Remove(EquatableWeakReference)
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_CrystalCore_IPropertyTableBase_Remove_CrystalCore_EquatableWeakReference_
+  commentId: M:CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Remove(CrystalCore.EquatableWeakReference)
+  name.vb: CrystalCore.IPropertyTableBase.Remove(EquatableWeakReference)
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.CrystalCore.IPropertyTableBase.Remove(CrystalCore.EquatableWeakReference)
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Remove(CrystalCore.EquatableWeakReference)
+  nameWithType: PropertyTable<InstanceType, PropertyType>.IPropertyTableBase.Remove(EquatableWeakReference)
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Remove(EquatableWeakReference)
+- uid: CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Remove*
+  name: IPropertyTableBase.Remove
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_CrystalCore_IPropertyTableBase_Remove_
+  commentId: Overload:CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Remove
+  isSpec: "True"
+  name.vb: CrystalCore.IPropertyTableBase.Remove
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.CrystalCore.IPropertyTableBase.Remove
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Remove
+  nameWithType: PropertyTable<InstanceType, PropertyType>.IPropertyTableBase.Remove
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Remove
+- uid: CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Validate(CrystalCore.EquatableWeakReference)
+  name: IPropertyTableBase.Validate(EquatableWeakReference)
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_CrystalCore_IPropertyTableBase_Validate_CrystalCore_EquatableWeakReference_
+  commentId: M:CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Validate(CrystalCore.EquatableWeakReference)
+  name.vb: CrystalCore.IPropertyTableBase.Validate(EquatableWeakReference)
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.CrystalCore.IPropertyTableBase.Validate(CrystalCore.EquatableWeakReference)
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Validate(CrystalCore.EquatableWeakReference)
+  nameWithType: PropertyTable<InstanceType, PropertyType>.IPropertyTableBase.Validate(EquatableWeakReference)
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Validate(EquatableWeakReference)
+- uid: CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Validate*
+  name: IPropertyTableBase.Validate
+  href: api/CrystalCore.PropertyTable-2.html#CrystalCore_PropertyTable_2_CrystalCore_IPropertyTableBase_Validate_
+  commentId: Overload:CrystalCore.PropertyTable`2.CrystalCore#IPropertyTableBase#Validate
+  isSpec: "True"
+  name.vb: CrystalCore.IPropertyTableBase.Validate
+  fullName: CrystalCore.PropertyTable<InstanceType, PropertyType>.CrystalCore.IPropertyTableBase.Validate
+  fullName.vb: CrystalCore.PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Validate
+  nameWithType: PropertyTable<InstanceType, PropertyType>.IPropertyTableBase.Validate
+  nameWithType.vb: PropertyTable(Of InstanceType, PropertyType).CrystalCore.IPropertyTableBase.Validate
+- uid: CrystalCore.ResourceLoader
+  name: ResourceLoader
+  href: api/CrystalCore.ResourceLoader.html
+  commentId: T:CrystalCore.ResourceLoader
+  fullName: CrystalCore.ResourceLoader
+  nameWithType: ResourceLoader
+- uid: CrystalCore.ResourceLoader.LoadResource(System.String,System.Reflection.Assembly)
+  name: LoadResource(String, Assembly)
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResource_System_String_System_Reflection_Assembly_
+  commentId: M:CrystalCore.ResourceLoader.LoadResource(System.String,System.Reflection.Assembly)
+  fullName: CrystalCore.ResourceLoader.LoadResource(System.String, System.Reflection.Assembly)
+  nameWithType: ResourceLoader.LoadResource(String, Assembly)
+- uid: CrystalCore.ResourceLoader.LoadResource*
+  name: LoadResource
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResource_
+  commentId: Overload:CrystalCore.ResourceLoader.LoadResource
+  isSpec: "True"
+  fullName: CrystalCore.ResourceLoader.LoadResource
+  nameWithType: ResourceLoader.LoadResource
+- uid: CrystalCore.ResourceLoader.LoadResourceAudio(System.String,System.Reflection.Assembly)
+  name: LoadResourceAudio(String, Assembly)
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResourceAudio_System_String_System_Reflection_Assembly_
+  commentId: M:CrystalCore.ResourceLoader.LoadResourceAudio(System.String,System.Reflection.Assembly)
+  fullName: CrystalCore.ResourceLoader.LoadResourceAudio(System.String, System.Reflection.Assembly)
+  nameWithType: ResourceLoader.LoadResourceAudio(String, Assembly)
+- uid: CrystalCore.ResourceLoader.LoadResourceAudio*
+  name: LoadResourceAudio
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResourceAudio_
+  commentId: Overload:CrystalCore.ResourceLoader.LoadResourceAudio
+  isSpec: "True"
+  fullName: CrystalCore.ResourceLoader.LoadResourceAudio
+  nameWithType: ResourceLoader.LoadResourceAudio
+- uid: CrystalCore.ResourceLoader.LoadResourceRaw(System.String,System.Reflection.Assembly)
+  name: LoadResourceRaw(String, Assembly)
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResourceRaw_System_String_System_Reflection_Assembly_
+  commentId: M:CrystalCore.ResourceLoader.LoadResourceRaw(System.String,System.Reflection.Assembly)
+  fullName: CrystalCore.ResourceLoader.LoadResourceRaw(System.String, System.Reflection.Assembly)
+  nameWithType: ResourceLoader.LoadResourceRaw(String, Assembly)
+- uid: CrystalCore.ResourceLoader.LoadResourceRaw*
+  name: LoadResourceRaw
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResourceRaw_
+  commentId: Overload:CrystalCore.ResourceLoader.LoadResourceRaw
+  isSpec: "True"
+  fullName: CrystalCore.ResourceLoader.LoadResourceRaw
+  nameWithType: ResourceLoader.LoadResourceRaw
+- uid: CrystalCore.ResourceLoader.LoadResourceSprite(System.String,System.Reflection.Assembly,UnityEngine.SpriteMeshType,System.Nullable{UnityEngine.Vector4})
+  name: LoadResourceSprite(String, Assembly, SpriteMeshType, Nullable<Vector4>)
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResourceSprite_System_String_System_Reflection_Assembly_UnityEngine_SpriteMeshType_System_Nullable_UnityEngine_Vector4__
+  commentId: M:CrystalCore.ResourceLoader.LoadResourceSprite(System.String,System.Reflection.Assembly,UnityEngine.SpriteMeshType,System.Nullable{UnityEngine.Vector4})
+  name.vb: LoadResourceSprite(String, Assembly, SpriteMeshType, Nullable(Of Vector4))
+  fullName: CrystalCore.ResourceLoader.LoadResourceSprite(System.String, System.Reflection.Assembly, UnityEngine.SpriteMeshType, System.Nullable<UnityEngine.Vector4>)
+  fullName.vb: CrystalCore.ResourceLoader.LoadResourceSprite(System.String, System.Reflection.Assembly, UnityEngine.SpriteMeshType, System.Nullable(Of UnityEngine.Vector4))
+  nameWithType: ResourceLoader.LoadResourceSprite(String, Assembly, SpriteMeshType, Nullable<Vector4>)
+  nameWithType.vb: ResourceLoader.LoadResourceSprite(String, Assembly, SpriteMeshType, Nullable(Of Vector4))
+- uid: CrystalCore.ResourceLoader.LoadResourceSprite*
+  name: LoadResourceSprite
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResourceSprite_
+  commentId: Overload:CrystalCore.ResourceLoader.LoadResourceSprite
+  isSpec: "True"
+  fullName: CrystalCore.ResourceLoader.LoadResourceSprite
+  nameWithType: ResourceLoader.LoadResourceSprite
+- uid: CrystalCore.ResourceLoader.LoadResourceTexture(System.String,System.Reflection.Assembly)
+  name: LoadResourceTexture(String, Assembly)
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResourceTexture_System_String_System_Reflection_Assembly_
+  commentId: M:CrystalCore.ResourceLoader.LoadResourceTexture(System.String,System.Reflection.Assembly)
+  fullName: CrystalCore.ResourceLoader.LoadResourceTexture(System.String, System.Reflection.Assembly)
+  nameWithType: ResourceLoader.LoadResourceTexture(String, Assembly)
+- uid: CrystalCore.ResourceLoader.LoadResourceTexture*
+  name: LoadResourceTexture
+  href: api/CrystalCore.ResourceLoader.html#CrystalCore_ResourceLoader_LoadResourceTexture_
+  commentId: Overload:CrystalCore.ResourceLoader.LoadResourceTexture
+  isSpec: "True"
+  fullName: CrystalCore.ResourceLoader.LoadResourceTexture
+  nameWithType: ResourceLoader.LoadResourceTexture
+- uid: CrystalCore.Settings
+  name: Settings
+  href: api/CrystalCore.Settings.html
+  commentId: T:CrystalCore.Settings
+  fullName: CrystalCore.Settings
+  nameWithType: Settings
+- uid: CrystalCore.Settings.DebugMode
+  name: DebugMode
+  href: api/CrystalCore.Settings.html#CrystalCore_Settings_DebugMode
+  commentId: P:CrystalCore.Settings.DebugMode
+  fullName: CrystalCore.Settings.DebugMode
+  nameWithType: Settings.DebugMode
+- uid: CrystalCore.Settings.DebugMode*
+  name: DebugMode
+  href: api/CrystalCore.Settings.html#CrystalCore_Settings_DebugMode_
+  commentId: Overload:CrystalCore.Settings.DebugMode
+  isSpec: "True"
+  fullName: CrystalCore.Settings.DebugMode
+  nameWithType: Settings.DebugMode
+- uid: CrystalCore.Settings.GMTracking
+  name: GMTracking
+  href: api/CrystalCore.Settings.html#CrystalCore_Settings_GMTracking
+  commentId: P:CrystalCore.Settings.GMTracking
+  fullName: CrystalCore.Settings.GMTracking
+  nameWithType: Settings.GMTracking
+- uid: CrystalCore.Settings.GMTracking*
+  name: GMTracking
+  href: api/CrystalCore.Settings.html#CrystalCore_Settings_GMTracking_
+  commentId: Overload:CrystalCore.Settings.GMTracking
+  isSpec: "True"
+  fullName: CrystalCore.Settings.GMTracking
+  nameWithType: Settings.GMTracking
+- uid: CrystalCore.CrystalCore
+  name: CrystalCore
+  href: api/CrystalCore.CrystalCore.html
+  commentId: T:CrystalCore.CrystalCore
+  fullName: CrystalCore.CrystalCore
+  nameWithType: CrystalCore
+- uid: CrystalCore.CrystalCore.GetVersion
+  name: GetVersion()
+  href: api/CrystalCore.CrystalCore.html#CrystalCore_CrystalCore_GetVersion
+  commentId: M:CrystalCore.CrystalCore.GetVersion
+  fullName: CrystalCore.CrystalCore.GetVersion()
+  nameWithType: CrystalCore.GetVersion()
+- uid: CrystalCore.CrystalCore.GetVersion*
+  name: GetVersion
+  href: api/CrystalCore.CrystalCore.html#CrystalCore_CrystalCore_GetVersion_
+  commentId: Overload:CrystalCore.CrystalCore.GetVersion
+  isSpec: "True"
+  fullName: CrystalCore.CrystalCore.GetVersion
+  nameWithType: CrystalCore.GetVersion
+- uid: CrystalCore.CrystalCore.Initialize
+  name: Initialize()
+  href: api/CrystalCore.CrystalCore.html#CrystalCore_CrystalCore_Initialize
+  commentId: M:CrystalCore.CrystalCore.Initialize
+  fullName: CrystalCore.CrystalCore.Initialize()
+  nameWithType: CrystalCore.Initialize()
+- uid: CrystalCore.CrystalCore.Initialize*
+  name: Initialize
+  href: api/CrystalCore.CrystalCore.html#CrystalCore_CrystalCore_Initialize_
+  commentId: Overload:CrystalCore.CrystalCore.Initialize
+  isSpec: "True"
+  fullName: CrystalCore.CrystalCore.Initialize
+  nameWithType: CrystalCore.Initialize
+- uid: CrystalCore.CrystalCore.LoadPriority
+  name: LoadPriority()
+  href: api/CrystalCore.CrystalCore.html#CrystalCore_CrystalCore_LoadPriority
+  commentId: M:CrystalCore.CrystalCore.LoadPriority
+  fullName: CrystalCore.CrystalCore.LoadPriority()
+  nameWithType: CrystalCore.LoadPriority()
+- uid: CrystalCore.CrystalCore.LoadPriority*
+  name: LoadPriority
+  href: api/CrystalCore.CrystalCore.html#CrystalCore_CrystalCore_LoadPriority_
+  commentId: Overload:CrystalCore.CrystalCore.LoadPriority
+  isSpec: "True"
+  fullName: CrystalCore.CrystalCore.LoadPriority
+  nameWithType: CrystalCore.LoadPriority
+- uid: CrystalCore.WeakReference`1
+  name: WeakReference<T>
+  href: api/CrystalCore.WeakReference-1.html
+  commentId: T:CrystalCore.WeakReference`1
+  name.vb: WeakReference(Of T)
+  fullName: CrystalCore.WeakReference<T>
+  fullName.vb: CrystalCore.WeakReference(Of T)
+  nameWithType: WeakReference<T>
+  nameWithType.vb: WeakReference(Of T)
+- uid: CrystalCore.WeakReference`1.#ctor(`0)
+  name: WeakReference(T)
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1__ctor__0_
+  commentId: M:CrystalCore.WeakReference`1.#ctor(`0)
+  fullName: CrystalCore.WeakReference<T>.WeakReference(T)
+  fullName.vb: CrystalCore.WeakReference(Of T).WeakReference(T)
+  nameWithType: WeakReference<T>.WeakReference(T)
+  nameWithType.vb: WeakReference(Of T).WeakReference(T)
+- uid: CrystalCore.WeakReference`1.#ctor(`0,System.Boolean)
+  name: WeakReference(T, Boolean)
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1__ctor__0_System_Boolean_
+  commentId: M:CrystalCore.WeakReference`1.#ctor(`0,System.Boolean)
+  fullName: CrystalCore.WeakReference<T>.WeakReference(T, System.Boolean)
+  fullName.vb: CrystalCore.WeakReference(Of T).WeakReference(T, System.Boolean)
+  nameWithType: WeakReference<T>.WeakReference(T, Boolean)
+  nameWithType.vb: WeakReference(Of T).WeakReference(T, Boolean)
+- uid: CrystalCore.WeakReference`1.#ctor(CrystalCore.EquatableWeakReference)
+  name: WeakReference(EquatableWeakReference)
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1__ctor_CrystalCore_EquatableWeakReference_
+  commentId: M:CrystalCore.WeakReference`1.#ctor(CrystalCore.EquatableWeakReference)
+  fullName: CrystalCore.WeakReference<T>.WeakReference(CrystalCore.EquatableWeakReference)
+  fullName.vb: CrystalCore.WeakReference(Of T).WeakReference(CrystalCore.EquatableWeakReference)
+  nameWithType: WeakReference<T>.WeakReference(EquatableWeakReference)
+  nameWithType.vb: WeakReference(Of T).WeakReference(EquatableWeakReference)
+- uid: CrystalCore.WeakReference`1.#ctor*
+  name: WeakReference
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1__ctor_
+  commentId: Overload:CrystalCore.WeakReference`1.#ctor
+  isSpec: "True"
+  fullName: CrystalCore.WeakReference<T>.WeakReference
+  fullName.vb: CrystalCore.WeakReference(Of T).WeakReference
+  nameWithType: WeakReference<T>.WeakReference
+  nameWithType.vb: WeakReference(Of T).WeakReference
+- uid: CrystalCore.WeakReference`1.Equals(System.Object)
+  name: Equals(Object)
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_Equals_System_Object_
+  commentId: M:CrystalCore.WeakReference`1.Equals(System.Object)
+  fullName: CrystalCore.WeakReference<T>.Equals(System.Object)
+  fullName.vb: CrystalCore.WeakReference(Of T).Equals(System.Object)
+  nameWithType: WeakReference<T>.Equals(Object)
+  nameWithType.vb: WeakReference(Of T).Equals(Object)
+- uid: CrystalCore.WeakReference`1.Equals*
+  name: Equals
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_Equals_
+  commentId: Overload:CrystalCore.WeakReference`1.Equals
+  isSpec: "True"
+  fullName: CrystalCore.WeakReference<T>.Equals
+  fullName.vb: CrystalCore.WeakReference(Of T).Equals
+  nameWithType: WeakReference<T>.Equals
+  nameWithType.vb: WeakReference(Of T).Equals
+- uid: CrystalCore.WeakReference`1.GetHashCode
+  name: GetHashCode()
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_GetHashCode
+  commentId: M:CrystalCore.WeakReference`1.GetHashCode
+  fullName: CrystalCore.WeakReference<T>.GetHashCode()
+  fullName.vb: CrystalCore.WeakReference(Of T).GetHashCode()
+  nameWithType: WeakReference<T>.GetHashCode()
+  nameWithType.vb: WeakReference(Of T).GetHashCode()
+- uid: CrystalCore.WeakReference`1.GetHashCode*
+  name: GetHashCode
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_GetHashCode_
+  commentId: Overload:CrystalCore.WeakReference`1.GetHashCode
+  isSpec: "True"
+  fullName: CrystalCore.WeakReference<T>.GetHashCode
+  fullName.vb: CrystalCore.WeakReference(Of T).GetHashCode
+  nameWithType: WeakReference<T>.GetHashCode
+  nameWithType.vb: WeakReference(Of T).GetHashCode
+- uid: CrystalCore.WeakReference`1.IsAlive
+  name: IsAlive
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_IsAlive
+  commentId: P:CrystalCore.WeakReference`1.IsAlive
+  fullName: CrystalCore.WeakReference<T>.IsAlive
+  fullName.vb: CrystalCore.WeakReference(Of T).IsAlive
+  nameWithType: WeakReference<T>.IsAlive
+  nameWithType.vb: WeakReference(Of T).IsAlive
+- uid: CrystalCore.WeakReference`1.IsAlive*
+  name: IsAlive
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_IsAlive_
+  commentId: Overload:CrystalCore.WeakReference`1.IsAlive
+  isSpec: "True"
+  fullName: CrystalCore.WeakReference<T>.IsAlive
+  fullName.vb: CrystalCore.WeakReference(Of T).IsAlive
+  nameWithType: WeakReference<T>.IsAlive
+  nameWithType.vb: WeakReference(Of T).IsAlive
+- uid: CrystalCore.WeakReference`1.Reference
+  name: Reference
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_Reference
+  commentId: P:CrystalCore.WeakReference`1.Reference
+  fullName: CrystalCore.WeakReference<T>.Reference
+  fullName.vb: CrystalCore.WeakReference(Of T).Reference
+  nameWithType: WeakReference<T>.Reference
+  nameWithType.vb: WeakReference(Of T).Reference
+- uid: CrystalCore.WeakReference`1.Reference*
+  name: Reference
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_Reference_
+  commentId: Overload:CrystalCore.WeakReference`1.Reference
+  isSpec: "True"
+  fullName: CrystalCore.WeakReference<T>.Reference
+  fullName.vb: CrystalCore.WeakReference(Of T).Reference
+  nameWithType: WeakReference<T>.Reference
+  nameWithType.vb: WeakReference(Of T).Reference
+- uid: CrystalCore.WeakReference`1.Target
+  name: Target
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_Target
+  commentId: P:CrystalCore.WeakReference`1.Target
+  fullName: CrystalCore.WeakReference<T>.Target
+  fullName.vb: CrystalCore.WeakReference(Of T).Target
+  nameWithType: WeakReference<T>.Target
+  nameWithType.vb: WeakReference(Of T).Target
+- uid: CrystalCore.WeakReference`1.Target*
+  name: Target
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_Target_
+  commentId: Overload:CrystalCore.WeakReference`1.Target
+  isSpec: "True"
+  fullName: CrystalCore.WeakReference<T>.Target
+  fullName.vb: CrystalCore.WeakReference(Of T).Target
+  nameWithType: WeakReference<T>.Target
+  nameWithType.vb: WeakReference(Of T).Target
+- uid: CrystalCore.WeakReference`1.ToString
+  name: ToString()
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_ToString
+  commentId: M:CrystalCore.WeakReference`1.ToString
+  fullName: CrystalCore.WeakReference<T>.ToString()
+  fullName.vb: CrystalCore.WeakReference(Of T).ToString()
+  nameWithType: WeakReference<T>.ToString()
+  nameWithType.vb: WeakReference(Of T).ToString()
+- uid: CrystalCore.WeakReference`1.ToString*
+  name: ToString
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_ToString_
+  commentId: Overload:CrystalCore.WeakReference`1.ToString
+  isSpec: "True"
+  fullName: CrystalCore.WeakReference<T>.ToString
+  fullName.vb: CrystalCore.WeakReference(Of T).ToString
+  nameWithType: WeakReference<T>.ToString
+  nameWithType.vb: WeakReference(Of T).ToString
+- uid: CrystalCore.WeakReference`1.TrackResurrection
+  name: TrackResurrection
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_TrackResurrection
+  commentId: P:CrystalCore.WeakReference`1.TrackResurrection
+  fullName: CrystalCore.WeakReference<T>.TrackResurrection
+  fullName.vb: CrystalCore.WeakReference(Of T).TrackResurrection
+  nameWithType: WeakReference<T>.TrackResurrection
+  nameWithType.vb: WeakReference(Of T).TrackResurrection
+- uid: CrystalCore.WeakReference`1.TrackResurrection*
+  name: TrackResurrection
+  href: api/CrystalCore.WeakReference-1.html#CrystalCore_WeakReference_1_TrackResurrection_
+  commentId: Overload:CrystalCore.WeakReference`1.TrackResurrection
+  isSpec: "True"
+  fullName: CrystalCore.WeakReference<T>.TrackResurrection
+  fullName.vb: CrystalCore.WeakReference(Of T).TrackResurrection
+  nameWithType: WeakReference<T>.TrackResurrection
+  nameWithType.vb: WeakReference(Of T).TrackResurrection

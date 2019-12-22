@@ -334,6 +334,7 @@
     <Compile Include="src\Helpers\InternalEvent.cs" />
     <Compile Include="src\Helpers\Json.cs" />
     <Compile Include="src\Helpers\Methods.cs" />
+    <Compile Include="src\Helpers\ObjectDebugger.cs" />
     <Compile Include="src\Helpers\UnityHelpers.cs" />
     <Compile Include="src\Hooks\GMTrackerHook.cs" />
     <Compile Include="src\Internal\ErrorPatcher.cs" />
@@ -350,11 +351,12 @@
     <Compile Include="src\Hooks\Utility\IAllocator.cs" />
     <Compile Include="src\Hooks\SceneHook.cs" />
     <Compile Include="src\Hooks\UIHook.cs" />
-    <Compile Include="src\Internal\ActionDataLoader.cs" />
+    <Compile Include="src\Internal\EnemyTest.cs" />
     <Compile Include="src\Internal\BuiltInLoader.cs" />
     <Compile Include="src\Debug\Internal\CollisionDebugger.cs" />
     <Compile Include="src\Debug\Internal\SceneEventHandler.cs" />
     <Compile Include="src\Features\GMTracking\GMTracker.cs" />
+    <Compile Include="src\Internal\GameExit.cs" />
     <Compile Include="src\Internal\WeakDictionary.cs" />
     <Compile Include="src\Machine\Machine.cs" />
     <Compile Include="src\Module\ModuleInitializer.cs" />

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Reflection;
 using VoidCore.Helpers;
+using VoidCore.Internal;
 
 namespace VoidCore
 {
@@ -104,14 +105,19 @@ namespace VoidCore
         static int index = 0;
         public static object TableLock = new object();
 
-        //static List<EquatableWeakReference> KeyList = new List<EquatableWeakReference>(100);
-        //static int KeyCount = 0;
+        static bool Ending = false;
+
+        static void OnGameQuit()
+        {
+            Ending = true;
+        }
 
         public static void CheckLoop()
         {
+            GameExit.OnGameQuit += OnGameQuit;
             try
             {
-                while (true)
+                while (!Ending)
                 {
                     lock (TableLock)
                     {
@@ -131,6 +137,10 @@ namespace VoidCore
             catch (Exception e)
             {
                 Modding.Logger.Log("CLEANER ERROR -> " + e);
+            }
+            finally
+            {
+                GameExit.OnGameQuit -= OnGameQuit;
             }
         }
 

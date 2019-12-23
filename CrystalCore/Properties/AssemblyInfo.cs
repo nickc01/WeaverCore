@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 
 
 
-[assembly: AssemblyTitle("Void Core")]
+[assembly: AssemblyTitle("CrystalCore")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Void Core")]
+[assembly: AssemblyProduct("CrystalCore")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -312,6 +312,17 @@
     <ProjectReference Include="..\ViridianCore\ViridianCore.csproj">
       <Project>{1a29dd9a-55d2-471d-985e-9d97fe9666f2}</Project>
       <Name>ViridianCore</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\ViridianLink.Editor\ViridianLink.Editor.csproj">
+      <Project>{0acb7733-3b00-4452-9a4b-59d04ef5cdd1}</Project>
+      <Name>ViridianLink.Editor</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\ViridianLink.Game\ViridianLink.Game.csproj">
+      <Project>{783b4536-c8bb-4306-a4c3-8e1f4e9f7eaa}</Project>
+      <Name>ViridianLink.Game</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

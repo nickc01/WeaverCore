@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
-using CrystalCore;
-using CrystalCore.Hooks;
+using ViridianCore;
+using ViridianCore.Hooks;
 using UnityEngine;
 using System.Diagnostics;
 using Modding;
@@ -73,7 +73,7 @@ namespace TestMod
     }
 
 
-    public class EnemyTester : EnemyHook<CrystalCore.CrystalCore>
+    public class EnemyTester : EnemyHook<ViridianCore.ViridianCore>
     {
         static void PrintList(string pre, IEnumerable list)
         {

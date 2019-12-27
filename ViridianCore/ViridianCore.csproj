@@ -4,14 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F16367B9-6F3D-42A0-A5CF-A45B273DB108}</ProjectGuid>
+    <ProjectGuid>{1A29DD9A-55D2-471D-985E-9D97FE9666F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestMod</RootNamespace>
-    <AssemblyName>TestMod</AssemblyName>
+    <RootNamespace>ViridianCore</RootNamespace>
+    <AssemblyName>ViridianCore</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>C:\Program Files %28x86%29\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\ViridianCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,21 +36,34 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)\packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="PlayMaker, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\PlayMaker.dll</HintPath>
+    <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)\packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMaker, Version=1.6.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.dll</HintPath>
@@ -142,7 +159,8 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
+    <Reference Include="UnityEngine.Networking, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.Networking.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -181,7 +199,8 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.SpatialTracking">
+    <Reference Include="UnityEngine.SpatialTracking, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.SpatialTracking.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -195,7 +214,8 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.StandardEvents">
+    <Reference Include="UnityEngine.StandardEvents, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.StandardEvents.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -224,7 +244,8 @@
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.Timeline">
+    <Reference Include="UnityEngine.Timeline, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.Timeline.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -305,13 +326,68 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="src\Attributes\OnModEnd.cs" />
+    <Compile Include="src\Attributes\OnModStart.cs" />
+    <Compile Include="src\Audio\Audio.cs" />
+    <Compile Include="src\Features\GMTracking\Internal\GMTrackingPatches.cs" />
+    <Compile Include="src\Debug\Internal\PlayerDebug.cs" />
+    <Compile Include="src\Helpers\InternalEvent.cs" />
+    <Compile Include="src\Helpers\Json.cs" />
+    <Compile Include="src\Helpers\Methods.cs" />
+    <Compile Include="src\Helpers\ObjectDebugger.cs" />
+    <Compile Include="src\Helpers\UnityHelpers.cs" />
+    <Compile Include="src\Hooks\GMTrackerHook.cs" />
+    <Compile Include="src\Internal\ErrorPatcher.cs" />
+    <Compile Include="src\Events\Events.cs" />
+    <Compile Include="src\Harmony\AudioManager\AudioManager.cs" />
+    <Compile Include="src\Features\GMTracking\Internal\GMTrackerPatcher.cs" />
+    <Compile Include="src\Helpers\Fields.cs" />
+    <Compile Include="src\Hooks\DebugHook.cs" />
+    <Compile Include="src\Hooks\EnemyHook.cs" />
+    <Compile Include="src\Hooks\Utility\HookInjector.cs" />
+    <Compile Include="src\Hooks\Internal\IHookBase.cs" />
+    <Compile Include="src\Hooks\Utility\InjectionAllocator.cs" />
+    <Compile Include="src\Hooks\Utility\IHook.cs" />
+    <Compile Include="src\Hooks\Utility\IAllocator.cs" />
+    <Compile Include="src\Hooks\SceneHook.cs" />
+    <Compile Include="src\Hooks\UIHook.cs" />
+    <Compile Include="src\Internal\EnemyTest.cs" />
+    <Compile Include="src\Internal\BuiltInLoader.cs" />
+    <Compile Include="src\Debug\Internal\CollisionDebugger.cs" />
+    <Compile Include="src\Debug\Internal\SceneEventHandler.cs" />
+    <Compile Include="src\Features\GMTracking\GMTracker.cs" />
+    <Compile Include="src\Internal\GameExit.cs" />
+    <Compile Include="src\Internal\PlayerTest.cs" />
+    <Compile Include="src\Internal\WeakDictionary.cs" />
+    <Compile Include="src\Machine\Machine.cs" />
+    <Compile Include="src\Module\ModuleInitializer.cs" />
+    <Compile Include="src\PropertyTable.cs" />
+    <Compile Include="src\Resources\ResourceLoader.cs" />
+    <Compile Include="src\Resources\ResourceLoader.Audio.cs" />
+    <Compile Include="src\Settings\Settings.cs" />
+    <Compile Include="src\ViridianCore.cs" />
+    <Compile Include="src\Harmony\HealthManager\HealthManager.cs" />
+    <Compile Include="src\Hooks\PlayerHook.cs" />
+    <Compile Include="src\Mod.cs" />
+    <Compile Include="src\ModLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ViridianCore\ViridianCore.csproj">
-      <Project>{1a29dd9a-55d2-471d-985e-9d97fe9666f2}</Project>
-      <Name>ViridianCore</Name>
+    <None Include="app.config" />
+    <None Include="index.md" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Audio\kevinMusic.mp3" />
+    <EmbeddedResource Include="Resources\Images\DebugBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="api\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ViridianCore.NLayer\ViridianCore.NLayer.csproj">
+      <Project>{452814d0-3908-4037-b45d-2ff064eed936}</Project>
+      <Name>ViridianCore.NLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -319,4 +395,13 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\packages\Fody.2.5.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\packages\Fody.2.5.0\build\Fody.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets'))" />
+  </Target>
+  <Import Project="$(SolutionDir)\packages\Fody.2.5.0\build\Fody.targets" Condition="Exists('$(SolutionDir)\packages\Fody.2.5.0\build\Fody.targets')" />
+  <Import Project="$(SolutionDir)\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets" Condition="Exists('$(SolutionDir)\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets')" />
 </Project>

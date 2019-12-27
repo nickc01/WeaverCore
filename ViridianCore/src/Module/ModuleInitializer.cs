@@ -21,7 +21,6 @@ internal static class ModuleInitializer
     internal static Type JsonConvert;
     internal static Type JsonSettings;
     internal static PropertyInfo JsonReferenceHandling;
-    //internal static Func<object, object, string> Serialize;
     internal static MethodInfo Serialize;
 
     internal static Thread UnityThread { get; private set; }
@@ -72,6 +71,7 @@ internal static class ModuleInitializer
                 if (invo.Method.Module.Assembly.FullName.Contains("Assembly-CSharp"))
                 {
                     eventInfo.RemoveEventHandler(AppDomain.CurrentDomain, invo);
+                    LoadViridianLink();
                     eventInfo.AddEventHandler(AppDomain.CurrentDomain, invo);
                 }
             }
@@ -79,6 +79,7 @@ internal static class ModuleInitializer
         catch (Exception)
         {
             LoadInfo += "Assembly-CSharp AssemblyResolve event is first;";
+            LoadViridianLink();
         }
 
         if (NewtonsoftJson == null)
@@ -107,7 +108,6 @@ internal static class ModuleInitializer
         {
             var prefix = Activator.CreateInstance(harmonyMethod, new object[] { pre });
             var postfix = Activator.CreateInstance(harmonyMethod, new object[] { post });
-
             return (DynamicMethod)patchFunc.Invoke(harmony, new object[] { o, prefix, postfix, null });
         };
 
@@ -123,14 +123,31 @@ internal static class ModuleInitializer
         patchAll.Invoke(harmony, new object[] { typeof(ViridianCore.ViridianCore).Assembly });
 
         Logger.Log("Loaded ViridianCore Backend. Load Info : " + LoadInfo);
-        //ViridianCore.Internal.ActionDataLoader.Start();
     }
 
 
+    static void LoadViridianLink()
+    {
+        Assembly link = null;
+        try
+        {
+            link = Assembly.Load("ViridianLink");
+        }
+        catch (Exception)
+        {
 
+        }
+        if (link != null)
+        {
+            var initializer = link.GetType("ViridianLink.ModuleInitializer");
 
+            var method = initializer.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static);
 
+            method.Invoke(null, null);
 
+            Modding.Logger.Log("INITIALIZER FOR VIRIDIANLINK CALLED");
+        }
+    }
 
     static void OnNewAssembly(Assembly assembly, bool justStarted)
     {

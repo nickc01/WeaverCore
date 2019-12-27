@@ -9,7 +9,15 @@ namespace CrystalCore.Helpers
     {
         public static string Serialize(object obj)
         {
-            return ModuleInitializer.Serialize(obj);
+            object settings = Activator.CreateInstance(ModuleInitializer.JsonSettings);
+
+            object value = Enum.ToObject(ModuleInitializer.JsonReferenceHandling.PropertyType, 1);
+
+            ModuleInitializer.JsonReferenceHandling.SetValue(settings, value, null);
+
+
+            //return ModuleInitializer.Serialize(obj, settings);
+            return (string)ModuleInitializer.Serialize.Invoke(null, new object[] { obj,settings });
         }
     }
 }

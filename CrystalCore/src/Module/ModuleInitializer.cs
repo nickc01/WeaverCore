@@ -19,7 +19,10 @@ internal static class ModuleInitializer
 {
     internal static Assembly NewtonsoftJson;
     internal static Type JsonConvert;
-    internal static Func<object, string> Serialize;
+    internal static Type JsonSettings;
+    internal static PropertyInfo JsonReferenceHandling;
+    //internal static Func<object, object, string> Serialize;
+    internal static MethodInfo Serialize;
 
     internal static Thread UnityThread { get; private set; }
     internal static object GetCrystalCoreHarmony()
@@ -82,7 +85,10 @@ internal static class ModuleInitializer
         {
             NewtonsoftJson = Assembly.Load("Newtonsoft.Json");
             JsonConvert = NewtonsoftJson.GetType("Newtonsoft.Json.JsonConvert");
-            Serialize = Methods.GetFunction<Func<object, string>>(JsonConvert.GetMethod("SerializeObject", new Type[] { typeof(object) }));
+            JsonSettings = NewtonsoftJson.GetType("Newtonsoft.Json.JsonSerializerSettings");
+            JsonReferenceHandling = JsonSettings.GetProperty("ReferenceLoopHandling", BindingFlags.Public | BindingFlags.Instance);
+            //Serialize = Methods.GetFunction<Func<object,object, string>>();
+            Serialize = JsonConvert.GetMethod("SerializeObject", new Type[] { typeof(object), JsonSettings });
             //Newtonsoft.Json.JsonConvert.SerializeObject()
         }
 

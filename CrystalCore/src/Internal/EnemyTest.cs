@@ -19,6 +19,6 @@ class EnemyTest : EnemyHook<CrystalCore.CrystalCore>
 {
 	void Start()
 	{
-		ObjectDebugger.DebugObject(gameObject, "CrystalCore");
+		ObjectDebugger.DebugObject(gameObject, nameof(CrystalCore.CrystalCore));
 	}
 }

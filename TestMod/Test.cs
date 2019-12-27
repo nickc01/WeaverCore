@@ -11,6 +11,7 @@ using System.Diagnostics;
 using Modding;
 using Logger = Modding.Logger;
 using System.Collections;
+using System.Reflection;
 using HutongGames.PlayMaker;
 
 namespace TestMod
@@ -39,6 +40,20 @@ namespace TestMod
         void Start()
         {
             Logger.Log("UISTART");
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Modding.Logger.Log("LOADED ASSEMBLY = " + assembly);
+                if (assembly.FullName.Contains("CrystalForge"))
+                {
+                    var implType = assembly.GetType("CrystalForge.Implementation");
+                    Logger.Log("ImplType = " + implType);
+                    var method = implType.GetMethod("GetState", BindingFlags.NonPublic | BindingFlags.Static);
+                    Logger.Log("Method = " + method);
+                    var enumVal = method.Invoke(null, null);
+                    Logger.Log("Enum Val = " + enumVal);
+                    Modding.Logger.Log("Current State = " + Enum.GetName(enumVal.GetType(), enumVal));
+                }
+            }
         }
 
         void OnDestroy()

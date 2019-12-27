@@ -357,6 +357,7 @@
     <Compile Include="src\Debug\Internal\SceneEventHandler.cs" />
     <Compile Include="src\Features\GMTracking\GMTracker.cs" />
     <Compile Include="src\Internal\GameExit.cs" />
+    <Compile Include="src\Internal\PlayerTest.cs" />
     <Compile Include="src\Internal\WeakDictionary.cs" />
     <Compile Include="src\Machine\Machine.cs" />
     <Compile Include="src\Module\ModuleInitializer.cs" />

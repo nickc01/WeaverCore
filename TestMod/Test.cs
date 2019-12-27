@@ -43,9 +43,9 @@ namespace TestMod
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
                 Modding.Logger.Log("LOADED ASSEMBLY = " + assembly);
-                if (assembly.FullName.Contains("CrystalForge"))
+                if (assembly.FullName.Contains("ViridianLink"))
                 {
-                    var implType = assembly.GetType("CrystalForge.Implementation");
+                    var implType = assembly.GetType("ViridianLink.Implementation");
                     Logger.Log("ImplType = " + implType);
                     var method = implType.GetMethod("GetState", BindingFlags.NonPublic | BindingFlags.Static);
                     Logger.Log("Method = " + method);

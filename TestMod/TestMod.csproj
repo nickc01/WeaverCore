@@ -327,7 +327,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>del ViridianLink.Game.dll
+del ViridianLink.Editor.dll
+del ViridianLink.Game.pdb
+del ViridianLink.Editor.pdb</PostBuildEvent>
   </PropertyGroup>
 </Project>

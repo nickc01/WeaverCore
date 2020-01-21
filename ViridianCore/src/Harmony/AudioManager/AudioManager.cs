@@ -6,7 +6,7 @@ using System.Text;
 using System.Reflection;
 using UnityEngine;
 
-namespace ViridianCore.Harmony
+namespace ViridianCore.HarmonyInternal
 {
     [HarmonyPatch(typeof(AudioManager))]
     [HarmonyPatch("BeginApplyMusicCue")]

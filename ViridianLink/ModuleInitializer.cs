@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using ViridianLink.Helpers;
+using ViridianLink.Implementations;
 
 namespace ViridianLink
 {
@@ -14,7 +16,8 @@ namespace ViridianLink
             if (!Initialized)
             {
                 Initialized = true;
-                var init = Implementation.GetImplementation<InitializerImplementation>();
+                //var init = IImplementation.GetImplementation<Initializer>();
+                var init = ImplInfo.GetImplementation<InitializerImplementation>();
                 init.Initialize();
             }
         }

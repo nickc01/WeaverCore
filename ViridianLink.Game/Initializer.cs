@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using ViridianLink.Implementations;
+using Harmony;
+using ViridianLink.Helpers;
 
 namespace ViridianLink.Game
 {
@@ -9,8 +12,7 @@ namespace ViridianLink.Game
     {
         public override void Initialize()
         {
-            Debug.Log("GAME INITIALIZER");
-            Modding.Logger.Log("GAME INITIALIZER2");
+
         }
     }
 }

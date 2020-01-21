@@ -13,6 +13,7 @@ using Logger = Modding.Logger;
 using System.Collections;
 using System.Reflection;
 using HutongGames.PlayMaker;
+using ViridianCore.Helpers;
 
 namespace TestMod
 {
@@ -22,7 +23,6 @@ namespace TestMod
 
         public override void Initialize()
         {
-            Logger.Log("LOADING TESTMOD");
             base.Initialize();
 
             Settings.DebugMode = true;
@@ -35,10 +35,67 @@ namespace TestMod
         }
     }
 
-    public class UI : UIHook<TestMod>
+    public class PlayerTest : PlayerHook<TestMod>
     {
         void Start()
         {
+            Modding.Logger.Log("Gravity = " + Physics2D.gravity);
+        }
+    }
+
+    /*public struct LayerData
+    {
+        public string[] NameData;
+
+        public bool[,] CollisionData;
+
+        public LayerData(string[] nameData,bool[,] collisionData)
+        {
+            NameData = nameData;
+            CollisionData = collisionData;
+        }
+    }*/
+
+    /*public class UI : UIHook<TestMod>
+    {
+        void Start()
+        {
+            string[] NameData = new string[32];
+            for (int i = 0; i < 32; i++)
+            {
+                try
+                {
+                    //ameData.Add(i, LayerMask.LayerToName(i));
+                    NameData[i] = LayerMask.LayerToName(i);
+                    Modding.Logger.Log("LAYER NAME = " + LayerMask.LayerToName(i));
+                }
+                catch(Exception)
+                {
+                    NameData[i] = "";
+                    Modding.Logger.Log("Layer Name = NULL");
+                }
+            }
+            bool[,] collisionData = new bool[32, 32];
+            for (int i = 0; i < 32; i++)
+            {
+                for (int j = 0; j < 32; j++)
+                {
+                    bool isColliding = Physics2D.GetIgnoreLayerCollision(i, j);
+                    string layer1 = LayerMask.LayerToName(i);
+                    string layer2 = LayerMask.LayerToName(j);
+                    collisionData[i, j] = isColliding;
+                    if (isColliding)
+                    {
+                        Modding.Logger.Log($"{layer1} and {layer2} COllide : true");
+                    }
+                    else
+                    {
+                        Modding.Logger.Log($"{layer1} and {layer2} NOllide : false");
+                    }
+                }
+            }
+            var result = Json.Serialize(new LayerData(NameData, collisionData));
+            Modding.Logger.Log("JSON RESULT = " + result);
             Logger.Log("UISTART");
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
@@ -70,10 +127,10 @@ namespace TestMod
         {
             
         }
-    }
+    }*/
 
 
-    public class EnemyTester : EnemyHook<ViridianCore.ViridianCore>
+    /*public class EnemyTester : EnemyHook<ViridianCore.ViridianCore>
     {
         static void PrintList(string pre, IEnumerable list)
         {
@@ -92,23 +149,9 @@ namespace TestMod
 
         void Start()
         {
-            /*var fsm = GetComponent<PlayMakerFSM>();
-            Modding.Logger.Log("\n\nFSM = " + fsm.FsmName);
-            Modding.Logger.Log("TEST OUTPUT = " + JsonUtility.ToJson(fsm, true));
-            PrintList("Events = ", fsm.FsmEvents,e => $"Name = {e.Name}, IsApplicationEvent = {e.IsApplicationEvent}, IsGlobal = {e.IsGlobal}, IsMouseEvent {e.IsMouseEvent}, IsSystemEvent = {e.IsSystemEvent}, Path = {e.Path}");
-            //Modding.Logger.Log("Events 2 = " + fsm.FsmEvents)
-            PrintList("Global Transitions = ", fsm.FsmGlobalTransitions,t => $" EventName = {t.EventName} FSMEvent = {t.FsmEvent} ToState = {t.ToState} LinkStyle = {t.LinkStyle}, LinkConstraint = {t.LinkConstraint}");
-            PrintList("Variables = ", fsm.FsmVariables.GetAllNamedVariables(),v => $"IsNone = {v.IsNone}, Name = {v.Name}, ObjectType = {v.ObjectType}, RawValue = {v.RawValue}, TypeConstraint = {v.TypeConstraint}, UsesVariable = {v.UsesVariable}, UseVariable = {v.UseVariable}, VariableType = {v.VariableType}");
-            PrintList("States = ", fsm.FsmStates);
-            Modding.Logger.Log("Template = " + fsm.FsmTemplate);
-            Modding.Logger.Log("Start State = " + fsm.Fsm.StartState);*/
-            /*Modding.Logger.Log("ENEMY = " + gameObject.name);
-            foreach (var component in GetComponents<Component>())
-            {
-                Modding.Logger.Log("Component = " + component);
-            }*/
+            
         }
-    }
+    }*/
 
 
 

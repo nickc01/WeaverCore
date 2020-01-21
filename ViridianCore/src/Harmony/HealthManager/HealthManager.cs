@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using Harmony;
 
-namespace ViridianCore.Harmony
+namespace ViridianCore.HarmonyInternal
 {
     [HarmonyPatch(typeof(HealthManager))]
     [HarmonyPatch("Hit")]

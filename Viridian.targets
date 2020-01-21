@@ -1,0 +1,32 @@
+<Project InitialTargets="Setup" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!-- Gets the main directories for building all Viridian Mods:
+	[ $(HollowKnightLocation) ]
+	Contains the directory where hollow knight is installed
+	
+	[ $(EditorProjectLocation) ]
+	Contains the directory where the Unity Testing Project is located. This is used to test ViridianLink directly in the Unity Editor and is only used when building against EditorRelease or EditorDebug
+
+	[ $(UnityEditorLocation) ]
+	The directory where the Unity Editor DLLs are located
+  -->
+	<Target Name="Setup">
+		<ReadLinesFromFile File="$(SolutionDir)Settings.txt">
+		  <Output TaskParameter="Lines" ItemName="ItemsFromFile" />
+		</ReadLinesFromFile>
+		<CreateProperty Value="%(ItemsFromFile.Identity)" Condition="HasTrailingSlash(%(ItemsFromFile.Identity))">
+		  <Output TaskParameter="Value" PropertyName="UnityEditorLocation" />
+		</CreateProperty>
+		<CreateProperty Value="%(ItemsFromFile.Identity)" Condition="HasTrailingSlash(%(ItemsFromFile.Identity)) And '%(ItemsFromFile.Identity)'!='$(UnityEditorLocation)'">
+		  <Output TaskParameter="Value" PropertyName="EditorProjectLocation" />
+		</CreateProperty>
+		<CreateProperty Value="%(ItemsFromFile.Identity)" Condition="HasTrailingSlash(%(ItemsFromFile.Identity)) And '%(ItemsFromFile.Identity)'!='$(UnityEditorLocation)' And '%(ItemsFromFile.Identity)'!='$(EditorProjectLocation)'">
+		  <Output TaskParameter="Value" PropertyName="HollowKnightLocation" />
+		</CreateProperty>
+		<CreateProperty Value="$(AssemblySearchPaths);$(HollowKnightLocation)Managed\;$(UnityEditorLocation)">
+		  <Output TaskParameter="Value" PropertyName="AssemblySearchPaths" />
+		</CreateProperty>
+		<CreateProperty Value="$(HollowKnightLocation)$(OutputPath)" Condition="'$(OutputPath)'=='Managed\Mods'">
+		  <Output TaskParameter="Value" PropertyName="OutputPath" />
+		</CreateProperty>
+	</Target>
+</Project>

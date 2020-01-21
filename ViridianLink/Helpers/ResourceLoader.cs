@@ -5,13 +5,13 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace ViridianLink
+namespace ViridianLink.Helpers
 {
-    public static class ResourceAssembly
+    public static class ResourceLoader
     {
-        public static Assembly Load(string resourcePath)
+        public static Assembly LoadAssembly(string resourcePath)
         {
-            Assembly assembly = typeof(ResourceAssembly).Assembly;
+            Assembly assembly = typeof(ResourceLoader).Assembly;
             using (Stream stream = assembly.GetManifestResourceStream(resourcePath))
             {
                 using (BinaryReader reader = new BinaryReader(stream))
@@ -19,6 +19,12 @@ namespace ViridianLink
                     return Assembly.Load(reader.ReadBytes((int)stream.Length));
                 }
             }
+        }
+
+        public static Stream Retrieve(string resourcePath)
+        {
+            Assembly assembly = typeof(ResourceLoader).Assembly;
+            return assembly.GetManifestResourceStream(resourcePath);
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using Harmony;
-using System.Reflection;
+﻿using System.Reflection;
 using UnityEngine;
+using ViridianCore.Helpers;
 
 namespace ViridianCore
 {
@@ -59,7 +59,7 @@ namespace ViridianCore
                     }
                 };
                 Patched = true;
-                HarmonyInstance harmony = ModuleInitializer.GetViridianCoreHarmony() as HarmonyInstance;
+                //HarmonyInstance harmony = Harmony.GetViridianCoreHarmony() as HarmonyInstance;
                 foreach (MethodInfo method in typeof(UnityEngine.Object).GetMethods(BindingFlags.Public | BindingFlags.Static))
                 {
                     if (method.Name.Contains("Instantiate"))
@@ -69,7 +69,9 @@ namespace ViridianCore
                         {
                             selection = selection.MakeGenericMethod(typeof(UnityEngine.Object));
                         }
-                        harmony.Patch(selection, null, new HarmonyMethod(typeof(GMTrackingPatches).GetMethod(nameof(GMTrackingPatches.InstantiatePostfix))));
+                        Helpers.Harmony.ViridianHarmonyInstance.Patch(selection, null, typeof(GMTrackingPatches).GetMethod(nameof(GMTrackingPatches.InstantiatePostfix)));
+                        //Harmony.
+                        //harmony.Patch(selection, null, new HarmonyMethod(typeof(GMTrackingPatches).GetMethod(nameof(GMTrackingPatches.InstantiatePostfix))));
 
                     }
                 }

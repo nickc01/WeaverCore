@@ -17,20 +17,7 @@ using ViridianCore.Helpers;
 
 internal static class ModuleInitializer
 {
-    internal static Assembly NewtonsoftJson;
-    internal static Type JsonConvert;
-    internal static Type JsonSettings;
-    internal static PropertyInfo JsonReferenceHandling;
-    internal static MethodInfo Serialize;
-
-    internal static Thread UnityThread { get; private set; }
-    internal static object GetViridianCoreHarmony()
-    {
-        return harmony;
-    }
-
     static string LoadInfo = "";
-
 
     static List<(Type modType,MethodInfo starter)> ModStarters = new List<(Type, MethodInfo)>();
     static List<(Type modType, MethodInfo ender)> ModEnders = new List<(Type, MethodInfo)>();
@@ -42,16 +29,9 @@ internal static class ModuleInitializer
     static List<(IMod mod,object hook)> Hooks = new List<(IMod,object)>();
     static List<(IMod mod,IHookBase hook,IAllocator allocator)> AllocatorHooks = new List<(IMod,IHookBase,IAllocator)>();
 
-    static object harmony;
-
-    delegate DynamicMethod PatchFunc(MethodInfo original,MethodInfo prefix,MethodInfo postfix);
-
-    static PatchFunc Patch;
-
 
     public static void Initialize()
     {
-        UnityThread = Thread.CurrentThread;
         AppDomain.CurrentDomain.AssemblyResolve += BuiltInLoader.AssemblyLoader;
         AppDomain.CurrentDomain.AssemblyLoad += (s, a) => OnNewAssembly(a.LoadedAssembly, false);
 
@@ -82,71 +62,19 @@ internal static class ModuleInitializer
             LoadViridianLink();
         }
 
-        if (NewtonsoftJson == null)
-        {
-            NewtonsoftJson = Assembly.Load("Newtonsoft.Json");
-            JsonConvert = NewtonsoftJson.GetType("Newtonsoft.Json.JsonConvert");
-            JsonSettings = NewtonsoftJson.GetType("Newtonsoft.Json.JsonSerializerSettings");
-            JsonReferenceHandling = JsonSettings.GetProperty("ReferenceLoopHandling", BindingFlags.Public | BindingFlags.Instance);
-            //Serialize = Methods.GetFunction<Func<object,object, string>>();
-            Serialize = JsonConvert.GetMethod("SerializeObject", new Type[] { typeof(object), JsonSettings });
-            //Newtonsoft.Json.JsonConvert.SerializeObject()
-        }
-
-        //Load Harmony and run all patches
-        var harmonyAssembly = Assembly.Load("0Harmony");
-
-        var harmonyInstance = harmonyAssembly.GetType("Harmony.HarmonyInstance");
-        var harmonyMethod = harmonyAssembly.GetType("Harmony.HarmonyMethod");
-
-        var patchFunc = harmonyInstance.GetMethod("Patch", BindingFlags.Instance | BindingFlags.Public);
-
-        var createMethod = harmonyInstance.GetMethod("Create", BindingFlags.Public | BindingFlags.Static);
-        harmony = createMethod.Invoke(null, new object[] { "com." + nameof(ViridianCore.ViridianCore).ToLower() + ".nickc01" });
-
-        Patch = (o, pre, post) =>
-        {
-            var prefix = Activator.CreateInstance(harmonyMethod, new object[] { pre });
-            var postfix = Activator.CreateInstance(harmonyMethod, new object[] { post });
-            return (DynamicMethod)patchFunc.Invoke(harmony, new object[] { o, prefix, postfix, null });
-        };
-
-
-
-
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
             OnNewAssembly(assembly, true);
         }
 
-        var patchAll = harmonyInstance.GetMethod("PatchAll", new Type[] { typeof(Assembly) });
-        patchAll.Invoke(harmony, new object[] { typeof(ViridianCore.ViridianCore).Assembly });
-
+        ViridianCore.Helpers.Harmony.ViridianHarmonyInstance.PatchAll(typeof(ViridianCore.ViridianCore).Assembly);
         Logger.Log("Loaded ViridianCore Backend. Load Info : " + LoadInfo);
     }
 
 
     static void LoadViridianLink()
     {
-        Assembly link = null;
-        try
-        {
-            link = Assembly.Load("ViridianLink");
-        }
-        catch (Exception)
-        {
-
-        }
-        if (link != null)
-        {
-            var initializer = link.GetType("ViridianLink.ModuleInitializer");
-
-            var method = initializer.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static);
-
-            method.Invoke(null, null);
-
-            Modding.Logger.Log("INITIALIZER FOR VIRIDIANLINK CALLED");
-        }
+        ViridianCore.Helpers.VirdianLinkLoader.Init();
     }
 
     static void OnNewAssembly(Assembly assembly, bool justStarted)
@@ -159,6 +87,10 @@ internal static class ModuleInitializer
                 FindHooks(type);
                 RunPatches(assembly,type);
             }
+        }
+        catch (ReflectionTypeLoadException)
+        {
+            
         }
         catch (Exception e)
         {
@@ -181,7 +113,8 @@ internal static class ModuleInitializer
                 {
                     throw new Exception($"Could not find Initializer for mod {type}");
                 }
-                Patch(method, null, typeof(IModPatch).GetMethod("Postfix"));
+                ViridianCore.Helpers.Harmony.ViridianHarmonyInstance.Patch(method, null, typeof(IModPatch).GetMethod("Postfix"));
+                //Patch(method, null, typeof(IModPatch).GetMethod("Postfix"));
             }
             if (typeof(ITogglableMod).IsAssignableFrom(type))
             {
@@ -192,7 +125,8 @@ internal static class ModuleInitializer
                 }
                 else
                 {
-                    Patch(method, typeof(ITogglableModPatch).GetMethod("Prefix"),null);
+                    ViridianCore.Helpers.Harmony.ViridianHarmonyInstance.Patch(method, typeof(ITogglableModPatch).GetMethod("Prefix"), null);
+                    //Patch(method, typeof(ITogglableModPatch).GetMethod("Prefix"),null);
                 }
             }
         }

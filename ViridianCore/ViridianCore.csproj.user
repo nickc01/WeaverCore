@@ -15,4 +15,15 @@
     <StartProgram>C:\Program Files %28x86%29\Steam\Steam.exe</StartProgram>
     <StartArguments>-applaunch 367520 -dev -console -condebug</StartArguments>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EditorRelease|AnyCPU'">
+    <StartProgram>C:\Program Files %28x86%29\Steam\Steam.exe</StartProgram>
+    <StartArguments>-applaunch 367520 -dev -console -condebug</StartArguments>
+    <StartAction>Program</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EditorDebug|AnyCPU'">
+    <StartProgram>C:\Program Files %28x86%29\Steam\Steam.exe</StartProgram>
+    <StartURL>steam://rungameid/367520</StartURL>
+    <StartArguments>-applaunch 367520 -dev -console -condebug</StartArguments>
+    <StartAction>Program</StartAction>
+  </PropertyGroup>
 </Project>

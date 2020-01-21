@@ -2,7 +2,6 @@
 using System.Reflection;
 using GlobalEnums;
 using Modding;
-using Harmony;
 using UnityEngine;
 using ViridianCore;
 using ViridianCore.Hooks;
@@ -34,8 +33,10 @@ namespace ViridianCore
 
             if (!Patched)
             {
-                var harmony = ModuleInitializer.GetViridianCoreHarmony() as HarmonyInstance;
-                harmony.PatchAll();
+                //var harmony = ModuleInitializer.GetViridianCoreHarmony() as HarmonyInstance;
+                //harmony.PatchAll();
+                Helpers.Harmony.ViridianHarmonyInstance.PatchAll();
+                //Helpers.Harmony.PatchAll();
                 Patched = true;
             }
 

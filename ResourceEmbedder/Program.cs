@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace ResourceEmbedder
 {
@@ -28,7 +29,7 @@ namespace ResourceEmbedder
 
         public static void AddResource(string path, string resourceName, byte[] resource)
         {
-            using (var definition = AssemblyDefinition.ReadAssembly(path, new ReaderParameters { ReadWrite = true }))
+            using (var definition = AssemblyDefinition.ReadAssembly(path, new ReaderParameters { ReadWrite = true,ReadingMode = ReadingMode.Immediate }))
             {
 
                 var er = new EmbeddedResource(resourceName, ManifestResourceAttributes.Public, resource);
@@ -50,6 +51,7 @@ namespace ResourceEmbedder
             {
 
                 foreach (var resource in definition.MainModule.Resources)
+                {
                     if (resource.Name == resourceName)
                     {
                         var embeddedResource = (EmbeddedResource)resource;
@@ -61,21 +63,67 @@ namespace ResourceEmbedder
 
                             memStream.Write(bytes, 0, bytes.Length);
                             memStream.Position = 0;
+                            stream.Close();
                         }
 
                         return memStream;
                     }
+                }
             }
             return null;
         }
 
+        public static bool IsFileReady(string filename)
+        {
+            // If the file can be opened for exclusive access it means that the file
+            // is no longer locked by another process.
+            try
+            {
+                using (FileStream inputStream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.None))
+                    return inputStream.Length > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         static int Main(string[] args)
         {
+            /*try
+            {
+                string sourceAssembly = args[0];
+                string additionAssembly = args[1];
+                string resourcePath = args[2];
+                var path = Path.GetFileName(sourceAssembly);
+                if (File.Exists(path))
+                {
+                    File.Move(path, "temporary.dll");
+                    File.Move("temporary.dll", path);
+                }
+                return 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERROR Embedding assembly resource -> " + e);
+                return -1;
+            }*/
             try
             {
                 string sourceAssembly = args[0];
                 string additionAssembly = args[1];
                 string resourcePath = args[2];
+
+
+
+                while (!IsFileReady(sourceAssembly)) { }
+                //bool deleteAfter = false;
+
+                // if (args.Length > 3 && bool.TryParse(args[3], out deleteAfter)) { }
+
+                Console.WriteLine($"Embedding {Path.GetFileName(additionAssembly)} into {Path.GetFileName(sourceAssembly)} at the resource path: ({resourcePath})...");
+
+                //File.Move(sourceAssembly, "temporary.dll");
 
                 byte[] additionBytes;
 
@@ -89,7 +137,20 @@ namespace ResourceEmbedder
                 }
 
                 AddResource(sourceAssembly, resourcePath, additionBytes);
-                Console.WriteLine("Successful Embedding");
+                //File.Move("temporary.dll", sourceAssembly);
+                Console.WriteLine("Embedding Successful!");
+                /*if (deleteAfter)
+                {
+                    if (File.Exists(additionAssembly))
+                    {
+                        File.Delete(additionAssembly);
+                    }
+                    string pdb = new FileInfo(additionAssembly).Name + ".pdb";
+                    if (File.Exists(pdb))
+                    {
+                        File.Delete(pdb);
+                    }
+                }*/
                 return 0;
             }
             catch (Exception e)

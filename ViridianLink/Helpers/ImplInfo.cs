@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
+using System.Threading;
 using UnityEngine;
 using ViridianLink.Core;
 
@@ -17,27 +18,51 @@ namespace ViridianLink.Helpers
         static List<Type> FoundImplementations;
         static Assembly ImplAssembly;
 
+        static Assembly UnityEditorAssembly;
+
+        static Func<string, bool> DeleteAsset;
+        static Action<string> ImportAsset;
+        //static Func<string, Type, UnityEngine.Object> LoadAssetAtPath;
+
         static RunningState GetState()
         {
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
                 if (assembly.GetName().Name == "UnityEditor")
                 {
+                    if (UnityEditorAssembly == null)
+                    {
+                        UnityEditorAssembly = assembly;
+                        LoadAssetFunctions();
+                    }
                     return RunningState.Editor;
                 }
             }
             return RunningState.Game;
         }
 
-        static void WriteAssembly(string filePath,Stream data)
+        static void LoadAssetFunctions()
         {
-            if (File.Exists(filePath))
+            var adb = UnityEditorAssembly.GetType("UnityEditor.AssetDatabase");
+            DeleteAsset = Methods.GetFunction<Func<string, bool>>(adb.GetMethod("DeleteAsset"));
+            ImportAsset = Methods.GetFunction<Action<string>>(adb.GetMethod("ImportAsset",new Type[] { typeof(string) }));
+        }
+
+        static void WriteAssembly(string directory, string filePath,string fileName,Stream data)
+        {
+            string fullPath = directory + "/" + filePath;
+            if (File.Exists(fullPath))
             {
-                File.Delete(filePath);
+                bool deleted = DeleteAsset(filePath);
             }
-            using (var file = File.Create(filePath))
+
+            var tempPath = Path.GetTempPath();
+            if (File.Exists(tempPath + fileName))
             {
-                //data.Copy
+                File.Delete(tempPath + fileName);
+            }
+            using (var file = File.Create(tempPath + fileName))
+            {
                 using (var reader = new BinaryReader(data))
                 {
                     using (var writer = new BinaryWriter(file))
@@ -46,7 +71,7 @@ namespace ViridianLink.Helpers
                         int amount = 0;
                         do
                         {
-                            amount = data.Read(buffer, 0, buffer.Length);
+                            amount = reader.Read(buffer, 0, buffer.Length);
                             if (amount > 0)
                             {
                                 writer.Write(buffer, 0, amount);
@@ -56,92 +81,67 @@ namespace ViridianLink.Helpers
                     }
                 }
             }
+            File.Move(tempPath + fileName, fullPath);
+            ImportAsset(filePath);
         }
 
         static string GetHash(Stream stream)
         {
-            //nameof(IAsyncResult.)
             using (var md5 = MD5.Create())
             {
-                return BitConverter.ToString(md5.ComputeHash(stream));
+                var oldPosition = stream.Position;
+                var result = BitConverter.ToString(md5.ComputeHash(stream));
+                stream.Position = oldPosition;
+                return result;
+            }
+        }
+
+        static string GetHash(string filePath)
+        {
+            using (var openStream = File.OpenRead(filePath))
+            {
+                return GetHash(openStream);
+            }
+        }
+
+        class testAwaiter : IAsyncResult
+        {
+            object IAsyncResult.AsyncState => throw new NotImplementedException();
+
+            WaitHandle IAsyncResult.AsyncWaitHandle => throw new NotImplementedException();
+
+            bool IAsyncResult.CompletedSynchronously => throw new NotImplementedException();
+
+            bool IAsyncResult.IsCompleted => throw new NotImplementedException();
+        }
+
+        static void LoadEditorAssembly()
+        {
+            ImplAssembly = ResourceLoader.LoadAssembly("ViridianLink.Editor");
+            var resourceStream = ResourceLoader.Retrieve("ViridianLink.Editor.Visual"); //Gets disposed in the Initializer below
+            var resourceHash = GetHash(resourceStream);
+            var directory = Directory.CreateDirectory("Assets/Editor/ViridianLink");
+            string filePath = directory.FullName + "/ViridianLink.Editor.Visual.dll";
+
+            if (!File.Exists(filePath) || resourceHash != GetHash(filePath))
+            {
+                Starter.AddInitializer(() =>
+                {
+                    WriteAssembly(new DirectoryInfo("Assets").Parent.FullName, "Assets/Editor/ViridianLink/ViridianLink.Editor.Visual.dll", "ViridianLink.Editor.Visual.dll", resourceStream);
+                    resourceStream.Dispose();
+                });
             }
         }
 
         static void LoadImplementations()
         {
-            Debug.Log("ZZZZ");
             if (FoundImplementations == null)
             {
                 FoundImplementations = new List<Type>();
-                Debug.Log("Z");
                 State = GetState();
                 if (State == RunningState.Editor)
                 {
-                    ImplAssembly = ResourceLoader.LoadAssembly("ViridianLink.Editor");
-
-                    Debug.Log("Y");
-                    string filePath = null;
-                    //ImplAssembly = ResourceLoader.LoadAssembly("ViridianLink.Editor");
-                    using (var resourceStream = ResourceLoader.Retrieve("ViridianLink.Editor.Visual"))
-                    {
-                        Debug.Log("ResourceStream = " + resourceStream);
-                        Debug.Log("X");
-                        var info = Directory.CreateDirectory("Assets/Editor/ViridianLink");
-                        Debug.Log("W");
-                        filePath = info.FullName + "/ViridianLink.Editor.Visual.dll";
-                        Debug.Log("V");
-                        Debug.Log("File Path = " + filePath);
-                        if (File.Exists(filePath))
-                        {
-                            Debug.Log("AA");
-                            string hashA = null;
-                            string hashB = null;
-                            using (var openStream = File.OpenRead(filePath))
-                            {
-                                Debug.Log("BB");
-                                hashA = GetHash(openStream);
-                                openStream.Close();
-                            }
-                            Debug.Log("CC");
-                            hashB = GetHash(resourceStream);
-                            if (hashB != hashA)
-                            {
-                                if (File.Exists(filePath + ".meta"))
-                                {
-                                    File.Delete(filePath + ".meta");
-                                }
-                                Debug.Log("SAME HASH!");
-                                Debug.Log("Writing");
-                                WriteAssembly(filePath, resourceStream);
-                            }
-                            Debug.Log("DD");
-                        }
-                        else
-                        {
-                            if (File.Exists(filePath + ".meta"))
-                            {
-                                File.Delete(filePath + ".meta");
-                            }
-                            Debug.Log("Writing2");
-                            WriteAssembly(filePath, resourceStream);
-                        }
-                    }
-                    Debug.Log("A");
-                    //ImplAssembly = Assembly.LoadFile(filePath);
-                    Debug.Log("B");
-                    Starter.AddInitializer(() =>
-                    {
-                        Debug.Log("STARTER");
-                        var asm = Assembly.Load("UnityEditor");
-                        var adb = asm.GetType("UnityEditor.AssetDatabase");
-                        //var method = adb.GetMethod("ImportAsset", new Type[] { typeof(string) });
-                        //method.Invoke(null, new object[] { filePath });
-
-                        var refreshMethod = adb.GetMethod("Refresh", new Type[] { });
-                        refreshMethod.Invoke(null, null);
-                    });
-                    Debug.Log("C");
-
+                    LoadEditorAssembly();
                 }
                 else
                 {

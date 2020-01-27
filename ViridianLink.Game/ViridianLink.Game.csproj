@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Implementations\Debugger\DebuggerImpl.cs" />
+    <Compile Include="Game Implementations\RegistryLoader\EditorRegistryLoaderImpl.cs" />
     <Compile Include="Game Implementations\Player\GamePlayerAllocator.cs" />
     <Compile Include="Game Implementations\Player\PlayerImpl.cs" />
     <Compile Include="Initializer.cs" />
@@ -100,14 +101,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent></PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
-</PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild">
     <Exec Command="$(SolutionDir)ResourceEmbedder\bin\$(ConfigurationName)\ResourceEmbedder.exe %22$(HollowKnightLocation)Managed\Mods\ViridianLink.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
   </Target>
-  <Import Project="$(SolutionDir)Viridian.targets"/>
+  <Import Project="$(SolutionDir)Viridian.targets" />
 </Project>

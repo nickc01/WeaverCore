@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
@@ -14,11 +15,16 @@ namespace ViridianLink.Editor.Visual
     {
         List<Type> ValidMods;
         string[] ModNames;
+        Assembly[] assemblies;
+        Dictionary<string, Assembly> assemblyTable;
 
+        List<Type> Features;
+        string[] FeatureNames;
 
         void OnEnable()
         {
             ValidMods = new List<Type>();
+            Features = new List<Type>();
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
                 foreach (var type in assembly.GetTypes())
@@ -27,12 +33,30 @@ namespace ViridianLink.Editor.Visual
                     {
                         ValidMods.Add(type);
                     }
+                    if (typeof(Feature).IsAssignableFrom(type) && type != typeof(Feature) && !type.IsGenericTypeDefinition && !type.IsInterface && type.IsAbstract)
+                    {
+                        Debug.Log("Feature = " + type.Name);
+                        Features.Add(type);
+                    }
                 }
             }
             ModNames = new string[ValidMods.Count];
             for (int i = 0; i < ValidMods.Count; i++)
             {
                 ModNames[i] = ValidMods[i].Name;
+            }
+            Features.Sort();
+            FeatureNames = new string[Features.Count];
+            for (int i = 0; i < Features.Count; i++)
+            {
+                FeatureNames[i] = Features[i].Name;
+            }
+
+            assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            assemblyTable = new Dictionary<string, Assembly>();
+            foreach (var assembly in assemblies)
+            {
+                assemblyTable.Add(assembly.FullName, assembly);
             }
         }
 
@@ -54,25 +78,48 @@ namespace ViridianLink.Editor.Visual
             EditorGUILayout.BeginVertical("Button");
             for (int i = 0; i < features.arraySize; i++)
             {
-                var prop = features.GetArrayElementAtIndex(i);
-                Debug.Log("Prop = " + prop.name);
-                using (new EditorGUI.DisabledScope("m_Script" == features.propertyPath))
+                var currentProp = features.GetArrayElementAtIndex(i);
+                var objectProp = currentProp.FindPropertyRelative("feature");
+
+                EditorGUILayout.BeginHorizontal();
+                var assemblyName = currentProp.FindPropertyRelative("FullAssemblyName").stringValue;
+                var typeName = currentProp.FindPropertyRelative("FullTypeName").stringValue;
+                var type = assemblyTable[assemblyName].GetType(typeName);
+                if (type == null)
                 {
-                    EditorGUILayout.PropertyField(features, true, new GUILayoutOption[0]);
+                    type = typeof(Feature);
                 }
+                objectProp.objectReferenceValue = EditorGUILayout.ObjectField(objectProp.objectReferenceValue,type, false);
+                if (GUILayout.Button("X",GUILayout.MaxWidth(25)))
+                {
+                    features.DeleteArrayElementAtIndex(i);
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+            EditorGUILayout.Space();
+
+            var index = serializedObject.FindProperty("selectedFeatureIndex");
+
+            var changedIndex = EditorGUILayout.Popup("Feature to Add", index.intValue, FeatureNames);
+            index.intValue = changedIndex;
+            if (GUILayout.Button("Add Feature"))
+            {
+                features.InsertArrayElementAtIndex(features.arraySize);
+                var last = features.GetArrayElementAtIndex(features.arraySize - 1);
+                last.FindPropertyRelative("feature").objectReferenceValue = null;
+                last.FindPropertyRelative("FullTypeName").stringValue = Features[changedIndex].FullName;
+                last.FindPropertyRelative("FullAssemblyName").stringValue = Features[changedIndex].Assembly.FullName;
             }
             EditorGUILayout.EndVertical();
         }
 
         public override void OnInspectorGUI()
         {
-            Debug.Log("IN INSPECTOR");
             serializedObject.Update();
             SerializedProperty iter = serializedObject.GetIterator();
             bool enterChildren = true;
             while (iter.NextVisible(enterChildren))
             {
-                Debug.Log("Drawing = " + iter.name);
                 if (iter.name == "mod")
                 {
                     int selection = GetIndex(iter.stringValue);
@@ -88,12 +135,25 @@ namespace ViridianLink.Editor.Visual
                             selection = 0;
                         }
                     }
-                    selection = EditorGUILayout.Popup(iter.displayName, selection, ModNames);
-                    iter.stringValue = ModNames[selection];
+                    var newSelection = EditorGUILayout.Popup(iter.displayName, selection, ModNames);
+                    iter.stringValue = ModNames[newSelection];
+
+                    var modAssemblyProp = serializedObject.FindProperty("modAssemblyName");
+                    var modTypeProp = serializedObject.FindProperty("modTypeName");
+
+                    if (selection != newSelection || modAssemblyProp.stringValue == "")
+                    {
+                        modAssemblyProp.stringValue = ValidMods[newSelection].Assembly.FullName;
+                        modTypeProp.stringValue = ValidMods[newSelection].FullName;
+                    }
                 }
                 else if (iter.name == "features")
                 {
                     RenderFeatures(iter);
+                }
+                else if (iter.name == "selectedFeatureIndex")
+                {
+
                 }
                 else
                 {

@@ -81,12 +81,15 @@
     <Compile Include="Core\Feature.cs" />
     <Compile Include="Core\ViridianMod.cs" />
     <Compile Include="Helpers\Debugger.cs" />
+    <Compile Include="Helpers\RegistryLoader.cs" />
     <Compile Include="Helpers\ImplInfo.cs" />
     <Compile Include="Core\Registry.cs" />
+    <Compile Include="Helpers\Methods.cs" />
     <Compile Include="Helpers\Starter.cs" />
     <Compile Include="Implementations\Debugger\DebuggerImpl.cs" />
     <Compile Include="Implementations\Enemy\EnemyImpl.cs" />
     <Compile Include="Core\IImplementation.cs" />
+    <Compile Include="Implementations\FeatureLoader\RegistryLoaderImpl.cs" />
     <Compile Include="Implementations\Initializer\InitializerImplementation.cs" />
     <Compile Include="Implementations\Player\Player.cs" />
     <Compile Include="Implementations\Player\PlayerAllocator.cs" />
@@ -111,9 +114,9 @@
   </Target>
   <Import Project="$(SolutionDir)packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets" Condition="Exists('$(SolutionDir)packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets')" />
   <Target Name="AfterBuild">
-	<ItemGroup>
-        <OutputFiles Include="$(OutputPath)\*.*"/>
+    <ItemGroup>
+      <OutputFiles Include="$(OutputPath)\*.*" />
     </ItemGroup>
-	<Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />
+    <Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />
   </Target>
 </Project>

@@ -41,6 +41,7 @@ namespace ViridianLink.Editor.Helpers
             foreach (var mod in LoadedMods)
             {
                 Debugger.Log($"Loading Viridian Mod {mod.Name}, Version: {mod.Version}");
+                RegistryLoader.LoadModRegistry(mod.GetType());
                 mod.Load();
             }
         }

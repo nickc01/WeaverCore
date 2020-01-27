@@ -103,6 +103,7 @@
     <Compile Include="Editor Implementations\Debugger\DebuggerImpl.cs" />
     <Compile Include="Editor Implementations\Player\EditorPlayerAllocator.cs" />
     <Compile Include="Editor Implementations\Player\PlayerImpl.cs" />
+    <Compile Include="Editor Implementations\RegistryLoader\EditorRegistryLoaderImpl.cs" />
     <Compile Include="Editor\ControlWindow.cs" />
     <Compile Include="Helpers\ModLoader.cs" />
     <Compile Include="Initializer.cs" />
@@ -132,10 +133,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
-</PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild">
     <Exec Command="$(SolutionDir)ResourceEmbedder\bin\$(ConfigurationName)\ResourceEmbedder.exe %22$(HollowKnightLocation)Managed\Mods\ViridianLink.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
   </Target>
-  <Import Project="$(SolutionDir)Viridian.targets"/>
+  <Import Project="$(SolutionDir)Viridian.targets" />
 </Project>

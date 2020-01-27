@@ -79,6 +79,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder\Builder.cs" />
     <Compile Include="RegistryEditorScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -96,13 +97,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent></PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent></PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild">
     <Exec Command="$(SolutionDir)ResourceEmbedder\bin\$(ConfigurationName)\ResourceEmbedder.exe %22$(HollowKnightLocation)Managed\Mods\ViridianLink.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
   </Target>
-  <Import Project="$(SolutionDir)Viridian.targets"/>
+  <Import Project="$(SolutionDir)Viridian.targets" />
 </Project>

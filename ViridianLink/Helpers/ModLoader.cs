@@ -22,10 +22,20 @@ namespace ViridianLink.Helpers
 				}
 				else if (registry != null)
 				{
-					foreach (var feature in registry.AllFeatures)
+					try
 					{
-						Debugger.Log("D");
-						Debugger.Log("Feature = " + feature?.name);
+						Debugger.Log("Printing Features");
+						Debugger.Log("Registry = " + registry);
+						Debugger.Log("All Features = " + registry.AllFeatures);
+						foreach (var feature in registry.AllFeatures)
+						{
+							Debugger.Log("D");
+							Debugger.Log("Feature = " + feature?.name);
+						}
+					}
+					catch (Exception e)
+					{
+						Debugger.LogError("Exception = " + e);
 					}
 				}
 				yield return mod;

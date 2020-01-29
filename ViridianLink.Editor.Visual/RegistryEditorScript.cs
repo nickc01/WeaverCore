@@ -184,10 +184,10 @@ namespace ViridianLink.Editor.Visual
                 {
                     RenderFeatures(iter);
                 }
-                else if (iter.name == "selectedFeatureIndex" || iter.name == "modAssemblyName" || iter.name == "modTypeName")
+                /*else if (iter.name == "selectedFeatureIndex" || iter.name == "modAssemblyName" || iter.name == "modTypeName")
                 {
 
-                }
+                }*/
                 else
                 {
                     using (new EditorGUI.DisabledScope("m_Script" == iter.propertyPath))

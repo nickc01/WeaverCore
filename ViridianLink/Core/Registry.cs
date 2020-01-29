@@ -148,8 +148,11 @@ namespace ViridianLink.Core
         {
             get
             {
+                Debugger.Log("Features = " + features);
                 foreach (var featureSet in features)
                 {
+                    Debugger.Log("FeatureSet = " + featureSet);
+                    Debugger.Log("Feature = " + featureSet.feature);
                     yield return featureSet.feature;
                 }
             }

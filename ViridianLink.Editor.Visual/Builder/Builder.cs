@@ -37,6 +37,7 @@ namespace ViridianLink.Editor.Visual
 		{
 			try
 			{
+
 				var binFolder = new DirectoryInfo("ViridianLink/bin").FullName;
 				if (!Directory.Exists(binFolder))
 				{

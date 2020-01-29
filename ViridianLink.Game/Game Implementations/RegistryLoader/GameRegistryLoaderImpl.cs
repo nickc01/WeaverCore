@@ -38,7 +38,18 @@ namespace ViridianLink.Game.Implementations
 				if (name.EndsWith(extension))
 				{
 					Debugger.Log("Loading Resource " + name);
-					AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
+					var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
+					/*foreach (var g in bundle.LoadAllAssets<GameObject>())
+					{
+						foreach (var component in g.GetComponents<Component>())
+						{
+							Debugger.Log("Test Component = " + component.GetType().FullName);
+						}
+					}
+					foreach (var asset in bundle.LoadAllAssets())
+					{
+						Debugger.Log("Asset Name = " + asset);
+					}*/
 				}
 			}
 

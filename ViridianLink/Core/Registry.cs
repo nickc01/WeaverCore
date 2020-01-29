@@ -76,9 +76,12 @@ namespace ViridianLink.Core
                     Debugger.Log("modTypeName = " + modTypeName);
                     foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                     {
-                        if (assembly.FullName == modAssemblyName)
+                        var type = assembly.GetType(modTypeName);
+                        //Debugger.Log("Assembly = " + assembly.FullName);
+                        //Debugger.Log("Type = " + type);
+                        if (type != null)
                         {
-                            modType = assembly.GetType(modTypeName);
+                            modType = type;
                             typeNameCache = modTypeName;
                             break;
                         }

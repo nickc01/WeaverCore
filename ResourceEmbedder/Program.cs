@@ -74,17 +74,22 @@ namespace ResourceEmbedder
 
         public static bool IsFileReady(string filename)
         {
-            // If the file can be opened for exclusive access it means that the file
-            // is no longer locked by another process.
-            try
-            {
-                using (FileStream inputStream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.None))
-                    return inputStream.Length > 0;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+			try
+			{
+				using (FileStream inputStream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.None))
+					return inputStream.Length > 0;
+			}
+			catch (System.IO.IOException e)
+			{
+				if (e.Message.Contains("because it is being used by another process"))
+				{
+					return false;
+				}
+				else
+				{
+					throw;
+				}
+			}
         }
 
         static int Main(string[] args)

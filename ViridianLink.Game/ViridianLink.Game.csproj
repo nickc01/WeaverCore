@@ -72,8 +72,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game Implementations\Debugger\DebuggerImpl.cs" />
-    <Compile Include="Game Implementations\RegistryLoader\EditorRegistryLoaderImpl.cs" />
+    <Compile Include="Game Implementations\Debugger\GameDebuggerImpl.cs" />
+    <Compile Include="Game Implementations\ModLoader\GameModLoaderImpl.cs" />
+    <Compile Include="Game Implementations\RegistryLoader\GameRegistryLoaderImpl.cs" />
     <Compile Include="Game Implementations\Player\GamePlayerAllocator.cs" />
     <Compile Include="Game Implementations\Player\PlayerImpl.cs" />
     <Compile Include="Initializer.cs" />

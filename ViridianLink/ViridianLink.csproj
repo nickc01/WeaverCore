@@ -81,6 +81,7 @@
     <Compile Include="Core\Feature.cs" />
     <Compile Include="Core\ViridianMod.cs" />
     <Compile Include="Helpers\Debugger.cs" />
+    <Compile Include="Helpers\ModLoader.cs" />
     <Compile Include="Helpers\RegistryLoader.cs" />
     <Compile Include="Helpers\ImplInfo.cs" />
     <Compile Include="Core\Registry.cs" />
@@ -91,10 +92,12 @@
     <Compile Include="Core\IImplementation.cs" />
     <Compile Include="Implementations\FeatureLoader\RegistryLoaderImpl.cs" />
     <Compile Include="Implementations\Initializer\InitializerImplementation.cs" />
+    <Compile Include="Implementations\ModLoader\ModLoaderImplementation.cs" />
     <Compile Include="Implementations\Player\Player.cs" />
     <Compile Include="Implementations\Player\PlayerAllocator.cs" />
     <Compile Include="Implementations\Player\PlayerImplementation.cs" />
     <Compile Include="ModuleInitializer.cs" />
+    <Compile Include="Helpers\MonoEmbedder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\ResourceLoader.cs" />
     <Compile Include="Enums\RunningState.cs" />

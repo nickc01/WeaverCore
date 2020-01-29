@@ -3,17 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using UnityEngine;
 using ViridianLink.Core;
 using ViridianLink.Helpers;
 
-namespace ViridianLink.Editor.Helpers
+namespace ViridianLink.Editor.Implementations
 {
-    public static class ModLoader
+    public class EditorModLoaderImplementation : ViridianLink.Implementations.ModLoaderImplementation
     {
         static Type VModType = typeof(IViridianMod);
         static List<IViridianMod> LoadedMods = new List<IViridianMod>();
 
-        public static void LoadAllMods()
+        static void LoadMod(Type ModType)
+        {
+            try
+            {
+                var mod = (IViridianMod)Activator.CreateInstance(ModType);
+                LoadedMods.Add(mod);
+            }
+            catch (Exception e)
+            {
+                Debugger.LogError($"Failed to load mod : {ModType} : {e}");
+            }
+        }
+
+        public override IEnumerable<IViridianMod> LoadAllMods()
         {
             LoadedMods.Clear();
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -43,19 +57,7 @@ namespace ViridianLink.Editor.Helpers
                 Debugger.Log($"Loading Viridian Mod {mod.Name}, Version: {mod.Version}");
                 RegistryLoader.LoadModRegistry(mod.GetType());
                 mod.Load();
-            }
-        }
-
-        public static void LoadMod(Type ModType)
-        {
-            try
-            {
-                var mod = (IViridianMod)Activator.CreateInstance(ModType);
-                LoadedMods.Add(mod);
-            }
-            catch (Exception e)
-            {
-                Debugger.LogError($"Failed to load mod : {ModType} : {e}");
+                yield return mod;
             }
         }
     }

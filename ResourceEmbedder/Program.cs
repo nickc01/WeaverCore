@@ -40,7 +40,6 @@ namespace ResourceEmbedder
                 }
                 definition.MainModule.Resources.Add(er);
                 definition.Write();
-                //definition.Write(path);
             }
 
         }
@@ -90,44 +89,19 @@ namespace ResourceEmbedder
 
         static int Main(string[] args)
         {
-            /*try
-            {
+            //try
+            //{
                 string sourceAssembly = args[0];
-                string additionAssembly = args[1];
-                string resourcePath = args[2];
-                var path = Path.GetFileName(sourceAssembly);
-                if (File.Exists(path))
-                {
-                    File.Move(path, "temporary.dll");
-                    File.Move("temporary.dll", path);
-                }
-                return 0;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("ERROR Embedding assembly resource -> " + e);
-                return -1;
-            }*/
-            try
-            {
-                string sourceAssembly = args[0];
-                string additionAssembly = args[1];
+                string additionFile = args[1];
                 string resourcePath = args[2];
 
 
 
-                while (!IsFileReady(sourceAssembly)) { }
-                //bool deleteAfter = false;
-
-                // if (args.Length > 3 && bool.TryParse(args[3], out deleteAfter)) { }
-
-                Console.WriteLine($"Embedding {Path.GetFileName(additionAssembly)} into {Path.GetFileName(sourceAssembly)} at the resource path: ({resourcePath})...");
-
-                //File.Move(sourceAssembly, "temporary.dll");
-
+                Console.WriteLine($"Embedding {Path.GetFileName(additionFile)} into {Path.GetFileName(sourceAssembly)} at the resource path: ({resourcePath})...");
                 byte[] additionBytes;
 
-                using (var additionStream = File.OpenRead(additionAssembly))
+                while (!IsFileReady(sourceAssembly)) { }
+                using (var additionStream = File.OpenRead(additionFile))
                 {
                     additionBytes = new byte[additionStream.Length];
 
@@ -137,27 +111,14 @@ namespace ResourceEmbedder
                 }
 
                 AddResource(sourceAssembly, resourcePath, additionBytes);
-                //File.Move("temporary.dll", sourceAssembly);
                 Console.WriteLine("Embedding Successful!");
-                /*if (deleteAfter)
-                {
-                    if (File.Exists(additionAssembly))
-                    {
-                        File.Delete(additionAssembly);
-                    }
-                    string pdb = new FileInfo(additionAssembly).Name + ".pdb";
-                    if (File.Exists(pdb))
-                    {
-                        File.Delete(pdb);
-                    }
-                }*/
                 return 0;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("ERROR Embedding assembly resource -> " + e);
-                return -1;
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("ERROR Embedding assembly resource -> " + e);
+            //    return -1;
+            //}
         }
     }
 }

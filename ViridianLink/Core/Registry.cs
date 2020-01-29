@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using ViridianLink.Helpers;
 
 namespace ViridianLink.Core
 {
@@ -39,30 +40,71 @@ namespace ViridianLink.Core
         [SerializeField]
         bool registryEnabled = true;
 
+        bool started = false;
+
         public bool RegistryEnabled
         {
             get => registryEnabled;
-            set => registryEnabled = value;
+            set
+            {
+                if (registryEnabled != value)
+                {
+                    registryEnabled = value;
+                    if (registryEnabled)
+                    {
+                        ActiveRegistries.Add(this);
+                    }
+                    else
+                    {
+                        ActiveRegistries.Remove(this);
+                    }
+                }
+
+            }
         }
 
+        private Type modType = null;
+        private string typeNameCache = "";
 
         public Type ModType
         {
             get
             {
-                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                if (modType == null || typeNameCache != modTypeName)
                 {
-                    if (assembly.FullName == modAssemblyName)
+                    Debugger.Log("modAssemblyName = " + modAssemblyName);
+                    Debugger.Log("modTypeName = " + modTypeName);
+                    foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                     {
-                        return assembly.GetType(modTypeName);
+                        if (assembly.FullName == modAssemblyName)
+                        {
+                            modType = assembly.GetType(modTypeName);
+                            typeNameCache = modTypeName;
+                            break;
+                        }
                     }
                 }
-                return null;
+                return modType;
+            }
+        }
+
+        public void Start()
+        {
+            if (!started)
+            {
+                started = true;
+                AllRegistries.Add(this);
+                if (RegistryEnabled)
+                {
+                    ActiveRegistries.Add(this);
+                }
             }
         }
 
 
-        static List<Registry> AllRegistries = new List<Registry>();
+        static HashSet<Registry> ActiveRegistries = new HashSet<Registry>();
+        static HashSet<Registry> AllRegistries = new HashSet<Registry>();
+
 
         public static IEnumerable<T> GetAllFeatures<T>() where T : Feature
         {
@@ -71,7 +113,7 @@ namespace ViridianLink.Core
 
         public static IEnumerable<T> GetAllFeatures<T>(Func<T, bool> predicate) where T : Feature
         {
-            foreach (var registry in AllRegistries)
+            foreach (var registry in ActiveRegistries)
             {
                 if (registry.registryEnabled)
                 {
@@ -95,6 +137,17 @@ namespace ViridianLink.Core
                 if (feature.feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.feature.GetType()) && predicate((T)feature.feature))
                 {
                     yield return (T)feature.feature;
+                }
+            }
+        }
+
+        public IEnumerable<Feature> AllFeatures
+        {
+            get
+            {
+                foreach (var featureSet in features)
+                {
+                    yield return featureSet.feature;
                 }
             }
         }
@@ -135,5 +188,16 @@ namespace ViridianLink.Core
             return false;
         }
 
+        public static Registry Find(Type ModType)
+        {
+            foreach (var registry in AllRegistries)
+            {
+                if (registry.ModType == ModType)
+                {
+                    return registry;
+                }
+            }
+            return null;
+        }
     }
 }

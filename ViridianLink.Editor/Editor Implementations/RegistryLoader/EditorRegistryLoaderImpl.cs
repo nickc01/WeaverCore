@@ -13,7 +13,7 @@ namespace ViridianLink.Editor.Implementations
 	{
 		public override Registry GetRegistry(Type ModType)
 		{
-			string[] guids = AssetDatabase.FindAssets("t:ScriptableObject");
+			string[] guids = AssetDatabase.FindAssets("t:Registry");
 			foreach (var guid in guids)
 			{
 				string path = AssetDatabase.GUIDToAssetPath(guid);

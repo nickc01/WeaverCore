@@ -51,7 +51,6 @@ internal static class ModuleInitializer
                 if (invo.Method.Module.Assembly.FullName.Contains("Assembly-CSharp"))
                 {
                     eventInfo.RemoveEventHandler(AppDomain.CurrentDomain, invo);
-                    LoadViridianLink();
                     eventInfo.AddEventHandler(AppDomain.CurrentDomain, invo);
                 }
             }
@@ -59,8 +58,9 @@ internal static class ModuleInitializer
         catch (Exception)
         {
             LoadInfo += "Assembly-CSharp AssemblyResolve event is first;";
-            LoadViridianLink();
         }
+
+        LoadViridianLink();
 
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
@@ -74,7 +74,18 @@ internal static class ModuleInitializer
 
     static void LoadViridianLink()
     {
-        ViridianCore.Helpers.VirdianLinkLoader.Init();
+        var location = typeof(ViridianCore.ViridianCore).Assembly.Location;
+        var directory = new FileInfo(location).Directory.FullName;
+
+        Modding.Logger.Log("Location = " + directory + "/ViridianLink.dll");
+
+        var ViridianLink = Assembly.LoadFile(directory + "/ViridianLink.dll");
+        //var ViridianLink = Assembly.Load("ViridianLink");
+        if (ViridianLink != null)
+        {
+            var modLoader = ViridianLink.GetType("ViridianLink.Helpers.ModLoader");
+            modLoader.GetMethod("LoadAllMods", BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
+        }
     }
 
     static void OnNewAssembly(Assembly assembly, bool justStarted)

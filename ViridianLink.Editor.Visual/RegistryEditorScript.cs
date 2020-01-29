@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 using ViridianLink.Core;
@@ -49,7 +50,7 @@ namespace ViridianLink.Editor.Visual
             FeatureNames = new string[Features.Count];
             for (int i = 0; i < Features.Count; i++)
             {
-                FeatureNames[i] = Features[i].Name;
+                FeatureNames[i] = ObjectNames.NicifyVariableName(Features[i].Name);
             }
 
             assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -73,6 +74,24 @@ namespace ViridianLink.Editor.Visual
             return -1;
         }
 
+        void SetBundleForObject(UnityEngine.Object obj,string bundleName)
+        {
+            //FIX by making it not dependent on registry target
+            Debug.Log("OBJ = " + obj);
+            Debug.Log("Bundle Name = " + bundleName);
+            if (obj != null)
+            {
+                var registry = (Registry)target;
+                var path = AssetDatabase.GetAssetPath(obj);
+                Debug.Log("Path = " + path);
+                if (path != null && path != "")
+                {
+                    Debug.Log("Bundle Set");
+                    AssetImporter.GetAtPath(path).SetAssetBundleNameAndVariant(bundleName, "");
+                }
+            }
+        }
+
         void RenderFeatures(SerializedProperty features)
         {
             EditorGUILayout.BeginVertical("Button");
@@ -89,7 +108,14 @@ namespace ViridianLink.Editor.Visual
                 {
                     type = typeof(Feature);
                 }
-                objectProp.objectReferenceValue = EditorGUILayout.ObjectField(objectProp.objectReferenceValue,type, false);
+                var oldValue = objectProp.objectReferenceValue;
+                objectProp.objectReferenceValue = EditorGUILayout.ObjectField(oldValue,type, false);
+                if (objectProp.objectReferenceValue != oldValue)
+                {
+                    var modTypeProp = serializedObject.FindProperty("modTypeName");
+                    Debug.Log("Updating Bundles");
+                    SetBundleForObject((objectProp.objectReferenceValue as Feature)?.gameObject, Regex.Match(modTypeProp.stringValue, @"([^.]+?)\.?$").Groups[0].Value + "_bundle");
+                }
                 if (GUILayout.Button("X",GUILayout.MaxWidth(25)))
                 {
                     features.DeleteArrayElementAtIndex(i);
@@ -145,13 +171,20 @@ namespace ViridianLink.Editor.Visual
                     {
                         modAssemblyProp.stringValue = ValidMods[newSelection].Assembly.FullName;
                         modTypeProp.stringValue = ValidMods[newSelection].FullName;
+                        Debug.Log("Updating Bundles2");
+                        var features = serializedObject.FindProperty("features");
+                        for (int i = 0; i < features.arraySize; i++)
+                        {
+                            var obj = features.GetArrayElementAtIndex(i).FindPropertyRelative("feature").objectReferenceValue;
+                            SetBundleForObject((obj as Feature)?.gameObject,Regex.Match(modTypeProp.stringValue, @"([^.]+?)\.?$").Groups[0].Value + "_bundle");
+                        }
                     }
                 }
                 else if (iter.name == "features")
                 {
                     RenderFeatures(iter);
                 }
-                else if (iter.name == "selectedFeatureIndex")
+                else if (iter.name == "selectedFeatureIndex" || iter.name == "modAssemblyName" || iter.name == "modTypeName")
                 {
 
                 }

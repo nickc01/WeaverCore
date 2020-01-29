@@ -19,14 +19,9 @@ namespace ViridianLink.Core
         void Unload();
     }
 
-    public class ViridianLinkMod : ViridianMod
+    public sealed class ViridianLinkMod : ViridianMod
     {
         public override string Name => nameof(ViridianLink);
-
-        public override void Load()
-        {
-            Debugger.Log("LOADING VIRIDIAN_TESTING_MOD");
-        }
     }
 
     public abstract class ViridianMod : IViridianMod
@@ -39,14 +34,8 @@ namespace ViridianLink.Core
 
         public virtual bool Unloadable => false;
 
-        public virtual void Load()
-        {
-            
-        }
+        public virtual void Load() { }
 
-        public virtual void Unload()
-        {
-            
-        }
+        public virtual void Unload() { }
     }
 }

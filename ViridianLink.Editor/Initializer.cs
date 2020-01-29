@@ -7,7 +7,6 @@ using System.Reflection;
 using System.IO;
 using ViridianLink.Helpers;
 using ViridianLink.Implementations;
-using ViridianLink.Editor.Helpers;
 using UnityEditor.Compilation;
 
 namespace ViridianLink.Editor.Implementations
@@ -49,20 +48,21 @@ namespace ViridianLink.Editor.Implementations
                     }
                 }
                 Physics2D.gravity = new Vector2(0f,-60f);
-                CompilationPipeline.assemblyCompilationFinished += CompilationPipeline_assemblyCompilationFinished;
+                //CompilationPipeline.assemblyCompilationFinished += CompilationPipeline_assemblyCompilationFinished;
                 //ControlWindow.CreateAndShow();
             });
 
         }
 
-        private void CompilationPipeline_assemblyCompilationFinished(string arg1, CompilerMessage[] arg2)
+        /*private void CompilationPipeline_assemblyCompilationFinished(string arg1, CompilerMessage[] arg2)
         {
             Debug.Log("Assembly Finished = " + arg1);
             AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
-        }
+        }*/
 
         private static void PlayingCallback(PlayModeStateChange obj)
         {
+            Debug.Log("Playing Game");
             if (obj == PlayModeStateChange.EnteredPlayMode)
             {
                 ModLoader.LoadAllMods();

@@ -16,16 +16,22 @@ namespace ViridianLink.Helpers
 
 		public static Registry LoadModRegistry(Type ModType)
 		{
+			var finding = Registry.Find(ModType);
+			if (finding != null)
+			{
+				return finding;
+			}
 			var loader = ImplInfo.GetImplementation<RegistryLoaderImplementation>();
 
 			var registry = loader.GetRegistry(ModType);
 
-
-			return null;
-			/*if (registry != null)
+			if (registry != null)
 			{
-				
-			}*/
+				registry.Start();
+				Debugger.Log("Loading Registry for Mod: " + registry.ModType.Name);
+				return registry;
+			}
+			return null;
 		}
 	}
 }

@@ -300,13 +300,13 @@
     <Compile Include="src\Audio\Audio.cs" />
     <Compile Include="src\Features\GMTracking\Internal\GMTrackingPatches.cs" />
     <Compile Include="src\Debug\Internal\PlayerDebug.cs" />
+    <Compile Include="src\Harmony\ModLoader\ModLoaderH.cs" />
     <Compile Include="src\Helpers\Harmony.cs" />
     <Compile Include="src\Helpers\InternalEvent.cs" />
     <Compile Include="src\Helpers\Json.cs" />
     <Compile Include="src\Helpers\Methods.cs" />
     <Compile Include="src\Helpers\ObjectDebugger.cs" />
     <Compile Include="src\Helpers\UnityHelpers.cs" />
-    <Compile Include="src\Helpers\VirdianLinkLoader.cs" />
     <Compile Include="src\Hooks\GMTrackerHook.cs" />
     <Compile Include="src\Internal\ErrorPatcher.cs" />
     <Compile Include="src\Events\Events.cs" />
@@ -373,11 +373,11 @@
   </Target>
   <Import Project="$(SolutionDir)\packages\Fody.2.5.0\build\Fody.targets" Condition="Exists('$(SolutionDir)\packages\Fody.2.5.0\build\Fody.targets')" />
   <Import Project="$(SolutionDir)\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets" Condition="Exists('$(SolutionDir)\packages\Costura.Fody.1.6.2\build\portable-net+sl+win+wpa+wp\Costura.Fody.targets')" />
-  <Import Project="$(SolutionDir)Viridian.targets"/>
-    <Target Name="AfterBuild">
-	<ItemGroup>
-        <OutputFiles Include="$(OutputPath)\*.*"/>
+  <Import Project="$(SolutionDir)Viridian.targets" />
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <OutputFiles Include="$(OutputPath)\*.*" Exclude="$(OutputPath)\*.tmp" />
     </ItemGroup>
-	<Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />
+    <Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />
   </Target>
 </Project>

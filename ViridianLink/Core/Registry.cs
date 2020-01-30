@@ -72,13 +72,9 @@ namespace ViridianLink.Core
             {
                 if (modType == null || typeNameCache != modTypeName)
                 {
-                    Debugger.Log("modAssemblyName = " + modAssemblyName);
-                    Debugger.Log("modTypeName = " + modTypeName);
                     foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                     {
                         var type = assembly.GetType(modTypeName);
-                        //Debugger.Log("Assembly = " + assembly.FullName);
-                        //Debugger.Log("Type = " + type);
                         if (type != null)
                         {
                             modType = type;

@@ -30,7 +30,7 @@ namespace ViridianLink.Editor.Visual
             {
                 foreach (var type in assembly.GetTypes())
                 {
-                    if (typeof(IViridianMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition && !type.IsInterface)
+                    if (typeof(IViridianMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition && !type.IsInterface && !typeof(ViridianLinkMod).IsAssignableFrom(type))
                     {
                         ValidMods.Add(type);
                     }

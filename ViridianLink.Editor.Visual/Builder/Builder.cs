@@ -37,6 +37,34 @@ namespace ViridianLink.Editor.Visual
 		{
 			try
 			{
+				var guids = AssetDatabase.FindAssets("ModAssemblyDefinition");
+				if (guids != null && guids.GetLength(0) > 0)
+				{
+					foreach (var guid in guids)
+					{
+						Debug.Log("B");
+						var path = AssetDatabase.GUIDToAssetPath(guid);
+						Debug.Log("Asset Path = " + path);
+						Debug.Log("A");
+						var obj = AssetDatabase.LoadMainAssetAtPath(path);
+						Debug.Log("Asset Type = " + obj.GetType());
+					}
+				}
+				var temp = Path.GetTempPath();
+				var errors = BuildPipeline.BuildPlayer(new string[] { }, temp + "\\build\\build.exe", BuildTarget.StandaloneWindows, BuildOptions.BuildScriptsOnly);
+				Debug.Log("Erros = " + errors);
+			}
+			catch (Exception e)
+			{
+				Debug.LogError(e);
+			}
+		}
+
+		[MenuItem("ViridianLink/CompileOLD")]
+		public static void CompileOLD()
+		{
+			try
+			{
 
 				var binFolder = new DirectoryInfo("ViridianLink/bin").FullName;
 				if (!Directory.Exists(binFolder))

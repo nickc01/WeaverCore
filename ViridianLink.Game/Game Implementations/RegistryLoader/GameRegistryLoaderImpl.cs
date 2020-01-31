@@ -41,6 +41,18 @@ namespace ViridianLink.Game.Implementations
 					var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
 					/*foreach (var g in bundle.LoadAllAssets<GameObject>())
 					{
+						Debugger.Log("GameObject = " + g);
+						foreach (var component in g.GetComponents<Component>())
+						{
+							Debugger.Log("Test Component = " + component.GetType().FullName);
+							if (component is TestReference reference)
+							{
+								Debugger.Log("Reference = " + reference.gmRef);
+							}
+						}
+					}*/
+					/*foreach (var g in bundle.LoadAllAssets<GameObject>())
+					{
 						foreach (var component in g.GetComponents<Component>())
 						{
 							Debugger.Log("Test Component = " + component.GetType().FullName);

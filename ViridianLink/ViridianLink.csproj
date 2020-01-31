@@ -76,6 +76,10 @@
     <Reference Include="UnityEngine.CoreModule">
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>$(UnityEditorLocation)UnityEditor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Feature.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Core\Registry.cs" />
     <Compile Include="Helpers\Methods.cs" />
     <Compile Include="Helpers\Starter.cs" />
+    <Compile Include="Helpers\ViridianInternal.cs" />
     <Compile Include="Implementations\Debugger\DebuggerImpl.cs" />
     <Compile Include="Implementations\Enemy\EnemyImpl.cs" />
     <Compile Include="Core\IImplementation.cs" />
@@ -96,6 +101,7 @@
     <Compile Include="Implementations\Player\Player.cs" />
     <Compile Include="Implementations\Player\PlayerAllocator.cs" />
     <Compile Include="Implementations\Player\PlayerImplementation.cs" />
+    <Compile Include="InitializeOnLoad.cs" />
     <Compile Include="ModuleInitializer.cs" />
     <Compile Include="Helpers\MonoEmbedder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

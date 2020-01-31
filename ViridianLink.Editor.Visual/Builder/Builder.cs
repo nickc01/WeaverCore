@@ -13,6 +13,9 @@ namespace ViridianLink.Editor.Visual
 {
 	public static class Builder
 	{
+		const string asmDefFile = "{\n\"name\": \"def\"\n}\n";
+
+
 
 		static float progress = 0.0f;
 
@@ -35,9 +38,38 @@ namespace ViridianLink.Editor.Visual
 		[MenuItem("ViridianLink/Compile %F5")]
 		public static void Compile()
 		{
+			ModNameSelector.ChooseString(BeginCompile);
+		}
+
+		public static void ClearLogConsole()
+		{
+			var assembly = System.Reflection.Assembly.GetAssembly(typeof(SceneView));
+			Debug.Log("Assembly = " + assembly?.FullName);
+			Type logEntries = assembly.GetType("UnityEditor.LogEntries");
+			Debug.Log("Type = " + logEntries?.Name);
+			MethodInfo clearConsoleMethod = logEntries.GetMethod("Clear");
+			Debug.Log("Method = " + clearConsoleMethod?.Name);
+			clearConsoleMethod.Invoke(new object(), null);
+		}
+
+		static void BeginCompile(string modName)
+		{
 			try
 			{
-				var guids = AssetDatabase.FindAssets("ModAssemblyDefinition");
+				ClearLogConsole();
+				var binFolder = new DirectoryInfo("ViridianLink/bin").FullName;
+				if (!Directory.Exists(binFolder))
+				{
+					Directory.CreateDirectory(binFolder);
+				}
+				string destination = EditorUtility.SaveFilePanel("Select where you want to compile the mod", binFolder, PlayerSettings.productName.Replace(" ", ""), "dll");
+				if (destination == "")
+				{
+					return;
+				}
+				Debug.Log("Beginning Compilation");
+				AssetDatabase.StartAssetEditing();
+				var guids = AssetDatabase.FindAssets("ModName");
 				if (guids != null && guids.GetLength(0) > 0)
 				{
 					foreach (var guid in guids)
@@ -46,13 +78,97 @@ namespace ViridianLink.Editor.Visual
 						var path = AssetDatabase.GUIDToAssetPath(guid);
 						Debug.Log("Asset Path = " + path);
 						Debug.Log("A");
-						var obj = AssetDatabase.LoadMainAssetAtPath(path);
-						Debug.Log("Asset Type = " + obj.GetType());
+						AssetDatabase.DeleteAsset(path);
 					}
 				}
+				//Debug.Log("Path = " + );
+				var asmPath = new DirectoryInfo("Assets").FullName + "\\ModName.asmdef";
+				using (var writer = File.CreateText(asmPath))
+				{
+					writer.Write(asmDefFile.Replace("def", modName));
+				}
+				AssetDatabase.StopAssetEditing();
+				AssetDatabase.ImportAsset("Assets\\ModName.asmdef");
 				var temp = Path.GetTempPath();
 				var errors = BuildPipeline.BuildPlayer(new string[] { }, temp + "\\build\\build.exe", BuildTarget.StandaloneWindows, BuildOptions.BuildScriptsOnly);
 				Debug.Log("Erros = " + errors);
+
+				//ClearLogConsole();
+
+				var buildPath = temp + "\\build\\build_Data\\Managed\\" + modName + ".dll";
+
+				//TODO -- BUILD THE ASSET BUNDLES AND EMBED THEM INTO THE ASSEMBLY. THEN COPY THE ASSEMBLY TO THE DESTINATION
+
+				List<BuildMode> modes = new List<BuildMode>()
+				{
+					new BuildMode()
+					{
+						Extension = ".bundle.win",
+						Target = BuildTarget.StandaloneWindows
+					},
+					new BuildMode()
+					{
+						Extension = ".bundle.mac",
+						Target = BuildTarget.StandaloneOSX
+					},
+					new BuildMode()
+					{
+						Extension = ".bundle.unix",
+						Target = BuildTarget.StandaloneLinuxUniversal
+					}
+				};
+
+				var assemblyLoader = typeof(Builder).Assembly.GetType("Costura.AssemblyLoader");
+
+				var resolver = assemblyLoader.GetMethod("ResolveAssembly", BindingFlags.Public | BindingFlags.Static);
+
+				var result = (System.Reflection.Assembly)resolver.Invoke(null, new object[] { null, new ResolveEventArgs("Mono.Cecil, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e") });
+
+				Debugger.Log("Result = " + result.FullName);
+
+				var embedder = AppDomain.CurrentDomain.Load("ResourceEmbedder");
+				var program = embedder.GetType("ResourceEmbedder.Program");
+				var Main = program.GetMethod("Main", BindingFlags.Static | BindingFlags.NonPublic);
+
+				foreach (var name in AssetDatabase.GetAllAssetBundleNames())
+				{
+					foreach (var mode in modes)
+					{
+						if (IsPlatformSupportLoaded(mode.Target))
+						{
+							var bundleBuilds = new DirectoryInfo(temp + @"BundleBuilds\");
+							if (bundleBuilds.Exists)
+							{
+								foreach (var existingFile in bundleBuilds.GetFiles())
+								{
+									existingFile.Delete();
+								}
+							}
+							else
+							{
+								bundleBuilds.Create();
+							}
+							BuildPipeline.BuildAssetBundles(bundleBuilds.FullName, BuildAssetBundleOptions.None, mode.Target);
+							foreach (var newFile in bundleBuilds.GetFiles())
+							{
+								if (newFile.Extension == "")
+								{
+									Main.Invoke(null, new object[] { new string[] { buildPath, newFile.FullName, newFile.Name + mode.Extension, "false" } });
+								}
+							}
+						}
+						else
+						{
+							Debug.LogWarning($"{mode.Target} module is not loaded, so building for the target is not available");
+						}
+					}
+				}
+
+				File.Copy(buildPath, destination, true);
+				//ClearLogConsole();
+
+				//TODO -- THEN, FIGURE OUT HOW TO RELOAD THE ASSEMBLY CONSISTENTLY
+
 			}
 			catch (Exception e)
 			{
@@ -60,7 +176,7 @@ namespace ViridianLink.Editor.Visual
 			}
 		}
 
-		[MenuItem("ViridianLink/CompileOLD")]
+		/*[MenuItem("ViridianLink/CompileOLD")]
 		public static void CompileOLD()
 		{
 			try
@@ -128,7 +244,7 @@ namespace ViridianLink.Editor.Visual
 				Debug.LogError(e);
 			}
 
-		}
+		}*/
 
 		struct BuildMode
 		{
@@ -148,7 +264,7 @@ namespace ViridianLink.Editor.Visual
 		}
 
 
-		static void PostBuild(string file)
+		/*static void PostBuild(string file)
 		{
 			List<BuildMode> modes = new List<BuildMode>()
 			{
@@ -215,29 +331,6 @@ namespace ViridianLink.Editor.Visual
 					}
 				}
 			}
-			//}
-			/*catch (TargetInvocationException e)
-			{
-				Debug.Log("Inner Exception = " + e.InnerException);
-			}
-			catch (Exception e)
-			{
-				Debug.LogError("EXCEPTION = " + e.Message);
-				Debug.LogError("Type = " + e.GetType());
-				Debug.LogError("Stack Trace = " + e.StackTrace);
-			}*/
-		}
-
-		/*private static System.Reflection.Assembly CurrentDomain_TypeResolve(object sender, ResolveEventArgs args)
-		{
-			Debug.Log("Type = " + args.Name);
-			return null;
-		}*/
-
-		/*private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-		{
-			Debug.Log("Assembly to Load = " + args.Name);
-			return null;
 		}*/
 	}
 

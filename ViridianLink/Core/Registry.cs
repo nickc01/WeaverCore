@@ -32,6 +32,9 @@ namespace ViridianLink.Core
         List<FeatureSet> features;
 
         [SerializeField]
+        List<Feature> featuresRaw;
+
+        [SerializeField]
         public int selectedFeatureIndex = 0;
 
         public string ModName => mod;
@@ -131,11 +134,11 @@ namespace ViridianLink.Core
 
         public IEnumerable<T> GetFeatures<T>(Func<T,bool> predicate) where T : Feature
         {
-            foreach (var feature in features)
+            foreach (var feature in featuresRaw)
             {
-                if (feature.feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.feature.GetType()) && predicate((T)feature.feature))
+                if (feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate((T)feature))
                 {
-                    yield return (T)feature.feature;
+                    yield return (T)feature;
                 }
             }
         }
@@ -144,12 +147,11 @@ namespace ViridianLink.Core
         {
             get
             {
-                Debugger.Log("Features = " + features);
-                foreach (var featureSet in features)
+                Debugger.Log("Features = " + featuresRaw);
+                foreach (var feature in featuresRaw)
                 {
-                    Debugger.Log("FeatureSet = " + featureSet);
-                    Debugger.Log("Feature = " + featureSet.feature);
-                    yield return featureSet.feature;
+                    Debugger.Log("Feature = " + feature);
+                    yield return feature;
                 }
             }
         }
@@ -162,6 +164,7 @@ namespace ViridianLink.Core
                 FullAssemblyName = typeof(T).Assembly.FullName,
                 FullTypeName = typeof(T).FullName
             });
+            featuresRaw.Add(feature);
         }
 
         public bool Remove<T>(T feature) where T : Feature
@@ -171,6 +174,7 @@ namespace ViridianLink.Core
                 if (features[i].feature == feature)
                 {
                     features.RemoveAt(i);
+                    featuresRaw.RemoveAt(i);
                     return true;
                 }
             }
@@ -184,6 +188,7 @@ namespace ViridianLink.Core
                 if (predicate(features[i].feature))
                 {
                     features.RemoveAt(i);
+                    featuresRaw.RemoveAt(i);
                     return true;
                 }
             }

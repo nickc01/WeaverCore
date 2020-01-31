@@ -7,7 +7,7 @@ using ViridianLink.Implementations;
 
 namespace ViridianLink
 {
-    static class ModuleInitializer
+    internal static class ModuleInitializer
     {
         static bool Initialized = false;
 
@@ -16,18 +16,9 @@ namespace ViridianLink
             if (!Initialized)
             {
                 Initialized = true;
-                //var init = IImplementation.GetImplementation<Initializer>();
                 var init = ImplInfo.GetImplementation<InitializerImplementation>();
                 init.Initialize();
             }
-        }
-    }
-
-    public class TestComponent : MonoBehaviour
-    {
-        void Start()
-        {
-            Debug.Log("TEST COMPONENT STARTED");
         }
     }
 }

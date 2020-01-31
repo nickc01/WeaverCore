@@ -2,7 +2,7 @@
 C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\
 
 [EditorDebug/EditorRelease Unity Project Directory]
-C:\Users\Nicholas\Documents\Unity Projects\Test Project\Assets\
+C:\Unity Projects\TestProject\
 
 [Unity Editor Location]
 C:\Program Files\Unity\Hub\Editor\2017.4.10f1\Editor\Data\Managed\

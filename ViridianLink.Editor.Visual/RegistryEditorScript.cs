@@ -94,6 +94,7 @@ namespace ViridianLink.Editor.Visual
 
         void RenderFeatures(SerializedProperty features)
         {
+            var featuresRaw = serializedObject.FindProperty("featuresRaw");
             EditorGUILayout.BeginVertical("Button");
             for (int i = 0; i < features.arraySize; i++)
             {
@@ -112,6 +113,7 @@ namespace ViridianLink.Editor.Visual
                 objectProp.objectReferenceValue = EditorGUILayout.ObjectField(oldValue,type, false);
                 if (objectProp.objectReferenceValue != oldValue)
                 {
+                    featuresRaw.GetArrayElementAtIndex(i).objectReferenceValue = objectProp.objectReferenceValue;
                     var modTypeProp = serializedObject.FindProperty("modTypeName");
                     Debug.Log("Updating Bundles");
                     SetBundleForObject((objectProp.objectReferenceValue as Feature)?.gameObject, Regex.Match(modTypeProp.stringValue, @"([^.]+?)\.?$").Groups[0].Value + "_bundle");
@@ -119,6 +121,7 @@ namespace ViridianLink.Editor.Visual
                 if (GUILayout.Button("X",GUILayout.MaxWidth(25)))
                 {
                     features.DeleteArrayElementAtIndex(i);
+                    featuresRaw.DeleteArrayElementAtIndex(i);
                 }
                 EditorGUILayout.EndHorizontal();
             }
@@ -131,8 +134,10 @@ namespace ViridianLink.Editor.Visual
             if (GUILayout.Button("Add Feature"))
             {
                 features.InsertArrayElementAtIndex(features.arraySize);
+                featuresRaw.InsertArrayElementAtIndex(featuresRaw.arraySize);
                 var last = features.GetArrayElementAtIndex(features.arraySize - 1);
                 last.FindPropertyRelative("feature").objectReferenceValue = null;
+                featuresRaw.GetArrayElementAtIndex(featuresRaw.arraySize - 1).objectReferenceValue = null;
                 last.FindPropertyRelative("FullTypeName").stringValue = Features[changedIndex].FullName;
                 last.FindPropertyRelative("FullAssemblyName").stringValue = Features[changedIndex].Assembly.FullName;
             }
@@ -184,10 +189,10 @@ namespace ViridianLink.Editor.Visual
                 {
                     RenderFeatures(iter);
                 }
-                /*else if (iter.name == "selectedFeatureIndex" || iter.name == "modAssemblyName" || iter.name == "modTypeName")
+                else if (iter.name == "selectedFeatureIndex" || iter.name == "modAssemblyName" || iter.name == "modTypeName" || iter.name == "featuresRaw")
                 {
 
-                }*/
+                }
                 else
                 {
                     using (new EditorGUI.DisabledScope("m_Script" == iter.propertyPath))

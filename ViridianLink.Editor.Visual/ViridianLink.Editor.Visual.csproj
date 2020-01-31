@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder\Builder.cs" />
+    <Compile Include="ModNameSelector\ModNameSelector.cs" />
     <Compile Include="RegistryEditorScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

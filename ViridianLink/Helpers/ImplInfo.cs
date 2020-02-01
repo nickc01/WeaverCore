@@ -104,17 +104,6 @@ namespace ViridianLink.Helpers
             }
         }
 
-        class testAwaiter : IAsyncResult
-        {
-            object IAsyncResult.AsyncState => throw new NotImplementedException();
-
-            WaitHandle IAsyncResult.AsyncWaitHandle => throw new NotImplementedException();
-
-            bool IAsyncResult.CompletedSynchronously => throw new NotImplementedException();
-
-            bool IAsyncResult.IsCompleted => throw new NotImplementedException();
-        }
-
         static void LoadEditorAssembly()
         {
             ImplAssembly = ResourceLoader.LoadAssembly("ViridianLink.Editor");

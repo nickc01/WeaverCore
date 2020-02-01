@@ -36,7 +36,6 @@ namespace ViridianLink.Editor.Visual
                     }
                     if (typeof(Feature).IsAssignableFrom(type) && type != typeof(Feature) && !type.IsGenericTypeDefinition && !type.IsInterface && type.IsAbstract)
                     {
-                        Debug.Log("Feature = " + type.Name);
                         Features.Add(type);
                     }
                 }
@@ -77,16 +76,12 @@ namespace ViridianLink.Editor.Visual
         void SetBundleForObject(UnityEngine.Object obj,string bundleName)
         {
             //FIX by making it not dependent on registry target
-            Debug.Log("OBJ = " + obj);
-            Debug.Log("Bundle Name = " + bundleName);
             if (obj != null)
             {
                 var registry = (Registry)target;
                 var path = AssetDatabase.GetAssetPath(obj);
-                Debug.Log("Path = " + path);
                 if (path != null && path != "")
                 {
-                    Debug.Log("Bundle Set");
                     AssetImporter.GetAtPath(path).SetAssetBundleNameAndVariant(bundleName, "");
                 }
             }
@@ -115,8 +110,8 @@ namespace ViridianLink.Editor.Visual
                 {
                     featuresRaw.GetArrayElementAtIndex(i).objectReferenceValue = objectProp.objectReferenceValue;
                     var modTypeProp = serializedObject.FindProperty("modTypeName");
-                    Debug.Log("Updating Bundles");
-                    SetBundleForObject((objectProp.objectReferenceValue as Feature)?.gameObject, Regex.Match(modTypeProp.stringValue, @"([^.]+?)\.?$").Groups[0].Value + "_bundle");
+                    var bundleName = Regex.Match(modTypeProp.stringValue, @"([^.]+?)\.?$").Groups[0].Value + "_bundle";
+                    SetBundleForObject((objectProp.objectReferenceValue as Feature)?.gameObject, bundleName);
                 }
                 if (GUILayout.Button("X",GUILayout.MaxWidth(25)))
                 {
@@ -176,12 +171,13 @@ namespace ViridianLink.Editor.Visual
                     {
                         modAssemblyProp.stringValue = ValidMods[newSelection].Assembly.FullName;
                         modTypeProp.stringValue = ValidMods[newSelection].FullName;
-                        Debug.Log("Updating Bundles2");
                         var features = serializedObject.FindProperty("features");
                         for (int i = 0; i < features.arraySize; i++)
                         {
                             var obj = features.GetArrayElementAtIndex(i).FindPropertyRelative("feature").objectReferenceValue;
-                            SetBundleForObject((obj as Feature)?.gameObject,Regex.Match(modTypeProp.stringValue, @"([^.]+?)\.?$").Groups[0].Value + "_bundle");
+                            var bundleName = Regex.Match(modTypeProp.stringValue, @"([^.]+?)\.?$").Groups[0].Value + "_bundle";
+                            SetBundleForObject((obj as Feature)?.gameObject,bundleName);
+                            SetBundleForObject(target, bundleName);
                         }
                     }
                 }

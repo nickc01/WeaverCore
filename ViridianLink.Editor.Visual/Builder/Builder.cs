@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using ViridianLink.Editor.Helpers;
+using ViridianLink.Editor.Routines;
 using ViridianLink.Helpers;
 
 namespace ViridianLink.Editor.Visual
@@ -60,7 +62,10 @@ namespace ViridianLink.Editor.Visual
 		[MenuItem("ViridianLink/Compile %F5")]
 		public static void Compile()
 		{
-			ModNameSelector.ChooseString(BeginCompile);
+			ModNameSelector.ChooseString((modName) =>
+			{
+				EditorRoutine.Start(BeginCompile(modName));
+			});
 		}
 
 		public static void ClearLogConsole()
@@ -106,58 +111,65 @@ namespace ViridianLink.Editor.Visual
 			return GetFiles("*.dll");
 		}
 
-		static void BeginCompile(string modName)
+		public static IEnumerator<IEditorWaiter> BeginCompile(string modName)
 		{
-			try
+			bool doneCompiling = false;
+			string buildDestination = "";
+			UnityEditor.Compilation.CompilerMessage[] messages = null;
+
+			string destination = SelectSaveLocation(modName);
+
+			if (destination == "")
 			{
-				string destination = SelectSaveLocation(modName);
+				yield break;
+			}
 
-				Progress = 0.0f;
+			Progress = 0.0f;
 
-				var builder = new UnityEditor.Compilation.AssemblyBuilder(destination, GetScripts());
+			var builder = new UnityEditor.Compilation.AssemblyBuilder(destination, GetScripts());
 
-				builder.buildTarget = BuildTarget.StandaloneWindows;
+			builder.buildTarget = BuildTarget.StandaloneWindows;
 
-				builder.additionalReferences = GetReferences();
+			builder.additionalReferences = GetReferences();
 
-				builder.buildTargetGroup = BuildTargetGroup.Standalone;
+			builder.buildTargetGroup = BuildTargetGroup.Standalone;
 
-				Action<string, UnityEditor.Compilation.CompilerMessage[]> finish = null;
-				finish = (dest, messages) =>
+			Action<string, UnityEditor.Compilation.CompilerMessage[]> finish = null;
+			finish = (dest, m) =>
+			{
+				buildDestination = dest;
+				messages = m;
+				doneCompiling = true;
+			};
+
+			builder.buildFinished += finish;
+			builder.Build();
+
+			yield return new WaitTillTrue(() => doneCompiling);
+			yield return null;
+
+			bool errors = false;
+			foreach (var message in messages)
+			{
+				switch (message.type)
 				{
-					bool errors = false;
-					foreach (var message in messages)
-					{
-						switch (message.type)
-						{
-							case UnityEditor.Compilation.CompilerMessageType.Error:
-								Debug.LogError(message.message);
-								errors = true;
-								break;
-							case UnityEditor.Compilation.CompilerMessageType.Warning:
-								Debug.LogWarning(message.message);
-								break;
-						}
-					}
-					builder.buildFinished -= finish;
-					if (!errors)
-					{
-						Progress = 0.1f;
-						PostBuild(dest);
-					}
-					else
-					{
-						ClearProgress();
-					}
-				};
-
-				builder.buildFinished += finish;
-				builder.Build();
+					case UnityEditor.Compilation.CompilerMessageType.Error:
+						Debug.LogError(message.message);
+						errors = true;
+						break;
+					case UnityEditor.Compilation.CompilerMessageType.Warning:
+						Debug.LogWarning(message.message);
+						break;
+				}
 			}
-			catch (Exception e)
+			builder.buildFinished -= finish;
+			ClearProgress();
+			if (errors)
 			{
-				Debug.LogException(e);
+				yield break;
 			}
+			Progress = 0.1f;
+			PostBuild(buildDestination);
 		}
 
 		delegate void embedMethod(string sourceAssembly,string additionFile,string resourcePath,bool deleteSource);
@@ -230,7 +242,6 @@ namespace ViridianLink.Editor.Visual
 				}
 			}
 			ClearProgress();
-			ClearLogConsole();
 			Debug.Log("Build Complete");
 		}
 

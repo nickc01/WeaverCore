@@ -32,8 +32,6 @@ namespace ViridianLink.Editor.Implementations
         public override void Initialize()
         {
             EditorApplication.playModeStateChanged += PlayingCallback;
-
-
             Starter.AddInitializer(() =>
             {
                 var data = GetData();

@@ -307,6 +307,9 @@
   </PropertyGroup>
   <Import Project="$(SolutionDir)Viridian.targets"/>
   <Target Name="AfterBuild">
+	<Exec Command="$(SolutionDir)ResourceEmbedder\bin\$(ConfigurationName)\ResourceEmbedder.exe %22$(HollowKnightLocation)Managed\Mods\ViridianLink.dll%22 %22$(SolutionDir)ViridianLink.Editor\bin\$(ConfigurationName)\ViridianLink.Editor.dll%22 %22ViridianLink.Editor%22 false" />
+	<Exec Command="$(SolutionDir)ResourceEmbedder\bin\$(ConfigurationName)\ResourceEmbedder.exe %22$(HollowKnightLocation)Managed\Mods\ViridianLink.dll%22 %22$(SolutionDir)ViridianLink.Game\bin\$(ConfigurationName)\ViridianLink.Game.dll%22 %22ViridianLink.Game%22 false" />
+	<Exec Command="$(SolutionDir)ResourceEmbedder\bin\$(ConfigurationName)\ResourceEmbedder.exe %22$(HollowKnightLocation)Managed\Mods\ViridianLink.dll%22 %22$(SolutionDir)ViridianLink.Editor.Visual\bin\$(ConfigurationName)\ViridianLink.Editor.Visual.dll%22 %22ViridianLink.Editor.Visual%22 false" />
     <Copy 
 	SourceFiles="$(HollowKnightLocation)Managed\Mods\ViridianLink.dll" 
 	DestinationFolder="$(EditorProjectLocation)Assets"

@@ -94,36 +94,28 @@ namespace ResourceEmbedder
 
         static int Main(string[] args)
         {
-            //try
-            //{
-                string sourceAssembly = args[0];
-                string additionFile = args[1];
-                string resourcePath = args[2];
+            string sourceAssembly = args[0];
+            string additionFile = args[1];
+            string resourcePath = args[2];
 
 
 
-                Console.WriteLine($"Embedding {Path.GetFileName(additionFile)} into {Path.GetFileName(sourceAssembly)} at the resource path: ({resourcePath})...");
-                byte[] additionBytes;
+            Console.WriteLine($"Embedding {Path.GetFileName(additionFile)} into {Path.GetFileName(sourceAssembly)} at the resource path: ({resourcePath})...");
+            byte[] additionBytes;
 
-                while (!IsFileReady(sourceAssembly)) { }
-                using (var additionStream = File.OpenRead(additionFile))
-                {
-                    additionBytes = new byte[additionStream.Length];
+            while (!IsFileReady(sourceAssembly)) { }
+            using (var additionStream = File.OpenRead(additionFile))
+            {
+                additionBytes = new byte[additionStream.Length];
 
-                    additionStream.Read(additionBytes, 0, (int)additionStream.Length);
+                additionStream.Read(additionBytes, 0, (int)additionStream.Length);
 
-                    additionStream.Close();
-                }
+                additionStream.Close();
+            }
 
-                AddResource(sourceAssembly, resourcePath, additionBytes);
-                Console.WriteLine("Embedding Successful!");
-                return 0;
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("ERROR Embedding assembly resource -> " + e);
-            //    return -1;
-            //}
+            AddResource(sourceAssembly, resourcePath, additionBytes);
+            Console.WriteLine("Embedding Successful!");
+            return 0;
         }
     }
 }

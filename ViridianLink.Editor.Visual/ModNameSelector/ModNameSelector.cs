@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,51 +11,70 @@ namespace ViridianLink.Editor.Visual
 {
 	public class ModNameSelector : EditorWindow
 	{
-		string modNameSelection;
 		Action<string> OnStart;
+		string modName = "";
 
+
+		string StoredModName
+		{
+			get
+			{
+				if (File.Exists("LastModName.dat"))
+				{
+					using (var file = File.Open("LastModName.dat", FileMode.Open))
+					{
+						using (var reader = new StreamReader(file))
+						{
+							return reader.ReadToEnd();
+						}
+					}
+				}
+				return "";
+			}
+			set
+			{
+				using (var file = File.Open("LastModName.dat", FileMode.Create))
+				{
+					using (var writer = new StreamWriter(file))
+					{
+						writer.Write(value);
+					}
+				}
+			}
+		}
 
 		public static void ChooseString(Action<string> OnSelection)
 		{
 			ModNameSelector window = (ModNameSelector)GetWindow(typeof(ModNameSelector));
+			window.Setup(OnSelection);
+			window.Show();
+		}
 
+		void Setup(Action<string> OnSelection)
+		{
 			var resolution = Screen.currentResolution;
-			var width = window.position.width;
-			var height = window.position.height;
+			var width = position.width;
+			var height = position.height;
 
 			var x = (resolution.width / 2) - (width / 2);
 			var y = (resolution.height / 2) - (height / 2);
 
-			window.position = new Rect(x, y, width, height);
-			window.titleContent.text = "Compile";
+			position = new Rect(x, y, width, height);
+			titleContent.text = "Compile";
 
-			var defaultName = "";
-
-			var guids = AssetDatabase.FindAssets("ModName");
-
-			if (guids != null && guids.GetLength(0) > 0)
+			modName = StoredModName;
+			if (modName == "")
 			{
-				var path = AssetDatabase.GUIDToAssetPath(guids[0]);
-				TextAsset file = (TextAsset)AssetDatabase.LoadAssetAtPath(path, typeof(TextAsset));
-				defaultName = Regex.Match(file.text, @"""name"": ""(.+?)""").Groups[1].Value;
+				modName = PlayerSettings.productName.Replace(" ", "");
 			}
 
-			if (defaultName == "")
-			{
-				defaultName = PlayerSettings.productName.Replace(" ", "");
-			}
-			window.modNameSelection = defaultName;
-			window.OnStart = OnSelection;
-
-
-
-			window.Show();
+			OnStart = OnSelection;
 		}
 
 		void OnGUI()
 		{
 			EditorGUILayout.LabelField("Specify the name of the mod:");
-			modNameSelection = EditorGUILayout.TextField(modNameSelection);
+			modName = EditorGUILayout.TextField(modName);
 			EditorGUILayout.Space();
 			EditorGUILayout.BeginHorizontal();
 			if (GUILayout.Button("Close"))
@@ -64,7 +84,8 @@ namespace ViridianLink.Editor.Visual
 			if (GUILayout.Button("Compile") && OnStart != null)
 			{
 				Close();
-				OnStart(modNameSelection);
+				StoredModName = modName;
+				OnStart(modName);
 				OnStart = null;
 			}
 

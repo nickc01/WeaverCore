@@ -9,6 +9,8 @@ namespace ViridianLink
         {
             Debug.Log("Initialize On Load");
             ModuleInitializer.Initialize();
+
+            Helpers.Harmony.ViridianHarmonyInstance.PatchAll();
         }
     }
 }

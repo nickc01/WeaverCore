@@ -1,33 +1,24 @@
-# **ViridianCore**
+# **WeaverCore**
 Core mod for all of my mods for Hollow Knight
 
 ## **Project details**
 
-### **ViridianCore**
 
-The base core mod
-
-### **ViridianCore.NLayer**
-
-A wrapper for the ViridianCore mod and the NLayer library. Used decoding mp3 audio files.
-
-https://github.com/naudio/NLayer
-
-### **ViridianLink**
+### **WeaverCore**
 
 A library used to link Hollow Knight and the Unity Editor together. This library allows you to develop your mods in the Unity Editor, then transfer them seamlessly into Hollow Knight
 
-### **ViridianLink.Editor**
+### **WeaverCore.Editor**
 
 This is only loaded if ViridianLink is in the Unity Editor. This is embedded into ViridianLink as a resource
 
-### **ViridianLink.Game**
+### **WeaverCore.Game**
 
 This is only loaded if ViridianLink is in Hollow Knight. This is embedded into ViridianLink as a resource
 
-### **ResourceEmbedder**
+### **AssemblyManipulator**
 
-This library is used to embed assemblies into other assemblies as resources. This is used to embed ViridianLink.Editor and ViridianLink.Game into ViridianLink
+This library is used to manipulate assemblies, whether it be patching a new mod into them or embedding resources into them.
 
 ### **TestMod**
 

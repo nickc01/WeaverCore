@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace ViridianLink.Helpers
+namespace ViridianLink.Extras
 {
     public static class ResourceLoader
     {

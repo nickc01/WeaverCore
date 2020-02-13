@@ -5,7 +5,7 @@ using System.Text;
 using ViridianLink.Core;
 using ViridianLink.Implementations;
 
-namespace ViridianLink.Helpers
+namespace ViridianLink.Extras
 {
 	public static class ModLoader
 	{
@@ -15,28 +15,10 @@ namespace ViridianLink.Helpers
 			var impl = ImplInfo.GetImplementation<ModLoaderImplementation>();
 			foreach (var mod in impl.LoadAllMods())
 			{
-				var registry = RegistryLoader.LoadModRegistry(mod.GetType());
+				var registry = RegistryLoader.GetModRegistry(mod.GetType());
 				if (registry == null && !(mod is ViridianLinkMod))
 				{
 					Debugger.LogWarning($"No registry found for mod : {mod.Name}");
-				}
-				else if (registry != null)
-				{
-					try
-					{
-						Debugger.Log("Printing Features");
-						Debugger.Log("Registry = " + registry);
-						Debugger.Log("All Features = " + registry.AllFeatures);
-						foreach (var feature in registry.AllFeatures)
-						{
-							Debugger.Log("D");
-							Debugger.Log("Feature = " + feature?.name);
-						}
-					}
-					catch (Exception e)
-					{
-						Debugger.LogError("Exception = " + e);
-					}
 				}
 				yield return mod;
 			}

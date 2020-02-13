@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 
-namespace ViridianLink.Helpers
+namespace ViridianLink.Extras
 {
     public struct HarmonyInstance
     {

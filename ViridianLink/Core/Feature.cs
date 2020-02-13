@@ -6,33 +6,21 @@ using UnityEngine;
 
 namespace ViridianLink.Core
 {
+    /// <summary>
+    /// A feature that is to be added in the game. These are added to <see cref="Registry"/> to be activated
+    /// </summary>
     public abstract class Feature : MonoBehaviour
     {
         [SerializeField]
         private bool featureEnabled = true;
 
+        /// <summary>
+        /// Whether the feature is enabled
+        /// </summary>
         public virtual bool FeatureEnabled
         {
             get => featureEnabled;
             set => featureEnabled = value;
         }
-    }
-
-    public abstract class EnemyReplacement : Feature
-    {
-        [SerializeField]
-        private string enemyToReplace = "";
-
-        public virtual string EnemyToReplace
-        {
-            get => enemyToReplace;
-            set => enemyToReplace = value;
-        }
-
-    }
-
-    public class EnemyTesting : EnemyReplacement
-    {
-
     }
 }

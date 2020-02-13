@@ -70,15 +70,24 @@
     <Reference Include="UnityEngine.CoreModule">
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Implementations\Debugger\GameDebuggerImpl.cs" />
+    <Compile Include="Game Implementations\Enemy\GameEnemyStaticImpl.cs" />
+    <Compile Include="Game Implementations\Enemy\GameEnemyImpl.cs" />
     <Compile Include="Game Implementations\ModLoader\GameModLoaderImpl.cs" />
     <Compile Include="Game Implementations\RegistryLoader\GameRegistryLoaderImpl.cs" />
-    <Compile Include="Game Implementations\Player\GamePlayerAllocator.cs" />
     <Compile Include="Game Implementations\Player\PlayerImpl.cs" />
     <Compile Include="Initializer.cs" />
+    <Compile Include="IPatch.cs" />
+    <Compile Include="Patches\HealthManager-Enemy.cs" />
+    <Compile Include="Patches\HeroController-Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ViridianCore\ViridianCore.csproj">
@@ -100,6 +109,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

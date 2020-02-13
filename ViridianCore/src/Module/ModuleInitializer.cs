@@ -59,8 +59,7 @@ internal static class ModuleInitializer
         {
             LoadInfo += "Assembly-CSharp AssemblyResolve event is first;";
         }
-
-        LoadViridianLink();
+        //LoadViridianLink();
 
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
@@ -77,13 +76,13 @@ internal static class ModuleInitializer
         var location = typeof(ViridianCore.ViridianCore).Assembly.Location;
         var directory = new FileInfo(location).Directory.FullName;
 
-        Modding.Logger.Log("Location = " + directory + "/ViridianLink.dll");
+        Modding.Logger.Log("Location = " + directory + "\\ViridianLink.dll");
 
-        var ViridianLink = Assembly.LoadFile(directory + "/ViridianLink.dll");
+        var ViridianLink = Assembly.LoadFile(directory + "\\ViridianLink.dll");
         //var ViridianLink = Assembly.Load("ViridianLink");
         if (ViridianLink != null)
         {
-            var modLoader = ViridianLink.GetType("ViridianLink.Helpers.ModLoader");
+            var modLoader = ViridianLink.GetType("ViridianLink.Extras.ModLoader");
             modLoader.GetMethod("LoadAllMods", BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
         }
     }

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 using ViridianLink.Core;
-using ViridianLink.Helpers;
+using ViridianLink.Extras;
 
 namespace ViridianLink.Editor.Implementations
 {
@@ -55,7 +55,7 @@ namespace ViridianLink.Editor.Implementations
             foreach (var mod in LoadedMods)
             {
                 Debugger.Log($"Loading Viridian Mod {mod.Name}, Version: {mod.Version}");
-                RegistryLoader.LoadModRegistry(mod.GetType());
+                RegistryLoader.GetModRegistry(mod.GetType());
                 mod.Load();
                 yield return mod;
             }

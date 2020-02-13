@@ -3,14 +3,12 @@
 namespace ViridianLink
 {
 	[UnityEditor.InitializeOnLoad]
-    static class InitializeOnLoad
+    internal static class InitializeOnLoad
     {
         static InitializeOnLoad()
         {
             Debug.Log("Initialize On Load");
             ModuleInitializer.Initialize();
-
-            Helpers.Harmony.ViridianHarmonyInstance.PatchAll();
         }
     }
 }

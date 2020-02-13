@@ -8,7 +8,7 @@ using System.Text;
 using UnityEngine;
 using ViridianCore.Helpers;
 using ViridianLink.Core;
-using ViridianLink.Helpers;
+using ViridianLink.Extras;
 
 namespace ViridianLink.Game.Implementations
 {
@@ -20,11 +20,11 @@ namespace ViridianLink.Game.Implementations
 
         public override IEnumerable<IViridianMod> LoadAllMods()
         {
-            //TODO : Search mod directory for all dlls and load them all up. Use that to find all the mods
-            var fileLocation = typeof(ViridianCore.ViridianCore).Assembly.Location;
+            Modding.Logger.Log("LOADING ALL THE MODS!!!");
+            yield break;
+            /*var fileLocation = typeof(ViridianCore.ViridianCore).Assembly.Location;
 
             var modDirectory = new FileInfo(fileLocation).Directory.FullName;
-
 
             foreach (var file in Directory.GetFiles(modDirectory,"*.dll"))
             {
@@ -34,16 +34,28 @@ namespace ViridianLink.Game.Implementations
                     if (typeof(IViridianMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition)
                     {
                         Modding.Logger.Log("New Mod = " + type.Name);
+                        Modding.Logger.Log("BB");
                         IViridianMod newMod = (IViridianMod)Activator.CreateInstance(type);
-
-                        var modHandle = typeof(ViridianMod<>).MakeGenericType(type);
-                        IMod finalMod = (IMod)modHandle.GetMethod("CreateMod", BindingFlags.Public | BindingFlags.Static).Invoke(null, new object[] { newMod });
-                        ((List<IMod>)LoadedMods.GetValue(null)).Add(finalMod);
+                        try
+                        {
+                            Modding.Logger.Log("CC");
+                            var modHandle = typeof(ViridianMod<>).MakeGenericType(type);
+                            Modding.Logger.Log("DD");
+                            IMod finalMod = (IMod)modHandle.GetMethod("CreateMod", BindingFlags.Public | BindingFlags.Static).Invoke(null, new object[] { newMod });
+                            Debugger.Log("Final Mod = " + finalMod);
+                            ((List<IMod>)LoadedMods.GetValue(null)).Add(finalMod);
+                            Modding.Logger.Log("EE");
+                        }
+                        catch (Exception e)
+                        {
+                            Modding.Logger.Log("MOD LOAD ERROR = " + e);
+                            throw;
+                        }
 
                         yield return newMod;
                     }
                 }
-            }
+            }*/
         }
 
         
@@ -53,6 +65,7 @@ namespace ViridianLink.Game.Implementations
     public class ViridianMod<T> : IMod where T : IViridianMod
     {
         protected T Mod { get; private set; }
+        protected Registry ModRegistry { get; private set; }
 
         internal ViridianMod(T mod)
         {
@@ -79,8 +92,17 @@ namespace ViridianLink.Game.Implementations
 
         public void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
         {
+            Modding.Logger.Log("A");
             Modding.Logger.Log($"Loading Viridian Mod: {GetName()} Version: {GetVersion()}");
+            Modding.Logger.Log("B");
+            ModRegistry = RegistryLoader.GetModRegistry<T>();
+            if (ModRegistry != null)
+            {
+                ModRegistry.RegistryEnabled = true;
+            }
+            Modding.Logger.Log("C");
             Mod.Load();
+            Modding.Logger.Log("D");
         }
 
         public bool IsCurrent() => true;
@@ -144,6 +166,10 @@ namespace ViridianLink.Game.Implementations
 
         public void Unload()
         {
+            if (ModRegistry != null)
+            {
+                ModRegistry.RegistryEnabled = true;
+            }
             Mod.Unload();
         }
     }

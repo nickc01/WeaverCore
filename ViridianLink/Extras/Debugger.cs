@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using ViridianLink.Implementations;
 
-namespace ViridianLink.Helpers
+namespace ViridianLink.Extras
 {
     public static class Debugger
     {

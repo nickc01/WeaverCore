@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using ViridianLink;
+using ViridianLink.Extras;
 using ViridianLink.Implementations;
 
 namespace ViridianLink.Editor.Implementations
 {
     public class EditorPlayerImplementation : PlayerImplementation
     {
-        [SerializeField]
+        /*[SerializeField]
         //List<Collision2D> floorColliders = new List<Collision2D>();
         int colliders = 0;
 
@@ -66,6 +67,11 @@ namespace ViridianLink.Editor.Implementations
                 colliders--;
                 //floorColliders.Remove(collision);
             }
+        }*/
+
+        public override void Initialize()
+        {
+            Debugger.Log("PLAYER START EDITOR");
         }
     }
 }

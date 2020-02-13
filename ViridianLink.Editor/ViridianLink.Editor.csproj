@@ -101,8 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Editor Implementations\Debugger\EditorDebuggerImpl.cs" />
+    <Compile Include="Editor Implementations\Enemy\EditorEnemyStaticImpl.cs" />
+    <Compile Include="Editor Implementations\Enemy\EditorEnemyImpl.cs" />
     <Compile Include="Editor Implementations\ModLoader\EditorModLoaderImpl.cs" />
-    <Compile Include="Editor Implementations\Player\EditorPlayerAllocator.cs" />
     <Compile Include="Editor Implementations\Player\PlayerImpl.cs" />
     <Compile Include="Editor Implementations\RegistryLoader\EditorRegistryLoaderImpl.cs" />
     <Compile Include="Editor\ControlWindow.cs" />

@@ -99,6 +99,12 @@ namespace ViridianCore.Helpers
 
                 writer.WriteLine(Json.Serialize(machine));
             }
+            Modding.Logger.Log("Printing Data");
+            using (var writer = OpenOrCreate(dirPath + "\\" + fsm.name + " - " + fsm.FsmName + ".fsmdata"))
+            {
+                Modding.Logger.Log("Data = " + JsonUtility.ToJson(fsm.Fsm));
+                writer.Write(JsonUtility.ToJson(fsm.Fsm));
+            }
         }
 
         static void PrintObjectInfo(GameObject g, string dirPath,bool includeProperties = false,bool everything = false)

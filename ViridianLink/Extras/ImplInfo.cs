@@ -7,7 +7,7 @@ using System.Threading;
 using UnityEngine;
 using ViridianLink.Core;
 
-namespace ViridianLink.Helpers
+namespace ViridianLink.Extras
 {
     public static class ImplInfo
     {
@@ -106,18 +106,37 @@ namespace ViridianLink.Helpers
 
         static void LoadEditorAssembly()
         {
-            ImplAssembly = ResourceLoader.LoadAssembly("ViridianLink.Editor");
-            var resourceStream = ResourceLoader.Retrieve("ViridianLink.Editor.Visual"); //Gets disposed in the Initializer below
+            ImplAssembly = ResourceLoader.LoadAssembly($"{nameof(ViridianLink)}.Editor");
+            Stream resourceStream = ResourceLoader.Retrieve($"{nameof(ViridianLink)}.Editor.Visual"); //Gets disposed in the Initializer below
             var resourceHash = GetHash(resourceStream);
-            var directory = Directory.CreateDirectory("Assets/Editor/ViridianLink");
-            string filePath = directory.FullName + "/ViridianLink.Editor.Visual.dll";
+            var directory = Directory.CreateDirectory($"Assets/{nameof(ViridianLink)}/Editor");
+            string filePath = directory.FullName + $"/{nameof(ViridianLink)}.Editor.Visual.dll";
 
             if (!File.Exists(filePath) || resourceHash != GetHash(filePath))
             {
-                Starter.AddInitializer(() =>
+                EditorInitializer.AddInitializer(() =>
                 {
-                    WriteAssembly(new DirectoryInfo("Assets").Parent.FullName, "Assets/Editor/ViridianLink/ViridianLink.Editor.Visual.dll", "ViridianLink.Editor.Visual.dll", resourceStream);
+                    WriteAssembly(new DirectoryInfo("Assets").Parent.FullName, $"Assets/{nameof(ViridianLink)}/Editor/{nameof(ViridianLink)}.Editor.Visual.dll", $"{nameof(ViridianLink)}.Editor.Visual.dll", resourceStream);
                     resourceStream.Dispose();
+                    foreach (var resource in typeof(ResourceLoader).Assembly.GetManifestResourceNames())
+                    {
+                        Debugger.Log("Resource Name = " + resource);
+                    }
+                    using (var internalStream = ResourceLoader.Retrieve($"{nameof(ViridianLink)}.Resources.InternalClasses.txt"))
+                    {
+                        using (var output = File.Create($"Assets/{nameof(ViridianLink)}/Internal.cs"))
+                        {
+                            using (var writer = new StreamWriter(output))
+                            {
+                                using (var reader = new StreamReader(internalStream))
+                                {
+                                    writer.Write(reader.ReadToEnd());
+                                }
+                            }
+                        }
+                    }
+
+
                 });
             }
         }
@@ -136,11 +155,11 @@ namespace ViridianLink.Helpers
                 {
                     try
                     {
-                        ImplAssembly = ResourceLoader.LoadAssembly("ViridianLink.Game");
+                        ImplAssembly = ResourceLoader.LoadAssembly($"{nameof(ViridianLink)}.Game");
                     }
                     catch (Exception e)
                     {
-                        throw new Exception("ERROR : ViridianLink requires the ViridianCore mod to be installed in the hollow knight mod directory to work. Please install it");
+                        throw new Exception($"ERROR : {nameof(ViridianLink)} requires the ViridianCore mod to be installed in the hollow knight mod directory to work.");
                     }
                 }
                 foreach (var type in ImplAssembly.GetTypes())

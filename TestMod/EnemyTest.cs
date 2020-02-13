@@ -19,6 +19,7 @@ class EnemyTest : EnemyHook<TestMod.TestMod>
 	void Start()
 	{
 		ObjectDebugger.DebugObject(gameObject, nameof(ViridianCore.ViridianCore));
+		/*ObjectDebugger.DebugObject(gameObject, nameof(ViridianCore.ViridianCore));
 		foreach (var gm in GameObject.FindObjectsOfType<GameObject>())
 		{
 			var collider = gm.GetComponent<Collider2D>();
@@ -38,7 +39,6 @@ class EnemyTest : EnemyHook<TestMod.TestMod>
 				var bounds = collider.bounds;
 				Modding.Logger.Log($"Collider Bounds = [Width = {bounds.size.x}, Height = {bounds.size.y}, Center = {bounds.center}, BottomLeft = {bounds.min}, TopRight = {bounds.max} ]");
 			}
-		}
-		;
+		}*/
 	}
 }

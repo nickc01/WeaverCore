@@ -8,7 +8,7 @@ namespace ViridianLink
     {
         public abstract class PlayerImplementation : MonoBehaviour, IImplementation
         {
-
+            public abstract void Initialize();
         }
     }
 }

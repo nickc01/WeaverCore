@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Reflection;
 using System.IO;
-using ViridianLink.Helpers;
+using ViridianLink.Extras;
 using ViridianLink.Implementations;
 using UnityEditor.Compilation;
 using UnityEngine.SceneManagement;
@@ -32,7 +32,7 @@ namespace ViridianLink.Editor.Implementations
         public override void Initialize()
         {
             EditorApplication.playModeStateChanged += PlayingCallback;
-            Starter.AddInitializer(() =>
+            EditorInitializer.AddInitializer(() =>
             {
                 var data = GetData();
                 for (int i = 8; i < 32; i++)

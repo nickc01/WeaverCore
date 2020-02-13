@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using ViridianCore.Hooks;
 
-namespace ViridianCore
+namespace ViridianCore.Internal
 {
     class CollisionDebugger : GMTrackerHook<ViridianCore>
     {

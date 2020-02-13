@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEditor;
-using ViridianLink.Helpers;
+using ViridianLink.Extras;
 
 namespace ViridianLink.Editor.Helpers
 {

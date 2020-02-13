@@ -7,10 +7,19 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 using ViridianLink.Core;
-using ViridianLink.Helpers;
+using ViridianLink.Extras;
 
 namespace ViridianLink.Editor.Visual
 {
+    class TypeComparer : IComparer<Type>
+    {
+        public int Compare(Type x, Type y)
+        {
+            return Comparer<string>.Default.Compare(x.Name, y.Name);
+        }
+    }
+
+
     [CustomEditor(typeof(Registry))]
     public class RegistryEditorScript : UnityEditor.Editor
     {
@@ -34,18 +43,21 @@ namespace ViridianLink.Editor.Visual
                     {
                         ValidMods.Add(type);
                     }
-                    if (typeof(Feature).IsAssignableFrom(type) && type != typeof(Feature) && !type.IsGenericTypeDefinition && !type.IsInterface && type.IsAbstract)
+                    if (typeof(Feature).IsAssignableFrom(type) && type != typeof(Feature) && !type.IsGenericTypeDefinition && !type.IsInterface && !type.IsAbstract)
                     {
+                        Debugger.Log("Feature = " + type);
                         Features.Add(type);
                     }
                 }
             }
+
+            Features.Sort(new TypeComparer());
+
             ModNames = new string[ValidMods.Count];
             for (int i = 0; i < ValidMods.Count; i++)
             {
                 ModNames[i] = ValidMods[i].Name;
             }
-            Features.Sort();
             FeatureNames = new string[Features.Count];
             for (int i = 0; i < Features.Count; i++)
             {
@@ -78,13 +90,28 @@ namespace ViridianLink.Editor.Visual
             //FIX by making it not dependent on registry target
             if (obj != null)
             {
-                var registry = (Registry)target;
                 var path = AssetDatabase.GetAssetPath(obj);
                 if (path != null && path != "")
                 {
-                    AssetImporter.GetAtPath(path).SetAssetBundleNameAndVariant(bundleName, "");
+                    var import = AssetImporter.GetAtPath(path);
+                    import.SetAssetBundleNameAndVariant(bundleName,import.assetBundleVariant);
                 }
             }
+        }
+
+        string GetBundleForObject(UnityEngine.Object obj)
+        {
+            if (obj != null)
+            {
+                var path = AssetDatabase.GetAssetPath(obj);
+                return AssetImporter.GetAtPath(path).assetBundleName;
+            }
+            return "";
+        }
+
+        string FullNameToBundleName(string modFullName)
+        {
+            return (Regex.Match(modFullName, @"([^.]+?)\.?$").Groups[0].Value + "_bundle").ToLower();
         }
 
         void RenderFeatures(SerializedProperty features)
@@ -106,11 +133,11 @@ namespace ViridianLink.Editor.Visual
                 }
                 var oldValue = objectProp.objectReferenceValue;
                 objectProp.objectReferenceValue = EditorGUILayout.ObjectField(oldValue,type, false);
-                if (objectProp.objectReferenceValue != oldValue)
+                var modTypeProp = serializedObject.FindProperty("modTypeName");
+                if (objectProp.objectReferenceValue != oldValue || FullNameToBundleName(modTypeProp.stringValue) != GetBundleForObject(target))
                 {
                     featuresRaw.GetArrayElementAtIndex(i).objectReferenceValue = objectProp.objectReferenceValue;
-                    var modTypeProp = serializedObject.FindProperty("modTypeName");
-                    var bundleName = Regex.Match(modTypeProp.stringValue, @"([^.]+?)\.?$").Groups[0].Value + "_bundle";
+                    var bundleName = FullNameToBundleName(modTypeProp.stringValue);
                     SetBundleForObject((objectProp.objectReferenceValue as Feature)?.gameObject, bundleName);
                 }
                 if (GUILayout.Button("X",GUILayout.MaxWidth(25)))
@@ -123,8 +150,13 @@ namespace ViridianLink.Editor.Visual
             EditorGUILayout.Space();
 
             var index = serializedObject.FindProperty("selectedFeatureIndex");
+            var indexNumber = index.intValue;
+            if (indexNumber > Features.Count)
+            {
+                indexNumber = Features.Count - 1;
+            }
 
-            var changedIndex = EditorGUILayout.Popup("Feature to Add", index.intValue, FeatureNames);
+            var changedIndex = EditorGUILayout.Popup("Feature to Add", indexNumber, FeatureNames);
             index.intValue = changedIndex;
             if (GUILayout.Button("Add Feature"))
             {
@@ -166,19 +198,18 @@ namespace ViridianLink.Editor.Visual
 
                     var modAssemblyProp = serializedObject.FindProperty("modAssemblyName");
                     var modTypeProp = serializedObject.FindProperty("modTypeName");
-
-                    if (selection != newSelection || modAssemblyProp.stringValue == "")
+                    if (selection != newSelection || modAssemblyProp.stringValue == "" || FullNameToBundleName(modTypeProp.stringValue) != GetBundleForObject(target))
                     {
                         modAssemblyProp.stringValue = ValidMods[newSelection].Assembly.FullName;
                         modTypeProp.stringValue = ValidMods[newSelection].FullName;
                         var features = serializedObject.FindProperty("features");
+                        var bundleName = FullNameToBundleName(modTypeProp.stringValue);
                         for (int i = 0; i < features.arraySize; i++)
                         {
                             var obj = features.GetArrayElementAtIndex(i).FindPropertyRelative("feature").objectReferenceValue;
-                            var bundleName = Regex.Match(modTypeProp.stringValue, @"([^.]+?)\.?$").Groups[0].Value + "_bundle";
                             SetBundleForObject((obj as Feature)?.gameObject,bundleName);
-                            SetBundleForObject(target, bundleName);
                         }
+                        SetBundleForObject(target, bundleName);
                     }
                 }
                 else if (iter.name == "features")

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 using ViridianLink.Core;
-using ViridianLink.Helpers;
+using ViridianLink.Extras;
 using ViridianLink.Implementations;
 
 namespace ViridianLink.Game.Implementations

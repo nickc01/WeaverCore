@@ -5,16 +5,16 @@ using System.Text;
 using ViridianLink.Core;
 using ViridianLink.Implementations;
 
-namespace ViridianLink.Helpers
+namespace ViridianLink.Extras
 {
 	public static class RegistryLoader
 	{
-		public static Registry LoadModRegistry<Mod>() where Mod : IViridianMod
+		public static Registry GetModRegistry<Mod>() where Mod : IViridianMod
 		{
-			return LoadModRegistry(typeof(Mod));
+			return GetModRegistry(typeof(Mod));
 		}
 
-		public static Registry LoadModRegistry(Type ModType)
+		public static Registry GetModRegistry(Type ModType)
 		{
 			var finding = Registry.Find(ModType);
 			if (finding != null)

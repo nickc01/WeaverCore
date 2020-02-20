@@ -10,6 +10,8 @@ using UnityEditor;
 using UnityEngine;
 using WeaverCore.Editor.Helpers;
 using WeaverCore.Editor.Routines;
+using WeaverCore.Editor.Visual.Helpers;
+using WeaverCore.Editor.Visual.Internal;
 using WeaverCore.Helpers;
 using WeaverCore.Internal;
 
@@ -249,7 +251,7 @@ namespace WeaverCore.Editor.Visual
 					mainMethodRaw(new string[] { source, addition, resourcePath, deleteSource.ToString() });
 				};
 
-				var addModM = program.GetMethod("AddMod",BindingFlags.NonPublic | BindingFlags.Static);
+				var addModM = program.GetMethod("AddModNew",BindingFlags.NonPublic | BindingFlags.Static);
 
 				AddMod = (addModMethod)Delegate.CreateDelegate(typeof(addModMethod), null, addModM);
 			}
@@ -257,72 +259,72 @@ namespace WeaverCore.Editor.Visual
 
 		//static void ReplaceStringInFile(string source, string replacement,string path)
 		//{
-			//var data = File.ReadAllText(path);
-			//data = data.Replace(source, replacement);
-			//File.WriteAllText(path, data);
-			/*long originalPosition = stream.Position;
-			stream.Position = 0;
-			using (var reader = new StreamReader(stream))
+		//var data = File.ReadAllText(path);
+		//data = data.Replace(source, replacement);
+		//File.WriteAllText(path, data);
+		/*long originalPosition = stream.Position;
+		stream.Position = 0;
+		using (var reader = new StreamReader(stream))
+		{
+			string data = reader.ReadToEnd();
+			data.Replace(source, replacement);
+		}*/
+		/*using (FileStream ouputStream = File.Open("output.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite,FileShare.ReadWrite))
+		{
+			using (var output = new StreamWriter(ouputStream))
 			{
-				string data = reader.ReadToEnd();
-				data.Replace(source, replacement);
-			}*/
-			/*using (FileStream ouputStream = File.Open("output.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite,FileShare.ReadWrite))
-			{
-				using (var output = new StreamWriter(ouputStream))
+				output.WriteLine($"Replacing {source} with {replacement}");
+				char[] sourceChars = new char[] { 'A' };
+
+
+				long originalPosition = stream.Position;
+				stream.Position = 0;
+				while (stream.Position < stream.Length)
 				{
-					output.WriteLine($"Replacing {source} with {replacement}");
-					char[] sourceChars = new char[] { 'A' };
-
-
-					long originalPosition = stream.Position;
-					stream.Position = 0;
-					while (stream.Position < stream.Length)
+					char input = (char)stream.ReadByte();
+					output.WriteLine("Input = " + input);
+					if (input == sourceChars[0])
 					{
-						char input = (char)stream.ReadByte();
-						output.WriteLine("Input = " + input);
-						if (input == sourceChars[0])
+						if (sourceChars.GetLength(0) > 1)
 						{
-							if (sourceChars.GetLength(0) > 1)
+							bool found = true;
+							for (int c = 1; c < sourceChars.GetLength(0); c++)
 							{
-								bool found = true;
-								for (int c = 1; c < sourceChars.GetLength(0); c++)
+								if (stream.Position >= stream.Length)
 								{
-									if (stream.Position >= stream.Length)
-									{
-										found = false;
-										break;
-									}
-									var data = (char)stream.ReadByte();
-									output.WriteLine("Data = " + data);
-									if (sourceChars[c] != data)
-									{
-										output.WriteLine("False");
-										found = false;
-										stream.Position -= 1 + c;
-										break;
-									}
+									found = false;
+									break;
 								}
-								if (found)
+								var data = (char)stream.ReadByte();
+								output.WriteLine("Data = " + data);
+								if (sourceChars[c] != data)
 								{
-									output.WriteLine("Found Replacement");
-									stream.Position -= sourceChars.GetLength(0);
-									foreach (var character in sourceChars)
-									{
-										stream.WriteByte((byte)character);
-									}
+									output.WriteLine("False");
+									found = false;
+									stream.Position -= 1 + c;
+									break;
 								}
 							}
-							else
+							if (found)
 							{
-								stream.Position--;
-								stream.WriteByte((byte)sourceChars[0]);
+								output.WriteLine("Found Replacement");
+								stream.Position -= sourceChars.GetLength(0);
+								foreach (var character in sourceChars)
+								{
+									stream.WriteByte((byte)character);
+								}
 							}
 						}
+						else
+						{
+							stream.Position--;
+							stream.WriteByte((byte)sourceChars[0]);
+						}
 					}
-					stream.Position = originalPosition;
 				}
-			}*/
+				stream.Position = originalPosition;
+			}
+		}*/
 		//}
 
 		/*static string ReadStringToEnd(Stream stream,char terminator = (char)0)
@@ -360,52 +362,75 @@ namespace WeaverCore.Editor.Visual
 
 		//static void PostProcessBundle(string builtAssemblyPath, string bundleFilePath, string bundleFileName, string bundleName)
 		//{
-			//ReplaceStringInFile("Assembly-CSharp", ModName, bundleFilePath);
-			/*string data = "";
-			Debugger.Log("Built Assembly Path = " + builtAssemblyPath);
-			Debugger.Log("Bundle File Path = " + bundleFilePath);
-			Debugger.Log("Bundle File Name = " + bundleFileName);
-			Debugger.Log("Bundle Name = " + bundleName);
-			//ReplaceStringInFile("Assembly-CSharp", ModName, bundleFilePath);
-			using (FileStream stream = File.Open(bundleFilePath,FileMode.Open,FileAccess.ReadWrite))
+		//ReplaceStringInFile("Assembly-CSharp", ModName, bundleFilePath);
+		/*string data = "";
+		Debugger.Log("Built Assembly Path = " + builtAssemblyPath);
+		Debugger.Log("Bundle File Path = " + bundleFilePath);
+		Debugger.Log("Bundle File Name = " + bundleFileName);
+		Debugger.Log("Bundle Name = " + bundleName);
+		//ReplaceStringInFile("Assembly-CSharp", ModName, bundleFilePath);
+		using (FileStream stream = File.Open(bundleFilePath,FileMode.Open,FileAccess.ReadWrite))
+		{
+			string assetBundleType = ReadStringToEnd(stream);
+			uint bundleVersion = ReadInt32(stream);
+			string versionTag = ReadStringToEnd(stream);
+			string UnityVersion = ReadStringToEnd(stream);
+			ulong fileSize = ReadInt64(stream);
+
+			Debugger.Log("Asset Bundle Type = " + assetBundleType);
+			Debugger.Log("Bundle Version = " + bundleVersion);
+			Debugger.Log("Version Tag = " + versionTag);
+			Debugger.Log("Unity Version = " + UnityVersion);
+			Debugger.Log("File Size = " + fileSize);
+			//stream.Position += 8;
+			//byte[] initialBuffer = new byte[16];
+			//stream.Read(initialBuffer, 0, 4);
+			//int BundleVersion = BitConverter.ToInt32(initialBuffer, 0);
+			//stream.Read(initialBuffer, 0, 6);
+			//string VersionTag = BitConverter.ToString(initialBuffer);
+
+			//Debugger.Log("Stream Size = " + stream.Length);
+			byte[] buffer = new byte[200];
+			int amount = 0;
+			do
 			{
-				string assetBundleType = ReadStringToEnd(stream);
-				uint bundleVersion = ReadInt32(stream);
-				string versionTag = ReadStringToEnd(stream);
-				string UnityVersion = ReadStringToEnd(stream);
-				ulong fileSize = ReadInt64(stream);
-
-				Debugger.Log("Asset Bundle Type = " + assetBundleType);
-				Debugger.Log("Bundle Version = " + bundleVersion);
-				Debugger.Log("Version Tag = " + versionTag);
-				Debugger.Log("Unity Version = " + UnityVersion);
-				Debugger.Log("File Size = " + fileSize);
-				//stream.Position += 8;
-				//byte[] initialBuffer = new byte[16];
-				//stream.Read(initialBuffer, 0, 4);
-				//int BundleVersion = BitConverter.ToInt32(initialBuffer, 0);
-				//stream.Read(initialBuffer, 0, 6);
-				//string VersionTag = BitConverter.ToString(initialBuffer);
-
-				//Debugger.Log("Stream Size = " + stream.Length);
-				byte[] buffer = new byte[200];
-				int amount = 0;
-				do
+				amount = stream.Read(buffer, 0, buffer.GetLength(0));
+				for (int i = 0; i < amount; i++)
 				{
-					amount = stream.Read(buffer, 0, buffer.GetLength(0));
-					for (int i = 0; i < amount; i++)
+					char character = (char)buffer[i];
+					if (character >= 32 && character <= 126)
 					{
-						char character = (char)buffer[i];
-						if (character >= 32 && character <= 126)
-						{
-							data += character;
-						}
+						data += character;
 					}
-				} while (amount > 0);
-			}
-			Debugger.Log($"Bundle Data for {bundleName} = {data}");*/
-			//File.WriteAllText(data, bundleName + "_dump.dat");
+				}
+			} while (amount > 0);
+		}
+		Debugger.Log($"Bundle Data for {bundleName} = {data}");*/
+		//File.WriteAllText(data, bundleName + "_dump.dat");
 		//}
+
+		class DebugConsole : TextWriter
+		{
+			public override Encoding Encoding => Encoding.ASCII;
+
+			public override void WriteLine(object value)
+			{
+				Debugger.Log(value);
+			}
+			public override void WriteLine(string value)
+			{
+				Debugger.Log(value);
+			}
+			public override void Write(object value)
+			{
+				Debugger.Log(value);
+			}
+			public override void Write(string value)
+			{
+				Debugger.Log(value);
+			}
+		}
+
 
 		static void AdjustMonoScripts()
 		{
@@ -433,51 +458,72 @@ namespace WeaverCore.Editor.Visual
 
 		static void PostBuild(string builtAssemblyPath)
 		{
-			List<Type> ValidMods = Assembly.Load("Assembly-CSharp").GetTypes().Where(type => typeof(IWeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition && !type.IsInterface && !typeof(WeaverCoreMod).IsAssignableFrom(type)).ToList();
+			//Console.SetOut(new DebugConsole());
+			List<Type> ValidMods = Mods.GetMods();
+			//List<Type> ValidMods = Assembly.Load("Assembly-CSharp").GetTypes().Where(type => typeof(IWeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition && !type.IsInterface && !typeof(WeaverCoreMod).IsAssignableFrom(type)).ToList();
 			AdjustMonoScripts();
 			LoadAssemblyManipulator();
 			var temp = Path.GetTempPath();
-			for (int modeIndex = 0; modeIndex < buildModes.Count; modeIndex++)
+			var registries = RegistryChecker.LoadAllRegistries();
+			try
 			{
-				Progress = Mathf.Lerp(0.1f, 1.0f, modeIndex / (float)buildModes.Count);
-				var mode = buildModes[modeIndex];
-				if (IsPlatformSupportLoaded(mode.Target))
+				foreach (var registry in registries)
 				{
-					var bundleBuilds = new DirectoryInfo(temp + @"BundleBuilds\");
-					if (bundleBuilds.Exists)
+					registry.ReplaceAssemblyName("Assembly-CSharp", ModName);
+					registry.ApplyChanges();
+					Debugger.Log("Registry Mod Assembly Name New = " + registry.GetString("modAssemblyName"));
+				}
+				for (int modeIndex = 0; modeIndex < buildModes.Count; modeIndex++)
+				{
+					Progress = Mathf.Lerp(0.1f, 1.0f, modeIndex / (float)buildModes.Count);
+					var mode = buildModes[modeIndex];
+					if (IsPlatformSupportLoaded(mode.Target))
 					{
-						foreach (var existingFile in bundleBuilds.GetFiles())
+						var bundleBuilds = new DirectoryInfo(temp + @"BundleBuilds\");
+						if (bundleBuilds.Exists)
 						{
-							existingFile.Delete();
+							foreach (var existingFile in bundleBuilds.GetFiles())
+							{
+								existingFile.Delete();
+							}
+						}
+						else
+						{
+							bundleBuilds.Create();
+						}
+						BuildPipeline.BuildAssetBundles(bundleBuilds.FullName, BuildAssetBundleOptions.ForceRebuildAssetBundle | BuildAssetBundleOptions.UncompressedAssetBundle, mode.Target);
+						ShowProgress();
+						foreach (var bundleFile in bundleBuilds.GetFiles())
+						{
+							if (bundleFile.Extension == "")
+							{
+								//PostProcessBundle(builtAssemblyPath, bundleFile.FullName, bundleFile.Name + mode.Extension,bundleFile.Name);
+								Embed(builtAssemblyPath, bundleFile.FullName, bundleFile.Name + mode.Extension, false);
+							}
 						}
 					}
 					else
 					{
-						bundleBuilds.Create();
-					}
-					BuildPipeline.BuildAssetBundles(bundleBuilds.FullName, BuildAssetBundleOptions.ForceRebuildAssetBundle | BuildAssetBundleOptions.UncompressedAssetBundle, mode.Target);
-					ShowProgress();
-					foreach (var bundleFile in bundleBuilds.GetFiles())
-					{
-						if (bundleFile.Extension == "")
-						{
-							//PostProcessBundle(builtAssemblyPath, bundleFile.FullName, bundleFile.Name + mode.Extension,bundleFile.Name);
-							Embed(builtAssemblyPath, bundleFile.FullName, bundleFile.Name + mode.Extension, false);
-						}
+						Debug.LogWarning($"{mode.Target} module is not loaded, so building for the target is not available");
 					}
 				}
-				else
+				ClearProgress();
+				foreach (var modType in ValidMods)
 				{
-					Debug.LogWarning($"{mode.Target} module is not loaded, so building for the target is not available");
+					var instance = Activator.CreateInstance(modType) as IWeaverMod;
+					AddMod(builtAssemblyPath, modType.Namespace, modType.Name, instance.Name, instance.Unloadable);
+				}
+				Debug.Log("Build Complete");
+			}
+			finally
+			{
+				foreach (var registry in registries)
+				{
+					registry.ReplaceAssemblyName(ModName,"Assembly-CSharp");
+					registry.ApplyChanges();
+					Debugger.Log("Registry Mod Assembly Name Old = " + registry.GetString("modAssemblyName"));
 				}
 			}
-			ClearProgress();
-			foreach (var modType in ValidMods)
-			{
-				var instance = Activator.CreateInstance(modType) as IWeaverMod;
-				AddMod(builtAssemblyPath, modType.Namespace, modType.Name,instance.Name,instance.Unloadable);
-			}
-			Debug.Log("Build Complete");
 		}
 
 		struct BuildMode

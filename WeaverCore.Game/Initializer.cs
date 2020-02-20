@@ -15,6 +15,7 @@ namespace WeaverCore.Game
         {
             ApplyPatches();
             ModLoader.LoadAllMods();
+            new Implementations.GameRuntimeInitializerImplementation().Awake();
         }
 
 

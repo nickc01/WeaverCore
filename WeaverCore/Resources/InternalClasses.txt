@@ -1,11 +1,34 @@
-﻿using System;
+﻿/* A filed with snippets from the hollow knight api to allow for basic backwards compatibility with compiled Weaver Mods
+ * 
+ * Site = https://github.com/seanpr96/HollowKnight.Modding
+ * 
+ */
+
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Numerics.Hashing;
 using UnityEngine;
 
+
 namespace Modding
 {
+	namespace Patches
+	{
+		public class SaveGameData
+		{
+
+		}
+	}
+
+	[Serializable]
+	public class ModSettings
+	{
+
+	}
+
 	public interface ILogger
 	{
 		void Log(string message);
@@ -20,14 +43,192 @@ namespace Modding
 		void LogWarn(object message);
 	}
 
+	public abstract class Loggable : ILogger
+	{
+		internal string ClassName;
+
+		protected Loggable()
+		{
+			ClassName = GetType().Name;
+		}
+
+		public void LogFine(string message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		public void LogFine(object message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		public void LogDebug(string message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		public void LogDebug(object message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		public void Log(string message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		public void Log(object message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		public void LogWarn(string message)
+		{
+			Debug.LogWarning(FormatLogMessage(message));
+		}
+
+		public void LogWarn(object message)
+		{
+			Debug.LogWarning(FormatLogMessage(message));
+		}
+
+		public void LogError(string message)
+		{
+			Debug.LogError(FormatLogMessage(message));
+		}
+
+		public void LogError(object message)
+		{
+			Debug.LogError(FormatLogMessage(message));
+		}
+
+		private string FormatLogMessage(string message)
+		{
+			return "[" + ClassName + "] - " + message;
+		}
+
+		private string FormatLogMessage(object message)
+		{
+			return "[" + ClassName + "] - " + message;
+		}
+	}
+
 	public interface IMod : ILogger
 	{
 		string GetName();
+
 		List<ValueTuple<string, string>> GetPreloadNames();
-		string GetVersion();
+
 		void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects);
+
+		string GetVersion();
+
 		bool IsCurrent();
+
 		int LoadPriority();
+	}
+
+	public interface ITogglableMod : IMod
+	{
+		void Unload();
+	}
+
+	public abstract class Mod : Loggable, IMod
+	{
+		private readonly string _globalSettingsPath;
+
+		public virtual ModSettings SaveSettings
+		{
+			get
+			{
+				return null;
+			}
+			set { }
+		}
+
+		public virtual ModSettings GlobalSettings
+		{
+			get
+			{
+				return null;
+			}
+			set { }
+		}
+
+		public readonly string Name;
+
+		protected Mod() : this(null)
+		{
+		}
+
+		protected Mod(string name)
+		{
+			if (string.IsNullOrEmpty(name))
+			{
+				name = GetType().Name;
+			}
+
+			Name = name;
+		}
+
+		public string GetName()
+		{
+			return Name;
+		}
+
+		public virtual List<ValueTuple<string, string>> GetPreloadNames()
+		{
+			return null;
+		}
+
+		public virtual void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
+		{
+			Initialize();
+		}
+
+		public virtual string GetVersion()
+		{
+			return "UNKNOWN";
+		}
+
+		public virtual bool IsCurrent()
+		{
+			return true;
+		}
+
+		public virtual int LoadPriority()
+		{
+			return 1;
+		}
+
+		public virtual void Initialize()
+		{
+		}
+
+		private void HookSaveMethods()
+		{
+
+		}
+
+		private void LoadGlobalSettings()
+		{
+
+		}
+
+		private void SaveGlobalSettings()
+		{
+
+		}
+
+		private void LoadSaveSettings(Patches.SaveGameData data)
+		{
+
+		}
+
+		private void SaveSaveSettings(Patches.SaveGameData data)
+		{
+
+		}
 	}
 }
 
@@ -41,10 +242,7 @@ namespace System
 
 		string ToStringEnd();
 	}
-}
 
-namespace System
-{
 	public struct ValueTuple<T1, T2> : IEquatable<ValueTuple<T1, T2>>, IStructuralEquatable, IStructuralComparable, IComparable, IComparable<ValueTuple<T1, T2>>, ITupleInternal
 	{
 		public ValueTuple(T1 item1, T2 item2)
@@ -196,10 +394,7 @@ namespace System.Collections
 	{
 		int CompareTo(object other, IComparer comparer);
 	}
-}
 
-namespace System.Collections
-{
 	public interface IStructuralEquatable
 	{
 		bool Equals(object other, IEqualityComparer comparer);

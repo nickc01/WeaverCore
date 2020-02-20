@@ -53,8 +53,7 @@ namespace WeaverCore.Editor.Implementations
             LoadedMods.Sort((v1, v2) => v1.LoadPriority - v2.LoadPriority);
             foreach (var mod in LoadedMods)
             {
-                Debugger.Log($"Loading Weaver Mod {mod.Name}, Version: {mod.Version}");
-                RegistryLoader.GetModRegistry(mod.GetType());
+                Debugger.Log($"Loading Weaver Mod <b>{mod.Name}</b>, Version: {mod.Version}");
                 mod.Load();
                 yield return mod;
             }

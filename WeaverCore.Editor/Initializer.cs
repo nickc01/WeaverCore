@@ -10,6 +10,7 @@ using UnityEditor.Compilation;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 using WeaverCore.Internal;
+using WeaverCore.Helpers;
 
 namespace WeaverCore.Editor.Implementations
 {
@@ -31,7 +32,6 @@ namespace WeaverCore.Editor.Implementations
 
         public override void Initialize()
         {
-            EditorApplication.playModeStateChanged += PlayingCallback;
             EditorInitializer.AddInitializer(() =>
             {
                 var data = GetData();
@@ -48,16 +48,13 @@ namespace WeaverCore.Editor.Implementations
                     }
                 }
                 Physics2D.gravity = new Vector2(0f,-60f);
+                var visualAssembly = System.Reflection.Assembly.Load("WeaverCore.Editor.Visual");
+                //Debugger.Log("Visual Assembly = " + visualAssembly);
+                var initializerType = visualAssembly.GetType("WeaverCore.Editor.Visual.Internal.Initializer");
+                //Debugger.Log("InitializerType = " + initializerType);
+                initializerType.GetMethod("Initialize",BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
             });
 
-        }
-
-        private static void PlayingCallback(PlayModeStateChange obj)
-        {
-            if (obj == PlayModeStateChange.EnteredPlayMode)
-            {
-                ModLoader.LoadAllMods();
-            }
         }
 
         LayerData GetData()

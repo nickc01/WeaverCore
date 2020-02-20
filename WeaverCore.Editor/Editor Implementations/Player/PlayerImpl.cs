@@ -71,7 +71,7 @@ namespace WeaverCore.Editor.Implementations
 
         public override void Initialize()
         {
-            Debugger.Log("PLAYER START EDITOR");
+           //Debugger.Log("PLAYER START EDITOR");
         }
     }
 }

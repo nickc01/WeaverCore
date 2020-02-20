@@ -130,8 +130,7 @@ namespace WeaverCore.Helpers
                             }
                         }
                     }
-
-
+                    ImportAsset($"Assets/{nameof(WeaverCore)}/Internal.cs");
                 });
             }
         }

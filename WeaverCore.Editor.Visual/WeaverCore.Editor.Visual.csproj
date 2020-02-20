@@ -116,24 +116,26 @@
   <ItemGroup>
     <Compile Include="Builder\Builder.cs" />
     <Compile Include="Helpers\EditorRoutine.cs" />
+    <Compile Include="Helpers\Features.cs" />
+    <Compile Include="Helpers\Mods.cs" />
     <Compile Include="Helpers\Routines\IEditorWaiter.cs" />
     <Compile Include="Helpers\Routines\WaitForCompilation.cs" />
     <Compile Include="Helpers\Routines\WaitTillTrue.cs" />
+    <Compile Include="Helpers\SerializedObjectChecker.cs" />
+    <Compile Include="Helpers\SerializedObjectExtensions.cs" />
+    <Compile Include="Helpers\TypeComparer.cs" />
+    <Compile Include="Internal\Initializer.cs" />
+    <Compile Include="Internal\RegistryChecker.cs" />
     <Compile Include="ModNameSelector\ModNameSelector.cs" />
     <Compile Include="RegistryCreator\RegistryCreator.cs" />
-    <Compile Include="RegistryEditorScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reloader\Reloader.cs" />
+    <Compile Include="Renderers\RegistryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AssemblyManipulator\AssemblyManipulator.csproj">
       <Project>{0ae54068-540c-4ec1-a79a-54484c75cb18}</Project>
       <Name>AssemblyManipulator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WeaverCore.Editor\WeaverCore.Editor.csproj">
-      <Project>{0acb7733-3b00-4452-9a4b-59d04ef5cdd1}</Project>
-      <Name>WeaverCore.Editor</Name>
-      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\WeaverCore\WeaverCore.csproj">
       <Project>{a2ffeeb2-041d-4d3e-ab93-96c8d6d54f78}</Project>

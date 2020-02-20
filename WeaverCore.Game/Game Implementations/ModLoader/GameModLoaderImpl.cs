@@ -17,9 +17,9 @@ namespace WeaverCore.Game.Implementations
 
         static FieldInfo LoadedMods = ModLoaderType.GetField("LoadedMods", BindingFlags.Public | BindingFlags.Static);
 
+        //This just needs to load all mods within WeaverCore.dll, since all the other mods are loaded using a different method
         public override IEnumerable<IWeaverMod> LoadAllMods()
         {
-            //Modding.Logger.Log("LOADING ALL THE MODS!!!");
             foreach (var type in typeof(WeaverCoreMod).Assembly.GetTypes())
             {
                 if (typeof(IWeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition)
@@ -34,16 +34,13 @@ namespace WeaverCore.Game.Implementations
                     yield return newMod;
                 }
             }
-        }
-
-        
+        } 
     }
 
-
-    public class WeaverMod<T> : IMod where T : IWeaverMod
+    class WeaverMod<T> : IMod where T : IWeaverMod
     {
         protected T Mod { get; private set; }
-        protected Registry ModRegistry { get; private set; }
+        protected List<Registry> ModRegistries { get; private set; }
 
         internal WeaverMod(T mod)
         {
@@ -70,17 +67,12 @@ namespace WeaverCore.Game.Implementations
 
         public void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
         {
-            //Modding.Logger.Log("A");
-            //Modding.Logger.Log($"Loading Weaver Mod: {GetName()} Version: {GetVersion()}");
-            //Modding.Logger.Log("B");
-            ModRegistry = RegistryLoader.GetModRegistry<T>();
-            if (ModRegistry != null)
+            ModRegistries = RegistryLoader.GetModRegistries<T>().ToList();
+            foreach (var registry in ModRegistries)
             {
-                ModRegistry.RegistryEnabled = true;
+                registry.RegistryEnabled = true;
             }
-            //Modding.Logger.Log("C");
             Mod.Load();
-            //Modding.Logger.Log("D");
         }
 
         public bool IsCurrent() => true;
@@ -138,15 +130,15 @@ namespace WeaverCore.Game.Implementations
         }
     }
 
-    public class UnloadableWeaverMod<T> : WeaverMod<T>, ITogglableMod where T : IWeaverMod
+    class UnloadableWeaverMod<T> : WeaverMod<T>, ITogglableMod where T : IWeaverMod
     {
         internal UnloadableWeaverMod(T mod) : base(mod) { }
 
         public void Unload()
         {
-            if (ModRegistry != null)
+            foreach (var registry in ModRegistries)
             {
-                ModRegistry.RegistryEnabled = true;
+                registry.RegistryEnabled = false;
             }
             Mod.Unload();
         }

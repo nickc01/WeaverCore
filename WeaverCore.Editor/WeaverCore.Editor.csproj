@@ -106,6 +106,7 @@
     <Compile Include="Editor Implementations\ModLoader\EditorModLoaderImpl.cs" />
     <Compile Include="Editor Implementations\Player\PlayerImpl.cs" />
     <Compile Include="Editor Implementations\RegistryLoader\EditorRegistryLoaderImpl.cs" />
+    <Compile Include="Editor Implementations\RuntimeInitializer\EditorRuntimeInitializerImpl.cs" />
     <Compile Include="Editor\ControlWindow.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="LayerChanger.cs" />

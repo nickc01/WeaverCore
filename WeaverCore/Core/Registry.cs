@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 
@@ -12,8 +13,8 @@ namespace WeaverCore
     {
         [SuppressMessage("Usage", "CA2235:Mark all non-serializable fields", Justification = "<Pending>")]
         public Feature feature;
-        public string FullTypeName;
-        public string FullAssemblyName;
+        public string TypeName;
+        public string AssemblyName;
     }
 
 
@@ -23,8 +24,15 @@ namespace WeaverCore
     [CreateAssetMenu(fileName = "ModRegistry", menuName = "WeaverCore/Registry", order = 1)]
     public class Registry : ScriptableObject
     {
+        static Dictionary<string, Assembly> assemblyNames;
+
+
         [SerializeField]
-        string mod = "";
+        string registryName;
+
+
+        [SerializeField]
+        string modName = "";
 
         [SerializeField]
         string modAssemblyName = "";
@@ -33,20 +41,30 @@ namespace WeaverCore
         string modTypeName = "";
 
         [SerializeField]
+        int modListHashCode = 0;
+
+        [SerializeField]
         List<FeatureSet> features;
 
         [SerializeField]
         List<Feature> featuresRaw;
 
         [SerializeField]
-
         int selectedFeatureIndex = 0;
+
+        [SerializeField]
+        int selectedModIndex = 0;
 
 
         /// <summary>
         /// The name of the mod the registry is bound to <seealso cref="IWeaverMod"/> <seealso cref="WeaverMod"/>
         /// </summary>
-        public string ModName => mod;
+        public string ModName => modName;
+
+        /// <summary>
+        /// The name of the registry
+        /// </summary>
+        public string RegistryName => registryName;
 
         [SerializeField]
         bool registryEnabled = true;
@@ -55,7 +73,7 @@ namespace WeaverCore
 
         private Type modType = null;
 
-        private string typeNameCache = "";
+        //private string typeNameCache = "";
 
         /// <summary>
         /// Whether the registry is enabled or not. If the mod this registry is bound to is unloaded, the registry will automatically be disabled
@@ -88,18 +106,17 @@ namespace WeaverCore
         {
             get
             {
-                if (modType == null || typeNameCache != modTypeName)
+                if (assemblyNames == null)
                 {
+                    assemblyNames = new Dictionary<string, Assembly>();
                     foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                     {
-                        var type = assembly.GetType(modTypeName);
-                        if (type != null)
-                        {
-                            modType = type;
-                            typeNameCache = modTypeName;
-                            break;
-                        }
+                        assemblyNames.Add(assembly.GetName().Name, assembly);
                     }
+                }
+                if (modType == null || modType.FullName != modTypeName)
+                {
+                    modType = assemblyNames[modAssemblyName].GetType(modTypeName);
                 }
                 return modType;
             }
@@ -207,8 +224,8 @@ namespace WeaverCore
             features.Add(new FeatureSet()
             {
                 feature = feature,
-                FullAssemblyName = typeof(T).Assembly.FullName,
-                FullTypeName = typeof(T).FullName
+                AssemblyName = typeof(T).Assembly.FullName,
+                TypeName = typeof(T).FullName
             });
             featuresRaw.Add(feature);
         }
@@ -253,7 +270,7 @@ namespace WeaverCore
         }
 
         /// <summary>
-        /// Finds an already loaded Registry
+        /// Find a loaded registry pertaining to a mod
         /// </summary>
         /// <param name="ModType">The mod that is associated with the registry</param>
         /// <returns>Returns the registry that is bound to the mod. Returns null if no registry is found</returns>
@@ -267,6 +284,22 @@ namespace WeaverCore
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Finds all loaded registries pertaining to a mod
+        /// </summary>
+        /// <param name="ModType">THe mod that is associated with the registry</param>
+        /// <returns>Returns all the registries that are bound to the mod</returns>
+        public static IEnumerable<Registry> FindAll(Type ModType)
+        {
+            foreach (var registry in AllRegistries)
+            {
+                if (registry.ModType == ModType)
+                {
+                    yield return registry;
+                }
+            }
         }
     }
 }

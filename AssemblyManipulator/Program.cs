@@ -12,7 +12,7 @@ namespace AssemblyManipulator
 {
 	class Program
 	{
-		public static void ReplaceResource(string assembly, string resourceName, byte[] resource)
+		/*public static void ReplaceResource(string assembly, string resourceName, byte[] resource)
 		{
 			using (var definition = AssemblyDefinition.ReadAssembly(assembly, new ReaderParameters { ReadWrite = true }))
 			{
@@ -27,9 +27,48 @@ namespace AssemblyManipulator
 				definition.MainModule.Resources.Add(er);
 				definition.MainModule.Write();
 			}
+		}*/
+
+		public static void AddResource(string assembly, string resourceName, Stream resource)
+		{
+			double previousTime = GetTime();
+			while (GetTime() - previousTime <= 10.0)
+			{
+				try
+				{
+					using (var definition = AssemblyDefinition.ReadAssembly(assembly, new ReaderParameters { ReadWrite = true }))
+					{
+						var er = new EmbeddedResource(resourceName, ManifestResourceAttributes.Public, resource);
+						var finding = definition.MainModule.Resources.FirstOrDefault(r => r.Name == resourceName);
+						if (finding != null)
+						{
+							definition.MainModule.Resources.Remove(finding);
+						}
+						//Console.WriteLine("Adding");
+						definition.MainModule.Resources.Add(er);
+						definition.MainModule.Write();
+					}
+					break;
+				}
+				catch (Exception e)
+				{
+					if (e.Message.Contains("because it is being used by another process"))
+					{
+						continue;
+					}
+					else
+					{
+						throw;
+					}
+				}
+			}
+			if (GetTime() - previousTime > 10.0)
+			{
+				throw new Exception("Embedding Timeout");
+			}
 		}
 
-		public static void AddResource(string assembly, string resourceName, byte[] resource)
+		/*public static void AddResource(string assembly, string resourceName, byte[] resource)
 		{
 			using (var definition = AssemblyDefinition.ReadAssembly(assembly, new ReaderParameters { ReadWrite = true }))
 			{
@@ -43,10 +82,9 @@ namespace AssemblyManipulator
 				definition.MainModule.Resources.Add(er);
 				definition.MainModule.Write();
 			}
+		}*/
 
-		}
-
-		public static MemoryStream GetResource(Stream assembly, string resourceName)
+		/*public static MemoryStream GetResource(Stream assembly, string resourceName)
 		{
 			using (var definition = AssemblyDefinition.ReadAssembly(assembly))
 			{
@@ -72,9 +110,9 @@ namespace AssemblyManipulator
 			}
 			assembly.Position = 0;
 			return null;
-		}
+		}*/
 
-		public static FileStream OpenFileWhenReady(string filename)
+		/*public static FileStream OpenFileWhenReady(string filename)
 		{
 			while (true)
 			{
@@ -100,6 +138,11 @@ namespace AssemblyManipulator
 					}
 				}
 			}
+		}*/
+
+		static double GetTime()
+		{
+			return (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) / 1000.0;
 		}
 
 		static int Main(string[] args)
@@ -108,36 +151,10 @@ namespace AssemblyManipulator
 			string additionFile = args[1];
 			string resourcePath = args[2];
 
-
-
 			Console.WriteLine($"Embedding {Path.GetFileName(additionFile)} into {Path.GetFileName(sourceAssembly)} at the resource path: ({resourcePath})...");
-			byte[] additionBytes;
 			using (var additionStream = File.OpenRead(additionFile))
 			{
-				additionBytes = new byte[additionStream.Length];
-
-				additionStream.Read(additionBytes, 0, (int)additionStream.Length);
-
-				additionStream.Close();
-			}
-			while (true)
-			{
-				try
-				{
-					AddResource(sourceAssembly, resourcePath, additionBytes);
-					break;
-				}
-				catch (Exception e)
-				{
-					if (e.Message.Contains("because it is being used by another process"))
-					{
-						continue;
-					}
-					else
-					{
-						throw;
-					}
-				}
+				AddResource(sourceAssembly, resourcePath, additionStream);
 			}
 			Console.WriteLine("Embedding Successful!");
 			return 0;
@@ -230,9 +247,20 @@ namespace AssemblyManipulator
 			}
 		}
 
-		static void AddModNew(string modAssembly,string fullTypeName,string modStringName,bool unloadable)
+		static void AddModNew(string assembly, string @namespace, string typeName, string modName, bool unloadable)
 		{
-
+			string hollowKnightPath = @"C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll";
+			string weaverCorePath = @"C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\WeaverCore.dll";
+			string coreModulePath = @"C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.CoreModule.dll";
+			using (var patcher = new ModPatcher(assembly,hollowKnightPath,weaverCorePath,coreModulePath))
+			{
+				string newNamespace = @namespace;
+				if (newNamespace != null && newNamespace != "")
+				{
+					newNamespace = ".";
+				}
+				patcher.Patch(newNamespace + "_WeaverMod_", typeName,newNamespace + typeName,modName);
+			}
 		}
 
 		static void AddMod(string assembly,string @namespace,string typeName,string modName, bool unloadable)

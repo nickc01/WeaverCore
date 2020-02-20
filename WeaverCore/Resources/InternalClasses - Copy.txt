@@ -1,0 +1,1299 @@
+﻿/* A filed with snippets from the hollow knight api to allow for basic backwards compatibility with compiled Weaver Mods
+ * 
+ * Site = https://github.com/seanpr96/HollowKnight.Modding
+ * 
+ */
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Numerics.Hashing;
+using UnityEngine;
+
+namespace Modding
+{
+	[Serializable]
+	public class SerializableBoolDictionary : SerializableDictionary<string, bool>
+	{
+	}
+
+	[Serializable]
+	public class SerializableFloatDictionary : SerializableDictionary<string, float>
+	{
+	}
+
+	[Serializable]
+	public class SerializableIntDictionary : SerializableDictionary<string, int>
+	{
+	}
+
+	[Serializable]
+	public class SerializableStringDictionary : SerializableDictionary<string, string>
+	{
+	}
+}
+
+namespace Modding
+{
+	/// <summary>
+	///     Base class for storing settings for a Mod in the save file.
+	/// </summary>
+	[Serializable]
+	public class ModSettings
+	{
+		/// <summary>
+		///     Bools to be Stored
+		/// </summary>
+		[SerializeField] public SerializableBoolDictionary BoolValues;
+
+		/// <summary>
+		///     Float Values to be Stored
+		/// </summary>
+		[SerializeField] public SerializableFloatDictionary FloatValues;
+
+		/// <summary>
+		///     Int Values to be Stored
+		/// </summary>
+		[SerializeField] public SerializableIntDictionary IntValues;
+
+		/// <summary>
+		///     String Values to be Stored
+		/// </summary>
+		[SerializeField] public SerializableStringDictionary StringValues;
+
+		/// <summary>
+		///     Initializes All Dictionaries
+		/// </summary>
+		protected ModSettings()
+		{
+			StringValues = new SerializableStringDictionary();
+			IntValues = new SerializableIntDictionary();
+			BoolValues = new SerializableBoolDictionary();
+			FloatValues = new SerializableFloatDictionary();
+		}
+
+		/// <summary>
+		///     Hydrates the classes dictionaries with incoming data.
+		/// </summary>
+		/// <param name="incomingSettings">Incoming Settings</param>
+		public void SetSettings(ModSettings incomingSettings)
+		{
+			StringValues = incomingSettings.StringValues;
+			IntValues = incomingSettings.IntValues;
+			BoolValues = incomingSettings.BoolValues;
+			FloatValues = incomingSettings.FloatValues;
+		}
+
+		/// <summary>
+		///     Handles fetching of a value in the StringValues Dictionary
+		/// </summary>
+		/// <param name="defaultValue">Default Value to use if value is not found in the Settings Dictionary</param>
+		/// <param name="name">Compiler Generated Name of Property</param>
+		/// <returns>String Value for the dictionary</returns>
+		public string GetString(string defaultValue = null, string name = null)
+		{
+			if (name == null)
+			{
+				return null;
+			}
+
+			return StringValues.ContainsKey(name) ? StringValues[name] : defaultValue;
+		}
+
+		/// <summary>
+		///     Handles setting of a value in the StringValues Dictionary
+		/// </summary>
+		/// <param name="value">Value to Set</param>
+		/// <param name="name">Compiler Generated Name of the Property</param>
+		public void SetString(string value, string name = null)
+		{
+			if (name == null)
+			{
+				return;
+			}
+
+			if (StringValues.ContainsKey(name))
+			{
+				StringValues[name] = value;
+			}
+			else
+			{
+				StringValues.Add(name, value);
+			}
+		}
+
+		/// <summary>
+		///     Handles fetching of a value in the IntValues Dictionary
+		/// </summary>
+		/// <param name="defaultValue">Default Value to use if value is not found in the Settings Dictionary</param>
+		/// <param name="name">Compiler Generated Name of Property</param>
+		/// <returns>Int Value for the dictionary</returns>
+		public int GetInt(int? defaultValue = null, string name = null)
+		{
+			if (name == null)
+			{
+				return 0;
+			}
+
+			return IntValues.ContainsKey(name) ? IntValues[name] : defaultValue ?? 0;
+		}
+
+		/// <summary>
+		///     Handles setting of a value in the IntValues Dictionary
+		/// </summary>
+		/// <param name="value">Value to Set</param>
+		/// <param name="name">Compiler Generated Name of the Property</param>
+		public void SetInt(int value, string name = null)
+		{
+			if (name == null)
+			{
+				return;
+			}
+
+			if (IntValues.ContainsKey(name))
+			{
+				IntValues[name] = value;
+			}
+			else
+			{
+				IntValues.Add(name, value);
+			}
+		}
+
+
+		/// <summary>
+		///     Handles fetching of a value in the BoolValues Dictionary
+		/// </summary>
+		/// <param name="defaultValue">Default Value to use if value is not found in the Settings Dictionary</param>
+		/// <param name="name">Compiler Generated Name of Property</param>
+		/// <returns>Bool Value for the dictionary</returns>
+		public bool GetBool(bool? defaultValue = null, string name = null)
+		{
+			if (name == null)
+			{
+				return false;
+			}
+
+			return BoolValues.ContainsKey(name) ? BoolValues[name] : defaultValue ?? false;
+		}
+
+		/// <summary>
+		///     Handles setting of a value in the BoolValues Dictionary
+		/// </summary>
+		/// <param name="value">Value to Set</param>
+		/// <param name="name">Compiler Generated Name of the Property</param>
+		public void SetBool(bool value, string name = null)
+		{
+			if (name == null)
+			{
+				return;
+			}
+
+			if (BoolValues.ContainsKey(name))
+			{
+				BoolValues[name] = value;
+			}
+			else
+			{
+				BoolValues.Add(name, value);
+			}
+		}
+
+		/// <summary>
+		///     Handles fetching of a value in the FloatValues Dictionary
+		/// </summary>
+		/// <param name="defaultValue">Default Value to use if value is not found in the Settings Dictionary</param>
+		/// <param name="name">Compiler Generated Name of Property</param>
+		/// <returns>Float Value for the dictionary</returns>
+		public float GetFloat(float? defaultValue = null, string name = null)
+		{
+			if (name == null)
+			{
+				return 0f;
+			}
+
+			return FloatValues.ContainsKey(name) ? FloatValues[name] : defaultValue ?? 0f;
+		}
+
+		/// <summary>
+		///     Handles setting of a value in the FloatValues Dictionary
+		/// </summary>
+		/// <param name="value">Value to Set</param>
+		/// <param name="name">Compiler Generated Name of the Property</param>
+		public void SetFloat(float value, string name = null)
+		{
+			if (name == null)
+			{
+				return;
+			}
+
+			if (FloatValues.ContainsKey(name))
+			{
+				FloatValues[name] = value;
+			}
+			else
+			{
+				FloatValues.Add(name, value);
+			}
+		}
+	}
+
+	// ReSharper disable once InconsistentNaming
+#pragma warning disable 1591
+	[Serializable]
+	[Obsolete("Use ModSettings class instead.")]
+	public class IModSettings : ModSettings { }
+#pragma warning restore 1591
+}
+
+namespace Modding
+{
+	[Serializable]
+	public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
+	{
+		// readonly kills JsonUtility
+		// ReSharper disable once FieldCanBeMadeReadOnly.Local
+		[SerializeField] private List<TKey> _keys = new List<TKey>();
+
+		// ReSharper disable once FieldCanBeMadeReadOnly.Local
+		[SerializeField] private List<TValue> _values = new List<TValue>();
+
+		/// <summary>
+		///     Occurse before something isserialized.
+		/// </summary>
+		public void OnBeforeSerialize()
+		{
+			_keys.Clear();
+			_values.Clear();
+			foreach (KeyValuePair<TKey, TValue> pair in this)
+			{
+				_keys.Add(pair.Key);
+				_values.Add(pair.Value);
+			}
+		}
+
+		/// <summary>
+		///     Occurs after the object was deserialized
+		/// </summary>
+		public void OnAfterDeserialize()
+		{
+			Clear();
+			if (_keys.Count != _values.Count)
+			{
+				throw new Exception("There are " + _keys.Count + " keys and " + _values.Count + " values after deserialization. Make sure that both key and value types are serializable.");
+				//throw new Exception(
+					//$"there are {_keys.Count} keys and {_values.Count} values after deserialization. Make sure that both key and value types are serializable.");
+			}
+
+			for (int i = 0; i < _keys.Count; i++)
+			{
+				Add(_keys[i], _values[i]);
+			}
+		}
+	}
+}
+
+namespace Modding
+{
+	[Serializable]
+	public class ModSettingsDictionary : SerializableDictionary<string, ModSettings>, ISerializationCallbackReceiver
+	{
+		/// <inheritdoc />
+		/// <summary>
+		///     Occurs before serialization
+		/// </summary>
+		public new void OnBeforeSerialize()
+		{
+			base.OnBeforeSerialize();
+
+			foreach (ModSettings settings in Values)
+			{
+				// ReSharper disable once SuspiciousTypeConversion.Global
+				if (!(settings is ISerializationCallbackReceiver))
+				{
+					continue;
+				}
+				var callbackReceiver = settings as ISerializationCallbackReceiver;
+				try
+				{
+					callbackReceiver.OnBeforeSerialize();
+				}
+				catch (Exception e)
+				{
+					Debug.LogError("[API] - " + e);
+					//Logger.LogError("[API] - " + e);
+				}
+			}
+		}
+	}
+}
+
+public class PlayerData
+{
+
+}
+
+public class SceneData
+{
+
+}
+
+public class SaveGameData
+{
+	public PlayerData playerData;
+	public SceneData sceneData;
+
+	public SaveGameData(PlayerData playerData, SceneData sceneData)
+	{
+
+	}
+}
+
+namespace Modding.Patches
+{
+	public class SaveGameData : global::SaveGameData
+	{
+		public ModSettingsDictionary modData;
+
+		public SaveGameData(global::PlayerData playerData, SceneData sceneData) : base(playerData, sceneData)
+		{
+		}
+
+		public SerializableStringDictionary LoadedMods;
+
+		public string Name;
+	}
+}
+
+namespace Modding
+{
+	/// <summary>
+	///     Logging Utility
+	/// </summary>
+	public interface ILogger
+	{
+		/// <summary>
+		///     Log at the info level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void Log(string message);
+
+		/// <summary>
+		///     Log at the info level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void Log(object message);
+
+		/// <summary>
+		///     Log at the debug level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void LogDebug(string message);
+
+		/// <summary>
+		///     Log at the debug level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void LogDebug(object message);
+
+		/// <summary>
+		///     Log at the error level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void LogError(string message);
+
+		/// <summary>
+		///     Log at the error level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void LogError(object message);
+
+		/// <summary>
+		///     Log at the fine level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void LogFine(string message);
+
+		/// <summary>
+		///     Log at the fine level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void LogFine(object message);
+
+		/// <summary>
+		///     Log at the warn level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void LogWarn(string message);
+
+		/// <summary>
+		///     Log at the warn level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		void LogWarn(object message);
+	}
+}
+
+namespace Modding
+{
+	/// <inheritdoc />
+	/// <summary>
+	///     Base class that allows other classes to have context specific logging
+	/// </summary>
+	public abstract class Loggable : ILogger
+	{
+		internal string ClassName;
+
+		/// <summary>
+		///     Basic setup for Loggable.
+		/// </summary>
+		protected Loggable()
+		{
+			ClassName = GetType().Name;
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the fine/detailed level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void LogFine(string message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the fine/detailed level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void LogFine(object message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the debug level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void LogDebug(string message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the debug level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void LogDebug(object message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the info level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void Log(string message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the info level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void Log(object message)
+		{
+			Debug.Log(FormatLogMessage(message));
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the warn level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void LogWarn(string message)
+		{
+			Debug.LogWarning(FormatLogMessage(message));
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the warn level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void LogWarn(object message)
+		{
+			Debug.LogWarning(FormatLogMessage(message));
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the error level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void LogError(string message)
+		{
+			Debug.LogError(FormatLogMessage(message));
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Log at the error level.  Includes the Mod's name in the output.
+		/// </summary>
+		/// <param name="message">Message to log</param>
+		public void LogError(object message)
+		{
+			Debug.LogError(FormatLogMessage(message));
+		}
+
+		/// <summary>
+		///     Formats a log message as "[TypeName] - Message"
+		/// </summary>
+		/// <param name="message">Message to be formatted.</param>
+		/// <returns>Formatted Message</returns>
+		private string FormatLogMessage(string message)
+		{
+			//return $"[{ClassName}] - {message}";
+			return "[" + ClassName + "] - " + message;
+		}
+
+		/// <summary>
+		///     Formats a log message as "[TypeName] - Message"
+		/// </summary>
+		/// <param name="message">Message to be formatted.</param>
+		/// <returns>Formatted Message</returns>
+		private string FormatLogMessage(object message)
+		{
+			return "[" + ClassName + "] - " + message;
+		}
+	}
+}
+
+namespace Modding
+{
+	/// <inheritdoc />
+	/// <summary>
+	///     Base interface for Mods
+	/// </summary>
+	public interface IMod : ILogger
+	{
+		/// <summary>
+		///     Get's the Mod's Name
+		/// </summary>
+		/// <returns></returns>
+		string GetName();
+
+		List<ValueTuple<string,string>> GetPreloadNames();
+
+		/// <summary>
+		///     Called after preloading of all mods.
+		/// </summary>
+		/// <param name="preloadedObjects">The preloaded objects relevant to this <see cref="Mod" /></param>
+		void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects);
+
+		/// <summary>
+		///     Returns version of Mod
+		/// </summary>
+		/// <returns>Mod Version</returns>
+		string GetVersion();
+
+		/// <summary>
+		///     Denotes if the running version is the current version.  Set this with <see cref="GithubVersionHelper" />
+		/// </summary>
+		/// <returns>If the version is current or not.</returns>
+		bool IsCurrent();
+
+		/// <summary>
+		///     Controls when this mod should load compared to other mods.  Defaults to ordered by name.
+		/// </summary>
+		/// <returns></returns>
+		int LoadPriority();
+	}
+
+	/// <inheritdoc />
+	/// <summary>
+	///     Generic implementation of Mod which allows for settings
+	/// </summary>
+	/// <typeparam name="T">Implementation of <see cref="ModSettings" /></typeparam>
+	public interface IMod<T> : IMod where T : ModSettings
+	{
+		/// <summary>
+		///     Settings For the Mod that would be saved with the save file.
+		/// </summary>
+		T Settings { get; set; }
+	}
+
+	/// <inheritdoc />
+	/// <summary>
+	///     Generic implementation of Mod which allows for settings
+	/// </summary>
+	/// <typeparam name="T">Implementation of <see cref="ModSettings" /></typeparam>
+	/// <typeparam name="TG">Implementation of <see cref="ModSettings" /></typeparam>
+	public interface IMod<T, TG> : IMod where T : ModSettings where TG : ModSettings
+	{
+		/// <summary>
+		///     Settings For the Mod that would be saved with the save file.
+		/// </summary>
+		T Settings { get; set; }
+
+		/// <summary>
+		///     Global Settings which are stored independently of saves.
+		/// </summary>
+		TG GlobalSettings { get; set; }
+	}
+}
+
+namespace Modding
+{
+    /// <inheritdoc />
+    /// <summary>
+    ///     Interface which signifies that this mod can be loaded _and_ unloaded while in game. When re-initialized the mod
+    ///     will be passed null rather than preloading again.
+    /// </summary>
+    public interface ITogglableMod : IMod
+    {
+        /// <summary>
+        ///     Called when the Mod is disabled or unloaded.  Ensure you unhook any events that you hooked up in the Initialize
+        ///     method.
+        /// </summary>
+        void Unload();
+    }
+}
+
+
+namespace Modding
+{
+	public abstract class Mod : Loggable, IMod
+	{
+		private readonly string _globalSettingsPath;
+
+		public virtual ModSettings SaveSettings
+		{
+			get
+			{
+				return null;
+			}
+			set { }
+		}
+
+		public virtual ModSettings GlobalSettings
+		{
+			get
+			{
+				return null;
+			}
+			set { }
+		}
+
+		public readonly string Name;
+
+		protected Mod() : this(null)
+		{
+		}
+
+		protected Mod(string name)
+		{
+			if (string.IsNullOrEmpty(name))
+			{
+				name = GetType().Name;
+			}
+
+			Name = name;
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Get's the Mod's Name
+		/// </summary>
+		/// <returns></returns>
+		public string GetName()
+		{
+			return Name;
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Returns the objects to preload in order for the mod to work.
+		/// </summary>
+		/// <returns>A List of tuples containing scene name, object name</returns>
+		public virtual List<ValueTuple<string,string>> GetPreloadNames()
+		{
+			return null;
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Called after preloading of all mods.
+		/// </summary>
+		/// <param name="preloadedObjects">The preloaded objects relevant to this <see cref="Mod" /></param>
+		public virtual void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
+		{
+			// Call the other Initialize to not break older mods
+			Initialize();
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Returns version of Mod
+		/// </summary>
+		/// <returns>Mod Version</returns>
+		public virtual string GetVersion()
+		{
+			return "UNKNOWN";
+		}
+
+		/// <inheritdoc />
+		/// <summary>
+		///     Denotes if the running version is the current version.  Set this with <see cref="T:Modding.GithubVersionHelper" />
+		/// </summary>
+		/// <returns>If the version is current or not.</returns>
+		public virtual bool IsCurrent()
+		{
+			return true;
+		}
+
+		/// <summary>
+		///     Controls when this mod should load compared to other mods.  Defaults to ordered by name.
+		/// </summary>
+		/// <returns></returns>
+		public virtual int LoadPriority()
+		{
+			return 1;
+		}
+
+		/// <summary>
+		///     Called after preloading of all mods.
+		/// </summary>
+		public virtual void Initialize()
+		{
+		}
+
+		private void HookSaveMethods()
+		{
+
+		}
+
+		private void LoadGlobalSettings()
+		{
+			
+		}
+
+		private void SaveGlobalSettings()
+		{
+			
+		}
+
+		private void LoadSaveSettings(Patches.SaveGameData data)
+		{
+			
+		}
+
+		private void SaveSaveSettings(Patches.SaveGameData data)
+		{
+			
+		}
+	}
+}
+
+/*public class SaveGameData
+{
+
+}*/
+
+//namespace Modding
+//{
+/*public interface ILogger
+{
+	void Log(string message);
+	void Log(object message);
+	void LogDebug(string message);
+	void LogDebug(object message);
+	void LogError(string message);
+	void LogError(object message);
+	void LogFine(string message);
+	void LogFine(object message);
+	void LogWarn(string message);
+	void LogWarn(object message);
+}*/
+
+/*public abstract class Loggable : ILogger
+{
+	protected Loggable()
+	{
+		this.ClassName = base.GetType().Name;
+	}
+
+	public void LogFine(string message)
+	{
+		Debug.Log(this.FormatLogMessage(message));
+	}
+
+	public void LogFine(object message)
+	{
+		Debug.Log(this.FormatLogMessage(message));
+	}
+
+	public void LogDebug(string message)
+	{
+		Debug.Log(this.FormatLogMessage(message));
+	}
+
+	public void LogDebug(object message)
+	{
+		Debug.Log(this.FormatLogMessage(message));
+	}
+
+	public void Log(string message)
+	{
+		Debug.Log(this.FormatLogMessage(message));
+	}
+
+	public void Log(object message)
+	{
+		Debug.Log(this.FormatLogMessage(message));
+	}
+
+	public void LogWarn(string message)
+	{
+		Debug.LogWarning(this.FormatLogMessage(message));
+	}
+
+	public void LogWarn(object message)
+	{
+		Debug.LogWarning(this.FormatLogMessage(message));
+	}
+
+	public void LogError(string message)
+	{
+		Debug.LogError(this.FormatLogMessage(message));
+	}
+
+	public void LogError(object message)
+	{
+		Debug.LogError(this.FormatLogMessage(message));
+	}
+
+	private string FormatLogMessage(string message)
+	{
+		return "[" + this.ClassName + "] - " + message;
+	}
+
+	private string FormatLogMessage(object message)
+	{
+		return string.Format("[{0}] - {1}", this.ClassName, message);
+	}
+
+	internal string ClassName;
+}*/
+
+/*public interface IMod : ILogger
+{
+	string GetName();
+	List<ValueTuple<string, string>> GetPreloadNames();
+	string GetVersion();
+	void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects);
+	bool IsCurrent();
+	int LoadPriority();
+}
+
+public class ModSettings
+{
+
+}*/
+
+/*public abstract class Mod : Loggable, IMod, ILogger
+{
+	/// <summary>
+	/// Gets or sets the save settings of this Mod
+	/// </summary>
+	// Token: 0x170006D0 RID: 1744
+	// (get) Token: 0x06004416 RID: 17430 RVA: 0x00186D88 File Offset: 0x00184F88
+	// (set) Token: 0x06004417 RID: 17431 RVA: 0x00186D8C File Offset: 0x00184F8C
+	public virtual ModSettings SaveSettings
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
+		}
+	}
+
+	/// <summary>
+	/// Gets or sets the global settings of this Mod
+	/// </summary>
+	// Token: 0x170006D1 RID: 1745
+	// (get) Token: 0x06004418 RID: 17432 RVA: 0x00186D90 File Offset: 0x00184F90
+	// (set) Token: 0x06004419 RID: 17433 RVA: 0x00186D94 File Offset: 0x00184F94
+	public virtual ModSettings GlobalSettings
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
+		}
+	}
+
+	/// <inheritdoc />
+	/// <summary>
+	///     Legacy constructor instead of optional argument to not break old mods
+	/// </summary>
+	// Token: 0x0600441A RID: 17434 RVA: 0x00186D98 File Offset: 0x00184F98
+	protected Mod() : this(null)
+	{
+	}
+
+	/// <inheritdoc />
+	/// <summary>
+	///     Constructs the mod, assigns the instance and sets the name.
+	/// </summary>
+	// Token: 0x0600441B RID: 17435 RVA: 0x00186DA4 File Offset: 0x00184FA4
+	protected Mod(string name)
+	{
+
+	}
+
+	/// <inheritdoc />
+	/// <summary>
+	///     Get's the Mod's Name
+	/// </summary>
+	/// <returns></returns>
+	// Token: 0x0600441C RID: 17436 RVA: 0x00186E4C File Offset: 0x0018504C
+	public string GetName()
+	{
+		return this.Name;
+	}
+
+	/// <inheritdoc />
+	/// <summary>
+	///     Returns the objects to preload in order for the mod to work.
+	/// </summary>
+	/// <returns>A List of tuples containing scene name, object name</returns>
+	// Token: 0x0600441D RID: 17437 RVA: 0x00186E64 File Offset: 0x00185064
+	public virtual List<ValueTuple<string, string>> GetPreloadNames()
+	{
+		return null;
+	}
+
+	/// <inheritdoc />
+	/// <summary>
+	///     Called after preloading of all mods.
+	/// </summary>
+	/// <param name="preloadedObjects">The preloaded objects relevant to this <see cref="T:Modding.Mod" /></param>
+	// Token: 0x0600441E RID: 17438 RVA: 0x00186E78 File Offset: 0x00185078
+	public virtual void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
+	{
+		this.Initialize();
+	}
+
+	/// <inheritdoc />
+	/// <summary>
+	///     Returns version of Mod
+	/// </summary>
+	/// <returns>Mod Version</returns>
+	// Token: 0x0600441F RID: 17439 RVA: 0x00186E84 File Offset: 0x00185084
+	public virtual string GetVersion()
+	{
+		return "UNKNOWN";
+	}
+
+	/// <inheritdoc />
+	/// <summary>
+	///     Denotes if the running version is the current version.  Set this with <see cref="T:Modding.GithubVersionHelper" />
+	/// </summary>
+	/// <returns>If the version is current or not.</returns>
+	// Token: 0x06004420 RID: 17440 RVA: 0x00186E9C File Offset: 0x0018509C
+	public virtual bool IsCurrent()
+	{
+		return true;
+	}
+
+	/// <summary>
+	///     Controls when this mod should load compared to other mods.  Defaults to ordered by name.
+	/// </summary>
+	/// <returns></returns>
+	// Token: 0x06004421 RID: 17441 RVA: 0x00186EB0 File Offset: 0x001850B0
+	public virtual int LoadPriority()
+	{
+		return 1;
+	}
+
+	/// <summary>
+	///     Called after preloading of all mods.
+	/// </summary>
+	// Token: 0x06004422 RID: 17442 RVA: 0x00186EC4 File Offset: 0x001850C4
+	public virtual void Initialize()
+	{
+	}
+
+	// Token: 0x06004423 RID: 17443 RVA: 0x00186EC8 File Offset: 0x001850C8
+	private void HookSaveMethods()
+	{
+
+	}
+
+	// Token: 0x06004424 RID: 17444 RVA: 0x00186F1C File Offset: 0x0018511C
+	private void LoadGlobalSettings()
+	{
+
+	}
+
+	// Token: 0x06004425 RID: 17445 RVA: 0x0018701C File Offset: 0x0018521C
+	private void SaveGlobalSettings()
+	{
+
+	}
+
+	// Token: 0x06004426 RID: 17446 RVA: 0x0018716C File Offset: 0x0018536C
+	private void LoadSaveSettings(SaveGameData data)
+	{
+
+	}*/
+
+// Token: 0x06004427 RID: 17447 RVA: 0x00187240 File Offset: 0x00185440
+//private void SaveSaveSettings(SaveGameData data)
+//{
+/*ModSettings modSettings = null;
+try
+{
+	modSettings = this.SaveSettings;
+}
+catch (Exception message)
+{
+	base.LogError(message);
+}
+bool flag = modSettings == null;
+if (!flag)
+{
+	string name = base.GetType().Name;
+	base.Log("Adding Settings to Save file");
+	bool flag2 = data.modData == null;
+	if (flag2)
+	{
+		data.modData = new ModSettingsDictionary();
+	}
+	bool flag3 = data.modData.ContainsKey(name);
+	if (flag3)
+	{
+		data.modData[name] = modSettings;
+	}
+	else
+	{
+		data.modData.Add(name, modSettings);
+	}
+}*/
+//}
+
+// Token: 0x04004D8B RID: 19851
+//private readonly string _globalSettingsPath;
+
+//// <summary>
+/////     The Mods Name
+///// </summary>
+//// Token: 0x04004D8C RID: 19852
+//public readonly string Name;
+//}
+//}
+
+namespace System
+{
+	internal interface ITupleInternal
+	{
+		int GetHashCode(IEqualityComparer comparer);
+
+		int Size { get; }
+
+		string ToStringEnd();
+	}
+}
+
+namespace System
+{
+	public struct ValueTuple<T1, T2> : IEquatable<ValueTuple<T1, T2>>, IStructuralEquatable, IStructuralComparable, IComparable, IComparable<ValueTuple<T1, T2>>, ITupleInternal
+	{
+		public ValueTuple(T1 item1, T2 item2)
+		{
+			Item1 = item1;
+			Item2 = item2;
+		}
+
+		public override bool Equals(object obj)
+		{
+			return obj is ValueTuple<T1, T2> && Equals((ValueTuple<T1, T2>)obj);
+		}
+
+		public bool Equals(ValueTuple<T1, T2> other)
+		{
+			return EqualityComparer<T1>.Default.Equals(Item1, other.Item1) && EqualityComparer<T2>.Default.Equals(Item2, other.Item2);
+		}
+
+		bool IStructuralEquatable.Equals(object other, IEqualityComparer comparer)
+		{
+			bool flag = other == null || !(other is ValueTuple<T1, T2>);
+			bool result;
+			if (flag)
+			{
+				result = false;
+			}
+			else
+			{
+				ValueTuple<T1, T2> valueTuple = (ValueTuple<T1, T2>)other;
+				result = (comparer.Equals(Item1, valueTuple.Item1) && comparer.Equals(Item2, valueTuple.Item2));
+			}
+			return result;
+		}
+
+		int IComparable.CompareTo(object other)
+		{
+			bool flag = other == null;
+			int result;
+			if (flag)
+			{
+				result = 1;
+			}
+			else
+			{
+				bool flag2 = !(other is ValueTuple<T1, T2>);
+				if (flag2)
+				{
+					throw new ArgumentException("The parameter should be a ValueTuple type of appropriate arity.", "other");
+				}
+				result = CompareTo((ValueTuple<T1, T2>)other);
+			}
+			return result;
+		}
+
+		public int CompareTo(ValueTuple<T1, T2> other)
+		{
+			int num = Comparer<T1>.Default.Compare(Item1, other.Item1);
+			bool flag = num != 0;
+			int result;
+			if (flag)
+			{
+				result = num;
+			}
+			else
+			{
+				result = Comparer<T2>.Default.Compare(Item2, other.Item2);
+			}
+			return result;
+		}
+
+		int IStructuralComparable.CompareTo(object other, IComparer comparer)
+		{
+			bool flag = other == null;
+			int result;
+			if (flag)
+			{
+				result = 1;
+			}
+			else
+			{
+				bool flag2 = !(other is ValueTuple<T1, T2>);
+				if (flag2)
+				{
+					throw new ArgumentException("The parameter should be a ValueTuple type of appropriate arity.", "other");
+				}
+				ValueTuple<T1, T2> valueTuple = (ValueTuple<T1, T2>)other;
+				int num = comparer.Compare(Item1, valueTuple.Item1);
+				bool flag3 = num != 0;
+				if (flag3)
+				{
+					result = num;
+				}
+				else
+				{
+					result = comparer.Compare(Item2, valueTuple.Item2);
+				}
+			}
+			return result;
+		}
+
+		public override int GetHashCode()
+		{
+			return CombineHashCodes(EqualityComparer<T1>.Default.GetHashCode(Item1), EqualityComparer<T2>.Default.GetHashCode(Item2));
+		}
+
+		internal static int CombineHashCodes(int h1, int h2)
+		{
+			return HashHelpers.Combine(HashHelpers.Combine(HashHelpers.RandomSeed, h1), h2);
+		}
+
+		int IStructuralEquatable.GetHashCode(IEqualityComparer comparer)
+		{
+			return GetHashCodeCore(comparer);
+		}
+
+		private int GetHashCodeCore(IEqualityComparer comparer)
+		{
+			return CombineHashCodes(comparer.GetHashCode(Item1), comparer.GetHashCode(Item2));
+		}
+
+		int ITupleInternal.GetHashCode(IEqualityComparer comparer)
+		{
+			return GetHashCodeCore(comparer);
+		}
+
+
+		string ITupleInternal.ToStringEnd()
+		{
+			return "";
+		}
+
+		int ITupleInternal.Size
+		{
+			get
+			{
+				return 2;
+			}
+		}
+
+		public T1 Item1;
+
+		public T2 Item2;
+	}
+}
+
+namespace System.Collections
+{
+	public interface IStructuralComparable
+	{
+		int CompareTo(object other, IComparer comparer);
+	}
+}
+
+namespace System.Collections
+{
+	public interface IStructuralEquatable
+	{
+		bool Equals(object other, IEqualityComparer comparer);
+
+		int GetHashCode(IEqualityComparer comparer);
+	}
+}
+
+namespace System.Numerics.Hashing
+{
+	internal static class HashHelpers
+	{
+		public static int Combine(int h1, int h2)
+		{
+			uint num = (uint)(h1 << 5 | (int)((uint)h1 >> 27));
+			return (int)(num + (uint)h1 ^ (uint)h2);
+		}
+
+		public static readonly int RandomSeed = Guid.NewGuid().GetHashCode();
+	}
+}
+

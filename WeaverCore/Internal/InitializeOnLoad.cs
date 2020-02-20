@@ -7,7 +7,6 @@ namespace WeaverCore.Internal
     {
         static InitializeOnLoad()
         {
-            Debug.Log("Initialize On Load");
             ModuleInitializer.Initialize();
         }
     }

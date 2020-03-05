@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Linq;
 using WeaverCore.Helpers;
 using static WeaverCore.Helpers.Harmony;
+using WeaverCore.Internal.Harmony;
 
 namespace WeaverCore.Internal
 {
@@ -14,18 +15,21 @@ namespace WeaverCore.Internal
     {
         static bool Initialized = false;
 
-        static HarmonyInstance weaverCorePatcher;
+        internal static HarmonyInstance weaverCorePatcher;
 
         public static void Initialize()
         {
             if (!Initialized)
             {
-                weaverCorePatcher = Create($"com.{nameof(WeaverCore).ToLower()}.nickc01");
+				weaverCorePatcher = Create($"com.{(nameof(WeaverCore).ToLower())}.nickc01");
                 Initialized = true;
                 PatchGetTypes();
-                var init = ImplementationFinder.GetImplementation<InitializerImplementation>();
+
+
+                var init = ImplFinder.GetImplementation<InitializerImplementation>();
                 init.Initialize();
-                //weaverCorePatcher.PatchAll();
+
+                GameObjectPatches.Patch(weaverCorePatcher);
             }
         }
 
@@ -49,5 +53,7 @@ namespace WeaverCore.Internal
             }
             __result = list.ToArray();
         }
+
+
     }
 }

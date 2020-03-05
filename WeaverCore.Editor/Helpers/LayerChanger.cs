@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 
-namespace WeaverCore
+namespace WeaverCore.Editor.Helpers
 {
     public static class LayerChanger
     {

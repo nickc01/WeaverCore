@@ -38,21 +38,22 @@ namespace WeaverCore.Helpers
             return new HarmonyInstance(CreateInstanceMethod.Invoke(null, new object[] { id }));
         }
 
-        public static DynamicMethod Patch(HarmonyInstance instance, MethodInfo original, MethodInfo prefix, MethodInfo postfix)
+        public static DynamicMethod Patch(HarmonyInstance instance, MethodBase original, MethodInfo prefix, MethodInfo postfix)
         {
             var prefixInstance = Activator.CreateInstance(HarmonyMethodType, new object[] { prefix });
             var postfixInstance = Activator.CreateInstance(HarmonyMethodType, new object[] { postfix });
             return (DynamicMethod)PatchMethod.Invoke(instance.harmonyInstance, new object[] { original, prefixInstance, postfixInstance, null });
         }
 
-        public static void PatchAll(HarmonyInstance instance, Assembly assembly = null)
+        /*public static void PatchAll(HarmonyInstance instance, Assembly assembly = null)
         {
             if (assembly == null)
             {
                 assembly = Assembly.GetCallingAssembly();
             }
+            //new global::Harmony.HarmonyPatch()
             PatchAllMethod.Invoke(instance.harmonyInstance, new object[] { assembly });
-        }
+        }*/
 
         public struct HarmonyInstance
         {
@@ -86,15 +87,15 @@ namespace WeaverCore.Helpers
                 return !(left == right);
             }
 
-            public DynamicMethod Patch(MethodInfo original, MethodInfo prefix, MethodInfo postfix)
+            public DynamicMethod Patch(MethodBase original, MethodInfo prefix, MethodInfo postfix)
             {
                 return Harmony.Patch(this, original, prefix, postfix);
             }
 
-            public void PatchAll(Assembly assembly = null)
+            /*public void PatchAll(Assembly assembly = null)
             {
                 Harmony.PatchAll(this, assembly);
-            }
+            }*/
         }
     }
 }

@@ -10,20 +10,45 @@ namespace WeaverCore.Helpers
     {
         static Assembly NewtonsoftJson;
         static Type JsonConvert;
-        static Func<object, string> SerializeMethod;
+        static Type FormattingT;
+        static Type JsonSerializerSettingsT;
+        static Type ReferenceLoopHandlingT;
+
+        static PropertyInfo ReferenceLoopHandlingProp;
+
+        static object Indented;
+        static object IgnoreLoopHandling;
+        static object DefaultSettings;
+        //static Func<object, string> SerializeMethod;
         static Func<string, Type, object> DeserializeMethod;
+
+        static MethodInfo SerializeMethod;
 
         static Json()
         {
             NewtonsoftJson = Assembly.Load("Newtonsoft.Json");
             JsonConvert = NewtonsoftJson.GetType("Newtonsoft.Json.JsonConvert");
-            SerializeMethod = Methods.GetFunction<Func<object, string>>(JsonConvert.GetMethod("SerializeObject", new Type[] { typeof(object) }));
+            FormattingT = NewtonsoftJson.GetType("Newtonsoft.Json.Formatting");
+            JsonSerializerSettingsT = NewtonsoftJson.GetType("Newtonsoft.Json.JsonSerializerSettings");
+            ReferenceLoopHandlingT = NewtonsoftJson.GetType("Newtonsoft.Json.ReferenceLoopHandling");
+
+            ReferenceLoopHandlingProp = JsonSerializerSettingsT.GetProperty("ReferenceLoopHandling");
+
+            Indented = Enum.Parse(FormattingT, "Indented");
+            DefaultSettings = Activator.CreateInstance(JsonSerializerSettingsT);
+            IgnoreLoopHandling = Enum.Parse(ReferenceLoopHandlingT,"Ignore");
+
+            ReferenceLoopHandlingProp.SetValue(DefaultSettings, IgnoreLoopHandling, null);
+
+            SerializeMethod = JsonConvert.GetMethod("SerializeObject", new Type[] { typeof(object),FormattingT,JsonSerializerSettingsT });
+            //SerializeMethod = Methods.GetFunction<Func<object, string>>(JsonConvert.GetMethod("SerializeObject", new Type[] { typeof(object) }));
             DeserializeMethod = Methods.GetFunction<Func<string, Type, object>>(JsonConvert.GetMethod("DeserializeObject", new Type[] { typeof(string), typeof(Type) }));
         }
 
         public static string Serialize(object obj)
         {
-            return SerializeMethod(obj);
+            return (string)SerializeMethod.Invoke(null, new object[] { obj,Indented,DefaultSettings });
+            //return SerializeMethod(obj);
         }
 
         public static T Deserialize<T>(string source)

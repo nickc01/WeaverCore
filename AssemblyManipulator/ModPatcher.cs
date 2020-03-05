@@ -29,7 +29,7 @@ namespace AssemblyManipulator
 				var weaverCoreGameResource = assembly.MainModule.Resources.FirstOrDefault(r => r.Name == "WeaverCore.Game");
 				if (weaverCoreGameResource != null && weaverCoreGameResource is EmbeddedResource embed)
 				{
-					var stream = embed.GetResourceStream();
+					var stream = Program.LoadResource("WeaverCore.Game",embed.GetResourceStream(),assembly);
 					var gameAssembly = AssemblyDefinition.ReadAssembly(stream);
 					Assemblies.Add(gameAssembly);
 					Streams.Add(stream);

@@ -23,11 +23,11 @@ namespace WeaverCore.Features
 		}
 
 		EnemyImplementation enemyImpl;
-		static EnemyStaticImplementation staticImpl = ImplementationFinder.GetImplementation<EnemyStaticImplementation>();
+		static EnemyStaticImplementation staticImpl = ImplFinder.GetImplementation<EnemyStaticImplementation>();
 
 		protected virtual void Start()
 		{
-			var enemyImplType = ImplementationFinder.GetImplementationType<EnemyImplementation>();
+			var enemyImplType = ImplFinder.GetImplementationType<EnemyImplementation>();
 			enemyImpl = (EnemyImplementation)gameObject.AddComponent(enemyImplType);
 		}
 

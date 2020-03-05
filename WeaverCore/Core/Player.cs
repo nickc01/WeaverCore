@@ -33,7 +33,7 @@ namespace WeaverCore
 
         void Start()
         {
-            var playerImplType = ImplementationFinder.GetImplementationType<PlayerImplementation>();
+            var playerImplType = ImplFinder.GetImplementationType<PlayerImplementation>();
 
             playerImpl = (PlayerImplementation)gameObject.AddComponent(playerImplType);
             Instance = this;

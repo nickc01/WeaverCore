@@ -20,13 +20,13 @@ namespace WeaverCore.Internal
 			{
 				loadedAllAssemblies = true;
 				string path = "Assets";
-				if (ImplementationFinder.State == RunningState.Game)
+				if (ImplFinder.State == RunningState.Game)
 				{
-					path = ModLoader.GetModFolderPath();
+					path = GetModFolderPath();
 				}
 				foreach (var file in Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories))
 				{
-					if (!file.Contains("Assets\\Editor") && !file.Contains($"{nameof(WeaverCore)}\\Editor"))
+					if (!file.Contains("Assets\\Editor") && !file.Contains($"{(nameof(WeaverCore))}\\Editor"))
 					{
 						Assembly.LoadFile(file);
 					}
@@ -37,11 +37,11 @@ namespace WeaverCore.Internal
 		public static IEnumerable<IWeaverMod> LoadAllModsIter()
 		{
 			LoadAllModAssemblies();
-			var impl = ImplementationFinder.GetImplementation<ModLoaderImplementation>();
+			var impl = ImplFinder.GetImplementation<ModLoaderImplementation>();
 			foreach (var mod in impl.LoadAllMods())
 			{
 				var registry = RegistryLoader.GetModRegistries(mod.GetType()).ToList();
-				if (registry.Count == 0 && !(mod is WeaverCoreMod))
+				if (registry.Count == 0 && !(mod is WeaverCore))
 				{
 					Debugger.LogWarning($"No registry found for mod : {mod.Name}");
 				}
@@ -56,7 +56,7 @@ namespace WeaverCore.Internal
 
 		public static string GetModFolderPath()
 		{
-			if (ImplementationFinder.State == RunningState.Game)
+			if (ImplFinder.State == RunningState.Game)
 			{
 				if (SystemInfo.operatingSystem.Contains("Windows"))
 				{
@@ -64,7 +64,7 @@ namespace WeaverCore.Internal
 				}
 				else if (SystemInfo.operatingSystem.Contains("Mac"))
 				{
-					return Application.dataPath + "/Resources/Data/Managed/Mods/";
+					return Application.dataPath + "/Resources/Data/Managed/Mods";
 				}
 				else if (SystemInfo.operatingSystem.Contains("Linux"))
 				{

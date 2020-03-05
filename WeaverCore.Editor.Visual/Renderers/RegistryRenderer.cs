@@ -11,7 +11,7 @@ using WeaverCore.Helpers;
 namespace WeaverCore.Editor.Visual.Renderers
 {
 	[CustomEditor(typeof(Registry))]
-	public class RegistryRenderer : UnityEditor.Editor
+	class RegistryRenderer : UnityEditor.Editor
 	{
 		RegistryChecker checker;
 

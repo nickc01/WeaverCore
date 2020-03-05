@@ -20,7 +20,7 @@ namespace WeaverCore.Game.Implementations
         //This just needs to load all mods within WeaverCore.dll, since all the other mods are loaded using a different method
         public override IEnumerable<IWeaverMod> LoadAllMods()
         {
-            foreach (var type in typeof(WeaverCoreMod).Assembly.GetTypes())
+            foreach (var type in typeof(Internal.WeaverCore).Assembly.GetTypes())
             {
                 if (typeof(IWeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition)
                 {
@@ -49,6 +49,7 @@ namespace WeaverCore.Game.Implementations
 
         public static WeaverMod<T> CreateMod(T mod)
         {
+            Debugger.Log("Mod Name = " + mod.Name);
             if (mod.Unloadable)
             {
                 return new UnloadableWeaverMod<T>(mod);

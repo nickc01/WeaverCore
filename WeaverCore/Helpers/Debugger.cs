@@ -8,7 +8,7 @@ namespace WeaverCore.Helpers
 {
     public static class Debugger
     {
-        static DebuggerImplementation impl = ImplementationFinder.GetImplementation<DebuggerImplementation>();
+        static DebuggerImplementation impl = ImplFinder.GetImplementation<DebuggerImplementation>();
 
         public static void Log(object obj)
         {

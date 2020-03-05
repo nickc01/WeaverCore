@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Helpers;
 
 namespace WeaverCore
 {
@@ -116,6 +117,8 @@ namespace WeaverCore
                 }
                 if (modType == null || modType.FullName != modTypeName)
                 {
+                    Debugger.Log("Assembly Name = " + modAssemblyName);
+                    Debugger.Log("Mod Type Name = " + modTypeName);
                     modType = assemblyNames[modAssemblyName].GetType(modTypeName);
                 }
                 return modType;
@@ -163,8 +166,10 @@ namespace WeaverCore
         {
             foreach (var registry in ActiveRegistries)
             {
-                if (registry.registryEnabled)
+                Debugger.Log("Registry = " + registry?.name);
+                if (registry != null && registry.registryEnabled)
                 {
+                    Debugger.Log("B");
                     foreach (var result in registry.GetFeatures(predicate))
                     {
                         yield return result;
@@ -191,9 +196,11 @@ namespace WeaverCore
         /// <returns>Returns an Itereator with all the features in it</returns>
         public IEnumerable<T> GetFeatures<T>(Func<T, bool> predicate) where T : Feature
         {
+            Debugger.Log("Features Raw = " + featuresRaw);
             foreach (var feature in featuresRaw)
             {
-                if (feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate((T)feature))
+                Debugger.Log("Feature = " + feature);
+                if (feature != null && feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate((T)feature))
                 {
                     yield return (T)feature;
                 }

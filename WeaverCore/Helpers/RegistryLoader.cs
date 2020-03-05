@@ -29,7 +29,7 @@ namespace WeaverCore.Helpers
 					yield return registry;
 				}
 			}
-			var loader = ImplementationFinder.GetImplementation<RegistryLoaderImplementation>();
+			var loader = ImplFinder.GetImplementation<RegistryLoaderImplementation>();
 
 			var registries = loader.GetRegistries(ModType);
 
@@ -60,14 +60,25 @@ namespace WeaverCore.Helpers
 
 				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 				{
+					//Debugger.Log("Assembly = " + assembly.FullName);
 					try
 					{
 						foreach (var name in assembly.GetManifestResourceNames())
 						{
+							//Debugger.Log("Name = " + name);
 							if (name.EndsWith(extension))
 							{
 								//Debugger.Log("Loading Asset Bundle = " + name);
 								AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
+								/*foreach (var asset in assetBundle.LoadAllAssets())
+								{
+									Debugger.Log("Asset = " + asset.name);
+									Debugger.Log("Type = " + asset.GetType());
+								}*/
+								//foreach (var assetName in assetBundle.)
+								//{
+								//	Debugger.Log("Asset Name = " + assetBundle);
+								//}
 							}
 						}
 					}

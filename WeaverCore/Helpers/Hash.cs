@@ -17,7 +17,11 @@ namespace WeaverCore.Helpers
 			{
 				using (SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider())
 				{
-					return Convert.ToBase64String(sha1.ComputeHash(stream));
+					var result = Convert.ToBase64String(sha1.ComputeHash(stream));
+					result = result.Replace("\\", "_");
+					result = result.Replace("/", "'");
+
+					return result;
 				}
 			}
 			finally
@@ -30,7 +34,20 @@ namespace WeaverCore.Helpers
 		{
 			using (SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider())
 			{
-				return Convert.ToBase64String(sha1.ComputeHash(bytes));
+				var result = Convert.ToBase64String(sha1.ComputeHash(bytes));
+
+				result = result.Replace("\\", "_");
+				result = result.Replace("/", "'");
+
+				return result;
+			}
+		}
+
+		public static string GetHash(string filePath)
+		{
+			using (var stream = File.OpenRead(filePath))
+			{
+				return GetHash(stream);
 			}
 		}
 	}

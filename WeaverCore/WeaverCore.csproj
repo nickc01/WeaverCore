@@ -72,6 +72,12 @@
     <Reference Include="System" />
     <Reference Include="System.Core">
     </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="UnityEngine">
       <Private>False</Private>
     </Reference>
@@ -84,18 +90,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\WeaverDirectory.cs" />
     <Compile Include="Helpers\CoroutineStarter.cs" />
     <Compile Include="Helpers\Debugger.cs" />
+    <Compile Include="Helpers\EventReceiver.cs" />
     <Compile Include="Helpers\Fields.cs" />
     <Compile Include="Helpers\Hash.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\PropertyTable.cs" />
+    <Compile Include="Helpers\TextureSheet.cs" />
     <Compile Include="Helpers\UnityHelpers.cs" />
+    <Compile Include="Implementations\EventReceiver\EventReceiverImpl.cs" />
+    <Compile Include="Implementations\PropertyManager\PropertyManagerImpl.cs" />
     <Compile Include="Implementations\RuntimeInitializer\RunTimeInitializerImpl.cs" />
-    <Compile Include="Internal\EditorInitializer.cs" />
     <Compile Include="Helpers\Harmony.cs" />
-    <Compile Include="Helpers\ImplementationFinder.cs" />
+    <Compile Include="Helpers\ImplFinder.cs" />
     <Compile Include="Helpers\Methods.cs" />
+    <Compile Include="Internal\Harmony\GameObjectPatches.cs" />
     <Compile Include="Internal\ModLoader.cs" />
     <Compile Include="Helpers\RegistryLoader.cs" />
     <Compile Include="Helpers\ResourceLoader.cs" />
@@ -124,6 +135,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AssetBundles\weavercore.bundle.unix" />
+    <EmbeddedResource Include="Resources\AssetBundles\weavercore.bundle.mac" />
+    <EmbeddedResource Include="Resources\AssetBundles\weavercore.bundle.win" />
     <None Include="Resources\InternalClasses - Copy.txt" />
     <EmbeddedResource Include="Resources\InternalClasses.txt" />
   </ItemGroup>

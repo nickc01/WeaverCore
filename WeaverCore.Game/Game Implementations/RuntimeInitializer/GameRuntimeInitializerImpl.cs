@@ -11,7 +11,7 @@ namespace WeaverCore.Game.Implementations
     {
         public override void Awake()
         {
-            
+            //UnityEngine.SceneManagement.SceneManager.
         }
     }
 }

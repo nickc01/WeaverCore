@@ -16,68 +16,39 @@ namespace WeaverCore.Game.Patches
 			On.HealthManager.Start += HealthManager_Start;
 		}
 
+		[Serializable]
+		class TestTextureClass
+		{
+			public Texture texture;
+		}
+
+
 		private void HealthManager_Start(On.HealthManager.orig_Start orig, HealthManager self)
 		{
+			bool destroyed = false;
 			try
 			{
-				Debugger.Log("Enemy Name = " + self.gameObject.name);
 				self.gameObject.AddComponent<Enemy>();
-				Debugger.Log("A");
 				var replacement = Registry.GetAllFeatures<EnemyReplacement>(r => r.EnemyToReplace == self.gameObject.name).FirstOrDefault();
-				Debugger.Log("B");
-				Debugger.Log("Replacement = " + replacement?.name);
+
 				if (replacement != null)
 				{
-					Debugger.Log("C");
-					foreach (var component in replacement.GetComponents<Component>())
-					{
-						Debugger.Log("Component = " + component?.name);
-						Debugger.Log("Component Type = " + component?.GetType());
-					}
-				}
-				Debugger.Log("D");
-				if (replacement != null)
-				{
-					Debugger.Log($"Replacing {self.gameObject.name} with {replacement.gameObject.name}");
-					//GameObject.Destroy(self.gameObject);
-					Debugger.Log("E");
-					Debugger.Log("GameObject = " + replacement.gameObject);
-					GameObject.Instantiate(replacement.gameObject);
-					Debugger.Log("F");
-
-					var textureDumpFolder = Path.GetTempPath() + "TextureDumpGame\\";
-					Directory.CreateDirectory(textureDumpFolder);
-					foreach (var renderer in GameObject.FindObjectsOfType<tk2dBaseSprite>())
-					{
-						try
-						{
-							var texture = renderer.CurrentSprite.material.mainTexture;
-							if (texture is Texture2D)
-							{
-								var data = UnityEngine.ImageConversion.EncodeToPNG((Texture2D)texture);
-								using (var file = File.Open(textureDumpFolder + texture.name + ".png", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
-								{
-									file.Write(data, 0, data.Length);
-								}
-								Debugger.Log("Texture = " + texture);
-
-							}
-						}
-						catch (Exception e)
-						{
-							Debugger.Log("E = " + e);
-						}
-					}
-
+					var instance = GameObject.Instantiate(replacement.gameObject);
+					EventReceiver.ReceiveEventsFromObject(self.gameObject, instance);
+					GameObject.Destroy(self.gameObject);
+					destroyed = true;
 				}
 			}
 			catch (Exception e)
 			{
-				Debugger.LogError("Health Manager Exception = " + e);
+				Debugger.LogError("Exception occured while spawning enemy replacement : " + e);
 			}
 			finally
 			{
-				orig(self);
+				if (!destroyed)
+				{
+					orig(self);
+				}
 			}
 		}
 	}

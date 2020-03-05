@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Reflection;
 using WeaverCore.Helpers;
+using WeaverCore.Implementations;
 
 namespace WeaverCore.Helpers
 {
@@ -16,12 +17,40 @@ namespace WeaverCore.Helpers
 
         public EquatableWeakReference(object target) : base(target)
         {
-            hashCode = target.GetHashCode();
+            if (target == null)
+            {
+                hashCode = 0;
+            }
+            else
+            {
+                if (target is UnityEngine.Object obj)
+                {
+                    hashCode = obj.GetInstanceID();
+                }
+                else
+                {
+                    hashCode = target.GetHashCode();
+                }
+            }
         }
 
         public EquatableWeakReference(object target, bool trackResurrection) : base(target, trackResurrection)
         {
-            hashCode = Target.GetHashCode();
+            if (target == null)
+            {
+                hashCode = 0;
+            }
+            else
+            {
+                if (target is UnityEngine.Object obj)
+                {
+                    hashCode = obj.GetInstanceID();
+                }
+                else
+                {
+                    hashCode = target.GetHashCode();
+                }
+            }
         }
 
         public override int GetHashCode()
@@ -29,9 +58,26 @@ namespace WeaverCore.Helpers
             return hashCode;
         }
 
+        public static bool operator==(EquatableWeakReference a, EquatableWeakReference b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(EquatableWeakReference a, EquatableWeakReference b)
+        {
+            return !a.Equals(b);
+        }
+
         public override bool Equals(object obj)
         {
-            return hashCode == obj.GetHashCode();
+            if (obj is UnityEngine.Object unityObject)
+            {
+                return hashCode == unityObject.GetInstanceID();
+            }
+            else
+            {
+                return hashCode == obj.GetHashCode();
+            }
         }
     }
 
@@ -74,13 +120,31 @@ namespace WeaverCore.Helpers
         {
             if (IsAlive)
             {
-                return Target.GetHashCode();
+                if (Target is UnityEngine.Object unityObject)
+                {
+                    return unityObject.GetInstanceID();
+                }
+                else
+                {
+                    return Target.GetHashCode();
+                }
             }
             else
             {
                 return Reference.GetHashCode();
             }
         }
+
+        public static bool operator ==(WeakReference<T> a, WeakReference<T> b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(WeakReference<T> a, WeakReference<T> b)
+        {
+            return !a.Equals(b);
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is WeakReference<T> refT)
@@ -95,14 +159,13 @@ namespace WeaverCore.Helpers
         }
     }
 
-    static class PropertyHolder
+    static class InternalInfo
     {
-        public static Thread CheckingThread = null;
+        //public static Thread CheckingThread = null;
 
-        public static List<IPropertyTableBase> propertyTables = new List<IPropertyTableBase>();
+        public static PropertyManagerImplementation Manager = null;
 
-        static int index = 0;
-        public static object TableLock = new object();
+        //public static List<IPropertyTableBase> propertyTables = new List<IPropertyTableBase>();
 
         //static bool Ending = false;
 
@@ -111,9 +174,8 @@ namespace WeaverCore.Helpers
         //    Ending = true;
         //}
 
-        public static void CheckLoop()
+        /*public static void CheckLoop()
         {
-            //GameExit.OnGameQuit += OnGameQuit;
             try
             {
                 while (true)
@@ -141,14 +203,11 @@ namespace WeaverCore.Helpers
             {
                 Debugger.LogError("CLEANER ERROR -> " + e);
             }
-            //finally
-            //{
-                //GameExit.OnGameQuit -= OnGameQuit;
-            //}
         }
 
         public static void Clean(IPropertyTableBase table)
         {
+            //Debugger.Log("Locking Thread");
             lock (table.Lock)
             {
                 foreach (var key in table.Keys.ToList())
@@ -159,7 +218,7 @@ namespace WeaverCore.Helpers
                     }
                 }
             }
-        }
+        }*/
     }
 
     public interface IPropertyTableBase
@@ -186,7 +245,7 @@ namespace WeaverCore.Helpers
     }
 
 
-    public class PropertyTable<InstanceType, PropertyType> : IPropertyTableBase, IDisposable where InstanceType : class where PropertyType : class, new()
+    public sealed class PropertyTable<InstanceType, PropertyType> : IPropertyTableBase, IDisposable where InstanceType : class where PropertyType : class, new()
     {
         class Comparer : EqualityComparer<WeakReference<InstanceType>>
         {
@@ -204,24 +263,62 @@ namespace WeaverCore.Helpers
         bool usedOnce = false;
         bool disposed = false;
 
-        Dictionary<WeakReference<InstanceType>, PropertyType> properties = new Dictionary<WeakReference<InstanceType>, PropertyType>(new Comparer());
+        Dictionary<WeakReference<InstanceType>, PropertyType> properties;
 
-        void StartChecker()
+
+        public PropertyTable()
         {
-            if (PropertyHolder.CheckingThread == null)
+            properties = new Dictionary<WeakReference<InstanceType>, PropertyType>();
+            Setup();
+        }
+
+        public PropertyTable(IEqualityComparer<WeakReference<InstanceType>> comparer)
+        {
+            properties = new Dictionary<WeakReference<InstanceType>, PropertyType>(comparer);
+            Setup();
+        }
+
+        void Setup()
+        {
+            if (InternalInfo.Manager == null)
+            {
+                InternalInfo.Manager = ImplFinder.GetImplementation<PropertyManagerImplementation>();
+                InternalInfo.Manager.Start();
+            }
+            InternalInfo.Manager.AddTable(this);
+        }
+
+        //void StartChecker()
+        //{
+
+            
+            /*if (PropertyHolder.CheckingThread == null)
             {
                 PropertyHolder.CheckingThread = new Thread(PropertyHolder.CheckLoop);
                 PropertyHolder.CheckingThread.Start();
-            }
-            lock (PropertyHolder.TableLock)
+            }*/
+            /*lock (PropertyHolder.TableLock)
             {
                 PropertyHolder.propertyTables.Add(this);
-            }
-        }
+            }*/
+        //}
 
         public PropertyType GetOrCreate(InstanceType instance)
         {
             return GetOrCreate(instance, () => new PropertyType());
+        }
+
+
+        /// <summary>
+        /// Gets all the values stored in the property table.
+        /// WARNING: MAKE SURE YOU LOCK THE <see cref="Lock"/> OBJECT BEFORE USING THIS OR ELSE THE LIST COULD CHANGE WHILE YOU ARE USING IT
+        /// </summary>
+        public IEnumerable<KeyValuePair<WeakReference<InstanceType>,PropertyType>> AllValues
+        {
+            get
+            {
+                return properties;
+            }
         }
 
         public PropertyType GetOrCreate(InstanceType instance, Func<PropertyType> Factory)
@@ -229,11 +326,11 @@ namespace WeaverCore.Helpers
             //Modding.Logger.Log("LOCKERA = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                if (!usedOnce)
+                /*if (!usedOnce)
                 {
                     usedOnce = true;
                     StartChecker();
-                }
+                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
@@ -243,7 +340,7 @@ namespace WeaverCore.Helpers
                 else
                 {
                     var prop = Factory();
-                    OnAdd(reference, prop);
+                    //OnAdd(reference, prop);
                     properties.Add(reference, prop);
                     //Modding.Logger.Log("UNLOCKA = " + Thread.CurrentThread.GetHashCode());
                     return prop;
@@ -256,11 +353,11 @@ namespace WeaverCore.Helpers
             //Modding.Logger.Log("LOCKERB = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                if (!usedOnce)
+                /*if (!usedOnce)
                 {
                     usedOnce = true;
                     StartChecker();
-                }
+                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 //Modding.Logger.Log("UNLOCKB = " + Thread.CurrentThread.GetHashCode());
                 return properties.ContainsKey(reference);
@@ -272,11 +369,11 @@ namespace WeaverCore.Helpers
             //Modding.Logger.Log("LOCKERC = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                if (!usedOnce)
+                /*if (!usedOnce)
                 {
                     usedOnce = true;
                     StartChecker();
-                }
+                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
@@ -291,20 +388,43 @@ namespace WeaverCore.Helpers
             }
         }
 
+        public bool GetIfExists(InstanceType instance,out PropertyType value)
+        {
+            lock (Lock)
+            {
+                /*if (!usedOnce)
+                {
+                    usedOnce = true;
+                    StartChecker();
+                }*/
+                var reference = new WeakReference<InstanceType>(instance);
+                if (properties.ContainsKey(reference))
+                {
+                    value = properties[reference];
+                    return true;
+                }
+                else
+                {
+                    value = null;
+                    return false;
+                }
+            }
+        }
+
         public bool Remove(InstanceType instance)
         {
             //Modding.Logger.Log("LOCKERD = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                if (!usedOnce)
+                /*if (!usedOnce)
                 {
                     usedOnce = true;
                     StartChecker();
-                }
+                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
-                    OnRemoval(reference, properties[reference]);
+                    //OnRemoval(reference, properties[reference]);
                     properties.Remove(reference);
                     //Modding.Logger.Log("UNLOCKD = " + Thread.CurrentThread.GetHashCode());
                     return true;
@@ -322,15 +442,16 @@ namespace WeaverCore.Helpers
             if (!disposed)
             {
                 disposed = true;
+                InternalInfo.Manager.RemoveTable(this);
                 //Modding.Logger.Log("LOCKERE = " + Thread.CurrentThread.GetHashCode());
-                lock (PropertyHolder.TableLock)
+                /*lock (InternalInfo.TableLock)
                 {
                     if (usedOnce)
                     {
-                        PropertyHolder.propertyTables.Remove(this);
+                        InternalInfo.propertyTables.Remove(this);
                     }
                     //Modding.Logger.Log("UNLOCKE = " + Thread.CurrentThread.GetHashCode());
-                }
+                }*/
                 GC.SuppressFinalize(this);
             }
         }
@@ -340,22 +461,22 @@ namespace WeaverCore.Helpers
             //Modding.Logger.Log("LOCKERF = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                if (!usedOnce)
+                /*if (!usedOnce)
                 {
                     usedOnce = true;
                     StartChecker();
-                }
+                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
-                    OnRemoval(reference, properties[reference]);
+                    //OnRemoval(reference, properties[reference]);
                     properties.Remove(reference);
                 }
                // Modding.Logger.Log("UNLOCKF = " + Thread.CurrentThread.GetHashCode());
             }
         }
 
-        protected virtual void OnRemoval(WeakReference<InstanceType> instance, PropertyType properties )
+        /*protected virtual void OnRemoval(WeakReference<InstanceType> instance, PropertyType properties )
         {
 
         }
@@ -363,7 +484,7 @@ namespace WeaverCore.Helpers
         protected virtual void OnAdd(WeakReference<InstanceType> instance, PropertyType properties)
         {
 
-        }
+        }*/
 
         bool IPropertyTableBase.Validate(EquatableWeakReference instance)
         {

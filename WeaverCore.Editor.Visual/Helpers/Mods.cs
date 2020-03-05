@@ -16,7 +16,7 @@ namespace WeaverCore.Editor.Visual.Helpers
             {
                 foreach (var type in assembly.GetTypes())
                 {
-                    if (typeof(IWeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition && !type.IsInterface && !typeof(WeaverCoreMod).IsAssignableFrom(type))
+                    if (typeof(IWeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition && !type.IsInterface && !typeof(WeaverCore.Internal.WeaverCore).IsAssignableFrom(type))
                     {
                         mods.Add(type);
                     }

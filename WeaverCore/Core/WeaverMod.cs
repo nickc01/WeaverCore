@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using WeaverCore.Helpers;
 
 namespace WeaverCore
 {
@@ -44,10 +46,12 @@ namespace WeaverCore
     /// </summary>
     public abstract class WeaverMod : IWeaverMod
     {
+        static string Prettify(string input) => Regex.Replace(input, @"(\S)([A-Z])", @"$1 $2");
+
         /// <summary>
         /// The name of the mod. Returns the Mod's type name be default
         /// </summary>
-        public virtual string Name => GetType().Name;
+        public virtual string Name => Prettify(GetType().Name);
 
         /// <summary>
         /// The mod version. Returns the assembly version by default

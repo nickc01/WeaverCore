@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
@@ -11,30 +10,20 @@ using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 using WeaverCore.Internal;
 using WeaverCore.Helpers;
+using WeaverCore.Editor.Helpers;
+using System;
 
 namespace WeaverCore.Editor.Implementations
 {
-	public class Initializer : InitializerImplementation
+    public class Initializer : InitializerImplementation
     {
-        [Serializable]
-        struct LayerData
-        {
-            public string[] NameData;
-
-            public bool[] CollisionData;
-
-            public LayerData(string[] nameData, bool[] collisionData)
-            {
-                NameData = nameData;
-                CollisionData = collisionData;
-            }
-        }
 
         public override void Initialize()
         {
+            LoadVisualAssembly();
             EditorInitializer.AddInitializer(() =>
             {
-                var data = GetData();
+                var data = LayerData.GetData();
                 for (int i = 8; i < 32; i++)
                 {
                     LayerChanger.SetLayerName(i, data.NameData[i]);
@@ -48,24 +37,87 @@ namespace WeaverCore.Editor.Implementations
                     }
                 }
                 Physics2D.gravity = new Vector2(0f,-60f);
-                var visualAssembly = System.Reflection.Assembly.Load("WeaverCore.Editor.Visual");
-                //Debugger.Log("Visual Assembly = " + visualAssembly);
+                var visualAssembly = System.Reflection.Assembly.LoadFile($"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.Visual.dll");
                 var initializerType = visualAssembly.GetType("WeaverCore.Editor.Visual.Internal.Initializer");
-                //Debugger.Log("InitializerType = " + initializerType);
                 initializerType.GetMethod("Initialize",BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
             });
-
         }
 
-        LayerData GetData()
+        static void LoadVisualAssembly()
         {
-            using (var stream = typeof(Initializer).Assembly.GetManifestResourceStream($"{nameof(WeaverCore)}.Editor.Resources.layerData.json"))
+            Stream resourceStream = ResourceLoader.Retrieve($"{nameof(WeaverCore)}.Editor.Visual"); //Gets disposed in the Initializer below
+            var resourceHash = Hash.GetHash(resourceStream);
+            var directory = Directory.CreateDirectory($"Assets/{nameof(WeaverCore)}/Editor");
+            string filePath = directory.FullName + $"/{nameof(WeaverCore)}.Editor.Visual.dll";
+
+            if (!File.Exists(filePath) || resourceHash != Hash.GetHash(filePath))
             {
-                using (var reader = new StreamReader(stream))
+                EditorInitializer.AddInitializer(() =>
                 {
-                    return JsonUtility.FromJson<LayerData>(reader.ReadToEnd());
+                    AssetDatabase.StartAssetEditing();
+                    try
+                    {
+                        WriteAssembly(new DirectoryInfo("Assets").Parent.FullName, $"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.Visual.dll", $"{nameof(WeaverCore)}.Editor.Visual.dll", resourceStream);
+                        resourceStream.Dispose();
+                        using (var internalStream = ResourceLoader.Retrieve($"{nameof(WeaverCore)}.Resources.InternalClasses.txt"))
+                        {
+                            using (var output = File.Create($"Assets/{nameof(WeaverCore)}/Internal.cs"))
+                            {
+                                using (var writer = new StreamWriter(output))
+                                {
+                                    using (var reader = new StreamReader(internalStream))
+                                    {
+                                        writer.Write(reader.ReadToEnd());
+                                    }
+                                }
+                            }
+                        }
+                        AssetDatabase.ImportAsset($"Assets/{nameof(WeaverCore)}/Internal.cs");
+                    }
+                    finally
+                    {
+                        AssetDatabase.StopAssetEditing();
+                    }
+                });
+            }
+        }
+
+        static void WriteAssembly(string directory, string filePath, string fileName, Stream data)
+        {
+            string fullPath = directory + "/" + filePath;
+            if (File.Exists(fullPath))
+            {
+                AssetDatabase.DeleteAsset(filePath);
+            }
+
+            var tempPath = Path.GetTempPath();
+            if (File.Exists(tempPath + fileName))
+            {
+                File.Delete(tempPath + fileName);
+            }
+            using (var file = File.Create(tempPath + fileName))
+            {
+                using (var reader = new BinaryReader(data))
+                {
+                    using (var writer = new BinaryWriter(file))
+                    {
+                        byte[] buffer = new byte[1024];
+                        int amount = 0;
+                        do
+                        {
+                            amount = reader.Read(buffer, 0, buffer.Length);
+                            if (amount > 0)
+                            {
+                                writer.Write(buffer, 0, amount);
+                            }
+
+                        } while (amount != 0);
+                    }
                 }
             }
+            File.Move(tempPath + fileName, fullPath);
+            AssetDatabase.ImportAsset(filePath);
         }
     }
 }
+

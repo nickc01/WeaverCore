@@ -292,6 +292,11 @@
       <Name>WeaverCore.Game</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\WeaverTools\WeaverTools.csproj">
+      <Project>{79ad4b75-6678-4bea-b479-fcb6b8da18bf}</Project>
+      <Name>WeaverTools</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -307,6 +312,6 @@
     <ItemGroup>
       <OutputFiles Include="$(OutputPath)\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />
+    <!--<Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />-->
   </Target>
 </Project>

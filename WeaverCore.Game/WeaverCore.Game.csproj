@@ -59,6 +59,10 @@
     <Reference Include="Assembly-CSharp">
       <Private>False</Private>
     </Reference>
+    <Reference Include="PlayMaker, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\PlayMaker.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
     </Reference>
@@ -73,17 +77,24 @@
     <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Implementations\Debugger\GameDebuggerImpl.cs" />
     <Compile Include="Game Implementations\Enemy\GameEnemyStaticImpl.cs" />
     <Compile Include="Game Implementations\Enemy\GameEnemyImpl.cs" />
+    <Compile Include="Game Implementations\EventReceiver\GameEventReceiverImpl.cs" />
     <Compile Include="Game Implementations\ModLoader\GameModLoaderImpl.cs" />
+    <Compile Include="Game Implementations\PropertyManager\GamePropertyManagerImpl.cs" />
     <Compile Include="Game Implementations\RegistryLoader\GameRegistryLoaderImpl.cs" />
     <Compile Include="Game Implementations\Player\PlayerImpl.cs" />
     <Compile Include="Game Implementations\RuntimeInitializer\GameRuntimeInitializerImpl.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="IPatch.cs" />
+    <Compile Include="Patches\EventRegistryPatch.cs" />
     <Compile Include="Patches\HealthManager-Enemy.cs" />
     <Compile Include="Patches\HeroController-Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,7 +126,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild">
-    <Exec Command="$(SolutionDir)AssemblyManipulator\bin\$(ConfigurationName)\AssemblyManipulator.exe %22$(HollowKnightLocation)Managed\Mods\WeaverCore.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
+    <Exec Command="$(SolutionDir)AssemblyManipulator\bin\$(ConfigurationName)\AssemblyManipulator.exe addresource %22$(HollowKnightLocation)Managed\Mods\WeaverCore.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
   </Target>
   <Import Project="$(SolutionDir)Weaver.targets" />
 </Project>

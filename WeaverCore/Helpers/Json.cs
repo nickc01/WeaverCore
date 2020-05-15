@@ -26,7 +26,17 @@ namespace WeaverCore.Helpers
 
         static Json()
         {
-            NewtonsoftJson = Assembly.Load("Newtonsoft.Json");
+            //Find the Assembly Loader Type
+            var assemblyLoader = typeof(Json).Assembly.GetType("Costura.AssemblyLoader");
+
+            //Find the method that resolves the assembly
+            var resolver = assemblyLoader.GetMethod("ResolveAssembly", BindingFlags.Public | BindingFlags.Static);
+
+            //Resolve the assembly. Mono.Cecil should be loaded beyond this point
+            NewtonsoftJson = (Assembly)resolver.Invoke(null, new object[] { null, new ResolveEventArgs("Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed") });
+
+
+            //NewtonsoftJson = Assembly.Load("Newtonsoft.Json");
             JsonConvert = NewtonsoftJson.GetType("Newtonsoft.Json.JsonConvert");
             FormattingT = NewtonsoftJson.GetType("Newtonsoft.Json.Formatting");
             JsonSerializerSettingsT = NewtonsoftJson.GetType("Newtonsoft.Json.JsonSerializerSettings");

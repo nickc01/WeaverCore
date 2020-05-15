@@ -10,7 +10,6 @@ namespace WeaverCore.Features
 {
 	public class Enemy : Feature
 	{
-
 		public static event Action OnBossesDead
 		{
 			add => staticImpl.OnBossesDeadAdd(value);

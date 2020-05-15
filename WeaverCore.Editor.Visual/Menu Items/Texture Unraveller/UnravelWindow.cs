@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Editor.Helpers;
-using WeaverCore.Editor.Routines;
+using WeaverCore.Awaiters;
+//using WeaverCore.Editor.Helpers;
+//using WeaverCore.Editor.Routines;
 
 namespace WeaverCore.Editor.Visual
 {
@@ -17,7 +18,7 @@ namespace WeaverCore.Editor.Visual
 		static bool Open = false;
 		static bool Done = false;
 
-		public static IEditorWaiter GetUnravelSettings()
+		public static IUAwaiter GetUnravelSettings()
 		{
 			if (Open)
 			{

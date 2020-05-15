@@ -44,5 +44,42 @@ namespace WeaverCore.Editor.Helpers
 				yield return new LayerIndex(i, layers.GetArrayElementAtIndex(i).stringValue);
 			}
 		}
+
+		public static bool ContainsTag(string tag)
+		{
+			SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
+			SerializedProperty tagsProp = tagManager.FindProperty("tags");
+
+			for (int i = 0; i < tagsProp.arraySize; i++)
+			{
+				SerializedProperty t = tagsProp.GetArrayElementAtIndex(i);
+				if (t.stringValue.Equals(tag)) 
+				{ 
+					return true; 
+				}
+			}
+			return false;
+		}
+
+		public static void AddTag(string tag)
+		{
+			SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
+			SerializedProperty tagsProp = tagManager.FindProperty("tags");
+
+			tagsProp.InsertArrayElementAtIndex(0);
+
+			SerializedProperty n = tagsProp.GetArrayElementAtIndex(0);
+			n.stringValue = tag;
+
+			tagManager.ApplyModifiedProperties();
+		}
+
+		public static void AddIfUnique(string tag)
+		{
+			if (!ContainsTag(tag))
+			{
+				AddTag(tag);
+			}
+		}
 	}
 }

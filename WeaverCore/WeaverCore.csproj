@@ -81,6 +81,11 @@
     <Reference Include="UnityEngine">
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <Private>False</Private>
     </Reference>
@@ -88,24 +93,48 @@
       <HintPath>$(UnityEditorLocation)UnityEditor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Base\HitEffects.cs" />
+    <Compile Include="Components\DamageHero.cs" />
+    <Compile Include="Components\HealthManager.cs" />
+    <Compile Include="Core\AudioChannel.cs" />
+    <Compile Include="Core\Enums\HazardType.cs" />
+    <Compile Include="Core\Enums\CollisionSide.cs" />
+    <Compile Include="Core\Awaiters\WaitForSeconds.cs" />
+    <Compile Include="Core\Awaiters\WaitTillTrue.cs" />
+    <Compile Include="Core\IUAwaiter.cs" />
     <Compile Include="Core\WeaverDirectory.cs" />
+    <Compile Include="GameStatus\GameStatus.cs" />
     <Compile Include="Helpers\CoroutineStarter.cs" />
     <Compile Include="Helpers\Debugger.cs" />
     <Compile Include="Helpers\EventReceiver.cs" />
     <Compile Include="Helpers\Fields.cs" />
     <Compile Include="Helpers\Hash.cs" />
+    <Compile Include="Helpers\HollowPlayer.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\PropertyTable.cs" />
     <Compile Include="Helpers\TextureSheet.cs" />
     <Compile Include="Helpers\UnityHelpers.cs" />
+    <Compile Include="Helpers\URoutine.cs" />
+    <Compile Include="Implementations\DamageHero\DamageHeroImpl.cs" />
     <Compile Include="Implementations\EventReceiver\EventReceiverImpl.cs" />
+    <Compile Include="Implementations\HealthManager\HealthManagerImplementation.cs" />
+    <Compile Include="Implementations\HitEffects\HitEffectsImplementation.cs" />
+    <Compile Include="Implementations\HollowAudio\HollowAudioImplementation.cs" />
     <Compile Include="Implementations\PropertyManager\PropertyManagerImpl.cs" />
     <Compile Include="Implementations\RuntimeInitializer\RunTimeInitializerImpl.cs" />
     <Compile Include="Helpers\Harmony.cs" />
     <Compile Include="Helpers\ImplFinder.cs" />
     <Compile Include="Helpers\Methods.cs" />
+    <Compile Include="Implementations\URoutine\URoutineImplementation.cs" />
+    <Compile Include="Interfaces\IHitEffects.cs" />
+    <Compile Include="Interfaces\IHitReceiver.cs" />
     <Compile Include="Internal\Harmony\GameObjectPatches.cs" />
     <Compile Include="Internal\ModLoader.cs" />
     <Compile Include="Helpers\RegistryLoader.cs" />

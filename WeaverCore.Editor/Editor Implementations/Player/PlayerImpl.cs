@@ -11,9 +11,11 @@ namespace WeaverCore.Editor.Implementations
 {
 	public class EditorPlayerImplementation : PlayerImplementation
     {
-        /*[SerializeField]
-        //List<Collision2D> floorColliders = new List<Collision2D>();
         int colliders = 0;
+
+        int possibleJumps = 2;
+
+        int jumpCounter = 0;
 
         Rigidbody2D rigidBody;
 
@@ -29,9 +31,11 @@ namespace WeaverCore.Editor.Implementations
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
-                if (OnGround)
+                if (possibleJumps > 0 && jumpCounter < possibleJumps)
                 {
-                    rigidBody.velocity = new Vector2(rigidBody.velocity.x,rigidBody.velocity.y + 16.65f);
+                    //rigidBody.velocity.y + 
+                    rigidBody.velocity = new Vector2(rigidBody.velocity.x,16.65f);
+                    jumpCounter++;
                 }
             }
             var velocity = rigidBody.velocity;
@@ -53,24 +57,24 @@ namespace WeaverCore.Editor.Implementations
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
+            if (collision.gameObject.tag == "HeroWalkable")
             {
-                //floorColliders.Add(collision);
                 colliders++;
+                jumpCounter = 0;
             }
         }
 
         void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Soft Terrain"))
+            if (collision.gameObject.tag == "HeroWalkable")
             {
                 colliders--;
-                //floorColliders.Remove(collision);
             }
-        }*/
+        }
 
         public override void Initialize()
         {
+            gameObject.layer = LayerMask.NameToLayer("Player");
            //Debugger.Log("PLAYER START EDITOR");
         }
     }

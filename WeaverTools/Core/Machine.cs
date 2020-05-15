@@ -1,34 +1,43 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Helpers;
 
 namespace WeaverTools.Machine
 {
-    [JsonObject(MemberSerialization.Fields)]
+    //[JsonObject(MemberSerialization.Fields)]
     public class XMachine : IEnumerable<XState>
     {
-        private string initial;
-        [JsonIgnore]
+        internal class SerializedData
+        {
+            public string initial;
+            public string id;
+            public Dictionary<string, XState.SerializedData> states = new Dictionary<string, XState.SerializedData>();
+        }
+
+        SerializedData jsonData = new SerializedData();
+
+        //private string initial;
+        //[JsonIgnore]
         private XState initial_State;
-        [JsonIgnore]
+        //[JsonIgnore]
         public XState InitialState
         {
             get => InitialState;
             set
             {
                 initial_State = value;
-                initial = value.Name;
+                jsonData.initial = value.Name;
             }
         }
-        private string id;
-        [JsonIgnore]
+        //private string id;
+        //[JsonIgnore]
         public string Name
         {
-            get => id;
-            set => id = value;
+            get => jsonData.id;
+            set => jsonData.id = value;
         }
 
         private Dictionary<string, XState> states = new Dictionary<string, XState>();
@@ -85,30 +94,79 @@ namespace WeaverTools.Machine
         {
             Name = name;
         }
+
+        public string Serialize()
+        {
+            jsonData.states.Clear();
+            foreach (var state in states)
+            {
+                jsonData.states.Add(state.Key, state.Value.jsonData);
+            }
+            return Json.Serialize(jsonData);
+        }
+
+        public static XMachine Deserialize(string serializedData)
+        {
+            SerializedData data = Json.Deserialize<SerializedData>(serializedData);
+
+            XMachine machine = new XMachine(data.id);
+
+            machine.states.Clear();
+
+            //List<XEvent> events = new List<XEvent>();
+
+            foreach (var serializedState in data.states)
+            {
+                XState state = new XState(serializedState.Key);
+
+                foreach (var serializedEvent in serializedState.Value.on)
+                {
+                    state.addedEvents.Add(new XEvent(serializedEvent.Key, new XState(serializedEvent.Value)));
+                }
+
+                /*List<XEvent> events = new List<XEvent>();
+                foreach (var ev in state.Value.on)
+                {
+                    events.Add(new XEvent(ev.Key,));
+                }*/
+
+                machine.states.Add(state.Name, state);
+            }
+            return machine;
+        }
     }
 
-    [JsonObject(MemberSerialization.Fields)]
+    //[JsonObject(MemberSerialization.Fields)]
     public struct XState : IEnumerable<XEvent>
     {
-        [JsonIgnore]
+        internal class SerializedData
+        {
+            public Dictionary<string, string> on;
+            public List<string> entry;
+        }
+
+        internal SerializedData jsonData;
+
+        //[JsonIgnore]
         private string internal_name;
-        [JsonIgnore]
+        //[JsonIgnore]
         public string Name
         {
             get => internal_name;
             set => internal_name = value;
         }
 
-        private Dictionary<string, string> on;
-        private List<string> entry;
+        //private Dictionary<string, string> on;
+        //private List<string> entry;
 
-        [JsonIgnore]
-        private List<XEvent> addedEvents;
+        //[JsonIgnore]
+        internal List<XEvent> addedEvents;
+
 
         public void AddEvent(XEvent e)
         {
             addedEvents.Add(e);
-            on.Add(e.Name, e.ToState.Name);
+            jsonData.on.Add(e.Name, e.ToState.Name);
         }
 
         public void Add(XEvent e)
@@ -118,12 +176,12 @@ namespace WeaverTools.Machine
 
         public void AddAction(string action)
         {
-            entry.Add(action);
+            jsonData.entry.Add(action);
         }
 
         public void RemoveAction(string action)
         {
-            entry.Remove(action);
+            jsonData.entry.Remove(action);
         }
 
         public void RemoveEvent(XEvent e)
@@ -131,15 +189,16 @@ namespace WeaverTools.Machine
             if (addedEvents.Contains(e))
             {
                 addedEvents.Remove(e);
-                on.Remove(e.Name);
+                jsonData.on.Remove(e.Name);
             }
         }
 
         public XState(string name, List<XEvent> events = null, List<string> Actions = null)
         {
-            entry = new List<string>();
+            jsonData = new SerializedData();
+            jsonData.entry = new List<string>();
             addedEvents = new List<XEvent>();
-            on = new Dictionary<string, string>();
+            jsonData.on = new Dictionary<string, string>();
             internal_name = name;
             if (events != null)
             {
@@ -152,7 +211,7 @@ namespace WeaverTools.Machine
             {
                 foreach (var action in Actions)
                 {
-                    entry.Add(action);
+                    jsonData.entry.Add(action);
                 }
             }
         }
@@ -191,13 +250,14 @@ namespace WeaverTools.Machine
         }
     }
 
-    [JsonObject(MemberSerialization.Fields)]
+    //[JsonObject(MemberSerialization.Fields)]
     public struct XEvent
     {
-        [JsonIgnore]
+
+        //[JsonIgnore]
         public string Name { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public XState ToState { get; set; }
 
         public XEvent(string name, XState toState)

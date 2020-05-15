@@ -6,7 +6,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Editor.Helpers;
 using WeaverCore.Helpers;
 
 namespace WeaverCore.Editor.Visual
@@ -25,6 +24,7 @@ namespace WeaverCore.Editor.Visual
 		public string FileLocation;
 		public int UVWidth;
 		public int UVHeight;
+		public Vector2Int SpriteDimensions;
 	}
 
 
@@ -49,7 +49,7 @@ namespace WeaverCore.Editor.Visual
 		[MenuItem("WeaverCore/Unravel Texture")]
 		public static void UnravelTexture()
 		{
-			EditorRoutine.Start(StartUnravelling());
+			URoutine.Start(StartUnravelling());
 		}
 
 
@@ -107,54 +107,6 @@ namespace WeaverCore.Editor.Visual
 			return newMatrix;
 		}
 
-		/*static void ReadTexture(Vector2Int bl, Vector2Int tr, Texture2D sourceTexture,Action<Color,int,int> pixelReader)
-		{
-			if (bl.x < tr.x && bl.y < tr.y)
-			{
-				for (int y = bl.y; y < tr.y + 1; y++)
-				{
-					for (int x = bl.x; x < tr.x + 1; x++)
-					{
-						Color pixel = sourceTexture.GetPixel(x, y);
-						pixelReader(pixel, x, y);
-					}
-				}
-			}
-			else if (bl.x < tr.x && bl.y > tr.y)
-			{
-				for (int x = bl.y; x >= tr.y; x--)
-				{
-					for (int y = bl.x; y < tr.x + 1; y++)
-					{
-						Color pixel = sourceTexture.GetPixel(x, y);
-						pixelReader(pixel, x, y);
-					}
-				}
-			}
-			else if (tr.x < bl.x && tr.y < bl.y)
-			{
-				for (int x = bl.x; x >= tr.x; x--)
-				{
-					for (int y = bl.y; y >= tr.y; y--)
-					{
-						Color pixel = sourceTexture.GetPixel(x, y);
-						pixelReader(pixel, x, y);
-					}
-				}
-			}
-			else if (bl.x > tr.x && bl.y < tr.y)
-			{
-				for (int x = bl.y; x < tr.y + 1; x++)
-				{
-					for (int y = bl.x; y >= tr.x; y--)
-					{
-						Color pixel = sourceTexture.GetPixel(x, y);
-						pixelReader(pixel, x, y);
-					}
-				}
-			}
-		}*/
-
 		static string RelativeToAssets(string input)
 		{
 			var match = Regex.Match(input, @"(Assets[\\\/].+)");
@@ -169,7 +121,7 @@ namespace WeaverCore.Editor.Visual
 		}
 
 
-		static IEnumerator<IEditorWaiter> StartUnravelling()
+		static IEnumerator<IUAwaiter> StartUnravelling()
 		{
 			yield return UnravelWindow.GetUnravelSettings();
 
@@ -245,6 +197,10 @@ namespace WeaverCore.Editor.Visual
 					//float PreTRy = ((-PostProcessedBL.y + 1.0f) * settings.texture.height) - uvOffset.y;
 					int PreTRx = Mathf.RoundToInt((PostProcessedTR.x * settings.texture.width) + uvOffset.x);
 					int PreBLy = Mathf.RoundToInt(((PostProcessedTR.y) * settings.texture.height) + uvOffset.y);
+
+
+
+
 					//float PreBLy = ((-PostProcessedTR.y + 1.0f) * settings.texture.height) + uvOffset.y;
 
 					int PreWidth = Difference(PreBLx, PreTRx);
@@ -288,7 +244,9 @@ namespace WeaverCore.Editor.Visual
 
 					//Texture2D texture = new Texture2D(Difference(Min.x, Max.x) + 1, Difference(Min.y, Max.y) + 1);
 
-					Color[,] colorMatrix = new Color[Difference(Min.x, Max.x) + 1, Difference(Min.y, Max.y) + 1];
+					Vector2Int SpriteDimensions = new Vector2Int(Difference(Min.x, Max.x) + 1, Difference(Min.y, Max.y) + 1);
+
+					Color[,] colorMatrix = new Color[SpriteDimensions.x, SpriteDimensions.y];
 
 					//Debugger.Log("STARTING");
 					//Debugger.Log("Color Matrix = " + colorMatrix);
@@ -513,7 +471,8 @@ namespace WeaverCore.Editor.Visual
 						Sprite = sprite,
 						FileLocation = filePath,
 						UVWidth = PreWidth,
-						UVHeight = PreHeight
+						UVHeight = PreHeight,
+						SpriteDimensions = new Vector2Int(colorMatrix.GetLength(0), colorMatrix.GetLength(1))
 					});
 
 					/*var assetImporter = AssetImporter.GetAtPath(filePath);
@@ -567,14 +526,18 @@ namespace WeaverCore.Editor.Visual
 					Debugger.Log("Sprite = " + sprite.Sprite.SpriteName);
 					Debugger.Log("UV Width = " + sprite.UVWidth);
 					Debugger.Log("World Size = " + sprite.Sprite.WorldSize);
+					Debugger.Log("Sprite Dimensions = " + sprite.SpriteDimensions);
+
 
 					var importer = (TextureImporter)AssetImporter.GetAtPath(sprite.FileLocation);
+
 					//importer.spritePixelsPerUnit = sprite.UVWidth / sprite.Sprite.WorldSize.x;
 					TextureImporterSettings importSettings = new TextureImporterSettings();
 					importer.ReadTextureSettings(importSettings);
 
+					importSettings.spritePixelsPerUnit = sprite.SpriteDimensions.x / sprite.Sprite.WorldSize.x;
 					importSettings.spriteAlignment = (int)SpriteAlignment.Custom;
-					importSettings.spritePivot = sprite.Sprite.Pivot;//new Vector2(sprite.Sprite.Pivot.x, sprite.Sprite.Pivot.y);
+					importSettings.spritePivot = new Vector2(sprite.Sprite.Pivot.x, 1 - sprite.Sprite.Pivot.y);//new Vector2(sprite.Sprite.Pivot.x, sprite.Sprite.Pivot.y);
 
 					importer.SetTextureSettings(importSettings);
 					importer.SaveAndReimport();

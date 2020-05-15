@@ -14,17 +14,17 @@ namespace WeaverCore.Editor.Implementations
 	{
 		public override void ReceiveEventsFromObject(GameObject obj, GameObject toSendTo)
 		{
-			throw new System.NotImplementedException();
+			
 		}
 
 		public override void BroadcastEvent(string eventName)
 		{
-			throw new System.NotImplementedException();
+			
 		}
 
 		public override void ReceiveAllEventsOfName(string eventName, GameObject destination)
 		{
-			throw new System.NotImplementedException();
+			
 		}
 
 		public override void Initialize(HarmonyInstance patcher)
@@ -34,12 +34,12 @@ namespace WeaverCore.Editor.Implementations
 
 		public override void RemoveReceiver(GameObject obj)
 		{
-			throw new System.NotImplementedException();
+			
 		}
 
 		public override void SendEvent(GameObject toSendTo, string eventName)
 		{
-			throw new System.NotImplementedException();
+			
 		}
 	}
 }

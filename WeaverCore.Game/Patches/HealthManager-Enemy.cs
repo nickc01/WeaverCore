@@ -16,13 +16,6 @@ namespace WeaverCore.Game.Patches
 			On.HealthManager.Start += HealthManager_Start;
 		}
 
-		[Serializable]
-		class TestTextureClass
-		{
-			public Texture texture;
-		}
-
-
 		private void HealthManager_Start(On.HealthManager.orig_Start orig, HealthManager self)
 		{
 			bool destroyed = false;

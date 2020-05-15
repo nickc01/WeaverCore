@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Awaiters;
 using WeaverCore.Editor.Helpers;
-using WeaverCore.Editor.Routines;
 using WeaverCore.Helpers;
 using WeaverCore.Implementations;
 
@@ -13,7 +13,7 @@ namespace WeaverCore.Editor.Implementations
 	{
 		List<IPropertyTableBase> Tables = new List<IPropertyTableBase>();
 
-		EditorRoutine routine = null;
+		URoutine routine = null;
 
 		int index = 0;
 
@@ -40,12 +40,12 @@ namespace WeaverCore.Editor.Implementations
 		{
 			if (routine == null)
 			{
-				routine = EditorRoutine.Start(Update());
+				routine = URoutine.Start(Update());
 			}
 		}
 
 
-		IEnumerator<IEditorWaiter> Update()
+		IEnumerator<IUAwaiter> Update()
 		{
 			while (true)
 			{

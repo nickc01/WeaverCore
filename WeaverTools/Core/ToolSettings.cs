@@ -26,6 +26,8 @@ namespace WeaverTools
 				if (File.Exists(settingsFile))
 				{
 					Cache = Json.Deserialize<ToolSettings>(File.ReadAllText(settingsFile));
+
+					Debugger.Log("Enabled = " + Cache.DebugMode);
 				}
 				else
 				{

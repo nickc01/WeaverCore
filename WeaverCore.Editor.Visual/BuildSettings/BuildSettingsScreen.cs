@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Editor.Helpers;
+//using WeaverCore.Editor.Helpers;
 
 namespace WeaverCore.Editor.Visual
 {
@@ -21,26 +21,23 @@ namespace WeaverCore.Editor.Visual
 
 		static bool Done = false;
 
-		class WaitTillDone : IEditorWaiter
+		static bool Awaiter()
 		{
-			public bool KeepWaiting(float dt)
+			if (Done == false)
 			{
-				if (Done == false)
-				{
-					return true;
-				}
-				else
-				{
-					Done = false;
-					return false;
-				}
+				return false;
+			}
+			else
+			{
+				Done = false;
+				return true;
 			}
 		}
 
 		/// <summary>
 		/// Retrieves the build settings the player specified. The results will be stored in <see cref="RetrieveBuildSettings"/>
 		/// </summary>
-		public static IEditorWaiter RetrieveBuildSettings()
+		public static IUAwaiter RetrieveBuildSettings()
 		{
 			if (Open)
 			{
@@ -51,7 +48,7 @@ namespace WeaverCore.Editor.Visual
 			Open = true;
 			window.Setup();
 			window.Show();
-			return new WaitTillDone();
+			return new Awaiters.WaitTillTrue(Awaiter);
 		}
 
 		void Setup()
@@ -105,6 +102,9 @@ namespace WeaverCore.Editor.Visual
 
 			EditorGUILayout.EndHorizontal();
 
+			EditorGUILayout.Space();
+			EditorGUILayout.LabelField("Auto-Start Game");
+			CurrentSettings.StartGame = EditorGUILayout.Toggle(CurrentSettings.StartGame);
 
 			CurrentSettings.Check();
 

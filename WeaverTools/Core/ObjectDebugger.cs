@@ -92,6 +92,7 @@ namespace WeaverTools
 						foreach (var component in gameObject.GetComponents<Component>())
 						{
 							DebugComponent(component, directory);
+							Debugger.Log("FSM FOUND!!!");
 							if (component is PlayMakerFSM fsm)
 							{
 								DebugFSM(fsm, directory);
@@ -252,6 +253,7 @@ namespace WeaverTools
 			catch (Exception e)
 			{
 				Debugger.LogError($"Error Debugging Object {sprite} -> {e}");
+				tk2dSpriteAnimation test;
 			}
 		}
 
@@ -278,7 +280,15 @@ namespace WeaverTools
 
 				var fsmFile = directory.PathWithSlash() + $"FSM - {fsm.Name} - {fsm.GameObject.name}.fsm";
 
-				File.WriteAllText(fsmFile, Json.Serialize(machine));
+				var result = machine.Serialize();
+
+				Debugger.Log("Serialization Result = " + result);
+
+				File.WriteAllText(fsmFile, result);
+
+				var test = XMachine.Deserialize(result);
+
+				Debugger.Log("After Test");
 			}
 			catch (Exception e)
 			{
@@ -399,13 +409,13 @@ namespace WeaverTools
 
 		static object GetValue(MemberInfo member,object instance)
 		{
-			if (member is FieldInfo field)
+			if (member is FieldInfo fieldInfo)
 			{
-				return field.GetValue(instance);
+				return fieldInfo.GetValue(instance);
 			}
-			else if (member is PropertyInfo property)
+			else if (member is PropertyInfo propertyInfo)
 			{
-				return property.GetValue(instance, null);
+				return propertyInfo.GetValue(instance, null);
 			}
 			return null;
 		}

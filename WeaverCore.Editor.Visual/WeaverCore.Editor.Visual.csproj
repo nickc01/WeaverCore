@@ -106,7 +106,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\EditorRoutine.cs" />
     <Compile Include="Menu Items\Builder\Builder.cs" />
     <Compile Include="Menu Items\Builder\BuildMode.cs" />
     <Compile Include="BuildSettings\BuildSettings.cs" />
@@ -122,14 +121,9 @@
     <Compile Include="Menu Items\Texture Unraveller\TextureUnraveller.cs" />
     <Compile Include="Menu Items\Texture Unraveller\TextureUnravelSettings.cs" />
     <Compile Include="Menu Items\Texture Unraveller\UnravelWindow.cs" />
-    <Compile Include="PostProcessor\PostProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Menu Items\Reloader\Reloader.cs" />
     <Compile Include="Renderers\RegistryRenderer.cs" />
-    <Compile Include="Helpers\Routines\IEditorWaiter.cs" />
-    <Compile Include="Helpers\Routines\WaitForCompilation.cs" />
-    <Compile Include="Helpers\Routines\WaitForSeconds.cs" />
-    <Compile Include="Helpers\Routines\WaitTillTrue.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AssemblyManipulator\AssemblyManipulator.csproj">

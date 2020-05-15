@@ -17,6 +17,25 @@ namespace WeaverCore.Editor.Implementations
 {
     public class Initializer : InitializerImplementation
     {
+        static readonly string[] Tags = new string[]
+        {
+            "Spell Vulnerable",
+            "TileMap",
+            "HeroWalkable",
+            "Player",
+            "Nail Attack",
+            "Hero Spell",
+            "HeroBox",
+            "Boss",
+            "Extra Tag",
+            "Hatchling Magnet",
+            "Ignore Hatchling",
+            "Sharp Shadow",
+            "Acid",
+            "Dream Attack",
+            "MainCamera"
+        };
+
 
         public override void Initialize()
         {
@@ -36,10 +55,16 @@ namespace WeaverCore.Editor.Implementations
                         Physics2D.IgnoreLayerCollision(i, j, data.CollisionData[index]);
                     }
                 }
-                Physics2D.gravity = new Vector2(0f,-60f);
+
+                foreach (var tag in Tags)
+                {
+                    LayerChanger.AddIfUnique(tag);
+                }
+
+                Physics2D.gravity = new Vector2(0f, -60f);
                 var visualAssembly = System.Reflection.Assembly.LoadFile($"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.Visual.dll");
                 var initializerType = visualAssembly.GetType("WeaverCore.Editor.Visual.Internal.Initializer");
-                initializerType.GetMethod("Initialize",BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
+                initializerType.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
             });
         }
 

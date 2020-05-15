@@ -88,13 +88,17 @@ namespace WeaverCore.Internal.Harmony
 			{
 				return;
 			}
-			foreach (var renderer in gameObject.GetComponents<Renderer>())
+
+			List<Renderer> Renderers = new List<Renderer>();
+
+			foreach (var renderer in gameObject.GetComponentsInChildren<Renderer>())
 			{
-				if (renderer.material != null && renderer.material != DefaultSpriteMaterial && renderer.material.name.Contains("Sprites-Default"))
+				if (renderer.material?.shader != null && (renderer.material.shader.name.Contains("Error") || renderer.material.shader.name.Contains("Missing")))
 				{
-					renderer.material = DefaultSpriteMaterial;
+					renderer.material.shader = DefaultSpriteMaterial.shader;
 				}
 			}
+
 			gameObject.transform.localScale = -gameObject.transform.localScale;
 			gameObject.transform.localScale = -gameObject.transform.localScale;
 		}

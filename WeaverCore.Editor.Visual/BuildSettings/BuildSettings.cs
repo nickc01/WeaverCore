@@ -17,6 +17,8 @@ namespace WeaverCore.Editor.Visual
 
 		public string HollowKnightDirectory = @"C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight";
 
+		public bool StartGame = true;
+
 
 		public static BuildSettings GetStoredSettings()
 		{

@@ -8,8 +8,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Editor.Helpers;
-using WeaverCore.Editor.Routines;
+using WeaverCore.Awaiters;
 using WeaverCore.Editor.Visual.Helpers;
 using WeaverCore.Editor.Visual.Internal;
 using WeaverCore.Helpers;
@@ -72,7 +71,8 @@ namespace WeaverCore.Editor.Visual
 		[MenuItem("WeaverCore/Compile %F5")]
 		public static void Compile()
 		{
-			EditorRoutine.Start(BeginCompile());
+			Debugger.Log("AA");
+			URoutine.Start(BeginCompile());
 			/*BuildSettingsScreen.ChooseString((modName) =>
 			{
 				EditorRoutine.Start(BeginCompile(modName));
@@ -182,9 +182,12 @@ namespace WeaverCore.Editor.Visual
 			}
 		}
 
-		public static IEnumerator<IEditorWaiter> BeginCompile()
+		public static IEnumerator<IUAwaiter> BeginCompile()
 		{
+			Debugger.Log("A");
 			yield return BuildSettingsScreen.RetrieveBuildSettings();
+
+			Debugger.Log("B");
 			if (BuildSettingsScreen.RetrievedBuildSettings == null)
 			{
 				yield break;
@@ -205,16 +208,6 @@ namespace WeaverCore.Editor.Visual
 			//string modFileName = new FileInfo(destination).Name.Replace(".dll", "");
 			var destination = PathAddBackslash(folder.FullName) + BuildSettingsScreen.RetrievedBuildSettings.ModName + ".dll";
 			Debugger.Log("Mod File Name = " + destination);
-
-			/*using (var file = File.Create("Assets\\ModName.asmdef"))
-			{
-				using (var writer = new StreamWriter(file))
-				{
-					writer.Write(asmDefFile.Replace("def", modFileName));
-				}
-			}
-			AssetDatabase.ImportAsset("Assets\\ModName.asmdef",ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);*/
-
 			Progress = 0.0f;
 
 			var builder = new UnityEditor.Compilation.AssemblyBuilder(destination, GetScripts());
@@ -416,6 +409,13 @@ namespace WeaverCore.Editor.Visual
 					registry.ApplyChanges();
 					Debugger.Log("Registry Mod Assembly Name Old = " + registry.GetString("modAssemblyName"));
 				}
+			}
+
+			var hkEXE = PathAddBackslash(BuildSettingsScreen.RetrievedBuildSettings.HollowKnightDirectory) + "hollow_knight.exe";
+
+			if (File.Exists(hkEXE))
+			{
+				System.Diagnostics.Process.Start(hkEXE);
 			}
 		}
 

@@ -38,11 +38,20 @@ namespace WeaverCore.Game.Implementations
             if (managerObject == null)
             {
                 UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneLoaded;
+                //On.GameManager.Update += GameManager_Update;
+                //On.InControl.InControlManager.Update += EarliestUpdate;
             }
         }
 
+        /*private void GameManager_Update(On.GameManager.orig_Update orig, GameManager self)
+        {
+            Debugger.Log("Game Manager Called");
+            On.GameManager.Update -= GameManager_Update;
+        }*/
+
         private void SceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
         {
+            //Debugger.Log("Scene Manager Called");
             if (managerObject == null)
             {
                 managerObject = new GameObject("__PROPERTY_CLEANER__");

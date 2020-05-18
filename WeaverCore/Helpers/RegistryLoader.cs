@@ -60,25 +60,17 @@ namespace WeaverCore.Helpers
 
 				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 				{
-					//Debugger.Log("Assembly = " + assembly.FullName);
 					try
 					{
 						foreach (var name in assembly.GetManifestResourceNames())
 						{
-							//Debugger.Log("Name = " + name);
 							if (name.EndsWith(extension))
 							{
-								//Debugger.Log("Loading Asset Bundle = " + name);
-								AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
-								/*foreach (var asset in assetBundle.LoadAllAssets())
+								var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
+								if (name.Contains("weavercore") && assembly == typeof(WeaverMod).Assembly)
 								{
-									Debugger.Log("Asset = " + asset.name);
-									Debugger.Log("Type = " + asset.GetType());
-								}*/
-								//foreach (var assetName in assetBundle.)
-								//{
-								//	Debugger.Log("Asset Name = " + assetBundle);
-								//}
+									WeaverAssetLoader.SetWeaverAssetBundle(bundle);
+								}
 							}
 						}
 					}
@@ -96,7 +88,6 @@ namespace WeaverCore.Helpers
 			{
 				foreach (var registry in bundle.LoadAllAssets<Registry>())
 				{
-					//Debugger.Log("Mod Type Name 2 = " + modType.FullName);
 					if (modType.IsAssignableFrom(registry.ModType))
 					{
 						yield return registry;

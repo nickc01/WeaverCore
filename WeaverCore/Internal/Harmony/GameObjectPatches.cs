@@ -22,25 +22,7 @@ namespace WeaverCore.Internal.Harmony
 			{
 				ranOnce = true;
 				bool done = false;
-
-				foreach (var bundle in AssetBundle.GetAllLoadedAssetBundles())
-				{
-					foreach (var material in bundle.LoadAllAssets<Material>())
-					{
-						if (material.name.Contains("Sprites-Default"))
-						{
-							DefaultSpriteMaterial = material;
-							done = true;
-							break;
-						}
-					}
-					if (done)
-					{
-						break;
-					}
-				}
-
-
+				DefaultSpriteMaterial = WeaverAssetLoader.LoadWeaverAsset<Material>("Sprites-Default");
 			}
 		}
 

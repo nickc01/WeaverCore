@@ -10,9 +10,12 @@ namespace WeaverTools
 {
 	public class ToolSettings
 	{
+
+
 		static ToolSettings Cache;
 
 		public bool DebugMode = true;
+		public bool DeepDebug = false;
 
 		public static ToolSettings GetSettings()
 		{

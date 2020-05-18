@@ -16,7 +16,7 @@ namespace WeaverTools.Patches
 			var settings = ToolSettings.GetSettings();
 			if (settings.DebugMode)
 			{
-				ObjectDebugger.DebugObject(self.gameObject,"Enemies");
+				ObjectDebugger.DebugObject(self.gameObject);
 			}
 			if (!ObjectDebugger.ObjectBeingDebugged(self.gameObject))
 			{
@@ -29,7 +29,7 @@ namespace WeaverTools.Patches
 			var settings = ToolSettings.GetSettings();
 			if (settings.DebugMode)
 			{
-				ObjectDebugger.DebugObject(self.gameObject,"Player");
+				//ObjectDebugger.DebugObject(self.gameObject);
 			}
 			if (!ObjectDebugger.ObjectBeingDebugged(self.gameObject))
 			{
@@ -39,7 +39,7 @@ namespace WeaverTools.Patches
 
 		internal static void SceneManager_sceneLoaded(Scene scene, LoadSceneMode loadMode)
 		{
-			var settings = ToolSettings.GetSettings();
+			/*var settings = ToolSettings.GetSettings();
 			if (settings.DebugMode)
 			{
 				var sceneDirectory = ObjectDebugger.DebugDirectory.CreateSubdirectory("Scenes").CreateSubdirectory(scene.name);
@@ -59,17 +59,15 @@ namespace WeaverTools.Patches
 							SceneComponents.Add(type, component);
 						}
 					}
-					ObjectDebugger.DebugObject(gameObject,objectsDir,true);
+					ObjectDebugger.DebugObject(gameObject);
 				}
-				//.CreateSubdirectory("Components");
-
 				componentsDir.Create();
 
 				foreach (var component in SceneComponents)
 				{
 					ObjectDebugger.DebugComponent(component.Value, componentsDir);
 				}
-			}
+			}*/
 		}
 	}
 }

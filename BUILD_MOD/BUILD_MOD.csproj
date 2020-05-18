@@ -309,6 +309,7 @@
     <Exec Command="$(SolutionDir)AssemblyManipulator\bin\$(ConfigurationName)\AssemblyManipulator.exe %22$(HollowKnightLocation)Managed\Mods\WeaverCore.dll%22 %22$(SolutionDir)WeaverCore.Game\bin\$(ConfigurationName)\WeaverCore.Game.dll%22 %22WeaverCore.Game%22 false" />
     <Exec Command="$(SolutionDir)AssemblyManipulator\bin\$(ConfigurationName)\AssemblyManipulator.exe %22$(HollowKnightLocation)Managed\Mods\WeaverCore.dll%22 %22$(SolutionDir)WeaverCore.Editor.Visual\bin\$(ConfigurationName)\WeaverCore.Editor.Visual.dll%22 %22WeaverCore.Editor.Visual%22 false" />
     <Copy SourceFiles="$(HollowKnightLocation)Managed\Mods\WeaverCore.dll" DestinationFolder="$(EditorProjectLocation)Assets" Condition="'$(ConfigurationName)'=='EditorRelease' OR '$(ConfigurationName)'=='EditorDebug'" />
+		<Copy SourceFiles="$(HollowKnightLocation)Managed\Mods\WeaverCore.dll" DestinationFolder="$(SolutionDir)WeaverAssets\Project\Weaver Assets\Assets" />
     <ItemGroup>
       <OutputFiles Include="$(OutputPath)\*.*" />
     </ItemGroup>

@@ -107,8 +107,46 @@ namespace WeaverCore.Editor.Visual
 			return newMatrix;
 		}
 
+		static string PathAddBackslash(string path)
+		{
+			if (path == null)
+				throw new ArgumentNullException(nameof(path));
+
+			path = path.TrimEnd();
+
+			if (PathEndsWithDirectorySeparator())
+				return path;
+
+			return path + GetDirectorySeparatorUsedInPath();
+
+			bool PathEndsWithDirectorySeparator()
+			{
+				if (path.Length == 0)
+					return false;
+
+				char lastChar = path[path.Length - 1];
+				return lastChar == Path.DirectorySeparatorChar
+					|| lastChar == Path.AltDirectorySeparatorChar;
+			}
+
+			char GetDirectorySeparatorUsedInPath()
+			{
+				if (path.Contains(Path.AltDirectorySeparatorChar))
+					return Path.AltDirectorySeparatorChar;
+
+				return Path.DirectorySeparatorChar;
+			}
+		}
+
 		static string RelativeToAssets(string input)
 		{
+			Uri fullPath = new Uri(input, UriKind.Absolute);
+			Uri relRoot = new Uri(PathAddBackslash(new DirectoryInfo("Assets\\..").FullName),UriKind.Absolute);
+
+			string relPath = relRoot.MakeRelativeUri(fullPath).ToString();
+
+			return relPath;
+			/*Debugger.Log("Input Test = " + input);
 			var match = Regex.Match(input, @"(Assets[\\\/].+)");
 			if (match.Success)
 			{
@@ -117,7 +155,7 @@ namespace WeaverCore.Editor.Visual
 			else
 			{
 				return "";
-			}
+			}*/
 		}
 
 

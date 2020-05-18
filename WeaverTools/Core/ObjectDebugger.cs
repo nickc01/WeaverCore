@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using WeaverCore;
 using WeaverCore.Helpers;
 using WeaverTools.Machine;
@@ -14,17 +15,71 @@ namespace WeaverTools
 {
 	public static class ObjectDebugger
 	{
+		[Serializable]
+		class JsonWrapper
+		{
+			public object Value;
+		}
+
+		[Serializable]
+		class ObjectMeta
+		{
+			public string Name;
+			public int Layer;
+			public bool ActiveSelf;
+			public bool ActiveInHierarchy;
+			public string Tag;
+			public HideFlags HideFlags;
+			public string SceneName;
+			public string ScenePath;
+			public bool SceneLoaded;
+			public int SceneBuildIndex;
+			public bool SceneIsDirty;
+			public int SceneRootObjectCount;
+
+			public int ChildObjects;
+
+			public GameObject IDs;
+
+			public ObjectMeta(GameObject g)
+			{
+				Name = g.name;
+				Layer = g.layer;
+				ActiveSelf = g.activeSelf;
+				ActiveInHierarchy = g.activeInHierarchy;
+				Tag = g.tag;
+				HideFlags = g.hideFlags;
+				if (g.scene != null)
+				{
+					SceneName = g.scene.name;
+					ScenePath = g.scene.path;
+					SceneLoaded = g.scene.isLoaded;
+					SceneBuildIndex = g.scene.buildIndex;
+					SceneIsDirty = g.scene.isDirty;
+					SceneRootObjectCount = g.scene.rootCount;
+				}
+				IDs = g;
+			}
+		}
+
+
 		class BeingDebugged
 		{
 			public bool beingDebugged = false;
 		}
 
-		static string CleanName(string name)
+		static string CleanName(string name, bool shorten = true, int shortenCutPoint = 14)
 		{
 			name = name.Replace(" ", "");
 			name = name.Replace("(", "");
 			name = name.Replace(")", "");
 			name = name.ToLower();
+
+			if (name.Length > shortenCutPoint)
+			{
+				var newName = name.Substring(0, shortenCutPoint);
+				name = newName + "~" + name.Length;
+			}
 			return name;
 		}
 
@@ -36,18 +91,15 @@ namespace WeaverTools
 			return DebuggedObjects.GetOrCreate(gameObject).beingDebugged;
 		}
 
-		public static void DebugObject(GameObject gameObject, string subDirectoryName)
+		public static void DebugObject(GameObject gameObject)
 		{
-			var directory = WeaverCore.WeaverDirectory.GetWeaverDirectory().CreateSubdirectory("Tools").CreateSubdirectory("Debug").CreateSubdirectory("GameObjects").CreateSubdirectory(subDirectoryName);
-
-			directory.CreateSubdirectory(gameObject.name);
-
+			var directory = DebugDirectory.CreateSubdirectory("GameObjects").CreateSubdirectory(CleanName(gameObject.name));
 			DebugObject(gameObject, directory);
 		}
 
 		public static DirectoryInfo DebugDirectory => WeaverCore.WeaverDirectory.GetWeaverDirectory().CreateSubdirectory("Tools").CreateSubdirectory("Debug");
 
-		public static void DebugObject(GameObject gameObject, DirectoryInfo directory = null, bool objectOnly = false)
+		static void DebugObject(GameObject gameObject, DirectoryInfo directory = null, int ancestryNumber = 0, bool objectOnly = false)
 		{
 			var isBeingDebugged = DebuggedObjects.GetOrCreate(gameObject);
 			if (isBeingDebugged.beingDebugged)
@@ -61,7 +113,7 @@ namespace WeaverTools
 				{
 					if (directory == null)
 					{
-						var GameObjectDir = WeaverCore.WeaverDirectory.GetWeaverDirectory().CreateSubdirectory("Tools").CreateSubdirectory("Debug").CreateSubdirectory("GameObjects");
+						var GameObjectDir = DebugDirectory.CreateSubdirectory("GameObjects");
 
 						directory = GameObjectDir.CreateSubdirectory(CleanName(gameObject.name));
 					}
@@ -84,7 +136,7 @@ namespace WeaverTools
 					{
 						using (var writer = new StreamWriter(file))
 						{
-							writer.Write(Json.Serialize(gameObject));
+							writer.Write(JsonUtility.ToJson(new ObjectMeta(gameObject)));
 						}
 					}
 					if (!objectOnly)
@@ -92,7 +144,6 @@ namespace WeaverTools
 						foreach (var component in gameObject.GetComponents<Component>())
 						{
 							DebugComponent(component, directory);
-							Debugger.Log("FSM FOUND!!!");
 							if (component is PlayMakerFSM fsm)
 							{
 								DebugFSM(fsm, directory);
@@ -112,13 +163,17 @@ namespace WeaverTools
 				for (int i = 0; i < childCount; i++)
 				{
 					var child = gameObject.transform.GetChild(i).gameObject;
-					var subDirectory = directory.CreateSubdirectory(CleanName(gameObject.name));
-					DebugObject(child, subDirectory,objectOnly);
+
+
+
+					var childDirectory = DebugDirectory.CreateSubdirectory("Child Objects").CreateSubdirectory("Ancestry " + ancestryNumber + " of " + CleanName(gameObject.name) + "-" + CleanName(child.name) + "-" + i);
+
+					DebugObject(child, childDirectory,ancestryNumber + 1,objectOnly);
 				}
 			}
 			finally
 			{
-				foreach (var component in gameObject.GetComponents<Component>())
+				/*foreach (var component in gameObject.GetComponents<Component>())
 				{
 					var awake = component.GetType().GetMethod("Awake", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 					if (awake != null)
@@ -133,7 +188,7 @@ namespace WeaverTools
 					{
 						start.Invoke(component, null);
 					}
-				}
+				}*/
 				isBeingDebugged.beingDebugged = false;
 			}
 		}
@@ -259,6 +314,10 @@ namespace WeaverTools
 
 		public static void DebugFSM(Fsm fsm,DirectoryInfo directory)
 		{
+			if (fsm == null)
+			{
+				return;
+			}
 			try
 			{
 				var machine = new XMachine(fsm.Name);
@@ -266,6 +325,10 @@ namespace WeaverTools
 				machine.InitialState = new XState(fsm.StartState);
 				foreach (var state in fsm.States)
 				{
+					if (state.Fsm == null)
+					{
+						return;
+					}
 					XState currentState = new XState(state.Name);
 					foreach (var transition in state.Transitions)
 					{
@@ -282,13 +345,13 @@ namespace WeaverTools
 
 				var result = machine.Serialize();
 
-				Debugger.Log("Serialization Result = " + result);
+				//Debugger.Log("Serialization Result = " + result);
 
 				File.WriteAllText(fsmFile, result);
 
 				var test = XMachine.Deserialize(result);
 
-				Debugger.Log("After Test");
+				//Debugger.Log("After Test");
 			}
 			catch (Exception e)
 			{
@@ -310,12 +373,68 @@ namespace WeaverTools
 				Type componentType = component.GetType();
 				using (var file = File.CreateText($"{directory.PathWithSlash()}{component.GetType().Name} - {CleanName(component.name)}.dat"))
 				{
-					List<MemberInfo> Members = new List<MemberInfo>();
+					Debugger.Log("Printing out component : " + componentType.FullName);
+					file.WriteLine(PrintOutObject(component));
+					/*file.WriteLine("{");
 
-					Members.AddRange(componentType.GetFields(BindingFlags.Public | BindingFlags.Instance));
-					Members.AddRange(componentType.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+					List<FieldInfo> Fields = new List<FieldInfo>();
 
-					foreach (var member in Members)
+					Fields.AddRange(componentType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic).Where(f =>
+					{
+						var attributes = f.GetCustomAttributes(true);
+						if (f.IsPublic)
+						{
+							return !attributes.Any(a => a.GetType() == typeof(HideInInspector));
+						}
+						else
+						{
+							return attributes.Any(a => a.GetType() == typeof(SerializeField));
+						}
+					}));
+
+					//foreach (var field in Fields)
+					for (int i = 0; i < Fields.Count; i++)
+					{
+						var field = Fields[i];
+
+						string contents = "\"null\"";
+
+						var value = field.GetValue(component);
+
+						if (value != null)
+						{
+							try
+							{
+								contents = JsonUtility.ToJson(new JsonWrapper()
+								{
+									Value = value
+								});
+
+							}
+							catch (Exception)
+							{
+
+							}
+						}
+						file.Write("\"" + field.Name + "\": " + value);
+
+						if (i < Fields.Count - 1)
+						{
+							file.WriteLine(",");
+						}
+					}
+
+					file.WriteLine("}");*/
+					//Members.AddRange(componentType.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+
+					//file.WriteLine(JsonUtility.ToJson(component));
+
+					//List<MemberInfo> Members = new List<MemberInfo>();
+
+					//Members.AddRange(componentType.GetFields(BindingFlags.Public | BindingFlags.Instance));
+					//Members.AddRange(componentType.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+
+					/*foreach (var member in Members)
 					{
 						var accessibility = GetAccessibility(member);
 
@@ -371,7 +490,7 @@ namespace WeaverTools
 						}
 
 						file.WriteLine($"{accessibility} {GetMemberType(member)} {member.Name} = {stringValue}");
-					}
+					}*/
 				}
 			}
 			catch (Exception e)
@@ -431,6 +550,221 @@ namespace WeaverTools
 				return property.PropertyType;
 ;			}
 			return null;
+		}
+
+		static string PrintOutObject(object obj,List<object> objectsSeenBefore = null, int extraTabs = 0)
+		{
+			string tabs = new string('\t', extraTabs);
+			Type objType = obj.GetType();
+			bool routeChosen = false;
+			try
+			{
+				if (objectsSeenBefore == null)
+				{
+					objectsSeenBefore = new List<object>();
+				}
+				if (!objType.IsValueType)
+				{
+					if (objectsSeenBefore.Contains(obj))
+					{
+						return "\"REF_USED\"";
+					}
+					objectsSeenBefore.Add(obj);
+				}
+
+				//Debugger.LogError("A");
+				//Debugger.LogError("Current Object = " + objType.FullName);
+
+				if (obj is GameObject gm)
+				{
+					string final = $"{{\n{tabs}\t\"GameObject\": {JsonUtility.ToJson(new ObjectMeta(gm))},\n{tabs}\t\"Components\": [\n{tabs}\t\t";
+					var components = gm.GetComponents<Component>();
+					for (int i = 0; i < components.Length; i++)
+					{
+						var component = components[i];
+						final += PrintOutObject(component, objectsSeenBefore,extraTabs + 2);
+						if (i < components.Length - 1)
+						{
+							final += $",\n{tabs}\t\t";
+						}
+					}
+					final += $"\n{tabs}\t],\n{tabs}\t\"Component Types\": [\n{tabs}\t\t";
+
+					for (int i = 0; i < components.Length; i++)
+					{
+						var component = components[i];
+						final += $"\"{component.GetType().FullName}\"";
+						if (i < components.Length - 1)
+						{
+							final += $",\n{tabs}\t\t";
+						}
+					}
+
+					final += $"\n{tabs}\t]\n{tabs}}}";
+
+					return final;
+				}
+				else if (objType.IsEnum)
+				{
+					return $"\"{obj}\"";
+				}
+				else if (objType.IsArray)
+				{
+					string final = $" [\n{tabs}\t";
+
+					var objArray = (Array)obj;
+
+					for (int i = 0; i < objArray.GetLength(0); i++)
+					{
+						final += PrintOutObject(objArray.GetValue(i), objectsSeenBefore,extraTabs + 1);
+						if (i < objArray.Length - 1)
+						{
+							final += $",\n{tabs}\t";
+						}
+					}
+
+					final += $"\n{tabs}]";
+
+					return final;
+				}
+				/*else if (obj is MonoBehaviour || obj is ScriptableObject)
+				{
+					return JsonUtility.ToJson(obj);
+				}*/
+				else if (objType.IsPrimitive)
+				{
+					if (obj is bool boolean)
+					{
+						if (boolean)
+						{
+							return "true";
+						}
+						else
+						{
+							return "false";
+						}
+					}
+					return obj.ToString();
+				}
+				else if (obj is string str)
+				{
+					return $"\"{str}\"";
+				}
+				//(objType.GetCustomAttributes(typeof(SerializableAttribute), true).Length > 0 && !typeof(UnityEngine.Object).IsAssignableFrom(objType)
+				else if (obj is Component || !typeof(UnityEngine.Object).IsAssignableFrom(objType))
+				{
+					string final = $"{{\n{tabs}\t";
+					List<FieldInfo> Fields = new List<FieldInfo>();
+
+					Fields.AddRange(objType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic).Where(f =>
+					{
+						var attributes = f.GetCustomAttributes(true);
+						if (f.IsPublic)
+						{
+							return !attributes.Any(a => a.GetType() == typeof(HideInInspector));
+						}
+						else
+						{
+							return attributes.Any(a => a.GetType() == typeof(SerializeField));
+						}
+					}));
+
+					for (int i = 0; i < Fields.Count; i++)
+					{
+						var field = Fields[i];
+						var value = field.GetValue(obj);
+						if (value is null)
+						{
+							final += "\"" + field.Name + "\": null";
+						}
+						else
+						{
+							final += "\"" + field.Name + "\": " + PrintOutObject(value, objectsSeenBefore,extraTabs + 1);
+						}
+						if (i < Fields.Count - 1)
+						{
+							final += $",\n{tabs}\t";
+						}
+					}
+
+					final += $"\n{tabs}}}";
+
+					return final;
+				}
+				else
+				{
+					return $"{{\n{tabs}}}";
+				}
+
+				/*if (objType.Assembly.GetName().Name != "mscorlib" && (obj is UnityEngine.Object || (objType.GetCustomAttributes(typeof(SerializableAttribute), true).Length > 0)))
+				{
+					//routeChosen = true;
+					//Debugger.LogError("Route A");
+					//string final = "{\n";
+
+					List<FieldInfo> Fields = new List<FieldInfo>();
+
+					Fields.AddRange(objType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic).Where(f =>
+					{
+						var attributes = f.GetCustomAttributes(true);
+						if (f.IsPublic)
+						{
+							return !attributes.Any(a => a.GetType() == typeof(HideInInspector));
+						}
+						else
+						{
+							return attributes.Any(a => a.GetType() == typeof(SerializeField));
+						}
+					}));
+					for (int i = 0; i < Fields.Count; i++)
+					{
+						var field = Fields[i];
+						string contents = "\"null\"";
+						var value = field.GetValue(obj);
+						Debugger.LogError("C");
+						if (value != null)
+						{
+							if (!value.GetType().IsValueType && objectsSeenBefore.Contains(value))
+							{
+								contents = "\"-reference-\"";
+							}
+							else
+							{
+								PrintOutObject(value, objectsSeenBefore);
+								//contents = value.GetType().FullName;//PrintOutObject(value, objectsSeenBefore);
+							}
+						}
+						final += "\"" + field.Name + "\": " + contents;
+
+						if (i < Fields.Count - 1)
+						{
+							final += ",\n";
+						}
+					}
+
+					final += "}";
+
+					if (!objType.IsValueType)
+					{
+						objectsSeenBefore.Remove(obj);
+					}
+
+					return final;
+				}
+				else
+				{
+					Debugger.LogError("Route B");
+					if (!objType.IsValueType)
+					{
+						objectsSeenBefore.Remove(obj);
+					}
+					return Json.Serialize(obj);
+				}*/
+			}
+			catch (Exception e)
+			{
+				throw new Exception("Print Out Error: Object Type = " + objType + " Route Chosen = " + (routeChosen ? "Route A" : "Route B") + " Extra Errors = " + e.ToString());
+			}
 		}
 	}
 }

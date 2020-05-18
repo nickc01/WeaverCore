@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - MainCamera
+  - Dream Attack
+  - Acid
+  - Sharp Shadow
+  - Ignore Hatchling
+  - Hatchling Magnet
+  - Extra Tag
+  - Boss
+  - HeroBox
+  - Hero Spell
+  - Nail Attack
+  - Player
+  - HeroWalkable
+  - TileMap
+  - Spell Vulnerable
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Terrain
+  - Player
+  - TransitionGates
+  - Enemies
+  - Projectiles
+  - Hero Detector
+  - Terrain Detector
+  - Enemy Detector
+  - Tinker
+  - Attack
+  - Particle
+  - Interactive Object
+  - Hero Box
+  - Grass
+  - Enemy Attack
+  - Damage All
+  - Bouncer
+  - Soft Terrain
+  - Corpse
+  - uGUI
+  - Hero Only
+  - ActiveRegion
+  - Map Pin
+  - Orbit Shield
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

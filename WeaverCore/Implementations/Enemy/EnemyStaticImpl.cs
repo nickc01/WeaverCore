@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {
-    public abstract class EnemyStaticImplementation : IImplementation
+	public abstract class EnemyStaticImplementation : IImplementation
     {
         public abstract void OnBossesDeadAdd(Action action);
         public abstract void OnBossesDeadRemove(Action action);

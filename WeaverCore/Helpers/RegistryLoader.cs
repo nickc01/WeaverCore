@@ -42,6 +42,7 @@ namespace WeaverCore.Helpers
 
 		public static IEnumerable<Registry> GetEmbeddedRegistries(Type modType)
 		{
+			Debugger.Log("Loading Embedded Registries");
 			if (!loaded)
 			{
 				string extension = null;
@@ -66,10 +67,16 @@ namespace WeaverCore.Helpers
 						{
 							if (name.EndsWith(extension))
 							{
-								var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
-								if (name.Contains("weavercore") && assembly == typeof(WeaverMod).Assembly)
+								AssetBundle bundle = null;
+								bool isWeaverCore = name.ToUpper().Contains("WEAVERCORE");
+
+								if (!isWeaverCore || (isWeaverCore && WeaverAssetLoader.WeaverAssetBundle == null && assembly == typeof(WeaverMod).Assembly))
 								{
-									WeaverAssetLoader.SetWeaverAssetBundle(bundle);
+									bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
+									if (isWeaverCore)
+									{
+										WeaverAssetLoader.SetWeaverAssetBundle(bundle);
+									}
 								}
 							}
 						}

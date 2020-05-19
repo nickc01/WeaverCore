@@ -6,6 +6,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 using WeaverCore.Awaiters;
+using WeaverCore.Interfaces;
 //using WeaverCore.Editor.Helpers;
 //using WeaverCore.Editor.Routines;
 

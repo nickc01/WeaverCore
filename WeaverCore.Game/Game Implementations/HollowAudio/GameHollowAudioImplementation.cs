@@ -5,7 +5,6 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
 using WeaverCore.Game.Patches;
-using WeaverCore.Helpers;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Game.Implementations

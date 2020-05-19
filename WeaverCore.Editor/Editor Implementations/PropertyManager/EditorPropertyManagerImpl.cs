@@ -6,6 +6,7 @@ using WeaverCore.Awaiters;
 using WeaverCore.Editor.Helpers;
 using WeaverCore.Helpers;
 using WeaverCore.Implementations;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Implementations
 {

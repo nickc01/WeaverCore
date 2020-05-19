@@ -11,7 +11,7 @@ using WeaverCore.Internal;
 
 namespace WeaverCore.Game.Implementations
 {
-    public class GameModLoaderImplementation : WeaverCore.Implementations.ModLoaderImplementation
+	public class GameModLoaderImplementation : WeaverCore.Implementations.ModLoaderImplementation
     {
         static Type ModLoaderType = typeof(IMod).Assembly.GetType("Modding.ModLoader");
 

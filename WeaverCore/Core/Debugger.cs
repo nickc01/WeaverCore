@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Helpers;
 using WeaverCore.Implementations;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore
 {
     public static class Debugger
     {

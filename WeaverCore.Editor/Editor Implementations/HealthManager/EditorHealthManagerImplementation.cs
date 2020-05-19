@@ -7,14 +7,24 @@ namespace WeaverCore.Editor.Implementations
 {
 	class EditorHealthManagerImplementation : WeaverCore.Implementations.HealthManagerImplementation
     {
-        public override void OnDeath()
+        public override void OnHit(HitInfo info, bool validHit)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public override void ReceiveHit(HitInfo info)
+        public override void OnInvincibleHit(HitInfo info)
         {
-            throw new NotImplementedException();
+            
+        }
+
+        public override void OnSuccessfulHit(HitInfo info)
+        {
+            
+        }
+
+        public override void OnDeath()
+        {
+            
         }
     }
 }

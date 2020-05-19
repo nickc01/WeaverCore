@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-using WeaverCore.Helpers;
 
 namespace WeaverCore.Editor.Implementations
 {

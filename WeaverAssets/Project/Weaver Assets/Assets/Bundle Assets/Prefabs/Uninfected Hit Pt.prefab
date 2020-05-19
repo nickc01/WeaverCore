@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4286856956185522}
   - component: {fileID: 198489388738856330}
   - component: {fileID: 199139682081713344}
+  - component: {fileID: 114290623505828532}
   m_Layer: 16
   m_Name: Uninfected Hit Pt
   m_TagString: Untagged
@@ -34,13 +35,24 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1252749375970788}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9238796, w: -0.3826835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114290623505828532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252749375970788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1262398101, guid: eb7faaf286d9e7f4ebdf39ecea5980ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198489388738856330
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -77,7 +89,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -16976213
+  randomSeed: -778699870
   InitialModule:
     serializedVersion: 3
     enabled: 1

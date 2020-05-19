@@ -5,11 +5,12 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
+using WeaverCore.Interfaces;
 using WeaverCore.Internal;
 
 namespace WeaverCore.Helpers
 {
-    public static class ImplFinder
+	public static class ImplFinder
     {
         public static RunningState State { get; private set; }
 

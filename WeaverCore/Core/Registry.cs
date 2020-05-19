@@ -5,11 +5,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-using WeaverCore.Helpers;
 
 namespace WeaverCore
 {
-    [Serializable]
+	[Serializable]
     public struct FeatureSet
     {
         [SuppressMessage("Usage", "CA2235:Mark all non-serializable fields", Justification = "<Pending>")]

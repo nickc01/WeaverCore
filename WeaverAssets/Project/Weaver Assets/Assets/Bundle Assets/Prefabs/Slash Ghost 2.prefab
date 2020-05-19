@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4987910152452004}
   - component: {fileID: 212893745974289900}
   - component: {fileID: 95720579385719560}
+  - component: {fileID: 114413946746715416}
+  - component: {fileID: 50227772522732964}
   m_Layer: 0
   m_Name: Slash Ghost 2
   m_TagString: Untagged
@@ -41,6 +43,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50227772522732964
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674210932355450}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!95 &95720579385719560
 Animator:
   serializedVersion: 3
@@ -58,6 +80,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114413946746715416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674210932355450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 136949668, guid: eb7faaf286d9e7f4ebdf39ecea5980ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212893745974289900
 SpriteRenderer:
   m_ObjectHideFlags: 1

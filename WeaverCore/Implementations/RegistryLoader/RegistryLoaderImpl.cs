@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore.Helpers;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {

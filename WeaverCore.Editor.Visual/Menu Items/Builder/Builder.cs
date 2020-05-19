@@ -12,6 +12,7 @@ using WeaverCore.Awaiters;
 using WeaverCore.Editor.Visual.Helpers;
 using WeaverCore.Editor.Visual.Internal;
 using WeaverCore.Helpers;
+using WeaverCore.Interfaces;
 using WeaverCore.Internal;
 
 namespace WeaverCore.Editor.Visual

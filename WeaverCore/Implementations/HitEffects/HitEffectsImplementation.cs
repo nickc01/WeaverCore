@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Helpers;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {

@@ -343,6 +343,7 @@
     <Compile Include="Patches\EventRegistryPatch.cs" />
     <Compile Include="Patches\HealthManager-Enemy.cs" />
     <Compile Include="Patches\HeroController-Player.cs" />
+    <Compile Include="Patches\HitTakerPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeaverModTemplate.cs" />
   </ItemGroup>

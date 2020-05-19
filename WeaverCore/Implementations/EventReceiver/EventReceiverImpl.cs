@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore.Helpers;
+using WeaverCore.Interfaces;
 using static WeaverCore.Helpers.Harmony;
 
 namespace WeaverCore.Implementations
 {
-    public abstract class EventReceiverImplementation : IImplementation
+	public abstract class EventReceiverImplementation : IImplementation
     {
         public abstract void Initialize(HarmonyInstance patcher);
 

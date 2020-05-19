@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using UnityEngine;
 
-namespace WeaverCore
+namespace WeaverCore.Interfaces
 {
     /// <summary>
     /// Represents an Editor or Game specific implementation

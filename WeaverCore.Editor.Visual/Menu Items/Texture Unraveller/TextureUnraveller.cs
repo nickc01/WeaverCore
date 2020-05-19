@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 using WeaverCore.Helpers;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Visual
 {

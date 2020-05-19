@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {
-    public abstract class DebuggerImplementation : IImplementation
+	public abstract class DebuggerImplementation : IImplementation
     {
         public abstract void Log(object obj);
         public abstract void Log(string str);

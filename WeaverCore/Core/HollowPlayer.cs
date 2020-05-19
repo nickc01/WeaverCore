@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Helpers;
 using WeaverCore.Implementations;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore
 {
 	/// <summary>
 	/// Used for playing sounds within hollow knight with the game's standard audio effects applied

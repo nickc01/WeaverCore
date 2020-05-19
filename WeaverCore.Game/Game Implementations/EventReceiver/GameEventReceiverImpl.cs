@@ -75,6 +75,10 @@ namespace WeaverCore.Game.Implementations
 		{
 			try
 			{
+				if (fsmEvent == null)
+				{
+					return true;
+				}
 				foreach (var eventHook in EventHooks)
 				{
 					if (fsmEvent.Name == eventHook.eventName)

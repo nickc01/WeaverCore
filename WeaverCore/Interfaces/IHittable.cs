@@ -7,6 +7,6 @@ namespace WeaverCore.Interfaces
 {
 	public interface IHittable
 	{
-		void Hit(HitInfo hit);
+		bool Hit(HitInfo hit);
 	}
 }

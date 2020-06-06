@@ -350,7 +350,13 @@
     <Compile Include="Core\Awaiters\WaitForSeconds.cs" />
     <Compile Include="Core\Awaiters\WaitTillTrue.cs" />
     <Compile Include="Core\Extensions.cs" />
+    <Compile Include="Helpers\CoroutineUtilities.cs" />
     <Compile Include="Helpers\Flings.cs" />
+    <Compile Include="Helpers\Teleporter.cs" />
+    <Compile Include="Helpers\WeaverEvents.cs" />
+    <Compile Include="Helpers\WeaverGameManager.cs" />
+    <Compile Include="Implementations\GameManager\GameManagerImplementation.cs" />
+    <Compile Include="Implementations\WeaverEvents\WeaverEventsImplementation.cs" />
     <Compile Include="Interfaces\IUAwaiter.cs" />
     <Compile Include="Core\WeaverDirectory.cs" />
     <Compile Include="GameStatus\GameStatus.cs" />
@@ -359,7 +365,7 @@
     <Compile Include="Helpers\EventReceiver.cs" />
     <Compile Include="Helpers\Fields.cs" />
     <Compile Include="Helpers\Hash.cs" />
-    <Compile Include="Core\HollowPlayer.cs" />
+    <Compile Include="Core\WeaverAudio.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\PropertyTable.cs" />
     <Compile Include="Helpers\TextureSheet.cs" />
@@ -406,15 +412,12 @@
     <Compile Include="Internal\ModuleInitializer.cs" />
     <Compile Include="Internal\RuntimeInitializer.cs" />
     <Compile Include="WeaverAssets\AudioAssets.cs" />
-    <Compile Include="WeaverAssets\Components\BlockedHit.cs" />
-    <Compile Include="WeaverAssets\Components\GhostSlash.cs" />
-    <Compile Include="WeaverAssets\Components\NailStrike.cs" />
-    <Compile Include="WeaverAssets\Components\SlashImpact.cs" />
+    <Compile Include="WeaverAssets\Components\AnimationDestroyer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Enums\RunningState.cs" />
-    <Compile Include="WeaverAssets\Components\SpellHit.cs" />
     <Compile Include="WeaverAssets\Components\UninfectedDeathParticles.cs" />
     <Compile Include="WeaverAssets\Components\UninfectedHitParticles.cs" />
+    <Compile Include="WeaverAssets\Components\WhiteFlash.cs" />
     <Compile Include="WeaverAssets\EffectAssets.cs" />
     <Compile Include="WeaverAssets\MaterialAssets.cs" />
   </ItemGroup>

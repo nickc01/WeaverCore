@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace WeaverCore
 {
@@ -22,6 +23,39 @@ namespace WeaverCore
 				return true;
 			}
 			return false;
+		}
+	}
+
+	public static partial class VectorExtensions
+	{
+		public static Vector3 With(this Vector3 v, float x = float.NaN, float y = float.NaN, float z = float.NaN)
+		{
+			if (!float.IsNaN(x))
+			{
+				v.x = x;
+			}
+			if (!float.IsNaN(y))
+			{
+				v.y = y;
+			}
+			if (!float.IsNaN(z))
+			{
+				v.z = z;
+			}
+			return v;
+		}
+
+		public static Vector2 With(this Vector2 v, float x = float.NaN, float y = float.NaN)
+		{
+			if (!float.IsNaN(x))
+			{
+				v.x = x;
+			}
+			if (!float.IsNaN(y))
+			{
+				v.y = y;
+			}
+			return v;
 		}
 	}
 }

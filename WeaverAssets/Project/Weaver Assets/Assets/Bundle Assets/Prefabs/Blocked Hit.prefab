@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4257464422071438}
   - component: {fileID: 95398044905224480}
   - component: {fileID: 212382857362613176}
-  - component: {fileID: 114402216262459654}
+  - component: {fileID: 114285886072292540}
   m_Layer: 0
   m_Name: Blocked Hit
   m_TagString: Untagged
@@ -59,7 +59,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114402216262459654
+--- !u!114 &114285886072292540
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1903223762206802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 2135282584, guid: eb7faaf286d9e7f4ebdf39ecea5980ce, type: 3}
+  m_Script: {fileID: -573858101, guid: eb7faaf286d9e7f4ebdf39ecea5980ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212382857362613176

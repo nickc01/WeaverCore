@@ -12,6 +12,12 @@ namespace WeaverCore.Game.Implementations
 {
 	public class GameURoutineImplementation : URoutineImplementation
     {
+        public static void BeginExecuter()
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneCallback;
+        }
+
+
         static List<Data> waitingToBeStarted = new List<Data>();
         static CoroutineExecuter Executer = null;
 
@@ -22,8 +28,21 @@ namespace WeaverCore.Game.Implementations
             data.Started = true;
             try
             {
-                foreach (var awaiter in new FunctionIEnumerable(data.OriginalFunction))
+                bool keepIterating = false;
+                try
                 {
+                    keepIterating = data.OriginalFunction.MoveNext();
+                }
+                catch (Exception e)
+                {
+                    Debugger.LogError("URoutine Exception: " + e);
+                    throw;
+                }
+
+                while (keepIterating)
+                {
+                    IUAwaiter awaiter = data.OriginalFunction.Current;
+
                     if (awaiter == null)
                     {
                         yield return null;
@@ -35,10 +54,21 @@ namespace WeaverCore.Game.Implementations
                             yield return null;
                         }
                     }
+
+                    try
+                    {
+                        keepIterating = data.OriginalFunction.MoveNext();
+                    }
+                    catch (Exception e)
+                    {
+                        Debugger.LogError("URoutine Exception: " + e);
+                        throw;
+                    }
                 }
             }
             finally
             {
+                data.OriginalFunction.Dispose();
                 data.Done = true;
                 data.Started = false;
                 waitingToBeStarted.Remove(data);
@@ -59,16 +89,16 @@ namespace WeaverCore.Game.Implementations
             if (Executer == null)
             {
                 waitingToBeStarted.Add(data);
-                UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneCallback;
             }
             else
             {
                 data.Routine = Executer.StartCoroutine(data.OriginalFunction);
+                UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneCallback;
             }
             return data;
         }
 
-        private void SceneCallback(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+        private static void SceneCallback(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
         {
             if (Executer == null)
             {

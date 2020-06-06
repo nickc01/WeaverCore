@@ -10,6 +10,14 @@ using WeaverCore.WeaverAssets;
 
 namespace WeaverCore.Components
 {
+
+	public enum HitResult
+	{
+		Invalid,
+		Invincible,
+		Valid
+	}
+
 	public class HealthManager : MonoBehaviour, IHittable
 	{
 		Collider2D collider;
@@ -95,23 +103,126 @@ namespace WeaverCore.Components
 		public int MediumGeo = 0;
 		public int LargeGeo = 0;
 
-		public virtual void Hit(HitInfo hit)
+		public virtual bool Hit(HitInfo hit)
 		{
-			bool validHit = !(health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
+			var hitResult = IsValidHit(hit);
+			impl.OnHit(hit, hitResult);
+			switch (hitResult)
+			{
+				case HitResult.Invalid:
+					return false;
+				case HitResult.Invincible:
+					InvincibleHit(hit);
+					return false;
+				case HitResult.Valid:
+					NormalHit(hit);
+					return true;
+				default:
+					return false;
+			}
+			/*bool validHit = !(health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
 			if (!validHit)
 			{
-				return;
+				return false;
 			}
 			impl.OnHit(hit,validHit);
 
 			if (!Invincible || ((hit.AttackType == AttackType.Spell || hit.AttackType == AttackType.SharpShadow) && gameObject.CompareTag("Spell Vulnerable")))
 			{
 				NormalHit(hit);
+				return true;
 			}
 			else
 			{
 				InvincibleHit(hit);
+				return false;
+			}*/
+		}
+
+		public HitResult IsValidHit(HitInfo hit)
+		{
+			bool validHit = !(health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
+			if (!validHit)
+			{
+				return HitResult.Invalid;
 			}
+			if (!Invincible || ((hit.AttackType == AttackType.Spell || hit.AttackType == AttackType.SharpShadow) && gameObject.CompareTag("Spell Vulnerable")))
+			{
+				return HitResult.Valid;
+			}
+			else
+			{
+				return HitResult.Invincible;
+			}
+		}
+
+		public void PlayHitEffects(HitInfo hit, Player player = null)
+		{
+			if (player == null)
+			{
+				player = Player.GetPlayerFromChild(hit.Attacker);
+			}
+
+			if (player != null)
+			{
+				player.PlayAttackSlash(gameObject, hit);
+			}
+
+			var hitEffects = GetComponent<IHitEffects>();
+			if (hitEffects != null)
+			{
+				hitEffects.PlayHitEffect(hit);
+			}
+		}
+
+		public void PlayInvincibleHitEffects(HitInfo hit)
+		{
+			var cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
+			Vector2 v;
+			Vector3 eulerAngles;
+
+			if (collider == null)
+			{
+				collider = GetComponent<Collider2D>();
+			}
+
+			if (collider != null)
+			{
+				switch (cardinalDirection)
+				{
+					case CardinalDirection.Up:
+						v = new Vector2(hit.Attacker.transform.position.x, Mathf.Max(hit.Attacker.transform.position.y, collider.bounds.min.y));
+						eulerAngles = new Vector3(0f, 0f, 90f);
+						break;
+					case CardinalDirection.Down:
+						v = new Vector2(hit.Attacker.transform.position.x, Mathf.Min(hit.Attacker.transform.position.y, collider.bounds.max.y));
+						eulerAngles = new Vector3(0f, 0f, 270f);
+						break;
+					case CardinalDirection.Left:
+						v = new Vector2(collider.bounds.max.x, hit.Attacker.transform.position.y);
+						eulerAngles = new Vector3(0f, 0f, 180f);
+						break;
+					case CardinalDirection.Right:
+						v = new Vector2(collider.bounds.min.x, hit.Attacker.transform.position.y);
+						eulerAngles = new Vector3(0f, 0f, 0f);
+						break;
+					default:
+						v = transform.position;
+						eulerAngles = new Vector3(0f, 0f, 0f);
+						break;
+				}
+			}
+			else
+			{
+				v = transform.position;
+				eulerAngles = new Vector3(0f, 0f, 0f);
+			}
+			//TODO
+			var blockedHitEffect = Instantiate(EffectAssets.BlockedHitPrefab, v, Quaternion.identity);
+			blockedHitEffect.transform.eulerAngles = eulerAngles;
+
+			WeaverAudio.Play(WeaverAssets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
+
 		}
 
 		void InvincibleHit(HitInfo hit)
@@ -139,51 +250,8 @@ namespace WeaverCore.Components
 				//Make the camera shake : TODO
 				//GameCameras.instance.cameraShakeFSM.SendEvent("EnemyKillShake");
 
-				Vector2 v;
-				Vector3 eulerAngles;
-
-				if (collider == null)
-				{
-					collider = GetComponent<Collider2D>();
-				}
-
-				if (collider != null)
-				{
-					switch (cardinalDirection)
-					{
-						case CardinalDirection.Up:
-							v = new Vector2(hit.Attacker.transform.position.x, Mathf.Max(hit.Attacker.transform.position.y, collider.bounds.min.y));
-							eulerAngles = new Vector3(0f, 0f, 90f);
-							break;
-						case CardinalDirection.Down:
-							v = new Vector2(hit.Attacker.transform.position.x, Mathf.Min(hit.Attacker.transform.position.y, collider.bounds.max.y));
-							eulerAngles = new Vector3(0f, 0f, 270f);
-							break;
-						case CardinalDirection.Left:
-							v = new Vector2(collider.bounds.max.x, hit.Attacker.transform.position.y);
-							eulerAngles = new Vector3(0f, 0f, 180f);
-							break;
-						case CardinalDirection.Right:
-							v = new Vector2(collider.bounds.min.x, hit.Attacker.transform.position.y);
-							eulerAngles = new Vector3(0f, 0f, 0f);
-							break;
-						default:
-							v = transform.position;
-							eulerAngles = new Vector3(0f, 0f, 0f);
-							break;
-					}
-				}
-				else
-				{
-					v = transform.position;
-					eulerAngles = new Vector3(0f, 0f, 0f);
-				}
-				//TODO
-				var blockedHitEffect = Instantiate(EffectAssets.BlockedHitPrefab, v, Quaternion.identity);
-				blockedHitEffect.transform.eulerAngles = eulerAngles;
-
-				HollowPlayer.Play(WeaverAssets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
-
+				PlayInvincibleHitEffects(hit);
+				
 				evasionTimer = EvasionTime;
 			}
 		}
@@ -216,7 +284,9 @@ namespace WeaverCore.Components
 				}
 			}
 
-			if (player != null)
+			PlayHitEffects(hit, player);
+
+			/*if (player != null)
 			{
 				player.PlayAttackSlash(gameObject, hit);
 			}
@@ -225,7 +295,7 @@ namespace WeaverCore.Components
 			if (hitEffects != null)
 			{
 				hitEffects.PlayHitEffect(hit);
-			}
+			}*/
 
 			//Updates the health. If the health is at or below zero, this will also trigger the OnDeath() function
 			Health -= hit.Damage;

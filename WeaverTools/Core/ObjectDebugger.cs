@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using WeaverCore;
@@ -19,6 +20,42 @@ namespace WeaverTools
 		class JsonWrapper
 		{
 			public object Value;
+		}
+
+		[Serializable]
+		class ComponentWrapper
+		{
+			public string Name;
+			public string TypeName;
+			public Component Component;
+
+			public string GameObjectName;
+			public GameObject GM;
+		}
+
+		[Serializable]
+		class UnityEngineWrapper
+		{
+			public long m_FileID;
+			public long m_PathID;
+			public string Name;
+		}
+
+		[Serializable]
+		struct IDOpener
+		{
+			public IDOpener(UnityEngine.Object obj)
+			{
+				OBJ = obj;
+			}
+
+			public UnityEngine.Object OBJ;
+
+			public static IDOpener Transform(long fileID, long pathID)
+			{
+				string json = $"{{\"OBJ\":{{ \"m_FileID\":{fileID},\"m_PathID\":{pathID}}}}}";
+				return JsonUtility.FromJson<IDOpener>(json);
+			}
 		}
 
 		[Serializable]
@@ -78,7 +115,7 @@ namespace WeaverTools
 			if (name.Length > shortenCutPoint)
 			{
 				var newName = name.Substring(0, shortenCutPoint);
-				name = newName + "~" + name.Length;
+				name = newName + "~" + name.GetHashCode().ToString("X");
 			}
 			return name;
 		}
@@ -93,11 +130,14 @@ namespace WeaverTools
 
 		public static void DebugObject(GameObject gameObject)
 		{
+			//Debugger.Log("TEST");
 			var directory = DebugDirectory.CreateSubdirectory("GameObjects").CreateSubdirectory(CleanName(gameObject.name));
 			DebugObject(gameObject, directory);
 		}
 
 		public static DirectoryInfo DebugDirectory => WeaverCore.WeaverDirectory.GetWeaverDirectory().CreateSubdirectory("Tools").CreateSubdirectory("Debug");
+
+		static Regex IDRegex;
 
 		static void DebugObject(GameObject gameObject, DirectoryInfo directory = null, int ancestryNumber = 0, bool objectOnly = false)
 		{
@@ -111,6 +151,7 @@ namespace WeaverTools
 			{
 				try
 				{
+					//Debugger.Log("AA");
 					if (directory == null)
 					{
 						var GameObjectDir = DebugDirectory.CreateSubdirectory("GameObjects");
@@ -132,23 +173,28 @@ namespace WeaverTools
 					//File.WriteAllText(gmFile, Json.Serialize(gameObject));
 
 					//File.Move(gmFile, gmFile);
+					//Debugger.Log("BB");
 					using (var file = File.Create(gmFile))
 					{
 						using (var writer = new StreamWriter(file))
 						{
-							writer.Write(JsonUtility.ToJson(new ObjectMeta(gameObject)));
+							writer.Write(JsonUtility.ToJson(new ObjectMeta(gameObject),true));
 						}
 					}
 					if (!objectOnly)
 					{
-						foreach (var component in gameObject.GetComponents<Component>())
+						//Debugger.Log("CC");
+						var components = gameObject.GetComponents<Component>();
+
+						for (int i = 0; i < components.GetLength(0); i++)
 						{
-							DebugComponent(component, directory);
-							if (component is PlayMakerFSM fsm)
+							//Debugger.Log("DD");
+							DebugComponent(components[i], directory,i);
+							if (components[i] is PlayMakerFSM fsm)
 							{
 								DebugFSM(fsm, directory);
 							}
-							if (component is tk2dSprite sprite)
+							if (components[i] is tk2dSprite sprite)
 							{
 								DebugSprite(sprite, directory);
 							}
@@ -364,17 +410,101 @@ namespace WeaverTools
 			DebugFSM(fsm.Fsm,directory);
 		}
 
-		public static void DebugComponent(Component component, DirectoryInfo directory)
+		public static void DebugComponent(Component component, DirectoryInfo directory, int componentNumber)
 		{
 			try
 			{
+				/*if (IDRegex == null)
+				{
+					IDRegex = new Regex(@"(\s*?)""(.*?)"":\s*?{\n?(\s*?)""m_FileID"":\s*?(\d+?),\n?\s*?""m_PathID"":\s*?(\d+?)\n?(\s*?)}", RegexOptions.Multiline | RegexOptions.Compiled);
+				}*/
+				//Debugger.Log("Component");
 				directory.Create();
 
 				Type componentType = component.GetType();
-				using (var file = File.CreateText($"{directory.PathWithSlash()}{component.GetType().Name} - {CleanName(component.name)}.dat"))
+				using (var file = File.CreateText($"{directory.PathWithSlash()}{CleanName(componentType.Name)} - {componentNumber} - {CleanName(component.name)}.dat"))
 				{
-					Debugger.Log("Printing out component : " + componentType.FullName);
-					file.WriteLine(PrintOutObject(component));
+					//Debugger.Log("Printing out component : " + componentType.FullName);
+
+					string jsonResult = null;
+					if (component is tk2dSpriteAnimator)
+					{
+						Debugger.Log("Printing Out Component = " + component.GetType());
+						jsonResult = PrintOutObject(component);
+					}
+					else if (component is MonoBehaviour)
+					{
+						jsonResult = JsonUtility.ToJson(component, true);
+						//file.WriteLine();
+					}
+					else
+					{
+						jsonResult = JsonUtility.ToJson(new ComponentWrapper
+						{
+							Name = component.name,
+							GameObjectName = component.gameObject.name,
+							GM = component.gameObject,
+							Component = component,
+							TypeName = componentType.FullName
+						}, true);
+						//file.WriteLine();
+					}
+
+					StringBuilder builder = new StringBuilder(jsonResult);
+
+					var matches = Regex.Matches(jsonResult, @"{\n?(\s*?)""m_FileID"":\s*?(\d+?),\n?\s*?""m_PathID"":\s*?(\d+?)\n?(\s*?)}");
+
+					//Debugger.Log("A");
+
+					//foreach (Match match in matches)
+					for (int i = matches.Count - 1; i >= 0; i--)
+					{
+						var match = matches[i];
+
+						if (match.Success)
+						{
+							//Debugger.Log("Match Value = " + match.Value);
+							//Debugger.Log("Group 1 = " + match.Groups[2].Value);
+							//Debugger.Log("Group 2 = " + match.Groups[3].Value);
+
+							//int fileID = 0;
+							//int pathID = 0;
+
+							if (int.TryParse(match.Groups[2].Value,out var fileID) && int.TryParse(match.Groups[3].Value,out var pathID))
+							{
+								var obj = IDOpener.Transform(fileID, pathID).OBJ;
+
+								string name = obj == null ? "\"\"" : $"\"{obj.name}\"";
+
+								var replacement = $"{{\n{match.Groups[1]}\"m_FileID\": {match.Groups[2]},\n{match.Groups[1]}\"m_PathID\": {match.Groups[3]},\n{match.Groups[1]}\"Name\": {name}\n{match.Groups[4]}}}";
+
+
+								/*var replacement = $"\"{match.Groups[2]}\": " + JsonUtility.ToJson(new UnityEngineWrapper()
+								{
+									m_FileID = fileID,
+									m_PathID = pathID,
+									Name = obj == null ? "" : obj.name
+								},true);*/
+
+								//Debugger.Log("Old = " + match.Value);
+								//Debugger.Log("New = " + replacement);
+
+								builder.Replace(match.Value, replacement, match.Index, match.Length);
+								//builder.Remove(match.Index, match.Length);
+								//builder.Insert(match.Index, replacement);
+								//jsonResult = jsonResult.Remove(match.Index, match.Length);
+
+								//jsonResult = jsonResult.Insert(match.Index, replacement);
+							}
+
+						}
+					}
+
+					file.WriteLine(builder);
+
+					file.Close();
+					//Debugger.Log("Printing out component : " + componentType.FullName);
+					//file.WriteLine(PrintOutObject(component));
 					/*file.WriteLine("{");
 
 					List<FieldInfo> Fields = new List<FieldInfo>();
@@ -554,6 +684,7 @@ namespace WeaverTools
 
 		static string PrintOutObject(object obj,List<object> objectsSeenBefore = null, int extraTabs = 0)
 		{
+			//Debugger.Log("Printing Out Object = " + obj.GetType());
 			string tabs = new string('\t', extraTabs);
 			Type objType = obj.GetType();
 			bool routeChosen = false;
@@ -577,7 +708,7 @@ namespace WeaverTools
 
 				if (obj is GameObject gm)
 				{
-					string final = $"{{\n{tabs}\t\"GameObject\": {JsonUtility.ToJson(new ObjectMeta(gm))},\n{tabs}\t\"Components\": [\n{tabs}\t\t";
+					string final = $"{{\n{tabs}\t\"GameObject\": {JsonUtility.ToJson(new ObjectMeta(gm),true)},\n{tabs}\t\"Components\": [\n{tabs}\t\t";
 					var components = gm.GetComponents<Component>();
 					for (int i = 0; i < components.Length; i++)
 					{

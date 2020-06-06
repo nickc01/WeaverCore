@@ -37,6 +37,14 @@ namespace WeaverCore.Helpers
 
 		static void LoadWeaverAssetBundle()
 		{
+			foreach (var loadedBundle in AssetBundle.GetAllLoadedAssetBundles())
+			{
+				if (loadedBundle.name == "weavercore")
+				{
+					weaverAssetBundle = loadedBundle;
+					return;
+				}
+			}
 			string extension = null;
 			if (SystemInfo.operatingSystem.Contains("Windows"))
 			{
@@ -73,6 +81,7 @@ namespace WeaverCore.Helpers
 			{
 				throw new WeaverAssetsException("Unable to find the WeaverAssets Asset Bundle");
 			}
+
 		}
 
 		internal static void SetWeaverAssetBundle(AssetBundle bundle)

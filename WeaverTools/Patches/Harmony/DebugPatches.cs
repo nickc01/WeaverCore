@@ -27,10 +27,12 @@ namespace WeaverTools.Patches
 			}
 		}
 
-
 		static void Postfix(object message, MethodInfo __originalMethod)
 		{
-			Modding.Logger.Log($"[{__originalMethod.DeclaringType.FullName + "." + __originalMethod.Name}] - {message}");
+			if (ToolSettings.GetSettings().PrintUnityDebugLogs)
+			{
+				Modding.Logger.Log($"[{__originalMethod.DeclaringType.FullName + "." + __originalMethod.Name}] - {message}");
+			}
 		}
 	}
 }

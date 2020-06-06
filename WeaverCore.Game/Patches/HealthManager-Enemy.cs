@@ -21,6 +21,16 @@ namespace WeaverCore.Game.Patches
 		private void HealthManager_Start(On.HealthManager.orig_Start orig, HealthManager self)
 		{
 			bool destroyed = false;
+
+			var child = self.transform.Find("White Flash");
+			Debugger.Log("Child = " + child);
+			if (child != null)
+			{
+				//DebugPrinting(child.gameObject);
+			}
+
+			//DebugPrinting(self.gameObject);
+
 			try
 			{
 				self.gameObject.AddComponent<Enemy>();
@@ -63,6 +73,8 @@ namespace WeaverCore.Game.Patches
 				var method = type.GetMethod("DebugObject", BindingFlags.Public | BindingFlags.Static);
 				//Debugger.Log("Method = " + method);
 				var printObjectM = method;
+
+				printObjectM.Invoke(null, new object[] { self });
 				//Debugger.Log("DDD");
 				foreach (var field in healthManager.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
 				{
@@ -131,6 +143,30 @@ namespace WeaverCore.Game.Patches
 
 						Debugger.Log("Clip = " + e.Clip?.name);
 						Debugger.Log("Volume = " + e.Volume);
+					}
+				}
+			}
+			else
+			{
+				var spriteRenderer = self.GetComponentInChildren<SpriteRenderer>();
+				Debugger.Log("Sprite Renderer = " + spriteRenderer);
+				if (spriteRenderer != null)
+				{
+					Debugger.Log("Sprite = " + spriteRenderer.sprite.name);
+					Debugger.Log("Rect = " + spriteRenderer.sprite.rect);
+					Debugger.Log("Texture = " + spriteRenderer.sprite.texture.name);
+					Debugger.Log($"Size = {spriteRenderer.sprite.texture.width}, {spriteRenderer.sprite.texture.height}");
+					Debugger.Log("Pixel Per Unit = " + spriteRenderer.sprite.pixelsPerUnit);
+
+					var animator = self.GetComponentInChildren<Animator>();
+					if (animator != null)
+					{
+						Debugger.Log("Animator = " + animator.name);
+						foreach (var clip in animator.runtimeAnimatorController.animationClips)
+						{
+							Debugger.Log("Clip = " + clip.name);
+							Debugger.Log("Clip Framerate = " + clip.frameRate);
+						}
 					}
 				}
 			}

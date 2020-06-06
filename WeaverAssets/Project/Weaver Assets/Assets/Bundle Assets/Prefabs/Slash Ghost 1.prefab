@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4621249771467490}
   - component: {fileID: 212384814968442290}
   - component: {fileID: 95419954450380690}
-  - component: {fileID: 114180411249422100}
   - component: {fileID: 50361749400880818}
+  - component: {fileID: 114667772296848058}
   m_Layer: 11
   m_Name: Slash Ghost 1
   m_TagString: Untagged
@@ -80,7 +80,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114180411249422100
+--- !u!114 &114667772296848058
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1109907540402092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 136949668, guid: eb7faaf286d9e7f4ebdf39ecea5980ce, type: 3}
+  m_Script: {fileID: -573858101, guid: eb7faaf286d9e7f4ebdf39ecea5980ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212384814968442290
@@ -127,10 +127,10 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.5625, y: 0.80757576}
+  m_Size: {x: 2.28125, y: 0.52763605}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

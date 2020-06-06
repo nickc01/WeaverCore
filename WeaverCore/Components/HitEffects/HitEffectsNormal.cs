@@ -38,7 +38,7 @@ namespace WeaverCore.Components.HitEffects
 			{
 				firedOnCurrentFrame = true;
 
-				HollowPlayer.Play(DamageSound, transform.position, channel: AudioChannel.Sound);
+				WeaverAudio.Play(DamageSound, transform.position, channel: AudioChannel.Sound);
 
 				if (doFlashEffects)
 				{

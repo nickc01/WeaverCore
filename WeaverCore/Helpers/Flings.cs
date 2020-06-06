@@ -43,7 +43,7 @@ namespace WeaverCore.Helpers
 		{
 			var settings1 = new FlingInfo()
 			{
-				Prefab = EffectAssets.GhostSlash1,
+				Prefab = EffectAssets.GhostSlash1Prefab,
 				PrefabAmountMin = 2,
 				PrefabAmountMax = 3,
 				VelocityMin = 20f,
@@ -56,7 +56,7 @@ namespace WeaverCore.Helpers
 
 			var settings2 = new FlingInfo()
 			{
-				Prefab = EffectAssets.GhostSlash2,
+				Prefab = EffectAssets.GhostSlash2Prefab,
 				PrefabAmountMin = 2,
 				PrefabAmountMax = 3,
 				VelocityMin = 10f,

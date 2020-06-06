@@ -21,22 +21,24 @@ namespace WeaverCore.Components
 		float flashIntensity;
 
 		Coroutine currentFlashRoutine;
+		bool ranOnce = false;
 		
 
-		Color FlashColor
+		public Color FlashColor
 		{
 			get => flashColor;
 			set
 			{
 				if (flashColor != value)
 				{
+					Start();
 					flashColor = value;
 					UpdateBlock();
 				}
 			}
 		}
 
-		float FlashIntensity
+		public float FlashIntensity
 		{
 			get => flashIntensity;
 			set
@@ -44,6 +46,7 @@ namespace WeaverCore.Components
 				value = Mathf.Clamp01(value);
 				if (flashIntensity != value)
 				{
+					Start();
 					flashIntensity = value;
 					UpdateBlock();
 				}
@@ -67,19 +70,24 @@ namespace WeaverCore.Components
 
 		void Start()
 		{
-			UpdateRenderer();
-
-			propertyBlock = new MaterialPropertyBlock();
-
-			if (flasherMaterial == null)
+			if (!ranOnce)
 			{
-				flasherMaterial = WeaverAssets.MaterialAssets.SpriteFlash;
+				ranOnce = true;
+
+				UpdateRenderer();
+
+				propertyBlock = new MaterialPropertyBlock();
+
+				if (flasherMaterial == null)
+				{
+					flasherMaterial = WeaverAssets.MaterialAssets.SpriteFlash;
+				}
+				if (previousMaterial == null)
+				{
+					previousMaterial = renderer.material;
+				}
+				renderer.material = flasherMaterial;
 			}
-			if (previousMaterial == null)
-			{
-				previousMaterial = renderer.material;
-			}
-			renderer.material = flasherMaterial;
 		}
 
 		void OnEnable()
@@ -129,9 +137,19 @@ namespace WeaverCore.Components
 			}
 		}
 
-
-		void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8f, Color? FlashColor = default, float StayTime = 0.05f)
+		public void StopFlashing()
 		{
+			if (currentFlashRoutine != null)
+			{
+				StopCoroutine(currentFlashRoutine);
+				currentFlashRoutine = null;
+			}
+		}
+
+
+		public void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8f, Color? FlashColor = default, float StayTime = 0.05f)
+		{
+			Start();
 			if (currentFlashRoutine != null)
 			{
 				StopCoroutine(currentFlashRoutine);

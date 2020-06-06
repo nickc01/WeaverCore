@@ -7,6 +7,7 @@ using Harmony;
 using WeaverCore.Helpers;
 using WeaverCore.Internal;
 using HutongGames.PlayMaker.Actions;
+using WeaverCore.Game.Implementations;
 
 namespace WeaverCore.Game
 {
@@ -17,6 +18,8 @@ namespace WeaverCore.Game
             ApplyPatches();
             ModLoader.LoadAllMods();
             new Implementations.GameRuntimeInitializerImplementation().Awake();
+
+            GameURoutineImplementation.BeginExecuter();
         }
 
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Components;
 using WeaverCore.Helpers;
 
 namespace WeaverCore.Game.Implementations
@@ -15,9 +16,9 @@ namespace WeaverCore.Game.Implementations
             
         }
 
-        public override void OnHit(HitInfo info, bool validHit)
+        public override void OnHit(HitInfo info, HitResult hitResult)
         {
-            if (validHit)
+            if (hitResult != HitResult.Invalid)
             {
                 FSMUtility.SendEventToGameObject(info.Attacker, "DEALT DAMAGE", false);
             }

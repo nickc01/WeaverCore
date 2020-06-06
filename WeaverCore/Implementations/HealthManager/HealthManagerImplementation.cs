@@ -13,7 +13,7 @@ namespace WeaverCore.Implementations
 	{
 		public HealthManager Manager;
 
-		public abstract void OnHit(HitInfo info, bool validHit);
+		public abstract void OnHit(HitInfo info, HitResult hitResult);
 		public abstract void OnInvincibleHit(HitInfo info);
 		public abstract void OnSuccessfulHit(HitInfo info);
 

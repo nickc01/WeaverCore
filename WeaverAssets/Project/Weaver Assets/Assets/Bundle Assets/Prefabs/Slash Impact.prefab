@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4369309070500546}
   - component: {fileID: 212710262852109596}
   - component: {fileID: 95008371318821704}
-  - component: {fileID: 114676984843254590}
+  - component: {fileID: 114823240553901628}
   m_Layer: 0
   m_Name: Slash Impact
   m_TagString: Untagged
@@ -59,7 +59,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114676984843254590
+--- !u!114 &114823240553901628
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1364919475376518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1936808043, guid: eb7faaf286d9e7f4ebdf39ecea5980ce, type: 3}
+  m_Script: {fileID: -573858101, guid: eb7faaf286d9e7f4ebdf39ecea5980ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212710262852109596
@@ -109,7 +109,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.8281248, y: 0.3423526}
+  m_Size: {x: 4.078125, y: 0.4669609}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

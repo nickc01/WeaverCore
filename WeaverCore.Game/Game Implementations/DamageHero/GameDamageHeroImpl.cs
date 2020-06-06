@@ -25,7 +25,7 @@ namespace WeaverCore.Game.Implementations
 
 		void UpdateDamager()
 		{
-			gameDamager.damageDealt = Damager.DamageDealt;
+			gameDamager.damageDealt = Damager.enabled ? Damager.DamageDealt : 0;
 			gameDamager.hazardType = (int)Damager.HazardType;
 			gameDamager.shadowDashHazard = Damager.ShadowDashHazard;
 		}

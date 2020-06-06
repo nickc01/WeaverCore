@@ -8,6 +8,13 @@ using WeaverCore.Helpers;
 
 namespace WeaverTools
 {
+	public struct IDPair
+	{
+		public long FileID;
+		public long PathID;
+		public string Type;
+	}
+
 	public class ToolSettings
 	{
 
@@ -15,7 +22,10 @@ namespace WeaverTools
 		static ToolSettings Cache;
 
 		public bool DebugMode = true;
-		public bool DeepDebug = false;
+		public bool PrintUnityDebugLogs = false;
+		public bool PrintIDs = false;
+
+		public List<IDPair> IDsToPrint = new List<IDPair>();
 
 		public static ToolSettings GetSettings()
 		{
@@ -35,6 +45,7 @@ namespace WeaverTools
 				else
 				{
 					Cache = new ToolSettings();
+					SetSettings(Cache);
 				}
 			}
 			return Cache;

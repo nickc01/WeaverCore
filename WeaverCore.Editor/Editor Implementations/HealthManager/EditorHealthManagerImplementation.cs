@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Components;
 
 namespace WeaverCore.Editor.Implementations
 {
 	class EditorHealthManagerImplementation : WeaverCore.Implementations.HealthManagerImplementation
     {
-        public override void OnHit(HitInfo info, bool validHit)
-        {
-            
-        }
 
         public override void OnInvincibleHit(HitInfo info)
         {
@@ -23,6 +20,11 @@ namespace WeaverCore.Editor.Implementations
         }
 
         public override void OnDeath()
+        {
+            
+        }
+
+        public override void OnHit(HitInfo info, HitResult hitResult)
         {
             
         }

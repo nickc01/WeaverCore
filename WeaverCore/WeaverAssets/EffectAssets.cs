@@ -18,7 +18,11 @@ namespace WeaverCore.WeaverAssets
 		public static GameObject UninfectedHitPrefab => WeaverAssetLoader.LoadWeaverAsset<GameObject>("Uninfected Hit Pt");
 		public static GameObject BlockedHitPrefab => WeaverAssetLoader.LoadWeaverAsset<GameObject>("Blocked Hit");
 
-		public static GameObject GhostSlash1 => WeaverAssetLoader.LoadWeaverAsset<GameObject>("Slash Ghost 1");
-		public static GameObject GhostSlash2 => WeaverAssetLoader.LoadWeaverAsset<GameObject>("Slash Ghost 2");
+		public static GameObject GhostSlash1Prefab => WeaverAssetLoader.LoadWeaverAsset<GameObject>("Slash Ghost 1");
+		public static GameObject GhostSlash2Prefab => WeaverAssetLoader.LoadWeaverAsset<GameObject>("Slash Ghost 2");
+
+		public static GameObject TeleportGlowPrefab => WeaverAssetLoader.LoadWeaverAsset<GameObject>("Death Glow");
+		public static GameObject TeleLinePrefab => WeaverAssetLoader.LoadWeaverAsset<GameObject>("Tele Line");
+		public static GameObject WhiteFlashPrefab => WeaverAssetLoader.LoadWeaverAsset<GameObject>("White Flash");
 	}
 }

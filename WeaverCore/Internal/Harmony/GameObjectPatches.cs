@@ -75,9 +75,9 @@ namespace WeaverCore.Internal.Harmony
 
 			foreach (var renderer in gameObject.GetComponentsInChildren<Renderer>())
 			{
-				if (renderer.material?.shader != null && (renderer.material.shader.name.Contains("Error") || renderer.material.shader.name.Contains("Missing")))
+				if (renderer.sharedMaterial?.shader != null && (renderer.sharedMaterial.shader.name.Contains("Error") || renderer.sharedMaterial.shader.name.Contains("Missing")))
 				{
-					renderer.material.shader = DefaultSpriteMaterial.shader;
+					renderer.sharedMaterial.shader = DefaultSpriteMaterial.shader;
 				}
 			}
 

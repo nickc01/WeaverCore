@@ -39,7 +39,11 @@ namespace WeaverCore.Game.Patches
 				if (replacement != null)
 				{
 					var instance = GameObject.Instantiate(replacement.gameObject);
-					EventReceiver.ReceiveEventsFromObject(self.gameObject, instance);
+					var eventReceiver = instance.GetComponent<EventReceiver>();
+					if (eventReceiver != null)
+					{
+						eventReceiver.ReceiveEventsFromObject(self.gameObject);
+					}
 					GameObject.Destroy(self.gameObject);
 					destroyed = true;
 				}

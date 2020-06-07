@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using WeaverCore.Implementations;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Implementations
 {
@@ -11,10 +13,45 @@ namespace WeaverCore.Game.Implementations
 	{
 		public override void BroadcastEvent(string eventName)
 		{
+			Debugger.Log("Broadcasting Event = " + eventName);
+			foreach (var receiver in EventReceiver.AllReceivers)
+			{
+				receiver.ReceiveEvent(eventName);
+			}
+
 			if (PlayMakerFSM.FsmList.Count > 0)
 			{
-				var e = new FsmEvent(eventName);
-				PlayMakerFSM.FsmList[0].Fsm.BroadcastEvent(e);
+				var fsmEvent = new FsmEvent(eventName);
+
+				foreach (var fsmComponent in PlayMakerFSM.FsmList)
+				{
+					if (fsmComponent.Fsm != null)
+					{
+						Debugger.Log("FSMComponent = " + fsmComponent);
+						fsmComponent.Fsm.ProcessEvent(FsmEvent.GetFsmEvent(eventName));
+					}
+				}
+			}
+		}
+
+		public override void SendEventToObject(GameObject gameObject, string eventName)
+		{
+			EventReceiver receiver = null;
+			if ((receiver = gameObject.GetComponent<EventReceiver>()) != null)
+			{
+				receiver.ReceiveEvent(eventName);
+			}
+
+			var FSMs = gameObject.GetComponents<PlayMakerFSM>();
+
+			if (FSMs != null && FSMs.GetLength(0) > 0)
+			{
+				var fsmEvent = new FsmEvent(eventName);
+
+				foreach (var fsmComponent in FSMs)
+				{
+					fsmComponent.Fsm.ProcessEvent(fsmEvent);
+				}
 			}
 		}
 	}

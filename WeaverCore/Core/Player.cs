@@ -118,13 +118,13 @@ namespace WeaverCore
             var playerImplType = ImplFinder.GetImplementationType<Player_I>();
 
             playerImpl = (Player_I)gameObject.AddComponent(playerImplType);
-            Players.AddConditional(this);
+            Players.AddIfNotContained(this);
             playerImpl.Initialize();
         }
 
         void OnEnable()
         {
-            Players.AddConditional(this);
+            Players.AddIfNotContained(this);
         }
 
         void OnDisable()

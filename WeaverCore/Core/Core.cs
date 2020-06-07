@@ -5,10 +5,10 @@ using System.Text;
 using WeaverCore.Enums;
 using WeaverCore.Utilities;
 
-namespace WeaverCore.GameStatus
+namespace WeaverCore
 {
-	public static class GameStatus
+	public static class Core
 	{
-		public static RunningState GameState => ImplFinder.State;
+		public static RunningState LoadState => ImplFinder.State;
 	}
 }

@@ -28,7 +28,7 @@ namespace WeaverCore.Game.Implementations
 
 		protected static PropertyTable<Fsm, FsmProperties> GameObjectIDs = new PropertyTable<Fsm, FsmProperties>();
 
-		protected static Dictionary<int, GameObject> GameObjectHooks = new Dictionary<int, GameObject>();
+		protected static Dictionary<int, List<GameObject>> GameObjectHooks = new Dictionary<int, List<GameObject>>();
 
 		protected static List<EventInfo> EventHooks = new List<EventInfo>();
 
@@ -93,12 +93,15 @@ namespace WeaverCore.Game.Implementations
 
 				var objectID = GameObjectIDs.GetOrCreate(__instance).GameObjectID;
 
-				if (GameObjectHooks.TryGetValue(objectID,out var value) && value.GetInstanceID() == objectID)
+				if (GameObjectHooks.TryGetValue(objectID,out var list) && list != null)
 				{
-					var receiver = value.GetComponent<EventReceiver>();
-					if (receiver != null)
+					foreach (var destination in list)
 					{
-						receiver.ReceiveEvent(fsmEvent.Name);
+						var receiver = destination.GetComponent<EventReceiver>();
+						if (receiver != null)
+						{
+							receiver.ReceiveEvent(fsmEvent.Name);
+						}
 					}
 				}
 				return true;
@@ -110,7 +113,7 @@ namespace WeaverCore.Game.Implementations
 			return true;
 		}
 
-		public override void SendEvent(GameObject destination, string eventName)
+		/*public override void SendEvent(GameObject destination, string eventName)
 		{
 			var fsmObject = destination.GetComponent<PlayMakerFSM>();
 
@@ -118,9 +121,9 @@ namespace WeaverCore.Game.Implementations
 			{
 				SendEvent(fsmObject.Fsm, eventName,destination);
 			}
-		}
+		}*/
 
-		void SendEvent(Fsm fsm, string eventName,GameObject destination)
+		/*void SendEvent(Fsm fsm, string eventName,GameObject destination)
 		{
 			var target = new FsmEventTarget()
 			{
@@ -137,9 +140,9 @@ namespace WeaverCore.Game.Implementations
 			var fsmEvent = new FsmEvent(eventName);
 
 			fsm.Event(target, eventName);
-		}
+		}*/
 
-		public override void BroadcastEvent(string eventName)
+		/*public override void BroadcastEvent(string eventName)
 		{
 			foreach (var fsmObject in GameObject.FindObjectsOfType<PlayMakerFSM>())
 			{
@@ -148,20 +151,28 @@ namespace WeaverCore.Game.Implementations
 					SendEvent(fsmObject.Fsm,eventName,fsmObject.gameObject);
 				}
 			}
-		}
+		}*/
 
-		public override void ReceiveEventsFromObject(GameObject obj, GameObject toSendTo)
+		public override void ReceiveEventsFromObject(int instanceID, GameObject destination)
 		{
-			if (obj == null)
+			List<GameObject> HookList;
+
+			if (!GameObjectHooks.ContainsKey(instanceID))
 			{
-				throw new Exception("The gameObject cannot be null");
+				GameObjectHooks.Add(instanceID, HookList = new List<GameObject>());
+			}
+			else
+			{
+				HookList = GameObjectHooks[instanceID];
+			}
+			if (!HookList.Contains(destination))
+			{
+				HookList.Add(destination);
 			}
 
-			GameObjectHooks.Add(obj.GetInstanceID(), toSendTo);
-
-			if (toSendTo.GetComponent<EventReceiver>() == null)
+			if (destination.GetComponent<EventReceiver>() == null)
 			{
-				toSendTo.AddComponent<EventReceiver>();
+				destination.AddComponent<EventReceiver>();
 			}
 		}
 
@@ -178,18 +189,19 @@ namespace WeaverCore.Game.Implementations
 		public override void RemoveReceiver(GameObject destination)
 		{
 			EventHooks.RemoveAll(hook => hook.destination == destination);
-			List<int> IdsToRemove = new List<int>();
 			foreach (var entry in GameObjectHooks)
 			{
-				if (entry.Value == destination)
+				if (entry.Value != null)
 				{
-					IdsToRemove.Add(entry.Key);
+					entry.Value.Remove(destination);
+					//TODO - OPTIMIZE BY REMOVING KEY WHEN LIST IS EMPTY
 				}
 			}
-			foreach (var id in IdsToRemove)
-			{
-				GameObjectHooks.Remove(id);
-			}
+		}
+
+		public override void OnReceiveEvent(EventReceiver receiver, string eventName)
+		{
+			
 		}
 	}
 }

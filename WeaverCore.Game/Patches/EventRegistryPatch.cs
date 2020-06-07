@@ -14,7 +14,7 @@ namespace WeaverCore.Game.Patches
 
 		private void EventRegister_SendEvent(On.EventRegister.orig_SendEvent orig, string eventName)
 		{
-			Debugger.Log("Event Triggered = " + eventName);
+			//Debugger.Log("Event Triggered = " + eventName);
 			orig(eventName);
 		}
 	}

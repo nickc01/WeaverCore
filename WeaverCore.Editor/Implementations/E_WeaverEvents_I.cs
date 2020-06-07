@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using WeaverCore.Implementations;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Implementations
 {
@@ -10,8 +12,19 @@ namespace WeaverCore.Editor.Implementations
 	{
 		public override void BroadcastEvent(string eventName)
 		{
-			//TODO - FIll in
-			Debugger.Log("Broadcasting event = " + eventName);
+			foreach (var receiver in EventReceiver.AllReceivers)
+			{
+				receiver.ReceiveEvent(eventName);
+			}
+		}
+
+		public override void SendEventToObject(GameObject gameObject, string eventName)
+		{
+			EventReceiver receiver = null;
+			if ((receiver = gameObject.GetComponent<EventReceiver>()) != null)
+			{
+				receiver.ReceiveEvent(eventName);
+			}
 		}
 	}
 }

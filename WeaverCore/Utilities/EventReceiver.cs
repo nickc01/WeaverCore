@@ -11,50 +11,92 @@ namespace WeaverCore.Utilities
 {
 	public class EventReceiver : MonoBehaviour
 	{
+		List<int> GameObjectHooks = new List<int>();
+		List<string> EventHooks = new List<string>();
+
+		static HashSet<EventReceiver> allReceivers = new HashSet<EventReceiver>();
+
+		public static IEnumerable<EventReceiver> AllReceivers => allReceivers;
+
 		public event Action<string> OnReceiveEvent;
 
-		static EventReceiver_I hijackerInternal;
+		static EventReceiver_I impl;
 
 		static EventReceiver()
 		{
-			hijackerInternal = ImplFinder.GetImplementation<EventReceiver_I>();
-			hijackerInternal.Initialize(ModuleInitializer.weaverCorePatcher);
+			impl = ImplFinder.GetImplementation<EventReceiver_I>();
+			impl.Initialize(ModuleInitializer.weaverCorePatcher);
 		}
 
-
-		public static void ReceiveEventsFromObject(GameObject obj, GameObject toSendTo)
+		void Start()
 		{
-			hijackerInternal.ReceiveEventsFromObject(obj, toSendTo);
+			allReceivers.Add(this);
 		}
 
-		public static void SendEvent(GameObject destination, string eventName)
+		void OnEnable()
 		{
-			hijackerInternal.SendEvent(destination, eventName);
+			allReceivers.Add(this);
+
+			foreach (var gmHook in GameObjectHooks)
+			{
+				ReceiveEventsFromObject(gmHook);
+			}
+			foreach (var eventHook in EventHooks)
+			{
+				ReceiveAllEventsFromName(eventHook);
+			}
 		}
 
-		public static void BroadcastEvent(string eventName)
+		void OnDisable()
 		{
-			hijackerInternal.BroadcastEvent(eventName);
+			allReceivers.Remove(this);
+			StopReceiver();
+		}
+
+		public void ReceiveEventsFromObject(GameObject obj)
+		{
+			if (obj == null)
+			{
+				throw new NullReferenceException("GameObject cannot be null");
+			}
+			ReceiveEventsFromObject(obj.GetInstanceID());
+		}
+
+		public void ReceiveEventsFromObject(int instanceID)
+		{
+			impl.ReceiveEventsFromObject(instanceID, gameObject);
+			if (!GameObjectHooks.Contains(instanceID))
+			{
+				GameObjectHooks.Add(instanceID);
+			}
 		}
 
 		public void ReceiveAllEventsFromName(string eventName)
 		{
-			hijackerInternal.ReceiveAllEventsOfName(eventName, gameObject);
+			impl.ReceiveAllEventsOfName(eventName, gameObject);
+			if (!EventHooks.Contains(eventName))
+			{
+				EventHooks.Add(eventName);
+			}
 		}
 
 		public void ReceiveEvent(string eventName)
 		{
-			OnReceiveEvent?.Invoke(eventName);
+			if (enabled)
+			{
+				OnReceiveEvent?.Invoke(eventName);
+			}
 		}
 
-		public static void RemoveAllReceivers(GameObject destination)
+		void StopReceiver()
 		{
-			hijackerInternal.RemoveReceiver(destination);
+			impl.RemoveReceiver(gameObject);
 		}
 
 		void OnDestroy()
 		{
-			RemoveAllReceivers(gameObject);
+			allReceivers.Remove(this);
+			StopReceiver();
 		}
 	}
 }

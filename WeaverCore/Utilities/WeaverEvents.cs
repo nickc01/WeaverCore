@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Utilities
@@ -13,6 +14,11 @@ namespace WeaverCore.Utilities
 		public static void BroadcastEvent(string eventName)
 		{
 			impl.BroadcastEvent(eventName);
+		}
+
+		public static void SendEventToObject(GameObject gameObject, string eventName)
+		{
+			impl.SendEventToObject(gameObject, eventName);
 		}
 	}
 }

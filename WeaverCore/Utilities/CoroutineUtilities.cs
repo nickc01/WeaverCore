@@ -112,6 +112,63 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Will continously run the action function for a set period of time.
+		/// </summary>
+		/// <param name="time">The amount of time the action function should be called for</param>
+		/// <param name="action">The action function to be continously called each frame for a set period of time. This version of the allows the action to take in the amount of elapsed time as a parameter</param>
+		/// <returns></returns>
+		public static IEnumerator RunForPeriod(float time, Action<float> action)
+		{
+			yield return RunForPeriod(time, t =>
+			{
+				action(t);
+				return true;
+			});
+		}
+
+		/// <summary>
+		/// Will continously run the action function for a set period of time.
+		/// </summary>
+		/// <param name="time">The amount of time the action function should be called for</param>
+		/// <param name="action">The action function to be continously called each frame for a set period of time.</param>
+		/// <returns></returns>
+		public static IEnumerator RunForPeriod(float time, Action action)
+		{
+			yield return RunForPeriod(time, t => action());
+		}
+
+		/// <summary>
+		/// Will continously run the action function for a set period of time. The loop can be stopped prematurely by returning false from the action function
+		/// </summary>
+		/// <param name="time">The amount of time the action function should be called for</param>
+		/// <param name="action">The action function to be continously called each frame for a set period of time. If the action returns false at any time, the loop will stop prematurely</param>
+		/// <returns></returns>
+		public static IEnumerator RunForPeriod(float time, Func<bool> action)
+		{
+			yield return RunForPeriod(time, t => action());
+		}
+
+		/// <summary>
+		/// /// Will continously run the action function for a set period of time. The loop can be stopped prematurely by returning false from the action function
+		/// </summary>
+		/// <param name="time">The amount of time the action function should be called for</param>
+		/// <param name="action">The action function to be continously called each frame for a set period of time. This version of the allows the action to take in the amount of elapsed time as a parameter. If the action returns false at any time, the loop will stop prematurely</param>
+		/// <returns></returns>
+		public static IEnumerator RunForPeriod(float time, Func<float, bool> action)
+		{
+			float timer = 0;
+			while (timer < time)
+			{
+				yield return null;
+				timer += Time.deltaTime;
+				if (!action(timer))
+				{
+					timer = time;
+				}
+			}
+		}
+
 
 
 

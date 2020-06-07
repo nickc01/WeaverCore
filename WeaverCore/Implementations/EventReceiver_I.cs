@@ -11,14 +11,12 @@ namespace WeaverCore.Implementations
     {
         public abstract void Initialize(HarmonyInstance patcher);
 
-        public abstract void SendEvent(GameObject destination, string eventName);
-
-        public abstract void BroadcastEvent(string eventName);
-
-        public abstract void ReceiveEventsFromObject(GameObject hijacked, GameObject destination);
+        public abstract void ReceiveEventsFromObject(int instanceID, GameObject destination);
 
         public abstract void ReceiveAllEventsOfName(string eventName, GameObject destination);
 
         public abstract void RemoveReceiver(GameObject destination);
+
+        public abstract void OnReceiveEvent(EventReceiver receiver, string eventName);
     }
 }

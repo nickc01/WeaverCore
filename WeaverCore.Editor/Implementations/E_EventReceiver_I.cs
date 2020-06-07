@@ -4,9 +4,9 @@ using System.Reflection;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Implementations;
-using static WeaverCore.Helpers.Harmony;
+using static WeaverCore.Utilities.Harmony;
 
 namespace WeaverCore.Editor.Implementations
 {

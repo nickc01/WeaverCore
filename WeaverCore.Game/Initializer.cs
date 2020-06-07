@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using WeaverCore.Implementations;
 using Harmony;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Internal;
 using HutongGames.PlayMaker.Actions;
 using WeaverCore.Game.Implementations;

@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 
 namespace WeaverTools.Patches
 {

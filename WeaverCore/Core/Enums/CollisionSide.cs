@@ -1,4 +1,4 @@
-﻿namespace WeaverCore
+﻿namespace WeaverCore.Enums
 {
 	public enum CollisionSide
 	{

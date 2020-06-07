@@ -5,16 +5,14 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using WeaverCore;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Implementations;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Implementations
 {
     public class E_Enemy_I : Enemy_I
     {
-
-
-
         public class E_Statics : Enemy_I.Statics
         {
             public static Action OnBossesDead;
@@ -44,12 +42,12 @@ namespace WeaverCore.Editor.Implementations
             public override void EndBossBattle(float delayTime)
             {
                 OnBossesDead?.Invoke();
-                CoroutineStarter.StartCoroutine(EndBossDelayed(delayTime));
+                URoutine.Start(EndBossDelayed(delayTime));
             }
 
-            IEnumerator EndBossDelayed(float delayTime)
+            IEnumerator<IUAwaiter> EndBossDelayed(float delayTime)
             {
-                yield return new WaitForSeconds(delayTime);
+                yield return new Awaiters.WaitForSeconds(delayTime);
                 OnBossSceneComplete?.Invoke();
             }
         }

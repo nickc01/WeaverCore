@@ -1,4 +1,4 @@
-﻿namespace WeaverCore
+﻿namespace WeaverCore.Enums
 {
     /// <summary>
     /// An enum that represents whether WeaverCore is in the Editor, or in the Hollow Knight Game

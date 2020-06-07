@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WeaverCore.Components;
+using WeaverCore.DataTypes;
 
 namespace WeaverCore.Editor.Implementations
 {

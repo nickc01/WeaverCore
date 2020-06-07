@@ -6,10 +6,10 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Reflection;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
     public class EquatableWeakReference : WeakReference
     {
@@ -232,7 +232,7 @@ namespace WeaverCore.Helpers
     static class InternalStatics
     {
         public static Func<UnityEngine.Object, bool> IsNativeObjectAlive; // = Methods.GetFunction<Func<UnityEngine.Object, bool>, UnityEngine.Object>("IsNativeObjectAlive");
-        public static Func<UnityEngine.Object, IntPtr> GetCachedPtr = Methods.GetFunction<Func<UnityEngine.Object, IntPtr>, UnityEngine.Object>("GetCachedPtr");
+        public static Func<UnityEngine.Object, IntPtr> GetCachedPtr = MethodUtilities.ConvertToDelegate<Func<UnityEngine.Object, IntPtr>, UnityEngine.Object>("GetCachedPtr");
 
         static InternalStatics()
         {

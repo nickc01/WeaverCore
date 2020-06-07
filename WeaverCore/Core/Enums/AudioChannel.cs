@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WeaverCore
+namespace WeaverCore.Enums
 {
 	/// <summary>
 	/// The type of audio channel the hollow knight sound should play on

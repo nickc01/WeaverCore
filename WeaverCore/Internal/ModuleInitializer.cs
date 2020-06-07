@@ -5,8 +5,8 @@ using UnityEngine;
 using WeaverCore.Implementations;
 using System.Reflection;
 using System.Linq;
-using WeaverCore.Helpers;
-using static WeaverCore.Helpers.Harmony;
+using WeaverCore.Utilities;
+using static WeaverCore.Utilities.Harmony;
 using WeaverCore.Internal.Harmony;
 
 namespace WeaverCore.Internal

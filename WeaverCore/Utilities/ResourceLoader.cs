@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
     public static class ResourceLoader
     {

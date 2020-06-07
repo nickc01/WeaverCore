@@ -1,7 +1,7 @@
 ﻿using Modding;
 using System.Collections.Generic;
 using System.Linq;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Game
 {

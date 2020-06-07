@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Internal;
+using WeaverCore.Enums;
 
 namespace WeaverCore
 {

@@ -11,7 +11,7 @@ using UnityEngine;
 using WeaverCore.Awaiters;
 using WeaverCore.Editor.Visual.Helpers;
 using WeaverCore.Editor.Visual.Internal;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 using WeaverCore.Internal;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using System.Reflection;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 
 namespace WeaverTools.Patches
 {

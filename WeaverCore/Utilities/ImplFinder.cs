@@ -5,10 +5,11 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
+using WeaverCore.Enums;
 using WeaverCore.Interfaces;
 using WeaverCore.Internal;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
 	public static class ImplFinder
     {

@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WeaverCore.Helpers;
+using UnityEngine;
+using WeaverCore.Utilities;
 
 namespace WeaverTools.Machine
 {
     //[JsonObject(MemberSerialization.Fields)]
     public class XMachine : IEnumerable<XState>
     {
+        [Serializable]
         internal class SerializedData
         {
             public string initial;
@@ -102,12 +104,13 @@ namespace WeaverTools.Machine
             {
                 jsonData.states.Add(state.Key, state.Value.jsonData);
             }
-            return Json.Serialize(jsonData);
+            //return Json.Serialize(jsonData);
+            return JsonUtility.ToJson(jsonData);
         }
 
         public static XMachine Deserialize(string serializedData)
         {
-            SerializedData data = Json.Deserialize<SerializedData>(serializedData);
+            SerializedData data = JsonUtility.FromJson<SerializedData>(serializedData);
 
             XMachine machine = new XMachine(data.id);
 
@@ -139,6 +142,7 @@ namespace WeaverTools.Machine
     //[JsonObject(MemberSerialization.Fields)]
     public struct XState : IEnumerable<XEvent>
     {
+        [Serializable]
         internal class SerializedData
         {
             public Dictionary<string, string> on;

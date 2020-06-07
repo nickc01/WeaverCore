@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 using WeaverCore.WeaverAssets;
+using WeaverCore.Enums;
+using WeaverCore.DataTypes;
 
 namespace WeaverCore.Components
 {

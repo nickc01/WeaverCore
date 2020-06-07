@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using WeaverCore.Enums;
 
-namespace WeaverCore
+namespace WeaverCore.DataTypes
 {
 	/// <summary>
 	/// Info on how something is hitting something else

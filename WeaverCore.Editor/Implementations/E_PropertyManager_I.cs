@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using WeaverCore.Awaiters;
 using WeaverCore.Editor.Helpers;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 

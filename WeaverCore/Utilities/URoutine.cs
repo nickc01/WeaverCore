@@ -5,7 +5,7 @@ using System.Text;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
 	/// <summary>
 	/// A URoutine (or Universal Routine) is a coroutine system that works in both hollow knight and in the unity editor, and can be called at any time

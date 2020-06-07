@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Components;
-using WeaverCore.Helpers;
+using WeaverCore.DataTypes;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Implementations
 {
-    public class G_HealthManager_I : WeaverCore.Implementations.HealthManager_I
+	public class G_HealthManager_I : WeaverCore.Implementations.HealthManager_I
     {
         public override void OnDeath()
         {

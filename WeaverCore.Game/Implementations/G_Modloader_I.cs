@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Internal;
 
 namespace WeaverCore.Game.Implementations

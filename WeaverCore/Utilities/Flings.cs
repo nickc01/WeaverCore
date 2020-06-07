@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Enums;
 using WeaverCore.WeaverAssets;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
 	public static class Flings
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations

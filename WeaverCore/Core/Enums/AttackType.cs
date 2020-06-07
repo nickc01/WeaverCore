@@ -1,4 +1,4 @@
-﻿namespace WeaverCore
+﻿namespace WeaverCore.Enums
 {
 	/// <summary>
 	/// What type of attack is being dealt

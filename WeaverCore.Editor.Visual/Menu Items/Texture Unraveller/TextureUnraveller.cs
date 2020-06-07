@@ -6,8 +6,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
+using WeaverCore.DataTypes;
 
 namespace WeaverCore.Editor.Visual
 {
@@ -176,7 +177,8 @@ namespace WeaverCore.Editor.Visual
 
 			string sheetData = File.ReadAllText(settings.SheetPath);
 
-			var sheet = Json.Deserialize<TextureSheet>(sheetData);
+			//var sheet = Json.Deserialize<TextureSheet>(sheetData);
+			var sheet = JsonUtility.FromJson<TextureSheet>(sheetData);
 
 			var folder = EditorUtility.OpenFolderPanel("Select the folder where you want to textures to be dumped to", "Assets", "");
 

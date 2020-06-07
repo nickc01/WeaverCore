@@ -4,10 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEditor;
-using WeaverCore.Helpers;
+using UnityEngine;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Visual
 {
+	[Serializable]
 	public class BuildSettings
 	{
 		public string ModName = "";
@@ -34,7 +36,8 @@ namespace WeaverCore.Editor.Visual
 						json = reader.ReadToEnd();
 					}
 				}
-				settings = Json.Deserialize<BuildSettings>(json);
+				//settings = Json.Deserialize<BuildSettings>(json);
+				settings = JsonUtility.FromJson<BuildSettings>(json);
 			}
 			else
 			{
@@ -57,7 +60,8 @@ namespace WeaverCore.Editor.Visual
 			{
 				using (var writer = new StreamWriter(file))
 				{
-					writer.Write(Json.Serialize(settings));
+					//writer.Write(Json.Serialize(settings));
+					writer.Write(JsonUtility.ToJson(settings));
 				}
 			}
 		}

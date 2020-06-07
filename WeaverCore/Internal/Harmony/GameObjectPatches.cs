@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using static WeaverCore.Helpers.Harmony;
+using static WeaverCore.Utilities.Harmony;
 using System.Reflection;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Internal.Harmony
 {

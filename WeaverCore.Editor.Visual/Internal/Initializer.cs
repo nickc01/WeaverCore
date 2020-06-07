@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Visual.Internal
 {

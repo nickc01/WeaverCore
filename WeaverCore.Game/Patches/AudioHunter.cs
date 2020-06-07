@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Patches
 {

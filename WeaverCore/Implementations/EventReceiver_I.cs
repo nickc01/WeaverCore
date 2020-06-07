@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
-using static WeaverCore.Helpers.Harmony;
+using static WeaverCore.Utilities.Harmony;
 
 namespace WeaverCore.Implementations
 {

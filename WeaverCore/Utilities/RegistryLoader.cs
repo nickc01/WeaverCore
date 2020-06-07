@@ -8,7 +8,7 @@ using UnityEngine;
 using WeaverCore.Implementations;
 using WeaverCore.Internal;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
 	public static class RegistryLoader
 	{

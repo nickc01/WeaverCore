@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using WeaverCore;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 
 namespace WeaverTools
 {
@@ -15,6 +16,7 @@ namespace WeaverTools
 		public string Type;
 	}
 
+	[Serializable]
 	public class ToolSettings
 	{
 
@@ -38,7 +40,8 @@ namespace WeaverTools
 
 				if (File.Exists(settingsFile))
 				{
-					Cache = Json.Deserialize<ToolSettings>(File.ReadAllText(settingsFile));
+					//Cache = Json.Deserialize<ToolSettings>(File.ReadAllText(settingsFile));
+					Cache = JsonUtility.FromJson<ToolSettings>(File.ReadAllText(settingsFile));
 
 					Debugger.Log("Enabled = " + Cache.DebugMode);
 				}
@@ -62,7 +65,8 @@ namespace WeaverTools
 
 			using (var file = File.CreateText(settingsFile))
 			{
-				file.Write(Json.Serialize(settings));
+				//Json.Serialize(settings)
+				file.Write(JsonUtility.ToJson(settings));
 			}
 		}
 	}

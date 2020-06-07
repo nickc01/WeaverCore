@@ -66,17 +66,8 @@
       <HintPath>$(SolutionDir)packages\Costura.Fody.1.6.2\lib\portable-net+sl+win+wpa+wp\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\Newtonsoft.Json.12.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
-    </Reference>
-    <Reference Include="System.Data">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization">
-      <Private>True</Private>
     </Reference>
     <Reference Include="UnityEngine">
       <Private>False</Private>
@@ -350,28 +341,28 @@
     <Compile Include="Core\Awaiters\WaitForSeconds.cs" />
     <Compile Include="Core\Awaiters\WaitTillTrue.cs" />
     <Compile Include="Core\Extensions.cs" />
-    <Compile Include="Helpers\CoroutineUtilities.cs" />
-    <Compile Include="Helpers\Flings.cs" />
-    <Compile Include="Helpers\Teleporter.cs" />
-    <Compile Include="Helpers\WeaverEvents.cs" />
-    <Compile Include="Helpers\WeaverGameManager.cs" />
+    <Compile Include="Utilities\CoroutineUtilities.cs" />
+    <Compile Include="Utilities\Flings.cs" />
+    <Compile Include="DataTypes\SpriteSheet.cs" />
+    <Compile Include="Utilities\Teleporter.cs" />
+    <Compile Include="Utilities\WeaverEvents.cs" />
+    <Compile Include="Utilities\WeaverGameManager.cs" />
     <Compile Include="Implementations\GameManager_I.cs" />
     <Compile Include="Implementations\WeaverEvents_I.cs" />
     <Compile Include="Interfaces\IUAwaiter.cs" />
     <Compile Include="Core\WeaverDirectory.cs" />
     <Compile Include="GameStatus\GameStatus.cs" />
-    <Compile Include="Helpers\CoroutineStarter.cs" />
     <Compile Include="Core\Debugger.cs" />
-    <Compile Include="Helpers\EventReceiver.cs" />
-    <Compile Include="Helpers\Fields.cs" />
-    <Compile Include="Helpers\Hash.cs" />
+    <Compile Include="Utilities\EventReceiver.cs" />
+    <Compile Include="Utilities\Fields.cs" />
+    <Compile Include="Utilities\Hash.cs" />
     <Compile Include="Core\WeaverAudio.cs" />
-    <Compile Include="Helpers\Json.cs" />
-    <Compile Include="Helpers\PropertyTable.cs" />
-    <Compile Include="Helpers\TextureSheet.cs" />
-    <Compile Include="Helpers\UnityHelpers.cs" />
-    <Compile Include="Helpers\URoutine.cs" />
-    <Compile Include="Helpers\WeaverAssetLoader.cs" />
+    <Compile Include="Utilities\Json.cs" />
+    <Compile Include="Utilities\PropertyTable.cs" />
+    <Compile Include="DataTypes\TextureSheet.cs" />
+    <Compile Include="Utilities\UnityHelpers.cs" />
+    <Compile Include="Utilities\URoutine.cs" />
+    <Compile Include="Utilities\WeaverAssetLoader.cs" />
     <Compile Include="Implementations\DamageHero_I.cs" />
     <Compile Include="Implementations\EventReceiver_I.cs" />
     <Compile Include="Implementations\HealthManager_I.cs" />
@@ -379,20 +370,20 @@
     <Compile Include="Implementations\WeaverAudio_I.cs" />
     <Compile Include="Implementations\PropertyManager_I.cs" />
     <Compile Include="Implementations\RuntimeInitializer_I.cs" />
-    <Compile Include="Helpers\Harmony.cs" />
-    <Compile Include="Helpers\ImplFinder.cs" />
-    <Compile Include="Helpers\Methods.cs" />
+    <Compile Include="Utilities\Harmony.cs" />
+    <Compile Include="Utilities\ImplFinder.cs" />
+    <Compile Include="Utilities\MethodUtilities.cs" />
     <Compile Include="Implementations\URoutine_I.cs" />
     <Compile Include="Core\Enums\AttackType.cs" />
     <Compile Include="Core\Enums\CardinalDirection.cs" />
-    <Compile Include="Helpers\DirectionUtilities.cs" />
-    <Compile Include="Core\HitInfo.cs" />
+    <Compile Include="Utilities\DirectionUtilities.cs" />
+    <Compile Include="DataTypes\HitInfo.cs" />
     <Compile Include="Interfaces\IHitEffects.cs" />
     <Compile Include="Interfaces\IHittable.cs" />
     <Compile Include="Internal\Harmony\GameObjectPatches.cs" />
     <Compile Include="Internal\ModLoader.cs" />
-    <Compile Include="Helpers\RegistryLoader.cs" />
-    <Compile Include="Helpers\ResourceLoader.cs" />
+    <Compile Include="Utilities\RegistryLoader.cs" />
+    <Compile Include="Utilities\ResourceLoader.cs" />
     <Compile Include="Features\Enemy.cs" />
     <Compile Include="Internal\ModDefinition.cs" />
     <Compile Include="Features\EnemyReplacement.cs" />

@@ -6,7 +6,7 @@ using System.Text;
 using WeaverTools.Patches;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using System.Collections;
 using WeaverCore.Interfaces;
 using System.Diagnostics;

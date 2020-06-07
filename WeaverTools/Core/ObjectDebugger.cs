@@ -9,7 +9,8 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using WeaverCore;
-using WeaverCore.Helpers;
+using WeaverCore.DataTypes;
+using WeaverCore.Utilities;
 using WeaverTools.Machine;
 
 namespace WeaverTools
@@ -348,7 +349,8 @@ namespace WeaverTools
 					}
 					var sheetFile = directory.PathWithSlash() + $"{texture.name} - {sprite.name}.sheet";
 
-					File.WriteAllText(sheetFile, Json.Serialize(sheet));
+					//Json.Serialize(sheet)
+					File.WriteAllText(sheetFile, JsonUtility.ToJson(sheet));
 				}
 			}
 			catch (Exception e)

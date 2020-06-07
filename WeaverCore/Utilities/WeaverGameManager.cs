@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine;
 using WeaverCore.Implementations.GameManager;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
 
 

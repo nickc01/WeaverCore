@@ -6,7 +6,7 @@ using UnityEditor;
 using WeaverCore.Editor.Visual.Internal;
 using WeaverCore.Editor.Visual.Helpers;
 using UnityEngine;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Visual.Renderers
 {

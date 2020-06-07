@@ -6,9 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 using WeaverCore.Implementations;
-using static WeaverCore.Helpers.Harmony;
+using static WeaverCore.Utilities.Harmony;
 
 namespace WeaverCore.Game.Implementations
 {

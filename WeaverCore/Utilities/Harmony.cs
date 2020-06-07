@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
     public static class Harmony
     {

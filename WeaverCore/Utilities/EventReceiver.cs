@@ -7,7 +7,7 @@ using UnityEngine;
 using WeaverCore.Implementations;
 using WeaverCore.Internal;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
 	public class EventReceiver : MonoBehaviour
 	{

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace WeaverCore.Helpers
+namespace WeaverCore.Utilities
 {
-    public static class Json
+    /*public static class Json
     {
         static Assembly NewtonsoftJson;
         static Type JsonConvert;
@@ -65,5 +65,5 @@ namespace WeaverCore.Helpers
         {
             return (T)DeserializeMethod(source, typeof(T));
         }
-    }
+    }*/
 }

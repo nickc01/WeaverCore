@@ -8,6 +8,7 @@ using System.IO;
 using WeaverCore.Utilities;
 using System.Reflection;
 using System.Security.Permissions;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Patches
 {
@@ -34,7 +35,7 @@ namespace WeaverCore.Game.Patches
 			try
 			{
 				self.gameObject.AddComponent<Enemy>();
-				var replacement = Registry.GetAllFeatures<EnemyReplacement>(r => r.EnemyToReplace == self.gameObject.name).FirstOrDefault();
+				var replacement = (Enemy)Registry.GetAllFeatures<IObjectReplacement>(r => r is Enemy && r.ThingToReplace == self.gameObject.name).FirstOrDefault();
 
 				if (replacement != null)
 				{

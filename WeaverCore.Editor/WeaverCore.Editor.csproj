@@ -102,9 +102,10 @@
   <ItemGroup>
     <Compile Include="Implementations\E_DamageHero_I.cs" />
     <Compile Include="Implementations\E_Debugger_I.cs" />
+    <Compile Include="Implementations\E_Enemy_I.cs" />
     <Compile Include="Implementations\E_GameManager_I.cs" />
     <Compile Include="Implementations\E_HealthManager_I.cs" />
-    <Compile Include="Implementations\E_Enemy_I.cs" />
+    <Compile Include="Implementations\E_Boss_I.cs" />
     <Compile Include="Implementations\E_EventReceiver_I.cs" />
     <Compile Include="Implementations\E_WeaverAudio_I.cs" />
     <Compile Include="Implementations\E_Modloader_I.cs" />

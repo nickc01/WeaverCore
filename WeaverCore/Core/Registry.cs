@@ -150,7 +150,7 @@ namespace WeaverCore
         /// </summary>
         /// <typeparam name="T">The type of features to look for. Using <see cref="Feature"/> retrieves all features</typeparam>
         /// <returns>Returns an Itereator with all the features in it</returns>
-        public static IEnumerable<T> GetAllFeatures<T>() where T : Feature
+        public static IEnumerable<T> GetAllFeatures<T>() where T : class
         {
             return GetAllFeatures<T>(f => true);
         }
@@ -161,7 +161,7 @@ namespace WeaverCore
         /// <typeparam name="T">The type of features to look for. Using <see cref="Feature"/> retrieves all features</typeparam>
         /// <param name="predicate">A predicate function used to narrow down the feature search even further</param>
         /// <returns>Returns an Itereator with all the features in it</returns>
-        public static IEnumerable<T> GetAllFeatures<T>(Func<T, bool> predicate) where T : Feature
+        public static IEnumerable<T> GetAllFeatures<T>(Func<T, bool> predicate) where T : class
         {
             foreach (var registry in ActiveRegistries)
             {
@@ -182,7 +182,7 @@ namespace WeaverCore
         /// </summary>
         /// <typeparam name="T">The type of features to look for. Using <see cref="Feature"/> retrieves all features</typeparam>
         /// <returns>Returns an Itereator with all the features in it</returns>
-        public IEnumerable<T> GetFeatures<T>() where T : Feature
+        public IEnumerable<T> GetFeatures<T>() where T : class
         {
             return GetFeatures<T>(f => true);
         }
@@ -193,15 +193,15 @@ namespace WeaverCore
         /// <typeparam name="T">The type of features to look for. Using <see cref="Feature"/> retrieves all features</typeparam>
         /// <param name="predicate">A predicate function used to narrow down the feature search even further</param>
         /// <returns>Returns an Itereator with all the features in it</returns>
-        public IEnumerable<T> GetFeatures<T>(Func<T, bool> predicate) where T : Feature
+        public IEnumerable<T> GetFeatures<T>(Func<T, bool> predicate) where T : class
         {
             Debugger.Log("Features Raw = " + featuresRaw);
             foreach (var feature in featuresRaw)
             {
                 Debugger.Log("Feature = " + feature);
-                if (feature != null && feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate((T)feature))
+                if (feature != null && feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate(feature as T))
                 {
-                    yield return (T)feature;
+                    yield return feature as T;
                 }
             }
         }

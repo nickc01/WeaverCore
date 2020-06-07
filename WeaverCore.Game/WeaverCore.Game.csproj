@@ -325,6 +325,7 @@
   <ItemGroup>
     <Compile Include="Implementations\G_DamageHero_I.cs" />
     <Compile Include="Implementations\G_Debugger_I.cs" />
+    <Compile Include="Implementations\G_Boss_I.cs" />
     <Compile Include="Implementations\G_Enemy_I.cs" />
     <Compile Include="Implementations\G_EventReceiver_I.cs" />
     <Compile Include="Implementations\G_GameManager_I.cs" />

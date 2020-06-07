@@ -26,7 +26,7 @@ namespace WeaverCore.Internal
                 PatchGetTypes();
 
 
-                var init = ImplFinder.GetImplementation<InitializerImplementation>();
+                var init = ImplFinder.GetImplementation<Initializer_I>();
                 init.Initialize();
 
                 GameObjectPatches.Patch(weaverCorePatcher);

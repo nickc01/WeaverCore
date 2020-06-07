@@ -37,7 +37,7 @@ namespace WeaverCore.Internal
 		public static IEnumerable<IWeaverMod> LoadAllModsIter()
 		{
 			LoadAllModAssemblies();
-			var impl = ImplFinder.GetImplementation<ModLoaderImplementation>();
+			var impl = ImplFinder.GetImplementation<ModLoader_I>();
 			foreach (var mod in impl.LoadAllMods())
 			{
 				var registry = RegistryLoader.GetModRegistries(mod.GetType()).ToList();

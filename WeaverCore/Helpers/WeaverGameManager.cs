@@ -13,7 +13,7 @@ namespace WeaverCore.Helpers
 	public class WeaverGameManager : MonoBehaviour
 	{
 		static WeaverGameManager GameManager;
-		static GameManagerImplementation impl;
+		static GameManager_I impl;
 
 		public enum TImeFreezePreset
 		{
@@ -34,7 +34,7 @@ namespace WeaverCore.Helpers
 
 				GameObject.DontDestroyOnLoad(GameManager);
 
-				impl = (GameManagerImplementation)GameManager.gameObject.AddComponent(ImplFinder.GetImplementationType<GameManagerImplementation>());
+				impl = (GameManager_I)GameManager.gameObject.AddComponent(ImplFinder.GetImplementationType<GameManager_I>());
 			}
 		}
 

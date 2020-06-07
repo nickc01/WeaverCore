@@ -29,7 +29,7 @@ namespace WeaverCore.Helpers
 					yield return registry;
 				}
 			}
-			var loader = ImplFinder.GetImplementation<RegistryLoaderImplementation>();
+			var loader = ImplFinder.GetImplementation<RegistryLoader_I>();
 
 			var registries = loader.GetRegistries(ModType);
 

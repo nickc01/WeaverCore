@@ -11,15 +11,15 @@ using WeaverCore.Game.Implementations;
 
 namespace WeaverCore.Game
 {
-    public class Initializer : InitializerImplementation
+    public class Initializer : Initializer_I
     {
         public override void Initialize()
         {
             ApplyPatches();
             ModLoader.LoadAllMods();
-            new Implementations.GameRuntimeInitializerImplementation().Awake();
+            new Implementations.G_RuntimeInitializer_I().Awake();
 
-            GameURoutineImplementation.BeginExecuter();
+            G_URoutine_I.BeginExecuter();
         }
 
 

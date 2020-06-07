@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEditor;
+using UnityEngine;
 
 namespace WeaverCore.Editor.Helpers
 {
@@ -47,12 +48,14 @@ namespace WeaverCore.Editor.Helpers
 
 		public static bool ContainsTag(string tag)
 		{
+			//Debug.Log("Compare Tag = " + tag);
 			SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
 			SerializedProperty tagsProp = tagManager.FindProperty("tags");
 
 			for (int i = 0; i < tagsProp.arraySize; i++)
 			{
 				SerializedProperty t = tagsProp.GetArrayElementAtIndex(i);
+				//Debug.Log("Other Tag = " + t.stringValue);
 				if (t.stringValue.Equals(tag)) 
 				{ 
 					return true; 
@@ -74,12 +77,31 @@ namespace WeaverCore.Editor.Helpers
 			tagManager.ApplyModifiedProperties();
 		}
 
-		public static void AddIfUnique(string tag)
+		public static void AddTagIfUnique(string tag)
 		{
 			if (!ContainsTag(tag))
 			{
 				AddTag(tag);
 			}
+		}
+
+		//Adds a new sorting layer of it's unique in the list
+		public static void AddSortingLayer(string sortingLayerName, long uniqueID)
+		{
+			var serializedObject = new SerializedObject(AssetDatabase.LoadMainAssetAtPath("ProjectSettings/TagManager.asset"));
+			var sortingLayers = serializedObject.FindProperty("m_SortingLayers");
+			for (int i = 0; i < sortingLayers.arraySize; i++)
+			{
+				if (sortingLayers.GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue.Equals(sortingLayerName))
+				{
+					return;
+				}
+			}
+			sortingLayers.InsertArrayElementAtIndex(sortingLayers.arraySize);
+			var newLayer = sortingLayers.GetArrayElementAtIndex(sortingLayers.arraySize - 1);
+			newLayer.FindPropertyRelative("name").stringValue = sortingLayerName;
+			newLayer.FindPropertyRelative("uniqueID").longValue = uniqueID;
+			serializedObject.ApplyModifiedProperties();
 		}
 	}
 }

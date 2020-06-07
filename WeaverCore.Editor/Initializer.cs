@@ -1,39 +1,122 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using System.Reflection;
-using System.IO;
-using WeaverCore.Implementations;
-using UnityEditor.Compilation;
-using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
-using WeaverCore.Internal;
-using WeaverCore.Helpers;
 using WeaverCore.Editor.Helpers;
-using System;
+using WeaverCore.Helpers;
+using WeaverCore.Implementations;
 
 namespace WeaverCore.Editor.Implementations
 {
-    public class Initializer : InitializerImplementation
+    public class Initializer : Initializer_I
     {
-        static readonly string[] Tags = new string[]
+        struct SortingLayer
         {
-            "Spell Vulnerable",
-            "TileMap",
-            "HeroWalkable",
-            "Player",
-            "Nail Attack",
-            "Hero Spell",
-            "HeroBox",
-            "Boss",
-            "Extra Tag",
-            "Hatchling Magnet",
-            "Ignore Hatchling",
-            "Sharp Shadow",
-            "Acid",
-            "Dream Attack",
-            "MainCamera"
+            public SortingLayer(string name, long id)
+            {
+                Name = name;
+                UniqueID = id;
+            }
+
+            public string Name;
+            public long UniqueID;
+        }
+
+
+        private static string[] Tags = new string[]
+        {
+             "TileMap",
+             "GameManager",
+             "BlackOverlay",
+             "HeroBox",
+             "Nail Attack",
+             "RespawnPoint",
+             "HeroWalkable",
+             "SceneManager",
+             "HeroLight",
+             "Battle Gate",
+             "Battle Scene",
+             "CameraParent",
+             "Terrain",
+             "Canvas",
+             "UIManager",
+             "Hero Spell",
+             "Enemy Message",
+             "Orb Target",
+             "Vignette",
+             "RespawnTrigger",
+             "Boss Corpse",
+             "Heart Piece",
+             "TransitionGate",
+             "UI Soul Orb",
+             "Shade Marker",
+             "Hud Camera",
+             "Cinematic",
+             "Roar",
+             "Stag Grate",
+             "Platform",
+             "Boss",
+             "GeoCounter",
+             "CameraTarget",
+             "StagMapMarker",
+             "HeroFootsteps",
+             "Save Icon",
+             "HeroLightMain",
+             "Beta End",
+             "Shop Window",
+             "Journal Up Msg",
+             "Charms Pane",
+             "Inventory Top",
+             "Charm Get Msg",
+             "Acid",
+             "Soul Vessels",
+             "Teleplane",
+             "Water Surface",
+             "Relic Get Msg",
+             "Fireball Safe",
+             "Baby Centipede",
+             "Knight Hatchling",
+             "Dream Attack",
+             "Infected Flag",
+             "Ghost Warrior NPC",
+             "Extra Tag",
+             "Dream Plant",
+             "Dream Orb",
+             "Geo",
+             "Sharp Shadow",
+             "Boss Attack",
+             "Nail Beam",
+             "Grub Bottle",
+             "Colosseum Manager",
+             "Wall Breaker",
+             "Ignore Hatchling",
+             "Hatchling Magnet",
+             "Spell Vulnerable",
+             "Hopper",
+             "Set Extrapolate",
+             "Orbit Shield",
+             "Grimmchild",
+             "WindyGrass",
+             "Weaverling"
+        };
+
+        private static SortingLayer[] SortingLayers = new SortingLayer[]
+        {
+            new SortingLayer("Default", 0),
+            new SortingLayer("Far BG 2", 3315419377),
+            new SortingLayer("Far BG 1", 1459018367),
+            new SortingLayer("Mid BG", 4015848369),
+            new SortingLayer("Immediate BG", 2917268371),
+            new SortingLayer("Actors", 1270309357),
+            new SortingLayer("Player", 3557629463),
+            new SortingLayer("Tiles", 3868594333),
+            new SortingLayer("MID Dressing", 3784110789),
+            new SortingLayer("Immediate FG", 31172181),
+            new SortingLayer("Far FG", 2577183099),
+            new SortingLayer("Vignette", 1038907033),
+            new SortingLayer("Over", 3945752401),
+            new SortingLayer("HUD", 629535577)
         };
 
 
@@ -42,7 +125,7 @@ namespace WeaverCore.Editor.Implementations
             LoadVisualAssembly();
             EditorInitializer.AddInitializer(() =>
             {
-                var data = LayerData.GetData();
+                LayerData data = LayerData.GetData();
                 for (int i = 8; i < 32; i++)
                 {
                     LayerChanger.SetLayerName(i, data.NameData[i]);
@@ -56,23 +139,31 @@ namespace WeaverCore.Editor.Implementations
                     }
                 }
 
-                foreach (var tag in Tags)
+                foreach (string tag in Tags)
                 {
-                    LayerChanger.AddIfUnique(tag);
+                    LayerChanger.AddTagIfUnique(tag);
+                }
+                Tags = null;
+
+                foreach (var sortingLayer in SortingLayers)
+                {
+                    LayerChanger.AddSortingLayer(sortingLayer.Name, sortingLayer.UniqueID);
                 }
 
+                SortingLayers = null;
+
                 Physics2D.gravity = new Vector2(0f, -60f);
-                var visualAssembly = System.Reflection.Assembly.LoadFile($"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.Visual.dll");
-                var initializerType = visualAssembly.GetType("WeaverCore.Editor.Visual.Internal.Initializer");
+                System.Reflection.Assembly visualAssembly = System.Reflection.Assembly.LoadFile($"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.Visual.dll");
+                Type initializerType = visualAssembly.GetType("WeaverCore.Editor.Visual.Internal.Initializer");
                 initializerType.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
             });
         }
 
-        static void LoadVisualAssembly()
+        private static void LoadVisualAssembly()
         {
             Stream resourceStream = ResourceLoader.Retrieve($"{nameof(WeaverCore)}.Editor.Visual"); //Gets disposed in the Initializer below
-            var resourceHash = Hash.GetHash(resourceStream);
-            var directory = Directory.CreateDirectory($"Assets/{nameof(WeaverCore)}/Editor");
+            string resourceHash = Hash.GetHash(resourceStream);
+            DirectoryInfo directory = Directory.CreateDirectory($"Assets/{nameof(WeaverCore)}/Editor");
             string filePath = directory.FullName + $"/{nameof(WeaverCore)}.Editor.Visual.dll";
 
             if (!File.Exists(filePath) || resourceHash != Hash.GetHash(filePath))
@@ -84,13 +175,13 @@ namespace WeaverCore.Editor.Implementations
                     {
                         WriteAssembly(new DirectoryInfo("Assets").Parent.FullName, $"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.Visual.dll", $"{nameof(WeaverCore)}.Editor.Visual.dll", resourceStream);
                         resourceStream.Dispose();
-                        using (var internalStream = ResourceLoader.Retrieve($"{nameof(WeaverCore)}.Resources.InternalClasses.txt"))
+                        using (Stream internalStream = ResourceLoader.Retrieve($"{nameof(WeaverCore)}.Resources.InternalClasses.txt"))
                         {
-                            using (var output = File.Create($"Assets/{nameof(WeaverCore)}/Internal.cs"))
+                            using (FileStream output = File.Create($"Assets/{nameof(WeaverCore)}/Internal.cs"))
                             {
-                                using (var writer = new StreamWriter(output))
+                                using (StreamWriter writer = new StreamWriter(output))
                                 {
-                                    using (var reader = new StreamReader(internalStream))
+                                    using (StreamReader reader = new StreamReader(internalStream))
                                     {
                                         writer.Write(reader.ReadToEnd());
                                     }
@@ -107,7 +198,7 @@ namespace WeaverCore.Editor.Implementations
             }
         }
 
-        static void WriteAssembly(string directory, string filePath, string fileName, Stream data)
+        private static void WriteAssembly(string directory, string filePath, string fileName, Stream data)
         {
             string fullPath = directory + "/" + filePath;
             if (File.Exists(fullPath))
@@ -115,16 +206,16 @@ namespace WeaverCore.Editor.Implementations
                 AssetDatabase.DeleteAsset(filePath);
             }
 
-            var tempPath = Path.GetTempPath();
+            string tempPath = Path.GetTempPath();
             if (File.Exists(tempPath + fileName))
             {
                 File.Delete(tempPath + fileName);
             }
-            using (var file = File.Create(tempPath + fileName))
+            using (FileStream file = File.Create(tempPath + fileName))
             {
-                using (var reader = new BinaryReader(data))
+                using (BinaryReader reader = new BinaryReader(data))
                 {
-                    using (var writer = new BinaryWriter(file))
+                    using (BinaryWriter writer = new BinaryWriter(file))
                     {
                         byte[] buffer = new byte[1024];
                         int amount = 0;

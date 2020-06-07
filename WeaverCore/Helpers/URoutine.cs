@@ -12,11 +12,11 @@ namespace WeaverCore.Helpers
 	/// </summary>
 	public class URoutine
 	{
-		static URoutineImplementation impl = ImplFinder.GetImplementation<URoutineImplementation>();
+		static URoutine_I impl = ImplFinder.GetImplementation<URoutine_I>();
 
-		URoutineImplementation.URoutineData data;
+		URoutine_I.URoutineData data;
 
-		URoutine(URoutineImplementation.URoutineData Data)
+		URoutine(URoutine_I.URoutineData Data)
 		{
 			Data = data;
 		}

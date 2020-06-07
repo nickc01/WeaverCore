@@ -13,11 +13,11 @@ namespace WeaverCore.Helpers
 	{
 		public event Action<string> OnReceiveEvent;
 
-		static EventReceiverImplementation hijackerInternal;
+		static EventReceiver_I hijackerInternal;
 
 		static EventReceiver()
 		{
-			hijackerInternal = ImplFinder.GetImplementation<EventReceiverImplementation>();
+			hijackerInternal = ImplFinder.GetImplementation<EventReceiver_I>();
 			hijackerInternal.Initialize(ModuleInitializer.weaverCorePatcher);
 		}
 

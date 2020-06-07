@@ -23,7 +23,7 @@ namespace WeaverCore.Components
 		Collider2D collider;
 
 
-		HealthManagerImplementation impl;
+		HealthManager_I impl;
 
 		[SerializeField]
 		private int health = 100;
@@ -334,7 +334,7 @@ namespace WeaverCore.Components
 
 		void Awake()
 		{
-			impl = (HealthManagerImplementation)gameObject.AddComponent(ImplFinder.GetImplementationType<HealthManagerImplementation>());
+			impl = (HealthManager_I)gameObject.AddComponent(ImplFinder.GetImplementationType<HealthManager_I>());
 			impl.Manager = this;
 		}
 	}

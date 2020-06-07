@@ -100,21 +100,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editor Implementations\DamageHero\EditorDamageHeroImpl.cs" />
-    <Compile Include="Editor Implementations\Debugger\EditorDebuggerImpl.cs" />
-    <Compile Include="Editor Implementations\GameManager\EditorGameManagerImplementation.cs" />
-    <Compile Include="Editor Implementations\HealthManager\EditorHealthManagerImplementation.cs" />
-    <Compile Include="Editor Implementations\Enemy\EditorEnemyStaticImpl.cs" />
-    <Compile Include="Editor Implementations\Enemy\EditorEnemyImpl.cs" />
-    <Compile Include="Editor Implementations\EventReceiver\EditorEventReceiverImpl.cs" />
-    <Compile Include="Editor Implementations\WeaverAudio\EditorWeaverAudioImplementation.cs" />
-    <Compile Include="Editor Implementations\ModLoader\EditorModLoaderImpl.cs" />
-    <Compile Include="Editor Implementations\Player\PlayerImpl.cs" />
-    <Compile Include="Editor Implementations\PropertyManager\EditorPropertyManagerImpl.cs" />
-    <Compile Include="Editor Implementations\RegistryLoader\EditorRegistryLoaderImpl.cs" />
-    <Compile Include="Editor Implementations\RuntimeInitializer\EditorRuntimeInitializerImpl.cs" />
-    <Compile Include="Editor Implementations\URoutine\EditorURoutineImpl.cs" />
-    <Compile Include="Editor Implementations\WeaverEvents\EditorWeaverEventsImplementation.cs" />
+    <Compile Include="Implementations\E_DamageHero_I.cs" />
+    <Compile Include="Implementations\E_Debugger_I.cs" />
+    <Compile Include="Implementations\E_GameManager_I.cs" />
+    <Compile Include="Implementations\E_HealthManager_I.cs" />
+    <Compile Include="Implementations\E_Enemy_I.cs" />
+    <Compile Include="Implementations\E_EventReceiver_I.cs" />
+    <Compile Include="Implementations\E_WeaverAudio_I.cs" />
+    <Compile Include="Implementations\E_Modloader_I.cs" />
+    <Compile Include="Implementations\E_Player_I.cs" />
+    <Compile Include="Implementations\E_PropertyManager_I.cs" />
+    <Compile Include="Implementations\E_RegistryLoader_I.cs" />
+    <Compile Include="Implementations\E_RuntimeInitializer_I.cs" />
+    <Compile Include="Implementations\E_URoutine_I.cs" />
+    <Compile Include="Implementations\E_WeaverEvents_I.cs" />
     <Compile Include="Editor\ControlWindow.cs" />
     <Compile Include="Helpers\EditorInitializer.cs" />
     <Compile Include="Initializer.cs" />

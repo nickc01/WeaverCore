@@ -8,7 +8,7 @@ namespace WeaverCore.Helpers
 {
 	public static class WeaverEvents
 	{
-		static WeaverEventsImplementation impl = ImplFinder.GetImplementation<WeaverEventsImplementation>();
+		static WeaverEvents_I impl = ImplFinder.GetImplementation<WeaverEvents_I>();
 
 		public static void BroadcastEvent(string eventName)
 		{

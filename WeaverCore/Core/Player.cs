@@ -109,13 +109,13 @@ namespace WeaverCore
 
 
 
-        PlayerImplementation playerImpl;
+        Player_I playerImpl;
 
         void Start()
         {
-            var playerImplType = ImplFinder.GetImplementationType<PlayerImplementation>();
+            var playerImplType = ImplFinder.GetImplementationType<Player_I>();
 
-            playerImpl = (PlayerImplementation)gameObject.AddComponent(playerImplType);
+            playerImpl = (Player_I)gameObject.AddComponent(playerImplType);
             Players.AddConditional(this);
             playerImpl.Initialize();
         }

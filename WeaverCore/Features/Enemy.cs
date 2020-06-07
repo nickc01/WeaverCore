@@ -21,13 +21,14 @@ namespace WeaverCore.Features
 			remove => staticImpl.OnBossSceneCompleteRemove(value);
 		}
 
-		EnemyImplementation enemyImpl;
-		static EnemyStaticImplementation staticImpl = ImplFinder.GetImplementation<EnemyStaticImplementation>();
+		Enemy_I enemyImpl;
+		static Enemy_I.Statics staticImpl = ImplFinder.GetImplementation<Enemy_I.Statics>();
+		//static EnemyStaticImplementation staticImpl = ImplFinder.GetImplementation<EnemyStaticImplementation>();
 
 		protected virtual void Start()
 		{
-			var enemyImplType = ImplFinder.GetImplementationType<EnemyImplementation>();
-			enemyImpl = (EnemyImplementation)gameObject.AddComponent(enemyImplType);
+			var enemyImplType = ImplFinder.GetImplementationType<Enemy_I>();
+			enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
 		}
 
 		public static void EndBossBattle(float delayTime)

@@ -163,7 +163,7 @@ namespace WeaverCore.Helpers
     {
         //public static Thread CheckingThread = null;
 
-        public static PropertyManagerImplementation Manager = null;
+        public static PropertyManager_I Manager = null;
 
         //public static List<IPropertyTableBase> propertyTables = new List<IPropertyTableBase>();
 
@@ -282,7 +282,7 @@ namespace WeaverCore.Helpers
         {
             if (InternalInfo.Manager == null)
             {
-                InternalInfo.Manager = ImplFinder.GetImplementation<PropertyManagerImplementation>();
+                InternalInfo.Manager = ImplFinder.GetImplementation<PropertyManager_I>();
                 InternalInfo.Manager.Start();
             }
             InternalInfo.Manager.AddTable(this);

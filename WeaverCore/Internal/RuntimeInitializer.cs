@@ -13,7 +13,7 @@ namespace WeaverCore.Internal
 		[RuntimeInitializeOnLoadMethod]
 		static void Load()
 		{
-			var impl = ImplFinder.GetImplementation<RuntimeInitializerImplementation>();
+			var impl = ImplFinder.GetImplementation<RuntimeInitializer_I>();
 			impl.Awake();
 		}
 	}

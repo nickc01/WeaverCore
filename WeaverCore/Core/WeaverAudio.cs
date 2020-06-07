@@ -14,13 +14,13 @@ namespace WeaverCore
 	/// </summary>
 	public static class WeaverAudio
 	{
-		internal static WeaverAudioImplementation Impl;
+		internal static WeaverAudio_I Impl;
 
 		public static WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound, bool autoPlay = true, bool deleteWhenDone = true)
 		{
 			if (Impl == null)
 			{
-				Impl = ImplFinder.GetImplementation<WeaverAudioImplementation>();
+				Impl = ImplFinder.GetImplementation<WeaverAudio_I>();
 			}
 
 			return Impl.Play(clip, position, volume, channel, autoPlay, deleteWhenDone);
@@ -30,7 +30,7 @@ namespace WeaverCore
 		{
 			if (Impl == null)
 			{
-				Impl = ImplFinder.GetImplementation<WeaverAudioImplementation>();
+				Impl = ImplFinder.GetImplementation<WeaverAudio_I>();
 			}
 			Impl.PlayReuse(audioObject, clip, position, volume, channel, autoPlay, deleteWhenDone);
 		}

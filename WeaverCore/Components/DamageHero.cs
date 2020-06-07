@@ -14,12 +14,12 @@ namespace WeaverCore.Components
 		public HazardType HazardType = HazardType.Normal;
 		public bool ShadowDashHazard = false;
 
-		DamageHeroImplementation impl;
+		DamageHero_I impl;
 
 
 		void Awake()
 		{
-			impl = gameObject.AddComponent(ImplFinder.GetImplementationType<DamageHeroImplementation>()) as DamageHeroImplementation;
+			impl = gameObject.AddComponent(ImplFinder.GetImplementationType<DamageHero_I>()) as DamageHero_I;
 			impl.Damager = this;
 
 			gameObject.layer = 11;

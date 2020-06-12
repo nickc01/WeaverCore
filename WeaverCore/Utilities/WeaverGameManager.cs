@@ -15,7 +15,7 @@ namespace WeaverCore.Utilities
 		static WeaverGameManager GameManager;
 		static GameManager_I impl;
 
-		public enum TImeFreezePreset
+		public enum TimeFreezePreset
 		{
 			Preset1,
 			Preset2,
@@ -38,27 +38,27 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-		public static void FreezeGameTime(TImeFreezePreset preset)
+		public static void FreezeGameTime(TimeFreezePreset preset)
 		{
 			GameManagerInit();
 			switch (preset)
 			{
-				case TImeFreezePreset.Preset1:
+				case TimeFreezePreset.Preset1:
 					GameManager.StartCoroutine(FreezeMoment(0.01f, 0.35f, 0.1f, 0f));
 					break;
-				case TImeFreezePreset.Preset2:
+				case TimeFreezePreset.Preset2:
 					GameManager.StartCoroutine(FreezeMoment(0.04f, 0.03f, 0.04f, 0f));
 					break;
-				case TImeFreezePreset.Preset3:
+				case TimeFreezePreset.Preset3:
 					GameManager.StartCoroutine(FreezeMoment(0.25f, 2f, 0.25f, 0.15f));
 					break;
-				case TImeFreezePreset.Preset4:
+				case TimeFreezePreset.Preset4:
 					GameManager.StartCoroutine(FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
-				case TImeFreezePreset.Preset5:
+				case TimeFreezePreset.Preset5:
 					GameManager.StartCoroutine(FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
-				case TImeFreezePreset.Preset6:
+				case TimeFreezePreset.Preset6:
 					GameManager.StartCoroutine(FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
 			}

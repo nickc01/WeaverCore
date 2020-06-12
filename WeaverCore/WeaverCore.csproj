@@ -340,11 +340,16 @@
     <Compile Include="Core\Enums\CollisionSide.cs" />
     <Compile Include="Core\Awaiters\WaitForSeconds.cs" />
     <Compile Include="Core\Awaiters\WaitTillTrue.cs" />
+    <Compile Include="Core\Enums\RumbleType.cs" />
+    <Compile Include="Core\Enums\ShakeType.cs" />
+    <Compile Include="Core\WeaverCam.cs" />
     <Compile Include="Features\Boss.cs" />
     <Compile Include="Features\BossReplacement.cs" />
     <Compile Include="Implementations\Boss_I.cs" />
+    <Compile Include="Implementations\WeaverCam_I.cs" />
     <Compile Include="Interfaces\IObjectReplacement.cs" />
     <Compile Include="Utilities\AnimationUtilities.cs" />
+    <Compile Include="Utilities\CameraShaker.cs" />
     <Compile Include="Utilities\CoroutineUtilities.cs" />
     <Compile Include="Utilities\EnumUtilities.cs" />
     <Compile Include="Utilities\Flings.cs" />

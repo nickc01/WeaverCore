@@ -28,6 +28,7 @@ namespace WeaverTools
 		public bool PrintIDs = false;
 
 		public List<IDPair> IDsToPrint = new List<IDPair>();
+		public List<string> NamesToPrint = new List<string>();
 
 		public static ToolSettings GetSettings()
 		{

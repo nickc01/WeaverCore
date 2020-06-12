@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore;
 using WeaverCore.Utilities;
 
 namespace WeaverTools.Machine
@@ -104,11 +105,95 @@ namespace WeaverTools.Machine
             {
                 jsonData.states.Add(state.Key, state.Value.jsonData);
             }
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append("{\"id\": \"");
+            builder.Append(jsonData.id);
+            builder.Append("\",\"initial\": \"");
+            builder.Append(jsonData.initial);
+            builder.Append("\",\"states\": {");
+            if (jsonData.states.Count > 0)
+            {
+                foreach (var state in jsonData.states)
+                {
+                    //final += "\"" + state.Key + "\": { \"on\": {";
+                    builder.Append("\"");
+                    builder.Append(state.Key);
+                    builder.Append("\": { \"on\": {");
+                    if (state.Value.on.Count > 0)
+                    {
+                        foreach (var onVal in state.Value.on)
+                        {
+                            //final += "\"" + onVal.Key + "\": \"" + onVal.Value + "\",";
+                            builder.Append("\"");
+                            builder.Append(onVal.Key);
+                            builder.Append("\": \"");
+                            builder.Append(onVal.Value);
+                            builder.Append("\",");
+                        }
+                        //final = final.Remove(final.Length - 1, 1);
+                        builder.Remove(builder.Length - 1, 1);
+                        //final += "},";
+                        builder.Append("},");
+                    }
+                    else
+                    {
+                        //final += "},";
+                        builder.Append("},");
+                    }
+                    //final += @"""entry"": [";
+                    builder.Append("\"entry\": [");
+
+                    if (state.Value.entry.Count > 0)
+                    {
+                        foreach (var entryVal in state.Value.entry)
+                        {
+                            //final += "\"" + entryVal + "\",";
+                            builder.Append("\"");
+                            builder.Append(entryVal);
+                            builder.Append("\",");
+                            //final += @"""" + onVal.Key + @""": """ + onVal.Value + @""",";
+
+                        }
+                        //final = final.Remove(final.Length - 1, 1);
+                        builder.Remove(builder.Length - 1, 1);
+                        //final += "]";
+                        builder.Append("]");
+                    }
+                    else
+                    {
+                        //final += "]";
+                        builder.Append("]");
+                    }
+                    //final += @"},";
+                    builder.Append("},");
+                }
+                //final = final.Remove(final.Length - 1, 1);
+                builder.Remove(builder.Length - 1, 1);
+                //final += @"}";
+                builder.Append("}");
+            }
+            else
+            {
+                //final += @"}";
+                builder.Append("}");
+            }
+            //final += @"}";
+            builder.Append("}");
+
+            //return final;
+            return builder.ToString();
+            /*jsonData.states.Clear();
+            foreach (var state in states)
+            {
+                jsonData.states.Add(state.Key, state.Value.jsonData);
+            }
+            Debugger.Log("States = " + jsonData.states.Count);
             //return Json.Serialize(jsonData);
-            return JsonUtility.ToJson(jsonData);
+            return JsonUtility.ToJson(jsonData);*/
         }
 
-        public static XMachine Deserialize(string serializedData)
+        /*public static XMachine Deserialize(string serializedData)
         {
             SerializedData data = JsonUtility.FromJson<SerializedData>(serializedData);
 
@@ -127,16 +212,10 @@ namespace WeaverTools.Machine
                     state.addedEvents.Add(new XEvent(serializedEvent.Key, new XState(serializedEvent.Value)));
                 }
 
-                /*List<XEvent> events = new List<XEvent>();
-                foreach (var ev in state.Value.on)
-                {
-                    events.Add(new XEvent(ev.Key,));
-                }*/
-
                 machine.states.Add(state.Name, state);
             }
             return machine;
-        }
+        }*/
     }
 
     //[JsonObject(MemberSerialization.Fields)]

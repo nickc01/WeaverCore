@@ -27,6 +27,11 @@ namespace WeaverCore.Utilities
             return (Func<S, T>)setterMethod.CreateDelegate(typeof(Func<S, T>));
         }
 
+        public static Func<S, T> CreateGetter<S, T>(string fieldName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+        {
+            return CreateGetter<S, T>(typeof(S).GetField(fieldName,flags));
+        }
+
         public static Action<S, T> CreateSetter<S, T>(FieldInfo field)
         {
             string methodName = field.ReflectedType.FullName + ".set_" + field.Name;
@@ -45,6 +50,11 @@ namespace WeaverCore.Utilities
             }
             gen.Emit(OpCodes.Ret);
             return (Action<S, T>)setterMethod.CreateDelegate(typeof(Action<S, T>));
+        }
+
+        public static Action<S, T> CreateSetter<S, T>(string fieldName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+        {
+            return CreateSetter<S, T>(typeof(S).GetField(fieldName, flags));
         }
     }
 }

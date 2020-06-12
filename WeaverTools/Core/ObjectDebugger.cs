@@ -397,7 +397,7 @@ namespace WeaverTools
 
 				File.WriteAllText(fsmFile, result);
 
-				var test = XMachine.Deserialize(result);
+				//var test = XMachine.Deserialize(result);
 
 				//Debugger.Log("After Test");
 			}

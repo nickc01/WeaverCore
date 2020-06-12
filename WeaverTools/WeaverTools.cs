@@ -128,6 +128,16 @@ namespace WeaverTools
                         }
                     }
                 }
+
+                foreach (var name in settings.NamesToPrint)
+                {
+                    var gm = GameObject.Find(name);
+                    Debugger.Log($"Found GameObject for name: {name} = {gm}");
+                    if (gm != null)
+                    {
+                        ObjectDebugger.DebugObject(gm);
+                    }
+                }
             }
 
         }

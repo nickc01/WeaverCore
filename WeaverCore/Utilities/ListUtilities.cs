@@ -23,5 +23,20 @@ namespace WeaverCore.Utilities
 			}
 			return false;
 		}
+
+		/// <summary>
+		/// Returns a random item from the list
+		/// </summary>
+		/// <typeparam name="T">The type of items in the list</typeparam>
+		/// <param name="list">The list to select from</param>
+		/// <returns>A random element from the list</returns>
+		public static T GetRandomElement<T>(this List<T> list)
+		{
+			if (list.Count == 0)
+			{
+				throw new Exception("The list to randomly select an element from is empty");
+			}
+			return list[UnityEngine.Random.Range(0,list.Count)];
+		}
 	}
 }

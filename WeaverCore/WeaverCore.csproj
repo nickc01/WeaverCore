@@ -345,9 +345,13 @@
     <Compile Include="Core\WeaverCam.cs" />
     <Compile Include="Features\Boss.cs" />
     <Compile Include="Features\BossReplacement.cs" />
+    <Compile Include="Features\CameraExtension.cs" />
     <Compile Include="Implementations\Boss_I.cs" />
     <Compile Include="Implementations\WeaverCam_I.cs" />
+    <Compile Include="Interfaces\IInit.cs" />
     <Compile Include="Interfaces\IObjectReplacement.cs" />
+    <Compile Include="Interfaces\IPatch.cs" />
+    <Compile Include="Interfaces\IRuntimeInit.cs" />
     <Compile Include="Utilities\AnimationUtilities.cs" />
     <Compile Include="Utilities\CameraShaker.cs" />
     <Compile Include="Utilities\CoroutineUtilities.cs" />
@@ -368,7 +372,7 @@
     <Compile Include="Core\Core.cs" />
     <Compile Include="Core\Debugger.cs" />
     <Compile Include="Utilities\EventReceiver.cs" />
-    <Compile Include="Utilities\Fields.cs" />
+    <Compile Include="Utilities\FieldUtilities.cs" />
     <Compile Include="Utilities\Hash.cs" />
     <Compile Include="Core\WeaverAudio.cs" />
     <Compile Include="Utilities\PropertyTable.cs" />
@@ -382,8 +386,7 @@
     <Compile Include="Implementations\HitEffects_I.cs" />
     <Compile Include="Implementations\WeaverAudio_I.cs" />
     <Compile Include="Implementations\PropertyManager_I.cs" />
-    <Compile Include="Implementations\RuntimeInitializer_I.cs" />
-    <Compile Include="Utilities\Harmony.cs" />
+    <Compile Include="Utilities\HarmonyPatcher.cs" />
     <Compile Include="Utilities\ImplFinder.cs" />
     <Compile Include="Utilities\MethodUtilities.cs" />
     <Compile Include="Implementations\URoutine_I.cs" />
@@ -407,7 +410,6 @@
     <Compile Include="Implementations\Enemy_I.cs" />
     <Compile Include="Interfaces\IImplementation.cs" />
     <Compile Include="Implementations\RegistryLoader_I.cs" />
-    <Compile Include="Implementations\Initializer_I.cs" />
     <Compile Include="Implementations\ModLoader_I.cs" />
     <Compile Include="Core\Player.cs" />
     <Compile Include="Implementations\Player_I.cs" />

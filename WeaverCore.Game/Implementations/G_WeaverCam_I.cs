@@ -20,14 +20,16 @@ namespace WeaverCore.Game.Implementations
 				var cameraParent = GameObject.Find("CameraParent");
 				if (cameraParent == null)
 				{
-					throw new Exception("There is no Hollow Knight Camera in the scene");
+					//throw new Exception("There is no Hollow Knight Camera in the scene");
+					return null;
 				}
 				else
 				{
 					tk2dCamera camera = cameraParent.GetComponentInChildren<tk2dCamera>();
 					if (camera == null)
 					{
-						throw new Exception("There is no Hollow Knight Camera in the scene");
+						//throw new Exception("There is no Hollow Knight Camera in the scene");
+						return null;
 					}
 					else
 					{
@@ -59,14 +61,15 @@ namespace WeaverCore.Game.Implementations
 
 			void Awake()
 			{
+				Debugger.Log("Weaver Game Cam Init!!!");
 				On.HutongGames.PlayMaker.Actions.ShakePosition.UpdateShaking += ShakePosition_UpdateShaking;
 				On.HutongGames.PlayMaker.Actions.ShakePosition.OnExit += ShakePosition_OnExit;
 				On.HutongGames.PlayMaker.Actions.ShakePosition.Reset += ShakePosition_Reset;
 				shakerFSM = gameObject.LocateMyFSM("CameraShake");
 				ShakingHugeEvent = shakerFSM.FsmStates.First(e => e.Name == "ShakingHuge");
-				GetTimer = Fields.CreateGetter<ShakePosition, float>("timer");
-				GetStartingWorldPosition = Fields.CreateGetter<ShakePosition, Vector3>("startingWorldPosition");
-				SetTimer = Fields.CreateSetter<ShakePosition, float>("timer");
+				GetTimer = FieldUtilities.CreateGetter<ShakePosition, float>("timer");
+				GetStartingWorldPosition = FieldUtilities.CreateGetter<ShakePosition, Vector3>("startingWorldPosition");
+				SetTimer = FieldUtilities.CreateSetter<ShakePosition, float>("timer");
 				StopAndReset = MethodUtilities.ConvertToDelegate<Action<ShakePosition>, ShakePosition>("StopAndReset");
 			}
 

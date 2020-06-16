@@ -31,7 +31,7 @@ namespace WeaverCore.Utilities
             return RunningState.Game;
         }
 
-        static ImplFinder()
+        internal static void Init()
         {
             if (FoundImplementations == null)
             {

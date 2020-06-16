@@ -12,9 +12,9 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Patches
 {
-	class HealthManager_Enemy : IPatch
+	class HealthManager_Enemy : IInit
 	{
-		public void Apply()
+		void IInit.OnInit()
 		{
 			On.HealthManager.Start += HealthManager_Start;
 		}

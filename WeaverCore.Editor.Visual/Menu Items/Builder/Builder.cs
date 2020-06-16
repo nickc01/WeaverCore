@@ -134,7 +134,7 @@ namespace WeaverCore.Editor.Visual
 			var files = Directory.GetFiles(AssetsFolder, filter, SearchOption.AllDirectories).ToList();
 			for (int i = files.Count - 1; i >= 0; i--)
 			{
-				if (files[i].Contains(EditorDirectory))
+				if (files[i].Contains("\\Editor\\") || files[i].Contains("/Editor/"))
 				{
 					files.RemoveAt(i);
 				}
@@ -211,7 +211,15 @@ namespace WeaverCore.Editor.Visual
 			Debugger.Log("Mod File Name = " + destination);
 			Progress = 0.0f;
 
+			var scripts = GetScripts();
+			foreach (var script in scripts)
+			{
+				Debugger.Log("Script = " + script);
+			}
+
 			var builder = new UnityEditor.Compilation.AssemblyBuilder(destination, GetScripts());
+
+
 
 			builder.buildTarget = BuildTarget.StandaloneWindows;
 

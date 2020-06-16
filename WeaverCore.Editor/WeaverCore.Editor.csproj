@@ -112,13 +112,13 @@
     <Compile Include="Implementations\E_Player_I.cs" />
     <Compile Include="Implementations\E_PropertyManager_I.cs" />
     <Compile Include="Implementations\E_RegistryLoader_I.cs" />
-    <Compile Include="Implementations\E_RuntimeInitializer_I.cs" />
+    <Compile Include="EditorRuntimeInitializer.cs" />
     <Compile Include="Implementations\E_URoutine_I.cs" />
     <Compile Include="Implementations\E_WeaverCam_I.cs" />
     <Compile Include="Implementations\E_WeaverEvents_I.cs" />
     <Compile Include="Editor\ControlWindow.cs" />
     <Compile Include="Helpers\EditorInitializer.cs" />
-    <Compile Include="Initializer.cs" />
+    <Compile Include="EditorInitializer.cs" />
     <Compile Include="Helpers\LayerChanger.cs" />
     <Compile Include="Helpers\LayerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Patches
 {
-	class AudioPatchTest : IPatch
+	class AudioPatchTest : IInit
 	{
-		public void Apply()
-		{
-			On.AudioManager.ApplyMusicCue += AudioManager_ApplyMusicCue;
-			On.AudioManager.ApplyMusicSnapshot += AudioManager_ApplyMusicSnapshot;
-		}
-
 		private void AudioManager_ApplyMusicSnapshot(On.AudioManager.orig_ApplyMusicSnapshot orig, AudioManager self, UnityEngine.Audio.AudioMixerSnapshot snapshot, float delayTime, float transitionTime)
 		{
 			Debugger.Log("Music Snapshot Changed");
@@ -23,6 +18,12 @@ namespace WeaverCore.Game.Patches
 		{
 			Debugger.Log("Music Cue Applied");
 			orig(self,musicCue,delayTime,transitionTime,applySnapshot);
+		}
+
+		void IInit.OnInit()
+		{
+			On.AudioManager.ApplyMusicCue += AudioManager_ApplyMusicCue;
+			On.AudioManager.ApplyMusicSnapshot += AudioManager_ApplyMusicSnapshot;
 		}
 	}
 }

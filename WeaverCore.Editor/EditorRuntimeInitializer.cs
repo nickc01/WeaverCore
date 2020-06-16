@@ -9,12 +9,13 @@ using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Internal;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Implementations
 {
-	public class E_RuntimeInitializer_I : RuntimeInitializer_I
+	public class EditorRuntimeInitializer : IRuntimeInit
 	{
-		public override void Awake()
+		void IRuntimeInit.RuntimeInit()
 		{
 			ModLoader.LoadAllMods();
 		}

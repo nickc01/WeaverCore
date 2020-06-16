@@ -6,8 +6,9 @@ using WeaverCore.Implementations;
 using System.Reflection;
 using System.Linq;
 using WeaverCore.Utilities;
-using static WeaverCore.Utilities.Harmony;
+//
 using WeaverCore.Internal.Harmony;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Internal
 {
@@ -15,29 +16,25 @@ namespace WeaverCore.Internal
     {
         static bool Initialized = false;
 
-        internal static HarmonyInstance weaverCorePatcher;
-
         public static void Initialize()
         {
             if (!Initialized)
             {
-				weaverCorePatcher = Create($"com.{(nameof(WeaverCore).ToLower())}.nickc01");
                 Initialized = true;
-                PatchGetTypes();
+                ImplFinder.Init();
+                InitRunner.RunInitFunctions();
 
-
-                var init = ImplFinder.GetImplementation<Initializer_I>();
-                init.Initialize();
-
-                GameObjectPatches.Patch(weaverCorePatcher);
+                Initialized = true;
             }
         }
 
-        static void PatchGetTypes()
+        class GetTypesPatch : IPatch
         {
-            var method = typeof(Assembly).GetMethod("GetTypes");
-
-            weaverCorePatcher.Patch(method, null, typeof(ModuleInitializer).GetMethod("Postfix", BindingFlags.Static | BindingFlags.NonPublic));
+            //TODO TODO TODO - WORk on IInit and IPatch classes
+            public void Patch(HarmonyPatcher patcher)
+            {
+                patcher.Patch(typeof(Assembly).GetMethod("GetTypes"),null, typeof(ModuleInitializer).GetMethod("Postfix", BindingFlags.Static | BindingFlags.NonPublic));
+            }
         }
 
         static void Postfix(ref Type[] __result)

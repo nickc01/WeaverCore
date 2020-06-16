@@ -8,7 +8,8 @@ using System.Text;
 using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
-using static WeaverCore.Utilities.Harmony;
+using WeaverCore.Interfaces;
+using Harmony;
 
 namespace WeaverCore.Game.Implementations
 {
@@ -25,6 +26,31 @@ namespace WeaverCore.Game.Implementations
 			public GameObject destination;
 		}
 
+		class Patch : IPatch
+		{
+			void IPatch.Patch(HarmonyPatcher patcher)
+			{
+				EventPrefixMethod = typeof(G_EventReceiver_I).GetMethod(nameof(EventPrefix), BindingFlags.Static | BindingFlags.NonPublic);
+				var IDCheckerMethod = typeof(G_EventReceiver_I).GetMethod(nameof(IDChecker), BindingFlags.Static | BindingFlags.NonPublic);
+
+				var eventMethod = typeof(Fsm).GetMethod("Event", new Type[] { typeof(FsmEventTarget), typeof(FsmEvent) });
+
+
+				var fsmT = typeof(Fsm);
+
+				patcher.Patch(eventMethod, EventPrefixMethod, null);
+
+				patcher.Patch(fsmT.GetConstructor(new Type[] { }), null, IDCheckerMethod);
+				patcher.Patch(fsmT.GetConstructor(new Type[] { typeof(Fsm), typeof(FsmVariables) }), null, IDCheckerMethod);
+				patcher.Patch(fsmT.GetMethod("Clear"), null, IDCheckerMethod);
+				patcher.Patch(fsmT.GetMethod("Init"), null, IDCheckerMethod);
+				patcher.Patch(fsmT.GetMethod("Init", new Type[] { typeof(MonoBehaviour) }), null, IDCheckerMethod);
+				patcher.Patch(fsmT.GetMethod("OnDestroy"), null, IDCheckerMethod);
+				patcher.Patch(fsmT.GetMethod("Reset"), null, IDCheckerMethod);
+				patcher.Patch(fsmT.GetProperty("Owner").GetSetMethod(), null, IDCheckerMethod);
+			}
+		}
+
 
 		protected static PropertyTable<Fsm, FsmProperties> GameObjectIDs = new PropertyTable<Fsm, FsmProperties>();
 
@@ -36,26 +62,9 @@ namespace WeaverCore.Game.Implementations
 
 		static MethodInfo EventPrefixMethod;
 
-		public override void Initialize(HarmonyInstance patcher)
+		public override void Initialize()
 		{
-			EventPrefixMethod = typeof(G_EventReceiver_I).GetMethod(nameof(EventPrefix), BindingFlags.Static | BindingFlags.NonPublic);
-			var IDCheckerMethod = typeof(G_EventReceiver_I).GetMethod(nameof(IDChecker),BindingFlags.Static | BindingFlags.NonPublic);
 
-			var eventMethod = typeof(Fsm).GetMethod("Event", new Type[] { typeof(FsmEventTarget), typeof(FsmEvent) });
-
-
-			var fsmT = typeof(Fsm);
-
-			patcher.Patch(eventMethod, EventPrefixMethod, null);
-
-			patcher.Patch(fsmT.GetConstructor(new Type[] { }),null,IDCheckerMethod);
-			patcher.Patch(fsmT.GetConstructor(new Type[] { typeof(Fsm),typeof(FsmVariables) }),null,IDCheckerMethod);
-			patcher.Patch(fsmT.GetMethod("Clear"), null, IDCheckerMethod);
-			patcher.Patch(fsmT.GetMethod("Init"), null, IDCheckerMethod);
-			patcher.Patch(fsmT.GetMethod("Init",new Type[] { typeof(MonoBehaviour) }), null, IDCheckerMethod);
-			patcher.Patch(fsmT.GetMethod("OnDestroy"), null, IDCheckerMethod);
-			patcher.Patch(fsmT.GetMethod("Reset"), null, IDCheckerMethod);
-			patcher.Patch(fsmT.GetProperty("Owner").GetSetMethod(), null, IDCheckerMethod);
 		}
 
 		static void IDChecker(Fsm __instance, MonoBehaviour ___owner)

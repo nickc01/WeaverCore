@@ -116,8 +116,6 @@ namespace WeaverCore
                 }
                 if (modType == null || modType.FullName != modTypeName)
                 {
-                    Debugger.Log("Assembly Name = " + modAssemblyName);
-                    Debugger.Log("Mod Type Name = " + modTypeName);
                     modType = assemblyNames[modAssemblyName].GetType(modTypeName);
                 }
                 return modType;

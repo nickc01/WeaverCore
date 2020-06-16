@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
-using static WeaverCore.Utilities.Harmony;
+
 using System.Collections.Generic;
 
 namespace WeaverCore.Editor.Implementations
@@ -33,7 +33,7 @@ namespace WeaverCore.Editor.Implementations
 			}
 		}
 
-		public override void Initialize(HarmonyInstance patcher)
+		public override void Initialize()
 		{
 			//Nothing Extra Needed
 		}

@@ -60,5 +60,51 @@ namespace WeaverCore.Utilities
         {
             return (DelegateType)Delegate.CreateDelegate(typeof(DelegateType), instance, typeof(InstanceType).GetMethod(methodName, Flags));
         }
+
+        public static MethodInfo GetMethod<InstanceType>(string methodName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+        {
+            return typeof(InstanceType).GetMethod(methodName, flags);
+        }
+
+        /*public static MethodInfo GetMethod(string typePath)
+        {
+            if (typePath.Length < 3)
+            {
+                throw new Exception("Invalid Type Path format. Format should be {Namespace}.{Class}.{Method}");
+            }
+            var lastIndex = typePath.LastIndexOf(".");
+            if (lastIndex == 0 || lastIndex == -1 || lastIndex == typePath.Length - 1)
+            {
+                throw new Exception("Invalid Type Path format. Format should be {Namespace}.{Class}.{Method}");
+            }
+
+            var methodName = typePath.Substring(lastIndex + 1);
+            var className = typePath.Remove(lastIndex);
+
+            Type classType = null;
+
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                classType = assembly.GetType(className);
+                if (classType != null)
+                {
+                    break;
+                }
+            }
+
+            if (classType == null)
+            {
+                throw new Exception($"Unable to find class {className}");
+            }
+
+            var method = classType.GetMethod(methodName, BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            if (method == null)
+            {
+                throw new Exception($"Unable to find method {methodName} of class {className}");
+            }
+
+            return method;
+        }*/
     }
 }

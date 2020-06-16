@@ -54,7 +54,7 @@ namespace WeaverTools
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += ObjectPrinterPatch.SceneManager_sceneLoaded;
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoad;
 
-            var harmonyInstance = Harmony.Create($"com.{nameof(WeaverTools).ToLower()}.nickc01");
+            var harmonyInstance = HarmonyPatcher.Create($"com.{nameof(WeaverTools).ToLower()}.nickc01");
 
 
             DebugPatches.ApplyPatches(harmonyInstance);

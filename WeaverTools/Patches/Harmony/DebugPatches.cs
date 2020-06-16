@@ -10,7 +10,7 @@ namespace WeaverTools.Patches
 {
 	public static class DebugPatches
 	{
-		public static void ApplyPatches(Harmony.HarmonyInstance instance)
+		public static void ApplyPatches(HarmonyPatcher instance)
 		{
 			MethodInfo postFix = typeof(DebugPatches).GetMethod(nameof(Postfix), BindingFlags.Static | BindingFlags.NonPublic);
 

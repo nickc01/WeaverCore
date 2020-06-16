@@ -7,7 +7,7 @@ using System.Text;
 
 namespace WeaverCore.Utilities
 {
-    public static class Fields
+    public static class FieldUtilities
     {
         public static Func<S, T> CreateGetter<S, T>(FieldInfo field)
         {

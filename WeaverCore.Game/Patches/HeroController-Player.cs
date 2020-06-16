@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
+using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Patches
 {
-	public class HeroController_Player : IPatch
+	public class HeroController_Player : IInit
 	{
-		public void Apply()
+		void IInit.OnInit()
 		{
 			On.HeroController.Start += HeroController_Start;
 		}

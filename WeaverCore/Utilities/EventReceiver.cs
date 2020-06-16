@@ -25,7 +25,7 @@ namespace WeaverCore.Utilities
 		static EventReceiver()
 		{
 			impl = ImplFinder.GetImplementation<EventReceiver_I>();
-			impl.Initialize(ModuleInitializer.weaverCorePatcher);
+			impl.Initialize();
 		}
 
 		void Start()

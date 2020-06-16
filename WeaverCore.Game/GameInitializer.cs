@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using UnityEngine;
-using WeaverCore.Utilities;
 using WeaverCore.Implementations;
-using System.Reflection;
+using Harmony;
+using WeaverCore.Utilities;
+using WeaverCore.Internal;
+using HutongGames.PlayMaker.Actions;
+using WeaverCore.Game.Implementations;
 using WeaverCore.Interfaces;
+using System.Reflection;
+using System.Linq;
 
-namespace WeaverCore.Internal
+namespace WeaverCore.Game
 {
-	static class RuntimeInitializer
-	{
-		[RuntimeInitializeOnLoadMethod]
-		static void Load()
-		{
+    class GameInitializer : IInit
+    {
+        void IInit.OnInit()
+        {
+            ModLoader.LoadAllMods();
 			IRuntimePatchRunner.RuntimeInit();
-		}
+        }
 
 		class IRuntimePatchRunner
 		{
@@ -51,5 +55,20 @@ namespace WeaverCore.Internal
 				}
 			}
 		}
+
+
+
+		/*static void ApplyPatches()
+        {
+            foreach (var type in typeof(IPatch).Assembly.GetTypes())
+            {
+                if (typeof(IPatch).IsAssignableFrom(type) && !type.IsAbstract && type.IsClass)
+                {
+                    var patch = (IPatch)Activator.CreateInstance(type);
+
+                    patch.Apply();
+                }
+            }
+        }*/
 	}
 }

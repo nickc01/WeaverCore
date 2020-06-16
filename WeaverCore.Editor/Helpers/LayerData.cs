@@ -20,7 +20,7 @@ namespace WeaverCore.Editor.Helpers
 
         public static LayerData GetData()
         {
-            using (var stream = typeof(Initializer).Assembly.GetManifestResourceStream($"{nameof(WeaverCore)}.Editor.Resources.layerData.json"))
+            using (var stream = typeof(Implementations.EditorInitializer).Assembly.GetManifestResourceStream($"{nameof(WeaverCore)}.Editor.Resources.layerData.json"))
             {
                 using (var reader = new StreamReader(stream))
                 {

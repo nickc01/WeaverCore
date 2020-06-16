@@ -17,7 +17,7 @@ namespace WeaverCore.Editor.Implementations
 			{
 				if (Camera.main == null)
 				{
-					throw new Exception("There is no camera to add the WeaverCam Component onto");
+					return null;
 				}
 				else
 				{

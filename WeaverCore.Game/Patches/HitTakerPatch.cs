@@ -8,13 +8,8 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Patches
 {
-	class HitTakerPatch : IPatch
+	class HitTakerPatch : IInit
 	{
-		public void Apply()
-		{
-			On.HitTaker.Hit += HitTaker_Hit;
-		}
-
 		private static void HitTaker_Hit(On.HitTaker.orig_Hit orig, UnityEngine.GameObject targetGameObject, HitInstance damageInstance, int recursionDepth)
 		{
 			HitInfo info = Misc.ConvertHitInstance(damageInstance);
@@ -36,6 +31,11 @@ namespace WeaverCore.Game.Patches
 				}
 			}
 			orig(targetGameObject, damageInstance, recursionDepth);
+		}
+
+		void IInit.OnInit()
+		{
+			On.HitTaker.Hit += HitTaker_Hit;
 		}
 	}
 }

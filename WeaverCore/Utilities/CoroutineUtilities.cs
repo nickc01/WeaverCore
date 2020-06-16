@@ -33,7 +33,7 @@ namespace WeaverCore.Utilities
 			return component.StartCoroutine(RunWhile(routine, predicate));
 		}
 
-		static Func<WaitForSeconds, float> GetWFSTime = Fields.CreateGetter<WaitForSeconds, float>(typeof(WaitForSeconds).GetField("m_Seconds", BindingFlags.Instance | BindingFlags.NonPublic));
+		static Func<WaitForSeconds, float> GetWFSTime = FieldUtilities.CreateGetter<WaitForSeconds, float>(typeof(WaitForSeconds).GetField("m_Seconds", BindingFlags.Instance | BindingFlags.NonPublic));
 
 
 		/// <summary>
@@ -104,7 +104,6 @@ namespace WeaverCore.Utilities
 
 		static void InitStarterObject()
 		{
-			InitStarterObject();
 			if (starter == null)
 			{
 				starter = new GameObject("__COROUTINE_STARTER_OBJECT__").AddComponent<StarterObject>();

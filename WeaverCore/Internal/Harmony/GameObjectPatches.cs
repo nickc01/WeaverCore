@@ -3,14 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using static WeaverCore.Utilities.Harmony;
+
 using System.Reflection;
 using WeaverCore.Utilities;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Internal.Harmony
 {
 	public static class GameObjectPatches
 	{
+		class Patch : IPatch
+		{
+			void IPatch.Patch(HarmonyPatcher patcher)
+			{
+				MethodInfo postfix = typeof(GameObjectPatches).GetMethod(nameof(AllPostFix), BindingFlags.NonPublic | BindingFlags.Static);
+
+				foreach (var m in typeof(UnityEngine.Object).GetMethods(BindingFlags.Public | BindingFlags.Static))
+				{
+					var method = m;
+					if (method.Name == "Instantiate")
+					{
+						if (method.ContainsGenericParameters)
+						{
+							method = method.MakeGenericMethod(typeof(UnityEngine.Object));
+						}
+						patcher.Patch(method, null, postfix);
+					}
+				}
+			}
+		}
+
+
 		static bool ranOnce = false;
 
 		static Material DefaultSpriteMaterial;
@@ -25,27 +48,6 @@ namespace WeaverCore.Internal.Harmony
 				DefaultSpriteMaterial = WeaverAssetLoader.LoadWeaverAsset<Material>("Sprites-Default");
 			}
 		}
-
-		public static void Patch(HarmonyInstance harmony)
-		{
-			MethodInfo postfix = typeof(GameObjectPatches).GetMethod(nameof(AllPostFix), BindingFlags.NonPublic | BindingFlags.Static);
-
-			foreach (var m in typeof(UnityEngine.Object).GetMethods(BindingFlags.Public | BindingFlags.Static))
-			{
-				var method = m;
-				if (method.Name == "Instantiate")
-				{
-					if (method.ContainsGenericParameters)
-					{
-						method = method.MakeGenericMethod(typeof(UnityEngine.Object));
-					}
-					harmony.Patch(method, null, postfix);
-				}
-			}
-		}
-
-
-
 
 
 		static void AllPostFix(UnityEngine.Object __result)

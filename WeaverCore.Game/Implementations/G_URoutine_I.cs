@@ -12,11 +12,13 @@ namespace WeaverCore.Game.Implementations
 {
 	public class G_URoutine_I : URoutine_I
     {
-        public static void BeginExecuter()
+        class Init : IInit
         {
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneCallback;
+            void IInit.OnInit()
+            {
+                UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneCallback;
+            }
         }
-
 
         static List<Data> waitingToBeStarted = new List<Data>();
         static CoroutineExecuter Executer = null;

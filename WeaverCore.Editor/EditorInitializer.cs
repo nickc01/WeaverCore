@@ -6,10 +6,12 @@ using UnityEngine;
 using WeaverCore.Editor.Helpers;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
+using WeaverCore.Interfaces;
+using System.Collections.Generic;
 
 namespace WeaverCore.Editor.Implementations
 {
-    public class Initializer : Initializer_I
+    class EditorInitializer : IInit
     {
         struct SortingLayer
         {
@@ -119,46 +121,6 @@ namespace WeaverCore.Editor.Implementations
             new SortingLayer("HUD", 629535577)
         };
 
-
-        public override void Initialize()
-        {
-            LoadVisualAssembly();
-            EditorInitializer.AddInitializer(() =>
-            {
-                LayerData data = LayerData.GetData();
-                for (int i = 8; i < 32; i++)
-                {
-                    LayerChanger.SetLayerName(i, data.NameData[i]);
-                }
-                for (int i = 0; i < 32; i++)
-                {
-                    for (int j = 0; j < 32; j++)
-                    {
-                        int index = i + (j * 32);
-                        Physics2D.IgnoreLayerCollision(i, j, data.CollisionData[index]);
-                    }
-                }
-
-                foreach (string tag in Tags)
-                {
-                    LayerChanger.AddTagIfUnique(tag);
-                }
-                Tags = null;
-
-                foreach (var sortingLayer in SortingLayers)
-                {
-                    LayerChanger.AddSortingLayer(sortingLayer.Name, sortingLayer.UniqueID);
-                }
-
-                SortingLayers = null;
-
-                Physics2D.gravity = new Vector2(0f, -60f);
-                System.Reflection.Assembly visualAssembly = System.Reflection.Assembly.LoadFile($"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.Visual.dll");
-                Type initializerType = visualAssembly.GetType("WeaverCore.Editor.Visual.Internal.Initializer");
-                initializerType.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
-            });
-        }
-
         private static void LoadVisualAssembly()
         {
             Stream resourceStream = ResourceLoader.Retrieve($"{nameof(WeaverCore)}.Editor.Visual"); //Gets disposed in the Initializer below
@@ -233,6 +195,93 @@ namespace WeaverCore.Editor.Implementations
             }
             File.Move(tempPath + fileName, fullPath);
             AssetDatabase.ImportAsset(filePath);
+        }
+
+        void IInit.OnInit()
+        {
+            LoadVisualAssembly();
+            EditorInitializer.AddInitializer(() =>
+            {
+                LayerData data = LayerData.GetData();
+                for (int i = 8; i < 32; i++)
+                {
+                    LayerChanger.SetLayerName(i, data.NameData[i]);
+                }
+                for (int i = 0; i < 32; i++)
+                {
+                    for (int j = 0; j < 32; j++)
+                    {
+                        int index = i + (j * 32);
+                        Physics2D.IgnoreLayerCollision(i, j, data.CollisionData[index]);
+                    }
+                }
+
+                foreach (string tag in Tags)
+                {
+                    LayerChanger.AddTagIfUnique(tag);
+                }
+                Tags = null;
+
+                foreach (var sortingLayer in SortingLayers)
+                {
+                    LayerChanger.AddSortingLayer(sortingLayer.Name, sortingLayer.UniqueID);
+                }
+
+                SortingLayers = null;
+
+                Physics2D.gravity = new Vector2(0f, -60f);
+                System.Reflection.Assembly visualAssembly = System.Reflection.Assembly.LoadFile($"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.Visual.dll");
+                Type initializerType = visualAssembly.GetType("WeaverCore.Editor.Visual.Internal.Initializer");
+                initializerType.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
+            });
+        }
+
+        [ExecuteInEditMode]
+        class EditorInitializer_Internal : MonoBehaviour
+        {
+            void Awake()
+            {
+                Update();
+            }
+
+            void Update()
+            {
+                var next = InitializeEvents[0];
+                try
+                {
+                    next();
+                }
+                finally
+                {
+                    InitializeEvents.Remove(next);
+                    if (InitializeEvents.Count == 0)
+                    {
+                        EditorApplication.update -= OnUpdate;
+                        DestroyImmediate(gameObject);
+                        initializerObject = null;
+                    }
+                }
+            }
+        }
+
+        static List<Action> InitializeEvents = new List<Action>();
+        static GameObject initializerObject;
+
+        static void OnUpdate()
+        {
+            if (initializerObject == null)
+            {
+                initializerObject = new GameObject("__INITIALIZER__", typeof(EditorInitializer_Internal));
+            }
+        }
+
+        public static void AddInitializer(Action func)
+        {
+            if (InitializeEvents.Count == 0)
+            {
+                EditorApplication.update += OnUpdate;
+            }
+            InitializeEvents.Add(func);
         }
     }
 }

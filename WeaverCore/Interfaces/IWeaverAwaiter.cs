@@ -5,7 +5,10 @@ using System.Text;
 
 namespace WeaverCore.Interfaces
 {
-	public interface IUAwaiter
+	/// <summary>
+	/// An awaiter that can be used with a Weaver Routine.
+	/// </summary>
+	public interface IWeaverAwaiter
 	{
 		bool KeepWaiting();
 	}

@@ -38,7 +38,7 @@ namespace WeaverCore.Editor.Visual
 		/// <summary>
 		/// Retrieves the build settings the player specified. The results will be stored in <see cref="RetrieveBuildSettings"/>
 		/// </summary>
-		public static IUAwaiter RetrieveBuildSettings()
+		public static IWeaverAwaiter RetrieveBuildSettings()
 		{
 			if (Open)
 			{

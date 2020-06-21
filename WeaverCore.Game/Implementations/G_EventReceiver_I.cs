@@ -15,10 +15,15 @@ namespace WeaverCore.Game.Implementations
 {
 	public class G_EventReceiver_I : EventReceiver_I
 	{
-		protected class FsmProperties
+		/*protected class GMProperties
 		{
 			public int GameObjectID = 0;
 		}
+
+		protected class FSMProperties
+		{
+			public int FsmID = 0;
+		}*/
 
 		protected class EventInfo
 		{
@@ -30,35 +35,55 @@ namespace WeaverCore.Game.Implementations
 		{
 			void IPatch.Patch(HarmonyPatcher patcher)
 			{
-				EventPrefixMethod = typeof(G_EventReceiver_I).GetMethod(nameof(EventPrefix), BindingFlags.Static | BindingFlags.NonPublic);
-				var IDCheckerMethod = typeof(G_EventReceiver_I).GetMethod(nameof(IDChecker), BindingFlags.Static | BindingFlags.NonPublic);
+				Debugger.Log("DOING EVENT PATCH");
+				//EventPrefixMethod = typeof(G_EventReceiver_I).GetMethod(nameof(EventPrefix), BindingFlags.Static | BindingFlags.NonPublic);
+				//var IDCheckerMethod = typeof(G_EventReceiver_I).GetMethod(nameof(IDChecker), BindingFlags.Static | BindingFlags.NonPublic);
+				//var IDCheckerGMMethod = typeof(G_EventReceiver_I).GetMethod(nameof(IDCheckerGM), BindingFlags.Static | BindingFlags.NonPublic);
 
-				var eventMethod = typeof(Fsm).GetMethod("Event", new Type[] { typeof(FsmEventTarget), typeof(FsmEvent) });
+				//var eventMethod = typeof(Fsm).GetMethod("Event", new Type[] { typeof(FsmEventTarget), typeof(FsmEvent) });
 
 
-				var fsmT = typeof(Fsm);
+				//var fsmT = typeof(Fsm);
+				//var fsmGMT = typeof(FsmGameObject);
 
-				patcher.Patch(eventMethod, EventPrefixMethod, null);
+				//patcher.Patch(eventMethod, EventPrefixMethod, null);
 
-				patcher.Patch(fsmT.GetConstructor(new Type[] { }), null, IDCheckerMethod);
-				patcher.Patch(fsmT.GetConstructor(new Type[] { typeof(Fsm), typeof(FsmVariables) }), null, IDCheckerMethod);
-				patcher.Patch(fsmT.GetMethod("Clear"), null, IDCheckerMethod);
-				patcher.Patch(fsmT.GetMethod("Init"), null, IDCheckerMethod);
-				patcher.Patch(fsmT.GetMethod("Init", new Type[] { typeof(MonoBehaviour) }), null, IDCheckerMethod);
-				patcher.Patch(fsmT.GetMethod("OnDestroy"), null, IDCheckerMethod);
-				patcher.Patch(fsmT.GetMethod("Reset"), null, IDCheckerMethod);
-				patcher.Patch(fsmT.GetProperty("Owner").GetSetMethod(), null, IDCheckerMethod);
+				On.HutongGames.PlayMaker.Fsm.Event_FsmEventTarget_FsmEvent += Fsm_Event_FsmEventTarget_FsmEvent;
+
+				//patcher.Patch(fsmT.GetConstructor(new Type[] { }), null, IDCheckerMethod);
+				//patcher.Patch(fsmT.GetConstructor(new Type[] { typeof(Fsm), typeof(FsmVariables) }), null, IDCheckerMethod);
+				//patcher.Patch(fsmT.GetMethod("Clear"), null, IDCheckerMethod);
+				//patcher.Patch(fsmT.GetMethod("Init"), null, IDCheckerMethod);
+				//patcher.Patch(fsmT.GetMethod("Init", new Type[] { typeof(MonoBehaviour) }), null, IDCheckerMethod);
+				//patcher.Patch(fsmT.GetMethod("OnDestroy"), null, IDCheckerMethod);
+				//patcher.Patch(fsmT.GetMethod("Reset"), null, IDCheckerMethod);
+				//patcher.Patch(fsmT.GetProperty("Owner").GetSetMethod(), null, IDCheckerMethod);
+
+				/*Debugger.Log("PATCH_A");
+				Debugger.Log("IDCHECKERGMMETHOD = " + IDCheckerGMMethod);
+				Debugger.Log("Property = " + fsmGMT.GetProperty("Value", BindingFlags.Public | BindingFlags.Instance));
+				Debugger.Log("Set Method = " + fsmGMT.GetProperty("Value",BindingFlags.Public | BindingFlags.Instance).GetSetMethod());
+				patcher.Patch(fsmGMT.GetProperty("Value").GetSetMethod(), null, IDCheckerGMMethod);
+				Debugger.Log("PATCH_B");
+				patcher.Patch(fsmGMT.GetProperty("RawValue").GetSetMethod(), null, IDCheckerGMMethod);
+				Debugger.Log("PATCH_C");
+				patcher.Patch(fsmGMT.GetMethod("SafeAssign"), null, IDCheckerGMMethod);
+				Debugger.Log("PATCH_D");
+				patcher.Patch(fsmGMT.GetConstructor(new Type[] { typeof(FsmGameObject) }), null, IDCheckerGMMethod);
+				Debugger.Log("PATCH_E");*/
+
 			}
 		}
 
 
-		protected static PropertyTable<Fsm, FsmProperties> GameObjectIDs = new PropertyTable<Fsm, FsmProperties>();
+		//protected static PropertyTable<GameObject, GMProperties> GameObjectIDs = new PropertyTable<GameObject, GMProperties>();
+		//protected static PropertyTable<PlayMakerFSM, GMProperties> FSMIDs = new PropertyTable<PlayMakerFSM, GMProperties>();
 
-		protected static Dictionary<int, List<GameObject>> GameObjectHooks = new Dictionary<int, List<GameObject>>();
+		//protected static Dictionary<int, List<GameObject>> GameObjectHooks = new Dictionary<int, List<GameObject>>();
 
 		protected static List<EventInfo> EventHooks = new List<EventInfo>();
 
-		static PropertyInfo ValueProp = null;
+		//static PropertyInfo ValueProp = null;
 
 		static MethodInfo EventPrefixMethod;
 
@@ -67,16 +92,66 @@ namespace WeaverCore.Game.Implementations
 
 		}
 
-		static void IDChecker(Fsm __instance, MonoBehaviour ___owner)
+		/*static void IDCheckerGM(FsmGameObject __instance, GameObject ___value)
 		{
-			var values = GameObjectIDs.GetOrCreate(__instance);
 			try
 			{
-				values.GameObjectID = ___owner.gameObject.GetInstanceID();
+				var gmValues = GameObjectIDs.GetOrCreate(___value);
+
+				gmValues.GameObjectID = ___value.GetInstanceID();
+
+				Debugger.Log("ID for " + ___value + " = " + ___value.GetInstanceID());
 			}
-			catch (NullReferenceException)
+			catch (Exception)
 			{
-				values.GameObjectID = 0;
+				//If we reach here, then ___owner or gameObject is truly null
+			}
+		}
+
+		static void IDChecker(Fsm __instance, MonoBehaviour ___owner)
+		{
+			try
+			{
+				var gmValues = GameObjectIDs.GetOrCreate(___owner.gameObject);
+				var fsmValues = FSMIDs.GetOrCreate((PlayMakerFSM)___owner);
+
+				gmValues.GameObjectID = ___owner.gameObject.GetInstanceID();
+				fsmValues.GameObjectID = ___owner.gameObject.GetInstanceID();
+			}
+			catch (Exception)
+			{
+				//If we reach here, then ___owner or gameObject is truly null
+			}
+		}*/
+
+		private static void Fsm_Event_FsmEventTarget_FsmEvent(On.HutongGames.PlayMaker.Fsm.orig_Event_FsmEventTarget_FsmEvent orig, Fsm self, FsmEventTarget eventTarget, FsmEvent fsmEvent)
+		{
+			Debugger.Log("INSIDE PREFIX");
+
+			try
+			{
+				if (fsmEvent != null)
+				{
+					foreach (var eventHook in EventHooks)
+					{
+						if (fsmEvent.Name == eventHook.eventName)
+						{
+							var receiver = eventHook.destination.GetComponent<EventReceiver>();
+							if (receiver != null)
+							{
+								receiver.ReceiveEvent(fsmEvent.Name, self.GameObject);
+							}
+						}
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				Debugger.Log("EVENT PREFIX ERROR = " + e);
+			}
+			finally
+			{
+				orig(self, eventTarget, fsmEvent);
 			}
 		}
 
@@ -84,6 +159,7 @@ namespace WeaverCore.Game.Implementations
 		{
 			try
 			{
+				//Debugger.Log("RUNNING PREFIX");
 				if (fsmEvent == null)
 				{
 					return true;
@@ -95,12 +171,88 @@ namespace WeaverCore.Game.Implementations
 						var receiver = eventHook.destination.GetComponent<EventReceiver>();
 						if (receiver != null)
 						{
-							receiver.ReceiveEvent(fsmEvent.Name);
+							receiver.ReceiveEvent(fsmEvent.Name,__instance.GameObject);
 						}
 					}
 				}
 
-				var objectID = GameObjectIDs.GetOrCreate(__instance).GameObjectID;
+				/*int objectID = int.MaxValue;
+
+				if (eventTarget == null)
+				{
+					return true;
+				}
+
+				Debugger.Log("A");
+
+				Debugger.Log("Event Target = " + eventTarget);
+
+				Debugger.Log("Target = " + eventTarget.target);
+
+				if (eventTarget.target == FsmEventTarget.EventTarget.GameObject)
+				{
+					Debugger.Log("B");
+					Debugger.Log("G1 = " + eventTarget.gameObject);
+					Debugger.Log("G2 = " + eventTarget.gameObject?.GameObject);
+					Debugger.Log("G3 = " + eventTarget.gameObject?.GameObject?.Value);
+					try
+					{
+						objectID = GameObjectIDs.GetOrCreate(eventTarget.gameObject.GameObject.Value).GameObjectID;
+						Debugger.Log("FOUND OBJECT ID = " + objectID);
+					}
+					catch (Exception)
+					{
+						
+					}
+					
+				}
+				else if (eventTarget.target == FsmEventTarget.EventTarget.GameObjectFSM)
+				{
+					Debugger.Log("C");
+					Debugger.Log("G1 = " + eventTarget.gameObject);
+					Debugger.Log("G2 = " + eventTarget.gameObject?.GameObject);
+					Debugger.Log("G3 = " + eventTarget.gameObject?.GameObject?.Value);
+					try
+					{
+						objectID = GameObjectIDs.GetOrCreate(eventTarget.gameObject.GameObject.Value).GameObjectID;
+						Debugger.Log("FOUND OBJECT ID = " + objectID);
+					}
+					catch (Exception)
+					{
+						
+					}
+				}
+				else if (eventTarget.target == FsmEventTarget.EventTarget.FSMComponent)
+				{
+					Debugger.Log("D");
+					try
+					{
+						objectID = FSMIDs.GetOrCreate(eventTarget.fsmComponent).GameObjectID;
+					}
+					catch (Exception)
+					{
+						
+					}
+				}
+				else
+				{
+					Debugger.Log("E");
+					return true;
+				}
+
+				//var objectID = GameObjectIDs.GetOrCreate(__instance).GameObjectID;
+
+				Debugger.Log("Current Event = " + fsmEvent.Name);
+				Debugger.Log("Event Instance ID = " + objectID);
+
+				foreach (var allHooks in GameObjectHooks)
+				{
+					Debugger.Log("All Hooks Key Instance ID = " + allHooks.Key);
+					foreach (var destination in allHooks.Value)
+					{
+						Debugger.Log("Hook Destination = " + destination.name);
+					}
+				}
 
 				if (GameObjectHooks.TryGetValue(objectID,out var list) && list != null)
 				{
@@ -112,7 +264,7 @@ namespace WeaverCore.Game.Implementations
 							receiver.ReceiveEvent(fsmEvent.Name);
 						}
 					}
-				}
+				}*/
 				return true;
 			}
 			catch (Exception e)
@@ -162,7 +314,7 @@ namespace WeaverCore.Game.Implementations
 			}
 		}*/
 
-		public override void ReceiveEventsFromObject(int instanceID, GameObject destination)
+		/*public override void ReceiveEventsFromObject(int instanceID, GameObject destination)
 		{
 			List<GameObject> HookList;
 
@@ -183,7 +335,7 @@ namespace WeaverCore.Game.Implementations
 			{
 				destination.AddComponent<EventReceiver>();
 			}
-		}
+		}*/
 
 		public override void ReceiveAllEventsOfName(string name, GameObject destination)
 		{
@@ -192,25 +344,27 @@ namespace WeaverCore.Game.Implementations
 				throw new Exception("The gameObject cannot be null");
 			}
 
+			Debugger.Log("Adding object for " + name);
+
 			EventHooks.Add(new EventInfo() { eventName = name, destination = destination });
 		}
 
 		public override void RemoveReceiver(GameObject destination)
 		{
 			EventHooks.RemoveAll(hook => hook.destination == destination);
-			foreach (var entry in GameObjectHooks)
+			/*foreach (var entry in GameObjectHooks)
 			{
 				if (entry.Value != null)
 				{
 					entry.Value.Remove(destination);
 					//TODO - OPTIMIZE BY REMOVING KEY WHEN LIST IS EMPTY
 				}
-			}
+			}*/
 		}
 
-		public override void OnReceiveEvent(EventReceiver receiver, string eventName)
+		/*public override void OnReceiveEvent(EventReceiver receiver, string eventName)
 		{
 			
-		}
+		}*/
 	}
 }

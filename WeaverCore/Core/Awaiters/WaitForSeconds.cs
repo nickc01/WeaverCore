@@ -7,7 +7,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Awaiters
 {
-	public class WaitForSeconds : IUAwaiter
+	public class WaitForSeconds : IWeaverAwaiter
 	{
 		float time;
 		float elapsed = 0;
@@ -19,7 +19,7 @@ namespace WeaverCore.Awaiters
 
 		public bool KeepWaiting()
 		{
-			elapsed += URoutine.DT;
+			elapsed += WeaverRoutine.DT;
 			return elapsed < time;
 		}
 	}

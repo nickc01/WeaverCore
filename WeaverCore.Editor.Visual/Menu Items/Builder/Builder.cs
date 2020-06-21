@@ -73,7 +73,7 @@ namespace WeaverCore.Editor.Visual
 		public static void Compile()
 		{
 			Debugger.Log("AA");
-			URoutine.Start(BeginCompile());
+			WeaverRoutine.Start(BeginCompile());
 			/*BuildSettingsScreen.ChooseString((modName) =>
 			{
 				EditorRoutine.Start(BeginCompile(modName));
@@ -183,7 +183,7 @@ namespace WeaverCore.Editor.Visual
 			}
 		}
 
-		public static IEnumerator<IUAwaiter> BeginCompile()
+		public static IEnumerator<IWeaverAwaiter> BeginCompile()
 		{
 			Debugger.Log("A");
 			yield return BuildSettingsScreen.RetrieveBuildSettings();

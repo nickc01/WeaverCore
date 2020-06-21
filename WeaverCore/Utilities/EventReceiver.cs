@@ -11,14 +11,17 @@ namespace WeaverCore.Utilities
 {
 	public class EventReceiver : MonoBehaviour
 	{
-		List<int> GameObjectHooks = new List<int>();
+		//List<int> GameObjectHooks = new List<int>();
 		List<string> EventHooks = new List<string>();
 
 		static HashSet<EventReceiver> allReceivers = new HashSet<EventReceiver>();
 
 		public static IEnumerable<EventReceiver> AllReceivers => allReceivers;
 
-		public event Action<string> OnReceiveEvent;
+		/// <summary>
+		/// An event that is called when an event is received. The string is the event, and the GameObject is the gameObject that sent the event
+		/// </summary>
+		public event Action<string,GameObject> OnReceiveEvent;
 
 		static EventReceiver_I impl;
 
@@ -37,10 +40,10 @@ namespace WeaverCore.Utilities
 		{
 			allReceivers.Add(this);
 
-			foreach (var gmHook in GameObjectHooks)
+			/*foreach (var gmHook in GameObjectHooks)
 			{
 				ReceiveEventsFromObject(gmHook);
-			}
+			}*/
 			foreach (var eventHook in EventHooks)
 			{
 				ReceiveAllEventsFromName(eventHook);
@@ -53,12 +56,16 @@ namespace WeaverCore.Utilities
 			StopReceiver();
 		}
 
-		public void ReceiveEventsFromObject(GameObject obj)
+		/*public void ReceiveEventsFromObject(GameObject obj)
 		{
 			if (obj == null)
 			{
 				throw new NullReferenceException("GameObject cannot be null");
 			}
+
+			Debugger.Log("Receiving from = " + obj.name);
+			Debugger.Log("Receiving ID = " + obj.GetInstanceID());
+
 			ReceiveEventsFromObject(obj.GetInstanceID());
 		}
 
@@ -69,7 +76,7 @@ namespace WeaverCore.Utilities
 			{
 				GameObjectHooks.Add(instanceID);
 			}
-		}
+		}*/
 
 		public void ReceiveAllEventsFromName(string eventName)
 		{
@@ -80,11 +87,11 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-		public void ReceiveEvent(string eventName)
+		public void ReceiveEvent(string eventName,GameObject source)
 		{
 			if (enabled)
 			{
-				OnReceiveEvent?.Invoke(eventName);
+				OnReceiveEvent?.Invoke(eventName,source);
 			}
 		}
 

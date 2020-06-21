@@ -6,7 +6,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Awaiters
 {
-	public class WaitTillTrue : IUAwaiter
+	public class WaitTillTrue : IWeaverAwaiter
 	{
 		Func<bool> Delegate;
 

@@ -117,9 +117,9 @@ namespace WeaverCore.Utilities
 
 			float storedAlpha = sprite.color.a;
 
-			URoutine.Start(TeleportRoutine());
+			WeaverRoutine.Start(TeleportRoutine());
 
-			IEnumerator<IUAwaiter> TeleportRoutine()
+			IEnumerator<IWeaverAwaiter> TeleportRoutine()
 			{
 				if (teleInTime == 0f && teleOutTime == 0f)
 				{

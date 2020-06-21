@@ -42,10 +42,10 @@ namespace WeaverCore.Editor.Implementations
             public override void EndBossBattle(float delayTime)
             {
                 OnBossesDead?.Invoke();
-                URoutine.Start(EndBossDelayed(delayTime));
+                WeaverRoutine.Start(EndBossDelayed(delayTime));
             }
 
-            IEnumerator<IUAwaiter> EndBossDelayed(float delayTime)
+            IEnumerator<IWeaverAwaiter> EndBossDelayed(float delayTime)
             {
                 yield return new Awaiters.WaitForSeconds(delayTime);
                 OnBossSceneComplete?.Invoke();

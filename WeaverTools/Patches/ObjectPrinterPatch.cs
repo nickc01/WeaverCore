@@ -19,10 +19,7 @@ namespace WeaverTools.Patches
 			{
 				ObjectDebugger.DebugObject(self.gameObject);
 			}
-			if (!ObjectDebugger.ObjectBeingDebugged(self.gameObject))
-			{
-				orig(self);
-			}
+			orig(self);
 		}
 
 		internal static void HeroController_Start(On.HeroController.orig_Start orig, HeroController self)
@@ -33,10 +30,7 @@ namespace WeaverTools.Patches
 				//WeaverCore.Debugger.Log("Printing Player");
 				ObjectDebugger.DebugObject(self.gameObject);
 			}
-			if (!ObjectDebugger.ObjectBeingDebugged(self.gameObject))
-			{
-				orig(self);
-			}
+			orig(self);
 		}
 
 		internal static void SceneManager_sceneLoaded(Scene scene, LoadSceneMode loadMode)

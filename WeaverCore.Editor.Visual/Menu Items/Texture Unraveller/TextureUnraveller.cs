@@ -51,7 +51,7 @@ namespace WeaverCore.Editor.Visual
 		[MenuItem("WeaverCore/Unravel Texture")]
 		public static void UnravelTexture()
 		{
-			URoutine.Start(StartUnravelling());
+			WeaverRoutine.Start(StartUnravelling());
 		}
 
 
@@ -161,7 +161,7 @@ namespace WeaverCore.Editor.Visual
 		}
 
 
-		static IEnumerator<IUAwaiter> StartUnravelling()
+		static IEnumerator<IWeaverAwaiter> StartUnravelling()
 		{
 			yield return UnravelWindow.GetUnravelSettings();
 

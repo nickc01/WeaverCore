@@ -10,7 +10,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Implementations
 {
-	public class G_URoutine_I : URoutine_I
+	public class G_WeaverRoutine_I : WeaverRoutine_I
     {
         class Init : IInit
         {
@@ -43,7 +43,7 @@ namespace WeaverCore.Game.Implementations
 
                 while (keepIterating)
                 {
-                    IUAwaiter awaiter = data.OriginalFunction.Current;
+                    IWeaverAwaiter awaiter = data.OriginalFunction.Current;
 
                     if (awaiter == null)
                     {
@@ -77,7 +77,7 @@ namespace WeaverCore.Game.Implementations
             }
         }
 
-        public override URoutineData Start(IEnumerator<IUAwaiter> function)
+        public override URoutineData Start(IEnumerator<IWeaverAwaiter> function)
         {
             var data = new Data()
             {
@@ -145,7 +145,7 @@ namespace WeaverCore.Game.Implementations
 
         class Data : URoutineData
         {
-            public IEnumerator<IUAwaiter> OriginalFunction;
+            public IEnumerator<IWeaverAwaiter> OriginalFunction;
             public IEnumerator Function;
             public bool Started = false;
             public bool Done = false;
@@ -153,16 +153,16 @@ namespace WeaverCore.Game.Implementations
         }
 
 
-        class FunctionIEnumerable : IEnumerable<IUAwaiter>
+        class FunctionIEnumerable : IEnumerable<IWeaverAwaiter>
         {
-            IEnumerator<IUAwaiter> function;
+            IEnumerator<IWeaverAwaiter> function;
 
-            public FunctionIEnumerable(IEnumerator<IUAwaiter> function)
+            public FunctionIEnumerable(IEnumerator<IWeaverAwaiter> function)
             {
                 this.function = function;
             }
 
-            public IEnumerator<IUAwaiter> GetEnumerator()
+            public IEnumerator<IWeaverAwaiter> GetEnumerator()
             {
                 return function;
             }

@@ -10,18 +10,23 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Internal
 {
-	static class RuntimeInitializer
+	public static class RuntimeInitializer
 	{
+		static HashSet<Assembly> InitializedAssemblies = new HashSet<Assembly>();
+
 		[RuntimeInitializeOnLoadMethod]
 		static void Load()
 		{
-			IRuntimePatchRunner.RuntimeInit();
+			RuntimeInit();
 		}
 
-		class IRuntimePatchRunner
+		static bool run = false;
+
+		public static void RuntimeInit()
 		{
-			public static void RuntimeInit()
+			if (!run)
 			{
+				run = true;
 				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 				{
 					DoRuntimeInit(assembly);
@@ -29,25 +34,32 @@ namespace WeaverCore.Internal
 
 				AppDomain.CurrentDomain.AssemblyLoad += CurrentDomain_AssemblyLoad;
 			}
+		}
 
-			private static void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args)
+		private static void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args)
+		{
+			DoRuntimeInit(args.LoadedAssembly);
+		}
+
+		static void DoRuntimeInit(Assembly assembly)
+		{
+			if (InitializedAssemblies.Contains(assembly))
 			{
-				DoRuntimeInit(args.LoadedAssembly);
+				return;
 			}
 
-			static void DoRuntimeInit(Assembly assembly)
+			InitializedAssemblies.Add(assembly);
+
+			foreach (var type in assembly.GetTypes().Where(t => typeof(IRuntimeInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
 			{
-				foreach (var type in assembly.GetTypes().Where(t => typeof(IRuntimeInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
+				var rInit = (IRuntimeInit)Activator.CreateInstance(type);
+				try
 				{
-					var rInit = (IRuntimeInit)Activator.CreateInstance(type);
-					try
-					{
-						rInit.RuntimeInit();
-					}
-					catch (Exception e)
-					{
-						Debugger.LogError("Runtime Init Error: " + e);
-					}
+					rInit.RuntimeInit();
+				}
+				catch (Exception e)
+				{
+					Debugger.LogError("Runtime Init Error: " + e);
 				}
 			}
 		}

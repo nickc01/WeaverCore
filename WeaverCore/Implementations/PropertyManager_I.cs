@@ -5,7 +5,7 @@ using System.Text;
 using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 
-namespace WeaverCore.Implementations
+/*namespace WeaverCore.Implementations
 {
 	public abstract class PropertyManager_I : IImplementation
 	{
@@ -30,5 +30,5 @@ namespace WeaverCore.Implementations
 			}
 		}
 	}
-}
+}*/
 

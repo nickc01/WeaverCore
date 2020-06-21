@@ -9,7 +9,7 @@ using System.Reflection;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 
-namespace WeaverCore.Utilities
+/*namespace WeaverCore.Utilities
 {
     public class EquatableWeakReference : WeakReference
     {
@@ -161,64 +161,7 @@ namespace WeaverCore.Utilities
 
     static class InternalInfo
     {
-        //public static Thread CheckingThread = null;
-
         public static PropertyManager_I Manager = null;
-
-        //public static List<IPropertyTableBase> propertyTables = new List<IPropertyTableBase>();
-
-        //static bool Ending = false;
-
-        //static void OnGameQuit()
-        //{
-        //    Ending = true;
-        //}
-
-        /*public static void CheckLoop()
-        {
-            try
-            {
-                while (true)
-                {
-                    lock (TableLock)
-                    {
-                        index++;
-                        if (index >= propertyTables.Count)
-                        {
-                            index = 0;
-                        }
-                        if (propertyTables.Count > 0)
-                        {
-                            Clean(propertyTables[index]);
-                        }
-                        Thread.Sleep((int)(10000.0f / (propertyTables.Count + 1)));
-                    }
-                }
-            }
-            catch (System.Threading.ThreadAbortException)
-            {
-
-            }
-            catch (Exception e)
-            {
-                Debugger.LogError("CLEANER ERROR -> " + e);
-            }
-        }
-
-        public static void Clean(IPropertyTableBase table)
-        {
-            //Debugger.Log("Locking Thread");
-            lock (table.Lock)
-            {
-                foreach (var key in table.Keys.ToList())
-                {
-                    if (!table.Validate(key))
-                    {
-                        table.Remove(key);
-                    }
-                }
-            }
-        }*/
     }
 
     public interface IPropertyTableBase
@@ -288,21 +231,6 @@ namespace WeaverCore.Utilities
             InternalInfo.Manager.AddTable(this);
         }
 
-        //void StartChecker()
-        //{
-
-            
-            /*if (PropertyHolder.CheckingThread == null)
-            {
-                PropertyHolder.CheckingThread = new Thread(PropertyHolder.CheckLoop);
-                PropertyHolder.CheckingThread.Start();
-            }*/
-            /*lock (PropertyHolder.TableLock)
-            {
-                PropertyHolder.propertyTables.Add(this);
-            }*/
-        //}
-
         public PropertyType GetOrCreate(InstanceType instance)
         {
             return GetOrCreate(instance, () => new PropertyType());
@@ -323,26 +251,17 @@ namespace WeaverCore.Utilities
 
         public PropertyType GetOrCreate(InstanceType instance, Func<PropertyType> Factory)
         {
-            //Modding.Logger.Log("LOCKERA = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                /*if (!usedOnce)
-                {
-                    usedOnce = true;
-                    StartChecker();
-                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
-                    //Modding.Logger.Log("UNLOCKA = " + Thread.CurrentThread.GetHashCode());
                     return properties[reference];
                 }
                 else
                 {
                     var prop = Factory();
-                    //OnAdd(reference, prop);
                     properties.Add(reference, prop);
-                    //Modding.Logger.Log("UNLOCKA = " + Thread.CurrentThread.GetHashCode());
                     return prop;
                 }
             }
@@ -350,39 +269,24 @@ namespace WeaverCore.Utilities
 
         public bool Contains(InstanceType instance)
         {
-            //Modding.Logger.Log("LOCKERB = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                /*if (!usedOnce)
-                {
-                    usedOnce = true;
-                    StartChecker();
-                }*/
                 var reference = new WeakReference<InstanceType>(instance);
-                //Modding.Logger.Log("UNLOCKB = " + Thread.CurrentThread.GetHashCode());
                 return properties.ContainsKey(reference);
             }
         }
 
         public PropertyType Get(InstanceType instance)
         {
-            //Modding.Logger.Log("LOCKERC = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                /*if (!usedOnce)
-                {
-                    usedOnce = true;
-                    StartChecker();
-                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
-                    //Modding.Logger.Log("UNLOCKC = " + Thread.CurrentThread.GetHashCode());
                     return properties[reference];
                 }
                 else
                 {
-                    //Modding.Logger.Log("UNLOCKC = " + Thread.CurrentThread.GetHashCode());
                     return null;
                 }
             }
@@ -392,11 +296,6 @@ namespace WeaverCore.Utilities
         {
             lock (Lock)
             {
-                /*if (!usedOnce)
-                {
-                    usedOnce = true;
-                    StartChecker();
-                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
@@ -413,25 +312,16 @@ namespace WeaverCore.Utilities
 
         public bool Remove(InstanceType instance)
         {
-            //Modding.Logger.Log("LOCKERD = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                /*if (!usedOnce)
-                {
-                    usedOnce = true;
-                    StartChecker();
-                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
-                    //OnRemoval(reference, properties[reference]);
                     properties.Remove(reference);
-                    //Modding.Logger.Log("UNLOCKD = " + Thread.CurrentThread.GetHashCode());
                     return true;
                 }
                 else
                 {
-                    //Modding.Logger.Log("UNLOCK = " + Thread.CurrentThread.GetHashCode());
                     return false;
                 }
             }
@@ -443,48 +333,21 @@ namespace WeaverCore.Utilities
             {
                 disposed = true;
                 InternalInfo.Manager.RemoveTable(this);
-                //Modding.Logger.Log("LOCKERE = " + Thread.CurrentThread.GetHashCode());
-                /*lock (InternalInfo.TableLock)
-                {
-                    if (usedOnce)
-                    {
-                        InternalInfo.propertyTables.Remove(this);
-                    }
-                    //Modding.Logger.Log("UNLOCKE = " + Thread.CurrentThread.GetHashCode());
-                }*/
                 GC.SuppressFinalize(this);
             }
         }
 
         void IPropertyTableBase.Remove(EquatableWeakReference instance)
         {
-            //Modding.Logger.Log("LOCKERF = " + Thread.CurrentThread.GetHashCode());
             lock (Lock)
             {
-                /*if (!usedOnce)
-                {
-                    usedOnce = true;
-                    StartChecker();
-                }*/
                 var reference = new WeakReference<InstanceType>(instance);
                 if (properties.ContainsKey(reference))
                 {
-                    //OnRemoval(reference, properties[reference]);
                     properties.Remove(reference);
                 }
-               // Modding.Logger.Log("UNLOCKF = " + Thread.CurrentThread.GetHashCode());
             }
         }
-
-        /*protected virtual void OnRemoval(WeakReference<InstanceType> instance, PropertyType properties )
-        {
-
-        }
-
-        protected virtual void OnAdd(WeakReference<InstanceType> instance, PropertyType properties)
-        {
-
-        }*/
 
         bool IPropertyTableBase.Validate(EquatableWeakReference instance)
         {
@@ -518,4 +381,4 @@ namespace WeaverCore.Utilities
             Dispose();
         }
     }
-}
+}*/

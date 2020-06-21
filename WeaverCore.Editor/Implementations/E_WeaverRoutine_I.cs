@@ -9,9 +9,9 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Implementations
 {
-	public class E_URoutine_I : URoutine_I
+	public class E_WeaverRoutine_I : WeaverRoutine_I
     {
-		static List<IEnumerator<IUAwaiter>> Routines = new List<IEnumerator<IUAwaiter>>();
+		static List<IEnumerator<IWeaverAwaiter>> Routines = new List<IEnumerator<IWeaverAwaiter>>();
 
 		static bool started = false;
 		static bool initializedTimers = false;
@@ -20,7 +20,7 @@ namespace WeaverCore.Game.Implementations
 
 		public override float DT => time - previousTime;
 
-		public override URoutineData Start(IEnumerator<IUAwaiter> function)
+		public override URoutineData Start(IEnumerator<IWeaverAwaiter> function)
         {
             if (!started)
             {
@@ -84,7 +84,7 @@ namespace WeaverCore.Game.Implementations
 
 		class Data : URoutineData
 		{
-			public IEnumerator<IUAwaiter> Function;
+			public IEnumerator<IWeaverAwaiter> Function;
 		}
 
 	}

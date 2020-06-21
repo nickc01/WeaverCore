@@ -19,7 +19,7 @@ namespace WeaverCore.Editor.Visual
 		static bool Open = false;
 		static bool Done = false;
 
-		public static IUAwaiter GetUnravelSettings()
+		public static IWeaverAwaiter GetUnravelSettings()
 		{
 			if (Open)
 			{

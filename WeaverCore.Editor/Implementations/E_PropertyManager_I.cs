@@ -8,7 +8,7 @@ using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 
-namespace WeaverCore.Editor.Implementations
+/*namespace WeaverCore.Editor.Implementations
 {
 	public class E_PropertyManager_I : PropertyManager_I
 	{
@@ -63,4 +63,4 @@ namespace WeaverCore.Editor.Implementations
 			}
 		}
 	}
-}
+}*/

@@ -71,10 +71,10 @@ namespace WeaverTools
 
         private void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
         {
-            URoutine.Start(PrintObjectIDs());
+            WeaverRoutine.Start(PrintObjectIDs());
         }
 
-        static IEnumerator<IUAwaiter> PrintObjectIDs()
+        static IEnumerator<IWeaverAwaiter> PrintObjectIDs()
         {
             yield return null;
             ToolSettings settings = ToolSettings.GetSettings();

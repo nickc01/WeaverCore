@@ -11,12 +11,12 @@ namespace WeaverCore.Game.Implementations
 {
 	public class G_WeaverEvents_I : WeaverEvents_I
 	{
-		public override void BroadcastEvent(string eventName)
+		public override void BroadcastEvent(string eventName,GameObject source)
 		{
 			Debugger.Log("Broadcasting Event = " + eventName);
 			foreach (var receiver in EventReceiver.AllReceivers)
 			{
-				receiver.ReceiveEvent(eventName);
+				receiver.ReceiveEvent(eventName,source);
 			}
 
 			if (PlayMakerFSM.FsmList.Count > 0)
@@ -39,7 +39,7 @@ namespace WeaverCore.Game.Implementations
 			EventReceiver receiver = null;
 			if ((receiver = gameObject.GetComponent<EventReceiver>()) != null)
 			{
-				receiver.ReceiveEvent(eventName);
+				receiver.ReceiveEvent(eventName,gameObject);
 			}
 
 			var FSMs = gameObject.GetComponents<PlayMakerFSM>();

@@ -10,11 +10,11 @@ namespace WeaverCore.Editor.Implementations
 {
 	public class E_WeaverEvents_I : WeaverEvents_I
 	{
-		public override void BroadcastEvent(string eventName)
+		public override void BroadcastEvent(string eventName,GameObject source)
 		{
 			foreach (var receiver in EventReceiver.AllReceivers)
 			{
-				receiver.ReceiveEvent(eventName);
+				receiver.ReceiveEvent(eventName,source);
 			}
 		}
 
@@ -23,7 +23,7 @@ namespace WeaverCore.Editor.Implementations
 			EventReceiver receiver = null;
 			if ((receiver = gameObject.GetComponent<EventReceiver>()) != null)
 			{
-				receiver.ReceiveEvent(eventName);
+				receiver.ReceiveEvent(eventName,gameObject);
 			}
 		}
 	}

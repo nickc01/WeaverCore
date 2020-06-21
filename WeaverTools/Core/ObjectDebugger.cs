@@ -122,16 +122,15 @@ namespace WeaverTools
 		}
 
 
-		static PropertyTable<GameObject, BeingDebugged> DebuggedObjects = new PropertyTable<GameObject, BeingDebugged>();
+		//static PropertyTable<GameObject, BeingDebugged> DebuggedObjects = new PropertyTable<GameObject, BeingDebugged>();
 
-		public static bool ObjectBeingDebugged(GameObject gameObject)
+		/*public static bool ObjectBeingDebugged(GameObject gameObject)
 		{
 			return DebuggedObjects.GetOrCreate(gameObject).beingDebugged;
-		}
+		}*/
 
 		public static void DebugObject(GameObject gameObject)
 		{
-			//Debugger.Log("TEST");
 			var directory = DebugDirectory.CreateSubdirectory("GameObjects").CreateSubdirectory(CleanName(gameObject.name));
 			DebugObject(gameObject, directory);
 		}
@@ -142,12 +141,12 @@ namespace WeaverTools
 
 		static void DebugObject(GameObject gameObject, DirectoryInfo directory = null, int ancestryNumber = 0, bool objectOnly = false)
 		{
-			var isBeingDebugged = DebuggedObjects.GetOrCreate(gameObject);
+			/*var isBeingDebugged = DebuggedObjects.GetOrCreate(gameObject);
 			if (isBeingDebugged.beingDebugged)
 			{
 				return;
 			}
-			isBeingDebugged.beingDebugged = true;
+			isBeingDebugged.beingDebugged = true;*/
 			try
 			{
 				try
@@ -236,7 +235,7 @@ namespace WeaverTools
 						start.Invoke(component, null);
 					}
 				}*/
-				isBeingDebugged.beingDebugged = false;
+				//isBeingDebugged.beingDebugged = false;
 			}
 		}
 

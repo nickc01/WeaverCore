@@ -335,7 +335,7 @@
     <Compile Include="Implementations\G_PropertyManager_I.cs" />
     <Compile Include="Implementations\G_RegistryLoader_I.cs" />
     <Compile Include="Implementations\G_Player_I.cs" />
-    <Compile Include="Implementations\G_URoutine_I.cs" />
+    <Compile Include="Implementations\G_WeaverRoutine_I.cs" />
     <Compile Include="Implementations\G_WeaverCam_I.cs" />
     <Compile Include="Implementations\G_WeaverEvents_I.cs" />
     <Compile Include="GameInitializer.cs" />

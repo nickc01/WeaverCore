@@ -13,13 +13,21 @@ namespace WeaverCore.Interfaces
 
 	internal static class InitRunner
 	{
+		static HashSet<Assembly> InitializedAssemblies = new HashSet<Assembly>();
+
+		static bool run = false;
+
 		public static void RunInitFunctions()
 		{
-			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+			if (!run)
 			{
-				RunInitFunctions(assembly);
+				run = true;
+				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+				{
+					RunInitFunctions(assembly);
+				}
+				AppDomain.CurrentDomain.AssemblyLoad += CurrentDomain_AssemblyLoad;
 			}
-			AppDomain.CurrentDomain.AssemblyLoad += CurrentDomain_AssemblyLoad;
 		}
 
 		private static void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args)
@@ -27,8 +35,17 @@ namespace WeaverCore.Interfaces
 			RunInitFunctions(args.LoadedAssembly);
 		}
 
-		public static void RunInitFunctions(Assembly assembly)
+		static void RunInitFunctions(Assembly assembly)
 		{
+			if (InitializedAssemblies.Contains(assembly))
+			{
+				return;
+			}
+
+			InitializedAssemblies.Add(assembly);
+
+			Debugger.Log("RUnning Init Funcs for = " + assembly);
+
 			foreach (var type in assembly.GetTypes().Where(t => typeof(IInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
 			{
 				var init = (IInit)Activator.CreateInstance(type);

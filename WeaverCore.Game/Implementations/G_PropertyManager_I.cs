@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine;
 using WeaverCore.Utilities;
 
-namespace WeaverCore.Game.Implementations
+/*namespace WeaverCore.Game.Implementations
 {
     public class G_PropertyManager_I : WeaverCore.Implementations.PropertyManager_I
     {
@@ -42,12 +42,6 @@ namespace WeaverCore.Game.Implementations
                 //On.InControl.InControlManager.Update += EarliestUpdate;
             }
         }
-
-        /*private void GameManager_Update(On.GameManager.orig_Update orig, GameManager self)
-        {
-            Debugger.Log("Game Manager Called");
-            On.GameManager.Update -= GameManager_Update;
-        }*/
 
         private void SceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
         {
@@ -91,4 +85,4 @@ namespace WeaverCore.Game.Implementations
         }
 
     }
-}
+}*/

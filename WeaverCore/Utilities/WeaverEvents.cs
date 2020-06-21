@@ -11,9 +11,9 @@ namespace WeaverCore.Utilities
 	{
 		static WeaverEvents_I impl = ImplFinder.GetImplementation<WeaverEvents_I>();
 
-		public static void BroadcastEvent(string eventName)
+		public static void BroadcastEvent(string eventName, GameObject source = null)
 		{
-			impl.BroadcastEvent(eventName);
+			impl.BroadcastEvent(eventName,source);
 		}
 
 		public static void SendEventToObject(GameObject gameObject, string eventName)

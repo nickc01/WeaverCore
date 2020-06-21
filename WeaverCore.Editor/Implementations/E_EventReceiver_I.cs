@@ -14,7 +14,7 @@ namespace WeaverCore.Editor.Implementations
 	public class E_EventReceiver_I : EventReceiver_I
 	{
 		Dictionary<string, List<GameObject>> EventHooks = new Dictionary<string, List<GameObject>>();
-		Dictionary<int, List<GameObject>> GameObjectHooks = new Dictionary<int, List<GameObject>>();
+		//Dictionary<int, List<GameObject>> GameObjectHooks = new Dictionary<int, List<GameObject>>();
 
 		public override void ReceiveAllEventsOfName(string eventName, GameObject destination)
 		{
@@ -40,14 +40,14 @@ namespace WeaverCore.Editor.Implementations
 
 		public override void RemoveReceiver(GameObject obj)
 		{
-			foreach (var entry in GameObjectHooks)
+			/*foreach (var entry in GameObjectHooks)
 			{
 				if (entry.Value != null)
 				{
 					entry.Value.Remove(obj);
 					//TODO - OPTIMIZE BY REMOVING KEY WHEN LIST IS EMPTY
 				}
-			}
+			}*/
 
 			foreach (var entry in EventHooks)
 			{
@@ -59,7 +59,7 @@ namespace WeaverCore.Editor.Implementations
 			}
 		}
 
-		public override void ReceiveEventsFromObject(int instanceID, GameObject destination)
+		/*public override void ReceiveEventsFromObject(int instanceID, GameObject destination)
 		{
 			List<GameObject> HookList;
 			if (!GameObjectHooks.ContainsKey(instanceID))
@@ -74,9 +74,9 @@ namespace WeaverCore.Editor.Implementations
 			{
 				HookList.Add(destination);
 			}
-		}
+		}*/
 
-		public override void OnReceiveEvent(EventReceiver receiver, string eventName)
+		/*public override void OnReceiveEvent(EventReceiver receiver, string eventName)
 		{
 			if (GameObjectHooks.ContainsKey(receiver.gameObject.GetInstanceID()))
 			{
@@ -110,6 +110,6 @@ namespace WeaverCore.Editor.Implementations
 				}
 			}
 
-		}
+		}*/
 	}
 }

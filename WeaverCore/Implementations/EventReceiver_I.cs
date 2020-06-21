@@ -11,12 +11,12 @@ namespace WeaverCore.Implementations
     {
         public abstract void Initialize();
 
-        public abstract void ReceiveEventsFromObject(int instanceID, GameObject destination);
+        //public abstract void ReceiveEventsFromObject(int instanceID, GameObject destination);
 
         public abstract void ReceiveAllEventsOfName(string eventName, GameObject destination);
 
         public abstract void RemoveReceiver(GameObject destination);
 
-        public abstract void OnReceiveEvent(EventReceiver receiver, string eventName);
+        //public abstract void OnReceiveEvent(EventReceiver receiver, string eventName);
     }
 }

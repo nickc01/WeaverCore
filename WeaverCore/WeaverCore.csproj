@@ -352,6 +352,7 @@
     <Compile Include="Interfaces\IObjectReplacement.cs" />
     <Compile Include="Interfaces\IPatch.cs" />
     <Compile Include="Interfaces\IRuntimeInit.cs" />
+    <Compile Include="Internal\PatchRunner.cs" />
     <Compile Include="Utilities\AnimationUtilities.cs" />
     <Compile Include="Utilities\CameraShaker.cs" />
     <Compile Include="Utilities\CoroutineUtilities.cs" />
@@ -367,7 +368,7 @@
     <Compile Include="Utilities\WeaverGameManager.cs" />
     <Compile Include="Implementations\GameManager_I.cs" />
     <Compile Include="Implementations\WeaverEvents_I.cs" />
-    <Compile Include="Interfaces\IUAwaiter.cs" />
+    <Compile Include="Interfaces\IWeaverAwaiter.cs" />
     <Compile Include="Core\WeaverDirectory.cs" />
     <Compile Include="Core\Core.cs" />
     <Compile Include="Core\Debugger.cs" />
@@ -378,7 +379,7 @@
     <Compile Include="Utilities\PropertyTable.cs" />
     <Compile Include="DataTypes\TextureSheet.cs" />
     <Compile Include="Utilities\UnityHelpers.cs" />
-    <Compile Include="Utilities\URoutine.cs" />
+    <Compile Include="Utilities\WeaverRoutine.cs" />
     <Compile Include="Utilities\WeaverAssetLoader.cs" />
     <Compile Include="Implementations\DamageHero_I.cs" />
     <Compile Include="Implementations\EventReceiver_I.cs" />
@@ -389,7 +390,7 @@
     <Compile Include="Utilities\HarmonyPatcher.cs" />
     <Compile Include="Utilities\ImplFinder.cs" />
     <Compile Include="Utilities\MethodUtilities.cs" />
-    <Compile Include="Implementations\URoutine_I.cs" />
+    <Compile Include="Implementations\WeaverRoutine_I.cs" />
     <Compile Include="Core\Enums\AttackType.cs" />
     <Compile Include="Core\Enums\CardinalDirection.cs" />
     <Compile Include="Utilities\DirectionUtilities.cs" />

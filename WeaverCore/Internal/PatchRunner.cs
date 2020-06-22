@@ -14,7 +14,7 @@ namespace WeaverCore.Internal
 
 		public void OnInit()
 		{
-			Debugger.Log("PATCHING ALL ASSEMBLIES = " + new System.Diagnostics.StackTrace(true));
+			//Debugger.Log("PATCHING ALL ASSEMBLIES = " + new System.Diagnostics.StackTrace(true));
 
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{

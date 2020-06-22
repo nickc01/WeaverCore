@@ -44,7 +44,7 @@ namespace WeaverCore.Interfaces
 
 			InitializedAssemblies.Add(assembly);
 
-			Debugger.Log("RUnning Init Funcs for = " + assembly);
+			//Debugger.Log("RUnning Init Funcs for = " + assembly);
 
 			foreach (var type in assembly.GetTypes().Where(t => typeof(IInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
 			{

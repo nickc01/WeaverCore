@@ -4,6 +4,66 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Weaverling
+  - WindyGrass
+  - Grimmchild
+  - Orbit Shield
+  - Set Extrapolate
+  - Hopper
+  - Wall Breaker
+  - Colosseum Manager
+  - Grub Bottle
+  - Nail Beam
+  - Boss Attack
+  - Geo
+  - Dream Orb
+  - Dream Plant
+  - Ghost Warrior NPC
+  - Infected Flag
+  - Knight Hatchling
+  - Baby Centipede
+  - Fireball Safe
+  - Relic Get Msg
+  - Water Surface
+  - Teleplane
+  - Soul Vessels
+  - Charm Get Msg
+  - Inventory Top
+  - Charms Pane
+  - Journal Up Msg
+  - Shop Window
+  - Beta End
+  - HeroLightMain
+  - Save Icon
+  - HeroFootsteps
+  - StagMapMarker
+  - CameraTarget
+  - GeoCounter
+  - Platform
+  - Stag Grate
+  - Roar
+  - Cinematic
+  - Hud Camera
+  - Shade Marker
+  - UI Soul Orb
+  - TransitionGate
+  - Heart Piece
+  - Boss Corpse
+  - RespawnTrigger
+  - Vignette
+  - Orb Target
+  - Enemy Message
+  - UIManager
+  - Canvas
+  - Terrain
+  - CameraParent
+  - Battle Scene
+  - Battle Gate
+  - HeroLight
+  - SceneManager
+  - RespawnPoint
+  - BlackOverlay
+  - GameManager
   - MainCamera
   - Dream Attack
   - Acid
@@ -55,4 +115,43 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Far BG 2
+    uniqueID: 3315419377
+    locked: 0
+  - name: Far BG 1
+    uniqueID: 1459018367
+    locked: 0
+  - name: Mid BG
+    uniqueID: 4015848369
+    locked: 0
+  - name: Immediate BG
+    uniqueID: 2917268371
+    locked: 0
+  - name: Actors
+    uniqueID: 1270309357
+    locked: 0
+  - name: Player
+    uniqueID: 3557629463
+    locked: 0
+  - name: Tiles
+    uniqueID: 3868594333
+    locked: 0
+  - name: MID Dressing
+    uniqueID: 3784110789
+    locked: 0
+  - name: Immediate FG
+    uniqueID: 31172181
+    locked: 0
+  - name: Far FG
+    uniqueID: 2577183099
+    locked: 0
+  - name: Vignette
+    uniqueID: 1038907033
+    locked: 0
+  - name: Over
+    uniqueID: 3945752401
+    locked: 0
+  - name: HUD
+    uniqueID: 629535577
     locked: 0

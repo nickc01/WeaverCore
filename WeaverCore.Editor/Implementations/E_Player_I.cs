@@ -77,5 +77,10 @@ namespace WeaverCore.Editor.Implementations
             gameObject.layer = LayerMask.NameToLayer("Player");
            //Debugger.Log("PLAYER START EDITOR");
         }
+
+        public override void SoulGain()
+        {
+            
+        }
     }
 }

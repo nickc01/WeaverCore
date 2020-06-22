@@ -283,6 +283,7 @@ namespace WeaverCore.Components
 				{
 					//Cause the player to gain soul
 					//HeroController.instance.SoulGain();
+					player.SoulGain();
 				}
 			}
 

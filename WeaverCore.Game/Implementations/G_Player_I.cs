@@ -11,5 +11,10 @@ namespace WeaverCore.Game.Implementations
         {
             Debugger.Log("PLAYER START GAME");
         }
+
+        public override void SoulGain()
+        {
+            HeroController.instance.SoulGain();
+        }
     }
 }

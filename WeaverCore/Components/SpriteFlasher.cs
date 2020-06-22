@@ -22,6 +22,8 @@ namespace WeaverCore.Components
 
 		Coroutine currentFlashRoutine;
 		bool ranOnce = false;
+
+		public Material CustomFlasherMaterial;
 		
 
 		public Color FlashColor
@@ -86,7 +88,7 @@ namespace WeaverCore.Components
 				{
 					previousMaterial = renderer.material;
 				}
-				renderer.material = flasherMaterial;
+				renderer.material = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
 			}
 		}
 

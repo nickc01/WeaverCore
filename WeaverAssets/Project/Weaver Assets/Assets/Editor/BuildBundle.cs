@@ -9,7 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using WeaverCore;
 using WeaverCore.Editor.Visual;
-using WeaverCore.Helpers;
+using WeaverCore.Utilities;
 
 namespace WeaverAssets
 {

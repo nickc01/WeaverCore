@@ -111,15 +111,15 @@ namespace WeaverCore
 
 
 
-        Player_I playerImpl;
+        Player_I impl;
 
         void Start()
         {
             var playerImplType = ImplFinder.GetImplementationType<Player_I>();
 
-            playerImpl = (Player_I)gameObject.AddComponent(playerImplType);
+            impl = (Player_I)gameObject.AddComponent(playerImplType);
             Players.AddIfNotContained(this);
-            playerImpl.Initialize();
+            impl.Initialize();
         }
 
         void OnEnable()
@@ -135,6 +135,11 @@ namespace WeaverCore
         void OnDestroy()
         {
             Players.Remove(this);
+        }
+
+        public void SoulGain()
+        {
+            impl.SoulGain();
         }
     }
 }

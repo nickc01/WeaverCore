@@ -13,7 +13,7 @@ namespace WeaverCore.Game.Implementations
 	{
 		public override void BroadcastEvent(string eventName,GameObject source)
 		{
-			Debugger.Log("Broadcasting Event = " + eventName);
+			//Debugger.Log("Broadcasting Event = " + eventName);
 			foreach (var receiver in EventReceiver.AllReceivers)
 			{
 				receiver.ReceiveEvent(eventName,source);
@@ -27,7 +27,7 @@ namespace WeaverCore.Game.Implementations
 				{
 					if (fsmComponent.Fsm != null)
 					{
-						Debugger.Log("FSMComponent = " + fsmComponent);
+						//Debugger.Log("FSMComponent = " + fsmComponent);
 						fsmComponent.Fsm.ProcessEvent(FsmEvent.GetFsmEvent(eventName));
 					}
 				}

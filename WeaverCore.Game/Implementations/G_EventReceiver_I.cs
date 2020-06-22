@@ -35,7 +35,7 @@ namespace WeaverCore.Game.Implementations
 		{
 			void IPatch.Patch(HarmonyPatcher patcher)
 			{
-				Debugger.Log("DOING EVENT PATCH");
+				//Debugger.Log("DOING EVENT PATCH");
 				//EventPrefixMethod = typeof(G_EventReceiver_I).GetMethod(nameof(EventPrefix), BindingFlags.Static | BindingFlags.NonPublic);
 				//var IDCheckerMethod = typeof(G_EventReceiver_I).GetMethod(nameof(IDChecker), BindingFlags.Static | BindingFlags.NonPublic);
 				//var IDCheckerGMMethod = typeof(G_EventReceiver_I).GetMethod(nameof(IDCheckerGM), BindingFlags.Static | BindingFlags.NonPublic);
@@ -126,7 +126,7 @@ namespace WeaverCore.Game.Implementations
 
 		private static void Fsm_Event_FsmEventTarget_FsmEvent(On.HutongGames.PlayMaker.Fsm.orig_Event_FsmEventTarget_FsmEvent orig, Fsm self, FsmEventTarget eventTarget, FsmEvent fsmEvent)
 		{
-			Debugger.Log("INSIDE PREFIX");
+			//Debugger.Log("INSIDE PREFIX");
 
 			try
 			{

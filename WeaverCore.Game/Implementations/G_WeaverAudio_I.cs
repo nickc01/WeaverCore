@@ -7,13 +7,99 @@ using UnityEngine.Audio;
 using WeaverCore.Enums;
 using WeaverCore.Game.Patches;
 using WeaverCore.Implementations;
+using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Implementations
 {
 	public class G_WeaverAudio_I : WeaverAudio_I
 	{
-		public override AudioMixer MainMixer => AllMixers.Mixers.Master.audioMixer;
+		public override AudioMixer MainMixer => AudioHunter.Master.audioMixer;
 
+		public override AudioMixerGroup MainMusic => AudioHunter.Music;
+
+		public override AudioMixerGroup Master => AudioHunter.Master;
+
+		public override AudioMixerGroup Sounds => AudioHunter.Sound;
+
+		class AudioHunter : IInit
+		{
+			public static List<AudioMixerGroup> MixerGroups = new List<AudioMixerGroup>();
+			public static AudioMixerGroup Master;
+			public static AudioMixerGroup Sound;
+			public static AudioMixerGroup Music;
+
+
+			public void Apply()
+			{
+
+			}
+
+			IEnumerator<IWeaverAwaiter> FirstRun()
+			{
+				yield return null;
+				ScanForMixers();
+			}
+
+			void IInit.OnInit()
+			{
+				UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnNewScene;
+				WeaverRoutine.Start(FirstRun());
+			}
+
+			private void OnNewScene(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+			{
+				//ScanForMixers();
+			}
+
+
+			void ScanForMixers()
+			{
+				/*foreach (var mixer in Resources.FindObjectsOfTypeAll<AudioMixerGroup>())
+				{
+					WeaverLog.Log("Mixer = " + mixer);
+					MixerGroups.Add(mixer);
+				}*/
+				foreach (var audioSource in GameObject.FindObjectsOfType<AudioSource>())
+				{
+					if (audioSource.outputAudioMixerGroup != null && !MixerGroups.Contains(audioSource.outputAudioMixerGroup))
+					{
+						MixerGroups.Add(audioSource.outputAudioMixerGroup);
+					}
+				}
+
+				if (Master == null)
+				{
+					Master = MixerGroups.FirstOrDefault(mixer => mixer.name == "Master");
+					//WeaverLog.Log("Master Type = " + Master.GetType());
+
+					/*var snapshots = Resources.FindObjectsOfTypeAll<AudioMixerSnapshot>();
+					foreach (var snapshot in snapshots)
+					{
+						WeaverLog.Log("Snapshot = " + snapshot?.name);
+					}*/
+				}
+				if (Sound == null)
+				{
+					Sound = MixerGroups.FirstOrDefault(mixer => mixer.name == "Actors");
+				}
+				if (Music == null)
+				{
+					Music = MixerGroups.FirstOrDefault(mixer => mixer.name == "Main");
+				}
+
+				/*Debugger.Log("Mixer Start");
+				foreach (var mixer in MixerGroups)
+				{
+					Debugger.Log("New Mixer = " + mixer);
+				}
+				Debugger.Log("Mixer End");*/
+			}
+
+
+		}
+
+		/*[Serializable]
 		class AllMixers
 		{
 			public AudioMixerGroup SurfaceWind1;
@@ -55,7 +141,7 @@ namespace WeaverCore.Game.Implementations
 					return mixers;
 				}
 			}
-		}
+		}*/
 
 		public override WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
 		{
@@ -93,28 +179,31 @@ namespace WeaverCore.Game.Implementations
 			switch (channel)
 			{
 				case AudioChannel.Master:
-					audioObject.AudioSource.outputAudioMixerGroup = AllMixers.Mixers.Master;
+					//WeaverLog.Log("Master = " + AudioHunter.Master);
+					audioObject.AudioSource.outputAudioMixerGroup = AudioHunter.Master;
 					break;
 				case AudioChannel.Sound:
-					audioObject.AudioSource.outputAudioMixerGroup = AllMixers.Mixers.Actors;
+					//WeaverLog.Log("Actors = " + AudioHunter.Sound);
+					audioObject.AudioSource.outputAudioMixerGroup = AudioHunter.Sound;
 					break;
 				case AudioChannel.Music:
-					audioObject.AudioSource.outputAudioMixerGroup = AllMixers.Mixers.Main;
+					//WeaverLog.Log("Music = " + AudioHunter.Music);
+					audioObject.AudioSource.outputAudioMixerGroup = AudioHunter.Music;
 					break;
 			}
 		}
 
 		public override AudioChannel GetObjectChannel(WeaverAudioPlayer audioObject)
 		{
-			if (audioObject.AudioSource.outputAudioMixerGroup == AllMixers.Mixers.Master)
+			if (audioObject.AudioSource.outputAudioMixerGroup == AudioHunter.Master)
 			{
 				return AudioChannel.Master;
 			}
-			else if (audioObject.AudioSource.outputAudioMixerGroup == AllMixers.Mixers.Actors)
+			else if (audioObject.AudioSource.outputAudioMixerGroup == AudioHunter.Sound)
 			{
 				return AudioChannel.Sound;
 			}
-			else if (audioObject.AudioSource.outputAudioMixerGroup == AllMixers.Mixers.Main)
+			else if (audioObject.AudioSource.outputAudioMixerGroup == AudioHunter.Music)
 			{
 				return AudioChannel.Music;
 			}

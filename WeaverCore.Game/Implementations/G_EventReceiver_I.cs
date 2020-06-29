@@ -147,7 +147,7 @@ namespace WeaverCore.Game.Implementations
 			}
 			catch (Exception e)
 			{
-				Debugger.Log("EVENT PREFIX ERROR = " + e);
+				WeaverLog.Log("EVENT ERROR = " + e);
 			}
 			finally
 			{
@@ -269,7 +269,7 @@ namespace WeaverCore.Game.Implementations
 			}
 			catch (Exception e)
 			{
-				Debugger.Log("EVENT PREFIX ERROR = " + e);
+				WeaverLog.Log("EVENT ERROR = " + e);
 			}
 			return true;
 		}
@@ -344,7 +344,7 @@ namespace WeaverCore.Game.Implementations
 				throw new Exception("The gameObject cannot be null");
 			}
 
-			Debugger.Log("Adding object for " + name);
+			//Debugger.Log("Adding object for " + name);
 
 			EventHooks.Add(new EventInfo() { eventName = name, destination = destination });
 		}

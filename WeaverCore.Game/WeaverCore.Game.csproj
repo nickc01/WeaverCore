@@ -324,11 +324,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\G_DamageHero_I.cs" />
-    <Compile Include="Implementations\G_Debugger_I.cs" />
+    <Compile Include="Implementations\G_WeaverLog_I.cs" />
     <Compile Include="Implementations\G_Boss_I.cs" />
     <Compile Include="Implementations\G_Enemy_I.cs" />
     <Compile Include="Implementations\G_EventReceiver_I.cs" />
     <Compile Include="Implementations\G_GameManager_I.cs" />
+    <Compile Include="Implementations\G_GGWorkshop_I.cs" />
     <Compile Include="Implementations\G_HealthManager_I.cs" />
     <Compile Include="Implementations\G_WeaverAudio_I.cs" />
     <Compile Include="Implementations\G_Modloader_I.cs" />

@@ -61,7 +61,7 @@ namespace WeaverCore.Game.Implementations
 
 			void Awake()
 			{
-				Debugger.Log("Weaver Game Cam Init!!!");
+				//Debugger.Log("Weaver Game Cam Init!!!");
 				On.HutongGames.PlayMaker.Actions.ShakePosition.UpdateShaking += ShakePosition_UpdateShaking;
 				On.HutongGames.PlayMaker.Actions.ShakePosition.OnExit += ShakePosition_OnExit;
 				On.HutongGames.PlayMaker.Actions.ShakePosition.Reset += ShakePosition_Reset;
@@ -128,7 +128,7 @@ namespace WeaverCore.Game.Implementations
 				}
 				catch (Exception e)
 				{
-					Debugger.LogError("Shaker Exception = " + e);
+					WeaverLog.LogError("Camera Shaker Exception = " + e);
 				}
 			}
 
@@ -146,6 +146,7 @@ namespace WeaverCore.Game.Implementations
 
 			public override void Shake(ShakeType type)
 			{
+				shakerFSM.SendEvent("CANCEL SHAKE");
 				CustomShake = false;
 				switch (type)
 				{

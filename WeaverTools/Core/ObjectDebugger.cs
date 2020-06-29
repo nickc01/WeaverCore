@@ -203,7 +203,7 @@ namespace WeaverTools
 				}
 				catch (Exception e)
 				{
-					Debugger.LogError($"Error Debugging Object {gameObject} -> {e}");
+					WeaverLog.LogError($"Error Debugging Object {gameObject} -> {e}");
 				}
 				var childCount = gameObject.transform.childCount;
 				for (int i = 0; i < childCount; i++)
@@ -354,7 +354,7 @@ namespace WeaverTools
 			}
 			catch (Exception e)
 			{
-				Debugger.LogError($"Error Debugging Object {sprite} -> {e}");
+				WeaverLog.LogError($"Error Debugging Object {sprite} -> {e}");
 				tk2dSpriteAnimation test;
 			}
 		}
@@ -402,7 +402,7 @@ namespace WeaverTools
 			}
 			catch (Exception e)
 			{
-				Debugger.LogError($"Error Debugging FSM {fsm?.Name} -> {e}");
+				WeaverLog.LogError($"Error Debugging FSM {fsm?.Name} -> {e}");
 			}
 		}
 
@@ -430,7 +430,7 @@ namespace WeaverTools
 					string jsonResult = null;
 					if (component is tk2dSpriteAnimator)
 					{
-						Debugger.Log("Printing Out Component = " + component.GetType());
+						//Debugger.Log("Printing Out Component = " + component.GetType());
 						jsonResult = PrintOutObject(component);
 					}
 					else if (component is MonoBehaviour)
@@ -626,7 +626,7 @@ namespace WeaverTools
 			}
 			catch (Exception e)
 			{
-				Debugger.LogError($"Error Debugging Component {component} -> {e}");
+				WeaverLog.LogError($"Error Debugging Component {component} -> {e}");
 			}
 		}
 

@@ -17,11 +17,11 @@ namespace AssemblyManipulator
 
 		public ModPatcher(string modAssemblyPath,params string[] otherAssemblies)
 		{
-			ModAssembly = AssemblyDefinition.ReadAssembly(modAssemblyPath, new ReaderParameters() { ReadWrite = true, AssemblyResolver = new Resolver(this) });
+			ModAssembly = AssemblyDefinition.ReadAssembly(modAssemblyPath, new ReaderParameters() { ReadWrite = true, AssemblyResolver = new MainResolver(Assemblies) });
 			Assemblies.Add(ModAssembly);
 			foreach (var assembly in otherAssemblies)
 			{
-				Assemblies.Add(AssemblyDefinition.ReadAssembly(assembly, new ReaderParameters() { AssemblyResolver = new Resolver(this) }));
+				Assemblies.Add(AssemblyDefinition.ReadAssembly(assembly, new ReaderParameters() { AssemblyResolver = new MainResolver(Assemblies) }));
 			}
 			for (int i = Assemblies.Count - 1; i >= 0; i--)
 			{
@@ -39,9 +39,9 @@ namespace AssemblyManipulator
 			{
 				try
 				{
-					if (!Assemblies.Any(a => a.FullName == assembly.FullName) && assembly.Location != "")
+					if (!assembly.FullName.Contains("Editor") && !assembly.FullName.Contains("editor") && !Assemblies.Any(a => a.FullName == assembly.FullName) && assembly.Location != "")
 					{
-						Assemblies.Add(AssemblyDefinition.ReadAssembly(assembly.Location, new ReaderParameters() { AssemblyResolver = new Resolver(this) }));
+						Assemblies.Add(AssemblyDefinition.ReadAssembly(assembly.Location, new ReaderParameters() { AssemblyResolver = new MainResolver(Assemblies) }));
 					}
 				}
 				catch (NotSupportedException e)
@@ -100,56 +100,6 @@ namespace AssemblyManipulator
 		~ModPatcher()
 		{
 			Dispose();
-		}
-
-
-		class Resolver : IAssemblyResolver
-		{
-			ModPatcher patcher;
-
-			public Resolver(ModPatcher Patcher)
-			{
-				patcher = Patcher;
-			}
-
-			public void Dispose()
-			{
-				
-			}
-
-			public AssemblyDefinition Resolve(AssemblyNameReference name)
-			{
-				return Resolve(name, new ReaderParameters());
-			}
-
-			public AssemblyDefinition Resolve(AssemblyNameReference name, ReaderParameters parameters)
-			{
-				foreach (var assembly in patcher.Assemblies)
-				{
-					if (assembly.FullName == name.FullName)
-					{
-						return assembly;
-					}
-				}
-				/*for (int i = patcher.Assemblies.Count - 1; i >= 0; i--)
-				{
-					var assembly = patcher.Assemblies[i];
-					var weaverCoreGameResource = assembly.MainModule.Resources.FirstOrDefault(r => r.Name == "WeaverCore.Game");
-					if (weaverCoreGameResource != null && weaverCoreGameResource is EmbeddedResource embed)
-					{
-						using (var stream = embed.GetResourceStream())
-						{
-							var gameAssembly = AssemblyDefinition.ReadAssembly(stream);
-							patcher.Assemblies.Add(gameAssembly);
-							if (gameAssembly.FullName == name.FullName)
-							{
-								return gameAssembly;
-							}
-						}
-					}
-				}*/
-				return null;
-			}
 		}
 	}
 }

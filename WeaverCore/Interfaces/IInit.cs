@@ -37,26 +37,33 @@ namespace WeaverCore.Interfaces
 
 		static void RunInitFunctions(Assembly assembly)
 		{
-			if (InitializedAssemblies.Contains(assembly))
+			try
 			{
-				return;
+				if (InitializedAssemblies.Contains(assembly))
+				{
+					return;
+				}
+
+				InitializedAssemblies.Add(assembly);
+
+				//Debugger.Log("RUnning Init Funcs for = " + assembly);
+
+				foreach (var type in assembly.GetTypes().Where(t => typeof(IInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
+				{
+					var init = (IInit)Activator.CreateInstance(type);
+					try
+					{
+						init.OnInit();
+					}
+					catch (Exception e)
+					{
+						WeaverLog.LogError("Init Error: " + e);
+					}
+				}
 			}
-
-			InitializedAssemblies.Add(assembly);
-
-			//Debugger.Log("RUnning Init Funcs for = " + assembly);
-
-			foreach (var type in assembly.GetTypes().Where(t => typeof(IInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
+			catch (Exception e)
 			{
-				var init = (IInit)Activator.CreateInstance(type);
-				try
-				{
-					init.OnInit();
-				}
-				catch (Exception e)
-				{
-					Debugger.LogError("Init Error: " + e);
-				}
+				WeaverLog.LogError("Init Error: " + e);
 			}
 		}
 	}

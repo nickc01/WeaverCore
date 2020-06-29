@@ -13,6 +13,12 @@ namespace WeaverCore.Editor.Implementations
 	{
 		public override AudioMixer MainMixer => null;
 
+		public override AudioMixerGroup MainMusic => throw new NotImplementedException();
+
+		public override AudioMixerGroup Master => throw new NotImplementedException();
+
+		public override AudioMixerGroup Sounds => throw new NotImplementedException();
+
 		public override AudioChannel GetObjectChannel(WeaverAudioPlayer audioObject)
 		{
 			return AudioChannel.None;

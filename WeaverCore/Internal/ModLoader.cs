@@ -44,7 +44,7 @@ namespace WeaverCore.Internal
 				var registry = RegistryLoader.GetModRegistries(mod.GetType()).ToList();
 				if (registry.Count == 0 && !(mod is WeaverCore))
 				{
-					Debugger.LogWarning($"No registry found for mod : {mod.Name}");
+					WeaverLog.LogWarning($"No registry found for mod : {mod.Name}");
 				}
 				yield return mod;
 			}

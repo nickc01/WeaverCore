@@ -9,6 +9,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverTools
 {
+	[Serializable]
 	public struct IDPair
 	{
 		public long FileID;
@@ -44,7 +45,7 @@ namespace WeaverTools
 					//Cache = Json.Deserialize<ToolSettings>(File.ReadAllText(settingsFile));
 					Cache = JsonUtility.FromJson<ToolSettings>(File.ReadAllText(settingsFile));
 
-					Debugger.Log("Enabled = " + Cache.DebugMode);
+					//Debugger.Log("Enabled = " + Cache.DebugMode);
 				}
 				else
 				{

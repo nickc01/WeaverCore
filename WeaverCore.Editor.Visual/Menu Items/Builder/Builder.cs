@@ -14,21 +14,42 @@ using WeaverCore.Editor.Visual.Internal;
 using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 using WeaverCore.Internal;
+using UnityEditor.PackageManager;
 
 namespace WeaverCore.Editor.Visual
 {
+	/*class ConsolePatcher : IPatch
+	{
+		public void Patch(HarmonyPatcher patcher)
+		{
+			//Debugger.Log("Patch Test");
+			patcher.Patch(typeof(Console).GetMethod("WriteLine", new Type[] { typeof(string) }),typeof(ConsolePatcher).GetMethod("Prefix",BindingFlags.NonPublic | BindingFlags.Static),null);
+		}
+
+		static bool Prefix(string value)
+		{
+			WeaverLog.Log(value);
+			return true;
+		}
+	}*/
+
+
 	public static class Builder
 	{
 		static Assembly AssemblyManipulator;
 
 		delegate void embedMethod(string mode, string sourceAssembly, string additionFile, string resourcePath, bool compress);
 		delegate void addModMethod(string assembly, string @namespace, string typeName, string modName, bool unloadable, string hollowKnightPath,string weaverCorePath );
+		delegate void replaceTypesMethod(string assemblyWithTypes, string sourceAssembly, List<string> assembliesToLook);
 
 		static embedMethod Embed;
-
+		static replaceTypesMethod ReplaceTypes;
 		static addModMethod AddMod;
 
 		static float progress = 0.0f;
+
+		static bool lastBuildSuccessful = false;
+		static string lastBuildDestination;
 
 		static float Progress
 		{
@@ -72,7 +93,7 @@ namespace WeaverCore.Editor.Visual
 		[MenuItem("WeaverCore/Compile %F5")]
 		public static void Compile()
 		{
-			Debugger.Log("AA");
+			//Debugger.Log("AA");
 			WeaverRoutine.Start(BeginCompile());
 			/*BuildSettingsScreen.ChooseString((modName) =>
 			{
@@ -134,7 +155,7 @@ namespace WeaverCore.Editor.Visual
 			var files = Directory.GetFiles(AssetsFolder, filter, SearchOption.AllDirectories).ToList();
 			for (int i = files.Count - 1; i >= 0; i--)
 			{
-				if (files[i].Contains("\\Editor\\") || files[i].Contains("/Editor/"))
+				if (files[i].Contains("\\Editor\\") || files[i].Contains("/Editor/") || files[i].Contains("\\Internal.cs"))
 				{
 					files.RemoveAt(i);
 				}
@@ -142,9 +163,33 @@ namespace WeaverCore.Editor.Visual
 			return files.ToArray();
 		}
 
+		static string[] GetNoBuildFiles(string filter)
+		{
+			var EditorDirectory = new DirectoryInfo($"Assets\\{nameof(WeaverCore)}").FullName;
+			var AssetsFolder = new DirectoryInfo("Assets").FullName;
+			var files = Directory.GetFiles(AssetsFolder, filter, SearchOption.AllDirectories).ToList();
+			for (int i = files.Count - 1; i >= 0; i--)
+			{
+				if (!(files[i].Contains("_NOBUILD_") && !(files[i].Contains("\\Editor\\") || files[i].Contains("/Editor/") || files[i].Contains("\\Internal.cs"))))
+				{
+					files.RemoveAt(i);
+				}
+				/*if ((!files[i].Contains("_NOBUILD_")) && (files[i].Contains("\\Editor\\") || files[i].Contains("/Editor/")))
+				{
+					files.RemoveAt(i);
+				}*/
+			}
+			return files.ToArray();
+		}
+
 		static string[] GetScripts()
 		{
 			return GetFiles("*.cs");
+		}
+
+		static string[] GetNoBuildScripts()
+		{
+			return GetNoBuildFiles("*.cs");
 		}
 
 		static string[] GetReferences()
@@ -183,20 +228,80 @@ namespace WeaverCore.Editor.Visual
 			}
 		}
 
+		static IEnumerable<IWeaverAwaiter> BuildAssembly(string destination, string[] scripts, string[] references)
+		{
+			lastBuildDestination = "";
+			lastBuildSuccessful = false;
+			bool doneCompiling = false;
+			string buildDestination = "";
+			UnityEditor.Compilation.CompilerMessage[] messages = null;
+
+			var builder = new UnityEditor.Compilation.AssemblyBuilder(destination, scripts);
+
+			builder.buildTarget = BuildTarget.StandaloneWindows;
+
+			if (references != null)
+			{
+				builder.additionalReferences = references;
+			}
+
+			builder.buildTargetGroup = BuildTargetGroup.Standalone;
+
+			Action<string, UnityEditor.Compilation.CompilerMessage[]> finish = null;
+			finish = (dest, m) =>
+			{
+				buildDestination = dest;
+				messages = m;
+				doneCompiling = true;
+			};
+
+			builder.buildFinished += finish;
+			builder.Build();
+
+			yield return new WaitTillTrue(() => doneCompiling);
+			yield return null;
+
+			bool errors = false;
+			foreach (var message in messages)
+			{
+				switch (message.type)
+				{
+					case UnityEditor.Compilation.CompilerMessageType.Error:
+						Debug.LogError(message.message);
+						errors = true;
+						break;
+					case UnityEditor.Compilation.CompilerMessageType.Warning:
+						Debug.LogWarning(message.message);
+						break;
+				}
+			}
+			builder.buildFinished -= finish;
+			ClearProgress();
+
+			lastBuildSuccessful = !errors;
+			lastBuildDestination = buildDestination;
+			/*if (errors)
+			{
+				lastBuildSuccessful = false;
+				yield break;
+			}
+			lastBuildSuccessful = true;*/
+		}
+
 		public static IEnumerator<IWeaverAwaiter> BeginCompile()
 		{
-			Debugger.Log("A");
+			//Debugger.Log("A");
 			yield return BuildSettingsScreen.RetrieveBuildSettings();
 
-			Debugger.Log("B");
+			//Debugger.Log("B");
 			if (BuildSettingsScreen.RetrievedBuildSettings == null)
 			{
 				yield break;
 			}
 
-			bool doneCompiling = false;
-			string buildDestination = "";
-			UnityEditor.Compilation.CompilerMessage[] messages = null;
+			//bool doneCompiling = false;
+			//string buildDestination = "";
+			//UnityEditor.Compilation.CompilerMessage[] messages = null;
 
 			//string destination = SelectSaveLocation(modName);
 
@@ -208,16 +313,32 @@ namespace WeaverCore.Editor.Visual
 
 			//string modFileName = new FileInfo(destination).Name.Replace(".dll", "");
 			var destination = PathAddBackslash(folder.FullName) + BuildSettingsScreen.RetrievedBuildSettings.ModName + ".dll";
-			Debugger.Log("Mod File Name = " + destination);
+			//Debugger.Log("Mod File Name = " + destination);
 			Progress = 0.0f;
 
-			var scripts = GetScripts();
+			/*var scripts = GetNoBuildScripts();
 			foreach (var script in scripts)
 			{
-				Debugger.Log("Script = " + script);
+				Debugger.Log("NO Script = " + script);
+			}*/
+
+			foreach (var waiter in BuildAssembly(destination,GetScripts(),GetReferences()))
+			{
+				yield return waiter;
 			}
 
-			var builder = new UnityEditor.Compilation.AssemblyBuilder(destination, GetScripts());
+			Progress = 0.1f;
+
+			if (!lastBuildSuccessful)
+			{
+				yield break;
+			}
+
+			var modBuildDestination = lastBuildDestination;
+
+
+
+			/*var builder = new UnityEditor.Compilation.AssemblyBuilder(destination, GetScripts());
 
 
 
@@ -260,9 +381,49 @@ namespace WeaverCore.Editor.Visual
 			if (errors)
 			{
 				yield break;
+			}*/
+
+
+			//TEMPORARY
+			//System.Diagnostics.Process.Start("explorer.exe", buildDestination);
+
+			//PostBuild(buildDestination);
+
+			yield return null;
+
+			/*var noBuildTempDest = Path.GetTempPath() + @"no_build_temp.dll";
+			var noBuildDest = Path.GetTempPath() + @"no_build.dll";
+
+			foreach (var waiter in BuildAssembly(noBuildTempDest,GetNoBuildScripts(),null))
+			{
+				yield return waiter;
 			}
-			Progress = 0.1f;
-			PostBuild(buildDestination);
+
+			File.Copy(noBuildTempDest, noBuildDest,true);*/
+
+			/*if (!lastBuildSuccessful)
+			{
+				yield break;
+			}
+
+			yield return null;
+			yield return null;
+			yield return null;
+			yield return null;
+			yield return null;
+			yield return null;*/
+
+			//var testAssembly = Assembly.Load("Assembly-CSharp");
+			//Debugger.Log("Test Assembly = " + testAssembly);
+			//var kerningTableTest = testAssembly.GetType("TMPro.KerningTable");
+			//Debugger.Log("Kerning Table Test = " + kerningTableTest);
+			//Debugger.Log("Build Destination = " + modBuildDestination);
+			//Debugger.Log("Build Settings = " + BuildSettingsScreen.RetrievedBuildSettings);
+			//Debugger.Log("Hollow Knight Directory = " + BuildSettingsScreen.RetrievedBuildSettings.HollowKnightDirectory);
+
+			LoadAssemblyManipulator();
+			//ReplaceTypes(noBuildDest, modBuildDestination, new List<string>() {BuildSettingsScreen.RetrievedBuildSettings.HollowKnightDirectory + @"hollow_knight_Data\Managed\Assembly-CSharp.dll" });
+			PostBuild(modBuildDestination);
 		}
 		
 		//Loads the resource embedder and returns a method to execute it
@@ -298,6 +459,10 @@ namespace WeaverCore.Editor.Visual
 				var addModM = program.GetMethod("AddMod",BindingFlags.NonPublic | BindingFlags.Static);
 
 				AddMod = (addModMethod)Delegate.CreateDelegate(typeof(addModMethod), null, addModM);
+
+				var replaceTypesM = program.GetMethod("ReplaceTypes", BindingFlags.Public | BindingFlags.Static);
+
+				ReplaceTypes = (replaceTypesMethod)Delegate.CreateDelegate(typeof(replaceTypesMethod), null, replaceTypesM);
 			}
 		}
 
@@ -323,12 +488,11 @@ namespace WeaverCore.Editor.Visual
 			}
 		}*/
 
-
-		static void AdjustMonoScripts()
+		/*static Dictionary<string,string> GetScriptAssemblyNames()
 		{
-			//Debug.Log("Adjusting scripts...");
+			Dictionary<string, string> assemblyNames = new Dictionary<string, string>();
 
-			IEnumerable<string> assetFolderPaths = AssetDatabase.GetAllAssetPaths().Where(path => path.EndsWith(".cs") && !path.Contains("Assets/Editor"));
+			IEnumerable<string> assetFolderPaths = AssetDatabase.GetAllAssetPaths().Where(path => path.EndsWith(".cs") && !path.Contains("Assets/Editor") && !path.Contains("_NOBUILD_"));
 
 			foreach (var path in assetFolderPaths)
 			{
@@ -336,7 +500,26 @@ namespace WeaverCore.Editor.Visual
 
 				if (script != null)
 				{
-					ChangeMonoScriptAssembly(script, BuildSettingsScreen.RetrievedBuildSettings.ModName);
+					assemblyNames.Add(script,)
+					//ChangeMonoScriptAssembly(script, newAssemblyName);
+				}
+			}
+		}*/
+
+
+		static void AdjustMonoScripts(string newAssemblyName)
+		{
+			//Debug.Log("Adjusting scripts...");
+
+			IEnumerable<string> assetFolderPaths = AssetDatabase.GetAllAssetPaths().Where(path => path.EndsWith(".cs") && !path.Contains("Assets/Editor") && !path.Contains("_NOBUILD_"));
+
+			foreach (var path in assetFolderPaths)
+			{
+				MonoScript script = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
+
+				if (script != null)
+				{
+					ChangeMonoScriptAssembly(script, newAssemblyName);
 				}
 			}
 		}
@@ -353,8 +536,8 @@ namespace WeaverCore.Editor.Visual
 			//Console.SetOut(new DebugConsole());
 			List<Type> ValidMods = Mods.GetMods();
 			//List<Type> ValidMods = Assembly.Load("Assembly-CSharp").GetTypes().Where(type => typeof(IWeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition && !type.IsInterface && !typeof(WeaverCoreMod).IsAssignableFrom(type)).ToList();
-			AdjustMonoScripts();
-			LoadAssemblyManipulator();
+			AdjustMonoScripts(BuildSettingsScreen.RetrievedBuildSettings.ModName);
+			//LoadAssemblyManipulator();
 			var temp = Path.GetTempPath();
 			var registries = RegistryChecker.LoadAllRegistries();
 			try
@@ -363,7 +546,7 @@ namespace WeaverCore.Editor.Visual
 				{
 					registry.ReplaceAssemblyName("Assembly-CSharp", BuildSettingsScreen.RetrievedBuildSettings.ModName);
 					registry.ApplyChanges();
-					Debugger.Log("Registry Mod Assembly Name New = " + registry.GetString("modAssemblyName"));
+					//Debugger.Log("Registry Mod Assembly Name New = " + registry.GetString("modAssemblyName"));
 				}
 				for (int modeIndex = 0; modeIndex < buildModes.Count; modeIndex++)
 				{
@@ -406,6 +589,8 @@ namespace WeaverCore.Editor.Visual
 				foreach (var modType in ValidMods)
 				{
 					var instance = Activator.CreateInstance(modType) as IWeaverMod;
+					//Debugger.Log("builtAssemblyPath = " + builtAssemblyPath);
+					//Debugger.Log("WeaverCore Location = " + typeof(WeaverCore.Internal.WeaverCore).Assembly.Location);
 					AddMod(builtAssemblyPath, modType.Namespace, modType.Name, instance.Name, instance.Unloadable, BuildSettingsScreen.RetrievedBuildSettings.HollowKnightDirectory,typeof(WeaverCore.Internal.WeaverCore).Assembly.Location);
 				}
 				Debug.Log("Build Complete");
@@ -414,9 +599,10 @@ namespace WeaverCore.Editor.Visual
 			{
 				foreach (var registry in registries)
 				{
+					AdjustMonoScripts("Assembly-CSharp");
 					registry.ReplaceAssemblyName(BuildSettingsScreen.RetrievedBuildSettings.ModName, "Assembly-CSharp");
 					registry.ApplyChanges();
-					Debugger.Log("Registry Mod Assembly Name Old = " + registry.GetString("modAssemblyName"));
+					//Debugger.Log("Registry Mod Assembly Name Old = " + registry.GetString("modAssemblyName"));
 				}
 			}
 

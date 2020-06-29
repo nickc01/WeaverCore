@@ -2,41 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
-using Modding;
-
-namespace WeaverCore.Game.Implementations
+namespace WeaverCore.Editor.Implementations
 {
-    public class G_Debugger_I : WeaverCore.Implementations.Debugger_I
+    public class E_WeaverLog_I : WeaverCore.Implementations.WeaverLog_I
     {
         public override void Log(object obj)
         {
-            Logger.Log(obj);
+            Debug.Log(obj);
         }
 
         public override void Log(string str)
         {
-            Logger.Log(str);
+            Debug.Log(str);
         }
 
         public override void LogError(object obj)
         {
-            Logger.LogError(obj);
+            Debug.LogError(obj);
         }
 
         public override void LogError(string str)
         {
-            Logger.LogError(str);
+            Debug.LogError(str);
         }
 
         public override void LogWarning(object obj)
         {
-            Logger.LogWarn(obj);
+            Debug.LogWarning(obj);
         }
 
         public override void LogWarning(string str)
         {
-            Logger.LogWarn(str);
+            Debug.LogWarning(str);
         }
     }
 }

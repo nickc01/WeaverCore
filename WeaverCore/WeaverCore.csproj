@@ -346,7 +346,9 @@
     <Compile Include="Features\Boss.cs" />
     <Compile Include="Features\BossReplacement.cs" />
     <Compile Include="Features\CameraExtension.cs" />
+    <Compile Include="GodsOfGlory\GGWorkshop.cs" />
     <Compile Include="Implementations\Boss_I.cs" />
+    <Compile Include="Implementations\GGWorkshop_I.cs" />
     <Compile Include="Implementations\WeaverCam_I.cs" />
     <Compile Include="Interfaces\IInit.cs" />
     <Compile Include="Interfaces\IObjectReplacement.cs" />
@@ -371,7 +373,7 @@
     <Compile Include="Interfaces\IWeaverAwaiter.cs" />
     <Compile Include="Core\WeaverDirectory.cs" />
     <Compile Include="Core\Core.cs" />
-    <Compile Include="Core\Debugger.cs" />
+    <Compile Include="Core\WeaverLog.cs" />
     <Compile Include="Utilities\EventReceiver.cs" />
     <Compile Include="Utilities\FieldUtilities.cs" />
     <Compile Include="Utilities\Hash.cs" />

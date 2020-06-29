@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 //using System.Reflection.Emit;
 using System.Text;
@@ -175,6 +176,22 @@ namespace AssemblyManipulator
 			else
 			{
 				return sourceStream;
+			}
+		}
+
+		public static void ReplaceTypes(string assemblyWithTypes, string sourceAssembly, List<string> assembliesToLook)
+		{
+			using (var fileStream = new FileStream(assemblyWithTypes,FileMode.Open,FileAccess.Read,FileShare.Read))
+			{
+				using (var asmWithTypes = AssemblyDefinition.ReadAssembly(fileStream, new ReaderParameters() { ReadWrite = false }))
+				{
+					using (var replacer = new TypeReplacer(sourceAssembly, assembliesToLook))
+					{
+						replacer.ReplaceTypes(asmWithTypes.MainModule.Types);
+						replacer.WriteChanges();
+						//throw new Exception("Replacement Done");
+					}
+				}
 			}
 		}
 
@@ -384,6 +401,10 @@ namespace AssemblyManipulator
 			//string hollowKnightPath = @"C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll";
 			//string weaverCorePath = @"C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\WeaverCore.dll";
 			//string coreModulePath = @"C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.CoreModule.dll";
+			Console.WriteLine("--ASSEMBLY = " + assembly);
+			Console.WriteLine("--HK ASSEMBLY PATH = " + hollowKnightAssemblyPath);
+			Console.WriteLine("--WEAVERCORE ASSEMBLY PATH = " + weaverCorePath);
+			Console.WriteLine("--CORE MODULE PATH = " + coreModulePath);
 			using (var patcher = new ModPatcher(assembly,hollowKnightAssemblyPath,weaverCorePath,coreModulePath))
 			{
 				string newNamespace = @namespace;

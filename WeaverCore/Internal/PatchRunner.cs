@@ -31,26 +31,33 @@ namespace WeaverCore.Internal
 
 		void PatchAssembly(Assembly assembly)
 		{
-			if (PatchedAssemblies.Contains(assembly))
+			try
 			{
-				return;
+				if (PatchedAssemblies.Contains(assembly))
+				{
+					return;
+				}
+
+				PatchedAssemblies.Add(assembly);
+				foreach (var type in assembly.GetTypes().Where(t => typeof(IPatch).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
+				{
+					var patcher = (IPatch)Activator.CreateInstance(type);
+
+					var patcherInstance = HarmonyPatcher.Create($"com.{assembly.GetName().Name}.patch");
+
+					try
+					{
+						patcher.Patch(patcherInstance);
+					}
+					catch (Exception e)
+					{
+						WeaverLog.LogError("Patch Error: " + e);
+					}
+				}
 			}
-
-			PatchedAssemblies.Add(assembly);
-			foreach (var type in assembly.GetTypes().Where(t => typeof(IPatch).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
+			catch (Exception e)
 			{
-				var patcher = (IPatch)Activator.CreateInstance(type);
-
-				var patcherInstance = HarmonyPatcher.Create($"com.{assembly.GetName().Name}.patch");
-
-				try
-				{
-					patcher.Patch(patcherInstance);
-				}
-				catch (Exception e)
-				{
-					Debugger.LogError("Patch Error: " + e);
-				}
+				WeaverLog.LogError("Patch Error: " + e);
 			}
 		}
 	}

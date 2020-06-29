@@ -6,7 +6,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {
-	public abstract class Debugger_I : IImplementation
+	public abstract class WeaverLog_I : IImplementation
     {
         public abstract void Log(object obj);
         public abstract void Log(string str);

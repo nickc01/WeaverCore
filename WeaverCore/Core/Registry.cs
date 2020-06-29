@@ -163,10 +163,10 @@ namespace WeaverCore
         {
             foreach (var registry in ActiveRegistries)
             {
-                Debugger.Log("Registry = " + registry?.name);
+                //Debugger.Log("Registry = " + registry?.name);
                 if (registry != null && registry.registryEnabled)
                 {
-                    Debugger.Log("B");
+                   //Debugger.Log("B");
                     foreach (var result in registry.GetFeatures(predicate))
                     {
                         yield return result;
@@ -193,10 +193,10 @@ namespace WeaverCore
         /// <returns>Returns an Itereator with all the features in it</returns>
         public IEnumerable<T> GetFeatures<T>(Func<T, bool> predicate) where T : class
         {
-            Debugger.Log("Features Raw = " + featuresRaw);
+           // Debugger.Log("Features Raw = " + featuresRaw);
             foreach (var feature in featuresRaw)
             {
-                Debugger.Log("Feature = " + feature);
+                //Debugger.Log("Feature = " + feature);
                 if (feature != null && feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate(feature as T))
                 {
                     yield return feature as T;

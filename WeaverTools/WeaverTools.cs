@@ -10,8 +10,7 @@ using WeaverCore.Utilities;
 using System.Collections;
 using WeaverCore.Interfaces;
 using System.Diagnostics;
-
-using Debugger = WeaverCore.Debugger;
+using WeaverCore;
 
 namespace WeaverTools
 {
@@ -30,7 +29,7 @@ namespace WeaverTools
             public static IDHolder<T> Transform(long fileID, long pathID)
             {
                 string json = $"{{\"OBJ\":{{ \"m_FileID\":{fileID},\"m_PathID\":{pathID}}}}}";
-                Debugger.Log("Json = " + json);
+                //WeaverLog.Log("Json = " + json);
                 return JsonUtility.FromJson<IDHolder<T>>(json);
             }
         }
@@ -46,7 +45,7 @@ namespace WeaverTools
 
         public override void Initialize()
         {
-            HutongGames.PlayMaker.FsmLog.LoggingEnabled = true;
+            /*HutongGames.PlayMaker.FsmLog.LoggingEnabled = true;
             HutongGames.PlayMaker.FsmLog.EnableDebugFlow = true;
            // HutongGames.PlayMaker.FsmLog.
             On.HealthManager.Start += ObjectPrinterPatch.HealthManager_Start;
@@ -55,9 +54,9 @@ namespace WeaverTools
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoad;
 
             var harmonyInstance = HarmonyPatcher.Create($"com.{nameof(WeaverTools).ToLower()}.nickc01");
+            */
 
-
-            DebugPatches.ApplyPatches(harmonyInstance);
+            //DebugPatches.ApplyPatches(harmonyInstance);
             //On.HealthManager.Awake += ObjectPrinterPatch.HealthManager_Awake;
 
             //ToolSettings.SetSettings(new ToolSettings());
@@ -71,11 +70,12 @@ namespace WeaverTools
 
         private void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
         {
-            WeaverRoutine.Start(PrintObjectIDs());
+            //WeaverRoutine.Start(PrintObjectIDs());
         }
 
         static IEnumerator<IWeaverAwaiter> PrintObjectIDs()
         {
+            WeaverLog.Log("-------------Printing IDS!!!");
             yield return null;
             ToolSettings settings = ToolSettings.GetSettings();
             if (settings == null)
@@ -83,10 +83,21 @@ namespace WeaverTools
                 yield break;
             }
 
+            WeaverLog.Log("A");
             if (settings.PrintIDs)
             {
+                WeaverLog.Log("B");
+
+                settings.IDsToPrint.Add(new IDPair()
+                {
+                    FileID = 2,
+                    PathID = 51,
+                    Type = "UnityEngine.GameObject"
+                });
+
                 foreach (var ids in settings.IDsToPrint)
                 {
+                    WeaverLog.Log("C");
                     Type type = null;
 
                     foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -97,30 +108,31 @@ namespace WeaverTools
                             break;
                         }
                     }
+                    WeaverLog.Log("D");
 
                     if (type == null)
                     {
                         type = typeof(UnityEngine.Object);
                     }
 
-                    Debugger.Log("Found Type = " + type.FullName);
+                    WeaverLog.Log("Found Type = " + type.FullName);
 
                     var holder = typeof(IDHolder<>).MakeGenericType(type).GetMethod("Transform").Invoke(null, new object[] {ids.FileID, ids.PathID });
 
-                    Debugger.Log("Holder = " + holder.GetType().FullName);
+                    WeaverLog.Log("Holder = " + holder.GetType().FullName);
 
 
                     var obj = (UnityEngine.Object)holder.GetType().GetField("OBJ").GetValue(holder);
 
                     if (obj == null)
                     {
-                        Debugger.Log($"Object of File ID {ids.FileID} and Path ID {ids.PathID} is null");
+                        WeaverLog.Log($"Object of File ID {ids.FileID} and Path ID {ids.PathID} is null");
                     }
                     else
                     {
-                        Debugger.Log($"---Stats of Object of File ID {ids.FileID} and Path ID {ids.PathID}:");
-                        Debugger.Log("Name = " + obj.name);
-                        Debugger.Log("Type = " + obj.GetType());
+                        WeaverLog.Log($"---Stats of Object of File ID {ids.FileID} and Path ID {ids.PathID}:");
+                        WeaverLog.Log("Name = " + obj.name);
+                        WeaverLog.Log("Type = " + obj.GetType());
 
                         if (obj is GameObject gm)
                         {
@@ -132,7 +144,7 @@ namespace WeaverTools
                 foreach (var name in settings.NamesToPrint)
                 {
                     var gm = GameObject.Find(name);
-                    Debugger.Log($"Found GameObject for name: {name} = {gm}");
+                    WeaverLog.Log($"Found GameObject for name: {name} = {gm}");
                     if (gm != null)
                     {
                         ObjectDebugger.DebugObject(gm);

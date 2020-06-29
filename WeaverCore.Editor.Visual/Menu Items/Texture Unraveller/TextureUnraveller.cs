@@ -564,10 +564,10 @@ namespace WeaverCore.Editor.Visual
 				AssetDatabase.StartAssetEditing();
 				foreach (var sprite in AddedSprites)
 				{
-					Debugger.Log("Sprite = " + sprite.Sprite.SpriteName);
-					Debugger.Log("UV Width = " + sprite.UVWidth);
-					Debugger.Log("World Size = " + sprite.Sprite.WorldSize);
-					Debugger.Log("Sprite Dimensions = " + sprite.SpriteDimensions);
+					//Debugger.Log("Sprite = " + sprite.Sprite.SpriteName);
+					//Debugger.Log("UV Width = " + sprite.UVWidth);
+					//Debugger.Log("World Size = " + sprite.Sprite.WorldSize);
+					//Debugger.Log("Sprite Dimensions = " + sprite.SpriteDimensions);
 
 
 					var importer = (TextureImporter)AssetImporter.GetAtPath(sprite.FileLocation);
@@ -592,7 +592,7 @@ namespace WeaverCore.Editor.Visual
 			yield return null;
 			yield return null;
 
-			Debugger.Log("<b>Unravel Complete</b>");
+			WeaverLog.Log("<b>Unravel Complete</b>");
 
 
 			//Debugger.Log("Project Folder = " + projectFolder.FullName);

@@ -9,7 +9,7 @@ namespace WeaverCore.Game.Implementations
     {
         public override void Initialize()
         {
-            Debugger.Log("PLAYER START GAME");
+            //Debugger.Log("PLAYER START GAME");
         }
 
         public override void SoulGain()

@@ -37,7 +37,7 @@ namespace WeaverCore.Game.Implementations
                 }
                 catch (Exception e)
                 {
-                    Debugger.LogError("URoutine Exception: " + e);
+                    WeaverLog.LogError("URoutine Exception: " + e);
                     throw;
                 }
 
@@ -63,7 +63,7 @@ namespace WeaverCore.Game.Implementations
                     }
                     catch (Exception e)
                     {
-                        Debugger.LogError("URoutine Exception: " + e);
+                        WeaverLog.LogError("URoutine Exception: " + e);
                         throw;
                     }
                 }

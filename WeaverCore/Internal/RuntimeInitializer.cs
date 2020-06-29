@@ -43,24 +43,30 @@ namespace WeaverCore.Internal
 
 		static void DoRuntimeInit(Assembly assembly)
 		{
-			if (InitializedAssemblies.Contains(assembly))
+			try
 			{
-				return;
+				if (InitializedAssemblies.Contains(assembly))
+				{
+					return;
+				}
+				InitializedAssemblies.Add(assembly);
+
+				foreach (var type in assembly.GetTypes().Where(t => typeof(IRuntimeInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
+				{
+					var rInit = (IRuntimeInit)Activator.CreateInstance(type);
+					try
+					{
+						rInit.RuntimeInit();
+					}
+					catch (Exception e)
+					{
+						WeaverLog.LogError("Runtime Init Error: " + e);
+					}
+				}
 			}
-
-			InitializedAssemblies.Add(assembly);
-
-			foreach (var type in assembly.GetTypes().Where(t => typeof(IRuntimeInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
+			catch  (Exception e)
 			{
-				var rInit = (IRuntimeInit)Activator.CreateInstance(type);
-				try
-				{
-					rInit.RuntimeInit();
-				}
-				catch (Exception e)
-				{
-					Debugger.LogError("Runtime Init Error: " + e);
-				}
+				WeaverLog.LogError("Runtime Init Error: " + e);
 			}
 		}
 	}

@@ -18,5 +18,8 @@ namespace WeaverCore.Implementations
 		public abstract AudioChannel GetObjectChannel(WeaverAudioPlayer audioObject);
 
 		public abstract AudioMixer MainMixer { get; }
+		public abstract AudioMixerGroup MainMusic { get; }
+		public abstract AudioMixerGroup Master { get; }
+		public abstract AudioMixerGroup Sounds { get; }
 	}
 }

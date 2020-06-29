@@ -21,7 +21,7 @@ namespace WeaverCore.Editor.Implementations
             }
             catch (Exception e)
             {
-                Debugger.LogError($"Failed to load mod : {ModType} : {e}");
+                WeaverLog.LogError($"Failed to load mod : {ModType} : {e}");
             }
         }
 
@@ -46,13 +46,13 @@ namespace WeaverCore.Editor.Implementations
                 }
                 catch (Exception e)
                 {
-                    Debugger.LogError("ModLoader Error : " + e);
+                    WeaverLog.LogError("ModLoader Error : " + e);
                 }
             }
             LoadedMods.Sort((v1, v2) => v1.LoadPriority - v2.LoadPriority);
             foreach (var mod in LoadedMods)
             {
-                Debugger.Log($"Loading Weaver Mod <b>{mod.Name}</b>, Version: {mod.Version}");
+                WeaverLog.Log($"Loading Weaver Mod <b>{mod.Name}</b>, Version: {mod.Version}");
                 mod.Load();
                 yield return mod;
             }

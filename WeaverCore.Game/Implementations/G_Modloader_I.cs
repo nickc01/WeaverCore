@@ -49,7 +49,7 @@ namespace WeaverCore.Game.Implementations
 
         public static WeaverMod<T> CreateMod(T mod)
         {
-            Debugger.Log("Mod Name = " + mod.Name);
+            //Debugger.Log("Mod Name = " + mod.Name);
             if (mod.Unloadable)
             {
                 return new UnloadableWeaverMod<T>(mod);

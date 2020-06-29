@@ -24,7 +24,7 @@ namespace WeaverCore.Game.Patches
 			bool destroyed = false;
 
 			var child = self.transform.Find("White Flash");
-			Debugger.Log("Child = " + child);
+			//Debugger.Log("Child = " + child);
 			if (child != null)
 			{
 				//DebugPrinting(child.gameObject);
@@ -51,7 +51,7 @@ namespace WeaverCore.Game.Patches
 			}
 			catch (Exception e)
 			{
-				Debugger.LogError("Exception occured while spawning enemy replacement : " + e);
+				WeaverLog.LogError("Exception occured while spawning enemy replacement : " + e);
 			}
 			finally
 			{
@@ -64,12 +64,12 @@ namespace WeaverCore.Game.Patches
 
 		static void DebugPrinting(GameObject self)
 		{
-			Debugger.Log("PRETEST");
+			//Debugger.Log("PRETEST");
 
 			var healthManager = self.GetComponent<HealthManager>();
 			if (healthManager != null)
 			{
-				Debugger.Log($"{nameof(HealthManager)} Type = " + healthManager);
+				//Debugger.Log($"{nameof(HealthManager)} Type = " + healthManager);
 				//Debugger.Log("CCC");
 				var assembly = AppDomain.CurrentDomain.GetAssemblies().First(a => a.FullName.Contains("WeaverTools"));
 				//Debugger.Log("Assembly = " +  assembly);
@@ -86,7 +86,7 @@ namespace WeaverCore.Game.Patches
 					//field.Name.ToUpper().Contains("PREFAB")
 					if (field.FieldType.Name.Contains("GameObject"))
 					{
-						Debugger.Log(field.Name + " Value = " + field.GetValue(healthManager));
+						//Debugger.Log(field.Name + " Value = " + field.GetValue(healthManager));
 
 						var raw = field.GetValue(healthManager);
 						tk2dSprite sprite = null;
@@ -110,23 +110,23 @@ namespace WeaverCore.Game.Patches
 						printObjectM.Invoke(null, new object[] { sourceObject });
 
 						var spriteRenderer = sourceObject.GetComponentInChildren<SpriteRenderer>();
-						Debugger.Log("Sprite Renderer = " + spriteRenderer);
+						//Debugger.Log("Sprite Renderer = " + spriteRenderer);
 						if (spriteRenderer != null)
 						{
-							Debugger.Log("Sprite = " + spriteRenderer.sprite.name);
-							Debugger.Log("Rect = " + spriteRenderer.sprite.rect);
-							Debugger.Log("Texture = " + spriteRenderer.sprite.texture.name);
-							Debugger.Log($"Size = {spriteRenderer.sprite.texture.width}, {spriteRenderer.sprite.texture.height}");
-							Debugger.Log("Pixel Per Unit = " + spriteRenderer.sprite.pixelsPerUnit);
+							//Debugger.Log("Sprite = " + spriteRenderer.sprite.name);
+							//Debugger.Log("Rect = " + spriteRenderer.sprite.rect);
+							//Debugger.Log("Texture = " + spriteRenderer.sprite.texture.name);
+							//Debugger.Log($"Size = {spriteRenderer.sprite.texture.width}, {spriteRenderer.sprite.texture.height}");
+							//Debugger.Log("Pixel Per Unit = " + spriteRenderer.sprite.pixelsPerUnit);
 
 							var animator = sourceObject.GetComponentInChildren<Animator>();
 							if (animator != null)
 							{
-								Debugger.Log("Animator = " + animator.name);
+								//Debugger.Log("Animator = " + animator.name);
 								foreach (var clip in animator.runtimeAnimatorController.animationClips)
 								{
-									Debugger.Log("Clip = " + clip.name);
-									Debugger.Log("Clip Framerate = " + clip.frameRate);
+									//Debugger.Log("Clip = " + clip.name);
+									//Debugger.Log("Clip Framerate = " + clip.frameRate);
 								}
 							}
 						}
@@ -134,8 +134,8 @@ namespace WeaverCore.Game.Patches
 						if (sprite != null)
 						{
 							Texture mainTexture = sprite.Collection.FirstValidDefinition.material.mainTexture;
-							Debugger.Log("Texture for " + field.Name + " = " + mainTexture.name);
-							Debugger.Log($"Size = {mainTexture.width} , {mainTexture.height}");
+							//Debugger.Log("Texture for " + field.Name + " = " + mainTexture.name);
+							//Debugger.Log($"Size = {mainTexture.width} , {mainTexture.height}");
 
 							//sprite.Collection.FirstValidDefinition.material.mainTexture.name;
 						}
@@ -143,34 +143,34 @@ namespace WeaverCore.Game.Patches
 					}
 					else if (field.FieldType.Name.Contains("AudioEvent"))
 					{
-						Debugger.Log("Audio Field = " + field.Name);
+						//Debugger.Log("Audio Field = " + field.Name);
 						AudioEvent e = (AudioEvent)field.GetValue(healthManager);
 
-						Debugger.Log("Clip = " + e.Clip?.name);
-						Debugger.Log("Volume = " + e.Volume);
+						//Debugger.Log("Clip = " + e.Clip?.name);
+						//Debugger.Log("Volume = " + e.Volume);
 					}
 				}
 			}
 			else
 			{
 				var spriteRenderer = self.GetComponentInChildren<SpriteRenderer>();
-				Debugger.Log("Sprite Renderer = " + spriteRenderer);
+				//Debugger.Log("Sprite Renderer = " + spriteRenderer);
 				if (spriteRenderer != null)
 				{
-					Debugger.Log("Sprite = " + spriteRenderer.sprite.name);
-					Debugger.Log("Rect = " + spriteRenderer.sprite.rect);
-					Debugger.Log("Texture = " + spriteRenderer.sprite.texture.name);
-					Debugger.Log($"Size = {spriteRenderer.sprite.texture.width}, {spriteRenderer.sprite.texture.height}");
-					Debugger.Log("Pixel Per Unit = " + spriteRenderer.sprite.pixelsPerUnit);
+					//Debugger.Log("Sprite = " + spriteRenderer.sprite.name);
+					//Debugger.Log("Rect = " + spriteRenderer.sprite.rect);
+					//Debugger.Log("Texture = " + spriteRenderer.sprite.texture.name);
+					//Debugger.Log($"Size = {spriteRenderer.sprite.texture.width}, {spriteRenderer.sprite.texture.height}");
+					//Debugger.Log("Pixel Per Unit = " + spriteRenderer.sprite.pixelsPerUnit);
 
 					var animator = self.GetComponentInChildren<Animator>();
 					if (animator != null)
 					{
-						Debugger.Log("Animator = " + animator.name);
+						//Debugger.Log("Animator = " + animator.name);
 						foreach (var clip in animator.runtimeAnimatorController.animationClips)
 						{
-							Debugger.Log("Clip = " + clip.name);
-							Debugger.Log("Clip Framerate = " + clip.frameRate);
+							//Debugger.Log("Clip = " + clip.name);
+							//Debugger.Log("Clip Framerate = " + clip.frameRate);
 						}
 					}
 				}

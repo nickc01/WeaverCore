@@ -12,9 +12,19 @@ namespace WeaverCore.Game.Implementations
             //Debugger.Log("PLAYER START GAME");
         }
 
+        public override void RefreshSoulUI()
+        {
+            GameCameras.instance.soulVesselFSM.SendEvent("MP RESERVE DOWN");
+            GameCameras.instance.soulVesselFSM.SendEvent("MP RESERVE UP");
+            //GameCameras.instance.soulOrbFSM.SendEvent("MP LOSE");
+            GameCameras.instance.soulOrbFSM.SendEvent("MP SET");
+        }
+
         public override void SoulGain()
         {
             HeroController.instance.SoulGain();
         }
+
+
     }
 }

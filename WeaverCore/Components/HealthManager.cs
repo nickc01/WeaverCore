@@ -339,6 +339,7 @@ namespace WeaverCore.Components
 		{
 			impl = (HealthManager_I)gameObject.AddComponent(ImplFinder.GetImplementationType<HealthManager_I>());
 			impl.Manager = this;
+			Player.Player1?.RefreshSoulUI();
 		}
 	}
 }

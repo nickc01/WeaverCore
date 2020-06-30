@@ -148,22 +148,22 @@ namespace WeaverCore.Editor.Visual
 			return new DirectoryInfo(directory);
 		}
 
-		static string[] GetFiles(string filter)
+		static List<string> GetFiles(string filter)
 		{
 			var EditorDirectory = new DirectoryInfo($"Assets\\{nameof(WeaverCore)}").FullName;
 			var AssetsFolder = new DirectoryInfo("Assets").FullName;
 			var files = Directory.GetFiles(AssetsFolder, filter, SearchOption.AllDirectories).ToList();
 			for (int i = files.Count - 1; i >= 0; i--)
 			{
-				if (files[i].Contains("\\Editor\\") || files[i].Contains("/Editor/") || files[i].Contains("\\Internal.cs"))
+				if (files[i].Contains("\\Editor\\") || files[i].Contains("/Editor/") || files[i].Contains("\\Internal.cs") || files[i].Contains("_NOBUILD_"))
 				{
 					files.RemoveAt(i);
 				}
 			}
-			return files.ToArray();
+			return files;
 		}
 
-		static string[] GetNoBuildFiles(string filter)
+		static List<string> GetNoBuildFiles(string filter)
 		{
 			var EditorDirectory = new DirectoryInfo($"Assets\\{nameof(WeaverCore)}").FullName;
 			var AssetsFolder = new DirectoryInfo("Assets").FullName;
@@ -179,22 +179,60 @@ namespace WeaverCore.Editor.Visual
 					files.RemoveAt(i);
 				}*/
 			}
+			return files;
+		}
+
+		static string[] GetScripts(params string[] additions)
+		{
+			var files = GetFiles("*.cs");
+			if (additions != null)
+			{
+				foreach (var addition in additions)
+				{
+					if (addition != "" && addition != null)
+					{
+						files.Add(addition);
+					}
+				}
+			}
+			return files.ToArray();
+
+			//return GetFiles("*.cs").AddRange(additions).ToArray();
+		}
+
+		static string[] GetNoBuildScripts(params string[] additions)
+		{
+			//return GetNoBuildFiles("*.cs").ToArray();
+			var files = GetNoBuildFiles("*.cs");
+			if (additions != null)
+			{
+				foreach (var addition in additions)
+				{
+					if (addition != "" && addition != null)
+					{
+						files.Add(addition);
+					}
+				}
+			}
 			return files.ToArray();
 		}
 
-		static string[] GetScripts()
+		static string[] GetReferences(params string[] additions)
 		{
-			return GetFiles("*.cs");
-		}
-
-		static string[] GetNoBuildScripts()
-		{
-			return GetNoBuildFiles("*.cs");
-		}
-
-		static string[] GetReferences()
-		{
-			return GetFiles("*.dll");
+			//return GetFiles("*.dll").ToArray();
+			var files = GetFiles("*.dll");
+			if (additions != null)
+			{
+				//files.AddRange(additions);
+				foreach (var addition in additions)
+				{
+					if (addition != "" && addition != null)
+					{
+						files.Add(addition);
+					}
+				}
+			}
+			return files.ToArray();
 		}
 
 		static string PathAddBackslash(string path)
@@ -243,6 +281,15 @@ namespace WeaverCore.Editor.Visual
 			if (references != null)
 			{
 				builder.additionalReferences = references;
+			}
+
+			WeaverLog.Log("Build Dest = " + destination);
+			if (scripts != null)
+			{
+				foreach (var script in scripts)
+				{
+					WeaverLog.Log("Script = " + script);
+				}
 			}
 
 			builder.buildTargetGroup = BuildTargetGroup.Standalone;
@@ -322,7 +369,29 @@ namespace WeaverCore.Editor.Visual
 				Debugger.Log("NO Script = " + script);
 			}*/
 
-			foreach (var waiter in BuildAssembly(destination,GetScripts(),GetReferences()))
+			var noBuildTempDest = Path.GetTempPath() + @"Assembly-CSharp.dll";
+			var noBuildDest = Path.GetTempPath() + @"no_build.dll";
+
+			var noBuildScripts = GetNoBuildScripts();
+
+			if (noBuildScripts == null || noBuildScripts.GetLength(0) == 0)
+			{
+				noBuildScripts = null;
+			}
+			else
+			{
+				foreach (var waiter in BuildAssembly(noBuildTempDest, GetNoBuildScripts(), null))
+				{
+					yield return waiter;
+				}
+
+				File.Copy(noBuildTempDest, noBuildDest, true);
+
+				yield return null;
+			}
+
+
+			foreach (var waiter in BuildAssembly(destination,GetScripts(),GetReferences(noBuildScripts != null ? noBuildDest : "")))
 			{
 				yield return waiter;
 			}
@@ -335,6 +404,8 @@ namespace WeaverCore.Editor.Visual
 			}
 
 			var modBuildDestination = lastBuildDestination;
+
+			yield return null;
 
 
 
@@ -388,8 +459,6 @@ namespace WeaverCore.Editor.Visual
 			//System.Diagnostics.Process.Start("explorer.exe", buildDestination);
 
 			//PostBuild(buildDestination);
-
-			yield return null;
 
 			/*var noBuildTempDest = Path.GetTempPath() + @"no_build_temp.dll";
 			var noBuildDest = Path.GetTempPath() + @"no_build.dll";

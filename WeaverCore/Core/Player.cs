@@ -141,5 +141,10 @@ namespace WeaverCore
         {
             impl.SoulGain();
         }
+
+        public void RefreshSoulUI()
+        {
+            impl.RefreshSoulUI();
+        }
     }
 }

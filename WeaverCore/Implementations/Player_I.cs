@@ -7,5 +7,6 @@ namespace WeaverCore.Implementations
     {
         public abstract void Initialize();
         public abstract void SoulGain();
+        public abstract void RefreshSoulUI();
     }
 }

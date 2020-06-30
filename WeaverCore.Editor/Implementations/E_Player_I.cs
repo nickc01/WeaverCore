@@ -82,5 +82,10 @@ namespace WeaverCore.Editor.Implementations
         {
             
         }
+
+        public override void RefreshSoulUI()
+        {
+            
+        }
     }
 }

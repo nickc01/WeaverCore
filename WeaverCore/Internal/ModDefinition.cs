@@ -5,6 +5,6 @@
     /// </summary>
     public sealed class WeaverCore : WeaverMod
     {
-        public override string Version => "0.0.1.0 Alpha";
+        public override string Version => "0.0.1.1 Alpha";
     }
 }

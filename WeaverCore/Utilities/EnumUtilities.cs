@@ -40,5 +40,26 @@ namespace WeaverCore.Utilities
 
 			return enumValues[UnityEngine.Random.Range(0,enumValues.Count)];
 		}
+
+		public static DestType RawConvert<SourceType,DestType>(SourceType source) where SourceType : Enum where DestType : Enum
+		{
+			return (DestType)RawConvert(source, typeof(DestType));
+		}
+
+		public static object RawConvert(object source, Type destType)
+		{
+			var sourceType = source.GetType();
+			if (!sourceType.IsEnum)
+			{
+				throw new Exception("The source is of type " + source.GetType() + ", which is not an enum");
+			}
+			if (!destType.IsEnum)
+			{
+				throw new Exception("The destType is " + source.GetType() + ", which is not an enum");
+			}
+
+			object underlyingValue = Convert.ChangeType(source, Enum.GetUnderlyingType(sourceType));
+			return Enum.ToObject(destType, underlyingValue);
+		}
 	}
 }

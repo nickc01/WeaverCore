@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Threading;
@@ -39,7 +40,12 @@ namespace WeaverCore.Utilities
                 State = GetState();
                 if (State == RunningState.Editor)
                 {
-                    ImplAssembly = ResourceLoader.LoadAssembly($"{nameof(WeaverCore)}.Editor");
+                    //ImplAssembly = ResourceLoader.LoadAssembly($"{nameof(WeaverCore)}.Editor");
+                    /*foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                    {
+                        Debug.Log("Assembly = " + assembly);
+                    }*/
+                    ImplAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName.Contains("WeaverCore.Editor"));
                 }
                 else
                 {

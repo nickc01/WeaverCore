@@ -106,6 +106,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildTools\BuildTools.cs" />
+    <Compile Include="Helpers\CompressionMethod.cs" />
     <Compile Include="Menu Items\Builder\Builder.cs" />
     <Compile Include="Menu Items\Builder\BuildMode.cs" />
     <Compile Include="BuildSettings\BuildSettings.cs" />
@@ -126,9 +128,9 @@
     <Compile Include="Renderers\RegistryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssemblyManipulator\AssemblyManipulator.csproj">
+    <ProjectReference Include="..\WeaverBuildTools\WeaverBuildTools.csproj">
       <Project>{0ae54068-540c-4ec1-a79a-54484c75cb18}</Project>
-      <Name>AssemblyManipulator</Name>
+      <Name>WeaverBuildTools</Name>
     </ProjectReference>
     <ProjectReference Include="..\WeaverCore\WeaverCore.csproj">
       <Project>{a2ffeeb2-041d-4d3e-ab93-96c8d6d54f78}</Project>
@@ -149,7 +151,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild">
-    <Exec Command="$(SolutionDir)AssemblyManipulator\bin\$(ConfigurationName)\AssemblyManipulator.exe addresource %22$(HollowKnightLocation)Managed\Mods\WeaverCore.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
+    <!--<Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe addresource %22$(HollowKnightLocation)Managed\Mods\WeaverCore.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />-->
   </Target>
   <Import Project="$(SolutionDir)Weaver.targets" />
   <Import Project="$(SolutionDir)packages\Fody.2.5.0\build\Fody.targets" Condition="Exists('$(SolutionDir)packages\Fody.2.5.0\build\Fody.targets')" />

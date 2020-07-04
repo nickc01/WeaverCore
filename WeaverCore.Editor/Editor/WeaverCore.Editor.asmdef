@@ -1,0 +1,9 @@
+{
+    "name": "WeaverCore.Editor",
+    "references": [],
+	"precompiledReferences": ["WeaverCore", "WeaverBuildTools"],
+    "includePlatforms": [
+        "Editor"
+    ],
+	"autoReferenced": true
+}

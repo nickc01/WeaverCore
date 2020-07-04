@@ -36,15 +36,15 @@ namespace WeaverCore.Editor.Visual
 
 	public static class Builder
 	{
-		static Assembly AssemblyManipulator;
+		//static Assembly AssemblyManipulator;
 
-		delegate void embedMethod(string mode, string sourceAssembly, string additionFile, string resourcePath, bool compress);
-		delegate void addModMethod(string assembly, string @namespace, string typeName, string modName, bool unloadable, string hollowKnightPath,string weaverCorePath );
-		delegate void replaceTypesMethod(string assemblyWithTypes, string sourceAssembly, List<string> assembliesToLook);
+		//delegate void embedMethod(string mode, string sourceAssembly, string additionFile, string resourcePath, bool compress);
+		//delegate void addModMethod(string assembly, string @namespace, string typeName, string modName, bool unloadable, string hollowKnightPath,string weaverCorePath );
+		//delegate void replaceTypesMethod(string assemblyWithTypes, string sourceAssembly, List<string> assembliesToLook);
 
-		static embedMethod Embed;
-		static replaceTypesMethod ReplaceTypes;
-		static addModMethod AddMod;
+		//static embedMethod Embed;
+		//static replaceTypesMethod ReplaceTypes;
+		//static addModMethod AddMod;
 
 		static float progress = 0.0f;
 
@@ -490,13 +490,13 @@ namespace WeaverCore.Editor.Visual
 			//Debugger.Log("Build Settings = " + BuildSettingsScreen.RetrievedBuildSettings);
 			//Debugger.Log("Hollow Knight Directory = " + BuildSettingsScreen.RetrievedBuildSettings.HollowKnightDirectory);
 
-			LoadAssemblyManipulator();
+			//LoadAssemblyManipulator();
 			//ReplaceTypes(noBuildDest, modBuildDestination, new List<string>() {BuildSettingsScreen.RetrievedBuildSettings.HollowKnightDirectory + @"hollow_knight_Data\Managed\Assembly-CSharp.dll" });
 			PostBuild(modBuildDestination);
 		}
 		
 		//Loads the resource embedder and returns a method to execute it
-		static void LoadAssemblyManipulator()
+		/*static void LoadAssemblyManipulator()
 		{
 			if (AssemblyManipulator == null)
 			{
@@ -510,7 +510,7 @@ namespace WeaverCore.Editor.Visual
 				resolver.Invoke(null, new object[] { null, new ResolveEventArgs("Mono.Cecil, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e") });
 
 				//Load the resource embedder now that mono.cecil is loaded
-				AssemblyManipulator = AppDomain.CurrentDomain.Load("AssemblyManipulator");
+				AssemblyManipulator = AppDomain.CurrentDomain.Load("WeaverBuildTools");
 				//Find the main program type
 				var program = AssemblyManipulator.GetType("AssemblyManipulator.Program");
 
@@ -533,7 +533,7 @@ namespace WeaverCore.Editor.Visual
 
 				ReplaceTypes = (replaceTypesMethod)Delegate.CreateDelegate(typeof(replaceTypesMethod), null, replaceTypesM);
 			}
-		}
+		}*/
 
 		/*class DebugConsole : TextWriter
 		{
@@ -644,7 +644,9 @@ namespace WeaverCore.Editor.Visual
 								if (bundleFile.Extension == "" && !bundleFile.Name.Contains("BundleBuilds"))
 								{
 									//PostProcessBundle(builtAssemblyPath, bundleFile.FullName, bundleFile.Name + mode.Extension,bundleFile.Name);
-									Embed("addresource", builtAssemblyPath, bundleFile.FullName, bundleFile.Name + mode.Extension, false);
+									//Embed("addresource", builtAssemblyPath, bundleFile.FullName, bundleFile.Name + mode.Extension, false);
+									//BuildTools.EmbedResource(builtAssemblyPath, bundleFile.FullName, bundleFile.Name + mode.Extension, false);
+									BuildTools.EmbedResource(builtAssemblyPath, bundleFile.FullName, bundleFile.Name + mode.Extension);
 								}
 							}
 						}
@@ -660,7 +662,8 @@ namespace WeaverCore.Editor.Visual
 					var instance = Activator.CreateInstance(modType) as IWeaverMod;
 					//Debugger.Log("builtAssemblyPath = " + builtAssemblyPath);
 					//Debugger.Log("WeaverCore Location = " + typeof(WeaverCore.Internal.WeaverCore).Assembly.Location);
-					AddMod(builtAssemblyPath, modType.Namespace, modType.Name, instance.Name, instance.Unloadable, BuildSettingsScreen.RetrievedBuildSettings.HollowKnightDirectory,typeof(WeaverCore.Internal.WeaverCore).Assembly.Location);
+					//AddMod(builtAssemblyPath, modType.Namespace, modType.Name, instance.Name, instance.Unloadable, BuildSettingsScreen.RetrievedBuildSettings.HollowKnightDirectory,typeof(WeaverCore.Internal.WeaverCore).Assembly.Location);
+					BuildTools.AddMod(builtAssemblyPath, modType.Namespace, modType.Name, instance.Name, instance.Unloadable, BuildSettingsScreen.RetrievedBuildSettings.HollowKnightDirectory, typeof(WeaverCore.Internal.WeaverCore).Assembly.Location);
 				}
 				Debug.Log("Build Complete");
 			}

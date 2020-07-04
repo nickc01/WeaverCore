@@ -12,7 +12,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Internal
 {
-    internal static class ModuleInitializer
+    static class ModuleInitializer
     {
         static bool Initialized = false;
 
@@ -23,12 +23,10 @@ namespace WeaverCore.Internal
                 Initialized = true;
                 ImplFinder.Init();
                 InitRunner.RunInitFunctions();
-
-                Initialized = true;
             }
         }
 
-        class GetTypesPatch : IPatch
+        /*class GetTypesPatch : IPatch
         {
             //TODO TODO TODO - WORk on IInit and IPatch classes
             public void Patch(HarmonyPatcher patcher)
@@ -49,7 +47,7 @@ namespace WeaverCore.Internal
                 }
             }
             __result = list.ToArray();
-        }
+        }*/
 
 
     }

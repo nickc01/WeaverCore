@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <LangVersion>4</LangVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -39,7 +40,6 @@
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -49,7 +49,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -100,28 +99,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\E_DamageHero_I.cs" />
-    <Compile Include="Implementations\E_WeaverLog_I.cs" />
-    <Compile Include="Implementations\E_Enemy_I.cs" />
-    <Compile Include="Implementations\E_GameManager_I.cs" />
-    <Compile Include="Implementations\E_GGWorkshop_I.cs" />
-    <Compile Include="Implementations\E_HealthManager_I.cs" />
-    <Compile Include="Implementations\E_Boss_I.cs" />
-    <Compile Include="Implementations\E_EventReceiver_I.cs" />
-    <Compile Include="Implementations\E_WeaverAudio_I.cs" />
-    <Compile Include="Implementations\E_Modloader_I.cs" />
-    <Compile Include="Implementations\E_Player_I.cs" />
-    <Compile Include="Implementations\E_PropertyManager_I.cs" />
-    <Compile Include="Implementations\E_RegistryLoader_I.cs" />
-    <Compile Include="EditorRuntimeInitializer.cs" />
-    <Compile Include="Implementations\E_WeaverRoutine_I.cs" />
-    <Compile Include="Implementations\E_WeaverCam_I.cs" />
-    <Compile Include="Implementations\E_WeaverEvents_I.cs" />
-    <Compile Include="Editor\ControlWindow.cs" />
-    <Compile Include="Helpers\EditorInitializer.cs" />
-    <Compile Include="EditorInitializer.cs" />
-    <Compile Include="Helpers\LayerChanger.cs" />
-    <Compile Include="Helpers\LayerData.cs" />
+    <Compile Include="Editor\Implementations\E_DamageHero_I.cs" />
+    <Compile Include="Editor\Implementations\E_WeaverLog_I.cs" />
+    <Compile Include="Editor\Implementations\E_Enemy_I.cs" />
+    <Compile Include="Editor\Implementations\E_GameManager_I.cs" />
+    <Compile Include="Editor\Implementations\E_GGWorkshop_I.cs" />
+    <Compile Include="Editor\Implementations\E_HealthManager_I.cs" />
+    <Compile Include="Editor\Implementations\E_Boss_I.cs" />
+    <Compile Include="Editor\Implementations\E_EventReceiver_I.cs" />
+    <Compile Include="Editor\Implementations\E_WeaverAudio_I.cs" />
+    <Compile Include="Editor\Implementations\E_Modloader_I.cs" />
+    <Compile Include="Editor\Implementations\E_Player_I.cs" />
+    <Compile Include="Editor\Implementations\E_PropertyManager_I.cs" />
+    <Compile Include="Editor\Implementations\E_RegistryLoader_I.cs" />
+    <Compile Include="Editor\EditorRuntimeInitializer.cs" />
+    <Compile Include="Editor\Implementations\E_WeaverRoutine_I.cs" />
+    <Compile Include="Editor\Implementations\E_WeaverCam_I.cs" />
+    <Compile Include="Editor\Implementations\E_WeaverEvents_I.cs" />
+    <Compile Include="Editor\Helpers\EditorInitializer.cs" />
+    <Compile Include="Editor\EditorInitializer.cs" />
+    <Compile Include="Editor\Helpers\LayerChanger.cs" />
+    <Compile Include="Editor\Helpers\LayerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -130,16 +128,21 @@
       <Name>WeaverCore</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\AssemblyManipulator\AssemblyManipulator.csproj">
+    <ProjectReference Include="..\WeaverBuildTools\WeaverBuildTools.csproj">
       <Project>{0ae54068-540c-4ec1-a79a-54484c75cb18}</Project>
-      <Name>AssemblyManipulator</Name>
+      <Name>WeaverBuildTools</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\layerData.json" />
+    <None Include="Editor\Data\layerData.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Hollow Knight Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Editor\WeaverCore.Editor.asmdef" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
@@ -150,7 +153,11 @@
     </PreBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild">
-    <Exec Command="$(SolutionDir)AssemblyManipulator\bin\$(ConfigurationName)\AssemblyManipulator.exe addresource %22$(HollowKnightLocation)Managed\Mods\WeaverCore.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
+    <Message Text="@(Compile);@(None);@(EmbeddedResource)">
+    </Message>
+    <Message Text="W_EDITOR TEST">
+    </Message>
+    <Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe storefilestoembed $(ProjectDir) &quot;$(TargetDir)dataToEmbed.dat&quot; &quot;@(Compile);@(None);@(EmbeddedResource)&quot;" />
   </Target>
   <Import Project="$(SolutionDir)Weaver.targets" />
 </Project>

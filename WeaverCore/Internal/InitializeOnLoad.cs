@@ -2,12 +2,12 @@
 
 namespace WeaverCore.Internal
 {
-    [UnityEditor.InitializeOnLoad]
+    /*[UnityEditor.InitializeOnLoad]
     internal static class InitializeOnLoad
     {
         static InitializeOnLoad()
         {
             ModuleInitializer.Initialize();
         }
-    }
+    }*/
 }

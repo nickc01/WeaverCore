@@ -358,9 +358,9 @@
       <Name>WeaverCore</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\AssemblyManipulator\AssemblyManipulator.csproj">
+    <ProjectReference Include="..\WeaverBuildTools\WeaverBuildTools.csproj">
       <Project>{0ae54068-540c-4ec1-a79a-54484c75cb18}</Project>
-      <Name>AssemblyManipulator</Name>
+      <Name>WeaverBuildTools</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
@@ -378,7 +378,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild">
-    <Exec Command="$(SolutionDir)AssemblyManipulator\bin\$(ConfigurationName)\AssemblyManipulator.exe addresource %22$(HollowKnightLocation)Managed\Mods\WeaverCore.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
+    <Exec Command="%22$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe%22 embedresource %22$(SolutionDir)WeaverCore\bin\$(ConfigurationName)\WeaverCore.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
   </Target>
   <Import Project="$(SolutionDir)Weaver.targets" />
 </Project>

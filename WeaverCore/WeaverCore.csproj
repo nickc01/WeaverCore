@@ -120,10 +120,6 @@
     <Reference Include="UnityEngine.CoreModule">
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>$(UnityEditorLocation)UnityEditor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEngine.CrashReportingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
@@ -436,8 +432,6 @@
     <EmbeddedResource Include="Resources\AssetBundles\weavercore.bundle.unix" />
     <EmbeddedResource Include="Resources\AssetBundles\weavercore.bundle.mac" />
     <EmbeddedResource Include="Resources\AssetBundles\weavercore.bundle.win" />
-    <None Include="Resources\InternalClasses - Copy.txt" />
-    <EmbeddedResource Include="Resources\InternalClasses.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -454,6 +448,6 @@
     <ItemGroup>
       <OutputFiles Include="$(OutputPath)\*.*" Exclude="$(OutputPath)\*.tmp" />
     </ItemGroup>
-    <Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />
+    <!--<Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />-->
   </Target>
 </Project>

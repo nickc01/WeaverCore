@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUILD_MOD", "BUILD_MOD\BUILD_MOD.csproj", "{F16367B9-6F3D-42A0-A5CF-A45B273DB108}"
+	ProjectSection(ProjectDependencies) = postProject
+		{540B97A1-C150-4789-931C-C27691D3BD46} = {540B97A1-C150-4789-931C-C27691D3BD46}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverCore", "WeaverCore\WeaverCore.csproj", "{A2FFEEB2-041D-4D3E-AB93-96C8D6D54F78}"
 EndProject
@@ -11,11 +14,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverCore.Editor", "Weaver
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverCore.Game", "WeaverCore.Game\WeaverCore.Game.csproj", "{783B4536-C8BB-4306-A4C3-8E1F4E9F7EAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyManipulator", "AssemblyManipulator\AssemblyManipulator.csproj", "{0AE54068-540C-4EC1-A79A-54484C75CB18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverBuildTools", "WeaverBuildTools\WeaverBuildTools.csproj", "{0AE54068-540C-4EC1-A79A-54484C75CB18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverCore.Editor.Visual", "WeaverCore.Editor.Visual\WeaverCore.Editor.Visual.csproj", "{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverTools", "WeaverTools\WeaverTools.csproj", "{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverCore.Editor.Preloader", "WeaverCore.Editor.Preloader\WeaverCore.Editor.Preloader.csproj", "{540B97A1-C150-4789-931C-C27691D3BD46}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0ACB7733-3B00-4452-9A4B-59D04EF5CDD1} = {0ACB7733-3B00-4452-9A4B-59D04EF5CDD1}
+		{A2FFEEB2-041D-4D3E-AB93-96C8D6D54F78} = {A2FFEEB2-041D-4D3E-AB93-96C8D6D54F78}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +90,14 @@ Global
 		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.EditorRelease|Any CPU.Build.0 = EditorRelease|Any CPU
 		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{540B97A1-C150-4789-931C-C27691D3BD46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{540B97A1-C150-4789-931C-C27691D3BD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540B97A1-C150-4789-931C-C27691D3BD46}.EditorDebug|Any CPU.ActiveCfg = EditorDebug|Any CPU
+		{540B97A1-C150-4789-931C-C27691D3BD46}.EditorDebug|Any CPU.Build.0 = EditorDebug|Any CPU
+		{540B97A1-C150-4789-931C-C27691D3BD46}.EditorRelease|Any CPU.ActiveCfg = EditorRelease|Any CPU
+		{540B97A1-C150-4789-931C-C27691D3BD46}.EditorRelease|Any CPU.Build.0 = EditorRelease|Any CPU
+		{540B97A1-C150-4789-931C-C27691D3BD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{540B97A1-C150-4789-931C-C27691D3BD46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

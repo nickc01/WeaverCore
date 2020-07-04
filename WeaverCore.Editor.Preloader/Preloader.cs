@@ -130,6 +130,10 @@ namespace WeaverCore.Editor.Preloader
 					{
 						filePath = weaverCoreFolder.FullName + "\\Editor\\WeaverBuildTools.dll";
 					}
+					else if (resource == "Mono.Cecil")
+					{
+						filePath = weaverCoreFolder.FullName + "\\Editor\\Mono.Cecil.dll";
+					}
 					else
 					{
 						filePath = noBuildFolder.FullName + "\\" + SanitizeName(resource);

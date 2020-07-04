@@ -16,10 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverCore.Game", "WeaverCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverBuildTools", "WeaverBuildTools\WeaverBuildTools.csproj", "{0AE54068-540C-4EC1-A79A-54484C75CB18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverCore.Editor.Visual", "WeaverCore.Editor.Visual\WeaverCore.Editor.Visual.csproj", "{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverTools", "WeaverTools\WeaverTools.csproj", "{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeaverCore.Editor.Preloader", "WeaverCore.Editor.Preloader\WeaverCore.Editor.Preloader.csproj", "{540B97A1-C150-4789-931C-C27691D3BD46}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0ACB7733-3B00-4452-9A4B-59D04EF5CDD1} = {0ACB7733-3B00-4452-9A4B-59D04EF5CDD1}
@@ -74,22 +70,6 @@ Global
 		{0AE54068-540C-4EC1-A79A-54484C75CB18}.EditorRelease|Any CPU.Build.0 = EditorRelease|Any CPU
 		{0AE54068-540C-4EC1-A79A-54484C75CB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AE54068-540C-4EC1-A79A-54484C75CB18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}.EditorDebug|Any CPU.ActiveCfg = EditorDebug|Any CPU
-		{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}.EditorDebug|Any CPU.Build.0 = EditorDebug|Any CPU
-		{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}.EditorRelease|Any CPU.ActiveCfg = EditorRelease|Any CPU
-		{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}.EditorRelease|Any CPU.Build.0 = EditorRelease|Any CPU
-		{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B45AFF65-8CC0-4B3E-92B9-28DD53F65A52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.EditorDebug|Any CPU.ActiveCfg = EditorDebug|Any CPU
-		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.EditorDebug|Any CPU.Build.0 = EditorDebug|Any CPU
-		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.EditorRelease|Any CPU.ActiveCfg = EditorRelease|Any CPU
-		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.EditorRelease|Any CPU.Build.0 = EditorRelease|Any CPU
-		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79AD4B75-6678-4BEA-B479-FCB6B8DA18BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{540B97A1-C150-4789-931C-C27691D3BD46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{540B97A1-C150-4789-931C-C27691D3BD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{540B97A1-C150-4789-931C-C27691D3BD46}.EditorDebug|Any CPU.ActiveCfg = EditorDebug|Any CPU

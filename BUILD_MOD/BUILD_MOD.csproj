@@ -277,11 +277,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WeaverCore.Editor.Visual\WeaverCore.Editor.Visual.csproj">
-      <Project>{b45aff65-8cc0-4b3e-92b9-28dd53f65a52}</Project>
-      <Name>WeaverCore.Editor.Visual</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\WeaverCore.Editor\WeaverCore.Editor.csproj">
       <Project>{0acb7733-3b00-4452-9a4b-59d04ef5cdd1}</Project>
       <Name>WeaverCore.Editor</Name>
@@ -292,11 +287,6 @@
       <Name>WeaverCore.Game</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\WeaverTools\WeaverTools.csproj">
-      <Project>{79ad4b75-6678-4bea-b479-fcb6b8da18bf}</Project>
-      <Name>WeaverTools</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -305,21 +295,22 @@
   </PropertyGroup>
   <Import Project="$(SolutionDir)Weaver.targets" />
   <Target Name="AfterBuild">
-	<Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe removeembeddedfiles &quot;$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll&quot;" />
-		<Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe embedresource &quot;$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll&quot; &quot;$(SolutionDir)WeaverCore\bin\$(ConfigurationName)\WeaverCore.dll&quot; %22WeaverCore&quot; false" />
-		<Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe embedresource &quot;$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll&quot; &quot;$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe&quot; %22WeaverBuildTools&quot; false" />
-	<Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe embedmanyfiles $(SolutionDir)WeaverCore.Editor\bin\$(ConfigurationName)\dataToEmbed.dat $(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll" />
+    <Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe removeembeddedfiles &quot;$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll&quot;" />
+    <Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe embedresource &quot;$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll&quot; &quot;$(SolutionDir)WeaverCore\bin\$(ConfigurationName)\WeaverCore.dll&quot; %22WeaverCore&quot; false" />
+    <Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe embedresource &quot;$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll&quot; &quot;$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe&quot; %22WeaverBuildTools&quot; false" />
+    <Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe embedresource &quot;$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll&quot; &quot;$(SolutionDir)packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.dll&quot; %22Mono.Cecil&quot; false" />
+    <Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe embedmanyfiles $(SolutionDir)WeaverCore.Editor\bin\$(ConfigurationName)\dataToEmbed.dat $(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll" />
     <!--<Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe &quot;$(HollowKnightLocation)Managed\Mods\WeaverCore.dll&quot; &quot;$(SolutionDir)WeaverCore.Editor\bin\$(ConfigurationName)\WeaverCore.Editor.dll&quot; %22WeaverCore.Editor&quot; false" />-->
     <!--<Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe &quot;$(HollowKnightLocation)Managed\Mods\WeaverCore.dll&quot; &quot;$(SolutionDir)WeaverCore.Game\bin\$(ConfigurationName)\WeaverCore.Game.dll&quot; %22WeaverCore.Game&quot; false" />-->
     <!--<Exec Command="$(SolutionDir)WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe &quot;$(HollowKnightLocation)Managed\Mods\WeaverCore.dll&quot; &quot;$(SolutionDir)WeaverCore.Editor.Visual\bin\$(ConfigurationName)\WeaverCore.Editor.Visual.dll&quot; %22WeaverCore.Editor.Visual&quot; false" />-->
     <Copy SourceFiles="$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll" DestinationFiles="$(EditorProjectLocation)Assets\WeaverCore.Editor.dll" Condition="'$(ConfigurationName)'=='EditorRelease' OR '$(ConfigurationName)'=='EditorDebug'" />
-	<Copy SourceFiles="$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll" DestinationFiles="$(SolutionDir)WeaverAssets\Project\Weaver Assets\Assets\WeaverCore.Editor.dll" />
+    <Copy SourceFiles="$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll" DestinationFiles="$(SolutionDir)WeaverAssets\Project\Weaver Assets\Assets\WeaverCore.Editor.dll" />
     <ItemGroup>
       <OutputFiles Include="$(OutputPath)\*.*" />
     </ItemGroup>
     <!--<Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />-->
-	<Copy SourceFiles="$(SolutionDir)WeaverCore\bin\$(ConfigurationName)\WeaverCore.dll" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />
-	<Move SourceFiles="$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll" DestinationFiles="$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.dll" />
-		<Delete Files="$(SolutionDir)WeaverCore.Editor\bin\$(ConfigurationName)\dataToEmbed.dat"/>
+    <Copy SourceFiles="$(SolutionDir)WeaverCore\bin\$(ConfigurationName)\WeaverCore.dll" DestinationFolder="$(HollowKnightLocation)Managed\Mods" />
+    <Move SourceFiles="$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.Preloader.dll" DestinationFiles="$(SolutionDir)WeaverCore.Editor.Preloader\bin\$(ConfigurationName)\WeaverCore.Editor.dll" />
+    <Delete Files="$(SolutionDir)WeaverCore.Editor\bin\$(ConfigurationName)\dataToEmbed.dat" />
   </Target>
 </Project>

@@ -45,7 +45,7 @@ namespace WeaverCore.Utilities
                     {
                         Debug.Log("Assembly = " + assembly);
                     }*/
-                    ImplAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName.Contains("WeaverCore.Editor"));
+                    ImplAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "WeaverCore.Editor");
                 }
                 else
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -48,6 +49,8 @@ namespace WeaverCore.Interfaces
 
 				//Debugger.Log("RUnning Init Funcs for = " + assembly);
 
+				//WeaverLog.Log("Initializing Assembly = " + assembly.GetName().Name);
+
 				foreach (var type in assembly.GetTypes().Where(t => typeof(IInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
 				{
 					var init = (IInit)Activator.CreateInstance(type);
@@ -61,6 +64,24 @@ namespace WeaverCore.Interfaces
 					}
 				}
 			}
+			/*catch (ReflectionTypeLoadException e)
+			{
+				//WeaverLog.LogError("Init Error: " + e);
+				//WeaverLog.LogError("Types that loaded");
+				//WeaverLog.LogError("[");
+				foreach (var type in e.Types)
+				{
+					if (type == null)
+					{
+						WeaverLog.LogError("\tnull");
+					}
+					else
+					{
+						WeaverLog.Log("\t" + type.FullName);
+					}
+				}
+				WeaverLog.Log("]");
+			}*/
 			catch (Exception e)
 			{
 				WeaverLog.LogError("Init Error: " + e);

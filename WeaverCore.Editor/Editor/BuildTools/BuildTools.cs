@@ -43,9 +43,11 @@ namespace WeaverCore
 			addModMethod = GetMethod<addModDelegate>("WeaverBuildTools.Commands.AddModCMD", "AddMod");
 		}
 
-		static F GetMethod<F>(string typeName, string methodName) where F : Delegate
+		static F GetMethod<F>(string typeName, string methodName) where F : class
 		{
-			return MethodUtilities.ConvertToDelegate<F>(GetMethod(typeName,methodName));
+			//return MethodUtilities.ConvertToDelegate<F>(GetMethod(typeName,methodName));
+			var method = GetMethod(typeName, methodName);
+			return Delegate.CreateDelegate(method.DeclaringType, method) as F;
 		}
 
 		static MethodInfo GetMethod(string typeName, string methodName)

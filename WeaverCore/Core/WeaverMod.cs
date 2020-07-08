@@ -4,12 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using WeaverCore.Internal;
 using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
     public abstract class WeaverMod : Mod
     {
+        //As soon as any WeaverCore mod loads, the init functions will be called
+        static WeaverMod()
+        {
+            if (CoreInfo.LoadState == Enums.RunningState.Game)
+            {
+                InitRunner.RunInitFunctions();
+            }
+        }
+
+
         List<Registry> registries = null;
 
 
@@ -60,7 +71,7 @@ namespace WeaverCore
 
     public abstract class TogglableWeaverMod : WeaverMod, ITogglableMod
     {
-        public void Unload()
+        public virtual void Unload()
         {
             DisableRegistries();
         }

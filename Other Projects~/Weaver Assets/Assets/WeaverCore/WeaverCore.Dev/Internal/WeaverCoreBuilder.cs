@@ -79,7 +79,7 @@ namespace WeaverCore.Editor.Internal
 			var linuxBundle = weaverAssetsLocation + "\\weavercore.bundle.unix";
 			var macBundle = weaverAssetsLocation + "\\weavercore.bundle.mac";
 			var weaverGameLocation = new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore.Game\\bin\\WeaverCore.Game.dll");
-			var harmonyLocation = new FileInfo("Assets\\WeaverCore\\Editor\\Harmony\\0Harmony.dll");
+			var harmonyLocation = new FileInfo("Assets\\WeaverCore\\Libraries\\0Harmony.dll");
 
 			EmbedResourceCMD.EmbedResource(buildLocation, windowsBundle, "weavercore.bundle.win", compression: CompressionMethod.NoCompression);
 			EmbedResourceCMD.EmbedResource(buildLocation, macBundle, "weavercore.bundle.mac", compression: CompressionMethod.NoCompression);

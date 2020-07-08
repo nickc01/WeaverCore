@@ -2,7 +2,8 @@
     "name": "WeaverCore.Dev",
     "references": [
         "WeaverCore",
-        "HollowKnight"
+        "HollowKnight",
+        "WeaverBuildTools"
     ],
     "includePlatforms": [
         "Editor"

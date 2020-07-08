@@ -13,13 +13,9 @@ namespace WeaverCore.Editor.Internal
 	{
 		public void OnInit()
 		{
-            WeaverLog.Log("COPYING");
 			var sourceFolder = new DirectoryInfo("Assets\\WeaverCore");
 			var destinationFolder = new DirectoryInfo("Assets\\WeaverCore\\Other Projects~\\Weaver Assets\\Assets\\WeaverCore");
             var destinationAssets = new DirectoryInfo("Assets\\WeaverCore\\Other Projects~\\Weaver Assets\\Assets");
-
-            //WeaverLog.Log("Source Folder = " + sourceFolder.FullName);
-            //WeaverLog.Log("Dest Folder = " + destinationFolder.FullName);
 
             if (!destinationAssets.Exists)
             {

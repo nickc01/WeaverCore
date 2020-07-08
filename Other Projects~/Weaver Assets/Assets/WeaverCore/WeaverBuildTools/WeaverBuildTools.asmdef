@@ -1,0 +1,10 @@
+{
+    "name": "WeaverBuildTools",
+    "references": [
+        "WeaverCore"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

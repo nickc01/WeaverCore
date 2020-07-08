@@ -35,7 +35,7 @@ namespace WeaverCore.Utilities
        // internal static void Init()
         static ImplFinder()
         {
-            Debug.Log("Running ImplFinder");
+            //Debug.Log("Running ImplFinder");
             if (FoundImplementations == null)
             {
                 FoundImplementations = new List<Type>();

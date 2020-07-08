@@ -96,8 +96,14 @@ namespace WeaverCore.Editor.Internal
 			//Build Assembly-CSharp
 			var assemblyCSharpBuilder = new Builder();
 			assemblyCSharpBuilder.BuildPath = DefaultAssemblyCSharpLocation;
-			assemblyCSharpBuilder.Scripts = Builder.GetAllRuntimeInDirectory("*.cs", "Assets\\WeaverCore\\Hollow Knight");
-
+			var scripts = Builder.GetAllRuntimeInDirectory("*.cs", "Assets\\WeaverCore\\Hollow Knight");
+			scripts.RemoveAll(f => f.FullName.Contains("Editor\\"));
+			/*foreach (var script in scripts)
+			{
+				Debug.Log("Hollow Knight Script = " + script);
+			}*/
+			assemblyCSharpBuilder.Scripts = scripts;
+			assemblyCSharpBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
 			/*foreach (var file in assemblyCSharpBuilder.Scripts = Builder.GetAllRuntimeInDirectory("*.cs", "Assets\\WeaverCore\\Hollow Knight"))
 			{
 				Debug.Log("Hollow Knight File = " + file);

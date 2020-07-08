@@ -176,7 +176,7 @@ namespace WeaverCore.Editor
 			{
 				var file = files[i];
 				//Debug.Log("Mod Script = " + file);
-				if (file.Contains("Assets\\WeaverCore") || file.Contains("Editor\\"))
+				if (file.Contains("Assets\\WeaverCore") || file.Contains("Editor\\") || file.Contains("Assets/WeaverCore") || file.Contains("Editor/"))
 				{
 					//Debug.Log("Removed!");
 					files.RemoveAt(i);

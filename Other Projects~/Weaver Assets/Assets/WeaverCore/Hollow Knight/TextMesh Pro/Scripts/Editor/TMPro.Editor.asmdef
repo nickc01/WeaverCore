@@ -1,0 +1,10 @@
+{
+    "name": "TMPro.Editor",
+    "references": [
+        "HollowKnight"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

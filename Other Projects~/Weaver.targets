@@ -1,0 +1,63 @@
+<Project InitialTargets="Setup" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!-- Gets the main directories for building all Viridian Mods:
+	[ $(HollowKnightLocation) ]
+	Contains the directory where hollow knight is installed
+
+	[ $(UnityEditorLocation) ]
+	The directory where the Unity Editor DLLs are located
+  -->
+	<Target Name="Setup">
+		<ReadLinesFromFile File="$(SolutionDir)Settings.txt">
+		  <Output TaskParameter="Lines" ItemName="ItemsFromFile" />
+		</ReadLinesFromFile>
+		
+		
+		
+		<CreateProperty Value="%(ItemsFromFile.Identity)">
+		  <Output TaskParameter="Value" PropertyName="UnityEditorLocation" />
+		</CreateProperty>
+		
+		<CreateProperty Value="%(ItemsFromFile.Identity)" Condition="'%(ItemsFromFile.Identity)'!='$(UnityEditorLocation)'">
+		  <Output TaskParameter="Value" PropertyName="Junk1" />
+		</CreateProperty>
+		
+		<CreateProperty Value="%(ItemsFromFile.Identity)" Condition="'%(ItemsFromFile.Identity)'!='$(Junk1)' And '%(ItemsFromFile.Identity)'!='$(UnityEditorLocation)'">
+		  <Output TaskParameter="Value" PropertyName="HollowKnightLocation" />
+		</CreateProperty>
+		
+		<!--<CreateProperty Value="%(ItemsFromFile.Identity)" Condition="'%(ItemsFromFile.Identity)'!='$(EditorProjectLocation)' And '%(ItemsFromFile.Identity)'!='$(Junk1)' And '%(ItemsFromFile.Identity)'!='$(UnityEditorLocation)'">
+		  <Output TaskParameter="Value" PropertyName="Junk2" />
+		</CreateProperty>
+		
+		<CreateProperty Value="%(ItemsFromFile.Identity)" Condition="'%(ItemsFromFile.Identity)'!='$(Junk2)' And '%(ItemsFromFile.Identity)'!='$(EditorProjectLocation)' And '%(ItemsFromFile.Identity)'!='$(Junk1)' And '%(ItemsFromFile.Identity)'!='$(UnityEditorLocation)'">
+		  <Output TaskParameter="Value" PropertyName="HollowKnightLocation" />
+		</CreateProperty>-->
+		
+		
+		<CreateProperty Value="$(UnityEditorLocation)\" Condition ="!HasTrailingSlash($(UnityEditorLocation))">
+		  <Output TaskParameter="Value" PropertyName="UnityEditorLocation" />
+		</CreateProperty>
+		
+		<!--<CreateProperty Value="$(EditorProjectLocation)\" Condition ="!HasTrailingSlash($(EditorProjectLocation))">
+		  <Output TaskParameter="Value" PropertyName="EditorProjectLocation" />
+		</CreateProperty>-->
+		
+		<CreateProperty Value="$(HollowKnightLocation)\" Condition ="!HasTrailingSlash($(HollowKnightLocation))">
+		  <Output TaskParameter="Value" PropertyName="HollowKnightLocation" />
+		</CreateProperty>
+		
+		
+		<Message Text="Unity Editor Location = $(UnityEditorLocation)"/>
+		<!--<Message Text="Editor Project Location = $(EditorProjectLocation)"/>-->
+		<Message Text="Hollow Knight Location = $(HollowKnightLocation)"/>
+		
+		
+		<CreateProperty Value="$(AssemblySearchPaths);$(HollowKnightLocation)hollow_knight_Data\Managed\;$(UnityEditorLocation)">
+		  <Output TaskParameter="Value" PropertyName="AssemblySearchPaths" />
+		</CreateProperty>
+		
+		<CreateProperty Value="$(HollowKnightLocation)$(OutputPath)" Condition="'$(OutputPath)'=='hollow_knight_Data\Managed\Mods'">
+		  <Output TaskParameter="Value" PropertyName="OutputPath" />
+		</CreateProperty>
+	</Target>
+</Project>

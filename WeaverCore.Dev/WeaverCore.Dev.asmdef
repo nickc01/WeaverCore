@@ -1,0 +1,11 @@
+{
+    "name": "WeaverCore.Dev",
+    "references": [
+        "WeaverCore",
+        "HollowKnight"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

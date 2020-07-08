@@ -1,0 +1,5 @@
+*.lock
+.vs
+*/bin
+*/obj
+/packages

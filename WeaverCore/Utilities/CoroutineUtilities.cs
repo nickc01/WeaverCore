@@ -53,12 +53,13 @@ namespace WeaverCore.Utilities
 
 				var instruction = routine.Current;
 
-				if (instruction is null)
+				if (instruction == null)
 				{
 					yield return null;
 				}
-				else if (instruction is WaitForSeconds wfs)
+				else if (instruction is WaitForSeconds)
 				{
+					var wfs = instruction as WaitForSeconds;
 					var time = GetWFSTime(wfs);
 
 					for (float t = 0; t < time; t += Time.deltaTime)
@@ -70,8 +71,9 @@ namespace WeaverCore.Utilities
 						yield return null;
 					}
 				}
-				else if (instruction is IEnumerator e)
+				else if (instruction is IEnumerator)
 				{
+					var e = instruction as IEnumerator;
 					yield return RunWhile(e,predicate);
 				}
 				else
@@ -167,9 +169,6 @@ namespace WeaverCore.Utilities
 				}
 			}
 		}
-
-
-
 
 	}
 }

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<EmbedData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <directoryRelativeTo>C:\Users\Nicholas\source\repos\nickc01\WeaverCore\WeaverCore.Editor" C:\Users\Nicholas\source\repos\nickc01\WeaverCore\WeaverCore.Editor\bin\EditorDebug\dataToEmbed.dat Editor</directoryRelativeTo>
-  <files>Scripts\Implementations\E_WeaverLog_I.cs;Editor</files>
-</EmbedData>

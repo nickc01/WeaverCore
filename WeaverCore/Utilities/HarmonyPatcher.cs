@@ -59,7 +59,14 @@ namespace WeaverCore.Utilities
         {
             if (HarmonyAssembly == null)
             {
-                HarmonyAssembly = Assembly.Load("0Harmony");
+                if (CoreInfo.LoadState == Enums.RunningState.Editor)
+                {
+                    HarmonyAssembly = Assembly.Load("0Harmony");
+                }
+                else
+                {
+                    HarmonyAssembly = ResourceLoader.LoadAssembly("0Harmony");
+                }
                 HarmonyInstanceType = HarmonyAssembly.GetType("Harmony.HarmonyInstance");
                 HarmonyMethodType = HarmonyAssembly.GetType("Harmony.HarmonyMethod");
 
@@ -79,7 +86,7 @@ namespace WeaverCore.Utilities
 
         public override bool Equals(object obj)
         {
-            return obj is HarmonyPatcher instance && instance.harmonyInstance == harmonyInstance;
+            return obj is HarmonyPatcher && ((HarmonyPatcher)obj).harmonyInstance == harmonyInstance;
         }
         public override int GetHashCode()
         {

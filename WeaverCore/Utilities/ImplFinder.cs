@@ -32,8 +32,10 @@ namespace WeaverCore.Utilities
             return RunningState.Game;
         }
 
-        internal static void Init()
+       // internal static void Init()
+        static ImplFinder()
         {
+            Debug.Log("Running ImplFinder");
             if (FoundImplementations == null)
             {
                 FoundImplementations = new List<Type>();
@@ -45,17 +47,42 @@ namespace WeaverCore.Utilities
                     {
                         Debug.Log("Assembly = " + assembly);
                     }*/
-                    ImplAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "WeaverCore.Editor");
+                    ImplAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "WeaverCore.Dev");
                 }
                 else
                 {
-                    ImplAssembly = ResourceLoader.LoadAssembly($"{nameof(WeaverCore)}.Game");
+                    ImplAssembly = ResourceLoader.LoadAssembly("WeaverCore.Game");
                 }
-                foreach (var type in ImplAssembly.GetTypes())
+                //Debug.Log("Assembly Found = " + ImplAssembly);
+                try
                 {
-                    if (typeof(IImplementation).IsAssignableFrom(type) && !type.IsAbstract && !type.ContainsGenericParameters)
+                    foreach (var type in ImplAssembly.GetTypes())
                     {
-                        FoundImplementations.Add(type);
+                        if (typeof(IImplementation).IsAssignableFrom(type) && !type.IsAbstract && !type.ContainsGenericParameters)
+                        {
+                            FoundImplementations.Add(type);
+                        }
+                    }
+                }
+                catch (ReflectionTypeLoadException e)
+                {
+                    Debug.LogError("Failed Types Below");
+                    //foreach (var type in e.Types)
+                    for (int i = 0; i < e.Types.GetLength(0); i++)
+                    {
+                        var type = e.Types[i];
+                        if (type == null)
+                        {
+                            Debug.LogError("Null");
+                        }
+                        else
+                        {
+                            Debug.Log(type.FullName);
+                        }
+                    }
+                    foreach (var exception in e.LoaderExceptions)
+                    {
+                        Debug.LogWarning("Loader Exception = " + exception);
                     }
                 }
             }
@@ -84,7 +111,7 @@ namespace WeaverCore.Utilities
             }
             if (implType == null)
             {
-                throw new Exception($"Implementation for {typeof(T).FullName} does not exist in {ImplAssembly.FullName}");
+                throw new Exception("Implementation for " + typeof(T).FullName + " does not exist in " + ImplAssembly.FullName);
             }
             else
             {

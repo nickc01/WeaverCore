@@ -11,7 +11,7 @@ using WeaverCore.Enums;
 
 namespace WeaverCore.Internal
 {
-	public static class ModLoader
+	/*public static class ModLoader
 	{
 		static bool loadedAllAssemblies = false;
 
@@ -27,7 +27,7 @@ namespace WeaverCore.Internal
 				}
 				foreach (var file in Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories))
 				{
-					if (!file.Contains("Assets\\Editor") && !file.Contains($"{(nameof(WeaverCore))}\\Editor"))
+					if (!file.Contains("Assets\\Editor") && !file.Contains("WeaverCore\\Editor"))
 					{
 						Assembly.LoadFile(file);
 					}
@@ -35,7 +35,7 @@ namespace WeaverCore.Internal
 			}
 		}
 
-		public static IEnumerable<IWeaverMod> LoadAllModsIter()
+		public static IEnumerable<WeaverMod> LoadAllModsIter()
 		{
 			LoadAllModAssemblies();
 			var impl = ImplFinder.GetImplementation<ModLoader_I>();
@@ -44,7 +44,7 @@ namespace WeaverCore.Internal
 				var registry = RegistryLoader.GetModRegistries(mod.GetType()).ToList();
 				if (registry.Count == 0 && !(mod is WeaverCore))
 				{
-					WeaverLog.LogWarning($"No registry found for mod : {mod.Name}");
+					WeaverLog.LogWarning("No registry found for mod : " + mod.Name);
 				}
 				yield return mod;
 			}
@@ -78,5 +78,5 @@ namespace WeaverCore.Internal
 			}
 			return null;
 		}
-	}
+	}*/
 }

@@ -239,7 +239,7 @@ namespace WeaverCore.Utilities
 			return JitterObject(gameObject.transform, amount);
 		}
 
-		public static GameObject[] SpawnRandomObjects(GameObject obj, Vector3 spawnPoint, int spawnMin, int spawnMax, float minSpeed, float maxSpeed, float angleMin, float angleMax, Vector2 originOffset = default)
+		public static GameObject[] SpawnRandomObjects(GameObject obj, Vector3 spawnPoint, int spawnMin, int spawnMax, float minSpeed, float maxSpeed, float angleMin, float angleMax, Vector2 originOffset = default(Vector2))
 		{
 			int spawnNum = Random.Range(spawnMin, spawnMax + 1);
 			float speedNum = Random.Range(minSpeed, maxSpeed);

@@ -12,6 +12,12 @@ namespace WeaverCore.Features
 		[SerializeField]
 		private string enemyToReplace = "";
 
-		public string ThingToReplace => enemyToReplace;
+		public string ThingToReplace
+		{
+			get
+			{
+				return enemyToReplace;
+			}
+		}
 	}
 }

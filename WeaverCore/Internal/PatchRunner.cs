@@ -43,7 +43,7 @@ namespace WeaverCore.Internal
 				{
 					var patcher = (IPatch)Activator.CreateInstance(type);
 
-					var patcherInstance = HarmonyPatcher.Create($"com.{assembly.GetName().Name}.patch");
+					var patcherInstance = HarmonyPatcher.Create("com." + assembly.GetName().Name + ".patch");
 
 					try
 					{
@@ -54,6 +54,11 @@ namespace WeaverCore.Internal
 						WeaverLog.LogError("Patch Error: " + e);
 					}
 				}
+			}
+			catch (ReflectionTypeLoadException e)
+			{
+				WeaverLog.LogError("Patch Error: " + e);
+				WeaverLog.LogError("Bad Assembly: " + assembly);
 			}
 			catch (Exception e)
 			{

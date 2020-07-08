@@ -17,9 +17,13 @@ namespace WeaverCore.Utilities
         /// <typeparam name="DelegateType">The delegate type to convert type</typeparam>
         /// <param name="method">The method info</param>
         /// <returns>The delegate that will call the method</returns>
-        public static DelegateType ConvertToDelegate<DelegateType>(MethodInfo method) where DelegateType : Delegate
+        public static DelegateType ConvertToDelegate<DelegateType>(MethodInfo method)
         {
-            return (DelegateType)Delegate.CreateDelegate(typeof(DelegateType), method);
+            if (!typeof(Delegate).IsAssignableFrom(typeof(DelegateType)))
+            {
+                throw new Exception(typeof(DelegateType).FullName + " is not a delegate type");
+            }
+            return (DelegateType)(object)Delegate.CreateDelegate(typeof(DelegateType), method);
         }
 
         /// <summary>
@@ -29,9 +33,13 @@ namespace WeaverCore.Utilities
         /// <param name="method">The method info</param>
         /// <param name="instance">The object instance that the method is bound to</param>
         /// <returns>The delegate that will call the method</returns>
-        public static DelegateType ConvertToDelegate<DelegateType>(MethodInfo method, object instance) where DelegateType : Delegate
+        public static DelegateType ConvertToDelegate<DelegateType>(MethodInfo method, object instance)
         {
-            return (DelegateType)Delegate.CreateDelegate(typeof(DelegateType), instance, method);
+            if (!typeof(Delegate).IsAssignableFrom(typeof(DelegateType)))
+            {
+                throw new Exception(typeof(DelegateType).FullName + " is not a delegate type");
+            }
+            return (DelegateType)(object)Delegate.CreateDelegate(typeof(DelegateType), instance, method);
         }
 
         /// <summary>
@@ -42,7 +50,7 @@ namespace WeaverCore.Utilities
         /// <param name="methodName">The name of the method</param>
         /// <param name="Flags">The binding flags used to find the method on the object</param>
         /// <returns>The delegate that will call the method</returns>
-        public static DelegateType ConvertToDelegate<DelegateType, InstanceType>(string methodName, BindingFlags Flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance) where DelegateType : Delegate
+        public static DelegateType ConvertToDelegate<DelegateType, InstanceType>(string methodName, BindingFlags Flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)
         {
             return ConvertToDelegate<DelegateType>(typeof(InstanceType).GetMethod(methodName, Flags));
         }
@@ -56,9 +64,13 @@ namespace WeaverCore.Utilities
         /// <param name="instance">The instance object the method is bound to</param>
         /// <param name="Flags">The binding flags used to find the method on the object</param>
         /// <returns>The delegate that will call the method</returns>
-        public static DelegateType ConvertToDelegate<DelegateType, InstanceType>(string methodName, InstanceType instance, BindingFlags Flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance) where DelegateType : Delegate
+        public static DelegateType ConvertToDelegate<DelegateType, InstanceType>(string methodName, InstanceType instance, BindingFlags Flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)
         {
-            return (DelegateType)Delegate.CreateDelegate(typeof(DelegateType), instance, typeof(InstanceType).GetMethod(methodName, Flags));
+            if (!typeof(Delegate).IsAssignableFrom(typeof(DelegateType)))
+            {
+                throw new Exception(typeof(DelegateType).FullName + " is not a delegate type");
+            }
+            return (DelegateType)(object)Delegate.CreateDelegate(typeof(DelegateType), instance, typeof(InstanceType).GetMethod(methodName, Flags));
         }
 
         public static MethodInfo GetMethod<InstanceType>(string methodName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)

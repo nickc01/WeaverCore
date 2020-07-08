@@ -21,7 +21,7 @@ namespace WeaverCore.WeaverAssets.Components
 		void Awake()
 		{
 			sprite = GetComponent<SpriteRenderer>();
-			sprite.color = default;
+			sprite.color = default(Color);
 		}
 
 		void Start()

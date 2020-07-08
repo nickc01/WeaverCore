@@ -20,7 +20,7 @@ namespace WeaverCore.Components
 		Valid
 	}
 
-	public class HealthManager : MonoBehaviour, IHittable
+	public class EntityHealth : MonoBehaviour, IHittable
 	{
 		Collider2D collider;
 
@@ -36,7 +36,10 @@ namespace WeaverCore.Components
 		/// </summary>
 		public int Health
 		{
-			get => health;
+			get
+			{
+				return health;
+			}
 			set
 			{
 				health = value;
@@ -81,7 +84,10 @@ namespace WeaverCore.Components
 		/// </summary>
 		public float EvasionTimeLeft
 		{
-			get => evasionTimer;
+			get
+			{
+				return evasionTimer;
+			}
 			set
 			{
 				if (value < 0.0f)
@@ -339,7 +345,10 @@ namespace WeaverCore.Components
 		{
 			impl = (HealthManager_I)gameObject.AddComponent(ImplFinder.GetImplementationType<HealthManager_I>());
 			impl.Manager = this;
-			Player.Player1?.RefreshSoulUI();
+			if (Player.Player1 != null)
+			{
+				Player.Player1.RefreshSoulUI();
+			}
 		}
 	}
 }

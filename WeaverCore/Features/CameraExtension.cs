@@ -8,7 +8,19 @@ namespace WeaverCore.Features
 {
 	public class CameraExtension : Feature
 	{
-		public WeaverCam Camera => WeaverCam.Instance;
-		public CameraShaker Shaker => WeaverCam.Instance.Shaker;
+		public WeaverCam Camera
+		{
+			get
+			{
+				return WeaverCam.Instance;
+			}
+		}
+		public CameraShaker Shaker
+		{
+			get
+			{
+				return WeaverCam.Instance.Shaker;
+			}
+		}
 	}
 }

@@ -14,13 +14,14 @@ namespace WeaverCore.Utilities
 	{
 		static bool loaded = false;
 
-		public static IEnumerable<Registry> GetModRegistries<Mod>() where Mod : IWeaverMod
+		public static IEnumerable<Registry> GetModRegistries<Mod>() where Mod : WeaverMod
 		{
 			return GetModRegistries(typeof(Mod));
 		}
 
 		public static IEnumerable<Registry> GetModRegistries(Type ModType)
 		{
+			WeaverLog.Log("Loading Registries for " + ModType.FullName);
 			var findings = Registry.FindAll(ModType);
 			if (findings != null)
 			{
@@ -42,7 +43,7 @@ namespace WeaverCore.Utilities
 
 		public static IEnumerable<Registry> GetEmbeddedRegistries(Type modType)
 		{
-			WeaverLog.Log($"Loading Embedded Registries for mod [{modType.FullName}]");
+			WeaverLog.Log("Loading Embedded Registries for mod [" + modType.FullName + "]");
 			if (!loaded)
 			{
 				string extension = null;

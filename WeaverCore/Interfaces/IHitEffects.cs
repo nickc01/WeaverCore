@@ -9,6 +9,6 @@ namespace WeaverCore.Interfaces
 {
 	public interface IHitEffects
 	{
-		void PlayHitEffect(HitInfo hit, Vector3 effectsOffset = default);
+		void PlayHitEffect(HitInfo hit, Vector3 effectsOffset = default(Vector3));
 	}
 }

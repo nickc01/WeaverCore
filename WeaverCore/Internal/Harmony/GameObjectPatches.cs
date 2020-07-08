@@ -16,7 +16,7 @@ namespace WeaverCore.Internal.Harmony
 		{
 			void IPatch.Patch(HarmonyPatcher patcher)
 			{
-				MethodInfo postfix = typeof(GameObjectPatches).GetMethod(nameof(AllPostFix), BindingFlags.NonPublic | BindingFlags.Static);
+				MethodInfo postfix = typeof(GameObjectPatches).GetMethod("AllPostFix", BindingFlags.NonPublic | BindingFlags.Static);
 
 				foreach (var m in typeof(UnityEngine.Object).GetMethods(BindingFlags.Public | BindingFlags.Static))
 				{
@@ -60,13 +60,13 @@ namespace WeaverCore.Internal.Harmony
 			}
 
 			GameObject gameObject = null;
-			if (__result is GameObject gm)
+			if (__result is GameObject)
 			{
-				gameObject = gm;
+				gameObject = __result as GameObject;
 			}
-			else if (__result is Component component)
+			else if (__result is Component)
 			{
-				gameObject = component.gameObject;
+				gameObject = (__result as Component).gameObject;
 			}
 			else
 			{
@@ -77,7 +77,7 @@ namespace WeaverCore.Internal.Harmony
 
 			foreach (var renderer in gameObject.GetComponentsInChildren<Renderer>())
 			{
-				if (renderer.sharedMaterial?.shader != null && (renderer.sharedMaterial.shader.name.Contains("Error") || renderer.sharedMaterial.shader.name.Contains("Missing")))
+				if (renderer.sharedMaterial != null && renderer.sharedMaterial.shader != null && (renderer.sharedMaterial.shader.name.Contains("Error") || renderer.sharedMaterial.shader.name.Contains("Missing")))
 				{
 					renderer.sharedMaterial.shader = DefaultSpriteMaterial.shader;
 				}

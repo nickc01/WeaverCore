@@ -103,8 +103,8 @@ using WeaverCore.Implementations;
 
         public T Target
         {
-            get => (T)Reference.Target;
-            set => Reference.Target = value;
+            get { return (T)Reference.Target; }
+            set { Reference.Target = value; }
         }
 
         public bool IsAlive => Reference.IsAlive;

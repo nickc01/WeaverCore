@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Enums;
 
 namespace WeaverCore.Utilities
 {
@@ -20,7 +22,13 @@ namespace WeaverCore.Utilities
 		}
 
 
-		public static bool WeaverAssetBundleIsSet => weaverAssetBundle != null;
+		public static bool WeaverAssetBundleIsSet
+		{
+			get
+			{
+				return weaverAssetBundle != null;
+			}
+		}
 
 		static AssetBundle weaverAssetBundle = null;
 		public static AssetBundle WeaverAssetBundle
@@ -59,27 +67,37 @@ namespace WeaverCore.Utilities
 				extension = ".bundle.unix";
 			}
 
-			var weaverAssembly = typeof(WeaverAssetLoader).Assembly;
-
-			foreach (var resourceName in weaverAssembly.GetManifestResourceNames())
+			if (CoreInfo.LoadState == RunningState.Game)
 			{
-				if (resourceName.EndsWith(extension) && resourceName.ToUpper().Contains("WEAVERCORE"))
+				var weaverAssembly = typeof(WeaverAssetLoader).Assembly;
+
+				foreach (var resourceName in weaverAssembly.GetManifestResourceNames())
 				{
-					try
+					if (resourceName.EndsWith(extension) && resourceName.ToUpper().Contains("WEAVERCORE"))
 					{
-						var bundle = AssetBundle.LoadFromStream(weaverAssembly.GetManifestResourceStream(resourceName));
-						weaverAssetBundle = bundle;
-						break;
-					}
-					catch (Exception e)
-					{
-						throw new WeaverAssetsException("Failed to load the WeaverAssets Asset Bundle",e);
+						try
+						{
+							var bundle = AssetBundle.LoadFromStream(weaverAssembly.GetManifestResourceStream(resourceName));
+							weaverAssetBundle = bundle;
+							break;
+						}
+						catch (Exception e)
+						{
+							throw new WeaverAssetsException("Failed to load the WeaverAssets Asset Bundle", e);
+						}
 					}
 				}
+				if (weaverAssetBundle == null)
+				{
+					throw new WeaverAssetsException("Unable to find the WeaverAssets Asset Bundle");
+				}
 			}
-			if (weaverAssetBundle == null)
+			else
 			{
-				throw new WeaverAssetsException("Unable to find the WeaverAssets Asset Bundle");
+				var bundleFileLocation = new FileInfo("Assets\\WeaverCore\\WeaverAssets\\Bundles\\weavercore" + extension);
+				weaverAssetBundle = AssetBundle.LoadFromFile(bundleFileLocation.FullName);
+
+				
 			}
 
 		}
@@ -89,7 +107,13 @@ namespace WeaverCore.Utilities
 			weaverAssetBundle = bundle;
 		}
 
-		public static string[] AssetNames => WeaverAssetBundle.GetAllAssetNames();
+		public static string[] AssetNames
+		{
+			get
+			{
+				return WeaverAssetBundle.GetAllAssetNames();
+			}
+		}
 
 		public static T LoadWeaverAsset<T>(string name) where T : UnityEngine.Object
 		{

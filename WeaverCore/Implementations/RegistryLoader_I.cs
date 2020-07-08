@@ -10,7 +10,7 @@ namespace WeaverCore.Implementations
     {
         //static bool loaded = false;
 
-        public IEnumerable<Registry> GetRegistries<Mod>() where Mod : IWeaverMod
+        public IEnumerable<Registry> GetRegistries<Mod>() where Mod : WeaverMod
         {
             return GetRegistries(typeof(Mod));
         }

@@ -9,6 +9,12 @@ namespace WeaverCore.WeaverAssets
 {
 	public static class MaterialAssets
 	{
-		public static Material SpriteFlash => WeaverAssetLoader.LoadWeaverAsset<Material>("SpriteFlash");
+		public static Material SpriteFlash
+		{
+			get
+			{
+				return WeaverAssetLoader.LoadWeaverAsset<Material>("SpriteFlash");
+			}
+		}
 	}
 }

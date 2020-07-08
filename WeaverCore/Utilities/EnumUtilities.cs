@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Linq;
 using System.ComponentModel;
 
 namespace WeaverCore.Utilities
 {
 	public static class EnumUtilities
 	{
-		public static EnumType RandomEnumValue<EnumType>(params EnumType[] excludedValues) where EnumType : Enum
+		public static EnumType RandomEnumValue<EnumType>(params EnumType[] excludedValues)
 		{
+			if (!typeof(EnumType).IsEnum)
+			{
+				throw new Exception(typeof(EnumType).FullName + " is not an enum");
+			}
 			var comparer = EqualityComparer<EnumType>.Default;
 
 			var values = Enum.GetValues(typeof(EnumType));
@@ -34,32 +37,40 @@ namespace WeaverCore.Utilities
 				}
 				else
 				{
-					throw new InvalidEnumArgumentException($"The enum value of {typeof(EnumType).Name} does not have any values to randomly select from");
+					throw new InvalidEnumArgumentException("The enum value of " + typeof(EnumType).Name + " does not have any values to randomly select from");
 				}
 			}
 
 			return enumValues[UnityEngine.Random.Range(0,enumValues.Count)];
 		}
 
-		public static DestType RawConvert<SourceType,DestType>(SourceType source) where SourceType : Enum where DestType : Enum
+		public static DestEnumType RawConvert<SourceEnumType,DestEnumType>(SourceEnumType source)
 		{
-			return (DestType)RawConvert(source, typeof(DestType));
+			/*if (!typeof(SourceType).IsEnum)
+			{
+				throw new Exception("The provided SourceType of "+ typeof(SourceType).FullName + " is not an enum");
+			}
+			if (!typeof(DestType).IsEnum)
+			{
+				throw new Exception("The provided DestType of " + typeof(DestType).FullName + " is not an enum");
+			}*/
+			return (DestEnumType)RawConvert(source, typeof(DestEnumType));
 		}
 
-		public static object RawConvert(object source, Type destType)
+		public static object RawConvert(object source, Type destEnumType)
 		{
 			var sourceType = source.GetType();
 			if (!sourceType.IsEnum)
 			{
 				throw new Exception("The source is of type " + source.GetType() + ", which is not an enum");
 			}
-			if (!destType.IsEnum)
+			if (!destEnumType.IsEnum)
 			{
 				throw new Exception("The destType is " + source.GetType() + ", which is not an enum");
 			}
 
 			object underlyingValue = Convert.ChangeType(source, Enum.GetUnderlyingType(sourceType));
-			return Enum.ToObject(destType, underlyingValue);
+			return Enum.ToObject(destEnumType, underlyingValue);
 		}
 	}
 }

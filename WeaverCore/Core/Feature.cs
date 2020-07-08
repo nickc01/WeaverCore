@@ -19,8 +19,8 @@ namespace WeaverCore
         /// </summary>
         public virtual bool FeatureEnabled
         {
-            get => featureEnabled;
-            set => featureEnabled = value;
+            get { return featureEnabled; }
+            set { featureEnabled = value; }
         }
     }
 }

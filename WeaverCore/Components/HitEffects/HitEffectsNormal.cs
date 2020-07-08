@@ -34,7 +34,7 @@ namespace WeaverCore.Components.HitEffects
 			firedOnCurrentFrame = false;
 		}
 
-		public void PlayHitEffect(HitInfo hit, Vector3 effectsOffset = default)
+		public void PlayHitEffect(HitInfo hit, Vector3 effectsOffset = default(Vector3))
 		{
 			if (!firedOnCurrentFrame)
 			{

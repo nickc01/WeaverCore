@@ -51,7 +51,7 @@ namespace WeaverCore.Utilities
 		/// <param name="flashSprite">Whether the sprite on the entity should flash or not. This only works if the entity has a <see cref="SpriteRenderer"/> and a <see cref="WeaverCore.Components.SpriteFlasher"/> If a <see cref="WeaverCore.Components.SpriteFlasher"/> is not already on the entity, one will be created</param>
 		/// <param name="playEffects">Whether the teleportation effects should be played.</param>
 		/// <returns>Returns the amount of time the teleportation will take. You can use this if you want to wait until the teleportation is done</returns>
-		public static float TeleportEntity(GameObject entity, Vector3 Destination, TeleType teleType = TeleType.Quick, Color teleportColor = default, bool flashSprite = true, bool playEffects = true, float audioPitch = 1f)
+		public static float TeleportEntity(GameObject entity, Vector3 Destination, TeleType teleType = TeleType.Quick, Color teleportColor = default(Color), bool flashSprite = true, bool playEffects = true, float audioPitch = 1f)
 		{
 			float inTime = 0.0f;
 			float outTime = 0.0f;
@@ -83,9 +83,9 @@ namespace WeaverCore.Utilities
 		/// <param name="flashSprite">Whether the sprite on the entity should flash or not. This only works if the entity has a <see cref="SpriteRenderer"/> and a <see cref="WeaverCore.Components.SpriteFlasher"/> If a <see cref="WeaverCore.Components.SpriteFlasher"/> is not already on the entity, one will be created</param>
 		/// <param name="playEffects">Whether the teleportation effects should be played.</param>
 		/// <returns>Returns the amount of time the teleportation will take. You can use this if you want to wait until the teleportation is done</returns>
-		public static float TeleportEntity(GameObject entity, Vector3 Destination, float teleInTime, float teleOutTime, Color teleportColor = default, bool flashSprite = true, bool playEffects = true, float audioPitch = 1f)
+		public static float TeleportEntity(GameObject entity, Vector3 Destination, float teleInTime, float teleOutTime, Color teleportColor = default(Color), bool flashSprite = true, bool playEffects = true, float audioPitch = 1f)
 		{
-			if (teleportColor == default)
+			if (teleportColor == default(Color))
 			{
 				teleportColor = Color.white;
 			}
@@ -117,162 +117,162 @@ namespace WeaverCore.Utilities
 
 			float storedAlpha = sprite.color.a;
 
-			WeaverRoutine.Start(TeleportRoutine());
+			WeaverRoutine.Start(TeleportRoutine(entity, Destination, teleInTime, teleOutTime, teleportColor, flashSprite, playEffects, audioPitch, sprite, flasher, storedAlpha));
 
-			IEnumerator<IWeaverAwaiter> TeleportRoutine()
+			return teleInTime + teleOutTime;
+		}
+
+		private static IEnumerator<IWeaverAwaiter> TeleportRoutine(GameObject entity, Vector3 Destination, float teleInTime, float teleOutTime, Color teleportColor, bool flashSprite, bool playEffects, float audioPitch, SpriteRenderer sprite, SpriteFlasher flasher, float storedAlpha)
+		{
+			if (teleInTime == 0f && teleOutTime == 0f)
 			{
-				if (teleInTime == 0f && teleOutTime == 0f)
+				var originalPosition = entity.transform.position;
+				entity.transform.position = Destination;
+
+				if (playEffects)
 				{
-					var originalPosition = entity.transform.position;
+					SpawnTeleportGlow(Destination, teleportColor);
+
+					SpawnTeleportLine(originalPosition, Destination, teleportColor);
+
+					SpawnWhiteFlash(teleportColor, originalPosition);
+				}
+
+				PlayTeleportSound(Destination, audioPitch);
+			}
+			else
+			{
+				if (flashSprite)
+				{
+					flasher.DoFlash(teleInTime, 0.0f, 0.8f, teleportColor, 10f);
+				}
+				WhiteFlash whiteFlash = null;
+
+				if (playEffects)
+				{
+					whiteFlash = SpawnWhiteFlash(teleportColor, entity.transform.position);
+					whiteFlash.transform.parent = entity.transform;
+				}
+				if (teleInTime > 0f)
+				{
+					yield return new Awaiters.WaitForSeconds(teleInTime);
+				}
+				if (playEffects)
+				{
+					whiteFlash.transform.parent = null;
+					whiteFlash.transform.position = entity.transform.position;
+				}
+				if (teleOutTime == 0f)
+				{
 					entity.transform.position = Destination;
+					if (flashSprite)
+					{
+						flasher.StopFlashing();
+						flasher.FlashIntensity = 0f;
+					}
+
+					var originalPosition = entity.transform.position;
 
 					if (playEffects)
 					{
 						SpawnTeleportGlow(Destination, teleportColor);
+						/*var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(Destination.x, Destination.y, Destination.z - 0.1f), Quaternion.identity);
+						glow.GetComponent<SpriteRenderer>().color = Color.Lerp(teleportColor, Color.white, 0.5f);*/
 
 						SpawnTeleportLine(originalPosition, Destination, teleportColor);
+						/*var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, Destination, 0.5f), Quaternion.identity);
+						LookAt(teleLine, Destination);
+						teleLine.transform.localScale = new Vector3(Vector3.Distance(originalPosition, Destination), teleLine.transform.localScale.y, teleLine.transform.localScale.z);*/
 
-						SpawnWhiteFlash(teleportColor, originalPosition);
+						//var mainModule = teleLine.GetComponent<ParticleSystem>().main;
+						//mainModule.startColor = Color.Lerp(teleportColor, Color.white, 0.5f);
 					}
 
 					PlayTeleportSound(Destination, audioPitch);
+					//var teleportSound = HollowPlayer.Play(AudioAssets.Teleport, Destination, 1f, AudioChannel.Sound);
+
+					//teleportSound.AudioSource.pitch = audioPitch;
 				}
 				else
 				{
 					if (flashSprite)
 					{
-						flasher.DoFlash(teleInTime, 0.0f, 0.8f, teleportColor, 10f);
+						flasher.StopFlashing();
+						flasher.FlashIntensity = 0.8f;
+						flasher.FlashColor = teleportColor;
 					}
-					WhiteFlash whiteFlash = null;
+
+					float currentWarpTime = WARP_TIME;
+
+					if (teleOutTime < WARP_TIME)
+					{
+						currentWarpTime = teleOutTime;
+					}
+
+					float fadeOutTime = currentWarpTime / 2f;
+
+					float fadeOutTimer = 0f;
+
+					var originalPosition = entity.transform.position;
 
 					if (playEffects)
 					{
-						whiteFlash = SpawnWhiteFlash(teleportColor, entity.transform.position);
-						whiteFlash.transform.parent = entity.transform;
+						SpawnTeleportGlow(Destination, teleportColor);
+						/*var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(Destination.x, Destination.y, Destination.z - 0.1f), Quaternion.identity);
+						glow.GetComponent<SpriteRenderer>().color = Color.Lerp(teleportColor,Color.white,0.5f);*/
+
+						SpawnTeleportLine(originalPosition, Destination, teleportColor);
+						/*var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, Destination, 0.5f), Quaternion.identity);
+						LookAt(teleLine, Destination);
+						teleLine.transform.localScale = new Vector3(Vector3.Distance(originalPosition, Destination), teleLine.transform.localScale.y, teleLine.transform.localScale.z);*/
+
+						//var mainModule = teleLine.GetComponent<ParticleSystem>().main;
+						//mainModule.startColor = Color.Lerp(teleportColor, Color.white, 0.5f);
 					}
-					if (teleInTime > 0f)
+					PlayTeleportSound(Destination, audioPitch);
+					//var teleportSound = HollowPlayer.Play(AudioAssets.Teleport, Destination, 1f, AudioChannel.Sound);
+					//teleportSound.AudioSource.pitch = audioPitch;
+
+					while (fadeOutTimer < fadeOutTime)
 					{
-						yield return new Awaiters.WaitForSeconds(teleInTime);
+						yield return null;
+						fadeOutTimer += Time.deltaTime;
+						if (fadeOutTimer > fadeOutTime)
+						{
+							fadeOutTimer = fadeOutTime;
+						}
+						if (playEffects)
+						{
+							sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.Lerp(storedAlpha, 0f, fadeOutTimer / fadeOutTime));
+						}
 					}
+
+					entity.transform.position = Destination;
+
+					float fadeInTime = currentWarpTime - fadeOutTime;
+
+					float fadeInTimer = 0f;
+
 					if (playEffects)
 					{
-						whiteFlash.transform.parent = null;
-						whiteFlash.transform.position = entity.transform.position;
+						flasher.DoFlash(0.0f, teleOutTime, 0.8f, teleportColor, 0f);
 					}
-					if (teleOutTime == 0f)
+
+					while (fadeInTimer < fadeInTime)
 					{
-						entity.transform.position = Destination;
-						if (flashSprite)
+						yield return null;
+						fadeInTimer += Time.deltaTime;
+						if (fadeInTimer > fadeInTime)
 						{
-							flasher.StopFlashing();
-							flasher.FlashIntensity = 0f;
+							fadeInTimer = fadeInTime;
 						}
-
-						var originalPosition = entity.transform.position;
-
 						if (playEffects)
 						{
-							SpawnTeleportGlow(Destination, teleportColor);
-							/*var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(Destination.x, Destination.y, Destination.z - 0.1f), Quaternion.identity);
-							glow.GetComponent<SpriteRenderer>().color = Color.Lerp(teleportColor, Color.white, 0.5f);*/
-
-							SpawnTeleportLine(originalPosition, Destination, teleportColor);
-							/*var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, Destination, 0.5f), Quaternion.identity);
-							LookAt(teleLine, Destination);
-							teleLine.transform.localScale = new Vector3(Vector3.Distance(originalPosition, Destination), teleLine.transform.localScale.y, teleLine.transform.localScale.z);*/
-
-							//var mainModule = teleLine.GetComponent<ParticleSystem>().main;
-							//mainModule.startColor = Color.Lerp(teleportColor, Color.white, 0.5f);
-						}
-
-						PlayTeleportSound(Destination, audioPitch);
-						//var teleportSound = HollowPlayer.Play(AudioAssets.Teleport, Destination, 1f, AudioChannel.Sound);
-
-						//teleportSound.AudioSource.pitch = audioPitch;
-					}
-					else
-					{
-						if (flashSprite)
-						{
-							flasher.StopFlashing();
-							flasher.FlashIntensity = 0.8f;
-							flasher.FlashColor = teleportColor;
-						}
-
-						float currentWarpTime = WARP_TIME;
-
-						if (teleOutTime < WARP_TIME)
-						{
-							currentWarpTime = teleOutTime;
-						}
-
-						float fadeOutTime = currentWarpTime / 2f;
-
-						float fadeOutTimer = 0f;
-
-						var originalPosition = entity.transform.position;
-
-						if (playEffects)
-						{
-							SpawnTeleportGlow(Destination, teleportColor);
-							/*var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(Destination.x, Destination.y, Destination.z - 0.1f), Quaternion.identity);
-							glow.GetComponent<SpriteRenderer>().color = Color.Lerp(teleportColor,Color.white,0.5f);*/
-
-							SpawnTeleportLine(originalPosition, Destination, teleportColor);
-							/*var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, Destination, 0.5f), Quaternion.identity);
-							LookAt(teleLine, Destination);
-							teleLine.transform.localScale = new Vector3(Vector3.Distance(originalPosition, Destination), teleLine.transform.localScale.y, teleLine.transform.localScale.z);*/
-
-							//var mainModule = teleLine.GetComponent<ParticleSystem>().main;
-							//mainModule.startColor = Color.Lerp(teleportColor, Color.white, 0.5f);
-						}
-						PlayTeleportSound(Destination, audioPitch);
-						//var teleportSound = HollowPlayer.Play(AudioAssets.Teleport, Destination, 1f, AudioChannel.Sound);
-						//teleportSound.AudioSource.pitch = audioPitch;
-
-						while (fadeOutTimer < fadeOutTime)
-						{
-							yield return null;
-							fadeOutTimer += Time.deltaTime;
-							if (fadeOutTimer > fadeOutTime)
-							{
-								fadeOutTimer = fadeOutTime;
-							}
-							if (playEffects)
-							{
-								sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.Lerp(storedAlpha, 0f, fadeOutTimer / fadeOutTime));
-							}
-						}
-
-						entity.transform.position = Destination;
-
-						float fadeInTime = currentWarpTime - fadeOutTime;
-
-						float fadeInTimer = 0f;
-
-						if (playEffects)
-						{
-							flasher.DoFlash(0.0f, teleOutTime, 0.8f, teleportColor, 0f);
-						}
-
-						while (fadeInTimer < fadeInTime)
-						{
-							yield return null;
-							fadeInTimer += Time.deltaTime;
-							if (fadeInTimer > fadeInTime)
-							{
-								fadeInTimer = fadeInTime;
-							}
-							if (playEffects)
-							{
-								sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.Lerp(0f, storedAlpha, fadeInTimer / fadeInTime));
-							}
+							sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.Lerp(0f, storedAlpha, fadeInTimer / fadeInTime));
 						}
 					}
 				}
 			}
-
-			return teleInTime + teleOutTime;
 		}
 
 		private static void PlayTeleportSound(Vector3 position, float audioPitch)

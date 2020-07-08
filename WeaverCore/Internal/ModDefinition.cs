@@ -5,6 +5,16 @@
     /// </summary>
     public sealed class WeaverCore : WeaverMod
     {
-        public override string Version => "0.0.1.1 Alpha";
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            InitRunner.RunInitFunctions();
+        }
+
+        public override string GetVersion()
+        {
+            return "0.0.1.1 Alpha";
+        }
     }
 }

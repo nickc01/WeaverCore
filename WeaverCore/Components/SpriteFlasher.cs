@@ -28,7 +28,10 @@ namespace WeaverCore.Components
 
 		public Color FlashColor
 		{
-			get => flashColor;
+			get
+			{
+				return flashColor;
+			}
 			set
 			{
 				if (flashColor != value)
@@ -42,7 +45,7 @@ namespace WeaverCore.Components
 
 		public float FlashIntensity
 		{
-			get => flashIntensity;
+			get { return flashIntensity; }
 			set
 			{
 				value = Mathf.Clamp01(value);
@@ -122,7 +125,7 @@ namespace WeaverCore.Components
 			renderer = GetComponent<SpriteRenderer>();
 			if (renderer == null)
 			{
-				throw new SpriteFlasherException($"The GameObject {gameObject.name} does not have a SpriteRenderer Component");
+				throw new SpriteFlasherException("The GameObject " + gameObject.name + " does not have a SpriteRenderer Component");
 			}
 		}
 
@@ -149,7 +152,7 @@ namespace WeaverCore.Components
 		}
 
 
-		public void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8f, Color? FlashColor = default, float StayTime = 0.05f)
+		public void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8f, Color? FlashColor = null, float StayTime = 0.05f)
 		{
 			Start();
 			if (currentFlashRoutine != null)
@@ -168,40 +171,43 @@ namespace WeaverCore.Components
 
 			Coroutine routine = null;
 
-			IEnumerator FlashRoutine()
-			{
-				FlashIntensity = 0.0f;
-				float clock = 0.0f;
-				while (clock <= BeginTime)
-				{
-					yield return null;
-					clock += Time.deltaTime;
-					FlashIntensity = Mathf.Lerp(0.0f, Intensity, clock / BeginTime);
-				}
-				clock = 0.0f;
-				while (clock <= StayTime)
-				{
-					yield return null;
-					clock += Time.deltaTime;
-				}
-				clock = EndTime;
-				while (clock >= 0f)
-				{
-					yield return null;
-					clock -= Time.deltaTime;
-					FlashIntensity = Mathf.Lerp(0.0f, Intensity, clock / EndTime);
-				}
-				FlashIntensity = 0.0f;
-				if (currentFlashRoutine == routine)
-				{
-					currentFlashRoutine = null;
-				}
-			}
+			routine = StartCoroutine(FlashRoutine(BeginTime, EndTime, Intensity, StayTime, routine));
+		}
 
-			routine = StartCoroutine(FlashRoutine());
+		private IEnumerator FlashRoutine(float BeginTime, float EndTime, float Intensity, float StayTime, Coroutine routine)
+		{
+			FlashIntensity = 0.0f;
+			float clock = 0.0f;
+			while (clock <= BeginTime)
+			{
+				yield return null;
+				clock += Time.deltaTime;
+				FlashIntensity = Mathf.Lerp(0.0f, Intensity, clock / BeginTime);
+			}
+			clock = 0.0f;
+			while (clock <= StayTime)
+			{
+				yield return null;
+				clock += Time.deltaTime;
+			}
+			clock = EndTime;
+			while (clock >= 0f)
+			{
+				yield return null;
+				clock -= Time.deltaTime;
+				FlashIntensity = Mathf.Lerp(0.0f, Intensity, clock / EndTime);
+			}
+			FlashIntensity = 0.0f;
+			if (currentFlashRoutine == routine)
+			{
+				currentFlashRoutine = null;
+			}
 		}
 
 
-		public void FlashNormalHit() => DoFlash(0.01f, 0.35f, 0.85f, Color.white, 0.01f);
+		public void FlashNormalHit()
+		{
+			DoFlash(0.01f, 0.35f, 0.85f, Color.white, 0.01f);
+		}
 	}
 }

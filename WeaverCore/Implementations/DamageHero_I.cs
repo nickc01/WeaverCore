@@ -11,6 +11,6 @@ namespace WeaverCore.Implementations
 	public abstract class DamageHero_I : MonoBehaviour, IImplementation
 	{
 		[HideInInspector]
-		public DamageHero Damager;
+		public WeaverCore.Components.DamageHero Damager;
 	}
 }

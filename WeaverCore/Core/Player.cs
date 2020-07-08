@@ -15,9 +15,21 @@ namespace WeaverCore
     {
         static List<Player> Players = new List<Player>();
 
-        public static IEnumerable<Player> AllPlayers => Players;
+        public static IEnumerable<Player> AllPlayers
+        {
+            get
+            {
+                return Players;
+            }
+        }
 
-        public static Player Player1 => Players.Count > 0 ? Players[0] : null;
+        public static Player Player1
+        {
+            get
+            {
+                return Players.Count > 0 ? Players[0] : null;
+            }
+        }
 
         public static Player NearestPlayer(Vector3 position)
         {
@@ -36,9 +48,18 @@ namespace WeaverCore
             return nearestPlayer;
         }
 
-        public static Player NearestPlayer(Component component) => NearestPlayer(component.transform.position);
-        public static Player NearestPlayer(Transform transform) => NearestPlayer(transform.position);
-        public static Player NearestPlayer(GameObject gameObject) => NearestPlayer(gameObject.transform.position);
+        public static Player NearestPlayer(Component component)
+        {
+            return NearestPlayer(component.transform.position);
+        }
+        public static Player NearestPlayer(Transform transform)
+        {
+            return NearestPlayer(transform.position);
+        }
+        public static Player NearestPlayer(GameObject gameObject)
+        {
+            return NearestPlayer(gameObject.transform.position);
+        }
 
         /// <summary>
         /// Takes a child object, and will return the Player Object that this object is a child of. If the object is not a child object of a player, then this will return null
@@ -66,7 +87,7 @@ namespace WeaverCore
         }
 
 
-        public virtual void PlayAttackSlash(GameObject target, HitInfo hit, Vector3 effectsOffset = default)
+        public virtual void PlayAttackSlash(GameObject target, HitInfo hit, Vector3 effectsOffset = default(Vector3))
         {
             PlayAttackSlash((transform.position + target.transform.position) * 0.5f + effectsOffset,hit);
         }
@@ -113,13 +134,17 @@ namespace WeaverCore
 
         Player_I impl;
 
-        void Start()
+        void Awake()
         {
             var playerImplType = ImplFinder.GetImplementationType<Player_I>();
 
             impl = (Player_I)gameObject.AddComponent(playerImplType);
-            Players.AddIfNotContained(this);
             impl.Initialize();
+        }
+
+        void Start()
+        {
+            Players.AddIfNotContained(this);
         }
 
         void OnEnable()

@@ -38,7 +38,13 @@ namespace WeaverCore.Utilities
 			Stop(this);
 		}
 
-		public static float DT => impl.DT;
+		public static float DT
+		{
+			get
+			{
+				return impl.DT;
+			}
+		}
 
 
 	}

@@ -16,7 +16,13 @@ namespace WeaverCore.Utilities
 
 		static HashSet<EventReceiver> allReceivers = new HashSet<EventReceiver>();
 
-		public static IEnumerable<EventReceiver> AllReceivers => allReceivers;
+		public static IEnumerable<EventReceiver> AllReceivers
+		{
+			get
+			{
+				return allReceivers;
+			}
+		}
 
 		/// <summary>
 		/// An event that is called when an event is received. The string is the event, and the GameObject is the gameObject that sent the event
@@ -91,7 +97,10 @@ namespace WeaverCore.Utilities
 		{
 			if (enabled)
 			{
-				OnReceiveEvent?.Invoke(eventName,source);
+				if (OnReceiveEvent != null)
+				{
+					OnReceiveEvent.Invoke(eventName, source);
+				}
 			}
 		}
 

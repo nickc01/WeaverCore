@@ -13,7 +13,7 @@ namespace WeaverCore.Implementations
 	public abstract class HealthManager_I : MonoBehaviour, IImplementation
 	{
 		[HideInInspector]
-		public HealthManager Manager;
+		public WeaverCore.Components.EntityHealth Manager;
 
 		public abstract void OnHit(HitInfo info, HitResult hitResult);
 		public abstract void OnInvincibleHit(HitInfo info);

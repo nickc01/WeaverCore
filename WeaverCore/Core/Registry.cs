@@ -59,12 +59,24 @@ namespace WeaverCore
         /// <summary>
         /// The name of the mod the registry is bound to <seealso cref="IWeaverMod"/> <seealso cref="WeaverMod"/>
         /// </summary>
-        public string ModName => modName;
+        public string ModName
+        {
+            get
+            {
+                return modName;
+            }
+        }
 
         /// <summary>
         /// The name of the registry
         /// </summary>
-        public string RegistryName => registryName;
+        public string RegistryName
+        {
+            get
+            {
+                return registryName;
+            }
+        }
 
         [SerializeField]
         bool registryEnabled = true;
@@ -80,7 +92,7 @@ namespace WeaverCore
         /// </summary>
         public bool RegistryEnabled
         {
-            get => registryEnabled;
+            get { return registryEnabled; }
             set
             {
                 if (registryEnabled != value)
@@ -163,7 +175,6 @@ namespace WeaverCore
         {
             foreach (var registry in ActiveRegistries)
             {
-                //Debugger.Log("Registry = " + registry?.name);
                 if (registry != null && registry.registryEnabled)
                 {
                    //Debugger.Log("B");
@@ -193,30 +204,15 @@ namespace WeaverCore
         /// <returns>Returns an Itereator with all the features in it</returns>
         public IEnumerable<T> GetFeatures<T>(Func<T, bool> predicate) where T : class
         {
-           // Debugger.Log("Features Raw = " + featuresRaw);
+            // Debugger.Log("Features Raw = " + featuresRaw);
             foreach (var feature in featuresRaw)
             {
-                //Debugger.Log("Feature = " + feature);
                 if (feature != null && feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate(feature as T))
                 {
                     yield return feature as T;
                 }
             }
         }
-
-        //Returns a list of all the features
-        /*public IEnumerable<Feature> AllFeatures
-        {
-            get
-            {
-                Debugger.Log("Features = " + featuresRaw);
-                foreach (var feature in featuresRaw)
-                {
-                    Debugger.Log("Feature = " + feature);
-                    yield return feature;
-                }
-            }
-        }*/
 
         /// <summary>
         /// Adds a new feature to the registry

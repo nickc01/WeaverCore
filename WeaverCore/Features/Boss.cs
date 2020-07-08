@@ -12,13 +12,25 @@ namespace WeaverCore.Features
 	{
 		public static event Action OnBossesDead
 		{
-			add => staticImpl.OnBossesDeadAdd(value);
-			remove => staticImpl.OnBossesDeadRemove(value);
+			add
+			{
+				staticImpl.OnBossesDeadAdd(value);
+			}
+			remove
+			{
+				staticImpl.OnBossesDeadRemove(value);
+			}
 		}
 		public static event Action OnBossSceneComplete
 		{
-			add => staticImpl.OnBossSceneCompleteAdd(value);
-			remove => staticImpl.OnBossSceneCompleteRemove(value);
+			add
+			{
+				staticImpl.OnBossSceneCompleteAdd(value);
+			}
+			remove
+			{
+				staticImpl.OnBossSceneCompleteRemove(value);
+			}
 		}
 
 		Boss_I impl;

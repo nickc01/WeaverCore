@@ -125,12 +125,21 @@ namespace WeaverCore
                     {
                         assemblyNames.Add(assembly.GetName().Name, assembly);
                     }
+                    AppDomain.CurrentDomain.AssemblyLoad += NewAssemblyLoaded;
                 }
                 if (modType == null || modType.FullName != modTypeName)
                 {
                     modType = assemblyNames[modAssemblyName].GetType(modTypeName);
                 }
                 return modType;
+            }
+        }
+
+        private static void NewAssemblyLoaded(object sender, AssemblyLoadEventArgs args)
+        {
+            if (!assemblyNames.ContainsKey(args.LoadedAssembly.GetName().Name))
+            {
+                assemblyNames.Add(args.LoadedAssembly.GetName().Name, args.LoadedAssembly);
             }
         }
 

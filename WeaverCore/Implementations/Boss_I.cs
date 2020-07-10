@@ -7,7 +7,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {
-	public class Boss_I : MonoBehaviour, IImplementation
+	public abstract class Boss_I : MonoBehaviour, IImplementation
 	{
 		public abstract class Statics : IImplementation
 		{

@@ -42,12 +42,7 @@ namespace WeaverCore.Utilities
                 State = GetState();
                 if (State == RunningState.Editor)
                 {
-                    //ImplAssembly = ResourceLoader.LoadAssembly($"{nameof(WeaverCore)}.Editor");
-                    /*foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-                    {
-                        Debug.Log("Assembly = " + assembly);
-                    }*/
-                    ImplAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "WeaverCore.Dev");
+                    ImplAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "WeaverCore.Editor");
                 }
                 else
                 {

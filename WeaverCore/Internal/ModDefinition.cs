@@ -7,7 +7,7 @@
     {
         public override string GetVersion()
         {
-            return "0.0.1.1 Alpha";
+            return "0.1.0.0 Beta";
         }
     }
 }

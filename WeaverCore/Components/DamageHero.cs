@@ -6,17 +6,62 @@ using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Enums;
+using UnityEngine.Playables;
 
 namespace WeaverCore.Components
 {
 	public class DamageHero : MonoBehaviour
 	{
-		public int DamageDealt = 1;
-		public HazardType HazardType = HazardType.Normal;
-		public bool ShadowDashHazard = false;
+		[SerializeField]
+		int damageDealt = 1;
+		[SerializeField]
+		HazardType hazardType = HazardType.Normal;
+		[SerializeField]
+		bool shadowDashHazard = false;
 
 		DamageHero_I impl;
 
+		public int DamageDealt
+		{
+			get
+			{
+				return damageDealt;
+			}
+
+			set
+			{
+				damageDealt = value;
+				impl.Refresh();
+			}
+		}
+
+		public HazardType HazardType
+		{
+			get
+			{
+				return hazardType;
+			}
+
+			set
+			{
+				hazardType = value;
+				impl.Refresh();
+			}
+		}
+
+		public bool ShadowDashHazard
+		{
+			get
+			{
+				return shadowDashHazard;
+			}
+
+			set
+			{
+				shadowDashHazard = value;
+				impl.Refresh();
+			}
+		}
 
 		void Awake()
 		{
@@ -24,6 +69,14 @@ namespace WeaverCore.Components
 			impl.Damager = this;
 
 			gameObject.layer = 11;
+		}
+
+		void OnValidate()
+		{
+			if (impl != null)
+			{
+				impl.Refresh();
+			}
 		}
 	}
 }

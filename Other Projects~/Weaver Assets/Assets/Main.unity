@@ -393,8 +393,6 @@ MonoBehaviour:
   m_Script: {fileID: -1878982370, guid: eb7faaf286d9e7f4ebdf39ecea5980ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
-  flashIntensity: 0
 --- !u!212 &1430662225
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -437,7 +435,7 @@ SpriteRenderer:
   m_Size: {x: 4.1875, y: 0.9651487}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1430662226
 Transform:

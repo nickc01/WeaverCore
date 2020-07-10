@@ -10,24 +10,18 @@ namespace WeaverCore.Game.Implementations
 	{
 		DamageHero gameDamager;
 
+		public override void Refresh()
+		{
+			gameDamager.damageDealt = Damager.enabled ? Damager.DamageDealt : 0;
+			gameDamager.hazardType = (int)Damager.HazardType;
+			gameDamager.shadowDashHazard = Damager.ShadowDashHazard;
+		}
 
 		void Start()
 		{
 			gameDamager = gameObject.AddComponent<DamageHero>();
 			gameDamager.resetOnEnable = false;
-			UpdateDamager();
-		}
-
-		void Update()
-		{
-			UpdateDamager();
-		}
-
-		void UpdateDamager()
-		{
-			gameDamager.damageDealt = Damager.enabled ? Damager.DamageDealt : 0;
-			gameDamager.hazardType = (int)Damager.HazardType;
-			gameDamager.shadowDashHazard = Damager.ShadowDashHazard;
+			Refresh();
 		}
 	}
 }

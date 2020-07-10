@@ -12,5 +12,7 @@ namespace WeaverCore.Implementations
 	{
 		[HideInInspector]
 		public WeaverCore.Components.DamageHero Damager;
+
+		public abstract void Refresh();
 	}
 }

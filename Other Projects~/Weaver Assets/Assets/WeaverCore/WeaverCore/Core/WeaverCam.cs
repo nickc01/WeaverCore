@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using WeaverCore.Features;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
@@ -85,5 +86,14 @@ namespace WeaverCore
 
 			initialized = true;
 		}
+
+		/*public PostProcessLayer AddPostProcessLayer(LayerMask mask)
+		{
+			var ppl = gameObject.AddComponent<PostProcessLayer>();
+			ppl.volumeLayer = mask;
+			ppl.
+
+			return ppl;
+		}*/
 	}
 }

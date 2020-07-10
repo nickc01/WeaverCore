@@ -102,10 +102,10 @@ namespace WeaverCore.Utilities
 
 		}
 
-		internal static void SetWeaverAssetBundle(AssetBundle bundle)
+		/*internal static void SetWeaverAssetBundle(AssetBundle bundle)
 		{
 			weaverAssetBundle = bundle;
-		}
+		}*/
 
 		public static string[] AssetNames
 		{

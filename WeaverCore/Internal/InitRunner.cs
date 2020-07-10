@@ -34,6 +34,10 @@ namespace WeaverCore.Internal
 
 		static void RunInitFunctions(Assembly assembly)
 		{
+			if (assembly.GetName().Name == "Assembly-CSharp")
+			{
+				return;
+			}
 			try
 			{
 				if (InitializedAssemblies.Contains(assembly))
@@ -42,10 +46,6 @@ namespace WeaverCore.Internal
 				}
 
 				InitializedAssemblies.Add(assembly);
-
-				//Debugger.Log("RUnning Init Funcs for = " + assembly);
-
-				//WeaverLog.Log("Initializing Assembly = " + assembly.GetName().Name);
 
 				foreach (var type in assembly.GetTypes().Where(t => typeof(IInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
 				{
@@ -60,46 +60,9 @@ namespace WeaverCore.Internal
 					}
 				}
 			}
-			/*catch (ReflectionTypeLoadException e)
-			{
-				//WeaverLog.LogError("Init Error: " + e);
-				//WeaverLog.LogError("Types that loaded");
-				//WeaverLog.LogError("[");
-				foreach (var type in e.Types)
-				{
-					if (type == null)
-					{
-						WeaverLog.LogError("\tnull");
-					}
-					else
-					{
-						WeaverLog.Log("\t" + type.FullName);
-					}
-				}
-				WeaverLog.Log("]");
-			}*/
-			/*catch (ReflectionTypeLoadException e)
-			{
-				Debug.LogError("Init Error: " + e);
-				foreach (var type in e.Types)
-				{
-					if (type == null)
-					{
-						Debug.LogError("Null");
-					}
-					else
-					{
-						Debug.Log(type.FullName);
-					}
-				}
-				foreach (var exception in e.LoaderExceptions)
-				{
-					Debug.LogWarning("Exception = " + exception);
-				}
-			}*/
 			catch (Exception e)
 			{
-				WeaverLog.LogError("Init Error: " + e);
+				WeaverLog.LogError("Error when attempting to initialize [" + assembly.GetName().Name + "] : " + e);
 			}
 		}
 	}

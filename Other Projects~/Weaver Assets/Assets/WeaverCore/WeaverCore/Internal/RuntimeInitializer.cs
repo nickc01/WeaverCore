@@ -43,6 +43,10 @@ namespace WeaverCore.Internal
 
 		static void DoRuntimeInit(Assembly assembly)
 		{
+			if (assembly.GetName().Name == "Assembly-CSharp")
+			{
+				return;
+			}
 			try
 			{
 				if (InitializedAssemblies.Contains(assembly))
@@ -66,7 +70,7 @@ namespace WeaverCore.Internal
 			}
 			catch  (Exception e)
 			{
-				WeaverLog.LogError("Runtime Init Error: " + e);
+				WeaverLog.LogError("Error when attempting to runtime-initialize [" + assembly.GetName().Name + "] : " + e);
 			}
 		}
 	}

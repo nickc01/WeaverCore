@@ -16,7 +16,7 @@ namespace WeaverCore.Game.Patches
 	{
 		void IInit.OnInit()
 		{
-			WeaverLog.Log("HEALTH MANAGER INIT");
+			//WeaverLog.Log("HEALTH MANAGER INIT");
 			On.HealthManager.Start += HealthManager_Start;
 		}
 
@@ -37,8 +37,8 @@ namespace WeaverCore.Game.Patches
 			{
 				self.gameObject.AddComponent<Enemy>();
 				var replacement = (Enemy)Registry.GetAllFeatures<IObjectReplacement>(r => r is Enemy && r.ThingToReplace == self.gameObject.name).FirstOrDefault();
-				WeaverLog.Log("Enemy = " + self.gameObject);
-				WeaverLog.Log("Replacement = " + replacement);
+				//WeaverLog.Log("Enemy = " + self.gameObject);
+				//WeaverLog.Log("Replacement = " + replacement);
 				if (replacement != null)
 				{
 					var instance = GameObject.Instantiate(replacement.gameObject);

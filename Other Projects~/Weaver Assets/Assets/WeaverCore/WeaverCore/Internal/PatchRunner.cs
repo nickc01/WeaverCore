@@ -31,6 +31,10 @@ namespace WeaverCore.Internal
 
 		void PatchAssembly(Assembly assembly)
 		{
+			if (assembly.GetName().Name == "Assembly-CSharp")
+			{
+				return;
+			}
 			try
 			{
 				if (PatchedAssemblies.Contains(assembly))
@@ -55,14 +59,9 @@ namespace WeaverCore.Internal
 					}
 				}
 			}
-			catch (ReflectionTypeLoadException e)
-			{
-				WeaverLog.LogError("Patch Error: " + e);
-				WeaverLog.LogError("Bad Assembly: " + assembly);
-			}
 			catch (Exception e)
 			{
-				WeaverLog.LogError("Patch Error: " + e);
+				WeaverLog.LogError("Error when attempting to run patches for [" + assembly.GetName().Name + "] : " + e);
 			}
 		}
 	}

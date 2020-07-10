@@ -31,7 +31,7 @@ namespace WeaverBuildTools.Commands
 			{
 				try
 				{
-					using (var definition = AssemblyDefinition.ReadAssembly(assemblyToEmbedTo, new ReaderParameters { ReadWrite = true }))
+					using (var definition = AssemblyDefinition.ReadAssembly(assemblyToEmbedTo, new ReaderParameters { ReadWrite = true,AssemblyResolver = new MainResolver() }))
 					{
 						var finding = definition.MainModule.Resources.FirstOrDefault(r => r.Name == resourceName);
 						if (finding != null)

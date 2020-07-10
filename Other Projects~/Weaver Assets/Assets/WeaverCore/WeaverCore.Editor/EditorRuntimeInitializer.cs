@@ -10,6 +10,7 @@ using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Internal;
 using WeaverCore.Interfaces;
+using WeaverCore.Editor.Internal;
 
 namespace WeaverCore.Editor.Implementations
 {
@@ -17,7 +18,7 @@ namespace WeaverCore.Editor.Implementations
 	{
 		void IRuntimeInit.RuntimeInit()
 		{
-			ModLoader.LoadAllMods();
+			
 		}
 	}
 }

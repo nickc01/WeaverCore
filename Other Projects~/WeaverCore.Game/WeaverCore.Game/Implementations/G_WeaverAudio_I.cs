@@ -71,13 +71,6 @@ namespace WeaverCore.Game.Implementations
 				if (Master == null)
 				{
 					Master = MixerGroups.FirstOrDefault(mixer => mixer.name == "Master");
-					//WeaverLog.Log("Master Type = " + Master.GetType());
-
-					/*var snapshots = Resources.FindObjectsOfTypeAll<AudioMixerSnapshot>();
-					foreach (var snapshot in snapshots)
-					{
-						WeaverLog.Log("Snapshot = " + snapshot?.name);
-					}*/
 				}
 				if (Sound == null)
 				{

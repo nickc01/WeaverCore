@@ -64,22 +64,24 @@ namespace WeaverCore.Utilities
 				{
 					try
 					{
-						foreach (var name in assembly.GetManifestResourceNames())
+						if (assembly != typeof(WeaverMod).Assembly)
 						{
-							if (name.EndsWith(extension))
+							foreach (var name in assembly.GetManifestResourceNames())
 							{
-								AssetBundle bundle = null;
-								bool isWeaverCore = name.ToUpper().Contains("WEAVERCORE");
-
-								if (!isWeaverCore || (isWeaverCore && WeaverAssetLoader.WeaverAssetBundle == null && assembly == typeof(WeaverMod).Assembly))
+								if (name.EndsWith(extension))
 								{
-									//Debugger.LogError("LOADING BEFORE");
-									bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
-									//Debugger.LogError("LOADING AFTER");
-									if (isWeaverCore)
+									AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
+									/*AssetBundle bundle = null;
+									bool isWeaverCore = name.ToUpper().Contains("WEAVERCORE");
+
+									if (!isWeaverCore || (isWeaverCore && WeaverAssetLoader.WeaverAssetBundle == null && assembly == typeof(WeaverMod).Assembly))
 									{
-										WeaverAssetLoader.SetWeaverAssetBundle(bundle);
-									}
+										bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
+										if (isWeaverCore)
+										{
+											WeaverAssetLoader.SetWeaverAssetBundle(bundle);
+										}
+									}*/
 								}
 							}
 						}

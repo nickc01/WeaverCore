@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using WeaverCore.Enums;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
@@ -31,7 +32,7 @@ namespace WeaverCore.Internal
 
 		void PatchAssembly(Assembly assembly)
 		{
-			if (assembly.GetName().Name == "Assembly-CSharp")
+			if (CoreInfo.LoadState == RunningState.Game && assembly.GetName().Name == "Assembly-CSharp")
 			{
 				return;
 			}

@@ -146,7 +146,7 @@ namespace WeaverCore.Game.Implementations
 
 			public override void Shake(ShakeType type)
 			{
-				shakerFSM.SendEvent("CANCEL SHAKE");
+				//shakerFSM.SendEvent("CANCEL SHAKE");
 				CustomShake = false;
 				switch (type)
 				{
@@ -188,7 +188,7 @@ namespace WeaverCore.Game.Implementations
 
 			public override void SetRumble(RumbleType type)
 			{
-				StopRumbling();
+				//StopRumbling();
 				CustomRumble = false;
 				switch (type)
 				{

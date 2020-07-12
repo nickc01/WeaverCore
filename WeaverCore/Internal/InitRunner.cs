@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Enums;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Internal
@@ -34,7 +35,7 @@ namespace WeaverCore.Internal
 
 		static void RunInitFunctions(Assembly assembly)
 		{
-			if (assembly.GetName().Name == "Assembly-CSharp")
+			if (CoreInfo.LoadState == RunningState.Game && assembly.GetName().Name == "Assembly-CSharp")
 			{
 				return;
 			}

@@ -7,6 +7,7 @@ using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using System.Reflection;
 using WeaverCore.Interfaces;
+using WeaverCore.Enums;
 
 namespace WeaverCore.Internal
 {
@@ -43,7 +44,7 @@ namespace WeaverCore.Internal
 
 		static void DoRuntimeInit(Assembly assembly)
 		{
-			if (assembly.GetName().Name == "Assembly-CSharp")
+			if (CoreInfo.LoadState == RunningState.Game && assembly.GetName().Name == "Assembly-CSharp")
 			{
 				return;
 			}

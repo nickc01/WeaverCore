@@ -117,12 +117,12 @@ namespace WeaverCore.Utilities
 
 			float storedAlpha = sprite.color.a;
 
-			WeaverRoutine.Start(TeleportRoutine(entity, Destination, teleInTime, teleOutTime, teleportColor, flashSprite, playEffects, audioPitch, sprite, flasher, storedAlpha));
+			UnboundCoroutine.Start(TeleportRoutine(entity, Destination, teleInTime, teleOutTime, teleportColor, flashSprite, playEffects, audioPitch, sprite, flasher, storedAlpha));
 
 			return teleInTime + teleOutTime;
 		}
 
-		private static IEnumerator<IWeaverAwaiter> TeleportRoutine(GameObject entity, Vector3 Destination, float teleInTime, float teleOutTime, Color teleportColor, bool flashSprite, bool playEffects, float audioPitch, SpriteRenderer sprite, SpriteFlasher flasher, float storedAlpha)
+		private static IEnumerator TeleportRoutine(GameObject entity, Vector3 Destination, float teleInTime, float teleOutTime, Color teleportColor, bool flashSprite, bool playEffects, float audioPitch, SpriteRenderer sprite, SpriteFlasher flasher, float storedAlpha)
 		{
 			if (teleInTime == 0f && teleOutTime == 0f)
 			{
@@ -155,7 +155,8 @@ namespace WeaverCore.Utilities
 				}
 				if (teleInTime > 0f)
 				{
-					yield return new Awaiters.WaitForSeconds(teleInTime);
+					//yield return new Awaiters.WaitForSeconds(teleInTime);
+					yield return new WaitForSeconds(teleInTime);
 				}
 				if (playEffects)
 				{

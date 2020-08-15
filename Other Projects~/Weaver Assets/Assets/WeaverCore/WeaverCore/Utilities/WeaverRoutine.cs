@@ -12,7 +12,7 @@ namespace WeaverCore.Utilities
 	/// 1: It does not have to be bound to a specific GameObject to run
 	/// 2: It can be run even when not in play mode
 	/// </summary>
-	public class WeaverRoutine
+	/*public class WeaverRoutine
 	{
 		static WeaverRoutine_I impl = ImplFinder.GetImplementation<WeaverRoutine_I>();
 
@@ -47,5 +47,5 @@ namespace WeaverCore.Utilities
 		}
 
 
-	}
+	}*/
 }

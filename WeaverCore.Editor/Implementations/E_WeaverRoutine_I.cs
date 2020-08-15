@@ -9,7 +9,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Implementations
 {
-	public class E_WeaverRoutine_I : WeaverRoutine_I
+	/*public class E_WeaverRoutine_I : WeaverRoutine_I
     {
 		static List<IEnumerator<IWeaverAwaiter>> Routines = new List<IEnumerator<IWeaverAwaiter>>();
 
@@ -93,5 +93,5 @@ namespace WeaverCore.Game.Implementations
 			public IEnumerator<IWeaverAwaiter> Function;
 		}
 
-	}
+	}*/
 }

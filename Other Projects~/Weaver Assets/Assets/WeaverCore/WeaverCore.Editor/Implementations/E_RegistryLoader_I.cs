@@ -13,7 +13,7 @@ namespace WeaverCore.Editor.Implementations
 {
 	public class E_RegistryLoader_I : RegistryLoader_I
 	{
-		public override IEnumerable<Registry> GetRegistries(Type ModType)
+		/*public override IEnumerable<Registry> GetRegistries(Type ModType)
 		{
 			string[] guids = AssetDatabase.FindAssets("t:Registry");
 			foreach (var guid in guids)
@@ -35,6 +35,22 @@ namespace WeaverCore.Editor.Implementations
 			{
 				yield return registry;
 			}
+		}*/
+
+		public override void LoadRegistries(Assembly assembly)
+		{
+			var assemblyName = assembly.GetName().Name;
+			string[] guids = AssetDatabase.FindAssets("t:Registry");
+			foreach (var guid in guids)
+			{
+				string path = AssetDatabase.GUIDToAssetPath(guid);
+
+				Registry registry = AssetDatabase.LoadAssetAtPath<Registry>(path);
+				Debug.Log("Found Registry = " + registry.RegistryName);
+				registry.Initialize();
+			}
+
+			RegistryLoader.LoadEmbeddedRegistries(assembly);
 		}
 	}
 }

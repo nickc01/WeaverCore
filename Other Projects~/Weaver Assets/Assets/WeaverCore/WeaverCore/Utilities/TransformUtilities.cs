@@ -260,5 +260,21 @@ namespace WeaverCore.Utilities
 
 			return instances;
 		}
+
+		public static int GetHashOfTransform(Transform transform, bool includeChildren = true)
+		{
+			int hash = transform.gameObject.name.GetHashCode();
+
+			if (includeChildren)
+			{
+				for (int i = 0; i < transform.childCount; i++)
+				{
+					//hash = GetHashOfTransform(transform, true);
+					MiscUtilities.AdditiveHash(ref hash, GetHashOfTransform(transform.GetChild(i), true));
+				}
+			}
+
+			return hash;
+		}
 	}
 }

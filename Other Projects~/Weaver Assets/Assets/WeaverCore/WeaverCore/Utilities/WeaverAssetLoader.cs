@@ -38,8 +38,17 @@ namespace WeaverCore.Utilities
 				if (weaverAssetBundle == null)
 				{
 					LoadWeaverAssetBundle();
+					LoadRegistries();
 				}
 				return weaverAssetBundle;
+			}
+		}
+
+		static void LoadRegistries()
+		{
+			foreach (var registry in weaverAssetBundle.LoadAllAssets<Registry>())
+			{
+				registry.Initialize();
 			}
 		}
 
@@ -47,7 +56,7 @@ namespace WeaverCore.Utilities
 		{
 			foreach (var loadedBundle in AssetBundle.GetAllLoadedAssetBundles())
 			{
-				if (loadedBundle.name == "weavercore")
+				if (loadedBundle.name == "weavercore_bundle")
 				{
 					weaverAssetBundle = loadedBundle;
 					return;
@@ -94,18 +103,13 @@ namespace WeaverCore.Utilities
 			}
 			else
 			{
-				var bundleFileLocation = new FileInfo("Assets\\WeaverCore\\WeaverAssets\\Bundles\\weavercore" + extension);
+				var bundleFileLocation = new FileInfo("Assets\\WeaverCore\\WeaverAssets\\Bundles\\weavercore_bundle_editor" + extension);
 				weaverAssetBundle = AssetBundle.LoadFromFile(bundleFileLocation.FullName);
 
 				
 			}
 
 		}
-
-		/*internal static void SetWeaverAssetBundle(AssetBundle bundle)
-		{
-			weaverAssetBundle = bundle;
-		}*/
 
 		public static string[] AssetNames
 		{

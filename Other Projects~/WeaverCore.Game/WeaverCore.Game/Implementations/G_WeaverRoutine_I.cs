@@ -10,7 +10,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Implementations
 {
-	public class G_WeaverRoutine_I : WeaverRoutine_I
+	/*public class G_WeaverRoutine_I : WeaverRoutine_I
     {
         class Init : IInit
         {
@@ -173,5 +173,5 @@ namespace WeaverCore.Game.Implementations
             }
         }
 
-    }
+    }*/
 }

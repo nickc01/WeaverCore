@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
+	[ShowFeature]
 	public class Enemy : Feature
 	{
 		Enemy_I enemyImpl;

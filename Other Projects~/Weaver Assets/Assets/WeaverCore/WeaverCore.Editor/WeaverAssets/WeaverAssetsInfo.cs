@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using WeaverCore.Editor.Internal;
+using WeaverCore.Editor.Systems;
 
 namespace WeaverCore.Editor
 {
@@ -13,7 +14,8 @@ namespace WeaverCore.Editor
 		{
 			get
 			{
-				return !new FileInfo(WeaverCoreBuilder.DefaultBuildLocation).Directory.Exists;
+				//return !LibraryCompiler.DefaultWeaverCoreBuildLocation.Directory.Exists;
+				return new DirectoryInfo("..\\WeaverCore.Game").Exists;
 			}
 		}
 	}

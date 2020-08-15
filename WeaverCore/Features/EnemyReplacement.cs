@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Features
 {
-	public class EnemyReplacement : Enemy, IObjectReplacement
+    [ShowFeature]
+    public class EnemyReplacement : Enemy, IObjectReplacement
     {
         [SerializeField]
         private string enemyToReplace = "";

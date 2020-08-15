@@ -7,7 +7,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {
-	public abstract class WeaverRoutine_I : IImplementation
+	/*public abstract class WeaverRoutine_I : IImplementation
 	{
 		public abstract URoutineData Start(IEnumerator<IWeaverAwaiter> function);
 
@@ -19,5 +19,5 @@ namespace WeaverCore.Implementations
 		{
 
 		}
-	}
+	}*/
 }

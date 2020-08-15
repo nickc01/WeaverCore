@@ -21,14 +21,13 @@ namespace WeaverCore
         }
 
 
-        List<Registry> registries = null;
-
+        bool firstLoad = true;
 
         public IEnumerable<Registry> Registries
         {
             get
             {
-                return registries;
+                return Registry.FindModRegistries(GetType());
             }
         }
 
@@ -45,16 +44,21 @@ namespace WeaverCore
         public override void Initialize()
         {
             base.Initialize();
-            if (registries == null)
+            if (firstLoad)
             {
-                registries = RegistryLoader.GetModRegistries(GetType()).ToList();
+                firstLoad = false;
+                RegistryLoader.LoadAllRegistries(GetType());
             }
-            EnableRegistries();
+            else
+            {
+                EnableRegistries();
+            }
         }
 
         public void EnableRegistries()
         {
-            foreach (var registry in registries)
+
+            foreach (var registry in Registries)
             {
                 registry.RegistryEnabled = true;
             }
@@ -62,7 +66,7 @@ namespace WeaverCore
 
         public void DisableRegistries()
         {
-            foreach (var registry in registries)
+            foreach (var registry in Registries)
             {
                 registry.RegistryEnabled = false;
             }

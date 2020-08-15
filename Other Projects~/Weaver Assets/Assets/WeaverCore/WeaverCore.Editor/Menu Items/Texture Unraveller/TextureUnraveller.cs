@@ -9,6 +9,7 @@ using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 using WeaverCore.DataTypes;
+using System.Collections;
 
 namespace WeaverCore.Editor
 {
@@ -27,6 +28,15 @@ namespace WeaverCore.Editor
 		public int UVWidth;
 		public int UVHeight;
 		public Vector2Int SpriteDimensions;
+	}
+
+	public struct SpriteData
+	{
+		public Texture2D Texture;
+		public SpriteSheet Sheet;
+		public Vector2Int UVDimensions;
+		public float PixelsPerUnit;
+		public Rect SpriteCoords;
 	}
 
 
@@ -54,30 +64,14 @@ namespace WeaverCore.Editor
 		[MenuItem("WeaverCore/Unravel Texture")]
 		public static void UnravelTexture()
 		{
-			WeaverRoutine.Start(StartUnravelling());
+			//WeaverRoutine.Start(StartUnravelling());
+			UnboundCoroutine.Start(StartUnravelling());
 		}
 
 
 		static int Difference(int a, int b)
 		{
 			return Mathf.Max(a, b) - Mathf.Min(a, b);
-		}
-
-		static T[,] RotateLeft<T>(T[,] matrix)
-		{
-			var width = matrix.GetLength(0);
-			var height = matrix.GetLength(1);
-			T[,] newMatrix = new T[height,width];
-
-			for (int y = 0; y < height; y++)
-			{
-				for (int x = 0; x < width; x++)
-				{
-					newMatrix[height - 1 - y, x] = matrix[x, y];
-					//newMatrix[y, width - 1 - x] = matrix[x, y];
-				}
-			}
-			return newMatrix;
 		}
 
 		static T[,] VerticalFlip<T>(T[,] matrix)
@@ -112,75 +106,202 @@ namespace WeaverCore.Editor
 			return newMatrix;
 		}
 
-		static string PathAddBackslash(string path)
+		static T[,] RotateLeft<T>(T[,] matrix)
 		{
-			if (path == null)
-				throw new ArgumentNullException("path");
+			var width = matrix.GetLength(0);
+			var height = matrix.GetLength(1);
+			T[,] newMatrix = new T[height, width];
 
-			path = path.TrimEnd();
-
-			if (PathEndsWithDirectorySeparator(path))
-				return path;
-
-			return path + GetDirectorySeparatorUsedInPath(path);
-		}
-
-		static bool PathEndsWithDirectorySeparator(string path)
-		{
-			if (path.Length == 0)
-				return false;
-
-			char lastChar = path[path.Length - 1];
-			return lastChar == Path.DirectorySeparatorChar
-				|| lastChar == Path.AltDirectorySeparatorChar;
-		}
-
-		static char GetDirectorySeparatorUsedInPath(string path)
-		{
-			if (path.Contains(Path.AltDirectorySeparatorChar))
-				return Path.AltDirectorySeparatorChar;
-
-			return Path.DirectorySeparatorChar;
-		}
-
-		static string RelativeToAssets(string input)
-		{
-			Uri fullPath = new Uri(input, UriKind.Absolute);
-			Uri relRoot = new Uri(PathAddBackslash(new DirectoryInfo("Assets\\..").FullName),UriKind.Absolute);
-
-			string relPath = relRoot.MakeRelativeUri(fullPath).ToString();
-
-			return relPath;
-			/*Debugger.Log("Input Test = " + input);
-			var match = Regex.Match(input, @"(Assets[\\\/].+)");
-			if (match.Success)
+			for (int y = 0; y < height; y++)
 			{
-				return match.Groups[0].Value;
+				for (int x = 0; x < width; x++)
+				{
+					newMatrix[height - 1 - y, x] = matrix[x, y];
+				}
 			}
-			else
-			{
-				return "";
-			}*/
+			return newMatrix;
 		}
 
-
-		static IEnumerator<IWeaverAwaiter> StartUnravelling()
+		static IEnumerator StartUnravelling()
 		{
 			yield return UnravelWindow.GetUnravelSettings();
 
 			var settings = UnravelWindow.Settings;
 
-			//Debugger.Log("Settings = " + settings);
 
 			if (settings == null)
 			{
 				yield break;
 			}
 
+			if (settings.UnravelMode == Enums.UnravelMode.TextureMode)
+			{
+				yield return DoTextureModeUnravelling(settings);
+			}
+			else
+			{
+				yield return DoSpriteModeUnravelling(settings);
+			}
+		}
 
+		static IEnumerable<SpriteData> ReadTexturesFromSheet(TextureSheet sheet, TextureUnravelSettings settings)
+		{
+			for (int i = 0; i < sheet.Sprites.Count; i++)
+			{
+				//Debugger.Log("D");
+				Progress = i / (float)sheet.Sprites.Count;
+
+				var sprite = sheet.Sprites[i];
+
+				Vector2 uvOffset = new Vector2(0.001f, 0.001f);
+
+				Vector2 PostProcessedBL = Vector2.zero;
+				Vector2 PostProcessedTR = Vector2.zero;
+
+				bool rotated = false;
+
+				if (sprite.UVs[0].x == sprite.UVs[1].x && sprite.UVs[2].x == sprite.UVs[3].x)
+				{
+					rotated = true;
+				}
+
+
+				if (rotated)
+				{
+					PostProcessedBL = sprite.UVs[1];
+					PostProcessedTR = sprite.UVs[2];
+				}
+				else
+				{
+					PostProcessedBL = sprite.UVs[0];
+					PostProcessedTR = sprite.UVs[3];
+				}
+
+				int PreBLx = Mathf.RoundToInt((PostProcessedBL.x * settings.texture.width) - uvOffset.x);
+				int PreTRy = Mathf.RoundToInt(((PostProcessedBL.y) * settings.texture.height) - uvOffset.y);
+				//float PreTRy = ((-PostProcessedBL.y + 1.0f) * settings.texture.height) - uvOffset.y;
+				int PreTRx = Mathf.RoundToInt((PostProcessedTR.x * settings.texture.width) + uvOffset.x);
+				int PreBLy = Mathf.RoundToInt(((PostProcessedTR.y) * settings.texture.height) + uvOffset.y);
+
+
+				int PreWidth = Difference(PreBLx, PreTRx);
+				int PreHeight = Difference(PreBLy, PreTRy);
+
+				Orientation orientation = Orientation.Up;
+
+				if (PostProcessedBL.x < PostProcessedTR.x && PostProcessedBL.y < PostProcessedTR.y)
+				{
+					orientation = Orientation.Up;
+				}
+				else if (PostProcessedBL.x < PostProcessedTR.x && PostProcessedBL.y > PostProcessedTR.y)
+				{
+					orientation = Orientation.Right;
+				}
+				else if (PostProcessedBL.x > PostProcessedTR.x && PostProcessedBL.y > PostProcessedTR.y)
+				{
+					orientation = Orientation.Down;
+				}
+				else if (PostProcessedBL.x > PostProcessedTR.x && PostProcessedBL.y < PostProcessedTR.y)
+				{
+					orientation = Orientation.Left;
+				}
+
+				Vector2Int Min = new Vector2Int(Mathf.RoundToInt(Mathf.Min(PreBLx, PreTRx)), Mathf.RoundToInt(Mathf.Min(PreBLy, PreTRy)));
+
+				Vector2Int Max = new Vector2Int(Mathf.RoundToInt(Mathf.Max(PreBLx, PreTRx)), Mathf.RoundToInt(Mathf.Max(PreBLy, PreTRy)));
+
+				Vector2Int SpriteDimensions = new Vector2Int(Difference(Min.x, Max.x) + 1, Difference(Min.y, Max.y) + 1);
+
+				Color[,] colorMatrix = new Color[SpriteDimensions.x, SpriteDimensions.y];
+
+				for (int x = Min.x; x <= Max.x; x++)
+				{
+					for (int y = Min.y; y <= Max.y; y++)
+					{
+						Color reading = settings.texture.GetPixel(x, y);
+						colorMatrix[x - Min.x, y - Min.y] = reading;
+					}
+				}
+
+				Texture2D texture = null;
+				switch (orientation)
+				{
+					case Orientation.Up:
+						break;
+					case Orientation.Right:
+						colorMatrix = RotateLeft(colorMatrix);
+						break;
+					case Orientation.Down:
+						colorMatrix = RotateLeft(colorMatrix);
+						colorMatrix = RotateLeft(colorMatrix);
+						break;
+					case Orientation.Left:
+						colorMatrix = RotateLeft(colorMatrix);
+						colorMatrix = RotateLeft(colorMatrix);
+						colorMatrix = RotateLeft(colorMatrix);
+						break;
+					default:
+						break;
+				}
+
+				if (sprite.Flipped)
+				{
+					colorMatrix = HorizontalFlip(colorMatrix);
+				}
+
+				texture = new Texture2D(colorMatrix.GetLength(0), colorMatrix.GetLength(1));
+				texture.name = sprite.SpriteName;
+				for (int x = 0; x < texture.width; x++)
+				{
+					for (int y = 0; y < texture.height; y++)
+					{
+						texture.SetPixel(x, y, colorMatrix[x, y]);
+					}
+				}
+
+				yield return new SpriteData()
+				{
+					Texture = texture,
+					Sheet = sprite,
+					UVDimensions = new Vector2Int(PreWidth, PreHeight),
+					PixelsPerUnit = texture.width / sprite.WorldSize.x,
+					SpriteCoords = new Rect(Min.x, Min.y, Max.x - Min.x + 1, Max.y - Min.y + 1)
+				};
+
+				/*var fileName = sprite.SpriteName;
+				if (fileName == "")
+				{
+					fileName = "unknown_" + i;
+				}
+
+				var filePath = folder + "/" + fileName + ".png";
+
+
+				using (var file = File.Create(filePath))
+				{
+					using (var writer = new BinaryWriter(file))
+					{
+						var png = texture.EncodeToPNG();
+						writer.Write(png);
+					}
+				}*/
+				/*AssetDatabase.ImportAsset(filePath);
+
+				AddedSprites.Add(new SpriteLocation()
+				{
+					Sprite = sprite,
+					FileLocation = filePath,
+					UVWidth = PreWidth,
+					UVHeight = PreHeight,
+					SpriteDimensions = new Vector2Int(colorMatrix.GetLength(0), colorMatrix.GetLength(1))
+				});*/
+
+			}
+		}
+
+		static IEnumerator DoTextureModeUnravelling(TextureUnravelSettings settings)
+		{
 			string sheetData = File.ReadAllText(settings.SheetPath);
-
-			//var sheet = Json.Deserialize<TextureSheet>(sheetData);
 			var sheet = JsonUtility.FromJson<TextureSheet>(sheetData);
 
 			var folder = EditorUtility.OpenFolderPanel("Select the folder where you want to textures to be dumped to", "Assets", "");
@@ -190,7 +311,7 @@ namespace WeaverCore.Editor
 				yield break;
 			}
 
-			folder = RelativeToAssets(folder);
+			folder = PathUtilities.MakePathRelative(new DirectoryInfo("Assets\\..").FullName, folder);
 			if (folder == "")
 			{
 				throw new Exception("The folder specified is not within the Assets Folder");
@@ -205,10 +326,11 @@ namespace WeaverCore.Editor
 			try
 			{
 				AssetDatabase.StartAssetEditing();
-				for (int i = 0; i < sheet.Sprites.Count; i++)
+				//for (int i = 0; i < sheet.Sprites.Count; i++)
+				foreach (var spriteData in ReadTexturesFromSheet(sheet,settings))
 				{
 					//Debugger.Log("D");
-					Progress = i / (float)sheet.Sprites.Count;
+					/*Progress = i / (float)sheet.Sprites.Count;
 
 					var sprite = sheet.Sprites[i];
 
@@ -243,23 +365,8 @@ namespace WeaverCore.Editor
 					int PreBLy = Mathf.RoundToInt(((PostProcessedTR.y) * settings.texture.height) + uvOffset.y);
 
 
-
-
-					//float PreBLy = ((-PostProcessedTR.y + 1.0f) * settings.texture.height) + uvOffset.y;
-
 					int PreWidth = Difference(PreBLx, PreTRx);
-					int PreHeight = Difference(PreBLy,PreTRy);
-
-
-					//Debugger.Log($"Post BL = {PostProcessedBL.x}, {PostProcessedBL.y}");
-					//Debugger.Log($"Post TR = {PostProcessedTR.x}, {PostProcessedTR.y}");
-					//Debugger.Log($"Post Dimensions -> Width = {PostProcessedTR.x - PostProcessedBL.x}, Height = {PostProcessedTR.y - PostProcessedBL.y}");
-
-					//Debugger.Log($"Pre BL = {PreBLx}, {PreBLy}");
-					//Debugger.Log($"Pre TR = {PreTRx}, {PreTRy}");
-					//Debugger.Log($"Dimensions -> Width = {PreWidth}, Height = {PreHeight}");
-
-					//Debugger.Log("Sprite Name = " + sprite.SpriteName);
+					int PreHeight = Difference(PreBLy, PreTRy);
 
 					Orientation orientation = Orientation.Up;
 
@@ -280,34 +387,22 @@ namespace WeaverCore.Editor
 						orientation = Orientation.Left;
 					}
 
-					//Debugger.Log("Orientation = " + orientation);
-
 					Vector2Int Min = new Vector2Int(Mathf.RoundToInt(Mathf.Min(PreBLx, PreTRx)), Mathf.RoundToInt(Mathf.Min(PreBLy, PreTRy)));
 
 					Vector2Int Max = new Vector2Int(Mathf.RoundToInt(Mathf.Max(PreBLx, PreTRx)), Mathf.RoundToInt(Mathf.Max(PreBLy, PreTRy)));
 
-					//Texture2D texture = new Texture2D(Difference(Min.x, Max.x) + 1, Difference(Min.y, Max.y) + 1);
-
 					Vector2Int SpriteDimensions = new Vector2Int(Difference(Min.x, Max.x) + 1, Difference(Min.y, Max.y) + 1);
 
 					Color[,] colorMatrix = new Color[SpriteDimensions.x, SpriteDimensions.y];
-
-					//Debugger.Log("STARTING");
-					//Debugger.Log("Color Matrix = " + colorMatrix);
 
 					for (int x = Min.x; x <= Max.x; x++)
 					{
 						for (int y = Min.y; y <= Max.y; y++)
 						{
 							Color reading = settings.texture.GetPixel(x, y);
-							//Debugger.Log("X = " + (x - Min.x));
-							//Debugger.Log("Y = " + (y - Min.y));
 							colorMatrix[x - Min.x, y - Min.y] = reading;
-							//texture.SetPixel(x - Min.x, y - Min.y, reading);
 						}
 					}
-
-					//Debugger.Log("F");
 
 					Texture2D texture = null;
 					switch (orientation)
@@ -330,226 +425,46 @@ namespace WeaverCore.Editor
 							break;
 					}
 
-					//Debugger.Log("G");
 					if (sprite.Flipped)
 					{
 						colorMatrix = HorizontalFlip(colorMatrix);
 					}
 
-					//Debugger.Log("H");
-					/*if (orientation == Orientation.Right)
-					{
-						colorMatrix = RotateRight(colorMatrix);
-						colorMatrix = RotateRight(colorMatrix);
-						colorMatrix = RotateRight(colorMatrix);
-						//texture = new Texture2D(Difference(Min.y, Max.y) + 1, Difference(Min.x, Max.x) + 1);
-					}
-					else if (orientation == Orientation.Down)
-					{
-						colorMatrix = RotateRight(colorMatrix);
-						colorMatrix = RotateRight(colorMatrix);
-						//colorMatrix = RotateRight(colorMatrix);
-						//texture = new Texture2D(Difference(Min.x, Max.x) + 1, Difference(Min.y, Max.y) + 1);
-					}
-					else if (orientation == Orientation.Left)
-					{
-						colorMatrix = RotateRight(colorMatrix);
-						//colorMatrix = RotateLeft(colorMatrix);
-						//colorMatrix = RotateLeft(colorMatrix);
-						//texture = new Texture2D(Difference(Min.y, Max.y) + 1, Difference(Min.x, Max.x) + 1);
-					}
-					else
-					{
-						//colorMatrix = RotateRight(colorMatrix);
-					}
-					colorMatrix = RotateRight(colorMatrix);
-					colorMatrix = RotateRight(colorMatrix);
-					colorMatrix = RotateRight(colorMatrix);*/
-
-					//if (sprite.Flipped)
-					//{
-					//	colorMatrix = VerticalFlip(colorMatrix);
-					//}
-
 					texture = new Texture2D(colorMatrix.GetLength(0), colorMatrix.GetLength(1));
-					/*else
-					{
-						texture = new Texture2D(Difference(Min.x, Max.x) + 1, Difference(Min.y, Max.y) + 1);
-					}*/
-
-					//Debugger.Log("I");
-
 					for (int x = 0; x < texture.width; x++)
 					{
 						for (int y = 0; y < texture.height; y++)
 						{
-							texture.SetPixel(x, y, colorMatrix[x,y]);
+							texture.SetPixel(x, y, colorMatrix[x, y]);
 						}
-					}
-
-					//Debugger.Log("J");
-
-					/*Debugger.Log("Before Transformation Begin");
-					string output = "";
-					for (int y = 0; y < colorMatrix.GetLength(1); y++)
-					{
-						string yAxis = "{ ";
-
-						for (int x = 0; x < colorMatrix.GetLength(0); x++)
-						{
-							yAxis += colorMatrix[x, y] + ", ";
-						}
-						yAxis += " }";
-
-						output += yAxis + "\n";
-						//Debugger.Log(yAxis);
-					}
-					Debugger.Log("Output = " + output);
-					Debugger.Log("Before Transformation End");
-
-					colorMatrix = RotateLeft(colorMatrix);
-
-					output = "";*/
-
-					/*Debugger.Log("After Transformation Begin");
-					for (int y = 0; y < colorMatrix.GetLength(1); y++)
-					{
-						string yAxis = "{ ";
-
-						for (int x = 0; x < colorMatrix.GetLength(0); x++)
-						{
-							yAxis += colorMatrix[x, y] + ", ";
-						}
-						yAxis += " }";
-
-						output += yAxis + "\n";
-						//Debugger.Log(yAxis);
-					}
-					Debugger.Log("Output = " + output);
-					Debugger.Log("After Transformation End");*/
-
-					//(PostProcessedBL.x * settings.texture.width) - uvOffset.x = uvRegion.x;
-
-					// ((-PostProcessedBL.y + 1.0f) * settings.texture.height) - uvOffset.y = uvRegion.y + uvRegion.height;
-
-					//(PostProcessedTR.x * settings.texture.width) + uvOffset.x = uvRegion.x + uvRegion.width;
-
-					// ((-PostProcessedTR.y + 1.0f) * settings.texture.height) + uvOffset.y = uvRegion.y;
-
-
-					//PostProcessedBL.x = (uvRegion.x + uvOffset.x) / fwidth;
-					//PostProcessedBL.y = 1.0f - (uvRegion.y + uvRegion.height + uvOffset.y) / fheight;
-
-					//PostProcessedTR.x = (uvRegion.x + uvRegion.width - uvOffset.x) / fwidth;
-					//PostProcessedTR.y = 1.0f - (uvRegion.y - uvOffset.y) / fheight;
-
-					/*Vector2 uvOffset = new Vector2(0.001f, 0.001f);
-
-					Debugger.Log("Before Bottom Left = " + new Vector2(sprite.BottomLeftX, sprite.BottomLeftY));
-					Debugger.Log("Before Top Right = " + new Vector2(sprite.TopRightX, sprite.TopRightY));
-
-					int BottomLeftX = Mathf.RoundToInt((sprite.BottomLeftX * settings.texture.width) - uvOffset.x);
-					int TopRightY = Mathf.RoundToInt(((sprite.BottomLeftY - 1.0f) * -settings.texture.height) - uvOffset.y);
-
-					int TopRightX = Mathf.RoundToInt((sprite.TopRightX * settings.texture.width) + uvOffset.x);
-					int BottomLeftY = Mathf.RoundToInt(((sprite.TopRightY - 1.0f) * -settings.texture.height) + uvOffset.y);
-
-					Debugger.Log("Bottom Left = " + new Vector2Int(BottomLeftX,BottomLeftY));
-					Debugger.Log("Top Right = " + new Vector2Int(TopRightX,TopRightY));*/
-					//Vector2 BottomLeft = new Vector2((sprite.BottomLeftX * settings.texture.width) - uvOffset.x,(-sprite.BottomLeftY * settings.texture.height) + 1.0f - uvOffset.y);
-
-					//uvRegion.y
-
-					//1.0f - (uvRegion.y + uvRegion.height + uvOffset.y)
-					//-1.0f + (uvRegion.y + uvRegion.height + uvOffset.y)
-					//uvRegion.y + uvRegion.height
-
-					//Vector2 v0 = new Vector2((uvRegion.x + uvOffset.x) / fwidth, 1.0f - ((uvRegion.y + uvRegion.height + uvOffset.y) / fheight));
-					//Vector2 v1 = new Vector2((uvRegion.x + uvRegion.width - uvOffset.x) / fwidth, 1.0f - ((uvRegion.y - uvOffset.y) / fheight));
-
-					/*int width = PreWidth;
-					int height = PreHeight;
-
-					if ((PreTRx > PreBLx && PreTRy < PreBLy) || (PreTRx < PreBLx && PreTRy > PreBLy))
-					{
-						width = PreHeight;
-						height = PreWidth;
-					}
-
-					Texture2D texture = new Texture2D(width, height);
-
-
-					ReadTexture(new Vector2Int(PreBLx, PreBLy), new Vector2Int(PreTRx, PreTRy), settings.texture, (c, x, y) =>
-					{
-						texture.SetPixel(x, y, c);
-					});*/
-
-					var fileName = sprite.SpriteName;
+					}*/
+					var fileName = spriteData.Texture.name;
 					if (fileName == "")
 					{
-						fileName = "unknown_" + i;
+						fileName = "unknown_" + AddedSprites.Count;
 					}
 
 					var filePath = folder + "/" + fileName + ".png";
 
-					//Debugger.Log("K");
 
 					using (var file = File.Create(filePath))
 					{
 						using (var writer = new BinaryWriter(file))
 						{
-							var png = texture.EncodeToPNG();
+							var png = spriteData.Texture.EncodeToPNG();
 							writer.Write(png);
 						}
 					}
-
-					//Debugger.Log("L");
-
-					//Debugger.Log("File Path = " + filePath);
-
-
 					AssetDatabase.ImportAsset(filePath);
 
 					AddedSprites.Add(new SpriteLocation()
 					{
-						Sprite = sprite,
+						Sprite = spriteData.Sheet,
 						FileLocation = filePath,
-						UVWidth = PreWidth,
-						UVHeight = PreHeight,
-						SpriteDimensions = new Vector2Int(colorMatrix.GetLength(0), colorMatrix.GetLength(1))
+						UVWidth = spriteData.UVDimensions.x,
+						UVHeight = spriteData.UVDimensions.y,
+						SpriteDimensions = new Vector2Int(spriteData.Texture.width, spriteData.Texture.height)
 					});
-
-					/*var assetImporter = AssetImporter.GetAtPath(filePath);
-
-					Debugger.Log("Asset Importer = " + assetImporter);
-
-					Debugger.Log("Importer Type + " + assetImporter.GetType());
-
-					var importer = (TextureImporter)assetImporter;
-
-					Debugger.Log("Pixels Per Unit = " + (PreWidth / sprite.WorldSize.x));
-
-					importer.spritePixelsPerUnit = PreWidth / sprite.WorldSize.x;
-
-					Debugger.Log("A");
-
-					Debugger.Log("Pivot = " + sprite.Pivot);
-
-					importer.spritePivot = sprite.Pivot;
-
-					Debugger.Log("A");
-
-					importer.SaveAndReimport();
-
-					Debugger.Log("B");*/
-
-					//TODO
-
-					//importer.spritePivot = sprite.Pivot;
-					//importer.spritePixelsPerUnit = sprite.PixelsPerUnit;
-
-					//importer.SaveAndReimport();
-					//AssetDatabase.CreateAsset(texture, folder + "/" + sprite.SpriteName + ".png");
 
 				}
 			}
@@ -567,21 +482,14 @@ namespace WeaverCore.Editor
 				AssetDatabase.StartAssetEditing();
 				foreach (var sprite in AddedSprites)
 				{
-					//Debugger.Log("Sprite = " + sprite.Sprite.SpriteName);
-					//Debugger.Log("UV Width = " + sprite.UVWidth);
-					//Debugger.Log("World Size = " + sprite.Sprite.WorldSize);
-					//Debugger.Log("Sprite Dimensions = " + sprite.SpriteDimensions);
-
-
 					var importer = (TextureImporter)AssetImporter.GetAtPath(sprite.FileLocation);
 
-					//importer.spritePixelsPerUnit = sprite.UVWidth / sprite.Sprite.WorldSize.x;
 					TextureImporterSettings importSettings = new TextureImporterSettings();
 					importer.ReadTextureSettings(importSettings);
 
 					importSettings.spritePixelsPerUnit = sprite.SpriteDimensions.x / sprite.Sprite.WorldSize.x;
 					importSettings.spriteAlignment = (int)SpriteAlignment.Custom;
-					importSettings.spritePivot = new Vector2(sprite.Sprite.Pivot.x, 1 - sprite.Sprite.Pivot.y);//new Vector2(sprite.Sprite.Pivot.x, sprite.Sprite.Pivot.y);
+					importSettings.spritePivot = new Vector2(sprite.Sprite.Pivot.x, 1 - sprite.Sprite.Pivot.y);
 
 					importer.SetTextureSettings(importSettings);
 					importer.SaveAndReimport();
@@ -599,6 +507,97 @@ namespace WeaverCore.Editor
 
 
 			//Debugger.Log("Project Folder = " + projectFolder.FullName);
+		}
+
+		static IEnumerator DoSpriteModeUnravelling(TextureUnravelSettings settings)
+		{
+			string sheetData = File.ReadAllText(settings.SheetPath);
+			var sheet = JsonUtility.FromJson<TextureSheet>(sheetData);
+
+			var folder = EditorUtility.OpenFolderPanel("Select the folder where you want the sprites to be dumped to", "Assets", "");
+
+			if (folder == "")
+			{
+				yield break;
+			}
+
+			folder = PathUtilities.MakePathRelative(new DirectoryInfo("Assets\\..").FullName, folder);
+			if (folder == "")
+			{
+				throw new Exception("The folder specified is not within the Assets Folder");
+			}
+			var projectFolder = new DirectoryInfo("Assets\\..\\");
+
+			var selectedDir = new DirectoryInfo(folder);
+			var relativeDir = PathUtilities.MakePathRelative(projectFolder.FullName, selectedDir.FullName);
+			//Debugger.Log("Folder = " + folder);
+
+			List<Texture2D> spriteTextures = new List<Texture2D>();
+			List<SpriteData> sprites = new List<SpriteData>();
+
+			foreach (var spriteData in ReadTexturesFromSheet(sheet, settings))
+			{
+				sprites.Add(spriteData);
+				spriteTextures.Add(spriteData.Texture);
+			}
+
+			Texture2D atlas = new Texture2D(sheet.Width, sheet.Height);
+			atlas.name = sheet.TextureName + "_orientated";
+
+			var uvCoords = atlas.PackTextures(spriteTextures.ToArray(), 1,Mathf.Max(sheet.Width,sheet.Height),false);
+			WeaverLog.Log("Atlas Size = " + atlas.width + " , " + atlas.height);
+			var pngData = atlas.EncodeToPNG();
+
+			using (var fileTest = File.Create(selectedDir.FullName + "\\" + atlas.name + ".png"))
+			{
+				fileTest.Write(pngData, 0, pngData.GetLength(0));
+			}
+			AssetDatabase.ImportAsset(relativeDir + "\\" + atlas.name + ".png");
+
+			yield return null;
+
+			//DefaultTexturePlatform
+
+			var importer = (TextureImporter)AssetImporter.GetAtPath(relativeDir + "\\" + atlas.name + ".png");
+			var platformSettings = importer.GetPlatformTextureSettings("DefaultTexturePlatform");
+			platformSettings.maxTextureSize = Mathf.Max(sheet.Width, sheet.Height);
+			importer.SetPlatformTextureSettings(platformSettings);
+
+			float averagePPU = 0f;
+
+			foreach (var sprite in sprites)
+			{
+				averagePPU += sprite.PixelsPerUnit;
+			}
+			averagePPU /= sprites.Count;
+
+
+			importer.spriteImportMode = SpriteImportMode.Multiple;
+			importer.spritePixelsPerUnit = averagePPU;
+
+			List<SpriteMetaData> metas = new List<SpriteMetaData>();
+
+
+			//foreach (var sprite in sprites)
+			for (int i = 0; i < sprites.Count; i++)
+			{
+				var sprite = sprites[i];
+				var uv = uvCoords[i];
+				var textureSize = new Vector2(sprite.Texture.width,sprite.Texture.height);
+				//WeaverLog.Log("Sprite Coords for " + sprite.Texture.name + " = " + uvCoords[i]);
+				metas.Add(new SpriteMetaData()
+				{
+					name = sprite.Sheet.SpriteName,
+					border = Vector4.zero,
+					pivot = new Vector2(sprite.Sheet.Pivot.x, 1 - sprite.Sheet.Pivot.y),
+					alignment = (int)SpriteAlignment.Custom,
+					rect = new Rect(uv.x * sheet.Width,uv.y * sheet.Height,uv.width * sheet.Width,uv.height * sheet.Height)
+				});
+			}
+			importer.spritesheet = metas.ToArray();
+
+
+			importer.SaveAndReimport();
 		}
 
 	}

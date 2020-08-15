@@ -256,7 +256,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\G_ObjectDumper_I.cs" />
+    <Compile Include="WeaverCanvasSpawner.cs" />
     <Compile Include="Implementations\G_DamageHero_I.cs" />
+    <Compile Include="Implementations\G_UnboundCoroutine_I.cs" />
     <Compile Include="Implementations\G_WeaverLog_I.cs" />
     <Compile Include="Implementations\G_Boss_I.cs" />
     <Compile Include="Implementations\G_Enemy_I.cs" />
@@ -284,7 +287,6 @@
     <Compile Include="Patches\HeroController-Player.cs" />
     <Compile Include="Patches\HitTakerPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WeaverModTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

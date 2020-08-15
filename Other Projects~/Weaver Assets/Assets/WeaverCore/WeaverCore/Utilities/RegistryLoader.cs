@@ -12,16 +12,40 @@ namespace WeaverCore.Utilities
 {
 	public static class RegistryLoader
 	{
-		static bool loaded = false;
+		static HashSet<Assembly> LoadedAssemblies = new HashSet<Assembly>();
 
-		public static IEnumerable<Registry> GetModRegistries<Mod>() where Mod : WeaverMod
+		//static bool loaded = false;
+
+		public static void LoadAllRegistries<Mod>() where Mod : WeaverMod
+		{
+			LoadAllRegistries(typeof(Mod));
+		}
+
+		public static void LoadAllRegistries(Type modType)
+		{
+			WeaverLog.Log("Loading Registries for " + modType.FullName);
+			LoadAllRegistries(modType.Assembly);
+		}
+
+		public static void LoadAllRegistries(Assembly assembly)
+		{
+			if (!LoadedAssemblies.Contains(assembly))
+			{
+				LoadedAssemblies.Add(assembly);
+				var loader = ImplFinder.GetImplementation<RegistryLoader_I>();
+				loader.LoadRegistries(assembly);
+			}
+		}
+
+
+		/*public static IEnumerable<Registry> GetModRegistries<Mod>() where Mod : WeaverMod
 		{
 			return GetModRegistries(typeof(Mod));
 		}
 
 		public static IEnumerable<Registry> GetModRegistries(Type ModType)
 		{
-			WeaverLog.Log("Loading Registries for " + ModType.FullName);
+			
 			var findings = Registry.FindAll(ModType);
 			if (findings != null)
 			{
@@ -32,71 +56,72 @@ namespace WeaverCore.Utilities
 			}
 			var loader = ImplFinder.GetImplementation<RegistryLoader_I>();
 
-			var registries = loader.GetRegistries(ModType);
+			var registries = loader.LoadRegistries(ModType);
 
 			foreach (var registry in registries)
 			{
 				registry.Start();
 				yield return registry;
 			}
-		}
+		}*/
 
-		public static IEnumerable<Registry> GetEmbeddedRegistries(Type modType)
+		/// <summary>
+		/// Loads any registries that are embedded inside of the assembly as an embedded resource asset bundle
+		/// </summary>
+		/// <param name="assembly">The assembly to load from</param>
+		public static void LoadEmbeddedRegistries(Assembly assembly)
 		{
-			WeaverLog.Log("Loading Embedded Registries for mod [" + modType.FullName + "]");
-			if (!loaded)
+			var assemblyName = assembly.GetName().Name;
+			//WeaverLog.Log("Loading Embedded Registries for mod [" + modType.FullName + "]");
+			//if (!loaded)
+			//{
+			string extension = null;
+			if (SystemInfo.operatingSystem.Contains("Windows"))
 			{
-				string extension = null;
-				if (SystemInfo.operatingSystem.Contains("Windows"))
-				{
-					extension = ".bundle.win";
-				}
-				else if (SystemInfo.operatingSystem.Contains("Mac"))
-				{
-					extension = ".bundle.mac";
-				}
-				else if (SystemInfo.operatingSystem.Contains("Linux"))
-				{
-					extension = ".bundle.unix";
-				}
+				extension = ".bundle.win";
+			}
+			else if (SystemInfo.operatingSystem.Contains("Mac"))
+			{
+				extension = ".bundle.mac";
+			}
+			else if (SystemInfo.operatingSystem.Contains("Linux"))
+			{
+				extension = ".bundle.unix";
+			}
 
-				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+			//foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+			//{
+			try
+			{
+				if (assembly != typeof(WeaverMod).Assembly)
 				{
-					try
+					foreach (var name in assembly.GetManifestResourceNames())
 					{
-						if (assembly != typeof(WeaverMod).Assembly)
+						if (name.EndsWith(extension))
 						{
-							foreach (var name in assembly.GetManifestResourceNames())
+							var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
+							foreach (var registry in bundle.LoadAllAssets<Registry>())
 							{
-								if (name.EndsWith(extension))
+								if (registry.ModAssemblyName == assemblyName)
 								{
-									AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
-									/*AssetBundle bundle = null;
-									bool isWeaverCore = name.ToUpper().Contains("WEAVERCORE");
-
-									if (!isWeaverCore || (isWeaverCore && WeaverAssetLoader.WeaverAssetBundle == null && assembly == typeof(WeaverMod).Assembly))
-									{
-										bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
-										if (isWeaverCore)
-										{
-											WeaverAssetLoader.SetWeaverAssetBundle(bundle);
-										}
-									}*/
+									registry.Initialize();
 								}
 							}
 						}
 					}
-					catch (NotSupportedException error)
-					{
-						if (!error.Message.Contains("not supported in a dynamic module"))
-						{
-							throw;
-						}
-					}
 				}
-				loaded = true;
 			}
-			foreach (var bundle in AssetBundle.GetAllLoadedAssetBundles())
+			catch (NotSupportedException error)
+			{
+				if (!error.Message.Contains("not supported in a dynamic module"))
+				{
+					throw;
+				}
+			}
+			//}
+			//loaded = true;
+			//}
+			/*foreach (var bundle in AssetBundle.GetAllLoadedAssetBundles())
 			{
 				foreach (var registry in bundle.LoadAllAssets<Registry>())
 				{
@@ -105,7 +130,7 @@ namespace WeaverCore.Utilities
 						yield return registry;
 					}
 				}
-			}
+			}*/
 		}
 	}
 }

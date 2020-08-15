@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Attributes;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
+	[ShowFeature]
 	public class CameraExtension : Feature
 	{
 		public WeaverCam Camera

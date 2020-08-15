@@ -14,7 +14,7 @@ namespace WeaverCore.Editor
 {
 	public class Builder
 	{
-		class WaitForBuildToFinish : IWeaverAwaiter
+		/*class WaitForBuildToFinish : IWeaverAwaiter
 		{
 			bool waitOneFrame = true;
 
@@ -37,7 +37,7 @@ namespace WeaverCore.Editor
 				}
 				return true;
 			}
-		}
+		}*/
 
 
 		public string BuildPath { get; set; }
@@ -179,10 +179,16 @@ namespace WeaverCore.Editor
 			}
 		}
 
-		public IWeaverAwaiter Build()
+		public IEnumerator Build()
 		{
+
+			//Debug.Log("CC");
 			Build(null);
-			return new WaitForBuildToFinish(this);
+			//Debug.Log("CD");
+			yield return new WaitUntil(() => !Building);
+			//Debug.Log("CE");
+			yield return null;
+			//Debug.Log("CF");
 		}
 	}
 }

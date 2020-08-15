@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
@@ -78,10 +79,28 @@ namespace WeaverCore
             }
         }
 
+        /// <summary>
+        /// The short name of the assembly the mod type resides in
+        /// </summary>
+        public string ModAssemblyName
+        {
+            get
+            {
+                return modAssemblyName;
+            }
+        }
+
         [SerializeField]
         bool registryEnabled = true;
+        bool initialized
+        {
+            get
+            {
+                return AllRegistries.Contains(this);
+            }
+        }
 
-        bool started = false;
+        //bool initialized = false;
 
         private Type modType = null;
 
@@ -146,17 +165,42 @@ namespace WeaverCore
         /// <summary>
         /// Initializes the Registry. This is automatically called when the bound mod is loaded
         /// </summary>
-        public void Start()
+        public void Initialize()
         {
-            if (!started)
+            if (!initialized)
             {
-                started = true;
+                //initialized = true;
                 AllRegistries.Add(this);
                 if (RegistryEnabled)
                 {
                     ActiveRegistries.Add(this);
                 }
             }
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other is Registry)
+            {
+                var otherReg = (Registry)other;
+                return modName == otherReg.modName && modAssemblyName == otherReg.modAssemblyName && modTypeName == otherReg.modTypeName && registryName == otherReg.registryName;
+            }
+            return base.Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = 0;
+            MiscUtilities.AdditiveHash(ref hash, modName);
+            MiscUtilities.AdditiveHash(ref hash, modAssemblyName);
+            MiscUtilities.AdditiveHash(ref hash, modTypeName);
+            MiscUtilities.AdditiveHash(ref hash, registryName);
+            return hash;
+        }
+
+        public override string ToString()
+        {
+            return registryName;
         }
 
 
@@ -283,7 +327,7 @@ namespace WeaverCore
         /// </summary>
         /// <param name="ModType">The mod that is associated with the registry</param>
         /// <returns>Returns the registry that is bound to the mod. Returns null if no registry is found</returns>
-        public static Registry Find(Type ModType)
+        public static Registry FindModRegistry(Type ModType)
         {
             foreach (var registry in AllRegistries)
             {
@@ -300,7 +344,7 @@ namespace WeaverCore
         /// </summary>
         /// <param name="ModType">THe mod that is associated with the registry</param>
         /// <returns>Returns all the registries that are bound to the mod</returns>
-        public static IEnumerable<Registry> FindAll(Type ModType)
+        public static IEnumerable<Registry> FindModRegistries(Type ModType)
         {
             foreach (var registry in AllRegistries)
             {
@@ -309,6 +353,11 @@ namespace WeaverCore
                     yield return registry;
                 }
             }
+        }
+
+        public static IEnumerable<Registry> FindModRegistries<Mod>() where Mod : WeaverMod
+        {
+            return FindModRegistries(typeof(Mod));
         }
     }
 }

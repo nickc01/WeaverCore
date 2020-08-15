@@ -12,9 +12,14 @@ namespace WeaverCore.Game.Implementations
 {
 	public class G_RegistryLoader_I : RegistryLoader_I
 	{
-		public override IEnumerable<Registry> GetRegistries(Type ModType)
+		/*public override IEnumerable<Registry> GetRegistries(Type ModType)
 		{
 			return RegistryLoader.GetEmbeddedRegistries(ModType);
+		}*/
+
+		public override void LoadRegistries(Assembly assembly)
+		{
+			RegistryLoader.LoadEmbeddedRegistries(assembly);
 		}
 	}
 }

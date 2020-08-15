@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,19 +7,69 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
+using WeaverCore.Editor.Systems;
+using WeaverCore.Editor.Utilities;
 using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
 //using WeaverCore.Editor.Helpers;
 
 namespace WeaverCore.Editor
 {
-	internal class BuildSettingsScreen : EditorWindow
+	public class BuildSettingsScreen : ConfigurationScreen<BuildSettings>
 	{
-		public static BuildSettings RetrievedBuildSettings { get; private set; }
+		[MenuItem("WeaverCore/Compile Mod %F5")]
+		public static void Compile()
+		{
+			Open();
+		}
+
+		protected override void OnGUI()
+		{
+			EditorGUILayout.LabelField("Mod Name");
+			StoredSettings.ModName = EditorGUILayout.TextField(StoredSettings.ModName);
+			EditorGUILayout.Space();
+
+			EditorGUILayout.LabelField("Windows Support");
+			StoredSettings.WindowsSupport = EditorGUILayout.Toggle(StoredSettings.WindowsSupport);
+
+			EditorGUILayout.LabelField("Mac Support");
+			StoredSettings.MacSupport = EditorGUILayout.Toggle(StoredSettings.MacSupport);
+
+			EditorGUILayout.LabelField("Linux Support");
+			StoredSettings.LinuxSupport = EditorGUILayout.Toggle(StoredSettings.LinuxSupport);
+
+			EditorGUILayout.Space();
+			EditorGUILayout.LabelField("Auto-Start Game");
+			StoredSettings.StartGame = EditorGUILayout.Toggle(StoredSettings.StartGame);
+			EditorGUILayout.BeginHorizontal();
+			if (GUILayout.Button("Close"))
+			{
+				Close();
+			}
+			if (GUILayout.Button("Compile"))
+			{
+				Done();
+			}
+
+			EditorGUILayout.EndHorizontal();
+		}
+
+		protected override void Done()
+		{
+			base.Done();
+			ModCompiler.BuildMod();
+		}
+	}
+
+
+	/*internal class BuildSettingsScreenOLD : EditorWindow
+	{
+		public static BuildSettingsOLD RetrievedBuildSettings { get; private set; }
 
 
 		static bool Open = false;
 
-		BuildSettings CurrentSettings;
+		BuildSettingsOLD CurrentSettings;
 
 		static bool Done = false;
 
@@ -38,18 +89,18 @@ namespace WeaverCore.Editor
 		/// <summary>
 		/// Retrieves the build settings the player specified. The results will be stored in <see cref="RetrieveBuildSettings"/>
 		/// </summary>
-		public static IWeaverAwaiter RetrieveBuildSettings()
+		public static IEnumerator RetrieveBuildSettings()
 		{
 			if (Open)
 			{
 				throw new Exception("The Build Settings Window is already open");
 			}
-			BuildSettingsScreen window = (BuildSettingsScreen)GetWindow(typeof(BuildSettingsScreen));
+			BuildSettingsScreenOLD window = (BuildSettingsScreenOLD)GetWindow(typeof(BuildSettingsScreenOLD));
 			Done = false;
 			Open = true;
 			window.Setup();
 			window.Show();
-			return new Awaiters.WaitTillTrue(Awaiter);
+			yield return new WaitUntil(Awaiter);
 		}
 
 		void Setup()
@@ -66,7 +117,7 @@ namespace WeaverCore.Editor
 			position = new Rect(x, y, width, height);
 			titleContent.text = "Compile";
 
-			CurrentSettings = BuildSettings.GetStoredSettings();
+			CurrentSettings = BuildSettingsOLD.GetStoredSettings();
 		}
 
 		void OnGUI()
@@ -139,8 +190,8 @@ namespace WeaverCore.Editor
 					Close();
 				}
 				Open = false;
-				BuildSettings.SetStoredSettings(CurrentSettings);
+				BuildSettingsOLD.SetStoredSettings(CurrentSettings);
 			}
 		}
-	}
+	}*/
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using WeaverCore.Editor.Internal;
-using WeaverCore.Editor.Helpers;
+using WeaverCore.Editor.Utilities;
 using UnityEngine;
 using WeaverCore.Utilities;
 
@@ -53,7 +53,7 @@ namespace WeaverCore.Editor.Renderers
 					{
 						EditorGUILayout.BeginHorizontal();
 
-						var featureType = Helpers.Features.FindFeatureType(feature.Value, checker.FeatureList);
+						var featureType = Utilities.Features.FindFeatureType(feature.Value, checker.FeatureList);
 						if (featureType == null)
 						{
 							checker.DeleteFeature(feature.Index);

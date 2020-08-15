@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Editor.Helpers;
+using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
@@ -131,85 +131,8 @@ namespace WeaverCore.Editor.Implementations
             new SortingLayer("HUD", 629535577)
         };
 
-        //private static void LoadVisualAssembly()
-        //{
-            /*Stream resourceStream = ResourceLoader.Retrieve($"{nameof(WeaverCore)}.Editor"); //Gets disposed in the Initializer below
-            string resourceHash = Hash.GetHash(resourceStream);
-            DirectoryInfo directory = Directory.CreateDirectory($"Assets/{nameof(WeaverCore)}/Editor");
-            string filePath = directory.FullName + $"/{nameof(WeaverCore)}.Editor.dll";
-
-            if (!File.Exists(filePath) || resourceHash != Hash.GetHash(filePath))
-            {
-                EditorInitializer.AddInitializer(() =>
-                {
-                    AssetDatabase.StartAssetEditing();
-                    try
-                    {
-                        WriteAssembly(new DirectoryInfo("Assets").Parent.FullName, $"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.dll", $"{nameof(WeaverCore)}.Editor.dll", resourceStream);
-                        resourceStream.Dispose();
-                        using (Stream internalStream = ResourceLoader.Retrieve($"{nameof(WeaverCore)}.Data.InternalClasses.txt"))
-                        {
-                            using (FileStream output = File.Create($"Assets/{nameof(WeaverCore)}/Internal.cs"))
-                            {
-                                using (StreamWriter writer = new StreamWriter(output))
-                                {
-                                    using (StreamReader reader = new StreamReader(internalStream))
-                                    {
-                                        writer.Write(reader.ReadToEnd());
-                                    }
-                                }
-                            }
-                        }
-                        AssetDatabase.ImportAsset($"Assets/{nameof(WeaverCore)}/Internal.cs");
-                    }
-                    finally
-                    {
-                        AssetDatabase.StopAssetEditing();
-                    }
-                });
-            }*/
-        //}
-
-        /*private static void WriteAssembly(string directory, string filePath, string fileName, Stream data)
-        {
-            string fullPath = directory + "/" + filePath;
-            if (File.Exists(fullPath))
-            {
-                AssetDatabase.DeleteAsset(filePath);
-            }
-
-            string tempPath = Path.GetTempPath();
-            if (File.Exists(tempPath + fileName))
-            {
-                File.Delete(tempPath + fileName);
-            }
-            using (FileStream file = File.Create(tempPath + fileName))
-            {
-                using (BinaryReader reader = new BinaryReader(data))
-                {
-                    using (BinaryWriter writer = new BinaryWriter(file))
-                    {
-                        byte[] buffer = new byte[1024];
-                        int amount = 0;
-                        do
-                        {
-                            amount = reader.Read(buffer, 0, buffer.Length);
-                            if (amount > 0)
-                            {
-                                writer.Write(buffer, 0, amount);
-                            }
-
-                        } while (amount != 0);
-                    }
-                }
-            }
-            File.Move(tempPath + fileName, fullPath);
-            AssetDatabase.ImportAsset(filePath);
-        }*/
-
         static void Init()
         {
-            //LoadVisualAssembly();
             AddInitializer(() =>
             {
                 LayerData data = LayerData.GetData();
@@ -240,9 +163,6 @@ namespace WeaverCore.Editor.Implementations
                 SortingLayers = null;
 
                 Physics2D.gravity = new Vector2(0f, -60f);
-                /*System.Reflection.Assembly visualAssembly = System.Reflection.Assembly.LoadFile($"Assets/{nameof(WeaverCore)}/Editor/{nameof(WeaverCore)}.Editor.dll");
-                Type initializerType = visualAssembly.GetType("WeaverCore.Editor.Internal.Initializer");
-                initializerType.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static).Invoke(null, null);*/
             });
         }
 

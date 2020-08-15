@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
-using WeaverCore.Editor.Helpers;
+using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Internal
@@ -135,8 +135,8 @@ namespace WeaverCore.Editor.Internal
 		{
 			ModList = Mods.GetMods();
 			ModNames = Mods.GetModNames(ModList);
-			FeatureList = Helpers.Features.GetFeatures();
-			FeatureNames = Helpers.Features.GetFeatureNames(FeatureList);
+			FeatureList = Utilities.Features.GetFeatures();
+			FeatureNames = Utilities.Features.GetFeatureNames(FeatureList);
 		}
 
 		public static List<RegistryChecker> LoadAllRegistries()

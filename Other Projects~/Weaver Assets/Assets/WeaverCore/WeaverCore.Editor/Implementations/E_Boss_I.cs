@@ -46,12 +46,12 @@ namespace WeaverCore.Editor.Implementations
                 {
                     OnBossesDead.Invoke();
                 }
-                WeaverRoutine.Start(EndBossDelayed(delayTime));
+                UnboundCoroutine.Start(EndBossDelayed(delayTime));
             }
 
-            IEnumerator<IWeaverAwaiter> EndBossDelayed(float delayTime)
+            IEnumerator EndBossDelayed(float delayTime)
             {
-                yield return new Awaiters.WaitForSeconds(delayTime);
+                yield return new WaitForSeconds(delayTime);
                 //OnBossSceneComplete?.Invoke();
                 if (OnBossSceneComplete != null)
                 {

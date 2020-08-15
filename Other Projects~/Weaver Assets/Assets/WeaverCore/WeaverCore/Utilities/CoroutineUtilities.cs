@@ -13,13 +13,6 @@ namespace WeaverCore.Utilities
 	/// </summary>
 	public static class CoroutineUtilities
 	{
-		class StarterObject : MonoBehaviour
-		{
-
-		}
-
-		static StarterObject starter;
-
 		/// <summary>
 		/// Will allow a coroutine to run while the predicate is true. If the predicate returns false, the coroutine will end
 		/// </summary>
@@ -84,7 +77,7 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-		/// <summary>
+		/*/// <summary>
 		/// Starts a coroutine that isn't bound to a specific object. Please make sure that the coroutine is ended via <see cref="StopCoroutine(Coroutine)"/> to ensure it will stop
 		/// </summary>
 		/// <param name="routine">The Routine to execute</param>
@@ -102,16 +95,16 @@ namespace WeaverCore.Utilities
 		public static void StopCoroutine(Coroutine coroutine)
 		{
 			starter.StopCoroutine(coroutine);
-		}
+		}*/
 
-		static void InitStarterObject()
+		/*static void InitStarterObject()
 		{
 			if (starter == null)
 			{
 				starter = new GameObject("__COROUTINE_STARTER_OBJECT__").AddComponent<StarterObject>();
 				GameObject.DontDestroyOnLoad(starter.gameObject);
 			}
-		}
+		}*/
 
 		/// <summary>
 		/// Will continously run the action function for a set period of time.
@@ -169,6 +162,5 @@ namespace WeaverCore.Utilities
 				}
 			}
 		}
-
 	}
 }

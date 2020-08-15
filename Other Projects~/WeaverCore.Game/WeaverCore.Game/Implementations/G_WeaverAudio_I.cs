@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,7 @@ namespace WeaverCore.Game.Implementations
 
 			}
 
-			IEnumerator<IWeaverAwaiter> FirstRun()
+			IEnumerator FirstRun()
 			{
 				yield return null;
 				ScanForMixers();
@@ -44,7 +45,7 @@ namespace WeaverCore.Game.Implementations
 			void IInit.OnInit()
 			{
 				UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnNewScene;
-				WeaverRoutine.Start(FirstRun());
+				UnboundCoroutine.Start(FirstRun());
 			}
 
 			private void OnNewScene(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)

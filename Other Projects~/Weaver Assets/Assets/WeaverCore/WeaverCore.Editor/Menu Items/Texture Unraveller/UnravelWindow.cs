@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Awaiters;
+using WeaverCore.Editor.Enums;
 using WeaverCore.Interfaces;
 //using WeaverCore.Editor.Helpers;
 //using WeaverCore.Editor.Routines;
@@ -19,7 +20,7 @@ namespace WeaverCore.Editor
 		static bool Open = false;
 		static bool Done = false;
 
-		public static IWeaverAwaiter GetUnravelSettings()
+		public static IEnumerator GetUnravelSettings()
 		{
 			if (Open)
 			{
@@ -31,13 +32,19 @@ namespace WeaverCore.Editor
 			UnravelWindow window = (UnravelWindow)GetWindow(typeof(UnravelWindow));
 			window.Show();
 
-			return new WaitTillTrue(() => Done);
+			//return new WaitTillTrue(() => Done);
+			yield return new WaitUntil(() => Done);
 		}
 
 		void OnGUI()
 		{
 			Settings.texture = (Texture2D)EditorGUILayout.ObjectField("Texture to Unravel", Settings.texture, typeof(Texture2D),false);
 			EditorGUILayout.Space();
+
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.LabelField("Unpacking mode");
+			Settings.UnravelMode = (UnravelMode)EditorGUILayout.EnumPopup(Settings.UnravelMode);
+			EditorGUILayout.EndHorizontal();
 
 			EditorGUILayout.LabelField("Path to Sheet File");
 

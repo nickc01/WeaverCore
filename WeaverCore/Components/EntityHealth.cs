@@ -12,7 +12,6 @@ using WeaverCore.DataTypes;
 
 namespace WeaverCore.Components
 {
-
 	public enum HitResult
 	{
 		Invalid,
@@ -22,13 +21,16 @@ namespace WeaverCore.Components
 
 	public class EntityHealth : MonoBehaviour, IHittable
 	{
+		List<Milestone> HealthMilestones = new List<Milestone>();
+
+
 		Collider2D collider;
 
 
 		HealthManager_I impl;
 
 		[SerializeField]
-		private int health = 100;
+		private int _health = 100;
 		private float evasionTimer = 0.0f;
 
 		/// <summary>
@@ -38,14 +40,15 @@ namespace WeaverCore.Components
 		{
 			get
 			{
-				return health;
+				return _health;
 			}
 			set
 			{
-				health = value;
-				if (health <= 0)
+				_health = value;
+				CheckMilestones(_health);
+				if (_health <= 0)
 				{
-					health = 0;
+					_health = 0;
 					OnDeath();
 				}
 			}
@@ -99,6 +102,11 @@ namespace WeaverCore.Components
 		}
 
 		/// <summary>
+		/// Called when the entity's health reaches zero
+		/// </summary>
+		public event Action OnDeathEvent;
+
+		/// <summary>
 		/// Applies an offset to hit effects if desired
 		/// </summary>
 		public Vector3 EffectsOffset = new Vector3(0, 0,0);
@@ -149,7 +157,7 @@ namespace WeaverCore.Components
 
 		public HitResult IsValidHit(HitInfo hit)
 		{
-			bool validHit = !(health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
+			bool validHit = !(_health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
 			if (!validHit)
 			{
 				return HitResult.Invalid;
@@ -309,11 +317,33 @@ namespace WeaverCore.Components
 			//Updates the health. If the health is at or below zero, this will also trigger the OnDeath() function
 			Health -= hit.Damage;
 
-			if (health > 0)
+			if (Health > 0)
 			{
 				evasionTimer = EvasionTime;
 			}
 
+		}
+
+		public void AddHealthMilestone(int health, Action action)
+		{
+			if (health > Health)
+			{
+				return;
+			}
+			HealthMilestones.Add(new Milestone(health, action));
+		}
+
+		void CheckMilestones(int healthAfter)
+		{
+			for (int i = HealthMilestones.Count - 1; i >= 0; i--)
+			{
+				var milestone = HealthMilestones[i];
+				if (milestone.HealthNumber >= healthAfter)
+				{
+					milestone.MilestoneReached();
+					HealthMilestones.RemoveAt(i);
+				}
+			}
 		}
 
 		public void Die()
@@ -326,6 +356,10 @@ namespace WeaverCore.Components
 
 		protected virtual void OnDeath()
 		{
+			if (OnDeathEvent != null)
+			{
+				OnDeathEvent();
+			}
 			impl.OnDeath();
 		}
 

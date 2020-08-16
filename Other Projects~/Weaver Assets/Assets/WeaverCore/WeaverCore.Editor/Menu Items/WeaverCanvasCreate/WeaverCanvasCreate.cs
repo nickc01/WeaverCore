@@ -33,6 +33,7 @@ namespace WeaverCore.Editor
 			instance.name = prefab.name;
 
 			EditorSceneManager.SaveScene(instance.scene);
+
 		}
 	}
 }

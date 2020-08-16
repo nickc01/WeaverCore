@@ -33,10 +33,6 @@
             "hash": "GOwVF9MnsgIXIqtGJXZdkxanCR8="
         },
         {
-            "file": "WeaverCore.Dev.meta",
-            "hash": "Za5DsV/adCpKVzhB9h+otkDJ8QA="
-        },
-        {
             "file": "WeaverCore.Editor.meta",
             "hash": "ba32JJPVslODkTb5nJ+NlsIsHbg="
         },
@@ -50,7 +46,7 @@
         },
         {
             "file": "Hidden~/FileHashes.txt",
-            "hash": "p4Ml9Any5kJC6oh7Fsut/4jxAoM="
+            "hash": "S3FAi8kFYjSyedqZetCXzHNbwxg="
         },
         {
             "file": "Hidden~/LastDirectorySettings.txt",
@@ -1694,7 +1690,7 @@
         },
         {
             "file": "WeaverCore/Components/EntityHealth.cs",
-            "hash": "10dw748xYpDXHZBugn02dG5mRz0="
+            "hash": "oBUkbCXpk0t0rdDdGviAhv5obLY="
         },
         {
             "file": "WeaverCore/Components/EntityHealth.cs.meta",
@@ -1905,6 +1901,14 @@
             "hash": "3KBzAFBwLALyQSStmaDYqi/r3WU="
         },
         {
+            "file": "WeaverCore/DataTypes/Milestone.cs",
+            "hash": "6Krcrl7ibsF8TAfhjB5tj8/ZWVM="
+        },
+        {
+            "file": "WeaverCore/DataTypes/Milestone.cs.meta",
+            "hash": "soLPbYM/xPzec8VfBHdIL9ZlZp4="
+        },
+        {
             "file": "WeaverCore/DataTypes/SpriteSheet.cs",
             "hash": "SCj8ktDm/9ps9D89KTt7IAwrvD0="
         },
@@ -1922,7 +1926,7 @@
         },
         {
             "file": "WeaverCore/Features/Boss.cs",
-            "hash": "ELsFzW3/RnFc9AJkvVlTapH23a4="
+            "hash": "w+jndzZmg5ulGnL3An5j4m1Ww10="
         },
         {
             "file": "WeaverCore/Features/Boss.cs.meta",
@@ -2121,6 +2125,14 @@
             "hash": "0jzuvrXSofEFtEt1t8fIYccUux8="
         },
         {
+            "file": "WeaverCore/Interfaces/IBossStage.cs",
+            "hash": "Ag1hq6d0FiIHm6hxZP26/SZqRL8="
+        },
+        {
+            "file": "WeaverCore/Interfaces/IBossStage.cs.meta",
+            "hash": "hU4j6cxayjkjsjHf/AVVvNcVy+w="
+        },
+        {
             "file": "WeaverCore/Interfaces/IHitEffects.cs",
             "hash": "vO+OtXazB5k6BQgKatPU27gQ064="
         },
@@ -2278,7 +2290,7 @@
         },
         {
             "file": "WeaverCore/Utilities/CoroutineUtilities.cs",
-            "hash": "bME0rOP5qduQiueKtpDibR+jjvY="
+            "hash": "/qCnCf1n2Di+b80AEDUDRwF8QDg="
         },
         {
             "file": "WeaverCore/Utilities/CoroutineUtilities.cs.meta",
@@ -2395,6 +2407,14 @@
         {
             "file": "WeaverCore/Utilities/PropertyTable.cs.meta",
             "hash": "hAloy2jcwxWg0jQcEO9yc1faecM="
+        },
+        {
+            "file": "WeaverCore/Utilities/Randomizer.cs",
+            "hash": "PeIv8sQQsfP/ipJYyMYLxwHSebc="
+        },
+        {
+            "file": "WeaverCore/Utilities/Randomizer.cs.meta",
+            "hash": "b9+uF4m380YaAhIDcvjKKITnQFM="
         },
         {
             "file": "WeaverCore/Utilities/RegistryLoader.cs",
@@ -2571,10 +2591,6 @@
         {
             "file": "WeaverCore/WeaverAssets/Components/Dump UI/GameObjectSelectButton.cs.meta",
             "hash": "6mxokUOL/WiMUVI50BUm1U2Q4cQ="
-        },
-        {
-            "file": "WeaverCore.Dev/Post Processing Stack.meta",
-            "hash": "fEPRNzdWJNniJYP9W6FHM9xMlO8="
         },
         {
             "file": "WeaverCore.Editor/BuildSettings.meta",
@@ -2962,7 +2978,7 @@
         },
         {
             "file": "WeaverCore.Editor/Menu Items/WeaverCanvasCreate/WeaverCanvasCreate.cs",
-            "hash": "9ieNyFGWYJAlCqQ6tHnNrG9ASfA="
+            "hash": "x6UE7BobLcw9OIt1Ocm5uq02Pu4="
         },
         {
             "file": "WeaverCore.Editor/Menu Items/WeaverCanvasCreate/WeaverCanvasCreate.cs.meta",

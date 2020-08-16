@@ -74,6 +74,10 @@ namespace WeaverCore.Utilities
 					yield return instruction;
 				}
 
+				if (!predicate())
+				{
+					yield break;
+				}
 			}
 		}
 

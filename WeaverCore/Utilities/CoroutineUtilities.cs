@@ -64,6 +64,42 @@ namespace WeaverCore.Utilities
 						yield return null;
 					}
 				}
+				else if (instruction is AsyncOperation)
+				{
+					var operation = (AsyncOperation)instruction;
+					while (!operation.isDone)
+					{
+						if (!predicate())
+						{
+							yield break;
+						}
+						yield return null;
+					}
+				}
+				else if (instruction is CustomYieldInstruction)
+				{
+					var yielder = (CustomYieldInstruction)instruction;
+					while (yielder.keepWaiting)
+					{
+						if (!predicate())
+						{
+							yield break;
+						}
+						yield return null;
+					}
+				}
+				else if (instruction is WaitForEndOfFrame)
+				{
+					yield return null;
+				}
+				else if (instruction is WaitForFixedUpdate)
+				{
+					yield return null;
+				}
+				else if (instruction is Coroutine)
+				{
+					throw new Exception("Coroutine yielding in the editor is not supported");
+				}
 				else if (instruction is IEnumerator)
 				{
 					var e = instruction as IEnumerator;

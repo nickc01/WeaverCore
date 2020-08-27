@@ -85,7 +85,7 @@ namespace WeaverCore.Components
 
 				if (flasherMaterial == null)
 				{
-					flasherMaterial = WeaverAssets.MaterialAssets.SpriteFlash;
+					flasherMaterial = Assets.MaterialAssets.SpriteFlash;
 				}
 				if (previousMaterial == null)
 				{

@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
-using WeaverCore.WeaverAssets;
+using WeaverCore.Assets;
 using WeaverCore.Enums;
 using WeaverCore.DataTypes;
 

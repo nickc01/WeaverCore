@@ -18,10 +18,10 @@ namespace WeaverCore.Editor.Utilities
                 {
                     if (typeof(WeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.IsGenericTypeDefinition && !type.IsInterface)
                     {
-                        if (WeaverAssetsInfo.InWeaverAssetsProject || !typeof(WeaverCore.Internal.WeaverCore).IsAssignableFrom(type))
-                        {
+                        //if (WeaverAssetsInfo.InWeaverAssetsProject || !typeof(WeaverCore.Internal.WeaverCore).IsAssignableFrom(type))
+                        //{
                             mods.Add(type);
-                        }
+                        //}
                     }
                 }
             }

@@ -115,6 +115,10 @@ namespace WeaverCore.Utilities
 
         public DynamicMethod Patch(MethodBase original, MethodInfo prefix, MethodInfo postfix)
         {
+            if (prefix == null && postfix == null)
+            {
+                return null;
+            }
             if (original == null)
             {
                 throw new ArgumentNullException("original", "Method is null");

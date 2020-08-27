@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using WeaverCore.Utilities;
 
-namespace WeaverCore.WeaverAssets
+namespace WeaverCore.Assets
 {
 	public static class AudioAssets
 	{
@@ -13,21 +13,21 @@ namespace WeaverCore.WeaverAssets
 		{
 			get
 			{
-				return WeaverAssetLoader.LoadWeaverAsset<AudioClip>("SwordCling");
+				return WeaverAssets.LoadWeaverAsset<AudioClip>("SwordCling");
 			}
 		}
 		public static AudioClip DamageEnemy
 		{
 			get
 			{
-				return WeaverAssetLoader.LoadWeaverAsset<AudioClip>("EnemyDamage");
+				return WeaverAssets.LoadWeaverAsset<AudioClip>("EnemyDamage");
 			}
 		}
 		public static AudioClip EnemyDeathBySword
 		{
 			get
 			{
-				return WeaverAssetLoader.LoadWeaverAsset<AudioClip>("EnemyDeathSword");
+				return WeaverAssets.LoadWeaverAsset<AudioClip>("EnemyDeathSword");
 			}
 		}
 
@@ -35,35 +35,35 @@ namespace WeaverCore.WeaverAssets
 		{
 			get
 			{
-				return WeaverAssetLoader.LoadWeaverAsset<AudioClip>("Teleport");
+				return WeaverAssets.LoadWeaverAsset<AudioClip>("Teleport");
 			}
 		}
 		public static AudioClip BossFinalHit
 		{
 			get
 			{
-				return WeaverAssetLoader.LoadWeaverAsset<AudioClip>("Boss Final Hit");
+				return WeaverAssets.LoadWeaverAsset<AudioClip>("Boss Final Hit");
 			}
 		}
 		public static AudioClip BossGushing
 		{
 			get
 			{
-				return WeaverAssetLoader.LoadWeaverAsset<AudioClip>("Boss Gushing");
+				return WeaverAssets.LoadWeaverAsset<AudioClip>("Boss Gushing");
 			}
 		}
 		public static AudioClip BossExplosion
 		{
 			get
 			{
-				return WeaverAssetLoader.LoadWeaverAsset<AudioClip>("Boss Explosion");
+				return WeaverAssets.LoadWeaverAsset<AudioClip>("Boss Explosion");
 			}
 		}
 		public static AudioClip BossExplosionUninfected
 		{
 			get
 			{
-				return WeaverAssetLoader.LoadWeaverAsset<AudioClip>("Boss Explosion Uninfected");
+				return WeaverAssets.LoadWeaverAsset<AudioClip>("Boss Explosion Uninfected");
 			}
 		}
 	}

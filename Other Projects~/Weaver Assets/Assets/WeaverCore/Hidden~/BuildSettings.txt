@@ -1,7 +1,0 @@
-{
-    "ModName": "InfernoKingGrimm",
-    "WindowsSupport": true,
-    "MacSupport": true,
-    "LinuxSupport": true,
-    "StartGame": true
-}

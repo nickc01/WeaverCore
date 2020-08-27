@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
 
-namespace WeaverCore.WeaverAssets.Components
+namespace WeaverCore.Assets.Components
 {
 	class GMSorter : IComparer<GameObject>
 	{

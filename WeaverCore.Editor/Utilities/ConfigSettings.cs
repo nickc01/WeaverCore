@@ -17,14 +17,7 @@ namespace WeaverCore.Editor.Utilities
 
 		static DirectoryInfo GetSettingsLocation()
 		{
-			if (WeaverAssetsInfo.InWeaverAssetsProject)
-			{
-				return new DirectoryInfo("..\\..\\Hidden~");
-			}
-			else
-			{
-				return new DirectoryInfo("Assets\\WeaverCore\\Hidden~");
-			}
+			return new DirectoryInfo("Assets\\WeaverCore\\Hidden~");
 		}
 
 		public virtual string FileName

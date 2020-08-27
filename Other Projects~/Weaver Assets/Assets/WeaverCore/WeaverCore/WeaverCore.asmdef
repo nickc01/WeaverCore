@@ -1,9 +1,0 @@
-{
-    "name": "WeaverCore",
-    "references": [
-        "HollowKnight"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "autoReferenced": true
-}

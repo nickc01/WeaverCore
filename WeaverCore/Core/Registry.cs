@@ -169,6 +169,7 @@ namespace WeaverCore
         {
             if (!initialized)
             {
+                WeaverLog.Log("Loading Registry = " + RegistryName + " for mod = " + ModName);
                 //initialized = true;
                 AllRegistries.Add(this);
                 if (RegistryEnabled)

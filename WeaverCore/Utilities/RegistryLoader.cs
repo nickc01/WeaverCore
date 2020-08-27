@@ -99,6 +99,7 @@ namespace WeaverCore.Utilities
 					{
 						if (name.EndsWith(extension))
 						{
+							WeaverLog.Log("Loading Mod Bundle = " + name);
 							var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
 							foreach (var registry in bundle.LoadAllAssets<Registry>())
 							{

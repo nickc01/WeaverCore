@@ -8,7 +8,7 @@ using WeaverCore.Editor.Systems;
 
 namespace WeaverCore.Editor
 {
-	public static class WeaverAssetsInfo
+	/*public static class WeaverAssetsInfo
 	{
 		public static bool InWeaverAssetsProject
 		{
@@ -18,5 +18,5 @@ namespace WeaverCore.Editor
 				return new DirectoryInfo("..\\WeaverCore.Game").Exists;
 			}
 		}
-	}
+	}*/
 }

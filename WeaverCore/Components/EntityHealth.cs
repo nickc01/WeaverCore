@@ -6,7 +6,7 @@ using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
-using WeaverCore.WeaverAssets;
+using WeaverCore.Assets;
 using WeaverCore.Enums;
 using WeaverCore.DataTypes;
 
@@ -237,7 +237,7 @@ namespace WeaverCore.Components
 			var blockedHitEffect = Instantiate(EffectAssets.BlockedHitPrefab, v, Quaternion.identity);
 			blockedHitEffect.transform.eulerAngles = eulerAngles;
 
-			WeaverAudio.Play(WeaverAssets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
+			WeaverAudio.Play(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
 
 		}
 

@@ -8,6 +8,8 @@ namespace WeaverCore.Utilities
 {
 	public static class PathUtilities
 	{
+		public readonly static DirectoryInfo AssetsFolder = new DirectoryInfo("Assets");
+
 		public static string MakePathRelative(string relativeTo, string path)
 		{
 			if (relativeTo.Last() != '\\')
@@ -19,6 +21,31 @@ namespace WeaverCore.Utilities
 			Uri relRoot = new Uri(relativeTo, UriKind.Absolute);
 
 			return relRoot.MakeRelativeUri(fullPath).ToString();
+		}
+
+		public static string MakePathRelative(DirectoryInfo relativeTo, string path)
+		{
+			return MakePathRelative(relativeTo.FullName, path);
+		}
+
+		public static IEnumerable<string> MakePathsRelative(string relativeTo, IEnumerable<string> paths)
+		{
+			foreach (var path in paths)
+			{
+				yield return MakePathRelative(relativeTo, path);
+			}
+		}
+
+		public static IEnumerable<string> MakePathsRelative(DirectoryInfo relativeTo, IEnumerable<string> paths)
+		{
+			return MakePathsRelative(relativeTo, paths);
+		}
+
+		public static string ConvertToAssetPath(string path)
+		{
+			var relative = MakePathRelative(AssetsFolder.FullName, path);
+			relative = relative.Replace('\\','/');
+			return relative;
 		}
 
 		public static string AddSlash(string path)

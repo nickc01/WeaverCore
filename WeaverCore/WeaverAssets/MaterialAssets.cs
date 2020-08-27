@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using WeaverCore.Utilities;
 
-namespace WeaverCore.WeaverAssets
+namespace WeaverCore.Assets
 {
 	public static class MaterialAssets
 	{
@@ -13,7 +13,7 @@ namespace WeaverCore.WeaverAssets
 		{
 			get
 			{
-				return WeaverAssetLoader.LoadWeaverAsset<Material>("SpriteFlash");
+				return WeaverAssets.LoadWeaverAsset<Material>("SpriteFlash");
 			}
 		}
 	}

@@ -45,7 +45,7 @@ namespace WeaverCore.Internal.Harmony
 			{
 				ranOnce = true;
 				bool done = false;
-				DefaultSpriteMaterial = WeaverAssetLoader.LoadWeaverAsset<Material>("Sprites-Default");
+				DefaultSpriteMaterial = WeaverAssets.LoadWeaverAsset<Material>("Sprites-Default");
 			}
 		}
 

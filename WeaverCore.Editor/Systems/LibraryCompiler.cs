@@ -6,8 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.Networking.NetworkSystem;
 using WeaverBuildTools.Commands;
 using WeaverBuildTools.Enums;
 using WeaverCore.Editor.Internal;
@@ -19,23 +19,40 @@ namespace WeaverCore.Editor.Systems
 {
 	public static class LibraryCompiler
 	{
+		static bool buildingBundles = false;
+
+		static string AsmLocationRelative = "Assets\\WeaverCore\\WeaverCore.Editor";
+		static DirectoryInfo AsmEditorLocation = new DirectoryInfo("Assets\\WeaverCore\\WeaverCore.Editor");
+
+		public static IEnumerable<BuildTarget> MainTargets
+		{
+			get
+			{
+				if (PlatformUtilities.IsPlatformSupportLoaded(BuildTarget.StandaloneWindows))
+				{
+					yield return BuildTarget.StandaloneWindows;
+				}
+
+				if (PlatformUtilities.IsPlatformSupportLoaded(BuildTarget.StandaloneOSX))
+				{
+					yield return BuildTarget.StandaloneOSX;
+				}
+
+				if (PlatformUtilities.IsPlatformSupportLoaded(BuildTarget.StandaloneLinuxUniversal))
+				{
+					yield return BuildTarget.StandaloneLinuxUniversal;
+				}
+			}
+		}
+
+
 		class OnReload : IInit
 		{
 			void IInit.OnInit()
 			{
 				if (WeaverReloadTools.DoReloadTools)
 				{
-					if (WeaverAssetsInfo.InWeaverAssetsProject)
-					{
-						CopyWeaverAssets("Assets\\WeaverCore", "..\\..");
-						BuildPartialWeaverCore();
-					}
-					else
-					{
-						CopyWeaverAssets("Assets\\WeaverCore", "Assets\\WeaverCore\\Other Projects~\\Weaver Assets\\Assets\\WeaverCore");
-						BuildPartialWeaverCore();
-
-					}
+					BuildPartialWeaverCore();
 				}
 			}
 		}
@@ -46,28 +63,14 @@ namespace WeaverCore.Editor.Systems
 		{
 			get
 			{
-				if (WeaverAssetsInfo.InWeaverAssetsProject)
-				{
-					return new FileInfo("..\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll");
-				}
-				else
-				{
-					return new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll");
-				}
+				return new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll");
 			}
 		}
 		public static FileInfo DefaultAssemblyCSharpLocation
 		{
 			get
 			{
-				if (WeaverAssetsInfo.InWeaverAssetsProject)
-				{
-					return new FileInfo("..\\WeaverCore.Game\\WeaverCore Build\\Assembly-CSharp.dll");
-				}
-				else
-				{
-					return new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\Assembly-CSharp.dll");
-				}
+				return new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\Assembly-CSharp.dll");
 			}
 		}
 
@@ -90,22 +93,136 @@ namespace WeaverCore.Editor.Systems
 		/// <param name="buildLocation"></param>
 		public static void BuildWeaverCore(string buildLocation)
 		{
+
 			File.Copy(DefaultWeaverCoreBuildLocation.FullName, buildLocation, true);
 
-
-			var weaverAssetsLocation = new DirectoryInfo("Assets\\WeaverCore\\WeaverAssets\\Bundles").FullName;
-
-			var windowsBundle = weaverAssetsLocation + "\\weavercore_bundle.bundle.win";
-			var linuxBundle = weaverAssetsLocation + "\\weavercore_bundle.bundle.unix";
-			var macBundle = weaverAssetsLocation + "\\weavercore_bundle.bundle.mac";
 			var weaverGameLocation = new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore.Game\\bin\\WeaverCore.Game.dll");
 			var harmonyLocation = new FileInfo("Assets\\WeaverCore\\Libraries\\0Harmony.dll");
 
-			EmbedResourceCMD.EmbedResource(buildLocation, windowsBundle, "weavercore_bundle.bundle.win", compression: CompressionMethod.NoCompression);
-			EmbedResourceCMD.EmbedResource(buildLocation, macBundle, "weavercore_bundle.bundle.mac", compression: CompressionMethod.NoCompression);
-			EmbedResourceCMD.EmbedResource(buildLocation, linuxBundle, "weavercore_bundle.bundle.unix", compression: CompressionMethod.NoCompression);
 			EmbedResourceCMD.EmbedResource(buildLocation, weaverGameLocation.FullName, "WeaverCore.Game", compression: CompressionMethod.NoCompression);
 			EmbedResourceCMD.EmbedResource(buildLocation, harmonyLocation.FullName, "0Harmony", compression: CompressionMethod.NoCompression);
+		}
+
+		/// <summary>
+		/// Builds only the bundles required for WeaverCore. The list will get populated when the function is done
+		/// </summary>
+		/// <param name="bundles"></param>
+		/// <returns></returns>
+		public static IEnumerator BuildWeaverCoreBundles(List<BundleBuild> bundles, IEnumerable<BuildTarget> buildTargets)
+		{
+			yield return BuildAssetBundles(bundles, null, buildTargets);
+			for (int i = bundles.Count - 1; i >= 0; i--)
+			{
+				if (!bundles[i].File.Name.Contains(WeaverAssets.WeaverAssetBundleName))
+				{
+					bundles.RemoveAt(i);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Builds both the mod bundles and the WeaverCore Bundles. The list will get populated when the function is done
+		/// </summary>
+		/// <param name="bundles"></param>
+		/// <param name="modName"></param>
+		/// <returns></returns>
+		public static IEnumerator BuildAssetBundles(List<BundleBuild> bundles, string modName, IEnumerable<BuildTarget> buildTargets)
+		{
+			if (buildingBundles)
+			{
+				yield break;
+			}
+			try
+			{
+				buildingBundles = true;
+				WeaverLog.Log("Beginning Bundling");
+				yield return PrepareForBundling(modName);
+				var temp = Path.GetTempPath();
+				var bundleBuilds = new DirectoryInfo(temp + "BundleBuilds\\");
+
+				if (bundleBuilds.Exists)
+				{
+					bundleBuilds.Delete(true);
+				}
+
+				bundleBuilds.Create();
+
+				foreach (var target in buildTargets)
+				{
+					var targetFolder = bundleBuilds.CreateSubdirectory(target.ToString());
+
+					targetFolder.Create();
+					BuildPipeline.BuildAssetBundles(targetFolder.FullName, BuildAssetBundleOptions.None, target);
+					foreach (var bundleFile in targetFolder.GetFiles())
+					{
+						if (bundleFile.Extension == "" && !bundleFile.Name.Contains("BundleBuilds"))
+						{
+							bundles.Add(new BundleBuild() { File = bundleFile, Target = target});
+						}
+					}
+				}
+			}
+			finally
+			{
+				buildingBundles = false;
+				WeaverLog.Log("Done Bundling");
+				AfterBundling(modName);
+			}
+		}
+
+		static IEnumerator PrepareForBundling(string modName = null)
+		{
+			AssemblyReplacer.AssemblyReplacements.Add("HollowKnight.dll", "Assembly-CSharp.dll");
+			if (modName != null)
+			{
+				AssemblyReplacer.AssemblyReplacements.Add("Assembly-CSharp.dll", modName + ".dll");
+				MonoScriptUtilities.ChangeAssemblyName("Assembly-CSharp", modName);
+				foreach (var registry in RegistryChecker.LoadAllRegistries())
+				{
+					registry.ReplaceAssemblyName("Assembly-CSharp", modName);
+					registry.ApplyChanges();
+				}
+			}
+			MonoScriptUtilities.ChangeAssemblyName("HollowKnight", "Assembly-CSharp");
+			yield return SwitchToCompileMode();
+		}
+
+		static void AfterBundling(string modName = null)
+		{
+			AssemblyReplacer.AssemblyReplacements.Clear();
+			MonoScriptUtilities.ChangeAssemblyName("Assembly-CSharp", "HollowKnight");
+			if (modName != null)
+			{
+				MonoScriptUtilities.ChangeAssemblyName(modName, "Assembly-CSharp");
+				foreach (var registry in RegistryChecker.LoadAllRegistries())
+				{
+					registry.ReplaceAssemblyName(modName, "Assembly-CSharp");
+					registry.ApplyChanges();
+				}
+			}
+			SwitchToEditorMode();
+		}
+
+		static IEnumerator SwitchToCompileMode()
+		{
+			if (!File.Exists(AsmEditorLocation.FullName + "\\WeaverCore.Editor-ORIGINAL.txt"))
+			{
+				File.Move(AsmEditorLocation.FullName + "\\WeaverCore.Editor.asmdef", AsmEditorLocation.FullName + "\\WeaverCore.Editor-ORIGINAL.txt");
+				File.Move(AsmEditorLocation.FullName + "\\WeaverCore.Editor-COMPILEVERSION.txt", AsmEditorLocation.FullName + "\\WeaverCore.Editor.asmdef");
+				AssetDatabase.ImportAsset(AsmLocationRelative + "\\WeaverCore.Editor.asmdef");
+				yield return null;
+			}
+		}
+
+		static void SwitchToEditorMode()
+		{
+			//Debug.Log("Switching BACK");
+			if (File.Exists(AsmEditorLocation.FullName + "\\WeaverCore.Editor-ORIGINAL.txt"))
+			{
+				File.Move(AsmEditorLocation.FullName + "\\WeaverCore.Editor.asmdef", AsmEditorLocation.FullName + "\\WeaverCore.Editor-COMPILEVERSION.txt");
+				File.Move(AsmEditorLocation.FullName + "\\WeaverCore.Editor-ORIGINAL.txt", AsmEditorLocation.FullName + "\\WeaverCore.Editor.asmdef");
+				AssetDatabase.ImportAsset(AsmLocationRelative + "\\WeaverCore.Editor.asmdef");
+			}
 		}
 
 		static IEnumerator BuildHollowKnightASM(string buildLocation)
@@ -137,7 +254,7 @@ namespace WeaverCore.Editor.Systems
 			weaverCoreBuilder.BuildPath = buildLocation;
 			weaverCoreBuilder.Scripts = Builder.GetAllRuntimeInDirectory("*.cs", "Assets\\WeaverCore\\WeaverCore").Where(f => f.Directory.FullName.Contains(""));
 
-			//For some reason, this only works when using forward slashes and not backslashes. Trust me, I even decompiled UnityEditor.dll and checked.
+			//For some reason, this only works when using forward slashes and not backslashes.
 			weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.dll");
 			weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
 
@@ -150,185 +267,69 @@ namespace WeaverCore.Editor.Systems
 			}
 			yield return weaverCoreBuilder.Build();
 		}
+	}
 
+	class AssemblyReplacer : SimplePatcher
+	{
+		public static Dictionary<string, string> AssemblyReplacements = new Dictionary<string, string>();
 
-		static void CopyWeaverAssets(string directoryFrom, string directoryTo)
+		static bool EnableReplacements
 		{
-			var thread = new Thread(() =>
+			get
 			{
-				/*var sourceFolder = new DirectoryInfo("Assets\\WeaverCore");
-				var destinationFolder = new DirectoryInfo("Assets\\WeaverCore\\Other Projects~\\Weaver Assets\\Assets\\WeaverCore");
-				var destinationAssets = new DirectoryInfo("Assets\\WeaverCore\\Other Projects~\\Weaver Assets\\Assets");*/
+				return AssemblyReplacements.Count > 0;
+			}
+		}
 
+		protected override Type GetClassToPatch()
+		{
+			return typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface");
+		}
 
-				var sourceFolder = new DirectoryInfo(directoryFrom);
-				var destinationFolder = new DirectoryInfo(directoryTo);
-				var destinationAssets = destinationFolder.Parent;//new DirectoryInfo("Assets\\WeaverCore\\Other Projects~\\Weaver Assets\\Assets");
-
-				if (!destinationAssets.Exists)
+		public static void PostfixGetTargetAssemblies(ref Array __result)
+		{
+			try
+			{
+				if (EnableReplacements)
 				{
-					return;
-				}
-
-				if (!destinationFolder.Exists)
-				{
-					destinationFolder.Create();
-				}
-
-				//Debug.Log("Source Directory = " + sourceFolder.FullName);
-				//Debug.Log("Destination Directory = " + destinationFolder.FullName);
-				//Debug.Log("Destination Assets Directory = " + destinationAssets.FullName);
-
-				var sourceFiles = NarrowDown(sourceFolder.GetFiles("*.*", SearchOption.AllDirectories),!WeaverAssetsInfo.InWeaverAssetsProject);//.Where(f => !f.FullName.Contains("Other Projects~") && !f.FullName.Contains(".git") && !f.FullName.Contains("Hidden~\\CopyHashes.txt"));
-				var sourceFilesRel = CreateRelativePaths(sourceFiles, sourceFolder.FullName);
-
-
-				var destFiles = NarrowDown(destinationFolder.GetFiles("*.*", SearchOption.AllDirectories));//.Where(f => !f.FullName.Contains("Other Projects~") && !f.FullName.Contains(".git") && !f.FullName.Contains("Hidden~\\CopyHashes.txt"));
-				var destFilesRel = CreateRelativePaths(destFiles, destinationFolder.FullName);
-
-				var differences = GetDifferences(sourceFilesRel, destFilesRel);
-
-				//IF THE COPY WORKED, THIS SHOULD SHOW UP
-				//THIS SHOULD IN TURN, BE SEEN IN WEAVERASSETS
-				/*foreach (var diff in differences)
-				{
-
-					Debug.Log("Diff = " + diff);
-				}
-
-				if (WeaverAssetsInfo.InWeaverAssetsProject)
-				{
-					return;
-				}*/
-
-				foreach (var diff in differences)
-				{
-					File.Delete(destinationFolder.FullName + "\\" + diff);
-				}
-
-				var oldHashes = FileHashes.GetHashes();
-				var newHashes = new Dictionary<string, string>();
-
-				foreach (var file in sourceFilesRel)
-				{
-					var fullFilePath = sourceFolder.FullName + "\\" + file;
-					var hash = StreamUtilities.GetHash(fullFilePath);
-
-					bool overwriteFile = true;
-
-					newHashes.Add(file, hash);
-
-					if (oldHashes.ContainsKey(file))
+					for (int i = 0; i < __result.GetLength(0); i++)
 					{
-						if (oldHashes[file] == hash)
+						var asmInfo = __result.GetValue(i);
+
+						var nameField = asmInfo.GetType().GetField("Name");
+
+						var name = (string)nameField.GetValue(asmInfo);
+
+						if (AssemblyReplacements.ContainsKey(name))
 						{
-							overwriteFile = false;
+							nameField.SetValue(asmInfo, AssemblyReplacements[name]);
+							__result.SetValue(asmInfo, i);
 						}
 					}
+				}
+			}
+			catch (Exception e)
+			{
+				Debug.LogError("Error in GetTargetAssemblies: " + e);
+			}
+		}
 
-					if (overwriteFile)
+		public static void PostfixGetTargetAssembly(ref object __result, string scriptPath)
+		{
+			try
+			{
+				if (__result is string)
+				{
+					var assembly = (string)__result;
+					if (EnableReplacements && AssemblyReplacements.ContainsKey(assembly))
 					{
-						var destFullPath = destinationFolder.FullName + "\\" + file;
-						if (File.Exists(destFullPath))
-						{
-							File.Delete(destFullPath);
-						}
-
-						var copyDirectory = new FileInfo(destFullPath).Directory;
-
-						if (!copyDirectory.Exists)
-						{
-							copyDirectory.Create();
-						}
-						File.Copy(fullFilePath, destFullPath);
+						__result = AssemblyReplacements[assembly];
 					}
 				}
-
-				FileHashes.SetHashes(newHashes);
-			});
-
-			thread.Start();
-
-
-		}
-
-		static IEnumerable<FileInfo> NarrowDown(IEnumerable<FileInfo> source, bool excludeOtherProjectDir = true)
-		{
-			var result = source;
-			if (excludeOtherProjectDir)
-			{
-				result = result.Where(f => !f.FullName.Contains("Other Projects~"));
 			}
-			result = result.Where(f => !f.FullName.Contains(".git") && !f.FullName.Contains("Hidden~\\CopyHashes.txt"));
-			return result;
-		}
-
-		static IEnumerable<string> GetDifferences(IEnumerable<string> source, IEnumerable<string> dest)
-		{
-			/*foreach (var sourceString in source)
+			catch (Exception e)
 			{
-				Debug.Log("Source = " + sourceString);
-			}
-
-			foreach (var destString in dest)
-			{
-				Debug.Log("Dest = " + destString);
-			}*/
-			//return dest.Where(d => !source.Any(s => s == d));
-			return dest.Except(source);
-		}
-
-		static List<string> CreateRelativePaths(IEnumerable<FileInfo> sourcePaths, string relativeTo)
-		{
-			List<string> relativePaths = new List<string>();
-			foreach (var path in sourcePaths)
-			{
-				relativePaths.Add(PathUtilities.MakePathRelative(relativeTo, path.FullName));
-			}
-			return relativePaths;
-		}
-
-		[Serializable]
-		class FileHashes : ConfigSettings
-		{
-			[Serializable]
-			class HashPair
-			{
-				public string file;
-				public string hash;
-			}
-
-			[SerializeField]
-			List<HashPair> hashes = new List<HashPair>();
-
-			/// <summary>
-			/// Gets the hashes stored in a file. The file path is the key, and the hash is the value
-			/// </summary>
-			/// <returns></returns>
-			public static Dictionary<string, string> GetHashes()
-			{
-				var hashes = Retrieve<FileHashes>().hashes;
-				var hashDictionary = new Dictionary<string, string>();
-				foreach (var hash in hashes)
-				{
-					hashDictionary.Add(hash.file, hash.hash);
-				}
-				return hashDictionary;
-			}
-
-			/// <summary>
-			/// Stores the hashes into a file
-			/// </summary>
-			public static void SetHashes(Dictionary<string, string> hashes)
-			{
-				//List<HashPair> hashList = new List<HashPair>();
-				var instance = Retrieve<FileHashes>();
-				instance.hashes.Clear();
-				foreach (var pair in hashes)
-				{
-					instance.hashes.Add(new HashPair() { file = pair.Key, hash = pair.Value });
-				}
-				instance.SetStoredSettings();
+				Debug.LogError("Error in GetTargetAssembly: " + e);
 			}
 		}
 	}

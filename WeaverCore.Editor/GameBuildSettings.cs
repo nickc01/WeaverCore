@@ -26,14 +26,7 @@ namespace WeaverCore.Editor
 			get
 			{
 
-				if (WeaverAssetsInfo.InWeaverAssetsProject)
-				{
-					return new FileInfo("..\\WeaverCore.Game\\Settings.txt").FullName;
-				}
-				else
-				{
-					return new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\Settings.txt").FullName;
-				}
+				return new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\Settings.txt").FullName;
 				/*if (fileLocation == null)
 				{
 					fileLocation = new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\Settings.txt").FullName;

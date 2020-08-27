@@ -15,7 +15,7 @@ namespace WeaverCore.Editor
 		[MenuItem("WeaverCore/Create/Weaver Canvas")]
 		public static void Create()
 		{
-			var prefab = WeaverAssetLoader.LoadWeaverAsset<GameObject>("Weaver Canvas");
+			var prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas");
 
 			if (GameObject.FindObjectOfType<EventSystem>() == null)
 			{

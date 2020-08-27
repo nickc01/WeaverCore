@@ -7,8 +7,8 @@ using UnityEngine;
 using WeaverCore.Components;
 using WeaverCore.Enums;
 using WeaverCore.Interfaces;
-using WeaverCore.WeaverAssets;
-using WeaverCore.WeaverAssets.Components;
+using WeaverCore.Assets;
+using WeaverCore.Assets.Components;
 
 namespace WeaverCore.Utilities
 {

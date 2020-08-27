@@ -77,14 +77,24 @@ namespace WeaverCore.Editor.Systems
 				progress.GoToNextStep();
 
 				LibraryCompiler.BuildWeaverCore(compileLocation + "\\WeaverCore.dll");
-				yield return PrepareForBundling(settings.ModName);
+				//yield return PrepareForBundling(settings.ModName);
 				progress.GoToNextStep();
-				foreach (var bundle in BuildAssetBundles(settings.GetBuildModes()))
+				List<BundleBuild> bundles = new List<BundleBuild>();
+				yield return LibraryCompiler.BuildAssetBundles(bundles, settings.ModName, settings.GetBuildModes());
+				foreach (var bundle in bundles)
 				{
-					EmbedResourceCMD.EmbedResource(mainModBuilder.BuildPath, bundle.File.FullName, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
-					progress.GoToNextStep();
+					if (bundle.File.Name.Contains(WeaverAssets.WeaverAssetBundleName))
+					{
+						EmbedResourceCMD.EmbedResource(compileLocation + "\\WeaverCore.dll", bundle.File.FullName, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
+						progress.GoToNextStep();
+					}
+					else
+					{
+						//TODO - If the bundle is a part of weavercore, then embed it into weavercore instead
+						EmbedResourceCMD.EmbedResource(mainModBuilder.BuildPath, bundle.File.FullName, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
+						progress.GoToNextStep();
+					}
 				}
-				Debug.Log("<b>Finished Building " + settings.ModName + "</b>");
 				StartHollowKnight(settings);
 			}
 			finally
@@ -92,17 +102,17 @@ namespace WeaverCore.Editor.Systems
 				progress.Enabled = false;
 				WeaverReloadTools.DoReloadTools = true;
 				WeaverReloadTools.DoOnScriptReload = true;
-				AfterBundling(settings.ModName);
+				//AfterBundling(settings.ModName);
 			}
 			yield break;
 
 		}
 
-		/// <summary>
+		/*/// <summary>
 		/// Builds all the asset bundles in the unity project. IMPORTANT: Make sure you call the 
 		/// </summary>
 		/// <param name="buildTargets">All the build targets to be built against</param>
-		/// <returns></returns>
+		/// <returns>An iterator for each of the asset bundles built</returns>
 		public static IEnumerable<BundleBuild> BuildAssetBundles(IEnumerable<BuildTarget> buildTargets)
 		{
 			var temp = Path.GetTempPath();
@@ -191,7 +201,7 @@ namespace WeaverCore.Editor.Systems
 				File.Move(AsmEditorLocation.FullName + "\\WeaverCore.Editor-ORIGINAL.txt", AsmEditorLocation.FullName + "\\WeaverCore.Editor.asmdef");
 				AssetDatabase.ImportAsset(AsmLocationRelative + "\\WeaverCore.Editor.asmdef");
 			}
-		}
+		}*/
 
 
 		public static void StartHollowKnight(BuildSettings settings = null)

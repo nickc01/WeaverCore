@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Enums;
-using WeaverCore.WeaverAssets;
+using WeaverCore.Assets;
 
 namespace WeaverCore.Utilities
 {

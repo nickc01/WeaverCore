@@ -147,6 +147,250 @@
         {
             "hash": -362387121,
             "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
+        },
+        {
+            "hash": -362387121,
+            "directory": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/Mods"
         }
     ]
 }

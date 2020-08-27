@@ -139,7 +139,10 @@ namespace WeaverCore.Editor.Utilities
 			}
 		}
 
-
+		public static IEnumerable<FileInfo> GetAsmDefPaths()
+		{
+			return PathUtilities.AssetsFolder.GetFiles("*.asmdef", SearchOption.AllDirectories);
+		}
 
 		static string FindAssemblyDefinition(FileInfo filePath)
 		{

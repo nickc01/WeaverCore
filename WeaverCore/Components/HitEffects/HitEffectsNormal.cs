@@ -25,7 +25,7 @@ namespace WeaverCore.Components.HitEffects
 			flasher = GetComponent<SpriteFlasher>();
 			if (DamageSound == null)
 			{
-				DamageSound = WeaverAssets.AudioAssets.DamageEnemy;
+				DamageSound = Assets.AudioAssets.DamageEnemy;
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace WeaverCore.Components.HitEffects
 					flasher.FlashNormalHit();
 				}
 
-				GameObject hitParticles = Instantiate(WeaverAssets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
+				GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
 
 				var direction = DirectionUtilities.DegreesToDirection(hit.Direction);
 

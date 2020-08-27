@@ -33,7 +33,7 @@ namespace WeaverCore.Editor
 			}
 			if (MacSupport)
 			{
-				if (!PlatformUtilities.IsPlatformSupportLoaded(BuildTarget.StandaloneWindows))
+				if (!PlatformUtilities.IsPlatformSupportLoaded(BuildTarget.StandaloneOSX))
 				{
 					throw new Exception("Attempting to build for the mac platform, but Unity currently has no support for building mac builds");
 				}
@@ -41,7 +41,7 @@ namespace WeaverCore.Editor
 			}
 			if (LinuxSupport)
 			{
-				if (!PlatformUtilities.IsPlatformSupportLoaded(BuildTarget.StandaloneWindows))
+				if (!PlatformUtilities.IsPlatformSupportLoaded(BuildTarget.StandaloneLinuxUniversal))
 				{
 					throw new Exception("Attempting to build for the linux platform, but Unity currently has no support for building linux builds");
 				}

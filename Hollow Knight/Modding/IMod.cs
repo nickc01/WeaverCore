@@ -18,7 +18,7 @@ namespace Modding
         int LoadPriority();
     }
 
-    public interface IMod<T> : IMod where T : ModSettings
+    /*public interface IMod<T> : IMod where T : ModSettings
     {
         T Settings { get; set; }
     }
@@ -28,5 +28,5 @@ namespace Modding
         T Settings { get; set; }
 
         TG GlobalSettings { get; set; }
-    }
+    }*/
 }

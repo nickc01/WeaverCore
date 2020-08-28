@@ -8,7 +8,7 @@ namespace Modding
 {
 	public abstract class Mod : Loggable, IMod, ILogger
 	{
-		/// <summary>
+		/*/// <summary>
 		/// Gets or sets the save settings of this Mod
 		/// </summary>
 		// Token: 0x170006D0 RID: 1744
@@ -40,7 +40,7 @@ namespace Modding
 			set
 			{
 			}
-		}
+		}*/
 
 		/// <inheritdoc />
 		/// <summary>
@@ -151,7 +151,7 @@ namespace Modding
 		{
 		}
 
-		// Token: 0x0600442B RID: 17451 RVA: 0x00186EC8 File Offset: 0x001850C8
+		/*// Token: 0x0600442B RID: 17451 RVA: 0x00186EC8 File Offset: 0x001850C8
 		private void HookSaveMethods()
 		{
 		}
@@ -178,10 +178,10 @@ namespace Modding
 		private void SaveSaveSettings(SaveGameData data)
 		{
 
-		}
+		}*/
 
 		// Token: 0x04004D8B RID: 19851
-		private readonly string _globalSettingsPath;
+		//private readonly string _globalSettingsPath;
 
 		/// <summary>
 		///     The Mods Name

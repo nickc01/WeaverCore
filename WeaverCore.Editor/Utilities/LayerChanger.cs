@@ -4,23 +4,13 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using WeaverCore.Editor.Structures;
+
 
 namespace WeaverCore.Editor.Utilities
 {
-    public static class LayerChanger
+	public static class LayerChanger
     {
-		public struct LayerIndex
-		{
-			public readonly int Index;
-			public readonly string Name;
-
-			public LayerIndex(int index, string name)
-			{
-				Index = index;
-				Name = name;
-			}
-		}
-
 		public static string GetLayerName(int layerIndex)
 		{
 			SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);

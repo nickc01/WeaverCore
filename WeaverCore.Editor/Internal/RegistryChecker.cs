@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using WeaverCore.Editor.Utilities;
+using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Internal
@@ -273,7 +274,7 @@ namespace WeaverCore.Editor.Internal
 			var featureInfo = serializedObject.FindProperty("features").GetArrayElementAtIndex(index);
 			return new FeatureSet()
 			{
-				feature = featureInfo.FindPropertyRelative("feature").objectReferenceValue as Feature,
+				feature = featureInfo.FindPropertyRelative("feature").objectReferenceValue,
 				AssemblyName = featureInfo.FindPropertyRelative("AssemblyName").stringValue,
 				TypeName = featureInfo.FindPropertyRelative("TypeName").stringValue
 			};
@@ -291,17 +292,17 @@ namespace WeaverCore.Editor.Internal
 			SetAssetBundle(serializedObject.GetString("modName"), feature.feature);
 		}
 
-		public void SetFeature(int index, Feature feature, Type featureType)
+		public void SetFeature(int index, IFeature feature, Type featureType)
 		{
 			SetFeature(index, new FeatureSet()
 			{
-				feature = feature,
+				feature = feature as UnityEngine.Object,
 				AssemblyName = featureType.Assembly.GetName().Name,
 				TypeName = featureType.FullName
 			});
 		}
 
-		public void SetFeature(int index, Feature feature)
+		public void SetFeature(int index, IFeature feature)
 		{
 			SetFeature(index, feature, feature.GetType());
 		}
@@ -325,17 +326,17 @@ namespace WeaverCore.Editor.Internal
 			SetFeature(GetFeatureCount() - 1,feature);
 		}
 
-		public void AddFeature(Feature value, Type featureType)
+		public void AddFeature(IFeature value, Type featureType)
 		{
 			AddFeature(new FeatureSet()
 			{
-				feature = value,
+				feature = value as UnityEngine.Object,
 				AssemblyName = featureType.Assembly.GetName().Name,
 				TypeName = featureType.FullName
 			});
 		}
 
-		public void AddFeature(Feature value)
+		public void AddFeature(IFeature value)
 		{
 			if (value == null)
 			{

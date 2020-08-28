@@ -20,6 +20,7 @@ namespace WeaverCore.Editor
 		public bool LinuxSupport = false;
 		public bool StartGame = true;
 
+		public string BuildLocation = GameBuildSettings.GetSettings().HollowKnightLocation + "\\hollow_knight_Data\\Managed\\Mods";
 
 		public IEnumerable<BuildTarget> GetBuildModes()
 		{
@@ -49,90 +50,4 @@ namespace WeaverCore.Editor
 			}
 		}
 	}
-
-
-	/*[Serializable]
-	public class BuildSettingsOLD
-	{
-		public string ModName = "";
-		public bool WindowsSupport = true;
-		public bool MacSupport = false;
-		public bool LinuxSupport = false;
-
-		public string HollowKnightDirectory = @"C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight";
-
-		public bool StartGame = true;
-
-
-		public static BuildSettingsOLD GetStoredSettings()
-		{
-			BuildSettingsOLD settings;
-
-			if (File.Exists("WeaverBuildSettings.dat"))
-			{
-				string json = "";
-				using (var file = File.Open("WeaverBuildSettings.dat", FileMode.Open))
-				{
-					using (var reader = new StreamReader(file))
-					{
-						json = reader.ReadToEnd();
-					}
-				}
-				//settings = Json.Deserialize<BuildSettings>(json);
-				settings = JsonUtility.FromJson<BuildSettingsOLD>(json);
-			}
-			else
-			{
-				settings = new BuildSettingsOLD();
-			}
-
-			settings.Check();
-
-			if (settings.ModName == "")
-			{
-				settings.ModName = PlayerSettings.productName;
-			}
-
-			return settings;
-		}
-
-		public static void SetStoredSettings(BuildSettingsOLD settings)
-		{
-			using (var file = File.Create("WeaverBuildSettings.dat"))
-			{
-				using (var writer = new StreamWriter(file))
-				{
-					//writer.Write(Json.Serialize(settings));
-					writer.Write(JsonUtility.ToJson(settings));
-				}
-			}
-		}
-
-		public void Check()
-		{
-			if (!HollowKnightDirectory.EndsWith("\\") && !HollowKnightDirectory.EndsWith("/"))
-			{
-				HollowKnightDirectory += "\\";
-			}
-
-			ModName = ModName.Replace(" ", "");
-		}
-
-		public bool SupportedBuildMode(BuildMode mode)
-		{
-			if (mode.Target == BuildTarget.StandaloneWindows)
-			{
-				return WindowsSupport;
-			}
-			else if (mode.Target == BuildTarget.StandaloneOSX)
-			{
-				return MacSupport;
-			}
-			else if (mode.Target == BuildTarget.StandaloneLinuxUniversal)
-			{
-				return LinuxSupport;
-			}
-			return false;
-		}
-	}*/
 }

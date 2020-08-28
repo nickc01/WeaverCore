@@ -11,6 +11,7 @@ using UnityEngine;
 using WeaverBuildTools.Commands;
 using WeaverBuildTools.Enums;
 using WeaverCore.Editor.Internal;
+using WeaverCore.Editor.Structures;
 using WeaverCore.Editor.Utilities;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;

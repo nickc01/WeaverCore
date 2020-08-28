@@ -4,22 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using UnityEditor;
 using UnityEngine;
 using WeaverBuildTools.Commands;
 using WeaverCore.Editor.Internal;
+using WeaverCore.Editor.Structures;
 using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
 
+
+
 namespace WeaverCore.Editor.Systems
 {
-	public struct BundleBuild
-	{
-		public FileInfo File;
-		public BuildTarget Target;
-	}
-
-
 	public static class ModCompiler
 	{
 		static string AsmLocationRelative = "Assets\\WeaverCore\\WeaverCore.Editor";
@@ -31,22 +26,34 @@ namespace WeaverCore.Editor.Systems
 			UnboundCoroutine.Start(BuildModAsync(compileLocation, settings));
 		}
 
+		public static void BuildWeaverCore(string compileLocation = null, BuildSettings settings = null)
+		{
+			UnboundCoroutine.Start(BuildWeaverCoreAsync(compileLocation, settings));
+		}
+
 		public static IEnumerator BuildModAsync(string compileLocation = null, BuildSettings settings = null)
 		{
-			if (compileLocation == null)
-			{
-				compileLocation = SelectionUtilities.SelectFolder("Select where you want to place the finished mod", "");
-				if (compileLocation == null)
-				{
-					throw new Exception("An invalid path specified for building the mod");
-				}
-			}
-			compileLocation = new DirectoryInfo(compileLocation).FullName;
 			if (settings == null)
 			{
 				settings = new BuildSettings();
 				settings.GetStoredSettings();
 			}
+			if (compileLocation == null)
+			{
+				if (settings != null)
+				{
+					compileLocation = settings.BuildLocation;
+				}
+				else
+				{
+					compileLocation = SelectionUtilities.SelectFolder("Select where you want to place the finished mod", "");
+					if (compileLocation == null)
+					{
+						throw new Exception("An invalid path specified for building the mod");
+					}
+				}
+			}
+			compileLocation = new DirectoryInfo(compileLocation).FullName;
 			ProgressBar progress = new ProgressBar(7, "Compiling", "Compiling Mod : " + settings.ModName);
 
 			try
@@ -94,6 +101,81 @@ namespace WeaverCore.Editor.Systems
 						EmbedResourceCMD.EmbedResource(mainModBuilder.BuildPath, bundle.File.FullName, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
 						progress.GoToNextStep();
 					}
+				}
+				StartHollowKnight(settings);
+			}
+			finally
+			{
+				progress.Enabled = false;
+				WeaverReloadTools.DoReloadTools = true;
+				WeaverReloadTools.DoOnScriptReload = true;
+				//AfterBundling(settings.ModName);
+			}
+			yield break;
+
+		}
+
+		public static IEnumerator BuildWeaverCoreAsync(string compileLocation = null, BuildSettings settings = null)
+		{
+			if (settings == null)
+			{
+				settings = new BuildSettings();
+				settings.GetStoredSettings();
+			}
+			if (compileLocation == null)
+			{
+				if (settings != null)
+				{
+					compileLocation = settings.BuildLocation;
+				}
+				else
+				{
+					compileLocation = SelectionUtilities.SelectFolder("Select where you want to place the finished mod", "");
+					if (compileLocation == null)
+					{
+						throw new Exception("An invalid path specified for building the mod");
+					}
+				}
+			}
+			compileLocation = new DirectoryInfo(compileLocation).FullName;
+			ProgressBar progress = new ProgressBar(7, "Compiling", "Compiling WeaverCore");
+
+			try
+			{
+				WeaverReloadTools.DoReloadTools = false;
+				WeaverReloadTools.DoOnScriptReload = false;
+
+				//progress.GoToNextStep();
+
+				/*var mainModBuilder = new Builder
+				{
+					BuildPath = compileLocation + "\\" + "WeaverCore.dll",
+					Scripts = MonoScriptUtilities.GetScriptPathsUnderAssembly("Assembly-CSharp")
+				};*/
+
+				/*if (File.Exists(mainModBuilder.BuildPath))
+				{
+					File.Delete(mainModBuilder.BuildPath);
+				}
+
+				mainModBuilder.ReferencePaths.Add(LibraryCompiler.DefaultAssemblyCSharpLocation.FullName);
+				mainModBuilder.ReferencePaths.Add(LibraryCompiler.DefaultWeaverCoreBuildLocation.FullName);
+				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.dll");
+				mainModBuilder.ExcludedReferences.Add("Editor");
+				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
+
+				yield return mainModBuilder.Build();*/
+				progress.GoToNextStep();
+
+				LibraryCompiler.BuildWeaverCore(compileLocation + "\\WeaverCore.dll");
+				//yield return PrepareForBundling(settings.ModName);
+				progress.GoToNextStep();
+				List<BundleBuild> bundles = new List<BundleBuild>();
+				yield return LibraryCompiler.BuildWeaverCoreBundles(bundles, settings.GetBuildModes());
+				foreach (var bundle in bundles)
+				{
+					EmbedResourceCMD.EmbedResource(compileLocation + "\\WeaverCore.dll", bundle.File.FullName, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
+					progress.GoToNextStep();
 				}
 				StartHollowKnight(settings);
 			}

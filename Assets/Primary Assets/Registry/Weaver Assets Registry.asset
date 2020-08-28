@@ -21,8 +21,13 @@ MonoBehaviour:
       type: 2}
     TypeName: WeaverCore.Features.CanvasExtension
     AssemblyName: WeaverCore
+  - feature: {fileID: 114392088678247462, guid: 398106b2d51c2144b97ff3de7eec6dcb,
+      type: 2}
+    TypeName: WeaverCore.Features.CanvasExtension
+    AssemblyName: WeaverCore
   featuresRaw:
   - {fileID: 114474399938385586, guid: 19db2c143e52f8c40949ab2eee75f304, type: 2}
+  - {fileID: 114392088678247462, guid: 398106b2d51c2144b97ff3de7eec6dcb, type: 2}
   selectedFeatureIndex: 0
   selectedModIndex: 1
   registryEnabled: 1

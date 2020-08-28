@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WeaverCore.Game.Implementations
 {
-	public class G_Player_I : WeaverCore.Implementations.Player_I
+    public class G_Player_I : WeaverCore.Implementations.Player_I
     {
         public override void Initialize()
         {

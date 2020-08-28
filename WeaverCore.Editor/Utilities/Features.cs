@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using WeaverCore.Attributes;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Utilities
 {
@@ -16,7 +17,7 @@ namespace WeaverCore.Editor.Utilities
             {
                 foreach (var type in assembly.GetTypes())
                 {
-                    if (typeof(Feature).IsAssignableFrom(type) && type != typeof(Feature) && !type.IsGenericTypeDefinition && !type.IsInterface && !type.IsAbstract && type.GetCustomAttributes(typeof(ShowFeatureAttribute),false).GetLength(0) > 0)
+                    if (typeof(IFeature).IsAssignableFrom(type) && type.GetCustomAttributes(typeof(ShowFeatureAttribute),false).GetLength(0) > 0)
                     {
                         features.Add(type);
                     }

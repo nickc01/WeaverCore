@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore
@@ -13,14 +14,14 @@ namespace WeaverCore
     public struct FeatureSet
     {
         [SuppressMessage("Usage", "CA2235:Mark all non-serializable fields", Justification = "<Pending>")]
-        public Feature feature;
+        public UnityEngine.Object feature;
         public string TypeName;
         public string AssemblyName;
     }
 
 
     /// <summary>
-    /// Used to store a variety of Features to be added to the game <seealso cref="Feature"/>
+    /// Used to store a variety of Features to be added to the game <seealso cref="IFeature"/>
     /// </summary>
     [CreateAssetMenu(fileName = "ModRegistry", menuName = "WeaverCore/Registry", order = 1)]
     public class Registry : ScriptableObject
@@ -48,7 +49,7 @@ namespace WeaverCore
         List<FeatureSet> features;
 
         [SerializeField]
-        List<Feature> featuresRaw;
+        List<UnityEngine.Object> featuresRaw;
 
         [SerializeField]
         int selectedFeatureIndex = 0;
@@ -176,6 +177,21 @@ namespace WeaverCore
                 {
                     ActiveRegistries.Add(this);
                 }
+                foreach (var feature in featuresRaw)
+                {
+                    if (feature is IFeature && ((IFeature)feature).FeatureEnabled && feature is IOnRegistryLoad)
+                    {
+                        try
+                        {
+                            ((IOnRegistryLoad)feature).OnRegistryLoad(this);
+                        }
+                        catch (Exception e)
+                        {
+                            WeaverLog.LogError("Registry Load Error: " + e);
+                        }
+                    }
+                }
+
             }
         }
 
@@ -212,7 +228,7 @@ namespace WeaverCore
         /// <summary>
         /// Goes through all of the loaded Registries, and find the specified features
         /// </summary>
-        /// <typeparam name="T">The type of features to look for. Using <see cref="Feature"/> retrieves all features</typeparam>
+        /// <typeparam name="T">The type of features to look for. Using <see cref="IFeature"/> retrieves all features</typeparam>
         /// <returns>Returns an Itereator with all the features in it</returns>
         public static IEnumerable<T> GetAllFeatures<T>() where T : class
         {
@@ -222,7 +238,7 @@ namespace WeaverCore
         /// <summary>
         /// Goes through all of the loaded Registries, and find the specified features
         /// </summary>
-        /// <typeparam name="T">The type of features to look for. Using <see cref="Feature"/> retrieves all features</typeparam>
+        /// <typeparam name="T">The type of features to look for. Using <see cref="IFeature"/> retrieves all features</typeparam>
         /// <param name="predicate">A predicate function used to narrow down the feature search even further</param>
         /// <returns>Returns an Itereator with all the features in it</returns>
         public static IEnumerable<T> GetAllFeatures<T>(Func<T, bool> predicate) where T : class
@@ -243,7 +259,7 @@ namespace WeaverCore
         /// <summary>
         /// Searches the registry and finds the specifed features
         /// </summary>
-        /// <typeparam name="T">The type of features to look for. Using <see cref="Feature"/> retrieves all features</typeparam>
+        /// <typeparam name="T">The type of features to look for. Using <see cref="IFeature"/> retrieves all features</typeparam>
         /// <returns>Returns an Itereator with all the features in it</returns>
         public IEnumerable<T> GetFeatures<T>() where T : class
         {
@@ -253,17 +269,22 @@ namespace WeaverCore
         /// <summary>
         /// Searches the registry and finds the specifed features
         /// </summary>
-        /// <typeparam name="T">The type of features to look for. Using <see cref="Feature"/> retrieves all features</typeparam>
+        /// <typeparam name="T">The type of features to look for. Using <see cref="IFeature"/> retrieves all features</typeparam>
         /// <param name="predicate">A predicate function used to narrow down the feature search even further</param>
         /// <returns>Returns an Itereator with all the features in it</returns>
         public IEnumerable<T> GetFeatures<T>(Func<T, bool> predicate) where T : class
         {
             // Debugger.Log("Features Raw = " + featuresRaw);
-            foreach (var feature in featuresRaw)
+            foreach (var rawFeature in featuresRaw)
             {
-                if (feature != null && feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate(feature as T))
+                if (rawFeature != null && rawFeature is IFeature)
                 {
-                    yield return feature as T;
+                    var feature = (IFeature)rawFeature;
+
+                    if (feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate(feature as T))
+                    {
+                        yield return feature as T;
+                    }
                 }
             }
         }
@@ -273,15 +294,19 @@ namespace WeaverCore
         /// </summary>
         /// <typeparam name="T">The type of feature to add</typeparam>
         /// <param name="feature">The feature to be added</param>
-        public void AddFeature<T>(T feature) where T : Feature
+        public void AddFeature<T>(T feature) where T : IFeature
         {
+            if (!(feature is UnityEngine.Object))
+            {
+                return;
+            }
             features.Add(new FeatureSet()
             {
-                feature = feature,
+                feature = feature as UnityEngine.Object,
                 AssemblyName = typeof(T).Assembly.FullName,
                 TypeName = typeof(T).FullName
             });
-            featuresRaw.Add(feature);
+            featuresRaw.Add(feature as UnityEngine.Object);
         }
 
         /// <summary>
@@ -290,11 +315,18 @@ namespace WeaverCore
         /// <typeparam name="T">THe type of feature to add</typeparam>
         /// <param name="feature">The feature to be added</param>
         /// <returns>Returns whether the feature has been removed or not</returns>
-        public bool Remove<T>(T feature) where T : Feature
+        public bool Remove<T>(T feature) where T : IFeature
         {
+            if (!(feature is UnityEngine.Object))
+            {
+                return false;
+            }
+
+            var realFeature = feature as UnityEngine.Object;
+
             for (int i = features.Count - 1; i >= 0; i--)
             {
-                if (features[i].feature == feature)
+                if (features[i].feature == realFeature)
                 {
                     features.RemoveAt(i);
                     featuresRaw.RemoveAt(i);
@@ -309,11 +341,11 @@ namespace WeaverCore
         /// </summary>
         /// <param name="predicate">A predicate used to determine which feature to remove. Only 1 feature gets removed</param>
         /// <returns>Returns whether the feature has been removed or not</returns>
-        public bool Remove(Func<Feature, bool> predicate)
+        public bool Remove(Func<IFeature, bool> predicate)
         {
             for (int i = features.Count - 1; i >= 0; i--)
             {
-                if (predicate(features[i].feature))
+                if (predicate(features[i].feature as IFeature))
                 {
                     features.RemoveAt(i);
                     featuresRaw.RemoveAt(i);

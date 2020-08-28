@@ -10,36 +10,11 @@ using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 using WeaverCore.DataTypes;
 using System.Collections;
+using WeaverCore.Editor.Structures;
+using WeaverCore.Editor.Enums;
 
 namespace WeaverCore.Editor
 {
-	public enum Orientation
-	{
-		Up = 0,
-		Right = 90,
-		Down = 180,
-		Left = 270
-	}
-
-	public struct SpriteLocation
-	{
-		public SpriteSheet Sprite;
-		public string FileLocation;
-		public int UVWidth;
-		public int UVHeight;
-		public Vector2Int SpriteDimensions;
-	}
-
-	public struct SpriteData
-	{
-		public Texture2D Texture;
-		public SpriteSheet Sheet;
-		public Vector2Int UVDimensions;
-		public float PixelsPerUnit;
-		public Rect SpriteCoords;
-	}
-
-
 	public static class TextureUnraveller
 	{
 		static float progress = 0.0f;
@@ -61,7 +36,7 @@ namespace WeaverCore.Editor
 			}
 		}
 
-		[MenuItem("WeaverCore/Unravel Texture")]
+		[MenuItem("WeaverCore/Tools/Unravel Texture")]
 		public static void UnravelTexture()
 		{
 			//WeaverRoutine.Start(StartUnravelling());

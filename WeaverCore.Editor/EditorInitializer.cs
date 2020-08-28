@@ -9,6 +9,7 @@ using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 using System.Collections.Generic;
 using WeaverCore.Internal;
+using WeaverCore.Editor.Structures;
 
 namespace WeaverCore.Editor.Implementations
 {
@@ -20,19 +21,6 @@ namespace WeaverCore.Editor.Implementations
             //Init();
             InitRunner.RunInitFunctions();
             Init();
-        }
-
-
-        struct SortingLayer
-        {
-            public SortingLayer(string name, long id)
-            {
-                Name = name;
-                UniqueID = id;
-            }
-
-            public string Name;
-            public long UniqueID;
         }
 
 
@@ -113,22 +101,22 @@ namespace WeaverCore.Editor.Implementations
              "Weaverling"
         };
 
-        private static SortingLayer[] SortingLayers = new SortingLayer[]
+        private static BasicSortingLayer[] SortingLayers = new BasicSortingLayer[]
         {
-            new SortingLayer("Default", 0),
-            new SortingLayer("Far BG 2", 3315419377),
-            new SortingLayer("Far BG 1", 1459018367),
-            new SortingLayer("Mid BG", 4015848369),
-            new SortingLayer("Immediate BG", 2917268371),
-            new SortingLayer("Actors", 1270309357),
-            new SortingLayer("Player", 3557629463),
-            new SortingLayer("Tiles", 3868594333),
-            new SortingLayer("MID Dressing", 3784110789),
-            new SortingLayer("Immediate FG", 31172181),
-            new SortingLayer("Far FG", 2577183099),
-            new SortingLayer("Vignette", 1038907033),
-            new SortingLayer("Over", 3945752401),
-            new SortingLayer("HUD", 629535577)
+            new BasicSortingLayer("Default", 0),
+            new BasicSortingLayer("Far BG 2", 3315419377),
+            new BasicSortingLayer("Far BG 1", 1459018367),
+            new BasicSortingLayer("Mid BG", 4015848369),
+            new BasicSortingLayer("Immediate BG", 2917268371),
+            new BasicSortingLayer("Actors", 1270309357),
+            new BasicSortingLayer("Player", 3557629463),
+            new BasicSortingLayer("Tiles", 3868594333),
+            new BasicSortingLayer("MID Dressing", 3784110789),
+            new BasicSortingLayer("Immediate FG", 31172181),
+            new BasicSortingLayer("Far FG", 2577183099),
+            new BasicSortingLayer("Vignette", 1038907033),
+            new BasicSortingLayer("Over", 3945752401),
+            new BasicSortingLayer("HUD", 629535577)
         };
 
         static void Init()

@@ -25,6 +25,14 @@ public class WeaverCanvas : MonoBehaviour
 
 	public static WeaverCanvas Instance { get; private set; }
 
+	public static Transform Content
+	{
+		get
+		{
+			return Instance.transform.GetChild(0);
+		}
+	}
+
 	void Awake()
 	{
 		Instance = this;
@@ -51,10 +59,12 @@ public class WeaverCanvas : MonoBehaviour
 
 		foreach (var extension in Registry.GetAllFeatures<CanvasExtension>())
 		{
-			//Debug.Log(extension.gameObject.name + " contained = " + ContainedInObject(content.gameObject, extension.gameObject));
-			if (!ContainedInObject(content.gameObject, extension.gameObject))
+			if (extension.AddedByDefault)
 			{
-				GameObject.Instantiate(extension.gameObject, content);
+				if (!ContainedInObject(content.gameObject, extension.gameObject))
+				{
+					GameObject.Instantiate(extension.gameObject, content);
+				}
 			}
 		}
 	}

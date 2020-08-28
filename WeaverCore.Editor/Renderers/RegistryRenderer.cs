@@ -7,6 +7,7 @@ using WeaverCore.Editor.Internal;
 using WeaverCore.Editor.Utilities;
 using UnityEngine;
 using WeaverCore.Utilities;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Renderers
 {
@@ -63,7 +64,7 @@ namespace WeaverCore.Editor.Renderers
 						var newFeature = EditorGUILayout.ObjectField(feature.Value.feature, featureType, false);
 						if (newFeature != feature.Value.feature)
 						{
-							checker.SetFeature(feature.Index,newFeature as Feature,featureType);
+							checker.SetFeature(feature.Index,newFeature as IFeature,featureType);
 						}
 
 						if (GUILayout.Button("X", GUILayout.MaxWidth(25)))

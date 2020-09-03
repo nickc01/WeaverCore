@@ -25,7 +25,7 @@ namespace WeaverCore.Assets.Components
 		Button DumpButton;
 
 		[SerializeField]
-		TextMeshProUGUI gameObjectField;
+		Text gameObjectField;
 
 		[SerializeField]
 		GameObjectSelectButton firstElement;

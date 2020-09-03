@@ -46,5 +46,27 @@ namespace WeaverCore
 				return Impl.MainMixer;
 			}
 		}
+
+		public static AudioMixerGroup MusicMixerGroup
+		{
+			get
+			{
+				return Impl.MainMusic;
+			}
+		}
+		public static AudioMixerGroup MasterMixerGroup
+		{
+			get
+			{
+				return Impl.Master;
+			}
+		}
+		public static AudioMixerGroup SoundsMixerGroup
+		{
+			get
+			{
+				return Impl.Sounds;
+			}
+		}
 	}
 }

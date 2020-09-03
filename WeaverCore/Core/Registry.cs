@@ -208,10 +208,10 @@ namespace WeaverCore
         public override int GetHashCode()
         {
             int hash = 0;
-            MiscUtilities.AdditiveHash(ref hash, modName);
-            MiscUtilities.AdditiveHash(ref hash, modAssemblyName);
-            MiscUtilities.AdditiveHash(ref hash, modTypeName);
-            MiscUtilities.AdditiveHash(ref hash, registryName);
+            HashUtilities.AdditiveHash(ref hash, modName);
+            HashUtilities.AdditiveHash(ref hash, modAssemblyName);
+            HashUtilities.AdditiveHash(ref hash, modTypeName);
+            HashUtilities.AdditiveHash(ref hash, registryName);
             return hash;
         }
 

@@ -35,6 +35,44 @@ namespace WeaverCore.Game.Implementations
 		}
 	}
 
+	[Serializable]
+	struct SingleComponentDump
+	{
+		public string Name;
+		public string Type;
+		public string Contents;
+
+		public SingleComponentDump(Component component)
+		{
+			Name = component.name;
+			Type = component.GetType().FullName;
+			if (component is MonoBehaviour)
+			{
+				Contents = JsonUtility.ToJson(component, true);
+				//Contents = co
+			}
+			else
+			{
+				Contents = "";
+			}
+		}
+	}
+
+	[Serializable]
+	struct MultiComponentDump
+	{
+		public List<SingleComponentDump> Components;
+
+		public MultiComponentDump(GameObject gameObject)
+		{
+			Components = new List<SingleComponentDump>();
+			foreach (var component in gameObject.GetComponents<Component>())
+			{
+				Components.Add(new SingleComponentDump(component));
+			}
+		}
+	}
+
 
 
 
@@ -62,7 +100,7 @@ namespace WeaverCore.Game.Implementations
 		}
 
 
-		static void RemoveInvalidChars(ref string str)
+		static string RemoveInvalidChars(string str)
 		{
 			//string illegal = "\"M\"\\a/ry/ h**ad:>> a\\/:*?\"| li*tt|le|| la\"mb.?";
 			string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
@@ -71,35 +109,77 @@ namespace WeaverCore.Game.Implementations
 			{
 				str = str.Replace(c.ToString(), "");
 			}
+
+			return str;
 		}
 
 		public override void Dump(GameObject obj)
 		{
-			WeaverLog.Log("DUMPING OBJECT = " + obj);
-			var dumpLocation = GetDumpLocation();
+			DumpObject(obj);
+		}
+
+
+		void DumpObject(GameObject obj, DirectoryInfo dumpLocation = null)
+		{
+			if (dumpLocation == null)
+			{
+				dumpLocation = GetDumpLocation();
+			}
 
 			dumpLocation.Create();
 
-			var objDir = dumpLocation.CreateSubdirectory(obj.name);
+			var objDir = dumpLocation.CreateSubdirectory(RemoveInvalidChars(obj.name));
 
-			DumpGameObjectInfo(obj,objDir);
+			DumpGameObjectInfo(obj, objDir);
+			DumpComponentInfo(obj, objDir);
 			var textures = DumpImages(obj, objDir);
+
+			for (int i = 0; i < obj.transform.childCount; i++)
+			{
+				var child = obj.transform.GetChild(i).gameObject;
+				var childDirectory = objDir.CreateSubdirectory(RemoveInvalidChars(child.name));
+				childDirectory.Create();
+
+				DumpObject(child, childDirectory);
+			}
 		}
 
 
 
 		FileInfo DumpGameObjectInfo(GameObject obj, DirectoryInfo directory)
 		{
+			WeaverLog.Log("DUMPING OBJECT = " + obj);
 			var fileLocation = new FileInfo(directory.FullName + "\\GM_INFO.dat");
 			var dump = new GameObjectDump(obj);
 			using (var stream = fileLocation.Create())
 			{
 				using (var writer = new StreamWriter(stream))
 				{
-					writer.Write(JsonUtility.ToJson(dump));
+					writer.Write(JsonUtility.ToJson(dump,true));
 				}
 			}
 			return fileLocation;
+		}
+
+		List<FileInfo> DumpComponentInfo(GameObject obj, DirectoryInfo directory)
+		{
+			List<FileInfo> ComponentDumps = new List<FileInfo>();
+			foreach (var component in obj.GetComponents<Component>())
+			{
+				WeaverLog.Log("DDDD");
+				WeaverLog.Log("DUMPING Component = " + component.GetType().FullName);
+				var fileLocation = new FileInfo(directory.FullName + "\\COMPONENT_" + component.GetType().FullName + ".dat");
+				var dump = new SingleComponentDump(component);
+				using (var stream = fileLocation.Create())
+				{
+					using (var writer = new StreamWriter(stream))
+					{
+						writer.Write(JsonUtility.ToJson(dump,true));
+					}
+				}
+				ComponentDumps.Add(fileLocation);
+			}
+			return ComponentDumps;
 		}
 
 		List<TextureDump> DumpImages(GameObject obj, DirectoryInfo directory)
@@ -110,6 +190,10 @@ namespace WeaverCore.Game.Implementations
 			var spriteFolder = directory.FullName + "\\Sprites";
 
 			var tkSprite = obj.GetComponent<tk2dSprite>();
+			if (tkSprite == null)
+			{
+				return files;
+			}
 
 			foreach (var texture in tkSprite.Collection.textures)
 			{
@@ -129,7 +213,8 @@ namespace WeaverCore.Game.Implementations
 
 					var fileName = t2D.name + "-" + StreamUtilities.GetHash(data);
 
-					RemoveInvalidChars(ref fileName);
+					//RemoveInvalidChars(ref fileName);
+					fileName = RemoveInvalidChars(fileName);
 
 					var dataLocation = new FileInfo(spriteFolder + "\\" + fileName + ".png");
 					dataLocation.Directory.Create();

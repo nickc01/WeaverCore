@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.DataTypes;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Game.Implementations
@@ -10,6 +11,25 @@ namespace WeaverCore.Game.Implementations
     {
         public class G_Statics : Boss_I.Statics
         {
+            public override BossDifficulty Difficulty
+            {
+                get
+                {
+                    if (BossSceneController.Instance != null)
+                    {
+                        return (BossDifficulty)BossSceneController.Instance.BossLevel;
+                    }
+                    return BossDifficulty.Attuned;
+                }
+                set
+                {
+                    if (BossSceneController.Instance != null)
+                    {
+                        BossSceneController.Instance.BossLevel = (int)value;
+                    }
+                }
+            }
+
             public override void OnBossesDeadAdd(Action action)
             {
                 if (BossSceneController.Instance != null)

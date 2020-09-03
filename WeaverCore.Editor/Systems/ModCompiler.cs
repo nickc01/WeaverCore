@@ -33,6 +33,10 @@ namespace WeaverCore.Editor.Systems
 
 		public static IEnumerator BuildModAsync(string compileLocation = null, BuildSettings settings = null)
 		{
+			if (LibraryCompiler.BuildingAssemblies)
+			{
+				yield return new WaitUntil(() => !LibraryCompiler.BuildingAssemblies);
+			}
 			if (settings == null)
 			{
 				settings = new BuildSettings();
@@ -74,13 +78,23 @@ namespace WeaverCore.Editor.Systems
 					File.Delete(mainModBuilder.BuildPath);
 				}
 
+				foreach (var script in mainModBuilder.Scripts)
+				{
+					Debug.Log("Script = " + script.Name);
+				}
+
 				mainModBuilder.ReferencePaths.Add(LibraryCompiler.DefaultAssemblyCSharpLocation.FullName);
 				mainModBuilder.ReferencePaths.Add(LibraryCompiler.DefaultWeaverCoreBuildLocation.FullName);
 				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.dll");
+				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/Assembly-CSharp-Editor.dll");
 				mainModBuilder.ExcludedReferences.Add("Editor");
 				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
 
 				yield return mainModBuilder.Build();
+				if (!mainModBuilder.BuildSuccessful)
+				{
+					throw new Exception("Error building mod. View console error messages for details");
+				}
 				progress.GoToNextStep();
 
 				LibraryCompiler.BuildWeaverCore(compileLocation + "\\WeaverCore.dll");
@@ -117,6 +131,10 @@ namespace WeaverCore.Editor.Systems
 
 		public static IEnumerator BuildWeaverCoreAsync(string compileLocation = null, BuildSettings settings = null)
 		{
+			if (LibraryCompiler.BuildingAssemblies)
+			{
+				yield return new WaitUntil(() => !LibraryCompiler.BuildingAssemblies);
+			}
 			if (settings == null)
 			{
 				settings = new BuildSettings();

@@ -5,6 +5,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using WeaverCore.Assets.Components;
 
 namespace WeaverCore.Assets.Components
@@ -12,7 +13,7 @@ namespace WeaverCore.Assets.Components
 	public class GameObjectSelectButton : MonoBehaviour, IPointerClickHandler
 	{
 		GameObject sourceGM;
-		TextMeshProUGUI textMesh;
+		Text textMesh;
 
 
 		public void OnPointerClick(PointerEventData eventData)
@@ -42,7 +43,7 @@ namespace WeaverCore.Assets.Components
 			if (textMesh == null)
 			{
 				WeaverLog.Log("CCC");
-				textMesh = GetComponentInChildren<TextMeshProUGUI>();
+				textMesh = GetComponentInChildren<Text>();
 			}
 			foreach (var component in GetComponentsInChildren<Component>())
 			{

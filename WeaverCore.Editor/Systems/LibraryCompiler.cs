@@ -20,7 +20,8 @@ namespace WeaverCore.Editor.Systems
 {
 	public static class LibraryCompiler
 	{
-		static bool buildingBundles = false;
+		public static bool BuildingAssemblies { get; private set; }
+		public static bool BuildingBundles { get; private set; }
 
 		static string AsmLocationRelative = "Assets\\WeaverCore\\WeaverCore.Editor";
 		static DirectoryInfo AsmEditorLocation = new DirectoryInfo("Assets\\WeaverCore\\WeaverCore.Editor");
@@ -53,7 +54,7 @@ namespace WeaverCore.Editor.Systems
 			{
 				if (WeaverReloadTools.DoReloadTools)
 				{
-					BuildPartialWeaverCore();
+					BuildStrippedWeaverCore();
 				}
 			}
 		}
@@ -78,14 +79,14 @@ namespace WeaverCore.Editor.Systems
 		/// <summary>
 		/// Builds both the HollowKnight assembly and a partial version of WeaverCore that does not contain any embedded resources. This is primarily used with WeaverCore.Game
 		/// </summary>
-		static void BuildPartialWeaverCore()
+		public static void BuildStrippedWeaverCore()
 		{
-			BuildPartialWeaverCore(DefaultWeaverCoreBuildLocation.FullName);
+			BuildStrippedWeaverCore(DefaultWeaverCoreBuildLocation.FullName);
 		}
 
-		static void BuildPartialWeaverCore(string buildLocation)
+		public static void BuildStrippedWeaverCore(string buildLocation)
 		{
-			UnboundCoroutine.Start(BuildPartialWeaverCoreAsync(buildLocation));
+			UnboundCoroutine.Start(BuildStrippedWeaverCoreAsync(buildLocation));
 		}
 
 		/// <summary>
@@ -129,13 +130,18 @@ namespace WeaverCore.Editor.Systems
 		/// <returns></returns>
 		public static IEnumerator BuildAssetBundles(List<BundleBuild> bundles, string modName, IEnumerable<BuildTarget> buildTargets)
 		{
-			if (buildingBundles)
+			if (BuildingBundles)
 			{
 				yield break;
 			}
+			if (BuildingAssemblies)
+			{
+				yield return new WaitUntil(() => !BuildingAssemblies);
+			}
 			try
 			{
-				buildingBundles = true;
+				BuildingAssemblies = true;
+				BuildingBundles = true;
 				WeaverLog.Log("Beginning Bundling");
 				yield return PrepareForBundling(modName);
 				var temp = Path.GetTempPath();
@@ -165,9 +171,10 @@ namespace WeaverCore.Editor.Systems
 			}
 			finally
 			{
-				buildingBundles = false;
-				WeaverLog.Log("Done Bundling");
+				BuildingAssemblies = false;
+				BuildingBundles = false;
 				AfterBundling(modName);
+				WeaverLog.Log("Done Bundling");
 			}
 		}
 
@@ -247,26 +254,38 @@ namespace WeaverCore.Editor.Systems
 		/// </summary>
 		/// <param name="buildLocation">Where the build will be placed</param>
 		/// <returns></returns>
-		static IEnumerator BuildPartialWeaverCoreAsync(string buildLocation)
+		public static IEnumerator BuildStrippedWeaverCoreAsync(string buildLocation)
 		{
-			yield return BuildHollowKnightASM(DefaultAssemblyCSharpLocation.FullName);
-
-			var weaverCoreBuilder = new Builder();
-			weaverCoreBuilder.BuildPath = buildLocation;
-			weaverCoreBuilder.Scripts = Builder.GetAllRuntimeInDirectory("*.cs", "Assets\\WeaverCore\\WeaverCore").Where(f => f.Directory.FullName.Contains(""));
-
-			//For some reason, this only works when using forward slashes and not backslashes.
-			weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.dll");
-			weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
-
-			weaverCoreBuilder.ReferencePaths.Add(DefaultAssemblyCSharpLocation.FullName);
-
-
-			if (File.Exists(buildLocation))
+			if (BuildingAssemblies)
 			{
-				File.Delete(buildLocation);
+				yield return new WaitUntil(() => !BuildingAssemblies);
 			}
-			yield return weaverCoreBuilder.Build();
+			try
+			{
+				BuildingAssemblies = true;
+				yield return BuildHollowKnightASM(DefaultAssemblyCSharpLocation.FullName);
+
+				var weaverCoreBuilder = new Builder();
+				weaverCoreBuilder.BuildPath = buildLocation;
+				weaverCoreBuilder.Scripts = Builder.GetAllRuntimeInDirectory("*.cs", "Assets\\WeaverCore\\WeaverCore").Where(f => f.Directory.FullName.Contains(""));
+
+				//For some reason, this only works when using forward slashes and not backslashes.
+				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.dll");
+				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
+
+				weaverCoreBuilder.ReferencePaths.Add(DefaultAssemblyCSharpLocation.FullName);
+
+
+				if (File.Exists(buildLocation))
+				{
+					File.Delete(buildLocation);
+				}
+				yield return weaverCoreBuilder.Build();
+			}
+			finally
+			{
+				BuildingAssemblies = false;
+			}
 		}
 	}
 

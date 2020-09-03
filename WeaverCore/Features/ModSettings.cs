@@ -58,11 +58,13 @@ namespace WeaverCore.Configuration
 
 		public void LoadSettings()
 		{
+			WeaverLog.Log("Loading Settings for " + GetType().FullName);
 			impl.LoadSettings(this);
 		}
 
 		public void SaveSettings()
 		{
+			WeaverLog.Log("Saving Settings for " + GetType().FullName);
 			impl.SaveSettings(this);
 		}
 

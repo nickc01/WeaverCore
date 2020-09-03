@@ -5,6 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using WeaverCore.Configuration;
 using WeaverCore.Utilities;
 
@@ -27,9 +28,15 @@ namespace WeaverCore.Assets.Components
 
 		[Header("Settings Area")]
 		[SerializeField]
+		GameObject SettingsArea;
+		[SerializeField]
 		Transform settingContents;
 		[SerializeField]
 		GameObject propertyHolder;
+		[SerializeField]
+		Text DescriptionText;
+		[SerializeField]
+		Text SettingTitleText;
 
 		int tabIndex = 0;
 		bool hasTabs = false;
@@ -46,6 +53,18 @@ namespace WeaverCore.Assets.Components
 		public bool Open { get; private set; }
 
 		public static WeaverConfigScreen Instance { get; private set; }
+
+		public string SettingDescription
+		{
+			get
+			{
+				return DescriptionText.text;
+			}
+			set
+			{
+				DescriptionText.text = value;
+			}
+		}
 
 		void Awake()
 		{
@@ -97,6 +116,7 @@ namespace WeaverCore.Assets.Components
 		public void OpenMenu()
 		{
 			ConfigMainMenu.SetActive(true);
+			SettingsArea.SetActive(false);
 			ToggleButton.SetActive(false);
 			RefreshTabs(ModSettings.GetAllSettings());
 		}
@@ -110,6 +130,10 @@ namespace WeaverCore.Assets.Components
 				selectedTab.Button.interactable = true;
 			}
 			DisableSettingsArea();
+			foreach (var settings in ModSettings.GetAllSettings())
+			{
+				settings.SaveSettings();
+			}
 		}
 
 		void EnteringTitleScreen()
@@ -186,28 +210,28 @@ namespace WeaverCore.Assets.Components
 			}
 			var currentSettings = selectedTab.settings;
 
+			SettingsArea.SetActive(true);
+			SettingTitleText.text = currentSettings.TabName;
+			SettingDescription = "Hover over an element for more information about it";
+			settingsEnabled = true;
+
 			foreach (var field in currentSettings.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
 			{
 				if (typeof(ModSettings).IsAssignableFrom(field.DeclaringType) && field.DeclaringType != typeof(ModSettings))
 				{
-					Debug.Log("Found Field = " + field.Name);
 					var nsValue = field.GetCustomAttributes(typeof(NonSerializedAttribute), false);
-					Debug.Log("NS VALUE = " + nsValue);
 					if (nsValue.GetLength(0) == 0)
 					{
-						Debug.Log("A");
 						var sfValue = field.GetCustomAttributes(typeof(SerializeField), false);
 						if (sfValue.GetLength(0) > 0 || field.IsPublic)
 						{
-							Debug.Log("B");
 							if (PropertyTemplates.ContainsKey(field.FieldType))
 							{
-								Debug.Log("C");
 								var configPropTemplate = PropertyTemplates[field.FieldType];
 								var gameObjectTemplate = (configPropTemplate as Component).gameObject;
 
 								var configProp = GameObject.Instantiate(gameObjectTemplate, settingContents).GetComponent<IConfigProperty>();
-								configProp.Title = field.Name;
+								configProp.Title = StringUtilities.Prettify(field.Name);
 								configProp.BindToField(currentSettings, field);
 								InstancedProperties.Add(configProp);
 							}
@@ -230,6 +254,8 @@ namespace WeaverCore.Assets.Components
 				var gameObject = (configProp as Component).gameObject;
 				Destroy(gameObject);
 			}
+			settingsEnabled = false;
+			InstancedProperties.Clear();
 		}
 	}
 

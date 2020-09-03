@@ -148,9 +148,15 @@ namespace WeaverCore.Editor.Utilities
 		{
 			Regex nameFinder = new Regex(@"""name"": ""(.+?)""");
 
+			bool editorFolder = false;
+
 			var directory = filePath.Directory;
 			while (directory.FullName != projectFolder.FullName)
 			{
+				if (directory.Name == "Editor")
+				{
+					editorFolder = true;
+				}
 				var asmDef = directory.GetFiles("*.asmdef", SearchOption.TopDirectoryOnly);
 				if (asmDef.GetLength(0) > 0)
 				{
@@ -163,7 +169,10 @@ namespace WeaverCore.Editor.Utilities
 				}
 				directory = directory.Parent;
 			}
-
+			if (editorFolder)
+			{
+				return "Assembly-CSharp-Editor";
+			}
 			return "Assembly-CSharp";
 		}
 	}

@@ -7,9 +7,13 @@ using UnityEngine;
 using UnityEngine.Assertions.Must;
 using WeaverCore.Attributes;
 using WeaverCore.Components;
+using WeaverCore.DataTypes;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
+
+
+
 
 namespace WeaverCore.Features
 {
@@ -17,7 +21,31 @@ namespace WeaverCore.Features
 	[RequireComponent(typeof(EntityHealth))]
 	public class Boss : Enemy
 	{
-		public int BossStage { get; set; }
+		public static BossDifficulty Diffculty
+		{
+			get
+			{
+				return staticImpl.Difficulty;
+			}
+			set
+			{
+				staticImpl.Difficulty = value;
+			}
+		}
+
+		[SerializeField]
+		int _bossStage = 1;
+		public int BossStage
+		{
+			get
+			{
+				return _bossStage;
+			}
+			set
+			{
+				_bossStage = value;
+			}
+		}
 		List<IBossMove> bossMoves = new List<IBossMove>();
 		
 		public IBossMove PreviousMove { get; private set; }
@@ -30,7 +58,7 @@ namespace WeaverCore.Features
 
 		protected virtual void Awake()
 		{
-			BossStage = 1;
+			//BossStage = 1;
 			var bossImplType = ImplFinder.GetImplementationType<Boss_I>();
 			impl = (Boss_I)gameObject.AddComponent(bossImplType);
 			entityHealth = GetComponent<EntityHealth>();
@@ -99,18 +127,37 @@ namespace WeaverCore.Features
 
 		public IEnumerable<IBossMove> RandomMoveIter()
 		{
+			var allMovesCache = new List<IBossMove>(AllMoves);
+			var randomList = new List<IBossMove>(AllMoves);
+			IBossMove previousMove = null;
 			while (true)
 			{
-				var randomList = new List<IBossMove>(AllMoves);
+				if (allMovesCache.GetElementsHash() != AllMoves.GetElementsHash())
+				{
+					randomList = new List<IBossMove>(AllMoves);
+					allMovesCache = new List<IBossMove>(AllMoves);
+				}
+				/*if (!randomList.AreEquivalent(AllMoves))
+				{
+					randomList
+				}*/
 				randomList.Sort(Randomizer<IBossMove>.Instance);
 
-				bool returnedOnce = false;
-				foreach (var element in randomList)
+				if (previousMove != null && randomList.Count > 0 && randomList[0] == previousMove)
 				{
-					if (element.MoveEnabled)
+					randomList.RemoveAt(0);
+					randomList.Add(previousMove);
+					previousMove = null;
+				}
+
+				bool returnedOnce = false;
+				foreach (var move in randomList)
+				{
+					if (move.MoveEnabled)
 					{
 						returnedOnce = true;
-						yield return element;
+						previousMove = move;
+						yield return move;
 					}
 				}
 				if (!returnedOnce)
@@ -128,10 +175,22 @@ namespace WeaverCore.Features
 		public IEnumerator RunMove(IBossMove move)
 		{
 			int stage = BossStage;
+			return RunMoveUntil(move, () => stage != BossStage || move != CurrentMove);
+		}
+
+		public IEnumerator RunMoveUntil(IBossMove move, Func<bool> predicate)
+		{
 			CurrentMove = move;
-			yield return CoroutineUtilities.RunWhile(move.DoMove(), () => stage == BossStage && move == CurrentMove);
-			PreviousMove = CurrentMove;
-			CurrentMove = null;
+			yield return CoroutineUtilities.RunWhile(move.DoMove(), () => !predicate());
+			PreviousMove = move;
+			if (CurrentMove == move)
+			{
+				CurrentMove = null;
+			}
+			else
+			{
+				move.OnCancel();
+			}
 		}
 
 		public void AddStunMilestone(int health)

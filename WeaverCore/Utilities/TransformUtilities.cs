@@ -96,6 +96,39 @@ namespace WeaverCore.Utilities
 			return newZ;
 		}
 
+		public static float GetXLocalScale(this Transform transform)
+		{
+			return transform.localScale.x;
+		}
+
+		public static float SetXLocalScale(this Transform transform, float newX)
+		{
+			transform.localScale = transform.localScale.With(x: newX);
+			return newX;
+		}
+
+		public static float GetYLocalScale(this Transform transform)
+		{
+			return transform.localScale.y;
+		}
+
+		public static float SetYLocalScale(this Transform transform, float newY)
+		{
+			transform.localScale = transform.localScale.With(y: newY);
+			return newY;
+		}
+
+		public static float GetZLocalScale(this Transform transform)
+		{
+			return transform.localScale.z;
+		}
+
+		public static float SetZLocalScale(this Transform transform, float newZ)
+		{
+			transform.localScale = transform.localScale.With(z: newZ);
+			return newZ;
+		}
+
 		public static Vector3 SetLocalPosition(this Transform transform, float x = float.NaN, float y = float.NaN, float z = float.NaN)
 		{
 			Vector3 newPos = transform.localPosition;
@@ -223,20 +256,37 @@ namespace WeaverCore.Utilities
 			return newRotation;
 		}
 
-		public static IEnumerator JitterObject(Transform transform, Vector3 amount)
+		public static IEnumerator JitterObject(Transform transform, Vector3 amount, float jitterFPS = float.PositiveInfinity)
 		{
 			Vector3 startPosition = transform.position;
+			float timer = 0f;
 
 			while (true)
 			{
-				yield return null;
+				if (float.IsPositiveInfinity(jitterFPS) || float.IsNaN(jitterFPS) || float.IsNegativeInfinity(jitterFPS))
+				{
+					yield return null;
+				}
+				else
+				{
+					timer += Time.deltaTime;
+					if (timer >= (1f / jitterFPS))
+					{
+						timer -= (1f / jitterFPS);
+					}
+					else
+					{
+						yield return null;
+						continue;
+					}
+				}
 				transform.position = new Vector3(startPosition.x + Random.Range(-amount.x, amount.x), startPosition.y + Random.Range(-amount.y, amount.y), startPosition.z + Random.Range(-amount.z, amount.z));
 			}
 		}
 
-		public static IEnumerator JitterObject(GameObject gameObject, Vector3 amount)
+		public static IEnumerator JitterObject(GameObject gameObject, Vector3 amount, float jitterFPS = float.PositiveInfinity)
 		{
-			return JitterObject(gameObject.transform, amount);
+			return JitterObject(gameObject.transform, amount, jitterFPS);
 		}
 
 		public static GameObject[] SpawnRandomObjects(GameObject obj, Vector3 spawnPoint, int spawnMin, int spawnMax, float minSpeed, float maxSpeed, float angleMin, float angleMax, Vector2 originOffset = default(Vector2))
@@ -270,7 +320,7 @@ namespace WeaverCore.Utilities
 				for (int i = 0; i < transform.childCount; i++)
 				{
 					//hash = GetHashOfTransform(transform, true);
-					MiscUtilities.AdditiveHash(ref hash, GetHashOfTransform(transform.GetChild(i), true));
+					HashUtilities.AdditiveHash(ref hash, GetHashOfTransform(transform.GetChild(i), true));
 				}
 			}
 

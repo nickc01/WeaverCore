@@ -9,7 +9,7 @@ namespace WeaverCore.Assets.Components
 	public class BoolProperty : ConfigProperty
 	{
 		[SerializeField]
-		Dropdown dropdown;
+		Toggle toggle;
 
 
 		public override Type BindingFieldType
@@ -22,16 +22,14 @@ namespace WeaverCore.Assets.Components
 
 		private void Awake()
 		{
-			dropdown.onValueChanged.AddListener(i => UpdateField());
+			toggle.onValueChanged.AddListener(b => UpdateField());
 		}
 
 		protected override void InitializeValue()
 		{
 			if (Binded)
 			{
-				bool value = (bool)field.GetValue(settings);
-
-				dropdown.value = value ? 1 : 0;
+				toggle.isOn = (bool)field.GetValue(settings);
 			}
 		}
 
@@ -39,14 +37,7 @@ namespace WeaverCore.Assets.Components
 		{
 			if (Binded)
 			{
-				int dropdownValue = dropdown.value;
-				bool value = false;
-				if (dropdownValue == 1)
-				{
-					value = true;
-				}
-
-				field.SetValue(settings, value);
+				field.SetValue(settings, toggle.isOn);
 			}
 		}
 	}

@@ -136,23 +136,6 @@ namespace WeaverCore.Components
 				default:
 					return false;
 			}
-			/*bool validHit = !(health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
-			if (!validHit)
-			{
-				return false;
-			}
-			impl.OnHit(hit,validHit);
-
-			if (!Invincible || ((hit.AttackType == AttackType.Spell || hit.AttackType == AttackType.SharpShadow) && gameObject.CompareTag("Spell Vulnerable")))
-			{
-				NormalHit(hit);
-				return true;
-			}
-			else
-			{
-				InvincibleHit(hit);
-				return false;
-			}*/
 		}
 
 		public HitResult IsValidHit(HitInfo hit)
@@ -363,7 +346,7 @@ namespace WeaverCore.Components
 			impl.OnDeath();
 		}
 
-		void Update()
+		protected virtual void Update()
 		{
 			if (evasionTimer > 0.0f)
 			{
@@ -375,7 +358,7 @@ namespace WeaverCore.Components
 			}
 		}
 
-		void Awake()
+		protected virtual void Awake()
 		{
 			impl = (HealthManager_I)gameObject.AddComponent(ImplFinder.GetImplementationType<HealthManager_I>());
 			impl.Manager = this;
@@ -384,5 +367,24 @@ namespace WeaverCore.Components
 				Player.Player1.RefreshSoulUI();
 			}
 		}
+
+		/*/// <summary>
+		/// Gets the health value of the next milestone
+		/// </summary>
+		/// <returns></returns>
+		public int NextHealthMilestone()
+		{
+			Milestone? nearestMilestone = null;
+			int milestoneHealth = 0;
+			foreach (var milestone in HealthMilestones)
+			{
+				if (milestone.HealthNumber < Health && milestone.HealthNumber >= milestoneHealth)
+				{
+					nearestMilestone = milestone;
+					milestoneHealth = milestone.HealthNumber;
+				}
+			}
+			return milestoneHealth;
+		}*/
 	}
 }

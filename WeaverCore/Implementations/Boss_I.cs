@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.DataTypes;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
@@ -17,6 +18,8 @@ namespace WeaverCore.Implementations
 			public abstract void OnBossSceneCompleteRemove(Action action);
 
 			public abstract void EndBossBattle(float delayTime);
+
+			public abstract BossDifficulty Difficulty { get; set; }
 		}
 	}
 }

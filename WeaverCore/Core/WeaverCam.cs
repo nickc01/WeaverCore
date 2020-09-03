@@ -14,7 +14,7 @@ namespace WeaverCore
 	{
 		class RInit : IRuntimeInit
 		{
-			public void RuntimeInit()
+			public static void Init()
 			{
 				_instance = staticImpl.Create();
 				if (_instance == null)
@@ -27,10 +27,15 @@ namespace WeaverCore
 				}
 			}
 
-			private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+			public void RuntimeInit()
+			{
+				Init();
+			}
+
+			private static void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
 			{
 				UnityEngine.SceneManagement.SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
-				RuntimeInit();
+				Init();
 			}
 		}
 
@@ -46,6 +51,10 @@ namespace WeaverCore
 		{
 			get
 			{
+				if (_instance == null)
+				{
+					RInit.Init();
+				}
 				return _instance;
 
 			}

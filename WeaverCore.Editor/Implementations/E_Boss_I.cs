@@ -8,6 +8,7 @@ using WeaverCore;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
+using WeaverCore.DataTypes;
 
 namespace WeaverCore.Editor.Implementations
 {
@@ -18,6 +19,19 @@ namespace WeaverCore.Editor.Implementations
             public static Action OnBossesDead;
             public static Action OnBossSceneComplete;
 
+            static BossDifficulty difficulty;
+            public override BossDifficulty Difficulty
+            {
+                get
+                {
+                    return difficulty;
+                }
+
+                set
+                {
+                    difficulty = value;
+                }
+            }
 
             public override void OnBossesDeadAdd(Action action)
             {

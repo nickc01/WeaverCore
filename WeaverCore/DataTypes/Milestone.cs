@@ -41,8 +41,8 @@ namespace WeaverCore.DataTypes
 		public override int GetHashCode()
 		{
 			int hash = 0;
-			MiscUtilities.AdditiveHash(ref hash, HealthNumber.GetHashCode());
-			MiscUtilities.AdditiveHash(ref hash, MilestoneReached.GetHashCode());
+			HashUtilities.AdditiveHash(ref hash, HealthNumber.GetHashCode());
+			HashUtilities.AdditiveHash(ref hash, MilestoneReached.GetHashCode());
 			return hash;
 		}
 

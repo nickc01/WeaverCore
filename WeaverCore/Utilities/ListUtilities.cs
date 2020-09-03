@@ -38,5 +38,54 @@ namespace WeaverCore.Utilities
 			}
 			return list[UnityEngine.Random.Range(0,list.Count)];
 		}
+
+		/// <summary>
+		/// Checks if each list have identical elements
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="list"></param>
+		/// <returns></returns>
+		public static bool AreEquivalent<T>(this IEnumerable<T> listA, IEnumerable<T> listB, EqualityComparer<T> comparer = null)
+		{
+			if (comparer == null)
+			{
+				comparer = EqualityComparer<T>.Default;
+			}
+
+			using (var enumA = listA.GetEnumerator())
+			{
+				using (var enumB = listB.GetEnumerator())
+				{
+					while (true)
+					{
+						var continueA = enumA.MoveNext();
+						var continueB = enumB.MoveNext();
+
+						if (continueA != continueB)
+						{
+							return false;
+						}
+						if (continueA == false)
+						{
+							return true;
+						}
+						if (!comparer.Equals(enumA.Current,enumB.Current))
+						{
+							return false;
+						}
+					}
+				}
+			}
+		}
+
+		public static int GetElementsHash<T>(this IEnumerable<T> list)
+		{
+			int hash = 0;
+			foreach (var item in list)
+			{
+				HashUtilities.AdditiveHash(ref hash, item.GetHashCode());
+			}
+			return hash;
+		}
 	}
 }

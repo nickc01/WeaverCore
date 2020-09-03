@@ -17,6 +17,10 @@ namespace WeaverCore.Game.Implementations
 		{
 			public override WeaverCam Create()
 			{
+				foreach (var camera in UnityEngine.Object.FindObjectsOfType<Camera>())
+				{
+					WeaverLog.Log("Camera = " + camera.name);
+				}
 				var cameraParent = GameObject.Find("CameraParent");
 				if (cameraParent == null)
 				{
@@ -188,7 +192,7 @@ namespace WeaverCore.Game.Implementations
 
 			public override void SetRumble(RumbleType type)
 			{
-				//StopRumbling();
+				StopRumbling();
 				CustomRumble = false;
 				switch (type)
 				{

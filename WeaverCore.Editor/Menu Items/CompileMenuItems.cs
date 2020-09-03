@@ -19,12 +19,14 @@ namespace WeaverCore.Editor
 		[MenuItem("WeaverCore/Compile/Mod %F5")]
 		public static void CompileMod()
 		{
+			LibraryCompiler.BuildStrippedWeaverCore();
 			BuildSettingsScreen.BeginModCompile();
 		}
 
 		[MenuItem("WeaverCore/Compile/WeaverCore")]
 		public static void CompileWeaverCore()
 		{
+			LibraryCompiler.BuildStrippedWeaverCore();
 			BuildSettingsScreen.BeginWeaverCoreCompile();
 		}
 	}

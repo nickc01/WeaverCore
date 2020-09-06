@@ -63,7 +63,9 @@ namespace WeaverCore.Internal
 			}
 			catch (Exception e)
 			{
-				WeaverLog.LogError("Error when attempting to initialize [" + assembly.GetName().Name + "] : " + e);
+				WeaverLog.LogError("WeaverCore found a broken assembly : " + assembly.GetName().Name);
+				WeaverLog.LogError("Full Error : " + e);
+				//WeaverLog.LogError("Error when attempting to initialize [" + assembly.GetName().Name + "] : " + e);
 			}
 		}
 	}

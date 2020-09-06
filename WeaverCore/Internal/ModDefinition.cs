@@ -12,7 +12,7 @@ namespace WeaverCore.Internal
         public override void Initialize()
         {
             base.Initialize();
-            try
+            /*try
             {
                 var shader = WeaverAssets.LoadWeaverAsset<Shader>("SpriteFlash");
                 WeaverLog.Log("Shader = " + shader);
@@ -20,13 +20,13 @@ namespace WeaverCore.Internal
             catch (Exception e)
             {
                 WeaverLog.LogError("Weaver Init Error => " + e);
-            }
+            }*/
         }
 
 
         public override string GetVersion()
         {
-            return "0.1.0.0 Beta";
+            return "0.2.0.0 Beta";
         }
     }
 }

@@ -50,7 +50,7 @@ namespace WeaverCore.Game
 
 		public static void Save(ModSettings settings)
 		{
-			WeaverLog.Log("Saving");
+			//WeaverLog.Log("Saving");
 			var type = settings.GetType();
 			var file = new FileInfo(SettingsFolder.FullName + "\\" + type.FullName + ".cfg");
 			File.WriteAllText(file.FullName, JsonUtility.ToJson(settings));

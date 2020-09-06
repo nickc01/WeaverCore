@@ -520,7 +520,7 @@ namespace WeaverCore.Editor
 			atlas.name = sheet.TextureName + "_orientated";
 
 			var uvCoords = atlas.PackTextures(spriteTextures.ToArray(), 1,Mathf.Max(sheet.Width,sheet.Height),false);
-			WeaverLog.Log("Atlas Size = " + atlas.width + " , " + atlas.height);
+			//WeaverLog.Log("Atlas Size = " + atlas.width + " , " + atlas.height);
 			var pngData = atlas.EncodeToPNG();
 
 			using (var fileTest = File.Create(selectedDir.FullName + "\\" + atlas.name + ".png"))

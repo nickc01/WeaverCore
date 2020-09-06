@@ -3,6 +3,6 @@
     "WindowsSupport": true,
     "MacSupport": true,
     "LinuxSupport": true,
-    "StartGame": true,
+    "StartGame": false,
     "BuildLocation": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hollow Knight\\hollow_knight_Data\\Managed\\Mods"
 }

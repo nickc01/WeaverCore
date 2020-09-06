@@ -148,7 +148,7 @@ namespace WeaverCore.Game.Implementations
 
 		FileInfo DumpGameObjectInfo(GameObject obj, DirectoryInfo directory)
 		{
-			WeaverLog.Log("DUMPING OBJECT = " + obj);
+			//WeaverLog.Log("DUMPING OBJECT = " + obj);
 			var fileLocation = new FileInfo(directory.FullName + "\\GM_INFO.dat");
 			var dump = new GameObjectDump(obj);
 			using (var stream = fileLocation.Create())
@@ -166,8 +166,8 @@ namespace WeaverCore.Game.Implementations
 			List<FileInfo> ComponentDumps = new List<FileInfo>();
 			foreach (var component in obj.GetComponents<Component>())
 			{
-				WeaverLog.Log("DDDD");
-				WeaverLog.Log("DUMPING Component = " + component.GetType().FullName);
+				//WeaverLog.Log("DDDD");
+				//WeaverLog.Log("DUMPING Component = " + component.GetType().FullName);
 				var fileLocation = new FileInfo(directory.FullName + "\\COMPONENT_" + component.GetType().FullName + ".dat");
 				var dump = new SingleComponentDump(component);
 				using (var stream = fileLocation.Create())

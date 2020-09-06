@@ -17,10 +17,10 @@ namespace WeaverCore.Game.Implementations
 		{
 			public override WeaverCam Create()
 			{
-				foreach (var camera in UnityEngine.Object.FindObjectsOfType<Camera>())
+				/*foreach (var camera in UnityEngine.Object.FindObjectsOfType<Camera>())
 				{
 					WeaverLog.Log("Camera = " + camera.name);
-				}
+				}*/
 				var cameraParent = GameObject.Find("CameraParent");
 				if (cameraParent == null)
 				{

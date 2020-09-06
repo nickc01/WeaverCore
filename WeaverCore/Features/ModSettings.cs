@@ -48,7 +48,15 @@ namespace WeaverCore.Configuration
 
 		public static T GetSettings<T>() where T : ModSettings
 		{
-			return (T)allSettings.FirstOrDefault(s => s.GetType() == typeof(T));
+			var result = (T)allSettings.FirstOrDefault(s => s.GetType() == typeof(T));
+			if (result != null)
+			{
+				return result;
+			}
+			else
+			{
+				return (T)allSettings.FirstOrDefault(s => typeof(T).IsAssignableFrom(s.GetType()));
+			}
 		}
 
 		public static IEnumerable<ModSettings> GetAllSettings()

@@ -71,7 +71,7 @@ namespace WeaverCore.Internal
 			}
 			catch  (Exception e)
 			{
-				WeaverLog.LogError("Error when attempting to runtime-initialize [" + assembly.GetName().Name + "] : " + e);
+				//WeaverLog.LogError("Error when attempting to runtime-initialize [" + assembly.GetName().Name + "] : " + e);
 			}
 		}
 	}

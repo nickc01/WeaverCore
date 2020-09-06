@@ -62,7 +62,7 @@ namespace WeaverCore.Internal
 			}
 			catch (Exception e)
 			{
-				WeaverLog.LogError("Error when attempting to run patches for [" + assembly.GetName().Name + "] : " + e);
+				//WeaverLog.LogError("Error when attempting to run patches for [" + assembly.GetName().Name + "] : " + e);
 			}
 		}
 	}

@@ -23,36 +23,36 @@ namespace WeaverCore.Assets.Components
 
 		public void SetSourceGM(GameObject obj, string name = null)
 		{
-			WeaverLog.Log("THIS IS THE NEW FILE");
-			WeaverLog.Log("Obj = " + obj);
-			WeaverLog.Log("Obj Null = " + (obj == null));
-			WeaverLog.Log("This Null = " + (this == null));
-			WeaverLog.Log("Source Null = " + (gameObject == null));
+			//WeaverLog.Log("THIS IS THE NEW FILE");
+			//WeaverLog.Log("Obj = " + obj);
+			//WeaverLog.Log("Obj Null = " + (obj == null));
+			//WeaverLog.Log("This Null = " + (this == null));
+			//WeaverLog.Log("Source Null = " + (gameObject == null));
 			if (name == null && obj != null)
 			{
-				WeaverLog.Log("Setting Name = " + name);
+				//WeaverLog.Log("Setting Name = " + name);
 				name = obj.name;
 			}
 			else if (name == null)
 			{
 				name = "";
 			}
-			WeaverLog.Log("AAA");
+			//WeaverLog.Log("AAA");
 			sourceGM = obj;
-			WeaverLog.Log("BBB");
+			//WeaverLog.Log("BBB");
 			if (textMesh == null)
 			{
-				WeaverLog.Log("CCC");
+				//WeaverLog.Log("CCC");
 				textMesh = GetComponentInChildren<Text>();
 			}
-			foreach (var component in GetComponentsInChildren<Component>())
+			/*foreach (var component in GetComponentsInChildren<Component>())
 			{
 				WeaverLog.Log("Component = " + component.GetType());
 			}
 			WeaverLog.Log("DDD");
-			WeaverLog.Log("TextMeshPro = " + textMesh);
+			WeaverLog.Log("TextMeshPro = " + textMesh);*/
 			textMesh.text = name;
-			WeaverLog.Log("EEE");
+			//WeaverLog.Log("EEE");
 		}
 
 		public GameObject GetSourceGM()

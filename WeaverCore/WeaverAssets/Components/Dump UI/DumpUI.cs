@@ -55,12 +55,12 @@ namespace WeaverCore.Assets.Components
 			{
 				if (Input.GetKey(KeyCode.F10))
 				{
-					gameObject.SetActive(!gameObject.activeSelf);
+					/*gameObject.SetActive(!gameObject.activeSelf);
 					if (gameObject.activeSelf)
 					{
 						Refresh();
 					}
-					yield return new WaitUntil(() => !Input.GetKey(KeyCode.F10));
+					yield return new WaitUntil(() => !Input.GetKey(KeyCode.F10));*/
 				}
 				yield return null;
 

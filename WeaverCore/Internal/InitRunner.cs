@@ -4,8 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Enums;
 using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Internal
 {
@@ -20,52 +22,48 @@ namespace WeaverCore.Internal
 			if (!run)
 			{
 				run = true;
-				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+				//var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+				/*foreach (var assembly in AppDomain.CurrentDomain.AllAssemblies())
 				{
 					RunInitFunctions(assembly);
+				}*/
+
+				//IEnumerable<ValueTuple<MethodInfo, OnInitAttribute>> InitFunctions = null;
+
+				/*foreach (var assembly in AppDomain.CurrentDomain.AllAssemblies())
+				{
+					//WeaverLog.Log("Getting Funcs in " + assembly.FullName);
+					var inits = GetInitFunctions(assembly);
+					if (InitFunctions == null)
+					{
+						InitFunctions = inits;
+					}
+					else if (inits != null)
+					{
+						InitFunctions = InitFunctions.Concat(inits);
+					}
+				}*/
+
+				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+				{
+					//WeaverLog.Log("Running Init for Assembly = " + assembly.GetName().Name);
+					InitializedAssemblies.Add(assembly);
 				}
+
+				ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>();
+
+				//ExecuteFunctions(InitFunctions);
 				AppDomain.CurrentDomain.AssemblyLoad += CurrentDomain_AssemblyLoad;
 			}
 		}
 
 		private static void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args)
 		{
-			RunInitFunctions(args.LoadedAssembly);
-		}
-
-		static void RunInitFunctions(Assembly assembly)
-		{
-			if (CoreInfo.LoadState == RunningState.Game && assembly.GetName().Name == "Assembly-CSharp")
+			if (!InitializedAssemblies.Contains(args.LoadedAssembly))
 			{
-				return;
-			}
-			try
-			{
-				if (InitializedAssemblies.Contains(assembly))
-				{
-					return;
-				}
-
-				InitializedAssemblies.Add(assembly);
-
-				foreach (var type in assembly.GetTypes().Where(t => typeof(IInit).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericTypeDefinition))
-				{
-					var init = (IInit)Activator.CreateInstance(type);
-					try
-					{
-						init.OnInit();
-					}
-					catch (Exception e)
-					{
-						WeaverLog.LogError("Init Error: " + e);
-					}
-				}
-			}
-			catch (Exception e)
-			{
-				WeaverLog.LogError("WeaverCore found a broken assembly : " + assembly.GetName().Name);
-				WeaverLog.LogError("Full Error : " + e);
-				//WeaverLog.LogError("Error when attempting to initialize [" + assembly.GetName().Name + "] : " + e);
+				InitializedAssemblies.Add(args.LoadedAssembly);
+				//WeaverLog.Log("Running Init for Assembly = " + args.LoadedAssembly.GetName().Name);
+				ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>(args.LoadedAssembly);
 			}
 		}
 	}

@@ -9,10 +9,10 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Inits
 {
-	class CanvasInit : IRuntimeInit
-	{
-		public void RuntimeInit()
-		{
+	//class CanvasInit : IRuntimeInit
+	//{
+		//public void RuntimeInit()
+		//{
 			/*var canvas = GameObject.FindObjectOfType<Canvas>();
 			if (canvas == null)
 			{
@@ -27,6 +27,6 @@ namespace WeaverCore.Editor.Inits
 			{
 				GameObject.Instantiate(canvasExtension.gameObject, canvas.transform);
 			}*/
-		}
-	}
+		//}
+	//}
 }

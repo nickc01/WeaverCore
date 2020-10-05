@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Globalization;
+using UnityEngine;
 using WeaverCore.Enums;
 
 namespace WeaverCore.DataTypes
@@ -34,5 +35,18 @@ namespace WeaverCore.DataTypes
 		/// How strong the attack was. Used for enemy recoil
 		/// </summary>
 		public float AttackStrength;
+
+		public override string ToString()
+		{
+			string final = "{ ";
+
+			final = string.Concat(final,"Attacker = " + Attacker, ", ");
+			final = string.Concat(final, "AttackType = " + AttackType, ", ");
+			final = string.Concat(final, "Damage = " + Damage, ", ");
+			final = string.Concat(final, "Direction = " + Direction, ", ");
+			final = string.Concat(final, "IgnoreInvincible = " + IgnoreInvincible, ", ");
+			final = string.Concat(final, "AttackStrength = " + AttackStrength, "}");
+			return final;
+		}
 	}
 }

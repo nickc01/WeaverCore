@@ -10,7 +10,15 @@ namespace WeaverCore.Features
 	[ShowFeature]
 	public class CanvasExtension : Feature
 	{
-		public bool AddedByDefault = true;
+		[SerializeField]
+		bool addedOnStartup = false;
+		public virtual bool AddedOnStartup
+		{
+			get
+			{
+				return addedOnStartup;
+			}
+		}
 
 
 		public void AddToWeaverCanvas()

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b22a69b31cf2847a46eb90f159d6ae, type: 3}
+  m_Name: WeaverCore Registry
+  m_EditorClassIdentifier: 
+  registryName: WeaverCore Registry
+  modName: Weaver Core
+  modAssemblyName: WeaverCore
+  modTypeName: WeaverCore.Internal.WeaverCore
+  modListHashCode: 1684387993
+  features:
+  - feature: {fileID: 114659249116894634, guid: 398106b2d51c2144b97ff3de7eec6dcb,
+      type: 2}
+    TypeName: WeaverCore.Assets.Components.WeaverConfigScreen
+    AssemblyName: WeaverCore
+  featureBundlePaths:
+  - Assets/WeaverCore/Assets/Prefabs/UI/WeaverCore Config Screen.prefab
+  featureTypesRaw:
+  - WeaverCore:WeaverCore.Assets.Components.WeaverConfigScreen
+  selectedFeatureIndex: 0
+  selectedModIndex: 1
+  registryEnabled: 1

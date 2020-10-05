@@ -22,16 +22,16 @@ namespace WeaverCore.Game
 			SettingsFolder.Create();
 		}
 
-		public static void Load<T>(T settings) where T : ModSettings
+		public static void Load<T>(T settings) where T : GlobalWeaverSettings
 		{
 			Load(typeof(T), settings);
 		}
 
-		public static void Load(Type type, ModSettings settings)
+		public static void Load(Type type, GlobalWeaverSettings settings)
 		{
-			if (!typeof(ModSettings).IsAssignableFrom(type))
+			if (!typeof(GlobalWeaverSettings).IsAssignableFrom(type))
 			{
-				throw new Exception("The type " + type.FullName + " does not inherit from ModSettings");
+				throw new Exception("The type " + type.FullName + " does not inherit from WeaverSettings");
 			}
 			var file = new FileInfo(SettingsFolder.FullName + "\\" + type.FullName + ".cfg");
 
@@ -48,7 +48,7 @@ namespace WeaverCore.Game
 			}
 		}
 
-		public static void Save(ModSettings settings)
+		public static void Save(GlobalWeaverSettings settings)
 		{
 			//WeaverLog.Log("Saving");
 			var type = settings.GetType();

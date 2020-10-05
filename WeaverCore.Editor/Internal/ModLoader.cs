@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Internal
 {
-	class ModLoader : IRuntimeInit
+	static class ModLoader
 	{
-		public void RuntimeInit()
+		[OnRuntimeInit]
+		static void RuntimeInit()
 		{
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{

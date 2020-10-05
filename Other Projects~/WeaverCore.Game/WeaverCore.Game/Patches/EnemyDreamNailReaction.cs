@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Components;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Patches
 {
-	class EnemyDreamNailReaction : IInit
+	class EnemyDreamNailReaction
 	{
-		public void OnInit()
+		[OnInit]
+		static void Init()
 		{
 			On.EnemyDreamnailReaction.ShowConvo += EnemyDreamnailReaction_ShowConvo;
 		}

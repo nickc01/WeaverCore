@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using WeaverCore.Attributes;
 using WeaverCore.Configuration;
+using WeaverCore.Enums;
+using WeaverCore.Features;
+using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-
-	public class WeaverConfigScreen : MonoBehaviour
+	public class WeaverConfigScreen : CanvasExtension
 	{
 		[SerializeField]
 		GameObject ToggleButton;
@@ -66,23 +70,71 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
+		[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore))]
+		static void OnGameStart()
+		{
+			//WeaverLog.Log("AFTER WEAVERCORE HAS LOADED");
+			//WeaverLog.Log("Canvas On Game Start");
+			if (CoreInfo.LoadState == RunningState.Editor)
+			{
+				//var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().First();
+				//GameObject.Instantiate(prefab, WeaverCanvas.Content);
+			}
+			else
+			{
+				//WeaverLog.Log("C_B");
+				SceneManager.sceneLoaded += CreateOnSceneChange;
+				for (int i = 0; i < SceneManager.sceneCount; i++)
+				{
+					var scene = SceneManager.GetSceneAt(i);
+					if (scene.name == "Menu_Title")
+					{
+						//WeaverLog.Log("C_A");
+						var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().First();
+						//WeaverLog.Log("Instantiating Prefab = " + prefab);
+						Instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
+						return;
+					}
+				}
+			}
+		}
+
+		public override bool AddedOnStartup
+		{
+			get
+			{
+				if (CoreInfo.LoadState == RunningState.Editor)
+				{
+					return base.AddedOnStartup;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+
 		void Awake()
 		{
-			Instance = this;
+			//WeaverLog.Log("STARTING WEAVER CANVAS");
 			ConfigMainMenu.SetActive(false);
 			//UnboundCoroutine.Start(Waiter());
-			SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-			for (int i = 0; i < SceneManager.sceneCount; i++)
+			SceneManager.sceneUnloaded += DestroyOnSceneChange;
+			if (CoreInfo.LoadState == RunningState.Editor)
 			{
-				var scene = SceneManager.GetSceneAt(i);
-				if (scene.name == "Menu_Title")
+				EnteringTitleScreen();
+			}
+			else
+			{
+				for (int i = 0; i < SceneManager.sceneCount; i++)
 				{
-					onTitleScreen = true;
-					EnteringTitleScreen();
-				}
-				else if (CoreInfo.LoadState == Enums.RunningState.Editor)
-				{
-					EnteringTitleScreen();
+					var scene = SceneManager.GetSceneAt(i);
+					if (scene.name == "Menu_Title")
+					{
+						onTitleScreen = true;
+						EnteringTitleScreen();
+						break;
+					}
 				}
 			}
 
@@ -92,9 +144,30 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
-		private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+		/*void OnDestroy()
+		{
+			WeaverLog.Log("STOPPING WEAVER CANVAS");
+		}*/
+
+		static void CreateOnSceneChange(Scene scene, LoadSceneMode loadSceneMode)
+		{
+			//WeaverLog.Log("Scene Loaded = " + scene.name);
+			if (Instance == null && scene.name == "Menu_Title")
+			{
+				var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().First();
+				Instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
+			}
+		}
+
+		private void DestroyOnSceneChange(Scene scene)
 		{
 			if (scene.name == "Menu_Title")
+			{
+				SceneManager.sceneUnloaded -= DestroyOnSceneChange;
+				Instance = null;
+				Destroy(gameObject);
+			}
+			/*if (scene.name == "Menu_Title")
 			{
 				if (!onTitleScreen)
 				{
@@ -109,7 +182,7 @@ namespace WeaverCore.Assets.Components
 					onTitleScreen = false;
 					LeavingTitleScreen();
 				}
-			}
+			}*/
 		}
 
 
@@ -118,7 +191,7 @@ namespace WeaverCore.Assets.Components
 			ConfigMainMenu.SetActive(true);
 			SettingsArea.SetActive(false);
 			ToggleButton.SetActive(false);
-			RefreshTabs(ModSettings.GetAllSettings());
+			RefreshTabs(GlobalWeaverSettings.GetAllSettings());
 		}
 
 		public void CloseMenu()
@@ -130,7 +203,7 @@ namespace WeaverCore.Assets.Components
 				selectedTab.Button.interactable = true;
 			}
 			DisableSettingsArea();
-			foreach (var settings in ModSettings.GetAllSettings())
+			foreach (var settings in GlobalWeaverSettings.GetAllSettings())
 			{
 				settings.SaveSettings();
 			}
@@ -166,7 +239,7 @@ namespace WeaverCore.Assets.Components
 			EnableSettingsArea();
 		}
 
-		void RefreshTabs(IEnumerable<ModSettings> allSettings)
+		void RefreshTabs(IEnumerable<GlobalWeaverSettings> allSettings)
 		{
 			for (int i = TabContents.childCount - 1; i >= 0; i--)
 			{
@@ -217,7 +290,7 @@ namespace WeaverCore.Assets.Components
 
 			foreach (var field in currentSettings.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
 			{
-				if (typeof(ModSettings).IsAssignableFrom(field.DeclaringType) && field.DeclaringType != typeof(ModSettings))
+				if (typeof(GlobalWeaverSettings).IsAssignableFrom(field.DeclaringType) && field.DeclaringType != typeof(GlobalWeaverSettings))
 				{
 					var nsValue = field.GetCustomAttributes(typeof(NonSerializedAttribute), false);
 					if (nsValue.GetLength(0) == 0)

@@ -20,9 +20,9 @@
 
     public interface IFeature
     {
-        bool FeatureEnabled
+        /*bool FeatureEnabled
         {
             get;
-        }
+        }*/
     }
 }

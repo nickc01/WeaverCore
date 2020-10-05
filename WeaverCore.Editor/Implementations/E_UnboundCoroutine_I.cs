@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
@@ -19,14 +20,12 @@ namespace WeaverCore.Editor.Implementations
 		static double previousTime = 0;
 		static double currentTime = 0;
 
-		class Init : IInit
+		[OnInit]
+		static void Init()
 		{
-			public void OnInit()
-			{
-				previousTime = EditorApplication.timeSinceStartup;
-				currentTime = EditorApplication.timeSinceStartup;
-				EditorApplication.update += OnUpdate;
-			}
+			previousTime = EditorApplication.timeSinceStartup;
+			currentTime = EditorApplication.timeSinceStartup;
+			EditorApplication.update += OnUpdate;
 		}
 
 		static void OnUpdate()
@@ -84,7 +83,7 @@ namespace WeaverCore.Editor.Implementations
 			coroutines.Remove((EditorCoroutine)routine);
 		}
 
-		static Func<WaitForSeconds, float> GetWFSTime = FieldUtilities.CreateGetter<WaitForSeconds, float>(typeof(WaitForSeconds).GetField("m_Seconds", BindingFlags.Instance | BindingFlags.NonPublic));
+		static Func<WaitForSeconds, float> GetWFSTime = ReflectionUtilities.CreateFieldGetter<WaitForSeconds, float>(typeof(WaitForSeconds).GetField("m_Seconds", BindingFlags.Instance | BindingFlags.NonPublic));
 
 		static IEnumerator RoutineUser(IEnumerator routine)
 		{

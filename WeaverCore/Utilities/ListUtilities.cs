@@ -87,5 +87,25 @@ namespace WeaverCore.Utilities
 			}
 			return hash;
 		}
+
+		/*struct LambdaComparer<T> : IComparer<T>
+		{
+			public Func<T, T, int> Comparer;
+
+			public LambdaComparer(Func<T,T,int> comparer)
+			{
+				Comparer = comparer;
+			}
+
+			int IComparer<T>.Compare(T x, T y)
+			{
+				return Comparer(x, y);
+			}
+		}
+
+		public static void Sort<T>(this List<T> list, Func<T,T,int> comparer)
+		{
+			list.Sort(new LambdaComparer<T>(comparer));
+		}*/
 	}
 }

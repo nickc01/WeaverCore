@@ -9,18 +9,19 @@ using WeaverCore.Utilities;
 using System.Reflection;
 using System.Security.Permissions;
 using WeaverCore.Interfaces;
+using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Patches
 {
-	class HealthManager_Enemy : IInit
+	class HealthManager_Enemy
 	{
-		void IInit.OnInit()
+		[OnInit]
+		static void Init()
 		{
-			//WeaverLog.Log("HEALTH MANAGER INIT");
 			On.HealthManager.Start += HealthManager_Start;
 		}
 
-		private void HealthManager_Start(On.HealthManager.orig_Start orig, HealthManager self)
+		private static void HealthManager_Start(On.HealthManager.orig_Start orig, HealthManager self)
 		{
 			bool destroyed = false;
 

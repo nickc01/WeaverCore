@@ -59,14 +59,11 @@ namespace WeaverCore.Utilities
         {
             if (HarmonyAssembly == null)
             {
-                if (CoreInfo.LoadState == Enums.RunningState.Editor)
-                {
-                    HarmonyAssembly = Assembly.Load("0Harmony");
-                }
-                else
-                {
-                    HarmonyAssembly = ResourceLoader.LoadAssembly("0Harmony");
-                }
+#if UNITY_EDITOR
+                HarmonyAssembly = Assembly.Load("0Harmony");
+#else
+                HarmonyAssembly = ResourceLoader.LoadAssembly("0Harmony");
+#endif
                 HarmonyInstanceType = HarmonyAssembly.GetType("Harmony.HarmonyInstance");
                 HarmonyMethodType = HarmonyAssembly.GetType("Harmony.HarmonyMethod");
 
@@ -115,6 +112,10 @@ namespace WeaverCore.Utilities
 
         public DynamicMethod Patch(MethodBase original, MethodInfo prefix, MethodInfo postfix)
         {
+            if (harmonyInstance == null)
+            {
+                throw new Exception("This patcher is null");
+            }
             if (prefix == null && postfix == null)
             {
                 return null;

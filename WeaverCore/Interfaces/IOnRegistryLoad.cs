@@ -5,8 +5,8 @@ using System.Text;
 
 namespace WeaverCore.Interfaces
 {
-	public interface IOnRegistryLoad
+	public interface IOnFeatureLoad
 	{
-		void OnRegistryLoad(Registry registry);
+		void OnFeatureLoad(Registry registry);
 	}
 }

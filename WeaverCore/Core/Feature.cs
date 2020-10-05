@@ -10,7 +10,7 @@ namespace WeaverCore
 
     public abstract class Feature : MonoBehaviour, IFeature
     {
-        [SerializeField]
+        /*[SerializeField]
         bool featureEnabled = true;
 
         public bool FeatureEnabled
@@ -19,6 +19,6 @@ namespace WeaverCore
             {
                 return featureEnabled;
             }
-        }
+        }*/
     }
 }

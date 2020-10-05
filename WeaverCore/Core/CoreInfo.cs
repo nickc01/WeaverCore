@@ -9,12 +9,17 @@ namespace WeaverCore
 {
 	public static class CoreInfo
 	{
-		public static RunningState LoadState
+#if UNITY_EDITOR
+		public static readonly RunningState LoadState = ImplFinder.State;
+#else
+		public const RunningState LoadState = ImplFinder.State;
+#endif
+		/*public static RunningState LoadState
 		{
 			get
 			{
 				return ImplFinder.State;
 			}
-		}
+		}*/
 	}
 }

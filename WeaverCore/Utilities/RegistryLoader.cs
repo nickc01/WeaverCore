@@ -23,7 +23,7 @@ namespace WeaverCore.Utilities
 
 		public static void LoadAllRegistries(Type modType)
 		{
-			WeaverLog.Log("Loading Registries for " + modType.FullName);
+			//WeaverLog.Log("Loading Registries for " + modType.FullName);
 			LoadAllRegistries(modType.Assembly);
 		}
 
@@ -105,7 +105,7 @@ namespace WeaverCore.Utilities
 							{
 								if (registry.ModAssemblyName == assemblyName)
 								{
-									registry.Initialize();
+									registry.Initialize(bundle);
 								}
 							}
 						}

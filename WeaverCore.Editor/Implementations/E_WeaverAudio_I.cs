@@ -50,17 +50,19 @@ namespace WeaverCore.Editor.Implementations
 
 		public override WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
 		{
-			GameObject audioObject = new GameObject("__AUDIO_OBJECT__", typeof(AudioSource), typeof(WeaverAudioPlayer));
+			//GameObject audioObject = new GameObject("__AUDIO_OBJECT__", typeof(AudioSource), typeof(WeaverAudioPlayer));
+			var audioObject = WeaverAudioPlayer.Create(position);
 
-			return PlayReuse(audioObject.GetComponent<WeaverAudioPlayer>(), clip, position, volume, channel, autoPlay, deleteWhenDone);
+			return PlayReuse(audioObject, clip, position, volume, channel, autoPlay, deleteWhenDone);
 		}
 
 		public override WeaverAudioPlayer PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
 		{
-			var audioSource = audioObject.GetComponent<AudioSource>();
+			var audioSource = audioObject.AudioSource;//audioObject.GetComponent<AudioSource>();
 
 			audioSource.Stop();
 			audioSource.clip = clip;
+			audioObject.gameObject.name = "(Sound) " + clip.name;
 			audioObject.transform.position = position;
 			audioSource.volume = volume;
 			if (autoPlay)
@@ -68,14 +70,14 @@ namespace WeaverCore.Editor.Implementations
 				audioSource.Play();
 			}
 
-			var hollowAudio = audioObject.GetComponent<WeaverAudioPlayer>();
+			//var hollowAudio = audioObject.GetComponent<WeaverAudioPlayer>();
 
 			if (deleteWhenDone)
 			{
-				hollowAudio.Delete(clip.length);
+				audioObject.Delete(clip.length);
 			}
 
-			return hollowAudio;
+			return audioObject;
 		}
 
 		public override void SetObjectChannel(WeaverAudioPlayer audioObject, AudioChannel channel)

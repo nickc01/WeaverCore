@@ -45,12 +45,6 @@ namespace WeaverCore.Assets.Components
 				//WeaverLog.Log("CCC");
 				textMesh = GetComponentInChildren<Text>();
 			}
-			/*foreach (var component in GetComponentsInChildren<Component>())
-			{
-				WeaverLog.Log("Component = " + component.GetType());
-			}
-			WeaverLog.Log("DDD");
-			WeaverLog.Log("TextMeshPro = " + textMesh);*/
 			textMesh.text = name;
 			//WeaverLog.Log("EEE");
 		}

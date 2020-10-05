@@ -73,14 +73,11 @@ namespace WeaverCore.Editor.Systems
 					Scripts = MonoScriptUtilities.GetScriptPathsUnderAssembly("Assembly-CSharp")
 				};
 
+				mainModBuilder.Defines.Add("GAME_BUILD");
+
 				if (File.Exists(mainModBuilder.BuildPath))
 				{
 					File.Delete(mainModBuilder.BuildPath);
-				}
-
-				foreach (var script in mainModBuilder.Scripts)
-				{
-					Debug.Log("Script = " + script.Name);
 				}
 
 				mainModBuilder.ReferencePaths.Add(LibraryCompiler.DefaultAssemblyCSharpLocation.FullName);

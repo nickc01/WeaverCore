@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Enums;
 using WeaverCore.Interfaces;
 using WeaverCore.Internal;
@@ -14,13 +15,18 @@ namespace WeaverCore.Utilities
 {
 	public static class ImplFinder
     {
-        public static RunningState State { get; private set; }
-
+#if UNITY_EDITOR
+        public const RunningState State = RunningState.Editor;
+#else
+        public const RunningState State = RunningState.Game;
+#endif
         static Dictionary<Type, Type> Cache = new Dictionary<Type, Type>();
         static List<Type> FoundImplementations;
         static Assembly ImplAssembly;
 
-        static RunningState GetState()
+        internal static bool Initialized { get; private set; }
+
+        /*static RunningState GetState()
         {
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
@@ -30,25 +36,37 @@ namespace WeaverCore.Utilities
                 }
             }
             return RunningState.Game;
-        }
+        }*/
 
        // internal static void Init()
-        static ImplFinder()
+        [OnInit(int.MinValue)]
+        static void Initializer()
         {
+            if (Initialized)
+            {
+                return;
+            }
+            Initialized = true;
+           //Debug.LogError("D");
             //Debug.Log("Running ImplFinder");
             if (FoundImplementations == null)
             {
+                //Debug.LogError("C");
                 FoundImplementations = new List<Type>();
-                State = GetState();
-                if (State == RunningState.Editor)
-                {
+                //State = GetState();
+                //try
+                //{
+#if UNITY_EDITOR
                     ImplAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "WeaverCore.Editor");
-                }
-                else
-                {
-                    ImplAssembly = ResourceLoader.LoadAssembly("WeaverCore.Game");
-                }
-                //Debug.Log("Assembly Found = " + ImplAssembly);
+#else
+                ImplAssembly = ResourceLoader.LoadAssembly("WeaverCore.Game");
+#endif
+                //}
+                //catch (Exception e)
+                //{
+                    //Debug.LogError("ERROR = " + e);
+                    //return;
+                //}
                 try
                 {
                     foreach (var type in ImplAssembly.GetTypes())
@@ -81,6 +99,11 @@ namespace WeaverCore.Utilities
                     }
                 }
             }
+        }
+
+        static ImplFinder()
+        {
+            Initializer();
         }
 
         public static Type GetImplementationType<T>() where T : IImplementation

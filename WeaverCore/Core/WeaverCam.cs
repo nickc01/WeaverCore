@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Features;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
@@ -12,31 +13,24 @@ namespace WeaverCore
 {
 	public class WeaverCam : MonoBehaviour
 	{
-		class RInit : IRuntimeInit
+		[OnRuntimeInit]
+		static void Init()
 		{
-			public static void Init()
+			_instance = staticImpl.Create();
+			if (_instance == null)
 			{
-				_instance = staticImpl.Create();
-				if (_instance == null)
-				{
-					UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-				}
-				else
-				{
-					_instance.Initialize();
-				}
+				UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
 			}
+			else
+			{
+				_instance.Initialize();
+			}
+		}
 
-			public void RuntimeInit()
-			{
-				Init();
-			}
-
-			private static void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
-			{
-				UnityEngine.SceneManagement.SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
-				Init();
-			}
+		static void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+		{
+			UnityEngine.SceneManagement.SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+			Init();
 		}
 
 		private static WeaverCam _instance = null;
@@ -53,7 +47,7 @@ namespace WeaverCore
 			{
 				if (_instance == null)
 				{
-					RInit.Init();
+					Init();
 				}
 				return _instance;
 

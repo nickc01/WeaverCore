@@ -5,10 +5,10 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 
-namespace WeaverCore.Interfaces
+/*namespace WeaverCore.Interfaces
 {
 	public interface IInit
 	{
 		void OnInit();
 	}
-}
+}*/

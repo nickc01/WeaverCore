@@ -5,19 +5,21 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
+using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Patches
 {
-	public class HeroController_Player : IInit
+	static class HeroController_Player
 	{
-		void IInit.OnInit()
+		[OnInit]
+		static void Init()
 		{
 			On.HeroController.Start += HeroController_Start;
 		}
 
-		private void HeroController_Start(On.HeroController.orig_Start orig, HeroController self)
+		static void HeroController_Start(On.HeroController.orig_Start orig, HeroController self)
 		{
 			self.gameObject.AddComponent<Player>();
 			orig(self);

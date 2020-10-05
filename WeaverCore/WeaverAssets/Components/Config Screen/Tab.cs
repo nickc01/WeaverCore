@@ -12,7 +12,7 @@ namespace WeaverCore.Assets.Components
 		Button _button;
 
 		[HideInInspector]
-		public ModSettings settings;
+		public GlobalWeaverSettings settings;
 
 		public Button Button
 		{

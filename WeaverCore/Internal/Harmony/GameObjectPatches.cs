@@ -7,28 +7,35 @@ using UnityEngine;
 using System.Reflection;
 using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
+using WeaverCore.Attributes;
 
 namespace WeaverCore.Internal.Harmony
 {
 	public static class GameObjectPatches
 	{
-		class Patch : IPatch
+		/*class Patch : IPatch
 		{
 			void IPatch.Patch(HarmonyPatcher patcher)
 			{
-				MethodInfo postfix = typeof(GameObjectPatches).GetMethod("AllPostFix", BindingFlags.NonPublic | BindingFlags.Static);
+				
+			}
+		}*/
 
-				foreach (var m in typeof(UnityEngine.Object).GetMethods(BindingFlags.Public | BindingFlags.Static))
+		/*[OnHarmonyPatch]
+		static void ApplyPatches(HarmonyPatcher patcher)
+		{
+			MethodInfo postfix = typeof(GameObjectPatches).GetMethod("AllPostFix", BindingFlags.NonPublic | BindingFlags.Static);
+
+			foreach (var m in typeof(UnityEngine.Object).GetMethods(BindingFlags.Public | BindingFlags.Static))
+			{
+				var method = m;
+				if (method.Name == "Instantiate")
 				{
-					var method = m;
-					if (method.Name == "Instantiate")
+					if (method.ContainsGenericParameters)
 					{
-						if (method.ContainsGenericParameters)
-						{
-							method = method.MakeGenericMethod(typeof(UnityEngine.Object));
-						}
-						patcher.Patch(method, null, postfix);
+						method = method.MakeGenericMethod(typeof(UnityEngine.Object));
 					}
+					//patcher.Patch(method, null, postfix);
 				}
 			}
 		}
@@ -85,6 +92,6 @@ namespace WeaverCore.Internal.Harmony
 
 			gameObject.transform.localScale = -gameObject.transform.localScale;
 			gameObject.transform.localScale = -gameObject.transform.localScale;
-		}
+		}*/
 	}
 }

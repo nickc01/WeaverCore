@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
+using WeaverCore.Attributes;
 using WeaverCore.Enums;
 using WeaverCore.Game.Patches;
 using WeaverCore.Implementations;
@@ -15,15 +16,51 @@ namespace WeaverCore.Game.Implementations
 {
 	public class G_WeaverAudio_I : WeaverAudio_I
 	{
-		public override AudioMixer MainMixer => AudioHunter.Master.audioMixer;
+		static List<AudioMixerGroup> MixerGroups = new List<AudioMixerGroup>();
 
-		public override AudioMixerGroup MainMusic => AudioHunter.Music;
+		public override AudioMixer MainMixer => _master.audioMixer;
 
-		public override AudioMixerGroup Master => AudioHunter.Master;
+		static AudioMixerGroup _music;
+		public override AudioMixerGroup MainMusic => _music;
 
-		public override AudioMixerGroup Sounds => AudioHunter.Sound;
+		static AudioMixerGroup _master;
+		public override AudioMixerGroup Master => _master;
 
-		class AudioHunter : IInit
+		static AudioMixerGroup _sounds;
+		public override AudioMixerGroup Sounds => _sounds;
+
+		[OnInit]
+		static void Init()
+		{
+			UnboundCoroutine.Start(ScanForMixers());
+		}
+
+		static IEnumerator ScanForMixers()
+		{
+			yield return null;
+			foreach (var audioSource in GameObject.FindObjectsOfType<AudioSource>())
+			{
+				if (audioSource.outputAudioMixerGroup != null && !MixerGroups.Contains(audioSource.outputAudioMixerGroup))
+				{
+					MixerGroups.Add(audioSource.outputAudioMixerGroup);
+				}
+			}
+
+			if (_master == null)
+			{
+				_master = MixerGroups.FirstOrDefault(mixer => mixer.name == "Master");
+			}
+			if (_sounds == null)
+			{
+				_sounds = MixerGroups.FirstOrDefault(mixer => mixer.name == "Actors");
+			}
+			if (_music == null)
+			{
+				_music = MixerGroups.FirstOrDefault(mixer => mixer.name == "Main");
+			}
+		}
+
+		/*class AudioHunter : IInit
 		{
 			public static List<AudioMixerGroup> MixerGroups = new List<AudioMixerGroup>();
 			public static AudioMixerGroup Master;
@@ -54,13 +91,9 @@ namespace WeaverCore.Game.Implementations
 			}
 
 
-			void ScanForMixers()
+			IEnumerator ScanForMixers()
 			{
-				/*foreach (var mixer in Resources.FindObjectsOfTypeAll<AudioMixerGroup>())
-				{
-					WeaverLog.Log("Mixer = " + mixer);
-					MixerGroups.Add(mixer);
-				}*/
+				yield return null;
 				foreach (var audioSource in GameObject.FindObjectsOfType<AudioSource>())
 				{
 					if (audioSource.outputAudioMixerGroup != null && !MixerGroups.Contains(audioSource.outputAudioMixerGroup))
@@ -81,17 +114,10 @@ namespace WeaverCore.Game.Implementations
 				{
 					Music = MixerGroups.FirstOrDefault(mixer => mixer.name == "Main");
 				}
-
-				/*Debugger.Log("Mixer Start");
-				foreach (var mixer in MixerGroups)
-				{
-					Debugger.Log("New Mixer = " + mixer);
-				}
-				Debugger.Log("Mixer End");*/
 			}
 
 
-		}
+		}*/
 
 		/*[Serializable]
 		class AllMixers
@@ -139,9 +165,10 @@ namespace WeaverCore.Game.Implementations
 
 		public override WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
 		{
-			GameObject audioObject = new GameObject("__AUDIO_OBJECT__", typeof(AudioSource), typeof(WeaverAudioPlayer));
+			//GameObject audioObject = new GameObject("__AUDIO_OBJECT__", typeof(AudioSource), typeof(WeaverAudioPlayer));
+			var audioObject = WeaverAudioPlayer.Create(position);
 
-			return PlayReuse(audioObject.GetComponent<WeaverAudioPlayer>(), clip, position, volume, channel, autoPlay, deleteWhenDone);
+			return PlayReuse(audioObject, clip, position, volume, channel, autoPlay, deleteWhenDone);
 		}
 
 		public override WeaverAudioPlayer PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
@@ -174,30 +201,30 @@ namespace WeaverCore.Game.Implementations
 			{
 				case AudioChannel.Master:
 					//WeaverLog.Log("Master = " + AudioHunter.Master);
-					audioObject.AudioSource.outputAudioMixerGroup = AudioHunter.Master;
+					audioObject.AudioSource.outputAudioMixerGroup = Master;
 					break;
 				case AudioChannel.Sound:
 					//WeaverLog.Log("Actors = " + AudioHunter.Sound);
-					audioObject.AudioSource.outputAudioMixerGroup = AudioHunter.Sound;
+					audioObject.AudioSource.outputAudioMixerGroup = Sounds;
 					break;
 				case AudioChannel.Music:
 					//WeaverLog.Log("Music = " + AudioHunter.Music);
-					audioObject.AudioSource.outputAudioMixerGroup = AudioHunter.Music;
+					audioObject.AudioSource.outputAudioMixerGroup = MainMusic;
 					break;
 			}
 		}
 
 		public override AudioChannel GetObjectChannel(WeaverAudioPlayer audioObject)
 		{
-			if (audioObject.AudioSource.outputAudioMixerGroup == AudioHunter.Master)
+			if (audioObject.AudioSource.outputAudioMixerGroup == Master)
 			{
 				return AudioChannel.Master;
 			}
-			else if (audioObject.AudioSource.outputAudioMixerGroup == AudioHunter.Sound)
+			else if (audioObject.AudioSource.outputAudioMixerGroup == Sounds)
 			{
 				return AudioChannel.Sound;
 			}
-			else if (audioObject.AudioSource.outputAudioMixerGroup == AudioHunter.Music)
+			else if (audioObject.AudioSource.outputAudioMixerGroup == MainMusic)
 			{
 				return AudioChannel.Music;
 			}

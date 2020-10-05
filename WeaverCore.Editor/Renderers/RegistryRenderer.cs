@@ -18,6 +18,7 @@ namespace WeaverCore.Editor.Renderers
 
 		void OnEnable()
 		{
+			//Debug.Log("Checker Enabled");
 			checker = new RegistryChecker(serializedObject);
 			checker.Check();
 		}
@@ -25,7 +26,7 @@ namespace WeaverCore.Editor.Renderers
 		public override void OnInspectorGUI()
 		{
 			serializedObject.Update();
-			foreach (var property in serializedObject.Iterator("selectedModIndex","selectedFeatureIndex","modAssemblyName","modTypeName","featuresRaw","modListHashCode"))
+			foreach (var property in serializedObject.Iterator("selectedModIndex","selectedFeatureIndex","modAssemblyName","modTypeName","modListHashCode", "featureBundlePaths", "featureTypesRaw"))
 			{
 				if (property.name == "modName")
 				{
@@ -64,7 +65,14 @@ namespace WeaverCore.Editor.Renderers
 						var newFeature = EditorGUILayout.ObjectField(feature.Value.feature, featureType, false);
 						if (newFeature != feature.Value.feature)
 						{
-							checker.SetFeature(feature.Index,newFeature as IFeature,featureType);
+							if (newFeature == null)
+							{
+								checker.SetFeature(feature.Index, newFeature as IFeature,featureType);
+							}
+							else
+							{
+								checker.SetFeature(feature.Index, newFeature as IFeature);
+							}
 						}
 
 						if (GUILayout.Button("X", GUILayout.MaxWidth(25)))

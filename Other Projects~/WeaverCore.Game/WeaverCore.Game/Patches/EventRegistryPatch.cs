@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Patches
 {
-	public class EventRegistryPatch : IInit
+	static class EventRegistryPatch
 	{
-		private void EventRegister_SendEvent(On.EventRegister.orig_SendEvent orig, string eventName)
+		private static void EventRegister_SendEvent(On.EventRegister.orig_SendEvent orig, string eventName)
 		{
 			//Debugger.Log("Event Triggered = " + eventName);
 			orig(eventName);
 		}
 
-		void IInit.OnInit()
+		[OnInit]
+		static void Init()
 		{
 			On.EventRegister.SendEvent += EventRegister_SendEvent;
 		}

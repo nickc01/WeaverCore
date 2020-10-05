@@ -5,21 +5,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using WeaverCore;
+using WeaverCore.Attributes;
 using WeaverCore.Features;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 public class WeaverCanvas : MonoBehaviour 
 {
-	class OnGameStart : IRuntimeInit
+	[OnRuntimeInit]
+	static void OnGameStart()
 	{
-		void IRuntimeInit.RuntimeInit()
+		//Debug.LogError("Spawning Canvas!!!");
+		if (GameObject.FindObjectOfType<WeaverCanvas>() == null)
 		{
-			Debug.Log("Spawning Canvas");
-			if (GameObject.FindObjectOfType<WeaverCanvas>() == null)
-			{
-				GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas"),null);
-			}
+			GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas"), null);
 		}
 	}
 
@@ -37,7 +36,7 @@ public class WeaverCanvas : MonoBehaviour
 	{
 		Instance = this;
 		GameObject.DontDestroyOnLoad(gameObject);
-		Debug.Log("Init canvas");
+		//Debug.Log("Init canvas");
 		if (GameObject.FindObjectOfType<EventSystem>() == null)
 		{
 			var eventObject = new GameObject("Event System");
@@ -59,36 +58,32 @@ public class WeaverCanvas : MonoBehaviour
 
 		foreach (var extension in Registry.GetAllFeatures<CanvasExtension>())
 		{
-			if (extension.AddedByDefault)
+			if (extension.AddedOnStartup)
 			{
+#if UNITY_EDITOR
 				if (!ContainedInObject(content.gameObject, extension.gameObject))
 				{
-					GameObject.Instantiate(extension.gameObject, content);
+					//GameObject.Instantiate(extension.gameObject, content);
+					extension.AddToWeaverCanvas();
 				}
+#else
+				extension.AddToWeaverCanvas();
+#endif
 			}
 		}
 	}
-
+#if UNITY_EDITOR
 	static bool ContainedInObject(GameObject searchIn, GameObject childToSearchFor)
 	{
-		//var childTransform = childToSearchFor.transform;
-		//var childhash = TransformUtilities.GetHashOfTransform(childToSearchFor.transform);
 		for (int i = 0; i < searchIn.transform.childCount; i++)
 		{
 			if (searchIn.transform.GetChild(i).gameObject.name == childToSearchFor.name)
 			{
 				return true;
 			}
-
-
-
-			/*var hash = TransformUtilities.GetHashOfTransform(searchIn.transform.GetChild(i));
-			if (hash == childhash)
-			{
-				return true;
-			}*/
 		}
 
 		return false;
 	}
+#endif
 }

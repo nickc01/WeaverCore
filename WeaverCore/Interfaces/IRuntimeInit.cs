@@ -5,8 +5,8 @@ using System.Text;
 
 namespace WeaverCore.Interfaces
 {
-	public interface IRuntimeInit
+	/*public interface IRuntimeInit
 	{
 		void RuntimeInit();
-	}
+	}*/
 }

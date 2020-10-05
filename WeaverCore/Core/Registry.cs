@@ -1,8 +1,11 @@
-﻿using System;
+﻿//#undef UNITY_EDITOR
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Interfaces;
@@ -19,6 +22,76 @@ namespace WeaverCore
         public string AssemblyName;
     }
 
+    public struct FeatureType<T> where T : class
+    {
+        public readonly Type Type;
+        public readonly Registry Registry;
+#if UNITY_EDITOR
+        T Instance;
+
+        internal FeatureType(T instance, Registry registry)
+        {
+            Instance = instance;
+            Registry = registry;
+            Type = instance.GetType();
+        }
+
+        public T Load()
+        {
+            if (Instance is IOnFeatureLoad)
+            {
+                var onFeatureLoad = (IOnFeatureLoad)Instance;
+                onFeatureLoad.OnFeatureLoad(Registry);
+            }
+            return Instance;
+        }
+#else
+        string AssetName;
+
+        internal FeatureType(Registry registry, Type type, string assetName)
+        {
+            Type = type;
+            AssetName = assetName;
+            Registry = registry;
+
+            //Instance = instance;
+            //Registry = registry;
+            //Type = instance.GetType();
+        }
+
+        public T Load()
+        {
+            WeaverLog.Log("AssetName = " + AssetName + ", Type = " + Type.FullName + ", Registry = " + Registry.RegistryName + ", conversion to = " + typeof(T).FullName);
+            WeaverLog.Log("Bundle = " + Registry.RegistryBundle);
+            var asset = Registry.RegistryBundle.LoadAsset<UnityEngine.Object>(AssetName);
+
+            WeaverLog.Log("Asset = " + asset);
+
+            if (asset == null)
+            {
+                return null;
+            }
+
+            T instance = asset as T;
+
+            if (instance == null && asset is GameObject)
+            {
+                instance = (asset as GameObject).GetComponent<T>();
+            }
+            WeaverLog.Log("Instance A = " + (asset == null ? "null" : asset.GetType().FullName));
+            WeaverLog.Log("Instance = " + instance);
+            WeaverLog.Log("Instance B = " + Registry.RegistryBundle.LoadAsset(AssetName.ToLower(),Type));
+            //var instance = Registry.RegistryBundle.LoadAsset(AssetName.ToLower(), Type) as T;
+            if (instance is IOnFeatureLoad)
+            {
+                var onFeatureLoad = (IOnFeatureLoad)instance;
+                onFeatureLoad.OnFeatureLoad(Registry);
+            }
+            return instance;
+        }
+#endif
+    }
+
 
     /// <summary>
     /// Used to store a variety of Features to be added to the game <seealso cref="IFeature"/>
@@ -26,7 +99,7 @@ namespace WeaverCore
     [CreateAssetMenu(fileName = "ModRegistry", menuName = "WeaverCore/Registry", order = 1)]
     public class Registry : ScriptableObject
     {
-        static Dictionary<string, Assembly> assemblyNames;
+        //static Dictionary<string, Assembly> assemblyNames;
 
 
         [SerializeField]
@@ -45,17 +118,33 @@ namespace WeaverCore
         [SerializeField]
         int modListHashCode = 0;
 
+#if !GAME_BUILD
         [SerializeField]
         List<FeatureSet> features;
+#endif
+
+        //[SerializeField]
+        //List<UnityEngine.Object> featuresRaw;
 
         [SerializeField]
-        List<UnityEngine.Object> featuresRaw;
+        List<string> featureBundlePaths;
+
+        [SerializeField]
+        List<string> featureTypesRaw;
+#if !UNITY_EDITOR
+        List<Type> FeatureTypes;
+#endif
 
         [SerializeField]
         int selectedFeatureIndex = 0;
 
         [SerializeField]
         int selectedModIndex = 0;
+
+        /// <summary>
+        /// The assetbundle that this registry is loaded from. This is set to null if loaded in the Editor
+        /// </summary>
+        public AssetBundle RegistryBundle { get; internal set; }
 
 
         /// <summary>
@@ -138,38 +227,35 @@ namespace WeaverCore
         {
             get
             {
-                if (assemblyNames == null)
-                {
-                    assemblyNames = new Dictionary<string, Assembly>();
-                    foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-                    {
-                        assemblyNames.Add(assembly.GetName().Name, assembly);
-                    }
-                    AppDomain.CurrentDomain.AssemblyLoad += NewAssemblyLoaded;
-                }
                 if (modType == null || modType.FullName != modTypeName)
                 {
-                    modType = assemblyNames[modAssemblyName].GetType(modTypeName);
+                    var assembly = Assembly.Load(modAssemblyName);
+                    if (assembly != null)
+                    {
+                        modType = assembly.GetType(modTypeName);
+                    }
                 }
                 return modType;
             }
         }
 
-        private static void NewAssemblyLoaded(object sender, AssemblyLoadEventArgs args)
+        /*private static void NewAssemblyLoaded(object sender, AssemblyLoadEventArgs args)
         {
             if (!assemblyNames.ContainsKey(args.LoadedAssembly.GetName().Name))
             {
                 assemblyNames.Add(args.LoadedAssembly.GetName().Name, args.LoadedAssembly);
             }
-        }
+        }*/
 
         /// <summary>
-        /// Initializes the Registry. This is automatically called when the bound mod is loaded
+        /// Initializes the Registry. This is automatically called when the registry is loaded
         /// </summary>
-        public void Initialize()
+        public void Initialize(AssetBundle bundle)
         {
             if (!initialized)
             {
+                RegistryBundle = bundle;
+
                 WeaverLog.Log("Loading Registry = " + RegistryName + " for mod = " + ModName);
                 //initialized = true;
                 AllRegistries.Add(this);
@@ -177,13 +263,54 @@ namespace WeaverCore
                 {
                     ActiveRegistries.Add(this);
                 }
-                foreach (var feature in featuresRaw)
+                //WeaverLog.Log("-----Registry = " + RegistryName);
+                /*for (int i = 0; i < featureTypesRaw.Count; i++)
                 {
-                    if (feature is IFeature && ((IFeature)feature).FeatureEnabled && feature is IOnRegistryLoad)
+                    //Debug.Log("Registry = " + registryName + " , Type = " + featureTypesRaw[i]);
+                    WeaverLog.Log("Feature = " + featureTypesRaw[i]);
+                    WeaverLog.Log("Bundle Path = " + featureBundlePaths[i]);
+                }
+
+                if (RegistryBundle != null)
+                {
+                    WeaverLog.Log("RegistryBundle = " + RegistryBundle);
+
+                    foreach (var name in RegistryBundle.GetAllAssetNames())
+                    {
+                        WeaverLog.Log("Asset Name = " + name);
+                    }
+                }*/
+
+
+
+
+#if !UNITY_EDITOR
+                FeatureTypes = new List<Type>();
+                foreach (var modTypePath in featureTypesRaw)
+                {
+                    var split = modTypePath.Split(':');
+                    var assemblyName = split[0];
+                    var typeName = split[1];
+                    var assembly = Assembly.Load(assemblyName);
+                    if (assembly != null)
+                    {
+                        var type = assembly.GetType(typeName);
+                        if (type != null)
+                        {
+                            FeatureTypes.Add(type);
+                            continue;
+                        }
+                    }
+                    FeatureTypes.Add(null);
+                }
+#endif
+                /*foreach (var set in features)
+                {
+                    if (set.feature is IFeature && ((IFeature)set.feature).FeatureEnabled && set.feature is IOnFeatureLoad)
                     {
                         try
                         {
-                            ((IOnRegistryLoad)feature).OnRegistryLoad(this);
+                            ((IOnFeatureLoad)set.feature).OnRegistryLoad(this);
                         }
                         catch (Exception e)
                         {
@@ -191,11 +318,25 @@ namespace WeaverCore
                         }
                     }
                 }
+                foreach (var feature in featuresRaw)
+                {
+                    if (feature is IFeature && ((IFeature)feature).FeatureEnabled && feature is IOnFeatureLoad)
+                    {
+                        try
+                        {
+                            ((IOnFeatureLoad)feature).OnRegistryLoad(this);
+                        }
+                        catch (Exception e)
+                        {
+                            WeaverLog.LogError("Registry Load Error: " + e);
+                        }
+                    }
+                }*/
 
             }
         }
 
-        public override bool Equals(object other)
+        /*public override bool Equals(object other)
         {
             if (other is Registry)
             {
@@ -218,7 +359,7 @@ namespace WeaverCore
         public override string ToString()
         {
             return registryName;
-        }
+        }*/
 
 
         static HashSet<Registry> ActiveRegistries = new HashSet<Registry>();
@@ -233,6 +374,11 @@ namespace WeaverCore
         public static IEnumerable<T> GetAllFeatures<T>() where T : class
         {
             return GetAllFeatures<T>(f => true);
+        }
+
+        public static IEnumerable<FeatureType<T>> GetAllFeatureTypes<T>() where T : class
+        {
+            return GetAllFeatureTypes<T>(f => true);
         }
 
         /// <summary>
@@ -256,6 +402,21 @@ namespace WeaverCore
             }
         }
 
+        public static IEnumerable<FeatureType<T>> GetAllFeatureTypes<T>(Func<FeatureType<T>, bool> predicate) where T : class
+        {
+            foreach (var registry in ActiveRegistries)
+            {
+                if (registry != null && registry.registryEnabled)
+                {
+                    //Debugger.Log("B");
+                    foreach (var result in registry.GetFeatureTypes(predicate))
+                    {
+                        yield return result;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Searches the registry and finds the specifed features
         /// </summary>
@@ -266,6 +427,11 @@ namespace WeaverCore
             return GetFeatures<T>(f => true);
         }
 
+        public IEnumerable<FeatureType<T>> GetFeatureTypes<T>() where T : class
+        {
+            return GetFeatureTypes<T>(f => true);
+        }
+
         /// <summary>
         /// Searches the registry and finds the specifed features
         /// </summary>
@@ -274,22 +440,62 @@ namespace WeaverCore
         /// <returns>Returns an Itereator with all the features in it</returns>
         public IEnumerable<T> GetFeatures<T>(Func<T, bool> predicate) where T : class
         {
-            // Debugger.Log("Features Raw = " + featuresRaw);
-            foreach (var rawFeature in featuresRaw)
+            foreach (var types in GetFeatureTypes<T>())
             {
-                if (rawFeature != null && rawFeature is IFeature)
+                var instance = types.Load();
+                if (predicate(instance))
                 {
-                    var feature = (IFeature)rawFeature;
-
-                    if (feature.FeatureEnabled && typeof(T).IsAssignableFrom(feature.GetType()) && predicate(feature as T))
-                    {
-                        yield return feature as T;
-                    }
+                    yield return instance;
                 }
             }
         }
 
-        /// <summary>
+        public IEnumerable<FeatureType<T>> GetFeatureTypes<T>(Func<FeatureType<T>, bool> predicate) where T : class
+        {
+#if UNITY_EDITOR
+            foreach (var set in features)
+            {
+                if (set.feature != null && set.feature is IFeature)
+                {
+                    var feature = (IFeature)set.feature;
+
+                    if (typeof(T).IsAssignableFrom(feature.GetType()))
+                    {
+                        var featureType = new FeatureType<T>(feature as T, this);
+                        if (predicate(featureType))
+                        {
+                            yield return featureType;
+                        }
+                        /*if (feature is IOnFeatureLoad)
+                        {
+                            var onFeatureLoad = (IOnFeatureLoad)feature;
+                            onFeatureLoad.OnFeatureLoad(this);
+                        }*/
+                    }
+                }
+            }
+#else
+            for (int i = 0; i < featureBundlePaths.Count; i++)
+            {
+                var type = FeatureTypes[i];
+                if (type != null && typeof(T).IsAssignableFrom(type))
+                {
+                    var assetName = featureBundlePaths[i];
+
+                    var featureType = new FeatureType<T>(this,type, assetName);
+
+                    //var instance = RegistryBundle.LoadAsset(assetName, type) as T;
+                    if (predicate(featureType))
+                    {
+                        yield return featureType;
+                    }
+                }
+            }
+
+#endif
+        }
+
+        /*/// <summary>
         /// Adds a new feature to the registry
         /// </summary>
         /// <typeparam name="T">The type of feature to add</typeparam>
@@ -353,7 +559,7 @@ namespace WeaverCore
                 }
             }
             return false;
-        }
+        }*/
 
         /// <summary>
         /// Find a loaded registry pertaining to a mod

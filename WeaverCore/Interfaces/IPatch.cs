@@ -8,8 +8,8 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Interfaces
 {
-	public interface IPatch
+	/*public interface IPatch
 	{
 		void Patch(HarmonyPatcher patcher);
-	}
+	}*/
 }

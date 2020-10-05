@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using WeaverCore.Enums;
+using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	public class WeaverAudioPlayer : MonoBehaviour
+	public class WeaverAudioPlayer : MonoBehaviour, IPoolableObject
 	{
+		static ObjectPool<WeaverAudioPlayer> Pool;
+		static WeaverAudioPlayer baseObject;
+
+
 		private AudioSource audioSource;
 		public AudioSource AudioSource
 		{
@@ -49,7 +55,14 @@ namespace WeaverCore
 
 		public void Delete(float timer = 0f)
 		{
-			Destroy(gameObject, timer);
+			if (Pool == null)
+			{
+				Destroy(gameObject, timer);
+			}
+			else
+			{
+				Pool.ReturnToPool(this, timer);
+			}
 		}
 
 		public void Play(bool deleteWhenDone = false)
@@ -77,6 +90,34 @@ namespace WeaverCore
 			Volume = volume;
 			Channel = channel;
 			Play(deleteWhenDone);
+		}
+
+		public static WeaverAudioPlayer Create(Vector3 position = default(Vector3))
+		{
+			if (Pool == null || Pool.ObjectToPool == null || Pool.ObjectToPool.gameObject == null || Pool.Recycler == null || Pool.Recycler.gameObject == null)
+			{
+				GameObject newObj = new GameObject("__AUDIO_OBJECT_BASE__", typeof(AudioSource));
+				if (baseObject == null)
+				{
+					baseObject = newObj.AddComponent<WeaverAudioPlayer>();
+					GameObject.DontDestroyOnLoad(baseObject.gameObject);
+				}
+				Pool = ObjectPool<WeaverAudioPlayer>.CreatePool(baseObject, DataTypes.ObjectPoolStorageType.ActiveSceneOnly, 2, true);
+			}
+			return Pool.RetrieveFromPool(position,Quaternion.identity);
+		}
+
+		void IPoolableObject.OnPool()
+		{
+			AudioSource.Stop();
+			AudioSource.pitch = 1f;
+			AudioSource.mute = false;
+			AudioSource.bypassEffects = false;
+			AudioSource.bypassListenerEffects = false;
+			AudioSource.playOnAwake = true;
+			Clip = null;
+			Volume = 1f;
+			Channel = AudioChannel.None;
 		}
 	}
 }

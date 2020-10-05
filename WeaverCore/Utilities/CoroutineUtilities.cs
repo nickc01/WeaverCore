@@ -26,7 +26,7 @@ namespace WeaverCore.Utilities
 			return component.StartCoroutine(RunWhile(routine, predicate));
 		}
 
-		static Func<WaitForSeconds, float> GetWFSTime = FieldUtilities.CreateGetter<WaitForSeconds, float>(typeof(WaitForSeconds).GetField("m_Seconds", BindingFlags.Instance | BindingFlags.NonPublic));
+		static Func<WaitForSeconds, float> GetWFSTime = ReflectionUtilities.CreateFieldGetter<WaitForSeconds, float>(typeof(WaitForSeconds).GetField("m_Seconds", BindingFlags.Instance | BindingFlags.NonPublic));
 
 
 		/// <summary>

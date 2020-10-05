@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Internal
@@ -83,32 +84,30 @@ namespace WeaverCore.Editor.Internal
 			}
 		}
 
-		class Init : IInit
+		[OnInit]
+		static void OnInit()
 		{
-			public void OnInit()
-			{
-				EditorApplication.playModeStateChanged += EditorApplication_playModeStateChanged;
-			}
+			EditorApplication.playModeStateChanged += EditorApplication_playModeStateChanged;
+		}
 
-			[UnityEditor.Callbacks.DidReloadScripts]
-			static void OnReload()
+		[UnityEditor.Callbacks.DidReloadScripts]
+		static void OnReload()
+		{
+			if (DoOnScriptReload)
 			{
-				if (DoOnScriptReload)
-				{
-					DoReloadTools = true;
-				}
+				DoReloadTools = true;
 			}
+		}
 
-			private static void EditorApplication_playModeStateChanged(PlayModeStateChange obj)
+		static void EditorApplication_playModeStateChanged(PlayModeStateChange obj)
+		{
+			if (obj == PlayModeStateChange.ExitingEditMode)
 			{
-				if (obj == PlayModeStateChange.ExitingEditMode)
-				{
-					DoReloadTools = false;
-				}
-				else
-				{
-					DoReloadTools = true;
-				}
+				DoReloadTools = false;
+			}
+			else
+			{
+				DoReloadTools = true;
 			}
 		}
 	}

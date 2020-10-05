@@ -10,15 +10,16 @@ using WeaverCore.Game.Implementations;
 using WeaverCore.Interfaces;
 using System.Reflection;
 using System.Linq;
+using WeaverCore.Attributes;
 
 namespace WeaverCore.Game
 {
-    class GameInitializer : IInit
+    static class GameInitializer
     {
-        void IInit.OnInit()
+        [OnInit(int.MaxValue)]
+        static void Init()
         {
-            //ModLoader.LoadAllMods();
-			RuntimeInitializer.RuntimeInit();
+			RuntimeInitRunner.RuntimeInit();
         }
 	}
 }

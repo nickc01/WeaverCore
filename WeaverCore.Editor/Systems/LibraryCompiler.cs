@@ -4,12 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using UnityEditor;
 using UnityEngine;
 using WeaverBuildTools.Commands;
 using WeaverBuildTools.Enums;
+using WeaverCore.Attributes;
 using WeaverCore.Editor.Internal;
 using WeaverCore.Editor.Structures;
 using WeaverCore.Editor.Utilities;
@@ -47,15 +49,12 @@ namespace WeaverCore.Editor.Systems
 			}
 		}
 
-
-		class OnReload : IInit
+		[OnInit]
+		static void Init()
 		{
-			void IInit.OnInit()
+			if (WeaverReloadTools.DoReloadTools)
 			{
-				if (WeaverReloadTools.DoReloadTools)
-				{
-					BuildStrippedWeaverCore();
-				}
+				BuildStrippedWeaverCore();
 			}
 		}
 
@@ -240,6 +239,7 @@ namespace WeaverCore.Editor.Systems
 			var scripts = Builder.GetAllRuntimeInDirectory("*.cs", "Assets\\WeaverCore\\Hollow Knight");
 			scripts.RemoveAll(f => f.FullName.Contains("Editor\\"));
 			assemblyCSharpBuilder.Scripts = scripts;
+			assemblyCSharpBuilder.Defines.Add("GAME_BUILD");
 			assemblyCSharpBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
 			if (File.Exists(buildLocation))
 			{
@@ -267,6 +267,7 @@ namespace WeaverCore.Editor.Systems
 
 				var weaverCoreBuilder = new Builder();
 				weaverCoreBuilder.BuildPath = buildLocation;
+				weaverCoreBuilder.Defines.Add("GAME_BUILD");
 				weaverCoreBuilder.Scripts = Builder.GetAllRuntimeInDirectory("*.cs", "Assets\\WeaverCore\\WeaverCore").Where(f => f.Directory.FullName.Contains(""));
 
 				//For some reason, this only works when using forward slashes and not backslashes.
@@ -289,7 +290,7 @@ namespace WeaverCore.Editor.Systems
 		}
 	}
 
-	class AssemblyReplacer : SimplePatcher
+	static class AssemblyReplacer// : ClassWidePatcher
 	{
 		public static Dictionary<string, string> AssemblyReplacements = new Dictionary<string, string>();
 
@@ -301,13 +302,23 @@ namespace WeaverCore.Editor.Systems
 			}
 		}
 
-		protected override Type GetClassToPatch()
+		/*protected override Type GetClassToPatch()
 		{
 			return typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface");
+		}*/
+
+		[OnInit]
+		static void Init()
+		{
+			var type = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface");
+			var patcher = HarmonyPatcher.Create("com.AssemblyReplacer.patch");
+			patcher.Patch(type.GetMethod("GetTargetAssemblies",BindingFlags.Public | BindingFlags.Static),null, typeof(AssemblyReplacer).GetMethod("PostfixGetTargetAssemblies"));
+			patcher.Patch(type.GetMethod("GetTargetAssembly",BindingFlags.Public | BindingFlags.Static),null, typeof(AssemblyReplacer).GetMethod("PostfixGetTargetAssembly"));
 		}
 
 		public static void PostfixGetTargetAssemblies(ref Array __result)
 		{
+			//Debug.Log("Target Assemblies Test A");
 			try
 			{
 				if (EnableReplacements)
@@ -336,6 +347,7 @@ namespace WeaverCore.Editor.Systems
 
 		public static void PostfixGetTargetAssembly(ref object __result, string scriptPath)
 		{
+			//Debug.Log("Target Assembly Test B");
 			try
 			{
 				if (__result is string)

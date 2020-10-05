@@ -14,11 +14,17 @@ namespace WeaverCore.Utilities
 
         static UnityHelpers()
         {
-            GetCachedPtr = MethodUtilities.ConvertToDelegate<Func<UnityEngine.Object, IntPtr>, UnityEngine.Object>("GetCachedPtr");
+            GetCachedPtr = ReflectionUtilities.MethodToDelegate<Func<UnityEngine.Object, IntPtr>, UnityEngine.Object>("GetCachedPtr");
             IsNativeObjectAlive = o =>
             {
                 return GetCachedPtr(o) != IntPtr.Zero;
             };
+        }
+
+
+        public static bool IsObjectTrulyNull(UnityEngine.Object obj)
+        {
+            return ((object)obj) == null;
         }
     }
 }

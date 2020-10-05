@@ -121,6 +121,10 @@ namespace WeaverCore.Components
 
 		public virtual bool Hit(HitInfo hit)
 		{
+			//WeaverLog.Log("ENEMY HIT = " + hit);
+			//WeaverLog.Log("Health = " + _health);
+			//WeaverLog.Log("EvasionTime = " + EvasionTimeLeft);
+			//WeaverLog.Log("Invincible = " + Invincible);
 			var hitResult = IsValidHit(hit);
 			impl.OnHit(hit, hitResult);
 			switch (hitResult)

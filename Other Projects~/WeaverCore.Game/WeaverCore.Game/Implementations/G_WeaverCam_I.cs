@@ -17,10 +17,6 @@ namespace WeaverCore.Game.Implementations
 		{
 			public override WeaverCam Create()
 			{
-				/*foreach (var camera in UnityEngine.Object.FindObjectsOfType<Camera>())
-				{
-					WeaverLog.Log("Camera = " + camera.name);
-				}*/
 				var cameraParent = GameObject.Find("CameraParent");
 				if (cameraParent == null)
 				{
@@ -71,10 +67,10 @@ namespace WeaverCore.Game.Implementations
 				On.HutongGames.PlayMaker.Actions.ShakePosition.Reset += ShakePosition_Reset;
 				shakerFSM = gameObject.LocateMyFSM("CameraShake");
 				ShakingHugeEvent = shakerFSM.FsmStates.First(e => e.Name == "ShakingHuge");
-				GetTimer = FieldUtilities.CreateGetter<ShakePosition, float>("timer");
-				GetStartingWorldPosition = FieldUtilities.CreateGetter<ShakePosition, Vector3>("startingWorldPosition");
-				SetTimer = FieldUtilities.CreateSetter<ShakePosition, float>("timer");
-				StopAndReset = MethodUtilities.ConvertToDelegate<Action<ShakePosition>, ShakePosition>("StopAndReset");
+				GetTimer = ReflectionUtilities.CreateFieldGetter<ShakePosition, float>("timer");
+				GetStartingWorldPosition = ReflectionUtilities.CreateFieldGetter<ShakePosition, Vector3>("startingWorldPosition");
+				SetTimer = ReflectionUtilities.CreateFieldSetter<ShakePosition, float>("timer");
+				StopAndReset = ReflectionUtilities.MethodToDelegate<Action<ShakePosition>, ShakePosition>("StopAndReset");
 			}
 
 			private void ShakePosition_Reset(On.HutongGames.PlayMaker.Actions.ShakePosition.orig_Reset orig, ShakePosition self)

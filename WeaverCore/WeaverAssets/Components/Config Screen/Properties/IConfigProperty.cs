@@ -23,7 +23,7 @@ namespace WeaverCore.Assets.Components
 			set;
 		}
 
-		void BindToField(ModSettings settings, FieldInfo field);
+		void BindToField(GlobalWeaverSettings settings, FieldInfo field);
 	}
 
 	public abstract class ConfigProperty : MonoBehaviour, IConfigProperty, IPointerEnterHandler
@@ -42,7 +42,7 @@ namespace WeaverCore.Assets.Components
 		[SerializeField]
 		protected Text titleText;
 
-		protected ModSettings settings;
+		protected GlobalWeaverSettings settings;
 		protected FieldInfo field;
 
 		public abstract Type BindingFieldType { get; }
@@ -67,7 +67,7 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
-		public void BindToField(ModSettings settings, FieldInfo field)
+		public void BindToField(GlobalWeaverSettings settings, FieldInfo field)
 		{
 			this.settings = settings;
 			this.field = field;

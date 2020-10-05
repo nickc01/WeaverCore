@@ -52,7 +52,7 @@ namespace WeaverCore.Editor
 				{
 					foreach (var type in assembly.GetTypes())
 					{
-						if (typeof(ModSettings).IsAssignableFrom(type) &&
+						if (typeof(GlobalWeaverSettings).IsAssignableFrom(type) &&
 							!type.IsAbstract &&
 							!type.ContainsGenericParameters &&
 							!type.IsInterface)
@@ -67,10 +67,10 @@ namespace WeaverCore.Editor
 
 				}
 			}
-			foreach (var type in SettingsTypes)
+			/*foreach (var type in SettingsTypes)
 			{
 				Debug.Log("Type = " + type);
-			}
+			}*/
 			settingsNames = names.ToArray();
 		}
 

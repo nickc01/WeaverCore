@@ -256,7 +256,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\G_ModSettings_I.cs" />
+    <Compile Include="Implementations\G_WeaverSettings_I.cs" />
     <Compile Include="Implementations\G_ObjectDumper_I.cs" />
     <Compile Include="Implementations\G_WeaverAssets_I.cs" />
     <Compile Include="Misc\SettingStorage.cs" />
@@ -275,7 +275,6 @@
     <Compile Include="Implementations\G_PropertyManager_I.cs" />
     <Compile Include="Implementations\G_RegistryLoader_I.cs" />
     <Compile Include="Implementations\G_Player_I.cs" />
-    <Compile Include="Implementations\G_WeaverRoutine_I.cs" />
     <Compile Include="Implementations\G_WeaverCam_I.cs" />
     <Compile Include="Implementations\G_WeaverEvents_I.cs" />
     <Compile Include="GameInitializer.cs" />

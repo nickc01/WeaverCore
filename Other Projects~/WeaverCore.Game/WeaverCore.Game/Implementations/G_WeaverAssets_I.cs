@@ -25,11 +25,11 @@ namespace WeaverCore.Game.Implementations
 			return weaverAssetBundle.LoadAsset<T>(assetName);
 		}
 
-		static void LoadRegistries()
+		static void LoadRegistries(AssetBundle bundle)
 		{
 			foreach (var registry in weaverAssetBundle.LoadAllAssets<Registry>())
 			{
-				registry.Initialize();
+				registry.Initialize(bundle);
 			}
 		}
 
@@ -65,7 +65,7 @@ namespace WeaverCore.Game.Implementations
 				{
 					try
 					{
-						WeaverLog.Log("Loading WeaverCore Bundle = " + resourceName);
+						//WeaverLog.Log("Loading WeaverCore Bundle = " + resourceName);
 						var bundle = AssetBundle.LoadFromStream(weaverAssembly.GetManifestResourceStream(resourceName));
 						weaverAssetBundle = bundle;
 						break;
@@ -80,7 +80,7 @@ namespace WeaverCore.Game.Implementations
 			{
 				throw new WeaverAssets.WeaverAssetsException("Unable to find the WeaverAssets Asset Bundle");
 			}
-			LoadRegistries();
+			LoadRegistries(weaverAssetBundle);
 
 		}
 	}

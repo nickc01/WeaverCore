@@ -5,19 +5,13 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor
 {
 	internal class GameBuildSettings
 	{
-		class Verifier : IInit
-		{
-			public void OnInit()
-			{
-				VerifySettings();
-			}
-		}
 
 		//static string fileLocation = null;
 
@@ -79,6 +73,7 @@ namespace WeaverCore.Editor
 			}
 		}
 
+		[OnInit]
 		public static void VerifySettings()
 		{
 			var settings = GetSettings();

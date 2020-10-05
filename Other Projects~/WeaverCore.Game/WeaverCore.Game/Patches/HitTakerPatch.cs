@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.DataTypes;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Patches
 {
-	class HitTakerPatch : IInit
+	static class HitTakerPatch
 	{
 		private static void HitTaker_Hit(On.HitTaker.orig_Hit orig, UnityEngine.GameObject targetGameObject, HitInstance damageInstance, int recursionDepth)
 		{
@@ -33,7 +34,8 @@ namespace WeaverCore.Game.Patches
 			orig(targetGameObject, damageInstance, recursionDepth);
 		}
 
-		void IInit.OnInit()
+		[OnInit]
+		static void Init()
 		{
 			On.HitTaker.Hit += HitTaker_Hit;
 		}

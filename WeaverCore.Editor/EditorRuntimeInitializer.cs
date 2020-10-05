@@ -14,11 +14,11 @@ using WeaverCore.Editor.Internal;
 
 namespace WeaverCore.Editor.Implementations
 {
-	public class EditorRuntimeInitializer : IRuntimeInit
+	/*public class EditorRuntimeInitializer : IRuntimeInit
 	{
 		void IRuntimeInit.RuntimeInit()
 		{
 			
 		}
-	}
+	}*/
 }

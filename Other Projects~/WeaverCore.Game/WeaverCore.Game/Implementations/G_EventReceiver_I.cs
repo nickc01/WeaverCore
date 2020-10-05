@@ -9,6 +9,7 @@ using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
+using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Implementations
 {
@@ -30,49 +31,20 @@ namespace WeaverCore.Game.Implementations
 			public GameObject destination;
 		}
 
-		class Patch : IPatch
+		[OnInit]
+		static void Init()
+		{
+			On.HutongGames.PlayMaker.Fsm.Event_FsmEventTarget_FsmEvent += Fsm_Event_FsmEventTarget_FsmEvent;
+		}
+
+		/*class Patch : IPatch
 		{
 			void IPatch.Patch(HarmonyPatcher patcher)
 			{
-				//Debugger.Log("DOING EVENT PATCH");
-				//EventPrefixMethod = typeof(G_EventReceiver_I).GetMethod(nameof(EventPrefix), BindingFlags.Static | BindingFlags.NonPublic);
-				//var IDCheckerMethod = typeof(G_EventReceiver_I).GetMethod(nameof(IDChecker), BindingFlags.Static | BindingFlags.NonPublic);
-				//var IDCheckerGMMethod = typeof(G_EventReceiver_I).GetMethod(nameof(IDCheckerGM), BindingFlags.Static | BindingFlags.NonPublic);
-
-				//var eventMethod = typeof(Fsm).GetMethod("Event", new Type[] { typeof(FsmEventTarget), typeof(FsmEvent) });
-
-
-				//var fsmT = typeof(Fsm);
-				//var fsmGMT = typeof(FsmGameObject);
-
-				//patcher.Patch(eventMethod, EventPrefixMethod, null);
-
 				On.HutongGames.PlayMaker.Fsm.Event_FsmEventTarget_FsmEvent += Fsm_Event_FsmEventTarget_FsmEvent;
 
-				//patcher.Patch(fsmT.GetConstructor(new Type[] { }), null, IDCheckerMethod);
-				//patcher.Patch(fsmT.GetConstructor(new Type[] { typeof(Fsm), typeof(FsmVariables) }), null, IDCheckerMethod);
-				//patcher.Patch(fsmT.GetMethod("Clear"), null, IDCheckerMethod);
-				//patcher.Patch(fsmT.GetMethod("Init"), null, IDCheckerMethod);
-				//patcher.Patch(fsmT.GetMethod("Init", new Type[] { typeof(MonoBehaviour) }), null, IDCheckerMethod);
-				//patcher.Patch(fsmT.GetMethod("OnDestroy"), null, IDCheckerMethod);
-				//patcher.Patch(fsmT.GetMethod("Reset"), null, IDCheckerMethod);
-				//patcher.Patch(fsmT.GetProperty("Owner").GetSetMethod(), null, IDCheckerMethod);
-
-				/*Debugger.Log("PATCH_A");
-				Debugger.Log("IDCHECKERGMMETHOD = " + IDCheckerGMMethod);
-				Debugger.Log("Property = " + fsmGMT.GetProperty("Value", BindingFlags.Public | BindingFlags.Instance));
-				Debugger.Log("Set Method = " + fsmGMT.GetProperty("Value",BindingFlags.Public | BindingFlags.Instance).GetSetMethod());
-				patcher.Patch(fsmGMT.GetProperty("Value").GetSetMethod(), null, IDCheckerGMMethod);
-				Debugger.Log("PATCH_B");
-				patcher.Patch(fsmGMT.GetProperty("RawValue").GetSetMethod(), null, IDCheckerGMMethod);
-				Debugger.Log("PATCH_C");
-				patcher.Patch(fsmGMT.GetMethod("SafeAssign"), null, IDCheckerGMMethod);
-				Debugger.Log("PATCH_D");
-				patcher.Patch(fsmGMT.GetConstructor(new Type[] { typeof(FsmGameObject) }), null, IDCheckerGMMethod);
-				Debugger.Log("PATCH_E");*/
-
 			}
-		}
+		}*/
 
 
 		//protected static PropertyTable<GameObject, GMProperties> GameObjectIDs = new PropertyTable<GameObject, GMProperties>();

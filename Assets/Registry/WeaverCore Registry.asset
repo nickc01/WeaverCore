@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b22a69b31cf2847a46eb90f159d6ae, type: 3}
   m_Name: WeaverCore Registry
   m_EditorClassIdentifier: 
-  registryName: WeaverCore Registry
+  registryName: Weaver Core Registry
   modName: Weaver Core
   modAssemblyName: WeaverCore
   modTypeName: WeaverCore.Internal.WeaverCore
@@ -21,10 +21,8 @@ MonoBehaviour:
       type: 2}
     TypeName: WeaverCore.Assets.Components.WeaverConfigScreen
     AssemblyName: WeaverCore
-  featureBundlePaths:
-  - Assets/WeaverCore/Assets/Prefabs/UI/WeaverCore Config Screen.prefab
-  featureTypesRaw:
-  - WeaverCore:WeaverCore.Assets.Components.WeaverConfigScreen
-  selectedFeatureIndex: 0
+  featuresRaw:
+  - {fileID: 114659249116894634, guid: 398106b2d51c2144b97ff3de7eec6dcb, type: 2}
+  selectedFeatureIndex: 4
   selectedModIndex: 1
   registryEnabled: 1

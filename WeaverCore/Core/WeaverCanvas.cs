@@ -15,7 +15,7 @@ public class WeaverCanvas : MonoBehaviour
 	[OnRuntimeInit]
 	static void OnGameStart()
 	{
-		//Debug.LogError("Spawning Canvas!!!");
+		Debug.Log("Spawning Canvas!!!");
 		if (GameObject.FindObjectOfType<WeaverCanvas>() == null)
 		{
 			GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas"), null);

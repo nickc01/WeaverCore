@@ -9,7 +9,7 @@ namespace WeaverCore.Editor.Internal
 {
 	static class ModLoader
 	{
-		[OnRuntimeInit]
+		[OnRuntimeInit(int.MaxValue)]
 		static void RuntimeInit()
 		{
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())

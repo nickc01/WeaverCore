@@ -105,7 +105,7 @@ namespace WeaverCore.Utilities
 							{
 								if (registry.ModAssemblyName == assemblyName)
 								{
-									registry.Initialize(bundle);
+									registry.Initialize();
 								}
 							}
 						}

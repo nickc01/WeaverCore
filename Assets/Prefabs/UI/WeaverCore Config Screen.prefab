@@ -2568,7 +2568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044cf6077f20224409d336a8add6f278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addedOnStartup: 1
+  addedOnStartup: 0
   ToggleButton: {fileID: 1518217167579682}
   ConfigMainMenu: {fileID: 1726117771948178}
   TabContents: {fileID: 224957842445762852}

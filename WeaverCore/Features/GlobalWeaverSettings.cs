@@ -11,13 +11,13 @@ using WeaverCore.Utilities;
 namespace WeaverCore.Configuration
 {
 	[ShowFeature]
-	public abstract class GlobalWeaverSettings : ScriptableObject, IFeature
+	public abstract class GlobalWeaverSettings : ScriptableObject, IFeature, IOnFeatureLoad
 	{
-		bool loaded = false;
+		//bool loaded = false;
 
-		static HashSet<GlobalWeaverSettings> LoadedSettings = new HashSet<GlobalWeaverSettings>();
+		//static HashSet<GlobalWeaverSettings> LoadedSettings = new HashSet<GlobalWeaverSettings>();
 
-		protected virtual void Awake()
+		/*protected virtual void Awake()
 		{
 			if (LoadedSettings.Add(this))
 			{
@@ -41,7 +41,7 @@ namespace WeaverCore.Configuration
 		protected virtual void OnDestroy()
 		{
 			LoadedSettings.Remove(this);
-		}
+		}*/
 
 
 
@@ -52,12 +52,13 @@ namespace WeaverCore.Configuration
 
 		public static T GetSettings<T>() where T : GlobalWeaverSettings
 		{
-			return (T)LoadedSettings.FirstOrDefault(s => s is T);
+			//return (T)LoadedSettings.FirstOrDefault(s => s is T);
+			return Registry.GetAllFeatures<T>().FirstOrDefault();
 		}
 
 		public static IEnumerable<GlobalWeaverSettings> GetAllSettings()
 		{
-			return LoadedSettings;
+			return Registry.GetAllFeatures<GlobalWeaverSettings>();
 		}
 
 		public void LoadSettings()
@@ -68,6 +69,11 @@ namespace WeaverCore.Configuration
 		public void SaveSettings()
 		{
 			impl.SaveSettings(this);
+		}
+
+		void IOnFeatureLoad.OnFeatureLoad(Registry registry)
+		{
+			LoadSettings();
 		}
 	}
 }

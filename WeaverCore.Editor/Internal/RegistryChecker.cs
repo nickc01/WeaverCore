@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
-using UnityEngine;
 using WeaverCore.Editor.Utilities;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
@@ -156,12 +155,11 @@ namespace WeaverCore.Editor.Internal
 		public override void Check()
 		{
 			var hashCode = GetListHashCode(ModList);
-			var assetBundleName = GetAssetBundleName(serializedObject.targetObject);
 			if (hashCode != GetInt("modListHashCode") || GetAssetBundleName(serializedObject.targetObject) == "")
 			{
 				int newIndex = 0;
 				Type mod = null;
-				if (Mods.FindMod(GetString("modTypeName"),GetString("modAssemblyName"),ModList,out mod))
+				if (Mods.FindMod(GetString("modTypeName"), GetString("modAssemblyName"), ModList, out mod))
 				{
 					newIndex = ModList.IndexOf(mod);
 					SetAssetBundle(ModNames[newIndex]);
@@ -170,7 +168,7 @@ namespace WeaverCore.Editor.Internal
 				{
 					SetString("modTypeName", ModList[0].FullName);
 					SetString("modAssemblyName", ModList[0].Assembly.GetName().Name);
-					SetString("modName",ModNames[0]);
+					SetString("modName", ModNames[0]);
 					SetAssetBundle(ModNames[0]);
 				}
 				else
@@ -211,15 +209,12 @@ namespace WeaverCore.Editor.Internal
 
 		public void SetAssetBundle(string name)
 		{
-			//Debug.Log("Setting Asset Bundle Name = " + name);
 			string bundleName = CreateBundleName(name);
 			SetAssetBundleWithBundleName(bundleName, serializedObject.targetObject);
-			var features = serializedObject.FindProperty("features");
-			var bundlePaths = serializedObject.FindProperty("featureBundlePaths");
-			for (int i = 0; i < bundlePaths.arraySize; i++)
+			var features = serializedObject.FindProperty("featuresRaw");
+			for (int i = 0; i < features.arraySize; i++)
 			{
-				var obj = features.GetArrayElementAtIndex(i).FindPropertyRelative("feature").objectReferenceValue;
-				bundlePaths.GetArrayElementAtIndex(i).stringValue = bundleName;
+				var obj = features.GetArrayElementAtIndex(i).objectReferenceValue;
 				if (obj != null)
 				{
 					SetAssetBundleWithBundleName(bundleName, obj);
@@ -254,7 +249,7 @@ namespace WeaverCore.Editor.Internal
 			if (obj != null)
 			{
 				string bundleName = CreateBundleName(name);
-				SetAssetBundleWithBundleName(bundleName, obj);
+				SetAssetBundleWithBundleName(bundleName, serializedObject.targetObject);
 			}
 		}
 
@@ -300,29 +295,14 @@ namespace WeaverCore.Editor.Internal
 
 		public void SetFeature(int index, FeatureSet feature)
 		{
-			var modName = serializedObject.GetString("modName");
-
 			var featureInfo = serializedObject.FindProperty("features").GetArrayElementAtIndex(index);
 			featureInfo.FindPropertyRelative("feature").objectReferenceValue = feature.feature;
 			featureInfo.FindPropertyRelative("AssemblyName").stringValue = feature.AssemblyName;
 			featureInfo.FindPropertyRelative("TypeName").stringValue = feature.TypeName;
 
-			//serializedObject.FindProperty("featuresRaw").GetArrayElementAtIndex(index).objectReferenceValue = feature.feature; //REMOVE
+			serializedObject.FindProperty("featuresRaw").GetArrayElementAtIndex(index).objectReferenceValue = feature.feature;
 
-			var assetName = "";
-			var path = "";
-			if (feature.feature != null)
-			{
-				assetName = feature.feature.name;
-				path = AssetDatabase.GetAssetPath(feature.feature);
-			}
-
-			//Debug.Log("Path = " + path);
-
-			serializedObject.FindProperty("featureBundlePaths").GetArrayElementAtIndex(index).stringValue = path;//assetName;//CreateBundleName(modName);
-			serializedObject.FindProperty("featureTypesRaw").GetArrayElementAtIndex(index).stringValue = feature.AssemblyName + ":" + feature.TypeName;
-
-			SetAssetBundle(modName, feature.feature);
+			SetAssetBundle(serializedObject.GetString("modName"), feature.feature);
 		}
 
 		public void SetFeature(int index, IFeature feature, Type featureType)
@@ -343,14 +323,11 @@ namespace WeaverCore.Editor.Internal
 		public void DeleteFeature(int index)
 		{
 			serializedObject.FindProperty("features").DeleteArrayElementAtIndex(index);
-			//serializedObject.FindProperty("featuresRaw").DeleteArrayElementAtIndex(index); //REMOVE
-			serializedObject.FindProperty("featureBundlePaths").DeleteArrayElementAtIndex(index);
-			serializedObject.FindProperty("featureTypesRaw").DeleteArrayElementAtIndex(index);
+			serializedObject.FindProperty("featuresRaw").DeleteArrayElementAtIndex(index);
 			foreach (var enumerator in FeatureEnumerators)
 			{
 				enumerator.IndexRemoved(index);
 			}
-			Check();
 		}
 
 		public void AddFeature(FeatureSet feature)
@@ -358,11 +335,8 @@ namespace WeaverCore.Editor.Internal
 			var currentSize = GetFeatureCount();
 
 			serializedObject.FindProperty("features").InsertArrayElementAtIndex(currentSize);
-			//serializedObject.FindProperty("featuresRaw").InsertArrayElementAtIndex(currentSize); //REMOVE
-			serializedObject.FindProperty("featureBundlePaths").InsertArrayElementAtIndex(currentSize);
-			serializedObject.FindProperty("featureTypesRaw").InsertArrayElementAtIndex(currentSize);
-			SetFeature(GetFeatureCount() - 1,feature);
-			Check();
+			serializedObject.FindProperty("featuresRaw").InsertArrayElementAtIndex(currentSize);
+			SetFeature(GetFeatureCount() - 1, feature);
 		}
 
 		public void AddFeature(IFeature value, Type featureType)

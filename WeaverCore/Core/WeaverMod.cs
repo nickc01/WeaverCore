@@ -58,14 +58,14 @@ namespace WeaverCore
                 ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_,a) => a.ModType.IsAssignableFrom(modType));
 
                 //Load all global mod settings pertaining to this mod
-                foreach (var registry in Registry.FindModRegistries(modType))
+                /*foreach (var registry in Registry.FindModRegistries(modType))
                 {
                     var settingTypes = registry.GetFeatureTypes<GlobalWeaverSettings>();
                     foreach (var settingsType in settingTypes)
                     {
                         settingsType.Load();
                     }
-                }
+                }*/
             }
             else
             {

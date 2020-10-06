@@ -47,7 +47,7 @@ namespace WeaverCore.Editor.Implementations
 
 				Registry registry = AssetDatabase.LoadAssetAtPath<Registry>(path);
 				//Debug.Log("Found Registry = " + registry.RegistryName);
-				registry.Initialize(null);
+				registry.Initialize();
 			}
 
 			RegistryLoader.LoadEmbeddedRegistries(assembly);

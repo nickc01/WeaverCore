@@ -73,10 +73,12 @@ namespace WeaverCore.Assets.Components
 		[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore))]
 		static void OnGameStart()
 		{
-			//WeaverLog.Log("AFTER WEAVERCORE HAS LOADED");
-			//WeaverLog.Log("Canvas On Game Start");
+			WeaverLog.Log("AFTER WEAVERCORE HAS LOADED");
+			WeaverLog.Log("Canvas On Game Start");
 			if (CoreInfo.LoadState == RunningState.Editor)
 			{
+				var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().FirstOrDefault();
+				Instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
 				//var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().First();
 				//GameObject.Instantiate(prefab, WeaverCanvas.Content);
 			}
@@ -89,9 +91,7 @@ namespace WeaverCore.Assets.Components
 					var scene = SceneManager.GetSceneAt(i);
 					if (scene.name == "Menu_Title")
 					{
-						//WeaverLog.Log("C_A");
-						var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().First();
-						//WeaverLog.Log("Instantiating Prefab = " + prefab);
+						var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().FirstOrDefault();
 						Instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
 						return;
 					}
@@ -99,7 +99,7 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
-		public override bool AddedOnStartup
+		/*public override bool AddedOnStartup
 		{
 			get
 			{
@@ -112,7 +112,7 @@ namespace WeaverCore.Assets.Components
 					return false;
 				}
 			}
-		}
+		}*/
 
 		void Awake()
 		{

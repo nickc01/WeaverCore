@@ -29,7 +29,7 @@ namespace WeaverCore.Game.Implementations
 		{
 			foreach (var registry in weaverAssetBundle.LoadAllAssets<Registry>())
 			{
-				registry.Initialize(bundle);
+				registry.Initialize();
 			}
 		}
 

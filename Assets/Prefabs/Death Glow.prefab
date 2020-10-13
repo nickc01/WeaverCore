@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 95400677365863746}
   - component: {fileID: 212106366502433896}
   - component: {fileID: 114846710525905992}
+  - component: {fileID: 114918302208199998}
   m_Layer: 0
   m_Name: Death Glow
   m_TagString: Untagged
@@ -68,6 +69,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59d8b42d611ac1d499d321ebfb68299e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partOfPool: 1
+--- !u!114 &114918302208199998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1545765862135498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a6abec551ce95408d93cbfa3708833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212106366502433896

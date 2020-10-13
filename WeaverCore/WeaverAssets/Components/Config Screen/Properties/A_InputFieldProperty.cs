@@ -20,27 +20,6 @@ namespace WeaverCore.Assets.Components
 			input.onValueChanged.AddListener(s => UpdateField());
 		}
 
-		/*public string Title
-		{
-			get
-			{
-				return titleText.text;
-			}
-
-			set
-			{
-				titleText.text = value;
-			}
-		}*/
-
-		/*public override void BindToField(ModSettings settings, FieldInfo field)
-		{
-			this.settings = settings;
-			this.field = field;
-			InitializeValue();
-			UpdateField();
-		}*/
-
 		protected override void InitializeValue()
 		{
 			if (Binded)
@@ -57,23 +36,5 @@ namespace WeaverCore.Assets.Components
 				previousInput = input.text;
 			}
 		}
-
-		/*protected virtual void InitializeValue()
-		{
-			if (Binded)
-			{
-				input.text = field.GetValue(settings).ToString();
-			}
-		}
-
-
-		protected virtual void UpdateField()
-		{
-			if (Binded)
-			{
-				field.SetValue(settings, Convert.ChangeType(input.text,field.FieldType));
-				previousInput = input.text;
-			}
-		}*/
 	}
 }

@@ -10,18 +10,24 @@ namespace WeaverCore.Utilities
 {
 	public static class Flings
 	{
-		public static List<GameObject> SpawnFlings(FlingInfo info, Vector3 spawnPoint)
+		static ObjectPool GhostSlash1Pool;
+		static ObjectPool GhostSlash2Pool;
+
+		static GameObject[] SpawnFlingsInternal(FlingInfo info, Vector3 spawnPoint, CardinalDirection direction)
 		{
-			if (info.Prefab == null)
-			{
-				return null;
-			}
+			float angleMin = info.AngleMin;
+			float angleMax = info.AngleMax;
+
+			AdjustAnglesForDirection(ref angleMin, ref angleMax, direction);
+
 			int prefabAmount = UnityEngine.Random.Range(info.PrefabAmountMin, info.PrefabAmountMax + 1);
-			List<GameObject> allFlings = new List<GameObject>();
+			//List<GameObject> allFlings = new List<GameObject>();
+			GameObject[] allFlings = new GameObject[prefabAmount];
 			for (int i = 0; i < prefabAmount; i++)
 			{
 				Vector3 finalPosition = spawnPoint + new Vector3(UnityEngine.Random.Range(-info.OriginVariationX, info.OriginVariationX), UnityEngine.Random.Range(-info.OriginVariationY, info.OriginVariationY), 0f);
-				GameObject newFling = GameObject.Instantiate(info.Prefab, finalPosition,Quaternion.identity);
+				//GameObject newFling = GameObject.Instantiate(info.Prefab, finalPosition,Quaternion.identity);
+				GameObject newFling = info.Pool.Instantiate(finalPosition, Quaternion.identity);
 				Rigidbody2D rigidbody = newFling.GetComponent<Rigidbody2D>();
 				if (rigidbody != null)
 				{
@@ -34,17 +40,75 @@ namespace WeaverCore.Utilities
 
 					rigidbody.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * velocity;
 				}
-				allFlings.Add(newFling);
+				//allFlings.Add(newFling);
+				allFlings[i] = newFling;
 			}
 			return allFlings;
 		}
 
-
-		public static List<GameObject> SpawnFlingsNormal(Vector3 spawnPoint, CardinalDirection direction)
+		static void AdjustAnglesForDirection(ref float angleMin, ref float angleMax,CardinalDirection direction)
 		{
-			var settings1 = new FlingInfo()
+			switch (direction)
 			{
-				Prefab = EffectAssets.GhostSlash1Prefab,
+				case CardinalDirection.Up:
+					angleMin += 90f;
+					angleMax += 90f;
+					break;
+				case CardinalDirection.Down:
+					angleMin += 270f;
+					angleMax += 270f;
+					break;
+				case CardinalDirection.Left:
+					angleMin += 180f;
+					angleMax += 180f;
+					break;
+				default:
+					break;
+			}
+		}
+
+		public static FlingInfo[] CreateNormalFlings()
+		{
+			if (GhostSlash1Pool == null)
+			{
+				GhostSlash1Pool = new ObjectPool(EffectAssets.GhostSlash1Prefab, PoolLoadType.Local);
+				GhostSlash1Pool.FillPool(1);
+
+				GhostSlash2Pool = new ObjectPool(EffectAssets.GhostSlash2Prefab, PoolLoadType.Local);
+				GhostSlash2Pool.FillPool(1);
+			}
+
+			return new FlingInfo[2]
+			{
+				new FlingInfo
+				{
+					Pool = GhostSlash1Pool,
+					PrefabAmountMin = 2,
+					PrefabAmountMax = 3,
+					VelocityMin = 20f,
+					VelocityMax = 35f,
+					AngleMin = -40f,
+					AngleMax = 40f,
+					OriginVariationX = 0f,
+					OriginVariationY = 0f
+				},
+				new FlingInfo
+				{
+					Pool = GhostSlash2Pool,
+					PrefabAmountMin = 2,
+					PrefabAmountMax = 3,
+					VelocityMin = 10f,
+					VelocityMax = 35f,
+					AngleMin = -40f,
+					AngleMax = 40f,
+					OriginVariationX = 0f,
+					OriginVariationY = 0f
+				}
+			};
+
+			/*var settings1 = new FlingInfo()
+			{
+				Pool = GhostSlash1Pool,
 				PrefabAmountMin = 2,
 				PrefabAmountMax = 3,
 				VelocityMin = 20f,
@@ -57,7 +121,7 @@ namespace WeaverCore.Utilities
 
 			var settings2 = new FlingInfo()
 			{
-				Prefab = EffectAssets.GhostSlash2Prefab,
+				Pool = GhostSlash2Pool,
 				PrefabAmountMin = 2,
 				PrefabAmountMax = 3,
 				VelocityMin = 10f,
@@ -66,54 +130,31 @@ namespace WeaverCore.Utilities
 				AngleMax = 40f,
 				OriginVariationX = 0f,
 				OriginVariationY = 0f
-			};
+			};*/
+		}
 
-			switch (direction)
+		public static void SpawnFlings(FlingInfo[] flings, Vector3 spawnPoint, CardinalDirection direction)
+		{
+			//IEnumerable<GameObject> iterator = Enumerable.Empty<GameObject>();
+
+			for (int i = 0; i < flings.Length; i++)
 			{
-				case CardinalDirection.Up:
-					settings1.AngleMin = 50f;
-					settings1.AngleMax = 130f;
-
-					settings2.AngleMin = 50f;
-					settings2.AngleMax = 130f;
-					break;
-				case CardinalDirection.Down:
-					settings1.AngleMin = 230f;
-					settings1.AngleMax = 310f;
-
-					settings2.AngleMin = 230f;
-					settings2.AngleMax = 310f;
-					break;
-				case CardinalDirection.Left:
-					settings1.AngleMin = 140f;
-					settings1.AngleMax = 220f;
-
-					settings2.AngleMin = 140f;
-					settings2.AngleMax = 220f;
-					break;
-				case CardinalDirection.Right:
-					settings1.AngleMin = -40f;
-					settings1.AngleMax = 40f;
-
-					settings2.AngleMin = -40f;
-					settings2.AngleMax = 40f;
-					break;
-				default:
-					break;
+				SpawnFlingsInternal(flings[i], spawnPoint, direction);
+				//var finalObjects = SpawnFlingsInternal(settings1, spawnPoint);
+				//finalObjects.AddRange(SpawnFlingsInternal(settings2, spawnPoint));
 			}
+		}
 
-			var finalObjects = SpawnFlings(settings1, spawnPoint);
-			finalObjects.AddRange(SpawnFlings(settings2, spawnPoint));
-
-			return finalObjects;
+		public static GameObject[] SpawnFlings(FlingInfo fling, Vector3 spawnPoint, CardinalDirection direction)
+		{
+			return SpawnFlingsInternal(fling, spawnPoint, direction);
 		}
 	}
 
 
-	[Serializable]
 	public struct FlingInfo
 	{
-		public GameObject Prefab;
+		public ObjectPool Pool;
 
 		public float VelocityMin;
 

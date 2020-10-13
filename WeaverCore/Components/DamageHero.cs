@@ -65,8 +65,11 @@ namespace WeaverCore.Components
 
 		void Awake()
 		{
-			impl = gameObject.AddComponent(ImplFinder.GetImplementationType<DamageHero_I>()) as DamageHero_I;
-			impl.Damager = this;
+			if (impl == null)
+			{
+				impl = gameObject.AddComponent(ImplFinder.GetImplementationType<DamageHero_I>()) as DamageHero_I;
+				impl.Damager = this;
+			}
 
 			gameObject.layer = 11;
 		}

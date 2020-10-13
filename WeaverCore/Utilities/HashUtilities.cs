@@ -11,7 +11,12 @@ namespace WeaverCore.Utilities
 	{
 		public static int CombineHashCodes(int h1, int h2)
 		{
-			return (((h1 << 5) + h1) ^ h2);
+			if (h1 == 0)
+			{
+				h1 = 17;
+			}
+			return h1 * 23 + h2;
+			//return (((h1 << 5) + h1) ^ h2);
 		}
 
 
@@ -19,7 +24,8 @@ namespace WeaverCore.Utilities
 		{
 			int h1 = val1.GetHashCode();
 			int h2 = val2.GetHashCode();
-			return (((h1 << 5) + h1) ^ h2);
+			return CombineHashCodes(h1, h2);
+			//return (((h1 << 5) + h1) ^ h2);
 		}
 
 		public static void AdditiveHash(ref int hash, int otherHash)

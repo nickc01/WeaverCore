@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4934057637773054}
   - component: {fileID: 198504410582125380}
   - component: {fileID: 199788051295380948}
+  - component: {fileID: 114289635670942176}
+  - component: {fileID: 114899298856702886}
   m_Layer: 11
   m_Name: Tele Line
   m_TagString: Untagged
@@ -41,6 +43,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114289635670942176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074569581713578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a6abec551ce95408d93cbfa3708833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114899298856702886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074569581713578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d8b42d611ac1d499d321ebfb68299e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partOfPool: 1
 --- !u!198 &198504410582125380
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -50,7 +75,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 0.1
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 3
   looping: 0
   prewarm: 0
   playOnAwake: 1

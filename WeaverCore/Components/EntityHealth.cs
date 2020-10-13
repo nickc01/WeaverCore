@@ -224,7 +224,7 @@ namespace WeaverCore.Components
 			var blockedHitEffect = Instantiate(EffectAssets.BlockedHitPrefab, v, Quaternion.identity);
 			blockedHitEffect.transform.eulerAngles = eulerAngles;
 
-			WeaverAudio.Play(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
+			WeaverAudio.PlayAtPoint(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
 
 		}
 

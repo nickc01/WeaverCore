@@ -17,7 +17,7 @@ namespace WeaverCore.Editor.Utilities
             {
                 foreach (var type in assembly.GetTypes())
                 {
-                    if (typeof(IFeature).IsAssignableFrom(type) && type.GetCustomAttributes(typeof(ShowFeatureAttribute),false).GetLength(0) > 0)
+                    if (typeof(IFeature).IsAssignableFrom(type) && type.IsDefined(typeof(ShowFeatureAttribute), false))
                     {
                         features.Add(type);
                     }

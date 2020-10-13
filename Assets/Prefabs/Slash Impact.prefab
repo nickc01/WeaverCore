@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212710262852109596}
   - component: {fileID: 95008371318821704}
   - component: {fileID: 114823240553901628}
+  - component: {fileID: 114862372109861776}
   m_Layer: 0
   m_Name: Slash Impact
   m_TagString: Untagged
@@ -68,6 +69,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59d8b42d611ac1d499d321ebfb68299e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partOfPool: 1
+--- !u!114 &114862372109861776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1364919475376518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a6abec551ce95408d93cbfa3708833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212710262852109596

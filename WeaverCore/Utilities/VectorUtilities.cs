@@ -147,9 +147,10 @@ namespace WeaverCore.Utilities
 			magnitude = vector.magnitude;
 		}*/
 
-		public static List<float> CalculateSpacedValues(int amountOfValues, float amountBetweenValues)
+		public static float[] CalculateSpacedValues(int amountOfValues, float amountBetweenValues)
 		{
-			List<float> angles = new List<float>();
+			//List<float> angles = new List<float>();
+			float[] angles = new float[amountOfValues];
 			if (amountOfValues == 0)
 			{
 				return angles;
@@ -159,7 +160,8 @@ namespace WeaverCore.Utilities
 
 			if (amountOfValues % 2 == 1)
 			{
-				angles.Add(0);
+				//angles.Add(0);
+				angles[0] = 0f;
 				amountOfValues--;
 
 				if (amountOfValues > 0)
@@ -168,8 +170,10 @@ namespace WeaverCore.Utilities
 					{
 						//yield return angleBetweenObjects * (i + 1);
 						//yield return -angleBetweenObjects * (i + 1);
-						angles.Add(amountBetweenValues * (i + 1));
-						angles.Add(-amountBetweenValues * (i + 1));
+						//angles.Add(amountBetweenValues * (i + 1));
+						//angles.Add(-amountBetweenValues * (i + 1));
+						angles[1 + (i * 2)] = amountBetweenValues * (i + 1);
+						angles[2 + (i * 2)] = -amountBetweenValues * (i + 1);
 					}
 				}
 			}
@@ -180,8 +184,11 @@ namespace WeaverCore.Utilities
 
 				//yield return startLeft;
 				//yield return startRight;
-				angles.Add(startLeft);
-				angles.Add(startRight);
+
+				//angles.Add(startLeft);
+				//angles.Add(startRight);
+				angles[0] = startLeft;
+				angles[1] = startRight;
 
 				amountOfValues -= 2;
 
@@ -191,8 +198,10 @@ namespace WeaverCore.Utilities
 					{
 						//yield return startLeft + (angleBetweenObjects * (i + 1));
 						//yield return startRight - (angleBetweenObjects * (i + 1));
-						angles.Add(startLeft + (amountBetweenValues * (i + 1)));
-						angles.Add(startRight - (amountBetweenValues * (i + 1)));
+						//angles.Add(startLeft + (amountBetweenValues * (i + 1)));
+						//angles.Add(startRight - (amountBetweenValues * (i + 1)));
+						angles[2 + (i * 2)] = startLeft + (amountBetweenValues * (i + 1));
+						angles[3 + (i * 2)] = startRight - (amountBetweenValues * (i + 1));
 					}
 				}
 			}

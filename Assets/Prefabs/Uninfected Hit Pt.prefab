@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 198489388738856330}
   - component: {fileID: 199139682081713344}
   - component: {fileID: 114290623505828532}
+  - component: {fileID: 114639332040833538}
   m_Layer: 16
   m_Name: Uninfected Hit Pt
   m_TagString: Untagged
@@ -53,6 +54,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7c6d7ba26a6df4796af51ee6d9e549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasPool: 1
+--- !u!114 &114639332040833538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252749375970788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a6abec551ce95408d93cbfa3708833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198489388738856330
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -62,7 +75,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 0.1
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   looping: 0
   prewarm: 0
   playOnAwake: 1

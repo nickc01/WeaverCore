@@ -13,6 +13,8 @@ namespace WeaverCore.Components.HitEffects
 	[RequireComponent(typeof(SpriteFlasher))]
 	public class HitEffectsNormal : MonoBehaviour, IHitEffects
 	{
+		static ObjectPool UninfectedHitPool;
+
 		[SerializeField]
 		bool doFlashEffects = true;
 		bool firedOnCurrentFrame = false;
@@ -20,8 +22,15 @@ namespace WeaverCore.Components.HitEffects
 
 		static AudioClip DamageSound;
 
+		FlingInfo[] NormalFlings;
+
 		void Start()
 		{
+			NormalFlings = Flings.CreateNormalFlings();
+			if (UninfectedHitPool == null)
+			{
+				UninfectedHitPool = new ObjectPool(Assets.EffectAssets.UninfectedHitPrefab, PoolLoadType.Local);
+			}
 			flasher = GetComponent<SpriteFlasher>();
 			if (DamageSound == null)
 			{
@@ -40,14 +49,15 @@ namespace WeaverCore.Components.HitEffects
 			{
 				firedOnCurrentFrame = true;
 
-				WeaverAudio.Play(DamageSound, transform.position, channel: AudioChannel.Sound);
+				WeaverAudio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
 
 				if (doFlashEffects)
 				{
 					flasher.FlashNormalHit();
 				}
 
-				GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
+				//GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
+				GameObject hitParticles = UninfectedHitPool.Instantiate(transform.position + effectsOffset, Quaternion.identity);
 
 				var direction = DirectionUtilities.DegreesToDirection(hit.Direction);
 
@@ -67,7 +77,7 @@ namespace WeaverCore.Components.HitEffects
 						break;
 				}
 
-				Flings.SpawnFlingsNormal(transform.position + effectsOffset, direction);
+				Flings.SpawnFlings(NormalFlings, transform.position + effectsOffset, direction);
 			}
 		}
 

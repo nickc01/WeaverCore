@@ -14,6 +14,10 @@ namespace WeaverCore.Utilities
 {
 	public static class Teleporter
 	{
+		static ObjectPool WhiteFlashPool;
+		static ObjectPool GlowPool;
+		static ObjectPool TeleLinePool;
+
 
 		[Serializable]
 		public class TeleportException : Exception
@@ -177,16 +181,8 @@ namespace WeaverCore.Utilities
 					if (playEffects)
 					{
 						SpawnTeleportGlow(Destination, teleportColor);
-						/*var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(Destination.x, Destination.y, Destination.z - 0.1f), Quaternion.identity);
-						glow.GetComponent<SpriteRenderer>().color = Color.Lerp(teleportColor, Color.white, 0.5f);*/
 
 						SpawnTeleportLine(originalPosition, Destination, teleportColor);
-						/*var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, Destination, 0.5f), Quaternion.identity);
-						LookAt(teleLine, Destination);
-						teleLine.transform.localScale = new Vector3(Vector3.Distance(originalPosition, Destination), teleLine.transform.localScale.y, teleLine.transform.localScale.z);*/
-
-						//var mainModule = teleLine.GetComponent<ParticleSystem>().main;
-						//mainModule.startColor = Color.Lerp(teleportColor, Color.white, 0.5f);
 					}
 
 					PlayTeleportSound(Destination, audioPitch);
@@ -278,14 +274,19 @@ namespace WeaverCore.Utilities
 
 		private static void PlayTeleportSound(Vector3 position, float audioPitch)
 		{
-			var teleportSound = WeaverAudio.Play(AudioAssets.Teleport, position, 1f, AudioChannel.Sound);
+			var teleportSound = WeaverAudio.PlayAtPoint(AudioAssets.Teleport, position, 1f, AudioChannel.Sound);
 
 			teleportSound.AudioSource.pitch = audioPitch;
 		}
 
 		static WhiteFlash SpawnWhiteFlash(Color color, Vector3 originalPosition)
 		{
-			var whiteFlash = GameObject.Instantiate(EffectAssets.WhiteFlashPrefab, originalPosition, Quaternion.identity).GetComponent<WhiteFlash>();
+			if (WhiteFlashPool == null)
+			{
+				WhiteFlashPool = new ObjectPool(EffectAssets.WhiteFlashPrefab,PoolLoadType.Local);
+			}
+			var whiteFlash = WhiteFlashPool.Instantiate<WhiteFlash>(originalPosition, Quaternion.identity);
+			//var whiteFlash = GameObject.Instantiate(EffectAssets.WhiteFlashPrefab, originalPosition, Quaternion.identity).GetComponent<WhiteFlash>();
 			whiteFlash.FadeInTime = 0f;
 			whiteFlash.FlashColor = Color.Lerp(color, Color.white, 0.5f);
 			whiteFlash.transform.localScale = Vector3.one * 2f;
@@ -295,15 +296,25 @@ namespace WeaverCore.Utilities
 
 		static SpriteRenderer SpawnTeleportGlow(Vector3 spawnPoint, Color color)
 		{
-			var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - 0.1f), Quaternion.identity);
-			var sprite = glow.GetComponent<SpriteRenderer>();
+			if (GlowPool == null)
+			{
+				GlowPool = new ObjectPool(EffectAssets.TeleportGlowPrefab, PoolLoadType.Local);
+			}
+			var sprite = GlowPool.Instantiate<SpriteRenderer>(new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - 0.1f), Quaternion.identity);
+			//var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - 0.1f), Quaternion.identity);
+			//var sprite = glow.GetComponent<SpriteRenderer>();
 			sprite.color = Color.Lerp(color, Color.white, 0.5f);
 			return sprite;
 		}
 
 		static ParticleSystem SpawnTeleportLine(Vector3 originalPosition, Vector3 destination, Color color)
 		{
-			var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, destination, 0.5f), Quaternion.identity);
+			if (TeleLinePool == null)
+			{
+				TeleLinePool = new ObjectPool(EffectAssets.TeleLinePrefab, PoolLoadType.Local);
+			}
+			//var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, destination, 0.5f), Quaternion.identity);
+			var teleLine = TeleLinePool.Instantiate(Vector3.Lerp(originalPosition, destination, 0.5f), Quaternion.identity);
 			LookAt(teleLine, destination);
 			teleLine.transform.localScale = new Vector3(Vector3.Distance(originalPosition, destination), teleLine.transform.localScale.y, teleLine.transform.localScale.z);
 

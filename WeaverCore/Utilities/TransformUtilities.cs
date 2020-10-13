@@ -307,7 +307,28 @@ namespace WeaverCore.Utilities
 					rigid.velocity = new Vector2(Mathf.Cos(angleNum) * Mathf.Deg2Rad, Mathf.Sin(angleNum) * Mathf.Deg2Rad);
 				}
 			}
+			return instances;
+		}
 
+		public static GameObject[] SpawnRandomObjects(ObjectPool pool, Vector3 spawnPoint, int spawnMin, int spawnMax, float minSpeed, float maxSpeed, float angleMin, float angleMax, Vector2 originOffset = default(Vector2))
+		{
+			int spawnNum = Random.Range(spawnMin, spawnMax + 1);
+			float speedNum = Random.Range(minSpeed, maxSpeed);
+			float angleNum = Random.Range(angleMin, angleMax);
+
+			GameObject[] instances = new GameObject[spawnNum];
+
+			for (int i = 0; i < spawnNum; i++)
+			{
+				//var instance = GameObject.Instantiate(obj, new Vector3(spawnPoint.x + Random.Range(-originOffset.x, originOffset.x), spawnPoint.y + Random.Range(-originOffset.y, originOffset.y), spawnPoint.z), Quaternion.identity);
+				var instance = pool.Instantiate(new Vector3(spawnPoint.x + Random.Range(-originOffset.x, originOffset.x), spawnPoint.y + Random.Range(-originOffset.y, originOffset.y), spawnPoint.z), Quaternion.identity);
+				instances[i] = instance;
+				var rigid = instance.GetComponent<Rigidbody2D>();
+				if (rigid != null)
+				{
+					rigid.velocity = new Vector2(Mathf.Cos(angleNum) * Mathf.Deg2Rad, Mathf.Sin(angleNum) * Mathf.Deg2Rad);
+				}
+			}
 			return instances;
 		}
 

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 95419954450380690}
   - component: {fileID: 50361749400880818}
   - component: {fileID: 114667772296848058}
+  - component: {fileID: 114432380976253646}
   m_Layer: 11
   m_Name: Slash Ghost 1
   m_TagString: Untagged
@@ -80,6 +81,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114432380976253646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109907540402092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a6abec551ce95408d93cbfa3708833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114667772296848058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d8b42d611ac1d499d321ebfb68299e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partOfPool: 1
 --- !u!212 &212384814968442290
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -14,9 +14,9 @@ using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 
-namespace WeaverCore.Utilities
+/*namespace WeaverCore.Utilities
 {
-	public class Recycler : MonoBehaviour
+	public class RecyclerOLD : MonoBehaviour
 	{
 		static Recycler global;
 		static Recycler inActiveScene;
@@ -66,23 +66,7 @@ namespace WeaverCore.Utilities
 		}
 	}
 
-	/*class TestClassA
-	{
-		public int testFieldA = 5;
-		public int testFieldB = 7;
-	}
-
-	static class TestClassB
-	{
-		public static void Transfer(TestClassA Source, TestClassA Destination)
-		{
-			Destination.testFieldA = Source.testFieldA;
-			Destination.testFieldB = Source.testFieldB;
-			//TestClassA.testFieldA = 
-		}
-	}*/
-
-	public class ObjectPool<T> where T : class, IPoolableObject
+	public class ObjectPoolOLD<T> where T : class, IPoolableObject
 	{
 		static HarmonyPatcher Patcher = HarmonyPatcher.Create("com.ObjectPool.patch");
 
@@ -146,7 +130,7 @@ namespace WeaverCore.Utilities
 				{
 					//Debug.Log("Field = " + field.Name);
 					//Debug.Log("Is Value Type = " + field.FieldType.IsValueType);
-					if (field.GetCustomAttributes(typeof(ExcludeFieldFromPoolAttribute),false).GetLength(0) == 0 && !field.IsInitOnly && !field.IsLiteral)
+					if (field.GetCustomAttributes(typeof(ExcludeFieldFromPoolAttribute), false).GetLength(0) == 0 && !field.IsInitOnly && !field.IsLiteral)
 					{
 						if (field.FieldType.IsValueType || field.FieldType.IsEnum)
 						{
@@ -209,7 +193,7 @@ namespace WeaverCore.Utilities
 				if (updateMethod != null)
 				{
 					UpdateFunction = (Action<T>)Delegate.CreateDelegate(typeof(Action<T>), updateMethod);
-					Patcher.Patch(updateMethod,updatePreMethod,null);
+					Patcher.Patch(updateMethod, updatePreMethod, null);
 				}
 
 				if (lateUpdateMethod != null)
@@ -224,12 +208,12 @@ namespace WeaverCore.Utilities
 		{
 			//if (__instance is T)
 			//{
-				var typedInstance = __instance;
-				if (InfoMap.ContainsKey(typedInstance))
-				{
-					//Debug.Log("Awake Called in class " + __instance.GetType());
-					InfoMap[typedInstance].calledAwake = true;
-				}
+			var typedInstance = __instance;
+			if (InfoMap.ContainsKey(typedInstance))
+			{
+				//Debug.Log("Awake Called in class " + __instance.GetType());
+				InfoMap[typedInstance].calledAwake = true;
+			}
 			//}
 		}
 
@@ -237,12 +221,12 @@ namespace WeaverCore.Utilities
 		{
 			//if (__instance is T)
 			//{
-				var typedInstance = __instance;
-				if (InfoMap.ContainsKey(typedInstance))
-				{
-					//Debug.Log("Start Called in class " + __instance.GetType());
-					InfoMap[typedInstance].calledStart = true;
-				}
+			var typedInstance = __instance;
+			if (InfoMap.ContainsKey(typedInstance))
+			{
+				//Debug.Log("Start Called in class " + __instance.GetType());
+				InfoMap[typedInstance].calledStart = true;
+			}
 			//}
 		}
 
@@ -273,32 +257,6 @@ namespace WeaverCore.Utilities
 			}
 			return true;
 		}
-
-		/*static void StartPostfix(T __instance)
-		{
-			//if (__instance is T)
-			//{
-				var typedInstance = __instance;
-				if (InfoMap.ContainsKey(typedInstance))
-				{
-					//Debug.Log("Start Called in class " + __instance.GetType());
-					InfoMap[typedInstance].calledStart = true;
-				}
-			//}
-		}
-
-		static void StartPostfix(T __instance)
-		{
-			//if (__instance is T)
-			//{
-				var typedInstance = __instance;
-				if (InfoMap.ContainsKey(typedInstance))
-				{
-					//Debug.Log("Start Called in class " + __instance.GetType());
-					InfoMap[typedInstance].calledStart = true;
-				}
-			//}
-		}*/
 
 		static IEnumerator StartCaller(T instance)
 		{
@@ -421,14 +379,6 @@ namespace WeaverCore.Utilities
 			instance.gameObject.transform.position = position;
 			instance.gameObject.transform.rotation = rotation;
 			return instance;
-			/*if (pooledInstances.Count > 0)
-			{
-				
-			}
-			else
-			{
-				
-			}*/
 		}
 
 		public void ReturnToPool(T obj)
@@ -460,12 +410,12 @@ namespace WeaverCore.Utilities
 			InfoMap.Add(obj, new InstanceInfo());
 		}
 
-		public void ReturnToPool(T obj,float time)
+		public void ReturnToPool(T obj, float time)
 		{
 			UnboundCoroutine.Start(ReturnToPoolAsync(obj, time));
 		}
 
-		IEnumerator ReturnToPoolAsync(T obj,float time)
+		IEnumerator ReturnToPoolAsync(T obj, float time)
 		{
 			for (float i = 0; i < time; i += Time.deltaTime)
 			{
@@ -544,370 +494,6 @@ namespace WeaverCore.Utilities
 			var relatedTransform = relatedTo.transform;
 
 			return relatedTransform.IsChildOf(transform) || transform.IsChildOf(relatedTransform);
-
-			/*while (transform != null)
-			{
-				if (transform == relatedTransform)
-				{
-					return true;
-				}
-
-			}
-
-			return false;*/
 		}
 	}
-
-
-
-	/*public class ObjectPoolOLD2<T> : MonoBehaviour where T : IPoolableObject
-	{
-		public static uint StartingPoolAmount = 5;
-
-		Queue<T> pooledInstances = new Queue<T>();
-		bool initialized = false;
-		[SerializeField]
-		T _objectToPool;
-		public T ObjectToPool
-		{
-			get
-			{
-				return _objectToPool;
-			}
-			set
-			{
-				if (!initialized)
-				{
-					_objectToPool = value;
-					if (_objectToPool != null)
-					{
-						initialized = true;
-						FillPool(StartingPoolAmount, true);
-					}
-				}
-			}
-		}
-
-		void Awake()
-		{
-			if (!initialized && ObjectToPool != null)
-			{
-				initialized = true;
-				FillPool(StartingPoolAmount, true);
-			}
-		}
-
-
-		public static ObjectPoolOLD2<T> Create(T objectToPool, uint amountToPool = 0, bool asynchronous = true)
-		{
-			if (objectToPool == null)
-			{
-				throw new Exception("There is no object set to pool");
-			}
-			var instanceGM = new GameObject(objectToPool.gameObject.name + " Pool");
-			var pool = instanceGM.AddComponent<ObjectPoolOLD2<T>>();
-			pool.initialized = true;
-			pool._objectToPool = objectToPool;
-			pool.FillPool(amountToPool, asynchronous);
-			return pool;
-		}
-
-		public void FillPool(uint amountToPool, bool asynchronous = false)
-		{
-			if (ObjectToPool == null)
-			{
-				throw new Exception("There is no object set to pool");
-			}
-			if (asynchronous)
-			{
-				UnboundCoroutine.Start(AsyncFillPool(amountToPool));
-			}
-			else
-			{
-				for (uint i = 0; i < amountToPool; i++)
-				{
-					var instance = (T)UniversalInstantiate(ObjectToPool);
-					instance.gameObject.SetActive(false);
-					instance.gameObject.transform.parent = transform;
-					pooledInstances.Enqueue(instance);
-				}
-			}
-		}
-
-		public T RetrieveFromPool()
-		{
-			if (ObjectToPool == null)
-			{
-				throw new Exception("There is no object set to pool");
-			}
-			return RetrieveFromPool(ObjectToPool.gameObject.transform.position,ObjectToPool.gameObject.transform.rotation);
-		}
-
-		public T RetrieveFromPool(Vector3 position, Quaternion rotation)
-		{
-			if (ObjectToPool == null)
-			{
-				throw new Exception("There is no object set to pool");
-			}
-			if (pooledInstances.Count > 0)
-			{
-				var instance = pooledInstances.Dequeue();
-				var instTransform = instance.gameObject.transform;
-				instTransform.parent = null;
-				instTransform.position = position;
-				instTransform.rotation = rotation;
-				instance.gameObject.SetActive(ObjectToPool.gameObject.activeSelf);
-				return instance;
-			}
-			else
-			{
-				var instance = (T)UniversalInstantiate(ObjectToPool);
-				instance.gameObject.transform.position = position;
-				instance.gameObject.transform.rotation = rotation;
-				return instance;
-			}
-		}
-
-		public void ReturnToPool(T obj)
-		{
-			obj.gameObject.SetActive(false);
-			obj.gameObject.transform.parent = transform;
-			pooledInstances.Enqueue(obj);
-		}
-
-		IEnumerator AsyncFillPool(uint amountToPool)
-		{
-			yield return null;
-			for (uint i = 0; gameObject != null && i < amountToPool; i++)
-			{
-				var instance = (T)UniversalInstantiate(ObjectToPool);
-				instance.gameObject.SetActive(false);
-				instance.gameObject.transform.parent = transform;
-				pooledInstances.Enqueue(instance);
-				yield return null;
-			}
-		}
-
-		static IPoolableObject UniversalInstantiate(IPoolableObject objectToInstantiate, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion))
-		{
-			if (rotation == default(Quaternion))
-			{
-				rotation = Quaternion.identity;
-			}
-			if (objectToInstantiate is Component)
-			{
-				return (IPoolableObject)Instantiate(objectToInstantiate as Component, position, rotation);
-			}
-			else
-			{
-				return (IPoolableObject)Instantiate(objectToInstantiate.gameObject, position, rotation).GetComponent(objectToInstantiate.GetType());
-			}
-		}
-	}*/
-}
-
-//namespace WeaverCore.Utilities
-//{
-	/*public class ObjectRecycler : MonoBehaviour
-	{
-		ObjectPoolLoadType _loadType = ObjectPoolLoadType.ActiveSceneOnly;
-		public ObjectPoolLoadType LoadType
-		{
-			get
-			{
-				return _loadType;
-			}
-			set
-			{
-				if (_loadType != value)
-				{
-					_loadType = value;
-					if (value == ObjectPoolLoadType.ActiveSceneOnly)
-					{
-						SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
-					}
-					else
-					{
-						GameObject.DontDestroyOnLoad(gameObject);
-					}
-				}
-			}
-		}
-		//List<Pool> ObjectPools = new List<Pool>();
-		Dictionary<string, OldPool> ObjectPools = new Dictionary<string, OldPool>();
-
-		void Start()
-		{
-			if (LoadType == ObjectPoolLoadType.ActiveSceneOnly)
-			{
-				SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
-			}
-			else
-			{
-				GameObject.DontDestroyOnLoad(gameObject);
-			}
-		}
-
-		static IEnumerator Pooler(IPoolableObject objectToPool, int amountToPool, OldPool pool)
-		{
-			while (Application.isPlaying && pool.Recycler.gameObject != null && pool.Active && amountToPool < pool.PooledObjects.Count)
-			{
-				var newObj = UniversalInstantiate(objectToPool);
-				newObj.gameObject.transform.parent = pool.Recycler.gameObject.transform;
-				newObj.gameObject.SetActive(false);
-				pool.PooledObjects.Enqueue(newObj);//.Add(newObj);
-				yield return null;
-			}
-		}
-
-		public IPoolableObject PoolObject(string fromPool)
-		{
-			if (PoolExists(fromPool))
-			{
-				var pool = ObjectPools[fromPool];
-				if (pool.PooledObjects.Count == 0)
-				{
-					var newObj = UniversalInstantiate(objectToPool);
-				}
-				else
-				{
-					pool.PooledObjects.Dequeue();
-				}
-			}
-			else
-			{
-				throw new Exception("The pool " + fromPool + " does not exist");
-			}
-		}
-
-		public void CreatePool(string poolName, IPoolableObject objectToPool, int amountPooled = 0)
-		{
-			if (gameObject == null)
-			{
-				return;
-			}
-			if (!PoolExists(poolName))
-			{
-				var pool = new OldPool(poolName, objectToPool,this);
-				ObjectPools.Add(poolName, pool);
-				if (amountPooled > 0)
-				{
-					pool.PooledObjects = new Queue<IPoolableObject>();
-					UnboundCoroutine.Start(Pooler(objectToPool,amountPooled,pool));
-				}
-			}
-			else
-			{
-				throw new Exception("A pool of " + poolName + " already exists");
-			}
-		}
-
-		public bool PoolExists(string poolName)
-		{
-			if (gameObject == null)
-			{
-				return false;
-			}
-			return ObjectPools.ContainsKey(poolName);
-		}
-
-		public bool RemovePool(string poolName)
-		{
-			if (gameObject == null)
-			{
-				return false;
-			}
-			if (ObjectPools.ContainsKey(poolName))
-			{
-				var pool = ObjectPools[poolName];
-				pool.Active = false;
-				if (pool.PooledObjects != null)
-				{
-					int counter = 0;
-					foreach (var obj in pool.PooledObjects)
-					{
-						if (obj.gameObject != null)
-						{
-							Destroy(obj.gameObject, Time.deltaTime * counter);
-							counter++;
-						}
-					}
-				}
-				ObjectPools.Remove(poolName);
-				return true;
-			}
-			return false;
-		}
-
-		public static ObjectRecycler Create(string name = "Recycler", ObjectPoolLoadType loadType = ObjectPoolLoadType.ActiveSceneOnly)
-		{
-			var obj = new GameObject(name);
-			var recycler = obj.AddComponent<ObjectRecycler>();
-			recycler.LoadType = loadType;
-			return recycler;
-		}
-
-		static IPoolableObject UniversalInstantiate(IPoolableObject objectToInstantiate, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion))
-		{
-			if (rotation == default(Quaternion))
-			{
-				rotation = Quaternion.identity;
-			}
-			if (objectToInstantiate is Component)
-			{
-				return (IPoolableObject)GameObject.Instantiate(objectToInstantiate as Component, position, rotation);
-			}
-			else
-			{
-				return (IPoolableObject)GameObject.Instantiate(objectToInstantiate.gameObject, position, rotation).GetComponent(objectToInstantiate.GetType());
-			}
-		}
-	}
-
-	class OldPool
-	{
-		public bool Active;
-		public string PoolName;
-		public IPoolableObject SourcePoolObject;
-		public Queue<IPoolableObject> PooledObjects;
-		public ObjectRecycler Recycler;
-
-		public OldPool(string poolName, IPoolableObject sourcePoolObject, ObjectRecycler recycler)
-		{
-			Active = true;
-			PoolName = poolName;
-			SourcePoolObject = sourcePoolObject;
-			PooledObjects = null;
-			Recycler = recycler;
-		}
-
-		public override bool Equals(object obj)
-		{
-			if (obj is OldPool)
-			{
-				return PoolName == ((OldPool)obj).PoolName;
-			}
-			return false;
-		}
-
-		public static bool operator==(OldPool a, OldPool b)
-		{
-			return a.PoolName == b.PoolName;
-		}
-
-		public static bool operator !=(OldPool a, OldPool b)
-		{
-			return a.PoolName != b.PoolName;
-		}
-
-		public override int GetHashCode()
-		{
-			return PoolName.GetHashCode();
-		}
-
-		public override string ToString()
-		{
-			return PoolName;
-		}
-	}*/
-//}
+}*/

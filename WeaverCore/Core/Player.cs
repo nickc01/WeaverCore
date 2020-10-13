@@ -13,6 +13,9 @@ namespace WeaverCore
 {
 	public class Player : MonoBehaviour
     {
+        static ObjectPool NailStrikePool;
+        static ObjectPool SlashImpactPool;
+
         static List<Player> Players = new List<Player>();
 
         public static IEnumerable<Player> AllPlayers
@@ -94,8 +97,10 @@ namespace WeaverCore
 
         public virtual void PlayAttackSlash(Vector3 target, HitInfo hit)
         {
-            Instantiate(EffectAssets.NailStrikePrefab, target, Quaternion.identity);
-            var slashImpact = Instantiate(EffectAssets.SlashImpactPrefab, target, Quaternion.identity);
+            NailStrikePool.Instantiate(target, Quaternion.identity);
+            var slashImpact = SlashImpactPool.Instantiate(target, Quaternion.identity);
+            //Instantiate(EffectAssets.NailStrikePrefab, target, Quaternion.identity);
+            //var slashImpact = Instantiate(EffectAssets.SlashImpactPrefab, target, Quaternion.identity);
 
             var attackDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
 
@@ -136,6 +141,14 @@ namespace WeaverCore
 
         void Awake()
         {
+            if (NailStrikePool == null)
+            {
+                NailStrikePool = new ObjectPool(EffectAssets.NailStrikePrefab,PoolLoadType.Local);
+                NailStrikePool.FillPool(1);
+                SlashImpactPool = new ObjectPool(EffectAssets.SlashImpactPrefab,PoolLoadType.Local);
+                SlashImpactPool.FillPool(1);
+            }
+
             var playerImplType = ImplFinder.GetImplementationType<Player_I>();
 
             impl = (Player_I)gameObject.AddComponent(playerImplType);

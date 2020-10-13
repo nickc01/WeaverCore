@@ -14,12 +14,9 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Game
 {
-    static class GameInitializer
+    /*static class GameInitializer
     {
         [OnInit(int.MaxValue)]
-        static void Init()
-        {
-			RuntimeInitRunner.RuntimeInit();
-        }
-	}
+        
+	}*/
 }

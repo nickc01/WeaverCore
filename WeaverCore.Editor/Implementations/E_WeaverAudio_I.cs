@@ -43,12 +43,17 @@ namespace WeaverCore.Editor.Implementations
 			}
 		}
 
-		public override AudioChannel GetObjectChannel(WeaverAudioPlayer audioObject)
+		/*public override AudioChannel GetChannel(WeaverAudioPlayer audioObject)
 		{
 			return AudioChannel.None;
+		}*/
+
+		public override AudioMixerGroup GetMixerForChannel(AudioChannel channel)
+		{
+			return null;
 		}
 
-		public override WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
+		/*public WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
 		{
 			//GameObject audioObject = new GameObject("__AUDIO_OBJECT__", typeof(AudioSource), typeof(WeaverAudioPlayer));
 			var audioObject = WeaverAudioPlayer.Create(position);
@@ -56,7 +61,7 @@ namespace WeaverCore.Editor.Implementations
 			return PlayReuse(audioObject, clip, position, volume, channel, autoPlay, deleteWhenDone);
 		}
 
-		public override WeaverAudioPlayer PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
+		public WeaverAudioPlayer PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
 		{
 			var audioSource = audioObject.AudioSource;//audioObject.GetComponent<AudioSource>();
 
@@ -78,11 +83,11 @@ namespace WeaverCore.Editor.Implementations
 			}
 
 			return audioObject;
-		}
+		}*/
 
-		public override void SetObjectChannel(WeaverAudioPlayer audioObject, AudioChannel channel)
+		/*public override void SetChannel(WeaverAudioPlayer audioObject, AudioChannel channel)
 		{
 			audioObject.AudioSource.outputAudioMixerGroup = null;
-		}
+		}*/
 	}
 }

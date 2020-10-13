@@ -64,13 +64,9 @@ namespace WeaverCore.Editor
 				}
 				catch (Exception)
 				{
-
+					//Assembly is broken, skip over it
 				}
 			}
-			/*foreach (var type in SettingsTypes)
-			{
-				Debug.Log("Type = " + type);
-			}*/
 			settingsNames = names.ToArray();
 		}
 

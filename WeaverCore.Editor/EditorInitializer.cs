@@ -10,20 +10,12 @@ using WeaverCore.Interfaces;
 using System.Collections.Generic;
 using WeaverCore.Internal;
 using WeaverCore.Editor.Structures;
+using WeaverCore.Attributes;
 
 namespace WeaverCore.Editor.Implementations
 {
-    [InitializeOnLoad]
     class EditorInitializer
     {
-        static EditorInitializer()
-        {
-            //Init();
-            InitRunner.RunInitFunctions();
-            Init();
-        }
-
-
         private static string[] Tags = new string[]
         {
              "TileMap",
@@ -119,6 +111,7 @@ namespace WeaverCore.Editor.Implementations
             new BasicSortingLayer("HUD", 629535577)
         };
 
+        [OnInit]
         static void Init()
         {
             AddInitializer(() =>

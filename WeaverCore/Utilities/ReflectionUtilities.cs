@@ -37,7 +37,7 @@ namespace WeaverCore.Utilities
 					}
 					catch (Exception)
 					{
-
+						//Assembly is broken, skip over it
 					}
 					if (types != null)
 					{

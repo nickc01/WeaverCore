@@ -16,9 +16,7 @@ namespace WeaverCore
         //As soon as any WeaverCore mod loads, the init functions will be called
         static WeaverMod()
         {
-#if !UNITY_EDITOR
-             InitRunner.RunInitFunctions();
-#endif
+            Initializers.Initializers.OnGameInitialize();
         }
 
 

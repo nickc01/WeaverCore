@@ -11,11 +11,12 @@ namespace WeaverCore.Implementations
 {
 	public abstract class WeaverAudio_I : IImplementation
 	{
-		public abstract WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone);
-		public abstract WeaverAudioPlayer PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone);
+		//public abstract WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone);
+		//public abstract WeaverAudioPlayer PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone);
 
-		public abstract void SetObjectChannel(WeaverAudioPlayer audioObject, AudioChannel channel);
-		public abstract AudioChannel GetObjectChannel(WeaverAudioPlayer audioObject);
+		//public abstract void SetChannel(WeaverAudioPlayer audioObject, AudioChannel channel);
+		//public abstract AudioChannel GetChannel(WeaverAudioPlayer audioObject);
+		public abstract AudioMixerGroup GetMixerForChannel(AudioChannel channel);
 
 		public abstract AudioMixer MainMixer { get; }
 		public abstract AudioMixerGroup MainMusic { get; }

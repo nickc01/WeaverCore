@@ -50,7 +50,8 @@ namespace WeaverCore.Assets.Components
 
 		List<Tab> Tabs = new List<Tab>();
 		Tab selectedTab = null;
-		Dictionary<Type, IConfigProperty> PropertyTemplates = new Dictionary<Type, IConfigProperty>();
+		//Dictionary<Type, IConfigProperty> PropertyTemplates = new Dictionary<Type, IConfigProperty>();
+		List<IConfigProperty> PropertyTemplates = new List<IConfigProperty>();
 
 		List<IConfigProperty> InstancedProperties = new List<IConfigProperty>();
 
@@ -73,52 +74,38 @@ namespace WeaverCore.Assets.Components
 		[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore))]
 		static void OnGameStart()
 		{
-			WeaverLog.Log("AFTER WEAVERCORE HAS LOADED");
-			WeaverLog.Log("Canvas On Game Start");
 			if (CoreInfo.LoadState == RunningState.Editor)
 			{
-				var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().FirstOrDefault();
-				Instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
-				//var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().First();
-				//GameObject.Instantiate(prefab, WeaverCanvas.Content);
+				if (WeaverCanvas.Content.GetComponentInChildren<WeaverConfigScreen>() == null)
+				{
+					SpawnConfigScreen();
+				}
 			}
 			else
 			{
-				//WeaverLog.Log("C_B");
 				SceneManager.sceneLoaded += CreateOnSceneChange;
 				for (int i = 0; i < SceneManager.sceneCount; i++)
 				{
 					var scene = SceneManager.GetSceneAt(i);
 					if (scene.name == "Menu_Title")
 					{
-						var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().FirstOrDefault();
-						Instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
+						SpawnConfigScreen();
 						return;
 					}
 				}
 			}
 		}
 
-		/*public override bool AddedOnStartup
+		private static WeaverConfigScreen SpawnConfigScreen()
 		{
-			get
-			{
-				if (CoreInfo.LoadState == RunningState.Editor)
-				{
-					return base.AddedOnStartup;
-				}
-				else
-				{
-					return false;
-				}
-			}
-		}*/
+			var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().FirstOrDefault();
+			return GameObject.Instantiate(prefab, WeaverCanvas.Content);
+		}
 
 		void Awake()
 		{
-			//WeaverLog.Log("STARTING WEAVER CANVAS");
+			Instance = this;
 			ConfigMainMenu.SetActive(false);
-			//UnboundCoroutine.Start(Waiter());
 			SceneManager.sceneUnloaded += DestroyOnSceneChange;
 			if (CoreInfo.LoadState == RunningState.Editor)
 			{
@@ -138,16 +125,13 @@ namespace WeaverCore.Assets.Components
 				}
 			}
 
+			PropertyTemplates.Clear();
 			foreach (var component in propertyHolder.GetComponentsInChildren<IConfigProperty>())
 			{
-				PropertyTemplates.Add(component.BindingFieldType, component);
+				//PropertyTemplates.Add(component.BindingFieldType, component);
+				PropertyTemplates.Add(component);
 			}
 		}
-
-		/*void OnDestroy()
-		{
-			WeaverLog.Log("STOPPING WEAVER CANVAS");
-		}*/
 
 		static void CreateOnSceneChange(Scene scene, LoadSceneMode loadSceneMode)
 		{
@@ -167,22 +151,6 @@ namespace WeaverCore.Assets.Components
 				Instance = null;
 				Destroy(gameObject);
 			}
-			/*if (scene.name == "Menu_Title")
-			{
-				if (!onTitleScreen)
-				{
-					onTitleScreen = true;
-					EnteringTitleScreen();
-				}
-			}
-			else
-			{
-				if (onTitleScreen)
-				{
-					onTitleScreen = false;
-					LeavingTitleScreen();
-				}
-			}*/
 		}
 
 
@@ -292,13 +260,29 @@ namespace WeaverCore.Assets.Components
 			{
 				if (typeof(GlobalWeaverSettings).IsAssignableFrom(field.DeclaringType) && field.DeclaringType != typeof(GlobalWeaverSettings))
 				{
-					var nsValue = field.GetCustomAttributes(typeof(NonSerializedAttribute), false);
-					if (nsValue.GetLength(0) == 0)
+					//var nsValue = field.GetCustomAttributes(typeof(NonSerializedAttribute), false);
+					//if (nsValue.GetLength(0) == 0)
+					if (!field.IsDefined(typeof(NonSerializedAttribute),false))
 					{
-						var sfValue = field.GetCustomAttributes(typeof(SerializeField), false);
-						if (sfValue.GetLength(0) > 0 || field.IsPublic)
+						//var sfValue = field.GetCustomAttributes(typeof(SerializeField), false);
+						if (field.IsDefined(typeof(SerializeField), false) || field.IsPublic)
 						{
-							if (PropertyTemplates.ContainsKey(field.FieldType))
+							Debug.Log("Field = " + field.FieldType);
+							for (int i = 0; i < PropertyTemplates.Count; i++)
+							{
+								Debug.Log("Is Assignable To " + PropertyTemplates[i].BindingFieldType + " = " + PropertyTemplates[i].BindingFieldType.IsAssignableFrom(field.FieldType));
+								if (PropertyTemplates[i].BindingFieldType.IsAssignableFrom(field.FieldType))
+								{
+									var configPropTemplate = PropertyTemplates[i];
+									var gameObjectTemplate = (configPropTemplate as Component).gameObject;
+
+									var configProp = GameObject.Instantiate(gameObjectTemplate, settingContents).GetComponent<IConfigProperty>();
+									configProp.Title = StringUtilities.Prettify(field.Name);
+									configProp.BindToField(currentSettings, field);
+									InstancedProperties.Add(configProp);
+								}
+							}
+							/*if (PropertyTemplates.ContainsKey(field.FieldType))
 							{
 								var configPropTemplate = PropertyTemplates[field.FieldType];
 								var gameObjectTemplate = (configPropTemplate as Component).gameObject;
@@ -307,7 +291,7 @@ namespace WeaverCore.Assets.Components
 								configProp.Title = StringUtilities.Prettify(field.Name);
 								configProp.BindToField(currentSettings, field);
 								InstancedProperties.Add(configProp);
-							}
+							}*/
 						}
 					}
 				}

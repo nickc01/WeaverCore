@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Enums;
+using WeaverCore.Attributes;
 
 namespace WeaverCore
 {
@@ -15,26 +16,57 @@ namespace WeaverCore
 	/// </summary>
 	public static class WeaverAudio
 	{
-		internal static WeaverAudio_I Impl;
-
-		public static WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound, bool autoPlay = true, bool deleteWhenDone = true)
+		[OnRuntimeInit]
+		static void OnRuntimeStart()
 		{
-			if (Impl == null)
+			if (AudioPlayerPool == null)
 			{
-				Impl = ImplFinder.GetImplementation<WeaverAudio_I>();
+				AudioPlayerPool = new ObjectPool(WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Audio Player Prefab"), PoolLoadType.Local);
+				AudioPlayerPool.FillPool(1);
 			}
-
-			return Impl.Play(clip, position, volume, channel, autoPlay, deleteWhenDone);
 		}
 
-		public static void PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound, bool autoPlay = true, bool deleteWhenDone = false)
+		static ObjectPool AudioPlayerPool;
+		//static WeaverAudioPlayer baseObject;
+
+		static WeaverAudio_I Impl = ImplFinder.GetImplementation<WeaverAudio_I>();
+
+		public static WeaverAudioPlayer Create(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
+		{
+			var audioObject = AudioPlayerPool.Instantiate<WeaverAudioPlayer>(position, Quaternion.identity);
+			var audioSource = audioObject.AudioSource;
+
+			audioObject.Channel = channel;
+			audioSource.playOnAwake = false;
+			audioObject.SourcePool = AudioPlayerPool;
+			audioSource.Stop();
+			audioSource.clip = clip;
+			audioObject.gameObject.name = "(Sound) " + clip.name;
+			audioSource.volume = volume;
+
+			return audioObject;
+		}
+
+		public static WeaverAudioPlayer PlayAtPoint(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
+		{
+			var audioObject = Create(clip, position, volume, channel);
+			if (clip != null)
+			{
+				audioObject.AudioSource.Play();
+				audioObject.Delete(clip.length);
+			}
+
+			return audioObject;
+		}
+
+		/*public static void PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound, bool autoPlay = true, bool deleteWhenDone = false)
 		{
 			if (Impl == null)
 			{
 				Impl = ImplFinder.GetImplementation<WeaverAudio_I>();
 			}
 			Impl.PlayReuse(audioObject, clip, position, volume, channel, autoPlay, deleteWhenDone);
-		}
+		}*/
 
 		/// <summary>
 		/// Gets the main audio mixer that hollow knight uses. Currently returns null if used in the editor
@@ -67,6 +99,11 @@ namespace WeaverCore
 			{
 				return Impl.Sounds;
 			}
+		}
+
+		public static AudioMixerGroup GetMixerForChannel(AudioChannel channel)
+		{
+			return Impl.GetMixerForChannel(channel);
 		}
 	}
 }

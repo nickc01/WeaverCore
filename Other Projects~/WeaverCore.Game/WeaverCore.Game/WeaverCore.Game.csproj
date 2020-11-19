@@ -278,9 +278,7 @@
     <Compile Include="Implementations\G_WeaverCam_I.cs" />
     <Compile Include="Implementations\G_WeaverEvents_I.cs" />
     <Compile Include="GameInitializer.cs" />
-    <Compile Include="IPatch.cs" />
     <Compile Include="Misc\Misc.cs" />
-    <Compile Include="Patches\AudioHunter.cs" />
     <Compile Include="Patches\AudioPatchTest.cs" />
     <Compile Include="Patches\CameraControllerPatch.cs" />
     <Compile Include="Patches\EnemyDreamNailReaction.cs" />

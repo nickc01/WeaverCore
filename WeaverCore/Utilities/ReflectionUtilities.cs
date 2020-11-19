@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -418,6 +419,26 @@ namespace WeaverCore.Utilities
 		public static IEnumerable<Assembly> AllAssemblies(this AppDomain domain)
 		{
 			return new AssemblyEnumerable(domain);
+		}
+
+
+		public static void CopyFields(object to, object from, string field)
+		{
+			foreach (var fromField in from.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
+			{
+				if (fromField.Name.ToLower() == field.ToLower())
+				{
+					foreach (var toField in to.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
+					{
+						if (toField.Name.ToLower() == field.ToLower())
+						{
+							toField.SetValue(to, fromField.GetValue(from));
+							return;
+						}
+					}
+				}
+			}
+			throw new Exception("Could not find field called : " + field);
 		}
 	}
 

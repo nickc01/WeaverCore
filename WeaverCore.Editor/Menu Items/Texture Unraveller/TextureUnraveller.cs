@@ -487,7 +487,7 @@ namespace WeaverCore.Editor
 		static IEnumerator DoSpriteModeUnravelling(TextureUnravelSettings settings)
 		{
 			string sheetData = File.ReadAllText(settings.SheetPath);
-			var sheet = JsonUtility.FromJson<TextureSheet>(sheetData);
+			var texSheet = JsonUtility.FromJson<TextureSheet>(sheetData);
 
 			var folder = EditorUtility.OpenFolderPanel("Select the folder where you want the sprites to be dumped to", "Assets", "");
 
@@ -510,16 +510,16 @@ namespace WeaverCore.Editor
 			List<Texture2D> spriteTextures = new List<Texture2D>();
 			List<SpriteData> sprites = new List<SpriteData>();
 
-			foreach (var spriteData in ReadTexturesFromSheet(sheet, settings))
+			foreach (var spriteData in ReadTexturesFromSheet(texSheet, settings))
 			{
 				sprites.Add(spriteData);
 				spriteTextures.Add(spriteData.Texture);
 			}
 
-			Texture2D atlas = new Texture2D(sheet.Width, sheet.Height);
-			atlas.name = sheet.TextureName + "_orientated";
+			Texture2D atlas = new Texture2D(texSheet.Width, texSheet.Height);
+			atlas.name = texSheet.TextureName + "_orientated";
 
-			var uvCoords = atlas.PackTextures(spriteTextures.ToArray(), 1,Mathf.Max(sheet.Width,sheet.Height),false);
+			var uvCoords = atlas.PackTextures(spriteTextures.ToArray(), 1,Mathf.Max(texSheet.Width,texSheet.Height),false);
 			//WeaverLog.Log("Atlas Size = " + atlas.width + " , " + atlas.height);
 			var pngData = atlas.EncodeToPNG();
 
@@ -535,7 +535,7 @@ namespace WeaverCore.Editor
 
 			var importer = (TextureImporter)AssetImporter.GetAtPath(relativeDir + "\\" + atlas.name + ".png");
 			var platformSettings = importer.GetPlatformTextureSettings("DefaultTexturePlatform");
-			platformSettings.maxTextureSize = Mathf.Max(sheet.Width, sheet.Height);
+			platformSettings.maxTextureSize = Mathf.Max(texSheet.Width, texSheet.Height);
 			importer.SetPlatformTextureSettings(platformSettings);
 
 			float averagePPU = 0f;
@@ -566,7 +566,7 @@ namespace WeaverCore.Editor
 					border = Vector4.zero,
 					pivot = new Vector2(sprite.Sheet.Pivot.x, 1 - sprite.Sheet.Pivot.y),
 					alignment = (int)SpriteAlignment.Custom,
-					rect = new Rect(uv.x * sheet.Width,uv.y * sheet.Height,uv.width * sheet.Width,uv.height * sheet.Height)
+					rect = new Rect(uv.x * texSheet.Width,uv.y * texSheet.Height,uv.width * texSheet.Width,uv.height * texSheet.Height)
 				});
 			}
 			importer.spritesheet = metas.ToArray();

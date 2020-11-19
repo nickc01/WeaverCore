@@ -48,5 +48,29 @@ namespace WeaverCore.DataTypes
 			final = string.Concat(final, "AttackStrength = " + AttackStrength, "}");
 			return final;
 		}
+
+		/// <summary>
+		/// Returns the player that is attacking. Returns null if the attacker is not a player
+		/// </summary>
+		/// <returns></returns>
+		public Player GetAttackingPlayer()
+		{
+			var playerLayer = LayerMask.NameToLayer("Player");
+			var parent = Attacker.transform;
+
+			while (parent != null)
+			{
+				if ((parent.gameObject.layer | playerLayer) == playerLayer)
+				{
+					var playerComponent = parent.gameObject.GetComponent<Player>();
+					if (playerComponent != null)
+					{
+						return playerComponent;
+					}
+				}
+				parent = parent.parent;
+			}
+			return null;
+		}
 	}
 }

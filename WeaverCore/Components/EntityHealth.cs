@@ -163,7 +163,8 @@ namespace WeaverCore.Components
 		{
 			if (player == null)
 			{
-				player = Player.GetPlayerFromChild(hit.Attacker);
+				//player = Player.GetPlayerFromChild(hit.Attacker);
+				player = hit.GetAttackingPlayer();
 			}
 
 			if (player != null)
@@ -261,7 +262,8 @@ namespace WeaverCore.Components
 
 		void NormalHit(HitInfo hit)
 		{
-			var player = Player.GetPlayerFromChild(hit.Attacker);
+			//var player = Player.GetPlayerFromChild(hit.Attacker);
+			var player = hit.GetAttackingPlayer();
 			//If acid is ignored
 			/*if (hitInstance.AttackType == AttackTypes.Acid && this.ignoreAcid)
 			{
@@ -278,17 +280,20 @@ namespace WeaverCore.Components
 
 			impl.OnSuccessfulHit(hit);
 
-			if (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam)
+			if (player != null)
 			{
-				if (GainSoul)
+				if (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam)
 				{
-					//Cause the player to gain soul
-					//HeroController.instance.SoulGain();
-					player.SoulGain();
+					if (GainSoul)
+					{
+						//Cause the player to gain soul
+						//HeroController.instance.SoulGain();
+						player.SoulGain();
+					}
 				}
-			}
 
-			PlayHitEffects(hit, player);
+				PlayHitEffects(hit, player);
+			}
 
 			/*if (player != null)
 			{

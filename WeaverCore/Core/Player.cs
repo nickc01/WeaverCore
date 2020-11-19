@@ -15,7 +15,6 @@ namespace WeaverCore
     {
         static ObjectPool NailStrikePool;
         static ObjectPool SlashImpactPool;
-
         static List<Player> Players = new List<Player>();
 
         public static IEnumerable<Player> AllPlayers
@@ -64,31 +63,6 @@ namespace WeaverCore
             return NearestPlayer(gameObject.transform.position);
         }
 
-        /// <summary>
-        /// Takes a child object, and will return the Player Object that this object is a child of. If the object is not a child object of a player, then this will return null
-        /// </summary>
-        /// <param name="childObject"></param>
-        /// <returns></returns>
-        public static Player GetPlayerFromChild(GameObject childObject)
-        {
-            var playerLayer = LayerMask.NameToLayer("Player");
-            var parent = childObject.transform;
-
-            while (parent != null)
-            {
-                if ((parent.gameObject.layer | playerLayer) == playerLayer)
-                {
-                    var playerComponent = parent.gameObject.GetComponent<Player>();
-                    if (playerComponent != null)
-                    {
-                        return playerComponent;
-                    }
-                }
-                parent = parent.parent;
-            }
-            return null;
-        }
-
 
         public virtual void PlayAttackSlash(GameObject target, HitInfo hit, Vector3 effectsOffset = default(Vector3))
         {
@@ -99,9 +73,6 @@ namespace WeaverCore
         {
             NailStrikePool.Instantiate(target, Quaternion.identity);
             var slashImpact = SlashImpactPool.Instantiate(target, Quaternion.identity);
-            //Instantiate(EffectAssets.NailStrikePrefab, target, Quaternion.identity);
-            //var slashImpact = Instantiate(EffectAssets.SlashImpactPrefab, target, Quaternion.identity);
-
             var attackDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
 
             switch (attackDirection)

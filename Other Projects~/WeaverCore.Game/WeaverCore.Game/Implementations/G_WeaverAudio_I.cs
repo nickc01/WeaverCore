@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.Audio;
 using WeaverCore.Attributes;
 using WeaverCore.Enums;
-using WeaverCore.Game.Patches;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;

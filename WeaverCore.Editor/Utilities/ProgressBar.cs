@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEditor;
+using UnityEngine;
 
 namespace WeaverCore.Editor.Utilities
 {
@@ -87,6 +88,7 @@ namespace WeaverCore.Editor.Utilities
 				if (Enabled)
 				{
 					EditorApplication.update -= OnUpdate;
+					EditorUtility.ClearProgressBar();
 				}
 			}
 		}

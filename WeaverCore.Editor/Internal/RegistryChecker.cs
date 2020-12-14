@@ -249,7 +249,7 @@ namespace WeaverCore.Editor.Internal
 			if (obj != null)
 			{
 				string bundleName = CreateBundleName(name);
-				SetAssetBundleWithBundleName(bundleName, serializedObject.targetObject);
+				SetAssetBundleWithBundleName(bundleName, obj);
 			}
 		}
 

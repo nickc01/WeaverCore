@@ -266,7 +266,12 @@ namespace WeaverCore.Utilities
 				{
 					return null;
 				}
-
+				/*if (wrapMode == WrapMode.Loop)
+				{
+					Debug.Log("Clip Name = " + clipName);
+					Debug.Log("Starting Frame = " + startingFrame);
+					Debug.Log("Frame Number = " + frameNumber);
+				}*/
 				return frames[startingFrame + frameNumber];
 			}
 
@@ -411,7 +416,7 @@ namespace WeaverCore.Utilities
 					previousFrame += 1;
 					if (previousFrame >= frameCount)
 					{
-						return loopStartFrame;
+						return loopStartFrame - startingFrame;
 					}
 					else
 					{
@@ -474,7 +479,7 @@ namespace WeaverCore.Utilities
 				case WrapMode.Loop:
 					return 0;
 				case WrapMode.LoopSection:
-					return loopStartFrame;
+					return 0;
 				case WrapMode.PingPong:
 					return 0;
 				case WrapMode.RandomFrame:
@@ -482,7 +487,7 @@ namespace WeaverCore.Utilities
 				case WrapMode.RandomLoop:
 					return UnityEngine.Random.Range(0, frameCount);
 				case WrapMode.SingleFrame:
-					return loopStartFrame;
+					return loopStartFrame - startingFrame;
 				default:
 					return -1;
 			}

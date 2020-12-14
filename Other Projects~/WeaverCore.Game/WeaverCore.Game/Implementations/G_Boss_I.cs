@@ -30,6 +30,14 @@ namespace WeaverCore.Game.Implementations
                 }
             }
 
+            public override bool InPantheon
+            {
+                get
+                {
+                    return BossSceneController.Instance != null;
+                }
+            }
+
             public override void OnBossesDeadAdd(Action action)
             {
                 if (BossSceneController.Instance != null)

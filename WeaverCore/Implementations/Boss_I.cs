@@ -20,6 +20,8 @@ namespace WeaverCore.Implementations
 			public abstract void EndBossBattle(float delayTime);
 
 			public abstract BossDifficulty Difficulty { get; set; }
+
+			public abstract bool InPantheon { get; }
 		}
 	}
 }

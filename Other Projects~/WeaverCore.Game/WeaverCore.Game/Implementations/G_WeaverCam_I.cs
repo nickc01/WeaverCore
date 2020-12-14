@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Enums;
+using WeaverCore.Game.Patches;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
 
@@ -20,7 +22,6 @@ namespace WeaverCore.Game.Implementations
 				var cameraParent = GameObject.Find("CameraParent");
 				if (cameraParent == null)
 				{
-					//throw new Exception("There is no Hollow Knight Camera in the scene");
 					return null;
 				}
 				else
@@ -28,15 +29,34 @@ namespace WeaverCore.Game.Implementations
 					tk2dCamera camera = cameraParent.GetComponentInChildren<tk2dCamera>();
 					if (camera == null)
 					{
-						//throw new Exception("There is no Hollow Knight Camera in the scene");
 						return null;
 					}
 					else
 					{
-						return camera.gameObject.AddComponent<WeaverCam>();
+						var cam = camera.gameObject.GetComponent<WeaverCam>();
+						if (cam == null)
+						{
+							cam = camera.gameObject.AddComponent<WeaverCam>();
+						}
+						return cam;
 					}
 				}
 			}
+		}
+
+		[OnInit]
+		static void Init()
+		{
+			On.tk2dCamera.Awake += Tk2dCamera_Awake;
+		}
+
+		private static void Tk2dCamera_Awake(On.tk2dCamera.orig_Awake orig, tk2dCamera self)
+		{
+			if (self.GetComponent<WeaverCam>() == null)
+			{
+				self.gameObject.AddComponent<WeaverCam>();
+			}
+			orig(self);
 		}
 
 		public class G_Shaker : Shaker_I

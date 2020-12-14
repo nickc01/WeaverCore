@@ -256,10 +256,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\G_GeoCounter_I.cs" />
     <Compile Include="Implementations\G_WeaverSettings_I.cs" />
     <Compile Include="Implementations\G_ObjectDumper_I.cs" />
     <Compile Include="Implementations\G_WeaverAssets_I.cs" />
     <Compile Include="Misc\SettingStorage.cs" />
+    <Compile Include="Patches\TextMeshProUGUIPatch.cs" />
+    <Compile Include="Tester.cs" />
     <Compile Include="WeaverCanvasSpawner.cs" />
     <Compile Include="Implementations\G_DamageHero_I.cs" />
     <Compile Include="Implementations\G_UnboundCoroutine_I.cs" />

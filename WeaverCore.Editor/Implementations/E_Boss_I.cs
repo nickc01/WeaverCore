@@ -33,6 +33,14 @@ namespace WeaverCore.Editor.Implementations
                 }
             }
 
+            public override bool InPantheon
+            {
+                get
+                {
+                    return false;
+                }
+            }
+
             public override void OnBossesDeadAdd(Action action)
             {
                 OnBossesDead += action;

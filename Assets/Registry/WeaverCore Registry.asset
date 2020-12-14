@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b22a69b31cf2847a46eb90f159d6ae, type: 3}
   m_Name: WeaverCore Registry
   m_EditorClassIdentifier: 
-  registryName: Weaver Core Registry
+  registryName: WeaverCore Registry
   modName: Weaver Core
   modAssemblyName: WeaverCore
   modTypeName: WeaverCore.Internal.WeaverCore
-  modListHashCode: 1684387993
+  modListHashCode: 913166469
   features:
   - feature: {fileID: 114659249116894634, guid: 398106b2d51c2144b97ff3de7eec6dcb,
       type: 2}
@@ -23,6 +23,6 @@ MonoBehaviour:
     AssemblyName: WeaverCore
   featuresRaw:
   - {fileID: 114659249116894634, guid: 398106b2d51c2144b97ff3de7eec6dcb, type: 2}
-  selectedFeatureIndex: 4
-  selectedModIndex: 1
+  selectedFeatureIndex: 0
+  selectedModIndex: 0
   registryEnabled: 1

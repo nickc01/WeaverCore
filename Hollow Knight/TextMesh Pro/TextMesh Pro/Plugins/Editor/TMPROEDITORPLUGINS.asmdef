@@ -1,0 +1,8 @@
+{
+    "name": "TMPROEDITORPLUGINS",
+    "references": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

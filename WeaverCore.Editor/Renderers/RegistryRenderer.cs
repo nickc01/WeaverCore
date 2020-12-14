@@ -26,7 +26,7 @@ namespace WeaverCore.Editor.Renderers
 		public override void OnInspectorGUI()
 		{
 			serializedObject.Update();
-			foreach (var property in serializedObject.Iterator("selectedModIndex","selectedFeatureIndex","modAssemblyName","modTypeName","modListHashCode", "featureBundlePaths", "featureTypesRaw"))
+			foreach (var property in serializedObject.Iterator("selectedModIndex","selectedFeatureIndex","modAssemblyName","modTypeName","modListHashCode", "featureBundlePaths", "featuresRaw"))
 			{
 				if (property.name == "modName")
 				{

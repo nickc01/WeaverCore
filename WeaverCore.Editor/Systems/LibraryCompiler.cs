@@ -273,6 +273,11 @@ namespace WeaverCore.Editor.Systems
 				//For some reason, this only works when using forward slashes and not backslashes.
 				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.dll");
 				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
+				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.Editor.dll");
+				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverBuildTools.dll");
+				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/TMPro.Editor.dll");
+				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/0Harmony.dll");
+				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/Mono.Cecil.dll");
 
 				weaverCoreBuilder.ReferencePaths.Add(DefaultAssemblyCSharpLocation.FullName);
 

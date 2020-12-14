@@ -1,0 +1,12 @@
+{
+    "name": "TMPro.Editor",
+    "references": [
+        "HollowKnight",
+        "WeaverCore",
+        "WeaverCore.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

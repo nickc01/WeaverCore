@@ -245,6 +245,7 @@ namespace WeaverCore
         {
             foreach (var registry in ActiveRegistries)
             {
+                WeaverLog.Log("Active Registry = " + registry.registryName);
                 if (registry != null && registry.registryEnabled)
                 {
                     //Debugger.Log("B");
@@ -277,12 +278,17 @@ namespace WeaverCore
             // Debugger.Log("Features Raw = " + featuresRaw);
             foreach (var rawFeature in featuresRaw)
             {
+                //WeaverLog.Log("Raw Feature Type = " + rawFeature.GetType());
+                //WeaverLog.Log("Raw Feature = " + rawFeature);
                 if (rawFeature != null && rawFeature is IFeature)
                 {
                     var feature = (IFeature)rawFeature;
-
+                   // WeaverLog.Log("Feature 2 = " + feature);
+                    //WeaverLog.Log("Destination Type = " + typeof(T).FullName);
+                    //WeaverLog.Log("Can Convert to type = " + typeof(T).IsAssignableFrom(feature.GetType()));
                     if (typeof(T).IsAssignableFrom(feature.GetType()) && predicate(feature as T))
                     {
+                        //WeaverLog.Log("Yielding Feature");
                         yield return feature as T;
                     }
                 }

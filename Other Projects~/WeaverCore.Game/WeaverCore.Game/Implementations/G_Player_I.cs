@@ -24,7 +24,5 @@ namespace WeaverCore.Game.Implementations
         {
             HeroController.instance.SoulGain();
         }
-
-
     }
 }

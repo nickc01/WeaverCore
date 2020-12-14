@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,26 @@ namespace WeaverCore.Features
 		{
 			var enemyImplType = ImplFinder.GetImplementationType<Enemy_I>();
 			enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
+		}
+
+		public static IEnumerator Roar(GameObject source, float duration)
+		{
+			return Roar(source, duration, null);
+		}
+
+		public IEnumerator Roar(float duration)
+		{
+			return Roar(gameObject, duration, null);
+		}
+
+		public IEnumerator Roar(float duration, AudioClip roarSound)
+		{
+			return Roar(gameObject, duration, roarSound);
+		}
+
+		public static IEnumerator Roar(GameObject source, float duration, AudioClip roarSound)
+		{
+			return staticImpl.Roar(source, duration, roarSound);
 		}
 	}
 }

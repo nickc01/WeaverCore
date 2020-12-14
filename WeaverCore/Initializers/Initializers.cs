@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Utilities;
@@ -15,6 +16,11 @@ namespace WeaverCore.Initializers
 		{
 			if (CoreInfo.LoadState == Enums.RunningState.Game)
 			{
+				//TEST ONLY
+				foreach (var font in Resources.FindObjectsOfTypeAll<TMP_FontAsset>())
+				{
+					Debug.Log("Found Font = " + font.name);
+				}
 				OnInitRunner.RunInitFunctions();
 			}
 		}

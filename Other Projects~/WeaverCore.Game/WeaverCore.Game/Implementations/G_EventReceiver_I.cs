@@ -29,7 +29,7 @@ namespace WeaverCore.Game.Implementations
 
 		protected static List<EventInfo> EventHooks = new List<EventInfo>();
 
-		static MethodInfo EventPrefixMethod;
+		//static MethodInfo EventPrefixMethod;
 
 		public override void Initialize()
 		{

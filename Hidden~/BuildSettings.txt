@@ -1,8 +1,8 @@
 {
     "ModName": "InfernoKingGrimm",
     "WindowsSupport": true,
-    "MacSupport": true,
-    "LinuxSupport": true,
+    "MacSupport": false,
+    "LinuxSupport": false,
     "StartGame": true,
     "BuildLocation": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hollow Knight\\hollow_knight_Data\\Managed\\Mods"
 }

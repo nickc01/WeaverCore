@@ -307,7 +307,11 @@ namespace WeaverCore.Editor.Utilities
 			data.TextureFilterMode = (FilterMode)CollectionDataType.GetField("textureFilterMode").GetValue(spriteCollectionData);
 			data.Version = (int)CollectionDataType.GetField("version").GetValue(spriteCollectionData);
 
-			data.Definitions = new SpriteDefinitionData[rawSprites.Length];
+			data.Definitions = new SpriteDefinitionData[rawSprites.GetLength(0)];
+
+			Debug.Log("Collection Name = " + data.CollectionName);
+
+			Debug.Log("Sprite Count = " + rawSprites.GetLength(0));
 
 			for (int i = 0; i < rawSprites.GetLength(0); i++)
 			{
@@ -315,6 +319,10 @@ namespace WeaverCore.Editor.Utilities
 
 				var definition = new SpriteDefinitionData();
 				definition.Name = (string)SpriteDefinitionType.GetField("name").GetValue(rawSprite) ?? ("unknown_" + i.ToString());
+
+				Debug.Log("Sprite = " + definition.Name);
+				Debug.Log("Sprite ID = " + i);
+
 				var oldPositions = (Vector3[])SpriteDefinitionType.GetField("positions").GetValue(rawSprite);
 				var newPositions = new Vector2[oldPositions.GetLength(0)];
 				for (int j = 0; j < oldPositions.GetLength(0); j++)
@@ -338,7 +346,7 @@ namespace WeaverCore.Editor.Utilities
 			var mainTexture = data.MainTexture as Texture2D;
 			using (var progress = new ProgressBar(data.Definitions.GetLength(0) - 1, "Unpacking", "Unpacking TK2DSpriteDefinition", true))
 			{
-				using (var context = new ReadableTextureContext(mainTexture))
+				using (var readContext = new ReadableTextureContext(mainTexture))
 				{
 					for (int i = 0; i < data.Definitions.GetLength(0); i++)
 					{
@@ -474,142 +482,137 @@ namespace WeaverCore.Editor.Utilities
 
 		static IEnumerator UnpackToSpriteAsyncInternal(UnityEngine.Object tk2dSpriteCollection, OutClass<SpritePackage> resultSprites = null, string fileLocation = null)
 		{
+			//TODO : READ ACTUAL IMAGE SIZE AND RESIZE TEXTURE TO THAT SIZE
 			var data = GetCollectionData(tk2dSpriteCollection);
-
-			List<Texture2D> spriteTextures = new List<Texture2D>();
-			List<tk2DSpriteData> sprites = new List<tk2DSpriteData>();
-			//yield return null;
-
-			foreach (var spriteData in ReadSpritesFromData(data))
+			using (var resizeContext = new ResizeTextureContext(data.MainTexture))
 			{
-				sprites.Add(spriteData);
-				spriteTextures.Add(spriteData.Texture);
-				yield return null;
-			}
-
-			Texture2D atlas = new Texture2D(data.MainTexture.width, data.MainTexture.height);
-			string atlasName = data.MainTexture.name + "_unpacked";
-			atlas.name = atlasName;
-
-			var uvCoords = atlas.PackTextures(spriteTextures.ToArray(), 1, Mathf.Max(data.MainTexture.width, data.MainTexture.height), false);
-			//WeaverLog.Log("Atlas Size = " + atlas.width + " , " + atlas.height);
-			var pngData = atlas.EncodeToPNG();
-
-			if (fileLocation == null)
-			{
-				fileLocation = "Assets\\" + atlasName + ".png";
-			}
-			else if (!fileLocation.EndsWith(".png"))
-			{
-				fileLocation += "\\" + atlasName + ".png";
-			}
-
-			var fileInfo = new FileInfo(fileLocation);
-
-			if (!fileInfo.Directory.Exists)
-			{
-				fileInfo.Directory.Create();
-			}
-
-			using (var fileTest = File.Create(fileLocation))
-			{
-				fileTest.Write(pngData, 0, pngData.GetLength(0));
-			}
-			AssetDatabase.ImportAsset(fileLocation);
-
-			yield return null;
-
-			//DefaultTexturePlatform
-
-			var importer = (TextureImporter)AssetImporter.GetAtPath(fileLocation);
-			var platformSettings = importer.GetPlatformTextureSettings("DefaultTexturePlatform");
-			platformSettings.maxTextureSize = Mathf.Max(data.MainTexture.width, data.MainTexture.height);
-			importer.SetPlatformTextureSettings(platformSettings);
-
-			float averagePPU = 0f;
-
-			foreach (var sprite in sprites)
-			{
-				averagePPU += sprite.PixelsPerUnit;
+				List<Texture2D> spriteTextures = new List<Texture2D>();
+				List<tk2DSpriteData> sprites = new List<tk2DSpriteData>();
 				//yield return null;
-			}
-			averagePPU /= sprites.Count;
 
-
-			importer.spriteImportMode = SpriteImportMode.Multiple;
-			importer.spritePixelsPerUnit = averagePPU;
-
-			List<SpriteMetaData> metas = new List<SpriteMetaData>();
-
-			Dictionary<Rect, int> rectToId = new Dictionary<Rect, int>();
-
-			//foreach (var sprite in sprites)
-			for (int i = 0; i < sprites.Count; i++)
-			{
-				var sprite = sprites[i];
-				var uv = uvCoords[i];
-				//var textureSize = new Vector2(sprite.Texture.width, sprite.Texture.height);
-				//WeaverLog.Log("Sprite Coords for " + sprite.Texture.name + " = " + uvCoords[i]);
-				metas.Add(new SpriteMetaData()
+				foreach (var spriteData in ReadSpritesFromData(data))
 				{
-					name = sprite.Name,
-					border = Vector4.zero,
-					pivot = new Vector2(sprite.Pivot.x, 1 - sprite.Pivot.y),
-					alignment = (int)SpriteAlignment.Custom,
-					rect = new Rect(uv.x * atlas.width, uv.y * atlas.height, uv.width * atlas.width, uv.height * atlas.height)
-				});
+					sprites.Add(spriteData);
+					spriteTextures.Add(spriteData.Texture);
+					yield return null;
+				}
 
-				rectToId.Add(metas[metas.Count - 1].rect,i);
-			}
-			importer.spritesheet = metas.ToArray();
+				//Debug.Log("Creating Texture with = " + new Vector2Int(data.MainTexture.width,data.MainTexture.height));
+				Texture2D atlas = new Texture2D(data.MainTexture.width, data.MainTexture.height);
+				string atlasName = data.MainTexture.name + "_unpacked";
+				atlas.name = atlasName;
 
-			Debug.Log("Unpacked " + metas.Count + " different sprites");
+				var uvCoords = atlas.PackTextures(spriteTextures.ToArray(), 1, Mathf.Max(data.MainTexture.width, data.MainTexture.height),false);
+				//WeaverLog.Log("Atlas Size = " + atlas.width + " , " + atlas.height);
+				var pngData = atlas.EncodeToPNG();
 
-			importer.SaveAndReimport();
-
-			yield return null;
-
-			EditorUtility.ClearProgressBar();
-
-			var finalTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(fileLocation);
-
-			if (resultSprites != null)
-			{
-				var package = new SpritePackage(finalTexture);
-
-				var finalSprites = GetSpritesFromTexture(finalTexture);
-
-				foreach (var finalSprite in finalSprites)
+				if (fileLocation == null)
 				{
-					if (rectToId.ContainsKey(finalSprite.rect))
+					fileLocation = "Assets\\" + atlasName + ".png";
+				}
+				else if (!fileLocation.EndsWith(".png"))
+				{
+					fileLocation += "\\" + atlasName + ".png";
+				}
+
+				var fileInfo = new FileInfo(fileLocation);
+
+				if (!fileInfo.Directory.Exists)
+				{
+					fileInfo.Directory.Create();
+				}
+
+				using (var fileTest = File.Create(fileLocation))
+				{
+					fileTest.Write(pngData, 0, pngData.GetLength(0));
+				}
+				AssetDatabase.ImportAsset(fileLocation);
+
+				yield return null;
+
+				//DefaultTexturePlatform
+
+
+				var importer = (TextureImporter)AssetImporter.GetAtPath(fileLocation);
+				var platformSettings = importer.GetPlatformTextureSettings("DefaultTexturePlatform");
+				platformSettings.maxTextureSize = Mathf.Max(data.MainTexture.width, data.MainTexture.height);
+				importer.SetPlatformTextureSettings(platformSettings);
+
+				float averagePPU = 0f;
+
+				foreach (var sprite in sprites)
+				{
+					averagePPU += sprite.PixelsPerUnit;
+					//yield return null;
+				}
+				averagePPU /= sprites.Count;
+
+
+				importer.spriteImportMode = SpriteImportMode.Multiple;
+				importer.spritePixelsPerUnit = averagePPU;
+
+				List<SpriteMetaData> metas = new List<SpriteMetaData>();
+
+				Dictionary<Rect, int> rectToId = new Dictionary<Rect, int>();
+
+				//foreach (var sprite in sprites)
+				for (int i = 0; i < sprites.Count; i++)
+				{
+					var sprite = sprites[i];
+					var uv = uvCoords[i];
+					//var textureSize = new Vector2(sprite.Texture.width, sprite.Texture.height);
+					//WeaverLog.Log("Sprite Coords for " + sprite.Texture.name + " = " + uvCoords[i]);
+					metas.Add(new SpriteMetaData()
 					{
-						//spriteList[rectToId[finalSprite.rect]] = finalSprite;
-						package.AddSprite(rectToId[finalSprite.rect], finalSprite);
-					}
+						name = sprite.Name,
+						border = Vector4.zero,
+						pivot = new Vector2(1 - sprite.Pivot.x, 1 - sprite.Pivot.y),
+						alignment = (int)SpriteAlignment.Custom,
+						rect = new Rect(uv.x * atlas.width, uv.y * atlas.height, uv.width * atlas.width, uv.height * atlas.height)
+					});
+
+					rectToId.Add(metas[metas.Count - 1].rect, i);
 				}
+				importer.spritesheet = metas.ToArray();
 
-				resultSprites.Value = package;
-			}
+				Debug.Log("Unpacked " + metas.Count + " different sprites");
 
-			/*if (spriteList != null)
-			{
-				spriteList.Clear();
+				importer.SaveAndReimport();
 
-				for (int i = 0; i < metas.Count; i++)
+				yield return null;
+
+				EditorUtility.ClearProgressBar();
+
+				var finalTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(fileLocation);
+
+				if (resultSprites != null)
 				{
-					spriteList.Add(null);
-				}
+					var package = new SpritePackage(finalTexture);
 
-				var finalSprites = GetSpritesFromTexture(finalTexture);
+					var finalSprites = GetSpritesFromTexture(finalTexture);
 
-				foreach (var finalSprite in finalSprites)
-				{
-					if (rectToId.ContainsKey(finalSprite.rect))
+					foreach (var finalSprite in finalSprites)
 					{
-						spriteList[rectToId[finalSprite.rect]] = finalSprite;
+						var definition = data.Definitions.FirstOrDefault(d => d.Name == finalSprite.name);
+
+						if (definition.Positions != default(Vector2[]))
+						{
+							package.AddSprite(Array.IndexOf(data.Definitions, definition), finalSprite);
+						}
 					}
+
+					/*foreach (var finalSprite in finalSprites)
+					{
+						if (rectToId.ContainsKey(finalSprite.rect))
+						{
+							//spriteList[rectToId[finalSprite.rect]] = finalSprite;
+							package.AddSprite(rectToId[finalSprite.rect], finalSprite);
+						}
+					}*/
+
+					resultSprites.Value = package;
 				}
-			}*/
+			}
 		}
 
 		static T GetField<T>(Type type, object obj, string field)
@@ -647,6 +650,7 @@ namespace WeaverCore.Editor.Utilities
 					LoopStart = GetField<int>(clipType, clipRaw, "loopStart")
 				};
 
+
 				var wrapEnumRaw = clipType.GetField("wrapMode").GetValue(clipRaw);
 				var rawEnumType = wrapEnumRaw.GetType();
 
@@ -669,6 +673,17 @@ namespace WeaverCore.Editor.Utilities
 					};
 
 					newClip.Frames[j] = frame;
+				}
+
+				if (newClip.Name == "Roar Loop")
+				{
+					Debug.Log("Clip Name 1 - " + newClip.Name);
+					Debug.Log("FPS 1 - " + newClip.FPS);
+					Debug.Log("Frame Count 1 = " + newClip.Frames.GetLength(0));
+					foreach (var frame in newClip.Frames)
+					{
+						Debug.Log("Frame = " + frame.SpriteID);
+					}
 				}
 
 
@@ -699,25 +714,25 @@ namespace WeaverCore.Editor.Utilities
 
 			var animationData = GetAnimationData(tk2dSpriteAnimation);
 
-			Dictionary<object, SpriteCollectionData> spriteCollections = new Dictionary<object, SpriteCollectionData>();
+			Dictionary<int, SpriteCollectionData> spriteCollections = new Dictionary<int, SpriteCollectionData>();
 
 
-			Dictionary<object, SpritePackage> sprites = new Dictionary<object, SpritePackage>();
+			Dictionary<int, SpritePackage> sprites = new Dictionary<int, SpritePackage>();
 
 			foreach (var clip in animationData.Clips)
 			{
 				foreach (var frame in clip.Frames)
 				{
-					if (!spriteCollections.ContainsKey(frame.SpriteCollectionRaw))
+					if (!spriteCollections.ContainsKey(frame.SpriteCollectionRaw.GetInstanceID()))
 					{
-						spriteCollections.Add(frame.SpriteCollectionRaw, GetCollectionData(frame.SpriteCollectionRaw));
+						spriteCollections.Add(frame.SpriteCollectionRaw.GetInstanceID(), GetCollectionData(frame.SpriteCollectionRaw));
 
 						OutClass<SpritePackage> outputSprites = new OutClass<SpritePackage>();
 						//List<Sprite> sprites = new List<Sprite>();
 
 						yield return UnpackToSpriteAsyncInternal(frame.SpriteCollectionRaw, outputSprites,"Assets\\" + animationName);
 
-						sprites.Add(frame.SpriteCollectionRaw, outputSprites.Value);
+						sprites.Add(frame.SpriteCollectionRaw.GetInstanceID(), outputSprites.Value);
 					}
 				}
 			}
@@ -765,7 +780,7 @@ namespace WeaverCore.Editor.Utilities
 
 				foreach (var frameRaw in clipRaw.Frames)
 				{
-					clip.AddFrame(sprites[frameRaw.SpriteCollectionRaw].GetSprite(frameRaw.SpriteID));
+					clip.AddFrame(sprites[frameRaw.SpriteCollectionRaw.GetInstanceID()].GetSprite(frameRaw.SpriteID));
 				}
 
 				data.AddClip(clip);

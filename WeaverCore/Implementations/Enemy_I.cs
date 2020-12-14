@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using WeaverCore.Features;
 using WeaverCore.Interfaces;
@@ -9,7 +10,7 @@ namespace WeaverCore.Implementations
     {
         public abstract class Statics : IImplementation
         {
-
+            public abstract IEnumerator Roar(GameObject source, float duration, AudioClip roarSound);
         }
     }
 }

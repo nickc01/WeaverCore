@@ -27,7 +27,6 @@ namespace WeaverCore.Editor.Implementations
             }
         }
 
-
         void Start()
         {
             rigidBody = GetComponent<Rigidbody2D>();

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,14 +27,24 @@ namespace WeaverCore.Assets.Components
 		float verticalSpacing = 0f;
 
 
+		[SerializeField]
 		Text text;
+		[SerializeField]
+		TextMeshProUGUI tmpro;
 		RectTransform rect;
 
 
 
 		void Start()
 		{
-			text = GetComponentInChildren<Text>();
+			if (text != null)
+			{
+				text = GetComponentInChildren<Text>();
+			}
+			if (tmpro != null)
+			{
+				tmpro = GetComponentInChildren<TextMeshProUGUI>();
+			}
 			rect = GetComponent<RectTransform>();
 		}
 
@@ -41,14 +52,34 @@ namespace WeaverCore.Assets.Components
 
 
 
+
 		void Update()
 		{
-			if (text != null && rect != null)
+			if (Application.isEditor && text == null)
+			{
+				text = GetComponentInChildren<Text>();
+			}
+			if (Application.isEditor && tmpro == null)
+			{
+				tmpro = GetComponentInChildren<TextMeshProUGUI>();
+			}
+			if (Application.isEditor && rect == null)
+			{
+				rect = GetComponent<RectTransform>();
+			}
+			if ((tmpro != null || text != null) && rect != null)
 			{
 				var newSize = rect.sizeDelta;
 				if (resizeToWidth)
 				{
-					newSize.x = text.preferredWidth + horizontalSpacing;
+					if (tmpro != null)
+					{
+						newSize.x = tmpro.preferredWidth + horizontalSpacing;
+					}
+					else
+					{
+						newSize.x = text.preferredWidth + horizontalSpacing;
+					}
 					if (newSize.x < minWidth)
 					{
 						newSize.x = minWidth;
@@ -56,7 +87,15 @@ namespace WeaverCore.Assets.Components
 				}
 				if (resizeToHeight)
 				{
-					newSize.y = text.preferredHeight + verticalSpacing;
+					if (tmpro != null)
+					{
+						newSize.y = tmpro.preferredHeight + verticalSpacing;
+					}
+					else
+					{
+						newSize.y = text.preferredHeight + verticalSpacing;
+					}
+					//newSize.y = text.preferredHeight + verticalSpacing;
 					if (newSize.y < minHeight)
 					{
 						newSize.y = minHeight;

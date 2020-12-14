@@ -33,6 +33,14 @@ namespace WeaverCore.Features
 			}
 		}
 
+		public static bool InPantheon
+		{
+			get
+			{
+				return staticImpl.InPantheon;
+			}
+		}
+
 		[SerializeField]
 		int _bossStage = 1;
 		public int BossStage
@@ -51,6 +59,7 @@ namespace WeaverCore.Features
 		public IBossMove PreviousMove { get; private set; }
 		public IBossMove CurrentMove { get; private set; }
 
+		[NonSerialized]
 		EntityHealth entityHealth;
 
 		Boss_I impl;
@@ -63,6 +72,19 @@ namespace WeaverCore.Features
 			impl = (Boss_I)gameObject.AddComponent(bossImplType);
 			entityHealth = GetComponent<EntityHealth>();
 			entityHealth.OnDeathEvent += OnDeath;
+		}
+
+		public EntityHealth EntityHealth
+		{
+			get
+			{
+				if (entityHealth == null)
+				{
+					entityHealth = GetComponent<EntityHealth>();
+				}
+				return entityHealth;
+			}
+
 		}
 
 		public IEnumerable<IBossMove> EnabledMoves

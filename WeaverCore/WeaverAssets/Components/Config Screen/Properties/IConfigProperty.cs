@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -40,7 +41,7 @@ namespace WeaverCore.Assets.Components
 
 		protected string description;
 		[SerializeField]
-		protected Text titleText;
+		protected TextMeshProUGUI titleText;
 
 		protected GlobalWeaverSettings settings;
 		protected FieldInfo field;

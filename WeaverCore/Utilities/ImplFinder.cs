@@ -42,21 +42,35 @@ namespace WeaverCore.Utilities
         [OnInit(int.MinValue)]
         static void Initializer()
         {
-            if (Initialized)
+            /*if (Initialized)
             {
                 return;
-            }
+            }*/
             Initialized = true;
            //Debug.LogError("D");
             //Debug.Log("Running ImplFinder");
             if (FoundImplementations == null)
             {
-                FoundImplementations = new List<Type>();
+                Assembly temp = null;
 #if UNITY_EDITOR
-                ImplAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "WeaverCore.Editor");
+                temp = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "WeaverCore.Editor");
 #else
-                ImplAssembly = ResourceLoader.LoadAssembly("WeaverCore.Game");
+                temp = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == "WeaverCore.Game");
+                if (temp == null)
+	            {
+                    temp = ResourceLoader.LoadAssembly("WeaverCore.Game");
+	            }
 #endif
+
+                if (ImplAssembly != null)
+                {
+                    return;
+                }
+                else
+                {
+                    ImplAssembly = temp;
+                }
+                FoundImplementations = new List<Type>();
                 try
                 {
                     foreach (var type in ImplAssembly.GetTypes())

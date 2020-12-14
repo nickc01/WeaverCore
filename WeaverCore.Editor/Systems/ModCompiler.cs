@@ -98,11 +98,14 @@ namespace WeaverCore.Editor.Systems
 				//yield return PrepareForBundling(settings.ModName);
 				progress.GoToNextStep();
 				List<BundleBuild> bundles = new List<BundleBuild>();
+				Debug.Log("BUILDING WEAVERCORE BUNDLES");
 				yield return LibraryCompiler.BuildAssetBundles(bundles, settings.ModName, settings.GetBuildModes());
 				foreach (var bundle in bundles)
 				{
+					WeaverLog.Log("Bundle = " + bundle.File);
 					if (bundle.File.Name.Contains(WeaverAssets.WeaverAssetBundleName))
 					{
+						WeaverLog.Log("Embedding Bundle into = " + compileLocation + "\\WeaverCore.dll");
 						EmbedResourceCMD.EmbedResource(compileLocation + "\\WeaverCore.dll", bundle.File.FullName, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
 						progress.GoToNextStep();
 					}
@@ -186,9 +189,12 @@ namespace WeaverCore.Editor.Systems
 				//yield return PrepareForBundling(settings.ModName);
 				progress.GoToNextStep();
 				List<BundleBuild> bundles = new List<BundleBuild>();
+				Debug.Log("BUILDING WEAVERCORE BUNDLES");
 				yield return LibraryCompiler.BuildWeaverCoreBundles(bundles, settings.GetBuildModes());
 				foreach (var bundle in bundles)
 				{
+					Debug.Log("Bundle = " + bundle.File);
+					Debug.Log("Embedding into = " + compileLocation + "\\WeaverCore.dll");
 					EmbedResourceCMD.EmbedResource(compileLocation + "\\WeaverCore.dll", bundle.File.FullName, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
 					progress.GoToNextStep();
 				}

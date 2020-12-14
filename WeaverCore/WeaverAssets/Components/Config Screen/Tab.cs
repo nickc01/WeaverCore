@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using WeaverCore.Configuration;
@@ -8,7 +9,7 @@ namespace WeaverCore.Assets.Components
 {
 	public class Tab : MonoBehaviour
 	{
-		Text _tabText;
+		TextMeshProUGUI _tabText;
 		Button _button;
 
 		[HideInInspector]
@@ -26,13 +27,13 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
-		public Text TabText
+		public TextMeshProUGUI TabText
 		{
 			get
 			{
 				if (_tabText == null)
 				{
-					_tabText = GetComponentInChildren<Text>();
+					_tabText = GetComponentInChildren<TextMeshProUGUI>();
 				}
 				return _tabText;
 			}

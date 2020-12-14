@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.SceneManagement;
@@ -38,9 +39,9 @@ namespace WeaverCore.Assets.Components
 		[SerializeField]
 		GameObject propertyHolder;
 		[SerializeField]
-		Text DescriptionText;
+		TextMeshProUGUI DescriptionText;
 		[SerializeField]
-		Text SettingTitleText;
+		TextMeshProUGUI SettingTitleText;
 
 		int tabIndex = 0;
 		bool hasTabs = false;
@@ -131,6 +132,7 @@ namespace WeaverCore.Assets.Components
 				//PropertyTemplates.Add(component.BindingFieldType, component);
 				PropertyTemplates.Add(component);
 			}
+			WeaverLog.Log("Property Templates = " + PropertyTemplates.Count);
 		}
 
 		static void CreateOnSceneChange(Scene scene, LoadSceneMode loadSceneMode)

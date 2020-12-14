@@ -114,9 +114,6 @@ namespace WeaverCore.Utilities
 			SourcePool.ReturnToPool(this,time);
 		}
 
-		void OnParticleSystemStopped()
-		{
 
-		}
 	}
 }

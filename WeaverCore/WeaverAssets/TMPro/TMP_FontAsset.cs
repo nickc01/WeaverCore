@@ -9,6 +9,10 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Assets.TMPro
 {
+#if UNITY_EDITOR
+	[System.ComponentModel.Browsable(false)]
+	[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+#endif
 	public class TMP_FontAsset : global::TMPro.TMP_FontAsset
 	{
 		[SerializeField]
@@ -166,31 +170,19 @@ namespace WeaverCore.Assets.TMPro
 			var method = fontType.GetMethod("OnValidate", BindingFlags.NonPublic | BindingFlags.Instance);
 
 			patcher.Patch(method, typeof(TMP_FontAsset).GetMethod("PatchedOnValidate", BindingFlags.Static | BindingFlags.NonPublic), null);
-			//patcher.Patch(method, typeof(global::TMPro.TMP_FontAsset).GetMethod("OnEnable", BindingFlags.Static | BindingFlags.NonPublic), null);
 
 		}
 #endif
 
-		/*void Awake()
-		{
-			WeaverLog.Log("PRE AWAKE");
-			WeaverLog.Log("Calling Test");
-			test();
-		}*/
 
 		void Awake()
 		{
-			WeaverLog.Log("Awake Called!!!");
-			WeaverLog.Log("Playing = " + Application.isPlaying);
-			WeaverLog.Log("Load State = " + CoreInfo.LoadState);
 			if (!Application.isPlaying || CoreInfo.LoadState == Enums.RunningState.Editor)
 			{
 				return;
 			}
 
-			WeaverLog.Log("SETTING ALL FONT ASSET SETTINGS");
-
-			var type = typeof(global::TMPro.TMP_FontAsset);//GetType();
+			var type = typeof(global::TMPro.TMP_FontAsset);
 			var fontInfo = new FaceInfo();
 
 			fontInfo.Name = FaceInfo_Name;
@@ -248,10 +240,6 @@ namespace WeaverCore.Assets.TMPro
 
 			type.GetField("m_kerningInfo", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(this,kTable);
 
-			//obj.KerningPair_AscII_Left = kerningPair.AscII_Left;
-			//obj.KerningPair_AscII_Right = kerningPair.AscII_Right;
-			//obj.KerningPair_XadvanceOffset = kerningPair.XadvanceOffset;
-
 			var newKerningPair = new KerningPair(KerningPair_AscII_Left,KerningPair_AscII_Right,KerningPair_XadvanceOffset);
 			type.GetField("m_kerningPair", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(this,newKerningPair);
 
@@ -301,15 +289,7 @@ namespace WeaverCore.Assets.TMPro
 			var obj = __instance as TMP_FontAsset;
 
 			var type = typeof(global::TMPro.TMP_FontAsset);
-			//Debug.Log("Obj = " + obj);
-			//Debug.Log("Type = " + type);
 
-			//Debug.Log("Font Info Field = " + type.GetField("m_fontInfo", BindingFlags.NonPublic | BindingFlags.Instance));
-
-			/*foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-			{
-				Debug.Log("All Fields = " + field.Name);
-			}*/
 
 			var fontInfo = (FaceInfo)type.GetField("m_fontInfo", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(obj);
 

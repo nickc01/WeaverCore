@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.TMPro
 {
+#if UNITY_EDITOR
+	[System.ComponentModel.Browsable(false)]
+	[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+#endif
 	[ExecuteInEditMode]
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(RectTransform))]

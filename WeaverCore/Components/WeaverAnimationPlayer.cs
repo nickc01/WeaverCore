@@ -51,6 +51,9 @@ namespace WeaverCore.Components
 			}
 		}
 
+		/// <summary>
+		/// The currently playing clip. Returns null if no clip is playing
+		/// </summary>
 		public string PlayingClip { get; private set; }
 
 		//Each time a new animation is played, this value gets regenerated. This is used to differentiate between different playing animations

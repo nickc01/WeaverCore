@@ -44,7 +44,7 @@ namespace WeaverCore.Components
 			}
 			set
 			{
-				_health = value;
+				_health = OnHealthUpdate(value);
 				CheckMilestones(_health);
 				if (_health <= 0)
 				{
@@ -121,10 +121,6 @@ namespace WeaverCore.Components
 
 		public virtual bool Hit(HitInfo hit)
 		{
-			//WeaverLog.Log("ENEMY HIT = " + hit);
-			//WeaverLog.Log("Health = " + _health);
-			//WeaverLog.Log("EvasionTime = " + EvasionTimeLeft);
-			//WeaverLog.Log("Invincible = " + Invincible);
 			var hitResult = IsValidHit(hit);
 			impl.OnHit(hit, hitResult);
 			switch (hitResult)
@@ -144,7 +140,7 @@ namespace WeaverCore.Components
 
 		public HitResult IsValidHit(HitInfo hit)
 		{
-			bool validHit = !(_health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
+			bool validHit = !(Health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
 			if (!validHit)
 			{
 				return HitResult.Invalid;
@@ -377,23 +373,14 @@ namespace WeaverCore.Components
 			}
 		}
 
-		/*/// <summary>
-		/// Gets the health value of the next milestone
+		/// <summary>
+		/// Called when the health is being updated with a new value
 		/// </summary>
-		/// <returns></returns>
-		public int NextHealthMilestone()
+		/// <param name="newValue">The new value that is being set</param>
+		/// <returns>Returns the actual value that is going to be set. Use this to override the new value with your own</returns>
+		protected virtual int OnHealthUpdate(int newValue)
 		{
-			Milestone? nearestMilestone = null;
-			int milestoneHealth = 0;
-			foreach (var milestone in HealthMilestones)
-			{
-				if (milestone.HealthNumber < Health && milestone.HealthNumber >= milestoneHealth)
-				{
-					nearestMilestone = milestone;
-					milestoneHealth = milestone.HealthNumber;
-				}
-			}
-			return milestoneHealth;
-		}*/
+			return newValue;
+		}
 	}
 }

@@ -1969,12 +1969,12 @@ MonoBehaviour:
   tabSize: 10
   FaceInfo_Name: Trajan Pro
   FaceInfo_PointSize: 70
-  FaceInfo_Scale: 0
+  FaceInfo_Scale: 1
   FaceInfo_CharacterCount: 209
   FaceInfo_LineHeight: 84
   FaceInfo_Baseline: 0
   FaceInfo_Ascender: 52.5
-  FaceInfo_CapHeight: 0
+  FaceInfo_CapHeight: 52.6875
   FaceInfo_Descender: -17.5
   FaceInfo_CenterLine: 0
   FaceInfo_SuperscriptOffset: 52.5
@@ -1984,7 +1984,7 @@ MonoBehaviour:
   FaceInfo_UnderlineThickness: 3.5
   FaceInfo_strikethrough: 12.727273
   FaceInfo_strikethroughThickness: 3.5
-  FaceInfo_TabWidth: 0
+  FaceInfo_TabWidth: 227.5
   FaceInfo_Padding: 4
   FaceInfo_AtlasWidth: 1024
   FaceInfo_AtlasHeight: 1024
@@ -2410,7 +2410,7 @@ MonoBehaviour:
   - 522
   - 22
   TMP_Glyph_width:
-  - 0
+  - 22.75
   - 7.25
   - 14.625
   - 35.5
@@ -2620,7 +2620,7 @@ MonoBehaviour:
   - 40
   - 19.6875
   TMP_Glyph_height:
-  - 0
+  - 70
   - 54.875
   - 16.4375
   - 52.75
@@ -3040,7 +3040,7 @@ MonoBehaviour:
   - -0.75
   - 0
   TMP_Glyph_yOffset:
-  - 0
+  - 52.5
   - 53.6875
   - 52.875
   - 52.75
@@ -3758,7 +3758,7 @@ Material:
     - _BumpOutline: 0
     - _ColorMask: 15
     - _Diffuse: 0.5
-    - _FaceDilate: 0.266
+    - _FaceDilate: 0.271
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
@@ -3772,12 +3772,12 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.202
+    - _OutlineWidth: 0.276
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8
-    - _ScaleRatioB: 0.43719998
-    - _ScaleRatioC: 0.43719998
+    - _ScaleRatioB: 0.43319997
+    - _ScaleRatioC: 0.43319997
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

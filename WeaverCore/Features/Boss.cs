@@ -21,6 +21,10 @@ namespace WeaverCore.Features
 	[RequireComponent(typeof(EntityHealth))]
 	public class Boss : Enemy
 	{
+		//HashSet<Coroutine> BoundRoutines;
+		Dictionary<uint, Coroutine> BoundRoutines;
+		uint idCounter = 0;
+
 		public static BossDifficulty Diffculty
 		{
 			get
@@ -189,6 +193,62 @@ namespace WeaverCore.Features
 			}
 		}
 
+		/// <summary>
+		/// Starts a coroutine, but will automatically stop it when the boss is stunned or dead
+		/// </summary>
+		/// <returns>Returns an id for stopping it</returns>
+		public uint StartBoundRoutine(IEnumerator routine)
+		{
+			if (BoundRoutines == null)
+			{
+				BoundRoutines = new Dictionary<uint, Coroutine>();
+			}
+			if (idCounter == uint.MaxValue)
+			{
+				idCounter = 0;
+			}
+			else
+			{
+				idCounter++;
+			}
+			var coroutine = StartCoroutine(DoBoundRoutine(idCounter,routine));
+			BoundRoutines.Add(idCounter,coroutine);
+			return idCounter;
+		}
+
+		public void StopBoundRoutine(uint routineID)
+		{
+			if (BoundRoutines == null)
+			{
+				return;
+			}
+			if (BoundRoutines.ContainsKey(routineID))
+			{
+				var routine = BoundRoutines[routineID];
+				StopCoroutine(routine);
+				BoundRoutines.Remove(routineID);
+			}
+		}
+
+		public void StopAllBoundRoutines()
+		{
+			if (BoundRoutines == null)
+			{
+				return;
+			}
+			foreach (var pair in BoundRoutines)
+			{
+				StopCoroutine(pair.Value);
+			}
+			BoundRoutines.Clear();
+		}
+
+		IEnumerator DoBoundRoutine(uint id, IEnumerator routine)
+		{
+			yield return routine;
+			BoundRoutines.Remove(id);
+		}
+
 		public IEnumerator RunRandomMove()
 		{
 			return RunMove(GetRandomMove());
@@ -231,11 +291,13 @@ namespace WeaverCore.Features
 
 		protected virtual void OnStun()
 		{
+			StopAllBoundRoutines();
 			BossStage++;
 		}
 
 		protected virtual void OnDeath()
 		{
+			StopAllBoundRoutines();
 			BossStage++;
 			entityHealth.OnDeathEvent -= OnDeath;
 		}

@@ -106,12 +106,26 @@ namespace WeaverCore.Utilities
 
 		public void ReturnToPool()
 		{
-			SourcePool.ReturnToPool(this);
+			if (SourcePool != null)
+			{
+				SourcePool.ReturnToPool(this);
+			}
+			else
+			{
+				Destroy(gameObject);
+			}
 		}
 
 		public void ReturnToPool(float time)
 		{
-			SourcePool.ReturnToPool(this,time);
+			if (SourcePool != null)
+			{
+				SourcePool.ReturnToPool(this, time);
+			}
+			else
+			{
+				Destroy(gameObject, time);
+			}
 		}
 
 

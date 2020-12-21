@@ -41,6 +41,7 @@ namespace WeaverCore
 			audioObject.SourcePool = AudioPlayerPool;
 			audioSource.Stop();
 			audioSource.clip = clip;
+			audioSource.pitch = 1f;
 			audioObject.gameObject.name = "(Sound) " + clip.name;
 			audioSource.volume = volume;
 

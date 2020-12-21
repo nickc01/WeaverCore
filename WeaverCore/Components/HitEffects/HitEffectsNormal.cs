@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -10,6 +9,8 @@ using WeaverCore.DataTypes;
 
 namespace WeaverCore.Components.HitEffects
 {
+
+
 	[RequireComponent(typeof(SpriteFlasher))]
 	public class HitEffectsNormal : MonoBehaviour, IHitEffects
 	{

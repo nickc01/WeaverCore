@@ -209,5 +209,10 @@ namespace WeaverCore.Components
 		{
 			DoFlash(0.01f, 0.35f, 0.85f, Color.white, 0.01f);
 		}
+
+		public void FlashInfected()
+		{
+			DoFlash(0.01f, 0.25f, 0.9f, new Color(1f, 0.31f, 0f), 0.01f);
+		}
 	}
 }

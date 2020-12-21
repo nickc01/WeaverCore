@@ -241,6 +241,7 @@ namespace WeaverCore.Editor.Systems
 			assemblyCSharpBuilder.Scripts = scripts;
 			assemblyCSharpBuilder.Defines.Add("GAME_BUILD");
 			assemblyCSharpBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
+			assemblyCSharpBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/JUNK.dll");
 			if (File.Exists(buildLocation))
 			{
 				File.Delete(buildLocation);
@@ -278,6 +279,7 @@ namespace WeaverCore.Editor.Systems
 				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/TMPro.Editor.dll");
 				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/0Harmony.dll");
 				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/Mono.Cecil.dll");
+				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/JUNK.dll");
 
 				weaverCoreBuilder.ReferencePaths.Add(DefaultAssemblyCSharpLocation.FullName);
 

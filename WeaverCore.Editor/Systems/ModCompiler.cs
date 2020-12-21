@@ -86,6 +86,7 @@ namespace WeaverCore.Editor.Systems
 				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/Assembly-CSharp-Editor.dll");
 				mainModBuilder.ExcludedReferences.Add("Editor");
 				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
+				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/JUNK.dll");
 
 				yield return mainModBuilder.Build();
 				if (!mainModBuilder.BuildSuccessful)

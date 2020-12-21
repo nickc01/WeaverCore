@@ -23,6 +23,7 @@ namespace WeaverCore.Features
 	{
 		//HashSet<Coroutine> BoundRoutines;
 		Dictionary<uint, Coroutine> BoundRoutines;
+		HashSet<uint> idList;
 		uint idCounter = 0;
 
 		public static BossDifficulty Diffculty
@@ -105,6 +106,11 @@ namespace WeaverCore.Features
 			{
 				return bossMoves;
 			}
+		}
+
+		public static void EndBossBattle(float delay = 0f)
+		{
+			staticImpl.EndBossBattle(delay);
 		}
 
 		public bool AddMove(IBossMove move)
@@ -202,6 +208,7 @@ namespace WeaverCore.Features
 			if (BoundRoutines == null)
 			{
 				BoundRoutines = new Dictionary<uint, Coroutine>();
+				idList = new HashSet<uint>();
 			}
 			if (idCounter == uint.MaxValue)
 			{
@@ -211,8 +218,10 @@ namespace WeaverCore.Features
 			{
 				idCounter++;
 			}
+			idList.Add(idCounter);
 			var coroutine = StartCoroutine(DoBoundRoutine(idCounter,routine));
-			BoundRoutines.Add(idCounter,coroutine);
+			BoundRoutines.Add(idCounter, coroutine);
+			Debug.Log("Starting Routine of id = " + idCounter);
 			return idCounter;
 		}
 
@@ -224,9 +233,11 @@ namespace WeaverCore.Features
 			}
 			if (BoundRoutines.ContainsKey(routineID))
 			{
-				var routine = BoundRoutines[routineID];
-				StopCoroutine(routine);
+				idList.Remove(routineID);
 				BoundRoutines.Remove(routineID);
+				//var routine = BoundRoutines[routineID];
+				//StopCoroutine(routine);
+				//BoundRoutines.Remove(routineID);
 			}
 		}
 
@@ -236,16 +247,20 @@ namespace WeaverCore.Features
 			{
 				return;
 			}
-			foreach (var pair in BoundRoutines)
-			{
-				StopCoroutine(pair.Value);
-			}
+			//foreach (var pair in BoundRoutines)
+			//{
+			//	Debug.Log("Stopping Routine = " + pair.Key);
+				//StopCoroutine(pair.Value);
+				//StopCoroutine(pair.Value);
+			//}
 			BoundRoutines.Clear();
+			idList.Clear();
 		}
 
 		IEnumerator DoBoundRoutine(uint id, IEnumerator routine)
 		{
-			yield return routine;
+			yield return CoroutineUtilities.RunWhile(routine, () => idList.Contains(id));
+			idList.Remove(id);
 			BoundRoutines.Remove(id);
 		}
 
@@ -301,6 +316,5 @@ namespace WeaverCore.Features
 			BossStage++;
 			entityHealth.OnDeathEvent -= OnDeath;
 		}
-
 	}
 }

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1835ede34c230e04f9e2e93596a8fbf9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - TinkSound: {fileID: 8300000, guid: 6ea0bc4d1290b9b41a440beb77f01158, type: 3}
+  - TinkEffectPrefab: {fileID: 1703609789249098, guid: 4ebacf92ab00f1a4eb078c1a9fe2a1cf,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

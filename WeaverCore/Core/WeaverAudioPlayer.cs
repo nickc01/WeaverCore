@@ -147,7 +147,11 @@ namespace WeaverCore
 
 		void OnValidate()
 		{
-			UpdateAudioMixer();
+			if (poolComponent == null)
+			{
+				poolComponent = GetComponent<PoolableObject>();
+			}
+			//UpdateAudioMixer();
 		}
 
 		private void UpdateAudioMixer()

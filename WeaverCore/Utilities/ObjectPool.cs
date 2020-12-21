@@ -305,7 +305,8 @@ namespace WeaverCore.Utilities
 			}
 			poolableObject.InPool = true;
 			poolableObject.gameObject.SetActive(false);
-			poolableObject.transform.parent = StorageLocation.transform;
+			//poolableObject.transform.parent = StorageLocation.transform;
+			poolableObject.transform.SetParent(StorageLocation.transform);
 			PooledObjects.Enqueue(poolableObject);
 		}
 
@@ -397,7 +398,8 @@ namespace WeaverCore.Utilities
 				obj.SourcePool = this;
 				obj.gameObject.name = InstanceName;
 				Transform t = obj.transform;
-				t.parent = parent;
+				//t.parent = parent;
+				t.SetParent(parent);
 				t.position = position;
 				t.rotation = rotation;
 				return obj;

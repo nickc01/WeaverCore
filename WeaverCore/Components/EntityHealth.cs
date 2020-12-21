@@ -44,12 +44,15 @@ namespace WeaverCore.Components
 			}
 			set
 			{
-				_health = OnHealthUpdate(value);
-				CheckMilestones(_health);
-				if (_health <= 0)
+				if (_health != value)
 				{
-					_health = 0;
-					OnDeath();
+					_health = OnHealthUpdate(value);
+					CheckMilestones(_health);
+					if (_health <= 0)
+					{
+						_health = 0;
+						OnDeath();
+					}
 				}
 			}
 		}
@@ -119,6 +122,11 @@ namespace WeaverCore.Components
 		public int MediumGeo = 0;
 		public int LargeGeo = 0;
 
+		/// <summary>
+		/// Hits the target. Returns true if the hit was valid. Meaning, if the hit was able to damage the enemy
+		/// </summary>
+		/// <param name="hit"></param>
+		/// <returns></returns>
 		public virtual bool Hit(HitInfo hit)
 		{
 			var hitResult = IsValidHit(hit);

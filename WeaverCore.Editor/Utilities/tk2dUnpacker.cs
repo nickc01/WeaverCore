@@ -184,10 +184,21 @@ namespace WeaverCore.Editor.Utilities
 			{
 				if (_collectionType == null)
 				{
-					var mainAssembly = Assembly.Load("Assembly-CSharp");
-					if (mainAssembly != null)
+					//var mainAssembly = Assembly.Load("Assembly-CSharp");
+					foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 					{
-						_collectionType = mainAssembly.GetType("tk2dSpriteCollectionData",true);
+						try
+						{
+							_collectionType = assembly.GetType("tk2dSpriteCollectionData", true);
+						}
+						catch (Exception)
+						{
+
+						}
+						if (_collectionType != null)
+						{
+							break;
+						}
 					}
 				}
 				return _collectionType;
@@ -201,11 +212,26 @@ namespace WeaverCore.Editor.Utilities
 			{
 				if (_spriteDefinitionType == null)
 				{
-					var mainAssembly = Assembly.Load("Assembly-CSharp");
-					if (mainAssembly != null)
+					foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+					{
+						try
+						{
+							_spriteDefinitionType = assembly.GetType("tk2dSpriteDefinition", true);
+						}
+						catch (Exception)
+						{
+
+						}
+						if (_spriteDefinitionType != null)
+						{
+							break;
+						}
+					}
+						//var mainAssembly = Assembly.Load("Assembly-CSharp");
+					/*if (mainAssembly != null)
 					{
 						_spriteDefinitionType = mainAssembly.GetType("tk2dSpriteDefinition", true);
-					}
+					}*/
 				}
 				return _spriteDefinitionType;
 			}
@@ -218,10 +244,20 @@ namespace WeaverCore.Editor.Utilities
 			{
 				if (_spriteAnimationType == null)
 				{
-					var mainAssembly = Assembly.Load("Assembly-CSharp");
-					if (mainAssembly != null)
+					foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 					{
-						_spriteAnimationType = mainAssembly.GetType("tk2dSpriteAnimation", true);
+						try
+						{
+							_spriteAnimationType = assembly.GetType("tk2dSpriteAnimation", true);
+						}
+						catch (Exception)
+						{
+
+						}
+						if (_spriteAnimationType != null)
+						{
+							break;
+						}
 					}
 				}
 				return _spriteAnimationType;
@@ -675,7 +711,7 @@ namespace WeaverCore.Editor.Utilities
 					newClip.Frames[j] = frame;
 				}
 
-				if (newClip.Name == "Roar Loop")
+				/*if (newClip.Name == "Roar Loop")
 				{
 					Debug.Log("Clip Name 1 - " + newClip.Name);
 					Debug.Log("FPS 1 - " + newClip.FPS);
@@ -684,7 +720,7 @@ namespace WeaverCore.Editor.Utilities
 					{
 						Debug.Log("Frame = " + frame.SpriteID);
 					}
-				}
+				}*/
 
 
 				animationData.Clips[i] = newClip;

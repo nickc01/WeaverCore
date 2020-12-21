@@ -6,6 +6,7 @@ using UnityEngine;
 using WeaverCore;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
+using WeaverCore.Enums;
 
 namespace WeaverCore.Editor.Implementations
 {
@@ -91,6 +92,21 @@ namespace WeaverCore.Editor.Implementations
         public override void RefreshSoulUI()
         {
             
+        }
+
+        public override void EnterParryState()
+        {
+            //TODO : EDITOR PARRYING
+        }
+
+        public override void RecoverFromParry()
+        {
+            //TODO : EDITOR PARRYING
+        }
+
+        public override void Recoil(CardinalDirection direction)
+        {
+            //TODO : PLAYER RECOIL
         }
     }
 }

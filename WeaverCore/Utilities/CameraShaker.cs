@@ -10,6 +10,7 @@ namespace WeaverCore.Utilities
 {
 	public class CameraShaker : MonoBehaviour
 	{
+
 		WeaverCam_I.Shaker_I impl;
 
 		void Awake()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Enums;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
@@ -19,10 +20,33 @@ namespace WeaverCore.Components
 		[NonSerialized]
 		WeaverAnimationData oldData;
 
+		[SerializeField]
+		bool autoPlay = false;
+		[Tooltip("Determines the behaviour that occurs when the player is done playing a clip")]
+		public OnDoneBehaviour OnClipFinish;
+
+		[SerializeField]
+		string autoPlayClip = "";
+
 		int currentFrame = -1;
 		float timer = 0f;
 		float frameTime = 0f;
 		bool forceOnce = false;
+
+		public int PlayingFrame
+		{
+			get
+			{
+				if (PlayingClip == null)
+				{
+					return 0;
+				}
+				else
+				{
+					return currentFrame;
+				}
+			}
+		}
 
 
 		SpriteRenderer _spriteRenderer;
@@ -59,9 +83,42 @@ namespace WeaverCore.Components
 		//Each time a new animation is played, this value gets regenerated. This is used to differentiate between different playing animations
 		public Guid PlayingGUID { get; private set; }
 
+		bool callbackAdded = false;
+
+		void OnEnable()
+		{
+			if (autoPlay && AnimationData.HasClip(autoPlayClip))
+			{
+				PlayAnimation(autoPlayClip);
+				onAnimationDone += s =>
+				{
+					if (OnClipFinish == OnDoneBehaviour.Nothing)
+					{
+						return;
+					}
+					if (OnClipFinish == OnDoneBehaviour.Disable)
+					{
+						gameObject.SetActive(false);
+					}
+					else
+					{
+						var poolable = GetComponent<PoolableObject>();
+						if (OnClipFinish == OnDoneBehaviour.DestroyOrPool && poolable != null)
+						{
+							poolable.ReturnToPool();
+						}
+						else
+						{
+							Destroy(gameObject);
+						}
+					}
+				};
+			}
+		}
+
 		void OnValidate()
 		{
-			Guid.NewGuid();
+			//Guid.NewGuid();
 			if (_spriteRenderer == null)
 			{
 				_spriteRenderer = GetComponent<SpriteRenderer>();
@@ -90,6 +147,7 @@ namespace WeaverCore.Components
 					}
 					if (currentFrame == -1)
 					{
+						//Debug.Log("FINISHED PLAYING ANIMATION_B = " + PlayingClip);
 						PlayingGUID = default(Guid);
 						string originalClip = PlayingClip;
 						PlayingClip = null;
@@ -105,6 +163,10 @@ namespace WeaverCore.Components
 					}
 				}
 			}
+			//else
+			//{
+				//Debug.Log("Animation Not Set");
+			//}
 		}
 
 		void OnAnimationDataUpdate()
@@ -123,6 +185,7 @@ namespace WeaverCore.Components
 
 		public void PlayAnimation(string clipName, bool forceOnce = false)
 		{
+			//Debug.Log("PLAYING ANIMATION " + clipName);
 			this.forceOnce = forceOnce;
 			if (!HasAnimationClip(clipName))
 			{
@@ -142,6 +205,7 @@ namespace WeaverCore.Components
 			}
 			if (currentFrame == -1)
 			{
+				//Debug.Log("FINISHED PLAYING ANIMATION_A = " + PlayingClip);
 				PlayingGUID = default(Guid);
 				string originalClip = PlayingClip;
 				PlayingClip = null;
@@ -182,6 +246,8 @@ namespace WeaverCore.Components
 				var currentGUID = PlayingGUID;
 				while (currentGUID == PlayingGUID)
 				{
+					//Debug.Log("Current GUID = " + currentGUID);
+					//Debug.Log("Playing GUID = " + PlayingGUID);
 					yield return null;
 				}
 			}

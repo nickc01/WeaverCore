@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Attributes;
+using WeaverCore.DataTypes;
 using WeaverCore.Implementations;
+using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
@@ -40,6 +42,16 @@ namespace WeaverCore.Features
 		public static IEnumerator Roar(GameObject source, float duration, AudioClip roarSound)
 		{
 			return staticImpl.Roar(source, duration, roarSound);
+		}
+
+		/// <summary>
+		/// Called when the enemy gets parried
+		/// </summary>
+		/// <param name="collider">The collider that recieved the parry</param>
+		/// <param name="hit">The hit info of the parried attack</param>
+		public virtual void OnParry(IHittable collider, HitInfo hit)
+		{
+
 		}
 	}
 }

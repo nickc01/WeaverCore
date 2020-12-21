@@ -1,0 +1,636 @@
+fileFormatVersion: 2
+guid: e9aa59b778d6aab4e81d2b4c12d989c0
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Knight_Dream_Gate_Create0004
+    21300002: Knight_Dream_Gate_Create0006
+    21300004: Knight_Dream_Gate_Create0002
+    21300006: Knight_Dream_Gate_Create0003
+    21300008: Knight_Dream_Gate_Create0007
+    21300010: Knight_Dream_Gate_Create0005
+    21300012: Knight_Dream_Gate_Create0000
+    21300014: Knight_Dream_Gate_Create0001
+    21300016: Knight_dream_gate_enter0007
+    21300018: Knight_dream_gate_enter0006
+    21300020: Knight_dream_gate_enter0012
+    21300022: Knight_dream_gate_enter0009
+    21300024: Knight_dream_gate_enter0000
+    21300026: Knight_dream_gate_enter0011
+    21300028: Knight_dream_gate_enter0004
+    21300030: Knight_dream_gate_enter0013
+    21300032: Knight_dream_gate_enter0008
+    21300034: Knight_dream_gate_enter0002
+    21300036: Knight_dream_gate_enter0003
+    21300038: Knight_dream_gate_enter0005
+    21300040: Knight_dream_gate_enter0010
+    21300042: Knight_dream_gate_enter0001
+    21300044: Knight_Dream_Gate_Create0005_b
+    21300046: Knight_Dream_Gate_Create0005_c
+    21300048: knight_sprint0000
+    21300050: knight_sprint0002
+    21300052: knight_sprint0004
+    21300054: knight_sprint0005
+    21300056: knight_sprint0001
+    21300058: knight_sprint0003
+    21300060: Knight_idle_to_sprint0000
+    21300062: Knight_idle_to_sprint0002
+    21300064: Knight_idle_to_sprint0003
+    21300066: Knight_idle_to_sprint0001
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64.76935
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: WebGL
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0004
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 279
+        width: 93
+        height: 133
+      alignment: 9
+      pivot: {x: 0.35869557, y: 0.77272725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0006
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 116
+        width: 80
+        height: 107
+      alignment: 9
+      pivot: {x: 0.4177215, y: 0.86792445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0002
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 359
+        width: 108
+        height: 125
+      alignment: 9
+      pivot: {x: 0.5233645, y: 0.5241935}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0003
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 0
+        width: 100
+        height: 115
+      alignment: 9
+      pivot: {x: 0.48484844, y: 0.64035094}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0007
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 345
+        width: 78
+        height: 131
+      alignment: 9
+      pivot: {x: 0.29870123, y: 0.6923078}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0005
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 0
+        width: 93
+        height: 127
+      alignment: 9
+      pivot: {x: 0.35869557, y: 0.73015875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0000
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 0
+        width: 91
+        height: 109
+      alignment: 9
+      pivot: {x: 0.44444442, y: 0.81481487}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0001
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 0
+        width: 93
+        height: 107
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.8396226}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0007
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 115
+        width: 93
+        height: 114
+      alignment: 9
+      pivot: {x: 0.41304338, y: 0.69911504}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0006
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 231
+        width: 96
+        height: 115
+      alignment: 9
+      pivot: {x: 0.41052634, y: 0.69298244}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0012
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 129
+        height: 358
+      alignment: 9
+      pivot: {x: 0.4140625, y: 0.50700283}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0009
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 0
+        width: 96
+        height: 114
+      alignment: 9
+      pivot: {x: 0.38947362, y: 0.69911504}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0000
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 0
+        width: 91
+        height: 109
+      alignment: 9
+      pivot: {x: 0.44444442, y: 0.81481487}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0011
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 126
+        height: 154
+      alignment: 9
+      pivot: {x: 0.42399997, y: 0.6601307}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0004
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 384
+        width: 93
+        height: 115
+      alignment: 9
+      pivot: {x: 0.3369565, y: 0.69298244}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0013
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 230
+        width: 32
+        height: 273
+      alignment: 9
+      pivot: {x: 0.1935482, y: 0.5257353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0008
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 0
+        width: 88
+        height: 115
+      alignment: 9
+      pivot: {x: 0.39080453, y: 0.69298244}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0002
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 230
+        width: 92
+        height: 114
+      alignment: 9
+      pivot: {x: 0.41758233, y: 0.7168142}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0003
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 116
+        width: 100
+        height: 114
+      alignment: 9
+      pivot: {x: 0.39393944, y: 0.69911504}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0005
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 347
+        width: 96
+        height: 114
+      alignment: 9
+      pivot: {x: 0.38947362, y: 0.69911504}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0010
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 155
+        width: 102
+        height: 123
+      alignment: 9
+      pivot: {x: 0.41584158, y: 0.67213124}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0001
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 0
+        width: 93
+        height: 107
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.8396226}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0005_b
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 256
+        width: 93
+        height: 127
+      alignment: 9
+      pivot: {x: 0.35869557, y: 0.73015875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0005_c
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 128
+        width: 93
+        height: 127
+      alignment: 9
+      pivot: {x: 0.35869557, y: 0.73015875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: knight_sprint0000
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 233
+        width: 76
+        height: 125
+      alignment: 9
+      pivot: {x: 0.53333324, y: 0.7258065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: knight_sprint0002
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 116
+        width: 74
+        height: 126
+      alignment: 9
+      pivot: {x: 0.5479452, y: 0.72}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: knight_sprint0004
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 230
+        width: 75
+        height: 123
+      alignment: 9
+      pivot: {x: 0.5405406, y: 0.7459016}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: knight_sprint0005
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 371
+        width: 73
+        height: 125
+      alignment: 9
+      pivot: {x: 0.5555555, y: 0.7177419}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: knight_sprint0001
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 230
+        width: 74
+        height: 122
+      alignment: 9
+      pivot: {x: 0.5479452, y: 0.7438016}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: knight_sprint0003
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 243
+        width: 73
+        height: 127
+      alignment: 9
+      pivot: {x: 0.5555555, y: 0.71428573}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_idle_to_sprint0000
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 359
+        width: 80
+        height: 118
+      alignment: 9
+      pivot: {x: 0.49367088, y: 0.7692308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_idle_to_sprint0002
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 116
+        width: 86
+        height: 116
+      alignment: 9
+      pivot: {x: 0.4705882, y: 0.7826087}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_idle_to_sprint0003
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 354
+        width: 75
+        height: 122
+      alignment: 9
+      pivot: {x: 0.5675675, y: 0.7438016}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_idle_to_sprint0001
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 116
+        width: 82
+        height: 113
+      alignment: 9
+      pivot: {x: 0.48148155, y: 0.8035714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: weavercore_bundle
+  assetBundleVariant: 

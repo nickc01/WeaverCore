@@ -155,5 +155,19 @@ namespace WeaverCore
         {
             impl.RefreshSoulUI();
         }
+
+        public void EnterParryState()
+        {
+            impl.EnterParryState();
+        }
+        public void RecoverFromParry()
+        {
+            impl.RecoverFromParry();
+        }
+
+        public void Recoil(CardinalDirection recoilDirection)
+        {
+            impl.Recoil(recoilDirection);
+        }
     }
 }

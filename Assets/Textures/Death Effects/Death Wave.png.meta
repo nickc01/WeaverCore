@@ -1,0 +1,170 @@
+fileFormatVersion: 2
+guid: 02b4975f4472a0742859e367cfa8e098
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: item_get_ball_o0001
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 381
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: item_get_ball_o0001
+      rect:
+        serializedVersion: 2
+        x: 115.0761
+        y: 115.0761
+        width: 150.8478
+        height: 150.8478
+      alignment: 9
+      pivot: {x: 0.4999999, y: 0.4999999}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67.50001, y: -75.50001}
+        - {x: -75.50001, y: -32.50001}
+        - {x: -75.50001, y: 41.49999}
+        - {x: -42.50001, y: 73.49999}
+        - {x: -34.50001, y: 75.49999}
+        - {x: 35.49999, y: 75.49999}
+        - {x: 75.49999, y: 41.49999}
+        - {x: 75.49999, y: -42.50001}
+        - {x: 60.49999, y: -75.50001}
+      physicsShape:
+      - - {x: 69.49999, y: -16.50001}
+        - {x: 69.49999, y: 15.49999}
+        - {x: 65.49999, y: 27.49999}
+        - {x: 57.49999, y: 41.49999}
+        - {x: 37.49999, y: 61.49999}
+        - {x: 16.49999, y: 68.49999}
+        - {x: -17.50001, y: 68.49999}
+        - {x: -42.50001, y: 57.49999}
+        - {x: -61.50001, y: 36.49999}
+        - {x: -68.50001, y: 15.49999}
+        - {x: -68.50001, y: -16.50001}
+        - {x: -64.50001, y: -28.50001}
+        - {x: -56.50001, y: -42.50001}
+        - {x: -35.50001, y: -61.50001}
+        - {x: -18.50001, y: -68.50001}
+        - {x: -13.50001, y: -69.50001}
+        - {x: 16.49999, y: -69.50001}
+        - {x: 28.49999, y: -65.50001}
+        - {x: 42.49999, y: -57.50001}
+        - {x: 62.49999, y: -37.50001}
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: weavercore_bundle
+  assetBundleVariant: 

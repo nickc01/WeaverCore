@@ -251,8 +251,8 @@ namespace WeaverCore.Components
 						base.transform.Translate(this.recoilSweep.Direction * num, Space.World);
 					}
 				}*/
-				WeaverLog.Log("Recoil Direction = " + recoilDirection);
-				WeaverLog.Log("Recoil Speed = " + recoilSpeed);
+				//WeaverLog.Log("Recoil Direction = " + recoilDirection);
+				//WeaverLog.Log("Recoil Speed = " + recoilSpeed);
 				transform.Translate(recoilDirection * recoilSpeed * Time.deltaTime,Space.World);
 				this.recoilTimeRemaining -= deltaTime;
 				if (this.recoilTimeRemaining <= 0f)

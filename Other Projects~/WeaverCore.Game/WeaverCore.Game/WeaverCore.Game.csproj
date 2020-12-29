@@ -256,6 +256,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\G_AudioMixer_I.cs" />
     <Compile Include="Implementations\G_GeoCounter_I.cs" />
     <Compile Include="Implementations\G_HunterJournal_I.cs" />
     <Compile Include="Implementations\G_Language_I.cs" />

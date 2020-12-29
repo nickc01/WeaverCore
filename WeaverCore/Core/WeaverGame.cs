@@ -17,12 +17,12 @@ namespace WeaverCore
 
 		public enum TimeFreezePreset
 		{
+			Preset0,
 			Preset1,
 			Preset2,
 			Preset3,
 			Preset4,
-			Preset5,
-			Preset6
+			Preset5
 		}
 
 
@@ -43,22 +43,22 @@ namespace WeaverCore
 			//GameManagerInit();
 			switch (preset)
 			{
-				case TimeFreezePreset.Preset1:
+				case TimeFreezePreset.Preset0:
 					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.35f, 0.1f, 0f));
 					break;
-				case TimeFreezePreset.Preset2:
+				case TimeFreezePreset.Preset1:
 					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.04f, 0.03f, 0.04f, 0f));
 					break;
-				case TimeFreezePreset.Preset3:
+				case TimeFreezePreset.Preset2:
 					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.25f, 2f, 0.25f, 0.15f));
+					break;
+				case TimeFreezePreset.Preset3:
+					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
 				case TimeFreezePreset.Preset4:
 					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
 				case TimeFreezePreset.Preset5:
-					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
-					break;
-				case TimeFreezePreset.Preset6:
 					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
 			}

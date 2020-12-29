@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Audio;
 using WeaverCore.Enums;
 
-namespace WeaverCore.Core
+namespace WeaverCore
 {
+	[CreateAssetMenu(fileName = "MusicPack",menuName = "Music Pack")]
 	public class MusicPack : ScriptableObject
 	{
 		public AudioClip MainTrack;
 		public MusicSyncType MainTrackSync;
 
-		public AudioClip AltTrack;
-		public MusicSyncType AltTrackSync;
+		public AudioClip MainAltTrack;
+		public MusicSyncType MainAltTrackSync;
 
 		public AudioClip ActionTrack;
 		public MusicSyncType ActionTrackSync;
@@ -26,5 +28,11 @@ namespace WeaverCore.Core
 
 		public AudioClip ExtraTrack;
 		public MusicSyncType ExtraTrackSync;
+
+		public Music.SnapshotType Snapshot;
+
+		public float delay = 0f;
+		public float snapshotTransitionTime = 0f;
+		public bool applySnapshot = true;
 	}
 }

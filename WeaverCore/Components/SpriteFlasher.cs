@@ -214,5 +214,16 @@ namespace WeaverCore.Components
 		{
 			DoFlash(0.01f, 0.25f, 0.9f, new Color(1f, 0.31f, 0f), 0.01f);
 		}
+
+		public void FlashDung()
+		{
+			this.DoFlash(0.001f, 0.1f, 0.75f, new Color?(new Color(0.45f, 0.27f, 0f)), 0.05f);
+		}
+
+		// Token: 0x06000068 RID: 104 RVA: 0x00003660 File Offset: 0x00001860
+		public void FlashSpore()
+		{
+			this.DoFlash(0.001f, 0.1f, 0.75f, new Color?(new Color(0.95f, 0.9f, 0.15f)), 0.05f);
+		}
 	}
 }

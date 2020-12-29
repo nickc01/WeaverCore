@@ -38,6 +38,8 @@ namespace WeaverCore.Game.Implementations
                 }
             }
 
+            public override bool InGodHomeArena => BossSceneController.IsBossScene;
+
             public override void OnBossesDeadAdd(Action action)
             {
                 if (BossSceneController.Instance != null)

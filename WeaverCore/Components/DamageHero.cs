@@ -19,6 +19,10 @@ namespace WeaverCore.Components
 		[SerializeField]
 		bool shadowDashHazard = false;
 
+		[SerializeField]
+		[Tooltip("When true, will automatically set the layer of this object to the Enemies Layer")]
+		bool updateLayer = true;
+
 		DamageHero_I impl;
 
 		public int DamageDealt
@@ -71,7 +75,10 @@ namespace WeaverCore.Components
 				impl.Damager = this;
 			}
 
-			gameObject.layer = 11;
+			if (updateLayer)
+			{
+				gameObject.layer = 11;
+			}
 		}
 
 		void OnValidate()

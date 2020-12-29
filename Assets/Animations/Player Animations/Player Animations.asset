@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
   m_Name: Player Animations
   m_EditorClassIdentifier: WeaverCore:WeaverCore.Utilities:WeaverAnimationData
   clipNames:

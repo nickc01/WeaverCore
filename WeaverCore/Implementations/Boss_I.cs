@@ -22,6 +22,7 @@ namespace WeaverCore.Implementations
 			public abstract BossDifficulty Difficulty { get; set; }
 
 			public abstract bool InPantheon { get; }
+			public abstract bool InGodHomeArena { get; }
 		}
 	}
 }

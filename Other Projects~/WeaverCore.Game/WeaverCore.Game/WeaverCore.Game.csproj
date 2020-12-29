@@ -257,11 +257,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\G_GeoCounter_I.cs" />
+    <Compile Include="Implementations\G_HunterJournal_I.cs" />
+    <Compile Include="Implementations\G_Language_I.cs" />
+    <Compile Include="Implementations\G_PlayMaker_I.cs" />
     <Compile Include="Implementations\G_WeaverSettings_I.cs" />
     <Compile Include="Implementations\G_ObjectDumper_I.cs" />
     <Compile Include="Implementations\G_WeaverAssets_I.cs" />
     <Compile Include="Misc\SettingStorage.cs" />
-    <Compile Include="Patches\TextMeshProUGUIPatch.cs" />
+    <Compile Include="Patches\TMP_TextPatch.cs" />
     <Compile Include="Tester.cs" />
     <Compile Include="WeaverCanvasSpawner.cs" />
     <Compile Include="Implementations\G_DamageHero_I.cs" />
@@ -270,7 +273,6 @@
     <Compile Include="Implementations\G_Boss_I.cs" />
     <Compile Include="Implementations\G_Enemy_I.cs" />
     <Compile Include="Implementations\G_EventReceiver_I.cs" />
-    <Compile Include="Implementations\G_GameManager_I.cs" />
     <Compile Include="Implementations\G_GGWorkshop_I.cs" />
     <Compile Include="Implementations\G_HealthManager_I.cs" />
     <Compile Include="Implementations\G_WeaverAudio_I.cs" />

@@ -15,7 +15,7 @@ MonoBehaviour:
   modName: Weaver Core
   modAssemblyName: WeaverCore
   modTypeName: WeaverCore.Internal.WeaverCore
-  modListHashCode: 913166469
+  modListHashCode: 1818181233
   features:
   - feature: {fileID: 114659249116894634, guid: 398106b2d51c2144b97ff3de7eec6dcb,
       type: 2}
@@ -24,5 +24,5 @@ MonoBehaviour:
   featuresRaw:
   - {fileID: 114659249116894634, guid: 398106b2d51c2144b97ff3de7eec6dcb, type: 2}
   selectedFeatureIndex: 0
-  selectedModIndex: 0
+  selectedModIndex: 1
   registryEnabled: 1

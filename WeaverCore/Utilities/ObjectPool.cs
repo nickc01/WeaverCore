@@ -620,7 +620,7 @@ namespace WeaverCore.Utilities
 					if (!addedEvent)
 					{
 						addedEvent = true;
-						SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+						UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 					}
 				}
 				return _local;

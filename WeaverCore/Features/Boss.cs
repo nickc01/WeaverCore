@@ -46,6 +46,14 @@ namespace WeaverCore.Features
 			}
 		}
 
+		public static bool InGodHomeArena
+		{
+			get
+			{
+				return staticImpl.InGodHomeArena;
+			}
+		}
+
 		[SerializeField]
 		int _bossStage = 1;
 		public int BossStage

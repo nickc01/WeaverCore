@@ -555,6 +555,22 @@ namespace WeaverCore.Utilities
 				return clipNames.Count;
 			}
 		}
+
+		public float GetClipDuration(string clipName)
+		{
+			if (!HasClip(clipName))
+			{
+				throw new Exception("The clip " + clipName + " does not exist in this animation data object");
+			}
+			return GetClipDurationRaw(GetClipIndex(clipName));
+		}
+
+		float GetClipDurationRaw(int clipIndex)
+		{
+			var frames = clipFrameCounts[clipIndex];
+			var fps = clipFPSs[clipIndex];
+			return frames * (1f / fps);
+		}
 		
 	}
 }

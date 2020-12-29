@@ -50,7 +50,7 @@ public class NailTink : MonoBehaviour, IHittable
 
 	IEnumerator HitRoutine(HitInfo hit)
 	{
-		WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset3);
+		WeaverGame.FreezeGameTime(WeaverGame.TimeFreezePreset.Preset3);
 
 		Player.Player1.EnterParryState();
 

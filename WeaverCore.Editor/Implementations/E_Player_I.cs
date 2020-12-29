@@ -28,6 +28,37 @@ namespace WeaverCore.Editor.Implementations
             }
         }
 
+        public override bool HasDreamNail
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public override int EssenceCollected
+        {
+            get
+            {
+                return 0;
+            }
+            set
+            {
+
+            }
+        }
+        public override int EssenceSpent
+        {
+            get
+            {
+                return 0;
+            }
+            set
+            {
+
+            }
+        }
+
         void Start()
         {
             rigidBody = GetComponent<Rigidbody2D>();
@@ -107,6 +138,11 @@ namespace WeaverCore.Editor.Implementations
         public override void Recoil(CardinalDirection direction)
         {
             //TODO : PLAYER RECOIL
+        }
+
+        public override bool HasCharmEquipped(int charmNumber)
+        {
+            return false;
         }
     }
 }

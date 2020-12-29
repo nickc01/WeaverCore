@@ -24,7 +24,7 @@ namespace WeaverCore.Assets.Components
 			}
 			transform.localRotation = Quaternion.Euler(0f,0f,Random.Range(0f,360f));
 			WeaverCam.Instance.Shaker.Shake(Enums.ShakeType.AverageShake);
-			WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset4);
+			WeaverGame.FreezeGameTime(WeaverGame.TimeFreezePreset.Preset4);
 			poolComponent = GetComponent<PoolableObject>();
 			if (poolComponent != null)
 			{

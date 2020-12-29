@@ -84,10 +84,10 @@ namespace WeaverCore.Assets.Components
 			}
 			else
 			{
-				SceneManager.sceneLoaded += CreateOnSceneChange;
-				for (int i = 0; i < SceneManager.sceneCount; i++)
+				UnityEngine.SceneManagement.SceneManager.sceneLoaded += CreateOnSceneChange;
+				for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
 				{
-					var scene = SceneManager.GetSceneAt(i);
+					var scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
 					if (scene.name == "Menu_Title")
 					{
 						SpawnConfigScreen();
@@ -107,16 +107,16 @@ namespace WeaverCore.Assets.Components
 		{
 			Instance = this;
 			ConfigMainMenu.SetActive(false);
-			SceneManager.sceneUnloaded += DestroyOnSceneChange;
+			UnityEngine.SceneManagement.SceneManager.sceneUnloaded += DestroyOnSceneChange;
 			if (CoreInfo.LoadState == RunningState.Editor)
 			{
 				EnteringTitleScreen();
 			}
 			else
 			{
-				for (int i = 0; i < SceneManager.sceneCount; i++)
+				for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
 				{
-					var scene = SceneManager.GetSceneAt(i);
+					var scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
 					if (scene.name == "Menu_Title")
 					{
 						onTitleScreen = true;
@@ -149,7 +149,7 @@ namespace WeaverCore.Assets.Components
 		{
 			if (scene.name == "Menu_Title")
 			{
-				SceneManager.sceneUnloaded -= DestroyOnSceneChange;
+				UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= DestroyOnSceneChange;
 				Instance = null;
 				Destroy(gameObject);
 			}

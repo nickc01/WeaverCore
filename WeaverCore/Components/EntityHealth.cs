@@ -19,7 +19,7 @@ namespace WeaverCore.Components
 		Valid
 	}
 
-	public class EntityHealth : MonoBehaviour, IHittable
+	public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable
 	{
 		List<Milestone> HealthMilestones = new List<Milestone>();
 
@@ -114,6 +114,14 @@ namespace WeaverCore.Components
 		/// </summary>
 		public Vector3 EffectsOffset = new Vector3(0, 0,0);
 
+		[SerializeField]
+		[Tooltip("If set to true, this enemy will recieve damage from extra abilities, such as spore damage")]
+		private bool receiveExtraDamage = true;
+
+		// Token: 0x0400001F RID: 31
+		private AudioClip extraDamageClip;
+
+		Recoil recoil;
 
 		[Space]
 		[Space]
@@ -276,10 +284,10 @@ namespace WeaverCore.Components
 			var cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
 
 			//Apply recoil if used
-			/*if (this.recoil != null)
+			if (this.recoil != null)
 			{
-				this.recoil.RecoilByDirection(cardinalDirection, hitInstance.MagnitudeMultiplier);
-			}*/
+				this.recoil.RecoilByDirection(cardinalDirection, hit.AttackStrength);
+			}
 			//Play Attack Effects
 
 			impl.OnSuccessfulHit(hit);
@@ -342,6 +350,44 @@ namespace WeaverCore.Components
 			}
 		}
 
+		void IExtraDamageable.RecieveExtraDamage(ExtraDamageTypes extraDamageType)
+		{
+			if (this.receiveExtraDamage)
+			{
+				if (!base.gameObject.CompareTag("Spell Vulnerable") && this.Invincible)
+				{
+					return;
+				}
+				if (this.extraDamageClip == null)
+				{
+					this.extraDamageClip = WeaverAssets.LoadWeaverAsset<AudioClip>("Extra Damage Audio");
+				}
+				WeaverAudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(this.extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
+				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(0.85f, 1.15f);
+				SpriteFlasher component = base.GetComponent<SpriteFlasher>();
+				if (component != null)
+				{
+					if (extraDamageType != ExtraDamageTypes.Spore)
+					{
+						if (extraDamageType == ExtraDamageTypes.Dung || extraDamageType == ExtraDamageTypes.Dung2)
+						{
+							component.FlashDung();
+						}
+					}
+					else
+					{
+						component.FlashSpore();
+					}
+				}
+				int num = 1;
+				if (extraDamageType == ExtraDamageTypes.Dung2)
+				{
+					num = 2;
+				}
+				this.Health -= num;
+			}
+		}
+
 		public void Die()
 		{
 			if (Health > 0)
@@ -375,6 +421,7 @@ namespace WeaverCore.Components
 		{
 			impl = (HealthManager_I)gameObject.AddComponent(ImplFinder.GetImplementationType<HealthManager_I>());
 			impl.Manager = this;
+			recoil = GetComponent<Recoil>();
 			if (Player.Player1 != null)
 			{
 				Player.Player1.RefreshSoulUI();

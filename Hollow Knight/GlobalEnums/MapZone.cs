@@ -1,0 +1,113 @@
+﻿using System;
+
+namespace GlobalEnums
+{
+	
+	public enum MapZone
+	{
+		
+		NONE,
+		
+		TEST_AREA,
+		
+		KINGS_PASS,
+		
+		CLIFFS,
+		
+		TOWN,
+		
+		CROSSROADS,
+		
+		GREEN_PATH,
+		
+		ROYAL_GARDENS,
+		
+		FOG_CANYON,
+		
+		WASTES,
+		
+		DEEPNEST,
+		
+		HIVE,
+		
+		BONE_FOREST,
+		
+		PALACE_GROUNDS,
+		
+		MINES,
+		
+		RESTING_GROUNDS,
+		
+		CITY,
+		
+		DREAM_WORLD,
+		
+		COLOSSEUM,
+		
+		ABYSS,
+		
+		ROYAL_QUARTER,
+		
+		WHITE_PALACE,
+		
+		SHAMAN_TEMPLE,
+		
+		WATERWAYS,
+		
+		QUEENS_STATION,
+		
+		OUTSKIRTS,
+		
+		KINGS_STATION,
+		
+		MAGE_TOWER,
+		
+		TRAM_UPPER,
+		
+		TRAM_LOWER,
+		
+		FINAL_BOSS,
+		
+		SOUL_SOCIETY,
+		
+		ACID_LAKE,
+		
+		NOEYES_TEMPLE,
+		
+		MONOMON_ARCHIVE,
+		
+		MANTIS_VILLAGE,
+		
+		RUINED_TRAMWAY,
+		
+		DISTANT_VILLAGE,
+		
+		ABYSS_DEEP,
+		
+		ISMAS_GROVE,
+		
+		WYRMSKIN,
+		
+		LURIENS_TOWER,
+		
+		LOVE_TOWER,
+		
+		GLADE,
+		
+		BLUE_LAKE,
+		
+		PEAK,
+		
+		JONI_GRAVE,
+		
+		OVERGROWN_MOUND,
+		
+		CRYSTAL_MOUND,
+		
+		BEASTS_DEN,
+		
+		GODS_GLORY,
+		
+		GODSEEKER_WASTE
+	}
+}

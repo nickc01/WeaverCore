@@ -1,19 +1,19 @@
-﻿using System;
+﻿using GlobalEnums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using WeaverCore.Implementations.GameManager;
 
-namespace WeaverCore.Utilities
+namespace WeaverCore
 {
 
 
-	public class WeaverGameManager : MonoBehaviour
+	public class WeaverGame : MonoBehaviour
 	{
-		static WeaverGameManager GameManager;
-		static GameManager_I impl;
+		//static WeaverGame GameManager;
+		//static GameManager_I impl;
 
 		public enum TimeFreezePreset
 		{
@@ -26,48 +26,56 @@ namespace WeaverCore.Utilities
 		}
 
 
-		static void GameManagerInit()
+		/*static void GameManagerInit()
 		{
 			if (GameManager == null)
 			{
-				GameManager = new GameObject("__WEAVER_GAME_MANAGER__").AddComponent<WeaverGameManager>();
+				GameManager = new GameObject("__WEAVER_GAME_MANAGER__").AddComponent<WeaverGame>();
 
 				GameObject.DontDestroyOnLoad(GameManager);
 
 				impl = (GameManager_I)GameManager.gameObject.AddComponent(ImplFinder.GetImplementationType<GameManager_I>());
 			}
-		}
+		}*/
 
 		public static void FreezeGameTime(TimeFreezePreset preset)
 		{
-			GameManagerInit();
+			//GameManagerInit();
 			switch (preset)
 			{
 				case TimeFreezePreset.Preset1:
-					GameManager.StartCoroutine(FreezeMoment(0.01f, 0.35f, 0.1f, 0f));
+					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.35f, 0.1f, 0f));
 					break;
 				case TimeFreezePreset.Preset2:
-					GameManager.StartCoroutine(FreezeMoment(0.04f, 0.03f, 0.04f, 0f));
+					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.04f, 0.03f, 0.04f, 0f));
 					break;
 				case TimeFreezePreset.Preset3:
-					GameManager.StartCoroutine(FreezeMoment(0.25f, 2f, 0.25f, 0.15f));
+					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.25f, 2f, 0.25f, 0.15f));
 					break;
 				case TimeFreezePreset.Preset4:
-					GameManager.StartCoroutine(FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
+					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
 				case TimeFreezePreset.Preset5:
-					GameManager.StartCoroutine(FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
+					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
 				case TimeFreezePreset.Preset6:
-					GameManager.StartCoroutine(FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
+					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
 			}
 		}
 
-		public static IEnumerator FreezeMoment(float rampDownTime, float waitTime, float rampUpTime, float targetSpeed)
+		public static MapZone CurrentMapZone
 		{
-			GameManagerInit();
-			return impl.FreezeMoment(rampDownTime, waitTime, rampUpTime, targetSpeed);
+			get
+			{
+				return GameManager.instance.sm.mapZone;
+			}
+		}
+
+		//public static IEnumerator FreezeMoment(float rampDownTime, float waitTime, float rampUpTime, float targetSpeed)
+		//{
+			//GameManagerInit();
+			//return impl.FreezeMoment(rampDownTime, waitTime, rampUpTime, targetSpeed);
 			/*this.timeSlowedCount++;
 			yield return this.StartCoroutine(this.SetTimeScale(targetSpeed, rampDownTime));
 			for (float timer = 0f; timer < waitTime; timer += Time.unscaledDeltaTime)
@@ -77,7 +85,7 @@ namespace WeaverCore.Utilities
 			yield return this.StartCoroutine(this.SetTimeScale(1f, rampUpTime));
 			this.timeSlowedCount--;
 			yield break;*/
-		}
+		//}
 
 		/*private static int timeSlowedCount;
 

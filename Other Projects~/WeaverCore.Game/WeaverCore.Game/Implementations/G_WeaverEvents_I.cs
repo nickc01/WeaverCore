@@ -46,11 +46,12 @@ namespace WeaverCore.Game.Implementations
 
 			if (FSMs != null && FSMs.GetLength(0) > 0)
 			{
-				var fsmEvent = new FsmEvent(eventName);
+				//var fsmEvent = new FsmEvent(eventName);
 
 				foreach (var fsmComponent in FSMs)
 				{
-					fsmComponent.Fsm.ProcessEvent(fsmEvent);
+					//fsmComponent.Fsm.ProcessEvent(fsmEvent);
+					fsmComponent.Fsm.Event(null, eventName);
 				}
 			}
 		}

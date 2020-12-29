@@ -41,6 +41,14 @@ namespace WeaverCore.Editor.Implementations
                 }
             }
 
+            public override bool InGodHomeArena
+            {
+                get
+                {
+                    return false;
+                }
+            }
+
             public override void OnBossesDeadAdd(Action action)
             {
                 OnBossesDead += action;

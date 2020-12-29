@@ -1,5 +1,5 @@
 {
-    "ModName": "InfernoKingGrimm",
+    "ModName": "CorruptedKin",
     "WindowsSupport": true,
     "MacSupport": false,
     "LinuxSupport": false,

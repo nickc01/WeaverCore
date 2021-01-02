@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
@@ -29,6 +30,11 @@ namespace WeaverCore.Utilities
 {
 	public sealed class ObjectPool
 	{
+		public static readonly bool MultiThreaded = true;
+
+		private bool poolAllSet = false;
+
+
 		private PoolLoadType _loadType;
 		private InstanceStorage _storageLocation;
 		private readonly Queue<PoolableObject> PooledObjects = new Queue<PoolableObject>();
@@ -41,6 +47,7 @@ namespace WeaverCore.Utilities
 		public bool ResetComponents = true;
 		public bool ResetPositions = false;
 
+		//Thread Safe
 		public PoolLoadType LoadType
 		{
 			get
@@ -83,8 +90,22 @@ namespace WeaverCore.Utilities
 			InstanceName = Prefab.gameObject.name + " (Clone)";
 			_loadType = loadType;
 			UpdateStorageLocation();
+
 			ComponentPath[] components = Prefab.GetAllComponents();
 
+			if (!MultiThreaded)
+			{
+				LoadPoolData(components);
+			}
+			else
+			{
+				ThreadPool.QueueUserWorkItem(LoadPoolData, components);
+			}
+		}
+
+		private void LoadPoolData(object componentsRaw)
+		{
+			ComponentPath[] components = (ComponentPath[])componentsRaw;
 			for (int i = 0; i < components.GetLength(0); i++)
 			{
 				ComponentPath componentPath = components[i];
@@ -117,18 +138,20 @@ namespace WeaverCore.Utilities
 				if (!HierarchyData.ContainsKey(hierarchyHash))
 				{
 					HierarchicalData hData = new HierarchicalData();
-					if (componentPath.Component is Behaviour)
+					hData.ComponentEnabled = componentPath.Enabled;
+					/*if (componentPath.Component is Behaviour)
 					{
 						hData.ComponentEnabled = ((Behaviour)componentPath.Component).enabled;
 					}
 					else
 					{
 						hData.ComponentEnabled = true;
-					}
+					}*/
 					hData.PrefabComponent = componentPath.Component;
 					HierarchyData.Add(hierarchyHash, hData);
 				}
 			}
+			poolAllSet = true;
 		}
 
 		public int AmountInPool
@@ -239,14 +262,23 @@ namespace WeaverCore.Utilities
 			if (time > 0)
 			{
 				poolableObject.StartCoroutine(ReturnToPoolRoutine(poolableObject, time));
-				return;
 			}
+			else
+			{
 
-			SendBackToPool(poolableObject);
+				SendBackToPool(poolableObject);
+			}
 		}
 
 		private void SendBackToPool(PoolableObject poolableObject)
 		{
+			if (!poolAllSet)
+			{
+				GameObject.Destroy(poolableObject.gameObject);
+				return;
+			}
+
+
 			ComponentPath[] objComponents = poolableObject.GetAllComponents();
 			ComponentPath[] prefabComponents = Prefab.GetAllComponents();
 
@@ -348,13 +380,16 @@ namespace WeaverCore.Utilities
 		private PoolableObject InstantiateInternal(Vector3 position, Quaternion rotation, Transform parent)
 		{
 			PoolableObject obj = null;
-			while (PooledObjects.Count > 0 && obj == null)
+			if (poolAllSet)
 			{
-				obj = PooledObjects.Dequeue();
+				while (PooledObjects.Count > 0 && obj == null)
+				{
+					obj = PooledObjects.Dequeue();
+				}
 			}
 
 			//If there was a valid object in the queue
-			if (obj != null)
+			if (obj != null && poolAllSet)
 			{
 				obj.gameObject.name = InstanceName;
 				obj.SourcePool = this;
@@ -476,6 +511,7 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		//Thread Safe
 		private IEnumerator FillPoolRoutine(int amount)
 		{
 			for (int i = 0; i < amount; i++)
@@ -487,6 +523,7 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		//Thread Safe
 		private PoolableObject InstantiateNewObject()
 		{
 			PoolableObject instance = GameObject.Instantiate(Prefab, StorageLocation.transform);
@@ -519,6 +556,7 @@ namespace WeaverCore.Utilities
 			return copier.Finish();
 		}
 
+		//Thread Safe
 		private void UpdateStorageLocation()
 		{
 			if (_storageLocation == null)

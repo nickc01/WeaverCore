@@ -19,7 +19,6 @@ namespace WeaverCore.Assets.Components
 		{
 			if (StunSound != null)
 			{
-				Debug.Log("PLAYING STUN SOUND!!!");
 				WeaverAudio.PlayAtPoint(StunSound, transform.position);
 			}
 			transform.localRotation = Quaternion.Euler(0f,0f,Random.Range(0f,360f));

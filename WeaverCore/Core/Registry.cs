@@ -245,7 +245,7 @@ namespace WeaverCore
         {
             foreach (var registry in ActiveRegistries)
             {
-                WeaverLog.Log("Active Registry = " + registry.registryName);
+                //WeaverLog.Log("Active Registry = " + registry.registryName);
                 if (registry != null && registry.registryEnabled)
                 {
                     //Debugger.Log("B");

@@ -135,25 +135,27 @@ namespace WeaverCore.Utilities
 			{
 				return false;
 			}
-			var clipIndex = clipNames.IndexOf(clipName);
+			var clipIndex = clipNames.IndexOf(clipName); //45
 
 			clipNames.RemoveAt(clipIndex);
 
-			var frameCount = clipFrameCounts[clipIndex];
+			var frameCount = clipFrameCounts[clipIndex]; //3
 
-			var startFrameIndex = clipFrameStartIndexes[clipIndex];
+			var startFrameIndex = clipFrameStartIndexes[clipIndex]; //264
 
-			for (int i = startFrameIndex + 1; i < clipFrameStartIndexes.Count; i++)
+
+			for (int i = clipIndex + 1; i < clipFrameStartIndexes.Count; i++)
 			{
 				clipFrameStartIndexes[i] = clipFrameStartIndexes[i] - frameCount;
 			}
 
 			clipFrameStartIndexes.RemoveAt(clipIndex);
-			clipFrameCounts.Remove(clipIndex);
+			clipFrameCounts.RemoveAt(clipIndex);
 
-			for (int i = 0; i < frameCount; i++)
+			//From 0 to 2
+			for (int i = frameCount - 1; i >= 0; i--)
 			{
-				frames.RemoveAt(startFrameIndex);
+				frames.RemoveAt(startFrameIndex + i);
 			}
 
 			clipFPSs.RemoveAt(clipIndex);
@@ -182,7 +184,10 @@ namespace WeaverCore.Utilities
 			var frameStart = clipFrameStartIndexes[clipIndex];
 			var frameCount = clipFrameCounts[clipIndex];
 
-			for (int i = frameStart; i < frameCount; i++)
+			//Debug.Log("Frames_A = " + clip.Frames);
+			Debug.Log("Frame Count = " + frameCount);
+
+			for (int i = frameStart; i < frameStart + frameCount; i++)
 			{
 				clip.AddFrame(frames[i]);
 			}

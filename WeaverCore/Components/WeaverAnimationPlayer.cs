@@ -12,6 +12,9 @@ namespace WeaverCore.Components
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class WeaverAnimationPlayer : MonoBehaviour
 	{
+		//public event Action<string> OnPlayingAnimation;
+		//public event Action<int> OnFrameChange;
+
 		Action<string> onAnimationDone = null;
 
 
@@ -83,9 +86,9 @@ namespace WeaverCore.Components
 		//Each time a new animation is played, this value gets regenerated. This is used to differentiate between different playing animations
 		public Guid PlayingGUID { get; private set; }
 
-		bool callbackAdded = false;
+		//bool callbackAdded = false;
 
-		void OnEnable()
+		protected virtual void OnEnable()
 		{
 			if (autoPlay && AnimationData.HasClip(autoPlayClip))
 			{
@@ -116,7 +119,7 @@ namespace WeaverCore.Components
 			}
 		}
 
-		void OnValidate()
+		protected virtual void OnValidate()
 		{
 			//Guid.NewGuid();
 			if (_spriteRenderer == null)
@@ -129,7 +132,7 @@ namespace WeaverCore.Components
 			}
 		}
 
-		void Update()
+		protected virtual void Update()
 		{
 			if (currentFrame != -1)
 			{
@@ -160,6 +163,11 @@ namespace WeaverCore.Components
 					else
 					{
 						SpriteRenderer.sprite = AnimationData.GetFrameFromClip(PlayingClip, currentFrame);
+						/*if (OnFrameChange != null)
+						{
+							OnFrameChange(currentFrame);
+						}*/
+						OnPlayingFrame(currentFrame);
 					}
 				}
 			}
@@ -195,6 +203,11 @@ namespace WeaverCore.Components
 			PlayingClip = clipName;
 			timer = 0f;
 			frameTime = 1f / AnimationData.GetClipFPS(clipName);
+			/*if (OnPlayingAnimation != null)
+			{
+				OnPlayingAnimation(clipName);
+			}*/
+			OnPlayingAnimation(clipName);
 			if (forceOnce)
 			{
 				currentFrame = AnimationData.GoToNextFrame(clipName, currentFrame, WeaverAnimationData.WrapMode.Once);
@@ -218,6 +231,11 @@ namespace WeaverCore.Components
 			else
 			{
 				SpriteRenderer.sprite = AnimationData.GetFrameFromClip(clipName, currentFrame);
+				/*if (OnFrameChange != null)
+				{
+					OnFrameChange(currentFrame);
+				}*/
+				OnPlayingFrame(currentFrame);
 			}
 		}
 
@@ -254,6 +272,14 @@ namespace WeaverCore.Components
 
 		}
 
+		protected virtual void OnPlayingAnimation(string clip)
+		{
 
+		}
+
+		protected virtual void OnPlayingFrame(int frame)
+		{
+
+		}
 	}
 }

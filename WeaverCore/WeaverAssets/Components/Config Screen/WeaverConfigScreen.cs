@@ -132,7 +132,7 @@ namespace WeaverCore.Assets.Components
 				//PropertyTemplates.Add(component.BindingFieldType, component);
 				PropertyTemplates.Add(component);
 			}
-			WeaverLog.Log("Property Templates = " + PropertyTemplates.Count);
+			//WeaverLog.Log("Property Templates = " + PropertyTemplates.Count);
 		}
 
 		static void CreateOnSceneChange(Scene scene, LoadSceneMode loadSceneMode)

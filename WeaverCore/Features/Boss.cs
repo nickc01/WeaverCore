@@ -67,7 +67,7 @@ namespace WeaverCore.Features
 				_bossStage = value;
 			}
 		}
-		List<IBossMove> bossMoves = new List<IBossMove>();
+		//List<IBossMove> bossMoves = new List<IBossMove>();
 		
 		public IBossMove PreviousMove { get; private set; }
 		public IBossMove CurrentMove { get; private set; }
@@ -100,7 +100,7 @@ namespace WeaverCore.Features
 
 		}
 
-		public IEnumerable<IBossMove> EnabledMoves
+		/*public IEnumerable<IBossMove> EnabledMoves
 		{
 			get
 			{
@@ -114,14 +114,14 @@ namespace WeaverCore.Features
 			{
 				return bossMoves;
 			}
-		}
+		}*/
 
 		public static void EndBossBattle(float delay = 0f)
 		{
 			staticImpl.EndBossBattle(delay);
 		}
 
-		public bool AddMove(IBossMove move)
+		/*public bool AddMove(IBossMove move)
 		{
 			if (bossMoves.Contains(move))
 			{
@@ -132,9 +132,9 @@ namespace WeaverCore.Features
 				bossMoves.Add(move);
 				return true;
 			}
-		}
+		}*/
 
-		public void AddMoves(IEnumerable<IBossMove> moves)
+		/*public void AddMoves(IEnumerable<IBossMove> moves)
 		{
 			foreach (var move in moves)
 			{
@@ -153,9 +153,9 @@ namespace WeaverCore.Features
 			{
 				return false;
 			}
-		}
+		}*/
 
-		public IBossMove GetRandomMove()
+		/*public IBossMove GetRandomMove()
 		{
 			var enabledMoves = new List<IBossMove>(EnabledMoves);
 			if (enabledMoves.Count == 0)
@@ -163,9 +163,9 @@ namespace WeaverCore.Features
 				return null;
 			}
 			return enabledMoves[UnityEngine.Random.Range(0, enabledMoves.Count)];
-		}
+		}*/
 
-		public IEnumerable<IBossMove> RandomMoveIter()
+		/*public IEnumerable<IBossMove> RandomMoveIter()
 		{
 			var allMovesCache = new List<IBossMove>(AllMoves);
 			var randomList = new List<IBossMove>(AllMoves);
@@ -177,10 +177,6 @@ namespace WeaverCore.Features
 					randomList = new List<IBossMove>(AllMoves);
 					allMovesCache = new List<IBossMove>(AllMoves);
 				}
-				/*if (!randomList.AreEquivalent(AllMoves))
-				{
-					randomList
-				}*/
 				randomList.Sort(Randomizer<IBossMove>.Instance);
 
 				if (previousMove != null && randomList.Count > 0 && randomList[0] == previousMove)
@@ -205,7 +201,14 @@ namespace WeaverCore.Features
 					yield return null;
 				}
 			}
-		}
+		}*/
+
+		/*public IEnumerable<IBossMove> GenerateRandomMoveList()
+		{
+			var randomList = new List<IBossMove>(AllMoves);
+			randomList.Sort(Randomizer<IBossMove>.Instance);
+			return randomList;
+		}*/
 
 		/// <summary>
 		/// Starts a coroutine, but will automatically stop it when the boss is stunned or dead
@@ -229,8 +232,12 @@ namespace WeaverCore.Features
 			idList.Add(idCounter);
 			var coroutine = StartCoroutine(DoBoundRoutine(idCounter,routine));
 			BoundRoutines.Add(idCounter, coroutine);
-			Debug.Log("Starting Routine of id = " + idCounter);
 			return idCounter;
+		}
+
+		public bool IsRoutineRunning(uint routineID)
+		{
+			return idList.Contains(routineID);
 		}
 
 		public void StopBoundRoutine(uint routineID)
@@ -272,10 +279,10 @@ namespace WeaverCore.Features
 			BoundRoutines.Remove(id);
 		}
 
-		public IEnumerator RunRandomMove()
+		/*public IEnumerator RunRandomMove()
 		{
 			return RunMove(GetRandomMove());
-		}
+		}*/
 
 		public IEnumerator RunMove(IBossMove move)
 		{

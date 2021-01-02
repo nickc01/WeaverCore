@@ -71,7 +71,7 @@ namespace WeaverCore.Utilities
 		/// <param name="assembly">The assembly to load from</param>
 		public static void LoadEmbeddedRegistries(Assembly assembly)
 		{
-			WeaverLog.Log("Assembly = " + (assembly != null));
+			//WeaverLog.Log("Assembly = " + (assembly != null));
 			var assemblyName = assembly.GetName().Name;
 			//WeaverLog.Log("Loading Embedded Registries for mod [" + modType.FullName + "]");
 			//if (!loaded)
@@ -102,10 +102,10 @@ namespace WeaverCore.Utilities
 						{
 							//WeaverLog.Log("Loading Mod Bundle = " + name);
 							var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
-							WeaverLog.Log("Bundle = " + (bundle != null));
+							//WeaverLog.Log("Bundle = " + (bundle != null));
 							foreach (var registry in bundle.LoadAllAssets<Registry>())
 							{
-								WeaverLog.Log("Registry = " + (registry != null));
+								//WeaverLog.Log("Registry = " + (registry != null));
 								if (registry.ModAssemblyName == assemblyName)
 								{
 									registry.Initialize();

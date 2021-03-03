@@ -42,5 +42,10 @@ namespace WeaverCore.Implementations
 		// (get) Token: 0x060001FD RID: 509
 		// (set) Token: 0x060001FE RID: 510
 		public abstract int EssenceSpent { get; set; }
+
+		//public abstract bool RoarLock { get; set; }
+
+		public abstract void EnterRoarLock();
+		public abstract void ExitRoarLock();
 	}
 }

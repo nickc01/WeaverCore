@@ -193,7 +193,6 @@ namespace WeaverCore.Components
 
 		public void PlayAnimation(string clipName, bool forceOnce = false)
 		{
-			//Debug.Log("PLAYING ANIMATION " + clipName);
 			this.forceOnce = forceOnce;
 			if (!HasAnimationClip(clipName))
 			{
@@ -264,12 +263,25 @@ namespace WeaverCore.Components
 				var currentGUID = PlayingGUID;
 				while (currentGUID == PlayingGUID)
 				{
-					//Debug.Log("Current GUID = " + currentGUID);
-					//Debug.Log("Playing GUID = " + PlayingGUID);
 					yield return null;
 				}
 			}
+		}
 
+		public IEnumerator WaitforClipToFinish()
+		{
+			var guid = PlayingGUID;
+			if (guid == default(Guid))
+			{
+				yield break;
+			}
+			else
+			{
+				while (guid == PlayingGUID)
+				{
+					yield return null;
+				}
+			}
 		}
 
 		protected virtual void OnPlayingAnimation(string clip)

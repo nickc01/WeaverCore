@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 43306255d45ce324ba1cdd565548d34d
+timeCreated: 1602781459
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: shot_impact_blue_02
@@ -217,7 +219,7 @@ TextureImporter:
         - {x: -56.0124, y: 92.00001}
         - {x: -33.0124, y: 92.00001}
         - {x: 101.9876, y: 66.00001}
-        - {x: 120.9876, y: 0.000007629395}
+        - {x: 120.9876, y: 7.629395E-06}
         - {x: 120.9876, y: -47.99999}
         - {x: 115.9876, y: -50.99999}
         - {x: 38.9876, y: -91.99999}
@@ -797,7 +799,7 @@ TextureImporter:
         - {x: 5.013378, y: -16}
         - {x: 5.013378, y: -20}
       - - {x: -8.986622, y: 3.999998}
-        - {x: -15.98662, y: -0.000001907349}
+        - {x: -15.98662, y: -1.907349E-06}
         - {x: -17.98662, y: -7.000002}
         - {x: -17.98662, y: -13}
         - {x: -14.98662, y: -16}
@@ -1378,7 +1380,7 @@ TextureImporter:
         - {x: -0.9999981, y: 18.5}
         - {x: 1.000002, y: 17.5}
         - {x: 1.000002, y: 15.5}
-        - {x: 0.000001907349, y: 9.5}
+        - {x: 1.907349E-06, y: 9.5}
         - {x: 7.000002, y: 9.5}
         - {x: 14, y: 5.5}
         - {x: 14, y: -11.5}
@@ -2963,7 +2965,7 @@ TextureImporter:
       tessellationDetail: 0
     outline: []
     physicsShape: []
-  spritePackingTag: 
-  userData: 
-  assetBundleName: weavercore_bundle
-  assetBundleVariant: 
+  spritePackingTag:
+  userData:
+  assetBundleName:
+  assetBundleVariant:

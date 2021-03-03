@@ -10,7 +10,10 @@ namespace WeaverCore.Implementations
     {
         public abstract class Statics : IImplementation
         {
-            public abstract IEnumerator Roar(GameObject source, float duration, AudioClip roarSound);
+            public abstract IEnumerator Roar(GameObject source, float duration, AudioClip roarSound, bool lockPlayer);
+            public abstract IEnumerator Roar(GameObject source, Vector3 spawnPosition, float duration, AudioClip roarSound, bool lockPlayer);
+            //public abstract RoarEmitter Spawn(GameObject source);
+            //public abstract RoarEmitter Spawn(GameObject source, Vector3 spawnPosition);
         }
     }
 }

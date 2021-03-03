@@ -39,6 +39,11 @@ namespace WeaverCore.Utilities
 			return list[UnityEngine.Random.Range(0,list.Count)];
 		}
 
+		public static void RandomizeList<T>(this List<T> list)
+		{
+			list.Sort(Randomizer<T>.Instance);
+		}
+
 		/// <summary>
 		/// Checks if each list have identical elements
 		/// </summary>

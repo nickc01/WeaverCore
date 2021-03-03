@@ -7,8 +7,12 @@ namespace WeaverCore.Assets.Components
 {
 	public class DeathWave : MonoBehaviour
 	{
+		static WeaverCore.Utilities.ObjectPool DeathWavePool;
+
 		public float Speed = 1f;
 		public float GrowthSpeed = 1f;
+
+		public float SizeMultiplier = 1f;
 
 		PoolableObject poolable;
 		SpriteRenderer spriteRenderer;
@@ -27,7 +31,7 @@ namespace WeaverCore.Assets.Components
 		{
 			timer += Time.deltaTime * accel;
 			float num = (1f + timer * 4f) * GrowthSpeed;
-			base.transform.localScale = new Vector3(num, num, num);
+			base.transform.localScale = new Vector3(num * SizeMultiplier, num * SizeMultiplier, num * SizeMultiplier);
 			Color color = spriteRenderer.color;
 			color.a = 1f - timer;
 			this.spriteRenderer.color = color;
@@ -51,6 +55,17 @@ namespace WeaverCore.Assets.Components
 			{
 				accel = 0.5f;
 			}
+		}
+
+		public static DeathWave Spawn(Vector3 position, float sizeMultiplier)
+		{
+			if (DeathWavePool == null)
+			{
+				DeathWavePool = new ObjectPool(WeaverAssets.LoadWeaverAsset<GameObject>("Death Wave Infected"));
+			}
+			var instance = DeathWavePool.Instantiate<DeathWave>(position, Quaternion.identity);
+			instance.SizeMultiplier = sizeMultiplier;
+			return instance;
 		}
 	}
 

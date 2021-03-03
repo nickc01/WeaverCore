@@ -115,6 +115,22 @@ public class RoarEmitter : MonoBehaviour
 		while (loop);
 	}
 
+	/// <summary>
+	/// Causes the player to lock in place. Used primarily to lock the player during a roar
+	/// </summary>
+	public void RoarLockPlayer()
+	{
+		Player.Player1.EnterRoarLock();
+	}
+
+	/// <summary>
+	/// Stops the player from being locked in place
+	/// </summary>
+	public void RoarUnlockPlayer()
+	{
+		Player.Player1.ExitRoarLock();
+	}
+
 	public static RoarEmitter Spawn(Vector3 position)
 	{
 		if (Prefab == null)
@@ -122,6 +138,10 @@ public class RoarEmitter : MonoBehaviour
 			Prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Roar Wave");
 		}
 
-		return GameObject.Instantiate(Prefab, position + Prefab.transform.localPosition, Quaternion.identity).GetComponent<RoarEmitter>();
+		var instance = GameObject.Instantiate(Prefab, position + Prefab.transform.localPosition, Quaternion.identity).GetComponent<RoarEmitter>();
+
+		instance.stopAfterTime = 0f;
+
+		return instance;
 	}
 }

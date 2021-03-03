@@ -136,7 +136,6 @@ namespace WeaverCore.Editor
 				importer.spriteImportMode = SpriteImportMode.Multiple;
 				importer.spritePixelsPerUnit = averagePPU;
 
-				//NOT DONE YET. NEED TO ADD SPRITES TO TEXTURE : TODO TODO TODO
 				var sheets = new SpriteMetaData[Textures.Count];
 				for (int i = 0; i < Textures.Count; i++)
 				{

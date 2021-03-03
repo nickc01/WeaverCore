@@ -287,10 +287,9 @@ public class WeaverAnimationDataEditor : Editor
 
 		//var clipIndex = clipNames.IndexOf(clipName); //45
 
-		//clipNames.RemoveAt(clipIndex);
 		clipNames.DeleteArrayElementAtIndex(clipIndex);
 
-		//var frameCount = clipFrameCounts[clipIndex]; //3
+		//var frameCount = clipFrameCounts[clipIndex]; //1
 		var frameCount = clipFrameCounts.GetArrayElementAtIndex(clipIndex).intValue;
 
 		//var startFrameIndex = clipFrameStartIndexes[clipIndex]; //264
@@ -310,11 +309,30 @@ public class WeaverAnimationDataEditor : Editor
 		clipFrameCounts.DeleteArrayElementAtIndex(clipIndex);
 
 		//From 0 to 2
-		for (int i = frameCount - 1; i >= 0; i--)
+
+		if (frameCount > 0)
 		{
-			//frames.RemoveAt(startFrameIndex + i);
-			frames.DeleteArrayElementAtIndex(startFrameIndex + i);
+			for (int i = startFrameIndex + frameCount; i < frames.arraySize; i++)
+			{
+				//Debug.Log("Moving Frame " + i + "to frame " + (i - frameCount));
+				frames.GetArrayElementAtIndex(i - frameCount).objectReferenceValue = frames.GetArrayElementAtIndex(i).objectReferenceValue;
+			}
+
+			frames.arraySize -= frameCount;
+
+			/*for (int i = 0; i < frameCount; i++)
+			{
+				Debug.Log("Deleting Frame = " + (frames.arraySize - 1));
+				frames.DeleteArrayElementAtIndex(frames.arraySize - 1);
+			}*/
+
+			/*for (int i = frameCount - 1; i >= 0; i--)
+			{
+				//frames.RemoveAt(startFrameIndex + i);
+				frames.DeleteArrayElementAtIndex(startFrameIndex + i);
+			}*/
 		}
+
 
 		//clipFPSs.RemoveAt(clipIndex);
 		//clipWrapModes.RemoveAt(clipIndex);
@@ -322,6 +340,9 @@ public class WeaverAnimationDataEditor : Editor
 		clipFPSs.DeleteArrayElementAtIndex(clipIndex);
 		clipWrapModes.DeleteArrayElementAtIndex(clipIndex);
 		clipLoopStarts.DeleteArrayElementAtIndex(clipIndex);
+
+		serializedObject.ApplyModifiedProperties();
+
 		return true;
 	}
 
@@ -341,7 +362,7 @@ public class WeaverAnimationDataEditor : Editor
 		var frames = serializedObject.FindProperty("frames"); //Sprite
 
 		clipNames.InsertArrayElementAtIndex(clipNames.arraySize);
-		clipNames.GetArrayElementAtIndex(clipNames.arraySize - 1).stringValue = clip.Name;
+		clipNames.GetArrayElementAtIndex(clipNames.arraySize - 1).stringValue = clip.Name; //Insert at 46
 
 		clipFrameStartIndexes.InsertArrayElementAtIndex(clipFrameStartIndexes.arraySize);
 		clipFrameStartIndexes.GetArrayElementAtIndex(clipFrameStartIndexes.arraySize - 1).intValue = frames.arraySize;
@@ -372,6 +393,8 @@ public class WeaverAnimationDataEditor : Editor
 		//clipFPSs.Add(clip.FPS);
 		//clipWrapModes.Add(clip.WrapMode);
 		//clipLoopStarts.Add(clip.LoopStart);
+
+		serializedObject.ApplyModifiedProperties();
 
 		return true;
 	}

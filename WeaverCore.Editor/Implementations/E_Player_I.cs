@@ -144,5 +144,15 @@ namespace WeaverCore.Editor.Implementations
         {
             return false;
         }
+
+        public override void EnterRoarLock()
+        {
+            
+        }
+
+        public override void ExitRoarLock()
+        {
+            
+        }
     }
 }

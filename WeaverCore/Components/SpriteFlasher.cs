@@ -122,7 +122,7 @@ namespace WeaverCore.Components
 
 		void UpdateRenderer()
 		{
-			renderer = GetComponent<SpriteRenderer>();
+			renderer = GetComponentInChildren<SpriteRenderer>();
 			if (renderer == null)
 			{
 				throw new SpriteFlasherException("The GameObject " + gameObject.name + " does not have a SpriteRenderer Component");
@@ -151,6 +151,11 @@ namespace WeaverCore.Components
 			}
 		}
 
+		public void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8f, float StayTime = 0.05f)
+		{
+			DoFlash(BeginTime, EndTime, Intensity, FlashColor, StayTime);
+		}
+
 
 		public void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8f, Color? FlashColor = null, float StayTime = 0.05f)
 		{
@@ -171,12 +176,16 @@ namespace WeaverCore.Components
 
 			Coroutine routine = null;
 
+			FlashIntensity = Mathf.Lerp(0.0f, Intensity, Time.deltaTime / BeginTime);
+
 			routine = StartCoroutine(FlashRoutine(BeginTime, EndTime, Intensity, StayTime, routine));
+
+			currentFlashRoutine = routine;
 		}
 
 		private IEnumerator FlashRoutine(float BeginTime, float EndTime, float Intensity, float StayTime, Coroutine routine)
 		{
-			FlashIntensity = 0.0f;
+			//FlashIntensity = 0.0f;
 			float clock = 0.0f;
 			while (clock <= BeginTime)
 			{

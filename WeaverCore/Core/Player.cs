@@ -222,6 +222,29 @@ namespace WeaverCore
 			}
 		}
 
+
+		public void EnterRoarLock()
+		{
+			impl.EnterRoarLock();
+		}
+
+		public void ExitRoarLock()
+		{
+			impl.ExitRoarLock();
+		}
+
+		/*public bool RoarLock
+		{
+			get
+			{
+				return impl.RoarLock;
+			}
+			set
+			{
+				impl.RoarLock = value;
+			}
+		}*/
+
 		// Token: 0x040000AE RID: 174
 		private static WeaverCore.Utilities.ObjectPool NailStrikePool;
 

@@ -24,25 +24,55 @@ namespace WeaverCore.Features
 			enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
 		}
 
-		public static IEnumerator Roar(GameObject source, float duration)
+		public static IEnumerator Roar(GameObject source, float duration, bool lockPlayer = true)
 		{
-			return Roar(source, duration, null);
+			return Roar(source, duration, null,lockPlayer);
 		}
 
-		public IEnumerator Roar(float duration)
+		public IEnumerator Roar(float duration, bool lockPlayer = true)
 		{
-			return Roar(gameObject, duration, null);
+			return Roar(gameObject, duration, null, lockPlayer);
 		}
 
-		public IEnumerator Roar(float duration, AudioClip roarSound)
+		public IEnumerator Roar(float duration, AudioClip roarSound, bool lockPlayer = true)
 		{
-			return Roar(gameObject, duration, roarSound);
+			return Roar(gameObject, duration, roarSound, lockPlayer);
 		}
 
-		public static IEnumerator Roar(GameObject source, float duration, AudioClip roarSound)
+		public static IEnumerator Roar(GameObject source, float duration, AudioClip roarSound, bool lockPlayer = true)
 		{
-			return staticImpl.Roar(source, duration, roarSound);
+			return staticImpl.Roar(source, duration, roarSound, lockPlayer);
 		}
+
+		public static IEnumerator Roar(GameObject source, Vector3 spawnPosition, float duration, bool lockPlayer = true)
+		{
+			return Roar(source, spawnPosition, duration, null, lockPlayer);
+		}
+
+		public IEnumerator Roar(float duration, Vector3 spawnPosition, bool lockPlayer = true)
+		{
+			return Roar(gameObject, spawnPosition, duration, null, lockPlayer);
+		}
+
+		public IEnumerator Roar(float duration, Vector3 spawnPosition, AudioClip roarSound, bool lockPlayer = true)
+		{
+			return Roar(gameObject, spawnPosition, duration, roarSound, lockPlayer);
+		}
+
+		public static IEnumerator Roar(GameObject source, Vector3 spawnPosition, float duration, AudioClip roarSound, bool lockPlayer = true)
+		{
+			return staticImpl.Roar(source, spawnPosition, duration, roarSound, lockPlayer);
+		}
+
+		/*public static RoarEmitter Spawn(GameObject source)
+		{
+			return staticImpl.Spawn(source);
+		}
+
+		public static RoarEmitter Spawn(GameObject source, Vector3 spawnPosition)
+		{
+			return staticImpl.Spawn(source, spawnPosition);
+		}*/
 
 		/// <summary>
 		/// Called when the enemy gets parried

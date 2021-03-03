@@ -214,7 +214,10 @@ namespace WeaverCore.Utilities
 
 		public void FillPoolAsync(int amount)
 		{
-			StorageLocation.StartCoroutine(FillPoolRoutine(amount));
+			if (amount != 0)
+			{
+				StorageLocation.StartCoroutine(FillPoolRoutine(amount));
+			}
 		}
 
 		public void ReturnToPool(GameObject gameObject)
@@ -429,7 +432,7 @@ namespace WeaverCore.Utilities
 			}
 			else
 			{
-				obj = GameObject.Instantiate(Prefab, StorageLocation.transform);
+				obj = GameObject.Instantiate(Prefab, position, rotation, StorageLocation.transform);
 				obj.SourcePool = this;
 				obj.gameObject.name = InstanceName;
 				Transform t = obj.transform;

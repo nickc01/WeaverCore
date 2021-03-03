@@ -11,43 +11,6 @@ namespace WeaverCore.Game.Implementations
     {
         public class G_Statics : Enemy_I.Statics
         {
-
-            public override IEnumerator Roar(GameObject source, float duration, AudioClip roarSound)
-            {
-                if (roarSound != null)
-                {
-                    WeaverAudio.PlayAtPoint(roarSound, source.transform.position);
-                }
-
-                var emitter = RoarEmitter.Spawn(source.transform.position);
-
-                emitter.stopAfterTime = duration;
-
-                SetPlayerRoarObject(source);
-                PlayerRoarEnter();
-
-                yield return new WaitForSeconds(duration);
-
-                SendEventToPlayer("ROAR EXIT");
-            }
-
-            /*public override IEnumerator Roar(GameObject source, float duration)
-            {
-                var roarPrefab = WeaverAssets.LoadWeaverAsset<GameObject>("Roar Prefab");
-
-                var roar = GameObject.Instantiate(roarPrefab,source.transform.position,Quaternion.identity);
-
-                SetPlayerRoarObject(source);
-                PlayerRoarEnter();
-
-                yield return new WaitForSeconds(duration);
-
-                SendEventToPlayer("END");
-                SendEventToPlayer("ROAR EXIT");
-                SendEventToPlayer("START SPAWN");
-
-            }*/
-
             static PlayMakerFSM GetRoarFSM()
             {
                 var player = Player.Player1.gameObject;
@@ -64,26 +27,13 @@ namespace WeaverCore.Game.Implementations
                 roarObjectGM.Value = obj;
             }
 
-            static void PlayerRoarEnter()
+            public override IEnumerator Roar(GameObject source, float duration, AudioClip roarSound, bool lockPlayer)
             {
-                SendEventToPlayer("ROAR ENTER");
+                return Roar(source, source.transform.position, duration, roarSound, lockPlayer);
             }
 
-            static void SendEventToPlayer(string eventName)
+            public override IEnumerator Roar(GameObject source, Vector3 spawnPosition, float duration, AudioClip roarSound, bool lockPlayer)
             {
-                var owner = new FsmOwnerDefault();
-                owner.GameObject = Player.Player1.gameObject;
-                GetRoarFSM().Fsm.Event(new FsmEventTarget()
-                {
-                    excludeSelf = false,
-                    target = FsmEventTarget.EventTarget.GameObject,
-                    gameObject = owner,
-                    sendToChildren = false
-
-                }, eventName);
-
-
-                /*
                 if (roarSound != null)
                 {
                     WeaverAudio.PlayAtPoint(roarSound, source.transform.position);
@@ -93,8 +43,18 @@ namespace WeaverCore.Game.Implementations
 
                 emitter.stopAfterTime = duration;
 
+                SetPlayerRoarObject(source);
+                if (lockPlayer)
+                {
+                    Player.Player1.EnterRoarLock();
+                }
+
                 yield return new WaitForSeconds(duration);
-                */
+
+                if (lockPlayer)
+                {
+                    Player.Player1.ExitRoarLock();
+                }
             }
         }
     }

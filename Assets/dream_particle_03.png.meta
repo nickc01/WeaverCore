@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 1fccb0f7236d6d6458cdbfec2c02643c
+timeCreated: 1602781464
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -70,7 +72,7 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape: []
-  spritePackingTag: 
-  userData: 
-  assetBundleName: weavercore_bundle
-  assetBundleVariant: 
+  spritePackingTag:
+  userData:
+  assetBundleName:
+  assetBundleVariant:

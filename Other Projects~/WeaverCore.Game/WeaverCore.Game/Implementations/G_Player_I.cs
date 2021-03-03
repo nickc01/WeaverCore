@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HutongGames.PlayMaker;
+using System;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 
@@ -53,10 +54,41 @@ namespace WeaverCore.Game.Implementations
 			HeroController.instance.NailParry();
 		}
 
+		static PlayMakerFSM GetRoarFSM()
+		{
+			var player = Player.Player1.gameObject;
+
+			return ActionHelpers.GetGameObjectFsm(player, "Roar Lock");
+		}
+
+		static void SendPlayerRoarEvent(string eventName)
+		{
+			var owner = new FsmOwnerDefault();
+			owner.GameObject = Player.Player1.gameObject;
+			GetRoarFSM().Fsm.Event(new FsmEventTarget()
+			{
+				excludeSelf = false,
+				target = FsmEventTarget.EventTarget.GameObject,
+				gameObject = owner,
+				sendToChildren = false
+
+			}, eventName);
+		}
+
+		public override void EnterRoarLock()
+		{
+			SendPlayerRoarEvent("ROAR ENTER");
+		}
+
+		public override void ExitRoarLock()
+		{
+			SendPlayerRoarEvent("ROAR EXIT");
+		}
+
 		// Token: 0x060000A1 RID: 161 RVA: 0x00004441 File Offset: 0x00002641
 		public override bool HasCharmEquipped(int charmNumber)
 		{
-			throw new NotImplementedException();
+			return false;
 		}
 
 		// Token: 0x060000A2 RID: 162 RVA: 0x00004449 File Offset: 0x00002649

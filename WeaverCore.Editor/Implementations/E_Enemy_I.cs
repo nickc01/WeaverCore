@@ -8,7 +8,12 @@ namespace WeaverCore.Editor.Implementations
     {
         public class E_Statics : Enemy_I.Statics
         {
-            public override IEnumerator Roar(GameObject source, float duration, AudioClip roarSound)
+            public override IEnumerator Roar(GameObject source, float duration, AudioClip roarSound, bool lockPlayer)
+            {
+                return Roar(source, source.transform.position, duration, roarSound, lockPlayer);
+            }
+
+            public override IEnumerator Roar(GameObject source, Vector3 spawnPosition, float duration, AudioClip roarSound, bool lockPlayer)
             {
                 if (roarSound != null)
                 {
@@ -19,8 +24,30 @@ namespace WeaverCore.Editor.Implementations
 
                 emitter.stopAfterTime = duration;
 
+                if (lockPlayer)
+                {
+                    Player.Player1.EnterRoarLock();
+                }
+
                 yield return new WaitForSeconds(duration);
+
+                if (lockPlayer)
+                {
+                    Player.Player1.ExitRoarLock();
+                }
             }
+
+            /*public override RoarEmitter Spawn(GameObject source)
+            {
+                return Spawn(source, source.transform.position);
+            }
+
+            public override RoarEmitter Spawn(GameObject source, Vector3 spawnPosition)
+            {
+                var emitter = RoarEmitter.Spawn(source.transform.position);
+                emitter.stopAfterTime = 0f;
+                return emitter;
+            }*/
         }
     }
 }

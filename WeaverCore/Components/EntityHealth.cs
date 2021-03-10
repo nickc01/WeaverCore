@@ -8,7 +8,6 @@ using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 using WeaverCore.Assets;
 using WeaverCore.Enums;
-using WeaverCore.DataTypes;
 
 namespace WeaverCore.Components
 {
@@ -21,7 +20,7 @@ namespace WeaverCore.Components
 
 	public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable
 	{
-		List<Milestone> HealthMilestones = new List<Milestone>();
+		List<HealthMilestone> HealthMilestones = new List<HealthMilestone>();
 
 
 		Collider2D collider;
@@ -237,7 +236,7 @@ namespace WeaverCore.Components
 			var blockedHitEffect = Instantiate(EffectAssets.BlockedHitPrefab, v, Quaternion.identity);
 			blockedHitEffect.transform.eulerAngles = eulerAngles;
 
-			WeaverAudio.PlayAtPoint(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
+			Audio.PlayAtPoint(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
 
 		}
 
@@ -334,7 +333,7 @@ namespace WeaverCore.Components
 			{
 				return;
 			}
-			HealthMilestones.Add(new Milestone(health, action));
+			HealthMilestones.Add(new HealthMilestone(health, action));
 		}
 
 		void CheckMilestones(int healthAfter)
@@ -362,7 +361,7 @@ namespace WeaverCore.Components
 				{
 					this.extraDamageClip = WeaverAssets.LoadWeaverAsset<AudioClip>("Extra Damage Audio");
 				}
-				WeaverAudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(this.extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(this.extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
 				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(0.85f, 1.15f);
 				SpriteFlasher component = base.GetComponent<SpriteFlasher>();
 				if (component != null)

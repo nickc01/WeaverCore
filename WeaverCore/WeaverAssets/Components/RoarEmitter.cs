@@ -43,7 +43,7 @@ public class RoarEmitter : MonoBehaviour
 
 	IEnumerator MainRoutine()
 	{
-		WeaverCam.Instance.Shaker.SetRumble(WeaverCore.Enums.RumbleType.RumblingMed);
+		CameraShaker.Instance.SetRumble(WeaverCore.Enums.RumbleType.RumblingMed);
 
 		StartCoroutine(TweenScale(Wave1,new Vector3(5.5f,5.5f,0f),0.15f,false));
 		StartCoroutine(TweenScale(Lines,new Vector3(6f,6f,0f),0.15f,false));
@@ -71,7 +71,7 @@ public class RoarEmitter : MonoBehaviour
 	public void StopRoaring()
 	{
 		StopAllCoroutines();
-		WeaverCam.Instance.Shaker.SetRumble(WeaverCore.Enums.RumbleType.None);
+		CameraShaker.Instance.SetRumble(WeaverCore.Enums.RumbleType.None);
 		Destroy(Wave1.gameObject);
 		Destroy(Wave2.gameObject);
 		RubbleParticles.Stop();

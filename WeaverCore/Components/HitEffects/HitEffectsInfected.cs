@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using WeaverCore.Interfaces;
-using WeaverCore.DataTypes;
 using WeaverCore.Utilities;
 using WeaverCore.Enums;
 
@@ -10,9 +9,9 @@ namespace WeaverCore.Components.HitEffects
 	[RequireComponent(typeof(SpriteFlasher))]
 	public class HitEffectsInfected : MonoBehaviour, IHitEffects
 	{
-		protected static ObjectPool DamageFlashPool;
-		protected static ObjectPool OrangeSpatterPool;
-		protected static ObjectPool HitPuffPool;
+		//protected static ObjectPool DamageFlashPool;
+		//protected static ObjectPool OrangeSpatterPool;
+		//protected static ObjectPool HitPuffPool;
 
 		[SerializeField]
 		bool doFlashEffects = true;
@@ -98,9 +97,9 @@ namespace WeaverCore.Components.HitEffects
 
 		protected virtual void Start()
 		{
-			DamageFlashPool = new ObjectPool(DamageFlash);
-			OrangeSpatterPool = new ObjectPool(OrangeSpatter);
-			HitPuffPool = new ObjectPool(HitPuff);
+			//DamageFlashPool = new ObjectPool(DamageFlash);
+			//OrangeSpatterPool = new ObjectPool(OrangeSpatter);
+			//HitPuffPool = new ObjectPool(HitPuff);
 			/*if (InfectedHitPool == null && )
 			{
 				InfectedHitPool = new ObjectPool(Assets.EffectAssets.UninfectedHitPrefab, PoolLoadType.Local);
@@ -119,10 +118,11 @@ namespace WeaverCore.Components.HitEffects
 			{
 				firedOnCurrentFrame = true;
 
-				var audio = WeaverAudio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
+				var audio = Audio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
 				audio.AudioSource.pitch = UnityEngine.Random.Range(audioPitchMin,audioPitchMax);
 
-				DamageFlashPool.Instantiate(transform.position + effectsOffset, Quaternion.identity);
+				//DamageFlashPool.Instantiate(transform.position + effectsOffset, Quaternion.identity);
+				Pooling.Instantiate(DamageFlash, transform.position = effectsOffset, Quaternion.identity);
 
 				if (doFlashEffects)
 				{
@@ -136,28 +136,29 @@ namespace WeaverCore.Components.HitEffects
 						{
 							Blood.SpawnDirectionalBlood(transform.position + effectsOffset, CardinalDirection.Up);
 						}
-						HitPuffPool.Instantiate(transform.position, Quaternion.Euler(270f, 90f, 270f));
+						//HitPuffPool.Instantiate(transform.position, Quaternion.Euler(270f, 90f, 270f));
+						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(270f, 90f, 270f));
 						break;
 					case CardinalDirection.Down:
 						if (doBlood)
 						{
 							Blood.SpawnDirectionalBlood(transform.position + effectsOffset, CardinalDirection.Down);
 						}
-						HitPuffPool.Instantiate(transform.position, Quaternion.Euler(-72.5f, -180f, -180f));
+						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(-72.5f, -180f, -180f));
 						break;
 					case CardinalDirection.Left:
 						if (doBlood)
 						{
 							Blood.SpawnDirectionalBlood(transform.position + effectsOffset, CardinalDirection.Left);
 						}
-						HitPuffPool.Instantiate(transform.position, Quaternion.Euler(180f, 90f, 270f));
+						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(180f, 90f, 270f));
 						break;
 					case CardinalDirection.Right:
 						if (doBlood)
 						{
 							Blood.SpawnDirectionalBlood(transform.position + effectsOffset,CardinalDirection.Right);
 						}
-						HitPuffPool.Instantiate(transform.position, Quaternion.Euler(0f, 90f, 270f));
+						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(0f, 90f, 270f));
 						break;
 				}
 

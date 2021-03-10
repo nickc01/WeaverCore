@@ -24,7 +24,7 @@ namespace WeaverCore.Utilities
         static List<Type> FoundImplementations;
         static Assembly ImplAssembly;
 
-        internal static bool Initialized { get; private set; }
+        public static bool Initialized { get; private set; }
 
         /*static RunningState GetState()
         {
@@ -46,7 +46,6 @@ namespace WeaverCore.Utilities
             {
                 return;
             }*/
-            Initialized = true;
            //Debug.LogError("D");
             //Debug.Log("Running ImplFinder");
             if (FoundImplementations == null)
@@ -103,6 +102,8 @@ namespace WeaverCore.Utilities
                     }
                 }
             }
+
+            Initialized = true;
         }
 
         static ImplFinder()

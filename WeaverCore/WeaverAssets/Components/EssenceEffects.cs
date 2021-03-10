@@ -64,7 +64,7 @@ namespace WeaverCore.Assets.Components
 		private static IEnumerator ReturnToScene(string scene)
 		{
 			yield return new WaitForSeconds(1f);
-			GameObject camera = WeaverCam.Instance.gameObject;
+			GameObject camera = WeaverCamera.Instance.gameObject;
 			if (camera == null)
 			{
 				throw new Exception("Camera not found");
@@ -101,13 +101,13 @@ namespace WeaverCore.Assets.Components
 		{
 			if (EssenceEffects.EffectPool == null)
 			{
-				EssenceEffects.EffectPool = new WeaverCore.Utilities.ObjectPool(WeaverAssets.LoadWeaverAsset<GameObject>("Essence Effects"), PoolLoadType.Local);
+				EssenceEffects.EffectPool = ObjectPool.Create(WeaverAssets.LoadWeaverAsset<GameObject>("Essence Effects"));
 			}
 			return EssenceEffects.EffectPool.Instantiate<EssenceEffects>(position, Quaternion.identity);
 		}
 
 		// Token: 0x040002E4 RID: 740
-		private static WeaverCore.Utilities.ObjectPool EffectPool;
+		private static ObjectPool EffectPool;
 
 		// Token: 0x040002E5 RID: 741
 		private ParticleSystem VanishBurst;

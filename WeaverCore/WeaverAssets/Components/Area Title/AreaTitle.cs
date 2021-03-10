@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using WeaverCore.DataTypes;
+using WeaverCore.Enums;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets
@@ -202,7 +202,7 @@ namespace WeaverCore.Assets
 			if (AreaTitlePool == null)
 			{
 				Prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Area Title Small");
-				AreaTitlePool = new ObjectPool(Prefab);
+				AreaTitlePool = ObjectPool.Create(Prefab);
 			}
 
 			var title = AreaTitlePool.Instantiate<AreaTitle>(WeaverCanvas.Content);

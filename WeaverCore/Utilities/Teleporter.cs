@@ -274,7 +274,7 @@ namespace WeaverCore.Utilities
 
 		private static void PlayTeleportSound(Vector3 position, float audioPitch)
 		{
-			var teleportSound = WeaverAudio.PlayAtPoint(AudioAssets.Teleport, position, 1f, AudioChannel.Sound);
+			var teleportSound = Audio.PlayAtPoint(AudioAssets.Teleport, position, 1f, AudioChannel.Sound);
 
 			teleportSound.AudioSource.pitch = audioPitch;
 		}
@@ -283,7 +283,7 @@ namespace WeaverCore.Utilities
 		{
 			if (WhiteFlashPool == null)
 			{
-				WhiteFlashPool = new ObjectPool(EffectAssets.WhiteFlashPrefab,PoolLoadType.Local);
+				WhiteFlashPool = ObjectPool.Create(EffectAssets.WhiteFlashPrefab);
 			}
 			var whiteFlash = WhiteFlashPool.Instantiate<WhiteFlash>(originalPosition, Quaternion.identity);
 			//var whiteFlash = GameObject.Instantiate(EffectAssets.WhiteFlashPrefab, originalPosition, Quaternion.identity).GetComponent<WhiteFlash>();
@@ -298,7 +298,7 @@ namespace WeaverCore.Utilities
 		{
 			if (GlowPool == null)
 			{
-				GlowPool = new ObjectPool(EffectAssets.TeleportGlowPrefab, PoolLoadType.Local);
+				GlowPool = ObjectPool.Create(EffectAssets.TeleportGlowPrefab);
 			}
 			var sprite = GlowPool.Instantiate<SpriteRenderer>(new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - 0.1f), Quaternion.identity);
 			//var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - 0.1f), Quaternion.identity);
@@ -311,7 +311,7 @@ namespace WeaverCore.Utilities
 		{
 			if (TeleLinePool == null)
 			{
-				TeleLinePool = new ObjectPool(EffectAssets.TeleLinePrefab, PoolLoadType.Local);
+				TeleLinePool = ObjectPool.Create(EffectAssets.TeleLinePrefab);
 			}
 			//var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, destination, 0.5f), Quaternion.identity);
 			var teleLine = TeleLinePool.Instantiate(Vector3.Lerp(originalPosition, destination, 0.5f), Quaternion.identity);

@@ -43,12 +43,12 @@ namespace WeaverCore.Components.DeathEffects
 		{
 			if (this.SwordDeathSound != null)
 			{
-				WeaverAudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(this.SwordDeathSound, base.transform.position, this.swordDeathSoundVolume, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(this.SwordDeathSound, base.transform.position, this.swordDeathSoundVolume, AudioChannel.Sound);
 				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(this.swordDeathSoundMinPitch, this.swordDeathSoundMaxPitch);
 			}
 			if (this.DamageSound != null)
 			{
-				WeaverAudioPlayer weaverAudioPlayer2 = WeaverAudio.PlayAtPoint(this.DamageSound, base.transform.position, this.damageSoundVolume, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer2 = Audio.PlayAtPoint(this.DamageSound, base.transform.position, this.damageSoundVolume, AudioChannel.Sound);
 				weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(this.damageSoundMinPitch, this.damageSoundMaxPitch);
 			}
 			if (this.InfectedDeathWavePrefab != null)
@@ -75,7 +75,7 @@ namespace WeaverCore.Components.DeathEffects
 			}
 			if (renderer != null && renderer.isVisible)
 			{
-				WeaverCam.Instance.Shaker.Shake(shakeType);
+				CameraShaker.Instance.Shake(shakeType);
 			}
 		}
 
@@ -84,12 +84,12 @@ namespace WeaverCore.Components.DeathEffects
 		{
 			if (this.SwordDeathSound != null)
 			{
-				WeaverAudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(this.SwordDeathSound, base.transform.position, this.swordDeathSoundVolume, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(this.SwordDeathSound, base.transform.position, this.swordDeathSoundVolume, AudioChannel.Sound);
 				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(this.swordDeathSoundMinPitch, this.swordDeathSoundMaxPitch);
 			}
 			if (this.DamageSound != null)
 			{
-				WeaverAudioPlayer weaverAudioPlayer2 = WeaverAudio.PlayAtPoint(this.DamageSound, base.transform.position, this.damageSoundVolume, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer2 = Audio.PlayAtPoint(this.DamageSound, base.transform.position, this.damageSoundVolume, AudioChannel.Sound);
 				weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(this.damageSoundMinPitch, this.damageSoundMaxPitch);
 			}
 			if (this.InfectedDeathWavePrefab != null)
@@ -108,12 +108,12 @@ namespace WeaverCore.Components.DeathEffects
 		{
 			if (this.SwordDeathSound != null)
 			{
-				WeaverAudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(this.SwordDeathSound, base.transform.position, this.swordDeathSoundVolume, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(this.SwordDeathSound, base.transform.position, this.swordDeathSoundVolume, AudioChannel.Sound);
 				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(this.swordDeathSoundMinPitch, this.swordDeathSoundMaxPitch);
 			}
 			if (this.DamageSound != null)
 			{
-				WeaverAudioPlayer weaverAudioPlayer2 = WeaverAudio.PlayAtPoint(this.DamageSound, base.transform.position, this.damageSoundVolume, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer2 = Audio.PlayAtPoint(this.DamageSound, base.transform.position, this.damageSoundVolume, AudioChannel.Sound);
 				weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(this.damageSoundMinPitch, this.damageSoundMaxPitch);
 			}
 			if (this.DeathPuffPrefab != null)

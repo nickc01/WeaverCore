@@ -5,7 +5,6 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
 using WeaverCore.Attributes;
-using WeaverCore.Audio;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
 

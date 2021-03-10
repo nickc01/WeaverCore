@@ -275,7 +275,6 @@ namespace WeaverCore.Assets.TMPro
 
 
 			type.GetField("fontWeights", BindingFlags.Public | BindingFlags.Instance).SetValue(this,weights);
-			WeaverLog.Log("SETTING DONE!!!");
 		}
 
 

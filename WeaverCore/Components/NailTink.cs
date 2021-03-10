@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore;
 using WeaverCore.Components;
-using WeaverCore.DataTypes;
 using WeaverCore.Enums;
 using WeaverCore.Features;
 using WeaverCore.Interfaces;
-using WeaverCore.Utilities;
 
 public class NailTink : MonoBehaviour, IHittable
 {
@@ -50,11 +48,11 @@ public class NailTink : MonoBehaviour, IHittable
 
 	IEnumerator HitRoutine(HitInfo hit)
 	{
-		WeaverGame.FreezeGameTime(WeaverGame.TimeFreezePreset.Preset3);
+		WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset3);
 
 		Player.Player1.EnterParryState();
 
-		WeaverCam.Instance.Shaker.Shake(WeaverCore.Enums.ShakeType.EnemyKillShake);
+		CameraShaker.Instance.Shake(WeaverCore.Enums.ShakeType.EnemyKillShake);
 
 		//PLAY AUDIO
 

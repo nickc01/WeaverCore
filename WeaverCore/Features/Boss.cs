@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Assertions.Must;
 using WeaverCore.Attributes;
 using WeaverCore.Components;
-using WeaverCore.DataTypes;
+using WeaverCore.Enums;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;

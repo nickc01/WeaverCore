@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Attributes;
-using WeaverCore.DataTypes;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;

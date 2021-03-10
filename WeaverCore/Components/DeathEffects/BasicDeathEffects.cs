@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using WeaverCore.DataTypes;
 using WeaverCore.Enums;
 using WeaverCore.Features;
 using WeaverCore.Interfaces;
@@ -54,7 +53,7 @@ namespace WeaverCore.Components.DeathEffects
 			}
 			if (this.FreezeGameOnDeath)
 			{
-				WeaverGame.FreezeGameTime(WeaverGame.TimeFreezePreset.Preset1);
+				WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset1);
 			}
 			if (!Boss.InGodHomeArena && this.doEssenceChance)
 			{

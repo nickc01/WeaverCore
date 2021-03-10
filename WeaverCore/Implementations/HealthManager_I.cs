@@ -6,7 +6,6 @@ using UnityEngine;
 using WeaverCore.Components;
 using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
-using WeaverCore.DataTypes;
 
 namespace WeaverCore.Implementations
 {

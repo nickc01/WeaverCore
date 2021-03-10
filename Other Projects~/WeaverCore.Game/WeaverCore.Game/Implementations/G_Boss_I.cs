@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WeaverCore.DataTypes;
+using WeaverCore.Enums;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Game.Implementations

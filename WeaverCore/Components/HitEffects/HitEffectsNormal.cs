@@ -5,7 +5,6 @@ using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 using WeaverCore.Enums;
-using WeaverCore.DataTypes;
 
 namespace WeaverCore.Components.HitEffects
 {
@@ -30,8 +29,10 @@ namespace WeaverCore.Components.HitEffects
 			NormalFlings = Flings.CreateNormalFlings();
 			if (UninfectedHitPool == null)
 			{
-				UninfectedHitPool = new ObjectPool(Assets.EffectAssets.UninfectedHitPrefab, PoolLoadType.Local);
+				UninfectedHitPool = ObjectPool.Create(Assets.EffectAssets.UninfectedHitPrefab);
 			}
+
+
 			flasher = GetComponent<SpriteFlasher>();
 			if (DamageSound == null)
 			{
@@ -50,15 +51,15 @@ namespace WeaverCore.Components.HitEffects
 			{
 				firedOnCurrentFrame = true;
 
-				WeaverAudio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
+				Audio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
 
 				if (doFlashEffects)
 				{
 					flasher.FlashNormalHit();
 				}
 
-				//GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
-				GameObject hitParticles = UninfectedHitPool.Instantiate(transform.position + effectsOffset, Quaternion.identity);
+				GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
+				//GameObject hitParticles = Pooling.Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
 
 				var direction = DirectionUtilities.DegreesToDirection(hit.Direction);
 

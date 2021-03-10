@@ -1,5 +1,4 @@
 ﻿using System;
-using WeaverCore.DataTypes;
 
 namespace WeaverCore.Interfaces
 {

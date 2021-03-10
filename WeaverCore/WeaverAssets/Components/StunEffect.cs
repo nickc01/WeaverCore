@@ -19,11 +19,11 @@ namespace WeaverCore.Assets.Components
 		{
 			if (StunSound != null)
 			{
-				WeaverAudio.PlayAtPoint(StunSound, transform.position);
+				Audio.PlayAtPoint(StunSound, transform.position);
 			}
 			transform.localRotation = Quaternion.Euler(0f,0f,Random.Range(0f,360f));
-			WeaverCam.Instance.Shaker.Shake(Enums.ShakeType.AverageShake);
-			WeaverGame.FreezeGameTime(WeaverGame.TimeFreezePreset.Preset4);
+			CameraShaker.Instance.Shake(Enums.ShakeType.AverageShake);
+			WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset4);
 			poolComponent = GetComponent<PoolableObject>();
 			if (poolComponent != null)
 			{
@@ -50,7 +50,7 @@ namespace WeaverCore.Assets.Components
 		{
 			if (StunEffectPool == null)
 			{
-				StunEffectPool = new ObjectPool(WeaverAssets.LoadWeaverAsset<GameObject>("Stun Effect"));
+				StunEffectPool = ObjectPool.Create(WeaverAssets.LoadWeaverAsset<GameObject>("Stun Effect"));
 			}
 			var instance = StunEffectPool.Instantiate(position, Quaternion.identity).GetComponent<StunEffect>();
 

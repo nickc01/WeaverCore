@@ -7,7 +7,7 @@ namespace WeaverCore.Assets.Components
 {
 	public class DeathWave : MonoBehaviour
 	{
-		static WeaverCore.Utilities.ObjectPool DeathWavePool;
+		static ObjectPool DeathWavePool;
 
 		public float Speed = 1f;
 		public float GrowthSpeed = 1f;
@@ -61,7 +61,7 @@ namespace WeaverCore.Assets.Components
 		{
 			if (DeathWavePool == null)
 			{
-				DeathWavePool = new ObjectPool(WeaverAssets.LoadWeaverAsset<GameObject>("Death Wave Infected"));
+				DeathWavePool = ObjectPool.Create(WeaverAssets.LoadWeaverAsset<GameObject>("Death Wave Infected"));
 			}
 			var instance = DeathWavePool.Instantiate<DeathWave>(position, Quaternion.identity);
 			instance.SizeMultiplier = sizeMultiplier;

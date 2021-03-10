@@ -15,7 +15,7 @@ namespace WeaverCore.Assets.Components
 		{
 			if (ShakeCamera)
 			{
-				WeaverCam.Instance.Shaker.Shake(Enums.ShakeType.BigShake);
+				CameraShaker.Instance.Shake(Enums.ShakeType.BigShake);
 			}
 			if (SpawnBloodParticles)
 			{

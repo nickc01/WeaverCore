@@ -357,11 +357,16 @@ namespace WeaverCore.Utilities
 
 			bool sortable = false;
 
-			if (methods[0].Item2 is PriorityAttribute)
+			if (typeof(PriorityAttribute).IsAssignableFrom(typeof(T)))
 			{
 				sortable = true;
 				methods.Sort(new PriorityAttribute.PairSorter<T>());
 			}
+
+			/*if (methods[0].Item2 is PriorityAttribute)
+			{
+				
+			}*/
 
 			AssemblyLoadEventHandler NewAssemblyLoad = (s, args) =>
 			{

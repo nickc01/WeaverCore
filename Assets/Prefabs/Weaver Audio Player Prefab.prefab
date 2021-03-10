@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4247978075552532}
   - component: {fileID: 82372581434978042}
-  - component: {fileID: 114107511839613056}
   - component: {fileID: 114549243115937436}
+  - component: {fileID: 114234856341014512}
   m_Layer: 0
   m_Name: Weaver Audio Player Prefab
   m_TagString: Untagged
@@ -109,7 +109,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -122,7 +122,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114107511839613056
+--- !u!114 &114234856341014512
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -130,12 +130,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1770080881042106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e6d87344e60e34daba3cb1aa5b0ac4, type: 3}
+  m_Script: {fileID: 11500000, guid: 52f6fe75ae6d58c48a58f385553c989f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   channel: 2
   poolComponent: {fileID: 114549243115937436}
-  audioSource: {fileID: 82372581434978042}
+  audioSource: {fileID: 0}
 --- !u!114 &114549243115937436
 MonoBehaviour:
   m_ObjectHideFlags: 1

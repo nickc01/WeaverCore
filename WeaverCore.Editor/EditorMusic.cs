@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
-using WeaverCore.Audio;
 
 namespace WeaverCore.Editor
 {

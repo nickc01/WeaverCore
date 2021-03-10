@@ -72,7 +72,22 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
-		[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore))]
+		//[OnRuntimeInit(-5)]
+		[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore),priority: -100)]
+		static void Init()
+		{
+#if UNITY_EDITOR
+			if (GameObject.FindObjectOfType<WeaverConfigScreen>() == null)
+			{
+				SpawnConfigScreen();
+			}
+#else
+			SpawnConfigScreen();
+			UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneChange;
+#endif
+		}
+
+		/*[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore))]
 		static void OnGameStart()
 		{
 			if (CoreInfo.LoadState == RunningState.Editor)
@@ -95,19 +110,44 @@ namespace WeaverCore.Assets.Components
 					}
 				}
 			}
+		}*/
+
+		static void SpawnConfigScreen()
+		{
+			if (Instance == null)
+			{
+				var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().FirstOrDefault();
+				var instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
+
+				instance.gameObject.SetActive(true);
+				instance.ConfigMainMenu.SetActive(false);
+				instance.ToggleButton.SetActive(true);
+			}
 		}
 
-		private static WeaverConfigScreen SpawnConfigScreen()
+		static void DestroyConfigScreen()
 		{
-			var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().FirstOrDefault();
-			return GameObject.Instantiate(prefab, WeaverCanvas.Content);
+			if (Instance != null)
+			{
+				Destroy(Instance.gameObject);
+				Instance = null;
+			}
 		}
 
 		void Awake()
 		{
 			Instance = this;
 			ConfigMainMenu.SetActive(false);
-			UnityEngine.SceneManagement.SceneManager.sceneUnloaded += DestroyOnSceneChange;
+
+			//EnteringTitleScreen();
+
+			PropertyTemplates.Clear();
+			foreach (var component in propertyHolder.GetComponentsInChildren<IConfigProperty>())
+			{
+				PropertyTemplates.Add(component);
+			}
+
+			/*UnityEngine.SceneManagement.SceneManager.sceneUnloaded += DestroyOnSceneChange;
 			if (CoreInfo.LoadState == RunningState.Editor)
 			{
 				EnteringTitleScreen();
@@ -124,18 +164,22 @@ namespace WeaverCore.Assets.Components
 						break;
 					}
 				}
-			}
-
-			PropertyTemplates.Clear();
-			foreach (var component in propertyHolder.GetComponentsInChildren<IConfigProperty>())
-			{
-				//PropertyTemplates.Add(component.BindingFieldType, component);
-				PropertyTemplates.Add(component);
-			}
-			//WeaverLog.Log("Property Templates = " + PropertyTemplates.Count);
+			}*/
 		}
 
-		static void CreateOnSceneChange(Scene scene, LoadSceneMode loadSceneMode)
+		static void OnSceneChange(Scene scene, LoadSceneMode loadSceneMode)
+		{
+			if (scene.name == "Menu_Title")
+			{
+				SpawnConfigScreen();
+			}
+			else
+			{
+				DestroyConfigScreen();
+			}
+		}
+
+		/*static void CreateOnSceneChange(Scene scene, LoadSceneMode loadSceneMode)
 		{
 			//WeaverLog.Log("Scene Loaded = " + scene.name);
 			if (Instance == null && scene.name == "Menu_Title")
@@ -153,7 +197,7 @@ namespace WeaverCore.Assets.Components
 				Instance = null;
 				Destroy(gameObject);
 			}
-		}
+		}*/
 
 
 		public void OpenMenu()
@@ -179,7 +223,7 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
-		void EnteringTitleScreen()
+		/*void EnteringTitleScreen()
 		{
 			//WeaverLog.Log("Entering Title Screen");
 			//Open = true;
@@ -195,7 +239,7 @@ namespace WeaverCore.Assets.Components
 			Open = false;
 			gameObject.SetActive(false);
 			CloseMenu();
-		}
+		}*/
 
 		public void OnTabClicked(Tab tab)
 		{

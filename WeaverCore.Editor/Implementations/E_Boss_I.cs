@@ -8,11 +8,11 @@ using WeaverCore;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
-using WeaverCore.DataTypes;
+using WeaverCore.Enums;
 
 namespace WeaverCore.Editor.Implementations
 {
-    public class E_Boss_I : Boss_I
+	public class E_Boss_I : Boss_I
     {
         public class E_Statics : Boss_I.Statics
         {

@@ -71,10 +71,10 @@ namespace WeaverCore.Utilities
 		{
 			if (GhostSlash1Pool == null)
 			{
-				GhostSlash1Pool = new ObjectPool(EffectAssets.GhostSlash1Prefab, PoolLoadType.Local);
+				GhostSlash1Pool = ObjectPool.Create(EffectAssets.GhostSlash1Prefab);
 				GhostSlash1Pool.FillPool(1);
 
-				GhostSlash2Pool = new ObjectPool(EffectAssets.GhostSlash2Prefab, PoolLoadType.Local);
+				GhostSlash2Pool = ObjectPool.Create(EffectAssets.GhostSlash2Prefab);
 				GhostSlash2Pool.FillPool(1);
 			}
 

@@ -7,6 +7,7 @@ using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Enums;
 using UnityEngine.Playables;
+using UnityEngine.Serialization;
 
 namespace WeaverCore.Components
 {
@@ -21,7 +22,8 @@ namespace WeaverCore.Components
 
 		[SerializeField]
 		[Tooltip("When true, will automatically set the layer of this object to the Enemies Layer")]
-		bool updateLayer = true;
+		[FormerlySerializedAs("updateLayer")]
+		bool setLayerToEnemies = true;
 
 		DamageHero_I impl;
 
@@ -75,7 +77,7 @@ namespace WeaverCore.Components
 				impl.Damager = this;
 			}
 
-			if (updateLayer)
+			if (setLayerToEnemies)
 			{
 				gameObject.layer = 11;
 			}

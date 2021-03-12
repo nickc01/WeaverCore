@@ -1,224 +1,76 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using WeaverCore.Enums;
+﻿using UnityEngine;
+using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	public class EnemyProjectile : MonoBehaviour
+	[RequireComponent(typeof(Rigidbody2D))]
+	public abstract class EnemyProjectile : MonoBehaviour, IOnPool
 	{
-		[NonSerialized]
-		new Rigidbody2D rigidbody;
-		[NonSerialized]
-		new Collider2D collider;
-		[NonSerialized]
-		WeaverAnimationPlayer animator;
-
-
 		[SerializeField]
-		float scaleMin = 1f;
+		float scaleMin = 0.8f;
 		[SerializeField]
-		float scaleMax = 1f;
+		float scaleMax = 0.8f;
 		[SerializeField]
 		float stretchFactor = 1.4f;
 		[SerializeField]
-		float minSquashAmount = 1f;
+		float minSquashAmount = 0.5f;
 		[SerializeField]
 		float maxStretchAmount = 2f;
 		[SerializeField]
-		[Tooltip("Causes the projectile to die after a set amount of time")]
-		bool destroyAfterTime = true;
-		[SerializeField]
-		[Tooltip("If Destroy After Time is set to true, this determines how long the projectile will live")]
-		float lifetime = 5f;
-		[SerializeField]
-		[Tooltip("Determines what the projectile will do when it is destroyed")]
-		OnDoneBehaviour whenDestroyed;
-
-
-		[Space]
-		[Header("Visuals")]
-		[SerializeField]
-		[Tooltip("The animation to play when the projectile spawns. Leave this blank if no animation should play")]
-		string animationOnStart;
-
-		[SerializeField]
-		[Tooltip("The animation to play when the projetile is destroyed. Leave this blank if no animation should play")]
-		string animationOnDestroy;
-
-		[SerializeField]
-		[Tooltip("The sound that is played when the projectile collides with something, leave blank for no sound to play")]
-		AudioClip impactClip;
+		float maxLifeTime = 5f;
 
 		float scaleAmount;
-		bool projectileActive = false;
+		Collider2D _collider;
+		Rigidbody2D _rigidbody;
+
+		bool originalCollisionState = false;
+
+		public Rigidbody2D Rigidbody
+		{
+			get
+			{
+				if (_rigidbody == null)
+				{
+					_rigidbody = GetComponent<Rigidbody2D>();
+				}
+				return _rigidbody;
+			}
+		}
+
+		public Collider2D Collider
+		{
+			get
+			{
+				if (_collider == null)
+				{
+					_collider = GetComponent<Collider2D>();
+				}
+				return _collider;
+			}
+		}
 
 		protected virtual void Awake()
 		{
-			if (rigidbody == null)
-			{
-				rigidbody = GetComponent<Rigidbody2D>();
-				collider = GetComponent<Collider2D>();
-			}
-			if (animator == null)
-			{
-				animator = GetComponent<WeaverAnimationPlayer>();
-			}
-			projectileActive = true;
-			rigidbody.isKinematic = false;
-			if (collider != null)
-			{
-				collider.enabled = true;
-			}
-			rigidbody.velocity = Vector3.zero;
-			rigidbody.angularVelocity = 0f;
-		}
-
-		protected virtual void OnEnable()
-		{
 			scaleAmount = UnityEngine.Random.Range(scaleMin, scaleMax);
-			if (destroyAfterTime)
+			if (Collider != null)
 			{
-				StartCoroutine(LifetimeWaiter(lifetime));
+				originalCollisionState = Collider.enabled;
 			}
-			if (!string.IsNullOrEmpty(animationOnStart))
-			{
-				if (animator == null)
-				{
-					throw new System.Exception("There is no animator on the object " + gameObject.name);
-				}
-				animator.PlayAnimation(animationOnStart);
-			}
-			OnProjectileSpawn();
-		}
-
-		protected virtual void OnDisable()
-		{
-			StopAllCoroutines();
-		}
-
-		IEnumerator LifetimeWaiter(float time)
-		{
-			yield return new WaitForSeconds(time);
-			Destroy();
 		}
 
 		protected virtual void Update()
 		{
-			if (projectileActive)
-			{
-				float rotation = Mathf.Atan2(rigidbody.velocity.y, rigidbody.velocity.x) * Mathf.Rad2Deg;
-				transform.SetZRotation(rotation);
-				Squash();
-			}
+			float rotation = Mathf.Atan2(Rigidbody.velocity.y, Rigidbody.velocity.x) * Mathf.Rad2Deg;
+			transform.SetZRotation(rotation);
+			Squash();
 		}
 
-		void Squash()
+		public void PointAwayFrom(Vector3 target)
 		{
-			var stretchY = 1f - rigidbody.velocity.magnitude * stretchFactor * 0.01f;
-			var stretchX = 1f + rigidbody.velocity.magnitude * stretchFactor * 0.01f;
-			if (stretchX < minSquashAmount)
-			{
-				stretchX = minSquashAmount;
-			}
-			if (stretchY > maxStretchAmount)
-			{
-				stretchY = maxStretchAmount;
-			}
-			stretchY *= scaleAmount;
-			stretchX *= scaleAmount;
-			transform.localScale = new Vector3(stretchX, stretchY, transform.localScale.z);
-		}
+			var vectorAway = (transform.position - target).normalized;
 
-
-		public void Destroy()
-		{
-			if (projectileActive)
-			{
-				projectileActive = false;
-				StartCoroutine(Destroyer());
-			}
-
-		}
-
-		IEnumerator Destroyer()
-		{
-			transform.localScale = new Vector3(scaleAmount,scaleAmount,transform.localScale.z);
-			projectileActive = false;
-			rigidbody.isKinematic = true;
-			rigidbody.velocity = Vector2.zero;
-			rigidbody.angularVelocity = 0f;
-
-			if (!string.IsNullOrEmpty(animationOnDestroy))
-			{
-				if (animator == null)
-				{
-					throw new System.Exception("There is no animator on the object " + gameObject.name);
-				}
-				animator.PlayAnimation(animationOnDestroy);
-				OnProjectileDestroy();
-				yield return animator.WaitforClipToFinish();
-			}
-			else
-			{
-				OnProjectileDestroy();
-			}
-			switch (whenDestroyed)
-			{
-				case OnDoneBehaviour.Nothing:
-					break;
-				case OnDoneBehaviour.Disable:
-					gameObject.SetActive(false);
-					break;
-				case OnDoneBehaviour.Destroy:
-					Destroy(gameObject);
-					break;
-				case OnDoneBehaviour.DestroyOrPool:
-					var pool = GetComponent<PoolableObject>();
-					if (pool == null)
-					{
-						Destroy(gameObject);
-					}
-					else
-					{
-						pool.ReturnToPool();
-					}
-					break;
-			}
-		}
-
-		private void OnCollisionEnter2D(Collision2D collision)
-		{
-			if (projectileActive)
-			{
-				var contacts = collision.contacts;
-				if (contacts.GetLength(0) > 0)
-				{
-					RotateOnCollide(contacts[0].normal);
-				}
-				Destroy();
-			}
-		}
-
-		private void OnTriggerEnter2D(Collider2D collision)
-		{
-			if (projectileActive && collision.tag == "HeroBox")
-			{
-				//this.active = false;
-				//base.StartCoroutine(this.Collision(Vector2.zero, false));
-				Destroy();
-			}
-		}
-
-		public void OrbitShieldHit(Transform shield)
-		{
-			if (projectileActive)
-			{
-				RotateOnCollide((transform.position - shield.position).normalized);
-				Destroy();
-			}
+			RotateOnCollide(vectorAway);
 		}
 
 		void RotateOnCollide(Vector2 normal)
@@ -241,20 +93,62 @@ namespace WeaverCore.Components
 			}
 		}
 
-		/// <summary>
-		/// Called when the projectile first spawns
-		/// </summary>
-		protected virtual void OnProjectileSpawn()
+		void Squash()
 		{
-
+			var stretchY = 1f - Rigidbody.velocity.magnitude * stretchFactor * 0.01f;
+			var stretchX = 1f + Rigidbody.velocity.magnitude * stretchFactor * 0.01f;
+			if (stretchX < minSquashAmount)
+			{
+				stretchX = minSquashAmount;
+			}
+			if (stretchY > maxStretchAmount)
+			{
+				stretchY = maxStretchAmount;
+			}
+			stretchY *= scaleAmount;
+			stretchX *= scaleAmount;
+			transform.localScale = new Vector3(stretchX, stretchY, transform.localScale.z);
 		}
 
-		/// <summary>
-		/// Called when the projectile collides with something or is destroyed
-		/// </summary>
-		protected virtual void OnProjectileDestroy()
+		public virtual void OnPool()
 		{
+			Rigidbody.isKinematic = false;
+			Rigidbody.velocity = Vector2.zero;
+			Rigidbody.angularVelocity = 0f;
+			if (Collider != null)
+			{
+				Collider.enabled = originalCollisionState;
+			}
+		}
 
+		protected virtual void OnHit(GameObject collision)
+		{
+			Rigidbody.isKinematic = true;
+			Rigidbody.velocity = Vector2.zero;
+			Rigidbody.angularVelocity = 0f;
+			if (Collider != null)
+			{
+				Collider.enabled = false;
+			}
+			PointAwayFrom(collision.transform.position);
+		}
+
+		protected void OnCollisionEnter2D(Collision2D collision)
+		{
+			/*var contacts = collision.contacts;
+			if (contacts.GetLength(0) > 0)
+			{
+				RotateOnCollide(contacts[0].normal);
+			}*/
+			OnHit(collision.gameObject);
+		}
+
+		protected void OnTriggerEnter2D(Collider2D collision)
+		{
+			//this.active = false;
+			//base.StartCoroutine(this.Collision(Vector2.zero, false));
+			//Destroy();
+			OnHit(collision.gameObject);
 		}
 	}
 }

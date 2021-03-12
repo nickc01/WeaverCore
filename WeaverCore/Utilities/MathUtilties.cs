@@ -49,7 +49,7 @@ namespace WeaverCore.Utilities
 			return new Vector2(timeToPeak, peakValue);
 		}
 
-		public static Vector2 CalculateVelocityToReachPointNEW(Vector2 start, Vector2 end, double time, double gravityScale)
+		/*public static Vector2 CalculateVelocityToReachPointNEW(Vector2 start, Vector2 end, double time, double gravityScale)
 		{
 			Debug.DrawLine(start, end, Color.red,5f);
 
@@ -64,6 +64,6 @@ namespace WeaverCore.Utilities
 			double xVelocity = (end.x - (double)start.x) / time;
 
 			return new Vector2((float)xVelocity,(float)yVelocity);
-		}
+		}*/
 	}
 }

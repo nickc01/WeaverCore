@@ -94,7 +94,7 @@ namespace WeaverCore.Editor.Implementations
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.tag == "HeroWalkable")
+            if (collision.gameObject.tag == "HeroWalkable" || collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
             {
                 colliders++;
                 jumpCounter = 0;
@@ -103,7 +103,7 @@ namespace WeaverCore.Editor.Implementations
 
         void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.tag == "HeroWalkable")
+            if (collision.gameObject.tag == "HeroWalkable" || collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
             {
                 colliders--;
             }

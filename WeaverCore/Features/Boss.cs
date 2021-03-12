@@ -307,13 +307,15 @@ namespace WeaverCore.Features
 
 		public void AddStunMilestone(int health)
 		{
-			entityHealth.AddHealthMilestone(health, OnStun);
+			entityHealth.AddHealthMilestone(health, Stun);
 		}
 
 		public void Stun()
 		{
+			WeaverLog.Log("STUNNING");
 			if (CurrentMove != null)
 			{
+				WeaverLog.Log("Current Move = " + CurrentMove.GetType().FullName);
 				CurrentMove.OnStun();
 			}
 			OnStun();

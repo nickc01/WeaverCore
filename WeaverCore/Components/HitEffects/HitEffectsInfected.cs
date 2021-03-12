@@ -122,7 +122,7 @@ namespace WeaverCore.Components.HitEffects
 				audio.AudioSource.pitch = UnityEngine.Random.Range(audioPitchMin,audioPitchMax);
 
 				//DamageFlashPool.Instantiate(transform.position + effectsOffset, Quaternion.identity);
-				Pooling.Instantiate(DamageFlash, transform.position = effectsOffset, Quaternion.identity);
+				Pooling.Instantiate(DamageFlash, transform.position + effectsOffset, Quaternion.identity);
 
 				if (doFlashEffects)
 				{

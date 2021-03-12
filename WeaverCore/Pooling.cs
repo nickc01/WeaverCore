@@ -40,6 +40,13 @@ namespace WeaverCore
 						if (timers[i].timer >= MaxPoolTime)
 						{
 							var pool = pools[timers[i].obj];
+							if (pool.Pool != null && pool.Pool.gameObject != null)
+							{
+								pool.Pool.ClearPool();
+								Destroy(pool.Pool.gameObject);
+							}
+							pools.Remove(timers[i].obj);
+							timers.RemoveAt(i);
 						}
 					}
 				}
@@ -79,6 +86,10 @@ namespace WeaverCore
 			}
 
 			var info = pools[obj];
+			if (info.Pool == null || info.Pool.gameObject == null)
+			{
+				info.Pool = ObjectPool.Create(obj);
+			}
 			timers[info.timerIndex].timer = 0f;
 			return info.Pool;
 		}

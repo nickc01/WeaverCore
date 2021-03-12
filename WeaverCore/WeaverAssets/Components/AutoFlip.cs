@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore.Utilities;
 
-namespace WeaverCore.Assets.Components
+/*namespace WeaverCore.Assets.Components
 {
 	public class AutoFlip : MonoBehaviour
 	{
@@ -139,4 +139,6 @@ namespace WeaverCore.Assets.Components
 		}
 
 	}
-}
+}*/
+
+

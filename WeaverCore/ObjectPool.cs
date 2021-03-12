@@ -77,6 +77,14 @@ namespace WeaverCore
 		public bool ResetPositions = false;
 		private Queue<StartCallerEntry> StartCallers;
 
+		public int AmountInPool
+		{
+			get
+			{
+				return PooledObjects.Count;
+			}
+		}
+
 		private void LateUpdate()
 		{
 			if (StartCallers != null)
@@ -122,6 +130,11 @@ namespace WeaverCore
 			}
 		}
 
+		public void ClearPool()
+		{
+			PooledObjects.Clear();
+		}
+
 		public static ObjectPool Create(GameObject prefab)
 		{
 			var poolComponent = prefab.GetComponent<PoolableObject>();
@@ -135,6 +148,7 @@ namespace WeaverCore
 		public static ObjectPool Create(PoolableObject prefab)
 		{
 			var pool = new GameObject().AddComponent<ObjectPool>();
+			pool.gameObject.name = "Object Pool - " + prefab.name;
 			pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
 			pool.Prefab = prefab;
 			return pool;
@@ -199,14 +213,6 @@ namespace WeaverCore
 				}
 			}
 			poolAllSet = true;
-		}
-
-		public int AmountInPool
-		{
-			get
-			{
-				return PooledObjects.Count;
-			}
 		}
 
 		private static T GetComponentOrThrow<T>(GameObject obj)
@@ -321,7 +327,7 @@ namespace WeaverCore
 
 			if (time > 0)
 			{
-				poolableObject.StartCoroutine(ReturnToPoolRoutine(poolableObject, time));
+				StartCoroutine(ReturnToPoolRoutine(poolableObject, time));
 			}
 			else
 			{
@@ -420,7 +426,7 @@ namespace WeaverCore
 				obj.SourcePool = this;
 				obj.InPool = false;
 				Transform t = obj.transform;
-				t.parent = parent;
+				t.SetParent(parent);
 				t.position = position;
 				t.rotation = rotation;
 				obj.gameObject.SetActive(Prefab.gameObject.activeSelf);
@@ -455,7 +461,7 @@ namespace WeaverCore
 			}
 			else
 			{
-				obj = UnityEngine.Object.Instantiate(Prefab, position, rotation, transform);
+				obj = UnityEngine.Object.Instantiate(Prefab, position, rotation, parent);
 				obj.SourcePool = this;
 				obj.gameObject.name = InstanceName;
 				Transform t = obj.transform;
@@ -549,7 +555,7 @@ namespace WeaverCore
 		private IEnumerator ReturnToPoolRoutine(PoolableObject poolableObject, float time)
 		{
 			yield return new WaitForSeconds(time);
-			if (poolableObject == null || poolableObject.gameObject == null)
+			if (poolableObject == null || poolableObject.gameObject == null || poolableObject.InPool)
 			{
 				yield break;
 			}

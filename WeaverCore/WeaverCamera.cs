@@ -17,7 +17,6 @@ namespace WeaverCore
 		static void EditorInit()
 		{
 			var mainCam = Camera.main;
-
 			if (mainCam != null)
 			{
 				if (mainCam.GetComponent<WeaverCamera>() == null)
@@ -93,7 +92,7 @@ namespace WeaverCore
 
 		void Awake()
 		{
-			//WeaverLog.Log("WEAVER CAMERA CREATED");
+			WeaverLog.Log("WEAVER CAMERA CREATED");
 			if (_instance != null)
 			{
 				throw new Exception("Cannot have more than one WeaverCamera in the game");
@@ -111,8 +110,10 @@ namespace WeaverCore
 			}
 			else
 			{
+				WeaverLog.Log("BOTTOM PATH");
 				if (transform.parent.GetComponent<CameraShaker>() == null)
 				{
+					WeaverLog.Log("ADDING SHAKER");
 					transform.parent.gameObject.AddComponent<CameraShaker>();
 				}
 				/*if ((Shaker = transform.parent.GetComponent<CameraShaker>()) == null)

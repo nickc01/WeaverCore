@@ -43,29 +43,32 @@ public class RoarEmitter : MonoBehaviour
 
 	IEnumerator MainRoutine()
 	{
+		WeaverLog.Log("A");
 		CameraShaker.Instance.SetRumble(WeaverCore.Enums.RumbleType.RumblingMed);
-
+		WeaverLog.Log("B");
 		StartCoroutine(TweenScale(Wave1,new Vector3(5.5f,5.5f,0f),0.15f,false));
 		StartCoroutine(TweenScale(Lines,new Vector3(6f,6f,0f),0.15f,false));
-
+		WeaverLog.Log("C");
 		yield return new WaitForSeconds(0.15f);
-
+		WeaverLog.Log("D");
 		Wave2Sprite.enabled = true;
+		WeaverLog.Log("E");
 		Wave1.localScale = new Vector3(1f, 1f, 0f);
-
+		WeaverLog.Log("F");
 		StartCoroutine(TweenScale(Wave1, new Vector3(5.5f, 5.5f, 0f), 0.15f, false));
 		StartCoroutine(TweenScale(Wave2, new Vector3(5.5f, 5.5f, 0f), 0.15f, false));
 		StartCoroutine(TweenScale(Lines, new Vector3(6f, 6f, 0f), 0.15f, false));
-
+		WeaverLog.Log("G");
 		yield return new WaitForSeconds(0.15f);
-
+		WeaverLog.Log("H");
 		Destroy(Lines.gameObject);
-
+		WeaverLog.Log("I");
 		Wave1.localScale = new Vector3(1f, 1f, 0f);
 		Wave2.localScale = new Vector3(5.5f, 5.5f, 0f);
-
+		WeaverLog.Log("J");
 		StartCoroutine(TweenScale(Wave1, new Vector3(5.5f, 5.5f, 0f), 0.15f, true));
 		StartCoroutine(TweenScale(Wave2, new Vector3(5.5f, 5.5f, 0f), 0.15f, true));
+		WeaverLog.Log("K");
 	}
 
 	public void StopRoaring()

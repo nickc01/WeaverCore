@@ -40,6 +40,7 @@ namespace WeaverCore.Initializers
 #endif
 		static void OnGamePlay() //This is called either when you go into play mode in the editor, or start up the game when in Hollow Knight
 		{
+			WeaverLog.Log("STARTING THE RUNTIME INIT FUNCTIONS");
 			RuntimeInitRunner.RuntimeInit();
 		}
 	}
@@ -56,7 +57,6 @@ namespace WeaverCore.Initializers
 			if (!run)
 			{
 				run = true;
-
 				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 				{
 					InitializedAssemblies.Add(assembly);
@@ -131,7 +131,6 @@ namespace WeaverCore.Initializers
 			if (!run)
 			{
 				run = true;
-
 				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 				{
 					InitializedAssemblies.Add(assembly);

@@ -49,12 +49,11 @@ public class NailTink : MonoBehaviour, IHittable
 	IEnumerator HitRoutine(HitInfo hit)
 	{
 		WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset3);
-
 		Player.Player1.EnterParryState();
-
 		CameraShaker.Instance.Shake(WeaverCore.Enums.ShakeType.EnemyKillShake);
 
 		//PLAY AUDIO
+		Audio.PlayAtPoint(TinkSound,transform.position);
 
 		var attackDirection = hit.Direction;
 
@@ -81,30 +80,33 @@ public class NailTink : MonoBehaviour, IHittable
 		{
 			case CardinalDirection.Up:
 				Player.Player1.Recoil(CardinalDirection.Down);
-				GameObject.Instantiate(TinkEffectPrefab, transform.position + new Vector3(0f, -1.5f, 0f), Quaternion.identity);
+				Pooling.Instantiate(TinkEffectPrefab, Player.Player1.transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.identity);
 				break;
 			case CardinalDirection.Down:
 				Player.Player1.Recoil(CardinalDirection.Up);
-				GameObject.Instantiate(TinkEffectPrefab, transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.identity);
+				Pooling.Instantiate(TinkEffectPrefab, Player.Player1.transform.position + new Vector3(0f, -1.5f, 0f), Quaternion.identity);
 				break;
 			case CardinalDirection.Left:
 				Player.Player1.Recoil(CardinalDirection.Right);
-				GameObject.Instantiate(TinkEffectPrefab, transform.position + new Vector3(1.5f, 0f, 0f), Quaternion.identity);
+				Pooling.Instantiate(TinkEffectPrefab, Player.Player1.transform.position + new Vector3(-1.5f, 0f, 0f), Quaternion.identity);
 				break;
 			case CardinalDirection.Right:
 				Player.Player1.Recoil(CardinalDirection.Left);
-				GameObject.Instantiate(TinkEffectPrefab, transform.position + new Vector3(-1.5f, 0f, 0f), Quaternion.identity);
+				Pooling.Instantiate(TinkEffectPrefab, Player.Player1.transform.position + new Vector3(1.5f, 0f, 0f), Quaternion.identity);
 				break;
 		}
 
 		yield return null;
 
+
 		Player.Player1.RecoverFromParry();
+
 
 		if (enemy != null)
 		{
 			enemy.OnParry(this, hit);
 		}
+
 
 		yield return null;
 

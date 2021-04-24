@@ -85,7 +85,8 @@ namespace WeaverCore.Assets.Components
 					}
 					else
 					{
-						switch (WhenDone)
+						WhenDone.DoneWithObject(this);
+						/*switch (WhenDone)
 						{
 							case OnDoneBehaviour.Disable:
 								gameObject.SetActive(false);
@@ -104,7 +105,7 @@ namespace WeaverCore.Assets.Components
 							case OnDoneBehaviour.Destroy:
 								Destroy(gameObject);
 								break;
-						}
+						}*/
 					}
 				}
 			}

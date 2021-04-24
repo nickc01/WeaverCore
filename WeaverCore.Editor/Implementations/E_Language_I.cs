@@ -23,5 +23,15 @@ namespace WeaverCore.Editor.Implementations
         {
             return false;
         }
-    }
+
+		public override string GetStringInternal(string convoName)
+		{
+            return string.Empty;
+		}
+
+		public override string GetStringInternal(string convoName, string sheetName)
+		{
+            return string.Empty;
+        }
+	}
 }

@@ -9,7 +9,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	[RequireComponent(typeof(SpriteRenderer))]
 	public class WeaverAnimationPlayer : MonoBehaviour
 	{
 		//public event Action<string> OnPlayingAnimation;
@@ -36,6 +35,9 @@ namespace WeaverCore.Components
 		float frameTime = 0f;
 		bool forceOnce = false;
 
+		/// <summary>
+		/// The current frame index that is playing
+		/// </summary>
 		public int PlayingFrame
 		{
 			get
@@ -51,6 +53,24 @@ namespace WeaverCore.Components
 			}
 		}
 
+		/// <summary>
+		/// When a clip is playing, this is how long the current frame has been displayed for
+		/// </summary>
+		public float FrameTime
+		{
+			get
+			{
+				if (PlayingClip == null)
+				{
+					return 0;
+				}
+				else
+				{
+					return timer;
+				}
+			}
+		}
+
 
 		SpriteRenderer _spriteRenderer;
 		public SpriteRenderer SpriteRenderer
@@ -59,7 +79,11 @@ namespace WeaverCore.Components
 			{
 				if (_spriteRenderer == null)
 				{
-					_spriteRenderer = GetComponent<SpriteRenderer>();
+					_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+					if (_spriteRenderer == null)
+					{
+						throw new Exception("No SpriteRenderer could be found on the object " + gameObject.name);
+					}
 				}
 				return _spriteRenderer;
 			}
@@ -78,6 +102,13 @@ namespace WeaverCore.Components
 			}
 		}
 
+		float _playBackSpeed = 1f;
+		public float PlaybackSpeed
+		{
+			get { return _playBackSpeed; }
+			set { _playBackSpeed = value; }
+		}
+
 		/// <summary>
 		/// The currently playing clip. Returns null if no clip is playing
 		/// </summary>
@@ -93,29 +124,7 @@ namespace WeaverCore.Components
 			if (autoPlay && AnimationData.HasClip(autoPlayClip))
 			{
 				PlayAnimation(autoPlayClip);
-				onAnimationDone += s =>
-				{
-					if (OnClipFinish == OnDoneBehaviour.Nothing)
-					{
-						return;
-					}
-					if (OnClipFinish == OnDoneBehaviour.Disable)
-					{
-						gameObject.SetActive(false);
-					}
-					else
-					{
-						var poolable = GetComponent<PoolableObject>();
-						if (OnClipFinish == OnDoneBehaviour.DestroyOrPool && poolable != null)
-						{
-							poolable.ReturnToPool();
-						}
-						else
-						{
-							Destroy(gameObject);
-						}
-					}
-				};
+				onAnimationDone += s => OnClipFinish.DoneWithObject(this);
 			}
 		}
 
@@ -136,7 +145,7 @@ namespace WeaverCore.Components
 		{
 			if (currentFrame != -1)
 			{
-				timer += Time.deltaTime;
+				timer += Time.deltaTime * PlaybackSpeed;
 				if (timer >= frameTime)
 				{
 					timer -= frameTime;

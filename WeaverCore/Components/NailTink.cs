@@ -48,6 +48,7 @@ public class NailTink : MonoBehaviour, IHittable
 
 	IEnumerator HitRoutine(HitInfo hit)
 	{
+		WeaverLog.Log("NAIL TINK ATTACK DIRECTION = " + hit.Direction);
 		WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset3);
 		Player.Player1.EnterParryState();
 		CameraShaker.Instance.Shake(WeaverCore.Enums.ShakeType.EnemyKillShake);
@@ -75,6 +76,8 @@ public class NailTink : MonoBehaviour, IHittable
 		{
 			direction = CardinalDirection.Right;
 		}
+
+		WeaverLog.Log("TINK DIRECTION = " + direction);
 
 		switch (direction)
 		{

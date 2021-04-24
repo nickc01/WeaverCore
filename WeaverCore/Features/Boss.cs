@@ -229,6 +229,7 @@ namespace WeaverCore.Features
 			{
 				idCounter++;
 			}
+			WeaverLog.Log("ID Counter = " + idCounter);
 			idList.Add(idCounter);
 			var coroutine = StartCoroutine(DoBoundRoutine(idCounter,routine));
 			BoundRoutines.Add(idCounter, coroutine);

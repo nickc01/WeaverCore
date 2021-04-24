@@ -1,0 +1,1184 @@
+fileFormatVersion: 2
+guid: 4c9c32f459e0be648bce92966f394e18
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: power_blast0000
+    21300002: scream_effect0000
+    21300004: power_blast0001
+    21300006: scream_effect0001
+    21300008: scream_effect0002
+    21300010: power_blast0002
+    21300012: scream_effect0003
+    21300014: power_blast0003
+    21300016: scream_effect0004
+    21300018: power_blast0004
+    21300022: scream_effect0005
+    21300026: scream_effect0006
+    21300028: scream_effect0007
+    21300030: power_blast0005
+    21300032: scream_effect0008
+    21300034: power_blast0006
+    21300036: power_blast0007
+    21300038: scream_effect0009
+    21300040: scream_effect0010
+    21300042: scream_effect0011
+    21300044: double_jump_wings0000
+    21300046: double_jump_wings0001
+    21300048: double_jump_wings0002
+    21300050: double_jump_wings0003
+    21300052: double_jump_wings0004
+    21300054: double_jump_wings0005
+    21300056: scream_effect0012
+    21300058: slash_effect0005
+    21300060: slash_effect0006
+    21300062: slash_effect0007
+    21300064: slash_effect0008
+    21300066: slash_effect0009
+    21300068: slash_effect0010
+    21300070: slash_effect0011
+    21300072: slash_effect0012
+    21300074: slash_effect0013
+    21300076: slash_effect0014
+    21300078: slash_effect0015
+    21300080: slash_effect0016
+    21300082: slash_effect0017
+    21300084: slash_effect0018
+    21300086: slash_effect0019
+    21300088: slash_effect0020
+    21300090: dream_nail_impact0000
+    21300092: dream_nail_impact0001
+    21300094: dream_nail_impact0002
+    21300096: dream_nail_impact0003
+    21300098: dream_nail_impact0004
+    21300100: dream_nail_impact0005
+    21300102: Knight_Dream_Gate_Create_Blade0003
+    21300104: Knight_Dream_Gate_Create_Blade0002
+    21300106: Knight_Dream_Gate_Create_Blade0004
+    21300108: tele_charge_new0004
+    21300110: Knight_Dream_Gate_Create_Blade0000
+    21300112: Knight_Dream_Gate_Create_Blade0005
+    21300114: Knight_Dream_Gate_Create_Blade0001
+    21300116: tele_charge_new0002
+    21300118: Knight_Dream_Gate_enter_blade0006
+    21300120: Knight_Dream_Gate_enter_blade0010
+    21300122: Knight_Dream_Gate_enter_blade0011
+    21300124: Knight_Dream_Gate_enter_blade0005
+    21300126: Knight_Dream_Gate_enter_blade0000
+    21300128: Knight_Dream_Gate_enter_blade0004
+    21300130: Knight_Dream_Gate_enter_blade0002
+    21300132: Knight_Dream_Gate_enter_blade0003
+    21300134: Knight_Dream_Gate_enter_blade0001
+    21300136: Knight_Dream_Gate_enter_blade0008
+    21300138: Knight_Dream_Gate_enter_blade0009
+    21300140: Knight_Dream_Gate_enter_blade0007
+    21300142: tele_charge_new0003
+    21300144: tele_charge_new0000
+    21300146: tele_charge_new0001
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 62.801304
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: power_blast0000
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1981
+        width: 251
+        height: 63
+      alignment: 9
+      pivot: {x: 0.48000002, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0000
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 1603
+        width: 121
+        height: 152
+      alignment: 9
+      pivot: {x: 0.53333324, y: 0.8013245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: power_blast0001
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 1961
+        width: 281
+        height: 53
+      alignment: 9
+      pivot: {x: 0.47857141, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0001
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 490
+        width: 283
+        height: 286
+      alignment: 9
+      pivot: {x: 0.5141844, y: 0.4631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0002
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1113
+        width: 316
+        height: 289
+      alignment: 9
+      pivot: {x: 0.48253965, y: 0.46875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: power_blast0002
+      rect:
+        serializedVersion: 2
+        x: 1659
+        y: 1402
+        width: 327
+        height: 68
+      alignment: 9
+      pivot: {x: 0.4815951, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0003
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 778
+        width: 312
+        height: 286
+      alignment: 9
+      pivot: {x: 0.511254, y: 0.47017545}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: power_blast0003
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 689
+        width: 344
+        height: 73
+      alignment: 9
+      pivot: {x: 0.48979592, y: 0.9305555}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0004
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 1355
+        width: 302
+        height: 287
+      alignment: 9
+      pivot: {x: 0.5016611, y: 0.47202796}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: power_blast0004
+      rect:
+        serializedVersion: 2
+        x: 1253
+        y: 925
+        width: 351
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5, y: 0.9852941}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 442
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0.015625, y: 0.984375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0005
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 490
+        width: 315
+        height: 287
+      alignment: 9
+      pivot: {x: 0.49681532, y: 0.4685315}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: 
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 438
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0.015625, y: 0.984375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0006
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1692
+        width: 315
+        height: 288
+      alignment: 9
+      pivot: {x: 0.49681532, y: 0.46689892}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0007
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 1065
+        width: 307
+        height: 289
+      alignment: 9
+      pivot: {x: 0.5163399, y: 0.46875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: power_blast0005
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 1402
+        width: 340
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5162242, y: 0.9852941}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0008
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1403
+        width: 317
+        height: 288
+      alignment: 9
+      pivot: {x: 0.5221519, y: 0.4703833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: power_blast0006
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 1472
+        width: 348
+        height: 63
+      alignment: 9
+      pivot: {x: 0.49567723, y: 0.983871}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: power_blast0007
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 1536
+        width: 319
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5408805, y: 0.86153847}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0009
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 204
+        width: 318
+        height: 285
+      alignment: 9
+      pivot: {x: 0.5205047, y: 0.4612676}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0010
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 204
+        width: 312
+        height: 270
+      alignment: 9
+      pivot: {x: 0.51446944, y: 0.43122673}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0011
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 1357
+        width: 248
+        height: 210
+      alignment: 9
+      pivot: {x: 0.37651825, y: 0.5215311}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: double_jump_wings0000
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 1774
+        width: 132
+        height: 197
+      alignment: 9
+      pivot: {x: 0.519084, y: 0.09183669}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: double_jump_wings0001
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 490
+        width: 255
+        height: 272
+      alignment: 9
+      pivot: {x: 0.44881892, y: 0.398524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: double_jump_wings0002
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 204
+        width: 289
+        height: 269
+      alignment: 9
+      pivot: {x: 0.4340278, y: 0.6641791}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: double_jump_wings0003
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 490
+        width: 360
+        height: 198
+      alignment: 9
+      pivot: {x: 0.4846797, y: 0.49238575}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: double_jump_wings0004
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 1037
+        width: 276
+        height: 170
+      alignment: 9
+      pivot: {x: 0.51272726, y: 0.053254426}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: double_jump_wings0005
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 1472
+        width: 159
+        height: 141
+      alignment: 9
+      pivot: {x: 0.664557, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_effect0012
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 453
+        width: 12
+        height: 10
+      alignment: 9
+      pivot: {x: 0, y: 0.5555555}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0005
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 1326
+        width: 98
+        height: 68
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0006
+      rect:
+        serializedVersion: 2
+        x: 1768
+        y: 344
+        width: 115
+        height: 78
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0007
+      rect:
+        serializedVersion: 2
+        x: 1918
+        y: 1208
+        width: 129
+        height: 145
+      alignment: 9
+      pivot: {x: 0, y: 0.59722227}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0008
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 1208
+        width: 158
+        height: 181
+      alignment: 9
+      pivot: {x: 0, y: 0.4388889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0009
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 1208
+        width: 150
+        height: 157
+      alignment: 9
+      pivot: {x: 0, y: 0.42948717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0010
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 1916
+        width: 151
+        height: 132
+      alignment: 9
+      pivot: {x: 0, y: 0.4580152}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0011
+      rect:
+        serializedVersion: 2
+        x: 1852
+        y: 1037
+        width: 164
+        height: 163
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0012
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 777
+        width: 254
+        height: 259
+      alignment: 9
+      pivot: {x: 0.063241124, y: 0.49224806}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0013
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 821
+        width: 342
+        height: 291
+      alignment: 9
+      pivot: {x: 0.18768328, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0014
+      rect:
+        serializedVersion: 2
+        x: 1688
+        y: 777
+        width: 276
+        height: 189
+      alignment: 9
+      pivot: {x: 0.014545441, y: 0.44148934}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0015
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 1037
+        width: 214
+        height: 158
+      alignment: 9
+      pivot: {x: 0, y: 0.3949045}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0016
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 1208
+        width: 182
+        height: 140
+      alignment: 9
+      pivot: {x: 0, y: 0.27338135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0017
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 0
+        width: 455
+        height: 203
+      alignment: 9
+      pivot: {x: 0.592511, y: 0.40099013}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0018
+      rect:
+        serializedVersion: 2
+        x: 1253
+        y: 777
+        width: 434
+        height: 147
+      alignment: 9
+      pivot: {x: 0.5288684, y: 0.24657536}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0019
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 344
+        width: 416
+        height: 111
+      alignment: 9
+      pivot: {x: 0.52048194, y: 0.118181825}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slash_effect0020
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1603
+        width: 189
+        height: 95
+      alignment: 9
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: dream_nail_impact0000
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 1037
+        width: 361
+        height: 119
+      alignment: 9
+      pivot: {x: 0.625, y: 0.5254237}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: dream_nail_impact0001
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 204
+        width: 545
+        height: 139
+      alignment: 9
+      pivot: {x: 0.49448526, y: 0.44927537}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: dream_nail_impact0002
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 0
+        width: 544
+        height: 153
+      alignment: 9
+      pivot: {x: 0.49723756, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: dream_nail_impact0003
+      rect:
+        serializedVersion: 2
+        x: 1430
+        y: 0
+        width: 523
+        height: 153
+      alignment: 9
+      pivot: {x: 0.52681994, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: dream_nail_impact0004
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 1587
+        width: 94
+        height: 87
+      alignment: 9
+      pivot: {x: 0, y: 0.23255813}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: dream_nail_impact0005
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 438
+        width: 14
+        height: 14
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0003
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 777
+        width: 252
+        height: 289
+      alignment: 9
+      pivot: {x: 0.42231077, y: 0.6597222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0002
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 1698
+        width: 156
+        height: 217
+      alignment: 9
+      pivot: {x: 0.39999998, y: 0.77777773}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0004
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 428
+        height: 437
+      alignment: 9
+      pivot: {x: 0.43325526, y: 0.5940367}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tele_charge_new0004
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 1578
+        width: 138
+        height: 195
+      alignment: 9
+      pivot: {x: 0.43065697, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0000
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 1902
+        width: 142
+        height: 142
+      alignment: 9
+      pivot: {x: 0.33333337, y: 0.82978725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0005
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 438
+        width: 409
+        height: 382
+      alignment: 9
+      pivot: {x: 0.44852942, y: 0.46981627}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0001
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 1495
+        width: 91
+        height: 91
+      alignment: 9
+      pivot: {x: 0.32222223, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tele_charge_new0002
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 1208
+        width: 131
+        height: 183
+      alignment: 9
+      pivot: {x: 0.37692308, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0006
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 1568
+        width: 189
+        height: 270
+      alignment: 9
+      pivot: {x: 0.4308511, y: 0.4684015}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0010
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 1113
+        width: 95
+        height: 212
+      alignment: 9
+      pivot: {x: 0.3936169, y: 0.38862562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0011
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 1208
+        width: 160
+        height: 267
+      alignment: 9
+      pivot: {x: 0.3018868, y: 0.38721806}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0005
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 1643
+        width: 256
+        height: 317
+      alignment: 9
+      pivot: {x: 0.4666667, y: 0.53797466}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0000
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 1759
+        width: 142
+        height: 142
+      alignment: 9
+      pivot: {x: 0.33333337, y: 0.82978725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0004
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 490
+        width: 260
+        height: 273
+      alignment: 9
+      pivot: {x: 0.4633205, y: 0.5919118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0002
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 1614
+        width: 143
+        height: 144
+      alignment: 9
+      pivot: {x: 0.25352108, y: 0.69930065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0003
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 1476
+        width: 160
+        height: 221
+      alignment: 9
+      pivot: {x: 0.42767298, y: 0.48636365}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0001
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 1403
+        width: 91
+        height: 91
+      alignment: 9
+      pivot: {x: 0.32222223, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0008
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 1839
+        width: 171
+        height: 208
+      alignment: 9
+      pivot: {x: 0.3470589, y: 0.40579712}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0009
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 1067
+        width: 206
+        height: 289
+      alignment: 9
+      pivot: {x: 0.4292683, y: 0.5034722}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0007
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 1390
+        width: 145
+        height: 187
+      alignment: 9
+      pivot: {x: 0.30555558, y: 0.3387097}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tele_charge_new0003
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 1208
+        width: 133
+        height: 193
+      alignment: 9
+      pivot: {x: 0.39393938, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tele_charge_new0000
+      rect:
+        serializedVersion: 2
+        x: 1897
+        y: 204
+        width: 142
+        height: 210
+      alignment: 9
+      pivot: {x: 0.4042554, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tele_charge_new0001
+      rect:
+        serializedVersion: 2
+        x: 1907
+        y: 490
+        width: 140
+        height: 200
+      alignment: 9
+      pivot: {x: 0.41007197, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: weavercore_bundle
+  assetBundleVariant: 

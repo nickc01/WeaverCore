@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -106,26 +107,63 @@ namespace WeaverCore.Utilities
 
 		public void ReturnToPool()
 		{
-			if (SourcePool != null)
+			UnboundCoroutine.Start(ReturnToPoolRoutine(this, 0f));
+			/*if (SourcePool != null)
 			{
 				SourcePool.ReturnToPool(this);
 			}
 			else
 			{
+				Debug.Log("DESTROY B");
 				Destroy(gameObject);
+			}*/
+		}
+
+		static IEnumerator ReturnToPoolRoutine(PoolableObject obj,float time)
+		{
+			yield return null;
+
+			if (obj == null || obj.gameObject == null || obj.InPool)
+			{
+				yield break;
+			}
+
+			if (time > 0f)
+			{
+				if (obj.SourcePool != null)
+				{
+					obj.SourcePool.ReturnToPool(obj, time);
+				}
+				else
+				{
+					Destroy(obj.gameObject, time);
+				}
+			}
+			else
+			{
+				if (obj.SourcePool != null)
+				{
+					obj.SourcePool.ReturnToPool(obj);
+				}
+				else
+				{
+					Destroy(obj.gameObject);
+				}
 			}
 		}
 
 		public void ReturnToPool(float time)
 		{
-			if (SourcePool != null)
+			UnboundCoroutine.Start(ReturnToPoolRoutine(this, time));
+			/*if (SourcePool != null)
 			{
 				SourcePool.ReturnToPool(this, time);
 			}
 			else
 			{
+				Debug.Log("DESTROY C");
 				Destroy(gameObject, time);
-			}
+			}*/
 		}
 
 

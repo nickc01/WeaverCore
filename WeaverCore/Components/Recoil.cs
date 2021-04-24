@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Enums;
@@ -62,6 +63,28 @@ namespace WeaverCore.Components
 				attackDirection2 = 1;
 			}
 			base.RecoilByDirection(attackDirection2, attackStrength);
+		}
+
+
+#if UNITY_EDITOR
+		static Func<RECOIL_BASE, float> recoilSpeedDel;
+#else
+		static Func<global::Recoil, float> recoilSpeedDel;
+#endif
+
+
+		public float GetRecoilSpeed()
+		{
+			if (recoilSpeedDel == null)
+			{
+#if UNITY_EDITOR
+				recoilSpeedDel = ReflectionUtilities.CreateFieldGetter<RECOIL_BASE, float>(typeof(Recoil).BaseType.GetField("recoilSpeed", BindingFlags.NonPublic | BindingFlags.Instance));
+#else
+				recoilSpeedDel = ReflectionUtilities.CreateFieldGetter<global::Recoil, float>(typeof(Recoil).BaseType.GetField("recoilSpeed", BindingFlags.NonPublic | BindingFlags.Instance));
+#endif
+			}
+
+			return recoilSpeedDel.Invoke(this);
 		}
 	}
 

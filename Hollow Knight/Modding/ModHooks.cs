@@ -30,12 +30,14 @@ namespace Modding
 
 		public event GetVector3Proxy GetPlayerVector3Hook;
 		public event GetBoolProxy GetPlayerBoolHook;
+		public event LanguageGetHandler LanguageGetHook;
 		public event GetFloatProxy GetPlayerFloatHook;
 		public event GetIntProxy GetPlayerIntHook;
 		public event GetStringProxy GetPlayerStringHook;
 		public event GetVariableProxy GetPlayerVariableHook;
 	}
 
+	public delegate string LanguageGetHandler(string key, string sheetTitle);
 	public delegate object GetVariableProxy(Type type, string varName, object orig);
 	public delegate string GetStringProxy(string stringName);
 	public delegate string GetSaveFileNameHandler(int slot);

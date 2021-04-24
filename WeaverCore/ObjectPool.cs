@@ -23,7 +23,8 @@ struct ComponentTypeData
 {
 	public Action<Component> AwakeFunction;
 	public Action<Component> StartFunction;
-	public ShallowCopyBuilder<Component>.ShallowCopyDelegate Copier;
+	//public ShallowCopyBuilder<Component>.ShallowCopyDelegate Copier;
+	public List<ShallowCopyBuilder<Component>.ShallowCopyDelegate> Copiers;
 }
 
 namespace WeaverCore
@@ -41,6 +42,8 @@ namespace WeaverCore
 				ComponentData = componentData;
 			}
 		}
+
+		static Cache<Type, ShallowCopyBuilder<Component>.ShallowCopyDelegate> CopierCache = new Cache<Type, ShallowCopyBuilder<Component>.ShallowCopyDelegate>();
 
 		public static readonly bool MultiThreaded = true;
 
@@ -149,7 +152,7 @@ namespace WeaverCore
 		{
 			var pool = new GameObject().AddComponent<ObjectPool>();
 			pool.gameObject.name = "Object Pool - " + prefab.name;
-			pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
+			//pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
 			pool.Prefab = prefab;
 			return pool;
 		}
@@ -166,53 +169,75 @@ namespace WeaverCore
 
 		private void LoadPoolData(object componentsRaw)
 		{
-			ComponentPath[] components = (ComponentPath[])componentsRaw;
-			for (int i = 0; i < components.GetLength(0); i++)
+			try
 			{
-				ComponentPath componentPath = components[i];
-				Type type = componentPath.Component.GetType();
-
-				if (!ComponentData.ContainsKey(type))
+				ComponentPath[] components = (ComponentPath[])componentsRaw;
+				for (int i = 0; i < components.GetLength(0); i++)
 				{
-					ComponentTypeData cData = new ComponentTypeData();
-					if (typeof(MonoBehaviour).IsAssignableFrom(type))
+					ComponentPath componentPath = components[i];
+					Type type = componentPath.Component.GetType();
+
+					if (!ComponentData.ContainsKey(type))
 					{
-						if (type != typeof(PoolableObject))
+						ComponentTypeData cData = new ComponentTypeData();
+						if (typeof(MonoBehaviour).IsAssignableFrom(type))
 						{
-							Action<Component> awake = GetAwakeDelegate(type);
-							if (awake != null)
+							if (type != typeof(PoolableObject))
 							{
-								cData.AwakeFunction = awake;
+								Action<Component> awake = GetAwakeDelegate(type);
+								if (awake != null)
+								{
+									cData.AwakeFunction = awake;
+								}
+								Action<Component> start = GetStartDelegate(type);
+								if (start != null)
+								{
+									cData.StartFunction = start;
+								}
 							}
-							Action<Component> start = GetStartDelegate(type);
-							if (start != null)
-							{
-								cData.StartFunction = start;
-							}
-						}
-						cData.Copier = CreateFieldCopier(type);
-					}
-					ComponentData.Add(type, cData);
-				}
 
-				int hierarchyHash = CreateHierarchyHash(componentPath);
-				if (!HierarchyData.ContainsKey(hierarchyHash))
-				{
-					HierarchicalData hData = new HierarchicalData();
-					hData.ComponentEnabled = componentPath.Enabled;
-					/*if (componentPath.Component is Behaviour)
-					{
-						hData.ComponentEnabled = ((Behaviour)componentPath.Component).enabled;
+							cData.Copiers = new List<ShallowCopyBuilder<Component>.ShallowCopyDelegate>();
+
+							var currentType = type;
+
+							while (currentType != null && currentType != typeof(Component))
+							{
+								cData.Copiers.Add(CreateFieldCopier(currentType));
+								currentType = currentType.BaseType;
+							}
+
+
+
+							//cData.Copier = CreateFieldCopier(type);
+						}
+						ComponentData.Add(type, cData);
 					}
-					else
+
+					int hierarchyHash = CreateHierarchyHash(componentPath);
+					if (!HierarchyData.ContainsKey(hierarchyHash))
 					{
-						hData.ComponentEnabled = true;
-					}*/
-					hData.PrefabComponent = componentPath.Component;
-					HierarchyData.Add(hierarchyHash, hData);
+						HierarchicalData hData = new HierarchicalData();
+						hData.ComponentEnabled = componentPath.Enabled;
+						/*if (componentPath.Component is Behaviour)
+						{
+							hData.ComponentEnabled = ((Behaviour)componentPath.Component).enabled;
+						}
+						else
+						{
+							hData.ComponentEnabled = true;
+						}*/
+						hData.PrefabComponent = componentPath.Component;
+						HierarchyData.Add(hierarchyHash, hData);
+					}
 				}
+				poolAllSet = true;
+				//Debug.Log("POOL ALL SET");
 			}
-			poolAllSet = true;
+			catch (Exception e)
+			{
+				Debug.LogError("Error Creating Pool");
+				Debug.LogException(e);
+			}
 		}
 
 		private static T GetComponentOrThrow<T>(GameObject obj)
@@ -382,10 +407,17 @@ namespace WeaverCore
 					ComponentTypeData cData;
 					if (ComponentData.TryGetValue(type, out cData))
 					{
-						if (cData.Copier != null)
+						if (cData.Copiers != null)
+						{
+							for (int u = 0; u < cData.Copiers.Count; u++)
+							{
+								cData.Copiers[u](component, hData.PrefabComponent);
+							}
+						}
+						/*if (cData.Copier != null)
 						{
 							cData.Copier(component, hData.PrefabComponent);
-						}
+						}*/
 					}
 
 					if (ResetPositions)
@@ -463,6 +495,7 @@ namespace WeaverCore
 			{
 				obj = UnityEngine.Object.Instantiate(Prefab, position, rotation, parent);
 				obj.SourcePool = this;
+				obj.InPool = false;
 				obj.gameObject.name = InstanceName;
 				Transform t = obj.transform;
 				//t.parent = parent;
@@ -554,11 +587,23 @@ namespace WeaverCore
 
 		private IEnumerator ReturnToPoolRoutine(PoolableObject poolableObject, float time)
 		{
-			yield return new WaitForSeconds(time);
+			for (float i = 0; i < time; i += Time.deltaTime)
+			{
+				if (poolableObject == null || poolableObject.gameObject == null || poolableObject.InPool)
+				{
+					yield break;
+				}
+				yield return null;
+			}
+			/*yield return new WaitForSeconds(time);
 			if (poolableObject == null || poolableObject.gameObject == null || poolableObject.InPool)
 			{
 				yield break;
-			}
+			}*/
+			/*if (poolableObject.gameObject.name.ToLower().Contains("aspid"))
+			{
+				Debug.Log("SENDING BACK TO POOL = " + poolableObject.gameObject.name);
+			}*/
 			SendBackToPool(poolableObject);
 		}
 
@@ -588,6 +633,14 @@ namespace WeaverCore
 
 		private ShallowCopyBuilder<Component>.ShallowCopyDelegate CreateFieldCopier(Type componentType)
 		{
+			{
+				ShallowCopyBuilder<Component>.ShallowCopyDelegate func;
+				if (CopierCache.GetCachedObject(componentType, out func))
+				{
+					return func;
+				}
+			}
+
 			ShallowCopyBuilder<Component> copier = new ShallowCopyBuilder<Component>(componentType);
 
 			foreach (FieldInfo field in componentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
@@ -607,7 +660,9 @@ namespace WeaverCore
 					}
 				}
 			}
-			return copier.Finish();
+			var finalFunc = copier.Finish();
+			CopierCache.CacheObject(componentType, finalFunc);
+			return finalFunc;
 		}
 
 		private static Action<Component> GetAwakeDelegate(Type sourceType)

@@ -136,7 +136,10 @@ namespace WeaverCore.Components
 		/// <returns></returns>
 		public virtual bool Hit(HitInfo hit)
 		{
+			//WeaverLog.Log("HIT TYPE = " + hit.AttackType);
+			//Debug.Log("Hit Direction = " + hit.Direction);
 			var hitResult = IsValidHit(hit);
+			//WeaverLog.Log("Valid Result = " + hitResult);
 			impl.OnHit(hit, hitResult);
 			switch (hitResult)
 			{
@@ -156,6 +159,12 @@ namespace WeaverCore.Components
 		public HitResult IsValidHit(HitInfo hit)
 		{
 			bool validHit = !(Health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
+			//WeaverLog.Log("Health = " + Health);
+			//WeaverLog.Log("EvasionTimeLeft = " + EvasionTimeLeft);
+			//WeaverLog.Log("Hit Damage = " + hit.Damage);
+			//WeaverLog.Log("GM Active = " + gameObject.activeSelf);
+			//WeaverLog.Log("Attack Type_ = " + hit.AttackType);
+			//WeaverLog.Log("Invincible = " + Invincible);
 			if (!validHit)
 			{
 				return HitResult.Invalid;
@@ -178,13 +187,31 @@ namespace WeaverCore.Components
 				player = hit.GetAttackingPlayer();
 			}
 
-			if (player != null)
+			//WeaverLog.Log("PLAYING HIT EFFECTS FOR : " + hit.AttackType);
+
+			switch (hit.AttackType)
 			{
-				player.PlayAttackSlash(gameObject, hit);
+				case AttackType.NailBeam:
+				case AttackType.Generic:
+				case AttackType.Nail:
+					if (player != null)
+					{
+						player.PlayAttackSlash(gameObject, hit);
+					}
+					break;
+				case AttackType.Spell:
+					//effect offset y : -0.2
+					Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.position + new Vector3(0f, -0.2f, 0.0031f), Quaternion.identity);
+					break;
+				case AttackType.SharpShadow:
+					Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.position + new Vector3(0f, -0.2f, 0.0031f), Quaternion.identity);
+					break;
+				default:
+					break;
 			}
 
 			var hitEffects = GetComponent<IHitEffects>();
-			if (hitEffects != null)
+			if (hitEffects != null && hit.AttackType != AttackType.RuinsWater)
 			{
 				hitEffects.PlayHitEffect(hit);
 			}
@@ -252,18 +279,22 @@ namespace WeaverCore.Components
 					{
 						//Make the player recoil left : TODO
 						//HeroController.instance.RecoilLeft();
+						Player.Player1.Recoil(CardinalDirection.Left);
 					}
 					else if (cardinalDirection == CardinalDirection.Left)
 					{
 						//Make the player recoil right : TODO
 						//HeroController.instance.RecoilRight();
+						Player.Player1.Recoil(CardinalDirection.Right);
 					}
 				}
 				//Freeze the game for a moment : TODO
 				//GameManager.instance.FreezeMoment(1);
+				WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset1);
 
 				//Make the camera shake : TODO
 				//GameCameras.instance.cameraShakeFSM.SendEvent("EnemyKillShake");
+				CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
 
 				PlayInvincibleHitEffects(hit);
 				
@@ -302,9 +333,10 @@ namespace WeaverCore.Components
 						player.SoulGain();
 					}
 				}
-
-				PlayHitEffects(hit, player);
 			}
+
+
+			PlayHitEffects(hit, player);
 
 			/*if (player != null)
 			{

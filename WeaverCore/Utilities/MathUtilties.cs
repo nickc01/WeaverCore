@@ -49,6 +49,26 @@ namespace WeaverCore.Utilities
 			return new Vector2(timeToPeak, peakValue);
 		}
 
+		public static Vector2 PolarToCartesian(float angleDegrees,float magnitude)
+		{
+			return new Vector2(Mathf.Cos(Mathf.Deg2Rad * angleDegrees) * magnitude,Mathf.Sin(Mathf.Deg2Rad * angleDegrees) * magnitude);
+		}
+
+		public static Vector2 PolarToCartesian(Vector2 angleAndMagnitude)
+		{
+			return PolarToCartesian(angleAndMagnitude.x, angleAndMagnitude.y);
+		}
+
+		public static Vector2 CartesianToPolar(Vector2 vector)
+		{
+			return CartesianToPolar(vector.x, vector.y);
+		}
+
+		public static Vector2 CartesianToPolar(float x, float y)
+		{
+			return new Vector2(Mathf.Atan2(y,x) * Mathf.Rad2Deg,Mathf.Sqrt((x*x) + (y*y)));
+		}
+
 		/*public static Vector2 CalculateVelocityToReachPointNEW(Vector2 start, Vector2 end, double time, double gravityScale)
 		{
 			Debug.DrawLine(start, end, Color.red,5f);

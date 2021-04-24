@@ -1,0 +1,1426 @@
+fileFormatVersion: 2
+guid: 6969ce68abfe551459dad0b0a43b8b4a
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: scream_blast_level_020000
+    21300002: scream_blast_level_020001
+    21300004: scream_blast_level_020002
+    21300006: scream_blast_level_020003
+    21300008: scream_blast_level_020004
+    21300010: scream_blast_level_020005
+    21300012: scream_blast_level_020006
+    21300014: scream_blast_level_020007
+    21300016: fireball_lvl_02_blast_effect0000
+    21300018: fireball_lvl_02_blast_effect0001
+    21300020: fireball_lvl_02_blast_effect0002
+    21300022: fireball_lvl_02_blast_effect0003
+    21300024: fireball_lvl_02_blast_effect0004
+    21300026: fireball_lvl_02_blast_effect0005
+    21300028: fireball_lvl_02_blast_effect0006
+    21300030: fireball_lvl_02_blast_effect0007
+    21300032: fireball_lvl_02_blast_effect0008
+    21300034: fireball_lvl_02_blast_effect0009
+    21300036: fireball_spiral0000
+    21300038: fireball_spiral0001
+    21300040: fireball_spiral0002
+    21300042: fireball_spiral0003
+    21300044: fireball_spiral0004
+    21300046: fireball_spiral0005
+    21300048: fireball_spiral0006
+    21300050: fireball_spiral0007
+    21300052: fireball_spiral0008
+    21300054: fireball_spiral0009
+    21300056: fireball_spiral0010
+    21300058: fireball_spiral0011
+    21300060: fireball_spiral0012
+    21300062: fireball_spiral0013
+    21300064: fireball_spiral0014
+    21300066: single_fireball0000
+    21300068: single_fireball0001
+    21300070: single_fireball0002
+    21300072: single_fireball0003
+    21300074: single_fireball0004
+    21300076: single_fireball0005
+    21300078: scream_blast_level_020008
+    21300080: scream_blast_level_020009
+    21300082: scream_blast_level_020010
+    21300084: scream_blast_level_020011
+    21300086: scream_blast_level_020012
+    21300088: scream_ground_blast_lvl_020000
+    21300090: scream_ground_blast_lvl_020001
+    21300092: scream_ground_blast_lvl_020002
+    21300094: scream_ground_blast_lvl_020003
+    21300096: scream_ground_blast_lvl_020004
+    21300098: scream_ground_blast_lvl_020005
+    21300100: scream_ground_blast_lvl_020006
+    21300102: scream_ground_blast_lvl_020007
+    21300104: quake_lvl2_blast_020000
+    21300106: quake_lvl2_blast_020001
+    21300108: quake_lvl2_blast_020002
+    21300110: quake_lvl2_blast_020003
+    21300112: quake_lvl2_blast_020004
+    21300114: quake_lvl2_blast_020005
+    21300116: quake_lvl2_blast_020006
+    21300118: quake_lvl2_blast_020007
+    21300120: quake_lvl2_blast_020008
+    21300122: quake_lvl2_blast_020009
+    21300124: quake_lvl2_dash_effect0000
+    21300126: quake_lvl2_dash_effect0001
+    21300128: quake_lvl2_dash_effect0002
+    21300130: quake_lvl2_short_blast0000
+    21300132: quake_lvl2_short_blast0001
+    21300134: quake_lvl2_short_blast0002
+    21300136: quake_lvl2_short_blast0003
+    21300138: quake_lvl2_short_blast0004
+    21300140: quake_lvl2_short_blast0005
+    21300142: quake_lvl_02_blast_010000
+    21300144: quake_lvl_02_blast_010001
+    21300146: quake_lvl_02_blast_010002
+    21300148: quake_lvl_02_blast_010003
+    21300150: quake_lvl_02_blast_010004
+    21300152: quake_lvl_02_blast_010005
+    21300154: scream_ground_blast_lvl_020009
+    21300156: scream_ground_blast_lvl_020008
+    21300158: quake_impact_020000
+    21300160: quake_impact_020001
+    21300162: quake_impact_020002
+    21300164: quake_impact_020003
+    21300166: quake_impact_020004
+    21300168: quake_impact_020005
+    21300170: shade_impact_effect0003
+    21300172: shade_impact_effect0001
+    21300174: shade_impact_effect0002
+    21300176: shade_impact_effect0004
+    21300178: shade_impact_effect0000
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 116.36047
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: scream_blast_level_020000
+      rect:
+        serializedVersion: 2
+        x: 1849
+        y: 442
+        width: 43
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5476189, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020001
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 955
+        width: 217
+        height: 259
+      alignment: 9
+      pivot: {x: 0.44444442, y: 0.5271318}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020002
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 851
+        width: 287
+        height: 277
+      alignment: 9
+      pivot: {x: 0.49650347, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020003
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 294
+        width: 300
+        height: 279
+      alignment: 9
+      pivot: {x: 0.48494983, y: 0.50359714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020004
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 574
+        width: 300
+        height: 276
+      alignment: 9
+      pivot: {x: 0.47491634, y: 0.49818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020005
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 294
+        width: 301
+        height: 278
+      alignment: 9
+      pivot: {x: 0.47333336, y: 0.50180507}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020006
+      rect:
+        serializedVersion: 2
+        x: 1601
+        y: 0
+        width: 303
+        height: 277
+      alignment: 9
+      pivot: {x: 0.4735099, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020007
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 0
+        width: 306
+        height: 277
+      alignment: 9
+      pivot: {x: 0.47868854, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0000
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 1454
+        width: 22
+        height: 82
+      alignment: 9
+      pivot: {x: 1, y: 0.5555555}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0001
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 1748
+        width: 105
+        height: 183
+      alignment: 9
+      pivot: {x: 0.6826922, y: 0.510989}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0002
+      rect:
+        serializedVersion: 2
+        x: 1905
+        y: 0
+        width: 136
+        height: 183
+      alignment: 9
+      pivot: {x: 0.65925926, y: 0.49450552}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0003
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1748
+        width: 163
+        height: 188
+      alignment: 9
+      pivot: {x: 0.56790125, y: 0.4973262}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0004
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1577
+        width: 187
+        height: 170
+      alignment: 9
+      pivot: {x: 0.5806452, y: 0.4970414}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0005
+      rect:
+        serializedVersion: 2
+        x: 1915
+        y: 573
+        width: 69
+        height: 115
+      alignment: 9
+      pivot: {x: 0.22058827, y: 0.53508776}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0006
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 286
+        width: 4
+        height: 4
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0007
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 286
+        width: 4
+        height: 4
+      alignment: 9
+      pivot: {x: 0.000000059604645, y: 0.9999997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0008
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 286
+        width: 4
+        height: 4
+      alignment: 9
+      pivot: {x: 0.000000059604645, y: 0.9999997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_lvl_02_blast_effect0009
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 286
+        width: 4
+        height: 4
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0000
+      rect:
+        serializedVersion: 2
+        x: 1339
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0001
+      rect:
+        serializedVersion: 2
+        x: 1375
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0002
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0003
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0004
+      rect:
+        serializedVersion: 2
+        x: 1402
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0005
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0006
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0007
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0008
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0009
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0010
+      rect:
+        serializedVersion: 2
+        x: 1420
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0011
+      rect:
+        serializedVersion: 2
+        x: 1366
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0012
+      rect:
+        serializedVersion: 2
+        x: 1357
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0013
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: fireball_spiral0014
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 278
+        width: 8
+        height: 8
+      alignment: 9
+      pivot: {x: 0.42857146, y: 0.5714286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: single_fireball0000
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1418
+        width: 203
+        height: 158
+      alignment: 9
+      pivot: {x: 0, y: 0.50318474}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: single_fireball0001
+      rect:
+        serializedVersion: 2
+        x: 1401
+        y: 442
+        width: 447
+        height: 121
+      alignment: 9
+      pivot: {x: 0.44843048, y: 0.51666665}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: single_fireball0002
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 573
+        width: 458
+        height: 137
+      alignment: 9
+      pivot: {x: 0.44857764, y: 0.4852941}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: single_fireball0003
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 573
+        width: 493
+        height: 140
+      alignment: 9
+      pivot: {x: 0.4878049, y: 0.4604317}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: single_fireball0004
+      rect:
+        serializedVersion: 2
+        x: 1401
+        y: 294
+        width: 502
+        height: 147
+      alignment: 9
+      pivot: {x: 0.497006, y: 0.48630142}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: single_fireball0005
+      rect:
+        serializedVersion: 2
+        x: 1448
+        y: 573
+        width: 466
+        height: 134
+      alignment: 9
+      pivot: {x: 0.45806456, y: 0.4887218}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020008
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 294
+        width: 301
+        height: 277
+      alignment: 9
+      pivot: {x: 0.47333336, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020009
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 294
+        width: 301
+        height: 273
+      alignment: 9
+      pivot: {x: 0.47000003, y: 0.5036765}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020010
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 1129
+        width: 279
+        height: 267
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5075188}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020011
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 1642
+        width: 262
+        height: 265
+      alignment: 9
+      pivot: {x: 0.4789272, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_blast_level_020012
+      rect:
+        serializedVersion: 2
+        x: 1905
+        y: 254
+        width: 27
+        height: 30
+      alignment: 9
+      pivot: {x: 1, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020000
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 856
+        width: 364
+        height: 144
+      alignment: 9
+      pivot: {x: 0.523416, y: 0.6083916}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020001
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 714
+        width: 380
+        height: 141
+      alignment: 9
+      pivot: {x: 0.50923485, y: 0.6214286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020002
+      rect:
+        serializedVersion: 2
+        x: 1525
+        y: 856
+        width: 409
+        height: 109
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020003
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1001
+        width: 397
+        height: 109
+      alignment: 9
+      pivot: {x: 0.4974748, y: 0.8055556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020004
+      rect:
+        serializedVersion: 2
+        x: 1144
+        y: 856
+        width: 380
+        height: 119
+      alignment: 9
+      pivot: {x: 0.50923485, y: 0.7372881}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020005
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 714
+        width: 409
+        height: 118
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020006
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 714
+        width: 397
+        height: 124
+      alignment: 9
+      pivot: {x: 0.4974748, y: 0.6585366}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020007
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1111
+        width: 343
+        height: 111
+      alignment: 9
+      pivot: {x: 0.5116959, y: 0.7}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020000
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1648
+        width: 293
+        height: 101
+      alignment: 9
+      pivot: {x: 0.5308219, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020001
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 1908
+        width: 293
+        height: 139
+      alignment: 9
+      pivot: {x: 0.5308219, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020002
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 714
+        width: 283
+        height: 240
+      alignment: 9
+      pivot: {x: 0.48226953, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020003
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 0
+        width: 300
+        height: 289
+      alignment: 9
+      pivot: {x: 0.5117057, y: 0.8923611}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020004
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 0
+        width: 318
+        height: 291
+      alignment: 9
+      pivot: {x: 0.4952681, y: 0.8793103}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020005
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 0
+        width: 336
+        height: 285
+      alignment: 9
+      pivot: {x: 0.51044774, y: 0.8838028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020006
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 336
+        height: 293
+      alignment: 9
+      pivot: {x: 0.51343286, y: 0.8184931}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020007
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 1397
+        width: 288
+        height: 244
+      alignment: 9
+      pivot: {x: 0.5923345, y: 0.83539087}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020008
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1215
+        width: 185
+        height: 202
+      alignment: 9
+      pivot: {x: 0.69021744, y: 0.7810945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_blast_020009
+      rect:
+        serializedVersion: 2
+        x: 1993
+        y: 294
+        width: 50
+        height: 79
+      alignment: 9
+      pivot: {x: 1, y: 0.57692295}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_dash_effect0000
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 736
+        width: 184
+        height: 444
+      alignment: 9
+      pivot: {x: 0.48633885, y: 0.49209934}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_dash_effect0001
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1181
+        width: 168
+        height: 447
+      alignment: 9
+      pivot: {x: 0.52694607, y: 0.4955157}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_dash_effect0002
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 294
+        width: 193
+        height: 441
+      alignment: 9
+      pivot: {x: 0.4895833, y: 0.4909091}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_short_blast0000
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1223
+        width: 71
+        height: 424
+      alignment: 9
+      pivot: {x: 0.5285714, y: 0.5059102}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_short_blast0001
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 1223
+        width: 68
+        height: 417
+      alignment: 9
+      pivot: {x: 0.58208954, y: 0.5144231}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_short_blast0002
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 1223
+        width: 59
+        height: 416
+      alignment: 9
+      pivot: {x: 0.5862069, y: 0.50602406}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_short_blast0003
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 1223
+        width: 49
+        height: 408
+      alignment: 9
+      pivot: {x: 0.625, y: 0.52579856}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_short_blast0004
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 1268
+        width: 37
+        height: 367
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.58469945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl2_short_blast0005
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 1181
+        width: 19
+        height: 272
+      alignment: 9
+      pivot: {x: 0.72222227, y: 0.43542433}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl_02_blast_010000
+      rect:
+        serializedVersion: 2
+        x: 1725
+        y: 1196
+        width: 240
+        height: 54
+      alignment: 9
+      pivot: {x: 0.6150628, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl_02_blast_010001
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1750
+        width: 338
+        height: 68
+      alignment: 9
+      pivot: {x: 0.4925816, y: 0.9850746}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl_02_blast_010002
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 1111
+        width: 354
+        height: 79
+      alignment: 9
+      pivot: {x: 0.5042493, y: 0.84615386}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl_02_blast_010003
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 1001
+        width: 358
+        height: 85
+      alignment: 9
+      pivot: {x: 0.4985994, y: 0.78571427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl_02_blast_010004
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 1111
+        width: 352
+        height: 84
+      alignment: 9
+      pivot: {x: 0.5071225, y: 0.74698794}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_lvl_02_blast_010005
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 1196
+        width: 349
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5114942, y: 0.6857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020009
+      rect:
+        serializedVersion: 2
+        x: 1905
+        y: 184
+        width: 133
+        height: 69
+      alignment: 9
+      pivot: {x: 1, y: 0.88235295}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: scream_ground_blast_lvl_020008
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 1001
+        width: 321
+        height: 105
+      alignment: 9
+      pivot: {x: 0.51875, y: 0.6826923}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_impact_020000
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 294
+        width: 88
+        height: 250
+      alignment: 9
+      pivot: {x: 0.5632184, y: 0.81124496}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_impact_020001
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1629
+        width: 100
+        height: 417
+      alignment: 9
+      pivot: {x: 0.5050505, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_impact_020002
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 1629
+        width: 84
+        height: 404
+      alignment: 9
+      pivot: {x: 0.5180723, y: 0.516129}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_impact_020003
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 1223
+        width: 73
+        height: 393
+      alignment: 9
+      pivot: {x: 0.45833337, y: 0.46938777}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_impact_020004
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 955
+        width: 62
+        height: 255
+      alignment: 9
+      pivot: {x: 0.32786882, y: 0.21259844}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: quake_impact_020005
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 1268
+        width: 59
+        height: 215
+      alignment: 9
+      pivot: {x: 0.3448276, y: 0.12616825}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shade_impact_effect0003
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1819
+        width: 253
+        height: 77
+      alignment: 9
+      pivot: {x: 0.3373016, y: 0.5263158}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shade_impact_effect0001
+      rect:
+        serializedVersion: 2
+        x: 1473
+        y: 1196
+        width: 251
+        height: 57
+      alignment: 9
+      pivot: {x: 0.672, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shade_impact_effect0002
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1897
+        width: 276
+        height: 64
+      alignment: 9
+      pivot: {x: 0.50545454, y: 0.49206352}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shade_impact_effect0004
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 1962
+        width: 225
+        height: 77
+      alignment: 9
+      pivot: {x: 0.24553573, y: 0.5263158}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shade_impact_effect0000
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1937
+        width: 140
+        height: 48
+      alignment: 9
+      pivot: {x: 1, y: 0.44680852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: weavercore_bundle
+  assetBundleVariant: 

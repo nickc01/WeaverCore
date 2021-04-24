@@ -11,6 +11,12 @@ namespace WeaverCore
 	// Token: 0x0200002A RID: 42
 	public class Player : MonoBehaviour
 	{
+		static ObjectPool NailStrikePool;
+		static ObjectPool SlashImpactPool;
+		static List<Player> Players = new List<Player>();
+		Player_I impl;
+
+
 		// Token: 0x17000021 RID: 33
 		// (get) Token: 0x060000C3 RID: 195 RVA: 0x00004D60 File Offset: 0x00002F60
 		public static IEnumerable<Player> AllPlayers
@@ -232,17 +238,5 @@ namespace WeaverCore
 		{
 			impl.ExitRoarLock();
 		}
-
-		// Token: 0x040000AE RID: 174
-		private static ObjectPool NailStrikePool;
-
-		// Token: 0x040000AF RID: 175
-		private static ObjectPool SlashImpactPool;
-
-		// Token: 0x040000B0 RID: 176
-		private static List<Player> Players = new List<Player>();
-
-		// Token: 0x040000B1 RID: 177
-		private Player_I impl;
 	}
 }

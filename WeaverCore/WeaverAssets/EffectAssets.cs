@@ -10,6 +10,8 @@ namespace WeaverCore.Assets
 	public static class EffectAssets
 	{
 		public static GameObject NailStrikePrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Nail Strike"); } }
+		public static GameObject SharpShadowImpactPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Sharp Shadow Impact"); } }
+		public static GameObject FireballHitPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Fireball Hit"); } }
 		public static GameObject SlashGhost1Prefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Ghost 1"); } }
 		public static GameObject SlashGhost2Prefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Ghost 2"); } }
 		public static GameObject SlashImpactPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Impact"); } }

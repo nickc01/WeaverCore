@@ -17,5 +17,9 @@ namespace WeaverCore.Implementations
 
 		// Token: 0x060001EF RID: 495
 		public abstract bool HasString(string convoName);
+
+		public abstract string GetStringInternal(string convoName);
+
+		public abstract string GetStringInternal(string convoName, string sheetName);
 	}
 }

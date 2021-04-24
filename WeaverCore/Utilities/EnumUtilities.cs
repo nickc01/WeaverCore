@@ -72,5 +72,18 @@ namespace WeaverCore.Utilities
 			object underlyingValue = Convert.ChangeType(source, Enum.GetUnderlyingType(sourceType));
 			return Enum.ToObject(destEnumType, underlyingValue);
 		}
+
+		public static IEnumerable<T> GetAllEnumValues<T>()
+		{
+			if (!typeof(Enum).IsAssignableFrom(typeof(T)))
+			{
+				throw new Exception("The type " + typeof(T).FullName + " is not an enum");
+			}
+
+			foreach (var val in Enum.GetValues(typeof(T)))
+			{
+				yield return (T)val;
+			}
+		}
 	}
 }

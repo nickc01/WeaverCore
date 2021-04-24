@@ -11,7 +11,7 @@ namespace WeaverCore
 	class PoolInfo
 	{
 		public ObjectPool Pool;
-		public int timerIndex;
+		public float Timer;
 	}
 
 	class PoolTimer
@@ -24,6 +24,8 @@ namespace WeaverCore
 	{
 		class TimerObject : MonoBehaviour
 		{
+			Queue<GameObject> Removals = new Queue<GameObject>();
+
 			void Awake()
 			{
 				StartCoroutine(CheckerRoutine());
@@ -34,7 +36,29 @@ namespace WeaverCore
 				while (true)
 				{
 					yield return null;
-					for (int i = timers.Count - 1; i >= 0; i--)
+
+					foreach (var poolPair in pools)
+					{
+						var info = poolPair.Value;
+
+						info.Timer += Time.deltaTime;
+						if (info.Timer >= MaxPoolTime)
+						{
+							if (info.Pool != null && info.Pool.gameObject != null)
+							{
+								info.Pool.ClearPool();
+								Destroy(info.Pool.gameObject);
+							}
+							Removals.Enqueue(poolPair.Key);
+						}
+					}
+
+					while (Removals.Count > 0)
+					{
+						pools.Remove(Removals.Dequeue());
+					}
+					
+					/*for (int i = timers.Count - 1; i >= 0; i--)
 					{
 						timers[i].timer += Time.deltaTime;
 						if (timers[i].timer >= MaxPoolTime)
@@ -45,35 +69,43 @@ namespace WeaverCore
 								pool.Pool.ClearPool();
 								Destroy(pool.Pool.gameObject);
 							}
-							pools.Remove(timers[i].obj);
+							//FIGURE OUT WAY OF FIXING THIS
+							foreach (var poolPair in pools)
+							{
+								if (poolPair.Value.timerIndex > i)
+								{
+									poolPair.Value.timerIndex--;
+								}
+							}
 							timers.RemoveAt(i);
 						}
-					}
+					}*/
 				}
 			}
 		}
 
 		const float MaxPoolTime = 60f * 5f;
 		static TimerObject PoolTimerObject;
-		static List<PoolTimer> timers = new List<PoolTimer>();
+		//static List<PoolTimer> timers = new List<PoolTimer>();
 		static Dictionary<GameObject, PoolInfo> pools = new Dictionary<GameObject, PoolInfo>();
 
 		static ObjectPool GetPool(GameObject obj)
 		{
 			if (!pools.ContainsKey(obj))
 			{
-				timers.Add(new PoolTimer
+				/*timers.Add(new PoolTimer
 				{
 					obj = obj,
 					timer = 0f
-				});
+				});*/
 
 				var pool = ObjectPool.Create(obj);
 
 				pools.Add(obj, new PoolInfo
 				{
 					Pool = pool,
-					timerIndex = timers.Count - 1
+					Timer = 0f
+					//timerIndex = timers.Count - 1
 				});
 
 			}
@@ -90,7 +122,8 @@ namespace WeaverCore
 			{
 				info.Pool = ObjectPool.Create(obj);
 			}
-			timers[info.timerIndex].timer = 0f;
+			info.Timer = 0f;
+			//timers[info.timerIndex].timer = 0f;
 			return info.Pool;
 		}
 

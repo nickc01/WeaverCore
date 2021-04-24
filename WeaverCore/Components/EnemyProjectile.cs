@@ -17,14 +17,21 @@ namespace WeaverCore.Components
 		float minSquashAmount = 0.5f;
 		[SerializeField]
 		float maxStretchAmount = 2f;
-		[SerializeField]
-		float maxLifeTime = 5f;
+		//[SerializeField]
+		//float maxLifeTime = 5f;
 
 		float scaleAmount;
 		Collider2D _collider;
 		Rigidbody2D _rigidbody;
 
 		bool originalCollisionState = false;
+
+		float _scaleFactor = 1f;
+		public float ScaleFactor
+		{
+			get { return _scaleFactor; }
+			set { _scaleFactor = value; }
+		}
 
 		public Rigidbody2D Rigidbody
 		{
@@ -53,6 +60,7 @@ namespace WeaverCore.Components
 		protected virtual void Awake()
 		{
 			scaleAmount = UnityEngine.Random.Range(scaleMin, scaleMax);
+			Squash();
 			if (Collider != null)
 			{
 				originalCollisionState = Collider.enabled;
@@ -107,7 +115,7 @@ namespace WeaverCore.Components
 			}
 			stretchY *= scaleAmount;
 			stretchX *= scaleAmount;
-			transform.localScale = new Vector3(stretchX, stretchY, transform.localScale.z);
+			transform.localScale = new Vector3(stretchX * ScaleFactor, stretchY * ScaleFactor, transform.localScale.z);
 		}
 
 		public virtual void OnPool()
@@ -133,7 +141,7 @@ namespace WeaverCore.Components
 			PointAwayFrom(collision.transform.position);
 		}
 
-		protected void OnCollisionEnter2D(Collision2D collision)
+		protected virtual void OnCollisionEnter2D(Collision2D collision)
 		{
 			/*var contacts = collision.contacts;
 			if (contacts.GetLength(0) > 0)
@@ -143,11 +151,21 @@ namespace WeaverCore.Components
 			OnHit(collision.gameObject);
 		}
 
-		protected void OnTriggerEnter2D(Collider2D collision)
+		protected virtual void OnCollisionStay2D(Collision2D collision)
+		{
+			OnHit(collision.gameObject);
+		}
+
+		protected virtual void OnTriggerEnter2D(Collider2D collision)
 		{
 			//this.active = false;
 			//base.StartCoroutine(this.Collision(Vector2.zero, false));
 			//Destroy();
+			OnHit(collision.gameObject);
+		}
+
+		protected virtual void OnTriggerStay2D(Collider2D collision)
+		{
 			OnHit(collision.gameObject);
 		}
 	}

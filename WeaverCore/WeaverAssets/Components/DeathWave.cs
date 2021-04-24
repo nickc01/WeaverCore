@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WeaverCore.Enums;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
@@ -14,37 +15,47 @@ namespace WeaverCore.Assets.Components
 
 		public float SizeMultiplier = 1f;
 
+		[SerializeField]
+		OnDoneBehaviour doneBehaviour = OnDoneBehaviour.DestroyOrPool;
+
 		PoolableObject poolable;
 		SpriteRenderer spriteRenderer;
 		float accel;
 		float timer;
 
-		void Start()
+		void Awake()
 		{
 			spriteRenderer = GetComponent<SpriteRenderer>();
 			poolable = GetComponent<PoolableObject>();
 			accel = Speed;
 			timer = 0f;
+			UpdateVisuals();
 		}
 
-		void Update()
+		void UpdateVisuals()
 		{
-			timer += Time.deltaTime * accel;
 			float num = (1f + timer * 4f) * GrowthSpeed;
 			base.transform.localScale = new Vector3(num * SizeMultiplier, num * SizeMultiplier, num * SizeMultiplier);
 			Color color = spriteRenderer.color;
 			color.a = 1f - timer;
 			this.spriteRenderer.color = color;
+		}
+
+		void Update()
+		{
+			timer += Time.deltaTime * accel;
+			UpdateVisuals();
 			if (timer > 1f)
 			{
-				if (poolable != null)
+				doneBehaviour.DoneWithObject(this);
+				/*if (poolable != null)
 				{
 					poolable.ReturnToPool();
 				}
 				else
 				{
 					Destroy(gameObject);
-				}
+				}*/
 			}
 		}
 
@@ -65,6 +76,7 @@ namespace WeaverCore.Assets.Components
 			}
 			var instance = DeathWavePool.Instantiate<DeathWave>(position, Quaternion.identity);
 			instance.SizeMultiplier = sizeMultiplier;
+			instance.UpdateVisuals();
 			return instance;
 		}
 	}

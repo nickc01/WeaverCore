@@ -35,7 +35,8 @@ namespace WeaverCore.Assets.Components
 		// Token: 0x06000478 RID: 1144 RVA: 0x0000F2AC File Offset: 0x0000D4AC
 		public void Destroy()
 		{
-			OnDoneBehaviour destroyBehaviour = this.DestroyBehaviour;
+			DestroyBehaviour.DoneWithObject(this);
+			/*OnDoneBehaviour destroyBehaviour = this.DestroyBehaviour;
 			if (destroyBehaviour != OnDoneBehaviour.Disable)
 			{
 				if (destroyBehaviour != OnDoneBehaviour.DestroyOrPool)
@@ -59,7 +60,7 @@ namespace WeaverCore.Assets.Components
 			else
 			{
 				base.gameObject.SetActive(false);
-			}
+			}*/
 		}
 
 		// Token: 0x06000479 RID: 1145 RVA: 0x0000F31E File Offset: 0x0000D51E

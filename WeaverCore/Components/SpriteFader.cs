@@ -77,7 +77,8 @@ namespace WeaverCore.Components
 				{
 					fading = false;
 					Renderer.color = ToColor;
-					switch (DoneBehaviour)
+					DoneBehaviour.DoneWithObject(this);
+					/*switch (DoneBehaviour)
 					{
 						case OnDoneBehaviour.Disable:
 							gameObject.SetActive(false);
@@ -96,7 +97,7 @@ namespace WeaverCore.Components
 						case OnDoneBehaviour.Destroy:
 							Destroy(gameObject);
 							break;
-					}
+					}*/
 				}
 			}
 		}

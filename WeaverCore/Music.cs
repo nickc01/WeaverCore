@@ -37,12 +37,12 @@ namespace WeaverCore
 		public enum GroupType
 		{
 			Master,
-			Action,
-			Extra,
 			Main,
 			MainAlt,
+			Action,
 			Sub,
-			Tension
+			Tension,
+			Extra
 		}
 
 		public static AudioMixerSnapshot GetSnapshot(SnapshotType type)

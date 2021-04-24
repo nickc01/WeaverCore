@@ -39,6 +39,16 @@ namespace WeaverCore.Game.Implementations
 			return result;
 		}
 
+		public override string GetStringInternal(string convoName)
+		{
+			return global::Language.Language.GetInternal(convoName, global::Language.Language.settings.sheetTitles[0]);
+		}
+
+		public override string GetStringInternal(string convoName, string sheetName)
+		{
+			return global::Language.Language.GetInternal(convoName, sheetName);
+		}
+
 		// Token: 0x06000035 RID: 53 RVA: 0x00003020 File Offset: 0x00001220
 		public override bool HasString(string sheetName, string convoName)
 		{

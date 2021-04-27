@@ -18,6 +18,8 @@ namespace WeaverCore.Implementations
 		public abstract void OnInvincibleHit(HitInfo info);
 		public abstract void OnSuccessfulHit(HitInfo info);
 
+		public abstract bool ShouldBeDead();
+
 		public abstract void OnDeath();
 	}
 }

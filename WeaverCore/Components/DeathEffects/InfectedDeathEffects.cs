@@ -38,31 +38,37 @@ namespace WeaverCore.Components.DeathEffects
 			}
 		}
 
+		public override void EmitSounds()
+		{
+			base.EmitSounds();
+			if (SwordDeathSound != null)
+			{
+				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(SwordDeathSound, transform.position, swordDeathSoundVolume, AudioChannel.Sound);
+				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(swordDeathSoundMinPitch, swordDeathSoundMaxPitch);
+			}
+			if (DamageSound != null)
+			{
+				AudioPlayer weaverAudioPlayer2 = Audio.PlayAtPoint(DamageSound, transform.position, damageSoundVolume, AudioChannel.Sound);
+				weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(damageSoundMinPitch, damageSoundMaxPitch);
+			}
+		}
+
 		// Token: 0x06000099 RID: 153 RVA: 0x00004024 File Offset: 0x00002224
 		private void EmitInfectedEffects()
 		{
-			if (this.SwordDeathSound != null)
+			EmitSounds();
+			if (InfectedDeathWavePrefab != null)
 			{
-				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(this.SwordDeathSound, base.transform.position, this.swordDeathSoundVolume, AudioChannel.Sound);
-				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(this.swordDeathSoundMinPitch, this.swordDeathSoundMaxPitch);
+				GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);
 			}
-			if (this.DamageSound != null)
+			gameObject.transform.SetXLocalScale(1.25f);
+			gameObject.transform.SetYLocalScale(1.25f);
+			Blood.SpawnRandomBlood(transform.position + EffectsOffset);
+			if (DeathPuffPrefab != null)
 			{
-				AudioPlayer weaverAudioPlayer2 = Audio.PlayAtPoint(this.DamageSound, base.transform.position, this.damageSoundVolume, AudioChannel.Sound);
-				weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(this.damageSoundMinPitch, this.damageSoundMaxPitch);
+				UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.position + EffectsOffset, Quaternion.identity);
 			}
-			if (this.InfectedDeathWavePrefab != null)
-			{
-				GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.InfectedDeathWavePrefab, base.transform.position + this.EffectsOffset, Quaternion.identity);
-			}
-			base.gameObject.transform.SetXLocalScale(1.25f);
-			base.gameObject.transform.SetYLocalScale(1.25f);
-			Blood.SpawnRandomBlood(base.transform.position + this.EffectsOffset);
-			if (this.DeathPuffPrefab != null)
-			{
-				UnityEngine.Object.Instantiate<GameObject>(this.DeathPuffPrefab, base.transform.position + this.EffectsOffset, Quaternion.identity);
-			}
-			this.ShakeCamera(ShakeType.EnemyKillShake);
+			ShakeCamera(ShakeType.EnemyKillShake);
 		}
 
 		// Token: 0x0600009A RID: 154 RVA: 0x00004188 File Offset: 0x00002388
@@ -82,16 +88,7 @@ namespace WeaverCore.Components.DeathEffects
 		// Token: 0x0600009B RID: 155 RVA: 0x000041D8 File Offset: 0x000023D8
 		private void EmitSmallInfectedEffects()
 		{
-			if (this.SwordDeathSound != null)
-			{
-				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(this.SwordDeathSound, base.transform.position, this.swordDeathSoundVolume, AudioChannel.Sound);
-				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(this.swordDeathSoundMinPitch, this.swordDeathSoundMaxPitch);
-			}
-			if (this.DamageSound != null)
-			{
-				AudioPlayer weaverAudioPlayer2 = Audio.PlayAtPoint(this.DamageSound, base.transform.position, this.damageSoundVolume, AudioChannel.Sound);
-				weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(this.damageSoundMinPitch, this.damageSoundMaxPitch);
-			}
+			EmitSounds();
 			if (this.InfectedDeathWavePrefab != null)
 			{
 				GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.InfectedDeathWavePrefab, base.transform.position + this.EffectsOffset, Quaternion.identity);
@@ -106,16 +103,7 @@ namespace WeaverCore.Components.DeathEffects
 		// Token: 0x0600009C RID: 156 RVA: 0x00004300 File Offset: 0x00002500
 		private void EmitLargeInfectedEffects()
 		{
-			if (this.SwordDeathSound != null)
-			{
-				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(this.SwordDeathSound, base.transform.position, this.swordDeathSoundVolume, AudioChannel.Sound);
-				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(this.swordDeathSoundMinPitch, this.swordDeathSoundMaxPitch);
-			}
-			if (this.DamageSound != null)
-			{
-				AudioPlayer weaverAudioPlayer2 = Audio.PlayAtPoint(this.DamageSound, base.transform.position, this.damageSoundVolume, AudioChannel.Sound);
-				weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(this.damageSoundMinPitch, this.damageSoundMaxPitch);
-			}
+			EmitSounds();
 			if (this.DeathPuffPrefab != null)
 			{
 				GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.DeathPuffPrefab, base.transform.position + this.EffectsOffset, Quaternion.identity);

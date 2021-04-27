@@ -10,5 +10,7 @@ namespace WeaverCore.Interfaces
 
 		// Token: 0x06000254 RID: 596
 		void EmitEffects();
+
+		void EmitSounds();
 	}
 }

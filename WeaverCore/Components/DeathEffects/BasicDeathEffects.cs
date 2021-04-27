@@ -35,6 +35,10 @@ namespace WeaverCore.Components.DeathEffects
 		{
 		}
 
+		public virtual void EmitSounds()
+		{
+		}
+
 		// Token: 0x06000094 RID: 148 RVA: 0x00003E44 File Offset: 0x00002044
 		public virtual void PlayDeathEffects(HitInfo lastHit)
 		{

@@ -28,5 +28,10 @@ namespace WeaverCore.Editor.Implementations
         {
             
         }
-    }
+
+		public override bool ShouldBeDead()
+		{
+            return false;
+		}
+	}
 }

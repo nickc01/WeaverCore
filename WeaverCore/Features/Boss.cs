@@ -24,7 +24,7 @@ namespace WeaverCore.Features
 		//HashSet<Coroutine> BoundRoutines;
 		Dictionary<uint, Coroutine> BoundRoutines;
 		HashSet<uint> idList;
-		uint idCounter = 0;
+		uint idCounter = 1;
 
 		public static BossDifficulty Diffculty
 		{
@@ -221,19 +221,20 @@ namespace WeaverCore.Features
 				BoundRoutines = new Dictionary<uint, Coroutine>();
 				idList = new HashSet<uint>();
 			}
+			uint currentID = idCounter;
 			if (idCounter == uint.MaxValue)
 			{
-				idCounter = 0;
+				idCounter = 1;
 			}
 			else
 			{
 				idCounter++;
 			}
-			WeaverLog.Log("ID Counter = " + idCounter);
-			idList.Add(idCounter);
-			var coroutine = StartCoroutine(DoBoundRoutine(idCounter,routine));
-			BoundRoutines.Add(idCounter, coroutine);
-			return idCounter;
+			//WeaverLog.Log("ID Counter = " + idCounter);
+			idList.Add(currentID);
+			var coroutine = StartCoroutine(DoBoundRoutine(currentID, routine));
+			BoundRoutines.Add(currentID, coroutine);
+			return currentID;
 		}
 
 		public bool IsRoutineRunning(uint routineID)
@@ -313,10 +314,10 @@ namespace WeaverCore.Features
 
 		public void Stun()
 		{
-			WeaverLog.Log("STUNNING");
+			//WeaverLog.Log("STUNNING");
 			if (CurrentMove != null)
 			{
-				WeaverLog.Log("Current Move = " + CurrentMove.GetType().FullName);
+				//WeaverLog.Log("Current Move = " + CurrentMove.GetType().FullName);
 				CurrentMove.OnStun();
 			}
 			OnStun();
@@ -330,6 +331,11 @@ namespace WeaverCore.Features
 
 		protected virtual void OnDeath()
 		{
+			if (CurrentMove != null)
+			{
+				//WeaverLog.Log("Current Move = " + CurrentMove.GetType().FullName);
+				CurrentMove.OnDeath();
+			}
 			StopAllBoundRoutines();
 			BossStage++;
 			entityHealth.OnDeathEvent -= OnDeath;

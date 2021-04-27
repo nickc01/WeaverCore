@@ -114,7 +114,7 @@ namespace WeaverCore.Assets.Components
 
 		static void SpawnConfigScreen()
 		{
-			if (Instance == null)
+			/*if (Instance == null)
 			{
 				var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().FirstOrDefault();
 				var instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
@@ -122,7 +122,7 @@ namespace WeaverCore.Assets.Components
 				instance.gameObject.SetActive(true);
 				instance.ConfigMainMenu.SetActive(false);
 				instance.ToggleButton.SetActive(true);
-			}
+			}*/
 		}
 
 		static void DestroyConfigScreen()

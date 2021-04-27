@@ -265,6 +265,8 @@
     <Compile Include="Implementations\G_WeaverSettings_I.cs" />
     <Compile Include="Implementations\G_ObjectDumper_I.cs" />
     <Compile Include="Implementations\G_WeaverAssets_I.cs" />
+    <Compile Include="Misc\EnemyDeathEffectsProxy.cs" />
+    <Compile Include="Misc\HealthManagerProxy.cs" />
     <Compile Include="Misc\SettingStorage.cs" />
     <Compile Include="Patches\TK2DCameraPatch.cs" />
     <Compile Include="Patches\TMP_TextPatch.cs" />

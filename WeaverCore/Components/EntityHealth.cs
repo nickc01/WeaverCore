@@ -8,6 +8,7 @@ using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
 using WeaverCore.Assets;
 using WeaverCore.Enums;
+using System.Collections;
 
 namespace WeaverCore.Components
 {
@@ -46,6 +47,10 @@ namespace WeaverCore.Components
 				if (_health != value)
 				{
 					_health = OnHealthUpdate(value);
+					if (OnHealthChangeEvent != null)
+					{
+						OnHealthChangeEvent(_health);
+					}
 					CheckMilestones(_health);
 					if (_health <= 0)
 					{
@@ -104,9 +109,24 @@ namespace WeaverCore.Components
 		}
 
 		/// <summary>
+		/// The direction the last attack came from
+		/// </summary>
+		public CardinalDirection LastAttackDirection { get; private set; }
+
+		/// <summary>
+		/// Contains info about the most recent hit on the enemy
+		/// </summary>
+		public HitInfo LastAttackInfo { get; private set; }
+
+		/// <summary>
 		/// Called when the entity's health reaches zero
 		/// </summary>
 		public event Action OnDeathEvent;
+
+		/// <summary>
+		/// Called when the entity's health has been modified
+		/// </summary>
+		public event Action<int> OnHealthChangeEvent;
 
 		/// <summary>
 		/// Applies an offset to hit effects if desired
@@ -136,6 +156,8 @@ namespace WeaverCore.Components
 		/// <returns></returns>
 		public virtual bool Hit(HitInfo hit)
 		{
+			LastAttackInfo = hit;
+			LastAttackDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
 			//WeaverLog.Log("HIT TYPE = " + hit.AttackType);
 			//Debug.Log("Hit Direction = " + hit.Direction);
 			var hitResult = IsValidHit(hit);
@@ -427,6 +449,14 @@ namespace WeaverCore.Components
 			}
 		}
 
+		/// <summary>
+		/// Calls the OnDeath Event, but does not change the health. This is if you only want to trigger the death event and nothing else
+		/// </summary>
+		public void DoDeathEvent()
+		{
+			OnDeath();
+		}
+
 		protected virtual void OnDeath()
 		{
 			if (OnDeathEvent != null)
@@ -456,6 +486,16 @@ namespace WeaverCore.Components
 			if (Player.Player1 != null)
 			{
 				Player.Player1.RefreshSoulUI();
+			}
+			StartCoroutine(CheckPersistence());
+		}
+
+		IEnumerator CheckPersistence()
+		{
+			yield return null;
+			if (impl.ShouldBeDead())
+			{
+				gameObject.SetActive(false);
 			}
 		}
 

@@ -13,11 +13,12 @@ namespace WeaverCore
 {
     public abstract class WeaverMod : Mod
     {
+
         //As soon as any WeaverCore mod loads, the init functions will be called
-        static WeaverMod()
-        {
-            Initializers.Initializers.OnGameInitialize();
-        }
+        protected WeaverMod()
+		{
+            Initialization.Initialize();
+		}
 
 
         bool firstLoad = true;

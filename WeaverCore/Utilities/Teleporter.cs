@@ -274,7 +274,7 @@ namespace WeaverCore.Utilities
 
 		private static void PlayTeleportSound(Vector3 position, float audioPitch)
 		{
-			var teleportSound = Audio.PlayAtPoint(AudioAssets.Teleport, position, 1f, AudioChannel.Sound);
+			var teleportSound = WeaverAudio.PlayAtPoint(AudioAssets.Teleport, position, 1f, AudioChannel.Sound);
 
 			teleportSound.AudioSource.pitch = audioPitch;
 		}

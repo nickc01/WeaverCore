@@ -164,7 +164,7 @@ namespace WeaverCore
 		{
 			if (AudioSource != null)
 			{
-				AudioSource.outputAudioMixerGroup = Audio.GetMixerForChannel(channel);
+				AudioSource.outputAudioMixerGroup = WeaverAudio.GetMixerForChannel(channel);
 			}
 			if (poolComponent == null)
 			{

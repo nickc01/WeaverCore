@@ -262,12 +262,13 @@
     <Compile Include="Implementations\G_Language_I.cs" />
     <Compile Include="Implementations\G_PlayMaker_I.cs" />
     <Compile Include="Implementations\G_Shaker_I.cs" />
-    <Compile Include="Implementations\G_WeaverSettings_I.cs" />
+    <Compile Include="Implementations\G_WeaverSettingsPanel_I.cs" />
     <Compile Include="Implementations\G_ObjectDumper_I.cs" />
     <Compile Include="Implementations\G_WeaverAssets_I.cs" />
     <Compile Include="Misc\EnemyDeathEffectsProxy.cs" />
     <Compile Include="Misc\HealthManagerProxy.cs" />
     <Compile Include="Misc\SettingStorage.cs" />
+    <Compile Include="Patches\GameManager_SetState.cs" />
     <Compile Include="Patches\TK2DCameraPatch.cs" />
     <Compile Include="Patches\TMP_TextPatch.cs" />
     <Compile Include="Implementations\G_DamageHero_I.cs" />

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
 	private int timeSlowedCount;
 
+	public GameState gameState = GameState.PLAYING;
+
 
 	static SceneManager dummySceneManager;
 	public global::SceneManager sm

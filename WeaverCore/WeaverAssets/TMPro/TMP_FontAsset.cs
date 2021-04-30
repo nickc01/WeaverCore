@@ -177,7 +177,7 @@ namespace WeaverCore.Assets.TMPro
 
 		void Awake()
 		{
-			if (!Application.isPlaying || CoreInfo.LoadState == Enums.RunningState.Editor)
+			if (!Application.isPlaying || Initialization.Environment == Enums.RunningState.Editor)
 			{
 				return;
 			}

@@ -15,6 +15,11 @@ namespace WeaverCore
 		//static WeaverGame GameManager;
 		//static GameManager_I impl;
 
+		/// <summary>
+		/// An event that is called when the game state changes
+		/// </summary>
+		public static event Action<GameState> OnGameStateChange;
+
 		public enum TimeFreezePreset
 		{
 			Preset0,
@@ -48,6 +53,14 @@ namespace WeaverCore
 				case TimeFreezePreset.Preset5:
 					GameManager.instance.StartCoroutine(GameManager.instance.FreezeMoment(0.01f, 0.25f, 0.1f, 0f));
 					break;
+			}
+		}
+
+		public static void TriggerGameStateChange()
+		{
+			if (OnGameStateChange != null)
+			{
+				OnGameStateChange.Invoke(GameManager.instance.gameState);
 			}
 		}
 

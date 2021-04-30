@@ -7,13 +7,15 @@ using WeaverCore.Attributes;
 using WeaverCore.Features;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
 	public class WeaverCamera : MonoBehaviour
 	{
 #if UNITY_EDITOR
-		[OnRuntimeInit(-10)]
+		//This is for editor only. The game only version can be found in the TK2DCameraPatch class in the WeaverCore.Game project
+		[OnRuntimeInit(int.MinValue)]
 		static void EditorInit()
 		{
 			var mainCam = Camera.main;
@@ -92,7 +94,7 @@ namespace WeaverCore
 
 		void Awake()
 		{
-			WeaverLog.Log("WEAVER CAMERA CREATED");
+			//WeaverLog.Log("WEAVER CAMERA CREATED");
 			if (_instance != null)
 			{
 				throw new Exception("Cannot have more than one WeaverCamera in the game");
@@ -104,25 +106,27 @@ namespace WeaverCore
 				var parentObject = new GameObject("Camera Parent");
 				parentObject.transform.position = transform.position;
 				//Shaker = parentObject.AddComponent<CameraShaker>();
-				parentObject.AddComponent<CameraShaker>();
+				//parentObject.AddComponent<CameraShaker>();
 				transform.parent = parentObject.transform;
 				transform.localPosition = Vector3.zero;
 			}
-			else
+			//else
+			//{
+			//WeaverLog.Log("BOTTOM PATH");
+			/*if (transform.parent.GetComponent<CameraShaker>() == null)
 			{
-				WeaverLog.Log("BOTTOM PATH");
-				if (transform.parent.GetComponent<CameraShaker>() == null)
-				{
-					WeaverLog.Log("ADDING SHAKER");
-					transform.parent.gameObject.AddComponent<CameraShaker>();
-				}
-				/*if ((Shaker = transform.parent.GetComponent<CameraShaker>()) == null)
-				{
-					Shaker = transform.parent.gameObject.AddComponent<CameraShaker>();
-				}*/
-			}
+				//WeaverLog.Log("ADDING SHAKER");
+				transform.parent.gameObject.AddComponent<CameraShaker>();
+			}*/
+			/*if ((Shaker = transform.parent.GetComponent<CameraShaker>()) == null)
+			{
+				Shaker = transform.parent.gameObject.AddComponent<CameraShaker>();
+			}*/
+			//}
 
 			//impl.Initialize();
+
+			ReflectionUtilities.ExecuteMethodsWithAttribute<AfterCameraLoadAttribute>();
 
 			foreach (var feature in Registry.GetAllFeatures<CameraExtension>())
 			{

@@ -17,7 +17,7 @@ namespace WeaverCore.Editor.Implementations
             {
                 if (roarSound != null)
                 {
-                    Audio.PlayAtPoint(roarSound, source.transform.position);
+                    WeaverAudio.PlayAtPoint(roarSound, source.transform.position);
                 }
 
                 var emitter = RoarEmitter.Spawn(source.transform.position);

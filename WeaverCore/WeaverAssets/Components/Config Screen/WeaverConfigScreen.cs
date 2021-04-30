@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace WeaverCore.Assets.Components
 		[SerializeField]
 		Transform TabContents;
 		[SerializeField]
-		Tab FirstTab;
+		TabOLD FirstTab;
 
 		[Header("Settings Area")]
 		[SerializeField]
@@ -49,8 +49,8 @@ namespace WeaverCore.Assets.Components
 
 		bool onTitleScreen = false;
 
-		List<Tab> Tabs = new List<Tab>();
-		Tab selectedTab = null;
+		List<TabOLD> Tabs = new List<TabOLD>();
+		TabOLD selectedTab = null;
 		//Dictionary<Type, IConfigProperty> PropertyTemplates = new Dictionary<Type, IConfigProperty>();
 		List<IConfigProperty> PropertyTemplates = new List<IConfigProperty>();
 
@@ -85,7 +85,7 @@ namespace WeaverCore.Assets.Components
 			SpawnConfigScreen();
 			UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneChange;
 #endif
-		}
+		}*/
 
 		/*[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore))]
 		static void OnGameStart()
@@ -112,8 +112,8 @@ namespace WeaverCore.Assets.Components
 			}
 		}*/
 
-		static void SpawnConfigScreen()
-		{
+		/*static void SpawnConfigScreen()
+		{*/
 			/*if (Instance == null)
 			{
 				var prefab = Registry.GetAllFeatures<WeaverConfigScreen>().FirstOrDefault();
@@ -123,7 +123,7 @@ namespace WeaverCore.Assets.Components
 				instance.ConfigMainMenu.SetActive(false);
 				instance.ToggleButton.SetActive(true);
 			}*/
-		}
+		/*}
 
 		static void DestroyConfigScreen()
 		{
@@ -145,7 +145,7 @@ namespace WeaverCore.Assets.Components
 			foreach (var component in propertyHolder.GetComponentsInChildren<IConfigProperty>())
 			{
 				PropertyTemplates.Add(component);
-			}
+			}*/
 
 			/*UnityEngine.SceneManagement.SceneManager.sceneUnloaded += DestroyOnSceneChange;
 			if (CoreInfo.LoadState == RunningState.Editor)
@@ -165,7 +165,7 @@ namespace WeaverCore.Assets.Components
 					}
 				}
 			}*/
-		}
+		/*}
 
 		static void OnSceneChange(Scene scene, LoadSceneMode loadSceneMode)
 		{
@@ -177,7 +177,7 @@ namespace WeaverCore.Assets.Components
 			{
 				DestroyConfigScreen();
 			}
-		}
+		}*/
 
 		/*static void CreateOnSceneChange(Scene scene, LoadSceneMode loadSceneMode)
 		{
@@ -200,15 +200,15 @@ namespace WeaverCore.Assets.Components
 		}*/
 
 
-		public void OpenMenu()
+		/*public void OpenMenu()
 		{
 			ConfigMainMenu.SetActive(true);
 			SettingsArea.SetActive(false);
 			ToggleButton.SetActive(false);
-			RefreshTabs(GlobalWeaverSettings.GetAllSettings());
-		}
+			//RefreshTabs(GlobalWeaverSettings.GetAllSettings());
+		}*/
 
-		public void CloseMenu()
+		/*public void CloseMenu()
 		{
 			ConfigMainMenu.SetActive(false);
 			ToggleButton.SetActive(true);
@@ -221,27 +221,9 @@ namespace WeaverCore.Assets.Components
 			{
 				settings.SaveSettings();
 			}
-		}
-
-		/*void EnteringTitleScreen()
-		{
-			//WeaverLog.Log("Entering Title Screen");
-			//Open = true;
-			//transform.parent.gameObject.SetActive(true);
-			gameObject.SetActive(true);
-			ConfigMainMenu.SetActive(false);
-			ToggleButton.SetActive(true);
-		}
-
-		void LeavingTitleScreen()
-		{
-			//WeaverLog.Log("Leaving Title Screen");
-			Open = false;
-			gameObject.SetActive(false);
-			CloseMenu();
 		}*/
 
-		public void OnTabClicked(Tab tab)
+		/*public void OnTabClicked(TabOLD tab)
 		{
 			if (selectedTab != null)
 			{
@@ -250,10 +232,10 @@ namespace WeaverCore.Assets.Components
 			}
 			selectedTab = tab;
 			selectedTab.Button.interactable = false;
-			EnableSettingsArea();
-		}
+			//EnableSettingsArea();
+		}*/
 
-		void RefreshTabs(IEnumerable<GlobalWeaverSettings> allSettings)
+		/*void RefreshTabs(IEnumerable<GlobalWeaverSettings> allSettings)
 		{
 			for (int i = TabContents.childCount - 1; i >= 0; i--)
 			{
@@ -287,9 +269,9 @@ namespace WeaverCore.Assets.Components
 				}
 				currentIndex++;
 			}
-		}
+		}*/
 
-		void EnableSettingsArea()
+		/*void EnableSettingsArea()
 		{
 			if (settingsEnabled)
 			{
@@ -328,25 +310,15 @@ namespace WeaverCore.Assets.Components
 									InstancedProperties.Add(configProp);
 								}
 							}
-							/*if (PropertyTemplates.ContainsKey(field.FieldType))
-							{
-								var configPropTemplate = PropertyTemplates[field.FieldType];
-								var gameObjectTemplate = (configPropTemplate as Component).gameObject;
-
-								var configProp = GameObject.Instantiate(gameObjectTemplate, settingContents).GetComponent<IConfigProperty>();
-								configProp.Title = StringUtilities.Prettify(field.Name);
-								configProp.BindToField(currentSettings, field);
-								InstancedProperties.Add(configProp);
-							}*/
 						}
 					}
 				}
 			}
 
 
-		}
+		}*/
 
-		void DisableSettingsArea()
+/*		void DisableSettingsArea()
 		{
 			if (!settingsEnabled)
 			{
@@ -363,3 +335,4 @@ namespace WeaverCore.Assets.Components
 	}
 
 }
+*/

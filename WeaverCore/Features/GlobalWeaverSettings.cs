@@ -10,9 +10,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Configuration
 {
-	[ShowFeature]
-	public abstract class GlobalWeaverSettings : ScriptableObject, IFeature, IOnFeatureLoad
-	{
+	//[ShowFeature]
+	//public abstract class GlobalWeaverSettings : ScriptableObject, IFeature, IOnFeatureLoad
+	//{
 		//bool loaded = false;
 
 		//static HashSet<GlobalWeaverSettings> LoadedSettings = new HashSet<GlobalWeaverSettings>();
@@ -46,7 +46,7 @@ namespace WeaverCore.Configuration
 
 
 
-		static GlobalWeaverSettings_I impl = ImplFinder.GetImplementation<GlobalWeaverSettings_I>();
+		/*static GlobalWeaverSettings_I impl = ImplFinder.GetImplementation<GlobalWeaverSettings_I>();
 
 		public string TabName;
 
@@ -74,6 +74,6 @@ namespace WeaverCore.Configuration
 		void IOnFeatureLoad.OnFeatureLoad(Registry registry)
 		{
 			LoadSettings();
-		}
-	}
+		}*/
+	//}
 }

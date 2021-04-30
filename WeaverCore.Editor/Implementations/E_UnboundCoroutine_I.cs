@@ -17,21 +17,29 @@ namespace WeaverCore.Editor.Implementations
 	{
 		static List<EditorCoroutine> coroutines = new List<EditorCoroutine>();
 
-		static double previousTime = 0;
-		static double currentTime = 0;
+		static double previousTime = -1.0;
+		static double currentTime = -1.0;
 
 		[OnInit]
 		static void Init()
 		{
-			previousTime = EditorApplication.timeSinceStartup;
-			currentTime = EditorApplication.timeSinceStartup;
+			//previousTime = EditorApplication.timeSinceStartup;
+			//currentTime = EditorApplication.timeSinceStartup;
 			EditorApplication.update += OnUpdate;
 		}
 
 		static void OnUpdate()
 		{
-			previousTime = currentTime;
-			currentTime = EditorApplication.timeSinceStartup;
+			if (previousTime < 0f && currentTime < 0f)
+			{
+				previousTime = EditorApplication.timeSinceStartup;
+				currentTime = EditorApplication.timeSinceStartup;
+			}
+			else
+			{
+				previousTime = currentTime;
+				currentTime = EditorApplication.timeSinceStartup;
+			}
 
 			for (int i = coroutines.Count - 1; i >= 0; i--)
 			{

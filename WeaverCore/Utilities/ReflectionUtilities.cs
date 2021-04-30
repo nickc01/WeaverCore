@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
@@ -25,7 +26,7 @@ namespace WeaverCore.Utilities
 		{
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
-				if (CoreInfo.LoadState == Enums.RunningState.Game && assembly.GetName().Name == "Assembly-CSharp")
+				if (Initialization.Environment == Enums.RunningState.Game && assembly.GetName().Name == "Assembly-CSharp")
 				{
 					continue;
 				}
@@ -355,11 +356,11 @@ namespace WeaverCore.Utilities
 				return;
 			}
 
-			bool sortable = false;
+			//bool sortable = false;
 
 			if (typeof(PriorityAttribute).IsAssignableFrom(typeof(T)))
 			{
-				sortable = true;
+				//sortable = true;
 				methods.Sort(new PriorityAttribute.PairSorter<T>());
 			}
 
@@ -368,17 +369,17 @@ namespace WeaverCore.Utilities
 				
 			}*/
 
-			AssemblyLoadEventHandler NewAssemblyLoad = (s, args) =>
+			/*AssemblyLoadEventHandler NewAssemblyLoad = (s, args) =>
 			{
 				methods.AddRange(GetMethodsWithAttribute<T>(args.LoadedAssembly, flags));
 				if (sortable)
 				{
 					methods.Sort(new PriorityAttribute.PairSorter<T>());
 				}
-			};
-			try
-			{
-				AppDomain.CurrentDomain.AssemblyLoad += NewAssemblyLoad;
+			};*/
+			//try
+			//{
+				//AppDomain.CurrentDomain.AssemblyLoad += NewAssemblyLoad;
 
 				while (methods.Count > 0)
 				{
@@ -403,14 +404,38 @@ namespace WeaverCore.Utilities
 						}
 					}
 				}
-			}
+			/*}
 			finally
 			{
 				AppDomain.CurrentDomain.AssemblyLoad -= NewAssemblyLoad;
-			}
+			}*/
 		}
 
-		/// <summary>
+		/*/// <summary>
+		/// Attempts to get the underlying type of <paramref name="memberInfo"/>.
+		/// 
+		/// Returns the underlying type if <paramref name="memberInfo"/> is derived from <see cref="FieldInfo"/> or <see cref="PropertyInfo"/>
+		/// </summary>
+		/// <param name="memberInfo"></param>
+		/// <returns></returns>
+		public static Type GetMemberType(this MemberInfo memberInfo)
+		{
+			if (memberInfo == null)
+			{
+				return null;
+			}
+			if (memberInfo is FieldInfo)
+			{
+				return ((FieldInfo)memberInfo).FieldType;
+			}
+			else if (memberInfo is PropertyInfo)
+			{
+				return ((PropertyInfo)memberInfo).PropertyType;
+			}
+			return null;
+		}*/
+
+		/*/// <summary>
 		/// Returns all the assemblies in the domain, similar to <see cref="AppDomain.GetAssemblies"/>
 		/// 
 		/// However, the problem with that function is that if there are any assemblies that get added afterwards, they won't appear in the array of assemblies returned
@@ -424,10 +449,10 @@ namespace WeaverCore.Utilities
 		public static IEnumerable<Assembly> AllAssemblies(this AppDomain domain)
 		{
 			return new AssemblyEnumerable(domain);
-		}
+		}*/
 
 
-		public static void CopyFields(object to, object from, string field)
+		/*public static void CopyFields(object to, object from, string field)
 		{
 			foreach (var fromField in from.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
 			{
@@ -444,11 +469,11 @@ namespace WeaverCore.Utilities
 				}
 			}
 			throw new Exception("Could not find field called : " + field);
-		}
+		}*/
 	}
 
 
-	sealed class AssemblyEnumerable : IEnumerable<Assembly>
+	/*sealed class AssemblyEnumerable : IEnumerable<Assembly>
 	{
 		AppDomain Domain;
 
@@ -544,5 +569,5 @@ namespace WeaverCore.Utilities
 		}
 
 
-	}
+	}*/
 }

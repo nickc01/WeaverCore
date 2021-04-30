@@ -51,7 +51,7 @@ namespace WeaverCore.Components.HitEffects
 			{
 				firedOnCurrentFrame = true;
 
-				Audio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
+				WeaverAudio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
 
 				if (doFlashEffects)
 				{

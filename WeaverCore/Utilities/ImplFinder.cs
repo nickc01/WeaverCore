@@ -15,16 +15,16 @@ namespace WeaverCore.Utilities
 {
 	public static class ImplFinder
     {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
         public const RunningState State = RunningState.Editor;
 #else
         public const RunningState State = RunningState.Game;
-#endif
+#endif*/
         static Dictionary<Type, Type> Cache = new Dictionary<Type, Type>();
         static List<Type> FoundImplementations;
         static Assembly ImplAssembly;
 
-        public static bool Initialized { get; private set; }
+        // public static bool Initialized { get; private set; }
 
         /*static RunningState GetState()
         {
@@ -38,17 +38,72 @@ namespace WeaverCore.Utilities
             return RunningState.Game;
         }*/
 
-       // internal static void Init()
+        static Assembly LoadAsmIfNotFound(string assemblyName)
+        {
+            var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == assemblyName);
+            if (assembly == null)
+            {
+                assembly = ResourceLoader.LoadAssembly(assemblyName);
+            }
+            return assembly;
+        }
+
+        // internal static void Init()
         [OnInit(int.MinValue)]
         static void Initializer()
         {
+			if (FoundImplementations == null)
+			{
+#if UNITY_EDITOR
+                ImplAssembly = LoadAsmIfNotFound("WeaverCore.Editor");
+#else
+                ImplAssembly = LoadAsmIfNotFound("WeaverCore.Game");
+#endif
+                FoundImplementations = new List<Type>();
+
+                try
+                {
+                    foreach (var type in ImplAssembly.GetTypes())
+                    {
+                        if (typeof(IImplementation).IsAssignableFrom(type) && !type.IsAbstract && !type.ContainsGenericParameters)
+                        {
+                            FoundImplementations.Add(type);
+                        }
+                    }
+                }
+                catch (ReflectionTypeLoadException e)
+                {
+                    Debug.LogError("Failed Types Below");
+                    //foreach (var type in e.Types)
+                    for (int i = 0; i < e.Types.GetLength(0); i++)
+                    {
+                        var type = e.Types[i];
+                        if (type == null)
+                        {
+                            Debug.LogError("Null");
+                        }
+                        else
+                        {
+                            Debug.Log(type.FullName);
+                        }
+                    }
+                    foreach (var exception in e.LoaderExceptions)
+                    {
+                        Debug.LogWarning("Loader Exception = " + exception);
+                    }
+                }
+            }
+
+            //TODO : THIS SECTION NEEDS TO BE REWORKED
+
+
             /*if (Initialized)
             {
                 return;
             }*/
            //Debug.LogError("D");
             //Debug.Log("Running ImplFinder");
-            if (FoundImplementations == null)
+            /*if (FoundImplementations == null)
             {
                 Assembly temp = null;
 #if UNITY_EDITOR
@@ -103,16 +158,20 @@ namespace WeaverCore.Utilities
                 }
             }
 
-            Initialized = true;
+            Initialized = true;*/
         }
 
-        static ImplFinder()
+        /*static ImplFinder()
         {
             Initializer();
-        }
+        }*/
 
         public static Type GetImplementationType<T>() where T : IImplementation
         {
+			if (FoundImplementations == null)
+			{
+                Initializer();
+            }
             var type = typeof(T);
             Type implType = null;
             //LoadImplementations();

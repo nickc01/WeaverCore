@@ -15,18 +15,9 @@ MonoBehaviour:
   modName: Weaver Core
   modAssemblyName: WeaverCore
   modTypeName: WeaverCore.Internal.WeaverCore
-  modListHashCode: 1818181233
-  features:
-  - feature: {fileID: 114659249116894634, guid: 398106b2d51c2144b97ff3de7eec6dcb,
-      type: 2}
-    TypeName: WeaverCore.Assets.Components.WeaverConfigScreen
-    AssemblyName: WeaverCore
-  - feature: {fileID: 114445947651014498, guid: 1cfa4ed7eca401f45879d719ad3e3e5a,
-      type: 2}
-    TypeName: WeaverCore.Features.CanvasExtension
-    AssemblyName: WeaverCore
+  modListHashCode: 221756259
+  features: []
   featuresRaw:
-  - {fileID: 114659249116894634, guid: 398106b2d51c2144b97ff3de7eec6dcb, type: 2}
   - {fileID: 114445947651014498, guid: 1cfa4ed7eca401f45879d719ad3e3e5a, type: 2}
   selectedFeatureIndex: 0
   selectedModIndex: 1

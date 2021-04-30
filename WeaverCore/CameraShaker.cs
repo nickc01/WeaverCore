@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
@@ -23,6 +24,15 @@ namespace WeaverCore
 				return _instance;
 			}
 		}*/
+
+		[AfterCameraLoad(int.MinValue)]
+		static void Init()
+		{
+			if (WeaverCamera.Instance.transform.parent.GetComponent<CameraShaker>() == null)
+			{
+				WeaverCamera.Instance.transform.parent.gameObject.AddComponent<CameraShaker>();
+			}
+		}
 
 		public static CameraShaker Instance { get; private set; }
 

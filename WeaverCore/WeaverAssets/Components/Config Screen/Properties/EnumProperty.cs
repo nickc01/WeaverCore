@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -11,27 +11,6 @@ namespace WeaverCore.Assets.Components
 	{
 		[SerializeField]
 		Dropdown dropdown;
-
-		/*public override Type BindingFieldType
-		{
-			get
-			{
-				return typeof(Enum);
-			}
-		}
-
-		protected override void UpdateField()
-		{
-			float value;
-			if (float.TryParse(input.text, out value))
-			{
-				base.UpdateField();
-			}
-			else
-			{
-				input.text = previousInput;
-			}
-		}*/
 
 		Dictionary<int, object> valueToDropdownIndex = new Dictionary<int, object>();
 
@@ -94,3 +73,4 @@ namespace WeaverCore.Assets.Components
 		}
 	}
 }
+*/

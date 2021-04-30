@@ -5,8 +5,8 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tizen;
-using WeaverCore.Configuration;
 using WeaverCore.Editor.Utilities;
+using WeaverCore.Settings;
 
 namespace WeaverCore.Editor
 {
@@ -52,7 +52,7 @@ namespace WeaverCore.Editor
 				{
 					foreach (var type in assembly.GetTypes())
 					{
-						if (typeof(GlobalWeaverSettings).IsAssignableFrom(type) &&
+						if (typeof(Panel).IsAssignableFrom(type) &&
 							!type.IsAbstract &&
 							!type.ContainsGenericParameters &&
 							!type.IsInterface)

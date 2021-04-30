@@ -118,7 +118,7 @@ namespace WeaverCore.Components.HitEffects
 			{
 				firedOnCurrentFrame = true;
 
-				var audio = Audio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
+				var audio = WeaverAudio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
 				audio.AudioSource.pitch = UnityEngine.Random.Range(audioPitchMin,audioPitchMax);
 
 				//DamageFlashPool.Instantiate(transform.position + effectsOffset, Quaternion.identity);

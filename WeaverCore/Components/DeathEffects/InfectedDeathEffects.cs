@@ -43,12 +43,12 @@ namespace WeaverCore.Components.DeathEffects
 			base.EmitSounds();
 			if (SwordDeathSound != null)
 			{
-				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(SwordDeathSound, transform.position, swordDeathSoundVolume, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(SwordDeathSound, transform.position, swordDeathSoundVolume, AudioChannel.Sound);
 				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(swordDeathSoundMinPitch, swordDeathSoundMaxPitch);
 			}
 			if (DamageSound != null)
 			{
-				AudioPlayer weaverAudioPlayer2 = Audio.PlayAtPoint(DamageSound, transform.position, damageSoundVolume, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer2 = WeaverAudio.PlayAtPoint(DamageSound, transform.position, damageSoundVolume, AudioChannel.Sound);
 				weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(damageSoundMinPitch, damageSoundMaxPitch);
 			}
 		}

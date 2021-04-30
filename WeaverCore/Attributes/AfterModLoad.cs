@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WeaverCore.Attributes
 {
-    [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
+	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
     public sealed class AfterModLoadAttribute : PriorityAttribute
     {
         public readonly Type ModType;

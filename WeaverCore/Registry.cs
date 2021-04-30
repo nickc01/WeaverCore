@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
@@ -191,7 +192,31 @@ namespace WeaverCore
                         }
                     }
                 }
+                RunRegistryLoadFunctions(this);
+            }
+        }
 
+        private static void RunRegistryLoadFunctions(Registry registry)
+        {
+            var registryMethods = ReflectionUtilities.GetMethodsWithAttribute<OnRegistryLoadAttribute>().ToList();
+
+            registryMethods.Sort(new PriorityAttribute.PairSorter<OnRegistryLoadAttribute>());
+
+            var param = new object[] { registry };
+
+
+            foreach (var method in registryMethods)
+            {
+                try
+                {
+                    //WeaverLog.Log("Executing Registry Method = " + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
+                    method.Item1.Invoke(null, param);
+                }
+                catch (Exception e)
+                {
+                    WeaverLog.LogError("Error Running Function: " + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
+                    WeaverLog.LogError(e);
+                }
             }
         }
 

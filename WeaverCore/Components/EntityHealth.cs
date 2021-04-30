@@ -285,7 +285,7 @@ namespace WeaverCore.Components
 			var blockedHitEffect = Instantiate(EffectAssets.BlockedHitPrefab, v, Quaternion.identity);
 			blockedHitEffect.transform.eulerAngles = eulerAngles;
 
-			Audio.PlayAtPoint(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
+			WeaverAudio.PlayAtPoint(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
 
 		}
 
@@ -415,7 +415,7 @@ namespace WeaverCore.Components
 				{
 					this.extraDamageClip = WeaverAssets.LoadWeaverAsset<AudioClip>("Extra Damage Audio");
 				}
-				AudioPlayer weaverAudioPlayer = Audio.PlayAtPoint(this.extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
+				AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(this.extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
 				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(0.85f, 1.15f);
 				SpriteFlasher component = base.GetComponent<SpriteFlasher>();
 				if (component != null)

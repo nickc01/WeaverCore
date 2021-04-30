@@ -1,0 +1,51 @@
+﻿/*using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using WeaverCore.Configuration;
+
+namespace WeaverCore.Assets.Components
+{
+	public class TabOLD : MonoBehaviour
+	{
+		TextMeshProUGUI _tabText;
+		Button _button;
+
+		[HideInInspector]
+		public GlobalWeaverSettings settings;
+
+		public Button Button
+		{
+			get
+			{
+				if (_button == null)
+				{
+					_button = GetComponent<Button>();
+				}
+				return _button;
+			}
+		}
+
+		public TextMeshProUGUI TabText
+		{
+			get
+			{
+				if (_tabText == null)
+				{
+					_tabText = GetComponentInChildren<TextMeshProUGUI>();
+				}
+				return _tabText;
+			}
+		}
+		
+		[HideInInspector]
+		public int TabIndex = 0;
+
+		void Start()
+		{
+			Button.onClick.AddListener(() => WeaverConfigScreen.Instance.OnTabClicked(this));
+		}
+	}
+}
+*/

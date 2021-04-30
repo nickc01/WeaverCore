@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,3 +42,4 @@ namespace WeaverCore.Assets.Components
 		}
 	}
 }
+*/

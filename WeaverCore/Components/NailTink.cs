@@ -54,7 +54,7 @@ public class NailTink : MonoBehaviour, IHittable
 		CameraShaker.Instance.Shake(WeaverCore.Enums.ShakeType.EnemyKillShake);
 
 		//PLAY AUDIO
-		Audio.PlayAtPoint(TinkSound,transform.position);
+		WeaverAudio.PlayAtPoint(TinkSound,transform.position);
 
 		var attackDirection = hit.Direction;
 

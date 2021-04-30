@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 
 namespace WeaverCore.Assets.Components
 {
@@ -26,3 +26,4 @@ namespace WeaverCore.Assets.Components
 		}
 	}
 }
+*/

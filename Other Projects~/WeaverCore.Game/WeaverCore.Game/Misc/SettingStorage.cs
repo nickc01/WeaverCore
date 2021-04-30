@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using WeaverCore.Configuration;
+using WeaverCore.Settings;
 
 namespace WeaverCore.Game
 {
@@ -16,20 +16,20 @@ namespace WeaverCore.Game
 
 		static SettingStorage()
 		{
-			var weaverCoreFile = new FileInfo(typeof(WeaverCore.CoreInfo).Assembly.Location);
+			var weaverCoreFile = new FileInfo(typeof(Initialization).Assembly.Location);
 			SettingsFolder = new DirectoryInfo(weaverCoreFile.Directory.FullName + "\\WeaverCore\\Settings");
 
 			SettingsFolder.Create();
 		}
 
-		public static void Load<T>(T settings) where T : GlobalWeaverSettings
+		public static void Load<T>(T settings) where T : Panel
 		{
 			Load(typeof(T), settings);
 		}
 
-		public static void Load(Type type, GlobalWeaverSettings settings)
+		public static void Load(Type type, Panel settings)
 		{
-			if (!typeof(GlobalWeaverSettings).IsAssignableFrom(type))
+			if (!typeof(Panel).IsAssignableFrom(type))
 			{
 				throw new Exception("The type " + type.FullName + " does not inherit from WeaverSettings");
 			}
@@ -48,7 +48,7 @@ namespace WeaverCore.Game
 			}
 		}
 
-		public static void Save(GlobalWeaverSettings settings)
+		public static void Save(Panel settings)
 		{
 			//WeaverLog.Log("Saving");
 			var type = settings.GetType();

@@ -30,7 +30,7 @@ namespace WeaverCore.Assets.Components
 
 		void Start()
 		{
-			if (CoreInfo.LoadState == Enums.RunningState.Game)
+			if (Initialization.Environment == Enums.RunningState.Game)
 			{
 				groupDropdown.ClearOptions();
 				snapshotDropdown.ClearOptions();

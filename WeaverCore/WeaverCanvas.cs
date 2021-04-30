@@ -12,7 +12,15 @@ using WeaverCore.Utilities;
 
 public class WeaverCanvas : MonoBehaviour 
 {
-	[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore),priority:int.MinValue)]
+	/*[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore),priority:int.MinValue)]
+	static void Init()
+	{
+		if (GameObject.FindObjectOfType<WeaverCanvas>() == null)
+		{
+			GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas"), null);
+		}
+	}*/
+	[AfterCameraLoad(int.MinValue)]
 	static void Init()
 	{
 		if (GameObject.FindObjectOfType<WeaverCanvas>() == null)

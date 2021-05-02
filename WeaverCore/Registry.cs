@@ -55,8 +55,8 @@ namespace WeaverCore
         [SerializeField]
         int selectedFeatureIndex = 0;
 
-        [SerializeField]
-        int selectedModIndex = 0;
+        //[SerializeField]
+        //int selectedModIndex = 0;
 
 
         /// <summary>

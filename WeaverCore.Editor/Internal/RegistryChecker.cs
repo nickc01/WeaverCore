@@ -179,7 +179,7 @@ namespace WeaverCore.Editor.Internal
 					SetAssetBundle("");
 				}
 				SetInt("modListHashCode", hashCode);
-				SetInt("selectedModIndex", newIndex);
+				//SetInt("selectedModIndex", newIndex);
 			}
 			SetInt("selectedFeatureIndex", 0);
 			ApplyChanges();
@@ -267,7 +267,7 @@ namespace WeaverCore.Editor.Internal
 			var index = ModList.IndexOf(mod);
 			serializedObject.SetString("modAssemblyName", mod.Assembly.GetName().Name);
 			serializedObject.SetString("modTypeName", mod.FullName);
-			serializedObject.SetInt("selectedModIndex", index);
+			//serializedObject.SetInt("selectedModIndex", index);
 			serializedObject.SetString("modName", ModNames[index]);
 			SetAssetBundle(ModNames[index]);
 		}

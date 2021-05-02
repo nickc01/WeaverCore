@@ -1,1 +1,1 @@
-{"DoReload":false,"DoAutoReloading":false}
+{"DoReload":true,"DoAutoReloading":true}

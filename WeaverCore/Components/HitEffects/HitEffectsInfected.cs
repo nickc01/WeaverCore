@@ -88,7 +88,7 @@ namespace WeaverCore.Components.HitEffects
 
 		protected virtual void Reset()
 		{
-			Debug.Log("RESET");
+			//Debug.Log("RESET");
 			DamageSound = Assets.AudioAssets.DamageEnemy;
 			DamageFlash = WeaverAssets.LoadWeaverAsset<GameObject>("Hit Flash Orange");
 			OrangeSpatter = WeaverAssets.LoadWeaverAsset<GameObject>("Spatter Orange");

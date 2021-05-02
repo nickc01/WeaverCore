@@ -99,11 +99,11 @@ namespace WeaverCore.Editor.Systems
 				//yield return PrepareForBundling(settings.ModName);
 				progress.GoToNextStep();
 				List<BundleBuild> bundles = new List<BundleBuild>();
-				Debug.Log("BUILDING WEAVERCORE BUNDLES");
+				//Debug.Log("BUILDING WEAVERCORE BUNDLES");
 				yield return LibraryCompiler.BuildAssetBundles(bundles, settings.ModName, settings.GetBuildModes());
 				foreach (var bundle in bundles)
 				{
-					WeaverLog.Log("Bundle = " + bundle.File);
+					//WeaverLog.Log("Bundle = " + bundle.File);
 					if (bundle.File.Name.Contains(WeaverAssets.WeaverAssetBundleName))
 					{
 						WeaverLog.Log("Embedding Bundle into = " + compileLocation + "\\WeaverCore.dll");

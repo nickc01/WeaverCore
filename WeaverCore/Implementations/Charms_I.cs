@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using WeaverCore.Interfaces;
 
-namespace Assets.WeaverCore.WeaverCore.Implementations
+namespace WeaverCore.Implementations
 {
 	public abstract class Charms_I : IImplementation
 	{

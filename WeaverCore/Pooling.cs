@@ -189,7 +189,6 @@ namespace WeaverCore
 
 		public static T Instantiate<T>(T prefab, Vector3 position, Quaternion rotation) where T : Component
 		{
-			Debug.Log("Pool null = " + (GetPool(prefab.gameObject) == null));
 			return GetPool(prefab.gameObject).Instantiate<T>(position, rotation, null);
 			//return Instantiate<T>(position, rotation, null);
 		}

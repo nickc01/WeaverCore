@@ -92,7 +92,7 @@ public class SpriteDecomposer : EditorWindow
 
 		destFolder = "Assets/" + PathUtilities.ConvertToAssetPath(destFolder);
 
-		Debug.Log("Dest Folder = " + destFolder);
+		//Debug.Log("Dest Folder = " + destFolder);
 
 		//TextureImporter importer = (TextureImporter)TextureImporter.GetAtPath(AssetDatabase.GetAssetPath(texture));
 
@@ -101,10 +101,10 @@ public class SpriteDecomposer : EditorWindow
 			AssetDatabase.StartAssetEditing();
 			foreach (var sprite in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(texture)).OfType<Sprite>())
 			{
-				Debug.Log("Sprite = " + sprite.name);
-				Debug.Log("Sprite Rect = " + sprite.rect);
-				Debug.Log("Sprite UV = " + sprite.uv);
-				Debug.Log("Sprite Border = " + sprite.border);
+				//Debug.Log("Sprite = " + sprite.name);
+				//Debug.Log("Sprite Rect = " + sprite.rect);
+				//Debug.Log("Sprite UV = " + sprite.uv);
+				//Debug.Log("Sprite Border = " + sprite.border);
 				//sprite.
 				Texture2D dumpTexture = new Texture2D(Mathf.RoundToInt(sprite.rect.width), Mathf.RoundToInt(sprite.rect.height),TextureFormat.RGBA32,false);
 				//RenderTexture dumpTexture = new RenderTexture(Mathf.RoundToInt(sprite.rect.width), Mathf.RoundToInt(sprite.rect.height),0,RenderTextureFormat.ARGB32);

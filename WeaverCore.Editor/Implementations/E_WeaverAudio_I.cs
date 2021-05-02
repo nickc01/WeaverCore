@@ -43,7 +43,7 @@ namespace WeaverCore.Editor.Implementations
 			}
 		}
 
-		/*public override AudioChannel GetChannel(WeaverAudioPlayer audioObject)
+		/*public override AudioChannel GetChannel(AudioPlayer audioObject)
 		{
 			return AudioChannel.None;
 		}*/
@@ -53,15 +53,15 @@ namespace WeaverCore.Editor.Implementations
 			return null;
 		}
 
-		/*public WeaverAudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
+		/*public AudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
 		{
-			//GameObject audioObject = new GameObject("__AUDIO_OBJECT__", typeof(AudioSource), typeof(WeaverAudioPlayer));
-			var audioObject = WeaverAudioPlayer.Create(position);
+			//GameObject audioObject = new GameObject("__AUDIO_OBJECT__", typeof(AudioSource), typeof(AudioPlayer));
+			var audioObject = AudioPlayer.Create(position);
 
 			return PlayReuse(audioObject, clip, position, volume, channel, autoPlay, deleteWhenDone);
 		}
 
-		public WeaverAudioPlayer PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
+		public AudioPlayer PlayReuse(AudioPlayer audioObject, AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
 		{
 			var audioSource = audioObject.AudioSource;//audioObject.GetComponent<AudioSource>();
 
@@ -75,7 +75,7 @@ namespace WeaverCore.Editor.Implementations
 				audioSource.Play();
 			}
 
-			//var hollowAudio = audioObject.GetComponent<WeaverAudioPlayer>();
+			//var hollowAudio = audioObject.GetComponent<AudioPlayer>();
 
 			if (deleteWhenDone)
 			{
@@ -85,7 +85,7 @@ namespace WeaverCore.Editor.Implementations
 			return audioObject;
 		}*/
 
-		/*public override void SetChannel(WeaverAudioPlayer audioObject, AudioChannel channel)
+		/*public override void SetChannel(AudioPlayer audioObject, AudioChannel channel)
 		{
 			audioObject.AudioSource.outputAudioMixerGroup = null;
 		}*/

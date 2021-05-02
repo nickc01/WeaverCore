@@ -21,10 +21,12 @@ namespace WeaverCore.Components
 
 	public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable
 	{
+		public delegate void HealthChangeDelegate(int previousHealth, int newHealth);
+
 		List<HealthMilestone> HealthMilestones = new List<HealthMilestone>();
 
 
-		Collider2D collider;
+		new Collider2D collider;
 
 
 		HealthManager_I impl;
@@ -46,10 +48,12 @@ namespace WeaverCore.Components
 			{
 				if (_health != value)
 				{
-					_health = OnHealthUpdate(value);
+					var oldHealth = _health;
+					_health = value;
+					OnHealthUpdate(oldHealth,_health);
 					if (OnHealthChangeEvent != null)
 					{
-						OnHealthChangeEvent(_health);
+						OnHealthChangeEvent(oldHealth, _health);
 					}
 					CheckMilestones(_health);
 					if (_health <= 0)
@@ -81,7 +85,7 @@ namespace WeaverCore.Components
 		/// Controls how often the enemy is able to receive attacks. 
 		/// For example, if the value is set to 0.15, then that means this object will not receive any more hits, until 0.15 seconds have elapsed since the last hit
 		/// </summary>
-		public float EvasionTime = 0.15f;
+		public float EvasionTime = 0.2f;
 
 
 		/// <summary>
@@ -126,7 +130,7 @@ namespace WeaverCore.Components
 		/// <summary>
 		/// Called when the entity's health has been modified
 		/// </summary>
-		public event Action<int> OnHealthChangeEvent;
+		public event HealthChangeDelegate OnHealthChangeEvent;
 
 		/// <summary>
 		/// Applies an offset to hit effects if desired
@@ -178,6 +182,25 @@ namespace WeaverCore.Components
 			}
 		}
 
+		/// <summary>
+		/// Sets the health without triggering the <see cref="OnHealthUpdate(int)"/> function or triggering <see cref="OnHealthChangeEvent"/>.
+		/// 
+		/// Should be used sparringly
+		/// </summary>
+		/// <param name="newHealth">The new health value</param>
+		/// <param name="triggerMilestones">Whether milestones should also be triggered</param>
+		protected void SetHealthInternal(int newHealth, bool triggerMilestones = false)
+		{
+			if (newHealth != _health)
+			{
+				_health = newHealth;
+				if (triggerMilestones)
+				{
+					CheckMilestones(newHealth);
+				}
+			}
+		}
+
 		public HitResult IsValidHit(HitInfo hit)
 		{
 			bool validHit = !(Health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
@@ -223,10 +246,10 @@ namespace WeaverCore.Components
 					break;
 				case AttackType.Spell:
 					//effect offset y : -0.2
-					Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.position + new Vector3(0f, -0.2f, 0.0031f), Quaternion.identity);
+					Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
 					break;
 				case AttackType.SharpShadow:
-					Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.position + new Vector3(0f, -0.2f, 0.0031f), Quaternion.identity);
+					Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
 					break;
 				default:
 					break;
@@ -502,11 +525,10 @@ namespace WeaverCore.Components
 		/// <summary>
 		/// Called when the health is being updated with a new value
 		/// </summary>
-		/// <param name="newValue">The new value that is being set</param>
-		/// <returns>Returns the actual value that is going to be set. Use this to override the new value with your own</returns>
-		protected virtual int OnHealthUpdate(int newValue)
+		/// <param name="newValue">The new health value</param>
+		protected virtual void OnHealthUpdate(int oldHealth, int newHealth)
 		{
-			return newValue;
+
 		}
 	}
 }

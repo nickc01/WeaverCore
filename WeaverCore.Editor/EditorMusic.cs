@@ -98,7 +98,7 @@ namespace WeaverCore.Editor
 		IEnumerator ApplyMusicSnapshotRoutine(AudioMixerSnapshot snapshot, float delayTime, float transitionTime)
 		{
 			yield return new WaitForSeconds(delayTime);
-			WeaverLog.Log("Snapshot = " + snapshot);
+			//WeaverLog.Log("Snapshot = " + snapshot);
 			if (snapshot != null)
 			{
 				snapshot.TransitionTo(transitionTime);

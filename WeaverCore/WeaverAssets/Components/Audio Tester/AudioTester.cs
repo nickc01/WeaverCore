@@ -55,9 +55,9 @@ namespace WeaverCore.Assets.Components
 					WeaverLog.Log("A_Group Mixer = " + allGroups[i].audioMixer.name);
 				}*/
 
-				WeaverLog.Log("Targetting Mixer = " + targettingMixer);
-				WeaverLog.Log("Found Groups = " + MixerGroups.Count);
-				for (int i = 0; i < MixerGroups.Count; i++)
+				//WeaverLog.Log("Targetting Mixer = " + targettingMixer);
+				//WeaverLog.Log("Found Groups = " + MixerGroups.Count);
+				/*for (int i = 0; i < MixerGroups.Count; i++)
 				{
 					WeaverLog.Log("Group = " + MixerGroups[i].name);
 				}
@@ -66,7 +66,7 @@ namespace WeaverCore.Assets.Components
 				for (int i = 0; i < Snapshots.Count; i++)
 				{
 					WeaverLog.Log("Snapshot = " + Snapshots[i].name);
-				}
+				}*/
 
 
 				groupDropdown.AddOptions(ToOptions(MixerGroups, g => g.name));
@@ -108,8 +108,8 @@ namespace WeaverCore.Assets.Components
 
 			if (index < Snapshots.Count)
 			{
-				WeaverLog.Log("Setting snapshot index = " + index);
-				WeaverLog.Log("Setting Snapshot to = " + Snapshots[index].name);
+				//WeaverLog.Log("Setting snapshot index = " + index);
+				//WeaverLog.Log("Setting Snapshot to = " + Snapshots[index].name);
 				var snapshot = Snapshots[index];
 
 				snapshot.TransitionTo(0f);
@@ -121,11 +121,11 @@ namespace WeaverCore.Assets.Components
 			//Doing this because the passing it by parameter is not working properly
 			groupIndex = groupDropdown.value;
 
-			WeaverLog.Log("New Group Index = " + groupIndex);
+			//WeaverLog.Log("New Group Index = " + groupIndex);
 
 			if (groupIndex < MixerGroups.Count)
 			{
-				WeaverLog.Log("Setting group to = " + MixerGroups[groupIndex].name);
+				//WeaverLog.Log("Setting group to = " + MixerGroups[groupIndex].name);
 				var group = MixerGroups[groupIndex];
 
 				TestAudioSource.outputAudioMixerGroup = group;
@@ -134,11 +134,11 @@ namespace WeaverCore.Assets.Components
 
 		public void OnSnapshotChange(int snapshotIndex)
 		{
-			WeaverLog.Log("New Snapshot Index = " + snapshotIndex);
-			if (snapshotIndex < Snapshots.Count)
+			//WeaverLog.Log("New Snapshot Index = " + snapshotIndex);
+			/*if (snapshotIndex < Snapshots.Count)
 			{
 				WeaverLog.Log("Snapshot Name = " + Snapshots[snapshotIndex].name);
-			}
+			}*/
 		}
 	}
 

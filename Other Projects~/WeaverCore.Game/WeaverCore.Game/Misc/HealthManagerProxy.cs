@@ -293,7 +293,7 @@ public class HealthManagerProxy : HealthManager
 		
 	}
 
-	private void WeaverHealth_OnHealthChangeEvent(int newHealth)
+	private void WeaverHealth_OnHealthChangeEvent(int oldHealth, int newHealth)
 	{
 		hp = newHealth;
 		previousHP = newHealth;

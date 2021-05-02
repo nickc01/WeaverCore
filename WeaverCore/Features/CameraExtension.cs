@@ -22,7 +22,7 @@ namespace WeaverCore.Features
 		{
 			get
 			{
-				return WeaverCamera.Instance.Shaker;
+				return CameraShaker.Instance;
 			}
 		}*/
 	}

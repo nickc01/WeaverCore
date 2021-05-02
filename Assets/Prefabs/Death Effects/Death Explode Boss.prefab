@@ -107,8 +107,8 @@ GameObject:
   - component: {fileID: 198028587477811890}
   - component: {fileID: 199712795089587354}
   - component: {fileID: 82089324135358488}
-  - component: {fileID: 114343460794680446}
   - component: {fileID: 114879431239339286}
+  - component: {fileID: 114283633774289286}
   m_Layer: 0
   m_Name: Death Explode Boss
   m_TagString: Untagged
@@ -313,7 +313,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1416157646699190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 71.36328, y: 8.754693, z: 0}
+  m_LocalPosition: {x: 93.63625, y: 6.813773, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4834560316024858}
@@ -497,7 +497,7 @@ MonoBehaviour:
   autoPlay: 1
   OnClipFinish: 1
   autoPlayClip: Impact Lines
---- !u!114 &114343460794680446
+--- !u!114 &114283633774289286
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -505,12 +505,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1416157646699190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e6d87344e60e34daba3cb1aa5b0ac4, type: 3}
+  m_Script: {fileID: 11500000, guid: 59d8b42d611ac1d499d321ebfb68299e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  channel: 2
-  poolComponent: {fileID: 0}
-  audioSource: {fileID: 82089324135358488}
+  DestroyBehaviour: 3
+  destroyAfterTime: 1
+  lifeTime: 10
 --- !u!114 &114414538701267084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -568,6 +568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyBehaviour: 1
+  destroyAfterTime: 0
+  lifeTime: 0
 --- !u!114 &114508527960579088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -664,7 +666,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1149483826
+  randomSeed: 981717932
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2607,7 +2609,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -349214895
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

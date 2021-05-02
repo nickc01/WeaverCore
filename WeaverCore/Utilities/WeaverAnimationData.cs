@@ -185,7 +185,7 @@ namespace WeaverCore.Utilities
 			var frameCount = clipFrameCounts[clipIndex];
 
 			//Debug.Log("Frames_A = " + clip.Frames);
-			Debug.Log("Frame Count = " + frameCount);
+			//Debug.Log("Frame Count = " + frameCount);
 
 			for (int i = frameStart; i < frameStart + frameCount; i++)
 			{

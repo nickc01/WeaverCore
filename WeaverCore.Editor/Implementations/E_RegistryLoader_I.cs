@@ -45,6 +45,7 @@ namespace WeaverCore.Editor.Implementations
 			{
 				string path = AssetDatabase.GUIDToAssetPath(guid);
 
+				Debug.Log("LOADING REGISTRY ITEM = " + path);
 				Registry registry = AssetDatabase.LoadAssetAtPath<Registry>(path);
 				//Debug.Log("Found Registry = " + registry.RegistryName);
 				registry.Initialize();

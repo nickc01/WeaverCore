@@ -585,16 +585,17 @@ namespace WeaverCore.Settings
 			{
 				return null;
 			}
-			HeaderAttribute headerAttribute;
-			SettingHeaderAttribute settingHeaderAttribute;
 
-			if (HasAttribute(member,out headerAttribute))
-			{
-				return headerAttribute.header;
-			}
-			else if (HasAttribute(member,out settingHeaderAttribute))
+			SettingHeaderAttribute settingHeaderAttribute;
+			HeaderAttribute headerAttribute;
+
+			if (HasAttribute(member, out settingHeaderAttribute))
 			{
 				return settingHeaderAttribute.HeaderText;
+			}
+			else if (HasAttribute(member, out headerAttribute))
+			{
+				return headerAttribute.header;
 			}
 			return null;
 		}
@@ -635,16 +636,17 @@ namespace WeaverCore.Settings
 		{
 			RangeAttribute rangeAttribute;
 			SettingRangeAttribute settingRangeAttribute;
-			if (HasAttribute(member,out rangeAttribute))
-			{
-				min = rangeAttribute.min;
-				max = rangeAttribute.max;
-				return true;
-			}
-			else if (HasAttribute(member,out settingRangeAttribute))
+			
+			if (HasAttribute(member, out settingRangeAttribute))
 			{
 				min = settingRangeAttribute.min;
 				max = settingRangeAttribute.max;
+				return true;
+			}
+			else if (HasAttribute(member, out rangeAttribute))
+			{
+				min = rangeAttribute.min;
+				max = rangeAttribute.max;
 				return true;
 			}
 			min = 0.0;

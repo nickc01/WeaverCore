@@ -41,19 +41,19 @@ namespace WeaverCore.Assets.Components
 			this.VanishBurst.gameObject.SetActive(true);
 			GameObject.Find("Dream Fall Catcher").SetActive(false);
 			GameObject gameObject = GameObject.Find("_GameCameras").transform.Find("HudCamera").Find("Blanker White").gameObject;
-			WeaverLog.Log("Blanker = " + gameObject);
+			//WeaverLog.Log("Blanker = " + gameObject);
 			if (gameObject == null)
 			{
 				throw new Exception("Error : Blanker not found");
 			}
-			WeaverLog.Log("Blanker Enabled = " + gameObject.activeInHierarchy);
-			WeaverLog.Log("Blanker Enabled Self = " + gameObject.activeSelf);
+			//WeaverLog.Log("Blanker Enabled = " + gameObject.activeInHierarchy);
+			//WeaverLog.Log("Blanker Enabled Self = " + gameObject.activeSelf);
 			if (PlayMakerUtilities.PlayMakerAvailable)
 			{
 				PlayMakerUtilities.SetFsmFloat(gameObject, "Blanker Control", "Fade Time", 0.9f);
 				WeaverEvents.SendEventToObject(gameObject, "FADE IN");
 				string @string = PlayerData.instance.GetString("dreamReturnScene");
-				WeaverLog.Log("Returning To Scene = " + @string);
+				//WeaverLog.Log("Returning To Scene = " + @string);
 				UnboundCoroutine.Start(EssenceEffects.ReturnToScene(@string));
 				return;
 			}

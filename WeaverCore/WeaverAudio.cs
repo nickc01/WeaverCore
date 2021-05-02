@@ -90,7 +90,7 @@ namespace WeaverCore
 			return audioObject;
 		}
 
-		/*public static void PlayReuse(WeaverAudioPlayer audioObject, AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound, bool autoPlay = true, bool deleteWhenDone = false)
+		/*public static void PlayReuse(AudioPlayer audioObject, AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound, bool autoPlay = true, bool deleteWhenDone = false)
 		{
 			if (Impl == null)
 			{

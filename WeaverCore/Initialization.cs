@@ -69,7 +69,7 @@ namespace WeaverCore
 				}
 			}
 
-			Debug.Log("Playing Game = " + Application.isPlaying);
+			//Debug.Log("Playing Game = " + Application.isPlaying);
 			if (!WeaverCoreRuntimeInitialized && Application.isPlaying)
 			{
 				WeaverCoreRuntimeInitialized = true;
@@ -119,7 +119,7 @@ namespace WeaverCore
 			return assembly;
 		}
 
-		[OnInit]
+		/*[OnInit]
 		static void InitTest()
 		{
 			Debug.Log("Init Test");
@@ -128,6 +128,6 @@ namespace WeaverCore
 		static void RuntimeInitTest()
 		{
 			Debug.Log("Runtime Init Test");
-		}
+		}*/
 	}
 }

@@ -19,7 +19,7 @@ namespace WeaverCore
 			{
 				if (_instance == null)
 				{
-					_instance = WeaverCamera.Instance.Shaker;
+					_instance = CameraShaker.Instance;
 				}
 				return _instance;
 			}

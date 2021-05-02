@@ -15,7 +15,7 @@ namespace WeaverCore.Assets
 		public static GameObject SlashGhost1Prefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Ghost 1"); } }
 		public static GameObject SlashGhost2Prefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Ghost 2"); } }
 		public static GameObject SlashImpactPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Impact"); } }
-		public static GameObject SpellHitPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Spell HIt"); } }
+		//public static GameObject SpellHitPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Spell HIt"); } }
 		public static GameObject UninfectedDeathPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Uninfected Death Pt"); } }
 		public static GameObject UninfectedHitPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Uninfected Hit Pt"); } }
 		public static GameObject BlockedHitPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Blocked Hit"); } }

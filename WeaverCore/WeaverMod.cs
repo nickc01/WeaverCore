@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using WeaverCore.Attributes;
@@ -13,10 +14,37 @@ namespace WeaverCore
 {
     public abstract class WeaverMod : Mod
     {
+#if UNITY_EDITOR
+        static List<IMod> _loadedMods = new List<IMod>();
+#else
+        static Type modLoaderType;
+        static FieldInfo loadedMods;
+#endif
+
+        public static IEnumerable<IMod> LoadedMods
+		{
+            get
+			{
+#if UNITY_EDITOR
+                return _loadedMods;
+#else
+				if (modLoaderType == null)
+				{
+                    modLoaderType = typeof(IMod).Assembly.GetType("Modding.ModLoader");
+                    loadedMods = modLoaderType.GetField("LoadedMods", BindingFlags.Public | BindingFlags.Static);
+                }
+                return (List<IMod>)loadedMods.GetValue(null);
+#endif
+            }
+		}
+
 
         //As soon as any WeaverCore mod loads, the init functions will be called
         protected WeaverMod()
 		{
+#if UNITY_EDITOR
+            _loadedMods.Add(this);
+#endif
             Initialization.Initialize();
 		}
 

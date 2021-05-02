@@ -74,16 +74,16 @@ namespace WeaverCore.Editor
 			{
 				foreach (var assetID in Selection.assetGUIDs)
 				{
-					WeaverLog.Log("AssetID = " + assetID);
-					WeaverLog.Log("AssetPath = " + AssetDatabase.GUIDToAssetPath(assetID));
+					//WeaverLog.Log("AssetID = " + assetID);
+					//WeaverLog.Log("AssetPath = " + AssetDatabase.GUIDToAssetPath(assetID));
 
 					var test = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(AssetDatabase.GUIDToAssetPath(assetID));
-					WeaverLog.Log("Asset Type = " + (test == null ? "null" : test.GetType().FullName));
+					//WeaverLog.Log("Asset Type = " + (test == null ? "null" : test.GetType().FullName));
 					var asset = AssetDatabase.LoadAssetAtPath<Texture2D>(AssetDatabase.GUIDToAssetPath(assetID));
-					WeaverLog.Log("Asset = " + asset);
+					//WeaverLog.Log("Asset = " + asset);
 					if (asset != null)
 					{
-						WeaverLog.Log("Adding Asset = " + asset);
+						//WeaverLog.Log("Adding Asset = " + asset);
 						TexturesToPack.Add(asset);
 					}
 				}

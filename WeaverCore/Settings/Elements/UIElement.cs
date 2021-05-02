@@ -155,6 +155,10 @@ namespace WeaverCore.Settings.Elements
 			{
 				return transform.GetSiblingIndex();
 			}
+			set
+			{
+				transform.SetSiblingIndex(value);
+			}
 		}
 
 		/// <summary>

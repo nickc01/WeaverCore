@@ -128,7 +128,7 @@ namespace WeaverCore
 			audioSource.Stop();
 		}
 
-		/*public static WeaverAudioPlayer Create(AudioClip clip = null, Vector3 position = default(Vector3))
+		/*public static AudioPlayer Create(AudioClip clip = null, Vector3 position = default(Vector3))
 		{
 			return Audio.Create(clip, position);
 		}*/

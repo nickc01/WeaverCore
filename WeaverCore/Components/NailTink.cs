@@ -20,6 +20,11 @@ public class NailTink : MonoBehaviour, IHittable
 
 	public bool Hit(HitInfo hit)
 	{
+		if (hit.AttackType != AttackType.Nail || hit.AttackType != AttackType.NailBeam)
+		{
+			return false;
+		}
+
 		if (healthManager == null)
 		{
 			healthManager = GetComponentInParent<EntityHealth>();
@@ -48,7 +53,7 @@ public class NailTink : MonoBehaviour, IHittable
 
 	IEnumerator HitRoutine(HitInfo hit)
 	{
-		WeaverLog.Log("NAIL TINK ATTACK DIRECTION = " + hit.Direction);
+		//WeaverLog.Log("NAIL TINK ATTACK DIRECTION = " + hit.Direction);
 		WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset3);
 		Player.Player1.EnterParryState();
 		CameraShaker.Instance.Shake(WeaverCore.Enums.ShakeType.EnemyKillShake);
@@ -77,7 +82,7 @@ public class NailTink : MonoBehaviour, IHittable
 			direction = CardinalDirection.Right;
 		}
 
-		WeaverLog.Log("TINK DIRECTION = " + direction);
+		//WeaverLog.Log("TINK DIRECTION = " + direction);
 
 		switch (direction)
 		{

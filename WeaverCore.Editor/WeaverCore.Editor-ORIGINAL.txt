@@ -5,8 +5,6 @@
         "HollowKnight",
         "WeaverBuildTools"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": []
 }

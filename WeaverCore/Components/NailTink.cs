@@ -20,7 +20,7 @@ public class NailTink : MonoBehaviour, IHittable
 
 	public bool Hit(HitInfo hit)
 	{
-		if (hit.AttackType != AttackType.Nail || hit.AttackType != AttackType.NailBeam)
+		if (!(hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam))
 		{
 			return false;
 		}

@@ -322,6 +322,8 @@ namespace WeaverCore.Settings
 					var name = settings != null && settings.DisplayName != null ? settings.DisplayName : StringUtilities.Prettify(member.Name);
 					var description = GetDescriptionOfMember(member);
 					AddMember(panel, member, name, description);
+					//var instance = AddMember(panel, member, name, description);
+					//instance.Visible = ShouldBeEnabled(settings.IsEnabled);
 				}
 			}
 
@@ -431,7 +433,8 @@ namespace WeaverCore.Settings
 				var field = (FieldInfo)memberInfo;
 				if (hasAttribute)
 				{
-					return ShouldBeVisible(attribute.Visibility);
+					return ShouldBeEnabled(attribute.IsEnabled);
+					//return true;
 				}
 				else if ((field.IsPublic || (field.IsPrivate && field.IsDefined(typeof(SerializeField), false) && !field.IsDefined(typeof(HideInInspector),false))) && !field.IsStatic && !field.IsDefined(typeof(NonSerializedAttribute), false))
 				{
@@ -445,11 +448,12 @@ namespace WeaverCore.Settings
 			else if (memberInfo is PropertyInfo)
 			{
 				var property = (PropertyInfo)memberInfo;
-				return property.GetGetMethod(true) != null && property.GetSetMethod(true) != null && hasAttribute && ShouldBeVisible(attribute.Visibility);
+				return property.GetGetMethod(true) != null && property.GetSetMethod(true) != null && hasAttribute && ShouldBeEnabled(attribute.IsEnabled);
 			}
 			else if (memberInfo is MethodInfo)
 			{
-				return hasAttribute && ShouldBeVisible(attribute.Visibility);
+				//return hasAttribute;
+				return hasAttribute && ShouldBeEnabled(attribute.IsEnabled);
 			}
 
 			return false;
@@ -665,13 +669,13 @@ namespace WeaverCore.Settings
 			}
 		}
 
-		public static bool ShouldBeVisible(Visibility visibility)
+		public static bool ShouldBeEnabled(EnabledType visibility)
 		{
-			if (InPauseMenu && (visibility & Visibility.PauseOnly) == Visibility.PauseOnly)
+			if (InPauseMenu && (visibility & EnabledType.PauseOnly) == EnabledType.PauseOnly)
 			{
 				return true;
 			}
-			else if (!InPauseMenu && (visibility & Visibility.MenuOnly) == Visibility.MenuOnly)
+			else if (!InPauseMenu && (visibility & EnabledType.MenuOnly) == EnabledType.MenuOnly)
 			{
 				return true;
 			}

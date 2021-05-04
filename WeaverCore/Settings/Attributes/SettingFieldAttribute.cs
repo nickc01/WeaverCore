@@ -13,20 +13,20 @@ namespace WeaverCore.Settings
 	public sealed class SettingFieldAttribute : Attribute
 	{
 		/// <summary>
-		/// How the field should be shown
+		/// Whether the field should be enabled and in what circumstances
 		/// </summary>
-		public Visibility Visibility { get; private set; }
+		public EnabledType IsEnabled { get; private set; }
 
 		public string DisplayName { get; private set; }
 
 		/// <summary>
 		/// Applied to a field, property, or function to determine whether it should be shown in the settings menu
 		/// </summary>
-		/// <param name="visibility">Determines in what scenario should the field be visible in</param>
+		/// <param name="enabled">Determines in what scenario should the field be visible in</param>
 		/// <param name="displayName">The display name of the field, property, or function</param>
-		public SettingFieldAttribute(Visibility visibility = Visibility.Both, string displayName = null)
+		public SettingFieldAttribute(EnabledType enabled = EnabledType.Both, string displayName = null)
 		{
-			Visibility = visibility;
+			IsEnabled = enabled;
 		}
 	}
 }

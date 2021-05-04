@@ -9,7 +9,7 @@ namespace WeaverCore.Settings
 	/// Applied to a UI Element to determine whether it's visible in certain conditions
 	/// </summary>
 	[Flags]
-	public enum Visibility
+	public enum EnabledType
 	{
 		/// <summary>
 		/// Element is never visible

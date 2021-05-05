@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TMPro;
 using WeaverCore.Attributes;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
@@ -63,20 +64,32 @@ namespace WeaverCore.Game.Implementations
 			}
 		}
 
+		public override string GeoText
+		{
+			get
+			{
+				return counter.geoTextMesh.text;
+			}
+			set
+			{
+				counter.geoTextMesh.text = value;
+			}
+		}
+
 		//NOTE: THIS IS VISUAL ONLY, THIS DOES NOT APPLY TO THE PLAYER, ONLY THE DISPLAY
-		public override void AddGeo(int geo)
+		public override void AddGeoToDisplay(int geo)
 		{
 			counter.AddGeo(geo);
 		}
 
 		//NOTE: THIS IS VISUAL ONLY, THIS DOES NOT APPLY TO THE PLAYER, ONLY THE DISPLAY
-		public override void TakeGeo(int geo)
+		public override void TakeGeoFromDisplay(int geo)
 		{
 			counter.TakeGeo(geo);
 		}
 
 		//NOTE: THIS IS VISUAL ONLY, THIS DOES NOT APPLY TO THE PLAYER, ONLY THE DISPLAY
-		public override void ToZero()
+		public override void SetDisplayToZero()
 		{
 			counter.ToZero();
 		}

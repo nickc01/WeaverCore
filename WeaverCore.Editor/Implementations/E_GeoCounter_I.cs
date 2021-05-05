@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using WeaverCore.Editor.Utilities;
@@ -12,7 +13,7 @@ namespace WeaverCore.Editor.Implementations
 	public class E_GeoCounter_I : GeoCounter
 	{
 		[SerializeField]
-		Text GeoText;
+		TextMeshProUGUI textComponent;
 
 		int currentGeo = 0;
 
@@ -24,10 +25,14 @@ namespace WeaverCore.Editor.Implementations
 			{
 				if (editorCounter == null)
 				{
-					var counterPrefab = EditorAssets.LoadEditorAsset<GameObject>("Geo Counter").GetComponent<E_GeoCounter_I>();
+					editorCounter = GameObject.FindObjectOfType<E_GeoCounter_I>();
+					if (editorCounter == null)
+					{
+						var counterPrefab = EditorAssets.LoadEditorAsset<GameObject>("Geo Counter").GetComponent<E_GeoCounter_I>();
 
 
-					editorCounter = GameObject.Instantiate(counterPrefab, WeaverCanvas.Content);
+						editorCounter = GameObject.Instantiate(counterPrefab, WeaverCanvas.Content);
+					}
 				}
 				return editorCounter;
 			}
@@ -36,7 +41,7 @@ namespace WeaverCore.Editor.Implementations
 		void Awake()
 		{
 			editorCounter = this;
-			GeoText.text = "Geo : " + currentGeo;
+			textComponent.text = "Geo : " + currentGeo;
 		}
 
 		public override int Geo
@@ -55,26 +60,39 @@ namespace WeaverCore.Editor.Implementations
 			}
 		}
 
-		public override void AddGeo(int geo)
+		public override string GeoText
 		{
-			currentGeo += geo;
-			GeoText.text = "Geo : " + currentGeo;
+			get
+			{
+				return textComponent.text;
+			}
+
+			set
+			{
+				textComponent.text = value;
+			}
 		}
 
-		public override void TakeGeo(int geo)
+		public override void AddGeoToDisplay(int geo)
+		{
+			currentGeo += geo;
+			textComponent.text = "Geo : " + currentGeo;
+		}
+
+		public override void TakeGeoFromDisplay(int geo)
 		{
 			currentGeo -= geo;
 			if (currentGeo < 0)
 			{
 				currentGeo = 0;
 			}
-			GeoText.text = "Geo : " + currentGeo;
+			textComponent.text = "Geo : " + currentGeo;
 		}
 
-		public override void ToZero()
+		public override void SetDisplayToZero()
 		{
 			currentGeo = 0;
-			GeoText.text = "Geo : " + currentGeo;
+			textComponent.text = "Geo : " + currentGeo;
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEditor;
+using UnityEngine;
 
 namespace WeaverCore.Editor.Utilities
 {
@@ -10,11 +11,11 @@ namespace WeaverCore.Editor.Utilities
 	{
 		public static T LoadEditorAsset<T>(string name) where T : UnityEngine.Object
 		{
-			var assetPaths = AssetDatabase.FindAssets(name);
+			var assetIDs = AssetDatabase.FindAssets(name);
 
-			for (int i = 0; i < assetPaths.GetLength(0); i++)
+			for (int i = 0; i < assetIDs.GetLength(0); i++)
 			{
-				var path = assetPaths[i];
+				var path = AssetDatabase.GUIDToAssetPath(assetIDs[i]);
 				if (path.Contains("WeaverCore.Editor"))
 				{
 					var asset = AssetDatabase.LoadAssetAtPath<T>(path);

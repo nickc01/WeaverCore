@@ -40,6 +40,22 @@ namespace WeaverCore.Settings
 		}
 
 		/// <summary>
+		/// Called when the panel gets registered with the Settings Menu
+		/// </summary>
+		internal protected virtual void OnRegister()
+		{
+
+		}
+
+		/// <summary>
+		/// Called when the panel gets unregistered from the settings menu
+		/// </summary>
+		internal protected virtual void OnUnRegister()
+		{
+
+		}
+
+		/// <summary>
 		/// The name of the tab. Tabs are the buttons on the top row that are used to select the panel in the weaver settings
 		/// </summary>
 		public virtual string TabName

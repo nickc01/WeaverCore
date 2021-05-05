@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
@@ -30,12 +31,15 @@ namespace WeaverCore.Implementations
 		}
 
 		//NOTE: THIS IS VISUAL ONLY, THIS DOES NOT APPLY TO THE PLAYER, ONLY THE DISPLAY
-		public abstract void AddGeo(int geo);
+		public abstract void AddGeoToDisplay(int geo);
 		//NOTE: THIS IS VISUAL ONLY, THIS DOES NOT APPLY TO THE PLAYER, ONLY THE DISPLAY
-		public abstract void TakeGeo(int geo);
+		public abstract void TakeGeoFromDisplay(int geo);
 		//NOTE: THIS IS VISUAL ONLY, THIS DOES NOT APPLY TO THE PLAYER, ONLY THE DISPLAY
-		public abstract void ToZero();
+		public abstract void SetDisplayToZero();
 		public abstract int Geo { get; }
 		public abstract bool CurrentlyTakingGeo { get; }
+		//public abstract TMP_Text GeoTextInterface { get; }
+
+		public abstract string GeoText { get; set; }
 	}
 }

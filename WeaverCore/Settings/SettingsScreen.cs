@@ -167,6 +167,10 @@ namespace WeaverCore.Settings
 		{
 			if (Instance != null)
 			{
+				foreach (var panel in Panels)
+				{
+					panel.SaveSettings();
+				}
 				GameObject.Destroy(Instance.gameObject);
 				Instance = null;
 			}
@@ -205,6 +209,7 @@ namespace WeaverCore.Settings
 			{
 				Instance.RebuildInterface();
 			}
+			panel.OnRegister();
 		}
 
 		/// <summary>
@@ -213,6 +218,7 @@ namespace WeaverCore.Settings
 		/// <param name="panel">The panel to unregister</param>
 		public static void UnRegisterPanel(Panel panel)
 		{
+			panel.OnUnRegister();
 			if (!_panels.Contains(panel))
 			{
 				throw new Exception("The panel [ " + panel.GetType().FullName + " ] is not registered to the settings screen");

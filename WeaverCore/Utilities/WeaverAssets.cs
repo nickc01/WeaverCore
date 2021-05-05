@@ -37,5 +37,15 @@ namespace WeaverCore.Utilities
 
 			return Impl.LoadAsset<T>(name);
 		}
+
+		public static IEnumerable<string> AllBundles()
+		{
+			return Impl.AllAssetBundles;
+		}
+
+		public static T LoadAssetFromBundle<T>(string bundleName, string name) where T : UnityEngine.Object
+		{
+			return Impl.LoadAssetFromBundle<T>(bundleName, name);
+		}
 	}
 }

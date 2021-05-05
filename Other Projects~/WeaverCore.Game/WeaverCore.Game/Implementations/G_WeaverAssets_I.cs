@@ -14,6 +14,16 @@ namespace WeaverCore.Game.Implementations
 	{
 		static AssetBundle weaverAssetBundle;
 
+		public override IEnumerable<string> AllAssetBundles
+		{
+			get
+			{
+				foreach (var bundle in AssetBundle.GetAllLoadedAssetBundles())
+				{
+					yield return bundle.name;
+				}
+			}
+		}
 
 		public override void Initialize()
 		{
@@ -82,6 +92,39 @@ namespace WeaverCore.Game.Implementations
 			}
 			LoadRegistries(weaverAssetBundle);
 
+		}
+
+		public override T LoadAssetFromBundle<T>(string bundleName, string name)
+		{
+			foreach (var bundle in AssetBundle.GetAllLoadedAssetBundles())
+			{
+				//WeaverLog.Log("LOAD FROM BUNDLE TEST = " + bundle.name);
+				if (bundle.name.Contains(bundleName))
+				{
+					//WeaverLog.Log("Searching into bundle = " + bundle.name);
+					return LoadAssetFromBundle<T>(bundle, name);
+				}
+			}
+			return default(T);
+		}
+
+		public T LoadAssetFromBundle<T>(AssetBundle bundleName, string name) where T : UnityEngine.Object
+		{
+			var lowerName = name.ToLower();
+			var assets = bundleName.GetAllAssetNames();
+			/*foreach (var _asset in assets)
+			{
+				WeaverLog.Log("Found Asset = " + _asset);
+			}*/
+			var asset = assets.FirstOrDefault(a => a.Contains(lowerName));
+			//WeaverLog.Log("Found Asset = " + asset);
+			if (asset != null)
+			{
+				var instance = bundleName.LoadAsset<T>(asset);
+				//WeaverLog.Log("Asset Instance = " + instance);
+				return instance;
+			}
+			return default(T);
 		}
 	}
 }

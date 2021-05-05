@@ -10,6 +10,14 @@ namespace WeaverCore.Editor.Implementations
 {
 	public class E_WeaverAssets_I : WeaverAssets_I
 	{
+		public override IEnumerable<string> AllAssetBundles
+		{
+			get
+			{
+				return AssetDatabase.GetAllAssetBundleNames();
+			}
+		}
+
 		public override void Initialize()
 		{
 			
@@ -31,6 +39,27 @@ namespace WeaverCore.Editor.Implementations
 			}
 
 			return null;
+		}
+
+		public override T LoadAssetFromBundle<T>(string bundleName, string name)
+		{
+			var ids = AssetDatabase.FindAssets(name);
+
+			for (int i = 0; i < ids.GetLength(0); i++)
+			{
+				var path = AssetDatabase.GUIDToAssetPath(ids[i]);
+				var importer = AssetImporter.GetAtPath(path);
+				if (importer.assetBundleName.Contains(bundleName))
+				{
+					var asset = AssetDatabase.LoadAssetAtPath<T>(path);
+					if (asset != null)
+					{
+						return asset;
+					}
+				}
+			}
+
+			return default(T);
 		}
 	}
 }

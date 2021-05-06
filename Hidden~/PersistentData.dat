@@ -1,0 +1,9 @@
+{
+    "Objects": [
+        {
+            "Key": "WeaverCore.Editor.Compilation.BuildTools+TestClass_typeKey_",
+            "Data": "{\"testInt\":123,\"testFloat\":18.383323669433595}",
+            "UsageCounter": -1
+        }
+    ]
+}

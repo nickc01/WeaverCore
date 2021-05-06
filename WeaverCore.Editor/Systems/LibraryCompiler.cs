@@ -49,14 +49,14 @@ namespace WeaverCore.Editor.Systems
 			}
 		}
 
-		[OnInit]
+		/*[OnInit]
 		static void Init()
 		{
 			if (WeaverReloadTools.DoReloadTools)
 			{
 				BuildStrippedWeaverCore();
 			}
-		}
+		}*/
 
 
 

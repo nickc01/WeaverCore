@@ -61,22 +61,30 @@ namespace WeaverCore.Editor.Compilation
 		/// <returns>The output file</returns>
 		public static IAsyncBuildTask<BuildOutput> BuildPartialWeaverCore(FileInfo outputPath)
 		{
+			Debug.LogError("B");
 			var task = new BuildTask<BuildOutput>();
+			Debug.LogError("C");
 			UnboundCoroutine.Start(BuildPartialWeaverCoreRoutine(outputPath,task));
+			Debug.LogError("D");
 			return task;
 		}
 
 		static IEnumerator BuildPartialWeaverCoreRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
 		{
+			Debug.LogError("E");
 			task.Result = new BuildOutput();
 			var buildDirectory = outputPath.Directory;
 			var hkFile = new FileInfo(buildDirectory.FullName + "Assembly-CSharp.dll");
+			Debug.LogError("F");
 			var hkBuildTask = BuildHollowKnightAsm(hkFile);
+			Debug.LogError("R");
 			yield return new WaitUntil(() => hkBuildTask.Completed);
+			Debug.LogError("S");
 			task.Result.Success = hkBuildTask.Result.Success;
 			task.Result.OutputFiles = hkBuildTask.Result.OutputFiles;
 			if (!hkBuildTask.Result.Success)
 			{
+				Debug.LogError("T");
 				task.Completed = true;
 				yield break;
 			}
@@ -90,7 +98,7 @@ namespace WeaverCore.Editor.Compilation
 				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/Mono.Cecil.dll");
 				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/JUNK.dll");
 			 */
-
+			Debug.LogError("U");
 			yield return BuildAssembly(new BuildParameters
 			{
 				BuildPath = outputPath,
@@ -115,6 +123,7 @@ namespace WeaverCore.Editor.Compilation
 				},
 				Scripts = ScriptFinder.FindAssemblyScripts("WeaverCore")
 			},task);
+			Debug.LogError("V");
 			Debug.Log("PARTIAL WEAVERCORE COMPLETE");
 		}
 
@@ -125,8 +134,11 @@ namespace WeaverCore.Editor.Compilation
 		/// <returns></returns>
 		public static IAsyncBuildTask<BuildOutput> BuildHollowKnightAsm(FileInfo outputPath)
 		{
+			Debug.LogError("G");
 			var task = new BuildTask<BuildOutput>();
+			Debug.LogError("H");
 			UnboundCoroutine.Start(BuildHollowKnightAsmRoutine(outputPath, task));
+			Debug.LogError("I");
 			return task;
 		}
 
@@ -143,7 +155,7 @@ namespace WeaverCore.Editor.Compilation
 
 
 			//yield return builder.Build(output);
-
+			Debug.LogError("J");
 			yield return BuildAssembly(new BuildParameters
 			{
 				BuildPath = outputPath,
@@ -158,6 +170,7 @@ namespace WeaverCore.Editor.Compilation
 					"Library/ScriptAssemblies/JUNK.dll"
 				}
 			}, task);
+			Debug.LogError("K");
 			Debug.Log("HK BUILD COMPLETE");
 		}
 
@@ -168,6 +181,7 @@ namespace WeaverCore.Editor.Compilation
 
 		static IEnumerator BuildAssembly(BuildParameters parameters, BuildTask<BuildOutput> task)
 		{
+			Debug.LogError("L");
 			task.Result = new BuildOutput();
 			var builder = new AssemblyCompiler();
 			builder.BuildDirectory = parameters.BuildDirectory;
@@ -188,23 +202,34 @@ namespace WeaverCore.Editor.Compilation
 				parameters.BuildPath.Delete();
 			}
 
+			Debug.LogError("M");
 			AssemblyCompiler.OutputDetails output = new AssemblyCompiler.OutputDetails();
+			Debug.LogError("N");
 			yield return builder.Build(output);
+			Debug.LogError("O");
 			if (output.Success)
 			{
+				Debug.LogError("P");
 				task.Result.OutputFiles.Add(parameters.BuildPath);
 			}
+			Debug.LogError("Q");
 			task.Result.Success = output.Success;
 			task.Completed = true;
 		}
 
+
 		[OnInit]
 		static void Init()
 		{
-			BuildTask<BuildOutput> test = new BuildTask<BuildOutput>();
-			Debug.Log("Starting WeaverCore Build");
+
+			Debug.LogError("A");
+
+			Debug.LogError("B");
+			//BuildPartialWeaverCore(new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll"));
+			//BuildTask<BuildOutput> test = new BuildTask<BuildOutput>();
+			//Debug.Log("Starting WeaverCore Build");
 			//Debug.Log("Unity Version = " + Application.unityVersion);
-			UnboundCoroutine.Start(BuildPartialWeaverCoreRoutine(new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll"), test));
+			//UnboundCoroutine.Start(BuildPartialWeaverCoreRoutine(new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll"), test));
 		}
 	}
 }

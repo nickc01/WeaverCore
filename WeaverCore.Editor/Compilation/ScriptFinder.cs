@@ -16,6 +16,16 @@ namespace WeaverCore.Editor.Compilation
 		public string AssemblyDefinitionPath;
 		public string AssemblyGUID;
 		public List<string> ScriptPaths;
+
+		public void Load()
+		{
+			Definition = AssemblyDefinitionFile.Load(AssemblyDefinitionPath);
+		}
+
+		public void Save()
+		{
+			AssemblyDefinitionFile.Save(AssemblyDefinitionPath, Definition);
+		}
 	}
 
 	public static class ScriptFinder

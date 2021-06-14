@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -15,10 +16,9 @@ MonoBehaviour:
   modName: Weaver Core
   modAssemblyName: WeaverCore
   modTypeName: WeaverCore.Internal.WeaverCore
-  modListHashCode: 221756259
+  modListHashCode: -31660705
   features: []
   featuresRaw:
-  - {fileID: 114445947651014498, guid: 1cfa4ed7eca401f45879d719ad3e3e5a, type: 2}
+  - {fileID: 114445947651014498, guid: 1cfa4ed7eca401f45879d719ad3e3e5a, type: 3}
   selectedFeatureIndex: 0
-  selectedModIndex: 1
   registryEnabled: 1

@@ -1,81 +1,228 @@
 fileFormatVersion: 2
 guid: 8616ead30591cb24f8ba3a7ebfd73542
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: power_blast0000
-    21300002: scream_effect0000
-    21300004: power_blast0001
-    21300006: scream_effect0001
-    21300008: scream_effect0002
-    21300010: power_blast0002
-    21300012: scream_effect0003
-    21300014: power_blast0003
-    21300016: scream_effect0004
-    21300018: power_blast0004
-    21300022: scream_effect0005
-    21300026: scream_effect0006
-    21300028: scream_effect0007
-    21300030: power_blast0005
-    21300032: scream_effect0008
-    21300034: power_blast0006
-    21300036: power_blast0007
-    21300038: scream_effect0009
-    21300040: scream_effect0010
-    21300042: scream_effect0011
-    21300044: double_jump_wings0000
-    21300046: double_jump_wings0001
-    21300048: double_jump_wings0002
-    21300050: double_jump_wings0003
-    21300052: double_jump_wings0004
-    21300054: double_jump_wings0005
-    21300056: scream_effect0012
-    21300058: slash_effect0005
-    21300060: slash_effect0006
-    21300062: slash_effect0007
-    21300064: slash_effect0008
-    21300066: slash_effect0009
-    21300068: slash_effect0010
-    21300070: slash_effect0011
-    21300072: slash_effect0012
-    21300074: slash_effect0013
-    21300076: slash_effect0014
-    21300078: slash_effect0015
-    21300080: slash_effect0016
-    21300082: slash_effect0017
-    21300084: slash_effect0018
-    21300086: slash_effect0019
-    21300088: slash_effect0020
-    21300090: dream_nail_impact0000
-    21300092: dream_nail_impact0001
-    21300094: dream_nail_impact0002
-    21300096: dream_nail_impact0003
-    21300098: dream_nail_impact0004
-    21300100: dream_nail_impact0005
-    21300102: Knight_Dream_Gate_Create_Blade0003
-    21300104: Knight_Dream_Gate_Create_Blade0002
-    21300106: Knight_Dream_Gate_Create_Blade0004
-    21300108: tele_charge_new0004
-    21300110: Knight_Dream_Gate_Create_Blade0000
-    21300112: Knight_Dream_Gate_Create_Blade0005
-    21300114: Knight_Dream_Gate_Create_Blade0001
-    21300116: tele_charge_new0002
-    21300118: Knight_Dream_Gate_enter_blade0006
-    21300120: Knight_Dream_Gate_enter_blade0010
-    21300122: Knight_Dream_Gate_enter_blade0011
-    21300124: Knight_Dream_Gate_enter_blade0005
-    21300126: Knight_Dream_Gate_enter_blade0000
-    21300128: Knight_Dream_Gate_enter_blade0004
-    21300130: Knight_Dream_Gate_enter_blade0002
-    21300132: Knight_Dream_Gate_enter_blade0003
-    21300134: Knight_Dream_Gate_enter_blade0001
-    21300136: Knight_Dream_Gate_enter_blade0008
-    21300138: Knight_Dream_Gate_enter_blade0009
-    21300140: Knight_Dream_Gate_enter_blade0007
-    21300142: tele_charge_new0003
-    21300144: tele_charge_new0000
-    21300146: tele_charge_new0001
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: power_blast0000
+  - first:
+      213: 21300002
+    second: scream_effect0000
+  - first:
+      213: 21300004
+    second: power_blast0001
+  - first:
+      213: 21300006
+    second: scream_effect0001
+  - first:
+      213: 21300008
+    second: scream_effect0002
+  - first:
+      213: 21300010
+    second: power_blast0002
+  - first:
+      213: 21300012
+    second: scream_effect0003
+  - first:
+      213: 21300014
+    second: power_blast0003
+  - first:
+      213: 21300016
+    second: scream_effect0004
+  - first:
+      213: 21300018
+    second: power_blast0004
+  - first:
+      213: 21300022
+    second: scream_effect0005
+  - first:
+      213: 21300026
+    second: scream_effect0006
+  - first:
+      213: 21300028
+    second: scream_effect0007
+  - first:
+      213: 21300030
+    second: power_blast0005
+  - first:
+      213: 21300032
+    second: scream_effect0008
+  - first:
+      213: 21300034
+    second: power_blast0006
+  - first:
+      213: 21300036
+    second: power_blast0007
+  - first:
+      213: 21300038
+    second: scream_effect0009
+  - first:
+      213: 21300040
+    second: scream_effect0010
+  - first:
+      213: 21300042
+    second: scream_effect0011
+  - first:
+      213: 21300044
+    second: double_jump_wings0000
+  - first:
+      213: 21300046
+    second: double_jump_wings0001
+  - first:
+      213: 21300048
+    second: double_jump_wings0002
+  - first:
+      213: 21300050
+    second: double_jump_wings0003
+  - first:
+      213: 21300052
+    second: double_jump_wings0004
+  - first:
+      213: 21300054
+    second: double_jump_wings0005
+  - first:
+      213: 21300056
+    second: scream_effect0012
+  - first:
+      213: 21300058
+    second: slash_effect0005
+  - first:
+      213: 21300060
+    second: slash_effect0006
+  - first:
+      213: 21300062
+    second: slash_effect0007
+  - first:
+      213: 21300064
+    second: slash_effect0008
+  - first:
+      213: 21300066
+    second: slash_effect0009
+  - first:
+      213: 21300068
+    second: slash_effect0010
+  - first:
+      213: 21300070
+    second: slash_effect0011
+  - first:
+      213: 21300072
+    second: slash_effect0012
+  - first:
+      213: 21300074
+    second: slash_effect0013
+  - first:
+      213: 21300076
+    second: slash_effect0014
+  - first:
+      213: 21300078
+    second: slash_effect0015
+  - first:
+      213: 21300080
+    second: slash_effect0016
+  - first:
+      213: 21300082
+    second: slash_effect0017
+  - first:
+      213: 21300084
+    second: slash_effect0018
+  - first:
+      213: 21300086
+    second: slash_effect0019
+  - first:
+      213: 21300088
+    second: slash_effect0020
+  - first:
+      213: 21300090
+    second: dream_nail_impact0000
+  - first:
+      213: 21300092
+    second: dream_nail_impact0001
+  - first:
+      213: 21300094
+    second: dream_nail_impact0002
+  - first:
+      213: 21300096
+    second: dream_nail_impact0003
+  - first:
+      213: 21300098
+    second: dream_nail_impact0004
+  - first:
+      213: 21300100
+    second: dream_nail_impact0005
+  - first:
+      213: 21300102
+    second: Knight_Dream_Gate_Create_Blade0003
+  - first:
+      213: 21300104
+    second: Knight_Dream_Gate_Create_Blade0002
+  - first:
+      213: 21300106
+    second: Knight_Dream_Gate_Create_Blade0004
+  - first:
+      213: 21300108
+    second: tele_charge_new0004
+  - first:
+      213: 21300110
+    second: Knight_Dream_Gate_Create_Blade0000
+  - first:
+      213: 21300112
+    second: Knight_Dream_Gate_Create_Blade0005
+  - first:
+      213: 21300114
+    second: Knight_Dream_Gate_Create_Blade0001
+  - first:
+      213: 21300116
+    second: tele_charge_new0002
+  - first:
+      213: 21300118
+    second: Knight_Dream_Gate_enter_blade0006
+  - first:
+      213: 21300120
+    second: Knight_Dream_Gate_enter_blade0010
+  - first:
+      213: 21300122
+    second: Knight_Dream_Gate_enter_blade0011
+  - first:
+      213: 21300124
+    second: Knight_Dream_Gate_enter_blade0005
+  - first:
+      213: 21300126
+    second: Knight_Dream_Gate_enter_blade0000
+  - first:
+      213: 21300128
+    second: Knight_Dream_Gate_enter_blade0004
+  - first:
+      213: 21300130
+    second: Knight_Dream_Gate_enter_blade0002
+  - first:
+      213: 21300132
+    second: Knight_Dream_Gate_enter_blade0003
+  - first:
+      213: 21300134
+    second: Knight_Dream_Gate_enter_blade0001
+  - first:
+      213: 21300136
+    second: Knight_Dream_Gate_enter_blade0008
+  - first:
+      213: 21300138
+    second: Knight_Dream_Gate_enter_blade0009
+  - first:
+      213: 21300140
+    second: Knight_Dream_Gate_enter_blade0007
+  - first:
+      213: 21300142
+    second: tele_charge_new0003
+  - first:
+      213: 21300144
+    second: tele_charge_new0000
+  - first:
+      213: 21300146
+    second: tele_charge_new0001
+  - first:
+      213: 2877471580529523173
+    second: 
   externalObjects: {}
-  serializedVersion: 4
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -93,6 +240,9 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -103,7 +253,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -123,11 +273,17 @@ TextureImporter:
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -137,7 +293,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Standalone
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -147,7 +305,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: iPhone
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -157,7 +317,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Android
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -167,7 +329,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Windows Store Apps
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -177,7 +341,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: WebGL
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -187,6 +353,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -204,6 +371,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0000
       rect:
@@ -218,6 +392,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: power_blast0001
       rect:
@@ -232,6 +413,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0001
       rect:
@@ -246,6 +434,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0002
       rect:
@@ -260,6 +455,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: power_blast0002
       rect:
@@ -274,6 +476,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0003
       rect:
@@ -288,6 +497,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: power_blast0003
       rect:
@@ -302,6 +518,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0004
       rect:
@@ -316,6 +539,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: power_blast0004
       rect:
@@ -330,6 +560,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -344,6 +581,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0005
       rect:
@@ -358,6 +602,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -372,6 +623,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0006
       rect:
@@ -386,6 +644,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0007
       rect:
@@ -400,6 +665,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: power_blast0005
       rect:
@@ -414,6 +686,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0008
       rect:
@@ -428,6 +707,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: power_blast0006
       rect:
@@ -442,6 +728,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: power_blast0007
       rect:
@@ -456,6 +749,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0009
       rect:
@@ -470,6 +770,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0010
       rect:
@@ -484,6 +791,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0011
       rect:
@@ -498,6 +812,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: double_jump_wings0000
       rect:
@@ -512,6 +833,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: double_jump_wings0001
       rect:
@@ -526,6 +854,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: double_jump_wings0002
       rect:
@@ -540,6 +875,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: double_jump_wings0003
       rect:
@@ -554,6 +896,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: double_jump_wings0004
       rect:
@@ -568,6 +917,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: double_jump_wings0005
       rect:
@@ -582,6 +938,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scream_effect0012
       rect:
@@ -596,6 +959,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0005
       rect:
@@ -610,6 +980,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0006
       rect:
@@ -624,6 +1001,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0007
       rect:
@@ -638,6 +1022,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0008
       rect:
@@ -652,6 +1043,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0009
       rect:
@@ -666,6 +1064,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0010
       rect:
@@ -680,6 +1085,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0011
       rect:
@@ -694,6 +1106,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0012
       rect:
@@ -708,6 +1127,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0013
       rect:
@@ -722,6 +1148,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0014
       rect:
@@ -736,6 +1169,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0015
       rect:
@@ -750,6 +1190,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0016
       rect:
@@ -764,6 +1211,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0017
       rect:
@@ -778,6 +1232,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0018
       rect:
@@ -792,6 +1253,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0019
       rect:
@@ -806,6 +1274,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: slash_effect0020
       rect:
@@ -820,6 +1295,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: dream_nail_impact0000
       rect:
@@ -834,6 +1316,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: dream_nail_impact0001
       rect:
@@ -848,6 +1337,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: dream_nail_impact0002
       rect:
@@ -862,6 +1358,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: dream_nail_impact0003
       rect:
@@ -876,6 +1379,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: dream_nail_impact0004
       rect:
@@ -890,6 +1400,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: dream_nail_impact0005
       rect:
@@ -904,6 +1421,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create_Blade0003
       rect:
@@ -918,6 +1442,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create_Blade0002
       rect:
@@ -932,6 +1463,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 88305410000000000800000000000000
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create_Blade0004
       rect:
@@ -946,6 +1484,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a8305410000000000800000000000000
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: tele_charge_new0004
       rect:
@@ -960,6 +1505,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c8305410000000000800000000000000
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create_Blade0000
       rect:
@@ -974,6 +1526,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e8305410000000000800000000000000
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create_Blade0005
       rect:
@@ -988,6 +1547,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 09305410000000000800000000000000
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create_Blade0001
       rect:
@@ -1002,6 +1568,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 29305410000000000800000000000000
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: tele_charge_new0002
       rect:
@@ -1016,6 +1589,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 49305410000000000800000000000000
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0006
       rect:
@@ -1030,6 +1610,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 69305410000000000800000000000000
+      internalID: 21300118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0010
       rect:
@@ -1044,6 +1631,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 89305410000000000800000000000000
+      internalID: 21300120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0011
       rect:
@@ -1058,6 +1652,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a9305410000000000800000000000000
+      internalID: 21300122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0005
       rect:
@@ -1072,6 +1673,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c9305410000000000800000000000000
+      internalID: 21300124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0000
       rect:
@@ -1086,6 +1694,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e9305410000000000800000000000000
+      internalID: 21300126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0004
       rect:
@@ -1100,6 +1715,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 0a305410000000000800000000000000
+      internalID: 21300128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0002
       rect:
@@ -1114,6 +1736,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 2a305410000000000800000000000000
+      internalID: 21300130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0003
       rect:
@@ -1128,6 +1757,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 4a305410000000000800000000000000
+      internalID: 21300132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0001
       rect:
@@ -1142,6 +1778,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 6a305410000000000800000000000000
+      internalID: 21300134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0008
       rect:
@@ -1156,6 +1799,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 8a305410000000000800000000000000
+      internalID: 21300136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0009
       rect:
@@ -1170,6 +1820,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: aa305410000000000800000000000000
+      internalID: 21300138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_enter_blade0007
       rect:
@@ -1184,6 +1841,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: ca305410000000000800000000000000
+      internalID: 21300140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: tele_charge_new0003
       rect:
@@ -1198,6 +1862,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: ea305410000000000800000000000000
+      internalID: 21300142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: tele_charge_new0000
       rect:
@@ -1212,6 +1883,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 0b305410000000000800000000000000
+      internalID: 21300144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: tele_charge_new0001
       rect:
@@ -1226,9 +1904,26 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 2b305410000000000800000000000000
+      internalID: 21300146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: weavercore_bundle
   assetBundleVariant: 

@@ -14,14 +14,6 @@ namespace WeaverCore.Editor
 		static void CreateRegistryMenuItem()
 		{
 			AssetUtilities.CreateScriptableObject<Registry>();
-			/*Registry asset = ScriptableObject.CreateInstance<Registry>();
-
-			AssetDatabase.CreateAsset(asset, "Assets/NewRegistry.asset");
-			AssetDatabase.SaveAssets();
-
-			EditorUtility.FocusProjectWindow();
-
-			Selection.activeObject = asset;*/
 		}
 	}
 }

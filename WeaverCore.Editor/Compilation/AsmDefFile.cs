@@ -40,7 +40,7 @@ namespace WeaverCore.Editor.Compilation
 
 		public static void Save(string path, AssemblyDefinitionFile asmDef)
 		{
-			File.WriteAllText(path, JsonUtility.ToJson(asmDef));
+			File.WriteAllText(path, JsonUtility.ToJson(asmDef,true));
 		}
 
 		public static Dictionary<string,AssemblyDefinitionFile> GetAllDefinitionsInFolder(string folder)

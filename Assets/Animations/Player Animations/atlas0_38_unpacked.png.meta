@@ -1,82 +1,228 @@
 fileFormatVersion: 2
 guid: 5182b9b5557fd7240baac07d45ba0dd4
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: knight_slug_focus_burst0002
-    21300002: knight_slug_focus_burst0001
-    21300004: knight_slug_focus_burst0000
-    21300006: knight_slug_idle0004
-    21300008: knight_slug_idle0002
-    21300010: knight_slug_idle0000
-    21300012: knight_slug_idle0003
-    21300014: knight_slug_idle0001
-    21300016: knight_slug_transform_back0000
-    21300018: knight_slug_transform0002
-    21300020: knight_slug_transform_back0001
-    21300022: knight_slug_transform_back0002
-    21300024: knight_slug_transform0001
-    21300026: knight_slug_transform0000
-    21300028: knight_slug_transform0003
-    21300030: knight_slug_turn0001
-    21300032: knight_slug_turn0002
-    21300034: knight_slug_turn0000
-    21300036: knight_slug_walk0001
-    21300038: knight_slug_walk0003
-    21300040: knight_slug_walk0000
-    21300042: knight_slug_walk0005
-    21300044: knight_slug_walk0004
-    21300046: knight_slug_walk0002
-    21300048: combo_slug0010
-    21300050: combo_slug0011
-    21300052: combo_slug0012
-    21300054: combo_slug0001
-    21300056: combo_slug0007
-    21300058: combo_slug0013
-    21300060: combo_slug0009
-    21300062: combo_slug0000
-    21300064: combo_slug0002
-    21300066: combo_slug0014
-    21300068: combo_slug0008
-    21300070: combo_slug0004
-    21300072: combo_slug0015
-    21300074: combo_slug0003
-    21300076: combo_slug0005
-    21300078: combo_slug0006
-    21300080: shroom_slug0002
-    21300082: shroom_slug0016
-    21300084: shroom_slug0003
-    21300086: shroom_slug0005
-    21300088: shroom_slug0001
-    21300090: shroom_slug0014
-    21300092: shroom_slug0013
-    21300094: shroom_slug0000
-    21300096: shroom_slug0004
-    21300098: shroom_slug0010
-    21300100: shroom_slug0009
-    21300102: shroom_slug0006
-    21300104: shroom_slug0007
-    21300106: shroom_slug0015
-    21300108: shroom_slug0008
-    21300110: shroom_slug0011
-    21300112: shroom_slug0012
-    21300114: blocker_slug0005
-    21300116: blocker_slug0003
-    21300118: blocker_slug0010
-    21300120: blocker_slug0011
-    21300122: blocker_slug0009
-    21300124: blocker_slug0014
-    21300126: blocker_slug0006
-    21300128: blocker_slug0001
-    21300130: blocker_slug0007
-    21300132: blocker_slug0000
-    21300134: blocker_slug0012
-    21300136: blocker_slug0008
-    21300138: blocker_slug0015
-    21300140: blocker_slug0004
-    21300142: blocker_slug0002
-    21300144: blocker_slug0013
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: knight_slug_focus_burst0002
+  - first:
+      213: 21300002
+    second: knight_slug_focus_burst0001
+  - first:
+      213: 21300004
+    second: knight_slug_focus_burst0000
+  - first:
+      213: 21300006
+    second: knight_slug_idle0004
+  - first:
+      213: 21300008
+    second: knight_slug_idle0002
+  - first:
+      213: 21300010
+    second: knight_slug_idle0000
+  - first:
+      213: 21300012
+    second: knight_slug_idle0003
+  - first:
+      213: 21300014
+    second: knight_slug_idle0001
+  - first:
+      213: 21300016
+    second: knight_slug_transform_back0000
+  - first:
+      213: 21300018
+    second: knight_slug_transform0002
+  - first:
+      213: 21300020
+    second: knight_slug_transform_back0001
+  - first:
+      213: 21300022
+    second: knight_slug_transform_back0002
+  - first:
+      213: 21300024
+    second: knight_slug_transform0001
+  - first:
+      213: 21300026
+    second: knight_slug_transform0000
+  - first:
+      213: 21300028
+    second: knight_slug_transform0003
+  - first:
+      213: 21300030
+    second: knight_slug_turn0001
+  - first:
+      213: 21300032
+    second: knight_slug_turn0002
+  - first:
+      213: 21300034
+    second: knight_slug_turn0000
+  - first:
+      213: 21300036
+    second: knight_slug_walk0001
+  - first:
+      213: 21300038
+    second: knight_slug_walk0003
+  - first:
+      213: 21300040
+    second: knight_slug_walk0000
+  - first:
+      213: 21300042
+    second: knight_slug_walk0005
+  - first:
+      213: 21300044
+    second: knight_slug_walk0004
+  - first:
+      213: 21300046
+    second: knight_slug_walk0002
+  - first:
+      213: 21300048
+    second: combo_slug0010
+  - first:
+      213: 21300050
+    second: combo_slug0011
+  - first:
+      213: 21300052
+    second: combo_slug0012
+  - first:
+      213: 21300054
+    second: combo_slug0001
+  - first:
+      213: 21300056
+    second: combo_slug0007
+  - first:
+      213: 21300058
+    second: combo_slug0013
+  - first:
+      213: 21300060
+    second: combo_slug0009
+  - first:
+      213: 21300062
+    second: combo_slug0000
+  - first:
+      213: 21300064
+    second: combo_slug0002
+  - first:
+      213: 21300066
+    second: combo_slug0014
+  - first:
+      213: 21300068
+    second: combo_slug0008
+  - first:
+      213: 21300070
+    second: combo_slug0004
+  - first:
+      213: 21300072
+    second: combo_slug0015
+  - first:
+      213: 21300074
+    second: combo_slug0003
+  - first:
+      213: 21300076
+    second: combo_slug0005
+  - first:
+      213: 21300078
+    second: combo_slug0006
+  - first:
+      213: 21300080
+    second: shroom_slug0002
+  - first:
+      213: 21300082
+    second: shroom_slug0016
+  - first:
+      213: 21300084
+    second: shroom_slug0003
+  - first:
+      213: 21300086
+    second: shroom_slug0005
+  - first:
+      213: 21300088
+    second: shroom_slug0001
+  - first:
+      213: 21300090
+    second: shroom_slug0014
+  - first:
+      213: 21300092
+    second: shroom_slug0013
+  - first:
+      213: 21300094
+    second: shroom_slug0000
+  - first:
+      213: 21300096
+    second: shroom_slug0004
+  - first:
+      213: 21300098
+    second: shroom_slug0010
+  - first:
+      213: 21300100
+    second: shroom_slug0009
+  - first:
+      213: 21300102
+    second: shroom_slug0006
+  - first:
+      213: 21300104
+    second: shroom_slug0007
+  - first:
+      213: 21300106
+    second: shroom_slug0015
+  - first:
+      213: 21300108
+    second: shroom_slug0008
+  - first:
+      213: 21300110
+    second: shroom_slug0011
+  - first:
+      213: 21300112
+    second: shroom_slug0012
+  - first:
+      213: 21300114
+    second: blocker_slug0005
+  - first:
+      213: 21300116
+    second: blocker_slug0003
+  - first:
+      213: 21300118
+    second: blocker_slug0010
+  - first:
+      213: 21300120
+    second: blocker_slug0011
+  - first:
+      213: 21300122
+    second: blocker_slug0009
+  - first:
+      213: 21300124
+    second: blocker_slug0014
+  - first:
+      213: 21300126
+    second: blocker_slug0006
+  - first:
+      213: 21300128
+    second: blocker_slug0001
+  - first:
+      213: 21300130
+    second: blocker_slug0007
+  - first:
+      213: 21300132
+    second: blocker_slug0000
+  - first:
+      213: 21300134
+    second: blocker_slug0012
+  - first:
+      213: 21300136
+    second: blocker_slug0008
+  - first:
+      213: 21300138
+    second: blocker_slug0015
+  - first:
+      213: 21300140
+    second: blocker_slug0004
+  - first:
+      213: 21300142
+    second: blocker_slug0002
+  - first:
+      213: 21300144
+    second: blocker_slug0013
   externalObjects: {}
-  serializedVersion: 4
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -94,6 +240,9 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -104,7 +253,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -124,11 +273,17 @@ TextureImporter:
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -138,7 +293,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Standalone
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -148,7 +305,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: iPhone
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -158,7 +317,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Android
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -168,7 +329,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Windows Store Apps
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -178,7 +341,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: WebGL
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -188,6 +353,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -205,6 +371,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_focus_burst0001
       rect:
@@ -219,6 +392,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_focus_burst0000
       rect:
@@ -233,6 +413,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_idle0004
       rect:
@@ -247,6 +434,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_idle0002
       rect:
@@ -261,6 +455,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_idle0000
       rect:
@@ -275,6 +476,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_idle0003
       rect:
@@ -289,6 +497,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_idle0001
       rect:
@@ -303,6 +518,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_transform_back0000
       rect:
@@ -317,6 +539,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_transform0002
       rect:
@@ -331,6 +560,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_transform_back0001
       rect:
@@ -345,6 +581,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_transform_back0002
       rect:
@@ -359,6 +602,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_transform0001
       rect:
@@ -373,6 +623,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_transform0000
       rect:
@@ -387,6 +644,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_transform0003
       rect:
@@ -401,6 +665,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_turn0001
       rect:
@@ -415,6 +686,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_turn0002
       rect:
@@ -429,6 +707,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_turn0000
       rect:
@@ -443,6 +728,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_walk0001
       rect:
@@ -457,6 +749,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_walk0003
       rect:
@@ -471,6 +770,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_walk0000
       rect:
@@ -485,6 +791,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_walk0005
       rect:
@@ -499,6 +812,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_walk0004
       rect:
@@ -513,6 +833,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_slug_walk0002
       rect:
@@ -527,6 +854,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0010
       rect:
@@ -541,6 +875,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0011
       rect:
@@ -555,6 +896,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0012
       rect:
@@ -569,6 +917,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0001
       rect:
@@ -583,6 +938,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0007
       rect:
@@ -597,6 +959,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0013
       rect:
@@ -611,6 +980,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0009
       rect:
@@ -625,6 +1001,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0000
       rect:
@@ -639,6 +1022,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0002
       rect:
@@ -653,6 +1043,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0014
       rect:
@@ -667,6 +1064,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0008
       rect:
@@ -681,6 +1085,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0004
       rect:
@@ -695,6 +1106,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0015
       rect:
@@ -709,6 +1127,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0003
       rect:
@@ -723,6 +1148,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0005
       rect:
@@ -737,6 +1169,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: combo_slug0006
       rect:
@@ -751,6 +1190,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0002
       rect:
@@ -765,6 +1211,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0016
       rect:
@@ -779,6 +1232,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0003
       rect:
@@ -793,6 +1253,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0005
       rect:
@@ -807,6 +1274,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0001
       rect:
@@ -821,6 +1295,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0014
       rect:
@@ -835,6 +1316,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0013
       rect:
@@ -849,6 +1337,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0000
       rect:
@@ -863,6 +1358,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0004
       rect:
@@ -877,6 +1379,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0010
       rect:
@@ -891,6 +1400,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0009
       rect:
@@ -905,6 +1421,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0006
       rect:
@@ -919,6 +1442,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0007
       rect:
@@ -933,6 +1463,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 88305410000000000800000000000000
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0015
       rect:
@@ -947,6 +1484,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a8305410000000000800000000000000
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0008
       rect:
@@ -961,6 +1505,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c8305410000000000800000000000000
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0011
       rect:
@@ -975,6 +1526,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e8305410000000000800000000000000
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shroom_slug0012
       rect:
@@ -989,6 +1547,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 09305410000000000800000000000000
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0005
       rect:
@@ -1003,6 +1568,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 29305410000000000800000000000000
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0003
       rect:
@@ -1017,6 +1589,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 49305410000000000800000000000000
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0010
       rect:
@@ -1031,6 +1610,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 69305410000000000800000000000000
+      internalID: 21300118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0011
       rect:
@@ -1045,6 +1631,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 89305410000000000800000000000000
+      internalID: 21300120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0009
       rect:
@@ -1059,6 +1652,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a9305410000000000800000000000000
+      internalID: 21300122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0014
       rect:
@@ -1073,6 +1673,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c9305410000000000800000000000000
+      internalID: 21300124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0006
       rect:
@@ -1087,6 +1694,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e9305410000000000800000000000000
+      internalID: 21300126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0001
       rect:
@@ -1101,6 +1715,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 0a305410000000000800000000000000
+      internalID: 21300128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0007
       rect:
@@ -1115,6 +1736,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 2a305410000000000800000000000000
+      internalID: 21300130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0000
       rect:
@@ -1129,6 +1757,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 4a305410000000000800000000000000
+      internalID: 21300132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0012
       rect:
@@ -1143,6 +1778,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 6a305410000000000800000000000000
+      internalID: 21300134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0008
       rect:
@@ -1157,6 +1799,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 8a305410000000000800000000000000
+      internalID: 21300136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0015
       rect:
@@ -1171,6 +1820,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: aa305410000000000800000000000000
+      internalID: 21300138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0004
       rect:
@@ -1185,6 +1841,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: ca305410000000000800000000000000
+      internalID: 21300140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0002
       rect:
@@ -1199,6 +1862,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: ea305410000000000800000000000000
+      internalID: 21300142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: blocker_slug0013
       rect:
@@ -1213,9 +1883,26 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 0b305410000000000800000000000000
+      internalID: 21300144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: weavercore_bundle
   assetBundleVariant: 

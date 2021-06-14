@@ -92,6 +92,46 @@ namespace WeaverCore.Assets
 			}
 		}
 
+		/*bool sceneHookAdded = false;
+
+		private void Awake()
+		{
+			sceneHookAdded = true;
+			UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SceneChange;
+		}
+
+		private void OnEnable()
+		{
+			if (!sceneHookAdded)
+			{
+				UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SceneChange;
+				sceneHookAdded = true;
+			}
+		}
+
+		private void OnDisable()
+		{
+			if (sceneHookAdded)
+			{
+				UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= SceneChange;
+				sceneHookAdded = false;
+			}
+		}
+
+		private void OnDestroy()
+		{
+			if (sceneHookAdded)
+			{
+				UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= SceneChange;
+				sceneHookAdded = false;
+			}
+		}
+
+		private void SceneChange(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
+		{
+			Destroy(gameObject);
+		}*/
+
 		void Update()
 		{
 			if (!Application.isPlaying)
@@ -205,7 +245,7 @@ namespace WeaverCore.Assets
 				AreaTitlePool = ObjectPool.Create(Prefab);
 			}
 
-			var title = AreaTitlePool.Instantiate<AreaTitle>(WeaverCanvas.Content);
+			var title = AreaTitlePool.Instantiate<AreaTitle>(WeaverCanvas.SceneContent);
 			title.TopText = topText;
 			title.BottomText = bottomText;
 

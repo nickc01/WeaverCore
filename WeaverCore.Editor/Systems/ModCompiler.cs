@@ -1,9 +1,10 @@
-﻿using System;
+﻿/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 using WeaverBuildTools.Commands;
 using WeaverCore.Editor.Internal;
@@ -164,26 +165,6 @@ namespace WeaverCore.Editor.Systems
 				WeaverReloadTools.DoReloadTools = false;
 				WeaverReloadTools.DoOnScriptReload = false;
 
-				//progress.GoToNextStep();
-
-				/*var mainModBuilder = new Builder
-				{
-					BuildPath = compileLocation + "\\" + "WeaverCore.dll",
-					Scripts = MonoScriptUtilities.GetScriptPathsUnderAssembly("Assembly-CSharp")
-				};*/
-
-				/*if (File.Exists(mainModBuilder.BuildPath))
-				{
-					File.Delete(mainModBuilder.BuildPath);
-				}
-
-				mainModBuilder.ReferencePaths.Add(LibraryCompiler.DefaultAssemblyCSharpLocation.FullName);
-				mainModBuilder.ReferencePaths.Add(LibraryCompiler.DefaultWeaverCoreBuildLocation.FullName);
-				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.dll");
-				mainModBuilder.ExcludedReferences.Add("Editor");
-				mainModBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
-
-				yield return mainModBuilder.Build();*/
 				progress.GoToNextStep();
 
 				LibraryCompiler.BuildWeaverCore(compileLocation + "\\WeaverCore.dll");
@@ -212,7 +193,7 @@ namespace WeaverCore.Editor.Systems
 
 		}
 
-		/*/// <summary>
+		/// <summary>
 		/// Builds all the asset bundles in the unity project. IMPORTANT: Make sure you call the 
 		/// </summary>
 		/// <param name="buildTargets">All the build targets to be built against</param>
@@ -305,7 +286,7 @@ namespace WeaverCore.Editor.Systems
 				File.Move(AsmEditorLocation.FullName + "\\WeaverCore.Editor-ORIGINAL.txt", AsmEditorLocation.FullName + "\\WeaverCore.Editor.asmdef");
 				AssetDatabase.ImportAsset(AsmLocationRelative + "\\WeaverCore.Editor.asmdef");
 			}
-		}*/
+		}
 
 
 		public static void StartHollowKnight(BuildSettings settings = null)
@@ -343,3 +324,4 @@ namespace WeaverCore.Editor.Systems
 		}
 	}
 }
+*/

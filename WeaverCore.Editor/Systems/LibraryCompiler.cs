@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using System;
+﻿/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -42,21 +41,12 @@ namespace WeaverCore.Editor.Systems
 					yield return BuildTarget.StandaloneOSX;
 				}
 
-				if (PlatformUtilities.IsPlatformSupportLoaded(BuildTarget.StandaloneLinuxUniversal))
+				if (PlatformUtilities.IsPlatformSupportLoaded(BuildTarget.StandaloneLinux64))
 				{
-					yield return BuildTarget.StandaloneLinuxUniversal;
+					yield return BuildTarget.StandaloneLinux64;
 				}
 			}
 		}
-
-		/*[OnInit]
-		static void Init()
-		{
-			if (WeaverReloadTools.DoReloadTools)
-			{
-				BuildStrippedWeaverCore();
-			}
-		}*/
 
 
 
@@ -309,20 +299,6 @@ namespace WeaverCore.Editor.Systems
 			}
 		}
 
-		/*protected override Type GetClassToPatch()
-		{
-			return typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface");
-		}*/
-
-		[OnInit]
-		static void Init()
-		{
-			var type = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface");
-			var patcher = HarmonyPatcher.Create("com.AssemblyReplacer.patch");
-			patcher.Patch(type.GetMethod("GetTargetAssemblies",BindingFlags.Public | BindingFlags.Static),null, typeof(AssemblyReplacer).GetMethod("PostfixGetTargetAssemblies"));
-			patcher.Patch(type.GetMethod("GetTargetAssembly",BindingFlags.Public | BindingFlags.Static),null, typeof(AssemblyReplacer).GetMethod("PostfixGetTargetAssembly"));
-		}
-
 		public static void PostfixGetTargetAssemblies(ref Array __result)
 		{
 			//Debug.Log("Target Assemblies Test A");
@@ -373,3 +349,4 @@ namespace WeaverCore.Editor.Systems
 		}
 	}
 }
+*/

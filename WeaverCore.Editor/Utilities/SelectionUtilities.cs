@@ -5,32 +5,24 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using WeaverCore.Editor.Compilation;
 
 namespace WeaverCore.Editor.Utilities
 {
 	[Serializable]
-	class LastDirectorySettings : ConfigSettings
+	class LastDirectorySettings
 	{
-		public List<DirectoryPair> LastSelections = new List<DirectoryPair>();
+		public string LastSelectedDirectory = Path.GetTempPath();
 	}
-
-
-	[Serializable]
-	class DirectoryPair
-	{
-		public int hash;
-		public string directory;
-	}
-
-
 
 	public static class SelectionUtilities
 	{
 		public static string SelectFile(string title,string extension)
 		{
-			var lastDirectory = GetLastDirectory(title.GetHashCode());
-			var file = EditorUtility.OpenFilePanel(title, lastDirectory, extension);
-			SetLastDirectory(title.GetHashCode(), new FileInfo(file).Directory.FullName);
+			var lastDirectory = GetLastDirectory();
+			var file = EditorUtility.OpenFilePanel(title, lastDirectory.LastSelectedDirectory, extension);
+			lastDirectory.LastSelectedDirectory = new FileInfo(file).Directory.FullName;
+			SetLastDirectory(lastDirectory);
 			if (file == null || file == "")
 			{
 				return null;
@@ -40,9 +32,10 @@ namespace WeaverCore.Editor.Utilities
 
 		public static string SelectFolder(string title, string defaultName)
 		{
-			var lastDirectory = GetLastDirectory(title.GetHashCode());
-			var folder = EditorUtility.OpenFolderPanel(title, lastDirectory, defaultName);
-			SetLastDirectory(title.GetHashCode(), folder);
+			var lastDirectory = GetLastDirectory();
+			var folder = EditorUtility.OpenFolderPanel(title, lastDirectory.LastSelectedDirectory, defaultName);
+			lastDirectory.LastSelectedDirectory = folder;
+			SetLastDirectory(lastDirectory);
 			if (folder == null || folder == "")
 			{
 				return null;
@@ -52,28 +45,29 @@ namespace WeaverCore.Editor.Utilities
 
 
 
-		static string GetLastDirectory(int hash)
+		static LastDirectorySettings GetLastDirectory()
 		{
-			var selections = LastDirectorySettings.Retrieve<LastDirectorySettings>();
-			foreach (var selection in selections.LastSelections)
+			if (PersistentData.TryGetData(out LastDirectorySettings settings))
 			{
-				if (selection.hash == hash)
-				{
-					return selection.directory;
-				}
+				return settings;
 			}
-			return "";
+			else
+			{
+				return new LastDirectorySettings();
+			}
 		}
 
-		static void SetLastDirectory(int hash, string directory)
+		static void SetLastDirectory(LastDirectorySettings settings)
 		{
+			PersistentData.StoreData(settings);
+			PersistentData.SaveData();
 			//var selections = new LastDirectorySettings();
 			//selections.GetStoredSettings();
-			var selections = LastDirectorySettings.Retrieve<LastDirectorySettings>();
+			//var selections = LastDirectorySettings.Retrieve<LastDirectorySettings>();
 
-			bool foundExisting = false;
+			//bool foundExisting = false;
 
-			foreach (var selection in selections.LastSelections)
+			/*foreach (var selection in selections.LastSelections)
 			{
 				if (selection.hash == hash && selection.directory != directory)
 				{
@@ -83,14 +77,14 @@ namespace WeaverCore.Editor.Utilities
 					//selections.SetStoredSettings();
 					break;
 				}
-			}
+			}*/
 
-			if (!foundExisting)
+			/*if (!foundExisting)
 			{
 				selections.LastSelections.Add(new DirectoryPair() { directory = directory, hash = hash });
 			}
 
-			selections.SetStoredSettings();
+			selections.SetStoredSettings();*/
 		}
 	}
 }

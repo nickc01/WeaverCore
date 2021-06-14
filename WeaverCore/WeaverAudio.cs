@@ -20,6 +20,15 @@ namespace WeaverCore
 		[OnRegistryLoad]
 		static void OnRuntimeStart(Registry registry)
 		{
+			//WeaverLog.Log("Registry = " + registry);
+			/*if (registry != null)
+			{
+				WeaverLog.Log("Mod Assembly Name = " + registry.ModAssemblyName);
+				WeaverLog.Log("Mod Name = " + registry.ModName);
+				WeaverLog.Log("Mod Registry Name = " + registry.RegistryName);
+				WeaverLog.Log("Mod Registry Enabled = " + registry.RegistryEnabled);
+				WeaverLog.Log("Mod Type = " + registry.ModType);
+			}*/
 			if (registry.ModType == typeof(WeaverCore.Internal.WeaverCore))
 			{
 				if (baseObject == null)

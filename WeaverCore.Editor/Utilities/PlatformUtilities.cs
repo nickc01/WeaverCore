@@ -18,7 +18,7 @@ namespace WeaverCore.Editor.Utilities
 					return ".bundle.win";
 				case BuildTarget.StandaloneOSX:
 					return ".bundle.mac";
-				case BuildTarget.StandaloneLinuxUniversal:
+				case BuildTarget.StandaloneLinux64:
 					return ".bundle.unix";
 				default:
 					return null;
@@ -49,9 +49,9 @@ namespace WeaverCore.Editor.Utilities
 			{
 				yield return BuildTarget.StandaloneOSX;
 			}
-			if (IsPlatformSupportLoaded(BuildTarget.StandaloneLinuxUniversal))
+			if (IsPlatformSupportLoaded(BuildTarget.StandaloneLinux64))
 			{
-				yield return BuildTarget.StandaloneLinuxUniversal;
+				yield return BuildTarget.StandaloneLinux64;
 			}
 		}
 	}

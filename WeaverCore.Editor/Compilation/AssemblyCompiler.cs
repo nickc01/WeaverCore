@@ -7,6 +7,7 @@ using System.Text;
 using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEngine;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Compilation
 {
@@ -103,8 +104,14 @@ namespace WeaverCore.Editor.Compilation
 		void BuildInternal(buildCompleteAction onComplete)
 		{
 			Output = null;
-			var outputPath = BuildDirectory.FullName + FileName;
-			Debug.Log("Build Output Path = " + outputPath);
+			if (!BuildDirectory.Exists)
+			{
+				BuildDirectory.Create();
+			}
+			var outputPath = PathUtilities.AddSlash(BuildDirectory.FullName) + FileName;
+			//Debug.Log("Build Output Path = " + outputPath);
+			//Debug.Log("Build Directory = " + BuildDirectory.FullName);
+			//Debug.Log("Filename = " + FileName);
 			AssemblyBuilder builder = new AssemblyBuilder(outputPath, Scripts.ToArray());
 			builder.additionalDefines = Defines.ToArray();
 			builder.additionalReferences = References.ToArray();
@@ -139,6 +146,7 @@ namespace WeaverCore.Editor.Compilation
 				{
 					outputInfo.Success = true;
 				}
+				//Debug.Log("_____SUCCESS = " + outputInfo.Success);
 				builder.buildFinished -= buildCompleteAction;
 				Output = outputInfo;
 				if (onComplete != null)
@@ -169,6 +177,9 @@ namespace WeaverCore.Editor.Compilation
 			BuildInternal(null);
 			yield return new WaitUntil(() => !Building);
 			yield return null;
+			details.Success = Output.Success;
+			details.OutputPath = Output.OutputPath;
+			details.CompilerMessages = Output.CompilerMessages;
 		}
 
 		static string[] VerifyPaths(List<string> paths)
@@ -193,6 +204,63 @@ namespace WeaverCore.Editor.Compilation
 				i += 2;
 			}
 			return output;
+		}
+
+		public IEnumerable<string> GetDefaultReferences()
+		{
+			var outputPath = BuildDirectory.FullName + FileName;
+			AssemblyBuilder builder = new AssemblyBuilder(outputPath, Scripts.ToArray());
+			builder.additionalDefines = Defines.ToArray();
+			builder.additionalReferences = References.ToArray();
+			builder.buildTarget = Target;
+			builder.buildTargetGroup = TargetGroup;
+			builder.excludeReferences = ExcludedReferences.ToArray();
+			builder.flags = Flags;
+
+			var defaultRefMethod = typeof(UnityEditor.AI.NavMeshBuilder).Assembly.GetType("UnityEditor.Scripting.ScriptCompilation.EditorCompilation").GetMethod("GetAssemblyBuilderDefaultReferences", new Type[] { typeof(UnityEditor.Compilation.AssemblyBuilder) });
+
+			var instance = typeof(UnityEditor.AI.NavMeshBuilder).Assembly.GetType("UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface").GetProperty("Instance").GetValue(null);
+
+			var defaultReferences = (string[])defaultRefMethod.Invoke(instance, new object[] { builder });
+
+			for (int i = 0; i < defaultReferences.GetLength(0); i++)
+			{
+				yield return defaultReferences[i];
+			}
+		}
+
+		public void RemoveEditorReferences()
+		{
+			var defaultReferences = GetDefaultReferences();
+
+			foreach (var dRef in defaultReferences)
+			{
+				var file = new FileInfo(dRef);
+				if (file.Name.Contains("Editor"))
+				{
+					ExcludedReferences.Add(dRef);
+				}
+			}
+		}
+
+		public void AddUnityReferences()
+		{
+			var coreModuleLocation = new FileInfo(typeof(MonoBehaviour).Assembly.Location);
+			var unityAssemblyFolder = coreModuleLocation.Directory;
+			var managedFolder = unityAssemblyFolder.Parent;
+
+
+			ExcludedReferences.Add(managedFolder.FullName + @"\UnityEngine.dll");
+			ExcludedReferences.Add(PathUtilities.ReplaceSlashes(managedFolder.FullName + @"\UnityEngine.dll"));
+
+			foreach (var hkFile in unityAssemblyFolder.EnumerateFiles("*.dll", SearchOption.TopDirectoryOnly))
+			{
+				if (hkFile.Name.Contains("UnityEngine"))
+				{
+					//Debug.Log("Adding File = " + hkFile.FullName);
+					References.Add(PathUtilities.ReplaceSlashes(hkFile.FullName));
+				}
+			}
 		}
 	}
 }

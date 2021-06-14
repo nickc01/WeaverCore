@@ -1,7 +1,0 @@
-{
-    "functionAssemblyName": [],
-    "functionTypeName": [],
-    "functionMethodName": [],
-    "JsonKeys": [],
-    "JsonData": []
-}

@@ -12,57 +12,89 @@ namespace WeaverCore.Editor.Compilation
 	{
 		[SerializeField]
 		string _assemblyName;
-		public string AssemblyName { get { return _assemblyName; } set { _assemblyName = value; } }
+		public string AssemblyName { get { return _assemblyName; } set { _assemblyName = value; methodCache = null; } }
 		[SerializeField]
 		string _typeName;
-		public string TypeName { get { return _typeName; } set { _typeName = value; } }
+		public string TypeName { get { return _typeName; } set { _typeName = value; methodCache = null; } }
 		[SerializeField]
 		string _methodName;
-		public string MethodName { get { return _methodName; } set { _methodName = value; } }
+		public string MethodName { get { return _methodName; } set { _methodName = value; methodCache = null; } }
 		[SerializeField]
 		bool _isPublic;
-		public bool IsPublic { get { return _isPublic; } set { _isPublic = value; } }
+		public bool IsPublic { get { return _isPublic; } set { _isPublic = value; methodCache = null; } }
 		[SerializeField]
 		bool _isStatic;
-		public bool IsStatic { get { return _isStatic; } set { _isStatic = value; } }
+		public bool IsStatic { get { return _isStatic; } set { _isStatic = value; methodCache = null; } }
+
+		[NonSerialized]
+		MethodInfo methodCache;
 
 		public MethodInfo Method
 		{
 			get
 			{
-				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+				if (methodCache == null)
 				{
-					if (assembly.GetName().Name == AssemblyName)
+					foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 					{
-						var type = assembly.GetType(TypeName);
-						if (type != null)
+						if (assembly.GetName().Name == AssemblyName)
 						{
-							BindingFlags flags = BindingFlags.Default;
-							flags |= IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
-							flags |= IsStatic ? BindingFlags.Static : BindingFlags.Instance;
-							return type.GetMethod(MethodName, flags);
+							var type = assembly.GetType(TypeName);
+							if (type != null)
+							{
+								BindingFlags flags = BindingFlags.Default;
+								flags |= IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+								flags |= IsStatic ? BindingFlags.Static : BindingFlags.Instance;
+								methodCache = type.GetMethod(MethodName, flags);
+							}
 						}
 					}
 				}
-				return null;
+				return methodCache;
 			}
 			set
 			{
-				AssemblyName = value.DeclaringType.Assembly.GetName().Name;
-				TypeName = value.DeclaringType.FullName;
-				MethodName = value.Name;
-				IsPublic = value.IsPublic;
-				IsStatic = value.IsStatic;
+				if (value == null)
+				{
+					AssemblyName = "";
+					TypeName = "";
+					MethodName = "";
+					IsPublic = false;
+					IsStatic = false;
+					methodCache = null;
+				}
+				else
+				{
+					AssemblyName = value.DeclaringType.Assembly.GetName().Name;
+					TypeName = value.DeclaringType.FullName;
+					MethodName = value.Name;
+					IsPublic = value.IsPublic;
+					IsStatic = value.IsStatic;
+					methodCache = value;
+				}
 			}
 		}
 
 		public SerializedMethod(MethodInfo method)
 		{
-			_assemblyName = method.DeclaringType.Assembly.GetName().Name;
-			_typeName = method.DeclaringType.FullName;
-			_methodName = method.Name;
-			_isPublic = method.IsPublic;
-			_isStatic = method.IsStatic;
+			if (method == null)
+			{
+				_assemblyName = "";
+				_typeName = "";
+				_methodName = "";
+				_isPublic = false;
+				_isStatic = false;
+				methodCache = null;
+			}
+			else
+			{
+				_assemblyName = method.DeclaringType.Assembly.GetName().Name;
+				_typeName = method.DeclaringType.FullName;
+				_methodName = method.Name;
+				_isPublic = method.IsPublic;
+				_isStatic = method.IsStatic;
+				methodCache = method;
+			}
 		}
 
 		public SerializedMethod(Delegate method) : this(method.Method) { }

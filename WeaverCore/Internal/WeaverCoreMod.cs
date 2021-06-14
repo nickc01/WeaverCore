@@ -17,7 +17,7 @@ namespace WeaverCore.Internal
 
         public override string GetVersion()
         {
-            return "0.3.0.0 Beta";
+            return "0.3.1.0 Beta";
         }
     }
 }

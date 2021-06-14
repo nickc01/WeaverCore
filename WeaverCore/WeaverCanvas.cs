@@ -31,17 +31,38 @@ public class WeaverCanvas : MonoBehaviour
 
 	public static WeaverCanvas Instance { get; private set; }
 
+	/// <summary>
+	/// The child object where UI content should be placed
+	/// </summary>
 	public static Transform Content
 	{
 		get
 		{
-			return Instance.transform.GetChild(0);
+			return Instance.transform.Find("CONTENT GOES HERE");
 		}
 	}
+
+	/// <summary>
+	/// Thie child object where scene specific UI Content should be placed. Any time a new scene is loaded, all child objects of this Transform will get destroyed
+	/// </summary>
+	public static Transform SceneContent
+	{
+		get
+		{
+			return Instance.transform.Find("SCENE CONTENT GOES HERE");
+		}
+	}
+
+	static bool hookAdded = false;
 
 	void Awake()
 	{
 		Instance = this;
+		if (!hookAdded)
+		{
+			hookAdded = true;
+			UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SceneChanged;
+		}
 		GameObject.DontDestroyOnLoad(gameObject);
 		if (GameObject.FindObjectOfType<EventSystem>() == null)
 		{
@@ -54,6 +75,21 @@ public class WeaverCanvas : MonoBehaviour
 			eventObject.AddComponent<StandaloneInputModule>();
 		}
 		StartCoroutine(Initializer());
+	}
+
+	private static void SceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
+	{
+		if (Instance != null)
+		{
+			for (int i = SceneContent.childCount - 1; i >= 0; i--)
+			{
+				var child = SceneContent.GetChild(i);
+				if (child != null)
+				{
+					GameObject.Destroy(child.gameObject);
+				}
+			}
+		}
 	}
 
 	IEnumerator Initializer()

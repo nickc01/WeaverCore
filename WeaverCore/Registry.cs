@@ -178,10 +178,13 @@ namespace WeaverCore
                 {
                     ActiveRegistries.Add(this);
                 }
+               // WeaverLog.Log("Feature Count = " + featuresRaw.Count);
                 foreach (var feature in featuresRaw)
                 {
+                    //WeaverLog.Log("Feature = " + feature);
                     if (feature is IFeature && feature is IOnFeatureLoad)
                     {
+                        //WeaverLog.Log("Loading Feature: " + feature);
                         try
                         {
                             ((IOnFeatureLoad)feature).OnFeatureLoad(this);
@@ -192,6 +195,7 @@ namespace WeaverCore
                         }
                     }
                 }
+               // WeaverLog.Log("THIS = " + this);
                 RunRegistryLoadFunctions(this);
             }
         }
@@ -210,6 +214,7 @@ namespace WeaverCore
                 try
                 {
                     //WeaverLog.Log("Executing Registry Method = " + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
+                    //WeaverLog.Log("Param Value = " + param[0]);
                     method.Item1.Invoke(null, param);
                 }
                 catch (Exception e)
@@ -233,10 +238,10 @@ namespace WeaverCore
         public override int GetHashCode()
         {
             int hash = 0;
-            HashUtilities.AdditiveHash(ref hash, modName);
-            HashUtilities.AdditiveHash(ref hash, modAssemblyName);
-            HashUtilities.AdditiveHash(ref hash, modTypeName);
-            HashUtilities.AdditiveHash(ref hash, registryName);
+			Utilities.HashUtilities.AdditiveHash(ref hash, modName);
+            Utilities.HashUtilities.AdditiveHash(ref hash, modAssemblyName);
+            Utilities.HashUtilities.AdditiveHash(ref hash, modTypeName);
+            Utilities.HashUtilities.AdditiveHash(ref hash, registryName);
             return hash;
         }
 

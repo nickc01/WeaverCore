@@ -50,7 +50,7 @@ namespace WeaverCore.Editor.Implementations
 				var c = coroutines[i];
 				try
 				{
-					Debug.LogError("Running Coroutine = " + c.ID);
+					//Debug.LogError("Running Coroutine = " + c.ID);
 					if (!c.MainRoutine.MoveNext())
 					{
 						coroutines.Remove(c);
@@ -96,7 +96,7 @@ namespace WeaverCore.Editor.Implementations
 
 		static IEnumerator RoutineUser(IEnumerator routine)
 		{
-			Debug.LogError("RUNNING ROUTINE RUNNER");
+			//Debug.LogError("RUNNING ROUTINE RUNNER");
 			while (routine.MoveNext())
 			{
 				var instruction = routine.Current;
@@ -153,12 +153,12 @@ namespace WeaverCore.Editor.Implementations
 				}
 				else if (instruction is IEnumerator)
 				{
-					Debug.LogError("GOING INTO SUB ROUTINE");
+					//Debug.LogError("GOING INTO SUB ROUTINE");
 					var subEnumerator = RoutineUser(instruction as IEnumerator);
-					Debug.LogError("SUBROUTINE CREATED");
+					//Debug.LogError("SUBROUTINE CREATED");
 					while (subEnumerator.MoveNext())
 					{
-						Debug.LogError("INSIDE");
+						//Debug.LogError("INSIDE");
 						yield return subEnumerator.Current;
 					}
 				}
@@ -178,7 +178,7 @@ namespace WeaverCore.Editor.Implementations
 			{
 				MainRoutine = RoutineUser(routine);
 				ID = GUID.Generate();
-				Debug.LogError("Starting Routine if ID = " + ID);
+				//Debug.LogError("Starting Routine if ID = " + ID);
 			}
 		}
 	}

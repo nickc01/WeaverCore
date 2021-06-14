@@ -83,6 +83,28 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
+		public static bool TryGetData<T>(out T data)
+		{
+			if (ContainsData<T>())
+			{
+				data = LoadData<T>();
+				return true;
+			}
+			data = default;
+			return false;
+		}
+
+		public static bool TryGetData<T>(string key, out T data)
+		{
+			if (ContainsData(key))
+			{
+				data = LoadData<T>(key);
+				return true;
+			}
+			data = default;
+			return false;
+		}
+
 		public static void StoreData<T>(T data, PersistenceType persistenceType = PersistenceType.Forever)
 		{
 			StoreData(data, typeof(T).FullName + "_typeKey_", persistenceType);

@@ -9,19 +9,26 @@ namespace WeaverCore.Editor.Compilation
 	public static class MonoScriptExtensions
 	{
 		static Type monoScriptType;
+#if UNITY_2019_4_OR_NEWER
 		static MethodInfo M_GetAssemblyName;
 		static MethodInfo M_GetNamespace;
+#endif
 
 
 		static MonoScriptExtensions()
 		{
 			monoScriptType = typeof(MonoScript);
+#if UNITY_2019_4_OR_NEWER
 			M_GetAssemblyName = monoScriptType.GetMethod("GetAssemblyName", BindingFlags.NonPublic | BindingFlags.Instance);
 			M_GetNamespace = monoScriptType.GetMethod("GetNamespace", BindingFlags.NonPublic | BindingFlags.Instance);
+#endif
 		}
 
 		public static string GetScriptAssemblyName(this MonoScript script)
 		{
+#if UNITY_2019_4_OR_NEWER
+			return (string)M_GetAssemblyName.Invoke(script, null);
+#else
 			if (Application.unityVersion.StartsWith("2017"))
 			{
 				var parentDirectory = new DirectoryInfo("Assets").Parent;
@@ -46,11 +53,14 @@ namespace WeaverCore.Editor.Compilation
 			{
 				return (string)M_GetAssemblyName.Invoke(script, null);
 			}
+#endif
 		}
 
 		public static string GetScriptNamespace(this MonoScript script)
 		{
+#if UNITY_2019_4_OR_NEWER
 			return (string)M_GetNamespace.Invoke(script, null);
+#endif
 		}
 	}
 }

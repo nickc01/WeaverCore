@@ -3,16 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
 using WeaverCore.Attributes;
+using WeaverCore.Editor.Settings;
+using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Compilation
 {
+
 	public static class BuildTools
 	{
+		/// <summary>
+		/// The default build location for WeaverCore
+		/// </summary>
+		public static readonly FileInfo WeaverCoreBuildLocation = new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll");
+
 		class BuildTask<T> : IAsyncBuildTask<T>
 		{
 			public T Result { get; set; }
@@ -31,7 +40,7 @@ namespace WeaverCore.Editor.Compilation
 			{
 				get
 				{
-					return new FileInfo(BuildDirectory.FullName + FileName);
+					return new FileInfo(PathUtilities.AddSlash(BuildDirectory.FullName) + FileName);
 				}
 				set
 				{
@@ -61,44 +70,29 @@ namespace WeaverCore.Editor.Compilation
 		/// <returns>The output file</returns>
 		public static IAsyncBuildTask<BuildOutput> BuildPartialWeaverCore(FileInfo outputPath)
 		{
-			Debug.LogError("B");
 			var task = new BuildTask<BuildOutput>();
-			Debug.LogError("C");
 			UnboundCoroutine.Start(BuildPartialWeaverCoreRoutine(outputPath,task));
-			Debug.LogError("D");
 			return task;
 		}
 
 		static IEnumerator BuildPartialWeaverCoreRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
 		{
-			Debug.LogError("E");
+			if (task == null)
+			{
+				task = new BuildTask<BuildOutput>();
+			}
 			task.Result = new BuildOutput();
 			var buildDirectory = outputPath.Directory;
-			var hkFile = new FileInfo(buildDirectory.FullName + "Assembly-CSharp.dll");
-			Debug.LogError("F");
+			var hkFile = new FileInfo(PathUtilities.AddSlash(buildDirectory.FullName) + "Assembly-CSharp.dll");
 			var hkBuildTask = BuildHollowKnightAsm(hkFile);
-			Debug.LogError("R");
 			yield return new WaitUntil(() => hkBuildTask.Completed);
-			Debug.LogError("S");
 			task.Result.Success = hkBuildTask.Result.Success;
 			task.Result.OutputFiles = hkBuildTask.Result.OutputFiles;
 			if (!hkBuildTask.Result.Success)
 			{
-				Debug.LogError("T");
 				task.Completed = true;
 				yield break;
 			}
-			/*
-			    weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.dll");
-				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
-				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverCore.Editor.dll");
-				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/WeaverBuildTools.dll");
-				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/TMPro.Editor.dll");
-				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/0Harmony.dll");
-				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/Mono.Cecil.dll");
-				weaverCoreBuilder.ExcludedReferences.Add("Library/ScriptAssemblies/JUNK.dll");
-			 */
-			Debug.LogError("U");
 			yield return BuildAssembly(new BuildParameters
 			{
 				BuildPath = outputPath,
@@ -122,9 +116,7 @@ namespace WeaverCore.Editor.Compilation
 					"Library/ScriptAssemblies/JUNK.dll"
 				},
 				Scripts = ScriptFinder.FindAssemblyScripts("WeaverCore")
-			},task);
-			Debug.LogError("V");
-			Debug.Log("PARTIAL WEAVERCORE COMPLETE");
+			}, BuildPresetType.Game,task);
 		}
 
 		/// <summary>
@@ -134,28 +126,18 @@ namespace WeaverCore.Editor.Compilation
 		/// <returns></returns>
 		public static IAsyncBuildTask<BuildOutput> BuildHollowKnightAsm(FileInfo outputPath)
 		{
-			Debug.LogError("G");
 			var task = new BuildTask<BuildOutput>();
-			Debug.LogError("H");
 			UnboundCoroutine.Start(BuildHollowKnightAsmRoutine(outputPath, task));
-			Debug.LogError("I");
 			return task;
 		}
 
 		static IEnumerator BuildHollowKnightAsmRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
 		{
-			/*task.Result = new BuildOutput();
-			var builder = new AssemblyCompiler();
-			builder.BuildDirectory = outputPath.Directory;
-			builder.FileName = outputPath.Name;
-			builder.Scripts = ScriptFinder.FindAssemblyScripts("HollowKnight");
-			builder.Defines.Add("GAME_BUILD");
-			builder.ExcludedReferences.Add("Library/ScriptAssemblies/HollowKnight.dll");
-			builder.ExcludedReferences.Add("Library/ScriptAssemblies/JUNK.dll");*/
+			if (task == null)
+			{
+				task = new BuildTask<BuildOutput>();
+			}
 
-
-			//yield return builder.Build(output);
-			Debug.LogError("J");
 			yield return BuildAssembly(new BuildParameters
 			{
 				BuildPath = outputPath,
@@ -169,20 +151,19 @@ namespace WeaverCore.Editor.Compilation
 					"Library/ScriptAssemblies/HollowKnight.dll",
 					"Library/ScriptAssemblies/JUNK.dll"
 				}
-			}, task);
-			Debug.LogError("K");
-			Debug.Log("HK BUILD COMPLETE");
+			}, BuildPresetType.Game, task);
 		}
 
-		public static IAsyncBuildTask<BuildOutput> BuildPartialMod(FileInfo outputPath)
+		static IEnumerator BuildAssembly(BuildParameters parameters, BuildPresetType presetType, BuildTask<BuildOutput> task)
 		{
-			return null;
-		}
-
-		static IEnumerator BuildAssembly(BuildParameters parameters, BuildTask<BuildOutput> task)
-		{
-			Debug.LogError("L");
-			task.Result = new BuildOutput();
+			if (task.Result == null)
+			{
+				task.Result = new BuildOutput();
+			}
+			else
+			{
+				task.Result.Success = false;
+			}
 			var builder = new AssemblyCompiler();
 			builder.BuildDirectory = parameters.BuildDirectory;
 			builder.FileName = parameters.FileName;
@@ -193,6 +174,15 @@ namespace WeaverCore.Editor.Compilation
 			builder.ExcludedReferences = parameters.ExcludedReferences;
 			builder.Defines = parameters.Defines;
 
+			if (presetType == BuildPresetType.Game || presetType == BuildPresetType.Editor)
+			{
+				builder.AddUnityReferences();
+			}
+			if (presetType == BuildPresetType.Game)
+			{
+				builder.RemoveEditorReferences();
+			}
+
 			if (!parameters.BuildPath.Directory.Exists)
 			{
 				parameters.BuildPath.Directory.Create();
@@ -202,34 +192,201 @@ namespace WeaverCore.Editor.Compilation
 				parameters.BuildPath.Delete();
 			}
 
-			Debug.LogError("M");
 			AssemblyCompiler.OutputDetails output = new AssemblyCompiler.OutputDetails();
-			Debug.LogError("N");
 			yield return builder.Build(output);
-			Debug.LogError("O");
 			if (output.Success)
 			{
-				Debug.LogError("P");
 				task.Result.OutputFiles.Add(parameters.BuildPath);
 			}
-			Debug.LogError("Q");
 			task.Result.Success = output.Success;
 			task.Completed = true;
+		}
+
+		static IEnumerator BuildPartialModAsmRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
+		{
+			if (task == null)
+			{
+				task = new BuildTask<BuildOutput>();
+			}
+
+			var weaverCoreTask = BuildPartialWeaverCore(WeaverCoreBuildLocation);
+
+			yield return new WaitUntil(() => weaverCoreTask.Completed);
+
+			if (!weaverCoreTask.Result.Success)
+			{
+				task.Completed = true;
+				task.Result = new BuildOutput
+				{
+					Success = false
+				};
+				yield break;
+			}
+
+			var parameters = new BuildParameters
+			{
+				BuildPath = outputPath,
+				Scripts = ScriptFinder.FindAssemblyScripts("Assembly-CSharp"),
+				Defines = new List<string>
+				{
+					"GAME_BUILD"
+				},
+				ExcludedReferences = new List<string>
+				{
+					"Library/ScriptAssemblies/HollowKnight.dll",
+					"Library/ScriptAssemblies/JUNK.dll",
+					"Library/ScriptAssemblies/WeaverCore.dll",
+					"Library/ScriptAssemblies/Assembly-CSharp.dll"
+				}
+			};
+
+			foreach (var outputFile in weaverCoreTask.Result.OutputFiles)
+			{
+				Debug.Log("New Reference = " + outputFile.FullName);
+				parameters.AssemblyReferences.Add(outputFile.FullName);
+			}
+
+			yield return BuildAssembly(parameters, BuildPresetType.Game, task);
+		}
+
+		public static void BuildMod()
+		{
+			BuildMod(new FileInfo(GetModBuildFileLocation()));
+		}
+
+		public static void BuildMod(FileInfo outputPath)
+		{
+			UnboundCoroutine.Start(BuildModRoutine(outputPath, null));
+		}
+
+		public static void BuildWeaverCore()
+		{
+			BuildWeaverCore(new FileInfo(GetModBuildFolder() + "WeaverCore.dll"));
+		}
+
+		public static void BuildWeaverCore(FileInfo outputPath)
+		{
+			UnboundCoroutine.Start(BuildWeaverCoreRoutine(outputPath, null));
+		}
+
+		static IEnumerator BuildWeaverCoreRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
+		{
+			if (task == null)
+			{
+				task = new BuildTask<BuildOutput>();
+			}
+			yield return BuildPartialWeaverCoreRoutine(outputPath, task);
+			if (!task.Result.Success)
+			{
+				yield break;
+			}
+			BundleTools.BuildAndEmbedAssetBundles(null, outputPath, typeof(BuildTools).GetMethod(nameof(StartHollowKnight)));
+		}
+
+		static IEnumerator BuildModRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
+		{
+			if (task == null)
+			{
+				task = new BuildTask<BuildOutput>();
+			}
+			yield return BuildPartialModAsmRoutine(outputPath, task);
+			if (!task.Result.Success)
+			{
+				yield break;
+			}
+			var weaverCoreOutputLocation = PathUtilities.AddSlash(outputPath.Directory.FullName) + "WeaverCore.dll";
+			File.Copy(WeaverCoreBuildLocation.FullName, weaverCoreOutputLocation, true);
+			BundleTools.BuildAndEmbedAssetBundles(outputPath, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(StartHollowKnight)));
 		}
 
 
 		[OnInit]
 		static void Init()
 		{
+			bool ranMethod = false;
 
-			Debug.LogError("A");
+			if (PersistentData.ContainsData<BundleTools.BundleBuildData>())
+			{
+				var bundleData = BundleTools.Data;
+				if (bundleData?.NextMethod.Method != null)
+				{
+					ranMethod = true;
+					var method = bundleData.NextMethod.Method;
+					bundleData.NextMethod = default;
 
-			Debug.LogError("B");
-			//BuildPartialWeaverCore(new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll"));
-			//BuildTask<BuildOutput> test = new BuildTask<BuildOutput>();
-			//Debug.Log("Starting WeaverCore Build");
-			//Debug.Log("Unity Version = " + Application.unityVersion);
-			//UnboundCoroutine.Start(BuildPartialWeaverCoreRoutine(new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll"), test));
+					PersistentData.StoreData(bundleData);
+					PersistentData.SaveData();
+
+					UnboundCoroutine.Start(Delay());
+
+					IEnumerator Delay()
+					{
+						yield return new WaitForSeconds(0.5f);
+						method.Invoke(null, null);
+					}
+				}
+			}
+
+
+			if (!ranMethod)
+			{
+				UnboundCoroutine.Start(BuildPartialWeaverCoreRoutine(WeaverCoreBuildLocation, null));
+			}
+		}
+
+		public static string GetModBuildFolder()
+		{
+			string compileLocation = null;
+			if (compileLocation == null)
+			{
+				if (!string.IsNullOrEmpty(BuildScreen.BuildSettings?.BuildLocation))
+				{
+					compileLocation = BuildScreen.BuildSettings.BuildLocation;
+				}
+				else
+				{
+					compileLocation = SelectionUtilities.SelectFolder("Select where you want to place the finished mod", "");
+					if (compileLocation == null)
+					{
+						throw new Exception("An invalid path specified for building the mod");
+					}
+				}
+			}
+			return PathUtilities.AddSlash(compileLocation);
+		}
+
+		public static string GetModBuildFileLocation()
+		{
+			return GetModBuildFolder() + BuildScreen.BuildSettings.ModName + ".dll";
+		}
+
+		public static void StartHollowKnight()
+		{
+			if (BuildScreen.BuildSettings.StartGame)
+			{
+				Debug.Log("<b>Starting Game</b>");
+				var hkEXE = new FileInfo(GameBuildSettings.Settings.HollowKnightLocation + "\\hollow_knight.exe");
+
+
+				if (hkEXE.FullName.Contains("steamapps"))
+				{
+					var steamDirectory = hkEXE.Directory;
+					while (steamDirectory.Name != "Steam")
+					{
+						steamDirectory = steamDirectory.Parent;
+						if (steamDirectory == null)
+						{
+							break;
+						}
+					}
+					if (steamDirectory != null)
+					{
+						System.Diagnostics.Process.Start(steamDirectory.FullName + "\\steam.exe", "steam://rungameid/367520");
+						return;
+					}
+				}
+				System.Diagnostics.Process.Start(hkEXE.FullName);
+			}
 		}
 	}
 }

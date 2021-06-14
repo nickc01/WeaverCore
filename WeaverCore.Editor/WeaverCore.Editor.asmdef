@@ -1,10 +1,19 @@
 {
     "name": "WeaverCore.Editor",
+    "rootNamespace": "",
     "references": [
         "WeaverCore",
         "HollowKnight",
-        "WeaverBuildTools"
+        "WeaverBuildTools",
+        "Unity.ScriptableBuildPipeline",
+        "Unity.ScriptableBuildPipeline.Editor"
     ],
     "includePlatforms": [],
-    "excludePlatforms": []
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "noEngineReferences": false,
+    "precompiledReferences": []
 }

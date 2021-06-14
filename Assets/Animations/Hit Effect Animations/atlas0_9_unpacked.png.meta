@@ -1,61 +1,168 @@
 fileFormatVersion: 2
 guid: 34bc399b07952c44db3089e8e6f52820
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: rest_prompt0012
-    21300020: prompt_appear0005
-    21300022: prompt_appear0003
-    21300024: prompt_appear0006
-    21300026: prompt_appear0004
-    21300028: prompt_appear0008
-    21300030: prompt_appear0009
-    21300032: prompt_appear0007
-    21300034: prompt_idle0004
-    21300036: prompt_idle0000
-    21300038: prompt_idle0003
-    21300040: prompt_idle0002
-    21300042: prompt_idle0001
-    21300044: Yes_No_bottom_fleur0001
-    21300046: Yes_No_bottom_fleur0002
-    21300048: Yes_No_bottom_fleur0003
-    21300050: Yes_No_bottom_fleur0004
-    21300052: Yes_No_bottom_fleur0005
-    21300054: Yes_No_bottom_fleur0006
-    21300056: Yes_No_bottom_fleur0007
-    21300058: Yes_No_top_fleur0005
-    21300060: Yes_No_top_fleur0001
-    21300062: Yes_No_top_fleur0002
-    21300064: Yes_No_top_fleur0003
-    21300066: Yes_No_top_fleur0004
-    21300068: Yes_No_top_fleur0006
-    21300070: Yes_No_top_fleur0007
-    21300072: Stag_Map_Selection_Cursor0000
-    21300074: Stag_Map_Selection_Cursor0001
-    21300076: Stag_Map_Selection_Cursor0002
-    21300078: Stag_Map_Selection_Cursor0003
-    21300080: Stag_Map_Selection_Cursor0004
-    21300082: Stag_Map_Selection_Cursor0005
-    21300084: Stag_List_Selection_Cursor0004
-    21300086: Stag_List_Selection_Cursor0000
-    21300088: Stag_List_Selection_Cursor0001
-    21300090: Stag_List_Selection_Cursor0002
-    21300092: Stag_List_Selection_Cursor0003
-    21300094: Stag_Border_Fleur_top0000
-    21300096: Stag_Border_Fleur_top0001
-    21300098: Stag_Border_Fleur_top0002
-    21300100: Stag_Border_Fleur_top0003
-    21300102: Stag_Border_Fleur_top0004
-    21300104: Stag_Border_Fleur_top0005
-    21300106: Stag_Border_Fleur_top0006
-    21300108: Stag_Border_Fleur_bottom0000
-    21300110: Stag_Border_Fleur_bottom0001
-    21300112: Stag_Border_Fleur_bottom0002
-    21300114: Stag_Border_Fleur_bottom0003
-    21300116: Stag_Border_Fleur_bottom0004
-    21300118: Stag_Border_Fleur_bottom0005
-    21300120: Stag_Border_Fleur_bottom0006
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: rest_prompt0012
+  - first:
+      213: 21300020
+    second: prompt_appear0005
+  - first:
+      213: 21300022
+    second: prompt_appear0003
+  - first:
+      213: 21300024
+    second: prompt_appear0006
+  - first:
+      213: 21300026
+    second: prompt_appear0004
+  - first:
+      213: 21300028
+    second: prompt_appear0008
+  - first:
+      213: 21300030
+    second: prompt_appear0009
+  - first:
+      213: 21300032
+    second: prompt_appear0007
+  - first:
+      213: 21300034
+    second: prompt_idle0004
+  - first:
+      213: 21300036
+    second: prompt_idle0000
+  - first:
+      213: 21300038
+    second: prompt_idle0003
+  - first:
+      213: 21300040
+    second: prompt_idle0002
+  - first:
+      213: 21300042
+    second: prompt_idle0001
+  - first:
+      213: 21300044
+    second: Yes_No_bottom_fleur0001
+  - first:
+      213: 21300046
+    second: Yes_No_bottom_fleur0002
+  - first:
+      213: 21300048
+    second: Yes_No_bottom_fleur0003
+  - first:
+      213: 21300050
+    second: Yes_No_bottom_fleur0004
+  - first:
+      213: 21300052
+    second: Yes_No_bottom_fleur0005
+  - first:
+      213: 21300054
+    second: Yes_No_bottom_fleur0006
+  - first:
+      213: 21300056
+    second: Yes_No_bottom_fleur0007
+  - first:
+      213: 21300058
+    second: Yes_No_top_fleur0005
+  - first:
+      213: 21300060
+    second: Yes_No_top_fleur0001
+  - first:
+      213: 21300062
+    second: Yes_No_top_fleur0002
+  - first:
+      213: 21300064
+    second: Yes_No_top_fleur0003
+  - first:
+      213: 21300066
+    second: Yes_No_top_fleur0004
+  - first:
+      213: 21300068
+    second: Yes_No_top_fleur0006
+  - first:
+      213: 21300070
+    second: Yes_No_top_fleur0007
+  - first:
+      213: 21300072
+    second: Stag_Map_Selection_Cursor0000
+  - first:
+      213: 21300074
+    second: Stag_Map_Selection_Cursor0001
+  - first:
+      213: 21300076
+    second: Stag_Map_Selection_Cursor0002
+  - first:
+      213: 21300078
+    second: Stag_Map_Selection_Cursor0003
+  - first:
+      213: 21300080
+    second: Stag_Map_Selection_Cursor0004
+  - first:
+      213: 21300082
+    second: Stag_Map_Selection_Cursor0005
+  - first:
+      213: 21300084
+    second: Stag_List_Selection_Cursor0004
+  - first:
+      213: 21300086
+    second: Stag_List_Selection_Cursor0000
+  - first:
+      213: 21300088
+    second: Stag_List_Selection_Cursor0001
+  - first:
+      213: 21300090
+    second: Stag_List_Selection_Cursor0002
+  - first:
+      213: 21300092
+    second: Stag_List_Selection_Cursor0003
+  - first:
+      213: 21300094
+    second: Stag_Border_Fleur_top0000
+  - first:
+      213: 21300096
+    second: Stag_Border_Fleur_top0001
+  - first:
+      213: 21300098
+    second: Stag_Border_Fleur_top0002
+  - first:
+      213: 21300100
+    second: Stag_Border_Fleur_top0003
+  - first:
+      213: 21300102
+    second: Stag_Border_Fleur_top0004
+  - first:
+      213: 21300104
+    second: Stag_Border_Fleur_top0005
+  - first:
+      213: 21300106
+    second: Stag_Border_Fleur_top0006
+  - first:
+      213: 21300108
+    second: Stag_Border_Fleur_bottom0000
+  - first:
+      213: 21300110
+    second: Stag_Border_Fleur_bottom0001
+  - first:
+      213: 21300112
+    second: Stag_Border_Fleur_bottom0002
+  - first:
+      213: 21300114
+    second: Stag_Border_Fleur_bottom0003
+  - first:
+      213: 21300116
+    second: Stag_Border_Fleur_bottom0004
+  - first:
+      213: 21300118
+    second: Stag_Border_Fleur_bottom0005
+  - first:
+      213: 21300120
+    second: Stag_Border_Fleur_bottom0006
+  - first:
+      213: 2877471580529523173
+    second: 
   externalObjects: {}
-  serializedVersion: 4
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -73,6 +180,9 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -83,7 +193,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -103,11 +213,17 @@ TextureImporter:
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -117,7 +233,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Standalone
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -127,7 +245,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: iPhone
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -137,7 +257,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Android
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -147,7 +269,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Windows Store Apps
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -157,7 +281,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: WebGL
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -167,6 +293,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -184,6 +311,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -198,6 +332,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -212,6 +353,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -226,6 +374,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -240,6 +395,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -254,6 +416,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -268,6 +437,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -282,6 +458,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -296,6 +479,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 
       rect:
@@ -310,6 +500,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 5e97eb03825dee720800000000000000
+      internalID: 2877471580529523173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_appear0005
       rect:
@@ -324,6 +521,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_appear0003
       rect:
@@ -338,6 +542,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_appear0006
       rect:
@@ -352,6 +563,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_appear0004
       rect:
@@ -366,6 +584,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_appear0008
       rect:
@@ -380,6 +605,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_appear0009
       rect:
@@ -394,6 +626,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_appear0007
       rect:
@@ -408,6 +647,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_idle0004
       rect:
@@ -422,6 +668,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_idle0000
       rect:
@@ -436,6 +689,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_idle0003
       rect:
@@ -450,6 +710,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_idle0002
       rect:
@@ -464,6 +731,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: prompt_idle0001
       rect:
@@ -478,6 +752,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_bottom_fleur0001
       rect:
@@ -492,6 +773,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_bottom_fleur0002
       rect:
@@ -506,6 +794,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_bottom_fleur0003
       rect:
@@ -520,6 +815,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_bottom_fleur0004
       rect:
@@ -534,6 +836,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_bottom_fleur0005
       rect:
@@ -548,6 +857,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_bottom_fleur0006
       rect:
@@ -562,6 +878,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_bottom_fleur0007
       rect:
@@ -576,6 +899,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_top_fleur0005
       rect:
@@ -590,6 +920,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_top_fleur0001
       rect:
@@ -604,6 +941,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_top_fleur0002
       rect:
@@ -618,6 +962,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_top_fleur0003
       rect:
@@ -632,6 +983,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_top_fleur0004
       rect:
@@ -646,6 +1004,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_top_fleur0006
       rect:
@@ -660,6 +1025,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Yes_No_top_fleur0007
       rect:
@@ -674,6 +1046,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Map_Selection_Cursor0000
       rect:
@@ -688,6 +1067,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Map_Selection_Cursor0001
       rect:
@@ -702,6 +1088,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Map_Selection_Cursor0002
       rect:
@@ -716,6 +1109,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Map_Selection_Cursor0003
       rect:
@@ -730,6 +1130,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Map_Selection_Cursor0004
       rect:
@@ -744,6 +1151,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Map_Selection_Cursor0005
       rect:
@@ -758,6 +1172,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_List_Selection_Cursor0004
       rect:
@@ -772,6 +1193,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_List_Selection_Cursor0000
       rect:
@@ -786,6 +1214,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_List_Selection_Cursor0001
       rect:
@@ -800,6 +1235,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_List_Selection_Cursor0002
       rect:
@@ -814,6 +1256,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_List_Selection_Cursor0003
       rect:
@@ -828,6 +1277,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_top0000
       rect:
@@ -842,6 +1298,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_top0001
       rect:
@@ -856,6 +1319,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_top0002
       rect:
@@ -870,6 +1340,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_top0003
       rect:
@@ -884,6 +1361,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_top0004
       rect:
@@ -898,6 +1382,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_top0005
       rect:
@@ -912,6 +1403,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 88305410000000000800000000000000
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_top0006
       rect:
@@ -926,6 +1424,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a8305410000000000800000000000000
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_bottom0000
       rect:
@@ -940,6 +1445,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c8305410000000000800000000000000
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_bottom0001
       rect:
@@ -954,6 +1466,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e8305410000000000800000000000000
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_bottom0002
       rect:
@@ -968,6 +1487,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 09305410000000000800000000000000
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_bottom0003
       rect:
@@ -982,6 +1508,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 29305410000000000800000000000000
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_bottom0004
       rect:
@@ -996,6 +1529,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 49305410000000000800000000000000
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_bottom0005
       rect:
@@ -1010,6 +1550,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 69305410000000000800000000000000
+      internalID: 21300118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Stag_Border_Fleur_bottom0006
       rect:
@@ -1024,9 +1571,26 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 89305410000000000800000000000000
+      internalID: 21300120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: weavercore_bundle
   assetBundleVariant: 

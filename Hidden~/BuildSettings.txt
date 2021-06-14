@@ -1,8 +1,0 @@
-{
-    "ModName": "CorruptedKin",
-    "WindowsSupport": true,
-    "MacSupport": true,
-    "LinuxSupport": true,
-    "StartGame": false,
-    "BuildLocation": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hollow Knight\\hollow_knight_Data\\Managed\\Mods"
-}

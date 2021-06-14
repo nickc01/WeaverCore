@@ -1,240 +1,696 @@
 fileFormatVersion: 2
 guid: 87854b516dcaa9245b00a44c2eb9bb50
-timeCreated: 1602781463
-licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: wet_land0000
-    21300002: splat_explode_effect0001
-    21300004: wet_land0003
-    21300006: shot_impact_sprite_003
-    21300008: skull_chip1
-    21300010: shot_impact_sprite_001
-    21300012: black_fader
-    21300014: msk_generic
-    21300016: fury_pieces_0002_cracks2
-    21300018: dream_essence_extra_get
-    21300020: Soul_burst0003
-    21300022: lantern_glow_beams
-    21300024: break_bits_0003_Layer-5
-    21300026: white_light
-    21300028: skull_chip2
-    21300030: splat_explode_effect0006
-    21300032: msk_generic_soft
-    21300034: break_bits_0004_Layer-1
-    21300036: shot_impact_sprite_004
-    21300038: spatter_orange
-    21300040: splat_explode_effect0003
-    21300042: shot_impact_sprite_005
-    21300044: break_bits_0000_Layer-2
-    21300046: Soul_burst0004
-    21300048: wet_land0002
-    21300050: nail_terrain_hit_effect0000
-    21300052: lantern_glow_000
-    21300054: vignette_large_v01
-    21300056: vignette_low_health
-    21300058: break_bits_0002_Layer-4
-    21300060: soul_orb
-    21300062: white_fader
-    21300064: wet_land0004
-    21300066: splat_explode_effect0000
-    21300068: nail_terrain_hit_effect0002
-    21300070: nail_terrain_hit_effect0001
-    21300072: wet_land0001
-    21300074: shot_impact_sprite_002
-    21300076: break_bits_0001_Layer-3
-    21300078: Soul_burst0000
-    21300080: nail_terrain_hit_effect0003
-    21300082: Soul_burst0002
-    21300084: splat_explode_effect0004
-    21300086: Soul_burst0001
-    21300088: shot_impact_sprite_006
-    21300090: splat_explode_effect0005
-    21300092: splat_explode_effect0002
-    21300094: break_rag_anim0006
-    21300096: break_rag_anim0012
-    21300098: break_rag_anim0008
-    21300100: break_rag_anim0005
-    21300102: break_rag_anim0003
-    21300104: break_rag_anim0007
-    21300106: break_rag_anim0002
-    21300108: break_rag_anim0009
-    21300110: break_rag_anim0000
-    21300112: break_rag_anim0010
-    21300114: break_rag_anim0013
-    21300116: break_rag_anim0001
-    21300118: break_rag_anim0011
-    21300120: break_rag_anim0004
-    21300122: ancient_wall_pieces_0002_a
-    21300124: stagdoor_0003_Color-Balance-1-copy-15
-    21300126: Grimmkin_lantern
-    21300128: health_plant_0005_base1
-    21300130: health_plant_0001_base2
-    21300132: ancient_wall_pieces_0006_a
-    21300134: mask_beam
-    21300136: 927-2@2x
-    21300138: cd_room_beam_glow
-    21300140: 927-0@2x_top
-    21300142: glass_01
-    21300144: glass_05
-    21300146: lid
-    21300148: brk_bottle
-    21300150: glass_04
-    21300152: ghost_shrines_0007_bug_corpse_04
-    21300154: ghost_shrines_0004_bug_corpse_01
-    21300156: brk_cart_01
-    21300158: floor_pool
-    21300160: brk_barrel_02
-    21300162: 2163-4@2x
-    21300164: 2163-3@2x
-    21300166: floor_rubble_02
-    21300168: brk_barrel_04
-    21300170: brk_cart_02
-    21300172: brk_barrel_01
-    21300174: ancient_wall_pieces_0004_a
-    21300176: ancient_wall_pieces_0001_Layer-1
-    21300178: ancient_wall_pieces_0003_a
-    21300180: rancid_egg_standard_base
-    21300182: h__0000_hive_break
-    21300184: mine_entrance_0015_18
-    21300186: FG_post_01
-    21300188: floor_rubble_FG_01
-    21300190: mine_entrance_0016_17
-    21300192: mine_entrance_0018_15
-    21300194: floor_rubble_FG_02
-    21300196: town_bench_lit
-    21300198: mine_entrance_0017_16
-    21300200: floor_rubble_01
-    21300202: FG_post_02
-    21300204: floor_rubble_FG_03
-    21300206: elev_chain
-    21300208: stag_pole_tall_break_03
-    21300210: stag_pole_tall_break_04
-    21300212: stag_pole_tall_break_05
-    21300214: storeroom_shrunk_0001_2
-    21300216: storeroom_shrunk_0002_1
-    21300218: 2163-1@2x
-    21300220: 2163-5@2x
-    21300222: corpse_set_01_0011_dead_bug_01
-    21300224: scatter-maps_0001_2
-    21300226: scatter-maps_0000_3
-    21300228: scatter-maps_0002_1
-    21300230: corpse_set_01_0003_dead_bug_03
-    21300232: corpse_set_01_0002_dead_bug_05
-    21300234: corpse_set_01_0000_dead_bug_06
-    21300236: corpse_set_01_0001_dead_bug_04
-    21300238: 2165-7@2x
-    21300240: brk_cart_03
-    21300242: 2165-1@2x
-    21300244: ghost_shrines_0008_bug_corpse_05
-    21300246: 2165-5@2x
-    21300248: 2165-3@2x
-    21300250: stagdoor_0002_Color-Balance-1-copy-14
-    21300252: 2165-4@2x
-    21300254: brk_barrel_03
-    21300256: 2163-2@2x
-    21300258: roof_02
-    21300260: direction_sign_breakable_0003_town
-    21300262: mines_metal_additions_0001_a
-    21300264: cd_tollbooth_lamp
-    21300266: roof_01_flip
-    21300268: roof_01
-    21300270: direction_sign_breakable_0005_tramway
-    21300272: ghost_shrines_0005_bug_corpse_02
-    21300274: fung_new_mush_BG_mush_pillar
-    21300276: ghost_shrines_0006_bug_corpse_03
-    21300278: glass_03
-    21300280: cord_01_right0007
-    21300282: cord_01_left0000
-    21300284: cord_01_right0004
-    21300286: cord_01_right0009
-    21300288: cord_01_right0003
-    21300290: cord_01_right0008
-    21300292: cord_01_right0005
-    21300294: cord_01_right0002
-    21300296: cord_01_right0006
-    21300298: cord_01_right0000
-    21300300: cord_01_right0010
-    21300302: cord_01_right0001
-    21300304: cord_01_death
-    21300306: crumble_floor
-    21300308: bench_sign_symbol
-    21300310: corpse_set_01_0005_nail4-copy
-    21300312: corpse_set_01_0008_nail1-copy
-    21300314: Dream_Orb_smaller0012
-    21300316: Dream_Orb_smaller0003
-    21300318: Dream_Orb_smaller0008
-    21300320: Dream_Orb_smaller0011
-    21300322: Dream_Orb_smaller0007
-    21300324: Dream_Orb_smaller0000
-    21300326: Dream_Orb_smaller0009
-    21300328: Dream_Orb_smaller0006
-    21300330: Dream_Orb_smaller0013
-    21300332: Dream_Orb_smaller0010
-    21300334: Dream_Orb_smaller0004
-    21300336: Dream_Orb_smaller0002
-    21300338: Dream_Orb_smaller0005
-    21300340: Dream_Orb_smaller0001
-    21300342: direction_sign_breakable_0004_stag
-    21300344: cord_01_left0007
-    21300346: cord_01_left0003
-    21300348: cord_01_left0001
-    21300350: cord_01_left0006
-    21300352: cord_01_left0005
-    21300354: cord_01_left0004
-    21300356: cord_01_left0002
-    21300358: cord_01_left0010
-    21300360: cord_01_left0009
-    21300362: cord_01_left0008
-    21300364: direction_sign_breakable_0003_ciity
-    21300366: ancient_wall_pieces_0001_Color-Balance-1-copy
-    21300368: ancient_wall_pieces_0004_Color-Balance-1-copy-7
-    21300370: ancient_wall_pieces_0005_Color-Balance-1-copy-9
-    21300372: ancient_wall_pieces_0003_Color-Balance-1-copy-5
-    21300374: direction_sign_breakable_0001_Layer-1
-    21300376: direction_sign_breakable_0006_Layer-0
-    21300378: direction_sign_breakable_0000_Layer-0-copy
-    21300380: direction_sign_break_top
-    21300382: direction_sign_breakable_0006_Layer-0_hot_spring
-    21300384: corpse_set_01_0012_nail1
-    21300386: corpse_set_01_0007_nail2-copy
-    21300388: corpse_set_01_0004_dead_bug_02
-    21300390: corpse_set_01_0009_nail4
-    21300392: direction_sign_breakable_0002_white_palace
-    21300394: base
-    21300396: brazier_top
-    21300398: direction_sign_breakable_0006_Layer-0_resting_ground
-    21300400: break_candles_0002_Layer-3
-    21300402: break_candles_0001_Layer-9
-    21300404: break_candles_0006_Layer-1-copy
-    21300406: break_candles_0000_Layer-8
-    21300408: break_candles_0008_Layer-1
-    21300410: break_candle_glow
-    21300412: break_candles_0003_Layer-6
-    21300414: break_candles_0004_Layer-7
-    21300416: break_candles_0007_Layer-5
-    21300418: break_candles_0005_Layer-2
-    21300420: ancient_wall_pieces_0004_Color-Balance-1-copy-7 - Copy
-    21300422: direction_sign_breakable_0003_bank
-    21300424: break_outskirts_0013_2
-    21300426: cliffs_pole
-    21300428: Grimm_lantern_0005_5
-    21300430: break_outskirts_0012_3
-    21300432: cliffs_moths_0019_Layer-10
-    21300434: break_outskirts_0014_1
-    21300436: worker_corpses_0003_2
-    21300438: worker_corpses_0001_4
-    21300440: deep_rag_01
-    21300442: worker_corpses_0004_1
-    21300444: worker_corpses_0002_3
-    21300446: worker_corpses_0000_5
-    21300448: _0040_white
-    21300450: _0037_white
-    21300452: _0038_white
-    21300454: dream_particle_02
-    21300456: corpse_set_01_0006_nail2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: wet_land0000
+  - first:
+      213: 21300002
+    second: splat_explode_effect0001
+  - first:
+      213: 21300004
+    second: wet_land0003
+  - first:
+      213: 21300006
+    second: shot_impact_sprite_003
+  - first:
+      213: 21300008
+    second: skull_chip1
+  - first:
+      213: 21300010
+    second: shot_impact_sprite_001
+  - first:
+      213: 21300012
+    second: black_fader
+  - first:
+      213: 21300014
+    second: msk_generic
+  - first:
+      213: 21300016
+    second: fury_pieces_0002_cracks2
+  - first:
+      213: 21300018
+    second: dream_essence_extra_get
+  - first:
+      213: 21300020
+    second: Soul_burst0003
+  - first:
+      213: 21300022
+    second: lantern_glow_beams
+  - first:
+      213: 21300024
+    second: break_bits_0003_Layer-5
+  - first:
+      213: 21300026
+    second: white_light
+  - first:
+      213: 21300028
+    second: skull_chip2
+  - first:
+      213: 21300030
+    second: splat_explode_effect0006
+  - first:
+      213: 21300032
+    second: msk_generic_soft
+  - first:
+      213: 21300034
+    second: break_bits_0004_Layer-1
+  - first:
+      213: 21300036
+    second: shot_impact_sprite_004
+  - first:
+      213: 21300038
+    second: spatter_orange
+  - first:
+      213: 21300040
+    second: splat_explode_effect0003
+  - first:
+      213: 21300042
+    second: shot_impact_sprite_005
+  - first:
+      213: 21300044
+    second: break_bits_0000_Layer-2
+  - first:
+      213: 21300046
+    second: Soul_burst0004
+  - first:
+      213: 21300048
+    second: wet_land0002
+  - first:
+      213: 21300050
+    second: nail_terrain_hit_effect0000
+  - first:
+      213: 21300052
+    second: lantern_glow_000
+  - first:
+      213: 21300054
+    second: vignette_large_v01
+  - first:
+      213: 21300056
+    second: vignette_low_health
+  - first:
+      213: 21300058
+    second: break_bits_0002_Layer-4
+  - first:
+      213: 21300060
+    second: soul_orb
+  - first:
+      213: 21300062
+    second: white_fader
+  - first:
+      213: 21300064
+    second: wet_land0004
+  - first:
+      213: 21300066
+    second: splat_explode_effect0000
+  - first:
+      213: 21300068
+    second: nail_terrain_hit_effect0002
+  - first:
+      213: 21300070
+    second: nail_terrain_hit_effect0001
+  - first:
+      213: 21300072
+    second: wet_land0001
+  - first:
+      213: 21300074
+    second: shot_impact_sprite_002
+  - first:
+      213: 21300076
+    second: break_bits_0001_Layer-3
+  - first:
+      213: 21300078
+    second: Soul_burst0000
+  - first:
+      213: 21300080
+    second: nail_terrain_hit_effect0003
+  - first:
+      213: 21300082
+    second: Soul_burst0002
+  - first:
+      213: 21300084
+    second: splat_explode_effect0004
+  - first:
+      213: 21300086
+    second: Soul_burst0001
+  - first:
+      213: 21300088
+    second: shot_impact_sprite_006
+  - first:
+      213: 21300090
+    second: splat_explode_effect0005
+  - first:
+      213: 21300092
+    second: splat_explode_effect0002
+  - first:
+      213: 21300094
+    second: break_rag_anim0006
+  - first:
+      213: 21300096
+    second: break_rag_anim0012
+  - first:
+      213: 21300098
+    second: break_rag_anim0008
+  - first:
+      213: 21300100
+    second: break_rag_anim0005
+  - first:
+      213: 21300102
+    second: break_rag_anim0003
+  - first:
+      213: 21300104
+    second: break_rag_anim0007
+  - first:
+      213: 21300106
+    second: break_rag_anim0002
+  - first:
+      213: 21300108
+    second: break_rag_anim0009
+  - first:
+      213: 21300110
+    second: break_rag_anim0000
+  - first:
+      213: 21300112
+    second: break_rag_anim0010
+  - first:
+      213: 21300114
+    second: break_rag_anim0013
+  - first:
+      213: 21300116
+    second: break_rag_anim0001
+  - first:
+      213: 21300118
+    second: break_rag_anim0011
+  - first:
+      213: 21300120
+    second: break_rag_anim0004
+  - first:
+      213: 21300122
+    second: ancient_wall_pieces_0002_a
+  - first:
+      213: 21300124
+    second: stagdoor_0003_Color-Balance-1-copy-15
+  - first:
+      213: 21300126
+    second: Grimmkin_lantern
+  - first:
+      213: 21300128
+    second: health_plant_0005_base1
+  - first:
+      213: 21300130
+    second: health_plant_0001_base2
+  - first:
+      213: 21300132
+    second: ancient_wall_pieces_0006_a
+  - first:
+      213: 21300134
+    second: mask_beam
+  - first:
+      213: 21300136
+    second: 927-2@2x
+  - first:
+      213: 21300138
+    second: cd_room_beam_glow
+  - first:
+      213: 21300140
+    second: 927-0@2x_top
+  - first:
+      213: 21300142
+    second: glass_01
+  - first:
+      213: 21300144
+    second: glass_05
+  - first:
+      213: 21300146
+    second: lid
+  - first:
+      213: 21300148
+    second: brk_bottle
+  - first:
+      213: 21300150
+    second: glass_04
+  - first:
+      213: 21300152
+    second: ghost_shrines_0007_bug_corpse_04
+  - first:
+      213: 21300154
+    second: ghost_shrines_0004_bug_corpse_01
+  - first:
+      213: 21300156
+    second: brk_cart_01
+  - first:
+      213: 21300158
+    second: floor_pool
+  - first:
+      213: 21300160
+    second: brk_barrel_02
+  - first:
+      213: 21300162
+    second: 2163-4@2x
+  - first:
+      213: 21300164
+    second: 2163-3@2x
+  - first:
+      213: 21300166
+    second: floor_rubble_02
+  - first:
+      213: 21300168
+    second: brk_barrel_04
+  - first:
+      213: 21300170
+    second: brk_cart_02
+  - first:
+      213: 21300172
+    second: brk_barrel_01
+  - first:
+      213: 21300174
+    second: ancient_wall_pieces_0004_a
+  - first:
+      213: 21300176
+    second: ancient_wall_pieces_0001_Layer-1
+  - first:
+      213: 21300178
+    second: ancient_wall_pieces_0003_a
+  - first:
+      213: 21300180
+    second: rancid_egg_standard_base
+  - first:
+      213: 21300182
+    second: h__0000_hive_break
+  - first:
+      213: 21300184
+    second: mine_entrance_0015_18
+  - first:
+      213: 21300186
+    second: FG_post_01
+  - first:
+      213: 21300188
+    second: floor_rubble_FG_01
+  - first:
+      213: 21300190
+    second: mine_entrance_0016_17
+  - first:
+      213: 21300192
+    second: mine_entrance_0018_15
+  - first:
+      213: 21300194
+    second: floor_rubble_FG_02
+  - first:
+      213: 21300196
+    second: town_bench_lit
+  - first:
+      213: 21300198
+    second: mine_entrance_0017_16
+  - first:
+      213: 21300200
+    second: floor_rubble_01
+  - first:
+      213: 21300202
+    second: FG_post_02
+  - first:
+      213: 21300204
+    second: floor_rubble_FG_03
+  - first:
+      213: 21300206
+    second: elev_chain
+  - first:
+      213: 21300208
+    second: stag_pole_tall_break_03
+  - first:
+      213: 21300210
+    second: stag_pole_tall_break_04
+  - first:
+      213: 21300212
+    second: stag_pole_tall_break_05
+  - first:
+      213: 21300214
+    second: storeroom_shrunk_0001_2
+  - first:
+      213: 21300216
+    second: storeroom_shrunk_0002_1
+  - first:
+      213: 21300218
+    second: 2163-1@2x
+  - first:
+      213: 21300220
+    second: 2163-5@2x
+  - first:
+      213: 21300222
+    second: corpse_set_01_0011_dead_bug_01
+  - first:
+      213: 21300224
+    second: scatter-maps_0001_2
+  - first:
+      213: 21300226
+    second: scatter-maps_0000_3
+  - first:
+      213: 21300228
+    second: scatter-maps_0002_1
+  - first:
+      213: 21300230
+    second: corpse_set_01_0003_dead_bug_03
+  - first:
+      213: 21300232
+    second: corpse_set_01_0002_dead_bug_05
+  - first:
+      213: 21300234
+    second: corpse_set_01_0000_dead_bug_06
+  - first:
+      213: 21300236
+    second: corpse_set_01_0001_dead_bug_04
+  - first:
+      213: 21300238
+    second: 2165-7@2x
+  - first:
+      213: 21300240
+    second: brk_cart_03
+  - first:
+      213: 21300242
+    second: 2165-1@2x
+  - first:
+      213: 21300244
+    second: ghost_shrines_0008_bug_corpse_05
+  - first:
+      213: 21300246
+    second: 2165-5@2x
+  - first:
+      213: 21300248
+    second: 2165-3@2x
+  - first:
+      213: 21300250
+    second: stagdoor_0002_Color-Balance-1-copy-14
+  - first:
+      213: 21300252
+    second: 2165-4@2x
+  - first:
+      213: 21300254
+    second: brk_barrel_03
+  - first:
+      213: 21300256
+    second: 2163-2@2x
+  - first:
+      213: 21300258
+    second: roof_02
+  - first:
+      213: 21300260
+    second: direction_sign_breakable_0003_town
+  - first:
+      213: 21300262
+    second: mines_metal_additions_0001_a
+  - first:
+      213: 21300264
+    second: cd_tollbooth_lamp
+  - first:
+      213: 21300266
+    second: roof_01_flip
+  - first:
+      213: 21300268
+    second: roof_01
+  - first:
+      213: 21300270
+    second: direction_sign_breakable_0005_tramway
+  - first:
+      213: 21300272
+    second: ghost_shrines_0005_bug_corpse_02
+  - first:
+      213: 21300274
+    second: fung_new_mush_BG_mush_pillar
+  - first:
+      213: 21300276
+    second: ghost_shrines_0006_bug_corpse_03
+  - first:
+      213: 21300278
+    second: glass_03
+  - first:
+      213: 21300280
+    second: cord_01_right0007
+  - first:
+      213: 21300282
+    second: cord_01_left0000
+  - first:
+      213: 21300284
+    second: cord_01_right0004
+  - first:
+      213: 21300286
+    second: cord_01_right0009
+  - first:
+      213: 21300288
+    second: cord_01_right0003
+  - first:
+      213: 21300290
+    second: cord_01_right0008
+  - first:
+      213: 21300292
+    second: cord_01_right0005
+  - first:
+      213: 21300294
+    second: cord_01_right0002
+  - first:
+      213: 21300296
+    second: cord_01_right0006
+  - first:
+      213: 21300298
+    second: cord_01_right0000
+  - first:
+      213: 21300300
+    second: cord_01_right0010
+  - first:
+      213: 21300302
+    second: cord_01_right0001
+  - first:
+      213: 21300304
+    second: cord_01_death
+  - first:
+      213: 21300306
+    second: crumble_floor
+  - first:
+      213: 21300308
+    second: bench_sign_symbol
+  - first:
+      213: 21300310
+    second: corpse_set_01_0005_nail4-copy
+  - first:
+      213: 21300312
+    second: corpse_set_01_0008_nail1-copy
+  - first:
+      213: 21300314
+    second: Dream_Orb_smaller0012
+  - first:
+      213: 21300316
+    second: Dream_Orb_smaller0003
+  - first:
+      213: 21300318
+    second: Dream_Orb_smaller0008
+  - first:
+      213: 21300320
+    second: Dream_Orb_smaller0011
+  - first:
+      213: 21300322
+    second: Dream_Orb_smaller0007
+  - first:
+      213: 21300324
+    second: Dream_Orb_smaller0000
+  - first:
+      213: 21300326
+    second: Dream_Orb_smaller0009
+  - first:
+      213: 21300328
+    second: Dream_Orb_smaller0006
+  - first:
+      213: 21300330
+    second: Dream_Orb_smaller0013
+  - first:
+      213: 21300332
+    second: Dream_Orb_smaller0010
+  - first:
+      213: 21300334
+    second: Dream_Orb_smaller0004
+  - first:
+      213: 21300336
+    second: Dream_Orb_smaller0002
+  - first:
+      213: 21300338
+    second: Dream_Orb_smaller0005
+  - first:
+      213: 21300340
+    second: Dream_Orb_smaller0001
+  - first:
+      213: 21300342
+    second: direction_sign_breakable_0004_stag
+  - first:
+      213: 21300344
+    second: cord_01_left0007
+  - first:
+      213: 21300346
+    second: cord_01_left0003
+  - first:
+      213: 21300348
+    second: cord_01_left0001
+  - first:
+      213: 21300350
+    second: cord_01_left0006
+  - first:
+      213: 21300352
+    second: cord_01_left0005
+  - first:
+      213: 21300354
+    second: cord_01_left0004
+  - first:
+      213: 21300356
+    second: cord_01_left0002
+  - first:
+      213: 21300358
+    second: cord_01_left0010
+  - first:
+      213: 21300360
+    second: cord_01_left0009
+  - first:
+      213: 21300362
+    second: cord_01_left0008
+  - first:
+      213: 21300364
+    second: direction_sign_breakable_0003_ciity
+  - first:
+      213: 21300366
+    second: ancient_wall_pieces_0001_Color-Balance-1-copy
+  - first:
+      213: 21300368
+    second: ancient_wall_pieces_0004_Color-Balance-1-copy-7
+  - first:
+      213: 21300370
+    second: ancient_wall_pieces_0005_Color-Balance-1-copy-9
+  - first:
+      213: 21300372
+    second: ancient_wall_pieces_0003_Color-Balance-1-copy-5
+  - first:
+      213: 21300374
+    second: direction_sign_breakable_0001_Layer-1
+  - first:
+      213: 21300376
+    second: direction_sign_breakable_0006_Layer-0
+  - first:
+      213: 21300378
+    second: direction_sign_breakable_0000_Layer-0-copy
+  - first:
+      213: 21300380
+    second: direction_sign_break_top
+  - first:
+      213: 21300382
+    second: direction_sign_breakable_0006_Layer-0_hot_spring
+  - first:
+      213: 21300384
+    second: corpse_set_01_0012_nail1
+  - first:
+      213: 21300386
+    second: corpse_set_01_0007_nail2-copy
+  - first:
+      213: 21300388
+    second: corpse_set_01_0004_dead_bug_02
+  - first:
+      213: 21300390
+    second: corpse_set_01_0009_nail4
+  - first:
+      213: 21300392
+    second: direction_sign_breakable_0002_white_palace
+  - first:
+      213: 21300394
+    second: base
+  - first:
+      213: 21300396
+    second: brazier_top
+  - first:
+      213: 21300398
+    second: direction_sign_breakable_0006_Layer-0_resting_ground
+  - first:
+      213: 21300400
+    second: break_candles_0002_Layer-3
+  - first:
+      213: 21300402
+    second: break_candles_0001_Layer-9
+  - first:
+      213: 21300404
+    second: break_candles_0006_Layer-1-copy
+  - first:
+      213: 21300406
+    second: break_candles_0000_Layer-8
+  - first:
+      213: 21300408
+    second: break_candles_0008_Layer-1
+  - first:
+      213: 21300410
+    second: break_candle_glow
+  - first:
+      213: 21300412
+    second: break_candles_0003_Layer-6
+  - first:
+      213: 21300414
+    second: break_candles_0004_Layer-7
+  - first:
+      213: 21300416
+    second: break_candles_0007_Layer-5
+  - first:
+      213: 21300418
+    second: break_candles_0005_Layer-2
+  - first:
+      213: 21300420
+    second: ancient_wall_pieces_0004_Color-Balance-1-copy-7 - Copy
+  - first:
+      213: 21300422
+    second: direction_sign_breakable_0003_bank
+  - first:
+      213: 21300424
+    second: break_outskirts_0013_2
+  - first:
+      213: 21300426
+    second: cliffs_pole
+  - first:
+      213: 21300428
+    second: Grimm_lantern_0005_5
+  - first:
+      213: 21300430
+    second: break_outskirts_0012_3
+  - first:
+      213: 21300432
+    second: cliffs_moths_0019_Layer-10
+  - first:
+      213: 21300434
+    second: break_outskirts_0014_1
+  - first:
+      213: 21300436
+    second: worker_corpses_0003_2
+  - first:
+      213: 21300438
+    second: worker_corpses_0001_4
+  - first:
+      213: 21300440
+    second: deep_rag_01
+  - first:
+      213: 21300442
+    second: worker_corpses_0004_1
+  - first:
+      213: 21300444
+    second: worker_corpses_0002_3
+  - first:
+      213: 21300446
+    second: worker_corpses_0000_5
+  - first:
+      213: 21300448
+    second: _0040_white
+  - first:
+      213: 21300450
+    second: _0037_white
+  - first:
+      213: 21300452
+    second: _0038_white
+  - first:
+      213: 21300454
+    second: dream_particle_02
+  - first:
+      213: 21300456
+    second: corpse_set_01_0006_nail2
   externalObjects: {}
-  serializedVersion: 4
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -252,6 +708,9 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -282,11 +741,17 @@ TextureImporter:
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -296,6 +761,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -344,6 +810,13 @@ TextureImporter:
         - {x: -20.97532, y: 5.525659}
         - {x: -22.97532, y: 10.52566}
       tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: splat_explode_effect0001
       rect:
@@ -560,6 +1033,13 @@ TextureImporter:
         - {x: -32.47532, y: 86.47657}
         - {x: -42.47532, y: 86.47657}
       tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: wet_land0003
       rect:
@@ -652,6 +1132,13 @@ TextureImporter:
         - {x: -4.5, y: 8.483394}
         - {x: -7.5, y: 11.48339}
       tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shot_impact_sprite_003
       rect:
@@ -722,6 +1209,13 @@ TextureImporter:
         - {x: 27.5, y: 51.5}
         - {x: 26.5, y: 52.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: skull_chip1
       rect:
@@ -747,6 +1241,13 @@ TextureImporter:
         - {x: 8.5, y: 9.5}
         - {x: 5.5, y: 10.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shot_impact_sprite_001
       rect:
@@ -810,6 +1311,13 @@ TextureImporter:
         - {x: 26, y: -27.96194}
         - {x: 26, y: -15.96194}
       tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: black_fader
       rect:
@@ -848,6 +1356,13 @@ TextureImporter:
         - {x: 32, y: -10.2125}
         - {x: 32, y: 8.787498}
       tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: msk_generic
       rect:
@@ -874,6 +1389,13 @@ TextureImporter:
         - {x: 60.48662, y: 48.3913}
         - {x: -55.51338, y: 48.3913}
       tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: fury_pieces_0002_cracks2
       rect:
@@ -930,6 +1452,13 @@ TextureImporter:
         - {x: -100.7397, y: 39.15612}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: dream_essence_extra_get
       rect:
@@ -981,6 +1510,13 @@ TextureImporter:
         - {x: 39.5, y: 7}
         - {x: 37.5, y: 5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Soul_burst0003
       rect:
@@ -1012,7 +1548,7 @@ TextureImporter:
         - {x: -18.00002, y: 157}
         - {x: -14.00002, y: 161}
         - {x: -7.000015, y: 161}
-        - {x: -1.525879E-05, y: 146}
+        - {x: -0.00001525879, y: 146}
         - {x: 1.999985, y: 134}
         - {x: 1.999985, y: 146}
         - {x: 3.999985, y: 155}
@@ -1095,6 +1631,13 @@ TextureImporter:
         - {x: -38.00002, y: 73}
         - {x: -41.00002, y: 72}
       tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: lantern_glow_beams
       rect:
@@ -1127,6 +1670,13 @@ TextureImporter:
         - {x: -39.02131, y: -77.5316}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_bits_0003_Layer-5
       rect:
@@ -1155,6 +1705,13 @@ TextureImporter:
         - {x: 31.5, y: 1}
         - {x: 31.5, y: 17}
       tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: white_light
       rect:
@@ -1189,6 +1746,13 @@ TextureImporter:
         - {x: -101.1894, y: -94.00002}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: skull_chip2
       rect:
@@ -1216,6 +1780,13 @@ TextureImporter:
         - {x: 8.5, y: 1.5}
         - {x: 8.5, y: 6.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: splat_explode_effect0006
       rect:
@@ -1349,6 +1920,13 @@ TextureImporter:
         - {x: -159.0247, y: 120.4684}
         - {x: -167.0247, y: 120.4684}
       tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: msk_generic_soft
       rect:
@@ -1384,6 +1962,13 @@ TextureImporter:
         - {x: -78, y: -58}
         - {x: -71, y: -63}
       tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_bits_0004_Layer-1
       rect:
@@ -1416,6 +2001,13 @@ TextureImporter:
         - {x: 16.5, y: -16.5}
         - {x: 37.5, y: 7.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shot_impact_sprite_004
       rect:
@@ -1502,6 +2094,13 @@ TextureImporter:
         - {x: 32.98427, y: 49.5}
         - {x: 29.98427, y: 50.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: spatter_orange
       rect:
@@ -1527,6 +2126,13 @@ TextureImporter:
         - {x: 11.5, y: 7.5}
         - {x: 8.5, y: 11.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: splat_explode_effect0003
       rect:
@@ -2049,6 +2655,13 @@ TextureImporter:
         - {x: -47.96474, y: 124.5}
         - {x: -47.96474, y: 131.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shot_impact_sprite_005
       rect:
@@ -2137,6 +2750,13 @@ TextureImporter:
         - {x: 37.53806, y: 33.5}
         - {x: 37.53806, y: 42.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_bits_0000_Layer-2
       rect:
@@ -2162,6 +2782,13 @@ TextureImporter:
         - {x: 15.5, y: -6}
         - {x: 15.5, y: 18}
       tessellationDetail: 0
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Soul_burst0004
       rect:
@@ -2181,7 +2808,7 @@ TextureImporter:
         - {x: 5.999985, y: 46.00645}
         - {x: 5.999985, y: 60.00645}
         - {x: 4.999985, y: 48.00645}
-        - {x: -1.525879E-05, y: 42.00645}
+        - {x: -0.00001525879, y: 42.00645}
         - {x: -9.000015, y: 42.00645}
         - {x: -17.00002, y: 55.00645}
         - {x: -22.00002, y: 97.00645}
@@ -2271,6 +2898,13 @@ TextureImporter:
         - {x: -94.00002, y: -122.9935}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: wet_land0002
       rect:
@@ -2359,6 +2993,13 @@ TextureImporter:
         - {x: -8, y: 1.461939}
         - {x: -8, y: 8.461939}
       tessellationDetail: 0
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: nail_terrain_hit_effect0000
       rect:
@@ -2409,6 +3050,13 @@ TextureImporter:
         - {x: 24.5, y: 9.49192}
         - {x: 21.5, y: 9.49192}
       tessellationDetail: 0
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: lantern_glow_000
       rect:
@@ -2432,6 +3080,13 @@ TextureImporter:
         - {x: -25.60989, y: -60.0052}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: vignette_large_v01
       rect:
@@ -2460,6 +3115,13 @@ TextureImporter:
         - {x: 13.69952, y: -11}
         - {x: -6.300477, y: -13}
       tessellationDetail: 0
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: vignette_low_health
       rect:
@@ -2759,6 +3421,13 @@ TextureImporter:
         - {x: 126, y: 199.5}
         - {x: 126, y: 209.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_bits_0002_Layer-4
       rect:
@@ -2792,6 +3461,13 @@ TextureImporter:
         - {x: 27, y: -15.5}
         - {x: 27, y: 7.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: soul_orb
       rect:
@@ -2820,6 +3496,13 @@ TextureImporter:
         - {x: 20.5, y: 11}
         - {x: 17.5, y: 19}
       tessellationDetail: 0
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: white_fader
       rect:
@@ -2875,6 +3558,13 @@ TextureImporter:
         - {x: 37, y: -48.5}
         - {x: 56, y: -27.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: wet_land0004
       rect:
@@ -2952,6 +3642,13 @@ TextureImporter:
         - {x: -8.038059, y: 12.4684}
         - {x: -9.038059, y: 12.4684}
       tessellationDetail: 0
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: splat_explode_effect0000
       rect:
@@ -3070,6 +3767,13 @@ TextureImporter:
         - {x: -26.97532, y: 53.48385}
         - {x: -31.97532, y: 62.48385}
       tessellationDetail: 0
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: nail_terrain_hit_effect0002
       rect:
@@ -3140,6 +3844,13 @@ TextureImporter:
         - {x: -35.49355, y: -52.53806}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: nail_terrain_hit_effect0001
       rect:
@@ -3282,6 +3993,13 @@ TextureImporter:
         - {x: 12.52566, y: 24.51169}
         - {x: 10.52566, y: 22.51169}
       tessellationDetail: 0
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: wet_land0001
       rect:
@@ -3361,6 +4079,13 @@ TextureImporter:
         - {x: 21.5, y: -4.5}
         - {x: 21.5, y: 8.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shot_impact_sprite_002
       rect:
@@ -3421,6 +4146,13 @@ TextureImporter:
         - {x: 23.9684, y: 32.5}
         - {x: 23.9684, y: 45.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_bits_0001_Layer-3
       rect:
@@ -3454,6 +4186,13 @@ TextureImporter:
         - {x: 37, y: -18.5}
         - {x: 39, y: -9.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Soul_burst0000
       rect:
@@ -3569,6 +4308,13 @@ TextureImporter:
         - {x: -15, y: 53.98901}
         - {x: -17, y: 51.98901}
       tessellationDetail: 0
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: nail_terrain_hit_effect0003
       rect:
@@ -3634,6 +4380,13 @@ TextureImporter:
         - {x: -63.02468, y: -48.00097}
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Soul_burst0002
       rect:
@@ -3875,6 +4628,13 @@ TextureImporter:
         - {x: -29.53162, y: 51.01338}
         - {x: -34.53162, y: 64.01338}
       tessellationDetail: 0
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: splat_explode_effect0004
       rect:
@@ -4406,6 +5166,13 @@ TextureImporter:
         - {x: -64.53807, y: 148.0247}
         - {x: -70.53807, y: 148.0247}
       tessellationDetail: 0
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Soul_burst0001
       rect:
@@ -4705,6 +5472,13 @@ TextureImporter:
         - {x: 13.99998, y: 37.00645}
         - {x: 15.99998, y: 36.00645}
       tessellationDetail: 0
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: shot_impact_sprite_006
       rect:
@@ -4820,6 +5594,13 @@ TextureImporter:
         - {x: 38, y: 34.5}
         - {x: 38, y: 45.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: splat_explode_effect0005
       rect:
@@ -5093,6 +5874,13 @@ TextureImporter:
         - {x: -116, y: 140.4753}
         - {x: -118, y: 142.4753}
       tessellationDetail: 0
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: splat_explode_effect0002
       rect:
@@ -5452,6 +6240,13 @@ TextureImporter:
         - {x: -76.49248, y: 105.4619}
         - {x: -91.49248, y: 118.4619}
       tessellationDetail: 0
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0006
       rect:
@@ -5511,6 +6306,13 @@ TextureImporter:
         - {x: 3.500004, y: -60.46194}
         - {x: 3.500004, y: -22.46194}
       tessellationDetail: 0
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0012
       rect:
@@ -5552,6 +6354,13 @@ TextureImporter:
         - {x: 43, y: -27}
         - {x: 53, y: -24}
       tessellationDetail: 0
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0008
       rect:
@@ -5609,6 +6418,13 @@ TextureImporter:
         - {x: -10.53806, y: -22.49308}
         - {x: -4.538055, y: -15.49308}
       tessellationDetail: 0
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0005
       rect:
@@ -5675,6 +6491,13 @@ TextureImporter:
         - {x: 6.500004, y: -92.46194}
         - {x: 3.500004, y: -24.46194}
       tessellationDetail: 0
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0003
       rect:
@@ -5737,6 +6560,13 @@ TextureImporter:
         - {x: 0.5000038, y: -23.5}
         - {x: 6.500004, y: 16.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0007
       rect:
@@ -5793,6 +6623,13 @@ TextureImporter:
         - {x: 4.000004, y: -57.46194}
         - {x: 5.000004, y: -21.46194}
       tessellationDetail: 0
+      bones: []
+      spriteID: 88305410000000000800000000000000
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0002
       rect:
@@ -5838,7 +6675,7 @@ TextureImporter:
         - {x: -58.5, y: 102}
         - {x: -58.5, y: 69.00001}
         - {x: -53.5, y: 32.00001}
-        - {x: -52.5, y: 7.629395E-06}
+        - {x: -52.5, y: 0.000007629395}
         - {x: -56.5, y: -17.99999}
         - {x: -54.5, y: -19.99999}
         - {x: -47.5, y: -16.99999}
@@ -5867,6 +6704,13 @@ TextureImporter:
         - {x: -28.5, y: -68.99999}
         - {x: -27.5, y: -68.99999}
       tessellationDetail: 0
+      bones: []
+      spriteID: a8305410000000000800000000000000
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0009
       rect:
@@ -5910,6 +6754,13 @@ TextureImporter:
         - {x: -2.461937, y: -22.96194}
         - {x: 8.538063, y: -22.96194}
       tessellationDetail: 0
+      bones: []
+      spriteID: c8305410000000000800000000000000
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0000
       rect:
@@ -5965,6 +6816,13 @@ TextureImporter:
         - {x: 1.99192, y: -96.46194}
         - {x: 4.99192, y: -33.46194}
       tessellationDetail: 0
+      bones: []
+      spriteID: e8305410000000000800000000000000
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0010
       rect:
@@ -6008,6 +6866,13 @@ TextureImporter:
         - {x: 63.48831, y: -13.48759}
         - {x: 63.48831, y: -11.48759}
       tessellationDetail: 0
+      bones: []
+      spriteID: 09305410000000000800000000000000
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0013
       rect:
@@ -6055,6 +6920,13 @@ TextureImporter:
         - {x: 42, y: -29}
         - {x: 52, y: -25}
       tessellationDetail: 0
+      bones: []
+      spriteID: 29305410000000000800000000000000
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0001
       rect:
@@ -6308,6 +7180,13 @@ TextureImporter:
         - {x: 2.531605, y: -20.03806}
         - {x: 9.531605, y: 14.96194}
       tessellationDetail: 0
+      bones: []
+      spriteID: 49305410000000000800000000000000
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0011
       rect:
@@ -6349,6 +7228,13 @@ TextureImporter:
         - {x: 13.5, y: -28.5}
         - {x: 31.5, y: -34.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 69305410000000000800000000000000
+      internalID: 21300118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_rag_anim0004
       rect:
@@ -6412,6 +7298,13 @@ TextureImporter:
         - {x: 8.500004, y: -85.99998}
         - {x: 2.500004, y: -27.99998}
       tessellationDetail: 0
+      bones: []
+      spriteID: 89305410000000000800000000000000
+      internalID: 21300120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0002_a
       rect:
@@ -6462,6 +7355,13 @@ TextureImporter:
         - {x: 74.5, y: -59.5}
         - {x: 74.5, y: -48.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: a9305410000000000800000000000000
+      internalID: 21300122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: stagdoor_0003_Color-Balance-1-copy-15
       rect:
@@ -6520,6 +7420,13 @@ TextureImporter:
         - {x: 9, y: -89}
         - {x: 18, y: -89}
       tessellationDetail: 0
+      bones: []
+      spriteID: c9305410000000000800000000000000
+      internalID: 21300124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Grimmkin_lantern
       rect:
@@ -6580,6 +7487,13 @@ TextureImporter:
         - {x: 15, y: -38.5}
         - {x: 14, y: 20.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: e9305410000000000800000000000000
+      internalID: 21300126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: health_plant_0005_base1
       rect:
@@ -6628,6 +7542,13 @@ TextureImporter:
         - {x: -8.5, y: -55}
         - {x: -2.5, y: -17}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0a305410000000000800000000000000
+      internalID: 21300128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: health_plant_0001_base2
       rect:
@@ -6663,6 +7584,13 @@ TextureImporter:
         - {x: 20, y: -30}
         - {x: 3, y: 8}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2a305410000000000800000000000000
+      internalID: 21300130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0006_a
       rect:
@@ -6719,6 +7647,13 @@ TextureImporter:
         - {x: -52, y: -146.5}
         - {x: -36, y: -112.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4a305410000000000800000000000000
+      internalID: 21300132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: mask_beam
       rect:
@@ -6741,6 +7676,13 @@ TextureImporter:
         - {x: 64, y: -72.5}
         - {x: 64, y: 72.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6a305410000000000800000000000000
+      internalID: 21300134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 927-2@2x
       rect:
@@ -6823,6 +7765,13 @@ TextureImporter:
         - {x: 8.01421, y: -46.99999}
         - {x: 11.01421, y: -34.99999}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8a305410000000000800000000000000
+      internalID: 21300136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cd_room_beam_glow
       rect:
@@ -6853,6 +7802,13 @@ TextureImporter:
         - {x: 38, y: -53.75784}
         - {x: 38, y: 81.24216}
       tessellationDetail: 0
+      bones: []
+      spriteID: aa305410000000000800000000000000
+      internalID: 21300138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 927-0@2x_top
       rect:
@@ -6882,6 +7838,13 @@ TextureImporter:
         - {x: 24.5, y: -13}
         - {x: 24.5, y: 22}
       tessellationDetail: 0
+      bones: []
+      spriteID: ca305410000000000800000000000000
+      internalID: 21300140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: glass_01
       rect:
@@ -6925,6 +7888,13 @@ TextureImporter:
         - {x: 34.5, y: 24}
         - {x: 32.5, y: 25}
       tessellationDetail: 0
+      bones: []
+      spriteID: ea305410000000000800000000000000
+      internalID: 21300142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: glass_05
       rect:
@@ -6962,6 +7932,13 @@ TextureImporter:
         - {x: -17.5, y: 20}
         - {x: -19.5, y: 20}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0b305410000000000800000000000000
+      internalID: 21300144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: lid
       rect:
@@ -7007,6 +7984,13 @@ TextureImporter:
         - {x: 37.03161, y: -40.99355}
         - {x: 56.03161, y: -39.99355}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2b305410000000000800000000000000
+      internalID: 21300146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: brk_bottle
       rect:
@@ -7102,6 +8086,13 @@ TextureImporter:
         - {x: 33.01991, y: -103.4931}
         - {x: -24.98009, y: -102.4931}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4b305410000000000800000000000000
+      internalID: 21300148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: glass_04
       rect:
@@ -7130,6 +8121,13 @@ TextureImporter:
         - {x: 13.5, y: 4.5}
         - {x: 0.5, y: 19.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6b305410000000000800000000000000
+      internalID: 21300150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ghost_shrines_0007_bug_corpse_04
       rect:
@@ -7184,6 +8182,13 @@ TextureImporter:
         - {x: 44, y: -78.5}
         - {x: 57, y: -60.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8b305410000000000800000000000000
+      internalID: 21300152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ghost_shrines_0004_bug_corpse_01
       rect:
@@ -7232,6 +8237,13 @@ TextureImporter:
         - {x: 50.5, y: -26}
         - {x: 52.5, y: -18}
       tessellationDetail: 0
+      bones: []
+      spriteID: ab305410000000000800000000000000
+      internalID: 21300154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: brk_cart_01
       rect:
@@ -7314,6 +8326,13 @@ TextureImporter:
         - {x: 32.5, y: -72.5}
         - {x: 33.5, y: -72.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: cb305410000000000800000000000000
+      internalID: 21300156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: floor_pool
       rect:
@@ -7362,6 +8381,13 @@ TextureImporter:
         - {x: 108.5, y: -21.5}
         - {x: 102.5, y: 6.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: eb305410000000000800000000000000
+      internalID: 21300158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: brk_barrel_02
       rect:
@@ -7398,6 +8424,13 @@ TextureImporter:
         - {x: 30.5, y: -35}
         - {x: 34.5, y: -27}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0c305410000000000800000000000000
+      internalID: 21300160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2163-4@2x
       rect:
@@ -7422,6 +8455,13 @@ TextureImporter:
         - {x: 15, y: 24}
         - {x: 7, y: 26}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2c305410000000000800000000000000
+      internalID: 21300162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2163-3@2x
       rect:
@@ -7447,6 +8487,13 @@ TextureImporter:
         - {x: 14.5, y: -18}
         - {x: 14.5, y: 17}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4c305410000000000800000000000000
+      internalID: 21300164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: floor_rubble_02
       rect:
@@ -7484,6 +8531,13 @@ TextureImporter:
         - {x: 65, y: -22}
         - {x: 70, y: -16}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6c305410000000000800000000000000
+      internalID: 21300166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: brk_barrel_04
       rect:
@@ -7520,6 +8574,13 @@ TextureImporter:
         - {x: 34, y: 18}
         - {x: 32, y: 34}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8c305410000000000800000000000000
+      internalID: 21300168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: brk_cart_02
       rect:
@@ -7620,6 +8681,13 @@ TextureImporter:
         - {x: 93, y: -19.5}
         - {x: 94, y: -18.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: ac305410000000000800000000000000
+      internalID: 21300170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: brk_barrel_01
       rect:
@@ -7659,6 +8727,13 @@ TextureImporter:
         - {x: 41, y: -16.5}
         - {x: 42, y: -7.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: cc305410000000000800000000000000
+      internalID: 21300172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0004_a
       rect:
@@ -7690,6 +8765,13 @@ TextureImporter:
         - {x: 11, y: 6.5}
         - {x: 12, y: 16.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: ec305410000000000800000000000000
+      internalID: 21300174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0001_Layer-1
       rect:
@@ -7715,6 +8797,13 @@ TextureImporter:
         - {x: 13.5, y: -8}
         - {x: 13.5, y: 8}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0d305410000000000800000000000000
+      internalID: 21300176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0003_a
       rect:
@@ -7753,6 +8842,13 @@ TextureImporter:
         - {x: 26.5, y: 25}
         - {x: 26.5, y: 44}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2d305410000000000800000000000000
+      internalID: 21300178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: rancid_egg_standard_base
       rect:
@@ -7788,6 +8884,13 @@ TextureImporter:
         - {x: 74.5, y: -4.5}
         - {x: 66.5, y: 0.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4d305410000000000800000000000000
+      internalID: 21300180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: h__0000_hive_break
       rect:
@@ -7814,6 +8917,13 @@ TextureImporter:
         - {x: 10.5, y: 8.5}
         - {x: 4.5, y: 10.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6d305410000000000800000000000000
+      internalID: 21300182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: mine_entrance_0015_18
       rect:
@@ -7972,6 +9082,13 @@ TextureImporter:
         - {x: 1, y: 48}
         - {x: -20, y: 40}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8d305410000000000800000000000000
+      internalID: 21300184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: FG_post_01
       rect:
@@ -8014,6 +9131,13 @@ TextureImporter:
         - {x: 3.842424, y: 41}
         - {x: 0.8424243, y: 40}
       tessellationDetail: 0
+      bones: []
+      spriteID: ad305410000000000800000000000000
+      internalID: 21300186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: floor_rubble_FG_01
       rect:
@@ -8060,6 +9184,13 @@ TextureImporter:
         - {x: 46.5, y: -30.5}
         - {x: 75.5, y: -24.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: cd305410000000000800000000000000
+      internalID: 21300188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: mine_entrance_0016_17
       rect:
@@ -8155,6 +9286,13 @@ TextureImporter:
         - {x: 48.5, y: 45.5}
         - {x: 31.5, y: 22.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: ed305410000000000800000000000000
+      internalID: 21300190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: mine_entrance_0018_15
       rect:
@@ -8275,6 +9413,13 @@ TextureImporter:
         - {x: -11.5, y: 37.5}
         - {x: -10.5, y: 37.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0e305410000000000800000000000000
+      internalID: 21300192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: floor_rubble_FG_02
       rect:
@@ -8332,6 +9477,13 @@ TextureImporter:
         - {x: 15, y: -33}
         - {x: 60, y: -29}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2e305410000000000800000000000000
+      internalID: 21300194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: town_bench_lit
       rect:
@@ -8451,6 +9603,13 @@ TextureImporter:
         - {x: -5.5, y: 37}
         - {x: -5.5, y: 38}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4e305410000000000800000000000000
+      internalID: 21300196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: mine_entrance_0017_16
       rect:
@@ -8571,6 +9730,13 @@ TextureImporter:
         - {x: -11.5, y: 37.5}
         - {x: -10.5, y: 37.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6e305410000000000800000000000000
+      internalID: 21300198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: floor_rubble_01
       rect:
@@ -8637,6 +9803,13 @@ TextureImporter:
         - {x: -37.5, y: -27}
         - {x: -21.5, y: -28}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8e305410000000000800000000000000
+      internalID: 21300200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: FG_post_02
       rect:
@@ -8681,6 +9854,13 @@ TextureImporter:
         - {x: 0, y: 53.5}
         - {x: -5, y: 51.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: ae305410000000000800000000000000
+      internalID: 21300202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: floor_rubble_FG_03
       rect:
@@ -8735,6 +9915,13 @@ TextureImporter:
         - {x: 106, y: -35.5}
         - {x: 138, y: -27.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: ce305410000000000800000000000000
+      internalID: 21300204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: elev_chain
       rect:
@@ -8770,6 +9957,13 @@ TextureImporter:
         - {x: 0.5, y: 49}
         - {x: 0.5, y: 44}
       tessellationDetail: 0
+      bones: []
+      spriteID: ee305410000000000800000000000000
+      internalID: 21300206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: stag_pole_tall_break_03
       rect:
@@ -8794,6 +9988,13 @@ TextureImporter:
         - {x: 10.5, y: -38}
         - {x: 10.5, y: 41}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0f305410000000000800000000000000
+      internalID: 21300208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: stag_pole_tall_break_04
       rect:
@@ -8817,6 +10018,13 @@ TextureImporter:
         - {x: 10.5, y: -18.5}
         - {x: 10.5, y: 24.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2f305410000000000800000000000000
+      internalID: 21300210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: stag_pole_tall_break_05
       rect:
@@ -8844,6 +10052,13 @@ TextureImporter:
         - {x: 10, y: 12}
         - {x: 6, y: 17}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4f305410000000000800000000000000
+      internalID: 21300212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: storeroom_shrunk_0001_2
       rect:
@@ -8890,6 +10105,13 @@ TextureImporter:
         - {x: 5.5, y: -57.5}
         - {x: 26.5, y: -57.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6f305410000000000800000000000000
+      internalID: 21300214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: storeroom_shrunk_0002_1
       rect:
@@ -8939,6 +10161,13 @@ TextureImporter:
         - {x: 63.5, y: -58.5}
         - {x: 74.5, y: -58.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8f305410000000000800000000000000
+      internalID: 21300216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2163-1@2x
       rect:
@@ -8975,6 +10204,13 @@ TextureImporter:
         - {x: 16.5, y: -4}
         - {x: 13.5, y: 12}
       tessellationDetail: 0
+      bones: []
+      spriteID: af305410000000000800000000000000
+      internalID: 21300218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2163-5@2x
       rect:
@@ -9009,6 +10245,13 @@ TextureImporter:
         - {x: 22, y: -3.5}
         - {x: 24, y: -0.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: cf305410000000000800000000000000
+      internalID: 21300220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0011_dead_bug_01
       rect:
@@ -9058,6 +10301,13 @@ TextureImporter:
         - {x: 45.5, y: -35}
         - {x: 59.5, y: -29}
       tessellationDetail: 0
+      bones: []
+      spriteID: ef305410000000000800000000000000
+      internalID: 21300222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scatter-maps_0001_2
       rect:
@@ -9094,6 +10344,13 @@ TextureImporter:
         - {x: 35, y: -10.5}
         - {x: 54, y: 5.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 00405410000000000800000000000000
+      internalID: 21300224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scatter-maps_0000_3
       rect:
@@ -9130,6 +10387,13 @@ TextureImporter:
         - {x: 52.5, y: -4.5}
         - {x: 52.5, y: 9.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 20405410000000000800000000000000
+      internalID: 21300226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: scatter-maps_0002_1
       rect:
@@ -9163,6 +10427,13 @@ TextureImporter:
         - {x: 49.5, y: 4.5}
         - {x: 48.5, y: 4.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 40405410000000000800000000000000
+      internalID: 21300228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0003_dead_bug_03
       rect:
@@ -9241,6 +10512,13 @@ TextureImporter:
         - {x: 52.5, y: -40}
         - {x: 69.5, y: -28}
       tessellationDetail: 0
+      bones: []
+      spriteID: 60405410000000000800000000000000
+      internalID: 21300230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0002_dead_bug_05
       rect:
@@ -9280,6 +10558,13 @@ TextureImporter:
         - {x: 49, y: -22.5}
         - {x: 57, y: -5.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 80405410000000000800000000000000
+      internalID: 21300232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0000_dead_bug_06
       rect:
@@ -9323,6 +10608,13 @@ TextureImporter:
         - {x: 32.5, y: -45}
         - {x: 53.5, y: -27}
       tessellationDetail: 0
+      bones: []
+      spriteID: a0405410000000000800000000000000
+      internalID: 21300234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0001_dead_bug_04
       rect:
@@ -9376,6 +10668,13 @@ TextureImporter:
         - {x: 45, y: -22.5}
         - {x: 62, y: -2.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: c0405410000000000800000000000000
+      internalID: 21300236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2165-7@2x
       rect:
@@ -9413,6 +10712,13 @@ TextureImporter:
         - {x: 40.5, y: -58}
         - {x: 40.5, y: -42}
       tessellationDetail: 0
+      bones: []
+      spriteID: e0405410000000000800000000000000
+      internalID: 21300238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: brk_cart_03
       rect:
@@ -9511,6 +10817,13 @@ TextureImporter:
         - {x: -43.5, y: 5.5}
         - {x: -43.5, y: 6.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 01405410000000000800000000000000
+      internalID: 21300240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2165-1@2x
       rect:
@@ -9546,6 +10859,13 @@ TextureImporter:
         - {x: 33.5, y: -27}
         - {x: 41.5, y: -4}
       tessellationDetail: 0
+      bones: []
+      spriteID: 21405410000000000800000000000000
+      internalID: 21300242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ghost_shrines_0008_bug_corpse_05
       rect:
@@ -9604,6 +10924,13 @@ TextureImporter:
         - {x: 54, y: -41.5}
         - {x: 51, y: -39.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 41405410000000000800000000000000
+      internalID: 21300244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2165-5@2x
       rect:
@@ -9630,6 +10957,13 @@ TextureImporter:
         - {x: 14.5, y: 15.5}
         - {x: 8.5, y: 27.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 61405410000000000800000000000000
+      internalID: 21300246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2165-3@2x
       rect:
@@ -9670,6 +11004,13 @@ TextureImporter:
         - {x: 34, y: -22}
         - {x: 46, y: -1}
       tessellationDetail: 0
+      bones: []
+      spriteID: 81405410000000000800000000000000
+      internalID: 21300248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: stagdoor_0002_Color-Balance-1-copy-14
       rect:
@@ -9712,6 +11053,13 @@ TextureImporter:
         - {x: 21, y: -65.5}
         - {x: 33, y: -50.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: a1405410000000000800000000000000
+      internalID: 21300250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2165-4@2x
       rect:
@@ -9750,6 +11098,13 @@ TextureImporter:
         - {x: 4.5, y: -5.5}
         - {x: 5.5, y: -4.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: c1405410000000000800000000000000
+      internalID: 21300252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: brk_barrel_03
       rect:
@@ -9786,6 +11141,13 @@ TextureImporter:
         - {x: 32, y: -37}
         - {x: 37, y: -27}
       tessellationDetail: 0
+      bones: []
+      spriteID: e1405410000000000800000000000000
+      internalID: 21300254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: 2163-2@2x
       rect:
@@ -9821,6 +11183,13 @@ TextureImporter:
         - {x: 26.96194, y: -11}
         - {x: 26.96194, y: 24}
       tessellationDetail: 0
+      bones: []
+      spriteID: 02405410000000000800000000000000
+      internalID: 21300256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: roof_02
       rect:
@@ -9866,6 +11235,13 @@ TextureImporter:
         - {x: -4.5, y: -28}
         - {x: 13.5, y: -32}
       tessellationDetail: 0
+      bones: []
+      spriteID: 22405410000000000800000000000000
+      internalID: 21300258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0003_town
       rect:
@@ -9916,6 +11292,13 @@ TextureImporter:
         - {x: -9.983395, y: -3.509874}
         - {x: -8.983395, y: -3.509874}
       tessellationDetail: 0
+      bones: []
+      spriteID: 42405410000000000800000000000000
+      internalID: 21300260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: mines_metal_additions_0001_a
       rect:
@@ -9964,6 +11347,13 @@ TextureImporter:
         - {x: -4, y: -16}
         - {x: 14, y: 9}
       tessellationDetail: 0
+      bones: []
+      spriteID: 62405410000000000800000000000000
+      internalID: 21300262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cd_tollbooth_lamp
       rect:
@@ -10009,6 +11399,13 @@ TextureImporter:
         - {x: 11.5, y: -62}
         - {x: 13.5, y: -55}
       tessellationDetail: 0
+      bones: []
+      spriteID: 82405410000000000800000000000000
+      internalID: 21300264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: roof_01_flip
       rect:
@@ -10048,6 +11445,13 @@ TextureImporter:
         - {x: 58, y: -0.5}
         - {x: 56, y: 14.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: a2405410000000000800000000000000
+      internalID: 21300266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: roof_01
       rect:
@@ -10091,6 +11495,13 @@ TextureImporter:
         - {x: 12, y: -15.5}
         - {x: 24, y: -9.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: c2405410000000000800000000000000
+      internalID: 21300268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0005_tramway
       rect:
@@ -10156,6 +11567,13 @@ TextureImporter:
         - {x: -7.5, y: 0.5}
         - {x: -9.5, y: 0.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: e2405410000000000800000000000000
+      internalID: 21300270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ghost_shrines_0005_bug_corpse_02
       rect:
@@ -10214,6 +11632,13 @@ TextureImporter:
         - {x: 69.5, y: -46.5}
         - {x: 58.5, y: -42.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 03405410000000000800000000000000
+      internalID: 21300272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: fung_new_mush_BG_mush_pillar
       rect:
@@ -10303,6 +11728,13 @@ TextureImporter:
         - {x: 34.80315, y: -123}
         - {x: 46.80315, y: -122}
       tessellationDetail: 0
+      bones: []
+      spriteID: 23405410000000000800000000000000
+      internalID: 21300274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ghost_shrines_0006_bug_corpse_03
       rect:
@@ -10359,6 +11791,13 @@ TextureImporter:
         - {x: 74, y: -101}
         - {x: 77, y: -97}
       tessellationDetail: 0
+      bones: []
+      spriteID: 43405410000000000800000000000000
+      internalID: 21300276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: glass_03
       rect:
@@ -10410,6 +11849,13 @@ TextureImporter:
         - {x: 44.5, y: 13}
         - {x: 44.5, y: 18}
       tessellationDetail: 0
+      bones: []
+      spriteID: 63405410000000000800000000000000
+      internalID: 21300278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0007
       rect:
@@ -10469,6 +11915,13 @@ TextureImporter:
         - {x: 12.96194, y: -107.5}
         - {x: 17.96194, y: -64.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 83405410000000000800000000000000
+      internalID: 21300280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0000
       rect:
@@ -10524,6 +11977,13 @@ TextureImporter:
         - {x: 20.5, y: -120.5}
         - {x: 23.5, y: -85.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: a3405410000000000800000000000000
+      internalID: 21300282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0004
       rect:
@@ -10592,6 +12052,13 @@ TextureImporter:
         - {x: 12.5, y: -105.5}
         - {x: 9.499998, y: -89.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: c3405410000000000800000000000000
+      internalID: 21300284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0009
       rect:
@@ -10650,6 +12117,13 @@ TextureImporter:
         - {x: 21.5, y: -80.53807}
         - {x: 26.5, y: -30.53807}
       tessellationDetail: 0
+      bones: []
+      spriteID: e3405410000000000800000000000000
+      internalID: 21300286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0003
       rect:
@@ -10704,6 +12178,13 @@ TextureImporter:
         - {x: 28.5, y: -99.53807}
         - {x: 27.5, y: -48.53807}
       tessellationDetail: 0
+      bones: []
+      spriteID: 04405410000000000800000000000000
+      internalID: 21300288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0008
       rect:
@@ -10744,7 +12225,7 @@ TextureImporter:
         - {x: 26, y: -36.5}
       - - {x: 5.000002, y: -61.5}
         - {x: 5.000002, y: 64.5}
-        - {x: 1.907349E-06, y: 132.5}
+        - {x: 0.000001907349, y: 132.5}
         - {x: -26, y: 132.5}
         - {x: -26, y: 107.5}
         - {x: -23, y: 49.5}
@@ -10758,6 +12239,13 @@ TextureImporter:
         - {x: -3.999998, y: -113.5}
         - {x: 4.000002, y: -77.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 24405410000000000800000000000000
+      internalID: 21300290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0005
       rect:
@@ -10798,7 +12286,7 @@ TextureImporter:
         - {x: -10, y: -92.5}
         - {x: -7.000002, y: -119.5}
         - {x: -4.000002, y: -130.5}
-        - {x: -1.907349E-06, y: -132.5}
+        - {x: -0.000001907349, y: -132.5}
         - {x: 4.999998, y: -132.5}
         - {x: 5.999998, y: -128.5}
         - {x: 5.999998, y: -110.5}
@@ -10813,7 +12301,7 @@ TextureImporter:
         - {x: -5.000002, y: 114.5}
         - {x: -4.000002, y: 107.5}
         - {x: -3.000002, y: 67.5}
-        - {x: -1.907349E-06, y: 6.5}
+        - {x: -0.000001907349, y: 6.5}
         - {x: 1.999998, y: -16.5}
         - {x: 3.999998, y: -36.5}
         - {x: 8.999998, y: -71.5}
@@ -10826,6 +12314,13 @@ TextureImporter:
         - {x: 31, y: -104.5}
         - {x: 30, y: -91.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 44405410000000000800000000000000
+      internalID: 21300292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0002
       rect:
@@ -10850,7 +12345,7 @@ TextureImporter:
         - {x: 7.999998, y: -121.5}
         - {x: 4.999998, y: -127.5}
         - {x: 1.999998, y: -131.5}
-        - {x: -1.907349E-06, y: -132.5}
+        - {x: -0.000001907349, y: -132.5}
         - {x: -6.000002, y: -132.5}
         - {x: -20, y: -64.5}
         - {x: -26, y: 57.5}
@@ -10892,6 +12387,13 @@ TextureImporter:
         - {x: 22, y: -121.5}
         - {x: 27, y: -90.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 64405410000000000800000000000000
+      internalID: 21300294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0006
       rect:
@@ -10950,6 +12452,13 @@ TextureImporter:
         - {x: 22.511, y: -40.53807}
         - {x: 20.511, y: 16.46193}
       tessellationDetail: 0
+      bones: []
+      spriteID: 84405410000000000800000000000000
+      internalID: 21300296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0000
       rect:
@@ -11007,6 +12516,13 @@ TextureImporter:
         - {x: 19.5, y: -127.5}
         - {x: 27.5, y: -40.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: a4405410000000000800000000000000
+      internalID: 21300298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0010
       rect:
@@ -11039,8 +12555,8 @@ TextureImporter:
         - {x: 7.999996, y: 37.49355}
         - {x: 8.999996, y: -3.506454}
         - {x: 7.999996, y: -1.506454}
-        - {x: -3.814697E-06, y: 95.49355}
-        - {x: -3.814697E-06, y: 132.4935}
+        - {x: -0.000003814697, y: 95.49355}
+        - {x: -0.000003814697, y: 132.4935}
         - {x: -25, y: 132.4935}
         - {x: -26, y: 131.4935}
         - {x: -26, y: 85.49355}
@@ -11053,7 +12569,7 @@ TextureImporter:
         - {x: -10, y: -85.50645}
         - {x: -10, y: -125.5065}
         - {x: -3.000004, y: -126.5065}
-        - {x: -3.814697E-06, y: -121.5065}
+        - {x: -0.000003814697, y: -121.5065}
         - {x: 4.999996, y: -77.50645}
         - {x: 5.999996, y: -95.50645}
         - {x: 6.999996, y: -115.5065}
@@ -11063,6 +12579,13 @@ TextureImporter:
         - {x: 25, y: -60.50645}
         - {x: 26, y: -38.50645}
       tessellationDetail: 0
+      bones: []
+      spriteID: c4405410000000000800000000000000
+      internalID: 21300300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_right0001
       rect:
@@ -11117,6 +12640,13 @@ TextureImporter:
         - {x: 7.968393, y: -79.53807}
         - {x: 7.968393, y: -19.53807}
       tessellationDetail: 0
+      bones: []
+      spriteID: e4405410000000000800000000000000
+      internalID: 21300302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_death
       rect:
@@ -11161,6 +12691,13 @@ TextureImporter:
         - {x: 22.5, y: 6.986626}
         - {x: 21.5, y: 18.98663}
       tessellationDetail: 0
+      bones: []
+      spriteID: 05405410000000000800000000000000
+      internalID: 21300304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: crumble_floor
       rect:
@@ -11253,6 +12790,13 @@ TextureImporter:
         - {x: -96.5, y: 11.5}
         - {x: -95.5, y: 11.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 25405410000000000800000000000000
+      internalID: 21300306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: bench_sign_symbol
       rect:
@@ -11299,6 +12843,13 @@ TextureImporter:
         - {x: -0.03806114, y: -17.5}
         - {x: 0.9619389, y: -16.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 45405410000000000800000000000000
+      internalID: 21300308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0005_nail4-copy
       rect:
@@ -11329,6 +12880,13 @@ TextureImporter:
         - {x: 11.5, y: 15.5}
         - {x: 11.5, y: 36.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 65405410000000000800000000000000
+      internalID: 21300310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0008_nail1-copy
       rect:
@@ -11377,6 +12935,13 @@ TextureImporter:
         - {x: 33.5, y: -80.5}
         - {x: 28.5, y: -49.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 85405410000000000800000000000000
+      internalID: 21300312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0012
       rect:
@@ -11412,6 +12977,13 @@ TextureImporter:
         - {x: 29, y: -12}
         - {x: 29, y: 15}
       tessellationDetail: 0
+      bones: []
+      spriteID: a5405410000000000800000000000000
+      internalID: 21300314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0003
       rect:
@@ -11446,6 +13018,13 @@ TextureImporter:
         - {x: 29.00001, y: 9.535076}
         - {x: 28.00001, y: 16.53508}
       tessellationDetail: 0
+      bones: []
+      spriteID: c5405410000000000800000000000000
+      internalID: 21300316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0008
       rect:
@@ -11480,6 +13059,13 @@ TextureImporter:
         - {x: 29.98009, y: -13.99999}
         - {x: 29.98009, y: 10.00001}
       tessellationDetail: 0
+      bones: []
+      spriteID: e5405410000000000800000000000000
+      internalID: 21300318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0011
       rect:
@@ -11513,6 +13099,13 @@ TextureImporter:
         - {x: 31.50001, y: -14.98142}
         - {x: 31.50001, y: 11.01858}
       tessellationDetail: 0
+      bones: []
+      spriteID: 06405410000000000800000000000000
+      internalID: 21300320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0007
       rect:
@@ -11544,6 +13137,13 @@ TextureImporter:
         - {x: 31.00315, y: 21.50002}
         - {x: 16.00315, y: 35.50002}
       tessellationDetail: 0
+      bones: []
+      spriteID: 26405410000000000800000000000000
+      internalID: 21300322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0000
       rect:
@@ -11577,6 +13177,13 @@ TextureImporter:
         - {x: 28.00692, y: -12.9684}
         - {x: 28.00692, y: 10.0316}
       tessellationDetail: 0
+      bones: []
+      spriteID: 46405410000000000800000000000000
+      internalID: 21300324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0009
       rect:
@@ -11611,6 +13218,13 @@ TextureImporter:
         - {x: 35.02469, y: -22.007}
         - {x: 35.02469, y: 11.993}
       tessellationDetail: 0
+      bones: []
+      spriteID: 66405410000000000800000000000000
+      internalID: 21300326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0006
       rect:
@@ -11646,6 +13260,13 @@ TextureImporter:
         - {x: 33.02469, y: -0.5060196}
         - {x: 33.02469, y: 18.49398}
       tessellationDetail: 0
+      bones: []
+      spriteID: 86405410000000000800000000000000
+      internalID: 21300328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0013
       rect:
@@ -11680,6 +13301,13 @@ TextureImporter:
         - {x: 30.47532, y: 19.0042}
         - {x: 19.47532, y: 29.0042}
       tessellationDetail: 0
+      bones: []
+      spriteID: a6405410000000000800000000000000
+      internalID: 21300330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0010
       rect:
@@ -11713,6 +13341,13 @@ TextureImporter:
         - {x: 34.50443, y: 14.03222}
         - {x: 21.50443, y: 27.03222}
       tessellationDetail: 0
+      bones: []
+      spriteID: c6405410000000000800000000000000
+      internalID: 21300332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0004
       rect:
@@ -11751,6 +13386,13 @@ TextureImporter:
         - {x: 23.97532, y: -28.47531}
         - {x: 34.97532, y: -14.47531}
       tessellationDetail: 0
+      bones: []
+      spriteID: e6405410000000000800000000000000
+      internalID: 21300334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0002
       rect:
@@ -11787,6 +13429,13 @@ TextureImporter:
         - {x: 28.50001, y: -1.01421}
         - {x: 27.50001, y: 2.98579}
       tessellationDetail: 0
+      bones: []
+      spriteID: 07405410000000000800000000000000
+      internalID: 21300336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0005
       rect:
@@ -11822,6 +13471,13 @@ TextureImporter:
         - {x: 32, y: 11.53146}
         - {x: 26, y: 22.53146}
       tessellationDetail: 0
+      bones: []
+      spriteID: 27405410000000000800000000000000
+      internalID: 21300338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Dream_Orb_smaller0001
       rect:
@@ -11851,6 +13507,13 @@ TextureImporter:
         - {x: 25.97532, y: 12.52507}
         - {x: 14.97532, y: 29.52507}
       tessellationDetail: 0
+      bones: []
+      spriteID: 47405410000000000800000000000000
+      internalID: 21300340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0004_stag
       rect:
@@ -11907,6 +13570,13 @@ TextureImporter:
         - {x: -15.5, y: 14.5}
         - {x: -16.5, y: 14.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 67405410000000000800000000000000
+      internalID: 21300342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0007
       rect:
@@ -11967,6 +13637,13 @@ TextureImporter:
         - {x: 11.96839, y: -97.5}
         - {x: 15.96839, y: -120.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 87405410000000000800000000000000
+      internalID: 21300344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0003
       rect:
@@ -12031,6 +13708,13 @@ TextureImporter:
         - {x: 15.53806, y: -99.51337}
         - {x: 21.53806, y: -70.51337}
       tessellationDetail: 0
+      bones: []
+      spriteID: a7405410000000000800000000000000
+      internalID: 21300346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0001
       rect:
@@ -12044,8 +13728,8 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 3.000004, y: -132.5}
-        - {x: 3.814697E-06, y: -126.5}
-        - {x: 3.814697E-06, y: -129.5}
+        - {x: 0.000003814697, y: -126.5}
+        - {x: 0.000003814697, y: -129.5}
         - {x: -0.9999962, y: -132.5}
         - {x: -11, y: -132.5}
         - {x: -23, y: -129.5}
@@ -12071,7 +13755,7 @@ TextureImporter:
         - {x: -8.999996, y: -132.5}
         - {x: -2.999996, y: -132.5}
         - {x: 1.000004, y: -121.5}
-        - {x: 3.814697E-06, y: -96.5}
+        - {x: 0.000003814697, y: -96.5}
         - {x: 1.000004, y: -6.5}
       - - {x: 25, y: 86.5}
         - {x: 24, y: 121.5}
@@ -12092,6 +13776,13 @@ TextureImporter:
         - {x: 26, y: -8.5}
         - {x: 26, y: 63.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: c7405410000000000800000000000000
+      internalID: 21300348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0006
       rect:
@@ -12155,6 +13846,13 @@ TextureImporter:
         - {x: 24.5, y: -79.5}
         - {x: 27.5, y: -45.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: e7405410000000000800000000000000
+      internalID: 21300350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0005
       rect:
@@ -12212,6 +13910,13 @@ TextureImporter:
         - {x: 14, y: -119.5381}
         - {x: 21, y: -97.53807}
       tessellationDetail: 0
+      bones: []
+      spriteID: 08405410000000000800000000000000
+      internalID: 21300352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0004
       rect:
@@ -12277,6 +13982,13 @@ TextureImporter:
         - {x: -0.4619389, y: -86.53807}
         - {x: 2.538061, y: -23.53807}
       tessellationDetail: 0
+      bones: []
+      spriteID: 28405410000000000800000000000000
+      internalID: 21300354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0002
       rect:
@@ -12337,6 +14049,13 @@ TextureImporter:
         - {x: 25, y: -75.5}
         - {x: 27, y: -33.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 48405410000000000800000000000000
+      internalID: 21300356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0010
       rect:
@@ -12390,6 +14109,13 @@ TextureImporter:
         - {x: 24, y: -83.03807}
         - {x: 25, y: -53.03807}
       tessellationDetail: 0
+      bones: []
+      spriteID: 68405410000000000800000000000000
+      internalID: 21300358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0009
       rect:
@@ -12451,6 +14177,13 @@ TextureImporter:
         - {x: 23.02469, y: -79.03807}
         - {x: 25.02469, y: -61.03807}
       tessellationDetail: 0
+      bones: []
+      spriteID: 88405410000000000800000000000000
+      internalID: 21300360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cord_01_left0008
       rect:
@@ -12513,6 +14246,13 @@ TextureImporter:
         - {x: 7.499996, y: -84.01337}
         - {x: 6.499996, y: -49.01337}
       tessellationDetail: 0
+      bones: []
+      spriteID: a8405410000000000800000000000000
+      internalID: 21300362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0003_ciity
       rect:
@@ -12558,6 +14298,13 @@ TextureImporter:
         - {x: 1.5, y: 7.5}
         - {x: 0.5, y: 8.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: c8405410000000000800000000000000
+      internalID: 21300364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0001_Color-Balance-1-copy
       rect:
@@ -12630,6 +14377,13 @@ TextureImporter:
         - {x: 192, y: -40.5}
         - {x: 193, y: -34.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: e8405410000000000800000000000000
+      internalID: 21300366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0004_Color-Balance-1-copy-7
       rect:
@@ -12677,6 +14431,13 @@ TextureImporter:
         - {x: 6, y: -18}
         - {x: 17, y: -15}
       tessellationDetail: 0
+      bones: []
+      spriteID: 09405410000000000800000000000000
+      internalID: 21300368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0005_Color-Balance-1-copy-9
       rect:
@@ -12759,6 +14520,13 @@ TextureImporter:
         - {x: -86, y: -100}
         - {x: -75, y: -99}
       tessellationDetail: 0
+      bones: []
+      spriteID: 29405410000000000800000000000000
+      internalID: 21300370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0003_Color-Balance-1-copy-5
       rect:
@@ -12806,6 +14574,13 @@ TextureImporter:
         - {x: 6, y: -18}
         - {x: 17, y: -15}
       tessellationDetail: 0
+      bones: []
+      spriteID: 49405410000000000800000000000000
+      internalID: 21300372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0001_Layer-1
       rect:
@@ -12840,6 +14615,13 @@ TextureImporter:
         - {x: 19, y: 7}
         - {x: 16, y: 22}
       tessellationDetail: 0
+      bones: []
+      spriteID: 69405410000000000800000000000000
+      internalID: 21300374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0006_Layer-0
       rect:
@@ -12892,6 +14674,13 @@ TextureImporter:
         - {x: 21, y: -126}
         - {x: 10, y: -111}
       tessellationDetail: 0
+      bones: []
+      spriteID: 89405410000000000800000000000000
+      internalID: 21300376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0000_Layer-0-copy
       rect:
@@ -12930,6 +14719,13 @@ TextureImporter:
         - {x: 23, y: -64}
         - {x: 12, y: -50}
       tessellationDetail: 0
+      bones: []
+      spriteID: a9405410000000000800000000000000
+      internalID: 21300378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_break_top
       rect:
@@ -12969,6 +14765,13 @@ TextureImporter:
         - {x: 38, y: -17.5}
         - {x: 38, y: 8.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: c9405410000000000800000000000000
+      internalID: 21300380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0006_Layer-0_hot_spring
       rect:
@@ -13047,6 +14850,13 @@ TextureImporter:
         - {x: -18.5, y: 22.5}
         - {x: -18.5, y: 16.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: e9405410000000000800000000000000
+      internalID: 21300382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0012_nail1
       rect:
@@ -13098,6 +14908,13 @@ TextureImporter:
         - {x: 33.5, y: -95.5}
         - {x: 33.5, y: -75.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0a405410000000000800000000000000
+      internalID: 21300384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0007_nail2-copy
       rect:
@@ -13145,6 +14962,13 @@ TextureImporter:
         - {x: 19.5, y: -95}
         - {x: 21.5, y: -64}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2a405410000000000800000000000000
+      internalID: 21300386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0004_dead_bug_02
       rect:
@@ -13226,6 +15050,13 @@ TextureImporter:
         - {x: 5.5, y: -30}
         - {x: 14.5, y: -28}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4a405410000000000800000000000000
+      internalID: 21300388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0009_nail4
       rect:
@@ -13255,6 +15086,13 @@ TextureImporter:
         - {x: 11.5, y: 15.5}
         - {x: 11.5, y: 36.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6a405410000000000800000000000000
+      internalID: 21300390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0002_white_palace
       rect:
@@ -13324,6 +15162,13 @@ TextureImporter:
         - {x: -1, y: 11.5}
         - {x: 0, y: 11.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8a405410000000000800000000000000
+      internalID: 21300392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: base
       rect:
@@ -13392,6 +15237,13 @@ TextureImporter:
         - {x: 7.461945, y: -42.50002}
         - {x: 9.461945, y: -36.50002}
       tessellationDetail: 0
+      bones: []
+      spriteID: aa405410000000000800000000000000
+      internalID: 21300394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: brazier_top
       rect:
@@ -13504,6 +15356,13 @@ TextureImporter:
         - {x: -9.5, y: 24.5}
         - {x: -9.5, y: 23.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: ca405410000000000800000000000000
+      internalID: 21300396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0006_Layer-0_resting_ground
       rect:
@@ -13594,6 +15453,13 @@ TextureImporter:
         - {x: 9.5, y: 17}
         - {x: 9.5, y: 22}
       tessellationDetail: 0
+      bones: []
+      spriteID: ea405410000000000800000000000000
+      internalID: 21300398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candles_0002_Layer-3
       rect:
@@ -13624,6 +15490,13 @@ TextureImporter:
         - {x: 12.5, y: 23.5}
         - {x: 14.5, y: 25.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0b405410000000000800000000000000
+      internalID: 21300400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candles_0001_Layer-9
       rect:
@@ -13650,6 +15523,13 @@ TextureImporter:
         - {x: 13, y: 23.5}
         - {x: 9, y: 26.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2b405410000000000800000000000000
+      internalID: 21300402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candles_0006_Layer-1-copy
       rect:
@@ -13681,6 +15561,13 @@ TextureImporter:
         - {x: 13, y: -58}
         - {x: 15, y: -24}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4b405410000000000800000000000000
+      internalID: 21300404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candles_0000_Layer-8
       rect:
@@ -13712,6 +15599,13 @@ TextureImporter:
         - {x: 14.5, y: 61}
         - {x: 4.5, y: 73}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6b405410000000000800000000000000
+      internalID: 21300406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candles_0008_Layer-1
       rect:
@@ -13740,6 +15634,13 @@ TextureImporter:
         - {x: 12, y: -100}
         - {x: 15, y: -39}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8b405410000000000800000000000000
+      internalID: 21300408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candle_glow
       rect:
@@ -13770,6 +15671,13 @@ TextureImporter:
         - {x: 16, y: 5}
         - {x: 13, y: 8.999999}
       tessellationDetail: 0
+      bones: []
+      spriteID: ab405410000000000800000000000000
+      internalID: 21300410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candles_0003_Layer-6
       rect:
@@ -13802,6 +15710,13 @@ TextureImporter:
         - {x: 11.5, y: -1}
         - {x: 13.5, y: 4}
       tessellationDetail: 0
+      bones: []
+      spriteID: cb405410000000000800000000000000
+      internalID: 21300412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candles_0004_Layer-7
       rect:
@@ -13826,6 +15741,13 @@ TextureImporter:
         - {x: 10.5, y: 27}
         - {x: 9.5, y: 29}
       tessellationDetail: 0
+      bones: []
+      spriteID: eb405410000000000800000000000000
+      internalID: 21300414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candles_0007_Layer-5
       rect:
@@ -13850,6 +15772,13 @@ TextureImporter:
         - {x: 12, y: -36}
         - {x: 12, y: 39}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0c405410000000000800000000000000
+      internalID: 21300416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_candles_0005_Layer-2
       rect:
@@ -13879,6 +15808,13 @@ TextureImporter:
         - {x: 13.5, y: 22}
         - {x: 13.5, y: 83}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2c405410000000000800000000000000
+      internalID: 21300418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: ancient_wall_pieces_0004_Color-Balance-1-copy-7 - Copy
       rect:
@@ -13926,6 +15862,13 @@ TextureImporter:
         - {x: 6, y: -18}
         - {x: 17, y: -15}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4c405410000000000800000000000000
+      internalID: 21300420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: direction_sign_breakable_0003_bank
       rect:
@@ -13984,6 +15927,13 @@ TextureImporter:
         - {x: 3.483393, y: 14.511}
         - {x: 2.483393, y: 15.511}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6c405410000000000800000000000000
+      internalID: 21300422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_outskirts_0013_2
       rect:
@@ -14010,6 +15960,13 @@ TextureImporter:
         - {x: 13, y: 60.5}
         - {x: 13, y: 81.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8c405410000000000800000000000000
+      internalID: 21300424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cliffs_pole
       rect:
@@ -14065,6 +16022,13 @@ TextureImporter:
         - {x: 3.5, y: 217}
         - {x: -2.5, y: 216}
       tessellationDetail: 0
+      bones: []
+      spriteID: ac405410000000000800000000000000
+      internalID: 21300426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Grimm_lantern_0005_5
       rect:
@@ -14132,6 +16096,13 @@ TextureImporter:
         - {x: 10, y: -29.5}
         - {x: 20, y: 29.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: cc405410000000000800000000000000
+      internalID: 21300428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_outskirts_0012_3
       rect:
@@ -14181,6 +16152,13 @@ TextureImporter:
         - {x: 3.5, y: 45}
         - {x: -2.5, y: 44}
       tessellationDetail: 0
+      bones: []
+      spriteID: ec405410000000000800000000000000
+      internalID: 21300430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: cliffs_moths_0019_Layer-10
       rect:
@@ -14207,6 +16185,13 @@ TextureImporter:
         - {x: 11, y: -12}
         - {x: 11, y: 30}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0d405410000000000800000000000000
+      internalID: 21300432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: break_outskirts_0014_1
       rect:
@@ -14240,6 +16225,13 @@ TextureImporter:
         - {x: 4.5, y: -100.5}
         - {x: 4.5, y: 103.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2d405410000000000800000000000000
+      internalID: 21300434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: worker_corpses_0003_2
       rect:
@@ -14297,6 +16289,13 @@ TextureImporter:
         - {x: 57.5, y: -21.5}
         - {x: 57.5, y: 3.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4d405410000000000800000000000000
+      internalID: 21300436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: worker_corpses_0001_4
       rect:
@@ -14351,6 +16350,13 @@ TextureImporter:
         - {x: 61, y: -56}
         - {x: 67, y: -51}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6d405410000000000800000000000000
+      internalID: 21300438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: deep_rag_01
       rect:
@@ -14448,6 +16454,13 @@ TextureImporter:
         - {x: -22, y: 33.5}
         - {x: -18, y: 74.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8d405410000000000800000000000000
+      internalID: 21300440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: worker_corpses_0004_1
       rect:
@@ -14489,6 +16502,13 @@ TextureImporter:
         - {x: 55.5, y: -37.5}
         - {x: 57.5, y: -35.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: ad405410000000000800000000000000
+      internalID: 21300442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: worker_corpses_0002_3
       rect:
@@ -14536,6 +16556,13 @@ TextureImporter:
         - {x: 31, y: -41.5}
         - {x: 43, y: -16.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: cd405410000000000800000000000000
+      internalID: 21300444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: worker_corpses_0000_5
       rect:
@@ -14577,6 +16604,13 @@ TextureImporter:
         - {x: 56, y: -33.5}
         - {x: 48, y: -14.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: ed405410000000000800000000000000
+      internalID: 21300446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: _0040_white
       rect:
@@ -14626,6 +16660,13 @@ TextureImporter:
         - {x: 21.5, y: -172}
         - {x: 24.5, y: -152}
       tessellationDetail: 0
+      bones: []
+      spriteID: 0e405410000000000800000000000000
+      internalID: 21300448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: _0037_white
       rect:
@@ -14651,6 +16692,13 @@ TextureImporter:
         - {x: 56, y: -17}
         - {x: 56, y: 17}
       tessellationDetail: 0
+      bones: []
+      spriteID: 2e405410000000000800000000000000
+      internalID: 21300450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: _0038_white
       rect:
@@ -14690,6 +16738,13 @@ TextureImporter:
         - {x: 166, y: 16}
         - {x: 158, y: 17}
       tessellationDetail: 0
+      bones: []
+      spriteID: 4e405410000000000800000000000000
+      internalID: 21300452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: dream_particle_02
       rect:
@@ -14849,6 +16904,13 @@ TextureImporter:
         - {x: -9.5, y: 16.5}
         - {x: -11.5, y: 14.5}
       tessellationDetail: 0
+      bones: []
+      spriteID: 6e405410000000000800000000000000
+      internalID: 21300454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: corpse_set_01_0006_nail2
       rect:
@@ -14896,9 +16958,26 @@ TextureImporter:
         - {x: 19.5, y: -95}
         - {x: 21.5, y: -64}
       tessellationDetail: 0
+      bones: []
+      spriteID: 8e405410000000000800000000000000
+      internalID: 21300456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
-  spritePackingTag:
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

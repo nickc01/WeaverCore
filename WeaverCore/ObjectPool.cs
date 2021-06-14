@@ -271,8 +271,8 @@ namespace WeaverCore
 		private static int CreateHierarchyHash(ComponentPath componentPath)
 		{
 			int hierarchyHash = 0;
-			HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.SiblingHash);
-			HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.Component.GetType().GetHashCode());
+			Utilities.HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.SiblingHash);
+			Utilities.HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.Component.GetType().GetHashCode());
 			return hierarchyHash;
 		}
 
@@ -681,6 +681,7 @@ namespace WeaverCore
 			{
 				return null;
 			}
+#if USE_EMIT
 			DynamicMethod awakeCaller = new DynamicMethod("", MethodAttributes.Public | MethodAttributes.Static, CallingConventions.Standard, null, new Type[1] { typeof(Component) }, sourceType, true);
 			ILGenerator gen = awakeCaller.GetILGenerator();
 			gen.Emit(OpCodes.Ldarg_0);
@@ -696,6 +697,12 @@ namespace WeaverCore
 			}
 			gen.Emit(OpCodes.Ret);
 			return (Action<Component>)awakeCaller.CreateDelegate(typeof(Action<Component>));
+#else
+			return (c) =>
+			{
+				method.Invoke(c, null);
+			};
+#endif
 		}
 
 		private PoolableObject InstantiateNewObject()

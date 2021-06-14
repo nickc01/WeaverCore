@@ -1,43 +1,111 @@
 fileFormatVersion: 2
 guid: e9aa59b778d6aab4e81d2b4c12d989c0
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Knight_Dream_Gate_Create0004
-    21300002: Knight_Dream_Gate_Create0006
-    21300004: Knight_Dream_Gate_Create0002
-    21300006: Knight_Dream_Gate_Create0003
-    21300008: Knight_Dream_Gate_Create0007
-    21300010: Knight_Dream_Gate_Create0005
-    21300012: Knight_Dream_Gate_Create0000
-    21300014: Knight_Dream_Gate_Create0001
-    21300016: Knight_dream_gate_enter0007
-    21300018: Knight_dream_gate_enter0006
-    21300020: Knight_dream_gate_enter0012
-    21300022: Knight_dream_gate_enter0009
-    21300024: Knight_dream_gate_enter0000
-    21300026: Knight_dream_gate_enter0011
-    21300028: Knight_dream_gate_enter0004
-    21300030: Knight_dream_gate_enter0013
-    21300032: Knight_dream_gate_enter0008
-    21300034: Knight_dream_gate_enter0002
-    21300036: Knight_dream_gate_enter0003
-    21300038: Knight_dream_gate_enter0005
-    21300040: Knight_dream_gate_enter0010
-    21300042: Knight_dream_gate_enter0001
-    21300044: Knight_Dream_Gate_Create0005_b
-    21300046: Knight_Dream_Gate_Create0005_c
-    21300048: knight_sprint0000
-    21300050: knight_sprint0002
-    21300052: knight_sprint0004
-    21300054: knight_sprint0005
-    21300056: knight_sprint0001
-    21300058: knight_sprint0003
-    21300060: Knight_idle_to_sprint0000
-    21300062: Knight_idle_to_sprint0002
-    21300064: Knight_idle_to_sprint0003
-    21300066: Knight_idle_to_sprint0001
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Knight_Dream_Gate_Create0004
+  - first:
+      213: 21300002
+    second: Knight_Dream_Gate_Create0006
+  - first:
+      213: 21300004
+    second: Knight_Dream_Gate_Create0002
+  - first:
+      213: 21300006
+    second: Knight_Dream_Gate_Create0003
+  - first:
+      213: 21300008
+    second: Knight_Dream_Gate_Create0007
+  - first:
+      213: 21300010
+    second: Knight_Dream_Gate_Create0005
+  - first:
+      213: 21300012
+    second: Knight_Dream_Gate_Create0000
+  - first:
+      213: 21300014
+    second: Knight_Dream_Gate_Create0001
+  - first:
+      213: 21300016
+    second: Knight_dream_gate_enter0007
+  - first:
+      213: 21300018
+    second: Knight_dream_gate_enter0006
+  - first:
+      213: 21300020
+    second: Knight_dream_gate_enter0012
+  - first:
+      213: 21300022
+    second: Knight_dream_gate_enter0009
+  - first:
+      213: 21300024
+    second: Knight_dream_gate_enter0000
+  - first:
+      213: 21300026
+    second: Knight_dream_gate_enter0011
+  - first:
+      213: 21300028
+    second: Knight_dream_gate_enter0004
+  - first:
+      213: 21300030
+    second: Knight_dream_gate_enter0013
+  - first:
+      213: 21300032
+    second: Knight_dream_gate_enter0008
+  - first:
+      213: 21300034
+    second: Knight_dream_gate_enter0002
+  - first:
+      213: 21300036
+    second: Knight_dream_gate_enter0003
+  - first:
+      213: 21300038
+    second: Knight_dream_gate_enter0005
+  - first:
+      213: 21300040
+    second: Knight_dream_gate_enter0010
+  - first:
+      213: 21300042
+    second: Knight_dream_gate_enter0001
+  - first:
+      213: 21300044
+    second: Knight_Dream_Gate_Create0005_b
+  - first:
+      213: 21300046
+    second: Knight_Dream_Gate_Create0005_c
+  - first:
+      213: 21300048
+    second: knight_sprint0000
+  - first:
+      213: 21300050
+    second: knight_sprint0002
+  - first:
+      213: 21300052
+    second: knight_sprint0004
+  - first:
+      213: 21300054
+    second: knight_sprint0005
+  - first:
+      213: 21300056
+    second: knight_sprint0001
+  - first:
+      213: 21300058
+    second: knight_sprint0003
+  - first:
+      213: 21300060
+    second: Knight_idle_to_sprint0000
+  - first:
+      213: 21300062
+    second: Knight_idle_to_sprint0002
+  - first:
+      213: 21300064
+    second: Knight_idle_to_sprint0003
+  - first:
+      213: 21300066
+    second: Knight_idle_to_sprint0001
   externalObjects: {}
-  serializedVersion: 4
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -55,6 +123,9 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -65,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -85,11 +156,17 @@ TextureImporter:
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -99,7 +176,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Standalone
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -109,7 +188,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: iPhone
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -119,7 +200,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Android
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -129,7 +212,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Windows Store Apps
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -139,7 +224,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: WebGL
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -149,6 +236,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -166,6 +254,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create0006
       rect:
@@ -180,6 +275,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create0002
       rect:
@@ -194,6 +296,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create0003
       rect:
@@ -208,6 +317,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create0007
       rect:
@@ -222,6 +338,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create0005
       rect:
@@ -236,6 +359,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create0000
       rect:
@@ -250,6 +380,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create0001
       rect:
@@ -264,6 +401,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0007
       rect:
@@ -278,6 +422,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0006
       rect:
@@ -292,6 +443,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0012
       rect:
@@ -306,6 +464,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0009
       rect:
@@ -320,6 +485,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0000
       rect:
@@ -334,6 +506,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0011
       rect:
@@ -348,6 +527,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0004
       rect:
@@ -362,6 +548,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0013
       rect:
@@ -376,6 +569,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0008
       rect:
@@ -390,6 +590,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0002
       rect:
@@ -404,6 +611,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0003
       rect:
@@ -418,6 +632,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0005
       rect:
@@ -432,6 +653,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0010
       rect:
@@ -446,6 +674,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_dream_gate_enter0001
       rect:
@@ -460,6 +695,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create0005_b
       rect:
@@ -474,6 +716,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_Dream_Gate_Create0005_c
       rect:
@@ -488,6 +737,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_sprint0000
       rect:
@@ -502,6 +758,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_sprint0002
       rect:
@@ -516,6 +779,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_sprint0004
       rect:
@@ -530,6 +800,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_sprint0005
       rect:
@@ -544,6 +821,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_sprint0001
       rect:
@@ -558,6 +842,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: knight_sprint0003
       rect:
@@ -572,6 +863,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_idle_to_sprint0000
       rect:
@@ -586,6 +884,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_idle_to_sprint0002
       rect:
@@ -600,6 +905,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_idle_to_sprint0003
       rect:
@@ -614,6 +926,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Knight_idle_to_sprint0001
       rect:
@@ -628,9 +947,26 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: -1
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: weavercore_bundle
   assetBundleVariant: 

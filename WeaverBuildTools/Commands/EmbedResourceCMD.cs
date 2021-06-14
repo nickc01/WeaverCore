@@ -31,69 +31,72 @@ namespace WeaverBuildTools.Commands
 			{
 				try
 				{
-					using (var definition = AssemblyDefinition.ReadAssembly(assemblyToEmbedTo, new ReaderParameters { ReadWrite = true,AssemblyResolver = new MainResolver() }))
+					using (var resolver = new MainResolver())
 					{
-						var finding = definition.MainModule.Resources.FirstOrDefault(r => r.Name == resourceName);
-						if (finding != null)
+						using (var definition = AssemblyDefinition.ReadAssembly(assemblyToEmbedTo, new ReaderParameters { ReadWrite = true, AssemblyResolver = resolver }))
 						{
-							var metaResource = definition.MainModule.Resources.FirstOrDefault(r => r.Name == (resourceName + "_meta"));
-							if (metaResource != null && metaResource is EmbeddedResource)
+							var finding = definition.MainModule.Resources.FirstOrDefault(r => r.Name == resourceName);
+							if (finding != null)
 							{
-								var embeddedHash = (EmbeddedResource)metaResource;
-								using (var metaStream = embeddedHash.GetResourceStream())
+								var metaResource = definition.MainModule.Resources.FirstOrDefault(r => r.Name == (resourceName + "_meta"));
+								if (metaResource != null && metaResource is EmbeddedResource)
 								{
-									var meta = ResourceMetaData.FromStream(metaStream);
-									if (meta.hash == hash)
+									var embeddedHash = (EmbeddedResource)metaResource;
+									using (var metaStream = embeddedHash.GetResourceStream())
 									{
-										return;
+										var meta = ResourceMetaData.FromStream(metaStream);
+										if (meta.hash == hash)
+										{
+											return;
+										}
+									}
+								}
+								definition.MainModule.Resources.Remove(finding);
+								if (metaResource != null)
+								{
+									definition.MainModule.Resources.Remove(metaResource);
+								}
+							}
+							if (compression == CompressionMethod.Auto || compression == CompressionMethod.UseCompression)
+							{
+								using (var compressedStream = new MemoryStream())
+								{
+									//Console.WriteLine("E");
+									using (var compressionStream = new GZipStream(compressedStream, CompressionMode.Compress))
+									{
+										streamToEmbed.CopyToStream(compressionStream);
+										compressedStream.Position = 0;
+
+										Stream smallestStream = compressedStream;
+										bool actuallyCompressed = true;
+										if (streamToEmbed.Length < compressedStream.Length && compression == CompressionMethod.Auto)
+										{
+											smallestStream = streamToEmbed;
+											actuallyCompressed = false;
+										}
+
+										var er = new EmbeddedResource(resourceName, ManifestResourceAttributes.Public, smallestStream);
+										definition.MainModule.Resources.Add(er);
+
+										using (var metaStream = new ResourceMetaData(actuallyCompressed, hash).ToStream())
+										{
+											var hashResource = new EmbeddedResource(resourceName + "_meta", ManifestResourceAttributes.Public, metaStream);
+											definition.MainModule.Resources.Add(hashResource);
+											definition.MainModule.Write();
+										}
 									}
 								}
 							}
-							definition.MainModule.Resources.Remove(finding);
-							if (metaResource != null)
+							else
 							{
-								definition.MainModule.Resources.Remove(metaResource);
-							}
-						}
-						if (compression == CompressionMethod.Auto || compression == CompressionMethod.UseCompression)
-						{
-							using (var compressedStream = new MemoryStream())
-							{
-								//Console.WriteLine("E");
-								using (var compressionStream = new GZipStream(compressedStream, CompressionMode.Compress))
+								var er = new EmbeddedResource(resourceName, ManifestResourceAttributes.Public, streamToEmbed);
+								definition.MainModule.Resources.Add(er);
+								using (var metaStream = new ResourceMetaData(false, hash).ToStream())
 								{
-									streamToEmbed.CopyToStream(compressionStream);
-									compressedStream.Position = 0;
-
-									Stream smallestStream = compressedStream;
-									bool actuallyCompressed = true;
-									if (streamToEmbed.Length < compressedStream.Length && compression == CompressionMethod.Auto)
-									{
-										smallestStream = streamToEmbed;
-										actuallyCompressed = false;
-									}
-
-									var er = new EmbeddedResource(resourceName, ManifestResourceAttributes.Public, smallestStream);
-									definition.MainModule.Resources.Add(er);
-
-									using (var metaStream = new ResourceMetaData(actuallyCompressed, hash).ToStream())
-									{
-										var hashResource = new EmbeddedResource(resourceName + "_meta", ManifestResourceAttributes.Public, metaStream);
-										definition.MainModule.Resources.Add(hashResource);
-										definition.MainModule.Write();
-									}
+									var hashResource = new EmbeddedResource(resourceName + "_meta", ManifestResourceAttributes.Public, metaStream);
+									definition.MainModule.Resources.Add(hashResource);
+									definition.MainModule.Write();
 								}
-							}
-						}
-						else
-						{
-							var er = new EmbeddedResource(resourceName, ManifestResourceAttributes.Public, streamToEmbed);
-							definition.MainModule.Resources.Add(er);
-							using (var metaStream = new ResourceMetaData(false, hash).ToStream())
-							{
-								var hashResource = new EmbeddedResource(resourceName + "_meta", ManifestResourceAttributes.Public, metaStream);
-								definition.MainModule.Resources.Add(hashResource);
-								definition.MainModule.Write();
 							}
 						}
 					}

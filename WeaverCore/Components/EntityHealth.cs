@@ -144,7 +144,7 @@ namespace WeaverCore.Components
 		// Token: 0x0400001F RID: 31
 		private AudioClip extraDamageClip;
 
-		Recoil recoil;
+		Recoiler recoil;
 
 		[Space]
 		[Space]
@@ -505,7 +505,7 @@ namespace WeaverCore.Components
 		{
 			impl = (HealthManager_I)gameObject.AddComponent(ImplFinder.GetImplementationType<HealthManager_I>());
 			impl.Manager = this;
-			recoil = GetComponent<Recoil>();
+			recoil = GetComponent<Recoiler>();
 			if (Player.Player1 != null)
 			{
 				Player.Player1.RefreshSoulUI();

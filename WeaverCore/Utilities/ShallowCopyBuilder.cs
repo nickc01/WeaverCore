@@ -1,16 +1,26 @@
-﻿using System;
+﻿//#define USE_EMIT
+using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
+#if USE_EMIT
 using System.Reflection.Emit;
+#endif
 
 namespace WeaverCore.Utilities
 {
 	public sealed class ShallowCopyBuilder<ParameterType>
 	{
 		public delegate void ShallowCopyDelegate(ParameterType objectToOverwrite, ParameterType objectToCopyFrom);
-
+#if USE_EMIT
 		private readonly DynamicMethod finalCopyMethod;
 		private readonly ILGenerator gen;
+#else
+		ShallowCopyDelegate delegateVersion;
+		Action<ParameterType, ParameterType> funcVersion;
+
+		private readonly List<FieldInfo> fieldsToCopy = new List<FieldInfo>();
+#endif
 		private bool returnAdded = false;
 		private readonly Type copyType;
 		private readonly Type paramType = typeof(ParameterType);
@@ -24,6 +34,7 @@ namespace WeaverCore.Utilities
 				throw new Exception("The Type [" + typeToCopy.FullName + "] does not inherit from the parameter type [" + paramType.FullName + "]");
 			}
 			copyType = typeToCopy;
+#if USE_EMIT
 			finalCopyMethod = new DynamicMethod(copyType.FullName + "_fieldCopier", null, new Type[2] { paramType, paramType }, true);
 			gen = finalCopyMethod.GetILGenerator();
 
@@ -39,6 +50,7 @@ namespace WeaverCore.Utilities
 				gen.Emit(OpCodes.Castclass, copyType);
 				gen.Emit(OpCodes.Stloc_1);
 			}
+#endif
 		}
 
 		public void AddField(FieldInfo field)
@@ -55,6 +67,7 @@ namespace WeaverCore.Utilities
 			{
 				throw new Exception("The field " + field.Name + " is static. Static fields are not allowed in the copier");
 			}
+#if USE_EMIT
 			if (copyType != paramType)
 			{
 				gen.Emit(OpCodes.Ldloc_0);
@@ -67,6 +80,9 @@ namespace WeaverCore.Utilities
 			}
 			gen.Emit(OpCodes.Ldfld, field);
 			gen.Emit(OpCodes.Stfld, field);
+#else
+			fieldsToCopy.Add(field);
+#endif
 		}
 
 		public void AddField(string fieldName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
@@ -95,20 +111,57 @@ namespace WeaverCore.Utilities
 		{
 			if (!returnAdded)
 			{
+#if USE_EMIT
 				gen.Emit(OpCodes.Ret);
+#endif
 				returnAdded = true;
 			}
+#if USE_EMIT
 			return (ShallowCopyDelegate)finalCopyMethod.CreateDelegate(typeof(ShallowCopyDelegate));
+#else
+			if (delegateVersion == null)
+			{
+				delegateVersion = (dest, source) =>
+				{
+					//Debug.Log("Copying Data for types = " + source.GetType().FullName);
+					for (int i = 0; i < fieldsToCopy.Count; i++)
+					{
+						//Debug.Log("Source " + fieldsToCopy[i].Name + " = " + fieldsToCopy[i].GetValue(source));
+						//Debug.Log("Destination " + fieldsToCopy[i].Name + " = " + fieldsToCopy[i].GetValue(dest));
+						fieldsToCopy[i].SetValue(dest, fieldsToCopy[i].GetValue(source));
+
+						//Debug.Log("Post Destination " + fieldsToCopy[i].Name + " = " + fieldsToCopy[i].GetValue(dest));
+					}
+				};
+			}
+			return delegateVersion;
+#endif
 		}
 
-		public Func<ParameterType, ParameterType> FinishFunc()
+		public Action<ParameterType, ParameterType> FinishFunc()
 		{
 			if (!returnAdded)
 			{
+#if USE_EMIT
 				gen.Emit(OpCodes.Ret);
+#endif
 				returnAdded = true;
 			}
+#if USE_EMIT
 			return (Func<ParameterType, ParameterType>)finalCopyMethod.CreateDelegate(typeof(Func<ParameterType, ParameterType>));
+#else
+			if (funcVersion == null)
+			{
+				funcVersion = (dest, source) =>
+				{
+					for (int i = 0; i < fieldsToCopy.Count; i++)
+					{
+						fieldsToCopy[i].SetValue(dest, fieldsToCopy[i].GetValue(source));
+					}
+				};
+			}
+			return funcVersion;
+#endif
 		}
 	}
 }

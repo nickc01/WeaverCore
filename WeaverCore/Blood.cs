@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using WeaverCore.Enums;
 using WeaverCore.Utilities;
@@ -38,6 +39,19 @@ namespace WeaverCore
 				ColorOverride = colorOverride;
 			}
 		}
+
+		/*[Attributes.OnHarmonyPatch]
+		static void PatchTest(HarmonyPatcher patcher)
+		{
+			Debug.Log("Running Blood patch");
+			patcher.Patch(typeof(Blood).GetMethod(nameof(SpawnBlood)), typeof(Blood).GetMethod(nameof(Prefix), BindingFlags.NonPublic | BindingFlags.Static), null);
+		}
+
+		static bool Prefix()
+		{
+			Debug.Log("Spawning Blood!");
+			return true;
+		}*/
 
 
 		public static Blood SpawnBlood(Vector3 position, BloodSpawnInfo spawnInfo)

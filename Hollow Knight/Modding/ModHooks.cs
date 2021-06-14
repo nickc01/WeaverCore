@@ -8,7 +8,7 @@ namespace Modding
 {
 	public class ModHooks
 	{
-		static ModHooks _instance;
+		/*static ModHooks _instance;
 		public static ModHooks Instance
 		{
 			get
@@ -26,15 +26,15 @@ namespace Modding
 				}
 				return instance;
 			}
-		}
+		}*/
 
-		public event GetVector3Proxy GetPlayerVector3Hook;
-		public event GetBoolProxy GetPlayerBoolHook;
-		public event LanguageGetHandler LanguageGetHook;
-		public event GetFloatProxy GetPlayerFloatHook;
-		public event GetIntProxy GetPlayerIntHook;
-		public event GetStringProxy GetPlayerStringHook;
-		public event GetVariableProxy GetPlayerVariableHook;
+		public static event GetVector3Proxy GetPlayerVector3Hook;
+		public static event GetBoolProxy GetPlayerBoolHook;
+		public static event LanguageGetHandler LanguageGetHook;
+		public static event GetFloatProxy GetPlayerFloatHook;
+		public static event GetIntProxy GetPlayerIntHook;
+		public static event GetStringProxy GetPlayerStringHook;
+		public static event GetVariableProxy GetPlayerVariableHook;
 	}
 
 	public delegate string LanguageGetHandler(string key, string sheetTitle);

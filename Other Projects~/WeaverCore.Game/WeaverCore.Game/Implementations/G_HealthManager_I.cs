@@ -55,9 +55,9 @@ namespace WeaverCore.Game.Implementations
 		{
 			if (OnEnableEnemyFunc == null)
 			{
-                OnEnableEnemyFunc = typeof(ModHooks).GetMethod("OnEnableEnemy", BindingFlags.Instance | BindingFlags.NonPublic);
+                OnEnableEnemyFunc = typeof(ModHooks).GetMethod("OnEnableEnemy", BindingFlags.Static | BindingFlags.NonPublic);
 			}
-            return (bool)OnEnableEnemyFunc.Invoke(ModHooks.Instance, new object[] { Manager.gameObject, false });
+            return (bool)OnEnableEnemyFunc.Invoke(null, new object[] { Manager.gameObject, false });
 		}
 	}
 }

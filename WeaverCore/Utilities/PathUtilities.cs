@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
@@ -50,10 +51,12 @@ namespace WeaverCore.Utilities
 
 		public static string AddSlash(string path)
 		{
+			//Debug.Log("Path = " + path);
 			if (path.Any(c => c == '/'))
 			{
 				if (!path.EndsWith("/"))
 				{
+					//Debug.Log("A");
 					return path + "/";
 				}
 			}
@@ -61,9 +64,11 @@ namespace WeaverCore.Utilities
 			{
 				if (!path.EndsWith("\\"))
 				{
+					//Debug.Log("B");
 					return path + "\\";
 				}
 			}
+			//Debug.Log("C");
 			return path;
 		}
 
@@ -71,5 +76,16 @@ namespace WeaverCore.Utilities
 		{
 			return AddSlash(directory.FullName);
 		}
+
+		/// <summary>
+		/// Replaces all backslashes (\) with forward slashes (/) to make the path work with some unity functions
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		public static string ReplaceSlashes(string path)
+		{
+			return path.Replace('\\', '/');
+		}
+
 	}
 }

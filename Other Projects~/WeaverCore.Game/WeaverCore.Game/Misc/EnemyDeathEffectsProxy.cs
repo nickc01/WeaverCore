@@ -54,7 +54,7 @@ public class EnemyDeathEffectsProxy : EnemyDeathEffects
 				DeathEventFunc = (RecieveDeathDelegate)Delegate.CreateDelegate(typeof(RecieveDeathDelegate), deathEventMethod);
 				DidFireField = typeof(EnemyDeathEffects).GetField("didFire", BindingFlags.Instance | BindingFlags.NonPublic);
 			}
-			DeathEventFunc.Invoke(ModHooks.Instance, self, (bool)DidFireField.GetValue(self),ref attackDirection,ref resetDeathEvent,ref spellBurn,ref isWatery);
+			DeathEventFunc.Invoke(null, self, (bool)DidFireField.GetValue(self),ref attackDirection,ref resetDeathEvent,ref spellBurn,ref isWatery);
 			self.GetComponent<IDeathEffects>().PlayDeathEffects(proxy.health.LastAttackInfo);
 			
 			//DeathEventFunc.Invoke(ModHooks.Instance, new object[] { self, DidFireField.GetValue(self), });

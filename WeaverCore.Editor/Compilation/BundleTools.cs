@@ -1,4 +1,4 @@
-﻿#define REWRITE_REGISTRIES
+﻿//#define REWRITE_REGISTRIES
 using AssetsTools.NET;
 using AssetsTools.NET.Extra;
 using System;
@@ -598,6 +598,7 @@ namespace WeaverCore.Editor.Compilation
 
 		static string PostProcessBundle(BuiltAssetBundle bundle, Dictionary<string,string> assemblyReplacements)
 		{
+			Debug.Log($"Post Processing Bundle -> {bundle.File}");
 			var am = new AssetsManager();
 			am.LoadClassPackage("Assets\\WeaverCore\\Libraries\\classdata.tpk");
 
@@ -649,12 +650,27 @@ namespace WeaverCore.Editor.Compilation
 					AssetTypeValueField monoBehaviourInst = null;
 					try
 					{
+						monoBehaviourInst = am.GetTypeInstance(assetsFileInst, info).GetBaseField();
+					}
+					catch (Exception e)
+					{
+						Debug.LogError("An exception occured when reading a MonoBehaviour, skipping");
+						foreach (var field in info.GetType().GetFields())
+						{
+							Debug.LogError($"{field.Name} = {field.GetValue(info)}");
+						}
+						Debug.LogException(e);
+						continue;
+					}
+					//
+					/*try
+					{
 						monoBehaviourInst = MonoDeserializer.GetMonoBaseField(am, assetsFileInst, info, new DirectoryInfo("Library\\ScriptAssemblies").FullName);
 					}
 					catch (Exception)
 					{
 						continue;
-					}
+					}*/
 
 					//If this MonoBehaviour has a field called "modAssemblyName", then it's a Registry object
 					//If MonoBehaviour is a registry, replace the "modAssemblyName" variable from "Assembly-CSharp"

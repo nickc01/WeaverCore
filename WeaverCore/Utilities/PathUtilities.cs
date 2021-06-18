@@ -10,6 +10,7 @@ namespace WeaverCore.Utilities
 	public static class PathUtilities
 	{
 		public readonly static DirectoryInfo AssetsFolder = new DirectoryInfo("Assets");
+		public readonly static DirectoryInfo ProjectFolder = new DirectoryInfo("Assets\\..");
 
 		public static string MakePathRelative(string relativeTo, string path)
 		{
@@ -46,6 +47,13 @@ namespace WeaverCore.Utilities
 		{
 			var relative = MakePathRelative(AssetsFolder.FullName, path);
 			relative = relative.Replace('\\','/');
+			return relative;
+		}
+
+		public static string ConvertToProjectPath(string path)
+		{
+			var relative = MakePathRelative(ProjectFolder.FullName, path);
+			relative = relative.Replace('\\', '/');
 			return relative;
 		}
 

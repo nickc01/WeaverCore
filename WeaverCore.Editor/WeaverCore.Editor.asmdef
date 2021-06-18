@@ -4,9 +4,7 @@
     "references": [
         "WeaverCore",
         "HollowKnight",
-        "WeaverBuildTools",
-        "Unity.ScriptableBuildPipeline",
-        "Unity.ScriptableBuildPipeline.Editor"
+        "WeaverBuildTools"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.Build.Content;
-using UnityEditor.Build.Pipeline;
+//using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using WeaverBuildTools.Commands;
 using WeaverBuildTools.Enums;
@@ -218,6 +218,109 @@ namespace WeaverCore.Editor.Compilation
 			//}
 		}
 
+		static void BuildAssetBundles(BuildTarget target, BuildTargetGroup group, DirectoryInfo outputDirectory)
+		{
+			var buildInput = ContentBuildInterface.GenerateAssetBundleBuilds().ToList();
+
+			if (Data.WeaverCoreOnly)
+			{
+				buildInput.RemoveAll(i => i.assetBundleName != "weavercore_bundle");
+			}
+
+			foreach (var bundleInput in buildInput)
+			{
+				Debug.Log("Found Asset Bundle -> " + bundleInput.assetBundleName);
+			}
+
+			Assembly scriptBuildAssembly = null;
+
+			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+			{
+				if (assembly.GetName().Name == "Unity.ScriptableBuildPipeline.Editor")
+				{
+					scriptBuildAssembly = assembly;
+					break;
+				}
+			}
+
+			if (scriptBuildAssembly == null)
+			{
+				throw new Exception("The Scriptable Build Pipeline is currently not installed. This is required to build WeaverCore AssetBundles");
+			}
+
+			var contentPipelineT = scriptBuildAssembly.GetType("UnityEditor.Build.Pipeline.ContentPipeline");
+
+			var buildAssetBundlesF = contentPipelineT.GetMethods().FirstOrDefault(m => m.GetParameters().Length == 3);
+
+			var bundleBuildParametersT = scriptBuildAssembly.GetType("UnityEditor.Build.Pipeline.BundleBuildParameters");
+
+			var buildParameters = Activator.CreateInstance(bundleBuildParametersT, new object[] { target, group, outputDirectory.FullName });
+			bundleBuildParametersT.GetProperty("BundleCompression").SetValue(buildParameters,UnityEngine.BuildCompression.LZ4);
+
+			var bundleBuildContentT = scriptBuildAssembly.GetType("UnityEditor.Build.Pipeline.BundleBuildContent");
+
+			var bundleBuildContent = Activator.CreateInstance(bundleBuildContentT, new object[] { buildInput });
+
+			var parameters = new object[] { buildParameters,bundleBuildContent,null };
+
+			var code = buildAssetBundlesF.Invoke(null, parameters);
+
+			var codeType = code.GetType();
+
+			var codeName = Enum.GetName(codeType, code);
+			Debug.Log("Code Name = " + codeName);
+			switch (codeName)
+			{
+				case "Success":
+					break;
+				case "SuccessCached":
+					break;
+				case "SuccessNotRun":
+					break;
+				case "Error":
+					throw new BundleException("An error occured when creating an asset bundle");
+				case "Exception":
+					throw new BundleException("An exception occured when creating an asset bundle");
+				case "Canceled":
+					throw new BundleException("The asset bundle build was cancelled");
+				case "UnsavedChanges":
+					throw new BundleException("There are unsaved changes, be sure to save them and try again");
+				case "MissingRequiredObjects":
+					throw new BundleException("Some required objects are missing");
+				default:
+					break;
+			}
+
+
+
+			/*var code = ContentPipeline.BuildAssetBundles(new BundleBuildParameters(target, BuildTargetGroup.Standalone, targetFolder.FullName)
+			{
+				BundleCompression = UnityEngine.BuildCompression.LZ4,
+			}, new BundleBuildContent(buildInput), out var results);*/
+
+			/*switch (code)
+			{
+				case ReturnCode.Success:
+					break;
+				case ReturnCode.SuccessCached:
+					break;
+				case ReturnCode.SuccessNotRun:
+					break;
+				case ReturnCode.Error:
+					throw new BundleException("An error occured when creating an asset bundle");
+				case ReturnCode.Exception:
+					throw new BundleException("An exception occured when creating an asset bundle");
+				case ReturnCode.Canceled:
+					throw new BundleException("The asset bundle build was cancelled");
+				case ReturnCode.UnsavedChanges:
+					throw new BundleException("There are unsaved changes, be sure to save them and try again");
+				case ReturnCode.MissingRequiredObjects:
+					throw new BundleException("Some required objects are missing");
+				default:
+					break;
+			}*/
+		}
+
 		static void BeginBundleProcess()
 		{
 			UnboundCoroutine.Start(BundleRoutine());
@@ -254,44 +357,9 @@ namespace WeaverCore.Editor.Compilation
 
 						targetFolder.Create();
 
-						var buildInput = ContentBuildInterface.GenerateAssetBundleBuilds().ToList();
 
-						if (Data.WeaverCoreOnly)
-						{
-							buildInput.RemoveAll(i => i.assetBundleName != "weavercore_bundle");
-						}
 
-						foreach (var bundleInput in buildInput)
-						{
-							Debug.Log("Found Asset Bundle -> " + bundleInput.assetBundleName);
-						}
-
-						var code = ContentPipeline.BuildAssetBundles(new BundleBuildParameters(target,BuildTargetGroup.Standalone,targetFolder.FullName)
-						{
-							BundleCompression = UnityEngine.BuildCompression.LZ4,
-						}, new BundleBuildContent(buildInput),out var results);
-
-						switch (code)
-						{
-							case ReturnCode.Success:
-								break;
-							case ReturnCode.SuccessCached:
-								break;
-							case ReturnCode.SuccessNotRun:
-								break;
-							case ReturnCode.Error:
-								throw new BundleException("An error occured when creating an asset bundle");
-							case ReturnCode.Exception:
-								throw new BundleException("An exception occured when creating an asset bundle");
-							case ReturnCode.Canceled:
-								throw new BundleException("The asset bundle build was cancelled");
-							case ReturnCode.UnsavedChanges:
-								throw new BundleException("There are unsaved changes, be sure to save them and try again");
-							case ReturnCode.MissingRequiredObjects:
-								throw new BundleException("Some required objects are missing");
-							default:
-								break;
-						}
+						BuildAssetBundles(target, BuildTargetGroup.Standalone, targetFolder);
 
 						//Debug.Log("Return Code = " + code);
 

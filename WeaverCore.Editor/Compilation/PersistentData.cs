@@ -173,6 +173,11 @@ namespace WeaverCore.Editor.Compilation
 
 		public static void SaveData()
 		{
+			var directory = new FileInfo(PersistentDataPath).Directory;
+			if (!directory.Exists)
+			{
+				directory.Create();
+			}
 			File.WriteAllText(PersistentDataPath, JsonUtility.ToJson(Storage,true));
 		}
 	}

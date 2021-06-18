@@ -572,10 +572,15 @@ namespace WeaverCore.Editor.Compilation
 
 				var editorDir = new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory;
 
-				var editorUnityEngineDll = new FileInfo(PathUtilities.AddSlash(editorDir.Parent.FullName) + "UnityEngine.dll");
+				foreach (var ueFile in editorDir.Parent.GetFiles("UnityEngine.dll", SearchOption.AllDirectories))
+				{
+					exclusions.Add(ueFile.FullName);
+				}
+
+				//var editorUnityEngineDll = new FileInfo(PathUtilities.AddSlash(editorDir.Parent.FullName) + "UnityEngine.dll");
 
 				//Debug.Log("Editor Unity Engine Location = " + editorUnityEngineDll);
-				exclusions.Add(editorUnityEngineDll.FullName);
+				//exclusions.Add(editorUnityEngineDll.FullName);
 
 				//Debug.Log("Editor Location = " + );
 				//Debug.Log("System Location = " + typeof(System.Array).Assembly.Location);
@@ -686,6 +691,7 @@ namespace WeaverCore.Editor.Compilation
 			{
 				if (package.name == "com.unity.textmeshpro")
 				{
+					Debug.ClearDeveloperConsole();
 					Debug.Log("Removing Text Mesh Pro package, since WeaverCore provides a version that is compatible with Hollow Knight");
 					makingChanges = true;
 					PackageClient.Remove(package.name);
@@ -697,6 +703,7 @@ namespace WeaverCore.Editor.Compilation
 					//If it isn't the latest compatible version
 					if (package.version != buildPipelineLatestVersion)
 					{
+						Debug.ClearDeveloperConsole();
 						Debug.Log($"Updating the Scriptable Build Pipeline from [{package.version}] -> [{buildPipelineLatestVersion}]");
 						PackageClient.Remove(package.name);
 						makingChanges = true;

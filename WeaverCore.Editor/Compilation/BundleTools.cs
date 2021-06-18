@@ -1,4 +1,5 @@
 ﻿//#define REWRITE_REGISTRIES
+#define MULTI_THREADED_EMBEDDING
 using AssetsTools.NET;
 using AssetsTools.NET.Extra;
 using System;
@@ -30,6 +31,7 @@ namespace WeaverCore.Editor.Compilation
 			public string AssemblyName;
 			public string ModTypeName;
 			public string RegistryName;
+			public string AssetBundleName;
 		}
 
 		[Serializable]
@@ -83,6 +85,8 @@ namespace WeaverCore.Editor.Compilation
 			public bool WeaverCoreOnly = false;
 
 			public SerializedMethod OnComplete;
+
+			public List<RegistryInfo> Registries;
 		}
 
 		public static void BuildAndEmbedAssetBundles(FileInfo modDll, FileInfo weaverCoreDLL, MethodInfo OnComplete)
@@ -157,6 +161,21 @@ namespace WeaverCore.Editor.Compilation
 				registry.ApplyChanges();
 			}
 #endif
+			Data.Registries = new List<RegistryInfo>();
+			var registryIDs = AssetDatabase.FindAssets($"t:{nameof(Registry)}");
+			foreach (var id in registryIDs)
+			{
+				var path = AssetDatabase.GUIDToAssetPath(id);
+				var registry = AssetDatabase.LoadAssetAtPath<Registry>(path);
+				Data.Registries.Add(new RegistryInfo
+				{
+					AssemblyName = registry.ModAssemblyName,
+					AssetBundleName = GetAssetBundleName(registry),
+					ModTypeName = registry.ModName,
+					RegistryName = registry.RegistryName,
+					Path = path
+				});
+			}
 			//yield return new WaitForSeconds(0.5f);
 			//Debug.Log("D_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
 			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
@@ -331,7 +350,20 @@ namespace WeaverCore.Editor.Compilation
 				{
 					//Debug.Log("E_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
 					Debug.Log("Beginning Bundle Process");
+#if !MULTI_THREADED_EMBEDDING
 					var builtAssetBundles = new List<BuiltAssetBundle>();
+#else
+					List<Task> embeddingTasks = new List<Task>();
+#endif
+					var assemblies = new List<FileInfo>
+					{
+						new FileInfo(Data.WeaverCoreDLL)
+					};
+
+					if (!Data.WeaverCoreOnly)
+					{
+						assemblies.Add(new FileInfo(Data.ModDLL));
+					}
 
 					//BuildSettings settings = new BuildSettings();
 					//settings.GetStoredSettings();
@@ -352,7 +384,6 @@ namespace WeaverCore.Editor.Compilation
 						{
 							continue;
 						}
-						//Debug.Log("Building For Target = " + target);
 						var targetFolder = bundleBuilds.CreateSubdirectory(target.ToString());
 
 						targetFolder.Create();
@@ -360,11 +391,7 @@ namespace WeaverCore.Editor.Compilation
 
 
 						BuildAssetBundles(target, BuildTargetGroup.Standalone, targetFolder);
-
-						//Debug.Log("Return Code = " + code);
-
-						//CompatibilityBuildPipeline.BuildAssetBundles(targetFolder.FullName, BuildAssetBundleOptions.ChunkBasedCompression, target);
-						//BuildPipeline.BuildAssetBundles(targetFolder.FullName, BuildAssetBundleOptions.ChunkBasedCompression, target);
+#if !MULTI_THREADED_EMBEDDING
 						foreach (var bundleFile in targetFolder.GetFiles())
 						{
 							if (bundleFile.Extension == "" && !bundleFile.Name.Contains("BundleBuilds"))
@@ -374,31 +401,48 @@ namespace WeaverCore.Editor.Compilation
 									File = bundleFile,
 									Target = target
 								});
-								//bundles.Add(new BundleBuild() { File = bundleFile, Target = target });
 							}
 						}
-						//yield return new WaitForSeconds(1f);
-						//Debug.Log("POST_BUNDLE_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-						//yield return new WaitUntil(() => !IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
+#else
+						List<BuiltAssetBundle> builtBundles = new List<BuiltAssetBundle>();
+						foreach (var bundleFile in targetFolder.GetFiles())
+						{
+							if (bundleFile.Extension == "" && !bundleFile.Name.Contains("BundleBuilds"))
+							{
+								builtBundles.Add(new BuiltAssetBundle
+								{
+									File = bundleFile,
+									Target = target
+								});
+							}
+						}
+						embeddingTasks.Add(Task.Run(() =>
+						{
+							if (Data.WeaverCoreOnly)
+							{
+								EmbedAssetBundles(assemblies, builtBundles.Where(a => a.File.Name.ToLower().Contains("weavercore_bundle")));
+							}
+							else
+							{
+								EmbedAssetBundles(assemblies, builtBundles);
+							}
+						}));
+#endif
 					}
 
-					var assemblies = new List<FileInfo>
-					{
-						new FileInfo(Data.WeaverCoreDLL)
-					};
-					//Debug.Log("POST_1_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
+#if !MULTI_THREADED_EMBEDDING
 					if (Data.WeaverCoreOnly)
 					{
 						EmbedAssetBundles(assemblies, builtAssetBundles.Where(a => a.File.Name.ToLower().Contains("weavercore_bundle")));
 					}
 					else
 					{
-						assemblies.Add(new FileInfo(Data.ModDLL));
 						EmbedAssetBundles(assemblies, builtAssetBundles);
 					}
-					//Debug.Log("POST_2_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
+#else
+					Task.WaitAll(embeddingTasks.ToArray());
+#endif
 					EmbedWeaverCoreResources();
-					//Debug.Log("POST_3_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
 					Data.BundlingSuccessful = true;
 				}
 				catch (Exception e)
@@ -426,6 +470,13 @@ namespace WeaverCore.Editor.Compilation
 			
 			//Debug.Log("Beginning Bundle Process!!!");
 		}
+
+		/*static void EmbedAssetBundle(List<FileInfo> assemblies, IEnumerable<BuiltAssetBundle> builtBundles, Dictionary<string,AssemblyName> bundleToAssemblyPairs)
+		{
+
+		}*/
+
+		static object embedLock = new object();
 
 		static void EmbedAssetBundles(List<FileInfo> assemblies, IEnumerable<BuiltAssetBundle> builtBundles)
 		{
@@ -465,7 +516,10 @@ namespace WeaverCore.Editor.Compilation
 					{
 						var processedBundleLocation = PostProcessBundle(bundle, assemblyReplacements);
 						//Debug.Log($"Embedding {processedBundleLocation} into {asmFile.FullName}");
-						EmbedResourceCMD.EmbedResource(asmFile.FullName, processedBundleLocation, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
+						lock (embedLock)
+						{
+							EmbedResourceCMD.EmbedResource(asmFile.FullName, processedBundleLocation, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
+						}
 					}
 				}
 				//var assembly = assemblies.FirstOrDefault(a => a.Name == bundle.)
@@ -491,11 +545,43 @@ namespace WeaverCore.Editor.Compilation
 		static Dictionary<string, AssemblyName> GetBundleToAssemblyPairs(Dictionary<string, string> assemblyReplacements)
 		{
 			Dictionary<string, AssemblyName> bundleToAssemblyPairs = new Dictionary<string, AssemblyName>();
-			var registryIDs = AssetDatabase.FindAssets($"t:{nameof(Registry)}");
+			//var registryIDs = AssetDatabase.FindAssets($"t:{nameof(Registry)}");
 
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-			foreach (var id in registryIDs)
+			foreach (var registry in Data.Registries)
+			{
+				var originalModName = registry.AssemblyName;
+
+				var assembly = assemblies.FirstOrDefault(a => a.GetName().Name == originalModName);
+
+				if (assembly != null)
+				{
+					var asmName = assembly.GetName();
+					asmName.Name = registry.AssemblyName;
+					if (assemblyReplacements.TryGetValue(asmName.Name, out var replacement))
+					{
+						asmName.Name = replacement;
+					}
+					/*if (asmName.Name == "Assembly-CSharp" && !Data.WeaverCoreOnly)
+					{
+						asmName.Name = Data.ModName;
+					}*/
+					//Debug.Log($"Adding Bundle Pair {bundleName} => {asmName.Name}");
+					bundleToAssemblyPairs.Add(registry.AssetBundleName, asmName);
+					/*var mod = registry.ModType;
+					if (mod != null)
+					{
+						assembly = mod.Assembly;
+					}
+					if (assembly != null)
+					{
+						
+					}*/
+				}
+			}
+
+			/*foreach (var id in registryIDs)
 			{
 				//Debug.Log("ID = " + id);
 				//Debug.Log("Path = " + AssetDatabase.GUIDToAssetPath(id));
@@ -533,30 +619,17 @@ namespace WeaverCore.Editor.Compilation
 						asmName.Name = replacement;
 					}
 #endif
-					/*if (asmName.Name == "Assembly-CSharp" && !Data.WeaverCoreOnly)
-					{
-						asmName.Name = Data.ModName;
-					}*/
 					//Debug.Log($"Adding Bundle Pair {bundleName} => {asmName.Name}");
 					bundleToAssemblyPairs.Add(bundleName, asmName);
-					/*var mod = registry.ModType;
-					if (mod != null)
-					{
-						assembly = mod.Assembly;
-					}
-					if (assembly != null)
-					{
-						
-					}*/
 				}
 				
-			}
+			}*/
 
 			return bundleToAssemblyPairs;
 
 
 
-			string GetAssetBundleName(UnityEngine.Object obj)
+			/*string GetAssetBundleName(UnityEngine.Object obj)
 			{
 				var path = AssetDatabase.GetAssetPath(obj);
 				if (path != null && path != "")
@@ -566,7 +639,19 @@ namespace WeaverCore.Editor.Compilation
 					//import.SetAssetBundleNameAndVariant(bundleName, import.assetBundleVariant);
 				}
 				return "";
+			}*/
+		}
+
+		static string GetAssetBundleName(UnityEngine.Object obj)
+		{
+			var path = AssetDatabase.GetAssetPath(obj);
+			if (path != null && path != "")
+			{
+				var import = AssetImporter.GetAtPath(path);
+				return import.assetBundleName;
+				//import.SetAssetBundleNameAndVariant(bundleName, import.assetBundleVariant);
 			}
+			return "";
 		}
 
 		static void DoneWithAssetBundling(MethodInfo whenFinished)

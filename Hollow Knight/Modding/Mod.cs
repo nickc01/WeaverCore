@@ -44,15 +44,6 @@ namespace Modding
 
 		/// <inheritdoc />
 		/// <summary>
-		///     Legacy constructor instead of optional argument to not break old mods
-		/// </summary>
-		// Token: 0x06004422 RID: 17442 RVA: 0x00186D98 File Offset: 0x00184F98
-		protected Mod() : this(null)
-		{
-		}
-
-		/// <inheritdoc />
-		/// <summary>
 		///     Constructs the mod, assigns the instance and sets the name.
 		/// </summary>
 		// Token: 0x06004423 RID: 17443 RVA: 0x00186DA4 File Offset: 0x00184FA4

@@ -40,13 +40,18 @@ namespace WeaverCore
 
 
         //As soon as any WeaverCore mod loads, the init functions will be called
-        protected WeaverMod()
+        protected WeaverMod() : this(null)
+		{
+
+		}
+
+        protected WeaverMod(string name) : base(name)
 		{
 #if UNITY_EDITOR
             _loadedMods.Add(this);
 #endif
             Initialization.Initialize();
-		}
+        }
 
 
         bool firstLoad = true;

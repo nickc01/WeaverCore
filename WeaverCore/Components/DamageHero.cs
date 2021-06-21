@@ -20,10 +20,6 @@ namespace WeaverCore.Components
 		[SerializeField]
 		bool shadowDashHazard = false;
 
-		[SerializeField]
-		[Tooltip("When true, will automatically set the layer of this object to the Enemies Layer")]
-		[FormerlySerializedAs("updateLayer")]
-		bool setLayerToEnemies = true;
 
 		DamageHero_I impl;
 
@@ -75,11 +71,6 @@ namespace WeaverCore.Components
 			{
 				impl = gameObject.AddComponent(ImplFinder.GetImplementationType<DamageHero_I>()) as DamageHero_I;
 				impl.Damager = this;
-			}
-
-			if (setLayerToEnemies)
-			{
-				gameObject.layer = 11;
 			}
 		}
 

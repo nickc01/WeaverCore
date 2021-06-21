@@ -447,12 +447,12 @@ namespace WeaverCore.Components
 					{
 						if (extraDamageType == ExtraDamageTypes.Dung || extraDamageType == ExtraDamageTypes.Dung2)
 						{
-							component.FlashDung();
+							component.flashDungQuick();
 						}
 					}
 					else
 					{
-						component.FlashSpore();
+						component.flashSporeQuick();
 					}
 				}
 				int num = 1;

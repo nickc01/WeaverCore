@@ -27,7 +27,6 @@ namespace WeaverCore.Game.Implementations
 			{
 				if (Groups[i].audioMixer == mixer && Groups[i].name == groupName)
 				{
-					//WeaverLog.Log("Found Group = " + groupName);
 					return Groups[i];
 				}
 			}
@@ -42,7 +41,6 @@ namespace WeaverCore.Game.Implementations
 			{
 				if (Mixers[i].name == mixerName)
 				{
-					//WeaverLog.Log("Found Mixer = " + mixerName);
 					return Mixers[i];
 				}
 			}
@@ -57,7 +55,6 @@ namespace WeaverCore.Game.Implementations
 			{
 				if (Snapshots[i].audioMixer == mixer && Snapshots[i].name == snapshotName)
 				{
-					//WeaverLog.Log("Found Snapshot = " + snapshotName);
 					return Snapshots[i];
 				}
 			}
@@ -80,9 +77,6 @@ namespace WeaverCore.Game.Implementations
 			Mixers = Resources.FindObjectsOfTypeAll<AudioMixer>();
 			Snapshots = Resources.FindObjectsOfTypeAll<AudioMixerSnapshot>();
 			Groups = Resources.FindObjectsOfTypeAll<AudioMixerGroup>();
-
-
-			//WeaverLog.Log("Main Group Test = " + Music.MainGroup);
 
 			LoadCueModifiers();
 		}

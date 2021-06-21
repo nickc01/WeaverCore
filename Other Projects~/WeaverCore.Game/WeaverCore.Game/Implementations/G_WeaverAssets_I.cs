@@ -46,7 +46,6 @@ namespace WeaverCore.Game.Implementations
 							return finalAsset;
 						}
 					}
-					//WeaverLog.Log("Valid Asset = " + name);
 				}
 			}
 			return finalAsset;
@@ -92,7 +91,6 @@ namespace WeaverCore.Game.Implementations
 				{
 					try
 					{
-						//WeaverLog.Log("Loading WeaverCore Bundle = " + resourceName);
 						var bundle = AssetBundle.LoadFromStream(weaverAssembly.GetManifestResourceStream(resourceName));
 						weaverAssetBundle = bundle;
 						break;
@@ -115,10 +113,8 @@ namespace WeaverCore.Game.Implementations
 		{
 			foreach (var bundle in AssetBundle.GetAllLoadedAssetBundles())
 			{
-				//WeaverLog.Log("LOAD FROM BUNDLE TEST = " + bundle.name);
 				if (bundle.name.Contains(bundleName))
 				{
-					//WeaverLog.Log("Searching into bundle = " + bundle.name);
 					return LoadAssetFromBundle<T>(bundle, name);
 				}
 			}
@@ -129,16 +125,10 @@ namespace WeaverCore.Game.Implementations
 		{
 			var lowerName = name.ToLower();
 			var assets = bundleName.GetAllAssetNames();
-			/*foreach (var _asset in assets)
-			{
-				WeaverLog.Log("Found Asset = " + _asset);
-			}*/
 			var asset = assets.FirstOrDefault(a => a.Contains(lowerName));
-			//WeaverLog.Log("Found Asset = " + asset);
 			if (asset != null)
 			{
 				var instance = bundleName.LoadAsset<T>(asset);
-				//WeaverLog.Log("Asset Instance = " + instance);
 				return instance;
 			}
 			return default(T);

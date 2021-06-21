@@ -287,7 +287,7 @@ namespace WeaverCore.Editor.Compilation
 			var codeType = code.GetType();
 
 			var codeName = Enum.GetName(codeType, code);
-			Debug.Log("Code Name = " + codeName);
+			//Debug.Log("Code Name = " + codeName);
 			switch (codeName)
 			{
 				case "Success":

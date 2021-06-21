@@ -50,7 +50,6 @@ namespace WeaverCore.Game
 
 		public static void Save(Panel settings)
 		{
-			//WeaverLog.Log("Saving");
 			var type = settings.GetType();
 			var file = new FileInfo(SettingsFolder.FullName + "\\" + type.FullName + ".cfg");
 			File.WriteAllText(file.FullName, JsonUtility.ToJson(settings));

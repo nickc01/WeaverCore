@@ -214,25 +214,55 @@ namespace WeaverCore.Components
 		}
 
 
-		public void FlashNormalHit()
-		{
+		public void FlashNormalHit() => flashFocusHeal();
+		/*{
 			DoFlash(0.01f, 0.35f, 0.85f, Color.white, 0.01f);
-		}
+		}*/
 
-		public void FlashInfected()
+		/*public void FlashInfected()
 		{
 			DoFlash(0.01f, 0.25f, 0.9f, new Color(1f, 0.31f, 0f), 0.01f);
-		}
+		}*/
 
-		public void FlashDung()
+		/*public void FlashDung()
 		{
 			this.DoFlash(0.001f, 0.1f, 0.75f, new Color?(new Color(0.45f, 0.27f, 0f)), 0.05f);
-		}
+		}*/
 
 		// Token: 0x06000068 RID: 104 RVA: 0x00003660 File Offset: 0x00001860
-		public void FlashSpore()
+		/*public void FlashSpore()
 		{
 			this.DoFlash(0.001f, 0.1f, 0.75f, new Color?(new Color(0.95f, 0.9f, 0.15f)), 0.05f);
-		}
+		}*/
+
+
+		public void FlashingSuperDash() => DoFlash(0.1f, 0.1f, 0.7f, new Color(1f, 1f, 1f), 0.01f);
+		public void FlashingGhostWounded() => DoFlash(0.5f, 0.5f, 0.7f, new Color(1f, 1f, 1f), 0.01f);
+		public void FlashingWhiteStay() => DoFlash(0.01f, 0.01f, 0.6f, new Color(1f, 1f, 1f), 999f);
+		public void FlashingWhiteStayMoth() => DoFlash(2f, 2f, 0.6f, new Color(1f, 1f, 1f), 9999f);
+		public void FlashingFury() => DoFlash(0.25f, 0.25f, 0.75f, new Color(0.71f, 0.18f, 0.18f), 0.01f);
+		public void FlashingOrange() => DoFlash(0.1f, 0.1f, 0.7f, new Color(1f, 0.31f, 0f), 0.01f);
+		public void flashInfected() => DoFlash(0.01f, 0.25f, 0.9f, new Color(1f, 0.31f, 0f), 0.01f);
+		public void flashDung() => DoFlash(0.01f, 0.25f, 0.9f, new Color(0.45f, 0.27f, 0f), 0.01f);
+		public void flashDungQuick() => DoFlash(0.001f, 0.1f, 0.75f, new Color(0.45f, 0.27f, 0f), 0.05f);
+		public void flashSporeQuick() => DoFlash(0.001f, 0.1f, 0.75f, new Color(0.95f, 0.9f, 0.15f), 0.05f);
+		public void flashWhiteQuick() => DoFlash(0.001f, 0.001f, 1f, new Color(1f, 1f, 1f), 0.05f);
+		public void flashInfectedLong() => DoFlash(0.01f, 0.35f, 0.9f, new Color(1f, 0.31f, 0f), 0.25f);
+		public void flashArmoured() => DoFlash(0.01f, 0.25f, 0.9f, new Color(1f, 1f, 1f), 0.01f);
+		public void flashBenchRest() => DoFlash(0.01f, 0.75f, 0.7f, new Color(1f, 1f, 1f), 0.1f);
+		public void flashDreamImpact() => DoFlash(0.01f, 0.75f, 0.9f, new Color(1f, 1f, 1f), 0.25f);
+		public void flashMothDepart() => DoFlash(1.9f, 0.25f, 0.75f, new Color(1f, 1f, 1f), 1f);
+		public void flashSoulGet() => DoFlash(0.01f, 0.25f, 0.5f, new Color(1f, 1f, 1f), 0.01f);
+		public void flashShadeGet() => DoFlash(0.01f, 0.25f, 0.5f, new Color(0f, 0f, 0f), 0.01f);
+		public void flashWhiteLong() => DoFlash(0.01f, 2f, 1f, new Color(1f, 1f, 1f), 0.01f);
+		public void flashOvercharmed() => DoFlash(0.2f, 0.5f, 0.75f, new Color(0.72f, 0.376f, 0.72f), 0.01f);
+		public void flashFocusHeal() => DoFlash(0.01f, 0.35f, 0.85f, new Color(1f, 1f, 1f), 0.01f);
+		public void flashFocusGet() => DoFlash(0.01f, 0.35f, 0.5f, new Color(1f, 1f, 1f), 0.01f);
+		public void flashWhitePulse() => DoFlash(0.5f, 0.75f, 0.35f, new Color(1f, 1f, 1f), 0.01f);
+		public void flashHealBlue() => DoFlash(0.01f, 0.5f, 0.75f, new Color(0f, 0.584f, 1f), 0.01f);
+		public void FlashShadowRecharge() => DoFlash(0.01f, 0.35f, 0.75f, new Color(0f, 0f, 0f), 0.01f);
+		public void flashInfectedLoop() => DoFlash(0.2f, 0.2f, 0.9f, new Color(1f, 0.31f, 0f), 0.01f);
+		public void FlashGrimmflame() => DoFlash(0.01f, 1f, 0.75f, new Color(1f, 0.25f, 0.25f), 0.01f);
+		public void FlashGrimmHit() => DoFlash(0.01f, 0.25f, 0.75f, new Color(1f, 0.25f, 0.25f), 0.01f);
 	}
 }

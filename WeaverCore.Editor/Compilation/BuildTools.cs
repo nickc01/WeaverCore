@@ -396,210 +396,213 @@ namespace WeaverCore.Editor.Compilation
 			}
 			using (var stream = File.OpenRead(xmlProjectFile.FullName))
 			{
-				XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings
+				using (var reader = XmlReader.Create(stream, new XmlReaderSettings { IgnoreComments = true }))
 				{
-					IgnoreComments = true
-				});
-				reader.ReadToFollowing("Project");
-				reader.ReadToDescendant("PropertyGroup");
-				reader.ReadToFollowing("PropertyGroup");
-				reader.ReadToDescendant("OutputPath");
-				//reader.NodeType == XmlNodeType.Prope
-				//reader.ReadEndElement();
-				//reader.ReadToFollowing("PropertyGroup");
-				//reader.ReadToFollowing("OutputPath");
+					reader.ReadToFollowing("Project");
+					reader.ReadToDescendant("PropertyGroup");
+					reader.ReadToFollowing("PropertyGroup");
+					reader.ReadToDescendant("OutputPath");
+					//reader.NodeType == XmlNodeType.Prope
+					//reader.ReadEndElement();
+					//reader.ReadToFollowing("PropertyGroup");
+					//reader.ReadToFollowing("OutputPath");
 
-				if (outputPath == null)
-				{
-					var foundOutputPath = reader.ReadElementContentAsString();
-					if (Path.IsPathRooted(foundOutputPath))
+					if (outputPath == null)
 					{
-						outputPath = new FileInfo(PathUtilities.AddSlash(foundOutputPath) + "WeaverCore.Game.dll");
-					}
-					else
-					{
-						outputPath = new FileInfo(PathUtilities.AddSlash(xmlProjectFile.Directory.FullName) + PathUtilities.AddSlash(foundOutputPath) + "WeaverCore.Game.dll");
-					}
-
-				}
-				//Debug.Log("Output Path = " + foundOutputPath);
-				//reader.ReadEndElement();
-				reader.ReadToFollowing("ItemGroup");
-				List<XmlReference> References = new List<XmlReference>();
-				List<string> Scripts = new List<string>();
-				while (reader.Read())
-				{
-					if (reader.Name == "Reference")
-					{
-						var referenceName = reader.GetAttribute("Include");
-						FileInfo hintPath = null;
-						while (reader.Read() && reader.Name != "Reference")
+						var foundOutputPath = reader.ReadElementContentAsString();
+						if (Path.IsPathRooted(foundOutputPath))
 						{
-							if (reader.Name == "HintPath")
-							{
-								var contents = reader.ReadElementContentAsString();
-								if (Path.IsPathRooted(contents))
-								{
-									hintPath = new FileInfo(contents);
-								}
-								else
-								{
-									hintPath = new FileInfo(PathUtilities.AddSlash(xmlProjectFile.Directory.FullName) + contents);
-								}
-								//reader.ReadEndElement();
-							}
-						}
-						if (referenceName.Contains("Version=") || referenceName.Contains("Culture=") || referenceName.Contains("PublicKeyToken=") || referenceName.Contains("processorArchitecture="))
-						{
-							referenceName = new AssemblyName(referenceName).Name;
-						}
-						References.Add(new XmlReference
-						{
-							AssemblyName = referenceName,
-							HintPath = hintPath
-						});
-					}
-					else if (reader.Name == "ItemGroup")
-					{
-						break;
-					}
-				}
-
-				reader.ReadToFollowing("ItemGroup");
-				while (reader.Read() && reader.Name != "ItemGroup")
-				{
-					if (reader.Name == "Compile")
-					{
-						var contents = reader.GetAttribute("Include");
-						if (Path.IsPathRooted(contents))
-						{
-							Scripts.Add(new FileInfo(contents).FullName);
+							outputPath = new FileInfo(PathUtilities.AddSlash(foundOutputPath) + "WeaverCore.Game.dll");
 						}
 						else
 						{
-							Scripts.Add(new FileInfo(PathUtilities.AddSlash(xmlProjectFile.Directory.FullName) + contents).FullName);
+							outputPath = new FileInfo(PathUtilities.AddSlash(xmlProjectFile.Directory.FullName) + PathUtilities.AddSlash(foundOutputPath) + "WeaverCore.Game.dll");
 						}
-						if (!reader.IsEmptyElement)
+
+					}
+					//Debug.Log("Output Path = " + foundOutputPath);
+					//reader.ReadEndElement();
+					reader.ReadToFollowing("ItemGroup");
+					List<XmlReference> References = new List<XmlReference>();
+					List<string> Scripts = new List<string>();
+					while (reader.Read())
+					{
+						if (reader.Name == "Reference")
 						{
-							reader.ReadEndElement();
+							var referenceName = reader.GetAttribute("Include");
+							FileInfo hintPath = null;
+							while (reader.Read() && reader.Name != "Reference")
+							{
+								if (reader.Name == "HintPath")
+								{
+									var contents = reader.ReadElementContentAsString();
+									if (Path.IsPathRooted(contents))
+									{
+										hintPath = new FileInfo(contents);
+									}
+									else
+									{
+										hintPath = new FileInfo(PathUtilities.AddSlash(xmlProjectFile.Directory.FullName) + contents);
+									}
+									//reader.ReadEndElement();
+								}
+							}
+							if (referenceName.Contains("Version=") || referenceName.Contains("Culture=") || referenceName.Contains("PublicKeyToken=") || referenceName.Contains("processorArchitecture="))
+							{
+								referenceName = new AssemblyName(referenceName).Name;
+							}
+							References.Add(new XmlReference
+							{
+								AssemblyName = referenceName,
+								HintPath = hintPath
+							});
+						}
+						else if (reader.Name == "ItemGroup")
+						{
+							break;
 						}
 					}
-				}
 
-				/*Debug.Log("Results!");
-				foreach (var r in References)
-				{
-					Debug.Log($"Assembly Name = {r.AssemblyName}, Hint Path = {r.HintPath?.FullName}");
-				}
+					foreach (var scriptFile in xmlProjectFile.Directory.GetFiles("*.cs",SearchOption.AllDirectories))
+					{
+						Scripts.Add(scriptFile.FullName);
+					}
 
-				foreach (var s in Scripts)
-				{
-					Debug.Log("Script = " + s);
-				}
+					/*reader.ReadToFollowing("ItemGroup");
+					while (reader.Read() && reader.Name != "ItemGroup")
+					{
+						if (reader.Name == "Compile")
+						{
+							var contents = reader.GetAttribute("Include");
+							if (Path.IsPathRooted(contents))
+							{
+								//Scripts.Add(new FileInfo(contents).FullName);
+							}
+							else
+							{
+								//Scripts.Add(new FileInfo(PathUtilities.AddSlash(xmlProjectFile.Directory.FullName) + contents).FullName);
+							}
+							if (!reader.IsEmptyElement)
+							{
+								reader.ReadEndElement();
+							}
+						}
+					}*/
 
-				Debug.Log("Output Path = " + outputPath);*/
+					/*Debug.Log("Results!");
+					foreach (var r in References)
+					{
+						Debug.Log($"Assembly Name = {r.AssemblyName}, Hint Path = {r.HintPath?.FullName}");
+					}
+
+					foreach (var s in Scripts)
+					{
+						Debug.Log("Script = " + s);
+					}
+
+					Debug.Log("Output Path = " + outputPath);*/
 
 
 
 
 
-				/*while (reader.Read())
-				{
-					Debug.Log("Reader Name = " + reader.Name);
-					Debug.Log("Reader Local Name = " + reader.LocalName);
-					//reader.IsStartElement()
-				}*/
+					/*while (reader.Read())
+					{
+						Debug.Log("Reader Name = " + reader.Name);
+						Debug.Log("Reader Local Name = " + reader.LocalName);
+						//reader.IsStartElement()
+					}*/
 
-				List<DirectoryInfo> AssemblySearchDirectories = new List<DirectoryInfo>
+					List<DirectoryInfo> AssemblySearchDirectories = new List<DirectoryInfo>
 				{
 					new DirectoryInfo(PathUtilities.AddSlash(GameBuildSettings.Settings.HollowKnightLocation) + "hollow_knight_Data\\Managed"),
 					new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory
 				};
 
-				/*foreach (var searchDir in AssemblySearchDirectories)
-				{
-					Debug.Log("Search Directory = " + searchDir.FullName);
-				}*/
-
-				List<string> AssemblyReferences = new List<string>();
-
-
-
-				foreach (var xmlRef in References)
-				{
-					/*if (xmlRef.AssemblyName.Contains("UnityEngine"))
+					/*foreach (var searchDir in AssemblySearchDirectories)
 					{
-						continue;
+						Debug.Log("Search Directory = " + searchDir.FullName);
 					}*/
-					if (xmlRef.AssemblyName == "System")
+
+					List<string> AssemblyReferences = new List<string>();
+
+
+
+					foreach (var xmlRef in References)
 					{
-						continue;
-					}
-					if (xmlRef.HintPath != null && xmlRef.HintPath.Exists)
-					{
-						AssemblyReferences.Add(xmlRef.HintPath.FullName);
-					}
-					else
-					{
-						bool found = false;
-						foreach (var searchDir in AssemblySearchDirectories)
+						/*if (xmlRef.AssemblyName.Contains("UnityEngine"))
 						{
-							var filePath = PathUtilities.AddSlash(searchDir.FullName) + xmlRef.AssemblyName + ".dll";
-							//Debug.Log("File Path = " + filePath);
-							if (File.Exists(filePath))
+							continue;
+						}*/
+						if (xmlRef.AssemblyName == "System")
+						{
+							continue;
+						}
+						if (xmlRef.HintPath != null && xmlRef.HintPath.Exists)
+						{
+							AssemblyReferences.Add(xmlRef.HintPath.FullName);
+						}
+						else
+						{
+							bool found = false;
+							foreach (var searchDir in AssemblySearchDirectories)
 							{
-								found = true;
-								AssemblyReferences.Add(filePath);
-								break;
+								var filePath = PathUtilities.AddSlash(searchDir.FullName) + xmlRef.AssemblyName + ".dll";
+								//Debug.Log("File Path = " + filePath);
+								if (File.Exists(filePath))
+								{
+									found = true;
+									AssemblyReferences.Add(filePath);
+									break;
+								}
+							}
+							if (!found)
+							{
+								Debug.LogError("Unable to find WeaverCore.Game Reference -> " + xmlRef.AssemblyName);
 							}
 						}
-						if (!found)
-						{
-							Debug.LogError("Unable to find WeaverCore.Game Reference -> " + xmlRef.AssemblyName);
-						}
 					}
-				}
 
-				var scriptAssemblies = new DirectoryInfo("Library\\ScriptAssemblies").GetFiles("*.dll");
+					var scriptAssemblies = new DirectoryInfo("Library\\ScriptAssemblies").GetFiles("*.dll");
 
-				List<string> exclusions = new List<string>();
+					List<string> exclusions = new List<string>();
 
-				foreach (var sa in scriptAssemblies)
-				{
-					exclusions.Add(PathUtilities.ConvertToProjectPath(sa.FullName));
-					//Debug.Log("Exclusion = " + exclusions[exclusions.Count - 1]);
-				}
+					foreach (var sa in scriptAssemblies)
+					{
+						exclusions.Add(PathUtilities.ConvertToProjectPath(sa.FullName));
+						//Debug.Log("Exclusion = " + exclusions[exclusions.Count - 1]);
+					}
 
-				var editorDir = new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory;
+					var editorDir = new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory;
 
-				foreach (var ueFile in editorDir.Parent.GetFiles("UnityEngine.dll", SearchOption.AllDirectories))
-				{
-					exclusions.Add(ueFile.FullName);
-				}
+					foreach (var ueFile in editorDir.Parent.GetFiles("UnityEngine.dll", SearchOption.AllDirectories))
+					{
+						exclusions.Add(ueFile.FullName);
+					}
 
-				//var editorUnityEngineDll = new FileInfo(PathUtilities.AddSlash(editorDir.Parent.FullName) + "UnityEngine.dll");
+					//var editorUnityEngineDll = new FileInfo(PathUtilities.AddSlash(editorDir.Parent.FullName) + "UnityEngine.dll");
 
-				//Debug.Log("Editor Unity Engine Location = " + editorUnityEngineDll);
-				//exclusions.Add(editorUnityEngineDll.FullName);
+					//Debug.Log("Editor Unity Engine Location = " + editorUnityEngineDll);
+					//exclusions.Add(editorUnityEngineDll.FullName);
 
-				//Debug.Log("Editor Location = " + );
-				//Debug.Log("System Location = " + typeof(System.Array).Assembly.Location);
+					//Debug.Log("Editor Location = " + );
+					//Debug.Log("System Location = " + typeof(System.Array).Assembly.Location);
 
-				//exclusions.Add("Library\\ScriptAssemblies\\HollowKnight.dll");
+					//exclusions.Add("Library\\ScriptAssemblies\\HollowKnight.dll");
 
-				yield return BuildAssembly(new BuildParameters
-				{
-					BuildPath = outputPath,
-					Scripts = Scripts,
-					Defines = new List<string>
+					yield return BuildAssembly(new BuildParameters
+					{
+						BuildPath = outputPath,
+						Scripts = Scripts,
+						Defines = new List<string>
 					{
 						"GAME_BUILD"
 					},
-					ExcludedReferences = exclusions,
-					AssemblyReferences = AssemblyReferences,
-				}, BuildPresetType.None, task);
+						ExcludedReferences = exclusions,
+						AssemblyReferences = AssemblyReferences,
+					}, BuildPresetType.None, task);
 
-
+				}
 			}
 
 			yield break;

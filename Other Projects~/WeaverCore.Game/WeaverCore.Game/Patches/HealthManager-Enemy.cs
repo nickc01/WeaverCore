@@ -24,30 +24,13 @@ namespace WeaverCore.Game.Patches
 		private static void HealthManager_Start(On.HealthManager.orig_Start orig, HealthManager self)
 		{
 			bool destroyed = false;
-
-			var child = self.transform.Find("White Flash");
-			//Debugger.Log("Child = " + child);
-			if (child != null)
-			{
-				//DebugPrinting(child.gameObject);
-			}
-
-			//DebugPrinting(self.gameObject);
-
 			try
 			{
 				self.gameObject.AddComponent<Enemy>();
 				var replacement = (Enemy)Registry.GetAllFeatures<IObjectReplacement>(r => r is Enemy && r.ThingToReplace == self.gameObject.name).FirstOrDefault();
-				//WeaverLog.Log("Enemy = " + self.gameObject);
-				//WeaverLog.Log("Replacement = " + replacement);
 				if (replacement != null)
 				{
 					var instance = GameObject.Instantiate(replacement.gameObject);
-					/*var eventReceiver = instance.GetComponent<EventReceiver>();
-					if (eventReceiver != null)
-					{
-						eventReceiver.ReceiveEventsFromObject(self.gameObject);
-					}*/
 					GameObject.Destroy(self.gameObject);
 					destroyed = true;
 				}
@@ -67,30 +50,19 @@ namespace WeaverCore.Game.Patches
 
 		static void DebugPrinting(GameObject self)
 		{
-			//Debugger.Log("PRETEST");
-
 			var healthManager = self.GetComponent<HealthManager>();
 			if (healthManager != null)
 			{
-				//Debugger.Log($"{nameof(HealthManager)} Type = " + healthManager);
-				//Debugger.Log("CCC");
 				var assembly = AppDomain.CurrentDomain.GetAssemblies().First(a => a.FullName.Contains("WeaverTools"));
-				//Debugger.Log("Assembly = " +  assembly);
 				var type = assembly.GetType("WeaverTools.ObjectDebugger");
-				//Debugger.Log("Type = " + type);
 				var method = type.GetMethod("DebugObject", BindingFlags.Public | BindingFlags.Static);
-				//Debugger.Log("Method = " + method);
 				var printObjectM = method;
 
 				printObjectM.Invoke(null, new object[] { self });
-				//Debugger.Log("DDD");
 				foreach (var field in healthManager.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
 				{
-					//field.Name.ToUpper().Contains("PREFAB")
 					if (field.FieldType.Name.Contains("GameObject"))
 					{
-						//Debugger.Log(field.Name + " Value = " + field.GetValue(healthManager));
-
 						var raw = field.GetValue(healthManager);
 						tk2dSprite sprite = null;
 						GameObject sourceObject = null;
@@ -113,19 +85,11 @@ namespace WeaverCore.Game.Patches
 						printObjectM.Invoke(null, new object[] { sourceObject });
 
 						var spriteRenderer = sourceObject.GetComponentInChildren<SpriteRenderer>();
-						//Debugger.Log("Sprite Renderer = " + spriteRenderer);
 						if (spriteRenderer != null)
 						{
-							//Debugger.Log("Sprite = " + spriteRenderer.sprite.name);
-							//Debugger.Log("Rect = " + spriteRenderer.sprite.rect);
-							//Debugger.Log("Texture = " + spriteRenderer.sprite.texture.name);
-							//Debugger.Log($"Size = {spriteRenderer.sprite.texture.width}, {spriteRenderer.sprite.texture.height}");
-							//Debugger.Log("Pixel Per Unit = " + spriteRenderer.sprite.pixelsPerUnit);
-
 							var animator = sourceObject.GetComponentInChildren<Animator>();
 							if (animator != null)
 							{
-								//Debugger.Log("Animator = " + animator.name);
 								foreach (var clip in animator.runtimeAnimatorController.animationClips)
 								{
 									//Debugger.Log("Clip = " + clip.name);
@@ -137,10 +101,6 @@ namespace WeaverCore.Game.Patches
 						if (sprite != null)
 						{
 							Texture mainTexture = sprite.Collection.FirstValidDefinition.material.mainTexture;
-							//Debugger.Log("Texture for " + field.Name + " = " + mainTexture.name);
-							//Debugger.Log($"Size = {mainTexture.width} , {mainTexture.height}");
-
-							//sprite.Collection.FirstValidDefinition.material.mainTexture.name;
 						}
 
 					}

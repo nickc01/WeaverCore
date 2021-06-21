@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using WeaverCore;
 using WeaverCore.Attributes;
 using WeaverCore.Components;
 using WeaverCore.Enums;
@@ -304,7 +305,7 @@ public class HealthManagerProxy : HealthManager
 		if (hp != previousHP)
 		{
 			previousHP = hp;
-			weaverHealth.Health = previousHP;
+			weaverHealth.Health = hp;
 		}
 	}
 }

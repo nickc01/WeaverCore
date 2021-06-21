@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace WeaverCore.Editor.Implementations
 	{
 		public override void BroadcastEvent(string eventName,GameObject source)
 		{
-			foreach (var receiver in EventReceiver.AllReceivers)
+			foreach (var receiver in EventManager.AllReceivers)
 			{
 				receiver.ReceiveEvent(eventName,source);
 			}
@@ -20,11 +20,12 @@ namespace WeaverCore.Editor.Implementations
 
 		public override void SendEventToObject(GameObject gameObject, string eventName)
 		{
-			EventReceiver receiver = null;
-			if ((receiver = gameObject.GetComponent<EventReceiver>()) != null)
+			EventManager receiver = null;
+			if ((receiver = gameObject.GetComponent<EventManager>()) != null)
 			{
 				receiver.ReceiveEvent(eventName,gameObject);
 			}
 		}
 	}
 }
+*/

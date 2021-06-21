@@ -126,7 +126,7 @@ namespace WeaverCore.Components.HitEffects
 
 				if (doFlashEffects)
 				{
-					flasher.FlashInfected();
+					flasher.flashInfected();
 				}
 
 				switch (DirectionUtilities.DegreesToDirection(hit.Direction))

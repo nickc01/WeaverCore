@@ -51,7 +51,8 @@ namespace WeaverCore.Assets.Components
 			if (PlayMakerUtilities.PlayMakerAvailable)
 			{
 				PlayMakerUtilities.SetFsmFloat(gameObject, "Blanker Control", "Fade Time", 0.9f);
-				WeaverEvents.SendEventToObject(gameObject, "FADE IN");
+				//WeaverEvents.SendEventToObject(gameObject, "FADE IN");
+				EventManager.SendEventToGameObject("FADE IN", gameObject);
 				string @string = PlayerData.instance.GetString("dreamReturnScene");
 				//WeaverLog.Log("Returning To Scene = " + @string);
 				UnboundCoroutine.Start(EssenceEffects.ReturnToScene(@string));

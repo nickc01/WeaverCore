@@ -18,11 +18,13 @@ namespace WeaverCore.Editor.Implementations
 			public override void BroadcastToPlaymakerFSMs(string eventName, GameObject source, bool skipEventManagers)
 			{
 				//Nothing extra needs to be done in the editor
+				//Statics.RegisterTriggeredEvent(eventName, source, null, EventManager.EventType.Broadcast);
 			}
 
 			public override void TriggerEventToGameObjectPlaymakerFSMs(string eventName, GameObject destination, GameObject source, bool skipEventManagers)
 			{
 				//Nothing extra needs to be done in the editor
+				//Statics.RegisterTriggeredEvent(eventName, source, destination, EventManager.EventType.Message);
 			}
 		}
 	}

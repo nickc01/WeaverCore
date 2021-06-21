@@ -43,6 +43,7 @@ namespace WeaverCore.Game.Implementations
 							if (skipEventManagers)
 							{
 								skipEventManagerBroadcast = true;
+								ExcludedEventManagerObjects.Add(fsmComponent.gameObject);
 							}
 							try
 							{
@@ -57,6 +58,7 @@ namespace WeaverCore.Game.Implementations
 								if (skipEventManagers)
 								{
 									skipEventManagerBroadcast = false;
+									ExcludedEventManagerObjects.Remove(fsmComponent.gameObject);
 								}
 							}
 						}
@@ -114,6 +116,7 @@ namespace WeaverCore.Game.Implementations
 				}
 				if (fsmEvent != null)
 				{
+					//WeaverLog.Log($"FSM Event Triggered {fsmEvent.Name} from object {source}");
 					switch (eventTarget.target)
 					{
 						case FsmEventTarget.EventTarget.Self:
@@ -161,21 +164,39 @@ namespace WeaverCore.Game.Implementations
 
 		static void TriggerEvent(GameObject targetObject, string eventName, GameObject source)
 		{
-			if (targetObject != null && !ExcludedEventManagerObjects.Contains(targetObject))
+			//WeaverLog.Log($"T_EVENT {targetObject?.name}, {eventName}, {source?.name}");
+			try
 			{
-				var receiver = targetObject.GetComponent<G_EventManager_I>();
-				if (receiver != null)
+				if (targetObject != null && !ExcludedEventManagerObjects.Contains(targetObject))
 				{
-					receiver.TriggerEventInternal(eventName, source);
+					//WeaverLog.Log("A");
+					var receiver = targetObject.GetComponent<G_EventManager_I>();
+					if (receiver != null)
+					{
+						//WeaverLog.Log("B");
+						receiver.TriggerEventInternal(eventName, source);
+					}
 				}
 			}
+			finally
+			{
+				RegisterTriggeredEvent(eventName, source, targetObject, EventManager.EventType.Message);
+			}
+			
 		}
 
 		static void BroadcastEvent(string eventName, GameObject source)
 		{
 			if (!skipEventManagerBroadcast)
 			{
-				StaticImpl.BroadcastEventInternal(eventName, source);
+				try
+				{
+					BroadcastEventInternal(eventName, source);
+				}
+				finally
+				{
+					RegisterTriggeredEvent(eventName, source, null, EventManager.EventType.Broadcast);
+				}
 			}
 		}
 	}

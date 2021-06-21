@@ -32,7 +32,7 @@ namespace WeaverCore.Utilities
 				if (rigidbody != null)
 				{
 					float velocity = UnityEngine.Random.Range(info.VelocityMin, info.VelocityMax);
-					float angle = UnityEngine.Random.Range(info.AngleMin, info.AngleMax);
+					float angle = UnityEngine.Random.Range(angleMin, angleMax);
 
 					var eulerAngles = newFling.transform.eulerAngles;
 					eulerAngles.z = angle;

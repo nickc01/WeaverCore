@@ -9,8 +9,18 @@ using WeaverCore.Internal;
 
 namespace WeaverCore.Utilities
 {
+
+	/// <summary>
+	/// Used for receiving events from other objects, and sending events to other objects. This component can also be used to send and receive PlaymakerFSM events
+	/// </summary>
 	public sealed class EventManager : MonoBehaviour
 	{
+		public enum EventType
+		{
+			Message,
+			Broadcast
+		}
+
 		EventManager_I impl;
 		static EventManager_I.Statics implStatics = ImplFinder.GetImplementation<EventManager_I.Statics>();
 
@@ -20,15 +30,28 @@ namespace WeaverCore.Utilities
 		/// A delegate used for receiving events
 		/// </summary>
 		/// <param name="eventName">The name of the event received</param>
-		/// <param name="source"></param>
+		/// <param name="source">The source object the event came from</param>
 		public delegate void EventReceiveDelegate(string eventName, GameObject source);
 
 		/// <summary>
-		/// Called whenever an event is received
+		/// A delegate used whenever an event gets triggered
+		/// </summary>
+		/// <param name="eventName">The name of the event received</param>
+		/// <param name="source">The source object the event came from</param>
+		/// <param name="destination">The destination object the event is being set to. Will be null if no destination was specified</param>
+		public delegate void EventTriggeredDelegate(string eventName, GameObject source, GameObject destination, EventType eventType);
+
+		/// <summary>
+		/// Called whenever this gameObject receives an event
 		/// </summary>
 		public event EventReceiveDelegate OnReceivedEvent;
 
-		List<(string eventName, Action<GameObject> source)> eventSpecificHooks = new List<(string eventName, Action<GameObject> source)>();
+		/// <summary>
+		/// Called anytime an event is triggered anywhere
+		/// </summary>
+		public static event EventTriggeredDelegate OnEventTriggered;
+
+		List<(string eventName, Action<string, GameObject> source)> eventSpecificHooks = new List<(string eventName, Action<string, GameObject> source)>();
 
 		/// <summary>
 		/// Executes an action whenever an event with the specified <paramref name="name"/> is received
@@ -37,7 +60,7 @@ namespace WeaverCore.Utilities
 		/// <param name="action">The action to execute when the event of the specified name is received</param>
 		public void AddReceiverForEvent(string name, Action action)
 		{
-			eventSpecificHooks.Add((name,g => action()));
+			eventSpecificHooks.Add((name,(n, g) => action()));
 		}
 
 		/// <summary>
@@ -46,6 +69,16 @@ namespace WeaverCore.Utilities
 		/// <param name="name">The event name</param>
 		/// <param name="action">The action to execute when the event of the specified name is received. The gameObject parameter is the source gameObject</param>
 		public void AddReceiverForEvent(string name, Action<GameObject> action)
+		{
+			eventSpecificHooks.Add((name, (n, g) => action(g)));
+		}
+
+		/// <summary>
+		/// Executes an action whenever an event with the specified <paramref name="name"/> is received
+		/// </summary>
+		/// <param name="name">The event name</param>
+		/// <param name="action">The action to execute when the event of the specified name is received. The string parameter is the name of the event received, and the gameObject parameter is the source gameObject</param>
+		public void AddReceiverForEvent(string name, Action<string, GameObject> action)
 		{
 			eventSpecificHooks.Add((name, action));
 		}
@@ -70,12 +103,14 @@ namespace WeaverCore.Utilities
 		public void TriggerEvent(string eventName, GameObject source)
 		{
 			TriggerEventInternal(eventName, source);
+			RegisterTriggeredEvent(eventName, source, gameObject, EventType.Message);
 			implStatics.TriggerEventToGameObjectPlaymakerFSMs(eventName, gameObject, source,true);
 		}
 
 		public static void BroadcastEvent(string eventName,GameObject source)
 		{
 			BroadcastEventInternal(eventName, source);
+			RegisterTriggeredEvent(eventName, source, null, EventType.Broadcast);
 			implStatics.BroadcastToPlaymakerFSMs(eventName, source, true);
 		}
 
@@ -88,7 +123,7 @@ namespace WeaverCore.Utilities
 			implStatics.TriggerEventToGameObjectPlaymakerFSMs(eventName, destination, source, true);
 		}
 
-		static bool HasAtLeastOneFSMComponent(GameObject obj)
+		/*static bool HasAtLeastOneFSMComponent(GameObject obj)
 		{
 			if (PlayMakerUtilities.PlayMakerAvailable)
 			{
@@ -96,16 +131,17 @@ namespace WeaverCore.Utilities
 				return FSMComponent != null;
 			}
 			return false;
-		}
+		}*/
 
 		internal void TriggerEventInternal(string eventName, GameObject source)
 		{
+			//WeaverLog.Log($"Received Event {eventName} from object {source?.name}");
 			OnReceivedEvent?.Invoke(eventName, source);
 			foreach (var pair in eventSpecificHooks)
 			{
 				if (pair.eventName == eventName)
 				{
-					pair.source?.Invoke(source);
+					pair.source?.Invoke(eventName, source);
 				}
 			}
 		}
@@ -119,10 +155,16 @@ namespace WeaverCore.Utilities
 				{
 					if (pair.eventName == eventName)
 					{
-						pair.source?.Invoke(source);
+						pair.source?.Invoke(eventName, source);
 					}
 				}
 			}
+		}
+
+		internal static void RegisterTriggeredEvent(string eventName, GameObject source, GameObject destination, EventType eventType)
+		{
+			//WeaverLog.Log($"Event Triggered {eventName}, Source {source?.name}, Destination {destination?.name}, Event Type {eventType}");
+			OnEventTriggered?.Invoke(eventName, source, destination, eventType);
 		}
 
 		private void Awake()

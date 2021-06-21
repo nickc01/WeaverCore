@@ -15,11 +15,6 @@ namespace WeaverCore.Implementations
 
 			public abstract void BroadcastToPlaymakerFSMs(string eventName, GameObject source, bool skipEventManagers);
 
-			public void BroadcastEventInternal(string eventName, GameObject source)
-			{
-				EventManager.BroadcastEventInternal(eventName, source);
-			}
-
 			public abstract void TriggerEventToGameObjectPlaymakerFSMs(string eventName, GameObject destination, GameObject source, bool skipEventManagers);
 		}
 
@@ -33,6 +28,16 @@ namespace WeaverCore.Implementations
         protected internal void TriggerEventInternal(string eventName, GameObject source)
 		{
 			receiver.TriggerEventInternal(eventName, source);
+		}
+
+		internal protected static void RegisterTriggeredEvent(string eventName, GameObject source, GameObject destination, EventManager.EventType eventType)
+		{
+			EventManager.RegisterTriggeredEvent(eventName, source, destination, eventType);
+		}
+
+		internal protected static void BroadcastEventInternal(string eventName, GameObject source)
+		{
+			EventManager.BroadcastEventInternal(eventName, source);
 		}
 
 		/// <summary>

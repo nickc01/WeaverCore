@@ -1,4 +1,5 @@
 ﻿using System;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Settings
 {
@@ -16,7 +17,7 @@ namespace WeaverCore.Settings
 		/// <param name="description">The text describing the settings property</param>
 		public SettingDescriptionAttribute(string description)
 		{
-			Description = description;
+			Description = StringUtilities.AddNewLines(description);
 		}
 	}
 }

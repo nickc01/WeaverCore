@@ -95,7 +95,10 @@ namespace WeaverCore.Settings.Elements
 		/// <param name="eventData"></param>
 		public virtual void OnPointerEnter(PointerEventData eventData)
 		{
-			SettingsScreen.SetDescription(FieldAccessor.Description);
+			if (FieldAccessor != null)
+			{
+				SettingsScreen.SetDescription(FieldAccessor.Description);
+			}
 		}
 
 		/// <summary>

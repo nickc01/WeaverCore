@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
@@ -37,14 +38,14 @@ namespace WeaverCore.Utilities
 		public static string AddNewLines(string input)
 		{
 			StringBuilder result = new StringBuilder(input);
-			var breakMatches = Regex.Matches(input, @"(<\/br(\:\d*?)?>)");
+			var breakMatches = Regex.Matches(input, @"(<\/br\:?(\d+?)?>)");
 			for (int i = breakMatches.Count - 1; i >= 0; i--)
 			{
 				var match = breakMatches[i];
 				if (match.Success)
 				{
 					int breakCount = 1;
-					if (match.Groups.Count == 3)
+					if (match.Groups.Count >= 3 && match.Groups[2].Success)
 					{
 						if (!int.TryParse(match.Groups[2].Value,out breakCount))
 						{

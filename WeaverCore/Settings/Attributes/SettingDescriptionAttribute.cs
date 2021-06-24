@@ -17,7 +17,7 @@ namespace WeaverCore.Settings
 		/// <param name="description">The text describing the settings property</param>
 		public SettingDescriptionAttribute(string description)
 		{
-			Description = StringUtilities.AddNewLines(description);
+			Description = description;//StringUtilities.AddNewLines(description);
 		}
 	}
 }

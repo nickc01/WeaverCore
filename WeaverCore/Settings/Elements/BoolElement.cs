@@ -23,6 +23,7 @@ namespace WeaverCore.Settings.Elements
 		{
 			toggle.isOn = (bool)accessor.FieldValue;
 			Title = accessor.FieldName;
+			base.OnAccessorChanged(accessor);
 		}
 
 		void OnValueChanged(bool newValue)

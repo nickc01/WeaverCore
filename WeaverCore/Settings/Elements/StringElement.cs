@@ -33,6 +33,7 @@ namespace WeaverCore.Settings.Elements
 		{
 			inputField.text = (string)accessor.FieldValue;
 			Title = accessor.FieldName;
+			base.OnAccessorChanged(accessor);
 		}
 
 		void OnInputChange(string text)

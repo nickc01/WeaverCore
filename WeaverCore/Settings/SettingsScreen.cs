@@ -14,11 +14,35 @@ namespace WeaverCore.Settings
 {
 	class MemberInfoSorter : IComparer<MemberInfo>
 	{
+		Dictionary<MemberInfo, int> OrderCache = new Dictionary<MemberInfo, int>();
+
 		Comparer<int> intComparer = Comparer<int>.Default;
 
 		public int Compare(MemberInfo x, MemberInfo y)
 		{
-			return intComparer.Compare(x.MetadataToken, y.MetadataToken);
+			return intComparer.Compare(GetOrder(x), GetOrder(y));
+		}
+
+		int GetOrder(MemberInfo info)
+		{
+			if (OrderCache.TryGetValue(info,out var value))
+			{
+				return value;
+			}
+			else
+			{
+				var orderAttribute = info.GetCustomAttribute<SettingOrderAttribute>();
+				if (orderAttribute != null)
+				{
+					OrderCache.Add(info, orderAttribute.Order);
+					return orderAttribute.Order;
+				}
+				else
+				{
+					OrderCache.Add(info, info.MetadataToken);
+					return info.MetadataToken;
+				}
+			}
 		}
 	}
 
@@ -27,7 +51,7 @@ namespace WeaverCore.Settings
 	/// </summary>
 	public sealed class SettingsScreen : MonoBehaviour
 	{
-		static MemberInfoSorter memberInfoSorter = new MemberInfoSorter();
+		//static MemberInfoSorter memberInfoSorter = new MemberInfoSorter();
 
 		/// <summary>
 		/// The current instance of the settings menu. Is null when the settings menu is not visible
@@ -80,6 +104,9 @@ namespace WeaverCore.Settings
 				}
 			}
 		}
+
+		public static event Action<UIElement> ElementAdded;
+		public static event Action<UIElement> ElementRemoved;
 
 		[Header("Prefabs")]
 		[SerializeField]
@@ -171,7 +198,10 @@ namespace WeaverCore.Settings
 				{
 					panel.SaveSettings();
 				}
+				Instance.RebuildInterface();
 				GameObject.Destroy(Instance.gameObject);
+				ElementRemoved = null;
+				ElementAdded = null;
 				Instance = null;
 			}
 		}
@@ -269,6 +299,7 @@ namespace WeaverCore.Settings
 
 			foreach (var element in currentElements)
 			{
+				ElementRemoved?.Invoke(element);
 				GameObject.Destroy(element.gameObject);
 			}
 
@@ -318,7 +349,7 @@ namespace WeaverCore.Settings
 			var panelType = panel.GetType();
 
 			members.AddRange(panelType.GetMembers(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));
-			members.Sort(memberInfoSorter);
+			members.Sort(new MemberInfoSorter());
 
 			foreach (var member in members)
 			{
@@ -332,6 +363,10 @@ namespace WeaverCore.Settings
 					//instance.Visible = ShouldBeEnabled(settings.IsEnabled);
 				}
 			}
+			foreach (var element in currentElements)
+			{
+				element.UpdateDisplayValue();
+			}
 
 		}
 
@@ -339,6 +374,7 @@ namespace WeaverCore.Settings
 		{
 			if (currentElements.Contains(element))
 			{
+				ElementRemoved?.Invoke(element);
 				currentElements.Remove(element);
 				GameObject.Destroy(element.gameObject);
 				return true;
@@ -362,8 +398,9 @@ namespace WeaverCore.Settings
 		{
 			var newElement = GameObject.Instantiate(prefab, elementContainer);
 			newElement.Panel = panel;
-			newElement.FieldAccessor = accessor;
+			newElement.FieldAccesorRaw = accessor;
 			currentElements.Add(newElement);
+			ElementAdded?.Invoke(newElement);
 			return newElement;
 		}
 
@@ -387,22 +424,26 @@ namespace WeaverCore.Settings
 				return null;
 			}
 
+			var element = AddElement(panel, accessor);
+
 			var spacing = GetSpacingOfMember(member);
 			if (spacing > 0f)
 			{
-				AddSpacing(panel, spacing);
+				var spacingEle = AddSpacing(panel, element, spacing);
+				spacingEle.Order--;
 			}
 
 			var header = GetHeaderOfMember(member);
 			if (header != null)
 			{
-				AddHeading(panel, header);
+				var headerEle = AddHeading(panel, header, element);
+				headerEle.Order--;
 			}
 
-			return AddElement(panel, accessor);
+			return element;
 		}
 
-		internal SpaceElement AddSpacing(Panel panel, float? spacing = null)
+		internal SpaceElement AddSpacing(Panel panel, UIElement sourceElement, float? spacing = null)
 		{
 			var element = (SpaceElement)AddElementRaw(panel, SettingsElementPrefabs.FirstOrDefault(ui => ui is SpaceElement), null);
 			if (spacing != null)
@@ -412,10 +453,11 @@ namespace WeaverCore.Settings
 			return element;
 		}
 
-		internal HeaderElement AddHeading(Panel panel, string headerText, float? fontSize = null)
+		internal HeaderElement AddHeading(Panel panel, string headerText,UIElement sourceElement, float? fontSize = null)
 		{
 			var element = (HeaderElement)AddElementRaw(panel, SettingsElementPrefabs.FirstOrDefault(ui => ui is HeaderElement), null);
 			element.Title = headerText;
+			element.BoundToElement = sourceElement;
 			if (fontSize != null)
 			{
 				element.TitleComponent.fontSize = fontSize.Value;
@@ -484,19 +526,26 @@ namespace WeaverCore.Settings
 				selectedTab.Panel.OnPanelClose();
 				selectedTab.Panel.SaveSettings();
 				selectedTab.Button.interactable = true;
-				selectedTab = null;
-				SettingsArea.SetActive(false);
 
 				RemoveAllUIElements();
+
+				selectedTab = null;
+				SettingsArea.SetActive(false);
 			}
 		}
 
 		public void RemoveAllUIElements()
 		{
-			foreach (var element in currentElements)
+			for (int i = currentElements.Count - 1; i >= 0; i--)
 			{
-				GameObject.Destroy(element.gameObject);
+				ElementRemoved?.Invoke(currentElements[i]);
+				GameObject.Destroy(currentElements[i].gameObject);
 			}
+			/*foreach (var element in currentElements)
+			{
+				ElementRemoved?.Invoke(element);
+				GameObject.Destroy(element.gameObject);
+			}*/
 
 			currentElements.Clear();
 		}
@@ -572,11 +621,11 @@ namespace WeaverCore.Settings
 			TooltipAttribute tooltipAttribute;
 			if (HasAttribute(member, out descAttribute))
 			{
-				return descAttribute.Description;
+				return StringUtilities.AddSpaces(StringUtilities.AddNewLines(descAttribute.Description));
 			}
 			else if (HasAttribute(member, out tooltipAttribute))
 			{
-				return tooltipAttribute.tooltip;
+				return StringUtilities.AddSpaces(StringUtilities.AddNewLines(tooltipAttribute.tooltip));
 			}
 			else
 			{

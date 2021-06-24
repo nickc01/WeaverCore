@@ -59,6 +59,7 @@ namespace WeaverCore.Settings.Elements
 					InvokeType = InvocationType.UnityEvent;
 				}
 			}
+			base.OnAccessorChanged(accessor);
 		}
 
 		public override bool CanWorkWithAccessor(IAccessor accessor)

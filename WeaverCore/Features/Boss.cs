@@ -26,7 +26,7 @@ namespace WeaverCore.Features
 		HashSet<uint> idList;
 		uint idCounter = 1;
 
-		public static BossDifficulty Diffculty
+		public static BossDifficulty Difficulty
 		{
 			get
 			{

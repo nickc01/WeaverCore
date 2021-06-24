@@ -51,6 +51,7 @@ namespace WeaverCore.Settings.Elements
 			Title = accessor.FieldName;
 
 			rangeLimited = SettingsScreen.GetRangeOfNumberMember(accessor.MemberInfo, out lowerBound, out upperBound);
+			base.OnAccessorChanged(accessor);
 		}
 
 		void OnInputChange(string text)

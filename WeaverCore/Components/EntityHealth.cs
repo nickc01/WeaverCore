@@ -12,6 +12,22 @@ using System.Collections;
 
 namespace WeaverCore.Components
 {
+	public enum HealthDirection
+	{
+		/// <summary>
+		/// When hit, the health value will decrease. This is the default
+		/// </summary>
+		Down,
+		/// <summary>
+		/// When hit, the health value will increase
+		/// </summary>
+		Up,
+		/// <summary>
+		/// When hit, the health value will not change
+		/// </summary>
+		Nothing
+	}
+
 	public enum HitResult
 	{
 		Invalid,
@@ -35,6 +51,12 @@ namespace WeaverCore.Components
 		private int _health = 100;
 		private float evasionTimer = 0.0f;
 
+
+		/// <summary>
+		/// Determines whether the health increases, decreases, or remains the same when hit
+		/// </summary>
+		public HealthDirection HealthDirection { get; set; }
+
 		/// <summary>
 		/// How much health the enemy has. This gets decreased each time the player hits this object
 		/// </summary>
@@ -56,7 +78,7 @@ namespace WeaverCore.Components
 						OnHealthChangeEvent(oldHealth, _health);
 					}
 					CheckMilestones(_health);
-					if (_health <= 0)
+					if (_health <= 0 && HealthDirection == HealthDirection.Down)
 					{
 						_health = 0;
 						OnDeath();
@@ -92,6 +114,11 @@ namespace WeaverCore.Components
 		/// If true, will cause the player to gain soul points when hit
 		/// </summary>
 		public bool GainSoul = true;
+
+		/// <summary>
+		/// If true, will play the enemy's hit effects when hit
+		/// </summary>
+		public bool DoEffectsOnHit = true;
 
 		/// <summary>
 		/// How much evasion time is left <seealso cref="EvasionTime"/>
@@ -203,7 +230,7 @@ namespace WeaverCore.Components
 
 		public HitResult IsValidHit(HitInfo hit)
 		{
-			bool validHit = !(Health <= 0 || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
+			bool validHit = !((Health <= 0 && HealthDirection == HealthDirection.Down) || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
 			//WeaverLog.Log("Health = " + Health);
 			//WeaverLog.Log("EvasionTimeLeft = " + EvasionTimeLeft);
 			//WeaverLog.Log("Hit Damage = " + hit.Damage);
@@ -226,6 +253,10 @@ namespace WeaverCore.Components
 
 		public void PlayHitEffects(HitInfo hit, Player player = null)
 		{
+			if (!DoEffectsOnHit)
+			{
+				return;
+			}
 			if (player == null)
 			{
 				//player = Player.GetPlayerFromChild(hit.Attacker);
@@ -264,6 +295,19 @@ namespace WeaverCore.Components
 
 		public void PlayInvincibleHitEffects(HitInfo hit)
 		{
+			if (!DoEffectsOnHit)
+			{
+				return;
+			}
+
+			//Freeze the game for a moment : TODO
+			//GameManager.instance.FreezeMoment(1);
+			WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset1);
+
+			//Make the camera shake : TODO
+			//GameCameras.instance.cameraShakeFSM.SendEvent("EnemyKillShake");
+			CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
+
 			var cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
 			Vector2 v;
 			Vector3 eulerAngles;
@@ -333,13 +377,6 @@ namespace WeaverCore.Components
 						Player.Player1.Recoil(CardinalDirection.Right);
 					}
 				}
-				//Freeze the game for a moment : TODO
-				//GameManager.instance.FreezeMoment(1);
-				WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset1);
-
-				//Make the camera shake : TODO
-				//GameCameras.instance.cameraShakeFSM.SendEvent("EnemyKillShake");
-				CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
 
 				PlayInvincibleHitEffects(hit);
 				
@@ -395,19 +432,34 @@ namespace WeaverCore.Components
 			}*/
 
 			//Updates the health. If the health is at or below zero, this will also trigger the OnDeath() function
-			Health -= hit.Damage;
+			switch (HealthDirection)
+			{
+				case HealthDirection.Down:
+					Health -= hit.Damage;
+					break;
+				case HealthDirection.Up:
+					Health += hit.Damage;
+					break;
+			}
 
-			if (Health > 0)
+			/*if (HealthDirection == HealthDirection.Down && Health > 0)
 			{
 				evasionTimer = EvasionTime;
-			}
+			}*/
+			evasionTimer = EvasionTime;
 
 		}
 
 		public void AddHealthMilestone(int health, Action action)
 		{
-			if (health > Health)
+			if (HealthDirection == HealthDirection.Down && health > Health)
 			{
+				action();
+				return;
+			}
+			else if (HealthDirection == HealthDirection.Up && health < Health)
+			{
+				action();
 				return;
 			}
 			HealthMilestones.Add(new HealthMilestone(health, action));
@@ -418,10 +470,29 @@ namespace WeaverCore.Components
 			for (int i = HealthMilestones.Count - 1; i >= 0; i--)
 			{
 				var milestone = HealthMilestones[i];
-				if (milestone.HealthNumber >= healthAfter)
+				switch (HealthDirection)
 				{
-					milestone.MilestoneReached();
-					HealthMilestones.RemoveAt(i);
+					case HealthDirection.Down:
+						if (milestone.HealthNumber >= healthAfter)
+						{
+							milestone.MilestoneReached();
+							HealthMilestones.RemoveAt(i);
+						}
+						break;
+					case HealthDirection.Up:
+						if (milestone.HealthNumber <= healthAfter)
+						{
+							milestone.MilestoneReached();
+							HealthMilestones.RemoveAt(i);
+						}
+						break;
+					default:
+						if (milestone.HealthNumber == healthAfter)
+						{
+							milestone.MilestoneReached();
+							HealthMilestones.RemoveAt(i);
+						}
+						break;
 				}
 			}
 		}
@@ -434,25 +505,28 @@ namespace WeaverCore.Components
 				{
 					return;
 				}
-				if (this.extraDamageClip == null)
+				if (DoEffectsOnHit)
 				{
-					this.extraDamageClip = WeaverAssets.LoadWeaverAsset<AudioClip>("Extra Damage Audio");
-				}
-				AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(this.extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
-				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(0.85f, 1.15f);
-				SpriteFlasher component = base.GetComponent<SpriteFlasher>();
-				if (component != null)
-				{
-					if (extraDamageType != ExtraDamageTypes.Spore)
+					if (this.extraDamageClip == null)
 					{
-						if (extraDamageType == ExtraDamageTypes.Dung || extraDamageType == ExtraDamageTypes.Dung2)
-						{
-							component.flashDungQuick();
-						}
+						this.extraDamageClip = WeaverAssets.LoadWeaverAsset<AudioClip>("Extra Damage Audio");
 					}
-					else
+					AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(this.extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
+					weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(0.85f, 1.15f);
+					SpriteFlasher component = base.GetComponent<SpriteFlasher>();
+					if (component != null)
 					{
-						component.flashSporeQuick();
+						if (extraDamageType != ExtraDamageTypes.Spore)
+						{
+							if (extraDamageType == ExtraDamageTypes.Dung || extraDamageType == ExtraDamageTypes.Dung2)
+							{
+								component.flashDungQuick();
+							}
+						}
+						else
+						{
+							component.flashSporeQuick();
+						}
 					}
 				}
 				int num = 1;
@@ -469,6 +543,10 @@ namespace WeaverCore.Components
 			if (Health > 0)
 			{
 				Health = 0;
+			}
+			if (HealthDirection != HealthDirection.Down)
+			{
+				OnDeath();
 			}
 		}
 

@@ -29,6 +29,7 @@ namespace WeaverCore.Settings.Elements
 
 		protected override void OnAccessorChanged(IAccessor accessor)
 		{
+			base.OnAccessorChanged(accessor);
 			dropdown.onValueChanged.RemoveAllListeners();
 			var type = accessor.MemberType;
 
@@ -50,6 +51,7 @@ namespace WeaverCore.Settings.Elements
 			dropdown.value = EnumData.FindIndex(kv => kv.Value.Equals(accessor.FieldValue));
 
 			dropdown.onValueChanged.AddListener(OnValueChanged);
+			base.OnAccessorChanged(accessor);
 		}
 
 		void OnValueChanged(int index)

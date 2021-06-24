@@ -209,7 +209,9 @@ namespace WeaverCore.Settings
 			}
 			if (SettingsScreen.Instance != null)
 			{
-				return SettingsScreen.Instance.AddMember(this, field, displayName, description);
+				var element = SettingsScreen.Instance.AddMember(this, field, displayName, description);
+				element.UpdateDisplayValue();
+				return element;
 			}
 			else
 			{
@@ -283,7 +285,9 @@ namespace WeaverCore.Settings
 			}
 			if (SettingsScreen.Instance != null)
 			{
-				return SettingsScreen.Instance.AddMember(this, property, displayName, description);
+				var element = SettingsScreen.Instance.AddMember(this, property, displayName, description);
+				element.UpdateDisplayValue();
+				return element;
 			}
 			else
 			{
@@ -304,7 +308,9 @@ namespace WeaverCore.Settings
 		{
 			if (SettingsScreen.Instance != null)
 			{
-				return SettingsScreen.Instance.AddElement(this, new CustomPropertyAccessor<T>(this, getter, setter, displayName, description));
+				var element = SettingsScreen.Instance.AddElement(this, new CustomPropertyAccessor<T>(this, getter, setter, displayName, description));
+				element.UpdateDisplayValue();
+				return element;
 			}
 			return null;
 		}
@@ -367,7 +373,9 @@ namespace WeaverCore.Settings
 
 			if (SettingsScreen.Instance != null)
 			{
-				return SettingsScreen.Instance.AddElement(this, new MethodAccessor(this, methodInfo, displayName, description));
+				var element = SettingsScreen.Instance.AddElement(this, new MethodAccessor(this, methodInfo, displayName, description));
+				element.UpdateDisplayValue();
+				return element;
 			}
 			return null;
 		}
@@ -383,8 +391,10 @@ namespace WeaverCore.Settings
 		{
 			if (SettingsScreen.Instance != null)
 			{
-				return SettingsScreen.Instance.AddElement(this, new CustomFunctionAccessor(this, onClick, displayName, description));
-			}
+				var element = SettingsScreen.Instance.AddElement(this, new CustomFunctionAccessor(this, onClick, displayName, description));
+				element.UpdateDisplayValue();
+				return element;
+ 			}
 			return null;
 		}
 
@@ -407,7 +417,9 @@ namespace WeaverCore.Settings
 		{
 			if (SettingsScreen.Instance != null)
 			{
-				return SettingsScreen.Instance.AddSpacing(this);
+				var element = SettingsScreen.Instance.AddSpacing(this,null);
+				element.UpdateDisplayValue();
+				return element;
 			}
 			return null;
 		}
@@ -421,8 +433,10 @@ namespace WeaverCore.Settings
 		{
 			if (SettingsScreen.Instance != null)
 			{
-				return SettingsScreen.Instance.AddSpacing(this,spacing);
-			}
+				var element = SettingsScreen.Instance.AddSpacing(this, null, spacing);
+				element.UpdateDisplayValue();
+				return element;
+ 			}
 			return null;
 		}
 
@@ -435,8 +449,10 @@ namespace WeaverCore.Settings
 		{
 			if (SettingsScreen.Instance != null)
 			{
-				return SettingsScreen.Instance.AddHeading(this, headerText);
-			}
+				var element = SettingsScreen.Instance.AddHeading(this, headerText, null);
+				element.UpdateDisplayValue();
+				return element;
+ 			}
 			return null;
 		}
 
@@ -450,8 +466,9 @@ namespace WeaverCore.Settings
 		{
 			if (SettingsScreen.Instance != null)
 			{
-				return SettingsScreen.Instance.AddHeading(this, headerText,fontSize);
-			}
+				var element = SettingsScreen.Instance.AddHeading(this, headerText,null, fontSize);
+				element.UpdateDisplayValue();
+				return element;			}
 			return null;
 		}
 
@@ -474,6 +491,11 @@ namespace WeaverCore.Settings
 		public UIElement GetElement(string memberName)
 		{
 			return UIElements.FirstOrDefault(ui => ui.FieldAccessor != null && ui.FieldAccessor.MemberInfo != null && ui.FieldAccessor.MemberInfo.Name == memberName);
+		}
+
+		public UIElement GetHeaderElement(string headerTitle)
+		{
+			return UIElements.FirstOrDefault(ui => ui is HeaderElement header && header.Title == headerTitle);
 		}
 
 		public static bool InPauseMenu

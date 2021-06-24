@@ -12,6 +12,8 @@ namespace WeaverCore.Settings.Elements
 	/// </summary>
 	public abstract class UIElement : MonoBehaviour, IPointerEnterHandler
 	{
+		public event Action<IAccessor> DisplayValueUpdated;
+
 		TextMeshProUGUI _titleText;
 
 		/// <summary>
@@ -71,6 +73,17 @@ namespace WeaverCore.Settings.Elements
 			}
 		}
 
+		internal IAccessor FieldAccesorRaw
+		{
+			get => _accessor;
+			set => _accessor = value;
+		}
+
+		internal void UpdateDisplayValue()
+		{
+			OnAccessorChanged(_accessor);
+		}
+
 		public Panel Panel { get; internal set; }
 
 		/// <summary>
@@ -79,7 +92,7 @@ namespace WeaverCore.Settings.Elements
 		/// <param name="accessor">The new accessor</param>
 		protected virtual void OnAccessorChanged(IAccessor accessor)
 		{
-
+			DisplayValueUpdated?.Invoke(accessor);
 		}
 
 		/// <summary>
@@ -175,7 +188,11 @@ namespace WeaverCore.Settings.Elements
 			}
 			set
 			{
-				gameObject.SetActive(value);
+				if (value != gameObject.activeSelf)
+				{
+					gameObject.SetActive(value);
+					DisplayValueUpdated?.Invoke(FieldAccessor);
+				}
 			}
 		}
 

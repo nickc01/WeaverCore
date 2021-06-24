@@ -58,5 +58,29 @@ namespace WeaverCore.Utilities
 			}
 			return result.ToString();
 		}
+
+		public static string AddSpaces(string input)
+		{
+			StringBuilder result = new StringBuilder(input);
+			var breakMatches = Regex.Matches(input, @"(<\/sp\:?(\d+?)?>)");
+			for (int i = breakMatches.Count - 1; i >= 0; i--)
+			{
+				var match = breakMatches[i];
+				if (match.Success)
+				{
+					int breakCount = 1;
+					if (match.Groups.Count >= 3 && match.Groups[2].Success)
+					{
+						if (!int.TryParse(match.Groups[2].Value, out breakCount))
+						{
+							continue;
+						}
+					}
+					result.Remove(match.Index, match.Length);
+					result.Insert(match.Index, new string(' ', breakCount));
+				}
+			}
+			return result.ToString();
+		}
 	}
 }

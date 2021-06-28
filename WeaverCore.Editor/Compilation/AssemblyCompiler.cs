@@ -129,6 +129,20 @@ namespace WeaverCore.Editor.Compilation
 				Building = false;
 				if (messages.Any(cm => cm.type == CompilerMessageType.Error))
 				{
+					Debug.LogError("Error building assembly = " + FileName);
+					string assemblyReferences = "References: " + Environment.NewLine;
+					foreach (var reference in References)
+					{
+						assemblyReferences += reference + Environment.NewLine;
+					}
+					Debug.LogError(assemblyReferences);
+
+					string assemblyExclusions = "Exclusions: " + Environment.NewLine;
+					foreach (var exclusion in ExcludedReferences)
+					{
+						assemblyExclusions += exclusion + Environment.NewLine;
+					}
+					Debug.LogError(assemblyExclusions);
 					outputInfo.Success = false;
 					foreach (var message in messages)
 					{

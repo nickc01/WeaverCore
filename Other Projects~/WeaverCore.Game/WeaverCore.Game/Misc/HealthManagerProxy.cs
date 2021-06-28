@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HutongGames.PlayMaker.Actions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -38,12 +39,52 @@ public class HealthManagerProxy : HealthManager
 		On.HealthManager.GetAttackDirection += HealthManager_GetAttackDirection;
 		On.HealthManager.GetIsDead += HealthManager_GetIsDead;
 		On.HealthManager.CheckInvincible += HealthManager_CheckInvincible;
+		On.SetHP.OnEnter += SetHP_OnEnter;
 		//On.HealthManager.CheckPersistence += HealthManager_CheckPersistence;
 
 		var invisProp = typeof(HealthManager).GetProperty("IsInvincible");
 
 		patcher.Patch(invisProp.GetGetMethod(), GetProxyMethod("InvisGetPrefix"),null);
 		patcher.Patch(invisProp.GetSetMethod(), GetProxyMethod("InvisSetPrefix"),null);
+	}
+
+	private static void SetHP_OnEnter(On.SetHP.orig_OnEnter orig, SetHP self)
+	{
+		var safe = self.target.GetSafe(self);
+		if (safe != null)
+		{
+			var proxy = safe.GetComponent<HealthManagerProxy>();
+			if (proxy != null)
+			{
+				var hpGetters = self.State.Actions.OfType<GetHP>();
+				var operators = self.State.Actions.OfType<IntOperator>();
+
+				var setterIndex = Array.IndexOf(self.State.Actions,self);
+
+				foreach (var getter in hpGetters)
+				{
+					var getterIndex = Array.IndexOf(self.State.Actions, getter);
+					if (getterIndex < setterIndex)
+					{
+						foreach (var op in operators)
+						{
+							var opIndex = Array.IndexOf(self.State.Actions,op);
+							if (opIndex > getterIndex && opIndex < setterIndex)
+							{
+								var commonVariable = self.hp;
+								if (!commonVariable.IsNone && getter.storeValue == commonVariable && (op.integer1 == commonVariable || op.integer2 == commonVariable))
+								{
+									WeaverLog.Log("Doing Health Override!!!");
+									commonVariable.Value = proxy.SafeDecrementHP(commonVariable.Value);
+									return;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		orig(self);
 	}
 
 	private static bool HealthManager_CheckInvincible(On.HealthManager.orig_CheckInvincible orig, HealthManager self)
@@ -296,16 +337,41 @@ public class HealthManagerProxy : HealthManager
 
 	private void WeaverHealth_OnHealthChangeEvent(int oldHealth, int newHealth)
 	{
+		WeaverLog.Log($"Health Changed from {oldHealth} to {newHealth}");
 		hp = newHealth;
 		previousHP = newHealth;
+	}
+
+	/// <summary>
+	/// Sets the new decremented health value, and returns the final value. Note that the final value may be different than the newHP if the enemy has a health direction of up
+	/// </summary>
+	/// <param name="newHP">The new health to set to</param>
+	/// <returns>The final health value</returns>
+	public int SafeDecrementHP(int newHP)
+	{
+		hp = newHP;
+		LateUpdate();
+		return hp;
 	}
 
 	void LateUpdate()
 	{
 		if (hp != previousHP)
 		{
-			previousHP = hp;
-			weaverHealth.Health = hp;
+			var difference = previousHP - hp;
+			switch (weaverHealth.HealthDirection)
+			{
+				case HealthDirection.Down:
+					previousHP -= difference;
+					hp = previousHP;
+					weaverHealth.Health -= difference;
+					break;
+				case HealthDirection.Up:
+					previousHP += difference;
+					hp = previousHP;
+					weaverHealth.Health += difference;
+					break;
+			}
 		}
 	}
 }

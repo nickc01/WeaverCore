@@ -88,7 +88,7 @@ namespace WeaverCore.Components
 		}
 
 		/// <summary>
-		/// Whether the health should decrease on each hit or not
+		/// Whether the health should decrease on each hit or not. THIS IS UNUSED
 		/// </summary>
 		public bool DecreaseHealth = true;
 

@@ -573,6 +573,13 @@ namespace WeaverCore.Editor.Compilation
 						//Debug.Log("Exclusion = " + exclusions[exclusions.Count - 1]);
 					}
 
+					var weaverCoreLibraries = new DirectoryInfo("Assets\\WeaverCore\\Libraries").GetFiles("*.dll");
+
+					foreach (var wl in weaverCoreLibraries)
+					{
+						exclusions.Add(PathUtilities.ConvertToProjectPath(wl.FullName));
+					}
+
 					var editorDir = new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory;
 
 					foreach (var ueFile in editorDir.Parent.GetFiles("UnityEngine.dll", SearchOption.AllDirectories))

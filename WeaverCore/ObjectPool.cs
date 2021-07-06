@@ -681,7 +681,7 @@ namespace WeaverCore
 			{
 				return null;
 			}
-#if USE_EMIT
+#if NET_4_6
 			DynamicMethod awakeCaller = new DynamicMethod("", MethodAttributes.Public | MethodAttributes.Static, CallingConventions.Standard, null, new Type[1] { typeof(Component) }, sourceType, true);
 			ILGenerator gen = awakeCaller.GetILGenerator();
 			gen.Emit(OpCodes.Ldarg_0);

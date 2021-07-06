@@ -131,7 +131,7 @@ namespace WeaverCore.Editor.Compilation
 				{
 					Debug.LogError("Error building assembly = " + FileName);
 					string assemblyReferences = "References: " + Environment.NewLine;
-					foreach (var reference in References)
+					foreach (var reference in References.Concat(GetDefaultReferences()))
 					{
 						assemblyReferences += reference + Environment.NewLine;
 					}

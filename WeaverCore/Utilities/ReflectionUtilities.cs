@@ -94,7 +94,7 @@ namespace WeaverCore.Utilities
 
 		public static Func<SourceType, FieldType> CreateFieldGetter<SourceType, FieldType>(FieldInfo field)
 		{
-#if USE_EMIT
+#if NET_4_6
 			string methodName = field.ReflectedType.FullName + ".get_" + field.Name;
 			DynamicMethod setterMethod = new DynamicMethod(methodName, typeof(FieldType), new Type[1] { typeof(SourceType) }, true);
 			ILGenerator gen = setterMethod.GetILGenerator();
@@ -124,7 +124,7 @@ namespace WeaverCore.Utilities
 
 		public static Action<SourceType, FieldType> CreateFieldSetter<SourceType, FieldType>(FieldInfo field)
 		{
-#if USE_EMIT
+#if NET_4_6
 			string methodName = field.ReflectedType.FullName + ".set_" + field.Name;
 			DynamicMethod setterMethod = new DynamicMethod(methodName, null, new Type[2] { typeof(SourceType), typeof(FieldType) }, true);
 			ILGenerator gen = setterMethod.GetILGenerator();

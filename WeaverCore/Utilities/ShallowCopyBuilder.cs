@@ -1,9 +1,8 @@
-﻿//#define USE_EMIT
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-#if USE_EMIT
+#if NET_4_6
 using System.Reflection.Emit;
 #endif
 
@@ -12,7 +11,7 @@ namespace WeaverCore.Utilities
 	public sealed class ShallowCopyBuilder<ParameterType>
 	{
 		public delegate void ShallowCopyDelegate(ParameterType objectToOverwrite, ParameterType objectToCopyFrom);
-#if USE_EMIT
+#if NET_4_6
 		private readonly DynamicMethod finalCopyMethod;
 		private readonly ILGenerator gen;
 #else
@@ -34,7 +33,7 @@ namespace WeaverCore.Utilities
 				throw new Exception("The Type [" + typeToCopy.FullName + "] does not inherit from the parameter type [" + paramType.FullName + "]");
 			}
 			copyType = typeToCopy;
-#if USE_EMIT
+#if NET_4_6
 			finalCopyMethod = new DynamicMethod(copyType.FullName + "_fieldCopier", null, new Type[2] { paramType, paramType }, true);
 			gen = finalCopyMethod.GetILGenerator();
 
@@ -67,7 +66,7 @@ namespace WeaverCore.Utilities
 			{
 				throw new Exception("The field " + field.Name + " is static. Static fields are not allowed in the copier");
 			}
-#if USE_EMIT
+#if NET_4_6
 			if (copyType != paramType)
 			{
 				gen.Emit(OpCodes.Ldloc_0);
@@ -111,12 +110,12 @@ namespace WeaverCore.Utilities
 		{
 			if (!returnAdded)
 			{
-#if USE_EMIT
+#if NET_4_6
 				gen.Emit(OpCodes.Ret);
 #endif
 				returnAdded = true;
 			}
-#if USE_EMIT
+#if NET_4_6
 			return (ShallowCopyDelegate)finalCopyMethod.CreateDelegate(typeof(ShallowCopyDelegate));
 #else
 			if (delegateVersion == null)
@@ -142,13 +141,13 @@ namespace WeaverCore.Utilities
 		{
 			if (!returnAdded)
 			{
-#if USE_EMIT
+#if NET_4_6
 				gen.Emit(OpCodes.Ret);
 #endif
 				returnAdded = true;
 			}
-#if USE_EMIT
-			return (Func<ParameterType, ParameterType>)finalCopyMethod.CreateDelegate(typeof(Func<ParameterType, ParameterType>));
+#if NET_4_6
+			return (Action<ParameterType, ParameterType>)finalCopyMethod.CreateDelegate(typeof(Action<ParameterType, ParameterType>));
 #else
 			if (funcVersion == null)
 			{

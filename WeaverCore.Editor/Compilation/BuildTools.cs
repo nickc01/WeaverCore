@@ -357,7 +357,7 @@ namespace WeaverCore.Editor.Compilation
 				UnboundCoroutine.Start(BuildPartialWeaverCoreRoutine(WeaverCoreBuildLocation, null));
 			}
 
-			UnboundCoroutine.Start(RunPackageCheck());
+			UnboundCoroutine.Start(RunEnvironmentCheck());
 		}
 
 		/// <summary>
@@ -670,9 +670,9 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
-		static IEnumerator RunPackageCheck()
+		static IEnumerator RunEnvironmentCheck()
 		{
-			//Debug.Log("Running Package Check");
+			//INSTALL THE NECESSARY PACKAGES
 			var listRequest = PackageClient.List();
 			var searchRequest = PackageClient.Search("com.unity.scriptablebuildpipeline");
 			yield return WaitForRequest(listRequest);
@@ -687,12 +687,6 @@ namespace WeaverCore.Editor.Compilation
 			}
 
 			var buildPipelineLatestVersion = searchRequest.Result[0].versions.latestCompatible;
-			//yield return new WaitUntil(() => searchRequest.IsCompleted);
-			/*foreach (var result in searchRequest.Result)
-			{
-				Debug.Log("Result = " + result.name + ", Version = " + result.version);
-				Debug.Log("Latest Compatible = " + result.versions.latestCompatible);
-			}*/
 
 			bool makingChanges = false;
 			bool latestVersionInstalled = false;
@@ -731,6 +725,15 @@ namespace WeaverCore.Editor.Compilation
 			if (!makingChanges && !latestVersionInstalled)
 			{
 				PackageClient.Add("com.unity.scriptablebuildpipeline@" + buildPipelineLatestVersion);
+				makingChanges = true;
+			}
+
+			if (!makingChanges)
+			{
+				if (PlayerSettings.GetApiCompatibilityLevel(BuildTargetGroup.Standalone) != ApiCompatibilityLevel.NET_4_6)
+				{
+					PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
+				}
 			}
 
 

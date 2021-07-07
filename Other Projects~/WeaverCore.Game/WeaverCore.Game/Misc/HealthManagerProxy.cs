@@ -74,7 +74,6 @@ public class HealthManagerProxy : HealthManager
 								var commonVariable = self.hp;
 								if (!commonVariable.IsNone && getter.storeValue == commonVariable && (op.integer1 == commonVariable || op.integer2 == commonVariable))
 								{
-									WeaverLog.Log("Doing Health Override!!!");
 									commonVariable.Value = proxy.SafeDecrementHP(commonVariable.Value);
 									return;
 								}
@@ -337,7 +336,6 @@ public class HealthManagerProxy : HealthManager
 
 	private void WeaverHealth_OnHealthChangeEvent(int oldHealth, int newHealth)
 	{
-		WeaverLog.Log($"Health Changed from {oldHealth} to {newHealth}");
 		hp = newHealth;
 		previousHP = newHealth;
 	}

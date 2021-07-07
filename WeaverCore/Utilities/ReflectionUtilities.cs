@@ -303,8 +303,17 @@ namespace WeaverCore.Utilities
 							}
 						}
 					}
-					var attributes = method.GetCustomAttributes(typeof(T), false);
-					if (attributes.GetLength(0) > 0)
+					object[] attributes = null;
+					try
+					{
+						attributes = method.GetCustomAttributes(typeof(T), false);
+					}
+					catch (Exception e)
+					{
+						WeaverLog.LogWarning($"There was an error reading attribute info from {method.DeclaringType.FullName}:{method.Name}() in assembly {method.DeclaringType.Assembly.GetName().Name}, see output.log for more details");
+						UnityEngine.Debug.LogException(e);
+					}
+					if (attributes != null && attributes.GetLength(0) > 0)
 					{
 						yield return new ValueTuple<MethodInfo, T>(method, (T)attributes[0]);
 					}

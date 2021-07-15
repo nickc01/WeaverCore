@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
 using UnityEngine;
+using WeaverCore.Editor.Compilation;
 using WeaverCore.Editor.Implementations;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Utilities
 {
@@ -20,7 +22,7 @@ namespace WeaverCore.Editor.Utilities
 
         public static LayerData GetData()
         {
-            var assetDir = new DirectoryInfo("Assets\\WeaverCore\\WeaverCore.Editor\\Data");
+            var assetDir = new DirectoryInfo(BuildTools.WeaverCoreFolder.AddSlash() + "WeaverCore.Editor\\Data");
             if (assetDir.Exists)
             {
                 var dataFile = new FileInfo(assetDir.FullName + "\\layerData.json");

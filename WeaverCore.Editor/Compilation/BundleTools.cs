@@ -12,10 +12,13 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.Build.Content;
+using UnityEditor.SceneManagement;
 //using UnityEditor.Build.Pipeline;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using WeaverBuildTools.Commands;
 using WeaverBuildTools.Enums;
+using WeaverCore.Attributes;
 using WeaverCore.Editor.Internal;
 using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
@@ -24,6 +27,13 @@ namespace WeaverCore.Editor.Compilation
 {
 	public static class BundleTools
 	{
+		[Serializable]
+		public class SceneData
+		{
+			public string Name;
+			public string Path;
+		}
+
 		[Serializable]
 		public class RegistryInfo
 		{
@@ -87,6 +97,8 @@ namespace WeaverCore.Editor.Compilation
 			public SerializedMethod OnComplete;
 
 			public List<RegistryInfo> Registries;
+
+			public List<SceneData> ClosedScenes;
 		}
 
 		public static void BuildAndEmbedAssetBundles(FileInfo modDll, FileInfo weaverCoreDLL, MethodInfo OnComplete)
@@ -103,7 +115,13 @@ namespace WeaverCore.Editor.Compilation
 				BundlingSuccessful = false
 			};
 			/**/
-			PrepareForAssetBundling(new List<string> { "WeaverCore.Editor" }, typeof(BundleTools).GetMethod(nameof(BeginBundleProcess),BindingFlags.Static | BindingFlags.NonPublic));
+
+			UnboundCoroutine.Start(UnloadScenes(() =>
+			{
+				PrepareForAssetBundling(new List<string> { "WeaverCore.Editor" }, typeof(BundleTools).GetMethod(nameof(BeginBundleProcess), BindingFlags.Static | BindingFlags.NonPublic));
+			}));
+
+			
 		}
 
 		static bool IsFileLocked(FileInfo file)
@@ -128,10 +146,50 @@ namespace WeaverCore.Editor.Compilation
 			return false;
 		}
 
+		static IEnumerator UnloadScenes(Action whenDone)
+		{
+			EditorSceneManager.SaveOpenScenes();
+
+			yield return null;
+
+			List<Scene> scenes = new List<Scene>();
+			Data.ClosedScenes = new List<SceneData>();
+
+			var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+			for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
+			{
+				var scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+				if (scene != activeScene)
+				{
+					Data.ClosedScenes.Add(new SceneData
+					{
+						Name = scene.name,
+						Path = scene.path
+					});
+					scenes.Add(scene);
+				}
+			}
+
+			PersistentData.StoreData(Data);
+			PersistentData.SaveData();
+
+			foreach (var scene in scenes)
+			{
+				var op = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
+				yield return new WaitUntil(() => op.isDone);
+			}
+			Debug.ClearDeveloperConsole();
+			yield return null;
+			whenDone();
+		}
+
 		static void PrepareForAssetBundling(List<string> ExcludedAssemblies, MethodInfo whenReady)
 		{
 			//AssetDatabase.DisallowAutoRefresh();
 			Debug.Log("Preparing Assets for Bundling");
+
+			
+
 			//UnboundCoroutine.Start(Delay());
 			//IEnumerator Delay()
 			//{
@@ -216,6 +274,8 @@ namespace WeaverCore.Editor.Compilation
 				}
 				PersistentData.StoreData(Data);
 				PersistentData.SaveData();
+
+				ReflectionUtilities.ExecuteMethodsWithAttribute<BeforeBuildAttribute>();
 
 				if (!assetsChanged && whenReady != null)
 				{
@@ -409,6 +469,7 @@ namespace WeaverCore.Editor.Compilation
 						{
 							if (bundleFile.Extension == "" && !bundleFile.Name.Contains("BundleBuilds"))
 							{
+								Debug.Log("Finished Building Bundle = " + bundleFile.Name);
 								builtBundles.Add(new BuiltAssetBundle
 								{
 									File = bundleFile,
@@ -529,11 +590,11 @@ namespace WeaverCore.Editor.Compilation
 
 		static void EmbedWeaverCoreResources()
 		{
-			var weaverGameLocation = new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore.Game\\bin\\WeaverCore.Game.dll");
-			var harmonyLocation = new FileInfo("Assets\\WeaverCore\\Libraries\\0Harmony.dll");
-			var iLGenLocation = new FileInfo("Assets\\WeaverCore\\Libraries\\System.Reflection.Emit.ILGeneration.dll");
-			var emitLocation = new FileInfo("Assets\\WeaverCore\\Libraries\\System.Reflection.Emit.dll");
-			var emitLightweightLocation = new FileInfo("Assets\\WeaverCore\\Libraries\\System.Reflection.Emit.Lightweight.dll");
+			var weaverGameLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + "Other Projects~\\WeaverCore.Game\\WeaverCore.Game\\bin\\WeaverCore.Game.dll");
+			var harmonyLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + "Libraries\\0Harmony.dll");
+			var iLGenLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + "Libraries\\System.Reflection.Emit.ILGeneration.dll");
+			var emitLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + "Libraries\\System.Reflection.Emit.dll");
+			var emitLightweightLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + "Libraries\\System.Reflection.Emit.Lightweight.dll");
 
 			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, weaverGameLocation.FullName, "WeaverCore.Game", compression: CompressionMethod.NoCompression);
 			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, harmonyLocation.FullName, "0Harmony", compression: CompressionMethod.NoCompression);
@@ -715,6 +776,8 @@ namespace WeaverCore.Editor.Compilation
 				PersistentData.StoreData(Data);
 				PersistentData.SaveData();
 
+				ReflectionUtilities.ExecuteMethodsWithAttribute<AfterBuildAttribute>();
+
 				if (!assetsChanged && whenFinished != null)
 				{
 					whenFinished.Invoke(null, null);
@@ -741,19 +804,34 @@ namespace WeaverCore.Editor.Compilation
 				Debug.LogError("An error occured when creating the asset bundles");
 				return;
 			}
-			Debug.Log("<b>Asset Bundling Complete</b>");
 
+			Debug.Log("<b>Asset Bundling Complete</b>");
+			foreach (var scene in Data.ClosedScenes)
+			{
+				EditorSceneManager.OpenScene(scene.Path, OpenSceneMode.Additive);
+			}
 			if (Data.OnComplete.Method != null)
 			{
 				Data.OnComplete.Method.Invoke(null, null);
 			}
+			/*UnboundCoroutine.Start(LoadScenes(() =>
+			{
+				
+			}));*/
 		}
+
+		/*static IEnumerator LoadScenes(Action whenDone)
+		{
+			
+			yield return null;
+			whenDone();
+		}*/
 
 		static string PostProcessBundle(BuiltAssetBundle bundle, Dictionary<string,string> assemblyReplacements)
 		{
 			Debug.Log($"Post Processing Bundle -> {bundle.File}");
 			var am = new AssetsManager();
-			am.LoadClassPackage("Assets\\WeaverCore\\Libraries\\classdata.tpk");
+			am.LoadClassPackage(BuildTools.WeaverCoreFolder.AddSlash() + "Libraries\\classdata.tpk");
 
 			var bun = am.LoadBundleFile(bundle.File.FullName);
 			//load the first entry in the bundle (hopefully the one we want)

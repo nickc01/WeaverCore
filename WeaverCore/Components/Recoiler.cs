@@ -11,12 +11,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	public class Recoiler :
-#if UNITY_EDITOR
-		RECOIL_BASE
-#else
-		global::Recoil
-#endif
+	public class Recoiler : Recoil
 	{
 		float? _origRecoilSpeed = null;
 		public float OriginalRecoilSpeed
@@ -110,22 +105,14 @@ namespace WeaverCore.Components
 		}
 
 
-#if UNITY_EDITOR
-		static Func<RECOIL_BASE, float> recoilSpeedDel;
-#else
-		static Func<global::Recoil, float> recoilSpeedDel;
-#endif
+		static Func<Recoil, float> recoilSpeedDel;
 
 
 		public float GetRecoilSpeed()
 		{
 			if (recoilSpeedDel == null)
 			{
-#if UNITY_EDITOR
-				recoilSpeedDel = ReflectionUtilities.CreateFieldGetter<RECOIL_BASE, float>(typeof(Recoiler).BaseType.GetField("recoilSpeedBase", BindingFlags.NonPublic | BindingFlags.Instance));
-#else
-				recoilSpeedDel = ReflectionUtilities.CreateFieldGetter<global::Recoil, float>(typeof(Recoiler).BaseType.GetField("recoilSpeedBase", BindingFlags.NonPublic | BindingFlags.Instance));
-#endif
+				recoilSpeedDel = ReflectionUtilities.CreateFieldGetter<Recoil, float>(typeof(Recoiler).BaseType.GetField("recoilSpeedBase", BindingFlags.NonPublic | BindingFlags.Instance));
 			}
 
 			return recoilSpeedDel.Invoke(this);
@@ -134,7 +121,7 @@ namespace WeaverCore.Components
 
 #if UNITY_EDITOR
 
-	public class RECOIL_BASE : MonoBehaviour
+	/*public class RECOIL_BASE : MonoBehaviour
 	{
 		private Rigidbody2D body;
 		private Collider2D bodyCollider;
@@ -305,18 +292,6 @@ namespace WeaverCore.Components
 			}
 			else if (this.state == Recoiler.States.Recoiling)
 			{
-				/*if (this.isRecoilSweeping)
-				{
-					float num;
-					if (this.recoilSweep.Check(base.transform.position, this.recoilSpeed * deltaTime, 256, out num))
-					{
-						this.isRecoilSweeping = false;
-					}
-					if (num > Mathf.Epsilon)
-					{
-						base.transform.Translate(this.recoilSweep.Direction * num, Space.World);
-					}
-				}*/
 				//WeaverLog.Log("Recoil Direction = " + recoilDirection);
 				//WeaverLog.Log("Recoil Speed = " + recoilSpeed);
 				//WeaverLog.Log("Position Before = " + transform.position);
@@ -354,6 +329,6 @@ namespace WeaverCore.Components
 			// Token: 0x04002A78 RID: 10872
 			Recoiling
 		}
-	}
+	}*/
 #endif
 }

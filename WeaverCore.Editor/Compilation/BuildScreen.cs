@@ -52,7 +52,7 @@ namespace WeaverCore.Editor.Compilation
 			public bool MacSupport = true;
 			public bool LinuxSupport = true;
 			public bool StartGame = true;
-			public string BuildLocation = GameBuildSettings.Settings.HollowKnightLocation + "\\hollow_knight_Data\\Managed\\Mods";
+			public string BuildLocation = GameBuildSettings.Settings.ModsLocation;
 
 			public IEnumerable<BuildTarget> GetBuildModes()
 			{

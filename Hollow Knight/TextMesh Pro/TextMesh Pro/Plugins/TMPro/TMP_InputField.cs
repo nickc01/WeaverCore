@@ -1058,6 +1058,10 @@ namespace TMPro
 			{
 				GameObject gameObject = new GameObject(base.transform.name + " Input Caret", typeof(RectTransform));
 				TMP_SelectionCaret tMP_SelectionCaret = gameObject.AddComponent<TMP_SelectionCaret>();
+				if (tMP_SelectionCaret.GetComponent<CanvasRenderer>() == null)
+				{
+					tMP_SelectionCaret.gameObject.AddComponent<CanvasRenderer>();
+				}
 				((Graphic)tMP_SelectionCaret).color = Color.clear;
 				gameObject.hideFlags = HideFlags.DontSave;
 				gameObject.transform.SetParent(m_TextComponent.transform.parent);

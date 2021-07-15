@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Compilation
 {
@@ -49,7 +50,7 @@ namespace WeaverCore.Editor.Compilation
 		/// Whether to autosave after making a call to <see cref="StoreData{T}(T, PersistenceType)"/>
 		/// </summary>
 		public static bool AutoSave { get; set; }
-		public const string PersistentDataPath = "Assets\\WeaverCore\\Hidden~\\PersistentData.dat";
+		public static string PersistentDataPath = BuildTools.WeaverCoreFolder.AddSlash() + "Hidden~\\PersistentData.dat";
 
 		static DataStorage Storage;
 

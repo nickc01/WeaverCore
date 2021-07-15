@@ -98,6 +98,7 @@ namespace WeaverCore.Editor.Settings
 			{
 				Close();
 				GameBuildSettings.Settings.HollowKnightLocation = hkDirTemp;
+				GameBuildSettings.Verify(GameBuildSettings.Settings);
 				GameBuildSettings.SaveSettings();
 			}
 

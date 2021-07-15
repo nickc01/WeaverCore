@@ -441,7 +441,6 @@
     <Compile Include="Patches\GameManager_SetState.cs" />
     <Compile Include="Patches\TK2DCameraPatch.cs" />
     <Compile Include="Patches\TMP_TextPatch.cs" />
-    <Compile Include="Implementations\G_DamageHero_I.cs" />
     <Compile Include="Implementations\G_UnboundCoroutine_I.cs" />
     <Compile Include="Implementations\G_Boss_I.cs" />
     <Compile Include="Implementations\G_Enemy_I.cs" />

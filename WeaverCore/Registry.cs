@@ -213,8 +213,6 @@ namespace WeaverCore
             {
                 try
                 {
-                    //WeaverLog.Log("Executing Registry Method = " + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
-                    //WeaverLog.Log("Param Value = " + param[0]);
                     method.Item1.Invoke(null, param);
                 }
                 catch (Exception e)

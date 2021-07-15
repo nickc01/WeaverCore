@@ -97,24 +97,28 @@ namespace WeaverCore.Utilities
 			{
 				if (assembly != typeof(WeaverMod).Assembly)
 				{
+					List<AssetBundle> loadedBundles = new List<AssetBundle>();
 					foreach (var name in assembly.GetManifestResourceNames())
 					{
 						if (name.EndsWith(extension))
 						{
-							//WeaverLog.Log("Loading Mod Bundle = " + name);
 							var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
-							//WeaverLog.Log("Bundle = " + (bundle != null));
+
 							if (bundle != null)
 							{
-								WeaverLog.Log("Loading bundle for Weaver Mod :" + bundle.name);
-								foreach (var registry in bundle.LoadAllAssets<Registry>())
-								{
-									//WeaverLog.Log("Registry = " + (registry != null));
-									if (registry.ModAssemblyName == assemblyName)
-									{
-										registry.Initialize();
-									}
-								}
+								loadedBundles.Add(bundle);
+							}
+						}
+					}
+
+					foreach (var bundle in loadedBundles)
+					{
+						WeaverLog.Log("Loading bundle for Weaver Mod :" + bundle.name);
+						foreach (var registry in bundle.LoadAllAssets<Registry>())
+						{
+							if (registry.ModAssemblyName == assemblyName)
+							{
+								registry.Initialize();
 							}
 						}
 					}

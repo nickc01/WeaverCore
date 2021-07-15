@@ -14,6 +14,85 @@ using WeaverCore.Utilities;
 namespace WeaverCore.Settings
 {
 	/// <summary>
+	/// Used for storing save file specific settings.
+	/// </summary>
+	public abstract class SaveSpecificSettings : ScriptableObject, IFeature
+	{
+		/// <summary>
+		/// Returns true if a save file is currently loaded
+		/// </summary>
+		public static bool SaveCurrentlyLoaded { get; private set; }
+
+		public static int CurrentSaveFile { get; private set; }
+
+		/// <summary>
+		/// A list of all the save specific data
+		/// </summary>
+		static HashSet<SaveSpecificSettings> saveData = new HashSet<SaveSpecificSettings>();
+
+		public static T RegisterSaveSpecificSettings<T>() where T : SaveSpecificSettings
+		{
+			if (saveData.OfType<T>().Any())
+			{
+				throw new Exception("The type " + typeof(T).FullName + " is already registered");
+			}
+			var data = (T)Activator.CreateInstance(typeof(T));
+			saveData.Add(data);
+			return data;
+		}
+
+		public static T RegisterSaveSpecificSettings<T>(T saveSpecificData) where T : SaveSpecificSettings
+		{
+			if (saveData.OfType<T>().Any())
+			{
+				throw new Exception("The type " + typeof(T).FullName + " is already registered");
+			}
+			saveData.Add(saveSpecificData);
+			return saveSpecificData;
+		}
+
+		public static void UnregisterSaveSpecificSettings<T>() where T : SaveSpecificSettings
+		{
+			saveData.RemoveWhere(d => d is T);
+		}
+
+		public static void UnregisterSaveSpecificSettings<T>(T saveSpecificData) where T : SaveSpecificSettings
+		{
+			saveData.Remove(saveSpecificData);
+		}
+
+		/// <summary>
+		/// Finds the save specific settings of the specified type. Returns null if it has not been registered
+		/// </summary>
+		/// <typeparam name="T">The save settings type to retrieve</typeparam>
+		/// <returns>The save specific settings data. Returns null if it has not been registered</returns>
+		public static T GetSaveSettings<T>() where T : SaveSpecificSettings
+		{
+			return saveData.OfType<T>().FirstOrDefault();
+		}
+
+
+		/// <summary>
+		/// Called after a save file has been loaded
+		/// </summary>
+		/// <param name="saveFileNumber">The save file number</param>
+		internal protected virtual void OnSaveFileLoaded(int saveFileNumber)
+		{
+
+		}
+
+		/// <summary>
+		/// Called right before a save file has been unloaded
+		/// </summary>
+		/// <param name="saveFileNumber">The save file number</param>
+		internal protected virtual void OnSaveFileUnloaded(int saveFileNumber)
+		{
+
+		}
+	}
+
+
+	/// <summary>
 	/// Used for adding a settings panel to the settings menu so the player can change settings about a mod.
 	/// 
 	/// Inherit from this class to create a custom panel in the settings menu, then use <see cref="SettingsScreen.RegisterPanel{T}"/> to register the panel and make it show up in the settings menu

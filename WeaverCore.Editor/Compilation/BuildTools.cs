@@ -22,15 +22,27 @@ namespace WeaverCore.Editor.Compilation
 
 	public static class BuildTools
 	{
+		static DirectoryInfo weaverCoreFolder;
+		public static DirectoryInfo WeaverCoreFolder
+		{
+			get
+			{
+				if (weaverCoreFolder == null)
+				{
+					var asmDef = PathUtilities.ProjectFolder.GetFiles("WeaverCore.asmdef", SearchOption.AllDirectories);
+					if (asmDef.Length > 0)
+					{
+						weaverCoreFolder = asmDef[0].Directory;
+					}
+				}
+				return weaverCoreFolder;
+			}
+		}
+
 		/// <summary>
 		/// The default build location for WeaverCore
 		/// </summary>
-		public static readonly FileInfo WeaverCoreBuildLocation = new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll");
-
-		///// <summary>
-		///// The default build location for WeaverCore.Game
-		///// </summary>
-		//public static readonly FileInfo WeaverCoreGameBuildLocation = new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore.Game\\bin\\WeaverCore.Game.dll");
+		public static FileInfo WeaverCoreBuildLocation = new FileInfo(WeaverCoreFolder.AddSlash() + "Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll");
 
 		class BuildTask<T> : IAsyncBuildTask<T>
 		{
@@ -184,6 +196,14 @@ namespace WeaverCore.Editor.Compilation
 			builder.ExcludedReferences = parameters.ExcludedReferences;
 			builder.Defines = parameters.Defines;
 
+			if (builder.Scripts == null || builder.Scripts.Count == 0)
+			{
+				Debug.LogError("There are no scripts to build");
+				task.Result.Success = false;
+				task.Completed = true;
+				yield break;
+			}
+
 			if (presetType == BuildPresetType.Game || presetType == BuildPresetType.Editor)
 			{
 				builder.AddUnityReferences();
@@ -252,7 +272,7 @@ namespace WeaverCore.Editor.Compilation
 
 			foreach (var outputFile in weaverCoreTask.Result.OutputFiles)
 			{
-				Debug.Log("New Reference = " + outputFile.FullName);
+				//Debug.Log("New Reference = " + outputFile.FullName);
 				parameters.AssemblyReferences.Add(outputFile.FullName);
 			}
 
@@ -379,7 +399,7 @@ namespace WeaverCore.Editor.Compilation
 
 		static IEnumerator BuildWeaverCoreGameRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
 		{
-			return BuildXmlProjectRoutine(new FileInfo("Assets\\WeaverCore\\Other Projects~\\WeaverCore.Game\\WeaverCore.Game\\WeaverCore.Game.csproj"), outputPath, task);
+			return BuildXmlProjectRoutine(new FileInfo(WeaverCoreFolder.AddSlash() + "Other Projects~\\WeaverCore.Game\\WeaverCore.Game\\WeaverCore.Game.csproj"), outputPath, task);
 		}
 
 		class XmlReference
@@ -573,7 +593,7 @@ namespace WeaverCore.Editor.Compilation
 						//Debug.Log("Exclusion = " + exclusions[exclusions.Count - 1]);
 					}
 
-					var weaverCoreLibraries = new DirectoryInfo("Assets\\WeaverCore\\Libraries").GetFiles("*.dll");
+					var weaverCoreLibraries = new DirectoryInfo(WeaverCoreFolder.AddSlash() + "Libraries").GetFiles("*.dll");
 
 					foreach (var wl in weaverCoreLibraries)
 					{
@@ -699,6 +719,7 @@ namespace WeaverCore.Editor.Compilation
 					Debug.Log("Removing Text Mesh Pro package, since WeaverCore provides a version that is compatible with Hollow Knight");
 					makingChanges = true;
 					PackageClient.Remove(package.name);
+					Debug.ClearDeveloperConsole();
 					//Break - since we can only do one request at a time
 					break;
 				}
@@ -711,6 +732,7 @@ namespace WeaverCore.Editor.Compilation
 						Debug.Log($"Updating the Scriptable Build Pipeline from [{package.version}] -> [{buildPipelineLatestVersion}]");
 						PackageClient.Remove(package.name);
 						makingChanges = true;
+						Debug.ClearDeveloperConsole();
 						//Break - since we can only do one request at a time
 						break;
 					}
@@ -726,6 +748,7 @@ namespace WeaverCore.Editor.Compilation
 			{
 				PackageClient.Add("com.unity.scriptablebuildpipeline@" + buildPipelineLatestVersion);
 				makingChanges = true;
+				Debug.ClearDeveloperConsole();
 			}
 
 			if (!makingChanges)
@@ -733,6 +756,7 @@ namespace WeaverCore.Editor.Compilation
 				if (PlayerSettings.GetApiCompatibilityLevel(BuildTargetGroup.Standalone) != ApiCompatibilityLevel.NET_4_6)
 				{
 					PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
+					Debug.ClearDeveloperConsole();
 				}
 			}
 

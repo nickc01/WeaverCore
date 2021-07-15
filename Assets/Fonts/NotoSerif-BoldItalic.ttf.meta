@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 08f9203d78c75fd498b6f8e9d027b2d2
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Noto Serif
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 57f97c6adc8c61a42a0e8149df3d15ec, type: 3}
+  - {fileID: 12800000, guid: e0c3a2fb2e27f164a9a70710208df033, type: 3}
+  - {fileID: 12800000, guid: 509a96c381b08c64eabc25429c6996e0, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: weavercore_bundle
+  assetBundleVariant: 

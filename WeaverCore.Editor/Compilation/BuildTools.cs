@@ -112,6 +112,7 @@ namespace WeaverCore.Editor.Compilation
 			task.Result.OutputFiles = hkBuildTask.Result.OutputFiles;
 			if (!hkBuildTask.Result.Success)
 			{
+				//Debug.Log("Failed to build HollowKnight.dll");
 				task.Completed = true;
 				yield break;
 			}
@@ -163,6 +164,8 @@ namespace WeaverCore.Editor.Compilation
 				task = new BuildTask<BuildOutput>();
 			}
 
+			BuildTask<BuildOutput> firstPassTask = new BuildTask<BuildOutput>();
+
 			var firstPassLocation = new FileInfo(outputPath.Directory.AddSlash() + "Assembly-CSharp-firstpass.dll");
 
 			yield return BuildAssembly(new BuildParameters
@@ -179,12 +182,17 @@ namespace WeaverCore.Editor.Compilation
 					"Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
 					"Library/ScriptAssemblies/JUNK.dll"
 				},
-			}, BuildPresetType.Game, task);
+			}, BuildPresetType.Game, firstPassTask);
 
-			if (!task.Result.Success)
+			if (!firstPassTask.Result.Success)
 			{
+				//Debug.Log("Failed to build HollowKnight.FirstPass.dll");
+				task.Completed = true;
+				task.Result = firstPassTask.Result;
 				yield break;
 			}
+
+			//Debug.Log("FIRST PASS BUILT!");
 
 			yield return BuildAssembly(new BuildParameters
 			{
@@ -205,10 +213,19 @@ namespace WeaverCore.Editor.Compilation
 					firstPassLocation.FullName
 				}
 			}, BuildPresetType.Game, task);
+
+			//Debug.Log("SECOND PASS BUILT!");
+
+			if (!task.Result.Success)
+			{
+				//Debug.Log("Failed to build HK.dll");
+				yield break;
+			}
 		}
 
 		static IEnumerator BuildAssembly(BuildParameters parameters, BuildPresetType presetType, BuildTask<BuildOutput> task)
 		{
+			task.Completed = false;
 			if (task.Result == null)
 			{
 				task.Result = new BuildOutput();
@@ -260,6 +277,7 @@ namespace WeaverCore.Editor.Compilation
 				task.Result.OutputFiles.Add(parameters.BuildPath);
 			}
 			task.Result.Success = output.Success;
+			//Debug.Log("OUTPUT = " + output.Success);
 			task.Completed = true;
 		}
 
@@ -281,6 +299,7 @@ namespace WeaverCore.Editor.Compilation
 				{
 					Success = false
 				};
+				Debug.Log("Failed to build WeaverCore");
 				yield break;
 			}
 
@@ -357,19 +376,26 @@ namespace WeaverCore.Editor.Compilation
 			{
 				task = new BuildTask<BuildOutput>();
 			}
+			//Debug.Log("Building Assembly-CSharp.dll");
 			yield return BuildPartialModAsmRoutine(outputPath, task);
 			if (!task.Result.Success)
 			{
+				//Debug.Log("Failed to build Assembly-CSharp.dll");
 				yield break;
 			}
+			//Debug.Log("Done Building Assembly-CSharp.dll");
 			task.Result.Success = false;
+			//Debug.Log("Building WeaverCore.Game.dll");
 			yield return BuildWeaverCoreGameRoutine(null, task);
 			if (!task.Result.Success)
 			{
+				//Debug.Log("Failed to build WeaverCore.Game.dll");
 				yield break;
 			}
+			//Debug.Log("Done Building WeaverCore.Game.dll");
 			var weaverCoreOutputLocation = PathUtilities.AddSlash(outputPath.Directory.FullName) + "WeaverCore.dll";
 			File.Copy(WeaverCoreBuildLocation.FullName, weaverCoreOutputLocation, true);
+			//Debug.Log("Starting Bundle Build Routines");
 			BundleTools.BuildAndEmbedAssetBundles(outputPath, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(StartHollowKnight)));
 		}
 

@@ -40,7 +40,6 @@ namespace WeaverCore.Editor.Compilation
 			public string Path;
 			public string AssemblyName;
 			public string ModTypeName;
-			public string RegistryName;
 			public string AssetBundleName;
 		}
 
@@ -227,10 +226,9 @@ namespace WeaverCore.Editor.Compilation
 				var registry = AssetDatabase.LoadAssetAtPath<Registry>(path);
 				Data.Registries.Add(new RegistryInfo
 				{
-					AssemblyName = registry.ModAssemblyName,
+					AssemblyName = registry.ModType?.Assembly.GetName().Name ?? "",
 					AssetBundleName = GetAssetBundleName(registry),
 					ModTypeName = registry.ModName,
-					RegistryName = registry.RegistryName,
 					Path = path
 				});
 			}
@@ -438,6 +436,8 @@ namespace WeaverCore.Editor.Compilation
 
 					bundleBuilds.Create();
 
+					bool tasksSuccessful = true;
+
 					foreach (var target in BuildScreen.BuildSettings.GetBuildModes())
 					{
 						if (!PlatformUtilities.IsPlatformSupportLoaded(target))
@@ -479,13 +479,23 @@ namespace WeaverCore.Editor.Compilation
 						}
 						embeddingTasks.Add(Task.Run(() =>
 						{
-							if (Data.WeaverCoreOnly)
+							//Debug.Log("RUNNING TASK!");
+							try
 							{
-								EmbedAssetBundles(assemblies, builtBundles.Where(a => a.File.Name.ToLower().Contains("weavercore_bundle")));
+								if (Data.WeaverCoreOnly)
+								{
+									EmbedAssetBundles(assemblies, builtBundles.Where(a => a.File.Name.ToLower().Contains("weavercore_bundle")));
+								}
+								else
+								{
+									EmbedAssetBundles(assemblies, builtBundles);
+								}
 							}
-							else
+							catch (Exception e)
 							{
-								EmbedAssetBundles(assemblies, builtBundles);
+								tasksSuccessful = false;
+								Debug.LogError("Error occured when embedding asset bundles");
+								Debug.LogException(e);
 							}
 						}));
 #endif
@@ -501,10 +511,15 @@ namespace WeaverCore.Editor.Compilation
 						EmbedAssetBundles(assemblies, builtAssetBundles);
 					}
 #else
+					//Debug.Log("WAITING FOR TASKS");
 					Task.WaitAll(embeddingTasks.ToArray());
+					//Debug.Log("FINISHED WITH TASKS");
 #endif
-					EmbedWeaverCoreResources();
-					Data.BundlingSuccessful = true;
+					Data.BundlingSuccessful = tasksSuccessful;
+					if (tasksSuccessful)
+					{
+						EmbedWeaverCoreResources();
+					}
 				}
 				catch (Exception e)
 				{
@@ -545,7 +560,8 @@ namespace WeaverCore.Editor.Compilation
 			var assemblyReplacements = new Dictionary<string, string>
 			{
 				{"Assembly-CSharp", Data.ModName },
-				{"HollowKnight", "Assembly-CSharp" }
+				{"HollowKnight", "Assembly-CSharp" },
+				{"HollowKnight.FirstPass", "Assembly-CSharp-firstpass" }
 			};
 			/*foreach (var assembly in assemblies)
 			{
@@ -560,8 +576,21 @@ namespace WeaverCore.Editor.Compilation
 			{
 				Debug.Log($"Bundle Pair = {pair.Key} - {pair.Value.Name}");
 			}*/
+			/*if (builtBundles.Any())
+			{
+				Debug.Log("THERE ARE BUNDLES");
+			}
+			if (bundlePairs.Any())
+			{
+				Debug.Log("THERE ARE PAIRS");
+			}
+			foreach (var pair in bundlePairs)
+			{
+				Debug.Log($"PAIR = {pair.Key}, {pair.Value}");
+			}*/
 			foreach (var bundle in builtBundles)
 			{
+				//Debug.Log("BUNDLE = " + bundle.File.Name);
 				if (bundlePairs.ContainsKey(bundle.File.Name))
 				{
 					var asmName = bundlePairs[bundle.File.Name];
@@ -581,10 +610,29 @@ namespace WeaverCore.Editor.Compilation
 						{
 							EmbedResourceCMD.EmbedResource(asmFile.FullName, processedBundleLocation, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
 						}
+
+						var sceneBundleName = bundle.File.Name.Replace("_bundle", "_scenes_bundle");
+						//Look for Scene Bundle if there is one
+						var sceneBundle = new BuiltAssetBundle
+						{
+							File = new FileInfo(bundle.File.Directory.AddSlash() + sceneBundleName),
+							Target = bundle.Target
+						};
+
+						if (sceneBundle.File.Exists)
+						{
+							var processedSceneBundleLocation = PostProcessBundle(sceneBundle, assemblyReplacements);
+							//Debug.Log($"Embedding {processedBundleLocation} into {asmFile.FullName}");
+							lock (embedLock)
+							{
+								EmbedResourceCMD.EmbedResource(asmFile.FullName, processedSceneBundleLocation, sceneBundle.File.Name + PlatformUtilities.GetBuildTargetExtension(sceneBundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
+							}
+						}
 					}
 				}
 				//var assembly = assemblies.FirstOrDefault(a => a.Name == bundle.)
 			}
+			//Debug.Log("END");
 		}
 
 
@@ -612,6 +660,7 @@ namespace WeaverCore.Editor.Compilation
 
 			foreach (var registry in Data.Registries)
 			{
+				//Debug.Log("Registry = " + JsonUtility.ToJson(registry, true));
 				var originalModName = registry.AssemblyName;
 
 				var assembly = assemblies.FirstOrDefault(a => a.GetName().Name == originalModName);
@@ -829,6 +878,7 @@ namespace WeaverCore.Editor.Compilation
 
 		static string PostProcessBundle(BuiltAssetBundle bundle, Dictionary<string,string> assemblyReplacements)
 		{
+			//Debug.LogError("TEST");
 			Debug.Log($"Post Processing Bundle -> {bundle.File}");
 			var am = new AssetsManager();
 			am.LoadClassPackage(BuildTools.WeaverCoreFolder.AddSlash() + "Libraries\\classdata.tpk");
@@ -907,6 +957,7 @@ namespace WeaverCore.Editor.Compilation
 					//If MonoBehaviour is a registry, replace the "modAssemblyName" variable from "Assembly-CSharp"
 					if (!monoBehaviourInst.Get("modAssemblyName").IsDummy())
 					{
+						bool modified = false;
 						var modAsmNameVal = monoBehaviourInst.Get("modAssemblyName").GetValue();
 						foreach (var replacement in assemblyReplacements)
 						{
@@ -914,11 +965,34 @@ namespace WeaverCore.Editor.Compilation
 							{
 								modAsmNameVal.Set(replacement.Value);
 								Debug.Log($"Replacing Registry Assembly From {replacement.Key} to {replacement.Value}");
-								assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+								modified = true;
+								//assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
 								break;
 							}
 						}
 
+						var featureAsms = monoBehaviourInst.Get("featureAssemblyNames").Get("Array");
+						var featureAsmVals = featureAsms.GetValue();
+						var array = featureAsmVals.AsArray();
+						for (int i = 0; i < array.size; i++)
+						{
+							var asmValue = featureAsms[i].GetValue();
+							foreach (var replacement in assemblyReplacements)
+							{
+								if (asmValue.AsString() == replacement.Key)
+								{
+									asmValue.Set(replacement.Value);
+									Debug.Log($"Replacing Registry Assembly From {replacement.Key} to {replacement.Value}");
+									modified = true;
+									//assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+									break;
+								}
+							}
+						}
+						if (modified)
+						{
+							assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+						}
 					}
 				}
 #endif

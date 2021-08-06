@@ -4,16 +4,16 @@
     "references": [
         "WeaverCore",
         "HollowKnight",
-        "WeaverBuildTools"
+        "WeaverBuildTools",
+        "HollowKnight.FirstPass"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
+    "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "noEngineReferences": false,
-    "precompiledReferences": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -13,19 +13,18 @@ using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 
-
-
 namespace WeaverCore.Features
 {
+	/// <summary>
+	/// The base class for all bosses in WeaverCore
+	/// </summary>
 	[ShowFeature]
 	[RequireComponent(typeof(EntityHealth))]
 	public class Boss : Enemy
 	{
-		//HashSet<Coroutine> BoundRoutines;
-		Dictionary<uint, Coroutine> BoundRoutines;
-		HashSet<uint> idList;
-		uint idCounter = 1;
-
+		/// <summary>
+		/// The currently set difficulty of the boss scene
+		/// </summary>
 		public static BossDifficulty Difficulty
 		{
 			get
@@ -38,6 +37,9 @@ namespace WeaverCore.Features
 			}
 		}
 
+		/// <summary>
+		/// Whether the boss is currently in a pantheon
+		/// </summary>
 		public static bool InPantheon
 		{
 			get
@@ -46,6 +48,9 @@ namespace WeaverCore.Features
 			}
 		}
 
+		/// <summary>
+		/// Whether the boss is in a god home arena or not
+		/// </summary>
 		public static bool InGodHomeArena
 		{
 			get
@@ -56,6 +61,9 @@ namespace WeaverCore.Features
 
 		[SerializeField]
 		int _bossStage = 1;
+		/// <summary>
+		/// The current stage/phase the boss is at
+		/// </summary>
 		public int BossStage
 		{
 			get
@@ -67,278 +75,66 @@ namespace WeaverCore.Features
 				_bossStage = value;
 			}
 		}
-		//List<IBossMove> bossMoves = new List<IBossMove>();
-		
-		public IBossMove PreviousMove { get; private set; }
-		public IBossMove CurrentMove { get; private set; }
-
-		[NonSerialized]
-		EntityHealth entityHealth;
 
 		Boss_I impl;
 		static Boss_I.Statics staticImpl = ImplFinder.GetImplementation<Boss_I.Statics>();
 
-		protected virtual void Awake()
+		/// <summary>
+		/// Called when the boss awakes
+		/// </summary>
+		protected override void Awake()
 		{
-			//BossStage = 1;
+			base.Awake();
 			var bossImplType = ImplFinder.GetImplementationType<Boss_I>();
 			impl = (Boss_I)gameObject.AddComponent(bossImplType);
-			entityHealth = GetComponent<EntityHealth>();
-			entityHealth.OnDeathEvent += OnDeath;
 		}
 
-		public EntityHealth EntityHealth
-		{
-			get
-			{
-				if (entityHealth == null)
-				{
-					entityHealth = GetComponent<EntityHealth>();
-				}
-				return entityHealth;
-			}
-
-		}
-
-		/*public IEnumerable<IBossMove> EnabledMoves
-		{
-			get
-			{
-				return bossMoves.Where(move => move.MoveEnabled);
-			}
-		}
-
-		public IEnumerable<IBossMove> AllMoves
-		{
-			get
-			{
-				return bossMoves;
-			}
-		}*/
-
+		/// <summary>
+		/// Triggers the ending transition to play
+		/// </summary>
+		/// <param name="delay">The delay before the transition is played</param>
 		public static void EndBossBattle(float delay = 0f)
 		{
 			staticImpl.EndBossBattle(delay);
 		}
 
-		/*public bool AddMove(IBossMove move)
-		{
-			if (bossMoves.Contains(move))
-			{
-				return false;
-			}
-			else
-			{
-				bossMoves.Add(move);
-				return true;
-			}
-		}*/
-
-		/*public void AddMoves(IEnumerable<IBossMove> moves)
-		{
-			foreach (var move in moves)
-			{
-				AddMove(move);
-			}
-		}
-
-		public bool RemoveMove(IBossMove move)
-		{
-			if (bossMoves.Contains(move))
-			{
-				bossMoves.Remove(move);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}*/
-
-		/*public IBossMove GetRandomMove()
-		{
-			var enabledMoves = new List<IBossMove>(EnabledMoves);
-			if (enabledMoves.Count == 0)
-			{
-				return null;
-			}
-			return enabledMoves[UnityEngine.Random.Range(0, enabledMoves.Count)];
-		}*/
-
-		/*public IEnumerable<IBossMove> RandomMoveIter()
-		{
-			var allMovesCache = new List<IBossMove>(AllMoves);
-			var randomList = new List<IBossMove>(AllMoves);
-			IBossMove previousMove = null;
-			while (true)
-			{
-				if (allMovesCache.GetElementsHash() != AllMoves.GetElementsHash())
-				{
-					randomList = new List<IBossMove>(AllMoves);
-					allMovesCache = new List<IBossMove>(AllMoves);
-				}
-				randomList.Sort(Randomizer<IBossMove>.Instance);
-
-				if (previousMove != null && randomList.Count > 0 && randomList[0] == previousMove)
-				{
-					randomList.RemoveAt(0);
-					randomList.Add(previousMove);
-					previousMove = null;
-				}
-
-				bool returnedOnce = false;
-				foreach (var move in randomList)
-				{
-					if (move.MoveEnabled)
-					{
-						returnedOnce = true;
-						previousMove = move;
-						yield return move;
-					}
-				}
-				if (!returnedOnce)
-				{
-					yield return null;
-				}
-			}
-		}*/
-
-		/*public IEnumerable<IBossMove> GenerateRandomMoveList()
-		{
-			var randomList = new List<IBossMove>(AllMoves);
-			randomList.Sort(Randomizer<IBossMove>.Instance);
-			return randomList;
-		}*/
-
 		/// <summary>
-		/// Starts a coroutine, but will automatically stop it when the boss is stunned or dead
+		/// Adds a health milestone that will stun the boss when it is reached.
 		/// </summary>
-		/// <returns>Returns an id for stopping it</returns>
-		public uint StartBoundRoutine(IEnumerator routine)
-		{
-			if (BoundRoutines == null)
-			{
-				BoundRoutines = new Dictionary<uint, Coroutine>();
-				idList = new HashSet<uint>();
-			}
-			uint currentID = idCounter;
-			if (idCounter == uint.MaxValue)
-			{
-				idCounter = 1;
-			}
-			else
-			{
-				idCounter++;
-			}
-			//WeaverLog.Log("ID Counter = " + idCounter);
-			idList.Add(currentID);
-			var coroutine = StartCoroutine(DoBoundRoutine(currentID, routine));
-			BoundRoutines.Add(currentID, coroutine);
-			return currentID;
-		}
-
-		public bool IsRoutineRunning(uint routineID)
-		{
-			return idList.Contains(routineID);
-		}
-
-		public void StopBoundRoutine(uint routineID)
-		{
-			if (BoundRoutines == null)
-			{
-				return;
-			}
-			if (BoundRoutines.ContainsKey(routineID))
-			{
-				idList.Remove(routineID);
-				BoundRoutines.Remove(routineID);
-				//var routine = BoundRoutines[routineID];
-				//StopCoroutine(routine);
-				//BoundRoutines.Remove(routineID);
-			}
-		}
-
-		public void StopAllBoundRoutines()
-		{
-			if (BoundRoutines == null)
-			{
-				return;
-			}
-			//foreach (var pair in BoundRoutines)
-			//{
-			//	Debug.Log("Stopping Routine = " + pair.Key);
-				//StopCoroutine(pair.Value);
-				//StopCoroutine(pair.Value);
-			//}
-			BoundRoutines.Clear();
-			idList.Clear();
-		}
-
-		IEnumerator DoBoundRoutine(uint id, IEnumerator routine)
-		{
-			yield return CoroutineUtilities.RunWhile(routine, () => idList.Contains(id));
-			idList.Remove(id);
-			BoundRoutines.Remove(id);
-		}
-
-		/*public IEnumerator RunRandomMove()
-		{
-			return RunMove(GetRandomMove());
-		}*/
-
-		public IEnumerator RunMove(IBossMove move)
-		{
-			int stage = BossStage;
-			return RunMoveUntil(move, () => stage != BossStage || move != CurrentMove);
-		}
-
-		public IEnumerator RunMoveUntil(IBossMove move, Func<bool> predicate)
-		{
-			CurrentMove = move;
-			yield return CoroutineUtilities.RunWhile(move.DoMove(), () => !predicate());
-			PreviousMove = move;
-			if (CurrentMove == move)
-			{
-				CurrentMove = null;
-			}
-			else
-			{
-				move.OnCancel();
-			}
-		}
-
+		/// <param name="health">The health milestone. When the boss's health goes below this value, the stun will trigger</param>
 		public void AddStunMilestone(int health)
 		{
-			entityHealth.AddHealthMilestone(health, Stun);
+			Health.AddHealthMilestone(health, Stun);
 		}
 
+		/// <summary>
+		/// Stuns the boss
+		/// </summary>
 		public void Stun()
 		{
-			//WeaverLog.Log("STUNNING");
-			if (CurrentMove != null)
+			if (CurrentMove != null && CurrentMove is IBossMove bMove)
 			{
-				//WeaverLog.Log("Current Move = " + CurrentMove.GetType().FullName);
-				CurrentMove.OnStun();
+				bMove.OnStun();
 			}
+			StopCurrentMove();
 			OnStun();
 		}
 
+		/// <summary>
+		/// Called when the boss is stunned
+		/// </summary>
 		protected virtual void OnStun()
 		{
 			StopAllBoundRoutines();
 			BossStage++;
 		}
 
-		protected virtual void OnDeath()
+		/// <summary>
+		/// Called when the boss dies
+		/// </summary>
+		protected override void OnDeath()
 		{
-			if (CurrentMove != null)
-			{
-				//WeaverLog.Log("Current Move = " + CurrentMove.GetType().FullName);
-				CurrentMove.OnDeath();
-			}
-			StopAllBoundRoutines();
 			BossStage++;
-			entityHealth.OnDeathEvent -= OnDeath;
 		}
 	}
 }

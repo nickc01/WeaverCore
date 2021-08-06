@@ -12,20 +12,13 @@ using WeaverCore.Utilities;
 
 public class WeaverCanvas : MonoBehaviour 
 {
-	/*[AfterModLoad(typeof(WeaverCore.Internal.WeaverCore),priority:int.MinValue)]
-	static void Init()
-	{
-		if (GameObject.FindObjectOfType<WeaverCanvas>() == null)
-		{
-			GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas"), null);
-		}
-	}*/
 	[AfterCameraLoad(int.MinValue)]
 	static void Init()
 	{
-		if (GameObject.FindObjectOfType<WeaverCanvas>() == null)
+		Instance = GameObject.FindObjectOfType<WeaverCanvas>();
+		if (Instance == null)
 		{
-			GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas"), null);
+			Instance = GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas"), null).GetComponent<WeaverCanvas>();
 		}
 	}
 
@@ -43,7 +36,7 @@ public class WeaverCanvas : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Thie child object where scene specific UI Content should be placed. Any time a new scene is loaded, all child objects of this Transform will get destroyed
+	/// The child object where scene specific UI Content should be placed. Any time a new scene is loaded, all child objects of this Transform will get destroyed
 	/// </summary>
 	public static Transform SceneContent
 	{
@@ -77,6 +70,45 @@ public class WeaverCanvas : MonoBehaviour
 		StartCoroutine(Initializer());
 	}
 
+	static List<CanvasExtension> featuresToAdd;
+
+	[OnFeatureLoad]
+	static void OnFeatureLoad(CanvasExtension feature)
+	{
+		if (Instance == null)
+		{
+			if (featuresToAdd == null)
+			{
+				featuresToAdd = new List<CanvasExtension>();
+			}
+			featuresToAdd.Add(feature);
+		}
+		else
+		{
+			feature.AddToWeaverCanvas();
+		}
+	}
+
+	[OnFeatureUnload]
+	static void OnFeatureUnload(CanvasExtension feature)
+	{
+		if (Instance == null)
+		{
+			featuresToAdd.Remove(feature);
+		}
+		else
+		{
+			var components = Instance.transform.GetComponentsInChildren(feature.GetType());
+			for (int i = components.GetLength(0) - 1; i >= 0; i--)
+			{
+				if (components[i] != null && components[i].transform.parent == WeaverCanvas.Content)
+				{
+					GameObject.Destroy(components[i].gameObject);
+				}
+			}
+		}
+	}
+
 	private static void SceneChanged(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
 	{
 		if (Instance != null)
@@ -98,19 +130,21 @@ public class WeaverCanvas : MonoBehaviour
 
 		var content = Instance.transform.GetChild(0);
 
-		foreach (var extension in Registry.GetAllFeatures<CanvasExtension>())
+		if (featuresToAdd != null)
 		{
-			if (extension.AddedOnStartup)
+			foreach (var extension in featuresToAdd)
 			{
-#if UNITY_EDITOR
-				if (!ContainedInObject(content.gameObject, extension.gameObject))
+				if (extension.AddedOnStartup)
 				{
-					//GameObject.Instantiate(extension.gameObject, content);
-					extension.AddToWeaverCanvas();
-				}
+#if UNITY_EDITOR
+					if (!ContainedInObject(content.gameObject, extension.gameObject))
+					{
+						extension.AddToWeaverCanvas();
+					}
 #else
-				extension.AddToWeaverCanvas();
+					extension.AddToWeaverCanvas();
 #endif
+				}
 			}
 		}
 	}

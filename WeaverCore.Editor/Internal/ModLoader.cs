@@ -16,13 +16,19 @@ namespace WeaverCore.Editor.Internal
 			{
 				try
 				{
+					List<WeaverMod> weaverMods = new List<WeaverMod>();
 					foreach (var type in assembly.GetTypes())
 					{
 						if (typeof(WeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.ContainsGenericParameters)
 						{
-							var mod = (WeaverMod)Activator.CreateInstance(type);
-							mod.Initialize();
+							//var mod = (WeaverMod)Activator.CreateInstance(type);
+							//mod.Initialize();
+							weaverMods.Add((WeaverMod)Activator.CreateInstance(type));
 						}
+					}
+					foreach (var mod in weaverMods.OrderBy(m => m.LoadPriority()))
+					{
+						mod.Initialize();
 					}
 				}
 				catch (Exception e)

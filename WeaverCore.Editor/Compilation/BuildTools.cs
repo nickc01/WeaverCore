@@ -118,10 +118,12 @@ namespace WeaverCore.Editor.Compilation
 			yield return BuildAssembly(new BuildParameters
 			{
 				BuildPath = outputPath,
-				AssemblyReferences = new List<string>
+				AssemblyReferences = hkBuildTask.Result.OutputFiles.Select(f => f.FullName).ToList(),
+				/*AssemblyReferences = new List<string>
 				{
-					hkFile.FullName
-				},
+					hkFile.FullName,
+					hkFile.AddSlash()
+				},*/
 				Defines = new List<string>
 				{
 					"GAME_BUILD"
@@ -130,6 +132,7 @@ namespace WeaverCore.Editor.Compilation
 				{
 					"Library/ScriptAssemblies/WeaverCore.dll",
 					"Library/ScriptAssemblies/HollowKnight.dll",
+					"Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
 					"Library/ScriptAssemblies/WeaverCore.Editor.dll",
 					"Library/ScriptAssemblies/WeaverBuildTools.dll",
 					"Library/ScriptAssemblies/TMPro.Editor.dll",
@@ -160,6 +163,29 @@ namespace WeaverCore.Editor.Compilation
 				task = new BuildTask<BuildOutput>();
 			}
 
+			var firstPassLocation = new FileInfo(outputPath.Directory.AddSlash() + "Assembly-CSharp-firstpass.dll");
+
+			yield return BuildAssembly(new BuildParameters
+			{
+				BuildPath = firstPassLocation,
+				Scripts = ScriptFinder.FindAssemblyScripts("HollowKnight.FirstPass"),
+				Defines = new List<string>
+				{
+					"GAME_BUILD"
+				},
+				ExcludedReferences = new List<string>
+				{
+					"Library/ScriptAssemblies/HollowKnight.dll",
+					"Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
+					"Library/ScriptAssemblies/JUNK.dll"
+				},
+			}, BuildPresetType.Game, task);
+
+			if (!task.Result.Success)
+			{
+				yield break;
+			}
+
 			yield return BuildAssembly(new BuildParameters
 			{
 				BuildPath = outputPath,
@@ -171,7 +197,12 @@ namespace WeaverCore.Editor.Compilation
 				ExcludedReferences = new List<string>
 				{
 					"Library/ScriptAssemblies/HollowKnight.dll",
+					"Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
 					"Library/ScriptAssemblies/JUNK.dll"
+				},
+				AssemblyReferences = new List<string>
+				{
+					firstPassLocation.FullName
 				}
 			}, BuildPresetType.Game, task);
 		}
@@ -264,6 +295,7 @@ namespace WeaverCore.Editor.Compilation
 				ExcludedReferences = new List<string>
 				{
 					"Library/ScriptAssemblies/HollowKnight.dll",
+					"Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
 					"Library/ScriptAssemblies/JUNK.dll",
 					"Library/ScriptAssemblies/WeaverCore.dll",
 					"Library/ScriptAssemblies/Assembly-CSharp.dll"

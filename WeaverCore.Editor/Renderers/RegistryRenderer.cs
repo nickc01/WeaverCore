@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,6 @@ namespace WeaverCore.Editor.Renderers
 
 		void OnEnable()
 		{
-			//Debug.Log("Checker Enabled");
 			checker = new RegistryChecker(serializedObject);
 			checker.Check();
 		}
@@ -105,3 +104,4 @@ namespace WeaverCore.Editor.Renderers
 		}
 	}
 }
+*/

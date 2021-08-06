@@ -92,6 +92,45 @@ namespace WeaverCore
 
 		//WeaverCam_I impl;
 
+		static List<CameraExtension> featuresToAdd;
+
+		[OnFeatureLoad]
+		static void OnFeatureLoad(CameraExtension feature)
+		{
+			if (_instance == null)
+			{
+				if (featuresToAdd == null)
+				{
+					featuresToAdd = new List<CameraExtension>();
+				}
+				featuresToAdd.Add(feature);
+			}
+			else
+			{
+				Instantiate(feature, _instance.transform);
+			}
+		}
+
+		[OnFeatureUnload]
+		static void OnFeatureUnload(CameraExtension feature)
+		{
+			if (_instance == null)
+			{
+				featuresToAdd.Remove(feature);
+			}
+			else
+			{
+				var components = _instance.transform.GetComponentsInChildren(feature.GetType());
+				for (int i = components.GetLength(0) - 1; i >= 0; i--)
+				{
+					if (components[i] != null && components[i].transform.parent == _instance.transform)
+					{
+						GameObject.Destroy(components[i].gameObject);
+					}
+				}
+			}
+		}
+
 		void Awake()
 		{
 			//WeaverLog.Log("WEAVER CAMERA CREATED");
@@ -100,6 +139,14 @@ namespace WeaverCore
 				throw new Exception("Cannot have more than one WeaverCamera in the game");
 			}
 			_instance = this;
+			if (GameCameras.instance == null)
+			{
+				new GameObject("Game Cameras").AddComponent<GameCameras>();
+			}
+			if (Initialization.Environment == Enums.RunningState.Editor && GetComponent<CameraController>() == null)
+			{
+				gameObject.AddComponent<CameraController>();
+			}
 			//impl = (WeaverCam_I)gameObject.AddComponent(ImplFinder.GetImplementationType<WeaverCam_I>());
 			if (transform.parent == null)
 			{
@@ -126,12 +173,21 @@ namespace WeaverCore
 
 			//impl.Initialize();
 
+			Debug.Log("CAMERA LOADED");
 			ReflectionUtilities.ExecuteMethodsWithAttribute<AfterCameraLoadAttribute>();
 
-			foreach (var feature in Registry.GetAllFeatures<CameraExtension>())
+			if (featuresToAdd != null)
+			{
+				foreach (var feature in featuresToAdd)
+				{
+					Instantiate(feature, transform);
+				}
+				featuresToAdd = null;
+			}
+			/*foreach (var feature in Registry.GetAllFeatures<CameraExtension>())
 			{
 				Instantiate(feature, transform);
-			}
+			}*/
 		}
 
 		/*void Initialize()

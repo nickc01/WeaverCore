@@ -40,15 +40,16 @@ namespace WeaverCore.Editor.Implementations
 		public override void LoadRegistries(Assembly assembly)
 		{
 			var assemblyName = assembly.GetName().Name;
-			string[] guids = AssetDatabase.FindAssets("t:Registry");
+			string[] guids = AssetDatabase.FindAssets($"t:{nameof(Registry)}");
 			foreach (var guid in guids)
 			{
 				string path = AssetDatabase.GUIDToAssetPath(guid);
 
-				Debug.Log("LOADING REGISTRY ITEM = " + path);
 				Registry registry = AssetDatabase.LoadAssetAtPath<Registry>(path);
-				//Debug.Log("Found Registry = " + registry.RegistryName);
-				registry.Initialize();
+				if (registry.ModAssemblyName == assemblyName)
+				{
+					registry.EnableRegistry();
+				}
 			}
 
 			RegistryLoader.LoadEmbeddedRegistries(assembly);

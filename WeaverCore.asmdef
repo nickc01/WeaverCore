@@ -1,8 +1,17 @@
 {
     "name": "WeaverCore",
+    "rootNamespace": "",
     "references": [
-        "HollowKnight"
+        "HollowKnight",
+        "HollowKnight.FirstPass"
     ],
     "includePlatforms": [],
-    "excludePlatforms": []
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

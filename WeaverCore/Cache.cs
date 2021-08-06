@@ -56,7 +56,7 @@ namespace WeaverCore
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		public bool IsObjectAlive(TKey key)
+		public bool IsCached(TKey key)
 		{
 			lock (cacheLock)
 			{
@@ -65,7 +65,7 @@ namespace WeaverCore
 		}
 
 		/// <summary>
-		/// Gets the cached object based on the key. Make sure to use <see cref="IsObjectAlive(TKey)"/> before calling, or it could thrown an exception
+		/// Gets the cached object based on the key. Make sure to use <see cref="IsCached(TKey)"/> before calling, or it could thrown an exception
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
@@ -73,7 +73,7 @@ namespace WeaverCore
 		{
 			lock (cacheLock)
 			{
-				if (!IsObjectAlive(key))
+				if (!IsCached(key))
 				{
 					throw new Exception("The cached object under the key (" + key + ") no longer exists or was never added");
 				}
@@ -86,7 +86,7 @@ namespace WeaverCore
 		{
 			lock (cacheLock)
 			{
-				if (IsObjectAlive(key))
+				if (IsCached(key))
 				{
 					obj = (TValue)cachedObjects[key].Target;
 					return true;

@@ -11,14 +11,13 @@ namespace WeaverCore
 	// Token: 0x0200002A RID: 42
 	public class Player : MonoBehaviour
 	{
+		HeroController heroCtrl;
 		static ObjectPool NailStrikePool;
 		static ObjectPool SlashImpactPool;
 		static List<Player> Players = new List<Player>();
 		Player_I impl;
 
 
-		// Token: 0x17000021 RID: 33
-		// (get) Token: 0x060000C3 RID: 195 RVA: 0x00004D60 File Offset: 0x00002F60
 		public static IEnumerable<Player> AllPlayers
 		{
 			get
@@ -27,8 +26,6 @@ namespace WeaverCore
 			}
 		}
 
-		// Token: 0x17000022 RID: 34
-		// (get) Token: 0x060000C4 RID: 196 RVA: 0x00004D67 File Offset: 0x00002F67
 		public static Player Player1
 		{
 			get
@@ -37,7 +34,6 @@ namespace WeaverCore
 			}
 		}
 
-		// Token: 0x060000C5 RID: 197 RVA: 0x00004D8C File Offset: 0x00002F8C
 		public static Player NearestPlayer(Vector3 position)
 		{
 			float num = float.PositiveInfinity;
@@ -126,6 +122,7 @@ namespace WeaverCore
 			Type implementationType = ImplFinder.GetImplementationType<Player_I>();
 			this.impl = (Player_I)base.gameObject.AddComponent(implementationType);
 			this.impl.Initialize();
+			heroCtrl = GetComponent<HeroController>();
 		}
 
 		// Token: 0x060000CD RID: 205 RVA: 0x0000505D File Offset: 0x0000325D

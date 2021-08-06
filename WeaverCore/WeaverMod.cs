@@ -110,7 +110,8 @@ namespace WeaverCore
 
             foreach (var registry in Registries)
             {
-                registry.RegistryEnabled = true;
+                //registry.RegistryEnabled = true;
+                registry.EnableRegistry();
             }
         }
 
@@ -118,7 +119,8 @@ namespace WeaverCore
         {
             foreach (var registry in Registries)
             {
-                registry.RegistryEnabled = false;
+                //registry.RegistryEnabled = false;
+                registry.DisableRegistry();
             }
         }
     }

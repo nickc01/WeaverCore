@@ -113,13 +113,20 @@ namespace WeaverCore.Utilities
 
 					foreach (var bundle in loadedBundles)
 					{
-						WeaverLog.Log("Loading bundle for Weaver Mod :" + bundle.name);
-						foreach (var registry in bundle.LoadAllAssets<Registry>())
+						if (!bundle.isStreamedSceneAssetBundle)
 						{
-							if (registry.ModAssemblyName == assemblyName)
+							WeaverLog.Log("Loading bundle for Weaver Mod : " + bundle.name);
+							foreach (var registry in bundle.LoadAllAssets<Registry>())
 							{
-								registry.Initialize();
+								if (registry.ModType.Assembly.GetName().Name == assemblyName)
+								{
+									registry.EnableRegistry();
+								}
 							}
+						}
+						else
+						{
+							WeaverLog.Log("Loading scene bundle for Weaver Mod : " + bundle.name);
 						}
 					}
 				}

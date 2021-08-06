@@ -157,12 +157,30 @@ namespace WeaverCore.Settings
 #endif
 		}
 
-		[OnRegistryLoad]
+		/*[OnRegistryLoad]
 		static void OnRegistryLoad(Registry registry)
 		{
 			foreach (var panel in registry.GetFeatures<Panel>())
 			{
 				RegisterPanel(panel);
+			}
+		}*/
+
+		[OnFeatureLoad]
+		static void OnFeatureLoad(Panel panel)
+		{
+			if (!IsPanelRegistered(panel.GetType()))
+			{
+				RegisterPanel(panel);
+			}
+		}
+
+		[OnFeatureUnload]
+		static void OnFeatureUnload(Panel panel)
+		{
+			if (IsPanelRegistered(panel.GetType()))
+			{
+				UnRegisterPanel(panel);
 			}
 		}
 
@@ -184,7 +202,7 @@ namespace WeaverCore.Settings
 			{
 				Instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
 
-				Registry.GetAllFeatures<Panel>();
+				//Registry.GetAllFeatures<Panel>();
 
 				Instance.RebuildInterface();
 			}
@@ -277,6 +295,16 @@ namespace WeaverCore.Settings
 			{
 				UnRegisterPanel(panel);
 			}
+		}
+		
+		public static bool IsPanelRegistered<T>() where T : Panel
+		{
+			return IsPanelRegistered(typeof(T));
+		}
+
+		public static bool IsPanelRegistered(Type panelType)
+		{
+			return _panels.Any(p => panelType.IsAssignableFrom(p.GetType()));
 		}
 
 		void Awake()

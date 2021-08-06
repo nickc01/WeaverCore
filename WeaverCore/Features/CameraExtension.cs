@@ -9,7 +9,7 @@ using WeaverCore.Utilities;
 namespace WeaverCore.Features
 {
 	[ShowFeature]
-	public class CameraExtension : Feature
+	public class CameraExtension : MonoBehaviour
 	{
 		/*public WeaverCamera Camera
 		{

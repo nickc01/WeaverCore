@@ -19,7 +19,7 @@ namespace WeaverCore
 	/// </summary>
 	[ShowFeature]
 	[CreateAssetMenu(fileName = "Scene Record", menuName = "WeaverCore/Scene Record")]
-	public class SceneRecord : ScriptableObject, IFeature
+	public class SceneRecord : ScriptableObject
 	{
 #if UNITY_EDITOR
 		[SerializeField]

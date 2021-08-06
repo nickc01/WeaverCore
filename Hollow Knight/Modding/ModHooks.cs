@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GlobalEnums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,651 @@ namespace Modding
 {
 	public class ModHooks
 	{
+        internal static void OnDrawBlackBorders(List<GameObject> borders)
+        {
+            Logger.LogFine("OnDrawBlackBorders Invoked");
+            if (ModHooks.DrawBlackBordersHook == null)
+            {
+                return;
+            }
+            foreach (Action<List<GameObject>> action in ModHooks.DrawBlackBordersHook.GetInvocationList())
+            {
+                try
+                {
+                    action(borders);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+        }
 
-		/// <summary>
-		///     Called when damage is dealt to the player
+        internal static void OnAttack(AttackDirection dir)
+        {
+            Logger.LogFine("OnAttack Invoked");
+            if (ModHooks.AttackHook == null)
+            {
+                return;
+            }
+            foreach (Action<AttackDirection> action in ModHooks.AttackHook.GetInvocationList())
+            {
+                try
+                {
+                    action(dir);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+        }
+
+        internal static void AfterAttack(AttackDirection dir)
+        {
+            Logger.LogFine("AfterAttack Invoked");
+            if (ModHooks.AfterAttackHook == null)
+            {
+                return;
+            }
+            foreach (Action<AttackDirection> action in ModHooks.AfterAttackHook.GetInvocationList())
+            {
+                try
+                {
+                    action(dir);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+        }
+
+        internal static Vector2 DashVelocityChange(Vector2 change)
+        {
+            Logger.LogFine("DashVelocityChange Invoked");
+            if (ModHooks.DashVectorHook == null)
+            {
+                return change;
+            }
+            foreach (Func<Vector2, Vector2> func in ModHooks.DashVectorHook.GetInvocationList())
+            {
+                try
+                {
+                    change = func(change);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return change;
+        }
+
+        internal static int OnTakeDamage(ref int hazardType, int damage)
+        {
+            Logger.LogFine("OnTakeDamage Invoked");
+            if (ModHooks.TakeDamageHook == null)
+            {
+                return damage;
+            }
+            foreach (TakeDamageProxy takeDamageProxy in ModHooks.TakeDamageHook.GetInvocationList())
+            {
+                try
+                {
+                    damage = takeDamageProxy(ref hazardType, damage);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return damage;
+        }
+
+        internal static int AfterTakeDamage(int hazardType, int damageAmount)
+        {
+            Logger.LogFine("AfterTakeDamage Invoked");
+            if (ModHooks.AfterTakeDamageHook == null)
+            {
+                return damageAmount;
+            }
+            foreach (AfterTakeDamageHandler afterTakeDamageHandler in ModHooks.AfterTakeDamageHook.GetInvocationList())
+            {
+                try
+                {
+                    damageAmount = afterTakeDamageHandler(hazardType, damageAmount);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return damageAmount;
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.GetBool
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        // Token: 0x06004765 RID: 18277 RVA: 0x00182830 File Offset: 0x00180A30
+        internal static bool GetPlayerBool(string target)
+        {
+            bool flag = PlayerData.instance.GetBoolInternal(target);
+            if (ModHooks.GetPlayerBoolHook == null)
+            {
+                return flag;
+            }
+            foreach (GetBoolProxy getBoolProxy in ModHooks.GetPlayerBoolHook.GetInvocationList())
+            {
+                try
+                {
+                    flag = getBoolProxy(target, flag);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return flag;
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.GetFloat
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        // Token: 0x06004769 RID: 18281 RVA: 0x001829F0 File Offset: 0x00180BF0
+        internal static float GetPlayerFloat(string target)
+        {
+            float num = PlayerData.instance.GetFloatInternal(target);
+            if (ModHooks.GetPlayerFloatHook == null)
+            {
+                return num;
+            }
+            foreach (GetFloatProxy getFloatProxy in ModHooks.GetPlayerFloatHook.GetInvocationList())
+            {
+                try
+                {
+                    num = getFloatProxy(target, num);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return num;
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.GetInt
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        // Token: 0x06004767 RID: 18279 RVA: 0x00182910 File Offset: 0x00180B10
+        internal static int GetPlayerInt(string target)
+        {
+            int num = PlayerData.instance.GetIntInternal(target);
+            if (ModHooks.GetPlayerIntHook == null)
+            {
+                return num;
+            }
+            foreach (GetIntProxy getIntProxy in ModHooks.GetPlayerIntHook.GetInvocationList())
+            {
+                try
+                {
+                    num = getIntProxy(target, num);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return num;
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.GetString
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        // Token: 0x0600476B RID: 18283 RVA: 0x00182AD0 File Offset: 0x00180CD0
+        internal static string GetPlayerString(string target)
+        {
+            string text = PlayerData.instance.GetStringInternal(target);
+            if (ModHooks.GetPlayerStringHook == null)
+            {
+                return text;
+            }
+            foreach (GetStringProxy getStringProxy in ModHooks.GetPlayerStringHook.GetInvocationList())
+            {
+                try
+                {
+                    text = getStringProxy(target, text);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return text;
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.GetVariable
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        // Token: 0x0600476F RID: 18287 RVA: 0x00182D5C File Offset: 0x00180F5C
+        internal static T GetPlayerVariable<T>(string target)
+        {
+            Type typeFromHandle = typeof(T);
+            if (typeFromHandle == typeof(bool))
+            {
+                return (T)((object)ModHooks.GetPlayerBool(target));
+            }
+            if (typeFromHandle == typeof(int))
+            {
+                return (T)((object)ModHooks.GetPlayerInt(target));
+            }
+            if (typeFromHandle == typeof(float))
+            {
+                return (T)((object)ModHooks.GetPlayerFloat(target));
+            }
+            if (typeFromHandle == typeof(string))
+            {
+                return (T)((object)ModHooks.GetPlayerString(target));
+            }
+            if (typeFromHandle == typeof(Vector3))
+            {
+                return (T)((object)ModHooks.GetPlayerVector3(target));
+            }
+            T t = PlayerData.instance.GetVariableInternal<T>(target);
+            if (ModHooks.GetPlayerVariableHook == null)
+            {
+                return t;
+            }
+            foreach (GetVariableProxy getVariableProxy in ModHooks.GetPlayerVariableHook.GetInvocationList())
+            {
+                try
+                {
+                    t = (T)((object)getVariableProxy(typeFromHandle, target, t));
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return t;
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.GetVector3
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        // Token: 0x0600476D RID: 18285 RVA: 0x00182BB0 File Offset: 0x00180DB0
+        internal static Vector3 GetPlayerVector3(string target)
+        {
+            Vector3 vector = PlayerData.instance.GetVector3Internal(target);
+            if (ModHooks.GetPlayerVector3Hook == null)
+            {
+                return vector;
+            }
+            foreach (GetVector3Proxy getVector3Proxy in ModHooks.GetPlayerVector3Hook.GetInvocationList())
+            {
+                try
+                {
+                    vector = getVector3Proxy(target, vector);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return vector;
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.SetBool
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        /// <param name="val">Value to set</param>
+        // Token: 0x06004764 RID: 18276 RVA: 0x001827C0 File Offset: 0x001809C0
+        internal static void SetPlayerBool(string target, bool val)
+        {
+            bool flag = val;
+            if (ModHooks.SetPlayerBoolHook != null)
+            {
+                foreach (SetBoolProxy setBoolProxy in ModHooks.SetPlayerBoolHook.GetInvocationList())
+                {
+                    try
+                    {
+                        flag = setBoolProxy(target, flag);
+                    }
+                    catch (Exception message)
+                    {
+                        Logger.LogError(message);
+                    }
+                }
+            }
+            PlayerData.instance.SetBoolInternal(target, flag);
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.SetFloat
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        /// <param name="val">Value to set</param>
+        // Token: 0x06004768 RID: 18280 RVA: 0x00182980 File Offset: 0x00180B80
+        internal static void SetPlayerFloat(string target, float val)
+        {
+            float value = val;
+            if (ModHooks.SetPlayerFloatHook != null)
+            {
+                foreach (SetFloatProxy setFloatProxy in ModHooks.SetPlayerFloatHook.GetInvocationList())
+                {
+                    try
+                    {
+                        val = setFloatProxy(target, val);
+                    }
+                    catch (Exception message)
+                    {
+                        Logger.LogError(message);
+                    }
+                }
+            }
+            PlayerData.instance.SetFloatInternal(target, value);
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.SetInt
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        /// <param name="val">Value to set</param>
+        // Token: 0x06004766 RID: 18278 RVA: 0x001828A0 File Offset: 0x00180AA0
+        internal static void SetPlayerInt(string target, int val)
+        {
+            int num = val;
+            if (ModHooks.SetPlayerIntHook != null)
+            {
+                foreach (SetIntProxy setIntProxy in ModHooks.SetPlayerIntHook.GetInvocationList())
+                {
+                    try
+                    {
+                        num = setIntProxy(target, num);
+                    }
+                    catch (Exception message)
+                    {
+                        Logger.LogError(message);
+                    }
+                }
+            }
+            PlayerData.instance.SetIntInternal(target, num);
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.SetString
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        /// <param name="val">Value to set</param>
+        // Token: 0x0600476A RID: 18282 RVA: 0x00182A60 File Offset: 0x00180C60
+        internal static void SetPlayerString(string target, string val)
+        {
+            string text = val;
+            if (ModHooks.SetPlayerStringHook != null)
+            {
+                foreach (SetStringProxy setStringProxy in ModHooks.SetPlayerStringHook.GetInvocationList())
+                {
+                    try
+                    {
+                        text = setStringProxy(target, text);
+                    }
+                    catch (Exception message)
+                    {
+                        Logger.LogError(message);
+                    }
+                }
+            }
+            PlayerData.instance.SetStringInternal(target, text);
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.SetVariable
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        /// <param name="orig">Value to set</param>
+        // Token: 0x0600476E RID: 18286 RVA: 0x00182C20 File Offset: 0x00180E20
+        internal static void SetPlayerVariable<T>(string target, T orig)
+        {
+            Type typeFromHandle = typeof(T);
+            if (typeFromHandle == typeof(bool))
+            {
+                ModHooks.SetPlayerBool(target, (bool)((object)orig));
+                return;
+            }
+            if (typeFromHandle == typeof(int))
+            {
+                ModHooks.SetPlayerInt(target, (int)((object)orig));
+                return;
+            }
+            if (typeFromHandle == typeof(float))
+            {
+                ModHooks.SetPlayerFloat(target, (float)((object)orig));
+                return;
+            }
+            if (typeFromHandle == typeof(string))
+            {
+                ModHooks.SetPlayerString(target, (string)((object)orig));
+                return;
+            }
+            if (typeFromHandle == typeof(Vector3))
+            {
+                ModHooks.SetPlayerVector3(target, (Vector3)((object)orig));
+                return;
+            }
+            T t = orig;
+            if (ModHooks.SetPlayerVariableHook != null)
+            {
+                foreach (SetVariableProxy setVariableProxy in ModHooks.SetPlayerVariableHook.GetInvocationList())
+                {
+                    try
+                    {
+                        t = (T)((object)setVariableProxy(typeFromHandle, target, t));
+                    }
+                    catch (Exception message)
+                    {
+                        Logger.LogError(message);
+                    }
+                }
+            }
+            PlayerData.instance.SetVariableInternal<T>(target, t);
+        }
+
+        // Modding.ModHooks
+        /// <summary>
+        ///     Called by the game in PlayerData.SetVector3
+        /// </summary>
+        /// <param name="target">Target Field Name</param>
+        /// <param name="orig">Value to set</param>
+        // Token: 0x0600476C RID: 18284 RVA: 0x00182B40 File Offset: 0x00180D40
+        internal static void SetPlayerVector3(string target, Vector3 orig)
+        {
+            Vector3 vector = orig;
+            if (ModHooks.SetPlayerVector3Hook != null)
+            {
+                foreach (SetVector3Proxy setVector3Proxy in ModHooks.SetPlayerVector3Hook.GetInvocationList())
+                {
+                    try
+                    {
+                        vector = setVector3Proxy(target, vector);
+                    }
+                    catch (Exception message)
+                    {
+                        Logger.LogError(message);
+                    }
+                }
+            }
+            PlayerData.instance.SetVector3Internal(target, vector);
+        }
+
+        internal static bool OnDashPressed()
+        {
+            Logger.LogFine("OnDashPressed Invoked");
+            if (ModHooks.DashPressedHook == null)
+            {
+                return false;
+            }
+            bool flag = false;
+            foreach (Func<bool> func in ModHooks.DashPressedHook.GetInvocationList())
+            {
+                try
+                {
+                    flag |= func();
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return flag;
+        }
+
+        internal static void OnDoAttack()
+        {
+            Logger.LogFine("OnDoAttack Invoked");
+            if (ModHooks.DoAttackHook == null)
+            {
+                return;
+            }
+            foreach (Action action in ModHooks.DoAttackHook.GetInvocationList())
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+        }
+
+        internal static void OnApplicationQuit()
+        {
+            Logger.LogFine("OnApplicationQuit Invoked");
+            if (ModHooks.ApplicationQuitHook == null)
+            {
+                return;
+            }
+            foreach (Action action in ModHooks.ApplicationQuitHook.GetInvocationList())
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+        }
+
+        /*internal static string BeforeSceneLoad(string sceneName)
+        {
+            Logger.LogFine("BeforeSceneLoad Invoked");
+            if (ModHooks.BeforeSceneLoadHook == null)
+            {
+                return sceneName;
+            }
+            foreach (Func<string, string> func in ModHooks.BeforeSceneLoadHook.GetInvocationList())
+            {
+                try
+                {
+                    sceneName = func(sceneName);
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+            return sceneName;
+        }*/
+
+        internal static void OnBeforePlayerDead()
+        {
+            Logger.LogFine("OnBeforePlayerDead Invoked");
+            if (ModHooks.BeforePlayerDeadHook == null)
+            {
+                return;
+            }
+            foreach (Action action in ModHooks.BeforePlayerDeadHook.GetInvocationList())
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+        }
+
+        internal static void OnAfterPlayerDead()
+        {
+            Logger.LogFine("OnAfterPlayerDead Invoked");
+            if (ModHooks.AfterPlayerDeadHook == null)
+            {
+                return;
+            }
+            foreach (Action action in ModHooks.AfterPlayerDeadHook.GetInvocationList())
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+        }
+
+        internal static void OnNewGame()
+        {
+            Logger.LogFine("OnNewGame Invoked");
+            if (ModHooks.NewGameHook == null)
+            {
+                return;
+            }
+            foreach (Action action in ModHooks.NewGameHook.GetInvocationList())
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception message)
+                {
+                    Logger.LogError(message);
+                }
+            }
+        }
+
+
+
+        /// <summary>
+		///     Called when a SceneManager calls DrawBlackBorders and creates boarders for a scene. You may use or modify the
+		///     bounds of an area of the scene with these.
 		/// </summary>
-		/// <remarks>HeroController.TakeDamage</remarks>
-		public static event TakeDamageProxy TakeDamageHook;
+		/// <remarks>SceneManager.DrawBlackBorders</remarks>
+        public static event Action<List<GameObject>> DrawBlackBordersHook;
 		/// <summary>
 		///     Called whenever localization specific strings are requested
 		/// </summary>
@@ -85,7 +725,81 @@ namespace Modding
 		/// </summary>
 		/// <remarks>HeroController.TakeHealth</remarks>
 		public static event TakeHealthProxy TakeHealthHook;
-	}
+
+        /// <summary>
+        ///     Called whenever the player attacks
+        /// </summary>
+        /// <remarks>HeroController.Attack</remarks>
+        public static event Action<AttackDirection> AttackHook;
+
+        /// <summary>
+        ///     Called at the end of the attack function
+        /// </summary>
+        /// <remarks>HeroController.Attack</remarks>
+        public static event Action<AttackDirection> AfterAttackHook;
+
+        /// <summary>
+        ///     Called during dash function to change velocity
+        /// </summary>
+        /// <returns>A changed vector.</returns>
+        /// <remarks>HeroController.Dash</remarks>
+        public static event Func<Vector2, Vector2> DashVectorHook;
+
+        /// <summary>
+        ///     Called when damage is dealt to the player
+        /// </summary>
+        /// <see cref="T:Modding.TakeDamageProxy" />
+        /// <remarks>HeroController.TakeDamage</remarks>
+        public static event TakeDamageProxy TakeDamageHook;
+
+        /// <summary>
+        ///     Called at the end of the take damage function
+        /// </summary>
+        /// <see cref="T:Modding.AfterTakeDamageHandler" />
+        public static event AfterTakeDamageHandler AfterTakeDamageHook;
+
+        /// <summary>
+        ///     Called whenever the dash key is pressed.
+        ///     Returns whether or not to override normal dash functionality - if true, preventing a normal dash
+        /// </summary>
+        /// <remarks>HeroController.LookForQueueInput</remarks>
+        public static event Func<bool> DashPressedHook;
+
+        /// <summary>
+        ///     Called at the start of the DoAttack function
+        /// </summary>
+        public static event Action DoAttackHook;
+
+        /// <summary>
+        ///     Called when the game is fully closed
+        /// </summary>
+        /// <remarks>GameManager.OnApplicationQuit</remarks>
+        public static event Action ApplicationQuitHook;
+
+        /*/// <summary>
+        ///     Called right before a scene gets loaded, can change which scene gets loaded
+        /// </summary>
+        /// <remarks>N/A</remarks>
+        public static event Func<string, string> BeforeSceneLoadHook;*/
+
+        /// <summary>
+        ///     Called when the player dies
+        /// </summary>
+        /// <remarks>GameManager.PlayerDead</remarks>
+        public static event Action BeforePlayerDeadHook;
+
+        /// <summary>
+        ///     Called after the player dies
+        /// </summary>
+        /// <remarks>GameManager.PlayerDead</remarks>
+        public static event Action AfterPlayerDeadHook;
+
+        /// <summary>
+        ///     Called whenever a new game is started
+        /// </summary>
+        /// <remarks>GameManager.LoadFirstScene</remarks>
+        public static event Action NewGameHook;
+    }
 
     /// <summary>
     ///     Called whenever localization specific strings are requested
@@ -208,4 +922,11 @@ namespace Modding
     /// <param name="damage">Amount of Damage</param>
     /// <returns>Modified Damaged</returns>
     public delegate int TakeHealthProxy(int damage);
+
+    /// <summary>
+    ///     Called at the end of the take damage function
+    /// </summary>
+    /// <param name="hazardType"></param>
+    /// <param name="damageAmount"></param>
+    public delegate int AfterTakeDamageHandler(int hazardType, int damageAmount);
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using WeaverCore.Utilities;
 using WeaverCore.Implementations;
+using UnityEngine;
 
 namespace WeaverCore
 {
@@ -37,6 +38,15 @@ namespace WeaverCore
         public static void LogWarning(string str)
         {
             Modding.Logger.LogWarn(str);
+        }
+
+        public static void LogException(Exception e)
+		{
+#if UNITY_EDITOR
+            Debug.LogException(e);
+#else
+            Modding.Logger.LogError(e);
+#endif
         }
     }
 }

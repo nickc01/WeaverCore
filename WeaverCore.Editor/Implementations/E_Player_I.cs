@@ -59,7 +59,15 @@ namespace WeaverCore.Editor.Implementations
             }
         }
 
-        void Start()
+		private void Awake()
+		{
+			if (GetComponent<HeroController>() == null)
+			{
+                gameObject.AddComponent<HeroController>();
+			}
+		}
+
+		void Start()
         {
             rigidBody = GetComponent<Rigidbody2D>();
         }

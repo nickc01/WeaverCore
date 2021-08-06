@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace WeaverCore.Components
 {
+	[RequireComponent(typeof(SpriteRenderer))]
 	public class SpriteFlasher : MonoBehaviour
 	{
 		static Material flasherMaterial;

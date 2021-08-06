@@ -1,263 +1,137 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using UnityEngine;
 using WeaverCore.Attributes;
-using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-    [Serializable]
-    public struct FeatureSet
-    {
-        [SuppressMessage("Usage", "CA2235:Mark all non-serializable fields", Justification = "<Pending>")]
-        public UnityEngine.Object feature;
-        public string TypeName;
-        public string AssemblyName;
-    }
+	/// <summary>
+	/// Used to store a variety of features to be added to the game
+	/// </summary>
+	[CreateAssetMenu(fileName = "Registry", menuName = "WeaverCore/Registry New", order = 1)]
+    public class Registry : ScriptableObject//, ISerializationCallbackReceiver
+	{
+        static List<Registry> allRegistries = new List<Registry>();
 
+        public static IEnumerable<Registry> AllRegistries => allRegistries;
 
-    /// <summary>
-    /// Used to store a variety of Features to be added to the game <seealso cref="IFeature"/>
-    /// </summary>
-    [CreateAssetMenu(fileName = "ModRegistry", menuName = "WeaverCore/Registry", order = 1)]
-    public class Registry : ScriptableObject
-    {
-        static Dictionary<string, Assembly> assemblyNames;
-
-
-        [SerializeField]
-        string registryName;
-
-
-        [SerializeField]
-        string modName = "";
-
-        [SerializeField]
-        string modAssemblyName = "";
+        [NonSerialized]
+        bool initialized = false;
 
         [SerializeField]
         string modTypeName = "";
 
         [SerializeField]
-        int modListHashCode = 0;
+        string modAssemblyName = "";
 
         [SerializeField]
-        List<FeatureSet> features;
+        List<UnityEngine.Object> features;
 
         [SerializeField]
-        List<UnityEngine.Object> featuresRaw;
+        List<string> featureTypeNames;
 
         [SerializeField]
-        int selectedFeatureIndex = 0;
+        List<string> featureAssemblyNames;
 
-        //[SerializeField]
-        //int selectedModIndex = 0;
-
-
-        /// <summary>
-        /// The name of the mod the registry is bound to <seealso cref="IWeaverMod"/> <seealso cref="WeaverMod"/>
-        /// </summary>
-        public string ModName
-        {
-            get
-            {
-                return modName;
-            }
-        }
-
-        /// <summary>
-        /// The name of the registry
-        /// </summary>
-        public string RegistryName
-        {
-            get
-            {
-                return registryName;
-            }
-        }
-
-        /// <summary>
-        /// The short name of the assembly the mod type resides in
-        /// </summary>
-        public string ModAssemblyName
-        {
-            get
-            {
-                return modAssemblyName;
-            }
-        }
-
-        [SerializeField]
-        bool registryEnabled = true;
-        bool initialized
-        {
-            get
-            {
-                return AllRegistries.Contains(this);
-            }
-        }
-
-        //bool initialized = false;
-
-        private Type modType = null;
-
-        //private string typeNameCache = "";
-
-        /// <summary>
-        /// Whether the registry is enabled or not. If the mod this registry is bound to is unloaded, the registry will automatically be disabled
-        /// </summary>
-        public bool RegistryEnabled
-        {
-            get { return registryEnabled; }
-            set
-            {
-                if (registryEnabled != value)
-                {
-                    registryEnabled = value;
-                    if (registryEnabled)
-                    {
-                        ActiveRegistries.Add(this);
-                    }
-                    else
-                    {
-                        ActiveRegistries.Remove(this);
-                    }
-                }
-
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="Type"/> of the mod the registry is bound to <seealso cref="IWeaverMod"/> <seealso cref="WeaverMod"/>
-        /// </summary>
+        [NonSerialized]
+        Type _modeTypeCached = null;
         public Type ModType
-        {
-            get
+		{
+			get
+			{
+				if (_modeTypeCached == null || (_modeTypeCached != null && _modeTypeCached.FullName != modTypeName))
+				{
+                    _modeTypeCached = TypeUtilities.NameToType(modTypeName, modAssemblyName);
+                }
+                return _modeTypeCached;
+			}
+		}
+        public string ModName => ModType.Name;
+        public string ModAssemblyName => modAssemblyName;
+        public bool Enabled => initialized && ModType != null;
+        public IEnumerable<UnityEngine.Object> Features => features;
+        public int FeatureCount => features.Count;
+
+        public void EnableRegistry()
+		{
+            if (initialized)
             {
-                if (assemblyNames == null)
-                {
-                    assemblyNames = new Dictionary<string, Assembly>();
-                    foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-                    {
-                        assemblyNames.Add(assembly.GetName().Name, assembly);
-                    }
-                    AppDomain.CurrentDomain.AssemblyLoad += NewAssemblyLoaded;
-                }
-                if (modType == null || modType.FullName != modTypeName)
-                {
-                    modType = assemblyNames[modAssemblyName].GetType(modTypeName);
-                }
-                return modType;
+                return;
+            }
+            initialized = true;
+            allRegistries.Add(this);
+            ExecuteAttribute<OnRegistryLoadAttribute>(this);
+
+            foreach (var feature in features)
+            {
+                ExecuteAttribute<OnFeatureLoadAttribute>(feature);
             }
         }
 
-        private static void NewAssemblyLoaded(object sender, AssemblyLoadEventArgs args)
-        {
-            if (!assemblyNames.ContainsKey(args.LoadedAssembly.GetName().Name))
-            {
-                assemblyNames.Add(args.LoadedAssembly.GetName().Name, args.LoadedAssembly);
-            }
-        }
-
-        /// <summary>
-        /// Initializes the Registry. This is automatically called when the bound mod is loaded
-        /// </summary>
-        public void Initialize()
-        {
+        public void DisableRegistry()
+		{
             if (!initialized)
             {
-                WeaverLog.Log("Loading Registry = " + RegistryName + " for mod = " + ModName);
-                //initialized = true;
-                AllRegistries.Add(this);
-                if (RegistryEnabled)
+                return;
+            }
+            try
+            {
+                foreach (var feature in features)
                 {
-                    ActiveRegistries.Add(this);
+                    ExecuteAttribute<OnFeatureUnloadAttribute>(feature);
                 }
-               // WeaverLog.Log("Feature Count = " + featuresRaw.Count);
-                foreach (var feature in featuresRaw)
-                {
-                    //WeaverLog.Log("Feature = " + feature);
-                    if (feature is IFeature && feature is IOnFeatureLoad)
-                    {
-                        //WeaverLog.Log("Loading Feature: " + feature);
-                        try
-                        {
-                            ((IOnFeatureLoad)feature).OnFeatureLoad(this);
-                        }
-                        catch (Exception e)
-                        {
-                            WeaverLog.LogError("Registry Load Error: " + e);
-                        }
-                    }
-                }
-               // WeaverLog.Log("THIS = " + this);
-                RunRegistryLoadFunctions(this);
+                ExecuteAttribute<OnRegistryUnloadAttribute>(this);
+                allRegistries.Remove(this);
+            }
+            finally
+			{
+                initialized = false;
             }
         }
 
-        private static void RunRegistryLoadFunctions(Registry registry)
+        static void ExecuteAttribute<AttrType>(object parameter) where AttrType : PriorityAttribute
         {
-            var registryMethods = ReflectionUtilities.GetMethodsWithAttribute<OnRegistryLoadAttribute>().ToList();
+            var methods = ReflectionUtilities.GetMethodsWithAttribute<AttrType>().ToList();
 
-            registryMethods.Sort(new PriorityAttribute.PairSorter<OnRegistryLoadAttribute>());
+            methods.Sort(new PriorityAttribute.PairSorter<AttrType>());
 
-            var param = new object[] { registry };
+            var param = new object[] { parameter };
 
-
-            foreach (var method in registryMethods)
+            foreach (var method in methods)
             {
+                var parameters = method.Item1.GetParameters();
+
                 try
                 {
-                    method.Item1.Invoke(null, param);
+                    var paramCount = parameters.GetLength(0);
+                    if (paramCount == 0)
+                    {
+                        method.Item1.Invoke(null,null);
+                    }
+					else if (paramCount == 1)
+					{
+                        var paramType = parameters[0].ParameterType;
+						if (paramType.IsAssignableFrom(parameter.GetType()))
+						{
+                            method.Item1.Invoke(null, param);
+                        }
+                    }
                 }
                 catch (Exception e)
                 {
                     WeaverLog.LogError("Error Running Function: " + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
-                    WeaverLog.LogError(e);
+                    WeaverLog.LogException(e);
                 }
             }
         }
 
-        public override bool Equals(object other)
-        {
-            if (other is Registry)
-            {
-                var otherReg = (Registry)other;
-                return modName == otherReg.modName && modAssemblyName == otherReg.modAssemblyName && modTypeName == otherReg.modTypeName && registryName == otherReg.registryName;
-            }
-            return base.Equals(other);
-        }
-
-        public override int GetHashCode()
-        {
-            int hash = 0;
-			Utilities.HashUtilities.AdditiveHash(ref hash, modName);
-            Utilities.HashUtilities.AdditiveHash(ref hash, modAssemblyName);
-            Utilities.HashUtilities.AdditiveHash(ref hash, modTypeName);
-            Utilities.HashUtilities.AdditiveHash(ref hash, registryName);
-            return hash;
-        }
-
-        public override string ToString()
-        {
-            return registryName;
-        }
-
-
-        static HashSet<Registry> ActiveRegistries = new HashSet<Registry>();
-        static HashSet<Registry> AllRegistries = new HashSet<Registry>();
-
-
         /// <summary>
         /// Goes through all of the loaded Registries, and find the specified features
         /// </summary>
-        /// <typeparam name="T">The type of features to look for. Using <see cref="IFeature"/> retrieves all features</typeparam>
-        /// <returns>Returns an Itereator with all the features in it</returns>
+        /// <typeparam name="T">The type of features to look for</typeparam>
+        /// <returns>Returns an iterator with all the features in it</returns>
         public static IEnumerable<T> GetAllFeatures<T>() where T : class
         {
             return GetAllFeatures<T>(f => true);
@@ -266,17 +140,15 @@ namespace WeaverCore
         /// <summary>
         /// Goes through all of the loaded Registries, and find the specified features
         /// </summary>
-        /// <typeparam name="T">The type of features to look for. Using <see cref="IFeature"/> retrieves all features</typeparam>
-        /// <param name="predicate">A predicate function used to narrow down the feature search even further</param>
-        /// <returns>Returns an Itereator with all the features in it</returns>
+        /// <typeparam name="T">The type of features to look for</typeparam>
+        /// <param name="predicate">A predicate used to only return the features that satisfy the predicate condition</param>
+        /// <returns>Returns an iterator with all the features in it</returns>
         public static IEnumerable<T> GetAllFeatures<T>(Func<T, bool> predicate) where T : class
         {
-            foreach (var registry in ActiveRegistries)
+            foreach (var registry in AllRegistries)
             {
-                //WeaverLog.Log("Active Registry = " + registry.registryName);
-                if (registry != null && registry.registryEnabled)
+                if (registry != null && registry.Enabled)
                 {
-                    //Debugger.Log("B");
                     foreach (var result in registry.GetFeatures(predicate))
                     {
                         yield return result;
@@ -286,10 +158,10 @@ namespace WeaverCore
         }
 
         /// <summary>
-        /// Searches the registry and finds the specifed features
+        /// Searches the registry and finds the specified features
         /// </summary>
-        /// <typeparam name="T">The type of features to look for. Using <see cref="IFeature"/> retrieves all features</typeparam>
-        /// <returns>Returns an Itereator with all the features in it</returns>
+        /// <typeparam name="T">The type of features to look for</typeparam>
+        /// <returns>Returns an iterator with all the features in it</returns>
         public IEnumerable<T> GetFeatures<T>() where T : class
         {
             return GetFeatures<T>(f => true);
@@ -298,25 +170,17 @@ namespace WeaverCore
         /// <summary>
         /// Searches the registry and finds the specifed features
         /// </summary>
-        /// <typeparam name="T">The type of features to look for. Using <see cref="IFeature"/> retrieves all features</typeparam>
-        /// <param name="predicate">A predicate function used to narrow down the feature search even further</param>
+        /// <typeparam name="T">The type of features to look for</typeparam>
+        /// <param name="predicate">A predicate used to only return the features that satisfy the predicate condition</param>
         /// <returns>Returns an Itereator with all the features in it</returns>
         public IEnumerable<T> GetFeatures<T>(Func<T, bool> predicate) where T : class
         {
-            // Debugger.Log("Features Raw = " + featuresRaw);
-            foreach (var rawFeature in featuresRaw)
+            foreach (var feature in features)
             {
-                //WeaverLog.Log("Raw Feature Type = " + rawFeature.GetType());
-                //WeaverLog.Log("Raw Feature = " + rawFeature);
-                if (rawFeature != null && rawFeature is IFeature)
-                {
-                    var feature = (IFeature)rawFeature;
-                   // WeaverLog.Log("Feature 2 = " + feature);
-                    //WeaverLog.Log("Destination Type = " + typeof(T).FullName);
-                    //WeaverLog.Log("Can Convert to type = " + typeof(T).IsAssignableFrom(feature.GetType()));
+				if (feature != null)
+				{
                     if (typeof(T).IsAssignableFrom(feature.GetType()) && predicate(feature as T))
                     {
-                        //WeaverLog.Log("Yielding Feature");
                         yield return feature as T;
                     }
                 }
@@ -328,73 +192,83 @@ namespace WeaverCore
         /// </summary>
         /// <typeparam name="T">The type of feature to add</typeparam>
         /// <param name="feature">The feature to be added</param>
-        public void AddFeature<T>(T feature) where T : IFeature
+        public void AddFeature<T>(T feature) where T : UnityEngine.Object
         {
-            if (!(feature is UnityEngine.Object))
-            {
-                return;
-            }
-            features.Add(new FeatureSet()
-            {
-                feature = feature as UnityEngine.Object,
-                AssemblyName = typeof(T).Assembly.FullName,
-                TypeName = typeof(T).FullName
-            });
-            featuresRaw.Add(feature as UnityEngine.Object);
+            features.Add(feature);
+            ExecuteAttribute<OnFeatureLoadAttribute>(feature);
         }
 
-        /// <summary>
-        /// Removes a feature from the registry
-        /// </summary>
-        /// <typeparam name="T">THe type of feature to add</typeparam>
-        /// <param name="feature">The feature to be added</param>
-        /// <returns>Returns whether the feature has been removed or not</returns>
-        public bool Remove<T>(T feature) where T : IFeature
-        {
-            if (!(feature is UnityEngine.Object))
-            {
-                return false;
-            }
 
-            var realFeature = feature as UnityEngine.Object;
+		/// <summary>
+		/// Removes a feature from the registry
+		/// </summary>
+		/// <typeparam name="T">The type of feature to remove</typeparam>
+		/// <param name="feature">The feature to be removed</param>
+		/// <returns>Returns whether the feature has been removed or not</returns>
+		public bool Remove<T>(T feature) where T : UnityEngine.Object
+		{
+            ExecuteAttribute<OnFeatureUnloadAttribute>(feature);
+            return features.Remove(feature);
+        }
 
+		/// <summary>
+		/// Removes some features from the registry
+		/// </summary>
+		/// <param name="predicate">A predicate used to determine which feature to remove</param>
+		/// <returns>Returns how many features where removed</returns>
+		public int Remove(Predicate<UnityEngine.Object> predicate)
+		{
+            int removedAmount = 0;
+			for (int i = features.Count - 1; i >= 0; i--)
+			{
+				if (predicate(features[i]))
+				{
+                    removedAmount++;
+                    ExecuteAttribute<OnFeatureUnloadAttribute>(features[i]);
+                    features.RemoveAt(i);
+				}
+			}
+            return removedAmount;
+        }
+
+		/// <summary>
+		/// Removes all features of the specified type
+		/// </summary>
+		/// <typeparam name="T">The type of features to remove</typeparam>
+		/// <returns>Returns how many features where removed</returns>
+		public int RemoveAllFeatures<T>()
+		{
+            int removedAmount = 0;
             for (int i = features.Count - 1; i >= 0; i--)
             {
-                if (features[i].feature == realFeature)
+                if (features[i] is T)
                 {
+                    removedAmount++;
+                    ExecuteAttribute<OnFeatureUnloadAttribute>(features[i]);
                     features.RemoveAt(i);
-                    featuresRaw.RemoveAt(i);
-                    return true;
                 }
             }
-            return false;
+            return removedAmount;
         }
 
         /// <summary>
-        /// Removes a feature from the registry
+        /// Removes all features from the registry
         /// </summary>
-        /// <param name="predicate">A predicate used to determine which feature to remove. Only 1 feature gets removed</param>
-        /// <returns>Returns whether the feature has been removed or not</returns>
-        public bool Remove(Func<IFeature, bool> predicate)
+		public void RemoveAllFeatures()
         {
-            for (int i = features.Count - 1; i >= 0; i--)
-            {
-                if (predicate(features[i].feature as IFeature))
-                {
-                    features.RemoveAt(i);
-                    featuresRaw.RemoveAt(i);
-                    return true;
-                }
+			for (int i = features.Count - 1; i >= 0; i--)
+			{
+                ExecuteAttribute<OnFeatureUnloadAttribute>(features[i]);
             }
-            return false;
+            features.Clear();
         }
 
-        /// <summary>
-        /// Find a loaded registry pertaining to a mod
-        /// </summary>
-        /// <param name="ModType">The mod that is associated with the registry</param>
-        /// <returns>Returns the registry that is bound to the mod. Returns null if no registry is found</returns>
-        public static Registry FindModRegistry(Type ModType)
+		/// <summary>
+		/// Find a loaded registry pertaining to a mod
+		/// </summary>
+		/// <param name="ModType">The mod that is associated with the registry</param>
+		/// <returns>Returns the registry that is bound to the mod. Returns null if no registry is found</returns>
+		public static Registry FindModRegistry(Type ModType)
         {
             foreach (var registry in AllRegistries)
             {

@@ -8,7 +8,7 @@ using WeaverCore.Attributes;
 namespace WeaverCore.Features
 {
 	[ShowFeature]
-	public class CanvasExtension : Feature
+	public class CanvasExtension : MonoBehaviour
 	{
 		[SerializeField]
 		bool addedOnStartup = false;

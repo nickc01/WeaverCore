@@ -305,7 +305,10 @@ namespace WeaverCore.Editor.Compilation
 			{
 				task = new BuildTask<BuildOutput>();
 			}
-			yield return BuildPartialModAsmRoutine(outputPath, task);
+
+			var modBuildLocation = new FileInfo(outputPath.Directory.CreateSubdirectory(BuildScreen.BuildSettings.ModName).AddSlash() + BuildScreen.BuildSettings.ModName + ".dll");
+
+			yield return BuildPartialModAsmRoutine(modBuildLocation, task);
 			if (!task.Result.Success)
 			{
 				yield break;
@@ -316,9 +319,9 @@ namespace WeaverCore.Editor.Compilation
 			{
 				yield break;
 			}
-			var weaverCoreOutputLocation = PathUtilities.AddSlash(outputPath.Directory.FullName) + "WeaverCore.dll";
+			var weaverCoreOutputLocation = outputPath.Directory.CreateSubdirectory("WeaverCore").AddSlash() + "WeaverCore.dll";
 			File.Copy(WeaverCoreBuildLocation.FullName, weaverCoreOutputLocation, true);
-			BundleTools.BuildAndEmbedAssetBundles(outputPath, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(StartHollowKnight)));
+			BundleTools.BuildAndEmbedAssetBundles(modBuildLocation, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(StartHollowKnight)));
 		}
 
 

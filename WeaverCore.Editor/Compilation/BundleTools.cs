@@ -274,7 +274,7 @@ namespace WeaverCore.Editor.Compilation
 			var bundleBuildParametersT = scriptBuildAssembly.GetType("UnityEditor.Build.Pipeline.BundleBuildParameters");
 
 			var buildParameters = Activator.CreateInstance(bundleBuildParametersT, new object[] { target, group, outputDirectory.FullName });
-			bundleBuildParametersT.GetProperty("BundleCompression").SetValue(buildParameters,UnityEngine.BuildCompression.LZ4);
+			bundleBuildParametersT.GetProperty("BundleCompression").SetValue(buildParameters,UnityEngine.BuildCompression.Uncompressed);
 
 			var bundleBuildContentT = scriptBuildAssembly.GetType("UnityEditor.Build.Pipeline.BundleBuildContent");
 
@@ -877,7 +877,7 @@ namespace WeaverCore.Editor.Compilation
 				using (FileStream ms = File.OpenWrite(bundle.File.FullName + ".edit"))
 				using (AssetsFileWriter aw = new AssetsFileWriter(ms))
 				{
-					bun.file.Pack(modifiedBundle.reader, aw, AssetBundleCompressionType.LZ4);
+					bun.file.Pack(modifiedBundle.reader, aw, AssetBundleCompressionType.LZMA);
 				}
 			}
 

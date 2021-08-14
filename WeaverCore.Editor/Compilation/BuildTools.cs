@@ -376,8 +376,10 @@ namespace WeaverCore.Editor.Compilation
 			{
 				task = new BuildTask<BuildOutput>();
 			}
-			//Debug.Log("Building Assembly-CSharp.dll");
-			yield return BuildPartialModAsmRoutine(outputPath, task);
+
+			var modBuildLocation = new FileInfo(outputPath.Directory.CreateSubdirectory(BuildScreen.BuildSettings.ModName).AddSlash() + BuildScreen.BuildSettings.ModName + ".dll");
+
+			yield return BuildPartialModAsmRoutine(modBuildLocation, task);
 			if (!task.Result.Success)
 			{
 				//Debug.Log("Failed to build Assembly-CSharp.dll");
@@ -392,11 +394,9 @@ namespace WeaverCore.Editor.Compilation
 				//Debug.Log("Failed to build WeaverCore.Game.dll");
 				yield break;
 			}
-			//Debug.Log("Done Building WeaverCore.Game.dll");
-			var weaverCoreOutputLocation = PathUtilities.AddSlash(outputPath.Directory.FullName) + "WeaverCore.dll";
+			var weaverCoreOutputLocation = outputPath.Directory.CreateSubdirectory("WeaverCore").AddSlash() + "WeaverCore.dll";
 			File.Copy(WeaverCoreBuildLocation.FullName, weaverCoreOutputLocation, true);
-			//Debug.Log("Starting Bundle Build Routines");
-			BundleTools.BuildAndEmbedAssetBundles(outputPath, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(StartHollowKnight)));
+			BundleTools.BuildAndEmbedAssetBundles(modBuildLocation, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(StartHollowKnight)));
 		}
 
 

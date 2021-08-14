@@ -28,15 +28,16 @@ namespace WeaverCore
 #if UNITY_EDITOR
                 return _loadedMods;
 #else
-				if (modLoaderType == null)
+                return ModHooks.GetAllMods();
+			    /*if (modLoaderType == null)
 				{
                     modLoaderType = typeof(IMod).Assembly.GetType("Modding.ModLoader");
                     loadedMods = modLoaderType.GetField("LoadedMods", BindingFlags.Public | BindingFlags.Static);
                 }
-                return (List<IMod>)loadedMods.GetValue(null);
+                return (List<IMod>)loadedMods.GetValue(null);*/
 #endif
             }
-		}
+        }
 
 
         //As soon as any WeaverCore mod loads, the init functions will be called

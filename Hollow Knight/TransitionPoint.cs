@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 // Token: 0x02000421 RID: 1057
+[RequireComponent(typeof(BoxCollider2D))]
 public class TransitionPoint : MonoBehaviour
 {
 	// Token: 0x14000031 RID: 49

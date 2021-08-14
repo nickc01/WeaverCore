@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -95,6 +98,26 @@ public class SceneLoad
 		this.runner.StartCoroutine(this.BeginRoutine());
 	}
 
+	static string MakePathRelative(string relativeTo, string path)
+	{
+		if (relativeTo.Last() != '\\')
+		{
+			relativeTo += "\\";
+		}
+
+		Uri fullPath = new Uri(path, UriKind.Absolute);
+		Uri relRoot = new Uri(relativeTo, UriKind.Absolute);
+
+		return relRoot.MakeRelativeUri(fullPath).ToString().Replace("%20"," ");
+	}
+
+	static string ConvertToProjectPath(string path)
+	{
+		var relative = MakePathRelative(new DirectoryInfo("Assets\\..").FullName, path);
+		relative = relative.Replace('\\', '/');
+		return relative;
+	}
+
 	// Token: 0x06001BDD RID: 7133 RVA: 0x000842EE File Offset: 0x000824EE
 	private IEnumerator BeginRoutine()
 	{
@@ -107,7 +130,30 @@ public class SceneLoad
 		}
 		this.RecordEndTime(SceneLoad.Phases.FetchBlocked);
 		this.RecordBeginTime(SceneLoad.Phases.Fetch);
+#if UNITY_EDITOR
+		yield return null;
+		/*foreach (var scene in AssetDatabase.FindAssets("*.unity"))
+		{
+			Debug.Log("Scene = " + AssetDatabase.GUIDToAssetPath(scene));
+		}*/
+		string scenePathToLoad = null;
+		foreach (var sceneFile in new DirectoryInfo("Assets").GetFiles("*.unity",SearchOption.AllDirectories))
+		{
+			var assetPath = ConvertToProjectPath(sceneFile.FullName);
+			if (assetPath.Contains(targetSceneName))
+			{
+				scenePathToLoad = assetPath;
+				break;
+			}
+		}
+		AsyncOperation loadOperation = UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(scenePathToLoad ?? targetSceneName, new LoadSceneParameters
+		{
+			loadSceneMode = LoadSceneMode.Additive
+		});
+#else
 		AsyncOperation loadOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(this.targetSceneName, LoadSceneMode.Additive);
+#endif
+		//
 		loadOperation.allowSceneActivation = false;
 		while (loadOperation.progress < 0.9f)
 		{
@@ -145,8 +191,10 @@ public class SceneLoad
 				Debug.LogException(exception2);
 			}
 		}
+		Debug.Log("Progress = " + loadOperation.progress);
 		loadOperation.allowSceneActivation = true;
 		yield return loadOperation;
+		Debug.Log("Progress = " + loadOperation.progress);
 		this.RecordEndTime(SceneLoad.Phases.Activation);
 		if (this.ActivationComplete != null)
 		{

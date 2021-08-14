@@ -258,6 +258,7 @@ public class GameManager : MonoBehaviour
 	// Token: 0x06000F5E RID: 3934 RVA: 0x0004AC38 File Offset: 0x00048E38
 	private void Awake()
 	{
+		gameObject.tag = "GameManager";
 		if (GameManager._instance == null)
 		{
 			GameManager._instance = this;
@@ -2082,9 +2083,64 @@ public class GameManager : MonoBehaviour
 		return null;
 	}*/
 
+	static Type FindType(string assemblyName, string typeName)
+	{
+		foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+		{
+			if (asm.GetName().Name == assemblyName)
+			{
+				return asm.GetType(typeName);
+			}
+		}
+		return null;
+	}
+
 	// Token: 0x06000FEC RID: 4076 RVA: 0x0004CD14 File Offset: 0x0004AF14
 	public void RefreshTilemapInfo(string targetScene)
 	{
+		Debug.Log("Target Scene = " + targetScene);
+		var sceneManagerType = FindType("WeaverCore", "WeaverCore.Components.WeaverSceneManager");
+
+		for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
+		{
+			var scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+			if (scene.name == targetScene)
+			{
+				foreach (var gm in scene.GetRootGameObjects())
+				{
+					Debug.Log("Root Object = " + gm.gameObject);
+					dynamic manager = gm.GetComponent(sceneManagerType);
+					if (manager != null)
+					{
+						Debug.Log("Found Scene Manager = " + gm.name);
+						Rect dimensions = manager.SceneDimensions;
+						sceneWidth = dimensions.width;
+						sceneHeight = dimensions.height;
+						return;
+					}
+				}
+			}
+		}
+
+		foreach (dynamic manager in FindObjectsOfType(sceneManagerType))
+		{
+			GameObject gm = manager.gameObject;
+			if (gm.scene.name == targetScene)
+			{
+				Rect dimensions = manager.SceneDimensions;
+				sceneWidth = dimensions.width;
+				sceneHeight = dimensions.height;
+				return;
+			}
+		}
+
+		//If no WeaverSceneManager was found
+		Debug.LogError("No WeaverSceneManager was found in the scene!");
+		/*for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
+		{
+			Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+			GameObject[] rootGameObjects = scene.GetRootGameObjects();
+		}*/
 		//TODO - FIND WORKAROUND
 		/*tk2dTileMap tk2dTileMap = null;
 		int num = 0;

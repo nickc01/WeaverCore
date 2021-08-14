@@ -29,6 +29,16 @@ public class SceneManager : MonoBehaviour
 		RenderSettings.ambientIntensity = 1f;
 	}
 
+#if UNITY_EDITOR
+	public virtual void OnValidate()
+	{
+		if (!Application.isPlaying)
+		{
+			gameObject.tag = "SceneManager";
+		}
+	}
+#endif
+
 	private void Update()
 	{
 		/*if (gameplayScene && !heroInfoSent && heroCtrl != null && (heroCtrl.heroLight == null || heroCtrl.heroLight.material == null))

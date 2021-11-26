@@ -18,9 +18,15 @@ public class GameCameras : MonoBehaviour
 				GameCameras._instance = UnityEngine.Object.FindObjectOfType<GameCameras>();
 				if (GameCameras._instance == null)
 				{
-					Debug.LogError("Couldn't find GameCameras, make sure one exists in the scene.");
+					Component cam = DynAsm.WeaverCore_ASM.WeaverCore.WeaverCamera.Instance;
+					GameCameras._instance = cam.GetComponentInParent<GameCameras>();
+					if (GameCameras._instance == null)
+					{
+						Debug.LogError("Couldn't find GameCameras, make sure one exists in the scene.");
+						return null;
+					}
 				}
-				else
+				if (Application.isPlaying)
 				{
 					UnityEngine.Object.DontDestroyOnLoad(GameCameras._instance.gameObject);
 				}
@@ -42,6 +48,8 @@ public class GameCameras : MonoBehaviour
 			UnityEngine.Object.DestroyImmediate(base.gameObject);
 			return;
 		}
+		cameraController.transform.position += transform.localPosition;
+		transform.localPosition = default;
 	}
 
 	public void SceneInit()

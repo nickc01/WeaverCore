@@ -7,6 +7,7 @@ using WeaverCore.Enums;
 
 namespace WeaverCore
 {
+
 	[CreateAssetMenu(fileName = "MusicPack",menuName = "Music Pack")]
 	public class MusicPack : ScriptableObject
 	{

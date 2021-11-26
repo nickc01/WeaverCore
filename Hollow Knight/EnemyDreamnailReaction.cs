@@ -41,10 +41,11 @@ public class EnemyDreamnailReaction : MonoBehaviour
 			bool flag = HeroController.instance.transform.localScale.x <= 0f;
 			component.RecoilByDirection((!flag) ? 2 : 0, 2f);
 		}
-		dynamic flasher = GetComponent("WeaverCore.Components.SpriteFlasher");
+		Component flasher = GetComponent("WeaverCore.Components.SpriteFlasher");
 		if (flasher != null)
 		{
-			flasher.flashDreamImpact();
+			//flasher.flashDreamImpact();
+			flasher.SendMessage("flashDreamImpact");
 		}
 		//SpriteFlash component2 = base.gameObject.GetComponent<SpriteFlash>();
 		//if (component2 != null)

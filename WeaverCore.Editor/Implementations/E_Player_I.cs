@@ -12,21 +12,22 @@ namespace WeaverCore.Editor.Implementations
 {
 	public class E_Player_I : Player_I
     {
-        int colliders = 0;
+        //int colliders = 0;
 
-        int possibleJumps = 2;
+        //int possibleJumps = 2;
 
-        int jumpCounter = 0;
+        //int jumpCounter = 0;
 
-        Rigidbody2D rigidBody;
+        //Rigidbody2D rigidBody;
+        /*HeroController controller;
 
         bool OnGround
         {
             get
             {
-                return colliders > 0;
+                return controller.cState.onGround;
             }
-        }
+        }*/
 
         public override bool HasDreamNail
         {
@@ -59,17 +60,22 @@ namespace WeaverCore.Editor.Implementations
             }
         }
 
-		private void Awake()
+		//private void Awake()
+		//{
+            //controller = GetComponent<HeroController>();
+        //}
+
+		/*private void Awake()
 		{
-			if (GetComponent<HeroController>() == null)
-			{
-                gameObject.AddComponent<HeroController>();
-			}
+			//if (GetComponent<HeroController>() == null)
+			//{
+            //    gameObject.AddComponent<HeroController>();
+			//}
 		}
 
 		void Start()
         {
-            rigidBody = GetComponent<Rigidbody2D>();
+           //rigidBody = GetComponent<Rigidbody2D>();
         }
 
         void Update()
@@ -115,9 +121,9 @@ namespace WeaverCore.Editor.Implementations
             {
                 colliders--;
             }
-        }
+        }*/
 
-        public override void Initialize()
+		public override void Initialize()
         {
             gameObject.layer = LayerMask.NameToLayer("Player");
            //Debugger.Log("PLAYER START EDITOR");

@@ -9,6 +9,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Game.Patches
 {
+
 	class EnemyDreamNailReaction
 	{
 		[OnInit]

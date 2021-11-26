@@ -430,6 +430,7 @@
     <Compile Include="Implementations\G_GeoCounter_I.cs" />
     <Compile Include="Implementations\G_HunterJournal_I.cs" />
     <Compile Include="Implementations\G_Language_I.cs" />
+    <Compile Include="Implementations\G_PlayerInput_I.cs" />
     <Compile Include="Implementations\G_PlayMaker_I.cs" />
     <Compile Include="Implementations\G_SaveSpecificSettings_I.cs" />
     <Compile Include="Implementations\G_Shaker_I.cs" />
@@ -439,7 +440,11 @@
     <Compile Include="Misc\EnemyDeathEffectsProxy.cs" />
     <Compile Include="Misc\HealthManagerProxy.cs" />
     <Compile Include="Misc\SettingStorage.cs" />
-    <Compile Include="Patches\GameManager_SetState.cs" />
+    <Compile Include="Patches\CameraTargetPatches.cs" />
+    <Compile Include="Patches\GameManagerPatch.cs" />
+    <Compile Include="Patches\HUDCameraPatch.cs" />
+    <Compile Include="Patches\SceneManagerPatch.cs" />
+    <Compile Include="Patches\TextMeshPro-Patch.cs" />
     <Compile Include="Patches\TK2DCameraPatch.cs" />
     <Compile Include="Patches\TMP_TextPatch.cs" />
     <Compile Include="Implementations\G_UnboundCoroutine_I.cs" />
@@ -458,13 +463,19 @@
     <Compile Include="GameInitializer.cs" />
     <Compile Include="Misc\Misc.cs" />
     <Compile Include="Patches\AudioPatchTest.cs" />
-    <Compile Include="Patches\CameraControllerPatch.cs" />
+    <Compile Include="Patches\CameraControllerPatches.cs" />
     <Compile Include="Patches\EnemyDreamNailReaction.cs" />
     <Compile Include="Patches\EventRegistryPatch.cs" />
     <Compile Include="Patches\HealthManager-Enemy.cs" />
     <Compile Include="Patches\HeroController-Player.cs" />
     <Compile Include="Patches\HitTakerPatch.cs" />
+    <Compile Include="Patches\UIManagerPatch.cs" />
+    <Compile Include="Patches\UnitySceneManagerPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\DumpAnimationMapsTool.cs" />
+    <Compile Include="Tools\DumpSpriteMapsTool.cs" />
+    <Compile Include="Tools\DumpSpritesTool.cs" />
+    <Compile Include="Tools\ToolsCommon.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

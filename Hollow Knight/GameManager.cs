@@ -15,6 +15,8 @@ using UnityEngine.SceneManagement;
 // Token: 0x020002D4 RID: 724
 public class GameManager : MonoBehaviour
 {
+
+	internal Rect SceneDimensions { get; private set; }
 	// Token: 0x170001B2 RID: 434
 	// (get) Token: 0x06000F29 RID: 3881 RVA: 0x0004A69F File Offset: 0x0004889F
 	public bool TimeSlowed
@@ -226,6 +228,10 @@ public class GameManager : MonoBehaviour
 	{
 		get
 		{
+			if (!atteptedEditorLoad)
+			{
+				LoadGameManagerEditor();
+			}
 			if (GameManager._instance == null)
 			{
 				GameManager._instance = UnityEngine.Object.FindObjectOfType<GameManager>();
@@ -233,7 +239,7 @@ public class GameManager : MonoBehaviour
 				{
 					if (Application.isPlaying)
 					{
-						Debug.LogError("Couldn't find a Game Manager, make sure one exists in the scene.");
+						//Debug.LogError("Couldn't find a Game Manager, make sure one exists in the scene.");
 					}
 				}
 				else if (Application.isPlaying)
@@ -251,8 +257,33 @@ public class GameManager : MonoBehaviour
 	{
 		get
 		{
+			if (!atteptedEditorLoad)
+			{
+				LoadGameManagerEditor();
+			}
 			return GameManager._instance;
 		}
+	}
+
+	static bool atteptedEditorLoad = false;
+	static void LoadGameManagerEditor()
+	{
+		atteptedEditorLoad = true;
+#if UNITY_EDITOR
+		var guids = UnityEditor.AssetDatabase.FindAssets("GameManager");
+		foreach (var id in guids)
+		{
+			var path = UnityEditor.AssetDatabase.GUIDToAssetPath(id);
+			if (path.Contains("WeaverCore.Editor"))
+			{
+				var asset = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(path);
+				if (asset != null)
+				{
+					_instance = GameObject.Instantiate(asset).GetComponentInChildren<GameManager>();
+				}
+			}
+		}
+#endif
 	}
 
 	// Token: 0x06000F5E RID: 3934 RVA: 0x0004AC38 File Offset: 0x00048E38
@@ -2100,6 +2131,7 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("Target Scene = " + targetScene);
 		var sceneManagerType = FindType("WeaverCore", "WeaverCore.Components.WeaverSceneManager");
+		var sceneDimProp = sceneManagerType.GetProperty("SceneDimensions");
 
 		for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
 		{
@@ -2109,11 +2141,12 @@ public class GameManager : MonoBehaviour
 				foreach (var gm in scene.GetRootGameObjects())
 				{
 					Debug.Log("Root Object = " + gm.gameObject);
-					dynamic manager = gm.GetComponent(sceneManagerType);
+					Component manager = gm.GetComponent(sceneManagerType);
 					if (manager != null)
 					{
 						Debug.Log("Found Scene Manager = " + gm.name);
-						Rect dimensions = manager.SceneDimensions;
+						Rect dimensions = (Rect)sceneDimProp.GetValue(manager);
+						SceneDimensions = dimensions;
 						sceneWidth = dimensions.width;
 						sceneHeight = dimensions.height;
 						return;
@@ -2122,12 +2155,13 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-		foreach (dynamic manager in FindObjectsOfType(sceneManagerType))
+		foreach (Component manager in FindObjectsOfType(sceneManagerType))
 		{
 			GameObject gm = manager.gameObject;
 			if (gm.scene.name == targetScene)
 			{
-				Rect dimensions = manager.SceneDimensions;
+				Rect dimensions = (Rect)sceneDimProp.GetValue(manager);
+				SceneDimensions = dimensions;
 				sceneWidth = dimensions.width;
 				sceneHeight = dimensions.height;
 				return;
@@ -2852,7 +2886,7 @@ public class GameManager : MonoBehaviour
 				//this.gameCams.StopCameraShake();
 				//this.inputHandler.PreventPause();
 				//this.inputHandler.StopUIInput();
-				this.actorSnapshotPaused.TransitionTo(0f);
+				//this.actorSnapshotPaused.TransitionTo(0f);
 				this.isPaused = true;
 				this.SetState(GameState.PAUSED);
 				//this.ui.AudioGoToPauseMenu(0.2f);
@@ -2870,7 +2904,7 @@ public class GameManager : MonoBehaviour
 			{
 				//this.gameCams.ResumeCameraShake();
 				//this.inputHandler.PreventPause();
-				this.actorSnapshotUnpaused.TransitionTo(0f);
+				//this.actorSnapshotUnpaused.TransitionTo(0f);
 				this.isPaused = false;
 				//this.ui.AudioGoToGameplay(0.2f);
 				//this.ui.SetState(UIState.PLAYING);
@@ -3035,8 +3069,8 @@ public class GameManager : MonoBehaviour
 	public IEnumerator RunStartNewGame()
 	{
 		this.cameraCtrl.FadeOut(CameraFadeType.START_FADE);
-		this.noMusicSnapshot.TransitionTo(2f);
-		this.noAtmosSnapshot.TransitionTo(2f);
+		//this.noMusicSnapshot.TransitionTo(2f);
+		//this.noAtmosSnapshot.TransitionTo(2f);
 		yield return new WaitForSeconds(2.6f);
 		//this.ui.MakeMenuLean();
 		this.BeginSceneTransition(new GameManager.SceneLoadInfo
@@ -3062,8 +3096,8 @@ public class GameManager : MonoBehaviour
 	public IEnumerator RunContinueGame()
 	{
 		this.cameraCtrl.FadeOut(CameraFadeType.START_FADE);
-		this.noMusicSnapshot.TransitionTo(2f);
-		this.noAtmosSnapshot.TransitionTo(2f);
+		//this.noMusicSnapshot.TransitionTo(2f);
+		//this.noAtmosSnapshot.TransitionTo(2f);
 		yield return new WaitForSeconds(2.6f);
 		//this.audioManager.ApplyMusicCue(this.noMusicCue, 0f, 0f, false);
 		//this.ui.MakeMenuLean();
@@ -3113,8 +3147,8 @@ public class GameManager : MonoBehaviour
 		}
 		cameraCtrl.FreezeInPlace(freezeTargetAlso: true);
 		cameraCtrl.FadeOut(CameraFadeType.JUST_FADE);
-		noMusicSnapshot.TransitionTo(1.5f);
-		noAtmosSnapshot.TransitionTo(1.5f);
+		//noMusicSnapshot.TransitionTo(1.5f);
+		//noAtmosSnapshot.TransitionTo(1.5f);
 		for (float timer = 0f; timer < 2f; timer += Time.unscaledDeltaTime)
 		{
 			yield return null;
@@ -3555,9 +3589,11 @@ public class GameManager : MonoBehaviour
 	private float entryDelay;
 
 	// Token: 0x04000FEC RID: 4076
+	[HideInInspector]
 	public float sceneWidth;
 
 	// Token: 0x04000FED RID: 4077
+	[HideInInspector]
 	public float sceneHeight;
 
 	// Token: 0x04000FEE RID: 4078
@@ -3585,6 +3621,7 @@ public class GameManager : MonoBehaviour
 	//public TimeScaleIndependentUpdate timeTool;
 
 	// Token: 0x04000FF7 RID: 4087
+	[HideInInspector]
 	public GameObject gameMap;
 
 	// Token: 0x04001000 RID: 4096
@@ -3602,6 +3639,7 @@ public class GameManager : MonoBehaviour
 	public const int NoSaveSlotID = -1;
 
 	// Token: 0x04001004 RID: 4100
+	[HideInInspector]
 	public int profileID;
 
 	// Token: 0x04001005 RID: 4101
@@ -3644,22 +3682,22 @@ public class GameManager : MonoBehaviour
 	private bool startedLanguageDisabled;
 
 	// Token: 0x04001013 RID: 4115
-	public AudioMixerSnapshot actorSnapshotUnpaused;
+	//public AudioMixerSnapshot actorSnapshotUnpaused;
 
 	// Token: 0x04001014 RID: 4116
-	public AudioMixerSnapshot actorSnapshotPaused;
+	//public AudioMixerSnapshot actorSnapshotPaused;
 
 	// Token: 0x04001015 RID: 4117
-	public AudioMixerSnapshot silentSnapshot;
+	//public AudioMixerSnapshot silentSnapshot;
 
 	// Token: 0x04001016 RID: 4118
-	public AudioMixerSnapshot noMusicSnapshot;
+	//public AudioMixerSnapshot noMusicSnapshot;
 
 	// Token: 0x04001017 RID: 4119
 	//public MusicCue noMusicCue;
 
 	// Token: 0x04001018 RID: 4120
-	public AudioMixerSnapshot noAtmosSnapshot;
+	//public AudioMixerSnapshot noAtmosSnapshot;
 
 	// Token: 0x04001023 RID: 4131
 	private bool hasFinishedEnteringScene;

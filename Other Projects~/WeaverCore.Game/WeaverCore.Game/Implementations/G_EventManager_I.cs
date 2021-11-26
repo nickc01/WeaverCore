@@ -13,6 +13,7 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Implementations
 {
+
 	public class G_EventManager_I : EventManager_I
 	{
 		static List<GameObject> ExcludedEventManagerObjects = new List<GameObject>();
@@ -35,8 +36,14 @@ namespace WeaverCore.Game.Implementations
 			{
 				if (PlayMakerFSM.FsmList.Count > 0)
 				{
-					foreach (var fsmComponent in PlayMakerFSM.FsmList)
+					//foreach (var fsmComponent in PlayMakerFSM.FsmList)
+					for (int i = PlayMakerFSM.FsmList.Count - 1; i >= 0; i--)
 					{
+						if (i >= PlayMakerFSM.FsmList.Count)
+						{
+							continue;
+						}
+						var fsmComponent = PlayMakerFSM.FsmList[i];
 						if (fsmComponent.Fsm != null)
 						{
 							customSource = source;

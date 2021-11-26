@@ -180,7 +180,25 @@ public class CameraLockArea : MonoBehaviour
 	// Token: 0x0600049D RID: 1181 RVA: 0x00016FB4 File Offset: 0x000151B4
 	private bool ValidateBounds()
 	{
-		if (cameraXMin == -1f)
+		var cameraBounds = GameManager.instance.SceneDimensions;
+
+		if (cameraXMin < cameraBounds.xMin)
+		{
+			cameraXMin = cameraBounds.xMin;
+		}
+		if (cameraXMax > cameraBounds.xMax)
+		{
+			cameraXMax = cameraBounds.xMax;
+		}
+		if (cameraYMin < cameraBounds.yMin)
+		{
+			cameraYMin = cameraBounds.yMin;
+		}
+		if (cameraYMax > cameraBounds.yMax)
+		{
+			cameraYMax = cameraBounds.yMax;
+		}
+		/*if (cameraXMin == -1f)
 		{
 			cameraXMin = 14.6f;
 		}
@@ -195,7 +213,7 @@ public class CameraLockArea : MonoBehaviour
 		if (cameraYMax == -1f)
 		{
 			cameraYMax = cameraCtrl.yLimit;
-		}
+		}*/
 		return cameraXMin != 0f || cameraXMax != 0f || cameraYMin != 0f || cameraYMax != 0f;
 	}
 
@@ -222,6 +240,11 @@ public class CameraLockArea : MonoBehaviour
 		{
 			yield return null;
 		}*/
+
+		while (cameraCtrl.sceneWidth == 0f)
+		{
+			yield return null;
+		}
 		if (!ValidateBounds())
 		{
 			Debug.LogError("Camera bounds are unspecified for " + name + ", please specify lock area bounds for this Camera Lock Area.");

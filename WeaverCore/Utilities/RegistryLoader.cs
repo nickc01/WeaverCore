@@ -74,7 +74,7 @@ namespace WeaverCore.Utilities
 			//WeaverLog.Log("Assembly = " + assembly);
 			//WeaverLog.Log("Assembly Null = " + (assembly != null));
 			var assemblyName = assembly.GetName().Name;
-			//WeaverLog.Log("Loading Embedded Registries for mod [" + modType.FullName + "]");
+			WeaverLog.Log("Loading Embedded Registries for [" + assemblyName + "]");
 			//if (!loaded)
 			//{
 			string extension = null;

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0cd7f19463d4d9d5b3a36b850823, type: 3}
   m_Name: LiberationSans SDF
   m_EditorClassIdentifier: 
-  hashCode: -425865553
+  hashCode: 231247347
   material: {fileID: 2565833734971123819}
   materialHashCode: -1590466748
   fontAssetType: 1
@@ -2343,7 +2343,12 @@ MonoBehaviour:
     AscII_Left: 0
     AscII_Right: 0
     XadvanceOffset: 0
-  fallbackFontAssets: []
+  fallbackFontAssets:
+  - {fileID: 11400000, guid: d821e29c947c03d4bafcda5691c11a71, type: 2}
+  - {fileID: 11400000, guid: c1afacdee4f90794e89c454f6930f7c0, type: 2}
+  - {fileID: 11400000, guid: f7f1fad0307467d45976bd86ebddd8b3, type: 2}
+  - {fileID: 11400000, guid: 8747ec9faedf0b7449f5db366fed40a4, type: 2}
+  - {fileID: 11400000, guid: 29666a9430ff4f945916c0ccf9da471a, type: 2}
   fontCreationSettings:
     fontSourcePath: 
     fontSizingMode: 0
@@ -2386,12 +2391,12 @@ MonoBehaviour:
   tabSize: 10
   FaceInfo_Name: Liberation Sans
   FaceInfo_PointSize: 39
-  FaceInfo_Scale: 0
+  FaceInfo_Scale: 1
   FaceInfo_CharacterCount: 250
   FaceInfo_LineHeight: 44.875
   FaceInfo_Baseline: 0
   FaceInfo_Ascender: 35.3125
-  FaceInfo_CapHeight: 0
+  FaceInfo_CapHeight: 26.8125
   FaceInfo_Descender: -8.25
   FaceInfo_CenterLine: 0
   FaceInfo_SuperscriptOffset: 35.3125
@@ -2401,7 +2406,7 @@ MonoBehaviour:
   FaceInfo_UnderlineThickness: 2.8564453
   FaceInfo_strikethrough: 9.840909
   FaceInfo_strikethroughThickness: 2.8564453
-  FaceInfo_TabWidth: 0
+  FaceInfo_TabWidth: 108.125
   FaceInfo_Padding: 5
   FaceInfo_AtlasWidth: 512
   FaceInfo_AtlasHeight: 512
@@ -2909,7 +2914,7 @@ MonoBehaviour:
   - 439
   - 405
   TMP_Glyph_width:
-  - 0
+  - 10.8125
   - 3.8125
   - 10.5
   - 21.3125
@@ -3160,7 +3165,7 @@ MonoBehaviour:
   - 31.0625
   - 23.3125
   TMP_Glyph_height:
-  - 0
+  - 43.5625
   - 26.8125
   - 8.4375
   - 26.6875
@@ -3662,7 +3667,7 @@ MonoBehaviour:
   - 3.5625
   - 0.0625
   TMP_Glyph_yOffset:
-  - 0
+  - 35.3125
   - 26.8125
   - 26.8125
   - 26.6875

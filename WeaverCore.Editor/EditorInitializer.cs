@@ -14,8 +14,37 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Editor.Implementations
 {
+    [Serializable]
+    class InputList
+	{
+        public List<InputField> Inputs = new List<InputField>();
+	}
+
+    [Serializable]
+    class InputField
+    {
+        public string m_Name;
+        public string descriptiveName;
+        public string descriptiveNegativeName;
+        public string negativeButton;
+        public string positiveButton;
+        public string altNegativeButton;
+        public string altPositiveButton;
+        public float gravity;
+        public double dead;
+        public float sensitivity;
+        public bool snap;
+        public bool invert;
+        public int type;
+        public int axis;
+        public int joyNum;
+	}
+
+
     class EditorInitializer
     {
+        //private static string InputManagerData
+
         private static string[] Tags = new string[]
         {
              "TileMap",
@@ -130,9 +159,10 @@ namespace WeaverCore.Editor.Implementations
                     }
                 }
 
-                foreach (string tag in Tags)
-                {
-                    LayerChanger.AddTagIfUnique(tag);
+				//foreach (string tag in Tags)
+				for (int i = Tags.GetLength(0) - 1; i >= 0; i--)
+				{
+                    LayerChanger.AddTagIfUnique(Tags[i]);
                 }
                 Tags = null;
 
@@ -158,6 +188,77 @@ namespace WeaverCore.Editor.Implementations
                         break;
                     }
                 }
+
+                var inputManObject = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0];
+
+                //Debug.Log("Input Obj Type = " + inputManObject.GetType());
+                //Debug.Log("Input Man = " + EditorJsonUtility.ToJson(inputManObject,true));
+
+                SerializedObject inputManager = new SerializedObject(inputManObject);
+                var axes = inputManager.FindProperty("m_Axes");
+
+				if (axes.arraySize <= 20)
+				{
+                    var inputManData = JsonUtility.FromJson<InputList>(EditorAssets.LoadEditorAsset<TextAsset>("Input Manager Data").text);
+
+                    axes.arraySize = inputManData.Inputs.Count;
+
+					for (int i = 0; i < inputManData.Inputs.Count; i++)
+					{
+                        var inputField = inputManData.Inputs[i];
+                        var parent = axes.GetArrayElementAtIndex(i);
+
+                        parent.FindPropertyRelative("m_Name").stringValue = inputField.m_Name;
+                        parent.FindPropertyRelative("descriptiveName").stringValue = inputField.descriptiveName;
+                        parent.FindPropertyRelative("descriptiveNegativeName").stringValue = inputField.descriptiveNegativeName;
+                        parent.FindPropertyRelative("negativeButton").stringValue = inputField.negativeButton;
+                        parent.FindPropertyRelative("positiveButton").stringValue = inputField.positiveButton;
+                        parent.FindPropertyRelative("altNegativeButton").stringValue = inputField.altNegativeButton;
+                        parent.FindPropertyRelative("altPositiveButton").stringValue = inputField.altPositiveButton;
+                        parent.FindPropertyRelative("gravity").floatValue = inputField.gravity;
+                        parent.FindPropertyRelative("gravity").doubleValue = inputField.dead;
+                        parent.FindPropertyRelative("sensitivity").floatValue = inputField.sensitivity;
+                        parent.FindPropertyRelative("snap").boolValue = inputField.snap;
+                        parent.FindPropertyRelative("invert").boolValue = inputField.invert;
+                        parent.FindPropertyRelative("type").intValue = inputField.type;
+                        parent.FindPropertyRelative("axis").intValue = inputField.axis;
+                        parent.FindPropertyRelative("joyNum").intValue = inputField.joyNum;
+                    }
+
+                    inputManager.ApplyModifiedProperties();
+                }
+
+                /*InputList inputs = new InputList();
+
+                var axes = inputManager.FindProperty("m_Axes");
+
+				for (int i = 0; i < axes.arraySize; i++)
+				{
+                    var parent = axes.GetArrayElementAtIndex(i);
+
+                    var inputField = new InputField();
+                    inputField.m_Name = parent.FindPropertyRelative("m_Name").stringValue;
+                    inputField.descriptiveName = parent.FindPropertyRelative("descriptiveName").stringValue;
+                    inputField.descriptiveNegativeName = parent.FindPropertyRelative("descriptiveNegativeName").stringValue;
+                    inputField.negativeButton = parent.FindPropertyRelative("negativeButton").stringValue;
+                    inputField.positiveButton = parent.FindPropertyRelative("positiveButton").stringValue;
+                    inputField.altNegativeButton = parent.FindPropertyRelative("altNegativeButton").stringValue;
+                    inputField.altPositiveButton = parent.FindPropertyRelative("altPositiveButton").stringValue;
+                    inputField.gravity = parent.FindPropertyRelative("gravity").floatValue;
+                    inputField.dead = parent.FindPropertyRelative("gravity").doubleValue;
+                    inputField.sensitivity = parent.FindPropertyRelative("sensitivity").floatValue;
+                    inputField.snap = parent.FindPropertyRelative("snap").boolValue;
+                    inputField.invert = parent.FindPropertyRelative("invert").boolValue;
+                    inputField.type = parent.FindPropertyRelative("type").intValue;
+                    inputField.axis = parent.FindPropertyRelative("axis").intValue;
+                    inputField.joyNum = parent.FindPropertyRelative("joyNum").intValue;
+
+                    inputs.Inputs.Add(inputField);
+                }*/
+
+                //Debug.Log(EditorJsonUtility.ToJson(inputs, true));
+                //File.WriteAllText("TestFile.txt", EditorJsonUtility.ToJson(inputs, true));
+                //SerializedObject inputManager = new SerializedObject();
             });
         }
 

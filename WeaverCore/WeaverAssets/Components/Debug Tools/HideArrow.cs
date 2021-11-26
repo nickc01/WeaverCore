@@ -102,7 +102,7 @@ namespace WeaverCore.Assets
 
         IEnumerator InterpolationRoutine(Vector2 from, Vector2 to)
 		{
-			for (float t = 0; t < time; t += Time.deltaTime)
+			for (float t = 0; t < time; t += Time.unscaledDeltaTime)
 			{
                 parent.anchoredPosition = Vector2.Lerp(from,to,interpolationCurve.Evaluate(t / time));
                 yield return null;

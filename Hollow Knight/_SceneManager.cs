@@ -1,9 +1,11 @@
 ﻿using GlobalEnums;
 using Modding;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using static DynAsm;
 
 /*public class SceneManager : MonoBehaviour
 {
@@ -15,11 +17,19 @@ using UnityEngine.Audio;
 [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
 #endif
 [Serializable]
+[ExecuteAlways]
 public class SceneManager : MonoBehaviour
 {
 	private void Start()
 	{
-		orig_Start();
+		if (Application.isPlaying)
+		{
+			orig_Start();
+		}
+		else
+		{
+			SceneManager.SetLighting(defaultColor, defaultIntensity);
+		}
 	}
 
 	public static void SetLighting(Color ambientLightColor, float ambientLightIntensity)
@@ -34,7 +44,19 @@ public class SceneManager : MonoBehaviour
 	{
 		if (!Application.isPlaying)
 		{
-			gameObject.tag = "SceneManager";
+			var type = WeaverCore_ASM.WeaverCore.Utilities.UnboundCoroutine;
+			WeaverCore_ASM.WeaverCore.Utilities.UnboundCoroutine.Start(FrameWait(gameObject));
+
+			SceneManager.SetLighting(defaultColor, defaultIntensity);
+		}
+
+		IEnumerator FrameWait(GameObject obj)
+		{
+			yield return null;
+			if (obj != null)
+			{
+				obj.tag = "SceneManager";
+			}
 		}
 	}
 #endif
@@ -46,7 +68,10 @@ public class SceneManager : MonoBehaviour
 			heroCtrl.SetDarkness(darknessLevel);
 			heroInfoSent = true;
 		}*/
-		orig_Update();
+		if (Application.isPlaying)
+		{
+			orig_Update();
+		}
 	}
 
 	public int GetDarknessLevel()
@@ -88,6 +113,9 @@ public class SceneManager : MonoBehaviour
 
 	private void DrawBlackBorders()
 	{
+		//Debug.Log("Drawing Borders!");
+		//Debug.Log("Scene Width = " + gm.sceneWidth);
+		//Debug.Log("Scene Height = " + gm.sceneHeight);
 		List<GameObject> list = new List<GameObject>();
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(borderPrefab);
 		gameObject.transform.position = new Vector3(gm.sceneWidth + 10f, gm.sceneHeight / 2f, gameObject.transform.position.z);
@@ -164,6 +192,13 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 
+	private void Reset()
+	{
+		//redChannel = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+		//greenChannel = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+		//blueChannel = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+	}
+
 	// Token: 0x0600116C RID: 4460 RVA: 0x0005171C File Offset: 0x0004F91C
 	private void orig_Start()
 	{
@@ -233,18 +268,18 @@ public class SceneManager : MonoBehaviour
 		{
 			gm.AudioManager.ApplyMusicSnapshot(musicSnapshot, musicDelayTime, musicTransitionTime);
 		}*/
-		if (enviroSnapshot != null)
+		/*if (enviroSnapshot != null)
 		{
 			enviroSnapshot.TransitionTo(transitionTime);
-		}
-		if (actorSnapshot != null)
+		}*/
+		/*if (actorSnapshot != null)
 		{
 			actorSnapshot.TransitionTo(transitionTime);
-		}
-		if (shadeSnapshot != null)
+		}*/
+		/*if (shadeSnapshot != null)
 		{
 			shadeSnapshot.TransitionTo(transitionTime);
-		}
+		}*/
 		if (sceneType == SceneType.GAMEPLAY)
 		{
 			GameObject gameObject = GameObject.FindGameObjectWithTag("Vignette");
@@ -290,72 +325,72 @@ public class SceneManager : MonoBehaviour
 	// Token: 0x04001102 RID: 4354
 	[Space(6f)]
 	[Tooltip("This denotes the type of this scene, mainly if it is a gameplay scene or not.")]
-	public SceneType sceneType;
+	public SceneType sceneType = SceneType.GAMEPLAY;
 
 	// Token: 0x04001103 RID: 4355
 	[Header("Gameplay Scene Settings")]
 	[Tooltip("The area of the map this scene belongs to.")]
 	[Space(6f)]
-	public MapZone mapZone;
+	public MapZone mapZone = MapZone.NONE;
 
 	// Token: 0x04001104 RID: 4356
 	[Tooltip("Determines if this area is currently windy.")]
-	public bool isWindy;
+	public bool isWindy = false;
 
 	// Token: 0x04001105 RID: 4357
 	[Tooltip("Determines if this level experiences tremors.")]
-	public bool isTremorZone;
+	public bool isTremorZone = false;
 
 	// Token: 0x04001106 RID: 4358
 	[Tooltip("Set environment type on scene entry. 0 = Dust, 1 = Grass, 2 = Bone, 3 = Spa, 4 = Metal, 5 = No Effect, 6 = Wet")]
-	public int environmentType;
+	public int environmentType = 0;
 
 	// Token: 0x04001107 RID: 4359
-	public int darknessLevel;
+	public int darknessLevel = 0;
 
 	// Token: 0x04001108 RID: 4360
-	public bool noLantern;
+	public bool noLantern = false;
 
 	// Token: 0x04001109 RID: 4361
 	[Header("Camera Color Correction Curves")]
 	[Range(0f, 5f)]
-	public float saturation;
+	public float saturation = 0.8f;
 
 	// Token: 0x0400110A RID: 4362
-	public bool ignorePlatformSaturationModifiers;
+	public bool ignorePlatformSaturationModifiers = false;
 
 	// Token: 0x0400110B RID: 4363
-	public AnimationCurve redChannel;
+	public AnimationCurve redChannel = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
 	// Token: 0x0400110C RID: 4364
-	public AnimationCurve greenChannel;
+	public AnimationCurve greenChannel = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
 	// Token: 0x0400110D RID: 4365
-	public AnimationCurve blueChannel;
+	public AnimationCurve blueChannel = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
 	// Token: 0x0400110E RID: 4366
 	[Header("Ambient Light")]
 	[Tooltip("The default ambient light colour for this scene.")]
 	[Space(6f)]
-	public Color defaultColor;
+	public Color defaultColor = new Color(0.366634f, 0.5165427f, 0.7264151f, 1f);
 
 	// Token: 0x0400110F RID: 4367
 	[Tooltip("The intensity of the ambient light in this scene.")]
 	[Range(0f, 1f)]
-	public float defaultIntensity;
+	public float defaultIntensity = 0.7f;
 
 	// Token: 0x04001110 RID: 4368
 	[Header("Hero Light")]
 	[Tooltip("Color of the hero's light gradient (not point lights)")]
 	[Space(6f)]
-	public Color heroLightColor;
+	public Color heroLightColor = new Color(1f,1f,1f, 0.6588235f);
 
 	// Token: 0x04001111 RID: 4369
 	[Header("Scene Particles")]
-	public bool noParticles;
+	public bool noParticles = false;
 
 	// Token: 0x04001112 RID: 4370
-	public MapZone overrideParticlesWith;
+	public MapZone overrideParticlesWith = MapZone.NONE;
 
 	// Token: 0x04001113 RID: 4371
 	/*[Header("Audio Snapshots")]
@@ -372,49 +407,54 @@ public class SceneManager : MonoBehaviour
 	private MusicCue infectedMusicCue;*/
 
 	// Token: 0x04001116 RID: 4374
-	[SerializeField]
-	private AudioMixerSnapshot musicSnapshot;
+	//[SerializeField]
+	//private AudioMixerSnapshot musicSnapshot;
 
 	// Token: 0x04001117 RID: 4375
 	[SerializeField]
-	private float musicDelayTime;
+	private float musicDelayTime = 0f;
 
 	// Token: 0x04001118 RID: 4376
 	[SerializeField]
-	private float musicTransitionTime;
+	private float musicTransitionTime = 0f;
 
 	// Token: 0x04001119 RID: 4377
-	public AudioMixerSnapshot atmosSnapshot;
+	//public AudioMixerSnapshot atmosSnapshot;
 
 	// Token: 0x0400111A RID: 4378
-	public AudioMixerSnapshot enviroSnapshot;
+	//public AudioMixerSnapshot enviroSnapshot;
 
 	// Token: 0x0400111B RID: 4379
-	public AudioMixerSnapshot actorSnapshot;
+	//public AudioMixerSnapshot actorSnapshot; //Seems to be used to disable player sounds when transitioning to a new scene
 
 	// Token: 0x0400111C RID: 4380
-	public AudioMixerSnapshot shadeSnapshot;
+	//public AudioMixerSnapshot shadeSnapshot; //Seems to be used to diable shade sounds when transitioning to a new scene
 
 	// Token: 0x0400111D RID: 4381
-	public float transitionTime;
+	public float transitionTime = 1f;
 
 	// Token: 0x0400111E RID: 4382
-	[Header("Scene Border")]
-	[Space(6f)]
+	//[Header("Scene Border")]
+	//[Space(6f)]
+	[HideInInspector]
 	public GameObject borderPrefab;
 
 	// Token: 0x0400111F RID: 4383
 	[Header("Mapping")]
 	[Space(6f)]
-	public bool manualMapTrigger;
+	public bool manualMapTrigger = false;
 
 	// Token: 0x04001120 RID: 4384
-	[Header("Object Spawns")]
-	[Space(6f)]
-	//public GameObject hollowShadeObject;
+	//[Header("Object Spawns")]
+	//[Space(6f)]
+	[HideInInspector]
+	[SerializeField]
+	protected GameObject hollowShadeObject;
 
 	// Token: 0x04001121 RID: 4385
-	//public GameObject dreamgateObject;
+	[HideInInspector]
+	[SerializeField]
+	protected GameObject dreamgateObject;
 
 	// Token: 0x04001122 RID: 4386
 	private GameManager gm;

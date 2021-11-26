@@ -24,10 +24,18 @@ public class CameraTarget : MonoBehaviour
 			stickToHeroX = true;
 			stickToHeroY = true;
 			fallCatcher = 0f;
-			xLockMin = 0f;
+			/*xLockMin = 0f;
 			xLockMax = cameraCtrl.xLimit;
 			yLockMin = 0f;
-			yLockMax = cameraCtrl.yLimit;
+			yLockMax = cameraCtrl.yLimit;*/
+
+			var cameraBounds = GameManager.instance.SceneDimensions;
+
+			xLockMin = cameraBounds.xMin;
+			xLockMax = cameraBounds.xMax;
+			yLockMin = cameraBounds.yMin;
+			yLockMax = cameraBounds.yMax;
+
 			return;
 		}
 		isGameplayScene = false;
@@ -285,10 +293,15 @@ public class CameraTarget : MonoBehaviour
 					{
 						cameraCtrl.transform.SetPositionY(yLockMin);
 					}
-					if (cameraCtrl.transform.position.y < 8.3f)
+					var sceneDimensions = GameManager.instance.SceneDimensions;
+					if (cameraCtrl.transform.position.y < sceneDimensions.yMin)
+					{
+						cameraCtrl.transform.SetPositionY(sceneDimensions.yMin);
+					}
+					/*if (cameraCtrl.transform.position.y < 8.3f)
 					{
 						cameraCtrl.transform.SetPositionY(8.3f);
-					}
+					}*/
 					if (fallCatcher < 25f)
 					{
 						fallCatcher += 80f * Time.deltaTime;
@@ -313,9 +326,10 @@ public class CameraTarget : MonoBehaviour
 					{
 						cameraCtrl.transform.SetPositionY(yLockMin);
 					}
-					if (cameraCtrl.transform.position.y < 8.3f)
+					var sceneDimensions = GameManager.instance.SceneDimensions;
+					if (cameraCtrl.transform.position.y < sceneDimensions.yMin)
 					{
-						cameraCtrl.transform.SetPositionY(8.3f);
+						cameraCtrl.transform.SetPositionY(sceneDimensions.yMin);
 					}
 				}
 			}
@@ -335,6 +349,8 @@ public class CameraTarget : MonoBehaviour
 	// Token: 0x060004B1 RID: 1201 RVA: 0x00018088 File Offset: 0x00016288
 	public void EnterLockZone(float xLockMin_var, float xLockMax_var, float yLockMin_var, float yLockMax_var)
 	{
+		var cameraBounds = GameManager.instance.SceneDimensions;
+
 		xLockMin = xLockMin_var;
 		xLockMax = xLockMax_var;
 		yLockMin = yLockMin_var;
@@ -346,11 +362,11 @@ public class CameraTarget : MonoBehaviour
 		float x2 = heroTransform.position.x;
 		float y2 = heroTransform.position.y;
 		Vector3 position2 = heroTransform.position;
-		if ((!enteredLeft || xLockMin != 14.6f) && (!enteredRight || xLockMax != cameraCtrl.xLimit))
+		if ((!enteredLeft || xLockMin != cameraBounds.xMin) && (!enteredRight || xLockMax != cameraBounds.xMax))
 		{
 			dampTimeX = dampTimeSlow;
 		}
-		if ((!enteredBot || yLockMin != 8.3f) && (!enteredTop || yLockMax != cameraCtrl.yLimit))
+		if ((!enteredBot || yLockMin != cameraBounds.yMin) && (!enteredTop || yLockMax != cameraBounds.yMax))
 		{
 			dampTimeY = dampTimeSlow;
 		}
@@ -402,6 +418,8 @@ public class CameraTarget : MonoBehaviour
 	// Token: 0x060004B3 RID: 1203 RVA: 0x000182C8 File Offset: 0x000164C8
 	public void ExitLockZone()
 	{
+		var cameraBounds = GameManager.instance.SceneDimensions;
+
 		if (mode == CameraTarget.TargetMode.FREE)
 		{
 			return;
@@ -414,11 +432,11 @@ public class CameraTarget : MonoBehaviour
 		{
 			mode = CameraTarget.TargetMode.FOLLOW_HERO;
 		}
-		if ((!exitedLeft || xLockMin != 14.6f) && (!exitedRight || xLockMax != cameraCtrl.xLimit))
+		if ((!exitedLeft || xLockMin != cameraBounds.xMin) && (!exitedRight || xLockMax != cameraBounds.xMax))
 		{
 			dampTimeX = dampTimeSlow;
 		}
-		if ((!exitedBot || yLockMin != 8.3f) && (!exitedTop || yLockMax != cameraCtrl.yLimit))
+		if ((!exitedBot || yLockMin != cameraBounds.yMin) && (!exitedTop || yLockMax != cameraBounds.yMax))
 		{
 			dampTimeY = dampTimeSlow;
 		}
@@ -426,10 +444,10 @@ public class CameraTarget : MonoBehaviour
 		stickToHeroX = false;
 		stickToHeroY = false;
 		fallStick = false;
-		xLockMin = 0f;
-		xLockMax = cameraCtrl.xLimit;
-		yLockMin = 0f;
-		yLockMax = cameraCtrl.yLimit;
+		xLockMin = cameraBounds.xMin;
+		xLockMax = cameraBounds.xMax;
+		yLockMin = cameraBounds.yMin;
+		yLockMax = cameraBounds.yMax;
 		if (HeroController.instance != null)
 		{
 			if (base.transform.position.x >= heroTransform.position.x - snapDistance && base.transform.position.x <= heroTransform.position.x + snapDistance)

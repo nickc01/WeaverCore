@@ -28,6 +28,8 @@ public class CameraController : MonoBehaviour
 	// Token: 0x06000459 RID: 1113 RVA: 0x00015058 File Offset: 0x00013258
 	public void SceneInit()
 	{
+		sceneWidth = 0;
+		sceneHeight = 0;
 		startLockedTimer = 0.5f;
 		velocity = Vector3.zero;
 		bool isBloomForced = false;
@@ -41,9 +43,9 @@ public class CameraController : MonoBehaviour
 			}
 			lockZoneList = new List<CameraLockArea>();
 			GetTilemapInfo();
-			xLockMin = 0f;
+			xLockMin = GameManager.instance.SceneDimensions.xMin + 14.6f;
 			xLockMax = xLimit;
-			yLockMin = 0f;
+			yLockMin = GameManager.instance.SceneDimensions.yMin + 8.3f;
 			yLockMax = yLimit;
 			dampTimeX = dampTime;
 			dampTimeY = dampTime;
@@ -70,6 +72,11 @@ public class CameraController : MonoBehaviour
 		ApplyEffectConfiguration(isGameplayScene, isBloomForced);
 	}
 
+	internal Rect GetCameraBounds()
+	{
+		return GameManager.instance.SceneDimensions;
+	}
+
 	// Token: 0x0600045A RID: 1114 RVA: 0x000151AC File Offset: 0x000133AC
 	public void ApplyEffectConfiguration(bool isGameplayLevel, bool isBloomForced)
 	{
@@ -84,6 +91,10 @@ public class CameraController : MonoBehaviour
 	// Token: 0x0600045B RID: 1115 RVA: 0x000151FC File Offset: 0x000133FC
 	private void LateUpdate()
 	{
+		if (cameraParent == null)
+		{
+			return;
+		}
 		float x = base.transform.position.x;
 		float y = base.transform.position.y;
 		float z = base.transform.position.z;
@@ -148,21 +159,23 @@ public class CameraController : MonoBehaviour
 		}
 		if (isGameplayScene)
 		{
-			if (x + x2 < 14.6f)
+			var bounds = GetCameraBounds();
+
+			if (x + x2 < bounds.xMin)
 			{
-				base.transform.SetPositionX(14.6f);
+				base.transform.SetPositionX(bounds.xMin);
 			}
-			if (base.transform.position.x + x2 > xLimit)
+			if (base.transform.position.x + x2 > bounds.xMax)
 			{
-				base.transform.SetPositionX(xLimit);
+				base.transform.SetPositionX(bounds.xMax);
 			}
-			if (base.transform.position.y + y2 < 8.3f)
+			if (base.transform.position.y + y2 < bounds.yMin)
 			{
-				base.transform.SetPositionY(8.3f);
+				base.transform.SetPositionY(bounds.yMin);
 			}
-			if (base.transform.position.y + y2 > yLimit)
+			if (base.transform.position.y + y2 > bounds.yMax)
 			{
-				base.transform.SetPositionY(yLimit);
+				base.transform.SetPositionY(bounds.yMax);
 			}
 			if (startLockedTimer > 0f)
 			{
@@ -247,31 +260,33 @@ public class CameraController : MonoBehaviour
 			}
 			currentLockArea = lockArea;
 			SetMode(CameraController.CameraMode.LOCKED);
-			if (lockArea.cameraXMin < 0f)
+			var bounds = GetCameraBounds();
+
+			if (lockArea.cameraXMin < bounds.xMin)
 			{
-				xLockMin = 14.6f;
+				xLockMin = bounds.xMin;
 			}
 			else
 			{
 				xLockMin = lockArea.cameraXMin;
 			}
-			if (lockArea.cameraXMax < 0f)
+			if (lockArea.cameraXMax > bounds.xMax)
 			{
-				xLockMax = xLimit;
+				xLockMax = bounds.xMax;
 			}
 			else
 			{
 				xLockMax = lockArea.cameraXMax;
 			}
-			if (lockArea.cameraYMin < 0f)
+			if (lockArea.cameraYMin < bounds.yMin)
 			{
-				yLockMin = 8.3f;
+				yLockMin = bounds.yMin;
 			}
 			else
 			{
 				yLockMin = lockArea.cameraYMin;
 			}
-			if (lockArea.cameraYMax < 0f)
+			if (lockArea.cameraYMax > bounds.yMax)
 			{
 				yLockMax = yLimit;
 			}
@@ -370,58 +385,62 @@ public class CameraController : MonoBehaviour
 	// Token: 0x06000466 RID: 1126 RVA: 0x00015C54 File Offset: 0x00013E54
 	public Vector3 KeepWithinSceneBounds(Vector3 targetDest)
 	{
-		Vector3 vector = targetDest;
+		var bounds = GetCameraBounds();
+
+		Vector3 result = targetDest;
 		bool flag = false;
 		bool flag2 = false;
-		if (vector.x < 14.6f)
+		if (result.x < bounds.xMin)
 		{
-			vector = new Vector3(14.6f, vector.y, vector.z);
+			result = new Vector3(bounds.xMin, result.y, result.z);
 			flag = true;
 			flag2 = true;
 		}
-		if (vector.x > xLimit)
+		if (result.x > bounds.xMax)
 		{
-			vector = new Vector3(xLimit, vector.y, vector.z);
+			result = new Vector3(bounds.xMax, result.y, result.z);
 			flag = true;
 			flag2 = true;
 		}
-		if (vector.y < 8.3f)
+		if (result.y < bounds.yMin)
 		{
-			vector = new Vector3(vector.x, 8.3f, vector.z);
+			result = new Vector3(result.x, bounds.yMin, result.z);
 			flag = true;
 		}
-		if (vector.y > yLimit)
+		if (result.y > bounds.yMax)
 		{
-			vector = new Vector3(vector.x, yLimit, vector.z);
+			result = new Vector3(result.x, bounds.yMax, result.z);
 			flag = true;
 		}
 		atSceneBounds = flag;
 		atHorizontalSceneBounds = flag2;
-		return vector;
+		return result;
 	}
 
 	// Token: 0x06000467 RID: 1127 RVA: 0x00015D1C File Offset: 0x00013F1C
 	private Vector2 KeepWithinSceneBounds(Vector2 targetDest)
 	{
+		var bounds = GetCameraBounds();
+
 		bool flag = false;
-		if (targetDest.x < 14.6f)
+		if (targetDest.x < bounds.xMin)
 		{
-			targetDest = new Vector2(14.6f, targetDest.y);
+			targetDest = new Vector2(bounds.xMin, targetDest.y);
 			flag = true;
 		}
-		if (targetDest.x > xLimit)
+		if (targetDest.x > bounds.xMax)
 		{
-			targetDest = new Vector2(xLimit, targetDest.y);
+			targetDest = new Vector2(bounds.xMax, targetDest.y);
 			flag = true;
 		}
-		if (targetDest.y < 8.3f)
+		if (targetDest.y < bounds.yMin)
 		{
-			targetDest = new Vector2(targetDest.x, 8.3f);
+			targetDest = new Vector2(targetDest.x, bounds.yMin);
 			flag = true;
 		}
-		if (targetDest.y > yLimit)
+		if (targetDest.y > bounds.yMax)
 		{
-			targetDest = new Vector2(targetDest.x, yLimit);
+			targetDest = new Vector2(targetDest.x, bounds.yMax);
 			flag = true;
 		}
 		atSceneBounds = flag;
@@ -431,20 +450,22 @@ public class CameraController : MonoBehaviour
 	// Token: 0x06000468 RID: 1128 RVA: 0x00015DBC File Offset: 0x00013FBC
 	private bool IsAtSceneBounds(Vector2 targetDest)
 	{
+		var bounds = GetCameraBounds();
+
 		bool result = false;
-		if (targetDest.x <= 14.6f)
+		if (targetDest.x <= bounds.xMin)
 		{
 			result = true;
 		}
-		if (targetDest.x >= xLimit)
+		if (targetDest.x >= bounds.xMax)
 		{
 			result = true;
 		}
-		if (targetDest.y <= 8.3f)
+		if (targetDest.y <= bounds.yMin)
 		{
 			result = true;
 		}
-		if (targetDest.y >= yLimit)
+		if (targetDest.y >= bounds.yMax)
 		{
 			result = true;
 		}
@@ -454,14 +475,16 @@ public class CameraController : MonoBehaviour
 	// Token: 0x06000469 RID: 1129 RVA: 0x00015E0C File Offset: 0x0001400C
 	private bool IsAtHorizontalSceneBounds(Vector2 targetDest, out bool leftSide)
 	{
+		var bounds = GetCameraBounds();
+
 		bool result = false;
 		leftSide = false;
-		if (targetDest.x <= 14.6f)
+		if (targetDest.x <= bounds.xMin)
 		{
 			result = true;
 			leftSide = true;
 		}
-		if (targetDest.x >= xLimit)
+		if (targetDest.x >= bounds.xMax)
 		{
 			result = true;
 			leftSide = false;
@@ -472,12 +495,14 @@ public class CameraController : MonoBehaviour
 	// Token: 0x0600046A RID: 1130 RVA: 0x00015E44 File Offset: 0x00014044
 	private bool IsTouchingSides(float x)
 	{
+		var bounds = GetCameraBounds();
+
 		bool result = false;
-		if (x <= 14.6f)
+		if (x <= bounds.xMin)
 		{
 			result = true;
 		}
-		if (x >= xLimit)
+		if (x >= bounds.xMax)
 		{
 			result = true;
 		}
@@ -511,11 +536,17 @@ public class CameraController : MonoBehaviour
 	// Token: 0x0600046C RID: 1132 RVA: 0x00015ED0 File Offset: 0x000140D0
 	private void GetTilemapInfo()
 	{
+		var sceneDimensions = GameManager.instance.SceneDimensions;
+
+		sceneWidth = sceneDimensions.width;
+		sceneHeight = sceneDimensions.height;
+		xLimit = sceneDimensions.xMax - 14.6f;
+		yLimit = sceneDimensions.yMax - 8.3f;
 		//this.tilemap = GameManager.instance.tilemap;
 		//sceneWidth = (float)this.tilemap.width;
 		//sceneHeight = (float)this.tilemap.height;
-		xLimit = sceneWidth - 14.6f;
-		yLimit = sceneHeight - 8.3f;
+		//xLimit = sceneWidth - 14.6f;
+		//yLimit = sceneHeight - 8.3f;
 	}
 
 	// Token: 0x0600046D RID: 1133 RVA: 0x00015F36 File Offset: 0x00014136

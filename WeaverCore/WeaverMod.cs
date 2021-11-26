@@ -5,13 +5,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Configuration;
 using WeaverCore.Internal;
 using WeaverCore.Utilities;
 
 namespace WeaverCore
-{
+{	
     public abstract class WeaverMod : Mod
     {
 #if UNITY_EDITOR
@@ -84,6 +85,7 @@ namespace WeaverCore
 
                 var modType = GetType();
 
+                WeaverLog.Log("Loading Weaver Mod " + modType.Name);
                 RegistryLoader.LoadAllRegistries(modType);
 
                 //WeaverLog.Log(modType.FullName + "___LOADED!!!");

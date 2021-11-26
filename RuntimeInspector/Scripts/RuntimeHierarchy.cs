@@ -8,6 +8,8 @@ namespace RuntimeInspectorNamespace
 {
 	public class RuntimeHierarchy : SkinnedWindow, IListViewAdapter
 	{
+		public static RuntimeHierarchy Instance { get; private set; }
+
 		public delegate void SelectionChangedDelegate( Transform selection );
 		public delegate void DoubleClickDelegate( Transform selection );
 		public delegate bool GameObjectFilterDelegate( Transform transform );
@@ -326,6 +328,7 @@ namespace RuntimeInspectorNamespace
 
 		protected override void Awake()
 		{
+			Instance = this;
 			base.Awake();
 			listView.SetAdapter( this );
 

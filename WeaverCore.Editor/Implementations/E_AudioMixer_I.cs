@@ -109,5 +109,10 @@ namespace WeaverCore.Editor.Implementations
 		{
 			EditorMusic.Instance.ApplyMusicSnapshot(snapshot, delayTime, transitionTime);
 		}
+
+		public override void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
+		{
+			EditorMusic.Instance.ApplyAtmosPack(snapshot, transitionTime, enabledSources);
+		}
 	}
 }

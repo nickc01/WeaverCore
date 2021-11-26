@@ -22,5 +22,7 @@ namespace WeaverCore.Implementations
 		public abstract void PlayMusicPack(MusicPack pack, float delayTime, float snapshotTransitionTime, bool applySnapshot = true);
 
 		public abstract void ApplyMusicSnapshot(AudioMixerSnapshot snapshot, float delayTime, float transitionTime);
+
+		public abstract void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources);
 	}
 }

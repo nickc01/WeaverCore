@@ -41,9 +41,11 @@ public class PlayerData
 	public int joniHealthBlue;
 	public bool damagedBlue;
 	public bool isInvincible;
+	public bool atBench;
 	public MapZone mapZone;
 	public List<string> scenesVisited;
 	public bool hasDoubleJump;
+	public List<string> scenesEncounteredBench;
 
 	protected PlayerData()
 	{
@@ -52,6 +54,7 @@ public class PlayerData
 
 	void SetupNewPlayerData()
 	{
+		atBench = false;
 		hazardRespawnLocation = Vector3.zero;
 		hazardRespawnFacingRight = false;
 		respawnMarkerName = "Death Respawn Marker";
@@ -69,6 +72,7 @@ public class PlayerData
 		mapZone = MapZone.GODS_GLORY;
 		scenesVisited = new List<string>();
 		hasDoubleJump = true;
+		scenesEncounteredBench = new List<string>();
 	}
 
 	public bool GetBool(string boolName)

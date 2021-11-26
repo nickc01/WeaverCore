@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0cd7f19463d4d9d5b3a36b850823, type: 3}
   m_Name: Oswald-Bold SDF
   m_EditorClassIdentifier: 
-  hashCode: 2087532359
+  hashCode: -1919333477
   material: {fileID: 603029558209395680}
   materialHashCode: 109587052
   fontAssetType: 1
@@ -1909,7 +1909,12 @@ MonoBehaviour:
     AscII_Left: 0
     AscII_Right: 0
     XadvanceOffset: 0
-  fallbackFontAssets: []
+  fallbackFontAssets:
+  - {fileID: 11400000, guid: d821e29c947c03d4bafcda5691c11a71, type: 2}
+  - {fileID: 11400000, guid: c1afacdee4f90794e89c454f6930f7c0, type: 2}
+  - {fileID: 11400000, guid: f7f1fad0307467d45976bd86ebddd8b3, type: 2}
+  - {fileID: 11400000, guid: 8747ec9faedf0b7449f5db366fed40a4, type: 2}
+  - {fileID: 11400000, guid: 29666a9430ff4f945916c0ccf9da471a, type: 2}
   fontCreationSettings:
     fontSourcePath: 
     fontSizingMode: 0
@@ -1952,12 +1957,12 @@ MonoBehaviour:
   tabSize: 10
   FaceInfo_Name: Oswald
   FaceInfo_PointSize: 40
-  FaceInfo_Scale: 0
+  FaceInfo_Scale: 1
   FaceInfo_CharacterCount: 207
   FaceInfo_LineHeight: 59.25
   FaceInfo_Baseline: 0
   FaceInfo_Ascender: 47.75
-  FaceInfo_CapHeight: 0
+  FaceInfo_CapHeight: 35.1875
   FaceInfo_Descender: -11.5625
   FaceInfo_CenterLine: 0
   FaceInfo_SuperscriptOffset: 47.75
@@ -1967,7 +1972,7 @@ MonoBehaviour:
   FaceInfo_UnderlineThickness: 1.9921875
   FaceInfo_strikethrough: 13.159091
   FaceInfo_strikethroughThickness: 1.9921875
-  FaceInfo_TabWidth: 0
+  FaceInfo_TabWidth: 80
   FaceInfo_Padding: 5
   FaceInfo_AtlasWidth: 512
   FaceInfo_AtlasHeight: 512
@@ -2389,7 +2394,7 @@ MonoBehaviour:
   - 370
   - 87
   TMP_Glyph_width:
-  - 0
+  - 8
   - 6.6875
   - 13.1875
   - 18.0625
@@ -2597,7 +2602,7 @@ MonoBehaviour:
   - 18.5
   - 25.0625
   TMP_Glyph_height:
-  - 0
+  - 59.3125
   - 35.1875
   - 11.6875
   - 35.1875
@@ -3013,7 +3018,7 @@ MonoBehaviour:
   - 0.125
   - 3.25
   TMP_Glyph_yOffset:
-  - 0
+  - 47.75
   - 35.1875
   - 35.1875
   - 35.1875
@@ -3743,9 +3748,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

@@ -367,7 +367,7 @@ namespace WeaverCore.Editor.Compilation
 			{
 				yield break;
 			}
-			BundleTools.BuildAndEmbedAssetBundles(null, outputPath, typeof(BuildTools).GetMethod(nameof(StartHollowKnight)));
+			BundleTools.BuildAndEmbedAssetBundles(null, outputPath, typeof(BuildTools).GetMethod(nameof(OnBuildFinish)));
 		}
 
 		static IEnumerator BuildModRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
@@ -396,7 +396,7 @@ namespace WeaverCore.Editor.Compilation
 			}
 			var weaverCoreOutputLocation = outputPath.Directory.CreateSubdirectory("WeaverCore").AddSlash() + "WeaverCore.dll";
 			File.Copy(WeaverCoreBuildLocation.FullName, weaverCoreOutputLocation, true);
-			BundleTools.BuildAndEmbedAssetBundles(modBuildLocation, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(StartHollowKnight)));
+			BundleTools.BuildAndEmbedAssetBundles(modBuildLocation, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(OnBuildFinish)));
 		}
 
 
@@ -424,6 +424,12 @@ namespace WeaverCore.Editor.Compilation
 					IEnumerator Delay()
 					{
 						yield return new WaitForSeconds(0.5f);
+						if (EditorApplication.isCompiling)
+						{
+							//Debug.Log("A_ Waiting for Compilation to finish");
+							yield return new WaitUntil(() => !EditorApplication.isCompiling);
+						}
+						//Debug.Log("A_Compilation Done!");
 						method.Invoke(null, null);
 					}
 				}
@@ -432,10 +438,23 @@ namespace WeaverCore.Editor.Compilation
 
 			if (!ranMethod)
 			{
-				UnboundCoroutine.Start(BuildPartialWeaverCoreRoutine(WeaverCoreBuildLocation, null));
-			}
+				IEnumerator DefaultRoutine()
+				{
+					if (EditorApplication.isCompiling)
+					{
+						//Debug.Log("B_ Waiting for Compilation to finish");
+						yield return new WaitUntil(() => !EditorApplication.isCompiling);
+					}
+					//Debug.Log("B_Compilation Done!");
+					yield return BuildPartialWeaverCoreRoutine(WeaverCoreBuildLocation, null);
+					yield return RunEnvironmentCheck();
+				}
 
-			UnboundCoroutine.Start(RunEnvironmentCheck());
+				if (!EditorApplication.isPlaying)
+				{
+					UnboundCoroutine.Start(DefaultRoutine());
+				}
+			}
 		}
 
 		/// <summary>
@@ -465,6 +484,7 @@ namespace WeaverCore.Editor.Compilation
 			public string AssemblyName;
 			public FileInfo HintPath;
 		}
+
 
 		static IEnumerator BuildXmlProjectRoutine(FileInfo xmlProjectFile, FileInfo outputPath, BuildTask<BuildOutput> task)
 		{
@@ -644,9 +664,11 @@ namespace WeaverCore.Editor.Compilation
 					var scriptAssemblies = new DirectoryInfo("Library\\ScriptAssemblies").GetFiles("*.dll");
 
 					List<string> exclusions = new List<string>();
-
 					foreach (var sa in scriptAssemblies)
 					{
+						//Debug.Log("PROJECT FOLDER = " + PathUtilities.ProjectFolder);
+						//Debug.Log("FULL PATH = " + sa.FullName);
+						//Debug.Log("EXCLUDING ASSEMBLY = " + PathUtilities.ConvertToProjectPath(sa.FullName));
 						exclusions.Add(PathUtilities.ConvertToProjectPath(sa.FullName));
 						//Debug.Log("Exclusion = " + exclusions[exclusions.Count - 1]);
 					}
@@ -719,7 +741,7 @@ namespace WeaverCore.Editor.Compilation
 			return GetModBuildFolder() + BuildScreen.BuildSettings.ModName + ".dll";
 		}
 
-		public static void StartHollowKnight()
+		public static void OnBuildFinish()
 		{
 			if (BuildScreen.BuildSettings.StartGame)
 			{
@@ -746,6 +768,8 @@ namespace WeaverCore.Editor.Compilation
 				}
 				System.Diagnostics.Process.Start(hkEXE.FullName);
 			}
+
+			UnboundCoroutine.Start(RunEnvironmentCheck());
 		}
 
 		static IEnumerator RunEnvironmentCheck()
@@ -814,10 +838,48 @@ namespace WeaverCore.Editor.Compilation
 				if (PlayerSettings.GetApiCompatibilityLevel(BuildTargetGroup.Standalone) != ApiCompatibilityLevel.NET_4_6)
 				{
 					PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
+					makingChanges = true;
 					Debug.ClearDeveloperConsole();
 				}
 			}
 
+			if (!makingChanges)
+			{
+				var projectInfo = ScriptFinder.GetProjectScriptInfo();
+
+				var asm = projectInfo.FirstOrDefault(p => p.AssemblyName.Contains("WeaverCore.Editor"));
+
+				if (asm == null)
+				{
+					throw new Exception("Unable to find assembly \"WeaverCore.Editor\". Your WeaverCore files may not be in a valid state");
+				}
+
+				if (asm.Definition.includePlatforms.Count > 0)
+				{
+					makingChanges = true;
+					asm.Definition.excludePlatforms = new List<string>();
+					asm.Definition.includePlatforms = new List<string>();
+					//Debug.Log("Asm Definition Path = " + asm.AssemblyDefinitionPath);
+					//Debug.Log("Importing Asset = " + asm.AssemblyDefinitionPath);
+					asm.Save();
+					AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath,ImportAssetOptions.DontDownloadFromCacheServer);
+					AssetDatabase.Refresh();
+				}
+			}
+
+			if (!makingChanges)
+			{
+				try
+				{
+					//Debug.Log("RELOADING");
+					//AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
+					//BundleTools.Test();
+				}
+				finally
+				{
+
+				}
+			}
 
 			IEnumerator WaitForRequest<T>(Request<T> request) => new WaitUntil(() => request.IsCompleted);
 		}

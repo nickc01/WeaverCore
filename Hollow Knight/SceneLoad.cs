@@ -113,7 +113,7 @@ public class SceneLoad
 
 	static string ConvertToProjectPath(string path)
 	{
-		var relative = MakePathRelative(new DirectoryInfo("Assets\\..").FullName, path);
+		var relative = MakePathRelative(new DirectoryInfo($"Assets{Path.DirectorySeparatorChar}..").FullName, path);
 		relative = relative.Replace('\\', '/');
 		return relative;
 	}

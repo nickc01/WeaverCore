@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -243,33 +243,6 @@ namespace WeaverCore.Editor
 					SpriteCoords = new Rect(Min.x, Min.y, Max.x - Min.x + 1, Max.y - Min.y + 1)
 				};
 
-				/*var fileName = sprite.SpriteName;
-				if (fileName == "")
-				{
-					fileName = "unknown_" + i;
-				}
-
-				var filePath = folder + "/" + fileName + ".png";
-
-
-				using (var file = File.Create(filePath))
-				{
-					using (var writer = new BinaryWriter(file))
-					{
-						var png = texture.EncodeToPNG();
-						writer.Write(png);
-					}
-				}*/
-				/*AssetDatabase.ImportAsset(filePath);
-
-				AddedSprites.Add(new SpriteLocation()
-				{
-					Sprite = sprite,
-					FileLocation = filePath,
-					UVWidth = PreWidth,
-					UVHeight = PreHeight,
-					SpriteDimensions = new Vector2Int(colorMatrix.GetLength(0), colorMatrix.GetLength(1))
-				});*/
 
 			}
 		}
@@ -305,114 +278,6 @@ namespace WeaverCore.Editor
 				foreach (var spriteData in ReadTexturesFromSheet(sheet,settings))
 				{
 					//Debugger.Log("D");
-					/*Progress = i / (float)sheet.Sprites.Count;
-
-					var sprite = sheet.Sprites[i];
-
-					Vector2 uvOffset = new Vector2(0.001f, 0.001f);
-
-					Vector2 PostProcessedBL = Vector2.zero;
-					Vector2 PostProcessedTR = Vector2.zero;
-
-					bool rotated = false;
-
-					if (sprite.UVs[0].x == sprite.UVs[1].x && sprite.UVs[2].x == sprite.UVs[3].x)
-					{
-						rotated = true;
-					}
-
-
-					if (rotated)
-					{
-						PostProcessedBL = sprite.UVs[1];
-						PostProcessedTR = sprite.UVs[2];
-					}
-					else
-					{
-						PostProcessedBL = sprite.UVs[0];
-						PostProcessedTR = sprite.UVs[3];
-					}
-
-					int PreBLx = Mathf.RoundToInt((PostProcessedBL.x * settings.texture.width) - uvOffset.x);
-					int PreTRy = Mathf.RoundToInt(((PostProcessedBL.y) * settings.texture.height) - uvOffset.y);
-					//float PreTRy = ((-PostProcessedBL.y + 1.0f) * settings.texture.height) - uvOffset.y;
-					int PreTRx = Mathf.RoundToInt((PostProcessedTR.x * settings.texture.width) + uvOffset.x);
-					int PreBLy = Mathf.RoundToInt(((PostProcessedTR.y) * settings.texture.height) + uvOffset.y);
-
-
-					int PreWidth = Difference(PreBLx, PreTRx);
-					int PreHeight = Difference(PreBLy, PreTRy);
-
-					Orientation orientation = Orientation.Up;
-
-					if (PostProcessedBL.x < PostProcessedTR.x && PostProcessedBL.y < PostProcessedTR.y)
-					{
-						orientation = Orientation.Up;
-					}
-					else if (PostProcessedBL.x < PostProcessedTR.x && PostProcessedBL.y > PostProcessedTR.y)
-					{
-						orientation = Orientation.Right;
-					}
-					else if (PostProcessedBL.x > PostProcessedTR.x && PostProcessedBL.y > PostProcessedTR.y)
-					{
-						orientation = Orientation.Down;
-					}
-					else if (PostProcessedBL.x > PostProcessedTR.x && PostProcessedBL.y < PostProcessedTR.y)
-					{
-						orientation = Orientation.Left;
-					}
-
-					Vector2Int Min = new Vector2Int(Mathf.RoundToInt(Mathf.Min(PreBLx, PreTRx)), Mathf.RoundToInt(Mathf.Min(PreBLy, PreTRy)));
-
-					Vector2Int Max = new Vector2Int(Mathf.RoundToInt(Mathf.Max(PreBLx, PreTRx)), Mathf.RoundToInt(Mathf.Max(PreBLy, PreTRy)));
-
-					Vector2Int SpriteDimensions = new Vector2Int(Difference(Min.x, Max.x) + 1, Difference(Min.y, Max.y) + 1);
-
-					Color[,] colorMatrix = new Color[SpriteDimensions.x, SpriteDimensions.y];
-
-					for (int x = Min.x; x <= Max.x; x++)
-					{
-						for (int y = Min.y; y <= Max.y; y++)
-						{
-							Color reading = settings.texture.GetPixel(x, y);
-							colorMatrix[x - Min.x, y - Min.y] = reading;
-						}
-					}
-
-					Texture2D texture = null;
-					switch (orientation)
-					{
-						case Orientation.Up:
-							break;
-						case Orientation.Right:
-							colorMatrix = RotateLeft(colorMatrix);
-							break;
-						case Orientation.Down:
-							colorMatrix = RotateLeft(colorMatrix);
-							colorMatrix = RotateLeft(colorMatrix);
-							break;
-						case Orientation.Left:
-							colorMatrix = RotateLeft(colorMatrix);
-							colorMatrix = RotateLeft(colorMatrix);
-							colorMatrix = RotateLeft(colorMatrix);
-							break;
-						default:
-							break;
-					}
-
-					if (sprite.Flipped)
-					{
-						colorMatrix = HorizontalFlip(colorMatrix);
-					}
-
-					texture = new Texture2D(colorMatrix.GetLength(0), colorMatrix.GetLength(1));
-					for (int x = 0; x < texture.width; x++)
-					{
-						for (int y = 0; y < texture.height; y++)
-						{
-							texture.SetPixel(x, y, colorMatrix[x, y]);
-						}
-					}*/
 					var fileName = spriteData.Texture.name;
 					if (fileName == "")
 					{
@@ -577,3 +442,4 @@ namespace WeaverCore.Editor
 
 	}
 }
+*/

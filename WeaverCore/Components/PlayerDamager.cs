@@ -8,6 +8,7 @@ using WeaverCore.Implementations;
 using WeaverCore.Enums;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
+using GlobalEnums;
 
 namespace WeaverCore.Components
 {

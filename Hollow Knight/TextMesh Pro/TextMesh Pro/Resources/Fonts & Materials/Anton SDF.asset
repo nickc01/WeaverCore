@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0cd7f19463d4d9d5b3a36b850823, type: 3}
   m_Name: Anton SDF
   m_EditorClassIdentifier: 
-  hashCode: 1333948183
+  hashCode: -1153031989
   material: {fileID: 8708203605413827638}
   materialHashCode: 911943228
   fontAssetType: 1
@@ -1918,7 +1918,12 @@ MonoBehaviour:
     AscII_Left: 0
     AscII_Right: 0
     XadvanceOffset: 0
-  fallbackFontAssets: []
+  fallbackFontAssets:
+  - {fileID: 11400000, guid: d821e29c947c03d4bafcda5691c11a71, type: 2}
+  - {fileID: 11400000, guid: c1afacdee4f90794e89c454f6930f7c0, type: 2}
+  - {fileID: 11400000, guid: f7f1fad0307467d45976bd86ebddd8b3, type: 2}
+  - {fileID: 11400000, guid: 8747ec9faedf0b7449f5db366fed40a4, type: 2}
+  - {fileID: 11400000, guid: 29666a9430ff4f945916c0ccf9da471a, type: 2}
   fontCreationSettings:
     fontSourcePath: 
     fontSizingMode: 0
@@ -1961,12 +1966,12 @@ MonoBehaviour:
   tabSize: 10
   FaceInfo_Name: Anton
   FaceInfo_PointSize: 41
-  FaceInfo_Scale: 0
+  FaceInfo_Scale: 1
   FaceInfo_CharacterCount: 208
   FaceInfo_LineHeight: 60.1875
   FaceInfo_Baseline: 0
   FaceInfo_Ascender: 46.6875
-  FaceInfo_CapHeight: 0
+  FaceInfo_CapHeight: 31.875
   FaceInfo_Descender: -13.5
   FaceInfo_CenterLine: 0
   FaceInfo_SuperscriptOffset: 46.6875
@@ -1976,7 +1981,7 @@ MonoBehaviour:
   FaceInfo_UnderlineThickness: 2.0419922
   FaceInfo_strikethrough: 12.068182
   FaceInfo_strikethroughThickness: 2.0419922
-  FaceInfo_TabWidth: 0
+  FaceInfo_TabWidth: 96.25
   FaceInfo_Padding: 5
   FaceInfo_AtlasWidth: 512
   FaceInfo_AtlasHeight: 512
@@ -2400,7 +2405,7 @@ MonoBehaviour:
   - 236
   - 481
   TMP_Glyph_width:
-  - 0
+  - 9.625
   - 7.1875
   - 15.875
   - 20.875
@@ -2609,7 +2614,7 @@ MonoBehaviour:
   - 20.0625
   - 34.75
   TMP_Glyph_height:
-  - 0
+  - 60.1875
   - 31.875
   - 12.75
   - 31.875
@@ -3027,7 +3032,7 @@ MonoBehaviour:
   - 1.0625
   - 1.3125
   TMP_Glyph_yOffset:
-  - 0
+  - 46.6875
   - 31.875
   - 31.875
   - 31.875

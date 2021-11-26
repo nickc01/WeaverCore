@@ -13,7 +13,7 @@ namespace Modding
 	{
         internal static void OnDrawBlackBorders(List<GameObject> borders)
         {
-            Logger.LogFine("OnDrawBlackBorders Invoked");
+            //Logger.LogFine("OnDrawBlackBorders Invoked");
             if (ModHooks.DrawBlackBordersHook == null)
             {
                 return;
@@ -656,11 +656,86 @@ namespace Modding
 		/// </summary>
 		/// <remarks>SceneManager.DrawBlackBorders</remarks>
         public static event Action<List<GameObject>> DrawBlackBordersHook;
-		/// <summary>
-		///     Called whenever localization specific strings are requested
-		/// </summary>
-		/// <remarks>N/A</remarks>
-		public static event LanguageGetProxy LanguageGetHook;
+
+
+        /// <summary>
+        ///     Called whenever the player attacks
+        /// </summary>
+        /// <remarks>HeroController.Attack</remarks>
+        public static event Action<AttackDirection> AttackHook;
+
+        /// <summary>
+        ///     Called at the end of the attack function
+        /// </summary>
+        /// <remarks>HeroController.Attack</remarks>
+        public static event Action<AttackDirection> AfterAttackHook;
+
+        /// <summary>
+        ///     Called during dash function to change velocity
+        /// </summary>
+        /// <returns>A changed vector.</returns>
+        /// <remarks>HeroController.Dash</remarks>
+        public static event Func<Vector2, Vector2> DashVectorHook;
+
+        /// <summary>
+        ///     Called when damage is dealt to the player
+        /// </summary>
+        /// <see cref="T:Modding.TakeDamageProxy" />
+        /// <remarks>HeroController.TakeDamage</remarks>
+        public static event TakeDamageProxy TakeDamageHook;
+
+        /// <summary>
+        ///     Called at the end of the take damage function
+        /// </summary>
+        /// <see cref="T:Modding.AfterTakeDamageHandler" />
+        public static event AfterTakeDamageHandler AfterTakeDamageHook;
+
+        /// <summary>
+        ///     Called whenever the dash key is pressed.
+        ///     Returns whether or not to override normal dash functionality - if true, preventing a normal dash
+        /// </summary>
+        /// <remarks>HeroController.LookForQueueInput</remarks>
+        public static event Func<bool> DashPressedHook;
+
+        /// <summary>
+        ///     Called at the start of the DoAttack function
+        /// </summary>
+        public static event Action DoAttackHook;
+
+        /// <summary>
+        ///     Called when the game is fully closed
+        /// </summary>
+        /// <remarks>GameManager.OnApplicationQuit</remarks>
+        public static event Action ApplicationQuitHook;
+
+        /*/// <summary>
+        ///     Called right before a scene gets loaded, can change which scene gets loaded
+        /// </summary>
+        /// <remarks>N/A</remarks>
+        public static event Func<string, string> BeforeSceneLoadHook;*/
+
+        /// <summary>
+        ///     Called when the player dies
+        /// </summary>
+        /// <remarks>GameManager.PlayerDead</remarks>
+        public static event Action BeforePlayerDeadHook;
+
+        /// <summary>
+        ///     Called after the player dies
+        /// </summary>
+        /// <remarks>GameManager.PlayerDead</remarks>
+        public static event Action AfterPlayerDeadHook;
+
+        /// <summary>
+        ///     Called whenever a new game is started
+        /// </summary>
+        /// <remarks>GameManager.LoadFirstScene</remarks>
+        public static event Action NewGameHook;
+        /// <summary>
+        ///     Called whenever localization specific strings are requested
+        /// </summary>
+        /// <remarks>N/A</remarks>
+        public static event LanguageGetProxy LanguageGetHook;
 		/// <summary>
 		///     Called when anything in the game tries to set a bool in player data
 		/// </summary>
@@ -728,6 +803,13 @@ namespace Modding
 		/// <remarks>HeroController.TakeHealth</remarks>
 		public static event TakeHealthProxy TakeHealthHook;
 
+        static PropertyInfo loadedModsF;
+        /// <summary>
+        /// Returns an iterator over all mods.
+        /// </summary>
+        /// <param name="onlyEnabled">Should the iterator only contain enabled mods.</param>
+        /// <param name="allowLoadError">Should the iterator contain mods which have load errors.</param>
+        /// <returns></returns>
         public static IEnumerable<IMod> GetAllMods(bool onlyEnabled = false, bool allowLoadError = false)
         {
             if (loadedModsF == null)
@@ -865,17 +947,26 @@ namespace Modding
         /// <returns>The new value of the field</returns>
         public delegate object SetVariableProxy(Type type, string name, object value);
 
-    /// <summary>
-    ///     Called when health is taken from the player
-    /// </summary>
-    /// <param name="damage">Amount of Damage</param>
-    /// <returns>Modified Damaged</returns>
-    public delegate int TakeHealthProxy(int damage);
+        /// <summary>
+        ///     Called when health is taken from the player
+        /// </summary>
+        /// <param name="damage">Amount of Damage</param>
+        /// <returns>Modified Damaged</returns>
+        public delegate int TakeHealthProxy(int damage);
 
-    /// <summary>
-    ///     Called at the end of the take damage function
-    /// </summary>
-    /// <param name="hazardType"></param>
-    /// <param name="damageAmount"></param>
-    public delegate int AfterTakeDamageHandler(int hazardType, int damageAmount);
+        /// <summary>
+        ///     Called when damage is dealt to the player
+        /// </summary>
+        /// <param name="hazardType">The type of hazard that caused the damage.</param>
+        /// <param name="damage">Amount of Damage</param>
+        /// <returns>Modified Damage</returns>
+        public delegate int TakeDamageProxy(ref int hazardType, int damage);
+
+        /// <summary>
+        ///     Called at the end of the take damage function
+        /// </summary>
+        /// <param name="hazardType"></param>
+        /// <param name="damageAmount"></param>
+        public delegate int AfterTakeDamageHandler(int hazardType, int damageAmount);
+    }
 }

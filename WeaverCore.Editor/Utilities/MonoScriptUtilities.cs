@@ -25,7 +25,7 @@ namespace WeaverCore.Editor.Utilities
 
 
 		static HashSet<MonoScriptMeta> monoScripts = new HashSet<MonoScriptMeta>();
-		static DirectoryInfo projectFolder = new DirectoryInfo("Assets\\..");
+		static DirectoryInfo projectFolder = new DirectoryInfo($"Assets{Path.DirectorySeparatorChar}..");
 
 
 		static MethodInfo getNamespace = typeof(MonoScript).GetMethod("GetNamespace", BindingFlags.NonPublic | BindingFlags.Instance);

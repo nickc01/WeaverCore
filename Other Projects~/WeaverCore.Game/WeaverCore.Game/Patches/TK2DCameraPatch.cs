@@ -15,6 +15,8 @@ namespace WeaverCore.Game.Patches
 		{
 			On.tk2dCamera.Awake += Tk2dCamera_Awake;
 			var cam = GameObject.FindObjectOfType<tk2dCamera>();
+			WeaverLog.Log("CAM = " + cam);
+			WeaverLog.Log("GameObject = " + cam?.gameObject);
 			if (cam != null)
 			{
 				cam.gameObject.AddComponent<WeaverCamera>();
@@ -23,9 +25,12 @@ namespace WeaverCore.Game.Patches
 
 		private static void Tk2dCamera_Awake(On.tk2dCamera.orig_Awake orig, tk2dCamera self)
 		{
+			WeaverLog.Log("SELF = " + self);
+			WeaverLog.Log("GM = " + self?.gameObject);
 			orig(self);
-
+			WeaverLog.Log("A");
 			self.gameObject.AddComponent<WeaverCamera>();
+			WeaverLog.Log("B");
 		}
 	}
 }

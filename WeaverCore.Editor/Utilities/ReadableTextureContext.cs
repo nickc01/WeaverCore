@@ -9,7 +9,13 @@ namespace WeaverCore.Editor.Utilities
 {
 	public sealed class ReadableTextureContext : IDisposable
 	{
-		public readonly List<bool> PreviousStates;
+		public class PreviousState
+		{
+			public bool Readable;
+			public bool Compressed;
+		}
+
+		public readonly List<PreviousState> PreviousStates;
 		public readonly List<Texture2D> Textures;
 		public bool TexturesReadable
 		{
@@ -23,12 +29,14 @@ namespace WeaverCore.Editor.Utilities
 		{
 			PreviousStates = MakeTexturesReadable(textures);
 			Textures = textures;
+			AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
 		}
 
 		public ReadableTextureContext(params Texture2D[] textures)
 		{
 			Textures = textures.ToList();
 			PreviousStates = MakeTexturesReadable(Textures);
+			AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
 		}
 
 
@@ -37,6 +45,7 @@ namespace WeaverCore.Editor.Utilities
 			if (TexturesReadable)
 			{
 				RevertTextureReadability(Textures, PreviousStates);
+				AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
 			}
 		}
 
@@ -45,21 +54,43 @@ namespace WeaverCore.Editor.Utilities
 		/// </summary>
 		/// <param name="textures">The textures to make readable</param>
 		/// <returns>A list the size of the textures list. This list stores whether the textures where readable or not previously. This is useful to revert the textures back to their previous state</returns>
-		public static List<bool> MakeTexturesReadable(List<Texture2D> textures)
+		public static List<PreviousState> MakeTexturesReadable(List<Texture2D> textures)
 		{
 			try
 			{
-				List<bool> previousStates = new List<bool>();
+				List<PreviousState> previousStates = new List<PreviousState>();
 				AssetDatabase.StartAssetEditing();
 				foreach (var texture in textures)
 				{
+					if (texture == null)
+					{
+						previousStates.Add(null);
+						continue;
+					}
 					var importer = (TextureImporter)TextureImporter.GetAtPath(AssetDatabase.GetAssetPath(texture));
-					previousStates.Add(importer.isReadable);
+					var settings = new TextureImporterSettings();
+					importer.ReadTextureSettings(settings);
+					previousStates.Add(new PreviousState
+					{
+						Readable = importer.isReadable,
+						Compressed = importer.textureCompression != TextureImporterCompression.Uncompressed
+					});
 					if (!importer.isReadable)
 					{
 						importer.isReadable = true;
-						importer.SaveAndReimport();
+						settings.readable = true;
 					}
+
+					if (importer.textureCompression != TextureImporterCompression.Uncompressed)
+					{
+						importer.textureCompression = TextureImporterCompression.Uncompressed;
+						var platSettings = importer.GetDefaultPlatformTextureSettings();
+						platSettings.textureCompression = TextureImporterCompression.Uncompressed;
+						importer.SetPlatformTextureSettings(platSettings);
+					}
+
+					importer.SetTextureSettings(settings);
+					importer.SaveAndReimport();
 				}
 				return previousStates;
 			}
@@ -69,19 +100,39 @@ namespace WeaverCore.Editor.Utilities
 			}
 		}
 
-		public static void RevertTextureReadability(List<Texture2D> textures, List<bool> previousReadabilityStates)
+		public static void RevertTextureReadability(List<Texture2D> textures, List<PreviousState> previousStates)
 		{
 			try
 			{
 				AssetDatabase.StartAssetEditing();
 				for (int i = 0; i < textures.Count; i++)
 				{
-					var importer = (TextureImporter)TextureImporter.GetAtPath(AssetDatabase.GetAssetPath(textures[i]));
-					if (importer.isReadable != previousReadabilityStates[i])
+					if (textures[i] == null)
 					{
-						importer.isReadable = previousReadabilityStates[i];
-						importer.SaveAndReimport();
+						continue;
 					}
+					var importer = (TextureImporter)TextureImporter.GetAtPath(AssetDatabase.GetAssetPath(textures[i]));
+					var settings = new TextureImporterSettings();
+					importer.ReadTextureSettings(settings);
+
+					var prevState = previousStates[i];
+
+					if (importer.isReadable != prevState.Readable)
+					{
+						importer.isReadable = prevState.Readable;
+						settings.readable = prevState.Readable;
+					}
+
+					if (prevState.Compressed)
+					{
+						importer.textureCompression = TextureImporterCompression.Compressed;
+						var platSettings = importer.GetDefaultPlatformTextureSettings();
+						platSettings.textureCompression = TextureImporterCompression.Compressed;
+						importer.SetPlatformTextureSettings(platSettings);
+					}
+
+					importer.SetTextureSettings(settings);
+					importer.SaveAndReimport();
 				}
 			}
 			finally

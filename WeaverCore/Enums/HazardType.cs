@@ -1,4 +1,4 @@
-﻿namespace WeaverCore.Enums
+﻿/*namespace WeaverCore.Enums
 {
 	public enum HazardType
 	{
@@ -10,4 +10,4 @@
 		Pit
 
 	}
-}
+}*/

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 223908740737069178}
   - component: {fileID: 114503697014088542}
   - component: {fileID: 114658796161245238}
-  - component: {fileID: 114339124934681880}
+  - component: {fileID: 162330933538454310}
   m_Layer: 5
   m_Name: Weaver Canvas
   m_TagString: Untagged
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114339124934681880
+--- !u!114 &162330933538454310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

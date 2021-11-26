@@ -17,7 +17,7 @@ namespace WeaverCore.Game
 		static SettingStorage()
 		{
 			var weaverCoreFile = new FileInfo(typeof(Initialization).Assembly.Location);
-			SettingsFolder = new DirectoryInfo(weaverCoreFile.Directory.FullName + "\\WeaverCore\\Settings");
+			SettingsFolder = new DirectoryInfo(weaverCoreFile.Directory.FullName + $"{Path.DirectorySeparatorChar}WeaverCore{Path.DirectorySeparatorChar}Settings");
 
 			SettingsFolder.Create();
 		}
@@ -33,7 +33,7 @@ namespace WeaverCore.Game
 			{
 				throw new Exception("The type " + type.FullName + " does not inherit from WeaverSettings");
 			}
-			var file = new FileInfo(SettingsFolder.FullName + "\\" + type.FullName + ".cfg");
+			var file = new FileInfo(SettingsFolder.FullName + Path.DirectorySeparatorChar + type.FullName + ".cfg");
 
 			if (file.Exists)
 			{

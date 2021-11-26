@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -77,6 +79,21 @@ namespace WeaverCore.Game.Implementations
 			Mixers = Resources.FindObjectsOfTypeAll<AudioMixer>();
 			Snapshots = Resources.FindObjectsOfTypeAll<AudioMixerSnapshot>();
 			Groups = Resources.FindObjectsOfTypeAll<AudioMixerGroup>();
+
+			foreach (var mixer in Mixers)
+			{
+				WeaverLog.Log("MIXER = " + mixer.name);
+
+				foreach (var snapshot in Snapshots.Where(s => s.audioMixer == mixer))
+				{
+					WeaverLog.Log("SNAPSHOT = " + snapshot.name);
+				}
+
+				foreach (var group in Groups.Where(g => g.audioMixer == mixer))
+				{
+					WeaverLog.Log("GROUP = " + group.name);
+				}
+			}
 
 			LoadCueModifiers();
 		}
@@ -175,5 +192,66 @@ namespace WeaverCore.Game.Implementations
 		{
 			GameManager.instance.AudioManager.ApplyMusicSnapshot(snapshot, delayTime, transitionTime);
 		}
+
+		static AtmosCue currentCue = null;
+		static FieldInfo cueSnapshotSetter = null;
+		static FieldInfo cueChannelEnabledSetter = null;
+
+		public override void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
+		{
+			if (currentCue != null)
+			{
+				GameObject.Destroy(currentCue, 1f + transitionTime);
+			}
+			currentCue = ScriptableObject.CreateInstance<AtmosCue>();
+			if (cueSnapshotSetter == null)
+			{
+				cueSnapshotSetter = typeof(AtmosCue).GetField("snapshot", BindingFlags.NonPublic | BindingFlags.Instance);
+				cueChannelEnabledSetter = typeof(AtmosCue).GetField("isChannelEnabled", BindingFlags.NonPublic | BindingFlags.Instance);
+			}
+
+			bool[] enabledChannels = new bool[16];
+
+			int counter = 0;
+			for (int i = 1; i < (int)Atmos.AtmosSources.Everything; i *= 2)
+			{
+				enabledChannels[counter] = (enabledSources & (Atmos.AtmosSources)i) == (Atmos.AtmosSources)i;
+				counter++;
+			}
+
+			cueSnapshotSetter.SetValue(currentCue, Atmos.GetSnapshot(snapshot));
+			cueChannelEnabledSetter.SetValue(currentCue, enabledChannels);
+
+			GameManager.instance.AudioManager.ApplyAtmosCue(currentCue, transitionTime);
+		}
+
+		/*protected IEnumerator BeginApplyAtmosCue(AtmosCue atmosCue, float transitionTime)
+		{
+			currentAtmosCue = atmosCue;
+			atmosCue.Snapshot.TransitionTo(transitionTime);
+			for (int i = 0; i < atmosSources.Length; i++)
+			{
+				if (atmosCue.IsChannelEnabled((AtmosChannels)i))
+				{
+					AudioSource audioSource = atmosSources[i];
+					if (!audioSource.isPlaying)
+					{
+						audioSource.Play();
+					}
+				}
+			}
+			yield return new WaitForSecondsRealtime(transitionTime);
+			for (int j = 0; j < atmosSources.Length; j++)
+			{
+				if (!atmosCue.IsChannelEnabled((AtmosChannels)j))
+				{
+					AudioSource audioSource2 = atmosSources[j];
+					if (audioSource2.isPlaying)
+					{
+						audioSource2.Stop();
+					}
+				}
+			}
+		}*/
 	}
 }

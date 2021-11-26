@@ -1,4 +1,4 @@
-﻿using Mono.Collections.Generic;
+﻿/*using Mono.Collections.Generic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ using WrapMode = WeaverCore.Editor.DataTypes.WrapMode;
 
 namespace WeaverCore.Editor.DataTypes
 {
+
 	struct SpriteCollectionData
 	{
 		public FilterMode TextureFilterMode;
@@ -227,11 +228,6 @@ namespace WeaverCore.Editor.Utilities
 							break;
 						}
 					}
-						//var mainAssembly = Assembly.Load("Assembly-CSharp");
-					/*if (mainAssembly != null)
-					{
-						_spriteDefinitionType = mainAssembly.GetType("tk2dSpriteDefinition", true);
-					}*/
 				}
 				return _spriteDefinitionType;
 			}
@@ -637,15 +633,6 @@ namespace WeaverCore.Editor.Utilities
 						}
 					}
 
-					/*foreach (var finalSprite in finalSprites)
-					{
-						if (rectToId.ContainsKey(finalSprite.rect))
-						{
-							//spriteList[rectToId[finalSprite.rect]] = finalSprite;
-							package.AddSprite(rectToId[finalSprite.rect], finalSprite);
-						}
-					}*/
-
 					resultSprites.Value = package;
 				}
 			}
@@ -710,18 +697,6 @@ namespace WeaverCore.Editor.Utilities
 
 					newClip.Frames[j] = frame;
 				}
-
-				/*if (newClip.Name == "Roar Loop")
-				{
-					Debug.Log("Clip Name 1 - " + newClip.Name);
-					Debug.Log("FPS 1 - " + newClip.FPS);
-					Debug.Log("Frame Count 1 = " + newClip.Frames.GetLength(0));
-					foreach (var frame in newClip.Frames)
-					{
-						Debug.Log("Frame = " + frame.SpriteID);
-					}
-				}*/
-
 
 				animationData.Clips[i] = newClip;
 			}
@@ -828,3 +803,4 @@ namespace WeaverCore.Editor.Utilities
 		}
 	}
 }
+*/

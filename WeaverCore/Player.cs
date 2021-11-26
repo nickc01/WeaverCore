@@ -112,6 +112,7 @@ namespace WeaverCore
 		// Token: 0x060000CC RID: 204 RVA: 0x00004FE8 File Offset: 0x000031E8
 		private void Awake()
 		{
+			gameObject.tag = "Player";
 			if (Player.NailStrikePool == null)
 			{
 				Player.NailStrikePool = ObjectPool.Create(EffectAssets.NailStrikePrefab);

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+using WeaverCore.Attributes;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
 {
 	public class EditorMusic : MonoBehaviour
 	{
+		[Header("Music")]
 		[SerializeField]
 		AudioSource Action;
 		[SerializeField]
@@ -21,10 +24,16 @@ namespace WeaverCore.Editor
 		[SerializeField]
 		AudioSource Tension;
 
+		[Space]
+		[Header("Atmos")]
+		[SerializeField]
+		List<AudioSource> atmosSources;
+
 		static EditorMusic _instance;
 
 		Coroutine ApplyMusicRoutine;
 		Coroutine ApplySnapshotRoutine;
+		Coroutine ApplyAtmosRoutine;
 
 		IEnumerable<AudioSource> Sources
 		{
@@ -60,6 +69,17 @@ namespace WeaverCore.Editor
 					}
 				}
 				return _instance;
+			}
+		}
+
+		[OnRuntimeInit(int.MaxValue)]
+		static void OnGameStart()
+		{
+			UnboundCoroutine.Start(WaitAFrame());
+			IEnumerator WaitAFrame()
+			{
+				yield return null;
+				Instance.ApplyAtmosPack(Atmos.SnapshotType.atNone, 0f, Atmos.GetEnabledSourcesForSnapshot(Atmos.SnapshotType.atNone));
 			}
 		}
 
@@ -140,5 +160,72 @@ namespace WeaverCore.Editor
 			}
 			//SYNC STUFF IS HERE
 		}
+
+		public void ApplyAtmosPack(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
+		{
+			if (ApplyAtmosRoutine != null)
+			{
+				StopCoroutine(ApplyAtmosRoutine);
+				ApplyAtmosRoutine = null;
+			}
+			ApplyAtmosRoutine = StartCoroutine(ApplyAtmosPackRoutine(snapshot, transitionTime, enabledSources));
+		}
+
+		protected IEnumerator ApplyAtmosPackRoutine(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
+		{
+			Atmos.GetSnapshot(snapshot).TransitionTo(transitionTime);
+			int counter = 0;
+			for (int i = 1; i < (int)Atmos.AtmosSources.Everything; i *= 2)
+			{
+				if ((enabledSources & (Atmos.AtmosSources)i) == (Atmos.AtmosSources)i)
+				{
+					AudioSource source = atmosSources[counter];
+					//Debug.Log("Playing Source = " + source.name);
+					if (!source.isPlaying)
+					{
+						source.Play();
+					}
+				}
+				counter++;
+			}
+			counter = 0;
+			/*for (int i = 0; i < atmosSources.Length; i++)
+			{
+				if (atmosCue.IsChannelEnabled((AtmosChannels)i))
+				{
+					AudioSource audioSource = atmosSources[i];
+					if (!audioSource.isPlaying)
+					{
+						audioSource.Play();
+					}
+				}
+			}*/
+			yield return new WaitForSecondsRealtime(transitionTime);
+			for (int i = 1; i < (int)Atmos.AtmosSources.Everything; i *= 2)
+			{
+				if ((enabledSources & (Atmos.AtmosSources)i) != (Atmos.AtmosSources)i)
+				{
+					AudioSource source = atmosSources[counter];
+					Debug.Log("Stopping Source = " + source.name);
+					if (source.isPlaying)
+					{
+						source.Stop();
+					}
+				}
+				counter++;
+			}
+			/*for (int j = 0; j < atmosSources.Length; j++)
+			{
+				if (!atmosCue.IsChannelEnabled((AtmosChannels)j))
+				{
+					AudioSource audioSource2 = atmosSources[j];
+					if (audioSource2.isPlaying)
+					{
+						audioSource2.Stop();
+					}
+				}
+			}*/
+		}
+
 	}
 }

@@ -14,6 +14,8 @@ namespace RuntimeInspectorNamespace
 {
 	public class RuntimeInspector : SkinnedWindow
 	{
+		public static RuntimeInspector Instance { get; private set; }
+
 		public enum VariableVisibility { None = 0, SerializableOnly = 1, All = 2 }
 		public enum HeaderVisibility { Collapsible = 0, AlwaysVisible = 1, Hidden = 2 };
 
@@ -235,6 +237,7 @@ namespace RuntimeInspectorNamespace
 
 		protected override void Awake()
 		{
+			Instance = this;
 			base.Awake();
 			Initialize();
 		}

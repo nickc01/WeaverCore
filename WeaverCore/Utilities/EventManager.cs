@@ -116,6 +116,10 @@ namespace WeaverCore.Utilities
 
 		public static void SendEventToGameObject(string eventName, GameObject destination, GameObject source = null)
 		{
+			if (destination == null)
+			{
+				return;
+			}
 			foreach (var receiver in destination.GetComponents<EventManager>())
 			{
 				receiver.TriggerEventInternal(eventName, source);

@@ -260,7 +260,7 @@ public class SceneAdditiveLoadConditional : MonoBehaviour
 	public static bool loadInSequence;
 
 	// Token: 0x02000525 RID: 1317
-	[Serializable]
+	/*[Serializable]
 	public struct BoolTest
 	{
 		// Token: 0x0400225C RID: 8796
@@ -302,5 +302,5 @@ public class SceneAdditiveLoadConditional : MonoBehaviour
 			// Token: 0x04002268 RID: 8808
 			MoreOrEqual
 		}
-	}
+	}*/
 }

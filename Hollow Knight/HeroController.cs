@@ -8,6 +8,14 @@ using UnityEngine;
 // Token: 0x020000F7 RID: 247
 public class HeroController : MonoBehaviour
 {
+	public abstract class INTERNAL_INPUTMANAGER
+	{
+		public abstract bool IsInputPressed(string inputName);
+		public abstract bool WasInputPressed(string inputName);
+		public abstract bool WasInputReleased(string inputName);
+		public abstract Vector2 GetInputVector(string joystickName);
+	}
+
 	// Token: 0x17000096 RID: 150
 	// (get) Token: 0x06000527 RID: 1319 RVA: 0x0001B59B File Offset: 0x0001979B
 	// (set) Token: 0x06000528 RID: 1320 RVA: 0x0001B5A3 File Offset: 0x000197A3
@@ -71,7 +79,7 @@ public class HeroController : MonoBehaviour
 			HeroController silentInstance = HeroController.SilentInstance;
 			if (!silentInstance)
 			{
-				Debug.LogError("Couldn't find a Hero, make sure one exists in the scene.");
+				//Debug.LogError("Couldn't find a Hero, make sure one exists in the scene.");
 			}
 			return silentInstance;
 		}
@@ -105,22 +113,69 @@ public class HeroController : MonoBehaviour
 		}
 	}
 
-	bool RightPressed => Input.GetAxisRaw("Horizontal") > 0.1f;
-	bool LeftPressed => Input.GetAxisRaw("Horizontal") < -0.1f;
-	bool UpPressed => Input.GetAxisRaw("Vertical") > 0.1f;
-	bool DownPressed => Input.GetAxisRaw("Vertical") < -0.1f;
+	INTERNAL_INPUTMANAGER _inputManager;
+	INTERNAL_INPUTMANAGER InputManager
+	{
+		get
+		{
+			if (_inputManager == null)
+			{
+				foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+				{
+					foreach (var type in asm.GetTypes())
+					{
+						if (type != typeof(INTERNAL_INPUTMANAGER) && typeof(INTERNAL_INPUTMANAGER).IsAssignableFrom(type))
+						{
+							_inputManager = (INTERNAL_INPUTMANAGER)Activator.CreateInstance(type);
+							return _inputManager;
+						}
+					}
+				}
+			}
+			return _inputManager;
+		}
+	}
 
-	bool JumpPressed => Input.GetButton("Fire1");
-	bool JumpWasPressed => Input.GetButtonDown("Fire1");
-	bool JumpWasReleased => Input.GetButtonUp("Fire1");
+	bool RightPressed => InputManager.IsInputPressed("right");
+	bool LeftPressed => InputManager.IsInputPressed("left");
+	bool UpPressed => InputManager.IsInputPressed("up");
+	bool DownPressed => InputManager.IsInputPressed("down");
 
-	bool DashPressed => Input.GetButton("Fire2");
-	bool DashWasPressed => Input.GetButtonDown("Fire2");
-	bool DashWasReleased => Input.GetButtonUp("Fire2");
+	bool JumpPressed => InputManager.IsInputPressed("jump");
+	bool JumpWasPressed => InputManager.WasInputPressed("jump");
+	bool JumpWasReleased => InputManager.WasInputReleased("jump");
 
-	bool AttackPressed => Input.GetButton("Fire3");
-	bool AttackWasPressed => Input.GetButtonDown("Fire3");
-	bool AttackWasReleased => Input.GetButtonUp("Fire3");
+	bool DashPressed => InputManager.IsInputPressed("dash");
+	bool DashWasPressed => InputManager.WasInputPressed("dash");
+	bool DashWasReleased => InputManager.WasInputReleased("dash");
+
+	bool AttackPressed => InputManager.IsInputPressed("attack");
+	bool AttackWasPressed => InputManager.WasInputPressed("attack");
+	bool AttackWasReleased => InputManager.WasInputReleased("attack");
+
+	bool RightWasPressed => InputManager.WasInputPressed("right");
+	bool LeftWasPressed => InputManager.WasInputPressed("left");
+	bool UpWasPressed => InputManager.WasInputPressed("up");
+	bool DownWasPressed => InputManager.WasInputPressed("down");
+
+	Vector2 InputVector => InputManager.GetInputVector("moveVector");
+
+	/*bool RightPressed => Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Dpad Horizontal") > 0.5f);
+	bool LeftPressed => Input.GetAxisRaw("Horizontal") < -0.5f || Input.GetAxisRaw("Dpad Horizontal") < -0.5f);
+	bool UpPressed => Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Dpad Vertical") > 0.5f);
+	bool DownPressed => Input.GetAxisRaw("Vertical") < -0.5f || Input.GetAxisRaw("Dpad Vertical") < -0.5f);
+
+	bool JumpPressed => Input.GetButton("Jump");
+	bool JumpWasPressed => Input.GetButtonDown("Jump");
+	bool JumpWasReleased => Input.GetButtonUp("Jump");
+
+	bool DashPressed => Input.GetButton("Dash Keyboard");
+	bool DashWasPressed => Input.GetButtonDown("Dash Keyboard");
+	bool DashWasReleased => Input.GetButtonUp("Dash Keyboard");
+
+	bool AttackPressed => Input.GetButton("Attack");
+	bool AttackWasPressed => Input.GetButtonDown("Attack");
+	bool AttackWasReleased => Input.GetButtonUp("Attack");
 
 
 	bool RightWasPressed => Input.GetAxisRaw("Horizontal") > 0.1f && prevHorizontalState <= 0f;
@@ -131,7 +186,7 @@ public class HeroController : MonoBehaviour
 	float prevHorizontalState = 0f;
 	float prevVerticalState = 0f;
 
-	Vector2 InputVector => new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+	Vector2 InputVector => new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));*/
 
 	// Token: 0x06000539 RID: 1337 RVA: 0x0001B7D4 File Offset: 0x000199D4
 	private void Awake()
@@ -261,8 +316,8 @@ public class HeroController : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		prevHorizontalState = Input.GetAxisRaw("Horizontal");
-		prevVerticalState = Input.GetAxisRaw("Vertical");
+		//prevHorizontalState = Input.GetAxisRaw("Horizontal");
+		//prevVerticalState = Input.GetAxisRaw("Vertical");
 	}
 
 	// Token: 0x0600053D RID: 1341 RVA: 0x0001BAF0 File Offset: 0x00019CF0
@@ -3241,7 +3296,7 @@ public class HeroController : MonoBehaviour
 				this.playerData.isInvincible = true;
 				this.ResetHardLandingTimer();
 				this.renderer.enabled = false;
-				this.heroDeathPrefab.SetActive(true);
+				//this.heroDeathPrefab.SetActive(true);
 			}
 			else
 			{
@@ -3258,7 +3313,7 @@ public class HeroController : MonoBehaviour
 				this.ResetHardLandingTimer();
 				this.renderer.enabled = false;
 				this.gameObject.layer = 2;
-				this.heroDeathPrefab.SetActive(true);
+				//this.heroDeathPrefab.SetActive(true);
 				yield return null;
 				this.StartCoroutine(this.gm.PlayerDead(this.DEATH_WAIT));
 			}
@@ -3283,16 +3338,16 @@ public class HeroController : MonoBehaviour
 			if (hazardType == HazardType.SPIKES)
 			{
 				//GameObject gameObject = this.spikeDeathPrefab.Spawn();
-				GameObject gameObject = GameObject.Instantiate(spikeDeathPrefab);
-				gameObject.transform.position = this.transform.position;
+				//GameObject gameObject = GameObject.Instantiate(spikeDeathPrefab);
+				//gameObject.transform.position = this.transform.position;
 				//FSMUtility.SetFloat(gameObject.GetComponent<PlayMakerFSM>(), "Spike Direction", angle * 57.29578f);
 			}
 			else if (hazardType == HazardType.ACID)
 			{
 				//GameObject gameObject2 = this.acidDeathPrefab.Spawn();
-				GameObject gameObject2 = GameObject.Instantiate(acidDeathPrefab);
-				gameObject2.transform.position = this.transform.position;
-				gameObject2.transform.localScale = this.transform.localScale;
+				//GameObject gameObject2 = GameObject.Instantiate(acidDeathPrefab);
+				//gameObject2.transform.position = this.transform.position;
+				//gameObject2.transform.localScale = this.transform.localScale;
 			}
 			yield return null;
 			this.StartCoroutine(this.gm.PlayerDeadFromHazard(0f));
@@ -4578,7 +4633,7 @@ public class HeroController : MonoBehaviour
 		this.rb2d = base.GetComponent<Rigidbody2D>();
 		this.col2d = base.GetComponent<Collider2D>();
 		this.transform = base.GetComponent<Transform>();
-		this.renderer = base.GetComponent<MeshRenderer>();
+		this.renderer = base.GetComponent<Renderer>();
 		//this.audioCtrl = base.GetComponent<HeroAudioController>();
 		//this.inputHandler = this.gm.GetComponent<InputHandler>();
 		//this.proxyFSM = FSMUtility.LocateFSM(base.gameObject, "ProxyFSM");
@@ -4979,10 +5034,11 @@ public class HeroController : MonoBehaviour
 			if (this.shadowDashTimer <= 0f)
 			{
 				//this.spriteFlash.FlashShadowRecharge();
-				dynamic flasher = GetComponent("WeaverCore.Components.SpriteFlasher");
+				Component flasher = GetComponent("WeaverCore.Components.SpriteFlasher");
 				if (flasher != null)
 				{
-					flasher.FlashShadowRecharge();
+					flasher.SendMessage("FlashShadowRecharge");
+					//flasher.FlashShadowRecharge();
 				}
 			}
 		}
@@ -5833,7 +5889,7 @@ public class HeroController : MonoBehaviour
 	private Collider2D col2d;
 
 	// Token: 0x040005EA RID: 1514
-	private MeshRenderer renderer;
+	private Renderer renderer;
 
 	// Token: 0x040005EB RID: 1515
 	private new Transform transform;

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using UnityEngine.Audio;
 using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
+
 	public static class Music
 	{
 		public enum SnapshotType
@@ -140,232 +139,38 @@ namespace WeaverCore
 			}
 		}
 
-		public static AudioMixer MusicMixer
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetMixer("Music");
-			}
-		}
+		public static AudioMixer MusicMixer => AudioMixer_I.Instance.GetMixer("Music");
 
-		public static AudioMixerGroup MasterGroup
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Master");
-			}
-		}
-		public static AudioMixerGroup ActionGroup
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Action");
-			}
-		}
-		public static AudioMixerGroup ExtraGroup
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Extra");
-			}
-		}
-		public static AudioMixerGroup MainGroup
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Main");
-			}
-		}
-		public static AudioMixerGroup MainAltGroup
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Main Alt");
-			}
-		}
-		public static AudioMixerGroup SubGroup
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Sub");
-			}
-		}
-		public static AudioMixerGroup TensionGroup
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Tension");
-			}
-		}
+		public static AudioMixerGroup MasterGroup => AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Master");
+		public static AudioMixerGroup ActionGroup => AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Action");
+		public static AudioMixerGroup ExtraGroup => AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Extra");
+		public static AudioMixerGroup MainGroup => AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Main");
+		public static AudioMixerGroup MainAltGroup => AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Main Alt");
+		public static AudioMixerGroup SubGroup => AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Sub");
+		public static AudioMixerGroup TensionGroup => AudioMixer_I.Instance.GetGroupForMixer(MusicMixer, "Tension");
 
 
-		public static AudioMixerSnapshot NormalSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal");
-			}
-		}
-
-		public static AudioMixerSnapshot NormalAltSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Alt");
-			}
-		}
-
-		public static AudioMixerSnapshot NormalSoftSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Soft");
-			}
-		}
-
-		public static AudioMixerSnapshot NormalSofterSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Softer");
-			}
-		}
-
-		public static AudioMixerSnapshot NormalFlangeSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Flange");
-			}
-		}
-
-		public static AudioMixerSnapshot NormalFlangierSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Flangier");
-			}
-		}
-
-		public static AudioMixerSnapshot ActionSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Action");
-			}
-		}
-
-		public static AudioMixerSnapshot ActionAndSubSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Action and Sub");
-			}
-		}
-
-		public static AudioMixerSnapshot SubAreaSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Sub Area");
-			}
-		}
-
-		public static AudioMixerSnapshot SilentSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Silent");
-			}
-		}
-
-		public static AudioMixerSnapshot SilentFlangeSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Silent Flange");
-			}
-		}
-
-		public static AudioMixerSnapshot OffSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Off");
-			}
-		}
-
-		public static AudioMixerSnapshot TensionOnlySnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Tension Only");
-			}
-		}
-
-		public static AudioMixerSnapshot NormalGramaphoneSnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Gramaphone");
-			}
-		}
-
-		public static AudioMixerSnapshot ActionOnlySnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Action Only");
-			}
-		}
-
-		public static AudioMixerSnapshot MainOnlySnapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Main Only");
-			}
-		}
-
-		public static AudioMixerSnapshot HKDecline2Snapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 2");
-			}
-		}
-
-		public static AudioMixerSnapshot HKDecline3Snapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 3");
-			}
-		}
-
-		public static AudioMixerSnapshot HKDecline4Snapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 4");
-			}
-		}
-
-		public static AudioMixerSnapshot HKDecline5Snapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 5");
-			}
-		}
-
-		public static AudioMixerSnapshot HKDecline6Snapshot
-		{
-			get
-			{
-				return AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 6");
-			}
-		}
+		public static AudioMixerSnapshot NormalSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal");
+		public static AudioMixerSnapshot NormalAltSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Alt");
+		public static AudioMixerSnapshot NormalSoftSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Soft");
+		public static AudioMixerSnapshot NormalSofterSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Softer");
+		public static AudioMixerSnapshot NormalFlangeSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Flange");
+		public static AudioMixerSnapshot NormalFlangierSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Flangier");
+		public static AudioMixerSnapshot ActionSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Action");
+		public static AudioMixerSnapshot ActionAndSubSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Action and Sub");
+		public static AudioMixerSnapshot SubAreaSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Sub Area");
+		public static AudioMixerSnapshot SilentSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Silent");
+		public static AudioMixerSnapshot SilentFlangeSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Silent Flange");
+		public static AudioMixerSnapshot OffSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Off");
+		public static AudioMixerSnapshot TensionOnlySnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Tension Only");
+		public static AudioMixerSnapshot NormalGramaphoneSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Normal Gramaphone");
+		public static AudioMixerSnapshot ActionOnlySnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Action Only");
+		public static AudioMixerSnapshot MainOnlySnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "Main Only");
+		public static AudioMixerSnapshot HKDecline2Snapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 2");
+		public static AudioMixerSnapshot HKDecline3Snapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 3");
+		public static AudioMixerSnapshot HKDecline4Snapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 4");
+		public static AudioMixerSnapshot HKDecline5Snapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 5");
+		public static AudioMixerSnapshot HKDecline6Snapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 6");
 
 		public static void PlayMusicPack(MusicPack pack)
 		{
@@ -375,13 +180,6 @@ namespace WeaverCore
 		public static void PlayMusicPack(MusicPack pack, float delayTime, float snapshotTransitionTime, bool applySnapshot = true)
 		{
 			AudioMixer_I.Instance.PlayMusicPack(pack, delayTime, snapshotTransitionTime, applySnapshot);
-			/*if (ApplyMusicRoutine != null)
-			{
-				StopCoroutine(ApplyMusicRoutine);
-				ApplyMusicRoutine = null;
-			}
-
-			ApplyMusicRoutine = StartCoroutine(ApplyMusicPack(pack, delayTime, snapshotTransitionTime, applySnapshot));*/
 		}
 
 		public static void ApplyMusicSnapshot(SnapshotType snapshot, float delayTime, float transitionTime)
@@ -392,13 +190,6 @@ namespace WeaverCore
 		public static void ApplyMusicSnapshot(AudioMixerSnapshot snapshot, float delayTime, float transitionTime)
 		{
 			AudioMixer_I.Instance.ApplyMusicSnapshot(snapshot, delayTime, transitionTime);
-			/*if (ApplySnapshotRoutine != null)
-			{
-				StopCoroutine(ApplySnapshotRoutine);
-				ApplySnapshotRoutine = null;
-			}
-
-			ApplySnapshotRoutine = StartCoroutine(ApplyMusicSnapshotRoutine(snapshot, delayTime, transitionTime));*/
 		}
 	}
 }

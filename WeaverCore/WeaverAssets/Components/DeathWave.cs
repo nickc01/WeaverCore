@@ -6,6 +6,8 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+
+
 	public class DeathWave : MonoBehaviour
 	{
 		static ObjectPool DeathWavePool;

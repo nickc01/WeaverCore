@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 441bccbe9c0e52b49a48cfa9d49ea4dd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - defaultFont: {instanceID: 0}
+  - fontJA: {fileID: 11400000, guid: 29666a9430ff4f945916c0ccf9da471a, type: 2}
+  - fontRU: {fileID: 11400000, guid: 8747ec9faedf0b7449f5db366fed40a4, type: 2}
+  - fontZH: {instanceID: 0}
+  - fontKO: {fileID: 11400000, guid: c1afacdee4f90794e89c454f6930f7c0, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

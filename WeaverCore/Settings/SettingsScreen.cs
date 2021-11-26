@@ -200,7 +200,7 @@ namespace WeaverCore.Settings
 		{
 			if (Instance == null)
 			{
-				Instance = GameObject.Instantiate(prefab, WeaverCanvas.Content);
+				Instance = GameObject.Instantiate(prefab, WeaverDebugCanvas.Content);
 
 				//Registry.GetAllFeatures<Panel>();
 

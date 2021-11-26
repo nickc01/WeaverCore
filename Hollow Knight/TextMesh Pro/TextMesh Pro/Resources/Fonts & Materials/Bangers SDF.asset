@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0cd7f19463d4d9d5b3a36b850823, type: 3}
   m_Name: Bangers SDF
   m_EditorClassIdentifier: 
-  hashCode: 34434851
+  hashCode: 2134875903
   material: {fileID: 5694714048142270786}
   materialHashCode: -1928070584
   fontAssetType: 1
@@ -1900,7 +1900,12 @@ MonoBehaviour:
     AscII_Left: 0
     AscII_Right: 0
     XadvanceOffset: 0
-  fallbackFontAssets: []
+  fallbackFontAssets:
+  - {fileID: 11400000, guid: d821e29c947c03d4bafcda5691c11a71, type: 2}
+  - {fileID: 11400000, guid: c1afacdee4f90794e89c454f6930f7c0, type: 2}
+  - {fileID: 11400000, guid: f7f1fad0307467d45976bd86ebddd8b3, type: 2}
+  - {fileID: 11400000, guid: 8747ec9faedf0b7449f5db366fed40a4, type: 2}
+  - {fileID: 11400000, guid: 29666a9430ff4f945916c0ccf9da471a, type: 2}
   fontCreationSettings:
     fontSourcePath: 
     fontSizingMode: 0
@@ -1943,12 +1948,12 @@ MonoBehaviour:
   tabSize: 10
   FaceInfo_Name: Bangers
   FaceInfo_PointSize: 38
-  FaceInfo_Scale: 0
+  FaceInfo_Scale: 1
   FaceInfo_CharacterCount: 206
   FaceInfo_LineHeight: 40.4375
   FaceInfo_Baseline: 0
   FaceInfo_Ascender: 33.5625
-  FaceInfo_CapHeight: 0
+  FaceInfo_CapHeight: 28.1875
   FaceInfo_Descender: -6.875
   FaceInfo_CenterLine: 0
   FaceInfo_SuperscriptOffset: 33.5625
@@ -1958,7 +1963,7 @@ MonoBehaviour:
   FaceInfo_UnderlineThickness: 5
   FaceInfo_strikethrough: 9.704545
   FaceInfo_strikethroughThickness: 5
-  FaceInfo_TabWidth: 0
+  FaceInfo_TabWidth: 74.375
   FaceInfo_Padding: 5
   FaceInfo_AtlasWidth: 512
   FaceInfo_AtlasHeight: 512
@@ -2378,7 +2383,7 @@ MonoBehaviour:
   - 61
   - 444
   TMP_Glyph_width:
-  - 0
+  - 7.4375
   - 14.875
   - 18.9375
   - 24.5
@@ -2585,7 +2590,7 @@ MonoBehaviour:
   - 19.0625
   - 35.1875
   TMP_Glyph_height:
-  - 0
+  - 40.4375
   - 29.1875
   - 13.1875
   - 28.3125
@@ -2999,7 +3004,7 @@ MonoBehaviour:
   - 1.5625
   - 4.25
   TMP_Glyph_yOffset:
-  - 0
+  - 33.5625
   - 28.375
   - 29.9375
   - 28.1875

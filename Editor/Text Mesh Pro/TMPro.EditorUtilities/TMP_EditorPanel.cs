@@ -6,6 +6,13 @@ using UnityEngine;
 
 namespace TMPro.EditorUtilities
 {
+	[CustomEditor(typeof(WeaverCore.Assets.TMPro.TextMeshPro))]
+	public class Weaver_TMP_EditorPanel : TMP_EditorPanel
+	{
+
+	}
+
+
 	[CustomEditor(typeof(TextMeshPro))]
 	[CanEditMultipleObjects]
 	public class TMP_EditorPanel : Editor

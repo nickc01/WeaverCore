@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
 	public static class PathUtilities
 	{
+
+		private readonly static string reservedCharacters = "!*'();:@&=+$,/?%#[]";
 		public readonly static DirectoryInfo AssetsFolder = new DirectoryInfo("Assets");
-		public readonly static DirectoryInfo ProjectFolder = new DirectoryInfo("Assets\\..");
+		public readonly static DirectoryInfo ProjectFolder = new DirectoryInfo($"Assets{Path.DirectorySeparatorChar}..");
 
 		public static string MakePathRelative(string relativeTo, string path)
 		{
@@ -22,7 +25,28 @@ namespace WeaverCore.Utilities
 			Uri fullPath = new Uri(path, UriKind.Absolute);
 			Uri relRoot = new Uri(relativeTo, UriKind.Absolute);
 
-			return relRoot.MakeRelativeUri(fullPath).ToString();
+			return RemoveURIEscapeChars(relRoot.MakeRelativeUri(fullPath).ToString());
+		}
+
+		/// <summary>
+		/// Returns the file name (without the extension)
+		/// </summary>
+		/// <returns></returns>
+		public static string GetFileName(this FileInfo info)
+		{
+			return info.Name.Split('.')[0];
+		}
+
+		public static string RemoveURIEscapeChars(string input)
+		{
+			StringBuilder builder = new StringBuilder(input);
+			var matches = Regex.Matches(input, @"%([\da-fA-F]{1,2})");
+			for (int i = matches.Count - 1; i >= 0; i--)
+			{
+				builder.Remove(matches[i].Index, matches[i].Length);
+				builder.Insert(matches[i].Index, (char)int.Parse(matches[i].Groups[1].Value, System.Globalization.NumberStyles.HexNumber));
+			}
+			return builder.ToString();
 		}
 
 		public static string MakePathRelative(DirectoryInfo relativeTo, string path)
@@ -59,8 +83,15 @@ namespace WeaverCore.Utilities
 
 		public static string AddSlash(string path)
 		{
-			//Debug.Log("Path = " + path);
-			if (path.Any(c => c == '/'))
+			var slashChar = Path.DirectorySeparatorChar;
+
+
+			if (!path.EndsWith(slashChar.ToString()))
+			{
+				return path + slashChar;
+			}
+			return path;
+			/*if (path.Any(c => c == '/'))
 			{
 				if (!path.EndsWith("/"))
 				{
@@ -77,7 +108,7 @@ namespace WeaverCore.Utilities
 				}
 			}
 			//Debug.Log("C");
-			return path;
+			return path;*/
 		}
 
 		public static string AddSlash(this DirectoryInfo directory)

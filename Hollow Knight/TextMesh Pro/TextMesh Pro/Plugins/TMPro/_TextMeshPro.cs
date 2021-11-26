@@ -187,7 +187,13 @@ namespace TMPro
 			}
 			else
 			{
-				CanvasRenderer canvasRenderer = base.gameObject.AddComponent<CanvasRenderer>();
+
+				CanvasRenderer canvasRenderer = GetComponent<CanvasRenderer>();
+				if (canvasRenderer == null)
+				{
+					canvasRenderer = gameObject.AddComponent<CanvasRenderer>();
+				}
+
 				canvasRenderer.hideFlags = HideFlags.HideInInspector;
 			}
 			m_rectTransform = base.rectTransform;

@@ -25,6 +25,11 @@ namespace WeaverCore.Assets
 						Close();
 					}
 				}
+
+				if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.Keypad9))
+				{
+					FreezeTime();
+				}
 			}
 		}
 
@@ -32,17 +37,28 @@ namespace WeaverCore.Assets
 		static void OnGameStart()
 		{
 			GameObject inputListener = new GameObject();
-			//inputListener.hideFlags = HideFlags.HideInHierarchy;
+			inputListener.hideFlags = HideFlags.HideInHierarchy;
 			GameObject.DontDestroyOnLoad(inputListener);
 			inputListener.AddComponent<KeyListener>();
 		}
 
+		public static bool TimeFrozen = false;
 		public static bool IsOpen => Instance != null;
 		public static WeaverCoreDebugTools Instance { get; private set; }
 
+		public static void FreezeTime()
+		{
+			if (TimeFrozen)
+			{
+				TimeFrozen = !TimeFrozen;
+			}
+
+			Time.timeScale = TimeFrozen ? 0f : 1f;
+		}
+
 		public static void Open()
 		{
-			GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("WeaverCore Debug Tools"), WeaverCanvas.Content);
+			GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("WeaverCore Debug Tools"), WeaverDebugCanvas.Content);
 		}
 
 		public static void Close()

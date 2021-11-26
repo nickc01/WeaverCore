@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class DynType : DynamicObject
 {
@@ -63,6 +64,8 @@ public class DynType : DynamicObject
 
 public class DynAsm : DynamicObject
 {
+	public static dynamic WeaverCore_ASM = new DynAsm("WeaverCore");
+
 	public Assembly ReflectedAssembly { get; private set; }
 	public string Path { get; private set; }
 
@@ -107,7 +110,11 @@ public class DynAsm : DynamicObject
 			return true;
 		}
 		var newAsm = new DynAsm(ReflectedAssembly, ExposePrivateFields);
-		newAsm.Path += $".{binder.Name}";
+		newAsm.Path = typePath;
+		if (newAsm.Path.StartsWith("."))
+		{
+			newAsm.Path = newAsm.Path.Remove(0, 1);
+		}
 		result = newAsm;
 		return true;
 	}

@@ -18,12 +18,21 @@ public class GameCameras : MonoBehaviour
 				GameCameras._instance = UnityEngine.Object.FindObjectOfType<GameCameras>();
 				if (GameCameras._instance == null)
 				{
-					Component cam = DynAsm.WeaverCore_ASM.WeaverCore.WeaverCamera.Instance;
-					GameCameras._instance = cam.GetComponentInParent<GameCameras>();
-					if (GameCameras._instance == null)
+					//Component cam = DynAsm.WeaverCore_ASM.WeaverCore.WeaverCamera.Instance;
+					foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
 					{
-						Debug.LogError("Couldn't find GameCameras, make sure one exists in the scene.");
-						return null;
+						if (asm.GetName().Name == "WeaverCore")
+						{
+							var ucType = asm.GetType("WeaverCore.WeaverCamera");
+							var cam = (Component)ucType.GetProperty("Instance").GetValue(null);
+							GameCameras._instance = cam.GetComponentInParent<GameCameras>();
+							if (GameCameras._instance == null)
+							{
+								Debug.LogError("Couldn't find GameCameras, make sure one exists in the scene.");
+								return null;
+							}
+							break;
+						}
 					}
 				}
 				if (Application.isPlaying)

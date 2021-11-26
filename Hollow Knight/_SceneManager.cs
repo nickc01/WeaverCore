@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using static DynAsm;
+//using static DynAsm;
 
 /*public class SceneManager : MonoBehaviour
 {
@@ -44,9 +44,18 @@ public class SceneManager : MonoBehaviour
 	{
 		if (!Application.isPlaying)
 		{
-			var type = WeaverCore_ASM.WeaverCore.Utilities.UnboundCoroutine;
+			foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+			{
+				if (asm.GetName().Name == "WeaverCore")
+				{
+					var ucType = asm.GetType("WeaverCore.Utilities.UnboundCoroutine");
+					ucType.GetMethod("Start").Invoke(null, new object[] { FrameWait(gameObject) });
+					break;
+				}
+			}
+			/*var type = WeaverCore_ASM.WeaverCore.Utilities.UnboundCoroutine;
 			WeaverCore_ASM.WeaverCore.Utilities.UnboundCoroutine.Start(FrameWait(gameObject));
-
+			*/
 			SceneManager.SetLighting(defaultColor, defaultIntensity);
 		}
 

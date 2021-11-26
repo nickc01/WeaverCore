@@ -19,6 +19,11 @@ using PackageClient = UnityEditor.PackageManager.Client;
 
 namespace WeaverCore.Editor.Compilation
 {
+	class WeaverCoreReady
+	{
+		public bool Ready = false;
+	}
+
 
 	public static class BuildTools
 	{
@@ -399,7 +404,18 @@ namespace WeaverCore.Editor.Compilation
 			BundleTools.BuildAndEmbedAssetBundles(modBuildLocation, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(OnBuildFinish)));
 		}
 
+		static MethodInfo clearMethod = null;
 
+		static void ClearLog()
+		{
+			if (clearMethod == null)
+			{
+				var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+				var type = assembly.GetType("UnityEditor.LogEntries");
+				clearMethod = type.GetMethod("Clear");
+			}
+			clearMethod.Invoke(null, null);
+		}
 
 		[OnInit]
 		static void Init()
@@ -445,6 +461,12 @@ namespace WeaverCore.Editor.Compilation
 						//Debug.Log("B_ Waiting for Compilation to finish");
 						yield return new WaitUntil(() => !EditorApplication.isCompiling);
 					}
+
+					if (!PersistentData.TryGetData<WeaverCoreReady>(out var ready) || !ready.Ready)
+					{
+						ClearLog();
+					}
+
 					//Debug.Log("B_Compilation Done!");
 					yield return BuildPartialWeaverCoreRoutine(WeaverCoreBuildLocation, null);
 					yield return RunEnvironmentCheck();
@@ -797,11 +819,11 @@ namespace WeaverCore.Editor.Compilation
 			{
 				if (package.name == "com.unity.textmeshpro")
 				{
-					Debug.ClearDeveloperConsole();
+					ClearLog();
 					Debug.Log("Removing Text Mesh Pro package, since WeaverCore provides a version that is compatible with Hollow Knight");
 					makingChanges = true;
 					PackageClient.Remove(package.name);
-					Debug.ClearDeveloperConsole();
+					//ClearLog();
 					//Break - since we can only do one request at a time
 					break;
 				}
@@ -810,11 +832,11 @@ namespace WeaverCore.Editor.Compilation
 					//If it isn't the latest compatible version
 					if (package.version != buildPipelineLatestVersion)
 					{
-						Debug.ClearDeveloperConsole();
+						ClearLog();
 						Debug.Log($"Updating the Scriptable Build Pipeline from [{package.version}] -> [{buildPipelineLatestVersion}]");
 						PackageClient.Remove(package.name);
 						makingChanges = true;
-						Debug.ClearDeveloperConsole();
+						//ClearLog();
 						//Break - since we can only do one request at a time
 						break;
 					}
@@ -828,18 +850,19 @@ namespace WeaverCore.Editor.Compilation
 
 			if (!makingChanges && !latestVersionInstalled)
 			{
+				ClearLog();
 				PackageClient.Add("com.unity.scriptablebuildpipeline@" + buildPipelineLatestVersion);
 				makingChanges = true;
-				Debug.ClearDeveloperConsole();
 			}
 
 			if (!makingChanges)
 			{
 				if (PlayerSettings.GetApiCompatibilityLevel(BuildTargetGroup.Standalone) != ApiCompatibilityLevel.NET_4_6)
 				{
+					ClearLog();
+					Debug.Log("Updating Project API Level from .Net Standard 2.0 to .Net 4.6");
 					PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
 					makingChanges = true;
-					Debug.ClearDeveloperConsole();
 				}
 			}
 
@@ -862,6 +885,10 @@ namespace WeaverCore.Editor.Compilation
 					//Debug.Log("Asm Definition Path = " + asm.AssemblyDefinitionPath);
 					//Debug.Log("Importing Asset = " + asm.AssemblyDefinitionPath);
 					asm.Save();
+
+					ClearLog();
+					Debug.Log("Updating WeaverCore.Editor State");
+
 					AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath,ImportAssetOptions.DontDownloadFromCacheServer);
 					AssetDatabase.Refresh();
 				}
@@ -869,7 +896,18 @@ namespace WeaverCore.Editor.Compilation
 
 			if (!makingChanges)
 			{
-				try
+				if (!PersistentData.TryGetData<WeaverCoreReady>(out var ready) || !ready.Ready)
+				{
+					ClearLog();
+					Debug.Log("WeaverCore is Ready for Use!");
+					PersistentData.StoreData(new WeaverCoreReady
+					{
+						Ready = true
+					});
+
+					PersistentData.SaveData();
+				}
+				/*try
 				{
 					//Debug.Log("RELOADING");
 					//AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
@@ -878,7 +916,7 @@ namespace WeaverCore.Editor.Compilation
 				finally
 				{
 
-				}
+				}*/
 			}
 
 			IEnumerator WaitForRequest<T>(Request<T> request) => new WaitUntil(() => request.IsCompleted);

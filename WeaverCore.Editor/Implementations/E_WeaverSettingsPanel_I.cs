@@ -5,7 +5,7 @@ namespace WeaverCore.Editor.Implementations
 {
 	public class E_WeaverSettingsPanel_I : WeaverSettingsPanel_I
 	{
-		public override void LoadSettings(Panel settings)
+		/*public override void LoadSettings(Panel settings)
 		{
 			//Do Nothing for now
 		}
@@ -13,6 +13,6 @@ namespace WeaverCore.Editor.Implementations
 		public override void SaveSettings(Panel settings)
 		{
 			//Do Nothing for now
-		}
+		}*/
 	}
 }

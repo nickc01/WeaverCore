@@ -428,6 +428,7 @@
   <ItemGroup>
     <Compile Include="Implementations\G_AudioMixer_I.cs" />
     <Compile Include="Implementations\G_GeoCounter_I.cs" />
+    <Compile Include="Implementations\G_GlobalSettings_I.cs" />
     <Compile Include="Implementations\G_HunterJournal_I.cs" />
     <Compile Include="Implementations\G_Language_I.cs" />
     <Compile Include="Implementations\G_PlayerInput_I.cs" />
@@ -478,7 +479,6 @@
     <Compile Include="Tools\DumpSpritesTool.cs" />
     <Compile Include="Tools\ToolsCommon.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

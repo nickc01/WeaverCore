@@ -22,14 +22,14 @@ namespace WeaverCore.Game
 			SettingsFolder.Create();
 		}
 
-		public static void Load<T>(T settings) where T : Panel
+		public static void Load<T>(T settings) where T : GlobalSettings
 		{
 			Load(typeof(T), settings);
 		}
 
-		public static void Load(Type type, Panel settings)
+		public static void Load(Type type, GlobalSettings settings)
 		{
-			if (!typeof(Panel).IsAssignableFrom(type))
+			if (!typeof(GlobalSettings).IsAssignableFrom(type))
 			{
 				throw new Exception("The type " + type.FullName + " does not inherit from WeaverSettings");
 			}
@@ -48,7 +48,7 @@ namespace WeaverCore.Game
 			}
 		}
 
-		public static void Save(Panel settings)
+		public static void Save(GlobalSettings settings)
 		{
 			var type = settings.GetType();
 			var file = new FileInfo(SettingsFolder.FullName + "\\" + type.FullName + ".cfg");

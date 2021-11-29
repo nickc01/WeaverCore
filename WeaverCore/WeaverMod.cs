@@ -30,12 +30,6 @@ namespace WeaverCore
                 return _loadedMods;
 #else
                 return ModHooks.GetAllMods();
-			    /*if (modLoaderType == null)
-				{
-                    modLoaderType = typeof(IMod).Assembly.GetType("Modding.ModLoader");
-                    loadedMods = modLoaderType.GetField("LoadedMods", BindingFlags.Public | BindingFlags.Static);
-                }
-                return (List<IMod>)loadedMods.GetValue(null);*/
 #endif
             }
         }

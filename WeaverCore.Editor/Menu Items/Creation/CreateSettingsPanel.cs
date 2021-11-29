@@ -1,14 +1,15 @@
 ﻿using UnityEditor;
+using WeaverCore.Editor.Settings;
 using WeaverCore.Settings;
 
 namespace WeaverCore.Editor
 {
-	public static class CreateSettingsPanel
+    public static class CreateSettingsPanel
 	{
-		[MenuItem("WeaverCore/Create/Settings Panel")]
-		public static void CreateModSettingsMenuItem()
+		[MenuItem("WeaverCore/Create/Global Settings")]
+		public static void CreateGlobalSettingsMenuItem()
 		{
-			CreateScriptableObjectWindow.OpenCreationMenu("Create Panel", typeof(Panel), "No Panel Types have been found.\nYou can create one by creating a new script in the Assets folder,\nand having the type inherit from WeaverCore.Settings.Panel", "Panel");
+			CreateScriptableObjectWindow.OpenCreationMenu("Create Global Settings", typeof(GlobalSettings), "No Global Setting Types have been found.\nYou can create one by creating a new script in the Assets folder,\nand having the type inherit from WeaverCore.Settings.GlobalSettings", "Global Settings");
 		}
 
 		[MenuItem("WeaverCore/Create/Save Specific Settings")]

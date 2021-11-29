@@ -163,12 +163,17 @@ namespace WeaverCore
         /// </summary>
         /// <typeparam name="T">The type of features to look for</typeparam>
         /// <param name="predicate">A predicate used to only return the features that satisfy the predicate condition</param>
+        /// <param name="onlyEnabledRegistries">If set to true, then only registries that are enabled will be searched through. If false, then all registries will be searched through</param>
         /// <returns>Returns an iterator with all the features in it</returns>
-        public static IEnumerable<T> GetAllFeatures<T>(Func<T, bool> predicate) where T : class
+        public static IEnumerable<T> GetAllFeatures<T>(Func<T, bool> predicate, bool onlyEnabledRegistries = true) where T : class
         {
+            if (predicate == null)
+            {
+                predicate = f => true;
+            }
             foreach (var registry in AllRegistries)
             {
-                if (registry != null && registry.Enabled)
+                if (registry != null && (!onlyEnabledRegistries || (onlyEnabledRegistries && registry.Enabled)))
                 {
                     foreach (var result in registry.GetFeatures(predicate))
                     {

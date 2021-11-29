@@ -19,7 +19,7 @@ public class GameCameras : MonoBehaviour
 				if (GameCameras._instance == null)
 				{
 					//Component cam = DynAsm.WeaverCore_ASM.WeaverCore.WeaverCamera.Instance;
-					foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+					/*foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
 					{
 						if (asm.GetName().Name == "WeaverCore")
 						{
@@ -33,6 +33,15 @@ public class GameCameras : MonoBehaviour
 							}
 							break;
 						}
+					}*/
+
+					var instanceProp = WeaverTypeHelpers.GetWeaverProperty("WeaverCore.WeaverCamera", "Instance");
+					var cam = (Component)instanceProp.GetValue(null);
+					GameCameras._instance = cam.GetComponentInParent<GameCameras>();
+					if (GameCameras._instance == null)
+					{
+						Debug.LogError("Couldn't find GameCameras, make sure one exists in the scene.");
+						return null;
 					}
 				}
 				if (Application.isPlaying)

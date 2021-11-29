@@ -44,7 +44,7 @@ public class SceneManager : MonoBehaviour
 	{
 		if (!Application.isPlaying)
 		{
-			foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+			/*foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
 			{
 				if (asm.GetName().Name == "WeaverCore")
 				{
@@ -52,7 +52,11 @@ public class SceneManager : MonoBehaviour
 					ucType.GetMethod("Start").Invoke(null, new object[] { FrameWait(gameObject) });
 					break;
 				}
-			}
+			}*/
+
+			var startFunc = WeaverTypeHelpers.GetWeaverMethod("WeaverCore.Utilities.UnboundCoroutine", "Start");
+			startFunc.Invoke(null, new object[] { FrameWait(gameObject) });
+
 			/*var type = WeaverCore_ASM.WeaverCore.Utilities.UnboundCoroutine;
 			WeaverCore_ASM.WeaverCore.Utilities.UnboundCoroutine.Start(FrameWait(gameObject));
 			*/

@@ -469,6 +469,7 @@
     <Compile Include="Patches\HealthManager-Enemy.cs" />
     <Compile Include="Patches\HeroController-Player.cs" />
     <Compile Include="Patches\HitTakerPatch.cs" />
+    <Compile Include="Patches\TransitionPointPatches.cs" />
     <Compile Include="Patches\UIManagerPatch.cs" />
     <Compile Include="Patches\UnitySceneManagerPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

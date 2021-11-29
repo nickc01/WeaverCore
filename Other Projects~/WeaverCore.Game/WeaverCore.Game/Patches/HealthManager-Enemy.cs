@@ -26,7 +26,7 @@ namespace WeaverCore.Game.Patches
 			bool destroyed = false;
 			try
 			{
-				self.gameObject.AddComponent<Enemy>();
+				//self.gameObject.AddComponent<Enemy>();
 				var replacement = (Enemy)Registry.GetAllFeatures<IObjectReplacement>(r => r is Enemy && r.ThingToReplace == self.gameObject.name).FirstOrDefault();
 				if (replacement != null)
 				{

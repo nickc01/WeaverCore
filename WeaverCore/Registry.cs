@@ -10,8 +10,8 @@ namespace WeaverCore
 	/// <summary>
 	/// Used to store a variety of features to be added to the game
 	/// </summary>
-	[CreateAssetMenu(fileName = "Registry", menuName = "WeaverCore/Registry New", order = 1)]
-    public class Registry : ScriptableObject//, ISerializationCallbackReceiver
+	[CreateAssetMenu(fileName = "Registry", menuName = "WeaverCore/Registry", order = 1)]
+    public class Registry : ScriptableObject
 	{
         static List<Registry> allRegistries = new List<Registry>();
 
@@ -53,6 +53,27 @@ namespace WeaverCore
         public bool Enabled => initialized && ModType != null;
         public IEnumerable<UnityEngine.Object> Features => features;
         public int FeatureCount => features.Count;
+
+
+        public static Registry Create<TMod>() where TMod : WeaverMod
+		{
+            return Create(typeof(TMod));
+		}
+
+        public static Registry Create(WeaverMod mod)
+		{
+            return Create(mod.GetType());
+		}
+
+        public static Registry Create(Type modType)
+		{
+            var newRegistry = ScriptableObject.CreateInstance<Registry>();
+            newRegistry.modAssemblyName = modType.Assembly.GetName().Name;
+            newRegistry.modTypeName = modType.FullName;
+            newRegistry._modeTypeCached = modType;
+            newRegistry.EnableRegistry();
+            return newRegistry;
+		}
 
         public void EnableRegistry()
 		{

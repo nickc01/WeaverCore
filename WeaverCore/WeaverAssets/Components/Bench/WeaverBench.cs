@@ -726,9 +726,31 @@ namespace WeaverCore.Assets.Components
 			yield break;
 		}
 
+		void MapEventListener(string eventName, GameObject src)
+		{
+			eventManager.OnReceivedEvent -= MapEventListener;
+			if (eventName == "INVENTORY OPENED")
+			{
+				StopAllCoroutines();
+				StartCoroutine(CloseMapState());
+			}
+		}
+
+		void OpenInventoryMapListener(string eventName, GameObject src)
+		{
+			eventManager.OnReceivedEvent -= OpenInventoryMapListener;
+			if (eventName == "OPEN INVENTORY MAP")
+			{
+				StopAllCoroutines();
+				StartCoroutine(CloseAnimState(true));
+			}
+		}
+
 		//OPEN MAP
 		IEnumerator QuickMapRoutine()
 		{
+			yield return null;
+			eventManager.OnReceivedEvent += MapEventListener;
 			Debug.Log("PLAYER HAS MAP = " + PlayerData.instance.GetBool("hasMap"));
 			if (PlayerData.instance.GetBool("hasMap"))
 			{
@@ -744,6 +766,7 @@ namespace WeaverCore.Assets.Components
 					EventManager.BroadcastEvent("STOP HERO EXIT", gameObject);
 
 
+
 					for (float i = 0; i < 0.25f; i += Time.deltaTime)
 					{
 						if (PlayerInput.quickMap.WasPressed)
@@ -755,25 +778,30 @@ namespace WeaverCore.Assets.Components
 							}
 							PlayPlayerClip("Sit Map Close");
 							yield return new WaitForSeconds(0.42f);
+							eventManager.OnReceivedEvent -= MapEventListener;
 							yield return RestingRoutine();
 							yield break;
 						}
 
 						yield return null;
 					}
+					eventManager.OnReceivedEvent -= MapEventListener;
 					yield return MapIdleState();
 					yield break;
 				}
 				else
 				{
-					yield return null;
+					//yield return null;
+					EventManager.BroadcastEvent("CLOSE QUICK MAP", gameObject);
+					eventManager.OnReceivedEvent -= MapEventListener;
 					yield return RestingRoutine();
 					yield break;
 				}
 			}
 			else
 			{
-				yield return null;
+				//yield return null;
+				eventManager.OnReceivedEvent -= MapEventListener;
 				yield return RestingRoutine();
 				yield break;
 			}
@@ -783,33 +811,42 @@ namespace WeaverCore.Assets.Components
 
 		IEnumerator MapIdleState()
 		{
+			eventManager.OnReceivedEvent += MapEventListener;
+			yield return null;
 			EventManager.BroadcastEvent("OPEN QUICK MAP", gameObject);
 
 			yield return new WaitUntil(() => PlayerInput.quickMap.WasReleased || !PlayerInput.quickMap.IsPressed);
+			eventManager.OnReceivedEvent -= MapEventListener;
+			yield return CloseMapState();
+		}
 
+		IEnumerator CloseMapState()
+		{
+			yield return null;
 			EventManager.BroadcastEvent("CLOSE QUICK MAP", gameObject);
 
 			PlayPlayerClip("Sit Map Close");
 			yield return null;
+			yield return CloseAnimState(false);
+		}
 
+		IEnumerator CloseAnimState(bool waitAFrame)
+		{
+			if (waitAFrame)
+			{
+				yield return null;
+			}
+			eventManager.OnReceivedEvent += OpenInventoryMapListener;
+			yield return null;
 			HeroController.instance.RelinquishControl();
 			HeroController.instance.StopAnimationControl();
 			yield return PlayPlayerClipTillDone("Sit Map Close");
 
-			PlayerData.instance.SetBool("disablePause",false);
+			eventManager.OnReceivedEvent -= OpenInventoryMapListener;
+			yield return null;
+			PlayerData.instance.SetBool("disablePause", false);
 
 			yield return RestingRoutine();
-			//yield return PlayPlayerClipTillDone("Sit Map Close");
-
-			/*while (true)
-			{
-				if ()
-				{
-					//Close Map
-				}
-				yield return null;
-			}
-			yield break;*/
 		}
 
 		/*static IEnumerator PlayClipTillDone(dynamic animator, string clip)

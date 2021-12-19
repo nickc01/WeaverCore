@@ -5,12 +5,12 @@ namespace WeaverCore.Settings
 {
 	public class MethodAccessor : IAccessor
 	{
-		public readonly Panel Panel;
+		public readonly GlobalSettings Panel;
 		public readonly MethodInfo Method;
 		readonly string _description;
 		readonly string _displayName;
 
-		public MethodAccessor(Panel panel, MethodInfo method, string displayName, string description)
+		public MethodAccessor(GlobalSettings panel, MethodInfo method, string displayName, string description)
 		{
 			Panel = panel;
 			Method = method;

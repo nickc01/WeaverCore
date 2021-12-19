@@ -19,10 +19,10 @@ using PackageClient = UnityEditor.PackageManager.Client;
 
 namespace WeaverCore.Editor.Compilation
 {
-	class WeaverCoreReady
+	/*class WeaverCoreReady
 	{
 		public bool Ready = false;
-	}
+	}*/
 
 
 	public static class BuildTools
@@ -404,19 +404,6 @@ namespace WeaverCore.Editor.Compilation
 			BundleTools.BuildAndEmbedAssetBundles(modBuildLocation, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(OnBuildFinish)));
 		}
 
-		static MethodInfo clearMethod = null;
-
-		static void ClearLog()
-		{
-			if (clearMethod == null)
-			{
-				var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-				var type = assembly.GetType("UnityEditor.LogEntries");
-				clearMethod = type.GetMethod("Clear");
-			}
-			clearMethod.Invoke(null, null);
-		}
-
 		[OnInit]
 		static void Init()
 		{
@@ -454,7 +441,8 @@ namespace WeaverCore.Editor.Compilation
 
 			if (!ranMethod)
 			{
-				IEnumerator DefaultRoutine()
+				DependencyChecker.CheckDependencies();
+				/*IEnumerator DefaultRoutine()
 				{
 					if (EditorApplication.isCompiling)
 					{
@@ -464,18 +452,18 @@ namespace WeaverCore.Editor.Compilation
 
 					if (!PersistentData.TryGetData<WeaverCoreReady>(out var ready) || !ready.Ready)
 					{
-						ClearLog();
+						DebugUtilities.ClearLog();
 					}
 
 					//Debug.Log("B_Compilation Done!");
-					yield return BuildPartialWeaverCoreRoutine(WeaverCoreBuildLocation, null);
-					yield return RunEnvironmentCheck();
+					//yield return BuildPartialWeaverCoreRoutine(WeaverCoreBuildLocation, null);
+					//yield return RunEnvironmentCheck();
 				}
 
 				if (!EditorApplication.isPlaying)
 				{
 					UnboundCoroutine.Start(DefaultRoutine());
-				}
+				}*/
 			}
 		}
 
@@ -791,10 +779,11 @@ namespace WeaverCore.Editor.Compilation
 				System.Diagnostics.Process.Start(hkEXE.FullName);
 			}
 
-			UnboundCoroutine.Start(RunEnvironmentCheck());
+			DependencyChecker.CheckDependencies();
+			//UnboundCoroutine.Start(RunEnvironmentCheck());
 		}
 
-		static IEnumerator RunEnvironmentCheck()
+		/*static IEnumerator RunEnvironmentCheck()
 		{
 			//INSTALL THE NECESSARY PACKAGES
 			var listRequest = PackageClient.List();
@@ -819,11 +808,11 @@ namespace WeaverCore.Editor.Compilation
 			{
 				if (package.name == "com.unity.textmeshpro")
 				{
-					ClearLog();
+					DebugUtilities.ClearLog();
 					Debug.Log("Removing Text Mesh Pro package, since WeaverCore provides a version that is compatible with Hollow Knight");
 					makingChanges = true;
 					PackageClient.Remove(package.name);
-					//ClearLog();
+					//DebugUtilities.ClearLog();
 					//Break - since we can only do one request at a time
 					break;
 				}
@@ -832,11 +821,11 @@ namespace WeaverCore.Editor.Compilation
 					//If it isn't the latest compatible version
 					if (package.version != buildPipelineLatestVersion)
 					{
-						ClearLog();
+						DebugUtilities.ClearLog();
 						Debug.Log($"Updating the Scriptable Build Pipeline from [{package.version}] -> [{buildPipelineLatestVersion}]");
 						PackageClient.Remove(package.name);
 						makingChanges = true;
-						//ClearLog();
+						//DebugUtilities.ClearLog();
 						//Break - since we can only do one request at a time
 						break;
 					}
@@ -850,7 +839,7 @@ namespace WeaverCore.Editor.Compilation
 
 			if (!makingChanges && !latestVersionInstalled)
 			{
-				ClearLog();
+				DebugUtilities.ClearLog();
 				PackageClient.Add("com.unity.scriptablebuildpipeline@" + buildPipelineLatestVersion);
 				makingChanges = true;
 			}
@@ -859,7 +848,7 @@ namespace WeaverCore.Editor.Compilation
 			{
 				if (PlayerSettings.GetApiCompatibilityLevel(BuildTargetGroup.Standalone) != ApiCompatibilityLevel.NET_4_6)
 				{
-					ClearLog();
+					DebugUtilities.ClearLog();
 					Debug.Log("Updating Project API Level from .Net Standard 2.0 to .Net 4.6");
 					PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
 					makingChanges = true;
@@ -886,7 +875,7 @@ namespace WeaverCore.Editor.Compilation
 					//Debug.Log("Importing Asset = " + asm.AssemblyDefinitionPath);
 					asm.Save();
 
-					ClearLog();
+					DebugUtilities.ClearLog();
 					Debug.Log("Updating WeaverCore.Editor State");
 
 					AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath,ImportAssetOptions.DontDownloadFromCacheServer);
@@ -898,7 +887,7 @@ namespace WeaverCore.Editor.Compilation
 			{
 				if (!PersistentData.TryGetData<WeaverCoreReady>(out var ready) || !ready.Ready)
 				{
-					ClearLog();
+					DebugUtilities.ClearLog();
 					Debug.Log("WeaverCore is Ready for Use!");
 					PersistentData.StoreData(new WeaverCoreReady
 					{
@@ -907,19 +896,9 @@ namespace WeaverCore.Editor.Compilation
 
 					PersistentData.SaveData();
 				}
-				/*try
-				{
-					//Debug.Log("RELOADING");
-					//AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
-					//BundleTools.Test();
-				}
-				finally
-				{
-
-				}*/
 			}
 
 			IEnumerator WaitForRequest<T>(Request<T> request) => new WaitUntil(() => request.IsCompleted);
-		}
+		}*/
 	}
 }

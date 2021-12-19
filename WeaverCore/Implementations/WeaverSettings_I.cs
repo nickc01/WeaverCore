@@ -7,7 +7,7 @@ namespace WeaverCore.Implementations
 {
 	public abstract class WeaverSettingsPanel_I : IImplementation
     {
-        public abstract void SaveSettings(Panel settings);
-        public abstract void LoadSettings(Panel settings);
+        public abstract void SaveSettings(GlobalSettings settings);
+        public abstract void LoadSettings(GlobalSettings settings);
     }
 }

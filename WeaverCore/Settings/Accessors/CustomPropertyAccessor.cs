@@ -7,7 +7,7 @@ namespace WeaverCore.Settings
 		public readonly Func<T> Getter;
 		public readonly Action<T> Setter;
 
-		public CustomPropertyAccessor(Panel panel, Func<T> getter, Action<T> setter, string displayName, string description) : base(panel,displayName,description)
+		public CustomPropertyAccessor(GlobalSettings panel, Func<T> getter, Action<T> setter, string displayName, string description) : base(panel,displayName,description)
 		{
 			Getter = getter;
 			Setter = setter;

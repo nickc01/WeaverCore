@@ -47,7 +47,7 @@ namespace WeaverCore.Settings
 	}
 
 	/// <summary>
-	/// Represents the screen in-game where WeaverCore related mods can have their settings changed. See <see cref="Panel"/> for more info
+	/// Represents the screen in-game where WeaverCore related mods can have their settings changed. See <see cref="GlobalSettings"/> for more info
 	/// </summary>
 	public sealed class SettingsScreen : MonoBehaviour
 	{
@@ -59,12 +59,12 @@ namespace WeaverCore.Settings
 		public static SettingsScreen Instance { get; private set; }
 		static SettingsScreen prefab;
 
-		static List<Panel> _panels = new List<Panel>();
+		static List<GlobalSettings> _panels = new List<GlobalSettings>();
 
 		/// <summary>
 		/// A list of all the currently registered panels
 		/// </summary>
-		public static IEnumerable<Panel> Panels
+		public static IEnumerable<GlobalSettings> Panels
 		{
 			get
 			{
@@ -75,7 +75,7 @@ namespace WeaverCore.Settings
 		/// <summary>
 		/// The currently selected panel. Returns null if there is no panel selected
 		/// </summary>
-		public static Panel SelectedPanel
+		public static GlobalSettings SelectedPanel
 		{
 			get
 			{
@@ -167,7 +167,7 @@ namespace WeaverCore.Settings
 		}*/
 
 		[OnFeatureLoad]
-		static void OnFeatureLoad(Panel panel)
+		static void OnFeatureLoad(GlobalSettings panel)
 		{
 			if (!IsPanelRegistered(panel.GetType()))
 			{
@@ -176,7 +176,7 @@ namespace WeaverCore.Settings
 		}
 
 		[OnFeatureUnload]
-		static void OnFeatureUnload(Panel panel)
+		static void OnFeatureUnload(GlobalSettings panel)
 		{
 			if (IsPanelRegistered(panel.GetType()))
 			{
@@ -229,7 +229,7 @@ namespace WeaverCore.Settings
 		/// </summary>
 		/// <typeparam name="T">The type of panel to register</typeparam>
 		/// <returns>Returns an instance to the panel</returns>
-		public static T RegisterPanel<T>() where T : Panel
+		public static T RegisterPanel<T>() where T : GlobalSettings
 		{
 			if (_panels.Any(p => p.GetType() == typeof(T)))
 			{
@@ -244,7 +244,7 @@ namespace WeaverCore.Settings
 		/// Registers a panel to the settings menu so it can be displayed in the menu
 		/// </summary>
 		/// <param name="panel">The panel to register</param>
-		public static void RegisterPanel(Panel panel)
+		public static void RegisterPanel(GlobalSettings panel)
 		{
 			if (_panels.Any(p => p.GetType() == panel.GetType()))
 			{
@@ -264,7 +264,7 @@ namespace WeaverCore.Settings
 		/// Unregisters an panel from the settings menu
 		/// </summary>
 		/// <param name="panel">The panel to unregister</param>
-		public static void UnRegisterPanel(Panel panel)
+		public static void UnRegisterPanel(GlobalSettings panel)
 		{
 			panel.OnUnRegister();
 			if (!_panels.Contains(panel))
@@ -284,7 +284,7 @@ namespace WeaverCore.Settings
 		/// Unregisters an panel from the settings menu
 		/// </summary>
 		/// <typeparam name="T">The panel type to unregister</typeparam>
-		public static void UnRegisterPanel<T>() where T : Panel
+		public static void UnRegisterPanel<T>() where T : GlobalSettings
 		{
 			var panel = _panels.FirstOrDefault(p => typeof(T).IsAssignableFrom(p.GetType()));
 			if (panel == null)
@@ -297,7 +297,7 @@ namespace WeaverCore.Settings
 			}
 		}
 		
-		public static bool IsPanelRegistered<T>() where T : Panel
+		public static bool IsPanelRegistered<T>() where T : GlobalSettings
 		{
 			return IsPanelRegistered(typeof(T));
 		}
@@ -340,7 +340,7 @@ namespace WeaverCore.Settings
 			}
 		}
 
-		Tab CreateTab(Panel panel)
+		Tab CreateTab(GlobalSettings panel)
 		{
 			var tab = GameObject.Instantiate(TabPrefab,tabContainer);
 			tab.TextComponent.text = panel.TabName;
@@ -371,7 +371,7 @@ namespace WeaverCore.Settings
 			tab.Panel.OnPanelOpen();
 		}
 
-		void CreateElements(Panel panel)
+		void CreateElements(GlobalSettings panel)
 		{
 			var members = new List<MemberInfo>();
 			var panelType = panel.GetType();
@@ -410,7 +410,7 @@ namespace WeaverCore.Settings
 			return false;
 		}
 
-		internal UIElement AddElement(Panel panel, IAccessor accessor)
+		internal UIElement AddElement(GlobalSettings panel, IAccessor accessor)
 		{
 			foreach (var element in SettingsElementPrefabs)
 			{
@@ -422,7 +422,7 @@ namespace WeaverCore.Settings
 			return null;
 		}
 
-		UIElement AddElementRaw(Panel panel, UIElement prefab, IAccessor accessor)
+		UIElement AddElementRaw(GlobalSettings panel, UIElement prefab, IAccessor accessor)
 		{
 			var newElement = GameObject.Instantiate(prefab, elementContainer);
 			newElement.Panel = panel;
@@ -432,7 +432,7 @@ namespace WeaverCore.Settings
 			return newElement;
 		}
 
-		internal UIElement AddMember(Panel panel, MemberInfo member, string displayName, string description)
+		internal UIElement AddMember(GlobalSettings panel, MemberInfo member, string displayName, string description)
 		{
 			IAccessor accessor = null;
 			if (member is FieldInfo)
@@ -471,7 +471,7 @@ namespace WeaverCore.Settings
 			return element;
 		}
 
-		internal SpaceElement AddSpacing(Panel panel, UIElement sourceElement, float? spacing = null)
+		internal SpaceElement AddSpacing(GlobalSettings panel, UIElement sourceElement, float? spacing = null)
 		{
 			var element = (SpaceElement)AddElementRaw(panel, SettingsElementPrefabs.FirstOrDefault(ui => ui is SpaceElement), null);
 			if (spacing != null)
@@ -481,7 +481,7 @@ namespace WeaverCore.Settings
 			return element;
 		}
 
-		internal HeaderElement AddHeading(Panel panel, string headerText,UIElement sourceElement, float? fontSize = null)
+		internal HeaderElement AddHeading(GlobalSettings panel, string headerText,UIElement sourceElement, float? fontSize = null)
 		{
 			var element = (HeaderElement)AddElementRaw(panel, SettingsElementPrefabs.FirstOrDefault(ui => ui is HeaderElement), null);
 			element.Title = headerText;

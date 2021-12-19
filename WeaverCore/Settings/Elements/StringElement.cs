@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using TMPro;
 using UnityEngine.UI;
 using WeaverCore.Utilities;
 
@@ -7,11 +8,11 @@ namespace WeaverCore.Settings.Elements
 {
 	public class StringElement : UIElement
 	{
-		InputField inputField;
+		TMP_InputField inputField;
 
 		void Awake()
 		{
-			inputField = GetComponentInChildren<InputField>();
+			inputField = GetComponentInChildren<TMP_InputField>();
 			inputField.onEndEdit.AddListener(OnInputChange);
 		}
 

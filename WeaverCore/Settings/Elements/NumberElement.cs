@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using WeaverCore.Utilities;
@@ -10,7 +11,8 @@ namespace WeaverCore.Settings.Elements
 {
 	public sealed class NumberElement : UIElement
 	{
-		InputField inputField;
+
+		TMP_InputField inputField;
 
 		string originalText;
 
@@ -20,7 +22,7 @@ namespace WeaverCore.Settings.Elements
 
 		void Awake()
 		{
-			inputField = GetComponentInChildren<InputField>();
+			inputField = GetComponentInChildren<TMP_InputField>();
 			inputField.onEndEdit.AddListener(OnInputChange);
 		}
 
@@ -50,7 +52,14 @@ namespace WeaverCore.Settings.Elements
 			originalText = inputField.text;
 			Title = accessor.FieldName;
 
-			rangeLimited = SettingsScreen.GetRangeOfNumberMember(accessor.MemberInfo, out lowerBound, out upperBound);
+            if (accessor.MemberInfo != null)
+            {
+				rangeLimited = SettingsScreen.GetRangeOfNumberMember(accessor.MemberInfo, out lowerBound, out upperBound);
+			}
+			else
+            {
+				rangeLimited = false;
+            }
 			base.OnAccessorChanged(accessor);
 		}
 

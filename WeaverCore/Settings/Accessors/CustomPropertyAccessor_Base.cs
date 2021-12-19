@@ -5,11 +5,11 @@ namespace WeaverCore.Settings
 {
 	public abstract class CustomPropertyAccessor_Base : IAccessor
 	{
-		public readonly Panel Panel;
+		public readonly GlobalSettings Panel;
 		protected readonly string _description;
 		protected readonly string _displayName;
 
-		public CustomPropertyAccessor_Base(Panel panel, string displayName, string description)
+		public CustomPropertyAccessor_Base(GlobalSettings panel, string displayName, string description)
 		{
 			Panel = panel;
 			_description = description;

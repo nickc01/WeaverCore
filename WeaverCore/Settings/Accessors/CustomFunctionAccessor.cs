@@ -8,13 +8,13 @@ namespace WeaverCore.Settings
 {
 	public class CustomFunctionAccessor : IAccessor
 	{
-		public readonly Panel Panel;
+		public readonly GlobalSettings Panel;
 		public readonly PropertyInfo Property;
 		readonly string _description;
 		readonly string _displayName;
 		readonly Action _action;
 
-		public CustomFunctionAccessor(Panel panel, Action action, string displayName, string description)
+		public CustomFunctionAccessor(GlobalSettings panel, Action action, string displayName, string description)
 		{
 			Panel = panel;
 			_description = description;

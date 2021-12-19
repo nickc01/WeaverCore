@@ -14,168 +14,20 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Editor.Implementations
 {
-    [Serializable]
-    class InputList
-	{
-        public List<InputField> Inputs = new List<InputField>();
-	}
-
-    [Serializable]
-    class InputField
-    {
-        public string m_Name;
-        public string descriptiveName;
-        public string descriptiveNegativeName;
-        public string negativeButton;
-        public string positiveButton;
-        public string altNegativeButton;
-        public string altPositiveButton;
-        public float gravity;
-        public double dead;
-        public float sensitivity;
-        public bool snap;
-        public bool invert;
-        public int type;
-        public int axis;
-        public int joyNum;
-	}
-
-
     class EditorInitializer
     {
         //private static string InputManagerData
-
-        private static string[] Tags = new string[]
-        {
-             "TileMap",
-             "GameManager",
-             "BlackOverlay",
-             "HeroBox",
-             "Nail Attack",
-             "RespawnPoint",
-             "HeroWalkable",
-             "SceneManager",
-             "HeroLight",
-             "Battle Gate",
-             "Battle Scene",
-             "CameraParent",
-             "Terrain",
-             "Canvas",
-             "UIManager",
-             "Hero Spell",
-             "Enemy Message",
-             "Orb Target",
-             "Vignette",
-             "RespawnTrigger",
-             "Boss Corpse",
-             "Heart Piece",
-             "TransitionGate",
-             "UI Soul Orb",
-             "Shade Marker",
-             "Hud Camera",
-             "Cinematic",
-             "Roar",
-             "Stag Grate",
-             "Platform",
-             "Boss",
-             "GeoCounter",
-             "CameraTarget",
-             "StagMapMarker",
-             "HeroFootsteps",
-             "Save Icon",
-             "HeroLightMain",
-             "Beta End",
-             "Shop Window",
-             "Journal Up Msg",
-             "Charms Pane",
-             "Inventory Top",
-             "Charm Get Msg",
-             "Acid",
-             "Soul Vessels",
-             "Teleplane",
-             "Water Surface",
-             "Relic Get Msg",
-             "Fireball Safe",
-             "Baby Centipede",
-             "Knight Hatchling",
-             "Dream Attack",
-             "Infected Flag",
-             "Ghost Warrior NPC",
-             "Extra Tag",
-             "Dream Plant",
-             "Dream Orb",
-             "Geo",
-             "Sharp Shadow",
-             "Boss Attack",
-             "Nail Beam",
-             "Grub Bottle",
-             "Colosseum Manager",
-             "Wall Breaker",
-             "Ignore Hatchling",
-             "Hatchling Magnet",
-             "Spell Vulnerable",
-             "Hopper",
-             "Set Extrapolate",
-             "Orbit Shield",
-             "Grimmchild",
-             "WindyGrass",
-             "Weaverling"
-        };
-
-        private static BasicSortingLayer[] SortingLayers = new BasicSortingLayer[]
-        {
-            new BasicSortingLayer("Default", 0),
-            new BasicSortingLayer("Far BG 2", 3315419377),
-            new BasicSortingLayer("Far BG 1", 1459018367),
-            new BasicSortingLayer("Mid BG", 4015848369),
-            new BasicSortingLayer("Immediate BG", 2917268371),
-            new BasicSortingLayer("Actors", 1270309357),
-            new BasicSortingLayer("Player", 3557629463),
-            new BasicSortingLayer("Tiles", 3868594333),
-            new BasicSortingLayer("MID Dressing", 3784110789),
-            new BasicSortingLayer("Immediate FG", 31172181),
-            new BasicSortingLayer("Far FG", 2577183099),
-            new BasicSortingLayer("Vignette", 1038907033),
-            new BasicSortingLayer("Over", 3945752401),
-            new BasicSortingLayer("HUD", 629535577)
-        };
 
         [OnInit]
         static void Init()
         {
             AddInitializer(() =>
             {
-                LayerData data = LayerData.GetData();
-                for (int i = 8; i < 32; i++)
-                {
-                    LayerChanger.SetLayerName(i, data.NameData[i]);
-                }
-                for (int i = 0; i < 32; i++)
-                {
-                    for (int j = 0; j < 32; j++)
-                    {
-                        int index = i + (j * 32);
-                        Physics2D.IgnoreLayerCollision(i, j, data.CollisionData[index]);
-                    }
-                }
+                
 
-				//foreach (string tag in Tags)
-				for (int i = Tags.GetLength(0) - 1; i >= 0; i--)
-				{
-                    LayerChanger.AddTagIfUnique(Tags[i]);
-                }
-                Tags = null;
+                //Physics2D.gravity = new Vector2(0f, -60f);
 
-                foreach (var sortingLayer in SortingLayers)
-                {
-                    LayerChanger.AddSortingLayer(sortingLayer.Name, sortingLayer.UniqueID);
-                }
-
-                SortingLayers = null;
-
-                Physics2D.gravity = new Vector2(0f, -60f);
-
-                SerializedObject graphicsSettings = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/GraphicsSettings.asset")[0]);
+                /*SerializedObject graphicsSettings = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/GraphicsSettings.asset")[0]);
 
                 var AIS = graphicsSettings.FindProperty("m_AlwaysIncludedShaders");
                 for (int i = 0; i < AIS.arraySize; i++)
@@ -187,9 +39,9 @@ namespace WeaverCore.Editor.Implementations
                         graphicsSettings.ApplyModifiedProperties();
                         break;
                     }
-                }
+                }*/
 
-                var inputManObject = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0];
+                /*var inputManObject = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0];
 
                 //Debug.Log("Input Obj Type = " + inputManObject.GetType());
                 //Debug.Log("Input Man = " + EditorJsonUtility.ToJson(inputManObject,true));
@@ -226,7 +78,7 @@ namespace WeaverCore.Editor.Implementations
                     }
 
                     inputManager.ApplyModifiedProperties();
-                }
+                }*/
 
                 /*InputList inputs = new InputList();
 

@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -26,23 +26,23 @@ namespace WeaverCore.Settings
 		static WeaverSettingsPanel_I impl = ImplFinder.GetImplementation<WeaverSettingsPanel_I>();
 
 		/// <summary>
-		/// Called when the panel gets selected in the weaver settings menu
+		/// Called when the panel gets selected in the weaver settings
 		/// </summary>
-		internal protected virtual void OnOpen()
+		internal protected virtual void OnPanelOpen()
 		{
 
 		}
 
 		/// <summary>
-		/// Called when the panel gets deselected in the weaver settings menu
+		/// Called when the panel gets deselected in the weaver settings
 		/// </summary>
-		internal protected virtual void OnClose()
+		internal protected virtual void OnPanelClose()
 		{
 
 		}
 
 		/// <summary>
-		/// Called when the panel gets registered with the Settings Menu. This occurs when the registry the panel is contained in gets loaded
+		/// Called when the panel gets registered with the Settings Menu
 		/// </summary>
 		internal protected virtual void OnRegister()
 		{
@@ -50,7 +50,7 @@ namespace WeaverCore.Settings
 		}
 
 		/// <summary>
-		/// Called when the panel gets unregistered from the settings menu. This occurs when the registry the panel is contained in gets unloaded
+		/// Called when the panel gets unregistered from the settings menu
 		/// </summary>
 		internal protected virtual void OnUnRegister()
 		{
@@ -66,7 +66,7 @@ namespace WeaverCore.Settings
 		}
 
 		/// <summary>
-		/// Called right after the settings are loaded from a file
+		/// Called after the settings are loaded from a file
 		/// </summary>
 		protected virtual void OnLoad()
 		{
@@ -527,4 +527,3 @@ namespace WeaverCore.Settings
 		}
 	}
 }
-*/

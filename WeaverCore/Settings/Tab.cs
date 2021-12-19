@@ -37,7 +37,7 @@ namespace WeaverCore.Settings
 			}
 		}
 
-		public Panel Panel { get; set; }
+		public GlobalSettings Panel { get; set; }
 
 		void Awake()
 		{

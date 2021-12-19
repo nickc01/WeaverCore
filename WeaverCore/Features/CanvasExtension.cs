@@ -7,7 +7,7 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Features
 {
-	[ShowFeature]
+    [ShowFeature]
 	public class CanvasExtension : MonoBehaviour
 	{
 		[SerializeField]

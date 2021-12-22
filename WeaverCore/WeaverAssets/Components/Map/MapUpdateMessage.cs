@@ -47,7 +47,7 @@ namespace WeaverCore.Assets.Components
 		//AKA : Set State
 		IEnumerator Display()
 		{
-			string text_str = Language.GetString("MAP_UPDATED", "UI", "Map Updated");
+			string text_str = WeaverLanguage.GetString("MAP_UPDATED", "UI", "Map Updated");
 			Animation.GetComponent<WeaverAnimationPlayer>().PlayAnimation("Map Writing");
 			Text.GetComponent<TextMeshPro>().text = text_str;
 			Anim_Down = "Entry Full Down";

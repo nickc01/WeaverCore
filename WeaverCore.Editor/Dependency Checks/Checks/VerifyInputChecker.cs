@@ -39,6 +39,7 @@ namespace WeaverCore.Editor
 
     class VerifyInputChecker : DependencyCheck
     {
+
         public override void StartCheck(Action<DependencyCheckResult> finishCheck)
         {
             var inputManObject = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0];
@@ -46,37 +47,91 @@ namespace WeaverCore.Editor
             SerializedObject inputManager = new SerializedObject(inputManObject);
             var axes = inputManager.FindProperty("m_Axes");
 
-            if (axes.arraySize <= 20)
+            //if (axes.arraySize <= 20)
+            //{
+            var inputManData = JsonUtility.FromJson<InputList>(EditorAssets.LoadEditorAsset<TextAsset>("Input Manager Data").text);
+
+            axes.arraySize = inputManData.Inputs.Count;
+
+            var currentFields = GetCurrentInputFields(axes);
+
+            for (int i = 0; i < inputManData.Inputs.Count; i++)
             {
-                var inputManData = JsonUtility.FromJson<InputList>(EditorAssets.LoadEditorAsset<TextAsset>("Input Manager Data").text);
+                var inputField = inputManData.Inputs[i];
 
-                axes.arraySize = inputManData.Inputs.Count;
-
-                for (int i = 0; i < inputManData.Inputs.Count; i++)
+                if (currentFields.Any(f => f.m_Name == inputField.m_Name))
                 {
-                    var inputField = inputManData.Inputs[i];
-                    var parent = axes.GetArrayElementAtIndex(i);
-
-                    parent.FindPropertyRelative("m_Name").stringValue = inputField.m_Name;
-                    parent.FindPropertyRelative("descriptiveName").stringValue = inputField.descriptiveName;
-                    parent.FindPropertyRelative("descriptiveNegativeName").stringValue = inputField.descriptiveNegativeName;
-                    parent.FindPropertyRelative("negativeButton").stringValue = inputField.negativeButton;
-                    parent.FindPropertyRelative("positiveButton").stringValue = inputField.positiveButton;
-                    parent.FindPropertyRelative("altNegativeButton").stringValue = inputField.altNegativeButton;
-                    parent.FindPropertyRelative("altPositiveButton").stringValue = inputField.altPositiveButton;
-                    parent.FindPropertyRelative("gravity").floatValue = inputField.gravity;
-                    parent.FindPropertyRelative("gravity").doubleValue = inputField.dead;
-                    parent.FindPropertyRelative("sensitivity").floatValue = inputField.sensitivity;
-                    parent.FindPropertyRelative("snap").boolValue = inputField.snap;
-                    parent.FindPropertyRelative("invert").boolValue = inputField.invert;
-                    parent.FindPropertyRelative("type").intValue = inputField.type;
-                    parent.FindPropertyRelative("axis").intValue = inputField.axis;
-                    parent.FindPropertyRelative("joyNum").intValue = inputField.joyNum;
+                    continue;
                 }
 
-                inputManager.ApplyModifiedProperties();
+                var parent = axes.GetArrayElementAtIndex(i);
+
+                parent.FindPropertyRelative("m_Name").stringValue = inputField.m_Name;
+                parent.FindPropertyRelative("descriptiveName").stringValue = inputField.descriptiveName;
+                parent.FindPropertyRelative("descriptiveNegativeName").stringValue = inputField.descriptiveNegativeName;
+                parent.FindPropertyRelative("negativeButton").stringValue = inputField.negativeButton;
+                parent.FindPropertyRelative("positiveButton").stringValue = inputField.positiveButton;
+                parent.FindPropertyRelative("altNegativeButton").stringValue = inputField.altNegativeButton;
+                parent.FindPropertyRelative("altPositiveButton").stringValue = inputField.altPositiveButton;
+                parent.FindPropertyRelative("gravity").floatValue = inputField.gravity;
+                parent.FindPropertyRelative("gravity").doubleValue = inputField.dead;
+                parent.FindPropertyRelative("sensitivity").floatValue = inputField.sensitivity;
+                parent.FindPropertyRelative("snap").boolValue = inputField.snap;
+                parent.FindPropertyRelative("invert").boolValue = inputField.invert;
+                parent.FindPropertyRelative("type").intValue = inputField.type;
+                parent.FindPropertyRelative("axis").intValue = inputField.axis;
+                parent.FindPropertyRelative("joyNum").intValue = inputField.joyNum;
             }
+
+            inputManager.ApplyModifiedProperties();
+            //}
             finishCheck(DependencyCheckResult.Complete);
         }
+
+        static List<InputField> GetCurrentInputFields(SerializedProperty axesProperties)
+        {
+            List<InputField> fields = new List<InputField>();
+
+            for (int i = 0; i < axesProperties.arraySize; i++)
+            {
+                var parent = axesProperties.GetArrayElementAtIndex(i);
+                var name = parent.FindPropertyRelative("m_Name").stringValue;
+                if (!string.IsNullOrEmpty(name))
+                {
+                    var inputField = new InputField();
+
+                    inputField.m_Name = parent.FindPropertyRelative("m_Name").stringValue;
+                    inputField.descriptiveName = parent.FindPropertyRelative("descriptiveName").stringValue;
+                    inputField.descriptiveNegativeName = parent.FindPropertyRelative("descriptiveNegativeName").stringValue;
+                    inputField.negativeButton = parent.FindPropertyRelative("negativeButton").stringValue;
+                    inputField.positiveButton = parent.FindPropertyRelative("positiveButton").stringValue;
+                    inputField.altNegativeButton = parent.FindPropertyRelative("altNegativeButton").stringValue;
+                    inputField.altPositiveButton = parent.FindPropertyRelative("altPositiveButton").stringValue;
+                    inputField.gravity = parent.FindPropertyRelative("gravity").floatValue;
+                    inputField.dead = parent.FindPropertyRelative("gravity").doubleValue;
+                    inputField.sensitivity = parent.FindPropertyRelative("sensitivity").floatValue;
+                    inputField.snap = parent.FindPropertyRelative("snap").boolValue;
+                    inputField.invert = parent.FindPropertyRelative("invert").boolValue;
+                    inputField.type = parent.FindPropertyRelative("type").intValue;
+                    inputField.axis = parent.FindPropertyRelative("axis").intValue;
+                    inputField.joyNum = parent.FindPropertyRelative("joyNum").intValue;
+
+                    fields.Add(inputField);
+                }
+            }
+            return fields;
+        }
+        /*static bool ContainsAxisName(SerializedProperty axesProperties, string name)
+        {
+            for (int i = 0; i < axesProperties.arraySize; i++)
+            {
+                var parent = axesProperties.GetArrayElementAtIndex(i);
+                if (parent.FindPropertyRelative("m_Name").stringValue == name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }*/
     }
 }

@@ -3,21 +3,61 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Settings
 {
+#if UNITY_EDITOR
+	[System.ComponentModel.Browsable(false)]
+	[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+#endif
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-	public sealed class SettingDescriptionAttribute : Attribute
+	public abstract class SettingDescriptionAttribute_BASE : Attribute
 	{
 		/// <summary>
 		/// The description of the settings property
 		/// </summary>
-		public string Description { get; private set; }
+		public string Description { get; protected set; }
+	}
 
+	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+	public sealed class SettingDescriptionAttribute : SettingDescriptionAttribute_BASE
+	{
 		/// <summary>
 		/// Applies a description to the settings property
 		/// </summary>
 		/// <param name="description">The text describing the settings property</param>
 		public SettingDescriptionAttribute(string description)
 		{
-			Description = description;//StringUtilities.AddNewLines(description);
+			Description = description;
+		}
+	}
+
+	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+	public sealed class LangSettingDescriptionAttribute : SettingDescriptionAttribute_BASE
+	{
+		/// <summary>
+		/// Applies a description to the settings property
+		/// </summary>
+		/// <param name="description">The text describing the settings property</param>
+		public LangSettingDescriptionAttribute(string sheetTitle, string key, string fallback = null)
+		{
+			WeaverLog.Log($"TRANSLATING DESCRIPTION = {sheetTitle} - {key}");
+			Description = WeaverLanguage.GetString(sheetTitle, key, fallback);
+            if (Description == null)
+            {
+				Description = "INVALID_DESCRIPTION";
+            }
+		}
+
+		/// <summary>
+		/// Applies a description to the settings property
+		/// </summary>
+		/// <param name="description">The text describing the settings property</param>
+		public LangSettingDescriptionAttribute(string key, string fallback = null)
+		{
+			WeaverLog.Log($"TRANSLATING DESCRIPTION = {key}");
+			Description = WeaverLanguage.GetString(key, fallback);
+			if (Description == null)
+			{
+				Description = "INVALID_DESCRIPTION";
+			}
 		}
 	}
 }

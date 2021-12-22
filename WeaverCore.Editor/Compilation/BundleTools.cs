@@ -1105,7 +1105,7 @@ namespace WeaverCore.Editor.Compilation
 				using (FileStream ms = File.OpenWrite(bundle.File.FullName + ".edit"))
 				using (AssetsFileWriter aw = new AssetsFileWriter(ms))
 				{
-					bun.file.Pack(modifiedBundle.reader, aw, AssetBundleCompressionType.NONE);
+					bun.file.Pack(modifiedBundle.reader, aw, BuildScreen.BuildSettings.CompressionType);
 				}
 			}
 

@@ -20,6 +20,7 @@ namespace WeaverCore.Editor
             {
                 finishCheck(DependencyCheckResult.Complete);
             }
+            finishCheck(DependencyCheckResult.Complete);
         }
     }
 }

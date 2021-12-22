@@ -381,7 +381,7 @@ namespace WeaverCore.Settings
 
 			foreach (var member in members)
 			{
-				SettingFieldAttribute settings = null;
+				SettingFieldAttribute_BASE settings = null;
 				if (MemberIsUsable(member,out settings))
 				{
 					var name = settings != null && settings.DisplayName != null ? settings.DisplayName : StringUtilities.Prettify(member.Name);
@@ -501,7 +501,7 @@ namespace WeaverCore.Settings
 		/// <param name="memberInfo">The member to check</param>
 		/// <param name="attribute">The settings field information if the member has one</param>
 		/// <returns></returns>
-		static bool MemberIsUsable(MemberInfo memberInfo, out SettingFieldAttribute attribute)
+		static bool MemberIsUsable(MemberInfo memberInfo, out SettingFieldAttribute_BASE attribute)
 		{
 			bool hasAttribute = HasAttribute(memberInfo, out attribute);
 			if (memberInfo is FieldInfo)
@@ -623,7 +623,7 @@ namespace WeaverCore.Settings
 			{
 				return null;
 			}
-			SettingFieldAttribute settings = null;
+			SettingFieldAttribute_BASE settings = null;
 			if (HasAttribute(memberInfo, out settings) && settings.DisplayName != null)
 			{
 				return settings.DisplayName;
@@ -645,7 +645,7 @@ namespace WeaverCore.Settings
 			{
 				return null;
 			}
-			SettingDescriptionAttribute descAttribute;
+			SettingDescriptionAttribute_BASE descAttribute;
 			TooltipAttribute tooltipAttribute;
 			if (HasAttribute(member, out descAttribute))
 			{
@@ -673,7 +673,7 @@ namespace WeaverCore.Settings
 				return null;
 			}
 
-			SettingHeaderAttribute settingHeaderAttribute;
+			SettingHeaderAttribute_BASE settingHeaderAttribute;
 			HeaderAttribute headerAttribute;
 
 			if (HasAttribute(member, out settingHeaderAttribute))

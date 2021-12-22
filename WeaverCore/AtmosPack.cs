@@ -2,7 +2,7 @@
 
 namespace WeaverCore
 {
-	[CreateAssetMenu(fileName = "AtmosPack", menuName = "Atmos Pack")]
+	[CreateAssetMenu(fileName = "AtmosPack", menuName = "WeaverCore/Atmos Pack")]
 	public class AtmosPack : ScriptableObject
 	{
 		[SerializeField]

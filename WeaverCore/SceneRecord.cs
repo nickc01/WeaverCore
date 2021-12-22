@@ -39,6 +39,9 @@ namespace WeaverCore
 	[ShowFeature]
 	[CreateAssetMenu(fileName = "Scene Record", menuName = "WeaverCore/Scene Record")]
 	public class SceneRecord : ScriptableObject
+#if UNITY_EDITOR
+		,ISerializationCallbackReceiver //Make the class inhertit from ISerializationCallbackReceiver if in the Editor Enviroment
+#endif
 	{
 #if UNITY_EDITOR
 		[SerializeField]
@@ -217,16 +220,6 @@ namespace WeaverCore
 		}
 
 #if UNITY_EDITOR
-		private void OnValidate()
-		{
-			sceneAdditionPaths = sceneAdditions.Select(s => AssetDatabase.GetAssetPath(s)).ToList();
-
-			sceneToReplacePaths = sceneReplacements.Select(s => s.SceneToReplace).ToList();
-			sceneReplacementPaths = sceneReplacements.Select(s => AssetDatabase.GetAssetPath(s.Replacement)).ToList();
-
-			sceneToUnionizePaths = sceneUnions.Select(s => s.SceneToUniteWith).ToList();
-			sceneUnionPaths = sceneUnions.Select(s => AssetDatabase.GetAssetPath(s.UnionScene)).ToList();
-		}
 
 		[BeforeBuild]
 		static void SetBundles()
@@ -239,7 +232,7 @@ namespace WeaverCore
 				var record = AssetDatabase.LoadAssetAtPath<SceneRecord>(path);
 				if (record != null)
 				{
-					record.OnValidate();
+					//record.OnValidate();
 					var oldBundleName = GetAssetBundleName(record);
 					var match = Regex.Match(oldBundleName, @"([\d\w]+?)_bundle");
 					if (match.Success)
@@ -285,6 +278,22 @@ namespace WeaverCore
 			return "";
 		}
 
+        void ISerializationCallbackReceiver.OnBeforeSerialize()
+        {
+			sceneAdditionPaths = sceneAdditions.Select(s => AssetDatabase.GetAssetPath(s)).ToList();
+
+			sceneToReplacePaths = sceneReplacements.Select(s => s.SceneToReplace).ToList();
+			sceneReplacementPaths = sceneReplacements.Select(s => AssetDatabase.GetAssetPath(s.Replacement)).ToList();
+
+			sceneToUnionizePaths = sceneUnions.Select(s => s.SceneToUniteWith).ToList();
+			sceneUnionPaths = sceneUnions.Select(s => AssetDatabase.GetAssetPath(s.UnionScene)).ToList();
+		}
+
+        void ISerializationCallbackReceiver.OnAfterDeserialize()
+        {
+            
+        }
+
 #endif
-	}
+    }
 }

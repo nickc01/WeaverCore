@@ -136,7 +136,7 @@ namespace WeaverCore.Assets.Components
 
 		public void SetLabelText(string convoName, string sheetName = "Prompts")
 		{
-			SetLabelText(Language.GetString(convoName, sheetName, "PLACEHOLDER"));
+			SetLabelText(WeaverLanguage.GetString(convoName, sheetName, "PLACEHOLDER"));
 		}
 
 

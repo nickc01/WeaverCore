@@ -46,14 +46,6 @@ namespace WeaverCore.Editor
             public int LastLeftOff = 0;
         }
 
-
-
-        /*[OnInit]
-        static void OnEditorInit()
-        {
-            CheckDependencies();
-        }*/
-
         static void OnChecksCompleted(bool silent)
         {
             checkingDependencies = false;
@@ -124,12 +116,11 @@ namespace WeaverCore.Editor
 
             var checks = GetDependencyChecks();
 
-            CheckDependencies(false, checks, persistentData.LastLeftOff);
+            CheckDependencies(persistentData.Silent, checks, persistentData.LastLeftOff);
         }
 
         static void CheckDependencies(bool silent, List<DependencyCheck> checks, int startIndex)
         {
-            Debug.Log("CHECKING DEPENDENCIES");
             if (checkingDependencies)
             {
                 return;

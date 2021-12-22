@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GlobalEnums;
+using Language;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore.Attributes;
@@ -6,9 +8,10 @@ using WeaverCore.Attributes;
 namespace WeaverCore.Features
 {
     [ShowFeature]
-	public class LanguageTable : ScriptableObject
+    [CreateAssetMenu(fileName = "LanguageTable", menuName = "WeaverCore/Language Table")]
+    public class LanguageTable : ScriptableObject, ISerializationCallbackReceiver
     {
-        [Serializable]
+        /*[Serializable]
         public class Sheet
         {
             public string sheetName = "General";
@@ -20,33 +23,52 @@ namespace WeaverCore.Features
         {
             public string key;
             public string value;
+        }*/
+
+        /*[Serializable]
+        public class Entries
+        {
+            public List<string> keys;
+            public List<string> values;
+        }*/
+
+        [Serializable]
+        public class Entry
+        {
+            public string key;
+            public string value;
         }
 
-
-        public List<Sheet> sheets;
+        [SerializeField]
+        [Tooltip("The sheet title of this language table. This determines the \"Group\" that the language entries fall under")]
+        string sheetTitle = "General";
 
         [SerializeField]
-        List<string> sheetTitleList;
+        [Tooltip("The language this table will be loaded under")]
+        SupportedLanguages language = SupportedLanguages.EN;
+
+        public string SheetTitle => sheetTitle;
+        public SupportedLanguages Language => language;
 
         [SerializeField]
-        List<string> keys;
+        //Entries entries;
+        List<Entry> entries = new List<Entry>();
 
         [SerializeField]
-        List<string> values;
+        [HideInInspector]
+        List<string> _entry_Keys = new List<string>();
 
-        public string GetString(string sheet, string key, string fallback = null)
+        [SerializeField]
+        [HideInInspector]
+        List<string> _entry_Values = new List<string>();
+
+        public string GetString(string key, string fallback = null)
         {
-            var keyIndex = keys.IndexOf(key);
+            //var keyIndex = entries.keys.IndexOf(key);
+            var keyIndex = _entry_Keys.IndexOf(key);
             if (keyIndex >= 0)
             {
-                if (sheetTitleList[keyIndex] == sheet)
-                {
-                    return values[keyIndex];
-                }
-                else
-                {
-                    return fallback;
-                }
+                return _entry_Values[keyIndex];
             }
             else
             {
@@ -54,34 +76,33 @@ namespace WeaverCore.Features
             }
         }
 
-        public string GetString(string key, string fallback = null)
-        {
-            return GetString("General", fallback);
-        }
-
-        public bool HasString(string sheet, string key)
-        {
-            var keyIndex = keys.IndexOf(key);
-            if (keyIndex >= 0)
-            {
-                if (sheetTitleList[keyIndex] == sheet)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public bool HasString(string key)
         {
-            return HasString("General", key);
+            return _entry_Keys.IndexOf(key) >= 0;
         }
+
+
+        void ISerializationCallbackReceiver.OnBeforeSerialize()
+        {
+#if UNITY_EDITOR
+            _entry_Keys.Clear();
+            _entry_Values.Clear();
+
+            _entry_Keys.Capacity = entries.Count;
+            _entry_Values.Capacity = entries.Count;
+
+            for (int i = 0; i < entries.Count; i++)
+            {
+                _entry_Keys.Add(entries[i].key);
+                _entry_Values.Add(entries[i].value);
+            }
+#endif
+        }
+
+        void ISerializationCallbackReceiver.OnAfterDeserialize()
+        {
+            
+        }
+
     }
 }

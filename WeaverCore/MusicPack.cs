@@ -8,7 +8,7 @@ using WeaverCore.Enums;
 namespace WeaverCore
 {
 
-	[CreateAssetMenu(fileName = "MusicPack",menuName = "Music Pack")]
+	[CreateAssetMenu(fileName = "MusicPack",menuName = "WeaverCore/Music Pack")]
 	public class MusicPack : ScriptableObject
 	{
 		public AudioClip MainTrack;

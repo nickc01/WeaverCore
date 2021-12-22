@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssetsTools.NET;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace WeaverCore.Editor.Compilation
 	{
 		public bool WeaverCoreOnly { get; private set; }
 
-		public const int WindowWidth = 300;
-		public const int WindowHeight = 300;
+		public const int WindowWidth = 400;
+		public const int WindowHeight = 400;
 
 		static Settings _settings;
 		public static Settings BuildSettings
@@ -53,6 +54,7 @@ namespace WeaverCore.Editor.Compilation
 			public bool LinuxSupport = true;
 			public bool StartGame = true;
 			public string BuildLocation = GameBuildSettings.Settings.ModsLocation;
+			public AssetBundleCompressionType CompressionType = AssetBundleCompressionType.LZ4;
 
 			public IEnumerable<BuildTarget> GetBuildModes()
 			{
@@ -85,6 +87,7 @@ namespace WeaverCore.Editor.Compilation
 			var y = (resolution.height / 2) - (WindowHeight / 2);
 
 			window.position = new Rect(x, y, WindowWidth, WindowHeight);
+			window.WeaverCoreOnly = weaverCoreOnly;
 		}
 
 
@@ -105,6 +108,10 @@ namespace WeaverCore.Editor.Compilation
 
 			EditorGUILayout.LabelField("Linux Support");
 			BuildSettings.LinuxSupport = EditorGUILayout.Toggle(BuildSettings.LinuxSupport);
+
+			EditorGUILayout.Space();
+			EditorGUILayout.LabelField("Compression Method");
+			BuildSettings.CompressionType = (AssetBundleCompressionType)EditorGUILayout.EnumPopup(BuildSettings.CompressionType);
 
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("Auto-Start Game");

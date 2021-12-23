@@ -9,7 +9,7 @@ using UnityEngine;
 /*
  * TODO TODO TODO TODO
  */
-namespace Assets.WeaverCore.WeaverCore
+/*namespace Assets.WeaverCore.WeaverCore
 {
 	[ExecuteAlways]
 	class KeyListener : MonoBehaviour
@@ -163,3 +163,4 @@ namespace Assets.WeaverCore.WeaverCore
 		}
 	}
 }
+*/

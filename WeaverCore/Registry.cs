@@ -116,7 +116,7 @@ namespace WeaverCore
         {
             var methods = ReflectionUtilities.GetMethodsWithAttribute<AttrType>().ToList();
 
-            methods.Sort(new PriorityAttribute.PairSorter<AttrType>());
+            methods.Sort(new PriorityAttribute.Sorter<AttrType>());
 
             var param = new object[] { parameter };
 

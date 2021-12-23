@@ -47,7 +47,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <summary>
 		/// The default build location for WeaverCore
 		/// </summary>
-		public static FileInfo WeaverCoreBuildLocation = new FileInfo(WeaverCoreFolder.AddSlash() + "Other Projects~\\WeaverCore.Game\\WeaverCore Build\\WeaverCore.dll");
+		public static FileInfo WeaverCoreBuildLocation = new FileInfo(WeaverCoreFolder.AddSlash() + $"Other Projects~{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}WeaverCore Build{Path.DirectorySeparatorChar}WeaverCore.dll");
 
 		class BuildTask<T> : IAsyncBuildTask<T>
 		{
@@ -486,7 +486,7 @@ namespace WeaverCore.Editor.Compilation
 
 		static IEnumerator BuildWeaverCoreGameRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
 		{
-			return BuildXmlProjectRoutine(new FileInfo(WeaverCoreFolder.AddSlash() + "Other Projects~\\WeaverCore.Game\\WeaverCore.Game\\WeaverCore.Game.csproj"), outputPath, task);
+			return BuildXmlProjectRoutine(new FileInfo(WeaverCoreFolder.AddSlash() + $"Other Projects~{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}WeaverCore.Game.csproj"), outputPath, task);
 		}
 
 		class XmlReference
@@ -623,7 +623,7 @@ namespace WeaverCore.Editor.Compilation
 
 					List<DirectoryInfo> AssemblySearchDirectories = new List<DirectoryInfo>
 				{
-					new DirectoryInfo(PathUtilities.AddSlash(GameBuildSettings.Settings.HollowKnightLocation) + "hollow_knight_Data\\Managed"),
+					new DirectoryInfo(PathUtilities.AddSlash(GameBuildSettings.Settings.HollowKnightLocation) + $"hollow_knight_Data{Path.DirectorySeparatorChar}Managed"),
 					new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory
 				};
 
@@ -671,7 +671,7 @@ namespace WeaverCore.Editor.Compilation
 						}
 					}
 
-					var scriptAssemblies = new DirectoryInfo("Library\\ScriptAssemblies").GetFiles("*.dll");
+					var scriptAssemblies = new DirectoryInfo($"Library{Path.DirectorySeparatorChar}ScriptAssemblies").GetFiles("*.dll");
 
 					List<string> exclusions = new List<string>();
 					foreach (var sa in scriptAssemblies)
@@ -696,16 +696,6 @@ namespace WeaverCore.Editor.Compilation
 					{
 						exclusions.Add(ueFile.FullName);
 					}
-
-					//var editorUnityEngineDll = new FileInfo(PathUtilities.AddSlash(editorDir.Parent.FullName) + "UnityEngine.dll");
-
-					//Debug.Log("Editor Unity Engine Location = " + editorUnityEngineDll);
-					//exclusions.Add(editorUnityEngineDll.FullName);
-
-					//Debug.Log("Editor Location = " + );
-					//Debug.Log("System Location = " + typeof(System.Array).Assembly.Location);
-
-					//exclusions.Add("Library\\ScriptAssemblies\\HollowKnight.dll");
 
 					yield return BuildAssembly(new BuildParameters
 					{

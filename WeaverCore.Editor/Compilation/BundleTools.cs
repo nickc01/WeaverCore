@@ -186,33 +186,7 @@ namespace WeaverCore.Editor.Compilation
 
 		static void PrepareForAssetBundling(List<string> ExcludedAssemblies, MethodInfo whenReady)
 		{
-			//AssetDatabase.DisallowAutoRefresh();
 			Debug.Log("Preparing Assets for Bundling");
-
-			
-
-			//UnboundCoroutine.Start(Delay());
-			//IEnumerator Delay()
-			//{
-			/*yield return new WaitForSeconds(0.5f);
-			foreach (var registry in RegistryChecker.LoadAllRegistries())
-			{
-				registry.ReplaceAssemblyName("Assembly-CSharp", Data.ModName);
-				registry.ApplyChanges();
-			}*/
-			//Debug.Log("A_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			/*var buildCache = new DirectoryInfo("Library\\BuildCache");
-			if (buildCache.Exists)
-			{
-				buildCache.Delete(true);
-			}*/
-			//yield return new WaitForSeconds(0.5f);
-			//Debug.Log("B_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
-			//AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-			//yield return new WaitForSeconds(0.5f);
-			//Debug.Log("C_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
 #if REWRITE_REGISTRIES
 			foreach (var registry in RegistryChecker.LoadAllRegistries())
 			{
@@ -234,9 +208,6 @@ namespace WeaverCore.Editor.Compilation
 					Path = path
 				});
 			}
-			//yield return new WaitForSeconds(0.5f);
-			//Debug.Log("D_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
 			bool assetsChanged = false;
 			try
 			{
@@ -258,8 +229,6 @@ namespace WeaverCore.Editor.Compilation
 					{
 						"Editor"
 					};
-					//Debug.Log("Asm Definition Path = " + asm.AssemblyDefinitionPath);
-					//Debug.Log("Importing Asset = " + asm.AssemblyDefinitionPath);
 					asm.Save();
 					AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
 					assetsChanged = true;
@@ -957,7 +926,7 @@ namespace WeaverCore.Editor.Compilation
 		{
 			Debug.Log($"Post Processing Bundle -> {bundle.File}");
 			var am = new AssetsManager();
-			am.LoadClassPackage(BuildTools.WeaverCoreFolder.AddSlash() + "Libraries\\classdata.tpk");
+			am.LoadClassPackage(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}classdata.tpk");
 
 			var bun = am.LoadBundleFile(bundle.File.FullName);
 

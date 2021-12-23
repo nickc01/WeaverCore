@@ -6,7 +6,9 @@ using System.Text;
 
 namespace WeaverCore.Attributes
 {
-    //[System.AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+    /// <summary>
+    /// An attribute that allows you to specify a priority, changing the order this attribute gets processed
+    /// </summary>
     public abstract class PriorityAttribute : Attribute
     {
         /// <summary>
@@ -20,63 +22,18 @@ namespace WeaverCore.Attributes
             Priority = priority;
         }
 
-
-        public class Sorter : IComparer<PriorityAttribute>
-        {
-            Comparer<int> numericalComparer = Comparer<int>.Default;
-
-            public int Compare(PriorityAttribute x, PriorityAttribute y)
-            {
-                return numericalComparer.Compare(x.Priority, y.Priority);
-            }
-
-            static Sorter _default;
-            public static Sorter Default
-            {
-                get
-                {
-                    if (_default == null)
-                    {
-                        _default = new Sorter();
-                    }
-                    return _default;
-                }
-            }
-        }
-
-        public class PrioritySorter<T> : IComparer<ValueTuple<MethodInfo, T>> where T : PriorityAttribute
+        public class Sorter<T> : IComparer<ValueTuple<MethodInfo, T>> where T : Attribute
         {
             Comparer<int> numericalComparer = Comparer<int>.Default;
 
             int IComparer<ValueTuple<MethodInfo, T>>.Compare(ValueTuple<MethodInfo, T> x, ValueTuple<MethodInfo, T> y)
             {
-                return numericalComparer.Compare(x.Item2.Priority, y.Item2.Priority);
-                /*if (x.Item2 is PriorityAttribute)
-                {
-                    return numericalComparer.Compare((x.Item2 as PriorityAttribute).Priority, (y.Item2 as PriorityAttribute).Priority);
-                }
-                else
-                {
-                    //return numericalComparer.Compare(x.Item2.Priority, y.Item2.Priority);
-                    return 0;
-                }*/
-            }
-        }
-
-        public class PairSorter<T> : IComparer<ValueTuple<MethodInfo, T>> where T : Attribute
-        {
-            Comparer<int> numericalComparer = Comparer<int>.Default;
-
-            int IComparer<ValueTuple<MethodInfo, T>>.Compare(ValueTuple<MethodInfo, T> x, ValueTuple<MethodInfo, T> y)
-            {
-                //return numericalComparer.Compare((x.Item2 as PriorityAttribute).Priority, (y.Item2 as PriorityAttribute).Priority);
                 if (x.Item2 is PriorityAttribute)
                 {
                     return numericalComparer.Compare((x.Item2 as PriorityAttribute).Priority, (y.Item2 as PriorityAttribute).Priority);
                 }
                 else
                 {
-                    //return numericalComparer.Compare(x.Item2.Priority, y.Item2.Priority);
                     return 0;
                 }
             }

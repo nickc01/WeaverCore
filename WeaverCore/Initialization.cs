@@ -94,7 +94,7 @@ namespace WeaverCore
 			var patchArguments = new object[] { patcherInstance };
 
 			var inits = ReflectionUtilities.GetMethodsWithAttribute<OnHarmonyPatchAttribute>(assembly, patchParameters).ToList();
-			inits.Sort(new PriorityAttribute.PrioritySorter<OnHarmonyPatchAttribute>());
+			inits.Sort(new PriorityAttribute.Sorter<OnHarmonyPatchAttribute>());
 
 			foreach (var initPair in ReflectionUtilities.GetMethodsWithAttribute<OnHarmonyPatchAttribute>(assembly, patchParameters))
 			{

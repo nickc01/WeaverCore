@@ -14,7 +14,7 @@ namespace WeaverCore.Editor.Settings
 {
 	public sealed class GameBuildSettings
 	{
-		public static string GameBuildSettingsLocation = BuildTools.WeaverCoreFolder.AddSlash() + "Other Projects~\\WeaverCore.Game\\Settings.txt";
+		public static string GameBuildSettingsLocation = BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}Settings.txt";
 
 		public string HollowKnightLocation;
 		public string UnityEditorLocation;

@@ -338,7 +338,7 @@ namespace WeaverCore.Utilities
 
 			if (methods[0].Item2 is PriorityAttribute)
 			{
-				methods.Sort(new PriorityAttribute.PairSorter<T>());
+				methods.Sort(new PriorityAttribute.Sorter<T>());
 			}
 
 			while (methods.Count > 0)
@@ -385,7 +385,7 @@ namespace WeaverCore.Utilities
 			if (typeof(PriorityAttribute).IsAssignableFrom(typeof(T)))
 			{
 				//sortable = true;
-				methods.Sort(new PriorityAttribute.PairSorter<T>());
+				methods.Sort(new PriorityAttribute.Sorter<T>());
 			}
 
 			/*if (methods[0].Item2 is PriorityAttribute)

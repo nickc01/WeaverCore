@@ -1,0 +1,1285 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TMP_SubMeshUI
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TMP_SubMeshUI
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="TMPro.TMP_SubMeshUI">
+  
+  
+  <h1 id="TMPro_TMP_SubMeshUI" data-uid="TMPro.TMP_SubMeshUI" class="text-break">Class TMP_SubMeshUI
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
+    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
+    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
+    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
+    <div class="level5"><span class="xref">UnityEngine.EventSystems.UIBehaviour</span></div>
+    <div class="level6"><span class="xref">UnityEngine.UI.Graphic</span></div>
+    <div class="level7"><span class="xref">UnityEngine.UI.MaskableGraphic</span></div>
+    <div class="level8"><span class="xref">TMP_SubMeshUI</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">UnityEngine.UI.ICanvasElement</span></div>
+    <div><span class="xref">UnityEngine.UI.IClippable</span></div>
+    <div><span class="xref">UnityEngine.UI.IMaskable</span></div>
+    <div><span class="xref">UnityEngine.UI.IMaterialModifier</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.m_ShouldRecalculateStencil</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.m_MaskMaterial</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.m_StencilValue</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.SetClipRect(UnityEngine.Rect, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.SetClipSoftness(UnityEngine.Vector2)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.OnValidate()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.OnCanvasHierarchyChanged()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.UnityEngine.UI.IClippable.get_gameObject()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.onCullStateChanged</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.maskable</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.MaskableGraphic.isMaskingGraphic</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.s_DefaultUI</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.s_WhiteTexture</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.m_Material</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.m_SkipLayoutUpdate</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.m_SkipMaterialUpdate</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.m_OnDirtyLayoutCallback</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.m_OnDirtyVertsCallback</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.m_OnDirtyMaterialCallback</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.s_Mesh</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.m_CachedMesh</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.m_CachedUvs</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.OnRectTransformDimensionsChange()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.OnBeforeTransformParentChanged()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.OnCullingChanged()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.LayoutComplete()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.GraphicUpdateComplete()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.OnPopulateMesh(UnityEngine.Mesh)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.OnPopulateMesh(UnityEngine.UI.VertexHelper)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.OnRebuildRequested()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.Reset()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.OnDidApplyAnimationProperties()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.SetNativeSize()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.Raycast(UnityEngine.Vector2, UnityEngine.Camera)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.PixelAdjustPoint(UnityEngine.Vector2)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.GetPixelAdjustedRect()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.CrossFadeColor(UnityEngine.Color, System.Single, System.Boolean, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.CrossFadeColor(UnityEngine.Color, System.Single, System.Boolean, System.Boolean, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.CrossFadeAlpha(System.Single, System.Single, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.RegisterDirtyLayoutCallback(UnityEngine.Events.UnityAction)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.UnregisterDirtyLayoutCallback(UnityEngine.Events.UnityAction)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.RegisterDirtyVerticesCallback(UnityEngine.Events.UnityAction)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.UnregisterDirtyVerticesCallback(UnityEngine.Events.UnityAction)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.RegisterDirtyMaterialCallback(UnityEngine.Events.UnityAction)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.UnregisterDirtyMaterialCallback(UnityEngine.Events.UnityAction)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.UnityEngine.UI.ICanvasElement.get_transform()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.defaultGraphicMaterial</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.color</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.raycastTarget</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.raycastPadding</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.useLegacyMeshGeneration</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.depth</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.rectTransform</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.canvas</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.defaultMaterial</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Graphic.workerMesh</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.Awake()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.Start()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.IsActive()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.OnCanvasGroupChanged()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.IsDestroyed()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="TMPro.html">TMPro</a></h6>
+  <h6><strong>Assembly</strong>: HollowKnight.dll</h6>
+  <h5 id="TMPro_TMP_SubMeshUI_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExecuteInEditMode]
+public class TMP_SubMeshUI : MaskableGraphic, ICanvasElement, IClippable, IMaskable, IMaterialModifier</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI__ctor.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L569">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI__ctor_" data-uid="TMPro.TMP_SubMeshUI.#ctor*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI__ctor" data-uid="TMPro.TMP_SubMeshUI.#ctor">TMP_SubMeshUI()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_SubMeshUI()</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_canvasRenderer.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.canvasRenderer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L188">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_canvasRenderer_" data-uid="TMPro.TMP_SubMeshUI.canvasRenderer*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_canvasRenderer" data-uid="TMPro.TMP_SubMeshUI.canvasRenderer">canvasRenderer</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CanvasRenderer canvasRenderer { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.CanvasRenderer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_fallbackMaterial.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.fallbackMaterial%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L118">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_fallbackMaterial_" data-uid="TMPro.TMP_SubMeshUI.fallbackMaterial*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_fallbackMaterial" data-uid="TMPro.TMP_SubMeshUI.fallbackMaterial">fallbackMaterial</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Material fallbackMaterial { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Material</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_fallbackSourceMaterial.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.fallbackSourceMaterial%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L139">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_fallbackSourceMaterial_" data-uid="TMPro.TMP_SubMeshUI.fallbackSourceMaterial*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_fallbackSourceMaterial" data-uid="TMPro.TMP_SubMeshUI.fallbackSourceMaterial">fallbackSourceMaterial</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Material fallbackSourceMaterial { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Material</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_fontAsset.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.fontAsset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L52">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_fontAsset_" data-uid="TMPro.TMP_SubMeshUI.fontAsset*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_fontAsset" data-uid="TMPro.TMP_SubMeshUI.fontAsset">fontAsset</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_FontAsset fontAsset { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_FontAsset.html">TMP_FontAsset</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_isDefaultMaterial.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.isDefaultMaterial%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L164">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_isDefaultMaterial_" data-uid="TMPro.TMP_SubMeshUI.isDefaultMaterial*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_isDefaultMaterial" data-uid="TMPro.TMP_SubMeshUI.isDefaultMaterial">isDefaultMaterial</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool isDefaultMaterial { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_mainTexture.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.mainTexture%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L76">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_mainTexture_" data-uid="TMPro.TMP_SubMeshUI.mainTexture*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_mainTexture" data-uid="TMPro.TMP_SubMeshUI.mainTexture">mainTexture</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Texture mainTexture { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Texture</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.mainTexture</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_material.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.material%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L88">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_material_" data-uid="TMPro.TMP_SubMeshUI.material*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_material" data-uid="TMPro.TMP_SubMeshUI.material">material</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Material material { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Material</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.material</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_materialForRendering.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.materialForRendering%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L151">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_materialForRendering_" data-uid="TMPro.TMP_SubMeshUI.materialForRendering*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_materialForRendering" data-uid="TMPro.TMP_SubMeshUI.materialForRendering">materialForRendering</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Material materialForRendering { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Material</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.materialForRendering</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_mesh.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.mesh%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L200">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_mesh_" data-uid="TMPro.TMP_SubMeshUI.mesh*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_mesh" data-uid="TMPro.TMP_SubMeshUI.mesh">mesh</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Mesh mesh { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Mesh</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_padding.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.padding%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L176">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_padding_" data-uid="TMPro.TMP_SubMeshUI.padding*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_padding" data-uid="TMPro.TMP_SubMeshUI.padding">padding</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float padding { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_sharedMaterial.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.sharedMaterial%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L106">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_sharedMaterial_" data-uid="TMPro.TMP_SubMeshUI.sharedMaterial*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_sharedMaterial" data-uid="TMPro.TMP_SubMeshUI.sharedMaterial">sharedMaterial</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Material sharedMaterial { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Material</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_spriteAsset.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.spriteAsset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L64">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_spriteAsset_" data-uid="TMPro.TMP_SubMeshUI.spriteAsset*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_spriteAsset" data-uid="TMPro.TMP_SubMeshUI.spriteAsset">spriteAsset</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_SpriteAsset spriteAsset { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_SpriteAsset.html">TMP_SpriteAsset</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_AddSubTextObject_TMPro_TextMeshProUGUI_TMPro_MaterialReference_.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.AddSubTextObject(TMPro.TextMeshProUGUI%2CTMPro.MaterialReference)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L217">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_AddSubTextObject_" data-uid="TMPro.TMP_SubMeshUI.AddSubTextObject*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_AddSubTextObject_TMPro_TextMeshProUGUI_TMPro_MaterialReference_" data-uid="TMPro.TMP_SubMeshUI.AddSubTextObject(TMPro.TextMeshProUGUI,TMPro.MaterialReference)">AddSubTextObject(TextMeshProUGUI, MaterialReference)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TMP_SubMeshUI AddSubTextObject(TextMeshProUGUI textComponent, MaterialReference materialReference)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TextMeshProUGUI.html">TextMeshProUGUI</a></td>
+        <td><span class="parametername">textComponent</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="TMPro.MaterialReference.html">MaterialReference</a></td>
+        <td><span class="parametername">materialReference</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_SubMeshUI.html">TMP_SubMeshUI</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_Cull_UnityEngine_Rect_System_Boolean_.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.Cull(UnityEngine.Rect%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L467">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_Cull_" data-uid="TMPro.TMP_SubMeshUI.Cull*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_Cull_UnityEngine_Rect_System_Boolean_" data-uid="TMPro.TMP_SubMeshUI.Cull(UnityEngine.Rect,System.Boolean)">Cull(Rect, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Cull(Rect clipRect, bool validRect)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Rect</span></td>
+        <td><span class="parametername">clipRect</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">validRect</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.MaskableGraphic.Cull(UnityEngine.Rect, System.Boolean)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_GetModifiedMaterial_UnityEngine_Material_.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.GetModifiedMaterial(UnityEngine.Material)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L400">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_GetModifiedMaterial_" data-uid="TMPro.TMP_SubMeshUI.GetModifiedMaterial*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_GetModifiedMaterial_UnityEngine_Material_" data-uid="TMPro.TMP_SubMeshUI.GetModifiedMaterial(UnityEngine.Material)">GetModifiedMaterial(Material)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Material GetModifiedMaterial(Material baseMaterial)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Material</span></td>
+        <td><span class="parametername">baseMaterial</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Material</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.MaskableGraphic.GetModifiedMaterial(UnityEngine.Material)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_GetPaddingForMaterial.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.GetPaddingForMaterial%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L420">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_GetPaddingForMaterial_" data-uid="TMPro.TMP_SubMeshUI.GetPaddingForMaterial*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_GetPaddingForMaterial" data-uid="TMPro.TMP_SubMeshUI.GetPaddingForMaterial">GetPaddingForMaterial()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetPaddingForMaterial()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_GetPaddingForMaterial_UnityEngine_Material_.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.GetPaddingForMaterial(UnityEngine.Material)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L425">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_GetPaddingForMaterial_" data-uid="TMPro.TMP_SubMeshUI.GetPaddingForMaterial*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_GetPaddingForMaterial_UnityEngine_Material_" data-uid="TMPro.TMP_SubMeshUI.GetPaddingForMaterial(UnityEngine.Material)">GetPaddingForMaterial(Material)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetPaddingForMaterial(Material mat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Material</span></td>
+        <td><span class="parametername">mat</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_OnDestroy.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.OnDestroy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L270">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_OnDestroy_" data-uid="TMPro.TMP_SubMeshUI.OnDestroy*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_OnDestroy" data-uid="TMPro.TMP_SubMeshUI.OnDestroy">OnDestroy()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnDestroy()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.OnDestroy()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_OnDisable.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.OnDisable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L253">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_OnDisable_" data-uid="TMPro.TMP_SubMeshUI.OnDisable*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_OnDisable" data-uid="TMPro.TMP_SubMeshUI.OnDisable">OnDisable()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnDisable()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.MaskableGraphic.OnDisable()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_OnEnable.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.OnEnable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L238">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_OnEnable_" data-uid="TMPro.TMP_SubMeshUI.OnEnable*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_OnEnable" data-uid="TMPro.TMP_SubMeshUI.OnEnable">OnEnable()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnEnable()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.MaskableGraphic.OnEnable()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_OnTransformParentChanged.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.OnTransformParentChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L388">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_OnTransformParentChanged_" data-uid="TMPro.TMP_SubMeshUI.OnTransformParentChanged*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_OnTransformParentChanged" data-uid="TMPro.TMP_SubMeshUI.OnTransformParentChanged">OnTransformParentChanged()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnTransformParentChanged()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.MaskableGraphic.OnTransformParentChanged()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_Rebuild_UnityEngine_UI_CanvasUpdate_.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.Rebuild(UnityEngine.UI.CanvasUpdate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L481">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_Rebuild_" data-uid="TMPro.TMP_SubMeshUI.Rebuild*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_Rebuild_UnityEngine_UI_CanvasUpdate_" data-uid="TMPro.TMP_SubMeshUI.Rebuild(UnityEngine.UI.CanvasUpdate)">Rebuild(CanvasUpdate)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Rebuild(CanvasUpdate update)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.UI.CanvasUpdate</span></td>
+        <td><span class="parametername">update</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.Rebuild(UnityEngine.UI.CanvasUpdate)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_RecalculateClipping.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.RecalculateClipping%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L514">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_RecalculateClipping_" data-uid="TMPro.TMP_SubMeshUI.RecalculateClipping*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_RecalculateClipping" data-uid="TMPro.TMP_SubMeshUI.RecalculateClipping">RecalculateClipping()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void RecalculateClipping()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.MaskableGraphic.RecalculateClipping()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_RecalculateMasking.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.RecalculateMasking%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L520">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_RecalculateMasking_" data-uid="TMPro.TMP_SubMeshUI.RecalculateMasking*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_RecalculateMasking" data-uid="TMPro.TMP_SubMeshUI.RecalculateMasking">RecalculateMasking()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void RecalculateMasking()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.MaskableGraphic.RecalculateMasking()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_RefreshMaterial.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.RefreshMaterial%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L493">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_RefreshMaterial_" data-uid="TMPro.TMP_SubMeshUI.RefreshMaterial*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_RefreshMaterial" data-uid="TMPro.TMP_SubMeshUI.RefreshMaterial">RefreshMaterial()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RefreshMaterial()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_SetAllDirty.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.SetAllDirty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L435">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_SetAllDirty_" data-uid="TMPro.TMP_SubMeshUI.SetAllDirty*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_SetAllDirty" data-uid="TMPro.TMP_SubMeshUI.SetAllDirty">SetAllDirty()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetAllDirty()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.SetAllDirty()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_SetLayoutDirty.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.SetLayoutDirty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L448">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_SetLayoutDirty_" data-uid="TMPro.TMP_SubMeshUI.SetLayoutDirty*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_SetLayoutDirty" data-uid="TMPro.TMP_SubMeshUI.SetLayoutDirty">SetLayoutDirty()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetLayoutDirty()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.SetLayoutDirty()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_SetMaterialDirty.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.SetMaterialDirty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L452">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_SetMaterialDirty_" data-uid="TMPro.TMP_SubMeshUI.SetMaterialDirty*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_SetMaterialDirty" data-uid="TMPro.TMP_SubMeshUI.SetMaterialDirty">SetMaterialDirty()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetMaterialDirty()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.SetMaterialDirty()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_SetPivotDirty.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.SetPivotDirty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L459">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_SetPivotDirty_" data-uid="TMPro.TMP_SubMeshUI.SetPivotDirty*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_SetPivotDirty" data-uid="TMPro.TMP_SubMeshUI.SetPivotDirty">SetPivotDirty()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPivotDirty()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_SetVerticesDirty.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.SetVerticesDirty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L439">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_SetVerticesDirty_" data-uid="TMPro.TMP_SubMeshUI.SetVerticesDirty*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_SetVerticesDirty" data-uid="TMPro.TMP_SubMeshUI.SetVerticesDirty">SetVerticesDirty()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetVerticesDirty()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.SetVerticesDirty()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_UpdateGeometry.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.UpdateGeometry%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L476">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_UpdateGeometry_" data-uid="TMPro.TMP_SubMeshUI.UpdateGeometry*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_UpdateGeometry" data-uid="TMPro.TMP_SubMeshUI.UpdateGeometry">UpdateGeometry()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UpdateGeometry()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.UpdateGeometry()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_UpdateMaterial.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.UpdateMaterial%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L499">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_UpdateMaterial_" data-uid="TMPro.TMP_SubMeshUI.UpdateMaterial*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_UpdateMaterial" data-uid="TMPro.TMP_SubMeshUI.UpdateMaterial">UpdateMaterial()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UpdateMaterial()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Graphic.UpdateMaterial()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI_UpdateMeshPadding_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI.UpdateMeshPadding(System.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L430">View Source</a>
+  </span>
+  <a id="TMPro_TMP_SubMeshUI_UpdateMeshPadding_" data-uid="TMPro.TMP_SubMeshUI.UpdateMeshPadding*"></a>
+  <h4 id="TMPro_TMP_SubMeshUI_UpdateMeshPadding_System_Boolean_System_Boolean_" data-uid="TMPro.TMP_SubMeshUI.UpdateMeshPadding(System.Boolean,System.Boolean)">UpdateMeshPadding(Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateMeshPadding(bool isExtraPadding, bool isUsingBold)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isExtraPadding</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isUsingBold</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">UnityEngine.UI.ICanvasElement</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.UI.IClippable</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.UI.IMaskable</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.UI.IMaterialModifier</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.CoroutineUtilities.html#WeaverCore_Utilities_CoroutineUtilities_RunCoroutineWhile__1___0_System_Collections_IEnumerator_System_Func_System_Boolean__">CoroutineUtilities.RunCoroutineWhile&lt;T&gt;(T, IEnumerator, Func&lt;Boolean&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_SubMeshUI.md&amp;value=---%0Auid%3A%20TMPro.TMP_SubMeshUI%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_SubMeshUI.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

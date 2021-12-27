@@ -6,7 +6,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-	public class DetectHero : MonoBehaviour
+    public class DetectHero : MonoBehaviour
     {
         GameObject Parent;
         GameObject Lit;

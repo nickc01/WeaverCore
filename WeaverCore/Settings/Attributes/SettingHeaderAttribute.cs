@@ -16,6 +16,9 @@ namespace WeaverCore.Settings
 		public string HeaderText { get; protected set; }
 	}
 
+	/// <summary>
+	/// Displays a large header over a settings element. Useful for grouping elements together
+	/// </summary>
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 	public sealed class SettingHeaderAttribute : SettingHeaderAttribute_BASE
 	{
@@ -29,6 +32,11 @@ namespace WeaverCore.Settings
 		}
 	}
 
+	/// <summary>
+	/// Displays a large header over a settings element. Useful for grouping elements together
+	/// 
+	/// It also uses <seealso cref="WeaverLanguage.GetString(string, string, string)"/> to translate it
+	/// </summary>
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 	public sealed class LangSettingHeaderAttribute : SettingHeaderAttribute_BASE
 	{

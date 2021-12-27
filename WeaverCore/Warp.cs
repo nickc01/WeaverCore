@@ -10,7 +10,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	public class DreamWarpOptions
+    public class DreamWarpOptions
 	{
 		public AudioClip DreamWarpSound;
 		public AudioClip DreamArriveSound;

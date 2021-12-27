@@ -6,27 +6,41 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
+	/// <summary>
+	/// Contains some utility functions related to math
+	/// </summary>
 	public static class MathUtilties
 	{
+		/// <summary>
+		/// Calculates the 2D velocity needed to reach the specified <paramref name="end"/> point.
+		/// </summary>
+		/// <param name="start">The starting position</param>
+		/// <param name="end">The end position</param>
+		/// <param name="time">The amount of time needed to get from the <paramref name="start"/> to the <paramref name="end"/></param>
+		/// <param name="gravityScale">The gravity multiplier</param>
+		/// <returns>Returns the 2D velocity needed to reach the specified <paramref name="end"/> point.</returns>
 		public static Vector2 CalculateVelocityToReachPoint(Vector2 start, Vector2 end, double time, double gravityScale)
 		{
-			Debug.DrawLine(start, end, Color.blue, 5f);
-
-			//time /= 2.0;
+			//Debug.DrawLine(start, end, Color.blue, 5f);
 
 			double a = Physics2D.gravity.y * gravityScale;
 
 			double yDest = end.y - start.y;
 
 			double yVelocity = (yDest / time) - (0.5 * a * time);
-			//float xVelocity = Mathf.Lerp(start.x,end.x,time);
 			double xVelocity = (end.x - (double)start.x) / time;
 
 			return new Vector2((float)xVelocity, (float)yVelocity);
-			//time /= 2f;
-			//return new Vector2((end.x - start.x) / (time * 2f), CalculateVerticalVelocity(start.y,end.y,time,gravityScale));
 		}
 
+		/// <summary>
+		/// Calculates the vertical velocity needed to reach the height of <paramref name="endY"/>
+		/// </summary>
+		/// <param name="startY">The starting height</param>
+		/// <param name="endY">The destination height</param>
+		/// <param name="time">The amount of time needed to get from the <paramref name="startY"/> to the <paramref name="endY"/></param>
+		/// <param name="gravityScale">The gravity multiplier</param>
+		/// <returns>Returns the vertical velocity needed to reach the height of <paramref name="endY"/></returns>
 		static float CalculateVerticalVelocity(float startY, float endY, float time, float gravityScale)
 		{
 			float a = Physics2D.gravity.y * gravityScale;
@@ -35,8 +49,15 @@ namespace WeaverCore.Utilities
 			return (newY / time) - (a * time);
 		}
 
-		//Returns the time to get to the peak (x value), and the peak (y value)
-		public static Vector2 CalculateMaximumOfCurve(float startY, float endY, float time, float gravityScale)
+		/// <summary>
+		/// This function will calculate a velocity curve needed to get from startY to endY, and will return the time it takes to reach the peak of the curve and the peak height of the curve itself
+		/// </summary>
+		/// <param name="startY">The starting height</param>
+		/// <param name="endY">The destination height</param>
+		/// <param name="time">The amount of time needed to get from <paramref name="startY"/> to <paramref name="endY"/></param>
+		/// <param name="gravityScale">The gravity multiplier</param>
+		/// <returns>the time it takes to reach the peak of the curve and the peak height of the curve itself</returns>
+		public static (float timeToPeak, float peakHeight) CalculateMaximumOfCurve(float startY, float endY, float time, float gravityScale)
 		{
 			var velocity = CalculateVerticalVelocity(startY, endY, time, gravityScale);
 
@@ -46,44 +67,49 @@ namespace WeaverCore.Utilities
 
 			var peakValue = (a * timeToPeak * timeToPeak) + (velocity * timeToPeak);
 
-			return new Vector2(timeToPeak, peakValue);
+			return (timeToPeak, peakValue);
 		}
 
+		/// <summary>
+		/// Converts a set of polar coordinates to cartesian coordinates
+		/// </summary>
+		/// <param name="angleDegrees">The angle of the polar coordinate</param>
+		/// <param name="magnitude">The length of the polar coordinate</param>
+		/// <returns>Returns the set of polar coordinates in cartesian coordinates</returns>
 		public static Vector2 PolarToCartesian(float angleDegrees,float magnitude)
 		{
 			return new Vector2(Mathf.Cos(Mathf.Deg2Rad * angleDegrees) * magnitude,Mathf.Sin(Mathf.Deg2Rad * angleDegrees) * magnitude);
 		}
 
+		/// <summary>
+		/// Converts a set of polar coordinates to cartesian coordinates
+		/// </summary>
+		/// <param name="angleAndMagnitude">The polar coordinates (x is the angle, y is the magnitude)</param>
+		/// <returns>Returns the set of polar coordinates in cartesian coordinates</returns>
 		public static Vector2 PolarToCartesian(Vector2 angleAndMagnitude)
 		{
 			return PolarToCartesian(angleAndMagnitude.x, angleAndMagnitude.y);
 		}
 
+		/// <summary>
+		/// Converts a set of cartesian coordinates to polar coordinates
+		/// </summary>
+		/// <param name="vector">The x-y coordinates</param>
+		/// <returns>Returns the polar coordinates (x is the angle, y is the magnitude)</returns>
 		public static Vector2 CartesianToPolar(Vector2 vector)
 		{
 			return CartesianToPolar(vector.x, vector.y);
 		}
 
+		/// <summary>
+		/// Converts a set of cartesian coordinates to polar coordinates
+		/// </summary>
+		/// <param name="x">The x coordinates</param>
+		/// <param name="y">The y coordinates</param>
+		/// <returns>Returns the polar coordinates (x is the angle, y is the magnitude)</returns>
 		public static Vector2 CartesianToPolar(float x, float y)
 		{
 			return new Vector2(Mathf.Atan2(y,x) * Mathf.Rad2Deg,Mathf.Sqrt((x*x) + (y*y)));
 		}
-
-		/*public static Vector2 CalculateVelocityToReachPointNEW(Vector2 start, Vector2 end, double time, double gravityScale)
-		{
-			Debug.DrawLine(start, end, Color.red,5f);
-
-			//time /= 2.0;
-
-			double a = Physics2D.gravity.y * gravityScale;
-
-			double yDest = end.y - start.y;
-
-			double yVelocity = (yDest / time) - (0.5 * a * time);
-			//float xVelocity = Mathf.Lerp(start.x,end.x,time);
-			double xVelocity = (end.x - (double)start.x) / time;
-
-			return new Vector2((float)xVelocity,(float)yVelocity);
-		}*/
 	}
 }

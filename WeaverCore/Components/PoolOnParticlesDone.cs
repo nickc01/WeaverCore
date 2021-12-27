@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	/// <summary>
-	/// Automatically sends an object back to it's pool when the particle system on the object is completed
-	/// </summary>
-	[RequireComponent(typeof(PoolableObject))]
+    /// <summary>
+    /// Automatically sends an object back to it's pool when the particle system on the object is completed
+    /// </summary>
+    [RequireComponent(typeof(PoolableObject))]
 	[RequireComponent(typeof(ParticleSystem))]
 	public class PoolOnParticlesDone : MonoBehaviour
 	{

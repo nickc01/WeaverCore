@@ -31,9 +31,9 @@ namespace WeaverCore.Game.Implementations
 
         }
 
-        public override void OnHit(HitInfo info, HitResult hitResult)
+        public override void OnHit(HitInfo info, EntityHealth.HitResult hitResult)
         {
-            if (hitResult != HitResult.Invalid)
+            if (hitResult != EntityHealth.HitResult.Invalid)
             {
                 FSMUtility.SendEventToGameObject(info.Attacker, "DEALT DAMAGE", false);
             }

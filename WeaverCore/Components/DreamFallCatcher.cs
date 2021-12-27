@@ -4,7 +4,11 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	public class DreamFallCatcher : MonoBehaviour
+    /// <summary>
+    /// When the player touches an object with this component attached, and they are in a dream scene, the player will get transported to the scene there were previously
+    /// </summary>
+    /// <remarks>Must have a collider attached to work</remarks>
+    public class DreamFallCatcher : MonoBehaviour
 	{
 		[SerializeField]
 		[Tooltip("The sound effect that is played when the player touches this catcher")]
@@ -58,7 +62,6 @@ namespace WeaverCore.Components
 
 			var returnScene = PlayerData.instance.GetString("dreamReturnScene");
 
-			//GameManager.instance.ChangeToScene(returnScene, returningGateName, 0f);
 			GameManager.instance.BeginSceneTransition(new GameManager.SceneLoadInfo
 			{
 				SceneName = returnScene,

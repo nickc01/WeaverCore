@@ -72,7 +72,8 @@
   
   <h1 id="WeaverCore_Utilities_StreamUtilities" data-uid="WeaverCore.Utilities.StreamUtilities" class="text-break">Class StreamUtilities
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Contains some utility functions related to streams</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -89,18 +90,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_StreamUtilities_CopyToStream_System_IO_Stream_System_IO_Stream_System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.StreamUtilities.CopyToStream(System.IO.Stream%2CSystem.IO.Stream%2CSystem.Int32%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_StreamUtilities_CopyTo_System_IO_Stream_System_IO_Stream_System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.StreamUtilities.CopyTo(System.IO.Stream%2CSystem.IO.Stream%2CSystem.Int32%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/StreamUtilities.cs/#L55">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/StreamUtilities.cs/#L23">View Source</a>
   </span>
-  <a id="WeaverCore_Utilities_StreamUtilities_CopyToStream_" data-uid="WeaverCore.Utilities.StreamUtilities.CopyToStream*"></a>
-  <h4 id="WeaverCore_Utilities_StreamUtilities_CopyToStream_System_IO_Stream_System_IO_Stream_System_Int32_System_Boolean_" data-uid="WeaverCore.Utilities.StreamUtilities.CopyToStream(System.IO.Stream,System.IO.Stream,System.Int32,System.Boolean)">CopyToStream(Stream, Stream, Int32, Boolean)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="WeaverCore_Utilities_StreamUtilities_CopyTo_" data-uid="WeaverCore.Utilities.StreamUtilities.CopyTo*"></a>
+  <h4 id="WeaverCore_Utilities_StreamUtilities_CopyTo_System_IO_Stream_System_IO_Stream_System_Int32_System_Boolean_" data-uid="WeaverCore.Utilities.StreamUtilities.CopyTo(System.IO.Stream,System.IO.Stream,System.Int32,System.Boolean)">CopyTo(Stream, Stream, Int32, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Copies all data from one stream to another</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void CopyToStream(this Stream source, Stream destination, int bufferSize = 2048, bool resetPosition = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void CopyTo(this Stream source, Stream destination, int bufferSize = 2048, bool resetPosition = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -115,22 +117,26 @@
       <tr>
         <td><span class="xref">System.IO.Stream</span></td>
         <td><span class="parametername">source</span></td>
-        <td></td>
+        <td><p>The source stream</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.IO.Stream</span></td>
         <td><span class="parametername">destination</span></td>
-        <td></td>
+        <td><p>The destination stream</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">bufferSize</span></td>
-        <td></td>
+        <td><p>The buffer size. The data will be copied in chunks of this size</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">resetPosition</span></td>
-        <td></td>
+        <td><p>Should positions of the streams be reset when done?</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -139,11 +145,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_StreamUtilities_Decompress_System_IO_Stream_System_IO_Stream_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.StreamUtilities.Decompress(System.IO.Stream%2CSystem.IO.Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/StreamUtilities.cs/#L90">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/StreamUtilities.cs/#L63">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_StreamUtilities_Decompress_" data-uid="WeaverCore.Utilities.StreamUtilities.Decompress*"></a>
   <h4 id="WeaverCore_Utilities_StreamUtilities_Decompress_System_IO_Stream_System_IO_Stream_" data-uid="WeaverCore.Utilities.StreamUtilities.Decompress(System.IO.Stream,System.IO.Stream)">Decompress(Stream, Stream)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Decompresses a compressed stream of data</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -162,153 +169,14 @@
       <tr>
         <td><span class="xref">System.IO.Stream</span></td>
         <td><span class="parametername">source</span></td>
-        <td></td>
+        <td><p>The source stream to extract from</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.IO.Stream</span></td>
         <td><span class="parametername">destination</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_StreamUtilities_GetHash_System_Byte___.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.StreamUtilities.GetHash(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/StreamUtilities.cs/#L30">View Source</a>
-  </span>
-  <a id="WeaverCore_Utilities_StreamUtilities_GetHash_" data-uid="WeaverCore.Utilities.StreamUtilities.GetHash*"></a>
-  <h4 id="WeaverCore_Utilities_StreamUtilities_GetHash_System_Byte___" data-uid="WeaverCore.Utilities.StreamUtilities.GetHash(System.Byte[])">GetHash(Byte[])</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string GetHash(this byte[] data)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Byte</span>[]</td>
-        <td><span class="parametername">data</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_StreamUtilities_GetHash_System_IO_Stream_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.StreamUtilities.GetHash(System.IO.Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/StreamUtilities.cs/#L13">View Source</a>
-  </span>
-  <a id="WeaverCore_Utilities_StreamUtilities_GetHash_" data-uid="WeaverCore.Utilities.StreamUtilities.GetHash*"></a>
-  <h4 id="WeaverCore_Utilities_StreamUtilities_GetHash_System_IO_Stream_" data-uid="WeaverCore.Utilities.StreamUtilities.GetHash(System.IO.Stream)">GetHash(Stream)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string GetHash(this Stream stream)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.IO.Stream</span></td>
-        <td><span class="parametername">stream</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_StreamUtilities_GetHash_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.StreamUtilities.GetHash(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/StreamUtilities.cs/#L47">View Source</a>
-  </span>
-  <a id="WeaverCore_Utilities_StreamUtilities_GetHash_" data-uid="WeaverCore.Utilities.StreamUtilities.GetHash*"></a>
-  <h4 id="WeaverCore_Utilities_StreamUtilities_GetHash_System_String_" data-uid="WeaverCore.Utilities.StreamUtilities.GetHash(System.String)">GetHash(String)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string GetHash(string filePath)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">filePath</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>The stream to send the decompressed data to</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -323,7 +191,7 @@
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_StreamUtilities.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.StreamUtilities%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/StreamUtilities.cs/#L11" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/StreamUtilities.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

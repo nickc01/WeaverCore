@@ -9,7 +9,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-	class GMSorter : IComparer<GameObject>
+    class GMSorter : IComparer<GameObject>
 	{
 		public int Compare(GameObject x, GameObject y)
 		{

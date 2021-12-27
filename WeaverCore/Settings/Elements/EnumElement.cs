@@ -7,6 +7,9 @@ using WeaverCore.Utilities;
 namespace WeaverCore.Settings.Elements
 {
 
+	/// <summary>
+	/// A UI element which can have it's value selected from a list of predefined values
+	/// </summary>
 	public class EnumElement : UIElement
 	{
 		Dropdown dropdown;
@@ -18,6 +21,7 @@ namespace WeaverCore.Settings.Elements
 			dropdown = GetComponentInChildren<Dropdown>();
 		}
 
+		/// <inheritdoc/>
 		public override bool CanWorkWithAccessor(IAccessor accessor)
 		{
 			if (accessor.MemberType != null)
@@ -27,6 +31,7 @@ namespace WeaverCore.Settings.Elements
 			return false;
 		}
 
+		/// <inheritdoc/>
 		protected override void OnAccessorChanged(IAccessor accessor)
 		{
 			base.OnAccessorChanged(accessor);

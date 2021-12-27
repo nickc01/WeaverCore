@@ -2,6 +2,9 @@
 
 namespace WeaverCore.DataTypes
 {
+	/// <summary>
+	/// Used for identifying a component in an object hiearchy. Used in <seealso cref="ObjectPool"/>
+	/// </summary>
 	internal struct ComponentPath
 	{
 		public int SiblingHash;

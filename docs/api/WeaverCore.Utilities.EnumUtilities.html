@@ -72,7 +72,8 @@
   
   <h1 id="WeaverCore_Utilities_EnumUtilities" data-uid="WeaverCore.Utilities.EnumUtilities" class="text-break">Class EnumUtilities
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Contains many utility functions for enums</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -92,11 +93,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_EnumUtilities_GetAllEnumValues__1.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.EnumUtilities.GetAllEnumValues%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L76">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L100">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_EnumUtilities_GetAllEnumValues_" data-uid="WeaverCore.Utilities.EnumUtilities.GetAllEnumValues*"></a>
   <h4 id="WeaverCore_Utilities_EnumUtilities_GetAllEnumValues__1" data-uid="WeaverCore.Utilities.EnumUtilities.GetAllEnumValues``1">GetAllEnumValues&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns an Enumerable for all the enum values in an enum type</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -113,7 +115,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
-        <td></td>
+        <td><p>Returns an Enumerable for all the enum values in an enum type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -128,7 +131,24 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The enum type to get the list from</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><p>Throws if the enum type isn't an enum</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -137,11 +157,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_EnumUtilities_RandomEnumValue__1___0___.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.EnumUtilities.RandomEnumValue%60%601(%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L11">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L23">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_EnumUtilities_RandomEnumValue_" data-uid="WeaverCore.Utilities.EnumUtilities.RandomEnumValue*"></a>
   <h4 id="WeaverCore_Utilities_EnumUtilities_RandomEnumValue__1___0___" data-uid="WeaverCore.Utilities.EnumUtilities.RandomEnumValue``1(``0[])">RandomEnumValue&lt;EnumType&gt;(EnumType[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Randomly selects a random enum value</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -160,7 +181,8 @@
       <tr>
         <td>EnumType[]</td>
         <td><span class="parametername">excludedValues</span></td>
-        <td></td>
+        <td><p>Any values that are excluded from the randomizer</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -190,7 +212,34 @@
     <tbody>
       <tr>
         <td><span class="parametername">EnumType</span></td>
-        <td></td>
+        <td><p>The type of enum to randomly select from</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><p>Throws if <code data-dev-comment-type="typeparamref" class="typeparamref">EnumType</code> is not an Enum</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Throws if all values are excluded from the randomizer, preventing a single value from being selected</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ComponentModel.InvalidEnumArgumentException</span></td>
+        <td><p>Throws if the enum has no values to select from</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -199,11 +248,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_EnumUtilities_RawConvert_System_Object_System_Type_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.EnumUtilities.RawConvert(System.Object%2CSystem.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L60">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L78">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_EnumUtilities_RawConvert_" data-uid="WeaverCore.Utilities.EnumUtilities.RawConvert*"></a>
   <h4 id="WeaverCore_Utilities_EnumUtilities_RawConvert_System_Object_System_Type_" data-uid="WeaverCore.Utilities.EnumUtilities.RawConvert(System.Object,System.Type)">RawConvert(Object, Type)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Forcefully converts from one enum to another</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -222,12 +272,14 @@
       <tr>
         <td><span class="xref">System.Object</span></td>
         <td><span class="parametername">source</span></td>
-        <td></td>
+        <td><p>The enum value to convert</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Type</span></td>
         <td><span class="parametername">destEnumType</span></td>
-        <td></td>
+        <td><p>The destination enum type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -242,7 +294,24 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Object</span></td>
-        <td></td>
+        <td><p>Returns the forcefully converted enum value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><p>Throws if the source type or destination type isn't an enum type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -251,11 +320,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_EnumUtilities_RawConvert__2___0_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.EnumUtilities.RawConvert%60%602(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L47">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L66">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_EnumUtilities_RawConvert_" data-uid="WeaverCore.Utilities.EnumUtilities.RawConvert*"></a>
   <h4 id="WeaverCore_Utilities_EnumUtilities_RawConvert__2___0_" data-uid="WeaverCore.Utilities.EnumUtilities.RawConvert``2(``0)">RawConvert&lt;SourceEnumType, DestEnumType&gt;(SourceEnumType)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Forcefully converts from one enum to another</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -274,7 +344,8 @@
       <tr>
         <td><span class="xref">SourceEnumType</span></td>
         <td><span class="parametername">source</span></td>
-        <td></td>
+        <td><p>The enum value to convert</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -289,7 +360,8 @@
     <tbody>
       <tr>
         <td><span class="xref">DestEnumType</span></td>
-        <td></td>
+        <td><p>Returns the forcefully converted enum value</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -304,11 +376,13 @@
     <tbody>
       <tr>
         <td><span class="parametername">SourceEnumType</span></td>
-        <td></td>
+        <td><p>The source enum type</p>
+</td>
       </tr>
       <tr>
         <td><span class="parametername">DestEnumType</span></td>
-        <td></td>
+        <td><p>The destination enum type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -323,7 +397,7 @@
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_EnumUtilities.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.EnumUtilities%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/EnumUtilities.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

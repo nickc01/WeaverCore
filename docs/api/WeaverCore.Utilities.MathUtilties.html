@@ -72,7 +72,8 @@
   
   <h1 id="WeaverCore_Utilities_MathUtilties" data-uid="WeaverCore.Utilities.MathUtilties" class="text-break">Class MathUtilties
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Contains some utility functions related to math</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -92,15 +93,16 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_MathUtilties_CalculateMaximumOfCurve_System_Single_System_Single_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.MathUtilties.CalculateMaximumOfCurve(System.Single%2CSystem.Single%2CSystem.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L39">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L60">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_MathUtilties_CalculateMaximumOfCurve_" data-uid="WeaverCore.Utilities.MathUtilties.CalculateMaximumOfCurve*"></a>
   <h4 id="WeaverCore_Utilities_MathUtilties_CalculateMaximumOfCurve_System_Single_System_Single_System_Single_System_Single_" data-uid="WeaverCore.Utilities.MathUtilties.CalculateMaximumOfCurve(System.Single,System.Single,System.Single,System.Single)">CalculateMaximumOfCurve(Single, Single, Single, Single)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>This function will calculate a velocity curve needed to get from startY to endY, and will return the time it takes to reach the peak of the curve and the peak height of the curve itself</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Vector2 CalculateMaximumOfCurve(float startY, float endY, float time, float gravityScale)</code></pre>
+    <pre><code class="lang-csharp hljs">public static (float timeToPeak, float peakHeight) CalculateMaximumOfCurve(float startY, float endY, float time, float gravityScale)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -115,22 +117,26 @@
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">startY</span></td>
-        <td></td>
+        <td><p>The starting height</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">endY</span></td>
-        <td></td>
+        <td><p>The destination height</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">time</span></td>
-        <td></td>
+        <td><p>The amount of time needed to get from <code data-dev-comment-type="paramref" class="paramref">startY</code> to <code data-dev-comment-type="paramref" class="paramref">endY</code></p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">gravityScale</span></td>
-        <td></td>
+        <td><p>The gravity multiplier</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -144,8 +150,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">UnityEngine.Vector2</span></td>
-        <td></td>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Single</span>, <span class="xref">System.Single</span>&gt;</td>
+        <td><p>the time it takes to reach the peak of the curve and the peak height of the curve itself</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -154,11 +161,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_MathUtilties_CalculateVelocityToReachPoint_UnityEngine_Vector2_UnityEngine_Vector2_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.MathUtilties.CalculateVelocityToReachPoint(UnityEngine.Vector2%2CUnityEngine.Vector2%2CSystem.Double%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L11">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L22">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_MathUtilties_CalculateVelocityToReachPoint_" data-uid="WeaverCore.Utilities.MathUtilties.CalculateVelocityToReachPoint*"></a>
   <h4 id="WeaverCore_Utilities_MathUtilties_CalculateVelocityToReachPoint_UnityEngine_Vector2_UnityEngine_Vector2_System_Double_System_Double_" data-uid="WeaverCore.Utilities.MathUtilties.CalculateVelocityToReachPoint(UnityEngine.Vector2,UnityEngine.Vector2,System.Double,System.Double)">CalculateVelocityToReachPoint(Vector2, Vector2, Double, Double)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Calculates the 2D velocity needed to reach the specified <code data-dev-comment-type="paramref" class="paramref">end</code> point.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -177,22 +185,26 @@
       <tr>
         <td><span class="xref">UnityEngine.Vector2</span></td>
         <td><span class="parametername">start</span></td>
-        <td></td>
+        <td><p>The starting position</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">UnityEngine.Vector2</span></td>
         <td><span class="parametername">end</span></td>
-        <td></td>
+        <td><p>The end position</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">time</span></td>
-        <td></td>
+        <td><p>The amount of time needed to get from the <code data-dev-comment-type="paramref" class="paramref">start</code> to the <code data-dev-comment-type="paramref" class="paramref">end</code></p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Double</span></td>
         <td><span class="parametername">gravityScale</span></td>
-        <td></td>
+        <td><p>The gravity multiplier</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -207,7 +219,8 @@
     <tbody>
       <tr>
         <td><span class="xref">UnityEngine.Vector2</span></td>
-        <td></td>
+        <td><p>Returns the 2D velocity needed to reach the specified <code data-dev-comment-type="paramref" class="paramref">end</code> point.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -216,11 +229,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_MathUtilties_CartesianToPolar_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.MathUtilties.CartesianToPolar(System.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L67">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L110">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_MathUtilties_CartesianToPolar_" data-uid="WeaverCore.Utilities.MathUtilties.CartesianToPolar*"></a>
   <h4 id="WeaverCore_Utilities_MathUtilties_CartesianToPolar_System_Single_System_Single_" data-uid="WeaverCore.Utilities.MathUtilties.CartesianToPolar(System.Single,System.Single)">CartesianToPolar(Single, Single)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts a set of cartesian coordinates to polar coordinates</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -239,12 +253,14 @@
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">x</span></td>
-        <td></td>
+        <td><p>The x coordinates</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">y</span></td>
-        <td></td>
+        <td><p>The y coordinates</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -259,7 +275,8 @@
     <tbody>
       <tr>
         <td><span class="xref">UnityEngine.Vector2</span></td>
-        <td></td>
+        <td><p>Returns the polar coordinates (x is the angle, y is the magnitude)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -268,11 +285,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_MathUtilties_CartesianToPolar_UnityEngine_Vector2_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.MathUtilties.CartesianToPolar(UnityEngine.Vector2)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L62">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L99">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_MathUtilties_CartesianToPolar_" data-uid="WeaverCore.Utilities.MathUtilties.CartesianToPolar*"></a>
   <h4 id="WeaverCore_Utilities_MathUtilties_CartesianToPolar_UnityEngine_Vector2_" data-uid="WeaverCore.Utilities.MathUtilties.CartesianToPolar(UnityEngine.Vector2)">CartesianToPolar(Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts a set of cartesian coordinates to polar coordinates</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -291,7 +309,8 @@
       <tr>
         <td><span class="xref">UnityEngine.Vector2</span></td>
         <td><span class="parametername">vector</span></td>
-        <td></td>
+        <td><p>The x-y coordinates</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -306,7 +325,8 @@
     <tbody>
       <tr>
         <td><span class="xref">UnityEngine.Vector2</span></td>
-        <td></td>
+        <td><p>Returns the polar coordinates (x is the angle, y is the magnitude)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -315,11 +335,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_MathUtilties_PolarToCartesian_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.MathUtilties.PolarToCartesian(System.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L52">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L79">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_MathUtilties_PolarToCartesian_" data-uid="WeaverCore.Utilities.MathUtilties.PolarToCartesian*"></a>
   <h4 id="WeaverCore_Utilities_MathUtilties_PolarToCartesian_System_Single_System_Single_" data-uid="WeaverCore.Utilities.MathUtilties.PolarToCartesian(System.Single,System.Single)">PolarToCartesian(Single, Single)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts a set of polar coordinates to cartesian coordinates</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -338,12 +359,14 @@
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">angleDegrees</span></td>
-        <td></td>
+        <td><p>The angle of the polar coordinate</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">magnitude</span></td>
-        <td></td>
+        <td><p>The length of the polar coordinate</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -358,7 +381,8 @@
     <tbody>
       <tr>
         <td><span class="xref">UnityEngine.Vector2</span></td>
-        <td></td>
+        <td><p>Returns the set of polar coordinates in cartesian coordinates</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -367,11 +391,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_MathUtilties_PolarToCartesian_UnityEngine_Vector2_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.MathUtilties.PolarToCartesian(UnityEngine.Vector2)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L57">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L89">View Source</a>
   </span>
   <a id="WeaverCore_Utilities_MathUtilties_PolarToCartesian_" data-uid="WeaverCore.Utilities.MathUtilties.PolarToCartesian*"></a>
   <h4 id="WeaverCore_Utilities_MathUtilties_PolarToCartesian_UnityEngine_Vector2_" data-uid="WeaverCore.Utilities.MathUtilties.PolarToCartesian(UnityEngine.Vector2)">PolarToCartesian(Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts a set of polar coordinates to cartesian coordinates</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -390,7 +415,8 @@
       <tr>
         <td><span class="xref">UnityEngine.Vector2</span></td>
         <td><span class="parametername">angleAndMagnitude</span></td>
-        <td></td>
+        <td><p>The polar coordinates (x is the angle, y is the magnitude)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -405,7 +431,8 @@
     <tbody>
       <tr>
         <td><span class="xref">UnityEngine.Vector2</span></td>
-        <td></td>
+        <td><p>Returns the set of polar coordinates in cartesian coordinates</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -420,7 +447,7 @@
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_MathUtilties.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.MathUtilties%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/MathUtilties.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

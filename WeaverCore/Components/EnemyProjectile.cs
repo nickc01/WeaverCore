@@ -4,21 +4,30 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+	/// <summary>
+	/// Represents a simple enemy projectile. By default, this script handles:
+	/// 1. Spawning the projectile at a random scale between <see cref="scaleMin"/> and <see cref="scaleMax"/>
+	/// 2. Squashing and stretching the sprite depending on how it's moving through the air
+	/// 3. Handling collision with both the player and the environment
+	/// </summary>
 	[RequireComponent(typeof(Rigidbody2D))]
 	public abstract class EnemyProjectile : MonoBehaviour, IOnPool
 	{
 		[SerializeField]
+		[Tooltip("The minimum scale this object can be at")]
 		float scaleMin = 0.8f;
 		[SerializeField]
+		[Tooltip("The maximum scale this object can be at")]
 		float scaleMax = 0.8f;
 		[SerializeField]
+		[Tooltip("How much overall squash and stretch should be applied to the object when it's moving")]
 		float stretchFactor = 1.4f;
 		[SerializeField]
+		[Tooltip("The minimum amount of squashing the projectile can take")]
 		float minSquashAmount = 0.5f;
 		[SerializeField]
+		[Tooltip("The maximum amount of stretching the projectile can take")]
 		float maxStretchAmount = 2f;
-		//[SerializeField]
-		//float maxLifeTime = 5f;
 
 		float scaleAmount;
 		Collider2D _collider;
@@ -143,11 +152,6 @@ namespace WeaverCore.Components
 
 		protected virtual void OnCollisionEnter2D(Collision2D collision)
 		{
-			/*var contacts = collision.contacts;
-			if (contacts.GetLength(0) > 0)
-			{
-				RotateOnCollide(contacts[0].normal);
-			}*/
 			OnHit(collision.gameObject);
 		}
 
@@ -158,9 +162,6 @@ namespace WeaverCore.Components
 
 		protected virtual void OnTriggerEnter2D(Collider2D collision)
 		{
-			//this.active = false;
-			//base.StartCoroutine(this.Collision(Vector2.zero, false));
-			//Destroy();
 			OnHit(collision.gameObject);
 		}
 

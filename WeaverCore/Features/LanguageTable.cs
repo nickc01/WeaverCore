@@ -7,31 +7,13 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Features
 {
+    /// <summary>
+    /// A table thats used for storing translations. 
+    /// </summary>
     [ShowFeature]
     [CreateAssetMenu(fileName = "LanguageTable", menuName = "WeaverCore/Language Table")]
     public class LanguageTable : ScriptableObject, ISerializationCallbackReceiver
     {
-        /*[Serializable]
-        public class Sheet
-        {
-            public string sheetName = "General";
-            public List<Key> Keys;
-        }
-
-        [Serializable]
-        public class Key
-        {
-            public string key;
-            public string value;
-        }*/
-
-        /*[Serializable]
-        public class Entries
-        {
-            public List<string> keys;
-            public List<string> values;
-        }*/
-
         [Serializable]
         public class Entry
         {
@@ -51,7 +33,6 @@ namespace WeaverCore.Features
         public SupportedLanguages Language => language;
 
         [SerializeField]
-        //Entries entries;
         List<Entry> entries = new List<Entry>();
 
         [SerializeField]
@@ -62,9 +43,11 @@ namespace WeaverCore.Features
         [HideInInspector]
         List<string> _entry_Values = new List<string>();
 
+        /// <summary>
+        /// Gets a language string based on a key
+        /// </summary>
         public string GetString(string key, string fallback = null)
         {
-            //var keyIndex = entries.keys.IndexOf(key);
             var keyIndex = _entry_Keys.IndexOf(key);
             if (keyIndex >= 0)
             {
@@ -76,6 +59,10 @@ namespace WeaverCore.Features
             }
         }
 
+        /// <summary>
+        /// Does this language table have the specified key
+        /// </summary>
+        /// <param name="key">The key to check for</param>
         public bool HasString(string key)
         {
             return _entry_Keys.IndexOf(key) >= 0;

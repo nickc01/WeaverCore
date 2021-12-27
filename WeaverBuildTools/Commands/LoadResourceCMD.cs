@@ -24,7 +24,7 @@ namespace WeaverBuildTools.Commands
 					using (var resourceStream = ((EmbeddedResource)resource).GetResourceStream())
 					{
 						var uncompressedStream = CheckIfCompressed(resourceName, resourceStream, definition);
-						uncompressedStream.CopyToStream(outputStream);
+                        StreamUtilities.CopyTo(uncompressedStream, outputStream);
 					}
 				}
 			}

@@ -72,7 +72,7 @@
   
   <h1 id="WeaverCore_Attributes_AfterBuildAttribute" data-uid="WeaverCore.Attributes.AfterBuildAttribute" class="text-break">Class AfterBuildAttribute
   </h1>
-  <div class="markdown level0 summary"><p>Called after the build process finished, or when the build process has failed. Can be attached to a static method</p>
+  <div class="markdown level0 summary"><p>Called after the mod build process finished, or when the build process has failed. Can be attached to a static method</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -222,6 +222,13 @@
     <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 public sealed class AfterBuildAttribute : PriorityAttribute, _Attribute</code></pre>
   </div>
+  <h5 id="WeaverCore_Attributes_AfterBuildAttribute_examples"><strong>Examples</strong></h5>
+  <pre><code>[AfterBuild()]
+public static void BuildIsFinished()
+{
+    //This will be called after the mod build process has finished
+}</code></pre>
+
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
@@ -229,7 +236,7 @@ public sealed class AfterBuildAttribute : PriorityAttribute, _Attribute</code></
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Attributes_AfterBuildAttribute__ctor_System_Int32_.md&amp;value=---%0Auid%3A%20WeaverCore.Attributes.AfterBuildAttribute.%23ctor(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/AfterBuildAttribute.cs/#L11">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/AfterBuildAttribute.cs/#L20">View Source</a>
   </span>
   <a id="WeaverCore_Attributes_AfterBuildAttribute__ctor_" data-uid="WeaverCore.Attributes.AfterBuildAttribute.#ctor*"></a>
   <h4 id="WeaverCore_Attributes_AfterBuildAttribute__ctor_System_Int32_" data-uid="WeaverCore.Attributes.AfterBuildAttribute.#ctor(System.Int32)">AfterBuildAttribute(Int32)</h4>
@@ -271,7 +278,7 @@ public sealed class AfterBuildAttribute : PriorityAttribute, _Attribute</code></
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Attributes_AfterBuildAttribute.md&amp;value=---%0Auid%3A%20WeaverCore.Attributes.AfterBuildAttribute%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/AfterBuildAttribute.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/AfterBuildAttribute.cs/#L17" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

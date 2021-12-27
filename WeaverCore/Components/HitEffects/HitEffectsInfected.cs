@@ -6,16 +6,17 @@ using WeaverCore.Enums;
 
 namespace WeaverCore.Components.HitEffects
 {
+	/// <summary>
+	/// The hit effects for infected enemies
+	/// </summary>
 	[RequireComponent(typeof(SpriteFlasher))]
 	public class HitEffectsInfected : MonoBehaviour, IHitEffects
 	{
-		//protected static ObjectPool DamageFlashPool;
-		//protected static ObjectPool OrangeSpatterPool;
-		//protected static ObjectPool HitPuffPool;
-
 		[SerializeField]
+		[Tooltip("Should the sprite flash when hit?")]
 		bool doFlashEffects = true;
 		[SerializeField]
+		[Tooltip("Should blood particles be emitted when hit?")]
 		bool doBlood = true;
 		bool firedOnCurrentFrame = false;
 		SpriteFlasher flasher;
@@ -24,6 +25,7 @@ namespace WeaverCore.Components.HitEffects
 		[Space]
 		[Header("Customization")]
 		[SerializeField]
+		[Tooltip("The sound that is played when damaged")]
 		AudioClip _damageSound;
 		public AudioClip DamageSound
 		{
@@ -38,11 +40,14 @@ namespace WeaverCore.Components.HitEffects
 		}
 
 		[SerializeField]
+		[Tooltip("The minimum pitch of the damage sound")]
 		float audioPitchMin = 0.75f;
 		[SerializeField]
+		[Tooltip("The maximum pitch of the damage sound")]
 		float audioPitchMax = 1.25f;
 
 		[SerializeField]
+		[Tooltip("The flash effect that is played when hit")]
 		GameObject _damageFlash;
 		public GameObject DamageFlash
 		{
@@ -57,6 +62,7 @@ namespace WeaverCore.Components.HitEffects
 		}
 
 		[SerializeField]
+		[Tooltip("The splatter particles emitted when hit")]
 		GameObject _orangeSpatter;
 		public GameObject OrangeSpatter
 		{
@@ -71,6 +77,7 @@ namespace WeaverCore.Components.HitEffects
 		}
 
 		[SerializeField]
+		[Tooltip("The puff particle effect emitted when hit")]
 		GameObject _hitPuff;
 		public GameObject HitPuff
 		{
@@ -83,12 +90,8 @@ namespace WeaverCore.Components.HitEffects
 				_hitPuff = value;
 			}
 		}
-
-		//static AudioClip DamageSound;
-
 		protected virtual void Reset()
 		{
-			//Debug.Log("RESET");
 			DamageSound = Assets.AudioAssets.DamageEnemy;
 			DamageFlash = WeaverAssets.LoadWeaverAsset<GameObject>("Hit Flash Orange");
 			OrangeSpatter = WeaverAssets.LoadWeaverAsset<GameObject>("Spatter Orange");
@@ -97,13 +100,6 @@ namespace WeaverCore.Components.HitEffects
 
 		protected virtual void Start()
 		{
-			//DamageFlashPool = new ObjectPool(DamageFlash);
-			//OrangeSpatterPool = new ObjectPool(OrangeSpatter);
-			//HitPuffPool = new ObjectPool(HitPuff);
-			/*if (InfectedHitPool == null && )
-			{
-				InfectedHitPool = new ObjectPool(Assets.EffectAssets.UninfectedHitPrefab, PoolLoadType.Local);
-			}*/
 			flasher = GetComponent<SpriteFlasher>();
 		}
 
@@ -120,8 +116,6 @@ namespace WeaverCore.Components.HitEffects
 
 				var audio = WeaverAudio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
 				audio.AudioSource.pitch = UnityEngine.Random.Range(audioPitchMin,audioPitchMax);
-
-				//DamageFlashPool.Instantiate(transform.position + effectsOffset, Quaternion.identity);
 				Pooling.Instantiate(DamageFlash, transform.position + effectsOffset, Quaternion.identity);
 
 				if (doFlashEffects)
@@ -136,7 +130,6 @@ namespace WeaverCore.Components.HitEffects
 						{
 							Blood.SpawnDirectionalBlood(transform.position + effectsOffset, CardinalDirection.Up);
 						}
-						//HitPuffPool.Instantiate(transform.position, Quaternion.Euler(270f, 90f, 270f));
 						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(270f, 90f, 270f));
 						break;
 					case CardinalDirection.Down:
@@ -161,37 +154,7 @@ namespace WeaverCore.Components.HitEffects
 						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(0f, 90f, 270f));
 						break;
 				}
-
-				//GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
-				//GameObject hitParticles = InfectedHitPool.Instantiate(transform.position + effectsOffset, Quaternion.identity);
-
-				/*var direction = DirectionUtilities.DegreesToDirection(hit.Direction);
-
-				switch (direction)
-				{
-					case CardinalDirection.Up:
-						SetRotation2D(hitParticles.transform, 45f);
-						break;
-					case CardinalDirection.Down:
-						SetRotation2D(hitParticles.transform, 225f);
-						break;
-					case CardinalDirection.Left:
-						SetRotation2D(hitParticles.transform, -225f);
-						break;
-					case CardinalDirection.Right:
-						SetRotation2D(hitParticles.transform, -45f);
-						break;
-				}
-
-				Flings.SpawnFlings(NormalFlings, transform.position + effectsOffset, direction);*/
 			}
 		}
-
-		/*static void SetRotation2D(Transform t, float rotation)
-		{
-			Vector3 eulerAngles = t.eulerAngles;
-			eulerAngles.z = rotation;
-			t.eulerAngles = eulerAngles;
-		}*/
 	}
 }

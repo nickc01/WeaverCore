@@ -95,8 +95,24 @@
       <section></section>
       <h4><a class="xref" href="WeaverCore.EnviroEffects.html">EnviroEffects</a></h4>
       <section></section>
+      <h4><a class="xref" href="WeaverCore.EventListener.html">EventListener</a></h4>
+      <section><p>Used for listening in on any events sent from and to objects in the game. Also works with PlaymakerFSM events</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.EventManager.html">EventManager</a></h4>
+      <section><p>Used for receiving events from other objects, and sending events to other objects. This component can also be used to send and receive PlaymakerFSM events</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Flings.html">Flings</a></h4>
+      <section><p>Used for creating &quot;Flings&quot; that will scatter particle objects in random directions</p>
+</section>
       <h4><a class="xref" href="WeaverCore.HunterJournal.html">HunterJournal</a></h4>
       <section></section>
+      <h4><a class="xref" href="WeaverCore.ImplFinder.html">ImplFinder</a></h4>
+      <section><p>Used for finding the implementation for a type that inherits from <a class="xref" href="WeaverCore.Interfaces.IImplementation.html">IImplementation</a>.</p>
+<p>This is used to load up a different type implementation depending on whether we are in-game, or in the Unity Editor</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.InfiniteHealthModifier.html">InfiniteHealthModifier</a></h4>
+      <section><p>When added to an <a class="xref" href="WeaverCore.Components.EntityHealth.html">EntityHealth</a> component, will cause the health to increase infinitely</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Initialization.html">Initialization</a></h4>
       <section></section>
       <h4><a class="xref" href="WeaverCore.Music.html">Music</a></h4>
@@ -107,10 +123,19 @@
       <section></section>
       <h4><a class="xref" href="WeaverCore.Player.html">Player</a></h4>
       <section></section>
+      <h4><a class="xref" href="WeaverCore.PoolableObject.html">PoolableObject</a></h4>
+      <section><p>When attached to an object, this object can now be used in a <a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a></p>
+</section>
       <h4><a class="xref" href="WeaverCore.Pooling.html">Pooling</a></h4>
       <section></section>
+      <h4><a class="xref" href="WeaverCore.Randomizer-1.html">Randomizer&lt;T&gt;</a></h4>
+      <section><p>A comparer that is used to randomize a list</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Registry.html">Registry</a></h4>
       <section><p>Used to store a variety of features to be added to the game</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.RegistryLoader.html">RegistryLoader</a></h4>
+      <section><p>Used to load the registries for WeaverCore Mods</p>
 </section>
       <h4><a class="xref" href="WeaverCore.SceneRecord.html">SceneRecord</a></h4>
       <section><p>Contains a list of scenes a mod is adding to the game</p>
@@ -147,6 +172,13 @@
   </h3>
       <h4><a class="xref" href="WeaverCore.Blood.BloodSpawnInfo.html">Blood.BloodSpawnInfo</a></h4>
       <section></section>
+      <h4><a class="xref" href="WeaverCore.FlingInfo.html">FlingInfo</a></h4>
+      <section><p>Contains all the needed information for spawning a fling effect</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.HarmonyPatcher.html">HarmonyPatcher</a></h4>
+      <section><p>Uses the HarmonyX library for patching any methods/properties you like.</p>
+<p>Should only be used if necessary</p>
+</section>
       <h4><a class="xref" href="WeaverCore.HealthMilestone.html">HealthMilestone</a></h4>
       <section></section>
       <h4><a class="xref" href="WeaverCore.HitInfo.html">HitInfo</a></h4>
@@ -168,6 +200,8 @@
       <section></section>
       <h4><a class="xref" href="WeaverCore.EnviroEffects.SnapshotType.html">EnviroEffects.SnapshotType</a></h4>
       <section></section>
+      <h4><a class="xref" href="WeaverCore.EventManager.EventType.html">EventManager.EventType</a></h4>
+      <section></section>
       <h4><a class="xref" href="WeaverCore.Music.GroupType.html">Music.GroupType</a></h4>
       <section></section>
       <h4><a class="xref" href="WeaverCore.Music.SnapshotType.html">Music.SnapshotType</a></h4>
@@ -178,6 +212,18 @@
       <section></section>
       <h4><a class="xref" href="WeaverCore.WeaverGameManager.TimeFreezePreset.html">WeaverGameManager.TimeFreezePreset</a></h4>
       <section></section>
+    <h3 id="delegates">Delegates
+  </h3>
+      <h4><a class="xref" href="WeaverCore.EventListener.EventListenerDelegate.html">EventListener.EventListenerDelegate</a></h4>
+      <section></section>
+      <h4><a class="xref" href="WeaverCore.EventListener.EventListenerWithNameDelegate.html">EventListener.EventListenerWithNameDelegate</a></h4>
+      <section></section>
+      <h4><a class="xref" href="WeaverCore.EventManager.EventReceiveDelegate.html">EventManager.EventReceiveDelegate</a></h4>
+      <section><p>A delegate used for receiving events</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.EventManager.EventTriggeredDelegate.html">EventManager.EventTriggeredDelegate</a></h4>
+      <section><p>A delegate used whenever an event gets triggered</p>
+</section>
 </article>
           </div>
           

@@ -72,7 +72,8 @@
   
   <h1 id="WeaverCore_Interfaces_IDeathEffects" data-uid="WeaverCore.Interfaces.IDeathEffects" class="text-break">Interface IDeathEffects
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Interface for Enemy Death Effects</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.Interfaces.html">WeaverCore.Interfaces</a></h6>
   <h6><strong>Assembly</strong>: WeaverCore.dll</h6>
@@ -87,11 +88,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Interfaces_IDeathEffects_EmitEffects.md&amp;value=---%0Auid%3A%20WeaverCore.Interfaces.IDeathEffects.EmitEffects%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Interfaces/IDeathEffects.cs/#L12">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Interfaces/IDeathEffects.cs/#L19">View Source</a>
   </span>
   <a id="WeaverCore_Interfaces_IDeathEffects_EmitEffects_" data-uid="WeaverCore.Interfaces.IDeathEffects.EmitEffects*"></a>
   <h4 id="WeaverCore_Interfaces_IDeathEffects_EmitEffects" data-uid="WeaverCore.Interfaces.IDeathEffects.EmitEffects">EmitEffects()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Used to only emit the particle effects</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -102,11 +104,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Interfaces_IDeathEffects_EmitSounds.md&amp;value=---%0Auid%3A%20WeaverCore.Interfaces.IDeathEffects.EmitSounds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Interfaces/IDeathEffects.cs/#L14">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Interfaces/IDeathEffects.cs/#L24">View Source</a>
   </span>
   <a id="WeaverCore_Interfaces_IDeathEffects_EmitSounds_" data-uid="WeaverCore.Interfaces.IDeathEffects.EmitSounds*"></a>
   <h4 id="WeaverCore_Interfaces_IDeathEffects_EmitSounds" data-uid="WeaverCore.Interfaces.IDeathEffects.EmitSounds">EmitSounds()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Used to only emit the sound effects</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -117,15 +120,16 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Interfaces_IDeathEffects_PlayDeathEffects_WeaverCore_HitInfo_.md&amp;value=---%0Auid%3A%20WeaverCore.Interfaces.IDeathEffects.PlayDeathEffects(WeaverCore.HitInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Interfaces/IDeathEffects.cs/#L9">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Interfaces/IDeathEffects.cs/#L14">View Source</a>
   </span>
   <a id="WeaverCore_Interfaces_IDeathEffects_PlayDeathEffects_" data-uid="WeaverCore.Interfaces.IDeathEffects.PlayDeathEffects*"></a>
   <h4 id="WeaverCore_Interfaces_IDeathEffects_PlayDeathEffects_WeaverCore_HitInfo_" data-uid="WeaverCore.Interfaces.IDeathEffects.PlayDeathEffects(WeaverCore.HitInfo)">PlayDeathEffects(HitInfo)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Used to play the death effects</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void PlayDeathEffects(HitInfo lastHit)</code></pre>
+    <pre><code class="lang-csharp hljs">void PlayDeathEffects(HitInfo finalBlow)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -139,8 +143,9 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WeaverCore.HitInfo.html">HitInfo</a></td>
-        <td><span class="parametername">lastHit</span></td>
-        <td></td>
+        <td><span class="parametername">finalBlow</span></td>
+        <td><p>The final blow on the enemy</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -155,7 +160,7 @@
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Interfaces_IDeathEffects.md&amp;value=---%0Auid%3A%20WeaverCore.Interfaces.IDeathEffects%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Interfaces/IDeathEffects.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Interfaces/IDeathEffects.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

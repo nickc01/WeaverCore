@@ -13,14 +13,12 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Settings
 {
-
-
-	/// <summary>
-	/// Used for adding a settings panel to the settings menu so the player can change settings about a mod.
-	/// 
-	/// Inherit from this class to create a custom panel in the settings menu, then use <see cref="SettingsScreen.RegisterPanel{T}"/> to register the panel and make it show up in the settings menu
-	/// </summary>
-	[ShowFeature]
+    /// <summary>
+    /// Store global information about a mod, and creates a panel in the Settings Menu where they can be changed
+    /// 
+    /// Inherit from this class to create a custom panel in the settings menu, then use <see cref="SettingsScreen.RegisterPanel{T}"/> to register the panel and make it show up in the settings menu
+    /// </summary>
+    [ShowFeature]
 	public abstract class GlobalSettings : ScriptableObject
 	{
 		static WeaverSettingsPanel_I impl = ImplFinder.GetImplementation<WeaverSettingsPanel_I>();
@@ -513,11 +511,21 @@ namespace WeaverCore.Settings
 			return UIElements.FirstOrDefault(ui => ui.FieldAccessor != null && ui.FieldAccessor.MemberInfo != null && ui.FieldAccessor.MemberInfo.Name == memberName);
 		}
 
+		/// <summary>
+		/// Gets a header element with the same title name
+		/// </summary>
+		/// <param name="headerTitle">The header title to look for</param>
+		/// <returns>Returns the corresponding header element with the same title, or null if no matches were found</returns>
 		public UIElement GetHeaderElement(string headerTitle)
 		{
 			return UIElements.FirstOrDefault(ui => ui is HeaderElement header && header.Title == headerTitle);
 		}
 
+		/// <summary>
+		/// If true, then the Weaver Settings Menu is being opened up in the pause menu.
+		/// 
+		/// If false, then the Weaver Settings Menu is being opened up in the main menu.
+		/// </summary>
 		public static bool InPauseMenu
 		{
 			get

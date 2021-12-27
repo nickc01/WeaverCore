@@ -13,7 +13,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor
 {
-	public class UnravelWindow : EditorWindow
+    public class UnravelWindow : EditorWindow
 	{
 		public static TextureUnravelSettings Settings { get; private set; }
 

@@ -7,12 +7,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using WeaverCore.Attributes;
-using WeaverCore.Configuration;
 using WeaverCore.Internal;
 using WeaverCore.Utilities;
 
 namespace WeaverCore
-{	
+{
     public abstract class WeaverMod : Mod
     {
 #if UNITY_EDITOR

@@ -2,15 +2,25 @@
 
 namespace WeaverCore.Interfaces
 {
-	// Token: 0x0200007E RID: 126
+	/// <summary>
+	/// Interface for Enemy Death Effects
+	/// </summary>
 	public interface IDeathEffects
 	{
-		// Token: 0x06000253 RID: 595
-		void PlayDeathEffects(HitInfo lastHit);
+		/// <summary>
+		/// Used to play the death effects
+		/// </summary>
+		/// <param name="finalBlow">The final blow on the enemy</param>
+		void PlayDeathEffects(HitInfo finalBlow);
 
-		// Token: 0x06000254 RID: 596
+		/// <summary>
+		/// Used to only emit the particle effects
+		/// </summary>
 		void EmitEffects();
 
+		/// <summary>
+		/// Used to only emit the sound effects
+		/// </summary>
 		void EmitSounds();
 	}
 }

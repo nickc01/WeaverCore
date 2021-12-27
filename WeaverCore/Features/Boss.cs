@@ -10,15 +10,14 @@ using WeaverCore.Components;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
-using WeaverCore.Utilities;
 
 
 namespace WeaverCore.Features
 {
-	/// <summary>
-	/// The base class for all bosses in WeaverCore
-	/// </summary>
-	[ShowFeature]
+    /// <summary>
+    /// The base class for all bosses
+    /// </summary>
+    [ShowFeature]
 	[RequireComponent(typeof(EntityHealth))]
 	public class Boss : Enemy
 	{
@@ -108,7 +107,7 @@ namespace WeaverCore.Features
 		}
 
 		/// <summary>
-		/// Stuns the boss
+		/// Stuns the boss and moves it to the next stage
 		/// </summary>
 		public void Stun()
 		{

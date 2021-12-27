@@ -8,7 +8,7 @@ namespace WeaverCore.Assets.Components
 {
 
 
-	public class DeathWave : MonoBehaviour
+    public class DeathWave : MonoBehaviour
 	{
 		static ObjectPool DeathWavePool;
 

@@ -72,7 +72,13 @@
   
   <h1 id="WeaverCore_Components_EnemyProjectile" data-uid="WeaverCore.Components.EnemyProjectile" class="text-break">Class EnemyProjectile
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Represents a simple enemy projectile. By default, this script handles:</p>
+<ol>
+<li>Spawning the projectile at a random scale between <span class="xref">WeaverCore.Components.EnemyProjectile.scaleMin</span> and <span class="xref">WeaverCore.Components.EnemyProjectile.scaleMax</span></li>
+<li>Squashing and stretching the sprite depending on how it's moving through the air</li>
+<li>Handling collision with both the player and the environment</li>
+</ol>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -101,7 +107,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_Collider.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.Collider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L48">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L57">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_Collider_" data-uid="WeaverCore.Components.EnemyProjectile.Collider*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_Collider" data-uid="WeaverCore.Components.EnemyProjectile.Collider">Collider</h4>
@@ -131,7 +137,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_Rigidbody.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.Rigidbody%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L36">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L45">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_Rigidbody_" data-uid="WeaverCore.Components.EnemyProjectile.Rigidbody*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_Rigidbody" data-uid="WeaverCore.Components.EnemyProjectile.Rigidbody">Rigidbody</h4>
@@ -161,7 +167,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_ScaleFactor.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.ScaleFactor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L30">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L39">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_ScaleFactor_" data-uid="WeaverCore.Components.EnemyProjectile.ScaleFactor*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_ScaleFactor" data-uid="WeaverCore.Components.EnemyProjectile.ScaleFactor">ScaleFactor</h4>
@@ -193,7 +199,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_Awake.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.Awake%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L60">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L69">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_Awake_" data-uid="WeaverCore.Components.EnemyProjectile.Awake*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_Awake" data-uid="WeaverCore.Components.EnemyProjectile.Awake">Awake()</h4>
@@ -208,7 +214,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_OnCollisionEnter2D_UnityEngine_Collision2D_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.OnCollisionEnter2D(UnityEngine.Collision2D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L144">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L153">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_OnCollisionEnter2D_" data-uid="WeaverCore.Components.EnemyProjectile.OnCollisionEnter2D*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_OnCollisionEnter2D_UnityEngine_Collision2D_" data-uid="WeaverCore.Components.EnemyProjectile.OnCollisionEnter2D(UnityEngine.Collision2D)">OnCollisionEnter2D(Collision2D)</h4>
@@ -240,7 +246,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_OnCollisionStay2D_UnityEngine_Collision2D_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.OnCollisionStay2D(UnityEngine.Collision2D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L154">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L158">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_OnCollisionStay2D_" data-uid="WeaverCore.Components.EnemyProjectile.OnCollisionStay2D*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_OnCollisionStay2D_UnityEngine_Collision2D_" data-uid="WeaverCore.Components.EnemyProjectile.OnCollisionStay2D(UnityEngine.Collision2D)">OnCollisionStay2D(Collision2D)</h4>
@@ -272,7 +278,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_OnHit_UnityEngine_GameObject_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.OnHit(UnityEngine.GameObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L132">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L141">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_OnHit_" data-uid="WeaverCore.Components.EnemyProjectile.OnHit*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_OnHit_UnityEngine_GameObject_" data-uid="WeaverCore.Components.EnemyProjectile.OnHit(UnityEngine.GameObject)">OnHit(GameObject)</h4>
@@ -304,7 +310,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_OnPool.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.OnPool%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L121">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L130">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_OnPool_" data-uid="WeaverCore.Components.EnemyProjectile.OnPool*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_OnPool" data-uid="WeaverCore.Components.EnemyProjectile.OnPool">OnPool()</h4>
@@ -319,7 +325,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_OnTriggerEnter2D_UnityEngine_Collider2D_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.OnTriggerEnter2D(UnityEngine.Collider2D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L159">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L163">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_OnTriggerEnter2D_" data-uid="WeaverCore.Components.EnemyProjectile.OnTriggerEnter2D*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_OnTriggerEnter2D_UnityEngine_Collider2D_" data-uid="WeaverCore.Components.EnemyProjectile.OnTriggerEnter2D(UnityEngine.Collider2D)">OnTriggerEnter2D(Collider2D)</h4>
@@ -351,7 +357,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_OnTriggerStay2D_UnityEngine_Collider2D_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.OnTriggerStay2D(UnityEngine.Collider2D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L167">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L168">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_OnTriggerStay2D_" data-uid="WeaverCore.Components.EnemyProjectile.OnTriggerStay2D*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_OnTriggerStay2D_UnityEngine_Collider2D_" data-uid="WeaverCore.Components.EnemyProjectile.OnTriggerStay2D(UnityEngine.Collider2D)">OnTriggerStay2D(Collider2D)</h4>
@@ -383,7 +389,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_PointAwayFrom_UnityEngine_Vector3_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.PointAwayFrom(UnityEngine.Vector3)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L77">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L86">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_PointAwayFrom_" data-uid="WeaverCore.Components.EnemyProjectile.PointAwayFrom*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_PointAwayFrom_UnityEngine_Vector3_" data-uid="WeaverCore.Components.EnemyProjectile.PointAwayFrom(UnityEngine.Vector3)">PointAwayFrom(Vector3)</h4>
@@ -415,7 +421,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile_Update.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile.Update%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L70">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L79">View Source</a>
   </span>
   <a id="WeaverCore_Components_EnemyProjectile_Update_" data-uid="WeaverCore.Components.EnemyProjectile.Update*"></a>
   <h4 id="WeaverCore_Components_EnemyProjectile_Update" data-uid="WeaverCore.Components.EnemyProjectile.Update">Update()</h4>
@@ -444,7 +450,7 @@ public abstract class EnemyProjectile : MonoBehaviour, IOnPool</code></pre>
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_EnemyProjectile.md&amp;value=---%0Auid%3A%20WeaverCore.Components.EnemyProjectile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L7" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/EnemyProjectile.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

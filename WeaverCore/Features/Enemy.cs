@@ -12,10 +12,10 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
-	/// <summary>
-	/// The base class for all enemies in WeaverCore
-	/// </summary>
-	[ShowFeature]
+    /// <summary>
+    /// The base class for all enemies
+    /// </summary>
+    [ShowFeature]
 	[RequireComponent(typeof(EntityHealth))]
 	public class Enemy : MonoBehaviour
 	{

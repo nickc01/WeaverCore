@@ -23,13 +23,12 @@ struct ComponentTypeData
 {
 	public Action<Component> AwakeFunction;
 	public Action<Component> StartFunction;
-	//public ShallowCopyBuilder<Component>.ShallowCopyDelegate Copier;
-	public List<ShallowCopyBuilder<Component>.ShallowCopyDelegate> Copiers;
+	public List<FieldCopierBuilder<Component>.ShallowCopyDelegate> Copiers;
 }
 
 namespace WeaverCore
 {
-	public sealed class ObjectPool : MonoBehaviour
+    public sealed class ObjectPool : MonoBehaviour
 	{
 		private struct StartCallerEntry
 		{
@@ -43,7 +42,7 @@ namespace WeaverCore
 			}
 		}
 
-		static Cache<Type, ShallowCopyBuilder<Component>.ShallowCopyDelegate> CopierCache = new Cache<Type, ShallowCopyBuilder<Component>.ShallowCopyDelegate>();
+		static Cache<Type, FieldCopierBuilder<Component>.ShallowCopyDelegate> CopierCache = new Cache<Type, FieldCopierBuilder<Component>.ShallowCopyDelegate>();
 
 		public static readonly bool MultiThreaded = true;
 
@@ -196,7 +195,7 @@ namespace WeaverCore
 								}
 							}
 
-							cData.Copiers = new List<ShallowCopyBuilder<Component>.ShallowCopyDelegate>();
+							cData.Copiers = new List<FieldCopierBuilder<Component>.ShallowCopyDelegate>();
 
 							var currentType = type;
 
@@ -631,17 +630,17 @@ namespace WeaverCore
 			ReturnToPool(obj, time);
 		}
 
-		private ShallowCopyBuilder<Component>.ShallowCopyDelegate CreateFieldCopier(Type componentType)
+		private FieldCopierBuilder<Component>.ShallowCopyDelegate CreateFieldCopier(Type componentType)
 		{
 			{
-				ShallowCopyBuilder<Component>.ShallowCopyDelegate func;
+				FieldCopierBuilder<Component>.ShallowCopyDelegate func;
 				if (CopierCache.GetCachedObject(componentType, out func))
 				{
 					return func;
 				}
 			}
 
-			ShallowCopyBuilder<Component> copier = new ShallowCopyBuilder<Component>(componentType);
+			FieldCopierBuilder<Component> copier = new FieldCopierBuilder<Component>(componentType);
 
 			foreach (FieldInfo field in componentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
 			{

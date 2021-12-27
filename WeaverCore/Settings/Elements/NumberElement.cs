@@ -9,6 +9,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Settings.Elements
 {
+	/// <summary>
+	/// A UI Element where it's value can be set to any number. Adding the <see cref="SettingRangeAttribute"/> limits this number to a certain range
+	/// </summary>
 	public sealed class NumberElement : UIElement
 	{
 
@@ -26,18 +29,10 @@ namespace WeaverCore.Settings.Elements
 			inputField.onEndEdit.AddListener(OnInputChange);
 		}
 
+		/// <inheritdoc/>
 		public override bool CanWorkWithAccessor(IAccessor accessor)
 		{
 			Type type = accessor.MemberType;
-			/*if (memberInfo is FieldInfo)
-			{
-				type = ((FieldInfo)memberInfo).FieldType;
-			}
-			else if (memberInfo is PropertyInfo)
-			{
-				type = ((PropertyInfo)memberInfo).PropertyType;
-			}*/
-
 			if (type != null && type == typeof(float) || type == typeof(int) || type == typeof(long) || type == typeof(short) || type == typeof(double))
 			{
 				return true;
@@ -45,6 +40,7 @@ namespace WeaverCore.Settings.Elements
 			return false;
 		}
 
+		/// <inheritdoc/>
 		protected override void OnAccessorChanged(IAccessor accessor)
 		{
 			Title = accessor.FieldName;

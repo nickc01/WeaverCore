@@ -9,25 +9,28 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+	/// <summary>
+	/// Used for playing sprite animations
+	/// </summary>
 	public class WeaverAnimationPlayer : MonoBehaviour
 	{
-		//public event Action<string> OnPlayingAnimation;
-		//public event Action<int> OnFrameChange;
-
 		Action<string> onAnimationDone = null;
 
-
 		[SerializeField]
+		[Tooltip("The sprite animation data this player will be using")]
 		WeaverAnimationData animationData;
 		[NonSerialized]
 		WeaverAnimationData oldData;
 
 		[SerializeField]
+		[Tooltip("Should an animation be played when the object starts?")]
 		bool autoPlay = false;
+
 		[Tooltip("Determines the behaviour that occurs when the player is done playing a clip")]
 		public OnDoneBehaviour OnClipFinish;
 
 		[SerializeField]
+		[Tooltip("The clip played when the object starts up. Used only if \"Auto Play\" is enabled")]
 		string autoPlayClip = "";
 
 		int currentFrame = -1;
@@ -89,6 +92,9 @@ namespace WeaverCore.Components
 			}
 		}
 
+		/// <summary>
+		/// The sprite animation data this player will be using
+		/// </summary>
 		public WeaverAnimationData AnimationData
 		{
 			get { return animationData; }
@@ -103,6 +109,10 @@ namespace WeaverCore.Components
 		}
 
 		float _playBackSpeed = 1f;
+
+		/// <summary>
+		/// How fast the animations will be played at
+		/// </summary>
 		public float PlaybackSpeed
 		{
 			get { return _playBackSpeed; }
@@ -117,8 +127,6 @@ namespace WeaverCore.Components
 		//Each time a new animation is played, this value gets regenerated. This is used to differentiate between different playing animations
 		public Guid PlayingGUID { get; private set; }
 
-		//bool callbackAdded = false;
-
 		protected virtual void OnEnable()
 		{
 			if (autoPlay && AnimationData.HasClip(autoPlayClip))
@@ -130,7 +138,6 @@ namespace WeaverCore.Components
 
 		protected virtual void OnValidate()
 		{
-			//Guid.NewGuid();
 			if (_spriteRenderer == null)
 			{
 				_spriteRenderer = GetComponent<SpriteRenderer>();
@@ -140,6 +147,25 @@ namespace WeaverCore.Components
 				OnAnimationDataUpdate();
 			}
 		}
+
+		/// <summary>
+		/// If an animation is currently being played, this will stop it
+		/// </summary>
+		public void StopCurrentAnimation()
+        {
+            if (PlayingGUID != default)
+            {
+				currentFrame = -1;
+				PlayingGUID = default(Guid);
+				string originalClip = PlayingClip;
+				PlayingClip = null;
+				if (onAnimationDone != null)
+				{
+					onAnimationDone(originalClip);
+					onAnimationDone = null;
+				}
+			}
+        }
 
 		protected virtual void Update()
 		{
@@ -159,7 +185,6 @@ namespace WeaverCore.Components
 					}
 					if (currentFrame == -1)
 					{
-						//Debug.Log("FINISHED PLAYING ANIMATION_B = " + PlayingClip);
 						PlayingGUID = default(Guid);
 						string originalClip = PlayingClip;
 						PlayingClip = null;
@@ -172,18 +197,10 @@ namespace WeaverCore.Components
 					else
 					{
 						SpriteRenderer.sprite = AnimationData.GetFrameFromClip(PlayingClip, currentFrame);
-						/*if (OnFrameChange != null)
-						{
-							OnFrameChange(currentFrame);
-						}*/
 						OnPlayingFrame(currentFrame);
 					}
 				}
 			}
-			//else
-			//{
-				//Debug.Log("Animation Not Set");
-			//}
 		}
 
 		void OnAnimationDataUpdate()
@@ -191,6 +208,10 @@ namespace WeaverCore.Components
 			oldData = animationData;
 		}
 
+		/// <summary>
+		/// Does the <see cref="AnimationData"/> have a clip with the specified name?
+		/// </summary>
+		/// <param name="clipName">The clip name to check for</param>
 		public bool HasAnimationClip(string clipName)
 		{
 			if (AnimationData == null)
@@ -200,6 +221,12 @@ namespace WeaverCore.Components
 			return AnimationData.HasClip(clipName);
 		}
 
+		/// <summary>
+		/// Plays an animation clip with the specified name
+		/// </summary>
+		/// <param name="clipName">The name of the clip to be played</param>
+		/// <param name="forceOnce">If the clip is set to loop, setting this to true will force it to play once</param>
+		/// <exception cref="Exception">Throws if the clip doesn't exist in <see cref="AnimationData"/></exception>
 		public void PlayAnimation(string clipName, bool forceOnce = false)
 		{
 			this.forceOnce = forceOnce;
@@ -211,10 +238,6 @@ namespace WeaverCore.Components
 			PlayingClip = clipName;
 			timer = 0f;
 			frameTime = 1f / AnimationData.GetClipFPS(clipName);
-			/*if (OnPlayingAnimation != null)
-			{
-				OnPlayingAnimation(clipName);
-			}*/
 			OnPlayingAnimation(clipName);
 			if (forceOnce)
 			{
@@ -226,7 +249,6 @@ namespace WeaverCore.Components
 			}
 			if (currentFrame == -1)
 			{
-				//Debug.Log("FINISHED PLAYING ANIMATION_A = " + PlayingClip);
 				PlayingGUID = default(Guid);
 				string originalClip = PlayingClip;
 				PlayingClip = null;
@@ -239,26 +261,39 @@ namespace WeaverCore.Components
 			else
 			{
 				SpriteRenderer.sprite = AnimationData.GetFrameFromClip(clipName, currentFrame);
-				/*if (OnFrameChange != null)
-				{
-					OnFrameChange(currentFrame);
-				}*/
 				OnPlayingFrame(currentFrame);
 			}
 		}
 
+		/// <summary>
+		/// Plays an animation clip with the specified name
+		/// </summary>
+		/// <param name="clipName">The name of the clip to be played</param>
+		/// <param name="OnDone">An action that is executed when the animation is done playing</param>
+		/// <param name="forceOnce">If the clip is set to loop, setting this to true will force it to play once</param>
 		public void PlayAnimation(string clipName, Action<string> OnDone, bool forceOnce = false)
 		{
 			onAnimationDone = OnDone;
 			PlayAnimation(clipName,forceOnce);
 		}
 
+		/// <summary>
+		/// Plays an animation clip with the specified name
+		/// </summary>
+		/// <param name="clipName">The name of the clip to be played</param>
+		/// <param name="OnDone">An action that is executed when the animation is done playing</param>
+		/// <param name="forceOnce">If the clip is set to loop, setting this to true will force it to play once</param>
 		public void PlayAnimation(string clipName, Action OnDone, bool forceOnce = false)
 		{
 			onAnimationDone = s => OnDone();
 			PlayAnimation(clipName,forceOnce);
 		}
 
+		/// <summary>
+		/// Plays an animation clip with the specified name, and waits until it is done
+		/// </summary>
+		/// <param name="clipName">The name of the clip to be played</param>
+		/// <param name="forceOnce">If the clip is set to loop, setting this to true will force it to play once</param>
 		public IEnumerator PlayAnimationTillDone(string clipName, bool forceOnce = false)
 		{
 			PlayAnimation(clipName,forceOnce);
@@ -277,6 +312,9 @@ namespace WeaverCore.Components
 			}
 		}
 
+		/// <summary>
+		/// If a clip is currently playing, this will wait until the clip is done
+		/// </summary>
 		public IEnumerator WaitforClipToFinish()
 		{
 			var guid = PlayingGUID;
@@ -293,11 +331,19 @@ namespace WeaverCore.Components
 			}
 		}
 
+		/// <summary>
+		/// Called when a new animation is being played
+		/// </summary>
+		/// <param name="clip">The new clip being played</param>
 		protected virtual void OnPlayingAnimation(string clip)
 		{
 
 		}
 
+		/// <summary>
+		/// Called when a new frame is being displayed
+		/// </summary>
+		/// <param name="frame">The frame index in the current clip being displayed</param>
 		protected virtual void OnPlayingFrame(int frame)
 		{
 

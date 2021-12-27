@@ -77,16 +77,16 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="WeaverCore.Attributes.AfterBuildAttribute.html">AfterBuildAttribute</a></h4>
-      <section><p>Called after the build process finished, or when the build process has failed. Can be attached to a static method</p>
+      <section><p>Called after the mod build process finished, or when the build process has failed. Can be attached to a static method</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Attributes.AfterCameraLoadAttribute.html">AfterCameraLoadAttribute</a></h4>
       <section><p>Called when the in-game camera has loaded. Can be attached to a static method</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Attributes.AfterModLoadAttribute.html">AfterModLoadAttribute</a></h4>
-      <section><p>Called after a mod of a specific type has loaded. Can be attached to a static method</p>
+      <section><p>Called after a <a class="xref" href="WeaverCore.WeaverMod.html">WeaverMod</a> of a specific type has loaded. Can be attached to a static method</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Attributes.BeforeBuildAttribute.html">BeforeBuildAttribute</a></h4>
-      <section><p>Called before WeaverCore begins its build process. Can be attached to a static method</p>
+      <section><p>Called before the mod build process begins. Can be attached to a static method</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Attributes.ExcludeFieldFromPoolAttribute.html">ExcludeFieldFromPoolAttribute</a></h4>
       <section><p>Excludes a field from being modified by an <a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a></p>
@@ -98,25 +98,36 @@
       <section><p>Called when a registry feature is unloaded. Can be attached to a static method</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Attributes.OnHarmonyPatchAttribute.html">OnHarmonyPatchAttribute</a></h4>
-      <section><p>Called for patching a method with a <a class="xref" href="WeaverCore.Utilities.HarmonyPatcher.html">HarmonyPatcher</a></p>
+      <section><p>Called for patching a method with a <a class="xref" href="WeaverCore.HarmonyPatcher.html">HarmonyPatcher</a></p>
 </section>
       <h4><a class="xref" href="WeaverCore.Attributes.OnInitAttribute.html">OnInitAttribute</a></h4>
-      <section></section>
+      <section><p>In the Unity Editor, this is called when the Unity Editor is loaded</p>
+<p>In Hollow Knight, this is called when the game starts</p>
+<p>This can be attached to a static method</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Attributes.OnRegistryLoadAttribute.html">OnRegistryLoadAttribute</a></h4>
-      <section><p>Called when a registry is loaded</p>
+      <section><p>Called when a registry is loaded. This can be attached to a static method</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Attributes.OnRegistryUnloadAttribute.html">OnRegistryUnloadAttribute</a></h4>
-      <section><p>Called when a registry is unloaded</p>
+      <section><p>Called when a registry is unloaded. This can be attached to a static method</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Attributes.OnRuntimeInitAttribute.html">OnRuntimeInitAttribute</a></h4>
-      <section></section>
+      <section><p>In the Unity Editor, this is called when you enter play mode</p>
+<p>In Hollow Knight, this is called when the game starts</p>
+<p>This can be attached to a static method</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Attributes.PriorityAttribute.html">PriorityAttribute</a></h4>
       <section><p>An attribute that allows you to specify a priority, changing the order this attribute gets processed</p>
 </section>
+      <h4><a class="xref" href="WeaverCore.Attributes.PriorityAttribute.MethodSorter-1.html">PriorityAttribute.MethodSorter&lt;T&gt;</a></h4>
+      <section><p>Sorts pairs of methods/attributes by their priority</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Attributes.PriorityAttribute.Sorter-1.html">PriorityAttribute.Sorter&lt;T&gt;</a></h4>
-      <section></section>
+      <section><p>Sorts attributes by their priority</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Attributes.ShowFeatureAttribute.html">ShowFeatureAttribute</a></h4>
-      <section></section>
+      <section><p>Adding this attribute to a class allows it to be added to a registry</p>
+</section>
 </article>
           </div>
           

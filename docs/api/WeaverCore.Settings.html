@@ -77,35 +77,45 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="WeaverCore.Settings.ConfigButton.html">ConfigButton</a></h4>
-      <section></section>
+      <section><p>The main button on the main menu and pause menu for opening up the Weaver Settings Menu</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.CustomFunctionAccessor.html">CustomFunctionAccessor</a></h4>
-      <section></section>
+      <section><p>Used for accessing a function on a <a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> object</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.CustomPropertyAccessor_Base.html">CustomPropertyAccessor_Base</a></h4>
       <section></section>
       <h4><a class="xref" href="WeaverCore.Settings.CustomPropertyAccessor-1.html">CustomPropertyAccessor&lt;T&gt;</a></h4>
-      <section></section>
+      <section><p>Used for accessing a property on a <a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> object, where the getter and setters can be customized</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.FieldAccessor.html">FieldAccessor</a></h4>
-      <section></section>
+      <section><p>Used for accessing a field on a <a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> object</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a></h4>
-      <section><p>Used for adding a settings panel to the settings menu so the player can change settings about a mod.</p>
+      <section><p>Store global information about a mod, and creates a panel in the Settings Menu where they can be changed</p>
 <p>Inherit from this class to create a custom panel in the settings menu, then use <a class="xref" href="WeaverCore.Settings.SettingsScreen.html#WeaverCore_Settings_SettingsScreen_RegisterPanel__1">RegisterPanel&lt;T&gt;()</a> to register the panel and make it show up in the settings menu</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Settings.LangSettingDescriptionAttribute.html">LangSettingDescriptionAttribute</a></h4>
-      <section></section>
+      <section><p>Used to describe a method, field, or property on a <a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> object, but also uses <a class="xref" href="WeaverCore.WeaverLanguage.html#WeaverCore_WeaverLanguage_GetString_System_String_System_String_System_String_">GetString(String, String, String)</a> to translate it</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.LangSettingFieldAttribute.html">LangSettingFieldAttribute</a></h4>
-      <section><p>Similar to <a class="xref" href="WeaverCore.Settings.SettingFieldAttribute.html">SettingFieldAttribute</a>, but can accept a language key and/or sheetTitle for translating the field into multiple languages</p>
+      <section><p>This attribute will cause a field, property, or function to show up in the Weaver Settings Screen, but also uses <a class="xref" href="WeaverCore.WeaverLanguage.html#WeaverCore_WeaverLanguage_GetString_System_String_System_String_System_String_">GetString(String, String, String)</a> to translate it</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Settings.LangSettingHeaderAttribute.html">LangSettingHeaderAttribute</a></h4>
-      <section></section>
+      <section><p>Displays a large header over a settings element. Useful for grouping elements together</p>
+<p>It also uses <a class="xref" href="WeaverCore.WeaverLanguage.html#WeaverCore_WeaverLanguage_GetString_System_String_System_String_System_String_">GetString(String, String, String)</a> to translate it</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.MethodAccessor.html">MethodAccessor</a></h4>
-      <section></section>
+      <section><p>Used for accessing a method on a <a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> object</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.PropertyAccessor.html">PropertyAccessor</a></h4>
-      <section></section>
+      <section><p>Used for accessing a property on a <a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> object</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.SaveSpecificSettings.html">SaveSpecificSettings</a></h4>
       <section><p>Used for storing save file specific settings.</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Settings.SettingDescriptionAttribute.html">SettingDescriptionAttribute</a></h4>
-      <section></section>
+      <section><p>Used to describe a method, field, or property on a <a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> object</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.SettingDescriptionAttribute_BASE.html">SettingDescriptionAttribute_BASE</a></h4>
       <section></section>
       <h4><a class="xref" href="WeaverCore.Settings.SettingFieldAttribute.html">SettingFieldAttribute</a></h4>
@@ -114,25 +124,30 @@
       <h4><a class="xref" href="WeaverCore.Settings.SettingFieldAttribute_BASE.html">SettingFieldAttribute_BASE</a></h4>
       <section></section>
       <h4><a class="xref" href="WeaverCore.Settings.SettingHeaderAttribute.html">SettingHeaderAttribute</a></h4>
-      <section></section>
+      <section><p>Displays a large header over a settings element. Useful for grouping elements together</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.SettingHeaderAttribute_BASE.html">SettingHeaderAttribute_BASE</a></h4>
       <section></section>
       <h4><a class="xref" href="WeaverCore.Settings.SettingOrderAttribute.html">SettingOrderAttribute</a></h4>
-      <section></section>
+      <section><p>Determines the order a UI Element will be displayed in. The lower the number, the higher up it will be displayed in the Settings Menu</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.SettingRangeAttribute.html">SettingRangeAttribute</a></h4>
       <section><p>Limits a numerical field or property to a limited range</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Settings.SettingSpaceAttribute.html">SettingSpaceAttribute</a></h4>
-      <section></section>
+      <section><p>Used to insert a space between two UI Elements in the Settings Menu</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Settings.SettingsScreen.html">SettingsScreen</a></h4>
       <section><p>Represents the screen in-game where WeaverCore related mods can have their settings changed. See <a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> for more info</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Settings.Tab.html">Tab</a></h4>
-      <section></section>
+      <section><p>Represents a tab button at the top of the settings menu screen</p>
+</section>
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="WeaverCore.Settings.IAccessor.html">IAccessor</a></h4>
-      <section></section>
+      <section><p>Base class for &quot;Accessors&quot;, which are types that act as links between <a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a> and properties in a <a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> class</p>
+</section>
     <h3 id="enums">Enums
   </h3>
       <h4><a class="xref" href="WeaverCore.Settings.EnabledType.html">EnabledType</a></h4>

@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-	[RequireComponent(typeof(ParticleSystem))]
+    [RequireComponent(typeof(ParticleSystem))]
 	[RequireComponent(typeof(PoolableObject))]
 	public class ParticleRecycler : MonoBehaviour
 	{

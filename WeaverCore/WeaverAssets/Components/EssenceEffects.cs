@@ -6,8 +6,8 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-	// Token: 0x020000D9 RID: 217
-	public class EssenceEffects : MonoBehaviour
+    // Token: 0x020000D9 RID: 217
+    public class EssenceEffects : MonoBehaviour
 	{
 		// Token: 0x0600048F RID: 1167 RVA: 0x0000F7F4 File Offset: 0x0000D9F4
 		private void Awake()

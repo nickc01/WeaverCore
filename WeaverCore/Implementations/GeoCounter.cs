@@ -5,11 +5,10 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using WeaverCore.Interfaces;
-using WeaverCore.Utilities;
 
 namespace WeaverCore.Implementations
 {
-	public abstract class GeoCounter : MonoBehaviour, IImplementation
+    public abstract class GeoCounter : MonoBehaviour, IImplementation
 	{
 		protected abstract class Static_I : IImplementation
 		{

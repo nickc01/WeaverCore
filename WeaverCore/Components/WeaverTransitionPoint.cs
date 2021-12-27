@@ -5,13 +5,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using WeaverCore;
 using WeaverCore.Attributes;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	public class WeaverTransitionPoint : TransitionPoint
+    /// <summary>
+    /// An area in the game the player can transition to/from a scene
+    /// </summary>
+    public class WeaverTransitionPoint : TransitionPoint
 	{
 		[Header("Gate Type")]
 		[SerializeField]
@@ -61,26 +63,16 @@ unknown -> Don't use")]
 		[OnHarmonyPatch]
 		static void Init(HarmonyPatcher patcher)
 		{
-			//Debug.Log("Patching Transition Points");
 			patcher.Patch(typeof(TransitionPoint).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance), null, typeof(WeaverTransitionPoint).GetMethod("Start_Detour", BindingFlags.NonPublic | BindingFlags.Static));
 			patcher.Patch(typeof(TransitionPoint).GetMethod("GetGatePosition", BindingFlags.Public | BindingFlags.Instance), typeof(WeaverTransitionPoint).GetMethod("Weaver_GetGatePosition", BindingFlags.NonPublic | BindingFlags.Static), null);
-			//Debug.Log("Patching Transition Points DONE");
-			//new Detour(typeof(TransitionPoint).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance), typeof(WeaverTransitionPoint).GetMethod("Start_Detour",BindingFlags.NonPublic | BindingFlags.Static));
-			//new Detour(typeof(TransitionPoint).GetMethod("GetGatePosition", BindingFlags.Public | BindingFlags.Instance), typeof(WeaverTransitionPoint).GetMethod("Weaver_GetGatePosition", BindingFlags.NonPublic | BindingFlags.Static));
 		}
 
 		static void Start_Detour(TransitionPoint __instance)
 		{
-			//Debug.LogError("A");
-			//orig(self);
-			//Debug.LogError("B");
 			if (__instance is WeaverTransitionPoint wtp)
 			{
-				//Debug.LogError("C");
 				wtp.Weaver_Start();
-				//Debug.LogError("D");
 			}
-			//Debug.LogError("E");
 		}
 
 		static bool Weaver_GetGatePosition(TransitionPoint __instance, ref GatePosition __result)

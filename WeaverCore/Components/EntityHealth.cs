@@ -1,215 +1,197 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
-using WeaverCore.Utilities;
-using WeaverCore.Implementations;
-using WeaverCore.Interfaces;
 using WeaverCore.Assets;
 using WeaverCore.Enums;
-using System.Collections;
+using WeaverCore.Implementations;
+using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	public enum HealthDirection
-	{
-		/// <summary>
-		/// When hit, the health value will decrease. This is the default
-		/// </summary>
-		Down,
-		/// <summary>
-		/// When hit, the health value will increase
-		/// </summary>
-		Up,
-		/// <summary>
-		/// When hit, the health value will not change
-		/// </summary>
-		Nothing
-	}
+    /// <summary>
+    /// Used to keep track of the health of an enemy
+    /// </summary>
+    public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable
+    {
+        /// <summary>
+        /// The enum used when determining if a hit on the enemy was valid
+        /// </summary>
+        public enum HitResult
+        {
+            /// <summary>
+            /// The hit dealt some damage to the enemy
+            /// </summary>
+            Valid,
+            /// <summary>
+            /// The hit did not deal damage to the enemy
+            /// </summary>
+            Invalid,
+            /// <summary>
+            /// The enemy is invincible
+            /// </summary>
+            Invincible
+        }
 
-	public enum HitResult
-	{
-		Invalid,
-		Invincible,
-		Valid
-	}
+        //A list of modifiers that are applied when the health is changed
+        private SortedSet<IHealthModifier> modifiers = new SortedSet<IHealthModifier>(new IHealthModifier.Sorter());
 
-	public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable
-	{
-		public delegate void HealthChangeDelegate(int previousHealth, int newHealth);
+        public delegate void HealthChangeDelegate(int previousHealth, int newHealth);
 
-		List<HealthMilestone> HealthMilestones = new List<HealthMilestone>();
+        //A list of milestones that get executed when the health reaches certain points
+        private List<HealthMilestone> HealthMilestones = new List<HealthMilestone>();
+        private new Collider2D collider;
+        private HealthManager_I impl;
 
+        [SerializeField]
+        [Tooltip("The current health value of the enemy")]
+        private int _health = 100;
+        private float evasionTimer = 0.0f;
 
-		new Collider2D collider;
+        /// <summary>
+        /// How much health the enemy has. This gets decreased each time the player hits this enemy
+        /// </summary>
+        public int Health
+        {
+            get => _health;
+            set
+            {
+                if (_health != value)
+                {
+                    int oldHealth = _health;
+                    _health = value;
 
+                    foreach (IHealthModifier modifier in modifiers)
+                    {
+                        _health = modifier.OnHealthChange(oldHealth, _health);
+                    }
 
-		HealthManager_I impl;
+                    if (OnHealthChangeEvent != null)
+                    {
+                        OnHealthChangeEvent(oldHealth, _health);
+                    }
+                    CheckMilestones(_health);
+                    if (_health <= 0 && !HasModifier<InfiniteHealthModifier>())
+                    {
+                        _health = 0;
+                        OnDeath();
+                    }
+                }
+            }
+        }
 
-		[SerializeField]
-		private int _health = 100;
-		private float evasionTimer = 0.0f;
+        /// <summary>
+        /// Whether the enemy is invincible to attacks
+        /// </summary>
+        public bool Invincible = false;
 
-
-		/// <summary>
-		/// Determines whether the health increases, decreases, or remains the same when hit
-		/// </summary>
-		public HealthDirection HealthDirection { get; set; }
-
-		/// <summary>
-		/// How much health the enemy has. This gets decreased each time the player hits this object
-		/// </summary>
-		public int Health
-		{
-			get
-			{
-				return _health;
-			}
-			set
-			{
-				if (_health != value)
-				{
-					var oldHealth = _health;
-					_health = value;
-					OnHealthUpdate(oldHealth,_health);
-					if (OnHealthChangeEvent != null)
-					{
-						OnHealthChangeEvent(oldHealth, _health);
-					}
-					CheckMilestones(_health);
-					if (_health <= 0 && HealthDirection == HealthDirection.Down)
-					{
-						_health = 0;
-						OnDeath();
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Whether the health should decrease on each hit or not. THIS IS UNUSED
-		/// </summary>
-		public bool DecreaseHealth = true;
-
-		/// <summary>
-		/// Whether the enemy is invincible to attacks
-		/// </summary>
-		public bool Invincible = false;
-
-		/// <summary>
-		/// If true, it causes all attacks from the player to result in a massive click and deflection. This is only used if invicible is set to true
-		/// </summary>
-		public bool DeflectBlows = false;
+        /// <summary>
+        /// If true, it causes all attacks from the player to result in a massive clink and deflection. This is only used if invicible is set to true
+        /// </summary>
+        public bool DeflectBlows = false;
 
 
-		/// <summary>
-		/// Controls how often the enemy is able to receive attacks. 
-		/// For example, if the value is set to 0.15, then that means this object will not receive any more hits, until 0.15 seconds have elapsed since the last hit
-		/// </summary>
-		public float EvasionTime = 0.2f;
+        /// <summary>
+        /// Controls how often the enemy is able to receive attacks. 
+        /// For example, if the value is set to 0.15, then that means this enemy will not receive any more hits, until 0.15 seconds have elapsed since the last hit
+        /// </summary>
+        public float EvasionTime = 0.2f;
 
 
-		/// <summary>
-		/// If true, will cause the player to gain soul points when hit
-		/// </summary>
-		public bool GainSoul = true;
+        /// <summary>
+        /// If true, will cause the player to gain soul points when hit
+        /// </summary>
+        public bool GainSoul = true;
 
-		/// <summary>
-		/// If true, will play the enemy's hit effects when hit
-		/// </summary>
-		public bool DoEffectsOnHit = true;
+        /// <summary>
+        /// If true, will play the enemy's hit effects when hit
+        /// </summary>
+        public bool DoEffectsOnHit = true;
 
-		/// <summary>
-		/// How much evasion time is left <seealso cref="EvasionTime"/>
-		/// </summary>
-		public float EvasionTimeLeft
-		{
-			get
-			{
-				return evasionTimer;
-			}
-			set
-			{
-				if (value < 0.0f)
-				{
-					value = 0.0f;
-				}
-				evasionTimer = value;
-			}
-		}
+        /// <summary>
+        /// How much evasion time is left <seealso cref="EvasionTime"/>
+        /// </summary>
+        public float EvasionTimeLeft
+        {
+            get => evasionTimer;
+            set
+            {
+                if (value < 0.0f)
+                {
+                    value = 0.0f;
+                }
+                evasionTimer = value;
+            }
+        }
 
-		/// <summary>
-		/// The direction the last attack came from
-		/// </summary>
-		public CardinalDirection LastAttackDirection { get; private set; }
+        /// <summary>
+        /// The direction the last attack came from
+        /// </summary>
+        public CardinalDirection LastAttackDirection { get; private set; }
 
-		/// <summary>
-		/// Contains info about the most recent hit on the enemy
-		/// </summary>
-		public HitInfo LastAttackInfo { get; private set; }
+        /// <summary>
+        /// Contains info about the most recent hit on the enemy
+        /// </summary>
+        public HitInfo LastAttackInfo { get; private set; }
 
-		/// <summary>
-		/// Called when the entity's health reaches zero
-		/// </summary>
-		public event Action OnDeathEvent;
+        /// <summary>
+        /// Called when the entity's health reaches zero
+        /// </summary>
+        public event Action OnDeathEvent;
 
-		/// <summary>
-		/// Called when the entity's health has been modified
-		/// </summary>
-		public event HealthChangeDelegate OnHealthChangeEvent;
+        /// <summary>
+        /// Called when the entity's health has been modified
+        /// </summary>
+        public event HealthChangeDelegate OnHealthChangeEvent;
 
-		/// <summary>
-		/// Applies an offset to hit effects if desired
-		/// </summary>
-		public Vector3 EffectsOffset = new Vector3(0, 0,0);
+        /// <summary>
+        /// Applies an offset to hit effects if desired
+        /// </summary>
+        public Vector3 EffectsOffset = new Vector3(0, 0, 0);
 
-		[SerializeField]
-		[Tooltip("If set to true, this enemy will recieve damage from extra abilities, such as spore damage")]
-		private bool receiveExtraDamage = true;
+        [SerializeField]
+        [Tooltip("If set to true, this enemy will receive damage from extra abilities, such as spore damage")]
+        private bool receiveExtraDamage = true;
 
-		// Token: 0x0400001F RID: 31
-		private AudioClip extraDamageClip;
+        private AudioClip extraDamageClip;
+        private Recoiler recoil;
 
-		Recoiler recoil;
+        [Space]
+        [Space]
+        [Header("Geo Dropped on Death")]
+        public int SmallGeo = 0;
+        public int MediumGeo = 0;
+        public int LargeGeo = 0;
 
-		[Space]
-		[Space]
-		[Header("Geo Dropped on Death")]
-		public int SmallGeo = 0;
-		public int MediumGeo = 0;
-		public int LargeGeo = 0;
+        /// <summary>
+        /// Hits the target. Returns true if the hit was valid and damage to the enemy was dealt
+        /// </summary>
+        /// <param name="hit">The hit on the enemy</param>
+        /// <returns>Returns whether the hit was a valid hit or not</returns>
+        public virtual bool Hit(HitInfo hit)
+        {
+            LastAttackInfo = hit;
+            LastAttackDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
+            HitResult hitResult = IsValidHit(hit);
+            impl.OnHit(hit, hitResult);
+            switch (hitResult)
+            {
+                case HitResult.Invalid:
+                    return false;
+                case HitResult.Invincible:
+                    InvincibleHit(hit);
+                    return false;
+                case HitResult.Valid:
+                    NormalHit(hit);
+                    return true;
+                default:
+                    return false;
+            }
+        }
 
-		/// <summary>
-		/// Hits the target. Returns true if the hit was valid. Meaning, if the hit was able to damage the enemy
-		/// </summary>
-		/// <param name="hit"></param>
-		/// <returns></returns>
-		public virtual bool Hit(HitInfo hit)
-		{
-			LastAttackInfo = hit;
-			LastAttackDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
-			//WeaverLog.Log("HIT TYPE = " + hit.AttackType);
-			//Debug.Log("Hit Direction = " + hit.Direction);
-			var hitResult = IsValidHit(hit);
-			//WeaverLog.Log("Valid Result = " + hitResult);
-			impl.OnHit(hit, hitResult);
-			switch (hitResult)
-			{
-				case HitResult.Invalid:
-					return false;
-				case HitResult.Invincible:
-					InvincibleHit(hit);
-					return false;
-				case HitResult.Valid:
-					NormalHit(hit);
-					return true;
-				default:
-					return false;
-			}
-		}
-
-		/// <summary>
+        /*/// <summary>
 		/// Sets the health without triggering the <see cref="OnHealthUpdate(int)"/> function or triggering <see cref="OnHealthChangeEvent"/>.
 		/// 
 		/// Should be used sparringly
@@ -226,387 +208,395 @@ namespace WeaverCore.Components
 					CheckMilestones(newHealth);
 				}
 			}
-		}
+		}*/
 
-		public HitResult IsValidHit(HitInfo hit)
-		{
-			bool validHit = !((Health <= 0 && HealthDirection == HealthDirection.Down) || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
-			//WeaverLog.Log("Health = " + Health);
-			//WeaverLog.Log("EvasionTimeLeft = " + EvasionTimeLeft);
-			//WeaverLog.Log("Hit Damage = " + hit.Damage);
-			//WeaverLog.Log("GM Active = " + gameObject.activeSelf);
-			//WeaverLog.Log("Attack Type_ = " + hit.AttackType);
-			//WeaverLog.Log("Invincible = " + Invincible);
-			if (!validHit)
-			{
-				return HitResult.Invalid;
-			}
-			if (!Invincible || ((hit.AttackType == AttackType.Spell || hit.AttackType == AttackType.SharpShadow) && gameObject.CompareTag("Spell Vulnerable")))
-			{
-				return HitResult.Valid;
-			}
-			else
-			{
-				return HitResult.Invincible;
-			}
-		}
+        /// <summary>
+        /// Adds a health modifier. The modifier will be used to modify how the health gets changed when the player hits the enemy
+        /// </summary>
+        /// <param name="modifier">The modifier to be added</param>
+        public void AddModifier(IHealthModifier modifier)
+        {
+            modifiers.Add(modifier);
+        }
 
-		public void PlayHitEffects(HitInfo hit, Player player = null)
-		{
-			if (!DoEffectsOnHit)
-			{
-				return;
-			}
-			if (player == null)
-			{
-				//player = Player.GetPlayerFromChild(hit.Attacker);
-				player = hit.GetAttackingPlayer();
-			}
+        /// <summary>
+        /// Adds a health modifier. The modifier will be used to modify how the health gets changed when the player hits the enemy
+        /// </summary>
+        /// <typeparam name="T">The type of health modifier to add</typeparam>
+        /// <returns>Returns an instance of the modifier that was added</returns>
+        public T AddModifier<T>() where T : IHealthModifier, new()
+        {
+            T instance = new T();
+            AddModifier(instance);
+            return instance;
+        }
 
-			//WeaverLog.Log("PLAYING HIT EFFECTS FOR : " + hit.AttackType);
+        /// <summary>
+        /// Has a health modifier of the specific type been added?
+        /// </summary>
+        /// <typeparam name="T">The type of health modifier to check for</typeparam>
+        /// <returns>Returns whether the modifier has been added</returns>
+        public bool HasModifier<T>()
+        {
+            return modifiers.Any(m => m is T);
+        }
 
-			switch (hit.AttackType)
-			{
-				case AttackType.NailBeam:
-				case AttackType.Generic:
-				case AttackType.Nail:
-					if (player != null)
-					{
-						player.PlayAttackSlash(gameObject, hit);
-					}
-					break;
-				case AttackType.Spell:
-					//effect offset y : -0.2
-					Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
-					break;
-				case AttackType.SharpShadow:
-					Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
-					break;
-				default:
-					break;
-			}
+        /// <summary>
+        /// Has a health modifier of the specific type been added?
+        /// </summary>
+        /// <typeparam name="T">The type of health modifier to check for</typeparam>
+        /// <param name="modifier">If the modifier has been added, this will be a reference to the modifier that is added</param>
+        /// <returns>Returns whether the modifier has been added</returns>
+        public bool HasModifier<T>(out T modifier) where T : IHealthModifier
+        {
+            modifier = modifiers.OfType<T>().FirstOrDefault();
+            return modifier != null;
+        }
 
-			var hitEffects = GetComponent<IHitEffects>();
-			if (hitEffects != null && hit.AttackType != AttackType.RuinsWater)
-			{
-				hitEffects.PlayHitEffect(hit);
-			}
-		}
+        /// <summary>
+        /// Removes a health modifier
+        /// </summary>
+        /// <param name="modifier">The modifier to be removed</param>
+        /// <returns>Returns true if the modifier has been successfully removed</returns>
+        public bool RemoveModifier(IHealthModifier modifier)
+        {
+            return modifiers.Remove(modifier);
+        }
 
-		public void PlayInvincibleHitEffects(HitInfo hit)
-		{
-			if (!DoEffectsOnHit)
-			{
-				return;
-			}
+        /// <summary>
+        /// Removes a modifier of the specified type
+        /// </summary>
+        /// <typeparam name="T">The type of modifier to be removed</typeparam>
+        /// <returns>Returns true if the modifier has been successfully removed</returns>
+        public bool RemoveModifier<T>() where T : IHealthModifier
+        {
+            return modifiers.RemoveWhere(m => m is T) > 0;
+        }
 
-			//Freeze the game for a moment : TODO
-			//GameManager.instance.FreezeMoment(1);
-			WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset1);
+        /// <summary>
+        /// Checks if a hit on this enemy is valid
+        /// </summary>
+        /// <param name="hit">The hit to check for</param>
+        /// <returns>Returns whether this hit is valid</returns>
+        public HitResult IsValidHit(HitInfo hit)
+        {
+            bool validHit = !((Health <= 0 && !HasModifier<InfiniteHealthModifier>()) || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
+            if (!validHit)
+            {
+                return HitResult.Invalid;
+            }
+            if (!Invincible || ((hit.AttackType == AttackType.Spell || hit.AttackType == AttackType.SharpShadow) && gameObject.CompareTag("Spell Vulnerable")))
+            {
+                return HitResult.Valid;
+            }
+            else
+            {
+                return HitResult.Invincible;
+            }
+        }
 
-			//Make the camera shake : TODO
-			//GameCameras.instance.cameraShakeFSM.SendEvent("EnemyKillShake");
-			CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
+        public void PlayHitEffects(HitInfo hit, Player player = null)
+        {
+            if (!DoEffectsOnHit)
+            {
+                return;
+            }
+            if (player == null)
+            {
+                player = hit.GetAttackingPlayer();
+            }
 
-			var cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
-			Vector2 v;
-			Vector3 eulerAngles;
+            switch (hit.AttackType)
+            {
+                case AttackType.NailBeam:
+                case AttackType.Generic:
+                case AttackType.Nail:
+                    if (player != null)
+                    {
+                        player.PlayAttackSlash(gameObject, hit);
+                    }
+                    break;
+                case AttackType.Spell:
+                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
+                    break;
+                case AttackType.SharpShadow:
+                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
+                    break;
+                default:
+                    break;
+            }
 
-			if (collider == null)
-			{
-				collider = GetComponent<Collider2D>();
-			}
+            IHitEffects hitEffects = GetComponent<IHitEffects>();
+            if (hitEffects != null && hit.AttackType != AttackType.RuinsWater)
+            {
+                hitEffects.PlayHitEffect(hit);
+            }
+        }
 
-			if (collider != null)
-			{
-				switch (cardinalDirection)
-				{
-					case CardinalDirection.Up:
-						v = new Vector2(hit.Attacker.transform.position.x, Mathf.Max(hit.Attacker.transform.position.y, collider.bounds.min.y));
-						eulerAngles = new Vector3(0f, 0f, 90f);
-						break;
-					case CardinalDirection.Down:
-						v = new Vector2(hit.Attacker.transform.position.x, Mathf.Min(hit.Attacker.transform.position.y, collider.bounds.max.y));
-						eulerAngles = new Vector3(0f, 0f, 270f);
-						break;
-					case CardinalDirection.Left:
-						v = new Vector2(collider.bounds.max.x, hit.Attacker.transform.position.y);
-						eulerAngles = new Vector3(0f, 0f, 180f);
-						break;
-					case CardinalDirection.Right:
-						v = new Vector2(collider.bounds.min.x, hit.Attacker.transform.position.y);
-						eulerAngles = new Vector3(0f, 0f, 0f);
-						break;
-					default:
-						v = transform.position;
-						eulerAngles = new Vector3(0f, 0f, 0f);
-						break;
-				}
-			}
-			else
-			{
-				v = transform.position;
-				eulerAngles = new Vector3(0f, 0f, 0f);
-			}
-			//TODO
-			var blockedHitEffect = Instantiate(EffectAssets.BlockedHitPrefab, v, Quaternion.identity);
-			blockedHitEffect.transform.eulerAngles = eulerAngles;
+        public void PlayInvincibleHitEffects(HitInfo hit)
+        {
+            if (!DoEffectsOnHit)
+            {
+                return;
+            }
 
-			WeaverAudio.PlayAtPoint(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
+            //Freeze the game for a moment
+            WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset1);
 
-		}
+            CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
 
-		void InvincibleHit(HitInfo hit)
-		{
-			impl.OnInvincibleHit(hit);
-			var cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
-			if (DeflectBlows)
-			{
-				if (hit.AttackType == AttackType.Nail)
-				{
-					if (cardinalDirection == CardinalDirection.Right)
-					{
-						//Make the player recoil left : TODO
-						//HeroController.instance.RecoilLeft();
-						Player.Player1.Recoil(CardinalDirection.Left);
-					}
-					else if (cardinalDirection == CardinalDirection.Left)
-					{
-						//Make the player recoil right : TODO
-						//HeroController.instance.RecoilRight();
-						Player.Player1.Recoil(CardinalDirection.Right);
-					}
-				}
+            CardinalDirection cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
+            Vector2 v;
+            Vector3 eulerAngles;
 
-				PlayInvincibleHitEffects(hit);
-				
-				evasionTimer = EvasionTime;
-			}
-		}
+            if (collider == null)
+            {
+                collider = GetComponent<Collider2D>();
+            }
 
-		void NormalHit(HitInfo hit)
-		{
-			//var player = Player.GetPlayerFromChild(hit.Attacker);
-			var player = hit.GetAttackingPlayer();
-			//If acid is ignored
-			/*if (hitInstance.AttackType == AttackTypes.Acid && this.ignoreAcid)
+            if (collider != null)
+            {
+                switch (cardinalDirection)
+                {
+                    case CardinalDirection.Up:
+                        v = new Vector2(hit.Attacker.transform.position.x, Mathf.Max(hit.Attacker.transform.position.y, collider.bounds.min.y));
+                        eulerAngles = new Vector3(0f, 0f, 90f);
+                        break;
+                    case CardinalDirection.Down:
+                        v = new Vector2(hit.Attacker.transform.position.x, Mathf.Min(hit.Attacker.transform.position.y, collider.bounds.max.y));
+                        eulerAngles = new Vector3(0f, 0f, 270f);
+                        break;
+                    case CardinalDirection.Left:
+                        v = new Vector2(collider.bounds.max.x, hit.Attacker.transform.position.y);
+                        eulerAngles = new Vector3(0f, 0f, 180f);
+                        break;
+                    case CardinalDirection.Right:
+                        v = new Vector2(collider.bounds.min.x, hit.Attacker.transform.position.y);
+                        eulerAngles = new Vector3(0f, 0f, 0f);
+                        break;
+                    default:
+                        v = transform.position;
+                        eulerAngles = new Vector3(0f, 0f, 0f);
+                        break;
+                }
+            }
+            else
+            {
+                v = transform.position;
+                eulerAngles = new Vector3(0f, 0f, 0f);
+            }
+            GameObject blockedHitEffect = Instantiate(EffectAssets.BlockedHitPrefab, v, Quaternion.identity);
+            blockedHitEffect.transform.eulerAngles = eulerAngles;
+
+            WeaverAudio.PlayAtPoint(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
+
+        }
+
+        private void InvincibleHit(HitInfo hit)
+        {
+            impl.OnInvincibleHit(hit);
+            CardinalDirection cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
+            if (DeflectBlows)
+            {
+                if (hit.AttackType == AttackType.Nail)
+                {
+                    if (cardinalDirection == CardinalDirection.Right)
+                    {
+                        //Make the player recoil left
+                        Player.Player1.Recoil(CardinalDirection.Left);
+                    }
+                    else if (cardinalDirection == CardinalDirection.Left)
+                    {
+                        //Make the player recoil right
+                        Player.Player1.Recoil(CardinalDirection.Right);
+                    }
+                }
+
+                PlayInvincibleHitEffects(hit);
+
+                evasionTimer = EvasionTime;
+            }
+        }
+
+        private void NormalHit(HitInfo hit)
+        {
+            Player player = hit.GetAttackingPlayer();
+            //If acid is ignored
+            /*if (hitInstance.AttackType == AttackTypes.Acid && this.ignoreAcid)
 			{
 				return;
 			}*/
-			var cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
+            CardinalDirection cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
 
-			//Apply recoil if used
-			if (this.recoil != null)
-			{
-				this.recoil.RecoilByDirection(cardinalDirection, hit.AttackStrength);
-			}
-			//Play Attack Effects
+            //Apply recoil if used
+            if (recoil != null)
+            {
+                recoil.RecoilByDirection(cardinalDirection, hit.AttackStrength);
+            }
+            //Play Attack Effects
 
-			impl.OnSuccessfulHit(hit);
+            impl.OnSuccessfulHit(hit);
 
-			if (player != null)
-			{
-				if (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam)
-				{
-					if (GainSoul)
-					{
-						//Cause the player to gain soul
-						//HeroController.instance.SoulGain();
-						player.SoulGain();
-					}
-				}
-			}
+            if (player != null)
+            {
+                if (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam)
+                {
+                    if (GainSoul)
+                    {
+                        //Cause the player to gain soul
+                        player.SoulGain();
+                    }
+                }
+            }
 
 
-			PlayHitEffects(hit, player);
+            PlayHitEffects(hit, player);
 
-			/*if (player != null)
-			{
-				player.PlayAttackSlash(gameObject, hit);
-			}
+            evasionTimer = EvasionTime;
 
-			var hitEffects = GetComponent<IHitEffects>();
-			if (hitEffects != null)
-			{
-				hitEffects.PlayHitEffect(hit);
-			}*/
+            Health -= hit.Damage;
+        }
 
-			//Updates the health. If the health is at or below zero, this will also trigger the OnDeath() function
-			switch (HealthDirection)
-			{
-				case HealthDirection.Down:
-					Health -= hit.Damage;
-					break;
-				case HealthDirection.Up:
-					Health += hit.Damage;
-					break;
-			}
+        public void AddHealthMilestone(int health, Action action)
+        {
+            if (!HasModifier<InfiniteHealthModifier>() && health > Health)
+            {
+                action();
+                return;
+            }
+            else if (HasModifier<InfiniteHealthModifier>() && health < Health)
+            {
+                action();
+                return;
+            }
+            HealthMilestones.Add(new HealthMilestone(health, action));
+        }
 
-			/*if (HealthDirection == HealthDirection.Down && Health > 0)
-			{
-				evasionTimer = EvasionTime;
-			}*/
-			evasionTimer = EvasionTime;
+        private void CheckMilestones(int healthAfter)
+        {
+            for (int i = HealthMilestones.Count - 1; i >= 0; i--)
+            {
+                HealthMilestone milestone = HealthMilestones[i];
+                if (HasModifier<InfiniteHealthModifier>())
+                {
+                    if (milestone.HealthNumber <= healthAfter)
+                    {
+                        milestone.MilestoneReached();
+                        HealthMilestones.RemoveAt(i);
+                    }
+                }
+                else
+                {
+                    if (milestone.HealthNumber >= healthAfter)
+                    {
+                        milestone.MilestoneReached();
+                        HealthMilestones.RemoveAt(i);
+                    }
+                }
+            }
+        }
 
-		}
+        void IExtraDamageable.RecieveExtraDamage(ExtraDamageTypes extraDamageType)
+        {
+            if (receiveExtraDamage)
+            {
+                if (!gameObject.CompareTag("Spell Vulnerable") && Invincible)
+                {
+                    return;
+                }
+                if (DoEffectsOnHit)
+                {
+                    if (extraDamageClip == null)
+                    {
+                        extraDamageClip = WeaverAssets.LoadWeaverAsset<AudioClip>("Extra Damage Audio");
+                    }
+                    AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
+                    weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(0.85f, 1.15f);
+                    SpriteFlasher component = GetComponent<SpriteFlasher>();
+                    if (component != null)
+                    {
+                        if (extraDamageType != ExtraDamageTypes.Spore)
+                        {
+                            if (extraDamageType == ExtraDamageTypes.Dung || extraDamageType == ExtraDamageTypes.Dung2)
+                            {
+                                component.flashDungQuick();
+                            }
+                        }
+                        else
+                        {
+                            component.flashSporeQuick();
+                        }
+                    }
+                }
+                int num = 1;
+                if (extraDamageType == ExtraDamageTypes.Dung2)
+                {
+                    num = 2;
+                }
+                Health -= num;
+            }
+        }
 
-		public void AddHealthMilestone(int health, Action action)
-		{
-			if (HealthDirection == HealthDirection.Down && health > Health)
-			{
-				action();
-				return;
-			}
-			else if (HealthDirection == HealthDirection.Up && health < Health)
-			{
-				action();
-				return;
-			}
-			HealthMilestones.Add(new HealthMilestone(health, action));
-		}
+        public void Die()
+        {
+            if (Health > 0)
+            {
+                Health = 0;
+            }
+            if (HasModifier<InfiniteHealthModifier>())
+            {
+                OnDeath();
+            }
+        }
 
-		void CheckMilestones(int healthAfter)
-		{
-			for (int i = HealthMilestones.Count - 1; i >= 0; i--)
-			{
-				var milestone = HealthMilestones[i];
-				switch (HealthDirection)
-				{
-					case HealthDirection.Down:
-						if (milestone.HealthNumber >= healthAfter)
-						{
-							milestone.MilestoneReached();
-							HealthMilestones.RemoveAt(i);
-						}
-						break;
-					case HealthDirection.Up:
-						if (milestone.HealthNumber <= healthAfter)
-						{
-							milestone.MilestoneReached();
-							HealthMilestones.RemoveAt(i);
-						}
-						break;
-					default:
-						if (milestone.HealthNumber == healthAfter)
-						{
-							milestone.MilestoneReached();
-							HealthMilestones.RemoveAt(i);
-						}
-						break;
-				}
-			}
-		}
+        /// <summary>
+        /// Calls the OnDeath Event, but does not change the health. This is if you only want to trigger the death event and nothing else
+        /// </summary>
+        public void DoDeathEvent()
+        {
+            OnDeath();
+        }
 
-		void IExtraDamageable.RecieveExtraDamage(ExtraDamageTypes extraDamageType)
-		{
-			if (this.receiveExtraDamage)
-			{
-				if (!base.gameObject.CompareTag("Spell Vulnerable") && this.Invincible)
-				{
-					return;
-				}
-				if (DoEffectsOnHit)
-				{
-					if (this.extraDamageClip == null)
-					{
-						this.extraDamageClip = WeaverAssets.LoadWeaverAsset<AudioClip>("Extra Damage Audio");
-					}
-					AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(this.extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
-					weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(0.85f, 1.15f);
-					SpriteFlasher component = base.GetComponent<SpriteFlasher>();
-					if (component != null)
-					{
-						if (extraDamageType != ExtraDamageTypes.Spore)
-						{
-							if (extraDamageType == ExtraDamageTypes.Dung || extraDamageType == ExtraDamageTypes.Dung2)
-							{
-								component.flashDungQuick();
-							}
-						}
-						else
-						{
-							component.flashSporeQuick();
-						}
-					}
-				}
-				int num = 1;
-				if (extraDamageType == ExtraDamageTypes.Dung2)
-				{
-					num = 2;
-				}
-				this.Health -= num;
-			}
-		}
+        protected virtual void OnDeath()
+        {
+            if (OnDeathEvent != null)
+            {
+                OnDeathEvent();
+            }
+            impl.OnDeath();
+        }
 
-		public void Die()
-		{
-			if (Health > 0)
-			{
-				Health = 0;
-			}
-			if (HealthDirection != HealthDirection.Down)
-			{
-				OnDeath();
-			}
-		}
+        protected virtual void Update()
+        {
+            if (evasionTimer > 0.0f)
+            {
+                evasionTimer -= Time.deltaTime;
+                if (evasionTimer < 0.0f)
+                {
+                    evasionTimer = 0.0f;
+                }
+            }
+        }
 
-		/// <summary>
-		/// Calls the OnDeath Event, but does not change the health. This is if you only want to trigger the death event and nothing else
-		/// </summary>
-		public void DoDeathEvent()
-		{
-			OnDeath();
-		}
+        protected virtual void Awake()
+        {
+            impl = (HealthManager_I)gameObject.AddComponent(ImplFinder.GetImplementationType<HealthManager_I>());
+            impl.Manager = this;
+            recoil = GetComponent<Recoiler>();
+            if (Player.Player1 != null)
+            {
+                Player.Player1.RefreshSoulUI();
+            }
+            StartCoroutine(CheckPersistence());
+        }
 
-		protected virtual void OnDeath()
-		{
-			if (OnDeathEvent != null)
-			{
-				OnDeathEvent();
-			}
-			impl.OnDeath();
-		}
-
-		protected virtual void Update()
-		{
-			if (evasionTimer > 0.0f)
-			{
-				evasionTimer -= Time.deltaTime;
-				if (evasionTimer < 0.0f)
-				{
-					evasionTimer = 0.0f;
-				}
-			}
-		}
-
-		protected virtual void Awake()
-		{
-			impl = (HealthManager_I)gameObject.AddComponent(ImplFinder.GetImplementationType<HealthManager_I>());
-			impl.Manager = this;
-			recoil = GetComponent<Recoiler>();
-			if (Player.Player1 != null)
-			{
-				Player.Player1.RefreshSoulUI();
-			}
-			StartCoroutine(CheckPersistence());
-		}
-
-		IEnumerator CheckPersistence()
-		{
-			yield return null;
-			if (impl.ShouldBeDead())
-			{
-				gameObject.SetActive(false);
-			}
-		}
-
-		/// <summary>
-		/// Called when the health is being updated with a new value
-		/// </summary>
-		/// <param name="newValue">The new health value</param>
-		protected virtual void OnHealthUpdate(int oldHealth, int newHealth)
-		{
-
-		}
-	}
+        private IEnumerator CheckPersistence()
+        {
+            yield return null;
+            if (impl.ShouldBeDead())
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
 }

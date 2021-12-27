@@ -11,10 +11,10 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// Used for playing sounds within hollow knight with the game's standard audio effects applied
-	/// </summary>
-	public static class WeaverAudio
+    /// <summary>
+    /// Used for playing sounds within hollow knight with the game's standard audio effects applied
+    /// </summary>
+    public static class WeaverAudio
 	{
 		//[OnRuntimeInit]
 		[OnRegistryLoad]
@@ -29,7 +29,7 @@ namespace WeaverCore
 				WeaverLog.Log("Mod Registry Enabled = " + registry.RegistryEnabled);
 				WeaverLog.Log("Mod Type = " + registry.ModType);
 			}*/
-			if (registry.ModType == typeof(WeaverCore.Internal.WeaverCore))
+			if (registry.ModType == typeof(WeaverCore.Internal.WeaverCore_ModClass))
 			{
 				if (baseObject == null)
 				{

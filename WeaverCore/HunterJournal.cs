@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Implementations;
-using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	public static class HunterJournal
+    public static class HunterJournal
 	{
 		// Token: 0x060000B6 RID: 182 RVA: 0x00004CC7 File Offset: 0x00002EC7
 		public static bool HasKilled(string name)

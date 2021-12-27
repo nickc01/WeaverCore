@@ -6,8 +6,5 @@ namespace WeaverCore.Attributes
     /// Excludes a field from being modified by an <see cref="ObjectPool"/>
     /// </summary>
 	[System.AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
-    public sealed class ExcludeFieldFromPoolAttribute : Attribute
-    {
-
-    }
+    public sealed class ExcludeFieldFromPoolAttribute : Attribute { }
 }

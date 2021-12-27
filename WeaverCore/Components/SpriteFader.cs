@@ -8,14 +8,22 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+	/// <summary>
+	/// Used to fade a sprite from one color to another
+	/// </summary>
 	public class SpriteFader : MonoBehaviour
 	{
+		[Tooltip("Should this script start fading upon Awake?")]
 		public bool FadeOnStart = false;
+		[Tooltip("How long it should take to fade from one color to another")]
 		public float Duration = 1f;
+		[Tooltip("What should this script do when done fading?")]
 		public OnDoneBehaviour DoneBehaviour;
 
 		[SerializeField]
+		[Tooltip("The color to fade from")]
 		Color _fromColor;
+
 		public Color FromColor
 		{
 			get
@@ -28,6 +36,7 @@ namespace WeaverCore.Components
 			}
 		}
 		[SerializeField]
+		[Tooltip("The color to fade to")]
 		Color _toColor;
 		public Color ToColor
 		{
@@ -78,35 +87,26 @@ namespace WeaverCore.Components
 					fading = false;
 					Renderer.color = ToColor;
 					DoneBehaviour.DoneWithObject(this);
-					/*switch (DoneBehaviour)
-					{
-						case OnDoneBehaviour.Disable:
-							gameObject.SetActive(false);
-							break;
-						case OnDoneBehaviour.DestroyOrPool:
-							var poolableObject = GetComponent<PoolableObject>();
-							if (poolableObject != null)
-							{
-								poolableObject.ReturnToPool();
-								break;
-							}
-							else
-							{
-								goto case OnDoneBehaviour.Destroy;
-							}
-						case OnDoneBehaviour.Destroy:
-							Destroy(gameObject);
-							break;
-					}*/
 				}
 			}
 		}
 
+		/// <summary>
+		/// Fades the sprite into a new color
+		/// </summary>
+		/// <param name="toColor">The color to fade to</param>
+		/// <param name="duration">How long to should it take to fade? If set to -1, it will use the default <see cref="Duration"/> specified on the component</param>
 		public void FadeToColor(Color toColor, float duration = -1f)
 		{
 			FadeToColor(Renderer.color, toColor, duration);
 		}
 
+		/// <summary>
+		/// Fades the sprite from an old color to a new one
+		/// </summary>
+		/// <param name="fromColor">The color to fade from</param>
+		/// <param name="toColor">The color to fade to</param>
+		/// <param name="duration">How long to should it take to fade? If set to -1, it will use the default <see cref="Duration"/> specified on the component</param>
 		public void FadeToColor(Color fromColor, Color toColor, float duration = -1f)
 		{
 			FromColor = fromColor;
@@ -119,11 +119,20 @@ namespace WeaverCore.Components
 			fading = true;
 		}
 
+		/// <summary>
+		/// Fades from a color to transparency
+		/// </summary>
+		/// <param name="fromColor">The color to fade from</param>
+		/// <param name="duration">How long to should it take to fade? If set to -1, it will use the default <see cref="Duration"/> specified on the component</param>
 		public void FadeToTransparency(Color fromColor, float duration = -1f)
 		{
 			FadeToColor(fromColor, default(Color), duration);
 		}
 
+		/// <summary>
+		/// Fades the sprite into transparency
+		/// </summary>
+		/// <param name="duration">How long to should it take to fade? If set to -1, it will use the default <see cref="Duration"/> specified on the component</param>
 		public void FadeToTransparency(float duration = -1f)
 		{
 			FadeToTransparency(Renderer.color,duration);

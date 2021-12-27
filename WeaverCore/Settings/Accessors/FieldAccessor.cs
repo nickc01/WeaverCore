@@ -6,7 +6,9 @@ using System.Text;
 
 namespace WeaverCore.Settings
 {
-
+	/// <summary>
+	/// Used for accessing a field on a <see cref="GlobalSettings"/> object
+	/// </summary>
 	public class FieldAccessor : IAccessor
 	{
 		public readonly GlobalSettings Panel;

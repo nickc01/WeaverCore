@@ -8,19 +8,30 @@ using WeaverCore.Enums;
 
 namespace WeaverCore.Components.HitEffects
 {
-
-
-	[RequireComponent(typeof(SpriteFlasher))]
+    /// <summary>
+    /// The hit effects for non-infected enemies
+    /// </summary>
+    [RequireComponent(typeof(SpriteFlasher))]
 	public class HitEffectsNormal : MonoBehaviour, IHitEffects
 	{
 		static ObjectPool UninfectedHitPool;
 
 		[SerializeField]
+		[Tooltip("Should the sprite flash upon hit?")]
 		bool doFlashEffects = true;
 		bool firedOnCurrentFrame = false;
 		SpriteFlasher flasher;
 
-		static AudioClip DamageSound;
+		[SerializeField]
+		[Tooltip("The sound that is played when hit")]
+		AudioClip damageSound;
+
+		public AudioClip DamageSound
+        {
+			get => damageSound;
+			protected set => damageSound = value;
+        }
+
 
 		FlingInfo[] NormalFlings;
 
@@ -32,15 +43,16 @@ namespace WeaverCore.Components.HitEffects
 				UninfectedHitPool = ObjectPool.Create(Assets.EffectAssets.UninfectedHitPrefab);
 			}
 
-
 			flasher = GetComponent<SpriteFlasher>();
-			if (DamageSound == null)
-			{
-				DamageSound = Assets.AudioAssets.DamageEnemy;
-			}
 		}
 
-		void Update()
+        private void Reset()
+        {
+			damageSound = Assets.AudioAssets.DamageEnemy;
+
+		}
+
+        void Update()
 		{
 			firedOnCurrentFrame = false;
 		}
@@ -59,35 +71,27 @@ namespace WeaverCore.Components.HitEffects
 				}
 
 				GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
-				//GameObject hitParticles = Pooling.Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
 
 				var direction = DirectionUtilities.DegreesToDirection(hit.Direction);
 
 				switch (direction)
 				{
 					case CardinalDirection.Up:
-						SetRotation2D(hitParticles.transform, 45f);
+						hitParticles.transform.SetRotation2D(45f);
 						break;
 					case CardinalDirection.Down:
-						SetRotation2D(hitParticles.transform, 225f);
+						hitParticles.transform.SetRotation2D(225f);
 						break;
 					case CardinalDirection.Left:
-						SetRotation2D(hitParticles.transform, -225f);
+						hitParticles.transform.SetRotation2D(-225f);
 						break;
 					case CardinalDirection.Right:
-						SetRotation2D(hitParticles.transform, -45f);
+						hitParticles.transform.SetRotation2D(-45f);
 						break;
 				}
 
 				Flings.SpawnFlings(NormalFlings, transform.position + effectsOffset, direction);
 			}
-		}
-
-		static void SetRotation2D(Transform t, float rotation)
-		{
-			Vector3 eulerAngles = t.eulerAngles;
-			eulerAngles.z = rotation;
-			t.eulerAngles = eulerAngles;
 		}
 	}
 }

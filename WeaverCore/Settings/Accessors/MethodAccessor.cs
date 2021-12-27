@@ -3,6 +3,9 @@ using System.Reflection;
 
 namespace WeaverCore.Settings
 {
+	/// <summary>
+	/// Used for accessing a method on a <see cref="GlobalSettings"/> object
+	/// </summary>
 	public class MethodAccessor : IAccessor
 	{
 		public readonly GlobalSettings Panel;

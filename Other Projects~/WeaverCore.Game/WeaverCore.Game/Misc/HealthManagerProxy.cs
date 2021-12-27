@@ -357,7 +357,19 @@ public class HealthManagerProxy : HealthManager
 		if (hp != previousHP)
 		{
 			var difference = previousHP - hp;
-			switch (weaverHealth.HealthDirection)
+            if (weaverHealth.HasModifier<InfiniteHealthModifier>())
+            {
+				previousHP += difference;
+				hp = previousHP;
+				weaverHealth.Health += difference;
+			}
+			else
+            {
+				previousHP -= difference;
+				hp = previousHP;
+				weaverHealth.Health -= difference;
+			}
+			/*switch (weaverHealth.HealthDirection)
 			{
 				case HealthDirection.Down:
 					previousHP -= difference;
@@ -369,7 +381,7 @@ public class HealthManagerProxy : HealthManager
 					hp = previousHP;
 					weaverHealth.Health += difference;
 					break;
-			}
+			}*/
 		}
 	}
 }

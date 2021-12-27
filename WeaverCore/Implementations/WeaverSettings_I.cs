@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using WeaverCore.Configuration;
 using WeaverCore.Interfaces;
 using WeaverCore.Settings;
 

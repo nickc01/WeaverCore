@@ -9,13 +9,16 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Utilities
 {
+    /// <summary>
+	/// Contains many utility functions related to textures
+	/// </summary>
     public static class TextureUtilities
 	{
-        /*public static bool MakeTextureReadable(this Texture2D tex)
-		{
-
-		}*/
-
+        /// <summary>
+        /// Clones a texture
+        /// </summary>
+        /// <param name="tex">The texture to clone</param>
+        /// <returns>Returns a clone of the texture</returns>
         public static Texture2D Clone(this Texture2D tex)
 		{
             var rTex = RenderTexture.GetTemporary(tex.width, tex.height, 0, RenderTextureFormat.ARGB32);
@@ -25,10 +28,14 @@ namespace WeaverCore.Utilities
             return sampleTexture;
         }
 
+        /// <summary>
+        /// Converts a RenderTexture into a Texture2D
+        /// </summary>
+        /// <param name="rTex">The render texture to convert</param>
+        /// <returns>Returns the render texture as a texture 2D</returns>
         public static Texture2D ToTexture2D(this RenderTexture rTex)
         {
             Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.ARGB32, false);
-            // ReadPixels looks at the active RenderTexture.
             RenderTexture.active = rTex;
             tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
             tex.Apply();
@@ -49,7 +56,11 @@ namespace WeaverCore.Utilities
             return rotationMatrix.MultiplyPoint3x4(vector);
         }
 
-
+        /// <summary>
+        /// Applies a rotation to a texture
+        /// </summary>
+        /// <param name="texture">The texture to rotate</param>
+        /// <param name="rotation">The rotation to be applied</param>
         public static void Rotate(this Texture2D texture, RotationType rotation)
         {
             var destWidth = texture.width;
@@ -93,6 +104,10 @@ namespace WeaverCore.Utilities
             texture.Apply();
         }
 
+        /// <summary>
+        /// Flips a texture horizontally
+        /// </summary>
+        /// <param name="texture">The texture to flip</param>
         public static void FlipHorizontally(Texture2D texture)
         {
             var width = texture.width;
@@ -118,6 +133,10 @@ namespace WeaverCore.Utilities
             }
         }
 
+        /// <summary>
+        /// Flips a texture vertically
+        /// </summary>
+        /// <param name="texture">The texture to flip</param>
         public static void FlipVertically(Texture2D texture)
         {
             var width = texture.width;
@@ -143,6 +162,10 @@ namespace WeaverCore.Utilities
             }
         }
 
+        /// <summary>
+        /// Flips a texture across the diagonal (vertically and horizontally)
+        /// </summary>
+        /// <param name="texture">The texture to flip</param>
         public static void FlipDiagonally(Texture2D texture)
         {
             var width = texture.width;

@@ -16,6 +16,9 @@ namespace WeaverCore.Settings
 		public string Description { get; protected set; }
 	}
 
+	/// <summary>
+	/// Used to describe a method, field, or property on a <see cref="GlobalSettings"/> object
+	/// </summary>
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 	public sealed class SettingDescriptionAttribute : SettingDescriptionAttribute_BASE
 	{
@@ -29,6 +32,9 @@ namespace WeaverCore.Settings
 		}
 	}
 
+	/// <summary>
+	/// Used to describe a method, field, or property on a <see cref="GlobalSettings"/> object, but also uses <seealso cref="WeaverLanguage.GetString(string, string, string)"/> to translate it
+	/// </summary>
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 	public sealed class LangSettingDescriptionAttribute : SettingDescriptionAttribute_BASE
 	{

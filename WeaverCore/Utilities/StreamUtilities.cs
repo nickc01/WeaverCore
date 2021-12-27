@@ -8,51 +8,19 @@ using System.Text;
 
 namespace WeaverCore.Utilities
 {
+	/// <summary>
+	/// Contains some utility functions related to streams
+	/// </summary>
 	public static class StreamUtilities
 	{
-		public static string GetHash(this Stream stream)
-		{
-			var oldPosition = stream.Position;
-			stream.Position = 0;
-			try
-			{
-				using (SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider())
-				{
-					return Convert.ToBase64String(sha1.ComputeHash(stream));
-				}
-			}
-			finally
-			{
-				stream.Position = oldPosition;
-			}
-		}
-
-		public static string GetHash(this byte[] data)
-		{
-			//var oldPosition = stream.Position;
-			//stream.Position = 0;
-			//try
-			//{
-				using (SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider())
-				{
-					return Convert.ToBase64String(sha1.ComputeHash(data));
-				}
-			//}
-			//finally
-			//{
-				//stream.Position = oldPosition;
-			//}
-		}
-
-		public static string GetHash(string filePath)
-		{
-			using (var fileStream = File.OpenRead(filePath))
-			{
-				return GetHash(fileStream);
-			}
-		}
-
-		public static void CopyToStream(this Stream source, Stream destination, int bufferSize = 2048, bool resetPosition = true)
+		/// <summary>
+		/// Copies all data from one stream to another
+		/// </summary>
+		/// <param name="source">The source stream</param>
+		/// <param name="destination">The destination stream</param>
+		/// <param name="bufferSize">The buffer size. The data will be copied in chunks of this size</param>
+		/// <param name="resetPosition">Should positions of the streams be reset when done?</param>
+		public static void CopyTo(this Stream source, Stream destination, int bufferSize = 2048, bool resetPosition = true)
 		{
 			long oldPosition1 = -1;
 			if (source.CanSeek)
@@ -87,10 +55,15 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Decompresses a compressed stream of data
+		/// </summary>
+		/// <param name="source">The source stream to extract from</param>
+		/// <param name="destination">The stream to send the decompressed data to</param>
 		public static void Decompress(this Stream source, Stream destination)
 		{
 			var decompressionStream = new GZipStream(source, CompressionMode.Decompress);
-			decompressionStream.CopyToStream(destination);
+            CopyTo(decompressionStream, destination);
 		}
 	}
 }

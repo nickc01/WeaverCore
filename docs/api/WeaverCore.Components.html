@@ -77,40 +77,54 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="WeaverCore.Components.DreamFallCatcher.html">DreamFallCatcher</a></h4>
-      <section></section>
+      <section><p>When the player touches an object with this component attached, and they are in a dream scene, the player will get transported to the scene there were previously</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.DreamNailable.html">DreamNailable</a></h4>
-      <section></section>
+      <section><p>This component allows an action to be done when the player dreamnails an object</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.DreamWarper.html">DreamWarper</a></h4>
-      <section></section>
+      <section><p>When an object is dreamnailed with this component attached, this will cause the player to be warped to a new scene</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.EnemyProjectile.html">EnemyProjectile</a></h4>
-      <section></section>
+      <section><p>Represents a simple enemy projectile. By default, this script handles:</p>
+<ol>
+<li>Spawning the projectile at a random scale between <span class="xref">WeaverCore.Components.EnemyProjectile.scaleMin</span> and <span class="xref">WeaverCore.Components.EnemyProjectile.scaleMax</span></li>
+<li>Squashing and stretching the sprite depending on how it's moving through the air</li>
+<li>Handling collision with both the player and the environment</li>
+</ol>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.EntityHealth.html">EntityHealth</a></h4>
-      <section></section>
+      <section><p>Used to keep track of the health of an enemy</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.PlayerDamager.html">PlayerDamager</a></h4>
-      <section></section>
+      <section><p>This component causes the player to take damage when colliding with it</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.PoolOnParticlesDone.html">PoolOnParticlesDone</a></h4>
       <section><p>Automatically sends an object back to it's pool when the particle system on the object is completed</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Components.Recoiler.html">Recoiler</a></h4>
-      <section></section>
+      <section><p>When attached to an enemy object, this component will cause the enemy to recoil from an attack</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.SpriteFader.html">SpriteFader</a></h4>
-      <section></section>
+      <section><p>Used to fade a sprite from one color to another</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.SpriteFlasher.html">SpriteFlasher</a></h4>
-      <section></section>
-      <h4><a class="xref" href="WeaverCore.Components.SpriteFlasher.SpriteFlasherException.html">SpriteFlasher.SpriteFlasherException</a></h4>
-      <section></section>
+      <section><p>This component causes the sprite to flash. This is also used by <a class="xref" href="WeaverCore.Components.EntityHealth.html">EntityHealth</a> to flash the enemy upon hit</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.WeaverAnimationPlayer.html">WeaverAnimationPlayer</a></h4>
-      <section></section>
+      <section><p>Used for playing sprite animations</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.WeaverSceneManager.html">WeaverSceneManager</a></h4>
-      <section></section>
+      <section><p>Contains information about the current scene</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Components.WeaverTransitionPoint.html">WeaverTransitionPoint</a></h4>
-      <section></section>
+      <section><p>An area in the game the player can transition to/from a scene</p>
+</section>
     <h3 id="enums">Enums
   </h3>
-      <h4><a class="xref" href="WeaverCore.Components.HealthDirection.html">HealthDirection</a></h4>
-      <section></section>
-      <h4><a class="xref" href="WeaverCore.Components.HitResult.html">HitResult</a></h4>
-      <section></section>
+      <h4><a class="xref" href="WeaverCore.Components.EntityHealth.HitResult.html">EntityHealth.HitResult</a></h4>
+      <section><p>The enum used when determining if a hit on the enemy was valid</p>
+</section>
     <h3 id="delegates">Delegates
   </h3>
       <h4><a class="xref" href="WeaverCore.Components.EntityHealth.HealthChangeDelegate.html">EntityHealth.HealthChangeDelegate</a></h4>

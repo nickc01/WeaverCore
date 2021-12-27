@@ -10,7 +10,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	public static class Initialization
+    public static class Initialization
 	{
 		/// <summary>
 		/// Whether WeaverCore has been initialized or not
@@ -94,7 +94,7 @@ namespace WeaverCore
 			var patchArguments = new object[] { patcherInstance };
 
 			var inits = ReflectionUtilities.GetMethodsWithAttribute<OnHarmonyPatchAttribute>(assembly, patchParameters).ToList();
-			inits.Sort(new PriorityAttribute.Sorter<OnHarmonyPatchAttribute>());
+			inits.Sort(new PriorityAttribute.MethodSorter<OnHarmonyPatchAttribute>());
 
 			foreach (var initPair in ReflectionUtilities.GetMethodsWithAttribute<OnHarmonyPatchAttribute>(assembly, patchParameters))
 			{
@@ -114,7 +114,7 @@ namespace WeaverCore
 			var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == assemblyName);
 			if (assembly == null)
 			{
-				assembly = ResourceLoader.LoadAssembly(assemblyName);
+				assembly = ResourceUtilities.LoadAssembly(assemblyName);
 			}
 			return assembly;
 		}

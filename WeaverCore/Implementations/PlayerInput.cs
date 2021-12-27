@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using WeaverCore.Interfaces;
-using WeaverCore.Utilities;
 
 namespace WeaverCore.Implementations
 {
-	public abstract class PlayerInput : IImplementation
+    public abstract class PlayerInput : IImplementation
 	{
 		static PlayerInput impl = ImplFinder.GetImplementation<PlayerInput>();
 

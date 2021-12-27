@@ -24,7 +24,7 @@ namespace WeaverCore.Editor.Implementations
             
         }
 
-        public override void OnHit(HitInfo info, HitResult hitResult)
+        public override void OnHit(HitInfo info, EntityHealth.HitResult hitResult)
         {
             
         }

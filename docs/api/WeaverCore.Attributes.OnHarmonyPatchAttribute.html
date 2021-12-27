@@ -72,7 +72,7 @@
   
   <h1 id="WeaverCore_Attributes_OnHarmonyPatchAttribute" data-uid="WeaverCore.Attributes.OnHarmonyPatchAttribute" class="text-break">Class OnHarmonyPatchAttribute
   </h1>
-  <div class="markdown level0 summary"><p>Called for patching a method with a <a class="xref" href="WeaverCore.Utilities.HarmonyPatcher.html">HarmonyPatcher</a></p>
+  <div class="markdown level0 summary"><p>Called for patching a method with a <a class="xref" href="WeaverCore.HarmonyPatcher.html">HarmonyPatcher</a></p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -222,6 +222,22 @@
     <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 public sealed class OnHarmonyPatchAttribute : PriorityAttribute, _Attribute</code></pre>
   </div>
+  <h5 id="WeaverCore_Attributes_OnHarmonyPatchAttribute_examples"><strong>Examples</strong></h5>
+  <pre><code>static bool Log_Prefix()
+{
+	Debug.Log(&quot;Debug.Log has been patched!&quot;);
+	return true;
+}
+
+[OnHarmonyPatch]
+static void Patch(HarmonyPatcher patcher)
+{
+    //This patches the Debug.Log method to print &quot;Debug.Log has been patched&quot; each time it&apos;s run
+    var orig = typeof(UnityEngine.Debug).GetMethod(&quot;Log&quot;);
+    var pre = typeof(DreamNailable).GetMethod(&quot;Log_Prefix&quot;, BindingFlags.Static | BindingFlags.NonPublic);
+    patcher.Patch(orig, pre, null);
+}</code></pre>
+
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
@@ -229,7 +245,7 @@ public sealed class OnHarmonyPatchAttribute : PriorityAttribute, _Attribute</cod
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Attributes_OnHarmonyPatchAttribute__ctor_System_Int32_.md&amp;value=---%0Auid%3A%20WeaverCore.Attributes.OnHarmonyPatchAttribute.%23ctor(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/OnHarmonyPatchAttribute.cs/#L11">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/OnHarmonyPatchAttribute.cs/#L29">View Source</a>
   </span>
   <a id="WeaverCore_Attributes_OnHarmonyPatchAttribute__ctor_" data-uid="WeaverCore.Attributes.OnHarmonyPatchAttribute.#ctor*"></a>
   <h4 id="WeaverCore_Attributes_OnHarmonyPatchAttribute__ctor_System_Int32_" data-uid="WeaverCore.Attributes.OnHarmonyPatchAttribute.#ctor(System.Int32)">OnHarmonyPatchAttribute(Int32)</h4>
@@ -271,7 +287,7 @@ public sealed class OnHarmonyPatchAttribute : PriorityAttribute, _Attribute</cod
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Attributes_OnHarmonyPatchAttribute.md&amp;value=---%0Auid%3A%20WeaverCore.Attributes.OnHarmonyPatchAttribute%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/OnHarmonyPatchAttribute.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/OnHarmonyPatchAttribute.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

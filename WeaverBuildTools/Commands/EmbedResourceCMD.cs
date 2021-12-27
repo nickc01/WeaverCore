@@ -16,7 +16,7 @@ namespace WeaverBuildTools.Commands
 		{
 			using (var additionStream = File.OpenRead(fileToEmbed))
 			{
-				EmbedResource(assemblyToEmbedTo, resourceName, additionStream, additionStream.GetHash(), compression);
+				EmbedResource(assemblyToEmbedTo, resourceName, additionStream, HashUtilities.GetHash(additionStream), compression);
 			}
 		}
 
@@ -24,7 +24,7 @@ namespace WeaverBuildTools.Commands
 		{
 			if (hash == null)
 			{
-				hash = streamToEmbed.GetHash();
+				hash = HashUtilities.GetHash(streamToEmbed);
 			}
 			double previousTime = GetTime();
 			while (GetTime() - previousTime <= 10.0)
@@ -64,7 +64,7 @@ namespace WeaverBuildTools.Commands
 									//Console.WriteLine("E");
 									using (var compressionStream = new GZipStream(compressedStream, CompressionMode.Compress))
 									{
-										streamToEmbed.CopyToStream(compressionStream);
+                                        StreamUtilities.CopyTo(streamToEmbed, compressionStream);
 										compressedStream.Position = 0;
 
 										Stream smallestStream = compressedStream;

@@ -8,8 +8,8 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	// Token: 0x0200002A RID: 42
-	public class Player : MonoBehaviour
+    // Token: 0x0200002A RID: 42
+    public class Player : MonoBehaviour
 	{
 		HeroController heroCtrl;
 		static ObjectPool NailStrikePool;

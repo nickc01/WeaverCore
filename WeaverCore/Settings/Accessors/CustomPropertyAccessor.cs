@@ -2,6 +2,9 @@
 
 namespace WeaverCore.Settings
 {
+	/// <summary>
+	/// Used for accessing a property on a <see cref="GlobalSettings"/> object, where the getter and setters can be customized
+	/// </summary>
 	public class CustomPropertyAccessor<T> : CustomPropertyAccessor_Base
 	{
 		public readonly Func<T> Getter;

@@ -6,11 +6,10 @@ using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
-using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	public class CameraShaker : MonoBehaviour
+    public class CameraShaker : MonoBehaviour
 	{
 		/*static CameraShaker _instance;
 		public static CameraShaker Instance

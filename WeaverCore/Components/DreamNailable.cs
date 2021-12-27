@@ -8,37 +8,25 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using WeaverCore.Attributes;
-using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
-	public class DreamNailable : EnemyDreamnailReaction
+    /// <summary>
+    /// This component allows an action to be done when the player dreamnails an object
+    /// </summary>
+    public class DreamNailable : EnemyDreamnailReaction
 	{
-		/*class DreamNailExecuter : MonoBehaviour
-		{
-			[SerializeField]
-			[HideInInspector]
-			internal DreamNailable source;
-
-			void Awake()
-			{
-				WeaverLog.Log("DREAM NAILED EXECUTER");
-				if (source != null)
-				{
-					source.DoDreamNailTrigger();
-					Destroy(gameObject);
-				}
-			}
-		}*/
-
 		[SerializeField]
+		[Tooltip("An action to be executed when the player dreamnails this object")]
 		UnityEvent DreamnailEvent;
 
 		static Action<EnemyDreamnailReaction, GameObject> prefabSetter;
 
 		GameObject prefab;
 
+		/// <summary>
+		/// An action to be executed when the player dreamnails this object
+		/// </summary>
 		public event UnityAction OnDreamnailEvent
 		{
 			add
@@ -61,7 +49,6 @@ namespace WeaverCore.Components
 
 		static bool RecieveDreamImpact_Prefix(EnemyDreamnailReaction __instance)
 		{
-			WeaverLog.Log("OBJECT DREAMNAILED");
 			if (__instance is DreamNailable dn)
 			{
 				dn.DoDreamNailTrigger();
@@ -75,23 +62,13 @@ namespace WeaverCore.Components
 
 		private void Awake()
 		{
-			WeaverLog.Log("DREAM NAILABLE AWOKEN");
 			StartCoroutine(SetLayer());
-			/*if (prefabSetter == null)
-			{
-				prefabSetter = ReflectionUtilities.CreateFieldSetter<EnemyDreamnailReaction, GameObject>("dreamImpactPrefab");
-			}
-
-			prefab = new GameObject("EXECUTER");
-			prefab.hideFlags = HideFlags.HideAndDontSave | HideFlags.HideInHierarchy;
-			prefab.transform.SetParent(transform);
-			prefab.transform.localPosition = default;
-			prefab.transform.localRotation = Quaternion.identity;
-			var executer = prefab.AddComponent<DreamNailExecuter>();
-			executer.source = this;
-			prefabSetter(this, prefab);*/
 		}
 
+		/// <summary>
+		/// Makes sure this object is set to the correct layer for dreamnailing to work
+		/// </summary>
+		/// <returns></returns>
 		IEnumerator SetLayer()
 		{
 			yield return null;
@@ -104,9 +81,12 @@ namespace WeaverCore.Components
 			DreamnailEvent.Invoke();
 		}
 
+		/// <summary>
+		/// Called when this object is dreamnailed
+		/// </summary>
 		public virtual void OnDreamnail()
 		{
-			WeaverLog.Log("DREAMNAILED OBJECT = " + gameObject.name);
+			
 		}
 	}
 }

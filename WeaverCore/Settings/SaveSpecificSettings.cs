@@ -4,14 +4,13 @@ using System.Linq;
 using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Implementations;
-using WeaverCore.Utilities;
 
 namespace WeaverCore.Settings
 {
-	/// <summary>
-	/// Used for storing save file specific settings.
-	/// </summary>
-	[ShowFeature]
+    /// <summary>
+    /// Used for storing save file specific settings.
+    /// </summary>
+    [ShowFeature]
 	public abstract class SaveSpecificSettings : ScriptableObject
 	{
 		static SaveSpecificSettings_I impl = ImplFinder.GetImplementation<SaveSpecificSettings_I>();
@@ -44,10 +43,6 @@ namespace WeaverCore.Settings
 
 		public static T RegisterSaveSpecificSettings<T>() where T : SaveSpecificSettings
 		{
-			/*if (saveData.OfType<T>().Any())
-			{
-				throw new Exception("The type " + typeof(T).FullName + " is already registered");
-			}*/
 			var data = (T)Activator.CreateInstance(typeof(T));
 			saveData.Add(data);
 			if (SaveCurrentlyLoaded)
@@ -60,11 +55,6 @@ namespace WeaverCore.Settings
 
 		public static SaveSpecificSettings RegisterSaveSpecificSettings(SaveSpecificSettings saveSpecificData)
 		{
-			/*var saveType = saveSpecificData.GetType();
-			if (saveData.Any(s => s.GetType().IsAssignableFrom(saveType)))
-			{
-				throw new Exception("The type " + saveType.FullName + " is already registered");
-			}*/
 			saveData.Add(saveSpecificData);
 			if (SaveCurrentlyLoaded)
 			{
@@ -141,10 +131,6 @@ namespace WeaverCore.Settings
 
 		public static void LoadSaveSlot(int slot)
 		{
-			/*if (SaveCurrentlyLoaded)
-			{
-				return;
-			}*/
 			SaveCurrentlyLoaded = true;
 			CurrentSaveSlot = slot;
 

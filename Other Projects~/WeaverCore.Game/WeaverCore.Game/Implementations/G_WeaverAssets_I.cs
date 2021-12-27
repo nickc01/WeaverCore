@@ -97,13 +97,13 @@ namespace WeaverCore.Game.Implementations
 					}
 					catch (Exception e)
 					{
-						throw new WeaverAssets.WeaverAssetsException("Failed to load the WeaverAssets Asset Bundle", e);
+						throw new Exception("Failed to load the WeaverAssets Asset Bundle", e);
 					}
 				}
 			}
 			if (weaverAssetBundle == null)
 			{
-				throw new WeaverAssets.WeaverAssetsException("Unable to find the WeaverAssets Asset Bundle");
+				throw new Exception("Unable to find the WeaverAssets Asset Bundle");
 			}
 			LoadRegistries(weaverAssetBundle);
 

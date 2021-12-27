@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace WeaverCore.Settings
 {
+	/// <summary>
+	/// Represents a tab button at the top of the settings menu screen
+	/// </summary>
 	public class Tab : MonoBehaviour
 	{
 		TextMeshProUGUI _textComponent;

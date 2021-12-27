@@ -72,7 +72,7 @@
   
   <h1 id="WeaverCore_Attributes_OnRegistryLoadAttribute" data-uid="WeaverCore.Attributes.OnRegistryLoadAttribute" class="text-break">Class OnRegistryLoadAttribute
   </h1>
-  <div class="markdown level0 summary"><p>Called when a registry is loaded</p>
+  <div class="markdown level0 summary"><p>Called when a registry is loaded. This can be attached to a static method</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -222,6 +222,13 @@
     <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
 public sealed class OnRegistryLoadAttribute : PriorityAttribute, _Attribute</code></pre>
   </div>
+  <h5 id="WeaverCore_Attributes_OnRegistryLoadAttribute_examples"><strong>Examples</strong></h5>
+  <pre><code>[OnRegistryLoad]
+static void OnRegistryLoad(Registry registry)
+{
+	//This gets called when a registry gets loaded
+}</code></pre>
+
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
@@ -229,7 +236,7 @@ public sealed class OnRegistryLoadAttribute : PriorityAttribute, _Attribute</cod
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Attributes_OnRegistryLoadAttribute__ctor_System_Int32_.md&amp;value=---%0Auid%3A%20WeaverCore.Attributes.OnRegistryLoadAttribute.%23ctor(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/OnRegistryLoadAttribute.cs/#L11">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/OnRegistryLoadAttribute.cs/#L20">View Source</a>
   </span>
   <a id="WeaverCore_Attributes_OnRegistryLoadAttribute__ctor_" data-uid="WeaverCore.Attributes.OnRegistryLoadAttribute.#ctor*"></a>
   <h4 id="WeaverCore_Attributes_OnRegistryLoadAttribute__ctor_System_Int32_" data-uid="WeaverCore.Attributes.OnRegistryLoadAttribute.#ctor(System.Int32)">OnRegistryLoadAttribute(Int32)</h4>
@@ -271,7 +278,7 @@ public sealed class OnRegistryLoadAttribute : PriorityAttribute, _Attribute</cod
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Attributes_OnRegistryLoadAttribute.md&amp;value=---%0Auid%3A%20WeaverCore.Attributes.OnRegistryLoadAttribute%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/OnRegistryLoadAttribute.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Attributes/OnRegistryLoadAttribute.cs/#L17" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

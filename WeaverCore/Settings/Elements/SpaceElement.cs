@@ -2,6 +2,9 @@
 
 namespace WeaverCore.Settings.Elements
 {
+	/// <summary>
+	/// Used to add a space between two UI Elements
+	/// </summary>
 	public class SpaceElement : UIElement
 	{
 		internal UIElement BoundToElement;
@@ -51,6 +54,7 @@ namespace WeaverCore.Settings.Elements
 			}
 		}
 
+		/// <inheritdoc/>
 		public override bool CanWorkWithAccessor(IAccessor accessor)
 		{
 			return false;

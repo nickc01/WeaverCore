@@ -14,34 +14,29 @@ namespace WeaverCore.Game.Patches
 {
 	static class CameraControllerPatches
 	{
-		static ReflectionAccessor<CameraController> accessor;
+		static Func<CameraController, bool> verboseMode;
+		static Func<CameraController, bool> isGameplayScene;
+		static Func<CameraController, Vector3> velocity;
+		static Func<CameraController, Vector3> velocityX;
+		static Func<CameraController, Vector3> velocityY;
+		static Func<CameraController, float> maxVelocityCurrent;
+		static Func<CameraController, float> startLockedTimer;
+		static Func<CameraController, float> targetDeltaX;
+		static Func<CameraController, float> targetDeltaY;
+		static Func<CameraController, CameraLockArea> currentLockArea;
+		static Func<CameraController, HeroController> hero_ctrl;
+		static Func<CameraController, Transform> cameraParent;
 
-		static FieldAccessor<CameraController, bool> verboseMode;
-		static FieldAccessor<CameraController, bool> atSceneBounds;
-		static FieldAccessor<CameraController, bool> isGameplayScene;
-		static FieldAccessor<CameraController, bool> teleporting;
-		static FieldAccessor<CameraController, Coroutine> fadeInFailSafeCo;
-		static FieldAccessor<CameraController, float> panTime;
-		static FieldAccessor<CameraController, float> currentPanTime;
-		static FieldAccessor<CameraController, Vector3> velocity;
-		static FieldAccessor<CameraController, Vector3> velocityX;
-		static FieldAccessor<CameraController, Vector3> velocityY;
-		static FieldAccessor<CameraController, float> maxVelocityCurrent;
-		static FieldAccessor<CameraController, float> horizontalOffset;
-		static FieldAccessor<CameraController, float> startLockedTimer;
-		static FieldAccessor<CameraController, float> targetDeltaX;
-		static FieldAccessor<CameraController, float> targetDeltaY;
-		static FieldAccessor<CameraController, CameraLockArea> currentLockArea;
-		static FieldAccessor<CameraController, Vector3> panStartPos;
-		static FieldAccessor<CameraController, Vector3> panEndPos;
-		static FieldAccessor<CameraController, HeroController> hero_ctrl;
-		static FieldAccessor<CameraController, GameManager> gm;
-		static FieldAccessor<CameraController, PlayMakerFSM> fadeFSM;
-		static FieldAccessor<CameraController, Transform> cameraParent;
+		static Action<CameraController, bool> atSceneBoundsSetter;
+		static Action<CameraController, Vector3> velocitySetter;
+		static Action<CameraController, Vector3> velocityXSetter;
+		static Action<CameraController, Vector3> velocityYSetter;
+		static Action<CameraController, float> startLockedTimerSetter;
+		static Action<CameraController, CameraLockArea> currentLockAreaSetter;
 
 		static MethodInfo UpdateTargetDestinationDeltaM;
 
-		static Rect currentSceneDimensions;
+		static CameraController instance;
 
 		[OnInit]
 		static void Init()
@@ -60,7 +55,6 @@ namespace WeaverCore.Game.Patches
 
 			On.CameraLockArea.Start += CameraLockArea_Start;
 			On.CameraLockArea.ValidateBounds += CameraLockArea_ValidateBounds;
-			//On.CameraTarget.
 		}
 
 		private static bool CameraController_IsTouchingSides(On.CameraController.orig_IsTouchingSides orig, CameraController self, float x)
@@ -147,7 +141,7 @@ namespace WeaverCore.Game.Patches
 				targetDest = new Vector2(targetDest.x, bounds.yMax);
 				flag = true;
 			}
-			atSceneBounds.Value = flag;
+			atSceneBoundsSetter(instance,flag);
 			return targetDest;
 		}
 
@@ -180,37 +174,32 @@ namespace WeaverCore.Game.Patches
 				result = new Vector3(result.x, bounds.yMax, result.z);
 				flag = true;
 			}
-			atSceneBounds.Value = flag;
+			atSceneBoundsSetter(instance, flag);
 			self.atHorizontalSceneBounds = flag2;
 			return result;
 		}
 
 		private static void CameraController_GameInit(On.CameraController.orig_GameInit orig, CameraController self)
 		{
-			accessor = new ReflectionAccessor<CameraController>(self);
-
-			verboseMode = accessor.GetFieldAccessor<bool>("verboseMode");
-			atSceneBounds = accessor.GetFieldAccessor<bool>("atSceneBounds");
-			isGameplayScene = accessor.GetFieldAccessor<bool>("isGameplayScene");
-			teleporting = accessor.GetFieldAccessor<bool>("teleporting");
-			fadeInFailSafeCo = accessor.GetFieldAccessor<Coroutine>("fadeInFailSafeCo");
-			panTime = accessor.GetFieldAccessor<float>("panTime");
-			currentPanTime = accessor.GetFieldAccessor<float>("currentPanTime");
-			velocity = accessor.GetFieldAccessor<Vector3>("velocity");
-			velocityX = accessor.GetFieldAccessor<Vector3>("velocityX");
-			velocityY = accessor.GetFieldAccessor<Vector3>("velocityY");
-			maxVelocityCurrent = accessor.GetFieldAccessor<float>("maxVelocityCurrent");
-			horizontalOffset = accessor.GetFieldAccessor<float>("horizontalOffset");
-			startLockedTimer = accessor.GetFieldAccessor<float>("startLockedTimer");
-			targetDeltaX = accessor.GetFieldAccessor<float>("targetDeltaX");
-			targetDeltaY = accessor.GetFieldAccessor<float>("targetDeltaY");
-			currentLockArea = accessor.GetFieldAccessor<CameraLockArea>("currentLockArea");
-			panStartPos = accessor.GetFieldAccessor<Vector3>("panStartPos");
-			panEndPos = accessor.GetFieldAccessor<Vector3>("panEndPos");
-			hero_ctrl = accessor.GetFieldAccessor<HeroController>("hero_ctrl");
-			gm = accessor.GetFieldAccessor<GameManager>("gm");
-			fadeFSM = accessor.GetFieldAccessor<PlayMakerFSM>("fadeFSM");
-			cameraParent = accessor.GetFieldAccessor<Transform>("cameraParent");
+			instance = self;
+			verboseMode = ReflectionUtilities.CreateFieldGetter<CameraController, bool>("verboseMode");
+			isGameplayScene = ReflectionUtilities.CreateFieldGetter<CameraController, bool>("isGameplayScene");
+			velocity = ReflectionUtilities.CreateFieldGetter<CameraController, Vector3>("velocity");
+			velocityX = ReflectionUtilities.CreateFieldGetter<CameraController, Vector3>("velocityX");
+			velocityY = ReflectionUtilities.CreateFieldGetter<CameraController, Vector3>("velocityY");
+			maxVelocityCurrent = ReflectionUtilities.CreateFieldGetter<CameraController, float>("maxVelocityCurrent");
+			startLockedTimer = ReflectionUtilities.CreateFieldGetter<CameraController, float>("startLockedTimer");
+			targetDeltaX = ReflectionUtilities.CreateFieldGetter<CameraController, float>("targetDeltaX");
+			targetDeltaY = ReflectionUtilities.CreateFieldGetter<CameraController, float>("targetDeltaY");
+			currentLockArea = ReflectionUtilities.CreateFieldGetter<CameraController, CameraLockArea>("currentLockArea");
+			hero_ctrl = ReflectionUtilities.CreateFieldGetter<CameraController, HeroController>("hero_ctrl");
+			cameraParent = ReflectionUtilities.CreateFieldGetter<CameraController, Transform>("cameraParent");
+			atSceneBoundsSetter = ReflectionUtilities.CreateFieldSetter<CameraController, bool>("atSceneBounds");
+			velocitySetter = ReflectionUtilities.CreateFieldSetter<CameraController, Vector3>("velocity");
+			velocityXSetter = ReflectionUtilities.CreateFieldSetter<CameraController, Vector3>("velocityX");
+			velocityYSetter = ReflectionUtilities.CreateFieldSetter<CameraController, Vector3>("velocityY");
+			startLockedTimerSetter = ReflectionUtilities.CreateFieldSetter<CameraController, float>("startLockedTimer");
+			currentLockAreaSetter = ReflectionUtilities.CreateFieldSetter<CameraController, CameraLockArea>("currentLockArea");
 
 			orig(self);
 		}
@@ -258,49 +247,48 @@ namespace WeaverCore.Game.Patches
 			float x = self.transform.position.x;
 			float y = self.transform.position.y;
 			float z = self.transform.position.z;
-			float x2 = cameraParent.Value.position.x;
-			float y2 = cameraParent.Value.position.y;
-			if (isGameplayScene.Value && self.mode != CameraController.CameraMode.FROZEN)
+			float x2 = cameraParent(instance).position.x;
+			float y2 = cameraParent(instance).position.y;
+			if (isGameplayScene(instance) && self.mode != CameraController.CameraMode.FROZEN)
 			{
-				if (hero_ctrl.Value.cState.lookingUp)
+				if (hero_ctrl(instance).cState.lookingUp)
 				{
-					self.lookOffset = hero_ctrl.Value.transform.position.y - self.camTarget.transform.position.y + 6f;
+					self.lookOffset = hero_ctrl(instance).transform.position.y - self.camTarget.transform.position.y + 6f;
 				}
-				else if (hero_ctrl.Value.cState.lookingDown)
+				else if (hero_ctrl(instance).cState.lookingDown)
 				{
-					self.lookOffset = hero_ctrl.Value.transform.position.y - self.camTarget.transform.position.y - 6f;
+					self.lookOffset = hero_ctrl(instance).transform.position.y - self.camTarget.transform.position.y - 6f;
 				}
 				else
 				{
 					self.lookOffset = 0f;
 				}
 				UpdateTargetDestinationDeltaM.Invoke(self, null);
-				//self.UpdateTargetDestinationDelta();
 				Vector3 vector = self.cam.WorldToViewportPoint(self.camTarget.transform.position);
-				Vector3 vector2 = new Vector3(targetDeltaX.Value, targetDeltaY.Value, 0f) - self.cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, vector.z));
+				Vector3 vector2 = new Vector3(targetDeltaX(instance), targetDeltaY(instance), 0f) - self.cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, vector.z));
 				self.destination = new Vector3(x + vector2.x, y + vector2.y, z);
-				if (self.mode == CameraController.CameraMode.LOCKED && currentLockArea.Value != null)
+				if (self.mode == CameraController.CameraMode.LOCKED && currentLockArea(instance) != null)
 				{
-					if (self.lookOffset > 0f && currentLockArea.Value.preventLookUp && self.destination.y > currentLockArea.Value.cameraYMax)
+					if (self.lookOffset > 0f && currentLockArea(instance).preventLookUp && self.destination.y > currentLockArea(instance).cameraYMax)
 					{
-						if (self.transform.position.y > currentLockArea.Value.cameraYMax)
+						if (self.transform.position.y > currentLockArea(instance).cameraYMax)
 						{
 							self.destination = new Vector3(self.destination.x, self.destination.y - self.lookOffset, self.destination.z);
 						}
 						else
 						{
-							self.destination = new Vector3(self.destination.x, currentLockArea.Value.cameraYMax, self.destination.z);
+							self.destination = new Vector3(self.destination.x, currentLockArea(instance).cameraYMax, self.destination.z);
 						}
 					}
-					if (self.lookOffset < 0f && currentLockArea.Value.preventLookDown && self.destination.y < currentLockArea.Value.cameraYMin)
+					if (self.lookOffset < 0f && currentLockArea(instance).preventLookDown && self.destination.y < currentLockArea(instance).cameraYMin)
 					{
-						if (self.transform.position.y < currentLockArea.Value.cameraYMin)
+						if (self.transform.position.y < currentLockArea(instance).cameraYMin)
 						{
 							self.destination = new Vector3(self.destination.x, self.destination.y - self.lookOffset, self.destination.z);
 						}
 						else
 						{
-							self.destination = new Vector3(self.destination.x, currentLockArea.Value.cameraYMin, self.destination.z);
+							self.destination = new Vector3(self.destination.x, currentLockArea(instance).cameraYMin, self.destination.z);
 						}
 					}
 				}
@@ -308,21 +296,21 @@ namespace WeaverCore.Game.Patches
 				{
 					self.destination = self.KeepWithinSceneBounds(self.destination);
 				}
-				var velX = velocityX.Value;
-				var velY = velocityY.Value;
+				var velX = velocityX(instance);
+				var velY = velocityY(instance);
 				Vector3 vector3 = Vector3.SmoothDamp(self.transform.position, new Vector3(self.destination.x, y, z), ref velX, self.dampTimeX);
 				Vector3 vector4 = Vector3.SmoothDamp(self.transform.position, new Vector3(x, self.destination.y, z), ref velY, self.dampTimeY);
-				velocityX.Value = velX;
-				velocityY.Value = velY;
+				velocityXSetter(instance, velX);
+				velocityYSetter(instance,velY);
 				self.transform.SetPosition2D(vector3.x, vector4.y);
 				x = self.transform.position.x;
 				y = self.transform.position.y;
-				if (velocity.Value.magnitude > maxVelocityCurrent.Value)
+				if (velocity(instance).magnitude > maxVelocityCurrent(instance))
 				{
-					velocity.Value = velocity.Value.normalized * maxVelocityCurrent.Value;
+					velocitySetter(instance,velocity(instance).normalized * maxVelocityCurrent(instance));
 				}
 			}
-			if (isGameplayScene.Value)
+			if (isGameplayScene(instance))
 			{
 				Rect bounds = GetCameraLimits(self);
 
@@ -342,9 +330,9 @@ namespace WeaverCore.Game.Patches
 				{
 					self.transform.SetPositionY(bounds.yMax);
 				}
-				if (startLockedTimer.Value > 0f)
+				if (startLockedTimer(instance) > 0f)
 				{
-					startLockedTimer.Value -= Time.deltaTime;
+					startLockedTimerSetter(instance, startLockedTimer(instance) - Time.deltaTime);
 				}
 			}
 		}
@@ -353,10 +341,6 @@ namespace WeaverCore.Game.Patches
 		{
 			var minX = instance.xLimit - (instance.sceneWidth - (14.6f * 2f));
 			var minY = instance.yLimit - (instance.sceneHeight - (8.3f * 2f));
-
-			//var minX = instance.xLimit + 14.6f - instance.sceneWidth;
-			//var minY = instance.yLimit + 8.3f - instance.sceneHeight;
-
 			var bounds = new Rect(minX, minY, instance.xLimit - minX, instance.yLimit - minY);
 			return bounds;
 		}
@@ -365,21 +349,21 @@ namespace WeaverCore.Game.Patches
 		{
 			if (!self.lockZoneList.Contains(lockArea))
 			{
-				if (verboseMode.Value)
+				if (verboseMode(instance))
 				{
 					Debug.LogFormat("LockZone Activated: {0} at startLockedTimer {1} ({2}s)", new object[]
 					{
 					lockArea.name,
-					startLockedTimer.Value,
+					startLockedTimer(instance),
 					Time.timeSinceLevelLoad
 					});
 				}
 				self.lockZoneList.Add(lockArea);
-				if (currentLockArea.Value != null && currentLockArea.Value.maxPriority && !lockArea.maxPriority)
+				if (currentLockArea(instance) != null && currentLockArea(instance).maxPriority && !lockArea.maxPriority)
 				{
 					return;
 				}
-				currentLockArea.Value = lockArea;
+				currentLockAreaSetter(instance,lockArea);
 				self.SetMode(CameraController.CameraMode.LOCKED);
 
 				var bounds = GetCameraLimits(self);
@@ -416,12 +400,12 @@ namespace WeaverCore.Game.Patches
 				{
 					self.yLockMax = lockArea.cameraYMax;
 				}
-				if (startLockedTimer.Value > 0f)
+				if (startLockedTimer(instance) > 0f)
 				{
-					self.camTarget.transform.SetPosition2D(self.KeepWithinLockBounds(hero_ctrl.Value.transform.position));
+					self.camTarget.transform.SetPosition2D(self.KeepWithinLockBounds(hero_ctrl(instance).transform.position));
 					self.camTarget.destination = self.camTarget.transform.position;
 					self.camTarget.EnterLockZoneInstant(self.xLockMin, self.xLockMax, self.yLockMin, self.yLockMax);
-					self.transform.SetPosition2D(self.KeepWithinLockBounds(hero_ctrl.Value.transform.position));
+					self.transform.SetPosition2D(self.KeepWithinLockBounds(hero_ctrl(instance).transform.position));
 					self.destination = self.transform.position;
 					return;
 				}
@@ -456,14 +440,10 @@ namespace WeaverCore.Game.Patches
 
 			var camCtrl = GameCameras.instance.cameraController;
 
-			//self.gcams = GameCameras.instance;
 			SetField(self, "gcams", GameCameras.instance);
-			//self.cameraCtrl = camCtrl;
 			SetField(self, "cameraCtrl", camCtrl);
-			//self.camTarget = GameCameras.instance.cameraTarget;
 			SetField(self, "camTarget", GameCameras.instance.cameraTarget);
 			Scene scene = self.gameObject.scene;
-			//while (camCtrl.tilemap == null || camCtrl.tilemap.gameObject.scene != scene)
 			while (camCtrl.sceneWidth == 0f)
 			{
 				yield return null;
@@ -472,20 +452,8 @@ namespace WeaverCore.Game.Patches
 			{
 				Debug.LogError("Camera bounds are unspecified for " + self.name + ", please specify lock area bounds for this Camera Lock Area.");
 			}
-
-			/*var validateBoundsM = typeof(CameraLockArea).GetMethod("ValidateBounds", BindingFlags.Instance | BindingFlags.NonPublic);
-
-			if (!self.ValidateBounds())
-			{
-				Debug.LogError("Camera bounds are unspecified for " + base.name + ", please specify lock area bounds for this Camera Lock Area.");
-			}*/
 			if (box2d != null)
 			{
-				/*self.leftSideX = box2d.bounds.min.x;
-				self.rightSideX = box2d.bounds.max.x;
-				self.botSideY = box2d.bounds.min.y;
-				self.topSideY = box2d.bounds.max.y;*/
-
 				SetField(self, "leftSideX", box2d.bounds.min.x);
 				SetField(self, "rightSideX", box2d.bounds.max.x);
 				SetField(self, "botSideY", box2d.bounds.min.y);
@@ -518,22 +486,6 @@ namespace WeaverCore.Game.Patches
 					self.cameraYMax = cameraBounds.yMax;
 				}
 
-				/*if (self.cameraXMin == -1f)
-				{
-					self.cameraXMin = 14.6f;
-				}
-				if (self.cameraXMax == -1f)
-				{
-					self.cameraXMax = cameraCtrl.xLimit;
-				}
-				if (self.cameraYMin == -1f)
-				{
-					self.cameraYMin = 8.3f;
-				}
-				if (self.cameraYMax == -1f)
-				{
-					self.cameraYMax = cameraCtrl.yLimit;
-				}*/
 				return self.cameraXMin != 0f || self.cameraXMax != 0f || self.cameraYMin != 0f || self.cameraYMax != 0f;
 			}
 			else
@@ -541,31 +493,5 @@ namespace WeaverCore.Game.Patches
 				return orig(self);
 			}
 		}
-
-
-		/*class CameraControllerPatch : IInit
-		{
-			bool Initialized = false;
-
-			private void CameraController_LateUpdate(On.CameraController.orig_LateUpdate orig, CameraController self)
-			{
-				if (!Initialized)
-				{
-					if (_instance == null)
-					{
-						_instance = staticImpl.Create();
-						_instance.Initialize();
-					}
-					Initialized = true;
-				}
-
-				orig(self);
-			}
-
-			void IInit.OnInit()
-			{
-				On.CameraController.LateUpdate += CameraController_LateUpdate;
-			}
-		}*/
 	}
 }

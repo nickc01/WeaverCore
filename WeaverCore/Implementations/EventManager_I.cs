@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 
 
 namespace WeaverCore.Implementations
 {
-	public abstract class EventManager_I : MonoBehaviour, IImplementation
+    public abstract class EventManager_I : MonoBehaviour, IImplementation
     {
 		public abstract class Statics : IImplementation
 		{

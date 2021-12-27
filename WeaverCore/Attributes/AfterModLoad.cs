@@ -6,8 +6,17 @@ using System.Text;
 namespace WeaverCore.Attributes
 {
     /// <summary>
-    /// Called after a mod of a specific type has loaded. Can be attached to a static method
+    /// Called after a <see cref="WeaverMod"/> of a specific type has loaded. Can be attached to a static method
     /// </summary>
+    /// <example>
+    /// <code>
+    /// [AfterModLoad(typeof(CorruptedKin))]
+    /// public static void ModIsLoaded()
+    /// {
+    ///     //This will be called after Corrupted Kin is loaded
+    /// }
+    /// </code>
+    /// </example>
 	[AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
     public sealed class AfterModLoadAttribute : PriorityAttribute
     {

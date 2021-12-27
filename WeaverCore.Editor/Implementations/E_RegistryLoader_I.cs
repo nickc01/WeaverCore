@@ -6,12 +6,11 @@ using System.Reflection;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Editor.Implementations
 {
-	public class E_RegistryLoader_I : RegistryLoader_I
+    public class E_RegistryLoader_I : RegistryLoader_I
 	{
 		/*public override IEnumerable<Registry> GetRegistries(Type ModType)
 		{

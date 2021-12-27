@@ -10,7 +10,7 @@ using WeaverCore.Attributes;
 namespace WeaverCore.Assets.TMPro
 {
 #if UNITY_EDITOR
-	[System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.Browsable(false)]
 	[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
 #endif
 	public class TMP_FontAsset : global::TMPro.TMP_FontAsset
@@ -163,7 +163,7 @@ namespace WeaverCore.Assets.TMPro
 		[OnInit]
 		static void Init()
 		{
-			var patcher = WeaverCore.Utilities.HarmonyPatcher.Create("WeaverCore.TMPFONT.com");
+			var patcher = HarmonyPatcher.Create("WeaverCore.TMPFONT.com");
 
 			var fontType = typeof(global::TMPro.TMP_FontAsset);
 

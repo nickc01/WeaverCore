@@ -18,6 +18,8 @@ namespace WeaverCore.Assets.Components
 		[SerializeField]
 		float fadedOutAlpha = 0f;
 
+		public bool DestroyOnHide = true;
+
 		static WeaverArrowPrompt _defaultPrefab;
 		public static WeaverArrowPrompt DefaultPrefab
 		{
@@ -35,6 +37,7 @@ namespace WeaverCore.Assets.Components
 		public GameObject Owner { get; private set; }
 		public TextMeshPro Label { get; private set; }
 		public SpriteRenderer Shadow { get; private set; }
+		public SpriteRenderer Renderer { get; private set; }
 		public bool IsVisible { get; private set; }
 		WeaverAnimationPlayer anim;
 
@@ -42,6 +45,7 @@ namespace WeaverCore.Assets.Components
 		{
 			anim = GetComponent<WeaverAnimationPlayer>();
 			Label = GetComponentInChildren<TextMeshPro>();
+			Renderer = GetComponent<SpriteRenderer>();
 			Label.gameObject.SetActive(false);
 			Shadow = transform.Find("Shadow").GetComponent<SpriteRenderer>();
 			Shadow.gameObject.SetActive(false);
@@ -83,6 +87,70 @@ namespace WeaverCore.Assets.Components
 			StartCoroutine(FadeRoutine(fadedOutAlpha,fadedInAlpha,fadeInTime));
 		}
 
+		public void ShowInstant()
+        {
+			anim.StopCurrentAnimation();
+			Renderer.sprite = anim.AnimationData.GetFrameFromClip("Up",anim.AnimationData.GetClipFrameCount("Up") - 1);
+			transform.SetZPosition(0f);
+			IsVisible = true;
+
+			Color ShadowColor = Shadow.color;
+			Color LabelColor = Label.color;
+
+			if (fadedInAlpha > 0f)
+			{
+				Shadow.gameObject.SetActive(true);
+				Label.gameObject.SetActive(true);
+			}
+
+			ShadowColor.a = fadedInAlpha;
+			LabelColor.a = fadedInAlpha;
+
+			Shadow.color = ShadowColor;
+			Label.color = LabelColor;
+
+			if (fadedInAlpha <= 0f)
+			{
+				Shadow.gameObject.SetActive(false);
+				Label.gameObject.SetActive(false);
+			}
+		}
+
+		public void HideInstant()
+        {
+			anim.StopCurrentAnimation();
+			Renderer.sprite = anim.AnimationData.GetFrameFromClip("Down", anim.AnimationData.GetClipFrameCount("Down") - 1);
+			IsVisible = false;
+			StopAllCoroutines();
+
+			if (fadedOutAlpha > 0f)
+			{
+				Shadow.gameObject.SetActive(true);
+				Label.gameObject.SetActive(true);
+			}
+
+			Color ShadowColor = Shadow.color;
+			Color LabelColor = Label.color;
+
+			ShadowColor.a = fadedOutAlpha;
+			LabelColor.a = fadedOutAlpha;
+
+			Shadow.color = ShadowColor;
+			Label.color = LabelColor;
+
+			if (fadedOutAlpha <= 0f)
+			{
+				Shadow.gameObject.SetActive(false);
+				Label.gameObject.SetActive(false);
+			}
+
+			if (DestroyOnHide)
+			{
+				Owner = null;
+				Destroy(gameObject, fadeOutTime);
+			}
+		}
+
 		/// <summary>
 		/// Hides the prompt. This will also destroy the prompt when it is fully hidden
 		/// </summary>
@@ -90,10 +158,13 @@ namespace WeaverCore.Assets.Components
 		{
 			anim.PlayAnimation("Down");
 			IsVisible = false;
-			Owner = null;
 			StopAllCoroutines();
 			StartCoroutine(FadeRoutine(fadedInAlpha, fadedOutAlpha, fadeOutTime));
-			Destroy(gameObject, fadeOutTime);
+            if (DestroyOnHide)
+            {
+				Owner = null;
+				Destroy(gameObject, fadeOutTime);
+			}
 		}
 
 		IEnumerator FadeRoutine(float from, float to, float time)

@@ -3,7 +3,9 @@ using System.Reflection;
 
 namespace WeaverCore.Settings
 {
-
+	/// <summary>
+	/// Used for accessing a property on a <see cref="GlobalSettings"/> object
+	/// </summary>
 	public class PropertyAccessor : IAccessor
 	{
 		public readonly GlobalSettings Panel;

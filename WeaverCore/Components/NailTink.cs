@@ -7,9 +7,14 @@ using WeaverCore.Enums;
 using WeaverCore.Features;
 using WeaverCore.Interfaces;
 
+/// <summary>
+/// When the player hits an object with this component attached, it will cause a nail parry to occur
+/// </summary>
 public class NailTink : MonoBehaviour, IHittable
 {
+	[Tooltip("The sound that is played when the player hits this object")]
 	public AudioClip TinkSound;
+	[Tooltip("The tink prefab that is spawned when the player hits this object")]
 	public GameObject TinkEffectPrefab;
 
 	string collisionLayerName = "Tinker";
@@ -38,11 +43,11 @@ public class NailTink : MonoBehaviour, IHittable
 		if (healthManager != null)
 		{
 			var validity = healthManager.IsValidHit(hit);
-			if (validity == HitResult.Valid)
+			if (validity == EntityHealth.HitResult.Valid)
 			{
 				StartCoroutine(HitRoutine(hit));
 			}
-			return validity == HitResult.Valid;
+			return validity == EntityHealth.HitResult.Valid;
 		}
 		else
 		{
@@ -53,7 +58,6 @@ public class NailTink : MonoBehaviour, IHittable
 
 	IEnumerator HitRoutine(HitInfo hit)
 	{
-		//WeaverLog.Log("NAIL TINK ATTACK DIRECTION = " + hit.Direction);
 		WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset3);
 		Player.Player1.EnterParryState();
 		CameraShaker.Instance.Shake(WeaverCore.Enums.ShakeType.EnemyKillShake);
@@ -81,8 +85,6 @@ public class NailTink : MonoBehaviour, IHittable
 		{
 			direction = CardinalDirection.Right;
 		}
-
-		//WeaverLog.Log("TINK DIRECTION = " + direction);
 
 		switch (direction)
 		{
@@ -120,15 +122,4 @@ public class NailTink : MonoBehaviour, IHittable
 
 		yield return new WaitForSeconds(0.15f);
 	}
-
-	void Awake()
-	{
-		//layerTest = LayerMask.LayerToName(16);
-	}
-
-
-	/*void OnTriggerEnter2D(Collider2D collider)
-	{
-		
-	}*/
 }

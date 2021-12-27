@@ -8,7 +8,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-	public class WeaverBench : MonoBehaviour
+    public class WeaverBench : MonoBehaviour
 	{
 		[SerializeField]
 		Vector3 benchSitOffset = new Vector3(0f, 0.7f);
@@ -195,7 +195,7 @@ namespace WeaverCore.Assets.Components
 				//TODO : PLAY HERO ANIMATION
 				if (Initialization.Environment == Enums.RunningState.Game)
 				{
-					PlayPlayerClip("Sit Fall Asleep");
+					HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 				}
 				EventManager.BroadcastEvent("UPDATE BLUE HEALTH", gameObject);
 				EventManager.BroadcastEvent("HERO REVIVED", gameObject);
@@ -271,7 +271,7 @@ namespace WeaverCore.Assets.Components
 				HeroController.instance.StopAnimationControl();
 				HeroController.instance.MaxHealth();
 
-				PlayPlayerClip("Sit Fall Asleep");
+				HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 
 				WeaverLog.Log("Sit Fall Asleep");
 				/*dynamic animator = HeroController.instance.GetComponent("tk2dSpriteAnimator");
@@ -298,7 +298,7 @@ namespace WeaverCore.Assets.Components
 				playerRB.isKinematic = false;
 
 				//yield return PlayClipTillDone(animator, "Wake To Sit");
-				yield return PlayPlayerClipTillDone("Wake To Sit");
+				yield return HeroUtilities.PlayPlayerClipTillDone("Wake To Sit");
 
 				if (PlayerData.instance.GetBool("hasQuill") && PlayerData.instance.GetBool("hasMap"))
 				{
@@ -381,7 +381,7 @@ namespace WeaverCore.Assets.Components
 				{
 					sleeping = true;
 					getOffAnimation = "Wake";
-					PlayPlayerClip("Sit Fall Asleep");
+					HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 					/*dynamic animator = HeroController.instance.GetComponent("tk2dSpriteAnimator");
 
 					if (animator != null)
@@ -424,7 +424,7 @@ namespace WeaverCore.Assets.Components
 			PlayerData.instance.SetBool("atBench", false);
 			if (sleeping)
 			{
-				yield return PlayPlayerClipTillDone("Wake To Sit");
+				yield return HeroUtilities.PlayPlayerClipTillDone("Wake To Sit");
 			}
 
 			if (tilter)
@@ -449,8 +449,8 @@ namespace WeaverCore.Assets.Components
 			AdjustVectorInv = new Vector3(0f, -0.1f, 0f);
 
 
-			//yield return PlayPlayerClipTillDone(getOffAnimation);
-			PlayPlayerClip(getOffAnimation);
+			//yield return HeroUtilities.PlayPlayerClipTillDone(getOffAnimation);
+			HeroUtilities.PlayPlayerClip(getOffAnimation);
 
 			Vector3 oldPos = HeroController.instance.transform.position;
 			Vector3 newPos = oldPos + AdjustVectorInv;
@@ -464,7 +464,7 @@ namespace WeaverCore.Assets.Components
 
 			yield return new WaitForSeconds(0.05f);
 
-			PlayPlayerClip("Idle");
+			HeroUtilities.PlayPlayerClip("Idle");
 
 			yield return new WaitForSeconds(0.1f);
 
@@ -557,7 +557,7 @@ namespace WeaverCore.Assets.Components
 								InstantiatedPrompt.Hide();
 								InstantiatedPrompt = null;
 							}
-							PlayPlayerClip("Sit");
+							HeroUtilities.PlayPlayerClip("Sit");
 
 
 							var selfX = transform.GetXPosition();
@@ -691,8 +691,8 @@ namespace WeaverCore.Assets.Components
 									{
 										GameObject.Instantiate(MapUpdateMsg);
 									}
-									yield return PlayPlayerClipTillDone("Map Update");
-									PlayPlayerClip("Sit Idle");
+									yield return HeroUtilities.PlayPlayerClipTillDone("Map Update");
+									HeroUtilities.PlayPlayerClip("Sit Idle");
 								}
 							}
 
@@ -759,7 +759,7 @@ namespace WeaverCore.Assets.Components
 				Debug.Log("INV Open = " + !PlayMakerUtilities.GetFsmBool(inv, "Inventory Control", "Open"));
 				if (inv != null && !PlayMakerUtilities.GetFsmBool(inv, "Inventory Control","Open"))
 				{
-					PlayPlayerClip("Sit Map Open");
+					HeroUtilities.PlayPlayerClip("Sit Map Open");
 					EventManager.BroadcastEvent("MAP OPENED", gameObject);
 					PlayerData.instance.SetBool("disablePause", true);
 					EventManager.BroadcastEvent("OPEN QUICK MAP", gameObject);
@@ -776,7 +776,7 @@ namespace WeaverCore.Assets.Components
 							{
 								EventManager.BroadcastEvent("OPEN INVENTORY MAP", gameObject);
 							}
-							PlayPlayerClip("Sit Map Close");
+							HeroUtilities.PlayPlayerClip("Sit Map Close");
 							yield return new WaitForSeconds(0.42f);
 							eventManager.OnReceivedEvent -= MapEventListener;
 							yield return RestingRoutine();
@@ -825,7 +825,7 @@ namespace WeaverCore.Assets.Components
 			yield return null;
 			EventManager.BroadcastEvent("CLOSE QUICK MAP", gameObject);
 
-			PlayPlayerClip("Sit Map Close");
+			HeroUtilities.PlayPlayerClip("Sit Map Close");
 			yield return null;
 			yield return CloseAnimState(false);
 		}
@@ -840,7 +840,7 @@ namespace WeaverCore.Assets.Components
 			yield return null;
 			HeroController.instance.RelinquishControl();
 			HeroController.instance.StopAnimationControl();
-			yield return PlayPlayerClipTillDone("Sit Map Close");
+			yield return HeroUtilities.PlayPlayerClipTillDone("Sit Map Close");
 
 			eventManager.OnReceivedEvent -= OpenInventoryMapListener;
 			yield return null;
@@ -858,13 +858,13 @@ namespace WeaverCore.Assets.Components
 			}
 		}*/
 
-		static Component heroAnimator = null;
+		/*static Component heroAnimator = null;
 		static Type heroAnimatorType;
 		static PropertyInfo CurrentClipP;
 		static Type ClipType;
 		static PropertyInfo ClipDurationP;
 
-		static IEnumerator PlayPlayerClipTillDone(string clip)
+		static IEnumerator HeroUtilities.PlayPlayerClipTillDone(string clip)
 		{
 			if (Initialization.Environment == Enums.RunningState.Game)
 			{
@@ -888,7 +888,7 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
-		static void PlayPlayerClip(string clip)
+		static void HeroUtilities.PlayPlayerClip(string clip)
 		{
 			if (Initialization.Environment == Enums.RunningState.Game)
 			{
@@ -905,6 +905,6 @@ namespace WeaverCore.Assets.Components
 
 			var weaverAnim = HeroController.instance.GetComponent<WeaverAnimationPlayer>();
 			weaverAnim?.PlayAnimation(clip);
-		}
+		}*/
 	}
 }

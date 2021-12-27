@@ -5,7 +5,10 @@ using System.Text;
 
 namespace WeaverCore.Utilities
 {
-	public static class ListUtilities
+    /// <summary>
+    /// Contains some utility functions related to the Lists and Arrays
+    /// </summary>
+    public static class ListUtilities
 	{
 		/// <summary>
 		/// Adds an item to the list if it's not already in it
@@ -39,16 +42,23 @@ namespace WeaverCore.Utilities
 			return list[UnityEngine.Random.Range(0,list.Count)];
 		}
 
+		/// <summary>
+		/// Randomizes the list
+		/// </summary>
+		/// <typeparam name="T">The type of elements in the list</typeparam>
+		/// <param name="list">The list to randomize</param>
 		public static void RandomizeList<T>(this List<T> list)
 		{
 			list.Sort(Randomizer<T>.Instance);
 		}
 
 		/// <summary>
-		/// Checks if each list have identical elements
+		/// Checks if the two lists are equivalent
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="list"></param>
+		/// <typeparam name="T">The type of element in the lists</typeparam>
+		/// <param name="listA">The first list to compare</param>
+		/// <param name="listB">The second list to compare</param>
+		/// <param name="comparer">The comparer used to check for element equality. If this is null, will use the default comparer</param>
 		/// <returns></returns>
 		public static bool AreEquivalent<T>(this IEnumerable<T> listA, IEnumerable<T> listB, EqualityComparer<T> comparer = null)
 		{
@@ -83,7 +93,13 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-		public static int GetElementsHash<T>(this IEnumerable<T> list)
+		/// <summary>
+		/// Gets a hash for all the elements in the list
+		/// </summary>
+		/// <typeparam name="T">The type of elements in the list</typeparam>
+		/// <param name="list">The list to get the hash code from</param>
+		/// <returns>Returns a hash for all the elements in the list</returns>
+		public static int GetListHash<T>(this IEnumerable<T> list)
 		{
 			int hash = 0;
 			foreach (var item in list)
@@ -92,25 +108,5 @@ namespace WeaverCore.Utilities
 			}
 			return hash;
 		}
-
-		/*struct LambdaComparer<T> : IComparer<T>
-		{
-			public Func<T, T, int> Comparer;
-
-			public LambdaComparer(Func<T,T,int> comparer)
-			{
-				Comparer = comparer;
-			}
-
-			int IComparer<T>.Compare(T x, T y)
-			{
-				return Comparer(x, y);
-			}
-		}
-
-		public static void Sort<T>(this List<T> list, Func<T,T,int> comparer)
-		{
-			list.Sort(new LambdaComparer<T>(comparer));
-		}*/
 	}
 }

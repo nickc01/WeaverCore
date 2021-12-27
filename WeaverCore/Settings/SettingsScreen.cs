@@ -12,6 +12,9 @@ using System.Collections.ObjectModel;
 
 namespace WeaverCore.Settings
 {
+	/// <summary>
+	/// Used for sorting <see cref="MemberInfo"/> objects by their setting order
+	/// </summary>
 	class MemberInfoSorter : IComparer<MemberInfo>
 	{
 		Dictionary<MemberInfo, int> OrderCache = new Dictionary<MemberInfo, int>();
@@ -51,8 +54,6 @@ namespace WeaverCore.Settings
 	/// </summary>
 	public sealed class SettingsScreen : MonoBehaviour
 	{
-		//static MemberInfoSorter memberInfoSorter = new MemberInfoSorter();
-
 		/// <summary>
 		/// The current instance of the settings menu. Is null when the settings menu is not visible
 		/// </summary>
@@ -105,7 +106,14 @@ namespace WeaverCore.Settings
 			}
 		}
 
+		/// <summary>
+		/// Called whenever a UI Element is added to the Settings Menu
+		/// </summary>
 		public static event Action<UIElement> ElementAdded;
+
+		/// <summary>
+		/// Called whenever a UI Element is removed from the Settings Menu
+		/// </summary>
 		public static event Action<UIElement> ElementRemoved;
 
 		[Header("Prefabs")]
@@ -157,15 +165,6 @@ namespace WeaverCore.Settings
 #endif
 		}
 
-		/*[OnRegistryLoad]
-		static void OnRegistryLoad(Registry registry)
-		{
-			foreach (var panel in registry.GetFeatures<Panel>())
-			{
-				RegisterPanel(panel);
-			}
-		}*/
-
 		[OnFeatureLoad]
 		static void OnFeatureLoad(GlobalSettings panel)
 		{
@@ -201,9 +200,6 @@ namespace WeaverCore.Settings
 			if (Instance == null)
 			{
 				Instance = GameObject.Instantiate(prefab, WeaverDebugCanvas.Content);
-
-				//Registry.GetAllFeatures<Panel>();
-
 				Instance.RebuildInterface();
 			}
 		}
@@ -297,11 +293,21 @@ namespace WeaverCore.Settings
 			}
 		}
 		
+		/// <summary>
+		/// Is the <see cref="GlobalSettings"/> of the specified type registered to the settings menu?
+		/// </summary>
+		/// <typeparam name="T">The type to check for</typeparam>
+		/// <returns>Returns true if the specific type of <see cref="GlobalSettings"/> is registered with the settings menu</returns>
 		public static bool IsPanelRegistered<T>() where T : GlobalSettings
 		{
 			return IsPanelRegistered(typeof(T));
 		}
 
+		/// <summary>
+		/// Is the <see cref="GlobalSettings"/> of the specified type registered to the settings menu?
+		/// </summary>
+		/// <param name="panelType">The type to check for</param>
+		/// <returns>Returns true if the specific type of <see cref="GlobalSettings"/> is registered with the settings menu</returns>
 		public static bool IsPanelRegistered(Type panelType)
 		{
 			return _panels.Any(p => panelType.IsAssignableFrom(p.GetType()));
@@ -316,6 +322,9 @@ namespace WeaverCore.Settings
 			ConfigScreen.SetActive(false);
 		}
 
+		/// <summary>
+		/// Rebuilds the entire interface so it's back to a clean slate
+		/// </summary>
 		void RebuildInterface()
 		{
 			DeselectCurrentTab();
@@ -340,6 +349,9 @@ namespace WeaverCore.Settings
 			}
 		}
 
+		/// <summary>
+		/// Creates a tab for the global settings panel
+		/// </summary>
 		Tab CreateTab(GlobalSettings panel)
 		{
 			var tab = GameObject.Instantiate(TabPrefab,tabContainer);
@@ -349,6 +361,10 @@ namespace WeaverCore.Settings
 			return tab;
 		}
 
+		/// <summary>
+		/// Called when the player clicks on a tab to open up it's settings
+		/// </summary>
+		/// <param name="tab">The tab that was clicked on</param>
 		internal void SelectTab(Tab tab)
 		{
 			if (selectedTab == tab)
@@ -371,6 +387,9 @@ namespace WeaverCore.Settings
 			tab.Panel.OnPanelOpen();
 		}
 
+		/// <summary>
+		/// Creates all default UI Elements for a Global Settings Panel
+		/// </summary>
 		void CreateElements(GlobalSettings panel)
 		{
 			var members = new List<MemberInfo>();
@@ -387,8 +406,6 @@ namespace WeaverCore.Settings
 					var name = settings != null && settings.DisplayName != null ? settings.DisplayName : StringUtilities.Prettify(member.Name);
 					var description = GetDescriptionOfMember(member);
 					AddMember(panel, member, name, description);
-					//var instance = AddMember(panel, member, name, description);
-					//instance.Visible = ShouldBeEnabled(settings.IsEnabled);
 				}
 			}
 			foreach (var element in currentElements)
@@ -398,6 +415,11 @@ namespace WeaverCore.Settings
 
 		}
 
+		/// <summary>
+		/// Removes a UI Element from the Settings Menu
+		/// </summary>
+		/// <param name="element">The element to remove</param>
+		/// <returns>Returns whether the element was actually removed</returns>
 		internal bool RemoveUIElement(UIElement element)
 		{
 			if (currentElements.Contains(element))
@@ -410,6 +432,9 @@ namespace WeaverCore.Settings
 			return false;
 		}
 
+		/// <summary>
+		/// Adds a UI Element to the Settings Menu
+		/// </summary>
 		internal UIElement AddElement(GlobalSettings panel, IAccessor accessor)
 		{
 			foreach (var element in SettingsElementPrefabs)
@@ -457,15 +482,15 @@ namespace WeaverCore.Settings
 			var spacing = GetSpacingOfMember(member);
 			if (spacing > 0f)
 			{
-				var spacingEle = AddSpacing(panel, element, spacing);
-				spacingEle.Order--;
+				var spacingElement = AddSpacing(panel, element, spacing);
+				spacingElement.Order--;
 			}
 
 			var header = GetHeaderOfMember(member);
 			if (header != null)
 			{
-				var headerEle = AddHeading(panel, header, element);
-				headerEle.Order--;
+				var headerElement = AddHeading(panel, header, element);
+				headerElement.Order--;
 			}
 
 			return element;
@@ -528,13 +553,19 @@ namespace WeaverCore.Settings
 			}
 			else if (memberInfo is MethodInfo)
 			{
-				//return hasAttribute;
 				return hasAttribute && ShouldBeEnabled(attribute.IsEnabled);
 			}
 
 			return false;
 		}
 
+		/// <summary>
+		/// Checks if the specified member has the specified attribute type
+		/// </summary>
+		/// <typeparam name="T">The type of attribute to look for</typeparam>
+		/// <param name="member">The member to check under</param>
+		/// <param name="attribute">The output attribute if the member has the attribute</param>
+		/// <returns>Returns whether the member has the specified attribute type</returns>
 		static bool HasAttribute<T>(MemberInfo member, out T attribute) where T : Attribute
 		{
 			var attributes = member.GetCustomAttributes(typeof(T), false);
@@ -562,6 +593,9 @@ namespace WeaverCore.Settings
 			}
 		}
 
+		/// <summary>
+		/// Removes all currently added UI Elements from the Settings Menu
+		/// </summary>
 		public void RemoveAllUIElements()
 		{
 			for (int i = currentElements.Count - 1; i >= 0; i--)
@@ -569,11 +603,6 @@ namespace WeaverCore.Settings
 				ElementRemoved?.Invoke(currentElements[i]);
 				GameObject.Destroy(currentElements[i].gameObject);
 			}
-			/*foreach (var element in currentElements)
-			{
-				ElementRemoved?.Invoke(element);
-				GameObject.Destroy(element.gameObject);
-			}*/
 
 			currentElements.Clear();
 		}
@@ -752,6 +781,11 @@ namespace WeaverCore.Settings
 			}
 		}
 
+		/// <summary>
+		/// Checks if a UI Element should be visible or not
+		/// </summary>
+		/// <param name="visibility">The visibility of the UI Element</param>
+		/// <returns>Returns whether or not the UI Element should be visible</returns>
 		public static bool ShouldBeEnabled(EnabledType visibility)
 		{
 			if (InPauseMenu && (visibility & EnabledType.PauseOnly) == EnabledType.PauseOnly)

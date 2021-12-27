@@ -40,7 +40,7 @@ namespace WeaverCore.Settings
 	}
 
 	/// <summary>
-	/// Similar to <see cref="SettingFieldAttribute"/>, but can accept a language key and/or sheetTitle for translating the field into multiple languages
+	/// This attribute will cause a field, property, or function to show up in the Weaver Settings Screen, but also uses <seealso cref="WeaverLanguage.GetString(string, string, string)"/> to translate it
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 	public sealed class LangSettingFieldAttribute : SettingFieldAttribute_BASE

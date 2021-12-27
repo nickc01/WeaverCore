@@ -2,11 +2,10 @@
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
-using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	public sealed class AudioPlayer : MonoBehaviour, IOnPool
+    public sealed class AudioPlayer : MonoBehaviour, IOnPool
 	{
 		[SerializeField]
 		AudioChannel channel;

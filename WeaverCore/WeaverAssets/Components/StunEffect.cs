@@ -5,7 +5,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-	public class StunEffect : MonoBehaviour
+    public class StunEffect : MonoBehaviour
 	{
 		static ObjectPool StunEffectPool;
 

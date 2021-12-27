@@ -6,6 +6,9 @@ using System.Text;
 
 namespace WeaverCore.Settings
 {
+	/// <summary>
+	/// Used for accessing a function on a <see cref="GlobalSettings"/> object
+	/// </summary>
 	public class CustomFunctionAccessor : IAccessor
 	{
 		public readonly GlobalSettings Panel;

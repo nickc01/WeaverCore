@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace WeaverCore.Settings.Elements
 {
+	/// <summary>
+	/// A UI Element that runs a function when it is clicked ohn
+	/// </summary>
 	public class FunctionElement : UIElement
 	{
 		public enum InvocationType
@@ -31,6 +34,7 @@ namespace WeaverCore.Settings.Elements
 			button.onClick.AddListener(OnClick);
 		}
 
+		/// <inheritdoc/>
 		protected override void OnAccessorChanged(IAccessor accessor)
 		{
 			text.text = accessor.FieldName;
@@ -62,6 +66,7 @@ namespace WeaverCore.Settings.Elements
 			base.OnAccessorChanged(accessor);
 		}
 
+		/// <inheritdoc/>
 		public override bool CanWorkWithAccessor(IAccessor accessor)
 		{
 			if (accessor is MethodAccessor)

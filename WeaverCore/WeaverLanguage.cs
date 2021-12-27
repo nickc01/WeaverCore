@@ -1,11 +1,10 @@
 ﻿using System;
 using WeaverCore.Implementations;
-using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	// Token: 0x02000028 RID: 40
-	public static class WeaverLanguage
+    // Token: 0x02000028 RID: 40
+    public static class WeaverLanguage
 	{
 		// Token: 0x060000BC RID: 188 RVA: 0x00004D14 File Offset: 0x00002F14
 		public static string GetString(string key, string sheetTitle, string fallback = null)

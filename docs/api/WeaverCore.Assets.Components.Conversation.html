@@ -72,7 +72,8 @@
   
   <h1 id="WeaverCore_Assets_Components_Conversation" data-uid="WeaverCore.Assets.Components.Conversation" class="text-break">Class Conversation
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>The base class for all conversations with an NPC. You can setup a conversation by inheriting from this class, adding the component to an NPC object, and using <a class="xref" href="WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_Speak_System_String_">Speak(String)</a> and <a class="xref" href="WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_PresentYesNoQuestion_System_String_">PresentYesNoQuestion(String)</a> in <a class="xref" href="WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_DoConversation">DoConversation()</a> to talk with the player</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -96,11 +97,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_DialogBoxResult.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.DialogBoxResult%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L25">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L43">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_DialogBoxResult_" data-uid="WeaverCore.Assets.Components.Conversation.DialogBoxResult*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_DialogBoxResult" data-uid="WeaverCore.Assets.Components.Conversation.DialogBoxResult">DialogBoxResult</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The result of the yes/no dialog box</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -128,11 +130,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_DisplayTitle_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.DisplayTitle(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L199">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L246">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_DisplayTitle_" data-uid="WeaverCore.Assets.Components.Conversation.DisplayTitle*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_DisplayTitle_System_String_System_String_" data-uid="WeaverCore.Assets.Components.Conversation.DisplayTitle(System.String,System.String)">DisplayTitle(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Display an <a class="xref" href="WeaverCore.Assets.Components.AreaTitle.html">AreaTitle</a>. This is mainly used to display the name of the NPC the player is talking to</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -165,11 +168,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_DoConversation.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.DoConversation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L31">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L53">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_DoConversation_" data-uid="WeaverCore.Assets.Components.Conversation.DoConversation*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_DoConversation" data-uid="WeaverCore.Assets.Components.Conversation.DoConversation">DoConversation()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Override this method to customize the conversation with a player. Use <a class="xref" href="WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_Speak_System_String_">Speak(String)</a> to speak with the player, and use <a class="xref" href="WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_PresentYesNoQuestion_System_String_">PresentYesNoQuestion(String)</a> to prevent the player with a yes/no question</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -195,11 +199,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_HideConversationBox.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.HideConversationBox%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L89">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L123">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_HideConversationBox_" data-uid="WeaverCore.Assets.Components.Conversation.HideConversationBox*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_HideConversationBox" data-uid="WeaverCore.Assets.Components.Conversation.HideConversationBox">HideConversationBox()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Hides the conversation box</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -210,11 +215,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_PresentYesNoQuestion_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.PresentYesNoQuestion(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L144">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L189">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_PresentYesNoQuestion_" data-uid="WeaverCore.Assets.Components.Conversation.PresentYesNoQuestion*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_PresentYesNoQuestion_System_String_" data-uid="WeaverCore.Assets.Components.Conversation.PresentYesNoQuestion(System.String)">PresentYesNoQuestion(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Presents a yes/no question prompt to the player</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -233,7 +239,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">message</span></td>
-        <td></td>
+        <td><p>The message to say in the prompt</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -257,11 +264,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_PresentYesNoQuestion_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.PresentYesNoQuestion(System.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L149">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L199">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_PresentYesNoQuestion_" data-uid="WeaverCore.Assets.Components.Conversation.PresentYesNoQuestion*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_PresentYesNoQuestion_System_String_System_Int32_" data-uid="WeaverCore.Assets.Components.Conversation.PresentYesNoQuestion(System.String,System.Int32)">PresentYesNoQuestion(String, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Presents a yes/no question prompt to the player</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -280,12 +288,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">message</span></td>
-        <td></td>
+        <td><p>The message to speak</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">geoCost</span></td>
-        <td></td>
+        <td><p>How much geo the player need to pay to select &quot;Yes&quot;</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -309,11 +319,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_ShowConversationBox.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.ShowConversationBox%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L76">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L107">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_ShowConversationBox_" data-uid="WeaverCore.Assets.Components.Conversation.ShowConversationBox*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_ShowConversationBox" data-uid="WeaverCore.Assets.Components.Conversation.ShowConversationBox">ShowConversationBox()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Shows the conversation box</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -324,11 +335,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_Speak_System_Collections_Generic_IEnumerable_System_String__.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.Speak(System.Collections.Generic.IEnumerable%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L126">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L163">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_Speak_" data-uid="WeaverCore.Assets.Components.Conversation.Speak*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_Speak_System_Collections_Generic_IEnumerable_System_String__" data-uid="WeaverCore.Assets.Components.Conversation.Speak(System.Collections.Generic.IEnumerable{System.String})">Speak(IEnumerable&lt;String&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Speaks a series of messages to the player. Each message is split into seperate pages</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -347,7 +359,8 @@
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td><span class="parametername">messages</span></td>
-        <td></td>
+        <td><p>The messages to speak</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -371,11 +384,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_Speak_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.Speak(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L107">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L140">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_Speak_" data-uid="WeaverCore.Assets.Components.Conversation.Speak*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_Speak_System_String_" data-uid="WeaverCore.Assets.Components.Conversation.Speak(System.String)">Speak(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Speaks a message to the player</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -394,7 +408,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">message</span></td>
-        <td></td>
+        <td><p>The message to speak</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -418,11 +433,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_Speak_System_String___.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.Speak(System.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L139">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L180">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_Speak_" data-uid="WeaverCore.Assets.Components.Conversation.Speak*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_Speak_System_String___" data-uid="WeaverCore.Assets.Components.Conversation.Speak(System.String[])">Speak(String[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Speaks a series of messages to the player. Each message is split into seperate pages</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -441,7 +457,8 @@
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">messages</span></td>
-        <td></td>
+        <td><p>The messages to speak</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -465,11 +482,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_StartConversation.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.StartConversation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L33">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L58">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_StartConversation_" data-uid="WeaverCore.Assets.Components.Conversation.StartConversation*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_StartConversation" data-uid="WeaverCore.Assets.Components.Conversation.StartConversation">StartConversation()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Starts a conversation with the player</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -480,11 +498,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation_StartConversationRoutine.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation.StartConversationRoutine%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L54">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L82">View Source</a>
   </span>
   <a id="WeaverCore_Assets_Components_Conversation_StartConversationRoutine_" data-uid="WeaverCore.Assets.Components.Conversation.StartConversationRoutine*"></a>
   <h4 id="WeaverCore_Assets_Components_Conversation_StartConversationRoutine" data-uid="WeaverCore.Assets.Components.Conversation.StartConversationRoutine">StartConversationRoutine()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Starts a conversation with the player</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -520,7 +539,7 @@
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Assets_Components_Conversation.md&amp;value=---%0Auid%3A%20WeaverCore.Assets.Components.Conversation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L14" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/WeaverAssets/Components/NPCS/Conversation.cs/#L17" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

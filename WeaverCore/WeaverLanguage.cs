@@ -3,28 +3,50 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
-    // Token: 0x02000028 RID: 40
+	/// <summary>
+	/// Used for accessing translations
+	/// </summary>
     public static class WeaverLanguage
 	{
-		// Token: 0x060000BC RID: 188 RVA: 0x00004D14 File Offset: 0x00002F14
+		/// <summary>
+		/// Gets a translated string via a key and sheetTitle
+		/// </summary>
+		/// <param name="key">The language key to get the translated string under</param>
+		/// <param name="sheetTitle">The sheet title to get teh translated string under</param>
+		/// <param name="fallback">A fallback in case the key wasn't found</param>
+		/// <returns>Returns the translated string from the language key</returns>
 		public static string GetString(string key, string sheetTitle, string fallback = null)
 		{
 			return WeaverLanguage.impl.GetString(sheetTitle, key, fallback);
 		}
 
-		// Token: 0x060000BD RID: 189 RVA: 0x00004D23 File Offset: 0x00002F23
+		/// <summary>
+		/// Gets a translated string via a key
+		/// </summary>
+		/// <param name="key">The language key to get the translated string under</param>
+		/// <param name="fallback">A fallback in case the key wasn't found</param>
+		/// <returns>Returns the translated string from the language key</returns>
 		public static string GetString(string key, string fallback = null)
 		{
 			return WeaverLanguage.impl.GetString(key, fallback);
 		}
 
-		// Token: 0x060000BE RID: 190 RVA: 0x00004D31 File Offset: 0x00002F31
+		/// <summary>
+		/// Does the language key exist?
+		/// </summary>
+		/// <param name="key">The language key to check for</param>
+		/// <param name="sheetTitle">The sheet title to get teh translated string under</param>
+		/// <returns>Returns true if the language key exists</returns>
 		public static bool HasString(string key, string sheetTitle)
 		{
 			return WeaverLanguage.impl.HasString(sheetTitle, key);
 		}
 
-		// Token: 0x060000BF RID: 191 RVA: 0x00004D3F File Offset: 0x00002F3F
+		/// <summary>
+		/// Does the language key exist?
+		/// </summary>
+		/// <param name="key">The language key to check for</param>
+		/// <returns>Returns true if the language key exists</returns>
 		public static bool HasString(string key)
 		{
 			return WeaverLanguage.impl.HasString(key);
@@ -40,7 +62,6 @@ namespace WeaverCore
 			return impl.GetStringInternal(key);
 		}
 
-		// Token: 0x040000A1 RID: 161
 		private static WeaverLanguage_I impl = ImplFinder.GetImplementation<WeaverLanguage_I>();
 	}
 }

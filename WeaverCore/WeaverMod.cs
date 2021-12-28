@@ -12,6 +12,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+    /// <summary>
+    /// The base class for all WeaverCore Mods
+    /// </summary>
     public abstract class WeaverMod : Mod
     {
 #if UNITY_EDITOR
@@ -29,18 +32,10 @@ namespace WeaverCore
                 return _loadedMods;
 #else
                 return ModHooks.GetAllMods();
-			    /*if (modLoaderType == null)
-				{
-                    modLoaderType = typeof(IMod).Assembly.GetType("Modding.ModLoader");
-                    loadedMods = modLoaderType.GetField("LoadedMods", BindingFlags.Public | BindingFlags.Static);
-                }
-                return (List<IMod>)loadedMods.GetValue(null);*/
 #endif
             }
         }
 
-
-        //As soon as any WeaverCore mod loads, the init functions will be called
         protected WeaverMod() : this(null)
 		{
 
@@ -65,11 +60,6 @@ namespace WeaverCore
             }
         }
 
-        /*static string Prettify(string input)
-        {
-            return Regex.Replace(input, @"(\S)([A-Z])", @"$1 $2");
-        }*/
-
         public override string GetVersion()
         {
             return GetType().Assembly.GetName().Version.ToString();
@@ -87,19 +77,7 @@ namespace WeaverCore
                 WeaverLog.Log("Loading Weaver Mod " + modType.Name);
                 RegistryLoader.LoadAllRegistries(modType);
 
-                //WeaverLog.Log(modType.FullName + "___LOADED!!!");
-
                 ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_,a) => a.ModType.IsAssignableFrom(modType));
-
-                //Load all global mod settings pertaining to this mod
-                /*foreach (var registry in Registry.FindModRegistries(modType))
-                {
-                    var settingTypes = registry.GetFeatureTypes<GlobalWeaverSettings>();
-                    foreach (var settingsType in settingTypes)
-                    {
-                        settingsType.Load();
-                    }
-                }*/
             }
             else
             {
@@ -112,7 +90,6 @@ namespace WeaverCore
 
             foreach (var registry in Registries)
             {
-                //registry.RegistryEnabled = true;
                 registry.EnableRegistry();
             }
         }
@@ -121,7 +98,6 @@ namespace WeaverCore
         {
             foreach (var registry in Registries)
             {
-                //registry.RegistryEnabled = false;
                 registry.DisableRegistry();
             }
         }

@@ -88,6 +88,10 @@ namespace WeaverCore.Components.DeathEffects
             }
         }
 
+        /// <summary>
+        /// Will randomly check if the player should receive essence from killing an enemy.
+        /// </summary>
+        /// <returns>Returns true if the player shouuld receive essence</returns>
         public bool DoEssenceChance()
         {
             Player player = Player.Player1;

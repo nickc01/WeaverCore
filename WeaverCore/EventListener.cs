@@ -34,11 +34,23 @@ namespace WeaverCore
             }
         }
 
+        /// <summary>
+        /// Triggered when any event gets sent
+        /// </summary>
+        /// <param name="eventName">The event that was sent</param>
+        /// <param name="source">The object sending the event</param>
+        /// <param name="destination">The object receiving the event</param>
+        /// <param name="eventType">The type of event that was sent</param>
         protected virtual void OnEventSent(string eventName, GameObject source, GameObject destination, EventManager.EventType eventType)
         {
 
         }
 
+        /// <summary>
+        /// Adds an event listener to listen for an event
+        /// </summary>
+        /// <param name="action">The action to be triggered when an event is fired</param>
+        /// <returns>>Returns the unique id for the listener. This ID can be used to remove the listener via <see cref="RemoveListener(uint)"/></returns>
         public uint ListenForEvent(EventListenerWithNameDelegate action)
         {
             unchecked
@@ -54,7 +66,7 @@ namespace WeaverCore
         /// </summary>
         /// <param name="eventName">The event to listen for</param>
         /// <param name="action">The action that is called when the event is fired</param>
-        /// <returns>Returns the unique id for the listener. This ID can be used to undo this action via <see cref="RemoveListener(uint)"/></returns>
+        /// <returns>Returns the unique id for the listener. This ID can be used to remove the listener via <see cref="RemoveListener(uint)"/></returns>
         public uint ListenForEvent(string eventName, EventListenerDelegate action)
         {
             return ListenForEvent((name, source, dest) =>

@@ -8,23 +8,54 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+	/// <summary>
+	/// Used for spawning blood particle effects
+	/// </summary>
 	public class Blood : MonoBehaviour
 	{
-		//static ObjectPool BloodPool;
 		static GameObject bloodPrefab;
 
 		public const float SpeedMultiplier = 1.2f;
 		public const float AmountMultiplier = 1.3f;
 
-
+		/// <summary>
+		/// A struct that details how blood particles should be spawned
+		/// </summary>
 		public struct BloodSpawnInfo
 		{
+			/// <summary>
+			/// The min amount of blood particles to spawn
+			/// </summary>
 			public int MinCount;
+
+			/// <summary>
+			/// The max amount of blood particles to spawn
+			/// </summary>
 			public int MaxCount;
+
+			/// <summary>
+			/// The min velocity of the blood particles
+			/// </summary>
 			public float MinSpeed;
+
+			/// <summary>
+			/// The max velocity of the blood particles
+			/// </summary>
 			public float MaxSpeed;
+
+			/// <summary>
+			/// The minimum angle direction of the blood particles
+			/// </summary>
 			public float AngleMin;
+
+			/// <summary>
+			/// The maximum angle direction of the blood particles
+			/// </summary>
 			public float AngleMax;
+
+			/// <summary>
+			/// The color of the blood particles. If left null, will use the default color
+			/// </summary>
 			public Color? ColorOverride;
 
 			public BloodSpawnInfo(	int minCount, int maxCount, float minSpeed, float maxSpeed,
@@ -40,32 +71,20 @@ namespace WeaverCore
 			}
 		}
 
-		/*[Attributes.OnHarmonyPatch]
-		static void PatchTest(HarmonyPatcher patcher)
-		{
-			Debug.Log("Running Blood patch");
-			patcher.Patch(typeof(Blood).GetMethod(nameof(SpawnBlood)), typeof(Blood).GetMethod(nameof(Prefix), BindingFlags.NonPublic | BindingFlags.Static), null);
-		}
 
-		static bool Prefix()
-		{
-			Debug.Log("Spawning Blood!");
-			return true;
-		}*/
-
-
+		/// <summary>
+		/// Spawns blood particles
+		/// </summary>
+		/// <param name="position">The position to spawn the particles</param>
+		/// <param name="spawnInfo">The info object used to determine how the blood is spawned</param>
+		/// <returns>Returns an instance to the blood particle system creating the effects</returns>
 		public static Blood SpawnBlood(Vector3 position, BloodSpawnInfo spawnInfo)
 		{
 			if (bloodPrefab == null)
 			{
 				bloodPrefab = WeaverAssets.LoadWeaverAsset<GameObject>("Blood Particles");
 			}
-			/*if (BloodPool == null)
-			{
-				BloodPool = new ObjectPool(WeaverAssets.LoadWeaverAsset<GameObject>("Blood Particles"));
-			}*/
 
-			//var instance = BloodPool.Instantiate(position, Quaternion.identity);
 			var instance = Pooling.Instantiate(bloodPrefab, position, Quaternion.identity);
 			var particleSystem = instance.GetComponent<ParticleSystem>();
 			particleSystem.Stop();
@@ -90,34 +109,22 @@ namespace WeaverCore
 			return instance.GetComponent<Blood>();
 		}
 
-		/*[SerializeField]
-		short bloodSpawnMin = 12;
-		[SerializeField]
-		short bloodSpawnMax = 15;
-		[SerializeField]
-		float bloodSpeedMin = 24f;
-		[SerializeField]
-		float bloodSpeedMax = 30f;
-		[SerializeField]
-		float bloodAngleMin = 0f;
-		[SerializeField]
-		float bloodAngleMax = 360f;
-		[SerializeField]
-		float bloodSpawnDelay = 0.1f;
-		[SerializeField]
-		Vector3 bloodSpawnOffset = new Vector3(0f, 0f, 0.002f);
-		[SerializeField]
-		GameObject bloodSplatterParticle;
-		[SerializeField]
-		float bloodSpeedMultiplier = 1.2f;
-		[SerializeField]
-		float bloodAmountMultiplier = 1.3f;*/
-
+		/// <summary>
+		/// Spawns a bunch of blood particles in random directions
+		/// </summary>
+		/// <param name="position">The position the blood should be spawned at</param>
+		/// <returns>Returns an instance to the blood particle system creating the effects</returns>
 		public static Blood SpawnRandomBlood(Vector3 position)
 		{
 			return SpawnBlood(position + new Vector3(0f, 0f, 0.002f), new BloodSpawnInfo(12,15,24f,30f,0f,360f));
 		}
 
+		/// <summary>
+		/// Spawns blood effects that travel in a certain direction
+		/// </summary>
+		/// <param name="position">The position the blood should be spawned at</param>
+		/// <param name="direction">The general direction the blood should be traveling in</param>
+		/// <returns>Returns a list of all the blood particle systems creating the effects</returns>
 		public static IEnumerable<Blood> SpawnDirectionalBlood(Vector3 position, CardinalDirection direction)
 		{
 			Blood[] bloods = null;
@@ -145,11 +152,11 @@ namespace WeaverCore
 			}
 		}
 
-
-
-
-
 		ParticleSystem _particles;
+
+		/// <summary>
+		/// The particle system emitting the blood effects
+		/// </summary>
 		public ParticleSystem Particles
 		{
 			get

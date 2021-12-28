@@ -4,13 +4,19 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// Displays a "Map Updated" icon in the bottom left corner. Used when the player sits on a <see cref="WeaverBench"/>
+	/// </summary>
 	public class MapUpdateDisplay : MonoBehaviour
 	{
 		[SerializeField]
+		[Tooltip("Should the Icon be displayed immediately upon spawning in?")]
 		bool autoUp = false;
 		[SerializeField]
+		[Tooltip("The delay before the icon fades in")]
 		float upDelay = 0.5f;
 		[SerializeField]
+		[Tooltip("The time it takes for the icon to fade in")]
 		float upTime = 0.25f;
 		[SerializeField]
 		Color downColor = new Color(1f, 1f, 1f, 0f);
@@ -130,12 +136,6 @@ namespace WeaverCore.Assets.Components
 				tmp.color = MeshColor;
 			}
 
-
-			/*if (sRenderer != null)
-			{
-				
-			}*/
-
 			yield break;
 		}
 
@@ -209,8 +209,6 @@ namespace WeaverCore.Assets.Components
 				tmp.enabled = true;
 				tmp.color = upColor;
 			}
-
-
 		}
 
 		public void PulseDown()

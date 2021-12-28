@@ -124,7 +124,9 @@ namespace WeaverCore.Components
 		/// </summary>
 		public string PlayingClip { get; private set; }
 
-		//Each time a new animation is played, this value gets regenerated. This is used to differentiate between different playing animations
+		/// <summary>
+		/// Each time a new animation is played, this value gets regenerated. This is used to differentiate between different playing animations
+		/// </summary>
 		public Guid PlayingGUID { get; private set; }
 
 		protected virtual void OnEnable()

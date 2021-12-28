@@ -8,6 +8,9 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {
+	/// <summary>
+	/// Used for accessing input from the player's controller
+	/// </summary>
     public abstract class PlayerInput : IImplementation
 	{
 		static PlayerInput impl = ImplFinder.GetImplementation<PlayerInput>();

@@ -76,64 +76,92 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="WeaverCore.Assets.Components.AnimationDestroyer.html">AnimationDestroyer</a></h4>
-      <section></section>
+      <h4><a class="xref" href="WeaverCore.Assets.Components.AreaTitle.html">AreaTitle</a></h4>
+      <section><p>Used to show an area title in the corner of the screen. Used to show the name of bosses or NPCs</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Assets.Components.AreaTitleTextFitter.html">AreaTitleTextFitter</a></h4>
+      <section><p>Used for fitting the text in the <a class="xref" href="WeaverCore.Assets.Components.AreaTitle.html">AreaTitle</a> into place</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.AudioTester.html">AudioTester</a></h4>
-      <section></section>
+      <section><p>Was used early in development to test out different audio snapshots and audio groups</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Assets.Components.AutoDestroy.html">AutoDestroy</a></h4>
+      <section><p>This component is used to automatically destroy an object after a set condition. This can be setup to:</p>
+<ol>
+<li>Destroy after a set amount of time has passed</li>
+<li>Destroy when the particle system on an object stops</li>
+<li>Destroy when an animation is done (via an animation event)</li>
+</ol>
+<p>The destroy behaviour can also be customized</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.BossDeathExplosion.html">BossDeathExplosion</a></h4>
-      <section></section>
+      <section><p>Plays the Boss Death Explosion, including shaking the camera and spawning particles</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.Conversation.html">Conversation</a></h4>
-      <section></section>
+      <section><p>The base class for all conversations with an NPC. You can setup a conversation by inheriting from this class, adding the component to an NPC object, and using <a class="xref" href="WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_Speak_System_String_">Speak(String)</a> and <a class="xref" href="WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_PresentYesNoQuestion_System_String_">PresentYesNoQuestion(String)</a> in <a class="xref" href="WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_DoConversation">DoConversation()</a> to talk with the player</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.DeathWave.html">DeathWave</a></h4>
-      <section></section>
+      <section><p>Used to play a wave effect upon death</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.DetectHero.html">DetectHero</a></h4>
-      <section></section>
-      <h4><a class="xref" href="WeaverCore.Assets.Components.DumpUI.html">DumpUI</a></h4>
-      <section></section>
+      <section><p>Used by <a class="xref" href="WeaverCore.Assets.Components.WeaverBench.html">WeaverBench</a> to see if the player is within the bench's vicinity</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.EssenceEffects.html">EssenceEffects</a></h4>
-      <section></section>
+      <section><p>Used to play essence particle effects when the player defeats a boss and is transported back from the dream world</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.FitToText.html">FitToText</a></h4>
-      <section></section>
-      <h4><a class="xref" href="WeaverCore.Assets.Components.FixedAspectRatio.html">FixedAspectRatio</a></h4>
-      <section></section>
+      <section><p>Resizes the RectTransform of an object to always fit the text it contains</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.ForceAspectRatio.html">ForceAspectRatio</a></h4>
-      <section></section>
-      <h4><a class="xref" href="WeaverCore.Assets.Components.GameObjectSelectButton.html">GameObjectSelectButton</a></h4>
-      <section></section>
+      <section><p>Forces the camera to be a certain aspect ratio</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.LightPulse.html">LightPulse</a></h4>
-      <section></section>
+      <section><p>Used to creating a pulsating light behind the bench</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.MapUpdateDisplay.html">MapUpdateDisplay</a></h4>
-      <section></section>
+      <section><p>Displays a &quot;Map Updated&quot; icon in the bottom left corner. Used when the player sits on a <a class="xref" href="WeaverCore.Assets.Components.WeaverBench.html">WeaverBench</a></p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.MapUpdateMessage.html">MapUpdateMessage</a></h4>
-      <section></section>
-      <h4><a class="xref" href="WeaverCore.Assets.Components.ParticleRecycler.html">ParticleRecycler</a></h4>
-      <section></section>
+      <section><p>Used to display the &quot;Map Updated&quot; text when the map gets updated. Called from <a class="xref" href="WeaverCore.Assets.Components.WeaverBench.html">WeaverBench</a> when the player sits on it</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.RandomRotation.html">RandomRotation</a></h4>
-      <section></section>
+      <section><p>Sets the object to a randomized rotation</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.SetCameraRect.html">SetCameraRect</a></h4>
-      <section></section>
+      <section><p>Forces the RectTransform of a camera to be the same as it's orthographicSize</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.Spatter.html">Spatter</a></h4>
-      <section></section>
+      <section><p>An orange infectious blob object that will destroy itself when hitting a wall or the player</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.StunEffect.html">StunEffect</a></h4>
-      <section></section>
+      <section><p>An effect that is instantiated when an enemy is stunned</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.UninfectedDeathParticles.html">UninfectedDeathParticles</a></h4>
-      <section></section>
+      <section><p>A particle system that is created when an uninfected enemy dies</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.UninfectedHitParticles.html">UninfectedHitParticles</a></h4>
-      <section></section>
+      <section><p>A particle system that is created when an uninfected enemy is hit</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.WeaverArrowPrompt.html">WeaverArrowPrompt</a></h4>
-      <section></section>
+      <section><p>Used to display an arrow prompt with text above an object. Mainly used by <a class="xref" href="WeaverCore.Assets.Components.WeaverBench.html">WeaverBench</a> and <a class="xref" href="WeaverCore.Assets.Components.WeaverNPC.html">WeaverNPC</a></p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.WeaverBench.html">WeaverBench</a></h4>
-      <section></section>
+      <section><p>Used to create custom benches in WeaverCore</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.WeaverNPC.html">WeaverNPC</a></h4>
-      <section></section>
+      <section><p>A custom NPC that the player can talk to</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.WeaverSceneBorder.html">WeaverSceneBorder</a></h4>
-      <section></section>
+      <section><p>When a new scene is loaded, these are the black objects that are used to surround the scene at it's borders</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.WhiteFlash.html">WhiteFlash</a></h4>
-      <section></section>
+      <section><p>A white flash effect that is spawned when an entity is teleported via the <a class="xref" href="WeaverCore.Utilities.Teleporter.html">Teleporter</a> functions</p>
+</section>
     <h3 id="enums">Enums
   </h3>
       <h4><a class="xref" href="WeaverCore.Assets.Components.Conversation.YesNoResult.html">Conversation.YesNoResult</a></h4>
-      <section></section>
+      <section><p>The result of giving the player a yes/no question prompt</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Assets.Components.WeaverNPC.PlayerTalkSide.html">WeaverNPC.PlayerTalkSide</a></h4>
       <section><p>Which side of the NPC can the player be on when talking to them?</p>
 </section>

@@ -8,9 +8,9 @@ namespace WeaverCore.Attributes
     /// <example>
     /// <code>
     /// [OnFeatureUnload]
-    /// static void FeatureUnloaded(<seealso cref="LanguageTable"/> langTable)
+    /// static void FeatureUnloaded(<seealso cref="WeaverCore.Features.LanguageTable"/> langTable)
     /// {
-    ///     //This is called whenever a <seealso cref="LanguageTable"/> is unloaded from a registry
+    ///     //This is called whenever a <seealso cref="WeaverCore.Features.LanguageTable"/> is unloaded from a registry
     /// }
     /// </code>
     /// </example>

@@ -41,7 +41,7 @@ namespace WeaverCore.Components
         public delegate void HealthChangeDelegate(int previousHealth, int newHealth);
 
         //A list of milestones that get executed when the health reaches certain points
-        private List<HealthMilestone> HealthMilestones = new List<HealthMilestone>();
+        private List<(int destHealth, Action action)> HealthMilestones = new List<(int destHealth, Action action)>();
         private new Collider2D collider;
         private HealthManager_I impl;
 
@@ -469,27 +469,27 @@ namespace WeaverCore.Components
                 action();
                 return;
             }
-            HealthMilestones.Add(new HealthMilestone(health, action));
+            HealthMilestones.Add((health, action));
         }
 
         private void CheckMilestones(int healthAfter)
         {
             for (int i = HealthMilestones.Count - 1; i >= 0; i--)
             {
-                HealthMilestone milestone = HealthMilestones[i];
+                var milestone = HealthMilestones[i];
                 if (HasModifier<InfiniteHealthModifier>())
                 {
-                    if (milestone.HealthNumber <= healthAfter)
+                    if (milestone.destHealth <= healthAfter)
                     {
-                        milestone.MilestoneReached();
+                        milestone.action();
                         HealthMilestones.RemoveAt(i);
                     }
                 }
                 else
                 {
-                    if (milestone.HealthNumber >= healthAfter)
+                    if (milestone.destHealth >= healthAfter)
                     {
-                        milestone.MilestoneReached();
+                        milestone.action();
                         HealthMilestones.RemoveAt(i);
                     }
                 }

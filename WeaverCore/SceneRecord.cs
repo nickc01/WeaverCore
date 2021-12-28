@@ -111,26 +111,6 @@ namespace WeaverCore
 			}
 		}
 
-		/*/// <summary>
-		/// Adds
-		/// </summary>
-		/// <param name="scene"></param>
-		/// <returns></returns>
-		public bool AddSceneAddition(string scene)
-		{
-			if (!sceneAdditionPaths.Contains(scene))
-			{
-				sceneAdditionPaths.Add(scene);
-				return true;
-			}
-			return false;
-		}
-
-		public bool RemoveSceneAddition(string scene)
-		{
-			return sceneAdditionPaths.Remove(scene);
-		}*/
-
 		/// <summary>
 		/// Replaces the <paramref name="oldScene"/> with the <paramref name="newScene"/>. Anytime the old scene gets loaded, the new scene will load instead
 		/// </summary>
@@ -224,7 +204,6 @@ namespace WeaverCore
 		[BeforeBuild]
 		static void SetBundles()
 		{
-			Debug.Log("Before Build");
 			var scenes = AssetDatabase.FindAssets($"t:{nameof(SceneRecord)}");
 			foreach (var guid in scenes)
 			{
@@ -232,7 +211,6 @@ namespace WeaverCore
 				var record = AssetDatabase.LoadAssetAtPath<SceneRecord>(path);
 				if (record != null)
 				{
-					//record.OnValidate();
 					var oldBundleName = GetAssetBundleName(record);
 					var match = Regex.Match(oldBundleName, @"([\d\w]+?)_bundle");
 					if (match.Success)

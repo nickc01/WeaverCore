@@ -12,42 +12,36 @@ using WeaverCore.Attributes;
 namespace WeaverCore
 {
     /// <summary>
-    /// Used for playing sounds within hollow knight with the game's standard audio effects applied
+    /// Used for playing audio under certain channels.
     /// </summary>
     public static class WeaverAudio
 	{
-		//[OnRuntimeInit]
 		[OnRegistryLoad]
 		static void OnRuntimeStart(Registry registry)
 		{
-			//WeaverLog.Log("Registry = " + registry);
-			/*if (registry != null)
-			{
-				WeaverLog.Log("Mod Assembly Name = " + registry.ModAssemblyName);
-				WeaverLog.Log("Mod Name = " + registry.ModName);
-				WeaverLog.Log("Mod Registry Name = " + registry.RegistryName);
-				WeaverLog.Log("Mod Registry Enabled = " + registry.RegistryEnabled);
-				WeaverLog.Log("Mod Type = " + registry.ModType);
-			}*/
 			if (registry.ModType == typeof(WeaverCore.Internal.WeaverCore_ModClass))
 			{
 				if (baseObject == null)
 				{
 					baseObject = WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Audio Player Prefab").GetComponent<AudioPlayer>();
-					//AudioPlayerPool = new ObjectPool(WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Audio Player Prefab"), PoolLoadType.Local);
-					//AudioPlayerPool.FillPool(1);
 				}
 			}
 		}
 
-		//static ObjectPool AudioPlayerPool;
 		static AudioPlayer baseObject;
 
 		static WeaverAudio_I Impl = ImplFinder.GetImplementation<WeaverAudio_I>();
 
+		/// <summary>
+		/// Creates an audio player that can be used to play an audio clip under a certain audio channel. Use the <see cref="AudioPlayer.Play(bool)"/> function to play the sound
+		/// </summary>
+		/// <param name="clip">The clip to play</param>
+		/// <param name="position">Where in the scene should the sound be played at</param>
+		/// <param name="volume">The volme of the audio clip</param>
+		/// <param name="channel">The audio channel the sound should be played under</param>
+		/// <returns>Returns a new audio player for playing the audio clip</returns>
 		public static AudioPlayer Create(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
 		{
-			//var audioObject = AudioPlayerPool.Instantiate<AudioPlayer>(position, Quaternion.identity);
 			var audioObject = Pooling.Instantiate(baseObject, position, Quaternion.identity);
 			var audioSource = audioObject.AudioSource;
 
@@ -99,17 +93,8 @@ namespace WeaverCore
 			return audioObject;
 		}
 
-		/*public static void PlayReuse(AudioPlayer audioObject, AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound, bool autoPlay = true, bool deleteWhenDone = false)
-		{
-			if (Impl == null)
-			{
-				Impl = ImplFinder.GetImplementation<WeaverAudio_I>();
-			}
-			Impl.PlayReuse(audioObject, clip, position, volume, channel, autoPlay, deleteWhenDone);
-		}*/
-
 		/// <summary>
-		/// Gets the main audio mixer that hollow knight uses. Currently returns null if used in the editor
+		/// Gets the main audio mixer that hollow knight uses
 		/// </summary>
 		public static AudioMixer MainMixer
 		{
@@ -119,6 +104,9 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Gets the "Music" audio group for music related audio
+		/// </summary>
 		public static AudioMixerGroup MusicMixerGroup
 		{
 			get
@@ -126,6 +114,10 @@ namespace WeaverCore
 				return Impl.MainMusic;
 			}
 		}
+
+		/// <summary>
+		/// Gets the "Master" audio group
+		/// </summary>
 		public static AudioMixerGroup MasterMixerGroup
 		{
 			get
@@ -133,6 +125,10 @@ namespace WeaverCore
 				return Impl.Master;
 			}
 		}
+
+		/// <summary>
+		/// Gets the "Sounds" audio mixer for playing game sounds
+		/// </summary>
 		public static AudioMixerGroup SoundsMixerGroup
 		{
 			get
@@ -141,6 +137,10 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Gets the mixer group for a certain channel
+		/// </summary>
+		/// <param name="channel">The channel to get the mixer group for</param>
 		public static AudioMixerGroup GetMixerForChannel(AudioChannel channel)
 		{
 			return Impl.GetMixerForChannel(channel);

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+using WeaverCore.Attributes;
+using WeaverCore.Editor.Utilities;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 
@@ -11,83 +14,72 @@ namespace WeaverCore.Editor.Implementations
 {
 	public class E_WeaverAudio_I : WeaverAudio_I
 	{
+		AudioMixer _mainMixer;
 		public override AudioMixer MainMixer
 		{
 			get
 			{
-				return null;
+                if (_mainMixer == null)
+                {
+					_mainMixer = EditorAssets.LoadEditorAsset<AudioMixer>("Music");
+                }
+				return _mainMixer;
 			}
 		}
 
+		static AudioMixerGroup _mainMusic;
 		public override AudioMixerGroup MainMusic
 		{
 			get
 			{
-				return null;
+                if (_mainMusic == null)
+                {
+					_mainMusic = (AudioMixerGroup)AssetDatabase.LoadAllAssetRepresentationsAtPath(AssetDatabase.GetAssetPath(MainMixer)).First(o => o is AudioMixerGroup g && g.name == "Main");
+				}
+				return _mainMusic;
 			}
 		}
 
+		static AudioMixerGroup _master;
 		public override AudioMixerGroup Master
 		{
 			get
 			{
-				return null;
+				if (_master == null)
+				{
+					_master = (AudioMixerGroup)AssetDatabase.LoadAllAssetRepresentationsAtPath(AssetDatabase.GetAssetPath(MainMixer)).First(o => o is AudioMixerGroup g && g.name == "Master");
+				}
+				return _master;
 			}
 		}
 
+		static AudioMixerGroup _sounds;
 		public override AudioMixerGroup Sounds
 		{
 			get
 			{
-				return null;
+				if (_sounds == null)
+				{
+					_sounds = (AudioMixerGroup)AssetDatabase.LoadAllAssetRepresentationsAtPath(AssetDatabase.GetAssetPath(MainMixer)).First(o => o is AudioMixerGroup g && g.name == "Sounds");
+				}
+				return _sounds;
 			}
 		}
 
-		/*public override AudioChannel GetChannel(AudioPlayer audioObject)
-		{
-			return AudioChannel.None;
-		}*/
 
 		public override AudioMixerGroup GetMixerForChannel(AudioChannel channel)
 		{
-			return null;
-		}
-
-		/*public AudioPlayer Play(AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
-		{
-			//GameObject audioObject = new GameObject("__AUDIO_OBJECT__", typeof(AudioSource), typeof(AudioPlayer));
-			var audioObject = AudioPlayer.Create(position);
-
-			return PlayReuse(audioObject, clip, position, volume, channel, autoPlay, deleteWhenDone);
-		}
-
-		public AudioPlayer PlayReuse(AudioPlayer audioObject, AudioClip clip, Vector3 position, float volume, AudioChannel channel, bool autoPlay, bool deleteWhenDone)
-		{
-			var audioSource = audioObject.AudioSource;//audioObject.GetComponent<AudioSource>();
-
-			audioSource.Stop();
-			audioSource.clip = clip;
-			audioObject.gameObject.name = "(Sound) " + clip.name;
-			audioObject.transform.position = position;
-			audioSource.volume = volume;
-			if (autoPlay)
-			{
-				audioSource.Play();
-			}
-
-			//var hollowAudio = audioObject.GetComponent<AudioPlayer>();
-
-			if (deleteWhenDone)
-			{
-				audioObject.Delete(clip.length);
-			}
-
-			return audioObject;
-		}*/
-
-		/*public override void SetChannel(AudioPlayer audioObject, AudioChannel channel)
-		{
-			audioObject.AudioSource.outputAudioMixerGroup = null;
-		}*/
+            switch (channel)
+            {
+                case AudioChannel.Master:
+					return Master;
+                case AudioChannel.Sound:
+					return Sounds;
+                case AudioChannel.Music:
+					return MainMusic;
+                default:
+					return null;
+            }
+        }
 	}
 }

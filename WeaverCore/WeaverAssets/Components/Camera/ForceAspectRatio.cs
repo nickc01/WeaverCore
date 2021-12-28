@@ -5,27 +5,23 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// Forces the camera to be a certain aspect ratio
+	/// </summary>
     [RequireComponent(typeof(Camera))]
     [ExecuteAlways]
     public class ForceAspectRatio : MonoBehaviour
     {
-		//private tk2dCamera tk2dcam;
 		private Camera cam;
-
 		private Camera hudcam;
-
 		private bool viewportChanged;
-
 		private int lastX;
-
 		private int lastY;
-
 		private float scaleAdjust;
 
 		private void Awake()
 		{
 			cam = GetComponent<Camera>();
-			//tk2dcam = GetComponent<tk2dCamera>();
 		}
 
 		private void Start()
@@ -61,7 +57,7 @@ namespace WeaverCore.Assets.Components
 
 		private void AutoScaleViewport()
 		{
-			float num = (float)Screen.width / (float)Screen.height / 1.77777779f;
+			float num = (float)Screen.width / Screen.height / 1.77777779f;
 			float num2 = 1f + scaleAdjust;
 			Rect rect = cam.rect;
 			if (num < 1f)

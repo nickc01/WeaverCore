@@ -22,18 +22,6 @@ namespace WeaverCore.Utilities
 		static ObjectPool TeleLinePool;
 
 
-		[Serializable]
-		public class TeleportException : Exception
-		{
-			public TeleportException() { }
-			public TeleportException(string message) : base(message) { }
-			public TeleportException(string message, Exception inner) : base(message, inner) { }
-			protected TeleportException(
-			  System.Runtime.Serialization.SerializationInfo info,
-			  System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
-		}
-
-
 		const float WARP_TIME = 20f / 60f;
 
 		/// <summary>
@@ -123,7 +111,7 @@ namespace WeaverCore.Utilities
 			{
 				if (sprite == null)
 				{
-					throw new TeleportException("The entity to be teleported does not have a SpriteRenderer. Either add a sprite renderer to the entity, or set flashSprite to false");
+					throw new Exception("The entity to be teleported does not have a SpriteRenderer. Either add a sprite renderer to the entity, or set flashSprite to false");
 				}
 				if (flasher == null)
 				{

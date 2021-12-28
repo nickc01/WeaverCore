@@ -52,10 +52,10 @@ namespace WeaverCore
 		}
 
 		/// <summary>
-		/// Whether an object is still 
+		/// Checks if an object under the specified key is still alive
 		/// </summary>
-		/// <param name="key"></param>
-		/// <returns></returns>
+		/// <param name="key">The key to check the object under</param>
+		/// <returns>Returns whether the object is still in the cache</returns>
 		public bool IsCached(TKey key)
 		{
 			lock (cacheLock)
@@ -67,8 +67,8 @@ namespace WeaverCore
 		/// <summary>
 		/// Gets the cached object based on the key. Make sure to use <see cref="IsCached(TKey)"/> before calling, or it could thrown an exception
 		/// </summary>
-		/// <param name="key"></param>
-		/// <returns></returns>
+		/// <param name="key">The key to check the object under</param>
+		/// <returns>Returns a reference to the cached object</returns>
 		public TValue GetCachedObject(TKey key)
 		{
 			lock (cacheLock)
@@ -82,6 +82,12 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Gets the cached object based on the key
+		/// </summary>
+		/// <param name="key">The key to check the object under</param>
+		/// <param name="obj">The reference to the cached object</param>
+		/// <returns>Returns whether the object was in the cache or not</returns>
 		public bool GetCachedObject(TKey key, out TValue obj)
 		{
 			lock (cacheLock)
@@ -99,6 +105,10 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Removes an object from the cache
+		/// </summary>
+		/// <param name="key">The key of the object to remove</param>
 		public void RemoveCachedObject(TKey key)
 		{
 			lock (cacheLock)
@@ -110,6 +120,11 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Caches an object
+		/// </summary>
+		/// <param name="key">The key to cache the object under</param>
+		/// <param name="value">The object to cache</param>
 		public void CacheObject(TKey key, TValue value)
 		{
 			lock (cacheLock)

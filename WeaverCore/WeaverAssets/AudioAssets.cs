@@ -7,6 +7,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets
 {
+	/// <summary>
+	/// Contains a bunch of misc audio sounds used througout the game
+	/// </summary>
 	public static class AudioAssets
 	{
 		public static AudioClip SwordCling

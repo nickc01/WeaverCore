@@ -97,7 +97,7 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_EventListener_Awake.md&amp;value=---%0Auid%3A%20WeaverCore.EventListener.Awake%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L78">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L90">View Source</a>
   </span>
   <a id="WeaverCore_EventListener_Awake_" data-uid="WeaverCore.EventListener.Awake*"></a>
   <h4 id="WeaverCore_EventListener_Awake" data-uid="WeaverCore.EventListener.Awake">Awake()</h4>
@@ -112,7 +112,7 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_EventListener_ListenForEvent_System_String_WeaverCore_EventListener_EventListenerDelegate_.md&amp;value=---%0Auid%3A%20WeaverCore.EventListener.ListenForEvent(System.String%2CWeaverCore.EventListener.EventListenerDelegate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L58">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L70">View Source</a>
   </span>
   <a id="WeaverCore_EventListener_ListenForEvent_" data-uid="WeaverCore.EventListener.ListenForEvent*"></a>
   <h4 id="WeaverCore_EventListener_ListenForEvent_System_String_WeaverCore_EventListener_EventListenerDelegate_" data-uid="WeaverCore.EventListener.ListenForEvent(System.String,WeaverCore.EventListener.EventListenerDelegate)">ListenForEvent(String, EventListener.EventListenerDelegate)</h4>
@@ -158,7 +158,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td><p>Returns the unique id for the listener. This ID can be used to undo this action via <a class="xref" href="WeaverCore.EventListener.html#WeaverCore_EventListener_RemoveListener_System_UInt32_">RemoveListener(UInt32)</a></p>
+        <td><p>Returns the unique id for the listener. This ID can be used to remove the listener via <a class="xref" href="WeaverCore.EventListener.html#WeaverCore_EventListener_RemoveListener_System_UInt32_">RemoveListener(UInt32)</a></p>
 </td>
       </tr>
     </tbody>
@@ -168,11 +168,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_EventListener_ListenForEvent_WeaverCore_EventListener_EventListenerWithNameDelegate_.md&amp;value=---%0Auid%3A%20WeaverCore.EventListener.ListenForEvent(WeaverCore.EventListener.EventListenerWithNameDelegate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L42">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L54">View Source</a>
   </span>
   <a id="WeaverCore_EventListener_ListenForEvent_" data-uid="WeaverCore.EventListener.ListenForEvent*"></a>
   <h4 id="WeaverCore_EventListener_ListenForEvent_WeaverCore_EventListener_EventListenerWithNameDelegate_" data-uid="WeaverCore.EventListener.ListenForEvent(WeaverCore.EventListener.EventListenerWithNameDelegate)">ListenForEvent(EventListener.EventListenerWithNameDelegate)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds an event listener to listen for an event</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -191,7 +192,8 @@
       <tr>
         <td><a class="xref" href="WeaverCore.EventListener.EventListenerWithNameDelegate.html">EventListener.EventListenerWithNameDelegate</a></td>
         <td><span class="parametername">action</span></td>
-        <td></td>
+        <td><p>The action to be triggered when an event is fired</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -206,7 +208,10 @@
     <tbody>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
-        <td></td>
+        <td><blockquote>
+<p>Returns the unique id for the listener. This ID can be used to remove the listener via <a class="xref" href="WeaverCore.EventListener.html#WeaverCore_EventListener_RemoveListener_System_UInt32_">RemoveListener(UInt32)</a></p>
+</blockquote>
+</td>
       </tr>
     </tbody>
   </table>
@@ -215,7 +220,7 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_EventListener_OnDestroy.md&amp;value=---%0Auid%3A%20WeaverCore.EventListener.OnDestroy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L105">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L117">View Source</a>
   </span>
   <a id="WeaverCore_EventListener_OnDestroy_" data-uid="WeaverCore.EventListener.OnDestroy*"></a>
   <h4 id="WeaverCore_EventListener_OnDestroy" data-uid="WeaverCore.EventListener.OnDestroy">OnDestroy()</h4>
@@ -230,7 +235,7 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_EventListener_OnDisable.md&amp;value=---%0Auid%3A%20WeaverCore.EventListener.OnDisable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L96">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L108">View Source</a>
   </span>
   <a id="WeaverCore_EventListener_OnDisable_" data-uid="WeaverCore.EventListener.OnDisable*"></a>
   <h4 id="WeaverCore_EventListener_OnDisable" data-uid="WeaverCore.EventListener.OnDisable">OnDisable()</h4>
@@ -245,7 +250,7 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_EventListener_OnEnable.md&amp;value=---%0Auid%3A%20WeaverCore.EventListener.OnEnable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L87">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L99">View Source</a>
   </span>
   <a id="WeaverCore_EventListener_OnEnable_" data-uid="WeaverCore.EventListener.OnEnable*"></a>
   <h4 id="WeaverCore_EventListener_OnEnable" data-uid="WeaverCore.EventListener.OnEnable">OnEnable()</h4>
@@ -260,11 +265,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_EventListener_OnEventSent_System_String_UnityEngine_GameObject_UnityEngine_GameObject_WeaverCore_EventManager_EventType_.md&amp;value=---%0Auid%3A%20WeaverCore.EventListener.OnEventSent(System.String%2CUnityEngine.GameObject%2CUnityEngine.GameObject%2CWeaverCore.EventManager.EventType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L37">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L44">View Source</a>
   </span>
   <a id="WeaverCore_EventListener_OnEventSent_" data-uid="WeaverCore.EventListener.OnEventSent*"></a>
   <h4 id="WeaverCore_EventListener_OnEventSent_System_String_UnityEngine_GameObject_UnityEngine_GameObject_WeaverCore_EventManager_EventType_" data-uid="WeaverCore.EventListener.OnEventSent(System.String,UnityEngine.GameObject,UnityEngine.GameObject,WeaverCore.EventManager.EventType)">OnEventSent(String, GameObject, GameObject, EventManager.EventType)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Triggered when any event gets sent</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -283,22 +289,26 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">eventName</span></td>
-        <td></td>
+        <td><p>The event that was sent</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">UnityEngine.GameObject</span></td>
         <td><span class="parametername">source</span></td>
-        <td></td>
+        <td><p>The object sending the event</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">UnityEngine.GameObject</span></td>
         <td><span class="parametername">destination</span></td>
-        <td></td>
+        <td><p>The object receiving the event</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WeaverCore.EventManager.EventType.html">EventManager.EventType</a></td>
         <td><span class="parametername">eventType</span></td>
-        <td></td>
+        <td><p>The type of event that was sent</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -307,7 +317,7 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_EventListener_RemoveListener_System_UInt32_.md&amp;value=---%0Auid%3A%20WeaverCore.EventListener.RemoveListener(System.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L73">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/EventListener.cs/#L85">View Source</a>
   </span>
   <a id="WeaverCore_EventListener_RemoveListener_" data-uid="WeaverCore.EventListener.RemoveListener*"></a>
   <h4 id="WeaverCore_EventListener_RemoveListener_System_UInt32_" data-uid="WeaverCore.EventListener.RemoveListener(System.UInt32)">RemoveListener(UInt32)</h4>

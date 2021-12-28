@@ -3,6 +3,13 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
+	/// <summary>
+	/// Contains snapshots and mixers that are related to the EnviroEffects AudioMixer
+	/// 
+	/// These snapshots are used to change what enviroment sounds are being played in a scene
+	/// 
+	/// See this table for more info on what groups/mixers do what : https://1drv.ms/x/s!Aj62egREH4PTxyIkYuCSF6zX5zsp?e=JpJksw
+	/// </summary>
 	public static class EnviroEffects
 	{
 		public enum SnapshotType
@@ -83,6 +90,11 @@ namespace WeaverCore
 		public static AudioMixerSnapshot enDreamSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(EnviroEffectsMixer, "en Dream");
 		public static AudioMixerSnapshot enSilentSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(EnviroEffectsMixer, "en Silent");
 
+		/// <summary>
+		/// Applies an EnviroEffects snapshot to change what enviroment sounds are being played
+		/// </summary>
+		/// <param name="snapshot">The snapshot to be applied</param>
+		/// <param name="transitionTime">How long it should take to transition to the new snapshot</param>
 		public static void ApplyEnviroEffectsSnapshot(SnapshotType snapshot, float transitionTime)
 		{
 			GetSnapshot(snapshot).TransitionTo(transitionTime);

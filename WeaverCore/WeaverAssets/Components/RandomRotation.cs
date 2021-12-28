@@ -6,12 +6,17 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// Sets the object to a randomized rotation
+	/// </summary>
 	public class RandomRotation : MonoBehaviour
 	{
 		[SerializeField]
+		[Tooltip("The minimum rotation angle")]
 		float randomRotationMin = 0f;
 
 		[SerializeField]
+		[Tooltip("The maximum rotation angle")]
 		float randomRotationMax = 360f;
 
 		void OnEnable()

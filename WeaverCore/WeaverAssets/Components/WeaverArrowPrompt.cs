@@ -7,17 +7,25 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// Used to display an arrow prompt with text above an object. Mainly used by <see cref="WeaverBench"/> and <see cref="WeaverNPC"/>
+	/// </summary>
 	public class WeaverArrowPrompt : MonoBehaviour
 	{
 		[SerializeField]
+		[Tooltip("The time it will take to fade in the prompt")]
 		float fadeInTime = 0.4f;
 		[SerializeField]
+		[Tooltip("The time it will take to fade out the prompt")]
 		float fadeOutTime = 0.233f;
 		[SerializeField]
+		[Tooltip("The color alpha value when faded in")]
 		float fadedInAlpha = 1f;
 		[SerializeField]
+		[Tooltip("The color alpha value when faded out")]
 		float fadedOutAlpha = 0f;
 
+		[Tooltip("Should the prompt automatically be destroyed when it fades out?")]
 		public bool DestroyOnHide = true;
 
 		static WeaverArrowPrompt _defaultPrefab;
@@ -33,11 +41,34 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
+		/// <summary>
+		/// Does this prompt have an owner configured?
+		/// </summary>
 		public bool OwnerSet { get; private set; }
+
+		/// <summary>
+		/// The owner of this arrow prompt. If the owner is destroyed, so is the prompt
+		/// </summary>
 		public GameObject Owner { get; private set; }
+
+		/// <summary>
+		/// The text object for displaying the label
+		/// </summary>
 		public TextMeshPro Label { get; private set; }
+
+		/// <summary>
+		/// The sprite for displaying a drop shadow
+		/// </summary>
 		public SpriteRenderer Shadow { get; private set; }
+
+		/// <summary>
+		/// The main sprite of the prompt
+		/// </summary>
 		public SpriteRenderer Renderer { get; private set; }
+
+		/// <summary>
+		/// Is the prompt currently visible?
+		/// </summary>
 		public bool IsVisible { get; private set; }
 		WeaverAnimationPlayer anim;
 
@@ -87,6 +118,9 @@ namespace WeaverCore.Assets.Components
 			StartCoroutine(FadeRoutine(fadedOutAlpha,fadedInAlpha,fadeInTime));
 		}
 
+		/// <summary>
+		/// Instantly shows the prompt
+		/// </summary>
 		public void ShowInstant()
         {
 			anim.StopCurrentAnimation();
@@ -116,6 +150,9 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
+		/// <summary>
+		/// Instantly hides the prompt
+		/// </summary>
 		public void HideInstant()
         {
 			anim.StopCurrentAnimation();
@@ -152,7 +189,7 @@ namespace WeaverCore.Assets.Components
 		}
 
 		/// <summary>
-		/// Hides the prompt. This will also destroy the prompt when it is fully hidden
+		/// Hides the prompt. If <see cref="DestroyOnHide"/> is true, this will also destroy the prompt object when done
 		/// </summary>
 		public void Hide()
 		{
@@ -200,14 +237,23 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
+		/// <summary>
+		/// Sets the prompt's text to a new value
+		/// </summary>
+		/// <param name="text">The new text to set</param>
 		public void SetLabelText(string text)
 		{
 			Label.text = text;
 		}
 
-		public void SetLabelText(string convoName, string sheetName = "Prompts")
+		/// <summary>
+		/// Sets the prompt's text to a new value by finding the language key and sheetTitle
+		/// </summary>
+		/// <param name="langKey">The lang key to retrieve</param>
+		/// <param name="sheetTitle">The sheet title to retrie</param>
+		public void SetLabelText(string langKey, string sheetTitle = "Prompts")
 		{
-			SetLabelText(WeaverLanguage.GetString(convoName, sheetName, "PLACEHOLDER"));
+			SetLabelText(WeaverLanguage.GetString(langKey, sheetTitle, $"ERROR FINDING LANG_KEY: {langKey}, SHEET_TITLE: {sheetTitle}"));
 		}
 
 
@@ -221,21 +267,45 @@ namespace WeaverCore.Assets.Components
 			anim.PlayAnimation("Blank");
 		}
 
+		/// <summary>
+		/// Spawns a new arrow prompt
+		/// </summary>
+		/// <param name="spawnPosition">The position of the new prompt</param>
+		/// <returns>Returns an instance to the arrow prompt</returns>
 		public static WeaverArrowPrompt Spawn(Vector3 spawnPosition)
 		{
 			return Spawn(DefaultPrefab, null, false,spawnPosition);
 		}
 
+		/// <summary>
+		/// Spawns a new arrow prompt
+		/// </summary>
+		/// <param name="prefab">The arrow prompt prefab to spawn</param>
+		/// <param name="spawnPosition">The position of the new prompt</param>
+		/// <returns>Returns an instance to the arrow prompt</returns>
 		public static WeaverArrowPrompt Spawn(WeaverArrowPrompt prefab, Vector3 spawnPosition)
 		{
 			return Spawn(prefab, null, false, spawnPosition);
 		}
 
+		/// <summary>
+		/// Spawns a new arrow prompt
+		/// </summary>
+		/// <param name="owner">The owner of the arrow prompt. If the owner is destroyed, so is the prompt</param>
+		/// <param name="spawnPosition">The position of the new prompt</param>
+		/// <returns>Returns an instance to the arrow prompt</returns>
 		public static WeaverArrowPrompt Spawn(GameObject owner, Vector3 spawnPosition)
 		{
 			return Spawn(DefaultPrefab,owner,true, spawnPosition);
 		}
 
+		/// <summary>
+		/// Spawns a new arrow prompt
+		/// </summary>
+		/// <param name="prefab">The arrow prompt prefab to spawn</param>
+		/// <param name="owner">The owner of the arrow prompt. If the owner is destroyed, so is the prompt</param>
+		/// <param name="spawnPosition">The position of the new prompt</param>
+		/// <returns>Returns an instance to the arrow prompt</returns>
 		public static WeaverArrowPrompt Spawn(WeaverArrowPrompt prefab, GameObject owner, Vector3 spawnPosition)
 		{
 			return Spawn(prefab, owner, true, spawnPosition);

@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// Was used early in development to test out different audio snapshots and audio groups
+	/// </summary>
 	public class AudioTester : MonoBehaviour
 	{
 		[SerializeField]
@@ -37,38 +40,6 @@ namespace WeaverCore.Assets.Components
 
 				MixerGroups = Resources.FindObjectsOfTypeAll<AudioMixerGroup>().Where(g => g.audioMixer.name == targettingMixer).ToList();
 				Snapshots = Resources.FindObjectsOfTypeAll<AudioMixerSnapshot>().Where(s => s.audioMixer.name == targettingMixer).ToList();
-
-				//var allGroups = GameObject.FindObjectsOfType<AudioMixerGroup>();
-				//var allSnapshots = GameObject.FindObjectsOfType<AudioMixerSnapshot>();
-
-				/*WeaverLog.Log("All Snapshots Found = " + allSnapshots.GetLength(0));
-				for (int i = 0; i < allSnapshots.GetLength(0); i++)
-				{
-					WeaverLog.Log("A_Snapshot = " + allSnapshots[i].name);
-					WeaverLog.Log("A_Snapshot Mixer = " + allSnapshots[i].audioMixer.name);
-				}
-
-				WeaverLog.Log("All Groups Found = " + allGroups.GetLength(0));
-				for (int i = 0; i < allGroups.GetLength(0); i++)
-				{
-					WeaverLog.Log("A_Group = " + allGroups[i].name);
-					WeaverLog.Log("A_Group Mixer = " + allGroups[i].audioMixer.name);
-				}*/
-
-				//WeaverLog.Log("Targetting Mixer = " + targettingMixer);
-				//WeaverLog.Log("Found Groups = " + MixerGroups.Count);
-				/*for (int i = 0; i < MixerGroups.Count; i++)
-				{
-					WeaverLog.Log("Group = " + MixerGroups[i].name);
-				}
-
-				WeaverLog.Log("Found Snapshots = " + Snapshots.Count);
-				for (int i = 0; i < Snapshots.Count; i++)
-				{
-					WeaverLog.Log("Snapshot = " + Snapshots[i].name);
-				}*/
-
-
 				groupDropdown.AddOptions(ToOptions(MixerGroups, g => g.name));
 				snapshotDropdown.AddOptions(ToOptions(Snapshots, s => s.name));
 			}
@@ -108,8 +79,6 @@ namespace WeaverCore.Assets.Components
 
 			if (index < Snapshots.Count)
 			{
-				//WeaverLog.Log("Setting snapshot index = " + index);
-				//WeaverLog.Log("Setting Snapshot to = " + Snapshots[index].name);
 				var snapshot = Snapshots[index];
 
 				snapshot.TransitionTo(0f);
@@ -120,12 +89,8 @@ namespace WeaverCore.Assets.Components
 		{
 			//Doing this because the passing it by parameter is not working properly
 			groupIndex = groupDropdown.value;
-
-			//WeaverLog.Log("New Group Index = " + groupIndex);
-
 			if (groupIndex < MixerGroups.Count)
 			{
-				//WeaverLog.Log("Setting group to = " + MixerGroups[groupIndex].name);
 				var group = MixerGroups[groupIndex];
 
 				TestAudioSource.outputAudioMixerGroup = group;
@@ -134,11 +99,7 @@ namespace WeaverCore.Assets.Components
 
 		public void OnSnapshotChange(int snapshotIndex)
 		{
-			//WeaverLog.Log("New Snapshot Index = " + snapshotIndex);
-			/*if (snapshotIndex < Snapshots.Count)
-			{
-				WeaverLog.Log("Snapshot Name = " + Snapshots[snapshotIndex].name);
-			}*/
+
 		}
 	}
 

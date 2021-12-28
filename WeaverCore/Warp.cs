@@ -10,17 +10,42 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-    public class DreamWarpOptions
-	{
-		public AudioClip DreamWarpSound;
-		public AudioClip DreamArriveSound;
-		public GameObject DreamParticles;
-		public GameObject DreamArriveParticles;
-	}
-
+	/// <summary>
+	/// Main class for dream warping the player to a new scene
+	/// </summary>
 	public static class Warp
 	{
+		/// <summary>
+		/// Contains customizable options for warping the player
+		/// </summary>
+		public class DreamWarpOptions
+		{
+			/// <summary>
+			/// The sound that is played when the player is warping from a scene
+			/// </summary>
+			public AudioClip DreamWarpSound;
+
+			/// <summary>
+			/// The sound that is played when the player arrives at the new scene
+			/// </summary>
+			public AudioClip DreamArriveSound;
+
+			/// <summary>
+			/// The particles that are emitted when the player is warping from a scene
+			/// </summary>
+			public GameObject DreamParticles;
+
+			/// <summary>
+			/// The particles that are emitted when the player arrives at the new scene
+			/// </summary>
+			public GameObject DreamArriveParticles;
+		}
+
 		static DreamWarpOptions _dreamWarpDefaults;
+
+		/// <summary>
+		/// The default customization options when warping the player
+		/// </summary>
 		public static DreamWarpOptions DreamWarpDefaults
 		{
 			get
@@ -39,6 +64,16 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Warps the player to a new scene and plays the dream nail effects when doing so
+		/// </summary>
+		/// <param name="position">The position the effects should take place at</param>
+		/// <param name="destinationScene">The destination scene the player should be warped to</param>
+		/// <param name="returnScene">The scene the player should return to when leaving the destination scene</param>
+		/// <param name="gateName">The name of the <see cref="TransitionPoint"/> the player should spawn at when entering the <paramref name="destinationScene"/></param>
+		/// <param name="warpDelay">The delay before the player is transported to the new scene</param>
+		/// <param name="noCharms">Should the player have no access to charms in the destination scene?</param>
+		/// <param name="options">The customization options for the warp sequence</param>
 		public static void DoDreamnailWarp(Vector3 position, string destinationScene, string returnScene,string gateName = "door1", float warpDelay = 1.75f, bool noCharms = false, DreamWarpOptions options = default)
 		{
 			UnboundCoroutine.Start(DoDreamnailWarpRoutine(position,destinationScene,returnScene,gateName,warpDelay,noCharms,options));
@@ -71,13 +106,10 @@ namespace WeaverCore
 
 
 			var blanker = WeaverCanvas.HUDBlankerWhite;
-			WeaverLog.Log("Blanker = " + blanker);
 			if (blanker != null)
 			{
-				WeaverLog.Log("FADING IN BLANKER");
 				PlayMakerUtilities.SetFsmFloat(blanker, "Blanker Control", "Fade Time", Mathf.Clamp(warpDelay - 0.25f,0f,100f));
 				EventManager.SendEventToGameObject("FADE IN",blanker);
-				//EventManager.SendEventToGameObject(blanker, )
 			}
 			yield return null;
 
@@ -100,8 +132,6 @@ namespace WeaverCore
 			PlayMakerUtilities.SetFsmBool(WeaverCamera.Instance.gameObject, "CameraFade", "No Fade", true);
 			HeroController.instance.EnterWithoutInput(true);
 			HeroController.instance.AcceptInput();
-			//PlayMakerUtilities.SetFsmColor(WeaverCamera.Instance.gameObject, "CameraFade", "Fade Colour", Color.white);
-			//GameManager.instance.ChangeToScene(destinationScene, gateName, 0f);
 			GameManager.instance.BeginSceneTransition(new GameManager.SceneLoadInfo
 			{
 				SceneName = destinationScene,
@@ -196,16 +226,6 @@ namespace WeaverCore
 			{
 				GameObject.Destroy(effects);
 			}
-
-
-
-
-			/*bool faceRight = true;
-
-			if (door.alwaysEnterLeft)
-			{
-				faceRight = false;
-			}*/
 
 			yield break;
 		}

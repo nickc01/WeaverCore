@@ -8,6 +8,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+    /// <summary>
+    /// A custom NPC that the player can talk to
+    /// </summary>
     public class WeaverNPC : MonoBehaviour
     {
         /// <summary>
@@ -61,8 +64,20 @@ namespace WeaverCore.Assets.Components
         /// Is the player able to talk to this NPC?
         /// </summary>
         public bool CanTalk { get => canTalk; set => canTalk = value; }
+
+        /// <summary>
+        /// Should the NPC be looking towards the player when in range?
+        /// </summary>
         public bool FacePlayerWhenInRange { get => facePlayerWhenInRange; set => facePlayerWhenInRange = value; }
+
+        /// <summary>
+        /// Where should the player be positioned in order to talk to the NPC?
+        /// </summary>
         public PlayerTalkSide TalkSide { get => talkSide; set => talkSide = value; }
+
+        /// <summary>
+        /// The distance the player should be away from the NPC when talking to them
+        /// </summary>
         public float TalkDistance { get => talkDistance; set => talkDistance = value; }
 
         GameObject Ranges;
@@ -209,8 +224,6 @@ namespace WeaverCore.Assets.Components
             var conversation = GetComponent<Conversation>();
             yield return conversation.StartConversationRoutine();
             yield return EndConvo();
-
-            //Logic Continues in OnEventReceived when the CONVO END or HERO DAMAGED event is received
         }
 
         IEnumerator MovePlayerToPosition(float talkPos)
@@ -264,7 +277,6 @@ namespace WeaverCore.Assets.Components
         {
             var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
             heroRB.velocity = default;
-            //HeroController.instance.transform.localScale = new Vector3(-1, 0, 0);
             HeroController.instance.FaceRight();
             yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
         }
@@ -273,7 +285,6 @@ namespace WeaverCore.Assets.Components
         {
             var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
             heroRB.velocity = default;
-            //HeroController.instance.transform.localScale = new Vector3(1, 0, 0);
             HeroController.instance.FaceLeft();
             yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
         }
@@ -281,7 +292,6 @@ namespace WeaverCore.Assets.Components
         IEnumerator MovePlayerRight(float destX)
         {
             HeroController.instance.FaceRight();
-            //HeroController.instance.transform.localScale = new Vector3(-1, 0, 0);
             HeroUtilities.PlayPlayerClip("Walk");
             var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
             heroRB.velocity = new Vector2(6f,0f);
@@ -299,7 +309,6 @@ namespace WeaverCore.Assets.Components
         IEnumerator MovePlayerLeft(float destX)
         {
             HeroController.instance.FaceLeft();
-            //HeroController.instance.transform.localScale = new Vector3(1, 0, 0);
             HeroUtilities.PlayPlayerClip("Walk");
             var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
             heroRB.velocity = new Vector2(-6f, 0f);

@@ -11,25 +11,50 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+    /// <summary>
+    /// The base class for all conversations with an NPC. You can setup a conversation by inheriting from this class, adding the component to an NPC object, and using <see cref="Speak(string)"/> and <see cref="PresentYesNoQuestion(string)"/> in <see cref="DoConversation"/> to talk with the player
+    /// </summary>
     public abstract class Conversation : MonoBehaviour
     {
+        /// <summary>
+        /// The result of giving the player a yes/no question prompt
+        /// </summary>
         public enum YesNoResult
         {
+            /// <summary>
+            /// Neither options were selected (shouldn't happen normally)
+            /// </summary>
             Neither,
+            /// <summary>
+            /// The player selected "Yes"
+            /// </summary>
             Yes,
+            /// <summary>
+            /// The player selected "No"
+            /// </summary>
             No
         }
 
         bool talking = false;
 
+        /// <summary>
+        /// The result of the yes/no dialog box
+        /// </summary>
         public YesNoResult DialogBoxResult { get; private set; }
 
         EventManager eventReceiver;
 
         bool boxVisible = false;
 
+        /// <summary>
+        /// Override this method to customize the conversation with a player. Use <see cref="Speak(string)"/> to speak with the player, and use <see cref="PresentYesNoQuestion(string)"/> to prevent the player with a yes/no question
+        /// </summary>
+        /// <returns></returns>
         protected abstract IEnumerator DoConversation();
 
+        /// <summary>
+        /// Starts a conversation with the player
+        /// </summary>
         public void StartConversation()
         {
             StartCoroutine(StartConversationRoutine());
@@ -51,6 +76,9 @@ namespace WeaverCore.Assets.Components
             }
         }
 
+        /// <summary>
+        /// Starts a conversation with the player
+        /// </summary>
         public IEnumerator StartConversationRoutine()
         {
             if (eventReceiver == null)
@@ -73,6 +101,9 @@ namespace WeaverCore.Assets.Components
 
         }
 
+        /// <summary>
+        /// Shows the conversation box
+        /// </summary>
         protected void ShowConversationBox()
         {
             if (!boxVisible)
@@ -86,6 +117,9 @@ namespace WeaverCore.Assets.Components
             }
         }
 
+        /// <summary>
+        /// Hides the conversation box
+        /// </summary>
         protected void HideConversationBox()
         {
             if (boxVisible)
@@ -99,11 +133,10 @@ namespace WeaverCore.Assets.Components
             }
         }
 
-        /*protected IEnumerator Speak(string langKey, string sheetTitle = "Dialogue")
-        {
-            return Speak(WeaverLanguage.GetString(langKey, sheetTitle,$"ERROR GETTING TRANSLATION: LANG_KEY = {langKey}, SHEET_TITLE = {sheetTitle}"));
-        }*/
-
+        /// <summary>
+        /// Speaks a message to the player
+        /// </summary>
+        /// <param name="message">The message to speak</param>
         protected IEnumerator Speak(string message)
         {
             ShowConversationBox();
@@ -123,6 +156,10 @@ namespace WeaverCore.Assets.Components
             }
         }
 
+        /// <summary>
+        /// Speaks a series of messages to the player. Each message is split into seperate pages
+        /// </summary>
+        /// <param name="messages">The messages to speak</param>
         protected IEnumerator Speak(IEnumerable<string> messages)
         {
             string insert = "<page>";
@@ -136,16 +173,29 @@ namespace WeaverCore.Assets.Components
             return Speak(finalMessage.ToString());
         }
 
+        /// <summary>
+        /// Speaks a series of messages to the player. Each message is split into seperate pages
+        /// </summary>
+        /// <param name="messages">The messages to speak</param>
         protected IEnumerator Speak(params string[] messages)
         {
             return Speak((IEnumerable<string>)messages);
         }
 
+        /// <summary>
+        /// Presents a yes/no question prompt to the player
+        /// </summary>
+        /// <param name="message">The message to say in the prompt</param>
         protected IEnumerator PresentYesNoQuestion(string message)
         {
             return PresentYesNoQuestion(message, 0);
         }
 
+        /// <summary>
+        /// Presents a yes/no question prompt to the player
+        /// </summary>
+        /// <param name="message">The message to speak</param>
+        /// <param name="geoCost">How much geo the player need to pay to select "Yes"</param>
         protected IEnumerator PresentYesNoQuestion(string message, int geoCost)
         {
             HideConversationBox();
@@ -179,23 +229,20 @@ namespace WeaverCore.Assets.Components
 
         static void StartDialogBoxConversation(object dialogBox, string text)
         {
-            WeaverLog.Log("CONV1");
             var type = dialogBox.GetType();
-            WeaverLog.Log("CONV2");
             type.GetField("currentConversation").SetValue(dialogBox, text.GetHashCode().ToString());
-            WeaverLog.Log("CONV3");
             type.GetField("currentPage").SetValue(dialogBox, 1);
-            WeaverLog.Log("CONV4");
             var textMesh = (TextMeshPro)type.GetField("textMesh",BindingFlags.NonPublic | BindingFlags.Instance).GetValue(dialogBox);
-            WeaverLog.Log("CONV5");
             textMesh.text = text;
-            WeaverLog.Log("CONV6");
             textMesh.ForceMeshUpdate();
-            WeaverLog.Log("CONV7");
             type.GetMethod("ShowPage").Invoke(dialogBox, new object[] { 1 });
-            WeaverLog.Log("CONV8");
         }
 
+        /// <summary>
+        /// Display an <see cref="AreaTitle"/>. This is mainly used to display the name of the NPC the player is talking to
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="minorText"></param>
         protected void DisplayTitle(string title, string minorText = "")
         {
             AreaTitle.Spawn(title,minorText);

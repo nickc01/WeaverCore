@@ -12,10 +12,17 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+	/// <summary>
+	/// A component used to access and manipulate the UI canvas
+	/// </summary>
 	public class WeaverCanvas : MonoBehaviour
 	{
 		static GameObject _hudBlanker;
 		static GameObject _hudBlankerWhite;
+
+		/// <summary>
+		/// Gets the HUD blanker used to blank out the screen with a solid black color
+		/// </summary>
 		public static GameObject HUDBlanker
 		{
 			get
@@ -27,6 +34,10 @@ namespace WeaverCore
 				return _hudBlanker;
 			}
 		}
+
+		/// <summary>
+		/// Gets the HUD blanker used to blank out the screen with a solid white color
+		/// </summary>
 		public static GameObject HUDBlankerWhite
 		{
 			get
@@ -60,6 +71,9 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Gets the current UI canvas in the game
+		/// </summary>
 		public static WeaverCanvas Instance { get; private set; }
 
 		/// <summary>
@@ -121,13 +135,7 @@ namespace WeaverCore
 				canvas.worldCamera = GameObject.FindObjectOfType<HUDCamera>().GetComponent<Camera>();
 
 			}
-			/*if (transform.Find("CONTENT GOES HERE") == null)
-			{
-				var content = new GameObject("CONTENT GOES HERE");
-				var rt = content.AddComponent<RectTransform>();
-				rt.
-				content.transform.SetParent(transform);
-			}*/
+
 			StartCoroutine(Initializer());
 		}
 

@@ -8,7 +8,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-    // Token: 0x0200002A RID: 42
+	/// <summary>
+	/// A class for accessing and doing things related to the player
+	/// </summary>
     public class Player : MonoBehaviour
 	{
 		HeroController heroCtrl;
@@ -17,7 +19,9 @@ namespace WeaverCore
 		static List<Player> Players = new List<Player>();
 		Player_I impl;
 
-
+		/// <summary>
+		/// A list of all players in the game.
+		/// </summary>
 		public static IEnumerable<Player> AllPlayers
 		{
 			get
@@ -26,6 +30,9 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// The main player in the game
+		/// </summary>
 		public static Player Player1
 		{
 			get
@@ -34,6 +41,9 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Gets the player that is nearest to a certain position
+		/// </summary>
 		public static Player NearestPlayer(Vector3 position)
 		{
 			float num = float.PositiveInfinity;
@@ -50,31 +60,47 @@ namespace WeaverCore
 			return result;
 		}
 
-		// Token: 0x060000C6 RID: 198 RVA: 0x00004E0C File Offset: 0x0000300C
+		/// <summary>
+		/// Gets the player that is nearest to a certain object
+		/// </summary>
 		public static Player NearestPlayer(Component component)
 		{
 			return Player.NearestPlayer(component.transform.position);
 		}
 
-		// Token: 0x060000C7 RID: 199 RVA: 0x00004E1E File Offset: 0x0000301E
+		/// <summary>
+		/// Gets the player that is nearest to a certain object
+		/// </summary>
 		public static Player NearestPlayer(Transform transform)
 		{
 			return Player.NearestPlayer(transform.position);
 		}
 
-		// Token: 0x060000C8 RID: 200 RVA: 0x00004E2B File Offset: 0x0000302B
+		/// <summary>
+		/// Gets the player that is nearest to a certain object
+		/// </summary>
 		public static Player NearestPlayer(GameObject gameObject)
 		{
 			return Player.NearestPlayer(gameObject.transform.position);
 		}
 
-		// Token: 0x060000C9 RID: 201 RVA: 0x00004E3D File Offset: 0x0000303D
+
+		/// <summary>
+		/// Plays a nail slash effect. Used when the player hits an enemy
+		/// </summary>
+		/// <param name="target">The target object receiving the hit</param>
+		/// <param name="hit">The hit on the enemy</param>
+		/// <param name="effectsOffset">An offset applied to the effects</param>
 		public virtual void PlayAttackSlash(GameObject target, HitInfo hit, Vector3 effectsOffset = default(Vector3))
 		{
 			this.PlayAttackSlash((base.transform.position + target.transform.position) * 0.5f + effectsOffset, hit);
 		}
 
-		// Token: 0x060000CA RID: 202 RVA: 0x00004E74 File Offset: 0x00003074
+		/// <summary>
+		/// Plays a nail slash effect. Used when the player hits an enemy
+		/// </summary>
+		/// <param name="target">The target object receiving the hit</param>
+		/// <param name="hit">The hit on the enemy</param>
 		public virtual void PlayAttackSlash(Vector3 target, HitInfo hit)
 		{
 			Player.NailStrikePool.Instantiate(target, Quaternion.identity);
@@ -83,33 +109,24 @@ namespace WeaverCore
 			switch (DirectionUtilities.DegreesToDirection(hit.Direction))
 			{
 				case CardinalDirection.Up:
-					this.SetRotation2D(gameObject.transform, (float)UnityEngine.Random.Range(70, 110));
+					transform.SetRotation2D(UnityEngine.Random.Range(70, 110));
 					gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
 					break;
 				case CardinalDirection.Down:
-					this.SetRotation2D(gameObject.transform, (float)UnityEngine.Random.Range(70, 110));
+					transform.SetRotation2D(UnityEngine.Random.Range(70, 110));
 					gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
 					break;
 				case CardinalDirection.Left:
-					this.SetRotation2D(gameObject.transform, (float)UnityEngine.Random.Range(340, 380));
+					transform.SetRotation2D(UnityEngine.Random.Range(340, 380));
 					gameObject.transform.localScale = new Vector3(-1.5f, 1.5f, 1f);
 					break;
 				case CardinalDirection.Right:
-					this.SetRotation2D(gameObject.transform, (float)UnityEngine.Random.Range(340, 380));
+					transform.SetRotation2D(UnityEngine.Random.Range(340, 380));
 					gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
 					break;
 			}
 		}
 
-		// Token: 0x060000CB RID: 203 RVA: 0x00004FC4 File Offset: 0x000031C4
-		private void SetRotation2D(Transform t, float rotation)
-		{
-			Vector3 eulerAngles = t.eulerAngles;
-			eulerAngles.z = rotation;
-			t.eulerAngles = eulerAngles;
-		}
-
-		// Token: 0x060000CC RID: 204 RVA: 0x00004FE8 File Offset: 0x000031E8
 		private void Awake()
 		{
 			gameObject.tag = "Player";
@@ -126,62 +143,70 @@ namespace WeaverCore
 			heroCtrl = GetComponent<HeroController>();
 		}
 
-		// Token: 0x060000CD RID: 205 RVA: 0x0000505D File Offset: 0x0000325D
 		private void Start()
 		{
 			Player.Players.AddIfNotContained(this);
 		}
 
-		// Token: 0x060000CE RID: 206 RVA: 0x0000505D File Offset: 0x0000325D
 		private void OnEnable()
 		{
 			Player.Players.AddIfNotContained(this);
 		}
 
-		// Token: 0x060000CF RID: 207 RVA: 0x0000506B File Offset: 0x0000326B
 		private void OnDisable()
 		{
 			Player.Players.Remove(this);
 		}
 
-		// Token: 0x060000D0 RID: 208 RVA: 0x0000506B File Offset: 0x0000326B
 		private void OnDestroy()
 		{
 			Player.Players.Remove(this);
 		}
 
-		// Token: 0x060000D1 RID: 209 RVA: 0x00005079 File Offset: 0x00003279
+		/// <summary>
+		/// Causes the player to gain soul
+		/// </summary>
 		public void SoulGain()
 		{
 			this.impl.SoulGain();
 		}
 
-		// Token: 0x060000D2 RID: 210 RVA: 0x00005086 File Offset: 0x00003286
+		/// <summary>
+		/// Refreshes the soul UI
+		/// </summary>
 		public void RefreshSoulUI()
 		{
 			this.impl.RefreshSoulUI();
 		}
 
-		// Token: 0x060000D3 RID: 211 RVA: 0x00005093 File Offset: 0x00003293
+		/// <summary>
+		/// The player enters a parry state, where they are very shortly invincible
+		/// </summary>
 		public void EnterParryState()
 		{
 			this.impl.EnterParryState();
 		}
 
-		// Token: 0x060000D4 RID: 212 RVA: 0x000050A0 File Offset: 0x000032A0
+		/// <summary>
+		/// The player exits a parry state
+		/// </summary>
 		public void RecoverFromParry()
 		{
 			this.impl.RecoverFromParry();
 		}
 
-		// Token: 0x060000D5 RID: 213 RVA: 0x000050AD File Offset: 0x000032AD
+		/// <summary>
+		/// Makes the player recoil from an attack
+		/// </summary>
+		/// <param name="recoilDirection">The direction the player should recoil in</param>
 		public void Recoil(CardinalDirection recoilDirection)
 		{
 			this.impl.Recoil(recoilDirection);
 		}
 
-		// Token: 0x17000023 RID: 35
-		// (get) Token: 0x060000D6 RID: 214 RVA: 0x000050BB File Offset: 0x000032BB
+		/// <summary>
+		/// Does the player have a dream nail?
+		/// </summary>
 		public bool HasDreamNail
 		{
 			get
@@ -190,15 +215,18 @@ namespace WeaverCore
 			}
 		}
 
-		// Token: 0x060000D7 RID: 215 RVA: 0x000050C8 File Offset: 0x000032C8
+		/// <summary>
+		/// Does the player have a certain charm equipped?
+		/// </summary>
+		/// <param name="charmNumber">The charm ID to check for</param>
 		public bool HasCharmEquipped(int charmNumber)
 		{
 			return this.impl.HasCharmEquipped(charmNumber);
 		}
 
-		// Token: 0x17000024 RID: 36
-		// (get) Token: 0x060000D8 RID: 216 RVA: 0x000050D6 File Offset: 0x000032D6
-		// (set) Token: 0x060000D9 RID: 217 RVA: 0x000050E3 File Offset: 0x000032E3
+		/// <summary>
+		/// The amount of essence the player has collected
+		/// </summary>
 		public int EssenceCollected
 		{
 			get
@@ -211,9 +239,9 @@ namespace WeaverCore
 			}
 		}
 
-		// Token: 0x17000025 RID: 37
-		// (get) Token: 0x060000DA RID: 218 RVA: 0x000050F1 File Offset: 0x000032F1
-		// (set) Token: 0x060000DB RID: 219 RVA: 0x000050FE File Offset: 0x000032FE
+		/// <summary>
+		/// The amount of essence the player has spent
+		/// </summary>
 		public int EssenceSpent
 		{
 			get
@@ -226,12 +254,17 @@ namespace WeaverCore
 			}
 		}
 
-
+		/// <summary>
+		/// Causes the player to enter a locked state during an enemy roar
+		/// </summary>
 		public void EnterRoarLock()
 		{
 			impl.EnterRoarLock();
 		}
 
+		/// <summary>
+		/// Causes the player to exit from a locked roar state
+		/// </summary>
 		public void ExitRoarLock()
 		{
 			impl.ExitRoarLock();

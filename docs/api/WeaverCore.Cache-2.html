@@ -148,11 +148,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_CacheObject__0__1_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.CacheObject(%600%2C%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L113">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L128">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_CacheObject_" data-uid="WeaverCore.Cache`2.CacheObject*"></a>
   <h4 id="WeaverCore_Cache_2_CacheObject__0__1_" data-uid="WeaverCore.Cache`2.CacheObject(`0,`1)">CacheObject(TKey, TValue)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Caches an object</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -171,12 +172,14 @@
       <tr>
         <td><span class="xref">TKey</span></td>
         <td><span class="parametername">key</span></td>
-        <td></td>
+        <td><p>The key to cache the object under</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">TValue</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>The object to cache</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -209,7 +212,8 @@
       <tr>
         <td><span class="xref">TKey</span></td>
         <td><span class="parametername">key</span></td>
-        <td></td>
+        <td><p>The key to check the object under</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -224,7 +228,8 @@
     <tbody>
       <tr>
         <td><span class="xref">TValue</span></td>
-        <td></td>
+        <td><p>Returns a reference to the cached object</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -233,11 +238,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_GetCachedObject__0__1__.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.GetCachedObject(%600%2C%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L85">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L91">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_GetCachedObject_" data-uid="WeaverCore.Cache`2.GetCachedObject*"></a>
   <h4 id="WeaverCore_Cache_2_GetCachedObject__0__1__" data-uid="WeaverCore.Cache`2.GetCachedObject(`0,`1@)">GetCachedObject(TKey, out TValue)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the cached object based on the key</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -256,12 +262,14 @@
       <tr>
         <td><span class="xref">TKey</span></td>
         <td><span class="parametername">key</span></td>
-        <td></td>
+        <td><p>The key to check the object under</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">TValue</span></td>
         <td><span class="parametername">obj</span></td>
-        <td></td>
+        <td><p>The reference to the cached object</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -276,7 +284,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Returns whether the object was in the cache or not</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -289,7 +298,7 @@
   </span>
   <a id="WeaverCore_Cache_2_IsCached_" data-uid="WeaverCore.Cache`2.IsCached*"></a>
   <h4 id="WeaverCore_Cache_2_IsCached__0_" data-uid="WeaverCore.Cache`2.IsCached(`0)">IsCached(TKey)</h4>
-  <div class="markdown level1 summary"><p>Whether an object is still</p>
+  <div class="markdown level1 summary"><p>Checks if an object under the specified key is still alive</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -309,7 +318,8 @@
       <tr>
         <td><span class="xref">TKey</span></td>
         <td><span class="parametername">key</span></td>
-        <td></td>
+        <td><p>The key to check the object under</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -324,7 +334,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><p>Returns whether the object is still in the cache</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -349,11 +360,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_RemoveCachedObject__0_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.RemoveCachedObject(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L102">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L112">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_RemoveCachedObject_" data-uid="WeaverCore.Cache`2.RemoveCachedObject*"></a>
   <h4 id="WeaverCore_Cache_2_RemoveCachedObject__0_" data-uid="WeaverCore.Cache`2.RemoveCachedObject(`0)">RemoveCachedObject(TKey)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Removes an object from the cache</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -372,7 +384,8 @@
       <tr>
         <td><span class="xref">TKey</span></td>
         <td><span class="parametername">key</span></td>
-        <td></td>
+        <td><p>The key of the object to remove</p>
+</td>
       </tr>
     </tbody>
   </table>

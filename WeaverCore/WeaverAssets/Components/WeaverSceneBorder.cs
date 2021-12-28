@@ -10,6 +10,9 @@ using WeaverCore.Components;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// When a new scene is loaded, these are the black objects that are used to surround the scene at it's borders
+	/// </summary>
 	public class WeaverSceneBorder : MonoBehaviour
 	{
 		[OnInit]

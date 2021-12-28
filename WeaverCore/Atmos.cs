@@ -5,6 +5,13 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
+	/// <summary>
+	/// Contains snapshots and mixers that are related to the Atmos AudioMixer
+	/// 
+	/// These snapshots are used to change what atmosphere sounds are being played in a scene
+	/// 
+	/// See this table for more info on what groups/mixers do what : https://1drv.ms/x/s!Aj62egREH4PTxyT0dl7ijj9itSdV?e=SMNe12
+	/// </summary>
 	public static class Atmos
 	{
 		[Flags]
@@ -275,44 +282,46 @@ namespace WeaverCore
 		public static AudioMixerSnapshot WindTunnelSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(AtmosMixer, "at Wind Tunnel");
 		public static AudioMixerSnapshot MiscWindSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(AtmosMixer, "at Misc Wind");
 
+		/// <summary>
+		/// Applies an AtmosPack to change the atmosphere sounds
+		/// </summary>
+		/// <param name="pack">The pack to be applied</param>
+		/// <param name="transitionTime">The time to transition to the new atmos pack</param>
 		public static void ApplyAtmosPack(AtmosPack pack, float transitionTime)
 		{
 			ApplyAtmosSnapshot(pack.Snapshot, transitionTime, GetEnabledSourcesForSnapshot(pack.Snapshot));
 		}
 
+		/// <summary>
+		/// Applies an AtmosPack to change the atmosphere sounds
+		/// </summary>
+		/// <param name="pack">The pack to be applied</param>
+		/// <param name="transitionTime">The time to transition to the new atmos pack</param>
+		/// <param name="enabledSources">A list of sources to be enabled</param>
 		public static void ApplyAtmosPack(AtmosPack pack, float transitionTime, AtmosSources enabledSources)
 		{
 			ApplyAtmosSnapshot(pack.Snapshot, transitionTime, enabledSources);
 		}
 
+		/// <summary>
+		/// Applies an Atmos Snapshot to change the atmosphere sounds
+		/// </summary>
+		/// <param name="snapshot">The snapshot to be applied</param>
+		/// <param name="transitionTime">The time to transition to the new Atmos snapshot</param>
 		public static void ApplyAtmosSnapshot(SnapshotType snapshot, float transitionTime)
 		{
 			ApplyAtmosSnapshot(snapshot, transitionTime,GetEnabledSourcesForSnapshot(snapshot));
 		}
 
+		/// <summary>
+		/// Applies an Atmos Snapshot to change the atmosphere sounds
+		/// </summary>
+		/// <param name="snapshot">The snapshot to be applied</param>
+		/// <param name="transitionTime">The time to transition to the new Atmos snapshot</param>
+		/// <param name="enabledSources">A list of sources to be enabled</param>
 		public static void ApplyAtmosSnapshot(SnapshotType snapshot, float transitionTime, AtmosSources enabledSources)
 		{
 			AudioMixer_I.Instance.ApplyAtmosSnapshot(snapshot, transitionTime, enabledSources);
 		}
-
-		/*public static void PlayMusicPack(AtmosPack pack)
-		{
-			PlayMusicPack(pack, pack.delay, pack.snapshotTransitionTime, pack.applySnapshot);
-		}
-
-		public static void PlayMusicPack(AtmosPack pack, float delayTime, float snapshotTransitionTime, bool applySnapshot = true)
-		{
-			AudioMixer_I.Instance.PlayMusicPack(pack, delayTime, snapshotTransitionTime, applySnapshot);
-		}
-
-		public static void ApplyMusicSnapshot(SnapshotType snapshot, float delayTime, float transitionTime)
-		{
-			ApplyMusicSnapshot(GetSnapshot(snapshot), delayTime, transitionTime);
-		}
-
-		public static void ApplyMusicSnapshot(AudioMixerSnapshot snapshot, float delayTime, float transitionTime)
-		{
-			AudioMixer_I.Instance.ApplyMusicSnapshot(snapshot, delayTime, transitionTime);
-		}*/
 	}
 }

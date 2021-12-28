@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// Plays the Boss Death Explosion, including shaking the camera and spawning particles
+	/// </summary>
 	public class BossDeathExplosion : MonoBehaviour
 	{
 		public bool ShakeCamera;
@@ -19,7 +22,7 @@ namespace WeaverCore.Assets.Components
 			}
 			if (SpawnBloodParticles)
 			{
-				//TODO : SPAWN BLOOD PARTICLES
+				Blood.SpawnRandomBlood(transform.position);
 			}
 			if (PlayExplosionSound)
 			{

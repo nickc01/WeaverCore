@@ -18185,166 +18185,6 @@ references:
   commentId: N:WeaverCore.Assets
   fullName: WeaverCore.Assets
   nameWithType: WeaverCore.Assets
-- uid: WeaverCore.Assets.AreaTitle
-  name: AreaTitle
-  href: api/WeaverCore.Assets.AreaTitle.html
-  commentId: T:WeaverCore.Assets.AreaTitle
-  fullName: WeaverCore.Assets.AreaTitle
-  nameWithType: AreaTitle
-- uid: WeaverCore.Assets.AreaTitle.BottomText
-  name: BottomText
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_BottomText
-  commentId: P:WeaverCore.Assets.AreaTitle.BottomText
-  fullName: WeaverCore.Assets.AreaTitle.BottomText
-  nameWithType: AreaTitle.BottomText
-- uid: WeaverCore.Assets.AreaTitle.BottomText*
-  name: BottomText
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_BottomText_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.BottomText
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.BottomText
-  nameWithType: AreaTitle.BottomText
-- uid: WeaverCore.Assets.AreaTitle.BottomTextObject
-  name: BottomTextObject
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_BottomTextObject
-  commentId: P:WeaverCore.Assets.AreaTitle.BottomTextObject
-  fullName: WeaverCore.Assets.AreaTitle.BottomTextObject
-  nameWithType: AreaTitle.BottomTextObject
-- uid: WeaverCore.Assets.AreaTitle.BottomTextObject*
-  name: BottomTextObject
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_BottomTextObject_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.BottomTextObject
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.BottomTextObject
-  nameWithType: AreaTitle.BottomTextObject
-- uid: WeaverCore.Assets.AreaTitle.Delete
-  name: Delete()
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_Delete
-  commentId: M:WeaverCore.Assets.AreaTitle.Delete
-  fullName: WeaverCore.Assets.AreaTitle.Delete()
-  nameWithType: AreaTitle.Delete()
-- uid: WeaverCore.Assets.AreaTitle.Delete*
-  name: Delete
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_Delete_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.Delete
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.Delete
-  nameWithType: AreaTitle.Delete
-- uid: WeaverCore.Assets.AreaTitle.DoFade(System.Single,System.Single,System.Single,System.Boolean)
-  name: DoFade(Single, Single, Single, Boolean)
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_DoFade_System_Single_System_Single_System_Single_System_Boolean_
-  commentId: M:WeaverCore.Assets.AreaTitle.DoFade(System.Single,System.Single,System.Single,System.Boolean)
-  fullName: WeaverCore.Assets.AreaTitle.DoFade(System.Single, System.Single, System.Single, System.Boolean)
-  nameWithType: AreaTitle.DoFade(Single, Single, Single, Boolean)
-- uid: WeaverCore.Assets.AreaTitle.DoFade*
-  name: DoFade
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_DoFade_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.DoFade
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.DoFade
-  nameWithType: AreaTitle.DoFade
-- uid: WeaverCore.Assets.AreaTitle.DoingFade
-  name: DoingFade
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_DoingFade
-  commentId: P:WeaverCore.Assets.AreaTitle.DoingFade
-  fullName: WeaverCore.Assets.AreaTitle.DoingFade
-  nameWithType: AreaTitle.DoingFade
-- uid: WeaverCore.Assets.AreaTitle.DoingFade*
-  name: DoingFade
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_DoingFade_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.DoingFade
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.DoingFade
-  nameWithType: AreaTitle.DoingFade
-- uid: WeaverCore.Assets.AreaTitle.FadedInColor
-  name: FadedInColor
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_FadedInColor
-  commentId: F:WeaverCore.Assets.AreaTitle.FadedInColor
-  fullName: WeaverCore.Assets.AreaTitle.FadedInColor
-  nameWithType: AreaTitle.FadedInColor
-- uid: WeaverCore.Assets.AreaTitle.FadedOutColor
-  name: FadedOutColor
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_FadedOutColor
-  commentId: F:WeaverCore.Assets.AreaTitle.FadedOutColor
-  fullName: WeaverCore.Assets.AreaTitle.FadedOutColor
-  nameWithType: AreaTitle.FadedOutColor
-- uid: WeaverCore.Assets.AreaTitle.Position
-  name: Position
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_Position
-  commentId: P:WeaverCore.Assets.AreaTitle.Position
-  fullName: WeaverCore.Assets.AreaTitle.Position
-  nameWithType: AreaTitle.Position
-- uid: WeaverCore.Assets.AreaTitle.Position*
-  name: Position
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_Position_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.Position
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.Position
-  nameWithType: AreaTitle.Position
-- uid: WeaverCore.Assets.AreaTitle.Spawn(System.Single,System.Single,System.Single,System.Boolean)
-  name: Spawn(Single, Single, Single, Boolean)
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_Spawn_System_Single_System_Single_System_Single_System_Boolean_
-  commentId: M:WeaverCore.Assets.AreaTitle.Spawn(System.Single,System.Single,System.Single,System.Boolean)
-  fullName: WeaverCore.Assets.AreaTitle.Spawn(System.Single, System.Single, System.Single, System.Boolean)
-  nameWithType: AreaTitle.Spawn(Single, Single, Single, Boolean)
-- uid: WeaverCore.Assets.AreaTitle.Spawn(System.String,System.String,System.Single,System.Single,System.Single,System.Boolean)
-  name: Spawn(String, String, Single, Single, Single, Boolean)
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_Spawn_System_String_System_String_System_Single_System_Single_System_Single_System_Boolean_
-  commentId: M:WeaverCore.Assets.AreaTitle.Spawn(System.String,System.String,System.Single,System.Single,System.Single,System.Boolean)
-  fullName: WeaverCore.Assets.AreaTitle.Spawn(System.String, System.String, System.Single, System.Single, System.Single, System.Boolean)
-  nameWithType: AreaTitle.Spawn(String, String, Single, Single, Single, Boolean)
-- uid: WeaverCore.Assets.AreaTitle.Spawn*
-  name: Spawn
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_Spawn_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.Spawn
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.Spawn
-  nameWithType: AreaTitle.Spawn
-- uid: WeaverCore.Assets.AreaTitle.SpawnNoFade
-  name: SpawnNoFade()
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_SpawnNoFade
-  commentId: M:WeaverCore.Assets.AreaTitle.SpawnNoFade
-  fullName: WeaverCore.Assets.AreaTitle.SpawnNoFade()
-  nameWithType: AreaTitle.SpawnNoFade()
-- uid: WeaverCore.Assets.AreaTitle.SpawnNoFade(System.String,System.String)
-  name: SpawnNoFade(String, String)
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_SpawnNoFade_System_String_System_String_
-  commentId: M:WeaverCore.Assets.AreaTitle.SpawnNoFade(System.String,System.String)
-  fullName: WeaverCore.Assets.AreaTitle.SpawnNoFade(System.String, System.String)
-  nameWithType: AreaTitle.SpawnNoFade(String, String)
-- uid: WeaverCore.Assets.AreaTitle.SpawnNoFade*
-  name: SpawnNoFade
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_SpawnNoFade_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.SpawnNoFade
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.SpawnNoFade
-  nameWithType: AreaTitle.SpawnNoFade
-- uid: WeaverCore.Assets.AreaTitle.TopText
-  name: TopText
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_TopText
-  commentId: P:WeaverCore.Assets.AreaTitle.TopText
-  fullName: WeaverCore.Assets.AreaTitle.TopText
-  nameWithType: AreaTitle.TopText
-- uid: WeaverCore.Assets.AreaTitle.TopText*
-  name: TopText
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_TopText_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.TopText
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.TopText
-  nameWithType: AreaTitle.TopText
-- uid: WeaverCore.Assets.AreaTitle.TopTextObject
-  name: TopTextObject
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_TopTextObject
-  commentId: P:WeaverCore.Assets.AreaTitle.TopTextObject
-  fullName: WeaverCore.Assets.AreaTitle.TopTextObject
-  nameWithType: AreaTitle.TopTextObject
-- uid: WeaverCore.Assets.AreaTitle.TopTextObject*
-  name: TopTextObject
-  href: api/WeaverCore.Assets.AreaTitle.html#WeaverCore_Assets_AreaTitle_TopTextObject_
-  commentId: Overload:WeaverCore.Assets.AreaTitle.TopTextObject
-  isSpec: "True"
-  fullName: WeaverCore.Assets.AreaTitle.TopTextObject
-  nameWithType: AreaTitle.TopTextObject
 - uid: WeaverCore.Assets.AudioAssets
   name: AudioAssets
   href: api/WeaverCore.Assets.AudioAssets.html
@@ -18461,25 +18301,172 @@ references:
   commentId: N:WeaverCore.Assets.Components
   fullName: WeaverCore.Assets.Components
   nameWithType: WeaverCore.Assets.Components
-- uid: WeaverCore.Assets.Components.AnimationDestroyer
-  name: AnimationDestroyer
-  href: api/WeaverCore.Assets.Components.AnimationDestroyer.html
-  commentId: T:WeaverCore.Assets.Components.AnimationDestroyer
-  fullName: WeaverCore.Assets.Components.AnimationDestroyer
-  nameWithType: AnimationDestroyer
-- uid: WeaverCore.Assets.Components.AnimationDestroyer.Destroy
-  name: Destroy()
-  href: api/WeaverCore.Assets.Components.AnimationDestroyer.html#WeaverCore_Assets_Components_AnimationDestroyer_Destroy
-  commentId: M:WeaverCore.Assets.Components.AnimationDestroyer.Destroy
-  fullName: WeaverCore.Assets.Components.AnimationDestroyer.Destroy()
-  nameWithType: AnimationDestroyer.Destroy()
-- uid: WeaverCore.Assets.Components.AnimationDestroyer.Destroy*
-  name: Destroy
-  href: api/WeaverCore.Assets.Components.AnimationDestroyer.html#WeaverCore_Assets_Components_AnimationDestroyer_Destroy_
-  commentId: Overload:WeaverCore.Assets.Components.AnimationDestroyer.Destroy
+- uid: WeaverCore.Assets.Components.AreaTitle
+  name: AreaTitle
+  href: api/WeaverCore.Assets.Components.AreaTitle.html
+  commentId: T:WeaverCore.Assets.Components.AreaTitle
+  fullName: WeaverCore.Assets.Components.AreaTitle
+  nameWithType: AreaTitle
+- uid: WeaverCore.Assets.Components.AreaTitle.BottomText
+  name: BottomText
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_BottomText
+  commentId: P:WeaverCore.Assets.Components.AreaTitle.BottomText
+  fullName: WeaverCore.Assets.Components.AreaTitle.BottomText
+  nameWithType: AreaTitle.BottomText
+- uid: WeaverCore.Assets.Components.AreaTitle.BottomText*
+  name: BottomText
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_BottomText_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.BottomText
   isSpec: "True"
-  fullName: WeaverCore.Assets.Components.AnimationDestroyer.Destroy
-  nameWithType: AnimationDestroyer.Destroy
+  fullName: WeaverCore.Assets.Components.AreaTitle.BottomText
+  nameWithType: AreaTitle.BottomText
+- uid: WeaverCore.Assets.Components.AreaTitle.BottomTextObject
+  name: BottomTextObject
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_BottomTextObject
+  commentId: P:WeaverCore.Assets.Components.AreaTitle.BottomTextObject
+  fullName: WeaverCore.Assets.Components.AreaTitle.BottomTextObject
+  nameWithType: AreaTitle.BottomTextObject
+- uid: WeaverCore.Assets.Components.AreaTitle.BottomTextObject*
+  name: BottomTextObject
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_BottomTextObject_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.BottomTextObject
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AreaTitle.BottomTextObject
+  nameWithType: AreaTitle.BottomTextObject
+- uid: WeaverCore.Assets.Components.AreaTitle.Delete
+  name: Delete()
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_Delete
+  commentId: M:WeaverCore.Assets.Components.AreaTitle.Delete
+  fullName: WeaverCore.Assets.Components.AreaTitle.Delete()
+  nameWithType: AreaTitle.Delete()
+- uid: WeaverCore.Assets.Components.AreaTitle.Delete*
+  name: Delete
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_Delete_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.Delete
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AreaTitle.Delete
+  nameWithType: AreaTitle.Delete
+- uid: WeaverCore.Assets.Components.AreaTitle.DoFade(System.Single,System.Single,System.Single,System.Boolean)
+  name: DoFade(Single, Single, Single, Boolean)
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_DoFade_System_Single_System_Single_System_Single_System_Boolean_
+  commentId: M:WeaverCore.Assets.Components.AreaTitle.DoFade(System.Single,System.Single,System.Single,System.Boolean)
+  fullName: WeaverCore.Assets.Components.AreaTitle.DoFade(System.Single, System.Single, System.Single, System.Boolean)
+  nameWithType: AreaTitle.DoFade(Single, Single, Single, Boolean)
+- uid: WeaverCore.Assets.Components.AreaTitle.DoFade*
+  name: DoFade
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_DoFade_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.DoFade
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AreaTitle.DoFade
+  nameWithType: AreaTitle.DoFade
+- uid: WeaverCore.Assets.Components.AreaTitle.DoingFade
+  name: DoingFade
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_DoingFade
+  commentId: P:WeaverCore.Assets.Components.AreaTitle.DoingFade
+  fullName: WeaverCore.Assets.Components.AreaTitle.DoingFade
+  nameWithType: AreaTitle.DoingFade
+- uid: WeaverCore.Assets.Components.AreaTitle.DoingFade*
+  name: DoingFade
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_DoingFade_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.DoingFade
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AreaTitle.DoingFade
+  nameWithType: AreaTitle.DoingFade
+- uid: WeaverCore.Assets.Components.AreaTitle.FadedInColor
+  name: FadedInColor
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_FadedInColor
+  commentId: F:WeaverCore.Assets.Components.AreaTitle.FadedInColor
+  fullName: WeaverCore.Assets.Components.AreaTitle.FadedInColor
+  nameWithType: AreaTitle.FadedInColor
+- uid: WeaverCore.Assets.Components.AreaTitle.FadedOutColor
+  name: FadedOutColor
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_FadedOutColor
+  commentId: F:WeaverCore.Assets.Components.AreaTitle.FadedOutColor
+  fullName: WeaverCore.Assets.Components.AreaTitle.FadedOutColor
+  nameWithType: AreaTitle.FadedOutColor
+- uid: WeaverCore.Assets.Components.AreaTitle.Position
+  name: Position
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_Position
+  commentId: P:WeaverCore.Assets.Components.AreaTitle.Position
+  fullName: WeaverCore.Assets.Components.AreaTitle.Position
+  nameWithType: AreaTitle.Position
+- uid: WeaverCore.Assets.Components.AreaTitle.Position*
+  name: Position
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_Position_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.Position
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AreaTitle.Position
+  nameWithType: AreaTitle.Position
+- uid: WeaverCore.Assets.Components.AreaTitle.Spawn(System.Single,System.Single,System.Single,System.Boolean)
+  name: Spawn(Single, Single, Single, Boolean)
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_Spawn_System_Single_System_Single_System_Single_System_Boolean_
+  commentId: M:WeaverCore.Assets.Components.AreaTitle.Spawn(System.Single,System.Single,System.Single,System.Boolean)
+  fullName: WeaverCore.Assets.Components.AreaTitle.Spawn(System.Single, System.Single, System.Single, System.Boolean)
+  nameWithType: AreaTitle.Spawn(Single, Single, Single, Boolean)
+- uid: WeaverCore.Assets.Components.AreaTitle.Spawn(System.String,System.String,System.Single,System.Single,System.Single,System.Boolean)
+  name: Spawn(String, String, Single, Single, Single, Boolean)
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_Spawn_System_String_System_String_System_Single_System_Single_System_Single_System_Boolean_
+  commentId: M:WeaverCore.Assets.Components.AreaTitle.Spawn(System.String,System.String,System.Single,System.Single,System.Single,System.Boolean)
+  fullName: WeaverCore.Assets.Components.AreaTitle.Spawn(System.String, System.String, System.Single, System.Single, System.Single, System.Boolean)
+  nameWithType: AreaTitle.Spawn(String, String, Single, Single, Single, Boolean)
+- uid: WeaverCore.Assets.Components.AreaTitle.Spawn*
+  name: Spawn
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_Spawn_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.Spawn
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AreaTitle.Spawn
+  nameWithType: AreaTitle.Spawn
+- uid: WeaverCore.Assets.Components.AreaTitle.SpawnNoFade
+  name: SpawnNoFade()
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_SpawnNoFade
+  commentId: M:WeaverCore.Assets.Components.AreaTitle.SpawnNoFade
+  fullName: WeaverCore.Assets.Components.AreaTitle.SpawnNoFade()
+  nameWithType: AreaTitle.SpawnNoFade()
+- uid: WeaverCore.Assets.Components.AreaTitle.SpawnNoFade(System.String,System.String)
+  name: SpawnNoFade(String, String)
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_SpawnNoFade_System_String_System_String_
+  commentId: M:WeaverCore.Assets.Components.AreaTitle.SpawnNoFade(System.String,System.String)
+  fullName: WeaverCore.Assets.Components.AreaTitle.SpawnNoFade(System.String, System.String)
+  nameWithType: AreaTitle.SpawnNoFade(String, String)
+- uid: WeaverCore.Assets.Components.AreaTitle.SpawnNoFade*
+  name: SpawnNoFade
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_SpawnNoFade_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.SpawnNoFade
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AreaTitle.SpawnNoFade
+  nameWithType: AreaTitle.SpawnNoFade
+- uid: WeaverCore.Assets.Components.AreaTitle.TopText
+  name: TopText
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_TopText
+  commentId: P:WeaverCore.Assets.Components.AreaTitle.TopText
+  fullName: WeaverCore.Assets.Components.AreaTitle.TopText
+  nameWithType: AreaTitle.TopText
+- uid: WeaverCore.Assets.Components.AreaTitle.TopText*
+  name: TopText
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_TopText_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.TopText
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AreaTitle.TopText
+  nameWithType: AreaTitle.TopText
+- uid: WeaverCore.Assets.Components.AreaTitle.TopTextObject
+  name: TopTextObject
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_TopTextObject
+  commentId: P:WeaverCore.Assets.Components.AreaTitle.TopTextObject
+  fullName: WeaverCore.Assets.Components.AreaTitle.TopTextObject
+  nameWithType: AreaTitle.TopTextObject
+- uid: WeaverCore.Assets.Components.AreaTitle.TopTextObject*
+  name: TopTextObject
+  href: api/WeaverCore.Assets.Components.AreaTitle.html#WeaverCore_Assets_Components_AreaTitle_TopTextObject_
+  commentId: Overload:WeaverCore.Assets.Components.AreaTitle.TopTextObject
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AreaTitle.TopTextObject
+  nameWithType: AreaTitle.TopTextObject
+- uid: WeaverCore.Assets.Components.AreaTitleTextFitter
+  name: AreaTitleTextFitter
+  href: api/WeaverCore.Assets.Components.AreaTitleTextFitter.html
+  commentId: T:WeaverCore.Assets.Components.AreaTitleTextFitter
+  fullName: WeaverCore.Assets.Components.AreaTitleTextFitter
+  nameWithType: AreaTitleTextFitter
 - uid: WeaverCore.Assets.Components.AudioTester
   name: AudioTester
   href: api/WeaverCore.Assets.Components.AudioTester.html
@@ -18551,6 +18538,25 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Assets.Components.AudioTester.StopTestAudio
   nameWithType: AudioTester.StopTestAudio
+- uid: WeaverCore.Assets.Components.AutoDestroy
+  name: AutoDestroy
+  href: api/WeaverCore.Assets.Components.AutoDestroy.html
+  commentId: T:WeaverCore.Assets.Components.AutoDestroy
+  fullName: WeaverCore.Assets.Components.AutoDestroy
+  nameWithType: AutoDestroy
+- uid: WeaverCore.Assets.Components.AutoDestroy.Destroy
+  name: Destroy()
+  href: api/WeaverCore.Assets.Components.AutoDestroy.html#WeaverCore_Assets_Components_AutoDestroy_Destroy
+  commentId: M:WeaverCore.Assets.Components.AutoDestroy.Destroy
+  fullName: WeaverCore.Assets.Components.AutoDestroy.Destroy()
+  nameWithType: AutoDestroy.Destroy()
+- uid: WeaverCore.Assets.Components.AutoDestroy.Destroy*
+  name: Destroy
+  href: api/WeaverCore.Assets.Components.AutoDestroy.html#WeaverCore_Assets_Components_AutoDestroy_Destroy_
+  commentId: Overload:WeaverCore.Assets.Components.AutoDestroy.Destroy
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.AutoDestroy.Destroy
+  nameWithType: AutoDestroy.Destroy
 - uid: WeaverCore.Assets.Components.BossDeathExplosion
   name: BossDeathExplosion
   href: api/WeaverCore.Assets.Components.BossDeathExplosion.html
@@ -18815,103 +18821,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Assets.Components.DetectHero.HeroInRange
   nameWithType: DetectHero.HeroInRange
-- uid: WeaverCore.Assets.Components.DumpUI
-  name: DumpUI
-  href: api/WeaverCore.Assets.Components.DumpUI.html
-  commentId: T:WeaverCore.Assets.Components.DumpUI
-  fullName: WeaverCore.Assets.Components.DumpUI
-  nameWithType: DumpUI
-- uid: WeaverCore.Assets.Components.DumpUI.DumpObject
-  name: DumpObject()
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_DumpObject
-  commentId: M:WeaverCore.Assets.Components.DumpUI.DumpObject
-  fullName: WeaverCore.Assets.Components.DumpUI.DumpObject()
-  nameWithType: DumpUI.DumpObject()
-- uid: WeaverCore.Assets.Components.DumpUI.DumpObject*
-  name: DumpObject
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_DumpObject_
-  commentId: Overload:WeaverCore.Assets.Components.DumpUI.DumpObject
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.DumpUI.DumpObject
-  nameWithType: DumpUI.DumpObject
-- uid: WeaverCore.Assets.Components.DumpUI.Filter
-  name: Filter()
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_Filter
-  commentId: M:WeaverCore.Assets.Components.DumpUI.Filter
-  fullName: WeaverCore.Assets.Components.DumpUI.Filter()
-  nameWithType: DumpUI.Filter()
-- uid: WeaverCore.Assets.Components.DumpUI.Filter*
-  name: Filter
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_Filter_
-  commentId: Overload:WeaverCore.Assets.Components.DumpUI.Filter
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.DumpUI.Filter
-  nameWithType: DumpUI.Filter
-- uid: WeaverCore.Assets.Components.DumpUI.GetChildren(UnityEngine.GameObject)
-  name: GetChildren(GameObject)
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_GetChildren_UnityEngine_GameObject_
-  commentId: M:WeaverCore.Assets.Components.DumpUI.GetChildren(UnityEngine.GameObject)
-  fullName: WeaverCore.Assets.Components.DumpUI.GetChildren(UnityEngine.GameObject)
-  nameWithType: DumpUI.GetChildren(GameObject)
-- uid: WeaverCore.Assets.Components.DumpUI.GetChildren*
-  name: GetChildren
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_GetChildren_
-  commentId: Overload:WeaverCore.Assets.Components.DumpUI.GetChildren
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.DumpUI.GetChildren
-  nameWithType: DumpUI.GetChildren
-- uid: WeaverCore.Assets.Components.DumpUI.Instance
-  name: Instance
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_Instance
-  commentId: P:WeaverCore.Assets.Components.DumpUI.Instance
-  fullName: WeaverCore.Assets.Components.DumpUI.Instance
-  nameWithType: DumpUI.Instance
-- uid: WeaverCore.Assets.Components.DumpUI.Instance*
-  name: Instance
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_Instance_
-  commentId: Overload:WeaverCore.Assets.Components.DumpUI.Instance
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.DumpUI.Instance
-  nameWithType: DumpUI.Instance
-- uid: WeaverCore.Assets.Components.DumpUI.Refresh
-  name: Refresh()
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_Refresh
-  commentId: M:WeaverCore.Assets.Components.DumpUI.Refresh
-  fullName: WeaverCore.Assets.Components.DumpUI.Refresh()
-  nameWithType: DumpUI.Refresh()
-- uid: WeaverCore.Assets.Components.DumpUI.Refresh*
-  name: Refresh
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_Refresh_
-  commentId: Overload:WeaverCore.Assets.Components.DumpUI.Refresh
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.DumpUI.Refresh
-  nameWithType: DumpUI.Refresh
-- uid: WeaverCore.Assets.Components.DumpUI.SelectedObject
-  name: SelectedObject
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_SelectedObject
-  commentId: P:WeaverCore.Assets.Components.DumpUI.SelectedObject
-  fullName: WeaverCore.Assets.Components.DumpUI.SelectedObject
-  nameWithType: DumpUI.SelectedObject
-- uid: WeaverCore.Assets.Components.DumpUI.SelectedObject*
-  name: SelectedObject
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_SelectedObject_
-  commentId: Overload:WeaverCore.Assets.Components.DumpUI.SelectedObject
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.DumpUI.SelectedObject
-  nameWithType: DumpUI.SelectedObject
-- uid: WeaverCore.Assets.Components.DumpUI.SetGameObject(UnityEngine.GameObject)
-  name: SetGameObject(GameObject)
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_SetGameObject_UnityEngine_GameObject_
-  commentId: M:WeaverCore.Assets.Components.DumpUI.SetGameObject(UnityEngine.GameObject)
-  fullName: WeaverCore.Assets.Components.DumpUI.SetGameObject(UnityEngine.GameObject)
-  nameWithType: DumpUI.SetGameObject(GameObject)
-- uid: WeaverCore.Assets.Components.DumpUI.SetGameObject*
-  name: SetGameObject
-  href: api/WeaverCore.Assets.Components.DumpUI.html#WeaverCore_Assets_Components_DumpUI_SetGameObject_
-  commentId: Overload:WeaverCore.Assets.Components.DumpUI.SetGameObject
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.DumpUI.SetGameObject
-  nameWithType: DumpUI.SetGameObject
 - uid: WeaverCore.Assets.Components.EssenceEffects
   name: EssenceEffects
   href: api/WeaverCore.Assets.Components.EssenceEffects.html
@@ -18963,18 +18872,6 @@ references:
   commentId: T:WeaverCore.Assets.Components.FitToText
   fullName: WeaverCore.Assets.Components.FitToText
   nameWithType: FitToText
-- uid: WeaverCore.Assets.Components.FixedAspectRatio
-  name: FixedAspectRatio
-  href: api/WeaverCore.Assets.Components.FixedAspectRatio.html
-  commentId: T:WeaverCore.Assets.Components.FixedAspectRatio
-  fullName: WeaverCore.Assets.Components.FixedAspectRatio
-  nameWithType: FixedAspectRatio
-- uid: WeaverCore.Assets.Components.FixedAspectRatio.wantedAspectRatio
-  name: wantedAspectRatio
-  href: api/WeaverCore.Assets.Components.FixedAspectRatio.html#WeaverCore_Assets_Components_FixedAspectRatio_wantedAspectRatio
-  commentId: F:WeaverCore.Assets.Components.FixedAspectRatio.wantedAspectRatio
-  fullName: WeaverCore.Assets.Components.FixedAspectRatio.wantedAspectRatio
-  nameWithType: FixedAspectRatio.wantedAspectRatio
 - uid: WeaverCore.Assets.Components.ForceAspectRatio
   name: ForceAspectRatio
   href: api/WeaverCore.Assets.Components.ForceAspectRatio.html
@@ -18994,51 +18891,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Assets.Components.ForceAspectRatio.SetOverscanViewport
   nameWithType: ForceAspectRatio.SetOverscanViewport
-- uid: WeaverCore.Assets.Components.GameObjectSelectButton
-  name: GameObjectSelectButton
-  href: api/WeaverCore.Assets.Components.GameObjectSelectButton.html
-  commentId: T:WeaverCore.Assets.Components.GameObjectSelectButton
-  fullName: WeaverCore.Assets.Components.GameObjectSelectButton
-  nameWithType: GameObjectSelectButton
-- uid: WeaverCore.Assets.Components.GameObjectSelectButton.GetSourceGM
-  name: GetSourceGM()
-  href: api/WeaverCore.Assets.Components.GameObjectSelectButton.html#WeaverCore_Assets_Components_GameObjectSelectButton_GetSourceGM
-  commentId: M:WeaverCore.Assets.Components.GameObjectSelectButton.GetSourceGM
-  fullName: WeaverCore.Assets.Components.GameObjectSelectButton.GetSourceGM()
-  nameWithType: GameObjectSelectButton.GetSourceGM()
-- uid: WeaverCore.Assets.Components.GameObjectSelectButton.GetSourceGM*
-  name: GetSourceGM
-  href: api/WeaverCore.Assets.Components.GameObjectSelectButton.html#WeaverCore_Assets_Components_GameObjectSelectButton_GetSourceGM_
-  commentId: Overload:WeaverCore.Assets.Components.GameObjectSelectButton.GetSourceGM
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.GameObjectSelectButton.GetSourceGM
-  nameWithType: GameObjectSelectButton.GetSourceGM
-- uid: WeaverCore.Assets.Components.GameObjectSelectButton.OnPointerClick(UnityEngine.EventSystems.PointerEventData)
-  name: OnPointerClick(PointerEventData)
-  href: api/WeaverCore.Assets.Components.GameObjectSelectButton.html#WeaverCore_Assets_Components_GameObjectSelectButton_OnPointerClick_UnityEngine_EventSystems_PointerEventData_
-  commentId: M:WeaverCore.Assets.Components.GameObjectSelectButton.OnPointerClick(UnityEngine.EventSystems.PointerEventData)
-  fullName: WeaverCore.Assets.Components.GameObjectSelectButton.OnPointerClick(UnityEngine.EventSystems.PointerEventData)
-  nameWithType: GameObjectSelectButton.OnPointerClick(PointerEventData)
-- uid: WeaverCore.Assets.Components.GameObjectSelectButton.OnPointerClick*
-  name: OnPointerClick
-  href: api/WeaverCore.Assets.Components.GameObjectSelectButton.html#WeaverCore_Assets_Components_GameObjectSelectButton_OnPointerClick_
-  commentId: Overload:WeaverCore.Assets.Components.GameObjectSelectButton.OnPointerClick
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.GameObjectSelectButton.OnPointerClick
-  nameWithType: GameObjectSelectButton.OnPointerClick
-- uid: WeaverCore.Assets.Components.GameObjectSelectButton.SetSourceGM(UnityEngine.GameObject,System.String)
-  name: SetSourceGM(GameObject, String)
-  href: api/WeaverCore.Assets.Components.GameObjectSelectButton.html#WeaverCore_Assets_Components_GameObjectSelectButton_SetSourceGM_UnityEngine_GameObject_System_String_
-  commentId: M:WeaverCore.Assets.Components.GameObjectSelectButton.SetSourceGM(UnityEngine.GameObject,System.String)
-  fullName: WeaverCore.Assets.Components.GameObjectSelectButton.SetSourceGM(UnityEngine.GameObject, System.String)
-  nameWithType: GameObjectSelectButton.SetSourceGM(GameObject, String)
-- uid: WeaverCore.Assets.Components.GameObjectSelectButton.SetSourceGM*
-  name: SetSourceGM
-  href: api/WeaverCore.Assets.Components.GameObjectSelectButton.html#WeaverCore_Assets_Components_GameObjectSelectButton_SetSourceGM_
-  commentId: Overload:WeaverCore.Assets.Components.GameObjectSelectButton.SetSourceGM
-  isSpec: "True"
-  fullName: WeaverCore.Assets.Components.GameObjectSelectButton.SetSourceGM
-  nameWithType: GameObjectSelectButton.SetSourceGM
 - uid: WeaverCore.Assets.Components.LightPulse
   name: LightPulse
   href: api/WeaverCore.Assets.Components.LightPulse.html
@@ -19135,12 +18987,6 @@ references:
   commentId: T:WeaverCore.Assets.Components.MapUpdateMessage
   fullName: WeaverCore.Assets.Components.MapUpdateMessage
   nameWithType: MapUpdateMessage
-- uid: WeaverCore.Assets.Components.ParticleRecycler
-  name: ParticleRecycler
-  href: api/WeaverCore.Assets.Components.ParticleRecycler.html
-  commentId: T:WeaverCore.Assets.Components.ParticleRecycler
-  fullName: WeaverCore.Assets.Components.ParticleRecycler
-  nameWithType: ParticleRecycler
 - uid: WeaverCore.Assets.Components.RandomRotation
   name: RandomRotation
   href: api/WeaverCore.Assets.Components.RandomRotation.html
@@ -23871,36 +23717,6 @@ references:
   commentId: F:WeaverCore.DataTypes.TextureSheet.Width
   fullName: WeaverCore.DataTypes.TextureSheet.Width
   nameWithType: TextureSheet.Width
-- uid: WeaverCore.DreamWarpOptions
-  name: DreamWarpOptions
-  href: api/WeaverCore.DreamWarpOptions.html
-  commentId: T:WeaverCore.DreamWarpOptions
-  fullName: WeaverCore.DreamWarpOptions
-  nameWithType: DreamWarpOptions
-- uid: WeaverCore.DreamWarpOptions.DreamArriveParticles
-  name: DreamArriveParticles
-  href: api/WeaverCore.DreamWarpOptions.html#WeaverCore_DreamWarpOptions_DreamArriveParticles
-  commentId: F:WeaverCore.DreamWarpOptions.DreamArriveParticles
-  fullName: WeaverCore.DreamWarpOptions.DreamArriveParticles
-  nameWithType: DreamWarpOptions.DreamArriveParticles
-- uid: WeaverCore.DreamWarpOptions.DreamArriveSound
-  name: DreamArriveSound
-  href: api/WeaverCore.DreamWarpOptions.html#WeaverCore_DreamWarpOptions_DreamArriveSound
-  commentId: F:WeaverCore.DreamWarpOptions.DreamArriveSound
-  fullName: WeaverCore.DreamWarpOptions.DreamArriveSound
-  nameWithType: DreamWarpOptions.DreamArriveSound
-- uid: WeaverCore.DreamWarpOptions.DreamParticles
-  name: DreamParticles
-  href: api/WeaverCore.DreamWarpOptions.html#WeaverCore_DreamWarpOptions_DreamParticles
-  commentId: F:WeaverCore.DreamWarpOptions.DreamParticles
-  fullName: WeaverCore.DreamWarpOptions.DreamParticles
-  nameWithType: DreamWarpOptions.DreamParticles
-- uid: WeaverCore.DreamWarpOptions.DreamWarpSound
-  name: DreamWarpSound
-  href: api/WeaverCore.DreamWarpOptions.html#WeaverCore_DreamWarpOptions_DreamWarpSound
-  commentId: F:WeaverCore.DreamWarpOptions.DreamWarpSound
-  fullName: WeaverCore.DreamWarpOptions.DreamWarpSound
-  nameWithType: DreamWarpOptions.DreamWarpSound
 - uid: WeaverCore.Editor
   name: WeaverCore.Editor
   href: api/WeaverCore.Editor.html
@@ -26257,25 +26073,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Implementations.E_HunterJournal_I.RecordKillFor
   nameWithType: E_HunterJournal_I.RecordKillFor
-- uid: WeaverCore.Editor.Implementations.E_ObjectDumper_I
-  name: E_ObjectDumper_I
-  href: api/WeaverCore.Editor.Implementations.E_ObjectDumper_I.html
-  commentId: T:WeaverCore.Editor.Implementations.E_ObjectDumper_I
-  fullName: WeaverCore.Editor.Implementations.E_ObjectDumper_I
-  nameWithType: E_ObjectDumper_I
-- uid: WeaverCore.Editor.Implementations.E_ObjectDumper_I.Dump(UnityEngine.GameObject)
-  name: Dump(GameObject)
-  href: api/WeaverCore.Editor.Implementations.E_ObjectDumper_I.html#WeaverCore_Editor_Implementations_E_ObjectDumper_I_Dump_UnityEngine_GameObject_
-  commentId: M:WeaverCore.Editor.Implementations.E_ObjectDumper_I.Dump(UnityEngine.GameObject)
-  fullName: WeaverCore.Editor.Implementations.E_ObjectDumper_I.Dump(UnityEngine.GameObject)
-  nameWithType: E_ObjectDumper_I.Dump(GameObject)
-- uid: WeaverCore.Editor.Implementations.E_ObjectDumper_I.Dump*
-  name: Dump
-  href: api/WeaverCore.Editor.Implementations.E_ObjectDumper_I.html#WeaverCore_Editor_Implementations_E_ObjectDumper_I_Dump_
-  commentId: Overload:WeaverCore.Editor.Implementations.E_ObjectDumper_I.Dump
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Implementations.E_ObjectDumper_I.Dump
-  nameWithType: E_ObjectDumper_I.Dump
 - uid: WeaverCore.Editor.Implementations.E_Player_I
   name: E_Player_I
   href: api/WeaverCore.Editor.Implementations.E_Player_I.html
@@ -30655,95 +30452,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.HarmonyPatcher.ToString
   nameWithType: HarmonyPatcher.ToString
-- uid: WeaverCore.HealthMilestone
-  name: HealthMilestone
-  href: api/WeaverCore.HealthMilestone.html
-  commentId: T:WeaverCore.HealthMilestone
-  fullName: WeaverCore.HealthMilestone
-  nameWithType: HealthMilestone
-- uid: WeaverCore.HealthMilestone.#ctor(System.Int32,System.Action)
-  name: HealthMilestone(Int32, Action)
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone__ctor_System_Int32_System_Action_
-  commentId: M:WeaverCore.HealthMilestone.#ctor(System.Int32,System.Action)
-  fullName: WeaverCore.HealthMilestone.HealthMilestone(System.Int32, System.Action)
-  nameWithType: HealthMilestone.HealthMilestone(Int32, Action)
-- uid: WeaverCore.HealthMilestone.#ctor*
-  name: HealthMilestone
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone__ctor_
-  commentId: Overload:WeaverCore.HealthMilestone.#ctor
-  isSpec: "True"
-  fullName: WeaverCore.HealthMilestone.HealthMilestone
-  nameWithType: HealthMilestone.HealthMilestone
-- uid: WeaverCore.HealthMilestone.Comparer
-  name: Comparer
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_Comparer
-  commentId: F:WeaverCore.HealthMilestone.Comparer
-  fullName: WeaverCore.HealthMilestone.Comparer
-  nameWithType: HealthMilestone.Comparer
-- uid: WeaverCore.HealthMilestone.Equals(System.Object)
-  name: Equals(Object)
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_Equals_System_Object_
-  commentId: M:WeaverCore.HealthMilestone.Equals(System.Object)
-  fullName: WeaverCore.HealthMilestone.Equals(System.Object)
-  nameWithType: HealthMilestone.Equals(Object)
-- uid: WeaverCore.HealthMilestone.Equals*
-  name: Equals
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_Equals_
-  commentId: Overload:WeaverCore.HealthMilestone.Equals
-  isSpec: "True"
-  fullName: WeaverCore.HealthMilestone.Equals
-  nameWithType: HealthMilestone.Equals
-- uid: WeaverCore.HealthMilestone.GetHashCode
-  name: GetHashCode()
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_GetHashCode
-  commentId: M:WeaverCore.HealthMilestone.GetHashCode
-  fullName: WeaverCore.HealthMilestone.GetHashCode()
-  nameWithType: HealthMilestone.GetHashCode()
-- uid: WeaverCore.HealthMilestone.GetHashCode*
-  name: GetHashCode
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_GetHashCode_
-  commentId: Overload:WeaverCore.HealthMilestone.GetHashCode
-  isSpec: "True"
-  fullName: WeaverCore.HealthMilestone.GetHashCode
-  nameWithType: HealthMilestone.GetHashCode
-- uid: WeaverCore.HealthMilestone.HealthNumber
-  name: HealthNumber
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_HealthNumber
-  commentId: F:WeaverCore.HealthMilestone.HealthNumber
-  fullName: WeaverCore.HealthMilestone.HealthNumber
-  nameWithType: HealthMilestone.HealthNumber
-- uid: WeaverCore.HealthMilestone.MilestoneReached
-  name: MilestoneReached
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_MilestoneReached
-  commentId: F:WeaverCore.HealthMilestone.MilestoneReached
-  fullName: WeaverCore.HealthMilestone.MilestoneReached
-  nameWithType: HealthMilestone.MilestoneReached
-- uid: WeaverCore.HealthMilestone.op_Equality(WeaverCore.HealthMilestone,WeaverCore.HealthMilestone)
-  name: Equality(HealthMilestone, HealthMilestone)
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_op_Equality_WeaverCore_HealthMilestone_WeaverCore_HealthMilestone_
-  commentId: M:WeaverCore.HealthMilestone.op_Equality(WeaverCore.HealthMilestone,WeaverCore.HealthMilestone)
-  fullName: WeaverCore.HealthMilestone.Equality(WeaverCore.HealthMilestone, WeaverCore.HealthMilestone)
-  nameWithType: HealthMilestone.Equality(HealthMilestone, HealthMilestone)
-- uid: WeaverCore.HealthMilestone.op_Equality*
-  name: Equality
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_op_Equality_
-  commentId: Overload:WeaverCore.HealthMilestone.op_Equality
-  isSpec: "True"
-  fullName: WeaverCore.HealthMilestone.Equality
-  nameWithType: HealthMilestone.Equality
-- uid: WeaverCore.HealthMilestone.op_Inequality(WeaverCore.HealthMilestone,WeaverCore.HealthMilestone)
-  name: Inequality(HealthMilestone, HealthMilestone)
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_op_Inequality_WeaverCore_HealthMilestone_WeaverCore_HealthMilestone_
-  commentId: M:WeaverCore.HealthMilestone.op_Inequality(WeaverCore.HealthMilestone,WeaverCore.HealthMilestone)
-  fullName: WeaverCore.HealthMilestone.Inequality(WeaverCore.HealthMilestone, WeaverCore.HealthMilestone)
-  nameWithType: HealthMilestone.Inequality(HealthMilestone, HealthMilestone)
-- uid: WeaverCore.HealthMilestone.op_Inequality*
-  name: Inequality
-  href: api/WeaverCore.HealthMilestone.html#WeaverCore_HealthMilestone_op_Inequality_
-  commentId: Overload:WeaverCore.HealthMilestone.op_Inequality
-  isSpec: "True"
-  fullName: WeaverCore.HealthMilestone.Inequality
-  nameWithType: HealthMilestone.Inequality
 - uid: WeaverCore.HitInfo
   name: HitInfo
   href: api/WeaverCore.HitInfo.html
@@ -31095,12 +30803,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Implementations.Boss_I.Statics.OnBossSceneCompleteRemove
   nameWithType: Boss_I.Statics.OnBossSceneCompleteRemove
-- uid: WeaverCore.Implementations.Charms_I
-  name: Charms_I
-  href: api/WeaverCore.Implementations.Charms_I.html
-  commentId: T:WeaverCore.Implementations.Charms_I
-  fullName: WeaverCore.Implementations.Charms_I
-  nameWithType: Charms_I
 - uid: WeaverCore.Implementations.Enemy_I
   name: Enemy_I
   href: api/WeaverCore.Implementations.Enemy_I.html
@@ -31427,12 +31129,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Implementations.HealthManager_I.ShouldBeDead
   nameWithType: HealthManager_I.ShouldBeDead
-- uid: WeaverCore.Implementations.HitEffects_I
-  name: HitEffects_I
-  href: api/WeaverCore.Implementations.HitEffects_I.html
-  commentId: T:WeaverCore.Implementations.HitEffects_I
-  fullName: WeaverCore.Implementations.HitEffects_I
-  nameWithType: HitEffects_I
 - uid: WeaverCore.Implementations.HunterJournal_I
   name: HunterJournal_I
   href: api/WeaverCore.Implementations.HunterJournal_I.html
@@ -31504,25 +31200,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Implementations.HunterJournal_I.RecordKillFor
   nameWithType: HunterJournal_I.RecordKillFor
-- uid: WeaverCore.Implementations.ObjectDumper_I
-  name: ObjectDumper_I
-  href: api/WeaverCore.Implementations.ObjectDumper_I.html
-  commentId: T:WeaverCore.Implementations.ObjectDumper_I
-  fullName: WeaverCore.Implementations.ObjectDumper_I
-  nameWithType: ObjectDumper_I
-- uid: WeaverCore.Implementations.ObjectDumper_I.Dump(UnityEngine.GameObject)
-  name: Dump(GameObject)
-  href: api/WeaverCore.Implementations.ObjectDumper_I.html#WeaverCore_Implementations_ObjectDumper_I_Dump_UnityEngine_GameObject_
-  commentId: M:WeaverCore.Implementations.ObjectDumper_I.Dump(UnityEngine.GameObject)
-  fullName: WeaverCore.Implementations.ObjectDumper_I.Dump(UnityEngine.GameObject)
-  nameWithType: ObjectDumper_I.Dump(GameObject)
-- uid: WeaverCore.Implementations.ObjectDumper_I.Dump*
-  name: Dump
-  href: api/WeaverCore.Implementations.ObjectDumper_I.html#WeaverCore_Implementations_ObjectDumper_I_Dump_
-  commentId: Overload:WeaverCore.Implementations.ObjectDumper_I.Dump
-  isSpec: "True"
-  fullName: WeaverCore.Implementations.ObjectDumper_I.Dump
-  nameWithType: ObjectDumper_I.Dump
 - uid: WeaverCore.Implementations.Player_I
   name: Player_I
   href: api/WeaverCore.Implementations.Player_I.html
@@ -38813,6 +38490,12 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Utilities.PathUtilities.ReplaceSlashes
   nameWithType: PathUtilities.ReplaceSlashes
+- uid: WeaverCore.Utilities.PathUtilities.reservedCharacters
+  name: reservedCharacters
+  href: api/WeaverCore.Utilities.PathUtilities.html#WeaverCore_Utilities_PathUtilities_reservedCharacters
+  commentId: F:WeaverCore.Utilities.PathUtilities.reservedCharacters
+  fullName: WeaverCore.Utilities.PathUtilities.reservedCharacters
+  nameWithType: PathUtilities.reservedCharacters
 - uid: WeaverCore.Utilities.PlayMakerUtilities
   name: PlayMakerUtilities
   href: api/WeaverCore.Utilities.PlayMakerUtilities.html
@@ -39632,43 +39315,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Utilities.Teleporter.TeleportEntity
   nameWithType: Teleporter.TeleportEntity
-- uid: WeaverCore.Utilities.Teleporter.TeleportException
-  name: Teleporter.TeleportException
-  href: api/WeaverCore.Utilities.Teleporter.TeleportException.html
-  commentId: T:WeaverCore.Utilities.Teleporter.TeleportException
-  fullName: WeaverCore.Utilities.Teleporter.TeleportException
-  nameWithType: Teleporter.TeleportException
-- uid: WeaverCore.Utilities.Teleporter.TeleportException.#ctor
-  name: TeleportException()
-  href: api/WeaverCore.Utilities.Teleporter.TeleportException.html#WeaverCore_Utilities_Teleporter_TeleportException__ctor
-  commentId: M:WeaverCore.Utilities.Teleporter.TeleportException.#ctor
-  fullName: WeaverCore.Utilities.Teleporter.TeleportException.TeleportException()
-  nameWithType: Teleporter.TeleportException.TeleportException()
-- uid: WeaverCore.Utilities.Teleporter.TeleportException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: TeleportException(SerializationInfo, StreamingContext)
-  href: api/WeaverCore.Utilities.Teleporter.TeleportException.html#WeaverCore_Utilities_Teleporter_TeleportException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:WeaverCore.Utilities.Teleporter.TeleportException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  fullName: WeaverCore.Utilities.Teleporter.TeleportException.TeleportException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: Teleporter.TeleportException.TeleportException(SerializationInfo, StreamingContext)
-- uid: WeaverCore.Utilities.Teleporter.TeleportException.#ctor(System.String)
-  name: TeleportException(String)
-  href: api/WeaverCore.Utilities.Teleporter.TeleportException.html#WeaverCore_Utilities_Teleporter_TeleportException__ctor_System_String_
-  commentId: M:WeaverCore.Utilities.Teleporter.TeleportException.#ctor(System.String)
-  fullName: WeaverCore.Utilities.Teleporter.TeleportException.TeleportException(System.String)
-  nameWithType: Teleporter.TeleportException.TeleportException(String)
-- uid: WeaverCore.Utilities.Teleporter.TeleportException.#ctor(System.String,System.Exception)
-  name: TeleportException(String, Exception)
-  href: api/WeaverCore.Utilities.Teleporter.TeleportException.html#WeaverCore_Utilities_Teleporter_TeleportException__ctor_System_String_System_Exception_
-  commentId: M:WeaverCore.Utilities.Teleporter.TeleportException.#ctor(System.String,System.Exception)
-  fullName: WeaverCore.Utilities.Teleporter.TeleportException.TeleportException(System.String, System.Exception)
-  nameWithType: Teleporter.TeleportException.TeleportException(String, Exception)
-- uid: WeaverCore.Utilities.Teleporter.TeleportException.#ctor*
-  name: TeleportException
-  href: api/WeaverCore.Utilities.Teleporter.TeleportException.html#WeaverCore_Utilities_Teleporter_TeleportException__ctor_
-  commentId: Overload:WeaverCore.Utilities.Teleporter.TeleportException.#ctor
-  isSpec: "True"
-  fullName: WeaverCore.Utilities.Teleporter.TeleportException.TeleportException
-  nameWithType: Teleporter.TeleportException.TeleportException
 - uid: WeaverCore.Utilities.Teleporter.TeleType
   name: Teleporter.TeleType
   href: api/WeaverCore.Utilities.Teleporter.TeleType.html
@@ -40978,12 +40624,12 @@ references:
   commentId: T:WeaverCore.Warp
   fullName: WeaverCore.Warp
   nameWithType: Warp
-- uid: WeaverCore.Warp.DoDreamnailWarp(UnityEngine.Vector3,System.String,System.String,System.String,System.Single,System.Boolean,WeaverCore.DreamWarpOptions)
-  name: DoDreamnailWarp(Vector3, String, String, String, Single, Boolean, DreamWarpOptions)
-  href: api/WeaverCore.Warp.html#WeaverCore_Warp_DoDreamnailWarp_UnityEngine_Vector3_System_String_System_String_System_String_System_Single_System_Boolean_WeaverCore_DreamWarpOptions_
-  commentId: M:WeaverCore.Warp.DoDreamnailWarp(UnityEngine.Vector3,System.String,System.String,System.String,System.Single,System.Boolean,WeaverCore.DreamWarpOptions)
-  fullName: WeaverCore.Warp.DoDreamnailWarp(UnityEngine.Vector3, System.String, System.String, System.String, System.Single, System.Boolean, WeaverCore.DreamWarpOptions)
-  nameWithType: Warp.DoDreamnailWarp(Vector3, String, String, String, Single, Boolean, DreamWarpOptions)
+- uid: WeaverCore.Warp.DoDreamnailWarp(UnityEngine.Vector3,System.String,System.String,System.String,System.Single,System.Boolean,WeaverCore.Warp.DreamWarpOptions)
+  name: DoDreamnailWarp(Vector3, String, String, String, Single, Boolean, Warp.DreamWarpOptions)
+  href: api/WeaverCore.Warp.html#WeaverCore_Warp_DoDreamnailWarp_UnityEngine_Vector3_System_String_System_String_System_String_System_Single_System_Boolean_WeaverCore_Warp_DreamWarpOptions_
+  commentId: M:WeaverCore.Warp.DoDreamnailWarp(UnityEngine.Vector3,System.String,System.String,System.String,System.Single,System.Boolean,WeaverCore.Warp.DreamWarpOptions)
+  fullName: WeaverCore.Warp.DoDreamnailWarp(UnityEngine.Vector3, System.String, System.String, System.String, System.Single, System.Boolean, WeaverCore.Warp.DreamWarpOptions)
+  nameWithType: Warp.DoDreamnailWarp(Vector3, String, String, String, Single, Boolean, Warp.DreamWarpOptions)
 - uid: WeaverCore.Warp.DoDreamnailWarp*
   name: DoDreamnailWarp
   href: api/WeaverCore.Warp.html#WeaverCore_Warp_DoDreamnailWarp_
@@ -41004,6 +40650,36 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Warp.DreamWarpDefaults
   nameWithType: Warp.DreamWarpDefaults
+- uid: WeaverCore.Warp.DreamWarpOptions
+  name: Warp.DreamWarpOptions
+  href: api/WeaverCore.Warp.DreamWarpOptions.html
+  commentId: T:WeaverCore.Warp.DreamWarpOptions
+  fullName: WeaverCore.Warp.DreamWarpOptions
+  nameWithType: Warp.DreamWarpOptions
+- uid: WeaverCore.Warp.DreamWarpOptions.DreamArriveParticles
+  name: DreamArriveParticles
+  href: api/WeaverCore.Warp.DreamWarpOptions.html#WeaverCore_Warp_DreamWarpOptions_DreamArriveParticles
+  commentId: F:WeaverCore.Warp.DreamWarpOptions.DreamArriveParticles
+  fullName: WeaverCore.Warp.DreamWarpOptions.DreamArriveParticles
+  nameWithType: Warp.DreamWarpOptions.DreamArriveParticles
+- uid: WeaverCore.Warp.DreamWarpOptions.DreamArriveSound
+  name: DreamArriveSound
+  href: api/WeaverCore.Warp.DreamWarpOptions.html#WeaverCore_Warp_DreamWarpOptions_DreamArriveSound
+  commentId: F:WeaverCore.Warp.DreamWarpOptions.DreamArriveSound
+  fullName: WeaverCore.Warp.DreamWarpOptions.DreamArriveSound
+  nameWithType: Warp.DreamWarpOptions.DreamArriveSound
+- uid: WeaverCore.Warp.DreamWarpOptions.DreamParticles
+  name: DreamParticles
+  href: api/WeaverCore.Warp.DreamWarpOptions.html#WeaverCore_Warp_DreamWarpOptions_DreamParticles
+  commentId: F:WeaverCore.Warp.DreamWarpOptions.DreamParticles
+  fullName: WeaverCore.Warp.DreamWarpOptions.DreamParticles
+  nameWithType: Warp.DreamWarpOptions.DreamParticles
+- uid: WeaverCore.Warp.DreamWarpOptions.DreamWarpSound
+  name: DreamWarpSound
+  href: api/WeaverCore.Warp.DreamWarpOptions.html#WeaverCore_Warp_DreamWarpOptions_DreamWarpSound
+  commentId: F:WeaverCore.Warp.DreamWarpOptions.DreamWarpSound
+  fullName: WeaverCore.Warp.DreamWarpOptions.DreamWarpSound
+  nameWithType: Warp.DreamWarpOptions.DreamWarpSound
 - uid: WeaverCore.WeaverAudio
   name: WeaverAudio
   href: api/WeaverCore.WeaverAudio.html
@@ -41584,181 +41260,3 @@ references:
   isSpec: "True"
   fullName: WeaverCore.WeaverMod.Registries
   nameWithType: WeaverMod.Registries
-- uid: WeaverCore.WeightedRandomizer`1
-  name: WeightedRandomizer<T>
-  href: api/WeaverCore.WeightedRandomizer-1.html
-  commentId: T:WeaverCore.WeightedRandomizer`1
-  name.vb: WeightedRandomizer(Of T)
-  fullName: WeaverCore.WeightedRandomizer<T>
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T)
-  nameWithType: WeightedRandomizer<T>
-  nameWithType.vb: WeightedRandomizer(Of T)
-- uid: WeaverCore.WeightedRandomizer`1.AddWeightedOption(`0,System.Single)
-  name: AddWeightedOption(T, Single)
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_AddWeightedOption__0_System_Single_
-  commentId: M:WeaverCore.WeightedRandomizer`1.AddWeightedOption(`0,System.Single)
-  fullName: WeaverCore.WeightedRandomizer<T>.AddWeightedOption(T, System.Single)
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).AddWeightedOption(T, System.Single)
-  nameWithType: WeightedRandomizer<T>.AddWeightedOption(T, Single)
-  nameWithType.vb: WeightedRandomizer(Of T).AddWeightedOption(T, Single)
-- uid: WeaverCore.WeightedRandomizer`1.AddWeightedOption*
-  name: AddWeightedOption
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_AddWeightedOption_
-  commentId: Overload:WeaverCore.WeightedRandomizer`1.AddWeightedOption
-  isSpec: "True"
-  fullName: WeaverCore.WeightedRandomizer<T>.AddWeightedOption
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).AddWeightedOption
-  nameWithType: WeightedRandomizer<T>.AddWeightedOption
-  nameWithType.vb: WeightedRandomizer(Of T).AddWeightedOption
-- uid: WeaverCore.WeightedRandomizer`1.AllWeightedValues
-  name: AllWeightedValues
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_AllWeightedValues
-  commentId: P:WeaverCore.WeightedRandomizer`1.AllWeightedValues
-  fullName: WeaverCore.WeightedRandomizer<T>.AllWeightedValues
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).AllWeightedValues
-  nameWithType: WeightedRandomizer<T>.AllWeightedValues
-  nameWithType.vb: WeightedRandomizer(Of T).AllWeightedValues
-- uid: WeaverCore.WeightedRandomizer`1.AllWeightedValues*
-  name: AllWeightedValues
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_AllWeightedValues_
-  commentId: Overload:WeaverCore.WeightedRandomizer`1.AllWeightedValues
-  isSpec: "True"
-  fullName: WeaverCore.WeightedRandomizer<T>.AllWeightedValues
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).AllWeightedValues
-  nameWithType: WeightedRandomizer<T>.AllWeightedValues
-  nameWithType.vb: WeightedRandomizer(Of T).AllWeightedValues
-- uid: WeaverCore.WeightedRandomizer`1.Clear
-  name: Clear()
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_Clear
-  commentId: M:WeaverCore.WeightedRandomizer`1.Clear
-  fullName: WeaverCore.WeightedRandomizer<T>.Clear()
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).Clear()
-  nameWithType: WeightedRandomizer<T>.Clear()
-  nameWithType.vb: WeightedRandomizer(Of T).Clear()
-- uid: WeaverCore.WeightedRandomizer`1.Clear*
-  name: Clear
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_Clear_
-  commentId: Overload:WeaverCore.WeightedRandomizer`1.Clear
-  isSpec: "True"
-  fullName: WeaverCore.WeightedRandomizer<T>.Clear
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).Clear
-  nameWithType: WeightedRandomizer<T>.Clear
-  nameWithType.vb: WeightedRandomizer(Of T).Clear
-- uid: WeaverCore.WeightedRandomizer`1.FindOption(`0)
-  name: FindOption(T)
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_FindOption__0_
-  commentId: M:WeaverCore.WeightedRandomizer`1.FindOption(`0)
-  fullName: WeaverCore.WeightedRandomizer<T>.FindOption(T)
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).FindOption(T)
-  nameWithType: WeightedRandomizer<T>.FindOption(T)
-  nameWithType.vb: WeightedRandomizer(Of T).FindOption(T)
-- uid: WeaverCore.WeightedRandomizer`1.FindOption*
-  name: FindOption
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_FindOption_
-  commentId: Overload:WeaverCore.WeightedRandomizer`1.FindOption
-  isSpec: "True"
-  fullName: WeaverCore.WeightedRandomizer<T>.FindOption
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).FindOption
-  nameWithType: WeightedRandomizer<T>.FindOption
-  nameWithType.vb: WeightedRandomizer(Of T).FindOption
-- uid: WeaverCore.WeightedRandomizer`1.GenerateRandomValue
-  name: GenerateRandomValue()
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_GenerateRandomValue
-  commentId: M:WeaverCore.WeightedRandomizer`1.GenerateRandomValue
-  fullName: WeaverCore.WeightedRandomizer<T>.GenerateRandomValue()
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).GenerateRandomValue()
-  nameWithType: WeightedRandomizer<T>.GenerateRandomValue()
-  nameWithType.vb: WeightedRandomizer(Of T).GenerateRandomValue()
-- uid: WeaverCore.WeightedRandomizer`1.GenerateRandomValue*
-  name: GenerateRandomValue
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_GenerateRandomValue_
-  commentId: Overload:WeaverCore.WeightedRandomizer`1.GenerateRandomValue
-  isSpec: "True"
-  fullName: WeaverCore.WeightedRandomizer<T>.GenerateRandomValue
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).GenerateRandomValue
-  nameWithType: WeightedRandomizer<T>.GenerateRandomValue
-  nameWithType.vb: WeightedRandomizer(Of T).GenerateRandomValue
-- uid: WeaverCore.WeightedRandomizer`1.GenerateRandomWeightedValue
-  name: GenerateRandomWeightedValue()
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_GenerateRandomWeightedValue
-  commentId: M:WeaverCore.WeightedRandomizer`1.GenerateRandomWeightedValue
-  fullName: WeaverCore.WeightedRandomizer<T>.GenerateRandomWeightedValue()
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).GenerateRandomWeightedValue()
-  nameWithType: WeightedRandomizer<T>.GenerateRandomWeightedValue()
-  nameWithType.vb: WeightedRandomizer(Of T).GenerateRandomWeightedValue()
-- uid: WeaverCore.WeightedRandomizer`1.GenerateRandomWeightedValue*
-  name: GenerateRandomWeightedValue
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_GenerateRandomWeightedValue_
-  commentId: Overload:WeaverCore.WeightedRandomizer`1.GenerateRandomWeightedValue
-  isSpec: "True"
-  fullName: WeaverCore.WeightedRandomizer<T>.GenerateRandomWeightedValue
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).GenerateRandomWeightedValue
-  nameWithType: WeightedRandomizer<T>.GenerateRandomWeightedValue
-  nameWithType.vb: WeightedRandomizer(Of T).GenerateRandomWeightedValue
-- uid: WeaverCore.WeightedRandomizer`1.MissMultiplier
-  name: MissMultiplier
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_MissMultiplier
-  commentId: F:WeaverCore.WeightedRandomizer`1.MissMultiplier
-  fullName: WeaverCore.WeightedRandomizer<T>.MissMultiplier
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).MissMultiplier
-  nameWithType: WeightedRandomizer<T>.MissMultiplier
-  nameWithType.vb: WeightedRandomizer(Of T).MissMultiplier
-- uid: WeaverCore.WeightedRandomizer`1.RemoveOption(WeaverCore.WeightedRandomizer{`0}.WeightedValue)
-  name: RemoveOption(WeightedRandomizer<T>.WeightedValue)
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_RemoveOption_WeaverCore_WeightedRandomizer__0__WeightedValue_
-  commentId: M:WeaverCore.WeightedRandomizer`1.RemoveOption(WeaverCore.WeightedRandomizer{`0}.WeightedValue)
-  name.vb: RemoveOption(WeightedRandomizer(Of T).WeightedValue)
-  fullName: WeaverCore.WeightedRandomizer<T>.RemoveOption(WeaverCore.WeightedRandomizer<T>.WeightedValue)
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).RemoveOption(WeaverCore.WeightedRandomizer(Of T).WeightedValue)
-  nameWithType: WeightedRandomizer<T>.RemoveOption(WeightedRandomizer<T>.WeightedValue)
-  nameWithType.vb: WeightedRandomizer(Of T).RemoveOption(WeightedRandomizer(Of T).WeightedValue)
-- uid: WeaverCore.WeightedRandomizer`1.RemoveOption*
-  name: RemoveOption
-  href: api/WeaverCore.WeightedRandomizer-1.html#WeaverCore_WeightedRandomizer_1_RemoveOption_
-  commentId: Overload:WeaverCore.WeightedRandomizer`1.RemoveOption
-  isSpec: "True"
-  fullName: WeaverCore.WeightedRandomizer<T>.RemoveOption
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).RemoveOption
-  nameWithType: WeightedRandomizer<T>.RemoveOption
-  nameWithType.vb: WeightedRandomizer(Of T).RemoveOption
-- uid: WeaverCore.WeightedRandomizer`1.WeightedValue
-  name: WeightedRandomizer<T>.WeightedValue
-  href: api/WeaverCore.WeightedRandomizer-1.WeightedValue.html
-  commentId: T:WeaverCore.WeightedRandomizer`1.WeightedValue
-  name.vb: WeightedRandomizer(Of T).WeightedValue
-  fullName: WeaverCore.WeightedRandomizer<T>.WeightedValue
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).WeightedValue
-  nameWithType: WeightedRandomizer<T>.WeightedValue
-  nameWithType.vb: WeightedRandomizer(Of T).WeightedValue
-- uid: WeaverCore.WeightedRandomizer`1.WeightedValue.TimesNotSelected
-  name: TimesNotSelected
-  href: api/WeaverCore.WeightedRandomizer-1.WeightedValue.html#WeaverCore_WeightedRandomizer_1_WeightedValue_TimesNotSelected
-  commentId: F:WeaverCore.WeightedRandomizer`1.WeightedValue.TimesNotSelected
-  fullName: WeaverCore.WeightedRandomizer<T>.WeightedValue.TimesNotSelected
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).WeightedValue.TimesNotSelected
-  nameWithType: WeightedRandomizer<T>.WeightedValue.TimesNotSelected
-  nameWithType.vb: WeightedRandomizer(Of T).WeightedValue.TimesNotSelected
-- uid: WeaverCore.WeightedRandomizer`1.WeightedValue.TimesSelected
-  name: TimesSelected
-  href: api/WeaverCore.WeightedRandomizer-1.WeightedValue.html#WeaverCore_WeightedRandomizer_1_WeightedValue_TimesSelected
-  commentId: F:WeaverCore.WeightedRandomizer`1.WeightedValue.TimesSelected
-  fullName: WeaverCore.WeightedRandomizer<T>.WeightedValue.TimesSelected
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).WeightedValue.TimesSelected
-  nameWithType: WeightedRandomizer<T>.WeightedValue.TimesSelected
-  nameWithType.vb: WeightedRandomizer(Of T).WeightedValue.TimesSelected
-- uid: WeaverCore.WeightedRandomizer`1.WeightedValue.value
-  name: value
-  href: api/WeaverCore.WeightedRandomizer-1.WeightedValue.html#WeaverCore_WeightedRandomizer_1_WeightedValue_value
-  commentId: F:WeaverCore.WeightedRandomizer`1.WeightedValue.value
-  fullName: WeaverCore.WeightedRandomizer<T>.WeightedValue.value
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).WeightedValue.value
-  nameWithType: WeightedRandomizer<T>.WeightedValue.value
-  nameWithType.vb: WeightedRandomizer(Of T).WeightedValue.value
-- uid: WeaverCore.WeightedRandomizer`1.WeightedValue.weight
-  name: weight
-  href: api/WeaverCore.WeightedRandomizer-1.WeightedValue.html#WeaverCore_WeightedRandomizer_1_WeightedValue_weight
-  commentId: F:WeaverCore.WeightedRandomizer`1.WeightedValue.weight
-  fullName: WeaverCore.WeightedRandomizer<T>.WeightedValue.weight
-  fullName.vb: WeaverCore.WeightedRandomizer(Of T).WeightedValue.weight
-  nameWithType: WeightedRandomizer<T>.WeightedValue.weight
-  nameWithType.vb: WeightedRandomizer(Of T).WeightedValue.weight

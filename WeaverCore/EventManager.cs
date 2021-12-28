@@ -14,9 +14,19 @@ namespace WeaverCore
     /// </summary>
     public sealed class EventManager : MonoBehaviour
     {
+        /// <summary>
+        /// The type of event that is getting sent
+        /// </summary>
         public enum EventType
         {
+            /// <summary>
+            /// A message that is being sent to only one object
+            /// </summary>
             Message,
+
+            /// <summary>
+            /// A broadcast that is being sent to all objects in the scene
+            /// </summary>
             Broadcast
         }
 

@@ -77,24 +77,35 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="WeaverCore.ActorSounds.html">ActorSounds</a></h4>
-      <section></section>
+      <section><p>Contains groups and snapshots that are related to the Actors AudioMixer</p>
+<p>See this table for more info on what groups/mixers do what : <a href="https://1drv.ms/x/s!Aj62egREH4PTxyBaaVb5nI-NmXiX?e=bXtNVc">https://1drv.ms/x/s!Aj62egREH4PTxyBaaVb5nI-NmXiX?e=bXtNVc</a></p>
+</section>
       <h4><a class="xref" href="WeaverCore.Atmos.html">Atmos</a></h4>
-      <section></section>
+      <section><p>Contains snapshots and mixers that are related to the Atmos AudioMixer</p>
+<p>These snapshots are used to change what atmosphere sounds are being played in a scene</p>
+<p>See this table for more info on what groups/mixers do what : <a href="https://1drv.ms/x/s!Aj62egREH4PTxyT0dl7ijj9itSdV?e=SMNe12">https://1drv.ms/x/s!Aj62egREH4PTxyT0dl7ijj9itSdV?e=SMNe12</a></p>
+</section>
       <h4><a class="xref" href="WeaverCore.AtmosPack.html">AtmosPack</a></h4>
-      <section></section>
+      <section><p>A pack used for changing the atmosphere sounds</p>
+</section>
       <h4><a class="xref" href="WeaverCore.AudioPlayer.html">AudioPlayer</a></h4>
-      <section></section>
+      <section><p>Used for playing audio sounds.</p>
+<p>This class allows you to play sounds on specific channels (like the music channel, or the SFX channel), for greater sound control</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Blood.html">Blood</a></h4>
-      <section></section>
+      <section><p>Used for spawning blood particle effects</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Cache-2.html">Cache&lt;TKey, TValue&gt;</a></h4>
       <section><p>A cache that stores objects in a dictonary structure. When an object gets destroyed or garbage collected, the cache object automatically removes it</p>
 </section>
       <h4><a class="xref" href="WeaverCore.CameraShaker.html">CameraShaker</a></h4>
-      <section></section>
-      <h4><a class="xref" href="WeaverCore.DreamWarpOptions.html">DreamWarpOptions</a></h4>
-      <section></section>
+      <section><p>Used to shake the camera</p>
+</section>
       <h4><a class="xref" href="WeaverCore.EnviroEffects.html">EnviroEffects</a></h4>
-      <section></section>
+      <section><p>Contains snapshots and mixers that are related to the EnviroEffects AudioMixer</p>
+<p>These snapshots are used to change what enviroment sounds are being played in a scene</p>
+<p>See this table for more info on what groups/mixers do what : <a href="https://1drv.ms/x/s!Aj62egREH4PTxyIkYuCSF6zX5zsp?e=JpJksw">https://1drv.ms/x/s!Aj62egREH4PTxyIkYuCSF6zX5zsp?e=JpJksw</a></p>
+</section>
       <h4><a class="xref" href="WeaverCore.EventListener.html">EventListener</a></h4>
       <section><p>Used for listening in on any events sent from and to objects in the game. Also works with PlaymakerFSM events</p>
 </section>
@@ -105,7 +116,8 @@
       <section><p>Used for creating &quot;Flings&quot; that will scatter particle objects in random directions</p>
 </section>
       <h4><a class="xref" href="WeaverCore.HunterJournal.html">HunterJournal</a></h4>
-      <section></section>
+      <section><p>Used for recording entries into the hunter's journal</p>
+</section>
       <h4><a class="xref" href="WeaverCore.ImplFinder.html">ImplFinder</a></h4>
       <section><p>Used for finding the implementation for a type that inherits from <a class="xref" href="WeaverCore.Interfaces.IImplementation.html">IImplementation</a>.</p>
 <p>This is used to load up a different type implementation depending on whether we are in-game, or in the Unity Editor</p>
@@ -114,20 +126,31 @@
       <section><p>When added to an <a class="xref" href="WeaverCore.Components.EntityHealth.html">EntityHealth</a> component, will cause the health to increase infinitely</p>
 </section>
       <h4><a class="xref" href="WeaverCore.Initialization.html">Initialization</a></h4>
-      <section></section>
+      <section><p>The main class used for initializing WeaverCore</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Music.html">Music</a></h4>
-      <section></section>
+      <section><p>Contains snapshots and mixers that are related to the Music AudioMixer</p>
+<p>These snapshots are used to change what music channels are being played in a scene</p>
+<p>See this table for more info on what groups/mixers do what : <a href="https://1drv.ms/x/s!Aj62egREH4PTxx1MpsfuioqJtSCH?e=7kmAV0">https://1drv.ms/x/s!Aj62egREH4PTxx1MpsfuioqJtSCH?e=7kmAV0</a></p>
+</section>
       <h4><a class="xref" href="WeaverCore.MusicPack.html">MusicPack</a></h4>
-      <section></section>
+      <section><p>An object that contains a list of music tracks to be played, and what music snapshot should be applied</p>
+</section>
       <h4><a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a></h4>
-      <section></section>
+      <section><p>A pool that can be used to store old instances of objects when not in use, and can be renabled if needed.</p>
+<p>This is done to reduce the amount of calls to GameObject.Instantiate and GameObject.Destroy</p>
+<p>NOTE: Every object used through this pool must have a <a class="xref" href="WeaverCore.PoolableObject.html">PoolableObject</a> component attached</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Player.html">Player</a></h4>
-      <section></section>
+      <section><p>A class for accessing and doing things related to the player</p>
+</section>
       <h4><a class="xref" href="WeaverCore.PoolableObject.html">PoolableObject</a></h4>
       <section><p>When attached to an object, this object can now be used in a <a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a></p>
 </section>
       <h4><a class="xref" href="WeaverCore.Pooling.html">Pooling</a></h4>
-      <section></section>
+      <section><p>A class that makes it easy to pool any object you want. Acts as a drop-in replacement for GameObject.Instantiate, while still reaping the benefits of pooling</p>
+<p>This class handles creating <a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a>s for you, so you can just call <a class="xref" href="WeaverCore.Pooling.html#WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_">Instantiate(GameObject)</a> to instantiate a pooled object</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Randomizer-1.html">Randomizer&lt;T&gt;</a></h4>
       <section><p>A comparer that is used to randomize a list</p>
 </section>
@@ -141,37 +164,47 @@
       <section><p>Contains a list of scenes a mod is adding to the game</p>
 </section>
       <h4><a class="xref" href="WeaverCore.ShadeSounds.html">ShadeSounds</a></h4>
-      <section></section>
+      <section><p>Contains snapshots and mixers that are related to the Shade AudioMixer</p>
+<p>These snapshots are used to enable and disable the shade sound effects in a scene</p>
+</section>
       <h4><a class="xref" href="WeaverCore.TogglableWeaverMod.html">TogglableWeaverMod</a></h4>
-      <section></section>
+      <section><p>A WeaverCore mod that can be toggled on and off</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Warp.html">Warp</a></h4>
-      <section></section>
+      <section><p>Main class for dream warping the player to a new scene</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Warp.DreamWarpOptions.html">Warp.DreamWarpOptions</a></h4>
+      <section><p>Contains customizable options for warping the player</p>
+</section>
       <h4><a class="xref" href="WeaverCore.WeaverAudio.html">WeaverAudio</a></h4>
-      <section><p>Used for playing sounds within hollow knight with the game's standard audio effects applied</p>
+      <section><p>Used for playing audio under certain channels.</p>
 </section>
       <h4><a class="xref" href="WeaverCore.WeaverCamera.html">WeaverCamera</a></h4>
-      <section></section>
+      <section><p>A component used to access and manipulate the camera</p>
+</section>
       <h4><a class="xref" href="WeaverCore.WeaverCanvas.html">WeaverCanvas</a></h4>
-      <section></section>
+      <section><p>A component used to access and manipulate the UI canvas</p>
+</section>
       <h4><a class="xref" href="WeaverCore.WeaverDebugCanvas.html">WeaverDebugCanvas</a></h4>
-      <section><p>Similar to <a class="xref" href="WeaverCore.WeaverCanvas.html">WeaverCanvas</a>, but this canvas will appear on top of everything else</p>
+      <section><p>Similar to <a class="xref" href="WeaverCore.WeaverCanvas.html">WeaverCanvas</a>, but this canvas will appear on top of everything else, and is mainly used for debugging tools that need to be visible above all other UI elements</p>
 </section>
       <h4><a class="xref" href="WeaverCore.WeaverGameManager.html">WeaverGameManager</a></h4>
-      <section></section>
+      <section><p>An object used to do actions that are related to the whole game</p>
+</section>
       <h4><a class="xref" href="WeaverCore.WeaverLanguage.html">WeaverLanguage</a></h4>
-      <section></section>
+      <section><p>Used for accessing translations</p>
+</section>
       <h4><a class="xref" href="WeaverCore.WeaverLog.html">WeaverLog</a></h4>
-      <section></section>
+      <section><p>Used for logging to the console</p>
+</section>
       <h4><a class="xref" href="WeaverCore.WeaverMod.html">WeaverMod</a></h4>
-      <section></section>
-      <h4><a class="xref" href="WeaverCore.WeightedRandomizer-1.html">WeightedRandomizer&lt;T&gt;</a></h4>
-      <section></section>
-      <h4><a class="xref" href="WeaverCore.WeightedRandomizer-1.WeightedValue.html">WeightedRandomizer&lt;T&gt;.WeightedValue</a></h4>
-      <section></section>
+      <section><p>The base class for all WeaverCore Mods</p>
+</section>
     <h3 id="structs">Structs
   </h3>
       <h4><a class="xref" href="WeaverCore.Blood.BloodSpawnInfo.html">Blood.BloodSpawnInfo</a></h4>
-      <section></section>
+      <section><p>A struct that details how blood particles should be spawned</p>
+</section>
       <h4><a class="xref" href="WeaverCore.FlingInfo.html">FlingInfo</a></h4>
       <section><p>Contains all the needed information for spawning a fling effect</p>
 </section>
@@ -179,8 +212,6 @@
       <section><p>Uses the HarmonyX library for patching any methods/properties you like.</p>
 <p>Should only be used if necessary</p>
 </section>
-      <h4><a class="xref" href="WeaverCore.HealthMilestone.html">HealthMilestone</a></h4>
-      <section></section>
       <h4><a class="xref" href="WeaverCore.HitInfo.html">HitInfo</a></h4>
       <section><p>Info on how something is hitting something else</p>
 </section>
@@ -201,7 +232,8 @@
       <h4><a class="xref" href="WeaverCore.EnviroEffects.SnapshotType.html">EnviroEffects.SnapshotType</a></h4>
       <section></section>
       <h4><a class="xref" href="WeaverCore.EventManager.EventType.html">EventManager.EventType</a></h4>
-      <section></section>
+      <section><p>The type of event that is getting sent</p>
+</section>
       <h4><a class="xref" href="WeaverCore.Music.GroupType.html">Music.GroupType</a></h4>
       <section></section>
       <h4><a class="xref" href="WeaverCore.Music.SnapshotType.html">Music.SnapshotType</a></h4>

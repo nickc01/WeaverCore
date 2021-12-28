@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore.Enums;
 
+/// <summary>
+/// An effect that is instantiated when the player uses sharp shadow on an enemy
+/// </summary>
 public class SharpShadowImpact : MonoBehaviour 
 {
 	[SerializeField]

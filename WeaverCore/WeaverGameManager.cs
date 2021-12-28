@@ -9,12 +9,11 @@ using UnityEngine;
 namespace WeaverCore
 {
 
-
+	/// <summary>
+	/// An object used to do actions that are related to the whole game
+	/// </summary>
 	public class WeaverGameManager : MonoBehaviour
 	{
-		//static WeaverGame GameManager;
-		//static GameManager_I impl;
-
 		/// <summary>
 		/// An event that is called when the game state changes
 		/// </summary>
@@ -30,9 +29,12 @@ namespace WeaverCore
 			Preset5
 		}
 
+		/// <summary>
+		/// Freezes the game temporarily. Mainly used when the player gets hit, the enemy is stunned, and more
+		/// </summary>
+		/// <param name="preset">The specific preset to apply</param>
 		public static void FreezeGameTime(TimeFreezePreset preset)
 		{
-			//GameManagerInit();
 			switch (preset)
 			{
 				case TimeFreezePreset.Preset0:
@@ -64,6 +66,9 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Gets the current map zone the player is located in
+		/// </summary>
 		public static MapZone CurrentMapZone
 		{
 			get
@@ -71,76 +76,5 @@ namespace WeaverCore
 				return GameManager.instance.sm.mapZone;
 			}
 		}
-
-		//public static IEnumerator FreezeMoment(float rampDownTime, float waitTime, float rampUpTime, float targetSpeed)
-		//{
-			//GameManagerInit();
-			//return impl.FreezeMoment(rampDownTime, waitTime, rampUpTime, targetSpeed);
-			/*this.timeSlowedCount++;
-			yield return this.StartCoroutine(this.SetTimeScale(targetSpeed, rampDownTime));
-			for (float timer = 0f; timer < waitTime; timer += Time.unscaledDeltaTime)
-			{
-				yield return null;
-			}
-			yield return this.StartCoroutine(this.SetTimeScale(1f, rampUpTime));
-			this.timeSlowedCount--;
-			yield break;*/
-		//}
-
-		/*private static int timeSlowedCount;
-
-		static WeaverGameManager GameManager;
-
-
-		public static void FreezeGame()
-		{
-
-		}
-
-		static void GameManagerInit()
-		{
-			if (GameManager == null)
-			{
-				GameManager = new GameObject("__WEAVER_GAME_MANAGER__").AddComponent<WeaverGameManager>();
-
-				GameObject.DontDestroyOnLoad(GameManager);
-			}
-		}
-
-		public static IEnumerator FreezeMoment(float rampDownTime, float waitTime, float rampUpTime, float targetSpeed)
-		{
-			timeSlowedCount++;
-			yield return GameManager.StartCoroutine(SetTimeScale(targetSpeed, rampDownTime));
-			for (float timer = 0f; timer < waitTime; timer += Time.unscaledDeltaTime)
-			{
-				yield return null;
-			}
-			yield return GameManager.StartCoroutine(SetTimeScale(1f, rampUpTime));
-			timeSlowedCount--;
-			yield break;
-		}
-
-		private static IEnumerator SetTimeScale(float newTimeScale, float duration)
-		{
-			float lastTimeScale = 1;
-			for (float timer = 0f; timer < duration; timer += Time.unscaledDeltaTime)
-			{
-				float val = Mathf.Clamp01(timer / duration);
-				SetTimeScale(Mathf.Lerp(lastTimeScale, newTimeScale, val));
-				yield return null;
-			}
-			SetTimeScale(newTimeScale);
-			yield break;
-		}
-
-		// Token: 0x06002CA4 RID: 11428 RVA: 0x0001FF69 File Offset: 0x0001E169
-		private static void SetTimeScale(float newTimeScale)
-		{
-			if (timeSlowedCount > 1)
-			{
-				newTimeScale = Mathf.Min(newTimeScale, 1f);
-			}
-			TimeController.GenericTimeScale = ((newTimeScale <= 0.01f) ? 0f : newTimeScale);
-		}*/
 	}
 }

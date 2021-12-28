@@ -10,6 +10,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+	/// <summary>
+	/// The main class used for initializing WeaverCore
+	/// </summary>
     public static class Initialization
 	{
 		/// <summary>
@@ -46,13 +49,10 @@ namespace WeaverCore
 #endif
 
 		/// <summary>
-		/// Initializes all the necessary components of WeaverCore. Does nothing if the mod is already initialized
+		/// Initializes all the necessary components of WeaverCore
 		/// </summary>
 		public static void Initialize()
 		{
-			//UnityEditor.EditorApplication.playModeStateChanged += EditorApplication_playModeStateChanged;
-			
-
 			if (!WeaverCoreInitialized)
 			{
 				WeaverCoreInitialized = true;
@@ -69,7 +69,6 @@ namespace WeaverCore
 				}
 			}
 
-			//Debug.Log("Playing Game = " + Application.isPlaying);
 			if (!WeaverCoreRuntimeInitialized && Application.isPlaying)
 			{
 				WeaverCoreRuntimeInitialized = true;
@@ -80,11 +79,6 @@ namespace WeaverCore
 				}
 			}
 		}
-
-		/*private static void EditorApplication_playModeStateChanged(UnityEditor.PlayModeStateChange obj)
-		{
-			Debug.Log("Play State = " + obj);
-		}*/
 
 		static void PatchAssembly(Assembly assembly)
 		{
@@ -118,16 +112,5 @@ namespace WeaverCore
 			}
 			return assembly;
 		}
-
-		/*[OnInit]
-		static void InitTest()
-		{
-			Debug.Log("Init Test");
-		}
-
-		static void RuntimeInitTest()
-		{
-			Debug.Log("Runtime Init Test");
-		}*/
 	}
 }

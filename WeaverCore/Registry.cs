@@ -37,6 +37,10 @@ namespace WeaverCore
 
         [NonSerialized]
         Type _modeTypeCached = null;
+
+        /// <summary>
+        /// The mod this registry is bound to
+        /// </summary>
         public Type ModType
 		{
 			get
@@ -48,23 +52,53 @@ namespace WeaverCore
                 return _modeTypeCached;
 			}
 		}
+        /// <summary>
+        /// The name of the mod this registry is bound to
+        /// </summary>
         public string ModName => ModType.Name;
+
+        /// <summary>
+        /// The name of the assembly this registry is bound to
+        /// </summary>
         public string ModAssemblyName => modAssemblyName;
+
+        /// <summary>
+        /// Is this registry currently enabled?
+        /// </summary>
         public bool Enabled => initialized && ModType != null;
+
+        /// <summary>
+        /// Retrieves a list of all the features added to this registry
+        /// </summary>
         public IEnumerable<UnityEngine.Object> Features => features;
+
+        /// <summary>
+        /// The amount of features added to this registry
+        /// </summary>
         public int FeatureCount => features.Count;
 
-
+        /// <summary>
+        /// Creates a new registry bound to the specified mod
+        /// </summary>
+        /// <typeparam name="TMod">The type of mod the new registry will be bound to</typeparam>
         public static Registry Create<TMod>() where TMod : WeaverMod
 		{
             return Create(typeof(TMod));
 		}
 
+        /// <summary>
+        /// Creates a new registry bound to the specified mod
+        /// </summary>
+        /// <param name="mod">The mod this new registry will be bound to</param>
         public static Registry Create(WeaverMod mod)
 		{
             return Create(mod.GetType());
 		}
 
+        /// <summary>
+        /// Creates a new registry bound to the specified mod
+        /// </summary>
+        /// <param name="modType">The type of mod the new registry will be bound to</param>
         public static Registry Create(Type modType)
 		{
             var newRegistry = ScriptableObject.CreateInstance<Registry>();
@@ -75,6 +109,9 @@ namespace WeaverCore
             return newRegistry;
 		}
 
+        /// <summary>
+        /// Enables the registry and its features
+        /// </summary>
         public void EnableRegistry()
 		{
             if (initialized)
@@ -91,6 +128,9 @@ namespace WeaverCore
             }
         }
 
+        /// <summary>
+        /// Disables the registry and its features
+        /// </summary>
         public void DisableRegistry()
 		{
             if (!initialized)
@@ -112,6 +152,11 @@ namespace WeaverCore
             }
         }
 
+        /// <summary>
+        /// Finds all attributes that inherit from <typeparamref name="AttrType"/>, and executes them
+        /// </summary>
+        /// <typeparam name="AttrType"></typeparam>
+        /// <param name="parameter"></param>
         static void ExecuteAttribute<AttrType>(object parameter) where AttrType : PriorityAttribute
         {
             var methods = ReflectionUtilities.GetMethodsWithAttribute<AttrType>().ToList();
@@ -304,7 +349,7 @@ namespace WeaverCore
         /// <summary>
         /// Finds all loaded registries pertaining to a mod
         /// </summary>
-        /// <param name="ModType">THe mod that is associated with the registry</param>
+        /// <param name="ModType">The mod that is associated with the registry</param>
         /// <returns>Returns all the registries that are bound to the mod</returns>
         public static IEnumerable<Registry> FindModRegistries(Type ModType)
         {
@@ -317,6 +362,11 @@ namespace WeaverCore
             }
         }
 
+        /// <summary>
+        /// Finds all loaded registries pertaining to a mod
+        /// </summary>
+        /// <typeparam name="Mod">The mod type that is associated with the registry</typeparam>
+        /// <returns>Returns all the registries that are bound to the mod</returns>
         public static IEnumerable<Registry> FindModRegistries<Mod>() where Mod : WeaverMod
         {
             return FindModRegistries(typeof(Mod));

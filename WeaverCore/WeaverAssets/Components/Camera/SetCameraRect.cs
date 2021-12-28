@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
-
-
+	/// <summary>
+	/// Forces the RectTransform of a camera to be the same as it's orthographicSize
+	/// </summary>
 	[ExecuteAlways]
     public class SetCameraRect : MonoBehaviour
     {

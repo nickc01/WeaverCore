@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
+	/// <summary>
+	/// Contains some utility functions related to strings
+	/// </summary>
 	public static class StringUtilities
 	{
 		/// <summary>
@@ -37,7 +40,7 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
-		/// All </br> statements get replaced with new-line characters. You can also use </br:10> for multiple lines (this creates 10 new-lines for example)
+		/// All &lt;/br&gt; statements get replaced with new-line characters. You can also use &lt;/br:10&gt; for multiple lines (this creates 10 new-lines for example)
 		/// </summary>
 		public static string AddNewLines(string input)
 		{
@@ -64,7 +67,7 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
-		/// All </sp> statements get replaced with space characters. You can also use </sp:10> for multiple spaces (this creates 10 new spaces for example)
+		/// All &lt;/sp&gt; statements get replaced with space characters. You can also use &lt;/sp:10&gt; for multiple spaces (this creates 10 new spaces for example)
 		/// </summary>
 		public static string AddSpaces(string input)
 		{

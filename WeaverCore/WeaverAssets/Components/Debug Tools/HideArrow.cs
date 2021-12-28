@@ -6,6 +6,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets
 {
+    /// <summary>
+    /// Used in the <see cref="WeaverCoreDebugTools"/> menu to show/hide certain panels
+    /// </summary>
     public class HideArrow : MonoBehaviour
     {
         [SerializeField]
@@ -30,10 +33,6 @@ namespace WeaverCore.Assets
         [SerializeField]
         bool hiddenByDefault = false;
 
-        //[SerializeField]
-        //[Tooltip("The direction the arrow faces when open")]
-        //bool arrowFacesRight = true;
-
         bool hidden = false;
         Button button;
         Coroutine interRoutine;
@@ -42,7 +41,6 @@ namespace WeaverCore.Assets
 		{
             button = GetComponent<Button>();
             button.onClick.AddListener(Toggle);
-            Debug.Log("Anchored Position = " + parent.anchoredPosition);
             if (hiddenByDefault)
             {
                 parent.anchoredPosition = hiddenPosition;
@@ -57,15 +55,6 @@ namespace WeaverCore.Assets
 
         void UpdateArrowVisual()
 		{
-            //arrowFacesRight -- TODO TODO TODO
-            /*if (!hidden)
-			{
-                transform.localScale = transform.localScale.With(x: -1f);
-			}
-            else
-			{
-                transform.localScale = transform.localScale.With(x: 1f);
-            }*/
             Vector2 difference;
 			if (hidden)
 			{
@@ -81,6 +70,9 @@ namespace WeaverCore.Assets
 
         }
 
+        /// <summary>
+        /// Toggles whether the panel should be shown or not
+        /// </summary>
         public void Toggle()
 		{
 			if (interRoutine != null)

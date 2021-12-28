@@ -17,14 +17,14 @@ MonoBehaviour:
   clipFrameStartIndexes: 00000000
   clipFrameCounts: 08000000
   frames:
-  - {fileID: 21300186, guid: 4c6d2d3b3ea368d41be9792d94dcff0e, type: 3}
-  - {fileID: 21300184, guid: 4c6d2d3b3ea368d41be9792d94dcff0e, type: 3}
-  - {fileID: 21300192, guid: 4c6d2d3b3ea368d41be9792d94dcff0e, type: 3}
-  - {fileID: 21300188, guid: 4c6d2d3b3ea368d41be9792d94dcff0e, type: 3}
-  - {fileID: 21300190, guid: 4c6d2d3b3ea368d41be9792d94dcff0e, type: 3}
-  - {fileID: 21300212, guid: 4c6d2d3b3ea368d41be9792d94dcff0e, type: 3}
-  - {fileID: 21300214, guid: 4c6d2d3b3ea368d41be9792d94dcff0e, type: 3}
-  - {fileID: 21300210, guid: 4c6d2d3b3ea368d41be9792d94dcff0e, type: 3}
+  - {fileID: 3964255121713219355, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 173950675294721580, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 1687566203550055265, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -2708168963528852426, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 4240871975899465858, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -5696638860136004487, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 2812855749812984459, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 149982513890953301, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
   clipFPSs:
   - 20
   clipWrapModes: 00000000

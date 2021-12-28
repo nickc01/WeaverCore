@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300026, guid: 87854b516dcaa9245b00a44c2eb9bb50, type: 3}
+  m_Sprite: {fileID: 21300550, guid: 5e26c18c0c910d448b010d40ae6c7022, type: 3}
   m_Color: {r: 1, g: 0.4344827, b: 0, a: 0.5176471}
   m_FlipX: 0
   m_FlipY: 0
@@ -3156,7 +3156,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e524d1624d0ff3943b908b8928a3c00a, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3212,7 +3211,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: da6471683ac338b45901f5f64893b5ec, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ba3a6a2a27638504abc2a3d4907e971b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3698,7 +3697,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 87854b516dcaa9245b00a44c2eb9bb50, type: 3}
+  m_Sprite: {fileID: 21300138, guid: 5e26c18c0c910d448b010d40ae6c7022, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

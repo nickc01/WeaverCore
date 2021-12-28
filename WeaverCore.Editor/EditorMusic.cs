@@ -8,7 +8,8 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
 {
-	public class EditorMusic : MonoBehaviour
+
+    public class EditorMusic : MonoBehaviour
 	{
 		[Header("Music")]
 		[SerializeField]
@@ -180,7 +181,6 @@ namespace WeaverCore.Editor
 				if ((enabledSources & (Atmos.AtmosSources)i) == (Atmos.AtmosSources)i)
 				{
 					AudioSource source = atmosSources[counter];
-					//Debug.Log("Playing Source = " + source.name);
 					if (!source.isPlaying)
 					{
 						source.Play();
@@ -189,17 +189,6 @@ namespace WeaverCore.Editor
 				counter++;
 			}
 			counter = 0;
-			/*for (int i = 0; i < atmosSources.Length; i++)
-			{
-				if (atmosCue.IsChannelEnabled((AtmosChannels)i))
-				{
-					AudioSource audioSource = atmosSources[i];
-					if (!audioSource.isPlaying)
-					{
-						audioSource.Play();
-					}
-				}
-			}*/
 			yield return new WaitForSecondsRealtime(transitionTime);
 			for (int i = 1; i < (int)Atmos.AtmosSources.Everything; i *= 2)
 			{
@@ -214,17 +203,6 @@ namespace WeaverCore.Editor
 				}
 				counter++;
 			}
-			/*for (int j = 0; j < atmosSources.Length; j++)
-			{
-				if (!atmosCue.IsChannelEnabled((AtmosChannels)j))
-				{
-					AudioSource audioSource2 = atmosSources[j];
-					if (audioSource2.isPlaying)
-					{
-						audioSource2.Stop();
-					}
-				}
-			}*/
 		}
 
 	}

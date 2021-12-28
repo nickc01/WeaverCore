@@ -6024,7 +6024,7 @@
           "hash": "HVXWSRbh2DUut51HlMstK1P+NmoD9/2WwF5dF8FmslY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -6180,7 +6180,7 @@
           "hash": "HqoKtAzJyJaW++xcKToySMB2j/K9CO2YXACm41Zjyu0="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -6333,10 +6333,10 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "Z5QvL1fYBS1XFpwZwRKUBVsIxnUT7WkH0lknCUHwOJo="
+          "hash": "rrKISUXGy8lyYSJi1yNceHFuJpP72oYcAQf/WZ0qBa0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -6353,14 +6353,26 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/installingUnity.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/installingUnity.html",
+          "hash": "hmeEPtwj4dgL21x6lVp5a8n6f+nksv8+Vh1QgV638EM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/intro.md",
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "fwJtM3nst163Nhw6XQ4T7B1vxqyjAXHUlBXfQwa1Cmc="
+          "hash": "LUq692hyAUzJx5/ILHUbTuswB0TFPt52hEFwXrsHRcE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -6369,7 +6381,51 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+          "hash": "q1vFuoqWS4Z965/eN+npzGe0ykonSY3Cgl+XtVUaw58="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/createTutorialProject.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/createTutorialProject.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/downloadWeaverCoreZip.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/downloadWeaverCoreZip.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/openAssetsFolder.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/openAssetsFolder.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/weaverCoreFolderInAssets.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/weaverCoreFolderInAssets.gif"
         }
       },
       "is_incremental": false,
@@ -6381,10 +6437,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "HpRplsN+o+11ku9VWj4E4kB0Bn84kzwMXTr3LbuwH4Q="
+          "hash": "Fg93w4acwfDz2ibgTRZweeODvmwg6OoKV+SKKYlbCY4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -6393,7 +6449,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "WSuRrYiGwKKMbtdG9z8W9fXmLoCyTnGg9AxbPKLXm2Y="
+          "hash": "0ptHOGk3YPuZxeH9Oqxa3UnEzDcuzi2bbiyvh7z2nZY="
         }
       },
       "is_incremental": false,
@@ -6412,14 +6468,21 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 3,
+          "total_file_count": 4,
           "skipped_file_count": 3
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 527,
-          "skipped_file_count": 526
+          "skipped_file_count": 527
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

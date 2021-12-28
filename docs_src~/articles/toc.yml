@@ -1,2 +1,4 @@
+- name: Installing Unity
+  href: installingUnity.md
 - name: Introduction
   href: intro.md

@@ -12,7 +12,8 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Menu_Items
 {
-	public static class InsertMenu
+
+    public static class InsertMenu
 	{
 		static GameObject InsertObject(string prefabName)
 		{

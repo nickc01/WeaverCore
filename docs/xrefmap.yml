@@ -1,6 +1,9 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: apiIndex.md
+  name: WeaverCore API Documentation
+  href: api/index.html
 - uid: GlobalEnums
   name: GlobalEnums
   href: api/GlobalEnums.html
@@ -961,6 +964,12 @@ references:
   commentId: F:GlobalEnums.SupportedLanguages.ZH
   fullName: GlobalEnums.SupportedLanguages.ZH
   nameWithType: SupportedLanguages.ZH
+- uid: installingUnity.md
+  name: Installing Unity
+  href: articles/installingUnity.html
+- uid: intro.md
+  name: Welcome to WeaverCore!
+  href: articles/intro.html
 - uid: Language
   name: Language
   href: api/Language.html

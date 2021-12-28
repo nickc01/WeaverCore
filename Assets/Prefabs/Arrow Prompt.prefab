@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -349214895
   m_SortingLayer: 12
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300026, guid: 87854b516dcaa9245b00a44c2eb9bb50, type: 3}
+  m_Sprite: {fileID: 21300550, guid: 5e26c18c0c910d448b010d40ae6c7022, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   fadeOutTime: 0.233
   fadedInAlpha: 1
   fadedOutAlpha: 0
+  DestroyOnHide: 1
 --- !u!1 &321401359197166303
 GameObject:
   m_ObjectHideFlags: 0

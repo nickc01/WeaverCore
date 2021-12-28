@@ -29,7 +29,6 @@ public class HeroBox : MonoBehaviour
 		//if (!FSMUtility.ContainsFSM(otherCollider.gameObject, "damages_hero"))
 		//{
 			DamageHero component = otherCollider.gameObject.GetComponent<DamageHero>();
-		Debug.Log("HIT DAMAGABLE OBJECT = " + component?.name);
 			if (component != null)
 			{
 				if (heroCtrl.cState.shadowDashing && component.shadowDashHazard)

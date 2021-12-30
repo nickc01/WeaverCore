@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using WeaverCore;
 using WeaverCore.Attributes;
 using WeaverCore.Components;
 using WeaverCore.Interfaces;

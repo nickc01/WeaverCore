@@ -32,15 +32,25 @@ namespace WeaverCore.Game.Implementations
 
 		public override T LoadAsset<T>(string assetName)
 		{
+			WeaverLog.Log("Asset To Load = " + assetName);
 			var finalAsset = weaverAssetBundle.LoadAsset<T>(assetName);
+			WeaverLog.Log("Final Asset = " + finalAsset);
+			WeaverLog.Log("Is Null = " + (finalAsset == null));
 			if (finalAsset == null)
 			{
 				var assetNames = weaverAssetBundle.GetAllAssetNames();
+				Debug.Log("All Asset Names Count = " + assetNames.GetLength(0));
+                foreach (var name in assetNames)
+                {
+					Debug.Log("All Asset Names = " + name);
+                }
 				foreach (var name in assetNames)
 				{
 					if (name.Contains(assetName))
 					{
+						WeaverLog.Log("Next Asset = " + assetName);
 						finalAsset = weaverAssetBundle.LoadAsset<T>(name);
+						WeaverLog.Log("Final Asset = " + finalAsset);
 						if (finalAsset != null)
 						{
 							return finalAsset;
@@ -48,6 +58,7 @@ namespace WeaverCore.Game.Implementations
 					}
 				}
 			}
+			WeaverLog.Log("DONE");
 			return finalAsset;
 		}
 
@@ -63,7 +74,8 @@ namespace WeaverCore.Game.Implementations
 		{
 			foreach (var loadedBundle in AssetBundle.GetAllLoadedAssetBundles())
 			{
-				if (loadedBundle.name == "weavercore_bundle")
+				Debug.LogError("LOADED BUNDLE = " + loadedBundle.name);
+				if (loadedBundle.name == "weavercore_modclass_bundle")
 				{
 					weaverAssetBundle = loadedBundle;
 					return;
@@ -87,10 +99,12 @@ namespace WeaverCore.Game.Implementations
 
 			foreach (var resourceName in weaverAssembly.GetManifestResourceNames())
 			{
-				if (resourceName.EndsWith(extension) && resourceName.ToUpper().Contains("WEAVERCORE_BUNDLE"))
+				Debug.LogError("resource name = " + resourceName);
+				if (resourceName.EndsWith(extension) && resourceName.ToUpper().Contains("WEAVERCORE_MODCLASS_BUNDLE"))
 				{
 					try
 					{
+						Debug.LogError("bundle name = " + resourceName);
 						var bundle = AssetBundle.LoadFromStream(weaverAssembly.GetManifestResourceStream(resourceName));
 						weaverAssetBundle = bundle;
 						break;

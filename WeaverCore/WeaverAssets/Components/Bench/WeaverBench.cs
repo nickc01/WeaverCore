@@ -25,6 +25,9 @@ namespace WeaverCore.Assets.Components
 		[SerializeField]
 		[Tooltip("If the player sits on this bench, should the player also respawn at this bench?")]
 		bool setRespawnPoint = true;
+		[SerializeField]
+		[Tooltip("When the player starts up a game, should the player be resting on the bench? If false, the player will be laying on the ground in front of the bench")]
+		bool spawnSittingOnBench = true;
 
 		[Space]
 		[Header("Label")]
@@ -79,10 +82,10 @@ namespace WeaverCore.Assets.Components
 		GameObject Health;
 		WeaverArrowPrompt InstantiatedPrompt;
 
-		/// <summary>
+		/*/// <summary>
 		/// When the player starts the game, should they be resting on the bench when they spawn in. Otherwise, they will be asleep next to the bench
-		/// </summary>
-		public bool RespawnResting { get; set; } = true;
+		/// </summary>*/
+		bool RespawnResting = false;
 
 		/// <summary>
 		/// An offset applied to the hero when they sit on the bench
@@ -135,12 +138,36 @@ namespace WeaverCore.Assets.Components
 			eventManager.OnReceivedEvent += EventManager_OnReceivedEvent;
 		}
 
+/*#if UNITY_EDITOR
+		private void Start()
+        {
+			if (!HeroController.instance.isHeroInPosition)
+			{
+				HeroController.instance.heroInPosition += OnHeroInPosition;
+			}
+			else
+			{
+				Respawn();
+			}
+		}
+#endif*/
+
+		void OnHeroInPosition(bool forceDirect)
+        {
+			HeroController.instance.heroInPosition -= OnHeroInPosition;
+			Respawn();
+		}
+
 		private void EventManager_OnReceivedEvent(string eventName, GameObject source)
 		{
 			if (eventName == "BENCH ACTIVE")
 			{
 				ActivateBench();
 			}
+            else if (eventName == "RESPAWN")
+            {
+				RespawnSittingOnBench();
+            }
 		}
 
 		/// <summary>
@@ -156,6 +183,17 @@ namespace WeaverCore.Assets.Components
 		/// </summary>
 		public void Respawn()
 		{
+			RespawnResting = false;
+			StopAllCoroutines();
+			StartCoroutine(RespawnRoutine());
+		}
+
+		/// <summary>
+		/// Respawns the player sitting on the bench. If "Spawn Sitting On Bench" is false, then the player will be laying on the ground
+		/// </summary>
+		public void RespawnSittingOnBench()
+        {
+			RespawnResting = spawnSittingOnBench;
 			StopAllCoroutines();
 			StartCoroutine(RespawnRoutine());
 		}
@@ -179,11 +217,7 @@ namespace WeaverCore.Assets.Components
 				HeroController.instance.StopAnimationControl();
 				HeroController.instance.MaxHealth();
 
-				//TODO : PLAY HERO ANIMATION
-				if (Initialization.Environment == Enums.RunningState.Game)
-				{
-					HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
-				}
+				HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 				EventManager.BroadcastEvent("UPDATE BLUE HEALTH", gameObject);
 				EventManager.BroadcastEvent("HERO REVIVED", gameObject);
 
@@ -627,6 +661,7 @@ namespace WeaverCore.Assets.Components
 								PlayerData.instance.SetInt("respawnType", 1);
 								PlayerData.instance.SetBool("respawnFacingRight", facingRight);
 								GameManager.instance.SetCurrentMapZoneAsRespawn();
+								WeaverLog.Log("SETTING RESPAWN POINT!!!");
 							}
 
 							yield return new WaitForSeconds(0.1f);
@@ -635,6 +670,8 @@ namespace WeaverCore.Assets.Components
 							GameManager.instance.TimePasses();
 							GameManager.instance.StoryRecord_rest();
 							GameManager.instance.AddToBenchList();
+
+							WeaverLog.Log("SAVED Respawn Type = " + PlayerData.instance.GetInt("respawnType"));
 
 							if (PlayerData.instance.GetBool("hasQuill") && PlayerData.instance.GetBool("hasMap"))
 							{

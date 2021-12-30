@@ -245,7 +245,7 @@ namespace WeaverCore.Assets.Components
         /// <param name="minorText"></param>
         protected void DisplayTitle(string title, string minorText = "")
         {
-            AreaTitle.Spawn(title,minorText);
+            AreaTitle.Spawn(minorText,title);
         }
     }
 }

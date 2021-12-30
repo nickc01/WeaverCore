@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
@@ -25,10 +26,7 @@ namespace WeaverCore
 #if UNITY_EDITOR
                 HarmonyAssembly = Assembly.Load("0Harmony");
 #else
-                //ILGenAssembly = ResourceLoader.LoadAssembly("ILGeneration");
-                //ReflectionEmitLightweightAssembly = ResourceLoader.LoadAssembly("ReflectionEmitLightweight");
-                //ReflectionEmitAssembly = ResourceLoader.LoadAssembly("ReflectionEmit");
-                HarmonyAssembly = ResourceLoader.LoadAssembly("0Harmony");
+                HarmonyAssembly = ResourceUtilities.LoadAssembly("0Harmony");
 #endif
                 HarmonyInstanceType = HarmonyAssembly.GetType("HarmonyLib.Harmony");
                 HarmonyMethodType = HarmonyAssembly.GetType("HarmonyLib.HarmonyMethod");

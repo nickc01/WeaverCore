@@ -2281,6 +2281,11 @@ public class HeroController : MonoBehaviour
 			}
 			//this.proxyFSM.SendEvent("HeroCtrl-Respawned");
 			this.FinishedEnteringScene(true, false);
+			var weaverBench = spawnPoint.gameObject.GetComponent("WeaverCore.Assets.Components.WeaverBench");
+            if (weaverBench != null)
+            {
+				weaverBench.SendMessage("RespawnSittingOnBench");
+            }
 			//benchFSM.SendEvent("RESPAWN");
 			//benchFSM = null;
 		}

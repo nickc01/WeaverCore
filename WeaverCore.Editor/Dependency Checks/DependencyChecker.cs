@@ -56,10 +56,11 @@ namespace WeaverCore.Editor
             if (!silent)
             {
                 DebugUtilities.ClearLog();
-                
+
+                Debug.Log("WeaverCore is Fully Setup!");
+
                 //TODO - SHOW WELCOME SCREEN
             }
-            Debug.Log("WeaverCore is Fully Setup!");
         }
 
         static void OnChecksError()
@@ -186,15 +187,15 @@ namespace WeaverCore.Editor
                     if (!silent)
                     {
                         DisplayProgressBar("Checking Dependencies", "Checking: " + currentCheck.ActionName, currentIndex / (float)(checks.Count - 1));
-                        try
-                        {
-                            currentCheck.StartCheck(finishCheck);
-                        }
-                        catch (Exception e)
-                        {
-                            Debug.LogException(e);
-                            finishCheck(DependencyCheck.DependencyCheckResult.Error);
-                        }
+                    }
+                    try
+                    {
+                        currentCheck.StartCheck(finishCheck);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogException(e);
+                        finishCheck(DependencyCheck.DependencyCheckResult.Error);
                     }
                 }
                 catch (Exception e)

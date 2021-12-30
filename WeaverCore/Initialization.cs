@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -111,6 +112,51 @@ namespace WeaverCore
 				assembly = ResourceUtilities.LoadAssembly(assemblyName);
 			}
 			return assembly;
+		}
+
+		[OnHarmonyPatch]
+		static void PatchModLoader(HarmonyPatcher patcher)
+		{
+			if (Environment != RunningState.Game)
+			{
+				return;
+			}
+
+			var loadModM = typeof(IMod).Assembly.GetType("Modding.ModLoader").GetMethod("LoadMod", BindingFlags.NonPublic | BindingFlags.Static);
+
+			var loadMod_postfix = typeof(Initialization).GetMethod(nameof(LoadMods_Postfix), BindingFlags.NonPublic | BindingFlags.Static);
+
+			patcher.Patch(loadModM, null, loadMod_postfix);
+
+			var unloadModM = typeof(IMod).Assembly.GetType("Modding.ModLoader").GetMethod("UnloadMod", BindingFlags.NonPublic | BindingFlags.Static);
+
+			var unloadMod_postfix = typeof(Initialization).GetMethod(nameof(UnloadMods_Postfix), BindingFlags.NonPublic | BindingFlags.Static);
+
+			patcher.Patch(unloadModM, null, unloadMod_postfix);
+		}
+
+		static void LoadMods_Postfix(object mod)
+        {
+			var modInstanceT = mod.GetType();
+
+			var imod = modInstanceT.GetField("Mod").GetValue(mod);
+
+            if (imod != null)
+            {
+				ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_, a) => a.ModType.IsAssignableFrom(imod.GetType()));
+			}
+        }
+
+		static void UnloadMods_Postfix(object mod)
+        {
+			var modInstanceT = mod.GetType();
+
+			var imod = modInstanceT.GetField("Mod").GetValue(mod);
+
+			if (imod != null)
+			{
+				ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModUnloadAttribute>((_, a) => a.ModType.IsAssignableFrom(imod.GetType()));
+			}
 		}
 	}
 }

@@ -77,7 +77,7 @@ namespace WeaverCore
                 WeaverLog.Log("Loading Weaver Mod " + modType.Name);
                 RegistryLoader.LoadAllRegistries(modType);
 
-                ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_,a) => a.ModType.IsAssignableFrom(modType));
+                //ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_,a) => a.ModType.IsAssignableFrom(modType));
             }
             else
             {

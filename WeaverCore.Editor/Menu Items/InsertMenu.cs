@@ -34,7 +34,9 @@ namespace WeaverCore.Editor.Menu_Items
 
 			if (!Application.isPlaying)
 			{
-				EditorSceneManager.SaveScene(instance.scene);
+				Undo.RegisterCreatedObjectUndo(instance.gameObject, $"Create {prefabName}");
+				//EditorSceneManager.SaveScene(instance.scene);
+				EditorSceneManager.MarkSceneDirty(instance.scene);
 			}
 
 			return instance;
@@ -64,11 +66,39 @@ namespace WeaverCore.Editor.Menu_Items
 			InsertObject("GameManager");
 		}
 
+		[MenuItem("WeaverCore/Insert/Weaver NPC")]
+		public static void InsertWeaverNPC()
+		{
+			InsertObject("Weaver NPC");
+		}
+
+		[MenuItem("WeaverCore/Insert/Weaver Bench")]
+		public static void InsertWeaverBench()
+		{
+			InsertObject("Weaver Bench");
+		}
+
+		[MenuItem("WeaverCore/Insert/Weaver Scene Manager")]
+		public static void InsertWeaverSceneManager()
+		{
+			InsertObject("Weaver Scene Manager");
+		}
+
+		[MenuItem("WeaverCore/Insert/Transition Point")]
+		public static void InsertWeaverTransitionPoint()
+		{
+			InsertObject("Transition Point Template");
+		}
+
+		[MenuItem("WeaverCore/Insert/Dreamnail Warp Object")]
+		public static void InsertDreamWarpObject()
+		{
+			InsertObject("Dream Warp Object");
+		}
+
 		[MenuItem("WeaverCore/Insert/Weaver Canvas")]
 		public static void InsertWeaverCanvas()
 		{
-			//var prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas");
-
 			if (GameObject.FindObjectOfType<EventSystem>() == null)
 			{
 				var eventObject = new GameObject("Event System");
@@ -81,16 +111,6 @@ namespace WeaverCore.Editor.Menu_Items
 			}
 
 			InsertObject("Weaver Canvas");
-
-			/*var instance = GameObject.Instantiate(prefab, null);
-
-			instance.name = prefab.name;
-
-			if (!Application.isPlaying)
-			{
-				EditorSceneManager.SaveScene(instance.scene);
-			}*/
-
 		}
 	}
 }

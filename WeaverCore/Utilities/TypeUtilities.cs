@@ -21,7 +21,7 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns a type with the same name from the assembly</returns>
 		public static Type NameToType(string fullTypeName,string assemblyName)
 		{
-			if (string.IsNullOrEmpty(fullTypeName) || string.IsNullOrEmpty(assemblyName))
+			if (string.IsNullOrEmpty(fullTypeName)/* || string.IsNullOrEmpty(assemblyName)*/)
 			{
 				return null;
 			}
@@ -32,9 +32,9 @@ namespace WeaverCore.Utilities
 
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
-				if (assembly.FullName == assemblyName || assembly.GetName().Name == assemblyName)
+				if (string.IsNullOrEmpty(assemblyName) || assembly.FullName == assemblyName || assembly.GetName().Name == assemblyName)
 				{
-					var type = assembly.GetType(fullTypeName);
+					var type = assembly.GetType(fullTypeName,false);
 					if (type != null)
 					{
 						typeCache.CacheObject((fullTypeName, assemblyName), type);

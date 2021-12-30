@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,17 +7,6 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore.Game.Implementations
 {
-	/*class StatueTextChanger : MonoBehaviour
-	{
-		public BossStatue statue;
-		public string Name;
-		public string Description;
-
-		void Update()
-		{
-			statue.na
-		}
-	}*/
 
 	struct BossInfo
 	{
@@ -48,14 +37,6 @@ namespace WeaverCore.Game.Implementations
 					Name = bossName,
 					Description = bossDescription
 				});
-				/*var textChanger = gm.GetComponent<StatueTextChanger>();
-				if (textChanger == null)
-				{
-					textChanger = gm.AddComponent<StatueTextChanger>();
-				}
-				textChanger.statue = statue;
-				textChanger.name = bossName;
-				textChanger.Description = bossDescription;*/
 			}
 		}
 
@@ -71,3 +52,4 @@ namespace WeaverCore.Game.Implementations
 		}
 	}
 }
+*/

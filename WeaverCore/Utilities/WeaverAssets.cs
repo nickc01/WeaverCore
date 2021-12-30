@@ -14,7 +14,7 @@ namespace WeaverCore.Utilities
     /// </summary>
     public static class WeaverAssets
 	{
-		public static readonly string WeaverAssetBundleName = "weavercore_bundle";
+		public static readonly string WeaverAssetBundleName = "weavercore_modclass_bundle";
 
 		static WeaverAssets_I Impl;
 

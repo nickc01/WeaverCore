@@ -65,29 +65,32 @@ namespace WeaverCore
             return GetType().Assembly.GetName().Version.ToString();
         }
 
-        public override void Initialize()
+        [AfterModLoad(typeof(WeaverMod))]
+        static void WeaverModLoaded(WeaverMod loadedMod)
         {
-            base.Initialize();
-            if (firstLoad)
+            if (loadedMod.firstLoad)
             {
-                firstLoad = false;
+                loadedMod.firstLoad = false;
 
-                var modType = GetType();
+                var modType = loadedMod.GetType();
 
                 WeaverLog.Log("Loading Weaver Mod " + modType.Name);
                 RegistryLoader.LoadAllRegistries(modType);
-
-                //ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_,a) => a.ModType.IsAssignableFrom(modType));
             }
             else
             {
-                EnableRegistries();
+                loadedMod.EnableRegistries();
             }
+        }
+
+        [AfterModUnload(typeof(WeaverMod))]
+        static void WeaverModUnloaded(WeaverMod unloadedMod)
+        {
+            unloadedMod.DisableRegistries();
         }
 
         public void EnableRegistries()
         {
-
             foreach (var registry in Registries)
             {
                 registry.EnableRegistry();

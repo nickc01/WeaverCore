@@ -143,7 +143,32 @@ namespace WeaverCore
 
             if (imod != null)
             {
-				ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_, a) => a.ModType.IsAssignableFrom(imod.GetType()));
+				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>().ToList();
+
+				foreach (var method in methods)
+				{
+					try
+					{
+						if (method.attribute.ModType.IsAssignableFrom(imod.GetType()))
+						{
+							var parameters = method.method.GetParameters();
+							if (parameters.GetLength(0) == 1 && parameters[0].ParameterType.IsAssignableFrom(imod.GetType()))
+							{
+								method.method.Invoke(null, new object[] { imod });
+							}
+							else
+							{
+								method.method.Invoke(null, null);
+							}
+						}
+					}
+					catch (Exception e)
+					{
+						WeaverLog.LogError($"Error running function : {method.method.DeclaringType.FullName}:{method.method.Name}");
+						WeaverLog.LogException(e);
+					}
+				}
+				//ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_, a) => a.ModType.IsAssignableFrom(imod.GetType()));
 			}
         }
 
@@ -155,7 +180,32 @@ namespace WeaverCore
 
 			if (imod != null)
 			{
-				ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModUnloadAttribute>((_, a) => a.ModType.IsAssignableFrom(imod.GetType()));
+				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModUnloadAttribute>().ToList();
+
+				foreach (var method in methods)
+				{
+					try
+					{
+						if (method.attribute.ModType.IsAssignableFrom(imod.GetType()))
+						{
+							var parameters = method.method.GetParameters();
+							if (parameters.GetLength(0) == 1 && parameters[0].ParameterType.IsAssignableFrom(imod.GetType()))
+							{
+								method.method.Invoke(null, new object[] { imod });
+							}
+							else
+							{
+								method.method.Invoke(null, null);
+							}
+						}
+					}
+					catch (Exception e)
+					{
+						WeaverLog.LogError($"Error running function : {method.method.DeclaringType.FullName}:{method.method.Name}");
+						WeaverLog.LogException(e);
+					}
+				}
+				//ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModUnloadAttribute>((_, a) => a.ModType.IsAssignableFrom(imod.GetType()));
 			}
 		}
 	}

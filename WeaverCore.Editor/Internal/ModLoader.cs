@@ -28,7 +28,31 @@ namespace WeaverCore.Editor.Internal
 					foreach (var mod in weaverMods.OrderBy(m => m.LoadPriority()))
 					{
 						mod.Initialize();
-						ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_, a) => a.ModType.IsAssignableFrom(mod.GetType()));
+						var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>().ToList();
+
+                        foreach (var method in methods)
+                        {
+							try
+							{
+								if (method.attribute.ModType.IsAssignableFrom(mod.GetType()))
+								{
+									var parameters = method.method.GetParameters();
+									if (parameters.GetLength(0) == 1 && parameters[0].ParameterType.IsAssignableFrom(mod.GetType()))
+									{
+										method.method.Invoke(null, new object[] { mod });
+									}
+									else
+									{
+										method.method.Invoke(null, null);
+									}
+								}
+							}
+							catch (Exception e)
+                            {
+								WeaverLog.LogError($"Error running function : {method.method.DeclaringType.FullName}:{method.method.Name}");
+								WeaverLog.LogException(e);
+                            }
+                        }
 					}
 				}
 				catch (Exception e)

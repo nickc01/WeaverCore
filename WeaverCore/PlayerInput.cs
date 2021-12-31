@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using WeaverCore.Interfaces;
+﻿using UnityEngine;
+using WeaverCore.Implementations;
 
-namespace WeaverCore.Implementations
+namespace WeaverCore
 {
-	/// <summary>
-	/// Used for accessing input from the player's controller
-	/// </summary>
-    public abstract class PlayerInput : IImplementation
-	{
-		static PlayerInput impl = ImplFinder.GetImplementation<PlayerInput>();
-
-		protected abstract PlayerInputButton GetInputButton(string buttonName);
-		protected abstract PlayerInputJoystick GetJoystick(string joystickName);
+    /// <summary>
+    /// Used for accessing input from the player's controller
+    /// </summary>
+    public static class PlayerInput
+    {
+		static PlayerInput_I impl = ImplFinder.GetImplementation<PlayerInput_I>();
 
 		public abstract class PlayerInputButton
 		{

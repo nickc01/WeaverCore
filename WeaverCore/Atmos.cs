@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine.Audio;
 using WeaverCore.Implementations;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// Contains snapshots and mixers that are related to the Atmos AudioMixer
-	/// 
-	/// These snapshots are used to change what atmosphere sounds are being played in a scene
-	/// 
-	/// See this table for more info on what groups/mixers do what : https://1drv.ms/x/s!Aj62egREH4PTxyT0dl7ijj9itSdV?e=SMNe12
-	/// </summary>
-	public static class Atmos
+    /// <summary>
+    /// Contains snapshots and mixers that are related to the Atmos AudioMixer
+    /// 
+    /// These snapshots are used to change what atmosphere sounds are being played in a scene
+    /// 
+    /// See this table for more info on what groups/mixers do what : https://1drv.ms/x/s!Aj62egREH4PTxyT0dl7ijj9itSdV?e=SMNe12
+    /// </summary>
+    public static class Atmos
 	{
 		[Flags]
 		public enum AtmosSources

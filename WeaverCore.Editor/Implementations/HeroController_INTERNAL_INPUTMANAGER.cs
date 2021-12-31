@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using WeaverCore.Implementations;
-using static WeaverCore.Implementations.PlayerInput;
+using static WeaverCore.PlayerInput;
 
 namespace WeaverCore.Editor.Implementations
 {

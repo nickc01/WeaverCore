@@ -54,5 +54,30 @@ namespace WeaverCore.Utilities
 		{
 			return Impl.LoadAssetFromBundle<T>(bundleName, name);
 		}
+
+		/// <summary>
+		/// Loads an asset from a mod bundle
+		/// </summary>
+		/// <typeparam name="T">The type of asset to load</typeparam>
+		/// <param name="modType">The mod to load the bundle from</param>
+		/// <param name="name">The name of the asset to load</param>
+		/// <returns>Returns the loaded asset, or null of the asset wasn't found</returns>
+		public static T LoadAssetFromBundle<T>(Type modType, string name) where T : UnityEngine.Object
+		{
+			var bundleName = $"{modType.Name.ToLower()}_bundle";
+			return Impl.LoadAssetFromBundle<T>(bundleName, name);
+        }
+
+		/// <summary>
+		/// Loads an asset from a mod bundle
+		/// </summary>
+		/// <typeparam name="T">The type of asset to load</typeparam>
+		/// <typeparam name="ModType">The mod to load the bundle from</typeparam>
+		/// <param name="name">The name of the asset to load</param>
+		/// <returns>Returns the loaded asset, or null of the asset wasn't found</returns>
+		public static T LoadAssetFromBundle<T, ModType>(string name) where T : UnityEngine.Object
+        {
+			return LoadAssetFromBundle<T>(typeof(ModType), name);
+        }
 	}
 }

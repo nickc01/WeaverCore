@@ -3,10 +3,11 @@ using System;
 using System.Reflection;
 using UnityEngine;
 using WeaverCore.Implementations;
+using static WeaverCore.PlayerInput;
 
 namespace WeaverCore.Game.Implementations
 {
-	public class G_PlayerInput_I : PlayerInput
+	public class G_PlayerInput_I : PlayerInput_I
 	{
 		class G_PlayerInputJoystick : PlayerInputJoystick
 		{
@@ -170,12 +171,12 @@ namespace WeaverCore.Game.Implementations
 			}
 		}
 
-		protected override PlayerInputButton GetInputButton(string buttonName)
+		public override PlayerInputButton GetInputButton(string buttonName)
 		{
 			return new G_PlayerInputButton(buttonName);
 		}
 
-		protected override PlayerInputJoystick GetJoystick(string joystickName)
+		public override PlayerInputJoystick GetJoystick(string joystickName)
 		{
 			return new G_PlayerInputJoystick(joystickName);
 		}

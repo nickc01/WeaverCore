@@ -492,7 +492,7 @@
           "hash": "/JxsLtPllSl/3EUxBeWKMmS+gRtitvErmscVnNu6kN4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -516,7 +516,7 @@
           "hash": "BIqEgAdzwK3ABS31T9ZIsMKhl4v2N7UiIEa01rv0Z0g="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -2121,7 +2121,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Assets.Components.WeaverBench.html",
-          "hash": "mJumwOhSawfhdRWl05zpLqVcN6FwE3Cq5hMsroOlJNY="
+          "hash": "IVfjywR5ZudUYlgAJ+q964ytbpsKr1WJy99t0NUUcRg="
         }
       },
       "is_incremental": true,
@@ -2325,7 +2325,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Atmos.AtmosSources.html",
-          "hash": "F0uKNpSfGbM1Tpj2N0Kt9GgE795X93XsjHJUj9hnOaI="
+          "hash": "GujLl3yWL/flSGIe7v00aJKxSYj/S6vgn+43P3dckLk="
         }
       },
       "is_incremental": true,
@@ -2337,7 +2337,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Atmos.GroupType.html",
-          "hash": "/bi673Ame+9W6K6DlbMvy20mVoeY9QvZgjWkBk6JdzI="
+          "hash": "y2WiVzZ73dAzQvpRgolk4ENEqDlBZh08p+LDbuKnOHA="
         }
       },
       "is_incremental": true,
@@ -2349,7 +2349,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Atmos.SnapshotType.html",
-          "hash": "soq0o4GCwO91tvBYQRW4BK7E0bcHyDLq4I4cHgPDfZc="
+          "hash": "1dg6y1xEBkdTUnHFhTeylZ7uoJQS9QaPiuYT8zIeLXc="
         }
       },
       "is_incremental": true,
@@ -2361,7 +2361,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Atmos.html",
-          "hash": "poawxYWACQ2Pfr/IhQIutSK0pCCY57mQGDAq396G44k="
+          "hash": "WJXaJlo0GGTUa1cI87fZqh2zA50+pP9K0J+mIBmM5o4="
         }
       },
       "is_incremental": true,
@@ -2409,7 +2409,19 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Attributes.AfterModLoadAttribute.html",
-          "hash": "iS/GGuvTANUX3AXQ3XW0L2uUlY/c1fK4agvrgWIomow="
+          "hash": "9nDyY58HgwufgD89rh1TgYwNu/TID/z03Q3oWEqQi8E="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WeaverCore.Attributes.AfterModUnloadAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WeaverCore.Attributes.AfterModUnloadAttribute.html",
+          "hash": "4pXypMD9kwJnSVhkLT8l5M65ff5Ffs8RxFL9AWW5g9g="
         }
       },
       "is_incremental": true,
@@ -2553,7 +2565,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Attributes.PriorityAttribute.html",
-          "hash": "QDbhqU3fgh/iOIpkTe/BPVmDKCMv76M8gaguxRrxleM="
+          "hash": "w88CCPiXFHP2Ca2FJ0Fwi4P0IRNfMlbwGa5UwMd1Y4U="
         }
       },
       "is_incremental": true,
@@ -2577,7 +2589,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Attributes.html",
-          "hash": "BVh8ycX1GQ671TcYmx8RzwI+lnagE8zQboc1SQcAjo0="
+          "hash": "qgQqalWwNUGvGZPo7KR33ddonGhSWoSnk54DGEopPf0="
         }
       },
       "is_incremental": true,
@@ -3297,7 +3309,19 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Editor.CreateMenu.html",
-          "hash": "tXnyCTVqiFSbhf1xfq+3KHiOHl2+zBdJAc0ZyL84gGU="
+          "hash": "9/v1RWrnpDldCxYRf3yi2F+xdPFp2cESE/4QWY3f0QY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WeaverCore.Editor.CreateModMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WeaverCore.Editor.CreateModMenu.html",
+          "hash": "wYxY3sZU2pjDbns9FWNLEFVd2o1kLRR9PuUXsXbEipQ="
         }
       },
       "is_incremental": true,
@@ -3369,7 +3393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Editor.DependencyChecker.html",
-          "hash": "hdQL/H9qhJapZ58FR5Yj7+Y2SZZhPv4dLEazuS1hJew="
+          "hash": "ap5QYCECzTUU1gdCkgBOPHLVpd1wnLN0bKfkquBSUd8="
         }
       },
       "is_incremental": true,
@@ -3381,7 +3405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Editor.EditorMusic.html",
-          "hash": "s2Bik0MzhIyiBSyq7Q8ZCNdXIIA0En5UtqTgmVkm/zs="
+          "hash": "HrlC4yEWAJcobaKaI6vagUHbhWC77YhkcU1cp36X/ik="
         }
       },
       "is_incremental": true,
@@ -3689,11 +3713,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/WeaverCore.Editor.Menu_Items.AnimationSpriteRedirector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WeaverCore.Editor.Menu_Items.AnimationSpriteRedirector.html",
+          "hash": "4NQ3hgdIVnTMIz95jLNhwIgctI69xkxImMrFgZWnL2w="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/WeaverCore.Editor.Menu_Items.InsertMenu.yml",
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Editor.Menu_Items.InsertMenu.html",
-          "hash": "VNaICOenHFz1lmFBnTTq8YYtJxa5zl2ckM7D6cEo1FM="
+          "hash": "oFxahgp77K+OlhMnzmPiaRs2SkAJCIAgDGYvPOaMzbE="
         }
       },
       "is_incremental": true,
@@ -3705,7 +3741,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Editor.Menu_Items.html",
-          "hash": "PiDfn8I/QYQxJpKPIcb4Ha4LzIvXy0k2vp+5/dp9+fw="
+          "hash": "ThQu5gMF3ieIPtDBbqJ8oe1xUKqlHcYNcpemOd8boms="
         }
       },
       "is_incremental": true,
@@ -3729,7 +3765,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Editor.RegistryTools.html",
-          "hash": "emWWy3mEi2kfu5GYknL6zacfg9RGFKg1IGK7Lo+hk88="
+          "hash": "exXbw4fE87gfiYHKXGdyaEbUkWPuzP225OfX97PBD0M="
         }
       },
       "is_incremental": true,
@@ -4245,7 +4281,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Editor.html",
-          "hash": "Zkj4+nLxqegMmWNaxofsWblrtGfv6TD8PPBVZRN4Ub4="
+          "hash": "AskKC3Aq+XjRBg6DUX0gRZvip7PFOT0ppB++sQ8mvWU="
         }
       },
       "is_incremental": true,
@@ -4677,7 +4713,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.HarmonyPatcher.html",
-          "hash": "4NIy19TEPD1jYeOQzxWI6GKww74XKqD+u/WzgcJa3Bo="
+          "hash": "OT++UL8/aBzOrGGTiIppRTt0NpGN7rJ6mpZ12A8aMBo="
         }
       },
       "is_incremental": true,
@@ -4865,35 +4901,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.yml",
+      "source_relative_path": "api/WeaverCore.Implementations.PlayerInput_I.yml",
       "output": {
         ".html": {
-          "relative_path": "api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html",
-          "hash": "NdRIRlxlyfcKcIf6yx8ymDm7XSTpv6nYCf+xNVKT7pc="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.html",
-          "hash": "0tgNBRgi4dyTagE/jbex3YNcv29wXlbXRtLShpTnB4Y="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/WeaverCore.Implementations.PlayerInput.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/WeaverCore.Implementations.PlayerInput.html",
-          "hash": "MQOUKPhneavDnoLs06WUjixviW1LZE//haj0J7k3DyY="
+          "relative_path": "api/WeaverCore.Implementations.PlayerInput_I.html",
+          "hash": "ExelSO3v/2cb1jlS9TvqlYEg7EVVmrQf2nwihHnHx7Q="
         }
       },
       "is_incremental": true,
@@ -5013,7 +5025,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Implementations.html",
-          "hash": "P/qsAcuKYk6089K6gHHFTOTWIrfuikSBo+EqwdM/Vcw="
+          "hash": "0M37o59FzAvALjNYE/t2o7fOzPKMJBCOwzbEtsNMEU8="
         }
       },
       "is_incremental": true,
@@ -5037,7 +5049,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Initialization.html",
-          "hash": "83iiRSBquWEMKO8NPIXPfnGewgru/ssZ+8GPhrl06wo="
+          "hash": "EJjm/SPvwxaj7X0HADPif0LjBvIpteB7QVaNaCFf2OE="
         }
       },
       "is_incremental": true,
@@ -5181,10 +5193,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Internal.WeaverCore_ModClass.html",
-          "hash": "kd1cOU56lUI8YXWhN2AVxwC29VophIegDRvX9c7hOsg="
+          "hash": "mpNR70TSGvHR3SyLJAw51ZWCtbRKx6rlNveOsCdOLPw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -5196,7 +5208,7 @@
           "hash": "VOyhELY4vL59l5AsKD7UvryTOXNvG39XaV4N3Vp+mr8="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -5273,6 +5285,42 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/WeaverCore.PlayerInput.PlayerInputButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WeaverCore.PlayerInput.PlayerInputButton.html",
+          "hash": "dU8NGO/vKbEUQxkLdBevGQn/zXsk1ACR2+5Bd/AWzU0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WeaverCore.PlayerInput.PlayerInputJoystick.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WeaverCore.PlayerInput.PlayerInputJoystick.html",
+          "hash": "EvoRv67FSxF04+/hvzV5p2bBU4TeaHTh9mRLiNPQWhk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WeaverCore.PlayerInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WeaverCore.PlayerInput.html",
+          "hash": "DoUkvGI8ZbSLA4rbfSt9ZxXqGHdMAetQoWmO0xDcoDM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/WeaverCore.PoolableObject.yml",
       "output": {
         ".html": {
@@ -5316,7 +5364,7 @@
           "hash": "RpmNh+lg1GMqMj53LtLdkenhH9+PKTbYnMpPwQQtAzU="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -5817,10 +5865,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.TogglableWeaverMod.html",
-          "hash": "7xr4q7qzTsHEXN7g16/RSwJngvbycsMfgXj3XDUitZg="
+          "hash": "BKbki2AUAZT3QJ0JxxxUPHwnJyVnXXsVJBdhNacu9ks="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -6165,7 +6213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.Utilities.WeaverAssets.html",
-          "hash": "kuqhwal+UNLPZ/mgjvwq4XIY1dAcRsBGYOR2rtuyEVE="
+          "hash": "c7RZL9S7G1UiR4hMg7DGhrrtEmnqHGQwYErr4kbuh2c="
         }
       },
       "is_incremental": true,
@@ -6309,10 +6357,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.WeaverMod.html",
-          "hash": "ru9yRr2eJ6gx9rjjZVKe7UH+3UIV54edcjqDOLivkG8="
+          "hash": "W1Lhj2aOEn8un0dByKlQmE0h2Y78TiKOnQLp2Y5zTYQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -6321,10 +6369,10 @@
       "output": {
         ".html": {
           "relative_path": "api/WeaverCore.html",
-          "hash": "ssFImxFewK9aTzV+L/GJsPuNIaz79B+RUFfdAK8T8Zk="
+          "hash": "c9wbExQMMxoS14Vure4HmRNZZzEHTBor5zJVZabGysI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -6345,7 +6393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "nIFMXoVBXIuNH8W4GlXFHgRyPccTV0ZIehHi38n/qoQ="
+          "hash": "nZ2N2DK+GDYeO85E9dVhZXf/4r3ZuioF04fI2+KS4O0="
         }
       },
       "is_incremental": false,
@@ -6369,7 +6417,19 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "LUq692hyAUzJx5/ILHUbTuswB0TFPt52hEFwXrsHRcE="
+          "hash": "ZTVUxg9m/7t3viOPVThVmD2FLZxcH846ygD5aKzrtzM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/setupRegistry.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/setupRegistry.html",
+          "hash": "Q3z1XNR6zj/RG1MGX45AoVWjUNtPg2LNxB6ZPFypEtQ="
         }
       },
       "is_incremental": false,
@@ -6381,7 +6441,84 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "q1vFuoqWS4Z965/eN+npzGe0ykonSY3Cgl+XtVUaw58="
+          "hash": "BaBjqtfFiiz9t8C56knel5GWcGYSeiep/N+oKSgPtYM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/addingFeatureToRegistry.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/addingFeatureToRegistry.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/assigningModToRegistry.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/assigningModToRegistry.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/buildCompleted.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/buildCompleted.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/buildWindow.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/buildWindow.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/buildingMod.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/buildingMod.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/createGlobalSettingsObject.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/createGlobalSettingsObject.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/createRegistry.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/createRegistry.gif"
         }
       },
       "is_incremental": false,
@@ -6400,10 +6537,65 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/creatingNewMod.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/creatingNewMod.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/downloadWeaverCoreZip.PNG",
       "output": {
         "resource": {
           "relative_path": "images/downloadWeaverCoreZip.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/generalSettings.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/generalSettings.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/modClassGenerated.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/modClassGenerated.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/modInHollowKnight.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/modInHollowKnight.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/newGlobalSettings.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/newGlobalSettings.gif"
         }
       },
       "is_incremental": false,
@@ -6422,10 +6614,32 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/registryModClass.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/registryModClass.PNG"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/weaverCoreFolderInAssets.gif",
       "output": {
         "resource": {
           "relative_path": "images/weaverCoreFolderInAssets.gif"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/weaverCoreFullySetup.PNG",
+      "output": {
+        "resource": {
+          "relative_path": "images/weaverCoreFullySetup.PNG"
         }
       },
       "is_incremental": false,
@@ -6449,7 +6663,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "0ptHOGk3YPuZxeH9Oqxa3UnEzDcuzi2bbiyvh7z2nZY="
+          "hash": "WSuRrYiGwKKMbtdG9z8W9fXmLoCyTnGg9AxbPKLXm2Y="
         }
       },
       "is_incremental": false,
@@ -6468,14 +6682,14 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 4,
+          "total_file_count": 5,
           "skipped_file_count": 3
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 527,
-          "skipped_file_count": 527
+          "total_file_count": 531,
+          "skipped_file_count": 528
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

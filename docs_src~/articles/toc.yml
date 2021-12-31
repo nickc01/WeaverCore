@@ -1,4 +1,4 @@
-- name: Installing Unity
-  href: installingUnity.md
 - name: Introduction
   href: intro.md
+- name: Setting Up Registry
+  href: setupRegistry.md

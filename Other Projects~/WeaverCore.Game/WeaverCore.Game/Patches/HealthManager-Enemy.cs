@@ -27,17 +27,18 @@ namespace WeaverCore.Game.Patches
 			try
 			{
 				//self.gameObject.AddComponent<Enemy>();
-				var replacement = (Enemy)Registry.GetAllFeatures<IObjectReplacement>(r => r is Enemy && r.ThingToReplace == self.gameObject.name).FirstOrDefault();
+				/*var replacement = (Enemy)Registry.GetAllFeatures<IObjectReplacement>(r => r is Enemy && r.ThingToReplace == self.gameObject.name).FirstOrDefault();
 				if (replacement != null)
 				{
 					var instance = GameObject.Instantiate(replacement.gameObject);
 					GameObject.Destroy(self.gameObject);
 					destroyed = true;
-				}
+				}*/
+				destroyed = EntityReplacements.ReplaceObject(self.gameObject, out var _);
 			}
 			catch (Exception e)
 			{
-				WeaverLog.LogError("Exception occured while spawning enemy replacement : " + e);
+				WeaverLog.LogError("Exception occured while spawning entity replacement : " + e);
 			}
 			finally
 			{

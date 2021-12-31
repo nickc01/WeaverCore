@@ -37,3 +37,16 @@ To download WeaverCore as a zip, go to the [WeaverCore Repository Page](https://
 Once downloaded, extract all the contents into a "WeaverCore" folder in the "Assets" folder of your project. The end result should look like this:
 
 ![WeaverCore Folder in Assets](~/images/weaverCoreFolderInAssets.gif)
+
+Once that's done, go back to the Unity Editor, and WeaverCore will start loading (this may take a while). You will know when it's done when you see "WeaverCore is Fully Setup!" in the Console
+
+![WeaverCore Fully Setup](~/images/weaverCoreFullySetup.png)
+
+The last step before we do anything is to check if WeaverCore has found your Hollow Knight installation, since the game is required for WeaverCore to function. Go to "WeaverCore -> Settings -> General Settings", and make sure that the "Hollow Knight Directory" is set to the folder where Hollow Knight.exe is located. (Be sure to click apply to apply the settings).
+
+> [!NOTE]
+> Make sure your Hollow Knight installation has the Hollow Knight Modding API installed. You can install it via the Scarab Mod Installer : https://github.com/fifty-six/Scarab/releases
+
+![General Settings](~/images/generalSettings.png)
+
+Once that's done, you can now start modding with WeaverCore! Continue to "Setting Up Registry" to continue with the tutorial

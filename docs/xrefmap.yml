@@ -19356,19 +19356,19 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Assets.Components.WeaverBench.Respawn
   nameWithType: WeaverBench.Respawn
-- uid: WeaverCore.Assets.Components.WeaverBench.RespawnResting
-  name: RespawnResting
-  href: api/WeaverCore.Assets.Components.WeaverBench.html#WeaverCore_Assets_Components_WeaverBench_RespawnResting
-  commentId: P:WeaverCore.Assets.Components.WeaverBench.RespawnResting
-  fullName: WeaverCore.Assets.Components.WeaverBench.RespawnResting
-  nameWithType: WeaverBench.RespawnResting
-- uid: WeaverCore.Assets.Components.WeaverBench.RespawnResting*
-  name: RespawnResting
-  href: api/WeaverCore.Assets.Components.WeaverBench.html#WeaverCore_Assets_Components_WeaverBench_RespawnResting_
-  commentId: Overload:WeaverCore.Assets.Components.WeaverBench.RespawnResting
+- uid: WeaverCore.Assets.Components.WeaverBench.RespawnSittingOnBench
+  name: RespawnSittingOnBench()
+  href: api/WeaverCore.Assets.Components.WeaverBench.html#WeaverCore_Assets_Components_WeaverBench_RespawnSittingOnBench
+  commentId: M:WeaverCore.Assets.Components.WeaverBench.RespawnSittingOnBench
+  fullName: WeaverCore.Assets.Components.WeaverBench.RespawnSittingOnBench()
+  nameWithType: WeaverBench.RespawnSittingOnBench()
+- uid: WeaverCore.Assets.Components.WeaverBench.RespawnSittingOnBench*
+  name: RespawnSittingOnBench
+  href: api/WeaverCore.Assets.Components.WeaverBench.html#WeaverCore_Assets_Components_WeaverBench_RespawnSittingOnBench_
+  commentId: Overload:WeaverCore.Assets.Components.WeaverBench.RespawnSittingOnBench
   isSpec: "True"
-  fullName: WeaverCore.Assets.Components.WeaverBench.RespawnResting
-  nameWithType: WeaverBench.RespawnResting
+  fullName: WeaverCore.Assets.Components.WeaverBench.RespawnSittingOnBench
+  nameWithType: WeaverBench.RespawnSittingOnBench
 - uid: WeaverCore.Assets.Components.WeaverNPC
   name: WeaverNPC
   href: api/WeaverCore.Assets.Components.WeaverNPC.html
@@ -21025,6 +21025,18 @@ references:
   commentId: T:WeaverCore.Attributes.AfterModLoadAttribute
   fullName: WeaverCore.Attributes.AfterModLoadAttribute
   nameWithType: AfterModLoadAttribute
+- uid: WeaverCore.Attributes.AfterModLoadAttribute.#ctor(System.String)
+  name: AfterModLoadAttribute(String)
+  href: api/WeaverCore.Attributes.AfterModLoadAttribute.html#WeaverCore_Attributes_AfterModLoadAttribute__ctor_System_String_
+  commentId: M:WeaverCore.Attributes.AfterModLoadAttribute.#ctor(System.String)
+  fullName: WeaverCore.Attributes.AfterModLoadAttribute.AfterModLoadAttribute(System.String)
+  nameWithType: AfterModLoadAttribute.AfterModLoadAttribute(String)
+- uid: WeaverCore.Attributes.AfterModLoadAttribute.#ctor(System.String,System.String)
+  name: AfterModLoadAttribute(String, String)
+  href: api/WeaverCore.Attributes.AfterModLoadAttribute.html#WeaverCore_Attributes_AfterModLoadAttribute__ctor_System_String_System_String_
+  commentId: M:WeaverCore.Attributes.AfterModLoadAttribute.#ctor(System.String,System.String)
+  fullName: WeaverCore.Attributes.AfterModLoadAttribute.AfterModLoadAttribute(System.String, System.String)
+  nameWithType: AfterModLoadAttribute.AfterModLoadAttribute(String, String)
 - uid: WeaverCore.Attributes.AfterModLoadAttribute.#ctor(System.Type,System.Int32)
   name: AfterModLoadAttribute(Type, Int32)
   href: api/WeaverCore.Attributes.AfterModLoadAttribute.html#WeaverCore_Attributes_AfterModLoadAttribute__ctor_System_Type_System_Int32_
@@ -21038,12 +21050,87 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Attributes.AfterModLoadAttribute.AfterModLoadAttribute
   nameWithType: AfterModLoadAttribute.AfterModLoadAttribute
+- uid: WeaverCore.Attributes.AfterModLoadAttribute.AssemblyName
+  name: AssemblyName
+  href: api/WeaverCore.Attributes.AfterModLoadAttribute.html#WeaverCore_Attributes_AfterModLoadAttribute_AssemblyName
+  commentId: F:WeaverCore.Attributes.AfterModLoadAttribute.AssemblyName
+  fullName: WeaverCore.Attributes.AfterModLoadAttribute.AssemblyName
+  nameWithType: AfterModLoadAttribute.AssemblyName
 - uid: WeaverCore.Attributes.AfterModLoadAttribute.ModType
   name: ModType
   href: api/WeaverCore.Attributes.AfterModLoadAttribute.html#WeaverCore_Attributes_AfterModLoadAttribute_ModType
-  commentId: F:WeaverCore.Attributes.AfterModLoadAttribute.ModType
+  commentId: P:WeaverCore.Attributes.AfterModLoadAttribute.ModType
   fullName: WeaverCore.Attributes.AfterModLoadAttribute.ModType
   nameWithType: AfterModLoadAttribute.ModType
+- uid: WeaverCore.Attributes.AfterModLoadAttribute.ModType*
+  name: ModType
+  href: api/WeaverCore.Attributes.AfterModLoadAttribute.html#WeaverCore_Attributes_AfterModLoadAttribute_ModType_
+  commentId: Overload:WeaverCore.Attributes.AfterModLoadAttribute.ModType
+  isSpec: "True"
+  fullName: WeaverCore.Attributes.AfterModLoadAttribute.ModType
+  nameWithType: AfterModLoadAttribute.ModType
+- uid: WeaverCore.Attributes.AfterModLoadAttribute.TypeName
+  name: TypeName
+  href: api/WeaverCore.Attributes.AfterModLoadAttribute.html#WeaverCore_Attributes_AfterModLoadAttribute_TypeName
+  commentId: F:WeaverCore.Attributes.AfterModLoadAttribute.TypeName
+  fullName: WeaverCore.Attributes.AfterModLoadAttribute.TypeName
+  nameWithType: AfterModLoadAttribute.TypeName
+- uid: WeaverCore.Attributes.AfterModUnloadAttribute
+  name: AfterModUnloadAttribute
+  href: api/WeaverCore.Attributes.AfterModUnloadAttribute.html
+  commentId: T:WeaverCore.Attributes.AfterModUnloadAttribute
+  fullName: WeaverCore.Attributes.AfterModUnloadAttribute
+  nameWithType: AfterModUnloadAttribute
+- uid: WeaverCore.Attributes.AfterModUnloadAttribute.#ctor(System.String)
+  name: AfterModUnloadAttribute(String)
+  href: api/WeaverCore.Attributes.AfterModUnloadAttribute.html#WeaverCore_Attributes_AfterModUnloadAttribute__ctor_System_String_
+  commentId: M:WeaverCore.Attributes.AfterModUnloadAttribute.#ctor(System.String)
+  fullName: WeaverCore.Attributes.AfterModUnloadAttribute.AfterModUnloadAttribute(System.String)
+  nameWithType: AfterModUnloadAttribute.AfterModUnloadAttribute(String)
+- uid: WeaverCore.Attributes.AfterModUnloadAttribute.#ctor(System.String,System.String)
+  name: AfterModUnloadAttribute(String, String)
+  href: api/WeaverCore.Attributes.AfterModUnloadAttribute.html#WeaverCore_Attributes_AfterModUnloadAttribute__ctor_System_String_System_String_
+  commentId: M:WeaverCore.Attributes.AfterModUnloadAttribute.#ctor(System.String,System.String)
+  fullName: WeaverCore.Attributes.AfterModUnloadAttribute.AfterModUnloadAttribute(System.String, System.String)
+  nameWithType: AfterModUnloadAttribute.AfterModUnloadAttribute(String, String)
+- uid: WeaverCore.Attributes.AfterModUnloadAttribute.#ctor(System.Type,System.Int32)
+  name: AfterModUnloadAttribute(Type, Int32)
+  href: api/WeaverCore.Attributes.AfterModUnloadAttribute.html#WeaverCore_Attributes_AfterModUnloadAttribute__ctor_System_Type_System_Int32_
+  commentId: M:WeaverCore.Attributes.AfterModUnloadAttribute.#ctor(System.Type,System.Int32)
+  fullName: WeaverCore.Attributes.AfterModUnloadAttribute.AfterModUnloadAttribute(System.Type, System.Int32)
+  nameWithType: AfterModUnloadAttribute.AfterModUnloadAttribute(Type, Int32)
+- uid: WeaverCore.Attributes.AfterModUnloadAttribute.#ctor*
+  name: AfterModUnloadAttribute
+  href: api/WeaverCore.Attributes.AfterModUnloadAttribute.html#WeaverCore_Attributes_AfterModUnloadAttribute__ctor_
+  commentId: Overload:WeaverCore.Attributes.AfterModUnloadAttribute.#ctor
+  isSpec: "True"
+  fullName: WeaverCore.Attributes.AfterModUnloadAttribute.AfterModUnloadAttribute
+  nameWithType: AfterModUnloadAttribute.AfterModUnloadAttribute
+- uid: WeaverCore.Attributes.AfterModUnloadAttribute.AssemblyName
+  name: AssemblyName
+  href: api/WeaverCore.Attributes.AfterModUnloadAttribute.html#WeaverCore_Attributes_AfterModUnloadAttribute_AssemblyName
+  commentId: F:WeaverCore.Attributes.AfterModUnloadAttribute.AssemblyName
+  fullName: WeaverCore.Attributes.AfterModUnloadAttribute.AssemblyName
+  nameWithType: AfterModUnloadAttribute.AssemblyName
+- uid: WeaverCore.Attributes.AfterModUnloadAttribute.ModType
+  name: ModType
+  href: api/WeaverCore.Attributes.AfterModUnloadAttribute.html#WeaverCore_Attributes_AfterModUnloadAttribute_ModType
+  commentId: P:WeaverCore.Attributes.AfterModUnloadAttribute.ModType
+  fullName: WeaverCore.Attributes.AfterModUnloadAttribute.ModType
+  nameWithType: AfterModUnloadAttribute.ModType
+- uid: WeaverCore.Attributes.AfterModUnloadAttribute.ModType*
+  name: ModType
+  href: api/WeaverCore.Attributes.AfterModUnloadAttribute.html#WeaverCore_Attributes_AfterModUnloadAttribute_ModType_
+  commentId: Overload:WeaverCore.Attributes.AfterModUnloadAttribute.ModType
+  isSpec: "True"
+  fullName: WeaverCore.Attributes.AfterModUnloadAttribute.ModType
+  nameWithType: AfterModUnloadAttribute.ModType
+- uid: WeaverCore.Attributes.AfterModUnloadAttribute.TypeName
+  name: TypeName
+  href: api/WeaverCore.Attributes.AfterModUnloadAttribute.html#WeaverCore_Attributes_AfterModUnloadAttribute_TypeName
+  commentId: F:WeaverCore.Attributes.AfterModUnloadAttribute.TypeName
+  fullName: WeaverCore.Attributes.AfterModUnloadAttribute.TypeName
+  nameWithType: AfterModUnloadAttribute.TypeName
 - uid: WeaverCore.Attributes.BeforeBuildAttribute
   name: BeforeBuildAttribute
   href: api/WeaverCore.Attributes.BeforeBuildAttribute.html
@@ -25214,6 +25301,12 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.CreateMenu.CreateSaveSpecificSettingsMenuItem
   nameWithType: CreateMenu.CreateSaveSpecificSettingsMenuItem
+- uid: WeaverCore.Editor.CreateModMenu
+  name: CreateModMenu
+  href: api/WeaverCore.Editor.CreateModMenu.html
+  commentId: T:WeaverCore.Editor.CreateModMenu
+  fullName: WeaverCore.Editor.CreateModMenu
+  nameWithType: CreateModMenu
 - uid: WeaverCore.Editor.CreateScriptableObjectWindow
   name: CreateScriptableObjectWindow
   href: api/WeaverCore.Editor.CreateScriptableObjectWindow.html
@@ -26703,6 +26796,12 @@ references:
   commentId: N:WeaverCore.Editor.Menu_Items
   fullName: WeaverCore.Editor.Menu_Items
   nameWithType: WeaverCore.Editor.Menu_Items
+- uid: WeaverCore.Editor.Menu_Items.AnimationSpriteRedirector
+  name: AnimationSpriteRedirector
+  href: api/WeaverCore.Editor.Menu_Items.AnimationSpriteRedirector.html
+  commentId: T:WeaverCore.Editor.Menu_Items.AnimationSpriteRedirector
+  fullName: WeaverCore.Editor.Menu_Items.AnimationSpriteRedirector
+  nameWithType: AnimationSpriteRedirector
 - uid: WeaverCore.Editor.Menu_Items.InsertMenu
   name: InsertMenu
   href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html
@@ -26735,6 +26834,19 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDemoPlayer
   nameWithType: InsertMenu.InsertDemoPlayer
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamWarpObject
+  name: InsertDreamWarpObject()
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertDreamWarpObject
+  commentId: M:WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamWarpObject
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamWarpObject()
+  nameWithType: InsertMenu.InsertDreamWarpObject()
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamWarpObject*
+  name: InsertDreamWarpObject
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertDreamWarpObject_
+  commentId: Overload:WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamWarpObject
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamWarpObject
+  nameWithType: InsertMenu.InsertDreamWarpObject
 - uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertGameCameras
   name: InsertGameCameras()
   href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertGameCameras
@@ -26761,6 +26873,19 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertGameManager
   nameWithType: InsertMenu.InsertGameManager
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverBench
+  name: InsertWeaverBench()
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverBench
+  commentId: M:WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverBench
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverBench()
+  nameWithType: InsertMenu.InsertWeaverBench()
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverBench*
+  name: InsertWeaverBench
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverBench_
+  commentId: Overload:WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverBench
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverBench
+  nameWithType: InsertMenu.InsertWeaverBench
 - uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverCanvas
   name: InsertWeaverCanvas()
   href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverCanvas
@@ -26774,6 +26899,45 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverCanvas
   nameWithType: InsertMenu.InsertWeaverCanvas
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverNPC
+  name: InsertWeaverNPC()
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverNPC
+  commentId: M:WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverNPC
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverNPC()
+  nameWithType: InsertMenu.InsertWeaverNPC()
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverNPC*
+  name: InsertWeaverNPC
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverNPC_
+  commentId: Overload:WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverNPC
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverNPC
+  nameWithType: InsertMenu.InsertWeaverNPC
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverSceneManager
+  name: InsertWeaverSceneManager()
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverSceneManager
+  commentId: M:WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverSceneManager
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverSceneManager()
+  nameWithType: InsertMenu.InsertWeaverSceneManager()
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverSceneManager*
+  name: InsertWeaverSceneManager
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverSceneManager_
+  commentId: Overload:WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverSceneManager
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverSceneManager
+  nameWithType: InsertMenu.InsertWeaverSceneManager
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverTransitionPoint
+  name: InsertWeaverTransitionPoint()
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverTransitionPoint
+  commentId: M:WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverTransitionPoint
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverTransitionPoint()
+  nameWithType: InsertMenu.InsertWeaverTransitionPoint()
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverTransitionPoint*
+  name: InsertWeaverTransitionPoint
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverTransitionPoint_
+  commentId: Overload:WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverTransitionPoint
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverTransitionPoint
+  nameWithType: InsertMenu.InsertWeaverTransitionPoint
 - uid: WeaverCore.Editor.PlayModeInit
   name: PlayModeInit
   href: api/WeaverCore.Editor.PlayModeInit.html
@@ -31371,492 +31535,402 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Implementations.Player_I.SoulGain
   nameWithType: Player_I.SoulGain
-- uid: WeaverCore.Implementations.PlayerInput
-  name: PlayerInput
-  href: api/WeaverCore.Implementations.PlayerInput.html
-  commentId: T:WeaverCore.Implementations.PlayerInput
-  fullName: WeaverCore.Implementations.PlayerInput
-  nameWithType: PlayerInput
-- uid: WeaverCore.Implementations.PlayerInput.attack
+- uid: WeaverCore.Implementations.PlayerInput_I
+  name: PlayerInput_I
+  href: api/WeaverCore.Implementations.PlayerInput_I.html
+  commentId: T:WeaverCore.Implementations.PlayerInput_I
+  fullName: WeaverCore.Implementations.PlayerInput_I
+  nameWithType: PlayerInput_I
+- uid: WeaverCore.Implementations.PlayerInput_I.attack
   name: attack
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_attack
-  commentId: P:WeaverCore.Implementations.PlayerInput.attack
-  fullName: WeaverCore.Implementations.PlayerInput.attack
-  nameWithType: PlayerInput.attack
-- uid: WeaverCore.Implementations.PlayerInput.attack*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_attack
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.attack
+  fullName: WeaverCore.Implementations.PlayerInput_I.attack
+  nameWithType: PlayerInput_I.attack
+- uid: WeaverCore.Implementations.PlayerInput_I.attack*
   name: attack
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_attack_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.attack
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_attack_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.attack
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.attack
-  nameWithType: PlayerInput.attack
-- uid: WeaverCore.Implementations.PlayerInput.cast
+  fullName: WeaverCore.Implementations.PlayerInput_I.attack
+  nameWithType: PlayerInput_I.attack
+- uid: WeaverCore.Implementations.PlayerInput_I.cast
   name: cast
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_cast
-  commentId: P:WeaverCore.Implementations.PlayerInput.cast
-  fullName: WeaverCore.Implementations.PlayerInput.cast
-  nameWithType: PlayerInput.cast
-- uid: WeaverCore.Implementations.PlayerInput.cast*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_cast
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.cast
+  fullName: WeaverCore.Implementations.PlayerInput_I.cast
+  nameWithType: PlayerInput_I.cast
+- uid: WeaverCore.Implementations.PlayerInput_I.cast*
   name: cast
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_cast_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.cast
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_cast_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.cast
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.cast
-  nameWithType: PlayerInput.cast
-- uid: WeaverCore.Implementations.PlayerInput.dash
+  fullName: WeaverCore.Implementations.PlayerInput_I.cast
+  nameWithType: PlayerInput_I.cast
+- uid: WeaverCore.Implementations.PlayerInput_I.dash
   name: dash
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_dash
-  commentId: P:WeaverCore.Implementations.PlayerInput.dash
-  fullName: WeaverCore.Implementations.PlayerInput.dash
-  nameWithType: PlayerInput.dash
-- uid: WeaverCore.Implementations.PlayerInput.dash*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_dash
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.dash
+  fullName: WeaverCore.Implementations.PlayerInput_I.dash
+  nameWithType: PlayerInput_I.dash
+- uid: WeaverCore.Implementations.PlayerInput_I.dash*
   name: dash
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_dash_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.dash
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_dash_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.dash
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.dash
-  nameWithType: PlayerInput.dash
-- uid: WeaverCore.Implementations.PlayerInput.down
+  fullName: WeaverCore.Implementations.PlayerInput_I.dash
+  nameWithType: PlayerInput_I.dash
+- uid: WeaverCore.Implementations.PlayerInput_I.down
   name: down
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_down
-  commentId: P:WeaverCore.Implementations.PlayerInput.down
-  fullName: WeaverCore.Implementations.PlayerInput.down
-  nameWithType: PlayerInput.down
-- uid: WeaverCore.Implementations.PlayerInput.down*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_down
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.down
+  fullName: WeaverCore.Implementations.PlayerInput_I.down
+  nameWithType: PlayerInput_I.down
+- uid: WeaverCore.Implementations.PlayerInput_I.down*
   name: down
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_down_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.down
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_down_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.down
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.down
-  nameWithType: PlayerInput.down
-- uid: WeaverCore.Implementations.PlayerInput.dreamNail
+  fullName: WeaverCore.Implementations.PlayerInput_I.down
+  nameWithType: PlayerInput_I.down
+- uid: WeaverCore.Implementations.PlayerInput_I.dreamNail
   name: dreamNail
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_dreamNail
-  commentId: P:WeaverCore.Implementations.PlayerInput.dreamNail
-  fullName: WeaverCore.Implementations.PlayerInput.dreamNail
-  nameWithType: PlayerInput.dreamNail
-- uid: WeaverCore.Implementations.PlayerInput.dreamNail*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_dreamNail
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.dreamNail
+  fullName: WeaverCore.Implementations.PlayerInput_I.dreamNail
+  nameWithType: PlayerInput_I.dreamNail
+- uid: WeaverCore.Implementations.PlayerInput_I.dreamNail*
   name: dreamNail
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_dreamNail_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.dreamNail
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_dreamNail_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.dreamNail
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.dreamNail
-  nameWithType: PlayerInput.dreamNail
-- uid: WeaverCore.Implementations.PlayerInput.evade
+  fullName: WeaverCore.Implementations.PlayerInput_I.dreamNail
+  nameWithType: PlayerInput_I.dreamNail
+- uid: WeaverCore.Implementations.PlayerInput_I.evade
   name: evade
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_evade
-  commentId: P:WeaverCore.Implementations.PlayerInput.evade
-  fullName: WeaverCore.Implementations.PlayerInput.evade
-  nameWithType: PlayerInput.evade
-- uid: WeaverCore.Implementations.PlayerInput.evade*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_evade
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.evade
+  fullName: WeaverCore.Implementations.PlayerInput_I.evade
+  nameWithType: PlayerInput_I.evade
+- uid: WeaverCore.Implementations.PlayerInput_I.evade*
   name: evade
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_evade_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.evade
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_evade_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.evade
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.evade
-  nameWithType: PlayerInput.evade
-- uid: WeaverCore.Implementations.PlayerInput.focus
+  fullName: WeaverCore.Implementations.PlayerInput_I.evade
+  nameWithType: PlayerInput_I.evade
+- uid: WeaverCore.Implementations.PlayerInput_I.focus
   name: focus
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_focus
-  commentId: P:WeaverCore.Implementations.PlayerInput.focus
-  fullName: WeaverCore.Implementations.PlayerInput.focus
-  nameWithType: PlayerInput.focus
-- uid: WeaverCore.Implementations.PlayerInput.focus*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_focus
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.focus
+  fullName: WeaverCore.Implementations.PlayerInput_I.focus
+  nameWithType: PlayerInput_I.focus
+- uid: WeaverCore.Implementations.PlayerInput_I.focus*
   name: focus
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_focus_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.focus
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_focus_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.focus
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.focus
-  nameWithType: PlayerInput.focus
-- uid: WeaverCore.Implementations.PlayerInput.GetInputButton(System.String)
+  fullName: WeaverCore.Implementations.PlayerInput_I.focus
+  nameWithType: PlayerInput_I.focus
+- uid: WeaverCore.Implementations.PlayerInput_I.GetInputButton(System.String)
   name: GetInputButton(String)
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_GetInputButton_System_String_
-  commentId: M:WeaverCore.Implementations.PlayerInput.GetInputButton(System.String)
-  fullName: WeaverCore.Implementations.PlayerInput.GetInputButton(System.String)
-  nameWithType: PlayerInput.GetInputButton(String)
-- uid: WeaverCore.Implementations.PlayerInput.GetInputButton*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_GetInputButton_System_String_
+  commentId: M:WeaverCore.Implementations.PlayerInput_I.GetInputButton(System.String)
+  fullName: WeaverCore.Implementations.PlayerInput_I.GetInputButton(System.String)
+  nameWithType: PlayerInput_I.GetInputButton(String)
+- uid: WeaverCore.Implementations.PlayerInput_I.GetInputButton*
   name: GetInputButton
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_GetInputButton_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.GetInputButton
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_GetInputButton_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.GetInputButton
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.GetInputButton
-  nameWithType: PlayerInput.GetInputButton
-- uid: WeaverCore.Implementations.PlayerInput.GetJoystick(System.String)
+  fullName: WeaverCore.Implementations.PlayerInput_I.GetInputButton
+  nameWithType: PlayerInput_I.GetInputButton
+- uid: WeaverCore.Implementations.PlayerInput_I.GetJoystick(System.String)
   name: GetJoystick(String)
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_GetJoystick_System_String_
-  commentId: M:WeaverCore.Implementations.PlayerInput.GetJoystick(System.String)
-  fullName: WeaverCore.Implementations.PlayerInput.GetJoystick(System.String)
-  nameWithType: PlayerInput.GetJoystick(String)
-- uid: WeaverCore.Implementations.PlayerInput.GetJoystick*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_GetJoystick_System_String_
+  commentId: M:WeaverCore.Implementations.PlayerInput_I.GetJoystick(System.String)
+  fullName: WeaverCore.Implementations.PlayerInput_I.GetJoystick(System.String)
+  nameWithType: PlayerInput_I.GetJoystick(String)
+- uid: WeaverCore.Implementations.PlayerInput_I.GetJoystick*
   name: GetJoystick
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_GetJoystick_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.GetJoystick
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_GetJoystick_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.GetJoystick
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.GetJoystick
-  nameWithType: PlayerInput.GetJoystick
-- uid: WeaverCore.Implementations.PlayerInput.jump
+  fullName: WeaverCore.Implementations.PlayerInput_I.GetJoystick
+  nameWithType: PlayerInput_I.GetJoystick
+- uid: WeaverCore.Implementations.PlayerInput_I.jump
   name: jump
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_jump
-  commentId: P:WeaverCore.Implementations.PlayerInput.jump
-  fullName: WeaverCore.Implementations.PlayerInput.jump
-  nameWithType: PlayerInput.jump
-- uid: WeaverCore.Implementations.PlayerInput.jump*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_jump
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.jump
+  fullName: WeaverCore.Implementations.PlayerInput_I.jump
+  nameWithType: PlayerInput_I.jump
+- uid: WeaverCore.Implementations.PlayerInput_I.jump*
   name: jump
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_jump_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.jump
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_jump_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.jump
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.jump
-  nameWithType: PlayerInput.jump
-- uid: WeaverCore.Implementations.PlayerInput.left
+  fullName: WeaverCore.Implementations.PlayerInput_I.jump
+  nameWithType: PlayerInput_I.jump
+- uid: WeaverCore.Implementations.PlayerInput_I.left
   name: left
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_left
-  commentId: P:WeaverCore.Implementations.PlayerInput.left
-  fullName: WeaverCore.Implementations.PlayerInput.left
-  nameWithType: PlayerInput.left
-- uid: WeaverCore.Implementations.PlayerInput.left*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_left
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.left
+  fullName: WeaverCore.Implementations.PlayerInput_I.left
+  nameWithType: PlayerInput_I.left
+- uid: WeaverCore.Implementations.PlayerInput_I.left*
   name: left
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_left_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.left
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_left_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.left
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.left
-  nameWithType: PlayerInput.left
-- uid: WeaverCore.Implementations.PlayerInput.menuCancel
+  fullName: WeaverCore.Implementations.PlayerInput_I.left
+  nameWithType: PlayerInput_I.left
+- uid: WeaverCore.Implementations.PlayerInput_I.menuCancel
   name: menuCancel
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_menuCancel
-  commentId: P:WeaverCore.Implementations.PlayerInput.menuCancel
-  fullName: WeaverCore.Implementations.PlayerInput.menuCancel
-  nameWithType: PlayerInput.menuCancel
-- uid: WeaverCore.Implementations.PlayerInput.menuCancel*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_menuCancel
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.menuCancel
+  fullName: WeaverCore.Implementations.PlayerInput_I.menuCancel
+  nameWithType: PlayerInput_I.menuCancel
+- uid: WeaverCore.Implementations.PlayerInput_I.menuCancel*
   name: menuCancel
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_menuCancel_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.menuCancel
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_menuCancel_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.menuCancel
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.menuCancel
-  nameWithType: PlayerInput.menuCancel
-- uid: WeaverCore.Implementations.PlayerInput.menuSubmit
+  fullName: WeaverCore.Implementations.PlayerInput_I.menuCancel
+  nameWithType: PlayerInput_I.menuCancel
+- uid: WeaverCore.Implementations.PlayerInput_I.menuSubmit
   name: menuSubmit
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_menuSubmit
-  commentId: P:WeaverCore.Implementations.PlayerInput.menuSubmit
-  fullName: WeaverCore.Implementations.PlayerInput.menuSubmit
-  nameWithType: PlayerInput.menuSubmit
-- uid: WeaverCore.Implementations.PlayerInput.menuSubmit*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_menuSubmit
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.menuSubmit
+  fullName: WeaverCore.Implementations.PlayerInput_I.menuSubmit
+  nameWithType: PlayerInput_I.menuSubmit
+- uid: WeaverCore.Implementations.PlayerInput_I.menuSubmit*
   name: menuSubmit
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_menuSubmit_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.menuSubmit
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_menuSubmit_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.menuSubmit
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.menuSubmit
-  nameWithType: PlayerInput.menuSubmit
-- uid: WeaverCore.Implementations.PlayerInput.moveVector
+  fullName: WeaverCore.Implementations.PlayerInput_I.menuSubmit
+  nameWithType: PlayerInput_I.menuSubmit
+- uid: WeaverCore.Implementations.PlayerInput_I.moveVector
   name: moveVector
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_moveVector
-  commentId: P:WeaverCore.Implementations.PlayerInput.moveVector
-  fullName: WeaverCore.Implementations.PlayerInput.moveVector
-  nameWithType: PlayerInput.moveVector
-- uid: WeaverCore.Implementations.PlayerInput.moveVector*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_moveVector
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.moveVector
+  fullName: WeaverCore.Implementations.PlayerInput_I.moveVector
+  nameWithType: PlayerInput_I.moveVector
+- uid: WeaverCore.Implementations.PlayerInput_I.moveVector*
   name: moveVector
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_moveVector_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.moveVector
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_moveVector_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.moveVector
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.moveVector
-  nameWithType: PlayerInput.moveVector
-- uid: WeaverCore.Implementations.PlayerInput.openInventory
+  fullName: WeaverCore.Implementations.PlayerInput_I.moveVector
+  nameWithType: PlayerInput_I.moveVector
+- uid: WeaverCore.Implementations.PlayerInput_I.openInventory
   name: openInventory
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_openInventory
-  commentId: P:WeaverCore.Implementations.PlayerInput.openInventory
-  fullName: WeaverCore.Implementations.PlayerInput.openInventory
-  nameWithType: PlayerInput.openInventory
-- uid: WeaverCore.Implementations.PlayerInput.openInventory*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_openInventory
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.openInventory
+  fullName: WeaverCore.Implementations.PlayerInput_I.openInventory
+  nameWithType: PlayerInput_I.openInventory
+- uid: WeaverCore.Implementations.PlayerInput_I.openInventory*
   name: openInventory
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_openInventory_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.openInventory
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_openInventory_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.openInventory
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.openInventory
-  nameWithType: PlayerInput.openInventory
-- uid: WeaverCore.Implementations.PlayerInput.paneLeft
+  fullName: WeaverCore.Implementations.PlayerInput_I.openInventory
+  nameWithType: PlayerInput_I.openInventory
+- uid: WeaverCore.Implementations.PlayerInput_I.paneLeft
   name: paneLeft
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_paneLeft
-  commentId: P:WeaverCore.Implementations.PlayerInput.paneLeft
-  fullName: WeaverCore.Implementations.PlayerInput.paneLeft
-  nameWithType: PlayerInput.paneLeft
-- uid: WeaverCore.Implementations.PlayerInput.paneLeft*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_paneLeft
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.paneLeft
+  fullName: WeaverCore.Implementations.PlayerInput_I.paneLeft
+  nameWithType: PlayerInput_I.paneLeft
+- uid: WeaverCore.Implementations.PlayerInput_I.paneLeft*
   name: paneLeft
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_paneLeft_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.paneLeft
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_paneLeft_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.paneLeft
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.paneLeft
-  nameWithType: PlayerInput.paneLeft
-- uid: WeaverCore.Implementations.PlayerInput.paneRight
+  fullName: WeaverCore.Implementations.PlayerInput_I.paneLeft
+  nameWithType: PlayerInput_I.paneLeft
+- uid: WeaverCore.Implementations.PlayerInput_I.paneRight
   name: paneRight
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_paneRight
-  commentId: P:WeaverCore.Implementations.PlayerInput.paneRight
-  fullName: WeaverCore.Implementations.PlayerInput.paneRight
-  nameWithType: PlayerInput.paneRight
-- uid: WeaverCore.Implementations.PlayerInput.paneRight*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_paneRight
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.paneRight
+  fullName: WeaverCore.Implementations.PlayerInput_I.paneRight
+  nameWithType: PlayerInput_I.paneRight
+- uid: WeaverCore.Implementations.PlayerInput_I.paneRight*
   name: paneRight
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_paneRight_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.paneRight
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_paneRight_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.paneRight
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.paneRight
-  nameWithType: PlayerInput.paneRight
-- uid: WeaverCore.Implementations.PlayerInput.pause
+  fullName: WeaverCore.Implementations.PlayerInput_I.paneRight
+  nameWithType: PlayerInput_I.paneRight
+- uid: WeaverCore.Implementations.PlayerInput_I.pause
   name: pause
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_pause
-  commentId: P:WeaverCore.Implementations.PlayerInput.pause
-  fullName: WeaverCore.Implementations.PlayerInput.pause
-  nameWithType: PlayerInput.pause
-- uid: WeaverCore.Implementations.PlayerInput.pause*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_pause
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.pause
+  fullName: WeaverCore.Implementations.PlayerInput_I.pause
+  nameWithType: PlayerInput_I.pause
+- uid: WeaverCore.Implementations.PlayerInput_I.pause*
   name: pause
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_pause_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.pause
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_pause_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.pause
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.pause
-  nameWithType: PlayerInput.pause
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputButton
-  name: PlayerInput.PlayerInputButton
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html
-  commentId: T:WeaverCore.Implementations.PlayerInput.PlayerInputButton
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputButton
-  nameWithType: PlayerInput.PlayerInputButton
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputButton.IsPressed
-  name: IsPressed
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html#WeaverCore_Implementations_PlayerInput_PlayerInputButton_IsPressed
-  commentId: P:WeaverCore.Implementations.PlayerInput.PlayerInputButton.IsPressed
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputButton.IsPressed
-  nameWithType: PlayerInput.PlayerInputButton.IsPressed
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputButton.IsPressed*
-  name: IsPressed
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html#WeaverCore_Implementations_PlayerInput_PlayerInputButton_IsPressed_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.PlayerInputButton.IsPressed
-  isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputButton.IsPressed
-  nameWithType: PlayerInput.PlayerInputButton.IsPressed
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputButton.PreviousState
-  name: PreviousState
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html#WeaverCore_Implementations_PlayerInput_PlayerInputButton_PreviousState
-  commentId: P:WeaverCore.Implementations.PlayerInput.PlayerInputButton.PreviousState
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputButton.PreviousState
-  nameWithType: PlayerInput.PlayerInputButton.PreviousState
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputButton.PreviousState*
-  name: PreviousState
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html#WeaverCore_Implementations_PlayerInput_PlayerInputButton_PreviousState_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.PlayerInputButton.PreviousState
-  isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputButton.PreviousState
-  nameWithType: PlayerInput.PlayerInputButton.PreviousState
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasPressed
-  name: WasPressed
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html#WeaverCore_Implementations_PlayerInput_PlayerInputButton_WasPressed
-  commentId: P:WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasPressed
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasPressed
-  nameWithType: PlayerInput.PlayerInputButton.WasPressed
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasPressed*
-  name: WasPressed
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html#WeaverCore_Implementations_PlayerInput_PlayerInputButton_WasPressed_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasPressed
-  isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasPressed
-  nameWithType: PlayerInput.PlayerInputButton.WasPressed
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasReleased
-  name: WasReleased
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html#WeaverCore_Implementations_PlayerInput_PlayerInputButton_WasReleased
-  commentId: P:WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasReleased
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasReleased
-  nameWithType: PlayerInput.PlayerInputButton.WasReleased
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasReleased*
-  name: WasReleased
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputButton.html#WeaverCore_Implementations_PlayerInput_PlayerInputButton_WasReleased_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasReleased
-  isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputButton.WasReleased
-  nameWithType: PlayerInput.PlayerInputButton.WasReleased
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick
-  name: PlayerInput.PlayerInputJoystick
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.html
-  commentId: T:WeaverCore.Implementations.PlayerInput.PlayerInputJoystick
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick
-  nameWithType: PlayerInput.PlayerInputJoystick
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.PreviousVector
-  name: PreviousVector
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.html#WeaverCore_Implementations_PlayerInput_PlayerInputJoystick_PreviousVector
-  commentId: P:WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.PreviousVector
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.PreviousVector
-  nameWithType: PlayerInput.PlayerInputJoystick.PreviousVector
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.PreviousVector*
-  name: PreviousVector
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.html#WeaverCore_Implementations_PlayerInput_PlayerInputJoystick_PreviousVector_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.PreviousVector
-  isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.PreviousVector
-  nameWithType: PlayerInput.PlayerInputJoystick.PreviousVector
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.Vector
-  name: Vector
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.html#WeaverCore_Implementations_PlayerInput_PlayerInputJoystick_Vector
-  commentId: P:WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.Vector
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.Vector
-  nameWithType: PlayerInput.PlayerInputJoystick.Vector
-- uid: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.Vector*
-  name: Vector
-  href: api/WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.html#WeaverCore_Implementations_PlayerInput_PlayerInputJoystick_Vector_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.Vector
-  isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.PlayerInputJoystick.Vector
-  nameWithType: PlayerInput.PlayerInputJoystick.Vector
-- uid: WeaverCore.Implementations.PlayerInput.quickCast
+  fullName: WeaverCore.Implementations.PlayerInput_I.pause
+  nameWithType: PlayerInput_I.pause
+- uid: WeaverCore.Implementations.PlayerInput_I.quickCast
   name: quickCast
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_quickCast
-  commentId: P:WeaverCore.Implementations.PlayerInput.quickCast
-  fullName: WeaverCore.Implementations.PlayerInput.quickCast
-  nameWithType: PlayerInput.quickCast
-- uid: WeaverCore.Implementations.PlayerInput.quickCast*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_quickCast
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.quickCast
+  fullName: WeaverCore.Implementations.PlayerInput_I.quickCast
+  nameWithType: PlayerInput_I.quickCast
+- uid: WeaverCore.Implementations.PlayerInput_I.quickCast*
   name: quickCast
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_quickCast_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.quickCast
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_quickCast_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.quickCast
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.quickCast
-  nameWithType: PlayerInput.quickCast
-- uid: WeaverCore.Implementations.PlayerInput.quickMap
+  fullName: WeaverCore.Implementations.PlayerInput_I.quickCast
+  nameWithType: PlayerInput_I.quickCast
+- uid: WeaverCore.Implementations.PlayerInput_I.quickMap
   name: quickMap
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_quickMap
-  commentId: P:WeaverCore.Implementations.PlayerInput.quickMap
-  fullName: WeaverCore.Implementations.PlayerInput.quickMap
-  nameWithType: PlayerInput.quickMap
-- uid: WeaverCore.Implementations.PlayerInput.quickMap*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_quickMap
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.quickMap
+  fullName: WeaverCore.Implementations.PlayerInput_I.quickMap
+  nameWithType: PlayerInput_I.quickMap
+- uid: WeaverCore.Implementations.PlayerInput_I.quickMap*
   name: quickMap
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_quickMap_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.quickMap
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_quickMap_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.quickMap
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.quickMap
-  nameWithType: PlayerInput.quickMap
-- uid: WeaverCore.Implementations.PlayerInput.right
+  fullName: WeaverCore.Implementations.PlayerInput_I.quickMap
+  nameWithType: PlayerInput_I.quickMap
+- uid: WeaverCore.Implementations.PlayerInput_I.right
   name: right
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_right
-  commentId: P:WeaverCore.Implementations.PlayerInput.right
-  fullName: WeaverCore.Implementations.PlayerInput.right
-  nameWithType: PlayerInput.right
-- uid: WeaverCore.Implementations.PlayerInput.right*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_right
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.right
+  fullName: WeaverCore.Implementations.PlayerInput_I.right
+  nameWithType: PlayerInput_I.right
+- uid: WeaverCore.Implementations.PlayerInput_I.right*
   name: right
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_right_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.right
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_right_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.right
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.right
-  nameWithType: PlayerInput.right
-- uid: WeaverCore.Implementations.PlayerInput.rightStick
+  fullName: WeaverCore.Implementations.PlayerInput_I.right
+  nameWithType: PlayerInput_I.right
+- uid: WeaverCore.Implementations.PlayerInput_I.rightStick
   name: rightStick
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rightStick
-  commentId: P:WeaverCore.Implementations.PlayerInput.rightStick
-  fullName: WeaverCore.Implementations.PlayerInput.rightStick
-  nameWithType: PlayerInput.rightStick
-- uid: WeaverCore.Implementations.PlayerInput.rightStick*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rightStick
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.rightStick
+  fullName: WeaverCore.Implementations.PlayerInput_I.rightStick
+  nameWithType: PlayerInput_I.rightStick
+- uid: WeaverCore.Implementations.PlayerInput_I.rightStick*
   name: rightStick
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rightStick_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.rightStick
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rightStick_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.rightStick
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.rightStick
-  nameWithType: PlayerInput.rightStick
-- uid: WeaverCore.Implementations.PlayerInput.rs_down
+  fullName: WeaverCore.Implementations.PlayerInput_I.rightStick
+  nameWithType: PlayerInput_I.rightStick
+- uid: WeaverCore.Implementations.PlayerInput_I.rs_down
   name: rs_down
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rs_down
-  commentId: P:WeaverCore.Implementations.PlayerInput.rs_down
-  fullName: WeaverCore.Implementations.PlayerInput.rs_down
-  nameWithType: PlayerInput.rs_down
-- uid: WeaverCore.Implementations.PlayerInput.rs_down*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rs_down
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.rs_down
+  fullName: WeaverCore.Implementations.PlayerInput_I.rs_down
+  nameWithType: PlayerInput_I.rs_down
+- uid: WeaverCore.Implementations.PlayerInput_I.rs_down*
   name: rs_down
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rs_down_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.rs_down
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rs_down_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.rs_down
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.rs_down
-  nameWithType: PlayerInput.rs_down
-- uid: WeaverCore.Implementations.PlayerInput.rs_left
+  fullName: WeaverCore.Implementations.PlayerInput_I.rs_down
+  nameWithType: PlayerInput_I.rs_down
+- uid: WeaverCore.Implementations.PlayerInput_I.rs_left
   name: rs_left
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rs_left
-  commentId: P:WeaverCore.Implementations.PlayerInput.rs_left
-  fullName: WeaverCore.Implementations.PlayerInput.rs_left
-  nameWithType: PlayerInput.rs_left
-- uid: WeaverCore.Implementations.PlayerInput.rs_left*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rs_left
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.rs_left
+  fullName: WeaverCore.Implementations.PlayerInput_I.rs_left
+  nameWithType: PlayerInput_I.rs_left
+- uid: WeaverCore.Implementations.PlayerInput_I.rs_left*
   name: rs_left
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rs_left_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.rs_left
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rs_left_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.rs_left
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.rs_left
-  nameWithType: PlayerInput.rs_left
-- uid: WeaverCore.Implementations.PlayerInput.rs_right
+  fullName: WeaverCore.Implementations.PlayerInput_I.rs_left
+  nameWithType: PlayerInput_I.rs_left
+- uid: WeaverCore.Implementations.PlayerInput_I.rs_right
   name: rs_right
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rs_right
-  commentId: P:WeaverCore.Implementations.PlayerInput.rs_right
-  fullName: WeaverCore.Implementations.PlayerInput.rs_right
-  nameWithType: PlayerInput.rs_right
-- uid: WeaverCore.Implementations.PlayerInput.rs_right*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rs_right
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.rs_right
+  fullName: WeaverCore.Implementations.PlayerInput_I.rs_right
+  nameWithType: PlayerInput_I.rs_right
+- uid: WeaverCore.Implementations.PlayerInput_I.rs_right*
   name: rs_right
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rs_right_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.rs_right
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rs_right_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.rs_right
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.rs_right
-  nameWithType: PlayerInput.rs_right
-- uid: WeaverCore.Implementations.PlayerInput.rs_up
+  fullName: WeaverCore.Implementations.PlayerInput_I.rs_right
+  nameWithType: PlayerInput_I.rs_right
+- uid: WeaverCore.Implementations.PlayerInput_I.rs_up
   name: rs_up
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rs_up
-  commentId: P:WeaverCore.Implementations.PlayerInput.rs_up
-  fullName: WeaverCore.Implementations.PlayerInput.rs_up
-  nameWithType: PlayerInput.rs_up
-- uid: WeaverCore.Implementations.PlayerInput.rs_up*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rs_up
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.rs_up
+  fullName: WeaverCore.Implementations.PlayerInput_I.rs_up
+  nameWithType: PlayerInput_I.rs_up
+- uid: WeaverCore.Implementations.PlayerInput_I.rs_up*
   name: rs_up
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_rs_up_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.rs_up
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_rs_up_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.rs_up
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.rs_up
-  nameWithType: PlayerInput.rs_up
-- uid: WeaverCore.Implementations.PlayerInput.skipCutscene
+  fullName: WeaverCore.Implementations.PlayerInput_I.rs_up
+  nameWithType: PlayerInput_I.rs_up
+- uid: WeaverCore.Implementations.PlayerInput_I.skipCutscene
   name: skipCutscene
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_skipCutscene
-  commentId: P:WeaverCore.Implementations.PlayerInput.skipCutscene
-  fullName: WeaverCore.Implementations.PlayerInput.skipCutscene
-  nameWithType: PlayerInput.skipCutscene
-- uid: WeaverCore.Implementations.PlayerInput.skipCutscene*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_skipCutscene
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.skipCutscene
+  fullName: WeaverCore.Implementations.PlayerInput_I.skipCutscene
+  nameWithType: PlayerInput_I.skipCutscene
+- uid: WeaverCore.Implementations.PlayerInput_I.skipCutscene*
   name: skipCutscene
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_skipCutscene_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.skipCutscene
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_skipCutscene_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.skipCutscene
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.skipCutscene
-  nameWithType: PlayerInput.skipCutscene
-- uid: WeaverCore.Implementations.PlayerInput.superDash
+  fullName: WeaverCore.Implementations.PlayerInput_I.skipCutscene
+  nameWithType: PlayerInput_I.skipCutscene
+- uid: WeaverCore.Implementations.PlayerInput_I.superDash
   name: superDash
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_superDash
-  commentId: P:WeaverCore.Implementations.PlayerInput.superDash
-  fullName: WeaverCore.Implementations.PlayerInput.superDash
-  nameWithType: PlayerInput.superDash
-- uid: WeaverCore.Implementations.PlayerInput.superDash*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_superDash
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.superDash
+  fullName: WeaverCore.Implementations.PlayerInput_I.superDash
+  nameWithType: PlayerInput_I.superDash
+- uid: WeaverCore.Implementations.PlayerInput_I.superDash*
   name: superDash
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_superDash_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.superDash
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_superDash_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.superDash
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.superDash
-  nameWithType: PlayerInput.superDash
-- uid: WeaverCore.Implementations.PlayerInput.textSpeedup
+  fullName: WeaverCore.Implementations.PlayerInput_I.superDash
+  nameWithType: PlayerInput_I.superDash
+- uid: WeaverCore.Implementations.PlayerInput_I.textSpeedup
   name: textSpeedup
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_textSpeedup
-  commentId: P:WeaverCore.Implementations.PlayerInput.textSpeedup
-  fullName: WeaverCore.Implementations.PlayerInput.textSpeedup
-  nameWithType: PlayerInput.textSpeedup
-- uid: WeaverCore.Implementations.PlayerInput.textSpeedup*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_textSpeedup
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.textSpeedup
+  fullName: WeaverCore.Implementations.PlayerInput_I.textSpeedup
+  nameWithType: PlayerInput_I.textSpeedup
+- uid: WeaverCore.Implementations.PlayerInput_I.textSpeedup*
   name: textSpeedup
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_textSpeedup_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.textSpeedup
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_textSpeedup_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.textSpeedup
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.textSpeedup
-  nameWithType: PlayerInput.textSpeedup
-- uid: WeaverCore.Implementations.PlayerInput.up
+  fullName: WeaverCore.Implementations.PlayerInput_I.textSpeedup
+  nameWithType: PlayerInput_I.textSpeedup
+- uid: WeaverCore.Implementations.PlayerInput_I.up
   name: up
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_up
-  commentId: P:WeaverCore.Implementations.PlayerInput.up
-  fullName: WeaverCore.Implementations.PlayerInput.up
-  nameWithType: PlayerInput.up
-- uid: WeaverCore.Implementations.PlayerInput.up*
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_up
+  commentId: P:WeaverCore.Implementations.PlayerInput_I.up
+  fullName: WeaverCore.Implementations.PlayerInput_I.up
+  nameWithType: PlayerInput_I.up
+- uid: WeaverCore.Implementations.PlayerInput_I.up*
   name: up
-  href: api/WeaverCore.Implementations.PlayerInput.html#WeaverCore_Implementations_PlayerInput_up_
-  commentId: Overload:WeaverCore.Implementations.PlayerInput.up
+  href: api/WeaverCore.Implementations.PlayerInput_I.html#WeaverCore_Implementations_PlayerInput_I_up_
+  commentId: Overload:WeaverCore.Implementations.PlayerInput_I.up
   isSpec: "True"
-  fullName: WeaverCore.Implementations.PlayerInput.up
-  nameWithType: PlayerInput.up
+  fullName: WeaverCore.Implementations.PlayerInput_I.up
+  nameWithType: PlayerInput_I.up
 - uid: WeaverCore.Implementations.PlayMaker_I
   name: PlayMaker_I
   href: api/WeaverCore.Implementations.PlayMaker_I.html
@@ -34364,6 +34438,466 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Player.SoulGain
   nameWithType: Player.SoulGain
+- uid: WeaverCore.PlayerInput
+  name: PlayerInput
+  href: api/WeaverCore.PlayerInput.html
+  commentId: T:WeaverCore.PlayerInput
+  fullName: WeaverCore.PlayerInput
+  nameWithType: PlayerInput
+- uid: WeaverCore.PlayerInput.attack
+  name: attack
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_attack
+  commentId: P:WeaverCore.PlayerInput.attack
+  fullName: WeaverCore.PlayerInput.attack
+  nameWithType: PlayerInput.attack
+- uid: WeaverCore.PlayerInput.attack*
+  name: attack
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_attack_
+  commentId: Overload:WeaverCore.PlayerInput.attack
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.attack
+  nameWithType: PlayerInput.attack
+- uid: WeaverCore.PlayerInput.cast
+  name: cast
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_cast
+  commentId: P:WeaverCore.PlayerInput.cast
+  fullName: WeaverCore.PlayerInput.cast
+  nameWithType: PlayerInput.cast
+- uid: WeaverCore.PlayerInput.cast*
+  name: cast
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_cast_
+  commentId: Overload:WeaverCore.PlayerInput.cast
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.cast
+  nameWithType: PlayerInput.cast
+- uid: WeaverCore.PlayerInput.dash
+  name: dash
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_dash
+  commentId: P:WeaverCore.PlayerInput.dash
+  fullName: WeaverCore.PlayerInput.dash
+  nameWithType: PlayerInput.dash
+- uid: WeaverCore.PlayerInput.dash*
+  name: dash
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_dash_
+  commentId: Overload:WeaverCore.PlayerInput.dash
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.dash
+  nameWithType: PlayerInput.dash
+- uid: WeaverCore.PlayerInput.down
+  name: down
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_down
+  commentId: P:WeaverCore.PlayerInput.down
+  fullName: WeaverCore.PlayerInput.down
+  nameWithType: PlayerInput.down
+- uid: WeaverCore.PlayerInput.down*
+  name: down
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_down_
+  commentId: Overload:WeaverCore.PlayerInput.down
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.down
+  nameWithType: PlayerInput.down
+- uid: WeaverCore.PlayerInput.dreamNail
+  name: dreamNail
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_dreamNail
+  commentId: P:WeaverCore.PlayerInput.dreamNail
+  fullName: WeaverCore.PlayerInput.dreamNail
+  nameWithType: PlayerInput.dreamNail
+- uid: WeaverCore.PlayerInput.dreamNail*
+  name: dreamNail
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_dreamNail_
+  commentId: Overload:WeaverCore.PlayerInput.dreamNail
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.dreamNail
+  nameWithType: PlayerInput.dreamNail
+- uid: WeaverCore.PlayerInput.evade
+  name: evade
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_evade
+  commentId: P:WeaverCore.PlayerInput.evade
+  fullName: WeaverCore.PlayerInput.evade
+  nameWithType: PlayerInput.evade
+- uid: WeaverCore.PlayerInput.evade*
+  name: evade
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_evade_
+  commentId: Overload:WeaverCore.PlayerInput.evade
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.evade
+  nameWithType: PlayerInput.evade
+- uid: WeaverCore.PlayerInput.focus
+  name: focus
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_focus
+  commentId: P:WeaverCore.PlayerInput.focus
+  fullName: WeaverCore.PlayerInput.focus
+  nameWithType: PlayerInput.focus
+- uid: WeaverCore.PlayerInput.focus*
+  name: focus
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_focus_
+  commentId: Overload:WeaverCore.PlayerInput.focus
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.focus
+  nameWithType: PlayerInput.focus
+- uid: WeaverCore.PlayerInput.jump
+  name: jump
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_jump
+  commentId: P:WeaverCore.PlayerInput.jump
+  fullName: WeaverCore.PlayerInput.jump
+  nameWithType: PlayerInput.jump
+- uid: WeaverCore.PlayerInput.jump*
+  name: jump
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_jump_
+  commentId: Overload:WeaverCore.PlayerInput.jump
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.jump
+  nameWithType: PlayerInput.jump
+- uid: WeaverCore.PlayerInput.left
+  name: left
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_left
+  commentId: P:WeaverCore.PlayerInput.left
+  fullName: WeaverCore.PlayerInput.left
+  nameWithType: PlayerInput.left
+- uid: WeaverCore.PlayerInput.left*
+  name: left
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_left_
+  commentId: Overload:WeaverCore.PlayerInput.left
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.left
+  nameWithType: PlayerInput.left
+- uid: WeaverCore.PlayerInput.menuCancel
+  name: menuCancel
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_menuCancel
+  commentId: P:WeaverCore.PlayerInput.menuCancel
+  fullName: WeaverCore.PlayerInput.menuCancel
+  nameWithType: PlayerInput.menuCancel
+- uid: WeaverCore.PlayerInput.menuCancel*
+  name: menuCancel
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_menuCancel_
+  commentId: Overload:WeaverCore.PlayerInput.menuCancel
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.menuCancel
+  nameWithType: PlayerInput.menuCancel
+- uid: WeaverCore.PlayerInput.menuSubmit
+  name: menuSubmit
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_menuSubmit
+  commentId: P:WeaverCore.PlayerInput.menuSubmit
+  fullName: WeaverCore.PlayerInput.menuSubmit
+  nameWithType: PlayerInput.menuSubmit
+- uid: WeaverCore.PlayerInput.menuSubmit*
+  name: menuSubmit
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_menuSubmit_
+  commentId: Overload:WeaverCore.PlayerInput.menuSubmit
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.menuSubmit
+  nameWithType: PlayerInput.menuSubmit
+- uid: WeaverCore.PlayerInput.moveVector
+  name: moveVector
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_moveVector
+  commentId: P:WeaverCore.PlayerInput.moveVector
+  fullName: WeaverCore.PlayerInput.moveVector
+  nameWithType: PlayerInput.moveVector
+- uid: WeaverCore.PlayerInput.moveVector*
+  name: moveVector
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_moveVector_
+  commentId: Overload:WeaverCore.PlayerInput.moveVector
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.moveVector
+  nameWithType: PlayerInput.moveVector
+- uid: WeaverCore.PlayerInput.openInventory
+  name: openInventory
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_openInventory
+  commentId: P:WeaverCore.PlayerInput.openInventory
+  fullName: WeaverCore.PlayerInput.openInventory
+  nameWithType: PlayerInput.openInventory
+- uid: WeaverCore.PlayerInput.openInventory*
+  name: openInventory
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_openInventory_
+  commentId: Overload:WeaverCore.PlayerInput.openInventory
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.openInventory
+  nameWithType: PlayerInput.openInventory
+- uid: WeaverCore.PlayerInput.paneLeft
+  name: paneLeft
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_paneLeft
+  commentId: P:WeaverCore.PlayerInput.paneLeft
+  fullName: WeaverCore.PlayerInput.paneLeft
+  nameWithType: PlayerInput.paneLeft
+- uid: WeaverCore.PlayerInput.paneLeft*
+  name: paneLeft
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_paneLeft_
+  commentId: Overload:WeaverCore.PlayerInput.paneLeft
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.paneLeft
+  nameWithType: PlayerInput.paneLeft
+- uid: WeaverCore.PlayerInput.paneRight
+  name: paneRight
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_paneRight
+  commentId: P:WeaverCore.PlayerInput.paneRight
+  fullName: WeaverCore.PlayerInput.paneRight
+  nameWithType: PlayerInput.paneRight
+- uid: WeaverCore.PlayerInput.paneRight*
+  name: paneRight
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_paneRight_
+  commentId: Overload:WeaverCore.PlayerInput.paneRight
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.paneRight
+  nameWithType: PlayerInput.paneRight
+- uid: WeaverCore.PlayerInput.pause
+  name: pause
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_pause
+  commentId: P:WeaverCore.PlayerInput.pause
+  fullName: WeaverCore.PlayerInput.pause
+  nameWithType: PlayerInput.pause
+- uid: WeaverCore.PlayerInput.pause*
+  name: pause
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_pause_
+  commentId: Overload:WeaverCore.PlayerInput.pause
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.pause
+  nameWithType: PlayerInput.pause
+- uid: WeaverCore.PlayerInput.PlayerInputButton
+  name: PlayerInput.PlayerInputButton
+  href: api/WeaverCore.PlayerInput.PlayerInputButton.html
+  commentId: T:WeaverCore.PlayerInput.PlayerInputButton
+  fullName: WeaverCore.PlayerInput.PlayerInputButton
+  nameWithType: PlayerInput.PlayerInputButton
+- uid: WeaverCore.PlayerInput.PlayerInputButton.IsPressed
+  name: IsPressed
+  href: api/WeaverCore.PlayerInput.PlayerInputButton.html#WeaverCore_PlayerInput_PlayerInputButton_IsPressed
+  commentId: P:WeaverCore.PlayerInput.PlayerInputButton.IsPressed
+  fullName: WeaverCore.PlayerInput.PlayerInputButton.IsPressed
+  nameWithType: PlayerInput.PlayerInputButton.IsPressed
+- uid: WeaverCore.PlayerInput.PlayerInputButton.IsPressed*
+  name: IsPressed
+  href: api/WeaverCore.PlayerInput.PlayerInputButton.html#WeaverCore_PlayerInput_PlayerInputButton_IsPressed_
+  commentId: Overload:WeaverCore.PlayerInput.PlayerInputButton.IsPressed
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.PlayerInputButton.IsPressed
+  nameWithType: PlayerInput.PlayerInputButton.IsPressed
+- uid: WeaverCore.PlayerInput.PlayerInputButton.PreviousState
+  name: PreviousState
+  href: api/WeaverCore.PlayerInput.PlayerInputButton.html#WeaverCore_PlayerInput_PlayerInputButton_PreviousState
+  commentId: P:WeaverCore.PlayerInput.PlayerInputButton.PreviousState
+  fullName: WeaverCore.PlayerInput.PlayerInputButton.PreviousState
+  nameWithType: PlayerInput.PlayerInputButton.PreviousState
+- uid: WeaverCore.PlayerInput.PlayerInputButton.PreviousState*
+  name: PreviousState
+  href: api/WeaverCore.PlayerInput.PlayerInputButton.html#WeaverCore_PlayerInput_PlayerInputButton_PreviousState_
+  commentId: Overload:WeaverCore.PlayerInput.PlayerInputButton.PreviousState
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.PlayerInputButton.PreviousState
+  nameWithType: PlayerInput.PlayerInputButton.PreviousState
+- uid: WeaverCore.PlayerInput.PlayerInputButton.WasPressed
+  name: WasPressed
+  href: api/WeaverCore.PlayerInput.PlayerInputButton.html#WeaverCore_PlayerInput_PlayerInputButton_WasPressed
+  commentId: P:WeaverCore.PlayerInput.PlayerInputButton.WasPressed
+  fullName: WeaverCore.PlayerInput.PlayerInputButton.WasPressed
+  nameWithType: PlayerInput.PlayerInputButton.WasPressed
+- uid: WeaverCore.PlayerInput.PlayerInputButton.WasPressed*
+  name: WasPressed
+  href: api/WeaverCore.PlayerInput.PlayerInputButton.html#WeaverCore_PlayerInput_PlayerInputButton_WasPressed_
+  commentId: Overload:WeaverCore.PlayerInput.PlayerInputButton.WasPressed
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.PlayerInputButton.WasPressed
+  nameWithType: PlayerInput.PlayerInputButton.WasPressed
+- uid: WeaverCore.PlayerInput.PlayerInputButton.WasReleased
+  name: WasReleased
+  href: api/WeaverCore.PlayerInput.PlayerInputButton.html#WeaverCore_PlayerInput_PlayerInputButton_WasReleased
+  commentId: P:WeaverCore.PlayerInput.PlayerInputButton.WasReleased
+  fullName: WeaverCore.PlayerInput.PlayerInputButton.WasReleased
+  nameWithType: PlayerInput.PlayerInputButton.WasReleased
+- uid: WeaverCore.PlayerInput.PlayerInputButton.WasReleased*
+  name: WasReleased
+  href: api/WeaverCore.PlayerInput.PlayerInputButton.html#WeaverCore_PlayerInput_PlayerInputButton_WasReleased_
+  commentId: Overload:WeaverCore.PlayerInput.PlayerInputButton.WasReleased
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.PlayerInputButton.WasReleased
+  nameWithType: PlayerInput.PlayerInputButton.WasReleased
+- uid: WeaverCore.PlayerInput.PlayerInputJoystick
+  name: PlayerInput.PlayerInputJoystick
+  href: api/WeaverCore.PlayerInput.PlayerInputJoystick.html
+  commentId: T:WeaverCore.PlayerInput.PlayerInputJoystick
+  fullName: WeaverCore.PlayerInput.PlayerInputJoystick
+  nameWithType: PlayerInput.PlayerInputJoystick
+- uid: WeaverCore.PlayerInput.PlayerInputJoystick.PreviousVector
+  name: PreviousVector
+  href: api/WeaverCore.PlayerInput.PlayerInputJoystick.html#WeaverCore_PlayerInput_PlayerInputJoystick_PreviousVector
+  commentId: P:WeaverCore.PlayerInput.PlayerInputJoystick.PreviousVector
+  fullName: WeaverCore.PlayerInput.PlayerInputJoystick.PreviousVector
+  nameWithType: PlayerInput.PlayerInputJoystick.PreviousVector
+- uid: WeaverCore.PlayerInput.PlayerInputJoystick.PreviousVector*
+  name: PreviousVector
+  href: api/WeaverCore.PlayerInput.PlayerInputJoystick.html#WeaverCore_PlayerInput_PlayerInputJoystick_PreviousVector_
+  commentId: Overload:WeaverCore.PlayerInput.PlayerInputJoystick.PreviousVector
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.PlayerInputJoystick.PreviousVector
+  nameWithType: PlayerInput.PlayerInputJoystick.PreviousVector
+- uid: WeaverCore.PlayerInput.PlayerInputJoystick.Vector
+  name: Vector
+  href: api/WeaverCore.PlayerInput.PlayerInputJoystick.html#WeaverCore_PlayerInput_PlayerInputJoystick_Vector
+  commentId: P:WeaverCore.PlayerInput.PlayerInputJoystick.Vector
+  fullName: WeaverCore.PlayerInput.PlayerInputJoystick.Vector
+  nameWithType: PlayerInput.PlayerInputJoystick.Vector
+- uid: WeaverCore.PlayerInput.PlayerInputJoystick.Vector*
+  name: Vector
+  href: api/WeaverCore.PlayerInput.PlayerInputJoystick.html#WeaverCore_PlayerInput_PlayerInputJoystick_Vector_
+  commentId: Overload:WeaverCore.PlayerInput.PlayerInputJoystick.Vector
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.PlayerInputJoystick.Vector
+  nameWithType: PlayerInput.PlayerInputJoystick.Vector
+- uid: WeaverCore.PlayerInput.quickCast
+  name: quickCast
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_quickCast
+  commentId: P:WeaverCore.PlayerInput.quickCast
+  fullName: WeaverCore.PlayerInput.quickCast
+  nameWithType: PlayerInput.quickCast
+- uid: WeaverCore.PlayerInput.quickCast*
+  name: quickCast
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_quickCast_
+  commentId: Overload:WeaverCore.PlayerInput.quickCast
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.quickCast
+  nameWithType: PlayerInput.quickCast
+- uid: WeaverCore.PlayerInput.quickMap
+  name: quickMap
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_quickMap
+  commentId: P:WeaverCore.PlayerInput.quickMap
+  fullName: WeaverCore.PlayerInput.quickMap
+  nameWithType: PlayerInput.quickMap
+- uid: WeaverCore.PlayerInput.quickMap*
+  name: quickMap
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_quickMap_
+  commentId: Overload:WeaverCore.PlayerInput.quickMap
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.quickMap
+  nameWithType: PlayerInput.quickMap
+- uid: WeaverCore.PlayerInput.right
+  name: right
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_right
+  commentId: P:WeaverCore.PlayerInput.right
+  fullName: WeaverCore.PlayerInput.right
+  nameWithType: PlayerInput.right
+- uid: WeaverCore.PlayerInput.right*
+  name: right
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_right_
+  commentId: Overload:WeaverCore.PlayerInput.right
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.right
+  nameWithType: PlayerInput.right
+- uid: WeaverCore.PlayerInput.rightStick
+  name: rightStick
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rightStick
+  commentId: P:WeaverCore.PlayerInput.rightStick
+  fullName: WeaverCore.PlayerInput.rightStick
+  nameWithType: PlayerInput.rightStick
+- uid: WeaverCore.PlayerInput.rightStick*
+  name: rightStick
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rightStick_
+  commentId: Overload:WeaverCore.PlayerInput.rightStick
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.rightStick
+  nameWithType: PlayerInput.rightStick
+- uid: WeaverCore.PlayerInput.rs_down
+  name: rs_down
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rs_down
+  commentId: P:WeaverCore.PlayerInput.rs_down
+  fullName: WeaverCore.PlayerInput.rs_down
+  nameWithType: PlayerInput.rs_down
+- uid: WeaverCore.PlayerInput.rs_down*
+  name: rs_down
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rs_down_
+  commentId: Overload:WeaverCore.PlayerInput.rs_down
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.rs_down
+  nameWithType: PlayerInput.rs_down
+- uid: WeaverCore.PlayerInput.rs_left
+  name: rs_left
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rs_left
+  commentId: P:WeaverCore.PlayerInput.rs_left
+  fullName: WeaverCore.PlayerInput.rs_left
+  nameWithType: PlayerInput.rs_left
+- uid: WeaverCore.PlayerInput.rs_left*
+  name: rs_left
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rs_left_
+  commentId: Overload:WeaverCore.PlayerInput.rs_left
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.rs_left
+  nameWithType: PlayerInput.rs_left
+- uid: WeaverCore.PlayerInput.rs_right
+  name: rs_right
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rs_right
+  commentId: P:WeaverCore.PlayerInput.rs_right
+  fullName: WeaverCore.PlayerInput.rs_right
+  nameWithType: PlayerInput.rs_right
+- uid: WeaverCore.PlayerInput.rs_right*
+  name: rs_right
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rs_right_
+  commentId: Overload:WeaverCore.PlayerInput.rs_right
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.rs_right
+  nameWithType: PlayerInput.rs_right
+- uid: WeaverCore.PlayerInput.rs_up
+  name: rs_up
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rs_up
+  commentId: P:WeaverCore.PlayerInput.rs_up
+  fullName: WeaverCore.PlayerInput.rs_up
+  nameWithType: PlayerInput.rs_up
+- uid: WeaverCore.PlayerInput.rs_up*
+  name: rs_up
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_rs_up_
+  commentId: Overload:WeaverCore.PlayerInput.rs_up
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.rs_up
+  nameWithType: PlayerInput.rs_up
+- uid: WeaverCore.PlayerInput.skipCutscene
+  name: skipCutscene
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_skipCutscene
+  commentId: P:WeaverCore.PlayerInput.skipCutscene
+  fullName: WeaverCore.PlayerInput.skipCutscene
+  nameWithType: PlayerInput.skipCutscene
+- uid: WeaverCore.PlayerInput.skipCutscene*
+  name: skipCutscene
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_skipCutscene_
+  commentId: Overload:WeaverCore.PlayerInput.skipCutscene
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.skipCutscene
+  nameWithType: PlayerInput.skipCutscene
+- uid: WeaverCore.PlayerInput.superDash
+  name: superDash
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_superDash
+  commentId: P:WeaverCore.PlayerInput.superDash
+  fullName: WeaverCore.PlayerInput.superDash
+  nameWithType: PlayerInput.superDash
+- uid: WeaverCore.PlayerInput.superDash*
+  name: superDash
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_superDash_
+  commentId: Overload:WeaverCore.PlayerInput.superDash
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.superDash
+  nameWithType: PlayerInput.superDash
+- uid: WeaverCore.PlayerInput.textSpeedup
+  name: textSpeedup
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_textSpeedup
+  commentId: P:WeaverCore.PlayerInput.textSpeedup
+  fullName: WeaverCore.PlayerInput.textSpeedup
+  nameWithType: PlayerInput.textSpeedup
+- uid: WeaverCore.PlayerInput.textSpeedup*
+  name: textSpeedup
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_textSpeedup_
+  commentId: Overload:WeaverCore.PlayerInput.textSpeedup
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.textSpeedup
+  nameWithType: PlayerInput.textSpeedup
+- uid: WeaverCore.PlayerInput.up
+  name: up
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_up
+  commentId: P:WeaverCore.PlayerInput.up
+  fullName: WeaverCore.PlayerInput.up
+  nameWithType: PlayerInput.up
+- uid: WeaverCore.PlayerInput.up*
+  name: up
+  href: api/WeaverCore.PlayerInput.html#WeaverCore_PlayerInput_up_
+  commentId: Overload:WeaverCore.PlayerInput.up
+  isSpec: "True"
+  fullName: WeaverCore.PlayerInput.up
+  nameWithType: PlayerInput.up
 - uid: WeaverCore.PoolableObject
   name: PoolableObject
   href: api/WeaverCore.PoolableObject.html
@@ -40605,6 +41139,24 @@ references:
   fullName.vb: WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle(Of T)(System.String, System.String)
   nameWithType: WeaverAssets.LoadAssetFromBundle<T>(String, String)
   nameWithType.vb: WeaverAssets.LoadAssetFromBundle(Of T)(String, String)
+- uid: WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle``1(System.Type,System.String)
+  name: LoadAssetFromBundle<T>(Type, String)
+  href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadAssetFromBundle__1_System_Type_System_String_
+  commentId: M:WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle``1(System.Type,System.String)
+  name.vb: LoadAssetFromBundle(Of T)(Type, String)
+  fullName: WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle<T>(System.Type, System.String)
+  fullName.vb: WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle(Of T)(System.Type, System.String)
+  nameWithType: WeaverAssets.LoadAssetFromBundle<T>(Type, String)
+  nameWithType.vb: WeaverAssets.LoadAssetFromBundle(Of T)(Type, String)
+- uid: WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle``2(System.String)
+  name: LoadAssetFromBundle<T, ModType>(String)
+  href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadAssetFromBundle__2_System_String_
+  commentId: M:WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle``2(System.String)
+  name.vb: LoadAssetFromBundle(Of T, ModType)(String)
+  fullName: WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle<T, ModType>(System.String)
+  fullName.vb: WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle(Of T, ModType)(System.String)
+  nameWithType: WeaverAssets.LoadAssetFromBundle<T, ModType>(String)
+  nameWithType.vb: WeaverAssets.LoadAssetFromBundle(Of T, ModType)(String)
 - uid: WeaverCore.Utilities.WeaverAssets.LoadWeaverAsset*
   name: LoadWeaverAsset
   href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadWeaverAsset_
@@ -41230,19 +41782,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.WeaverMod.GetVersion
   nameWithType: WeaverMod.GetVersion
-- uid: WeaverCore.WeaverMod.Initialize
-  name: Initialize()
-  href: api/WeaverCore.WeaverMod.html#WeaverCore_WeaverMod_Initialize
-  commentId: M:WeaverCore.WeaverMod.Initialize
-  fullName: WeaverCore.WeaverMod.Initialize()
-  nameWithType: WeaverMod.Initialize()
-- uid: WeaverCore.WeaverMod.Initialize*
-  name: Initialize
-  href: api/WeaverCore.WeaverMod.html#WeaverCore_WeaverMod_Initialize_
-  commentId: Overload:WeaverCore.WeaverMod.Initialize
-  isSpec: "True"
-  fullName: WeaverCore.WeaverMod.Initialize
-  nameWithType: WeaverMod.Initialize
 - uid: WeaverCore.WeaverMod.LoadedMods
   name: LoadedMods
   href: api/WeaverCore.WeaverMod.html#WeaverCore_WeaverMod_LoadedMods

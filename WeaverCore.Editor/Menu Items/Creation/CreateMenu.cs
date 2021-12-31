@@ -7,7 +7,7 @@ using WeaverCore.Utilities;
 namespace WeaverCore.Editor
 {
 	public static class CreateMenu
-    {
+	{
 		[MenuItem("WeaverCore/Create/Language Table")]
 		public static void CreateLanguageTableItem()
 		{

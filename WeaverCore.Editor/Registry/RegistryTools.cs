@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using WeaverCore.Attributes;
+using WeaverCore.Internal;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
@@ -55,7 +56,14 @@ namespace WeaverCore.Editor
 				modNamesCached = new string[mods.Count];
 				for (int i = 0; i < mods.Count; i++)
 				{
-					modNamesCached[i] = StringUtilities.Prettify(mods[i].Name);
+                    if (mods[i] == typeof(WeaverCore_ModClass))
+                    {
+						modNamesCached[i] = "WeaverCore";
+					}
+					else
+                    {
+						modNamesCached[i] = StringUtilities.Prettify(mods[i].Name);
+					}
 				}
 			}
 			

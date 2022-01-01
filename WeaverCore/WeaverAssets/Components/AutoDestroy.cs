@@ -27,17 +27,21 @@ namespace WeaverCore.Assets.Components
         [SerializeField]
         private float lifeTime;
 
-        private void Start()
+        IEnumerator WaitUntilPlaying()
         {
+            yield return null;
             particles = GetComponent<ParticleSystem>();
-
-            main = particles.main;
-
-            main.stopAction = ParticleSystemStopAction.Callback;
+            if (particles != null)
+            {
+                yield return new WaitUntil(() => particles.isPlaying);
+                main = particles.main;
+                main.stopAction = ParticleSystemStopAction.Callback;
+            }
         }
 
         private void OnEnable()
         {
+            StartCoroutine(WaitUntilPlaying());
             if (destroyAfterTime)
             {
                 base.StartCoroutine(Waiter());

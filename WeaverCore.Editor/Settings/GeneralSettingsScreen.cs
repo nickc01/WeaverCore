@@ -57,6 +57,8 @@ namespace WeaverCore.Editor.Settings
 
 			GeneralSettings.Instance.CurrentGameLanguage = (SupportedLanguages)EditorGUILayout.EnumPopup(new GUIContent("Current Game Language", "The current language the game will be using in the editor. Use this to test out Language Tables"), GeneralSettings.Instance.CurrentGameLanguage);
 
+			GeneralSettings.Instance.DisableGameFreezing = EditorGUILayout.Toggle(new GUIContent("Disable Game Freezing", "Disables the Freezing effect that occurs when taking damage or parrying an attack in the editor"), GeneralSettings.Instance.DisableGameFreezing);
+
 			EditorGUILayout.BeginHorizontal();
 			if (GUILayout.Button("Close"))
 			{

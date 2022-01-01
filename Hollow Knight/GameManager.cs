@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -2168,8 +2169,17 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		var placeHolderObject = new GameObject("PLACEHOLDER SCENE MANAGER");
+
+		var placeholderManager = placeHolderObject.AddComponent(sceneManagerType);
+
+		Rect dim = (Rect)sceneDimProp.GetValue(placeholderManager);
+		SceneDimensions = dim;
+		sceneWidth = dim.width;
+		sceneHeight = dim.height;
+
 		//If no WeaverSceneManager was found
-		Debug.LogError("No WeaverSceneManager was found in the scene!");
+		//Debug.LogError("No WeaverSceneManager was found in the scene!");
 		/*for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
 		{
 			Scene scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
@@ -2996,9 +3006,28 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	object settings = null;
+
+	FieldInfo disableFreezeF = null;
+
 	// Token: 0x0600100F RID: 4111 RVA: 0x0004DC1B File Offset: 0x0004BE1B
 	public IEnumerator FreezeMoment(float rampDownTime, float waitTime, float rampUpTime, float targetSpeed)
 	{
+        if (settings == null)
+        {
+			var settingsType = FindType("WeaverCore.Editor", "WeaverCore.Editor.GeneralSettings");
+
+			settings = settingsType.GetProperty("Instance").GetValue(null);
+
+			disableFreezeF = settingsType.GetField("DisableGameFreezing");
+
+		}
+
+        if (((bool)disableFreezeF.GetValue(settings)) == true)
+        {
+			yield break;
+        }
+
 		this.timeSlowedCount++;
 		yield return this.StartCoroutine(this.SetTimeScale(targetSpeed, rampDownTime));
 		for (float timer = 0f; timer < waitTime; timer += Time.unscaledDeltaTime)
@@ -3013,6 +3042,20 @@ public class GameManager : MonoBehaviour
 	// Token: 0x06001010 RID: 4112 RVA: 0x0004DC47 File Offset: 0x0004BE47
 	public IEnumerator FreezeMomentGC(float rampDownTime, float waitTime, float rampUpTime, float targetSpeed)
 	{
+		if (settings == null)
+		{
+			var settingsType = FindType("WeaverCore.Editor", "WeaverCore.Editor.GeneralSettings");
+
+			settings = settingsType.GetProperty("Instance").GetValue(null);
+
+			disableFreezeF = settingsType.GetField("DisableGameFreezing");
+
+		}
+
+		if (((bool)disableFreezeF.GetValue(settings)) == true)
+		{
+			yield break;
+		}
 		this.timeSlowedCount++;
 		yield return this.StartCoroutine(this.SetTimeScale(targetSpeed, rampDownTime));
 		for (float timer = 0f; timer < waitTime; timer += Time.unscaledDeltaTime)
@@ -3473,7 +3516,20 @@ public class GameManager : MonoBehaviour
 		this.sm = GameObject.FindObjectOfType<SceneManager>();
 		if (sm == null)
 		{
-			Debug.Log("Scene Manager missing from scene " + this.sceneName);
+			var sceneManagerType = FindType("WeaverCore", "WeaverCore.Components.WeaverSceneManager");
+			var sceneDimProp = sceneManagerType.GetProperty("SceneDimensions");
+
+			var placeHolderObject = new GameObject("PLACEHOLDER SCENE MANAGER");
+
+			var placeholderManager = placeHolderObject.AddComponent(sceneManagerType);
+
+			sm = (SceneManager)placeholderManager;
+
+			/*Rect dim = (Rect)sceneDimProp.GetValue(placeholderManager);
+			SceneDimensions = dim;
+			sceneWidth = dim.width;
+			sceneHeight = dim.height;*/
+			//Debug.Log("Scene Manager missing from scene " + this.sceneName);
 		}
 		//GameObject gameObject = GameObject.FindGameObjectWithTag("SceneManager");
 		/*if (gameObject != null)

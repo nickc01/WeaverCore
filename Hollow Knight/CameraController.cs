@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
 	{
 		cam = GetComponent<Camera>();
 		EditorInstance = this;
+
+
 	}
 
 	// Token: 0x06000458 RID: 1112 RVA: 0x00014FE8 File Offset: 0x000131E8
@@ -74,7 +76,13 @@ public class CameraController : MonoBehaviour
 
 	internal Rect GetCameraBounds()
 	{
-		return GameManager.instance.SceneDimensions;
+		/*var minX = xLimit - (sceneWidth - (14.6f * 2f));
+		var minY = yLimit - (sceneHeight - (8.3f * 2f));
+		var bounds = new Rect(minX, minY, xLimit - minX, yLimit - minY);
+		return bounds;*/
+		//return GameManager.instance.SceneDimensions;
+		var sceneDims = GameManager.instance.SceneDimensions;
+		return new Rect(sceneDims.xMin + 14.6f, sceneDims.yMin + 8.3f, sceneDims.width - 14.6f, sceneDims.height - 8.3f);
 	}
 
 	// Token: 0x0600045A RID: 1114 RVA: 0x000151AC File Offset: 0x000133AC
@@ -161,19 +169,21 @@ public class CameraController : MonoBehaviour
 		{
 			var bounds = GetCameraBounds();
 
-			if (x + x2 < bounds.xMin)
+			//Debug.Log($"Bounds = ({bounds.xMin}, {bounds.yMin}) to ({bounds.xMax}, {bounds.yMax})");
+
+			if (transform.position.x < bounds.xMin)
 			{
 				base.transform.SetPositionX(bounds.xMin);
 			}
-			if (base.transform.position.x + x2 > bounds.xMax)
+			if (transform.position.x > bounds.xMax)
 			{
 				base.transform.SetPositionX(bounds.xMax);
 			}
-			if (base.transform.position.y + y2 < bounds.yMin)
+			if (transform.position.y < bounds.yMin)
 			{
 				base.transform.SetPositionY(bounds.yMin);
 			}
-			if (base.transform.position.y + y2 > bounds.yMax)
+			if (transform.position.y > bounds.yMax)
 			{
 				base.transform.SetPositionY(bounds.yMax);
 			}

@@ -14,6 +14,8 @@ namespace WeaverCore.Editor.Implementations
 {
 	public class E_WeaverAudio_I : WeaverAudio_I
 	{
+		AudioMixer _actorsMixer;
+
 		AudioMixer _mainMixer;
 		public override AudioMixer MainMixer
 		{
@@ -26,6 +28,18 @@ namespace WeaverCore.Editor.Implementations
 				return _mainMixer;
 			}
 		}
+
+		AudioMixer ActorsMixer
+        {
+			get
+            {
+                if (_actorsMixer == null)
+                {
+					_actorsMixer = EditorAssets.LoadEditorAsset<AudioMixer>("Actors");
+                }
+				return _actorsMixer;
+            }
+        }
 
 		static AudioMixerGroup _mainMusic;
 		public override AudioMixerGroup MainMusic
@@ -60,7 +74,14 @@ namespace WeaverCore.Editor.Implementations
 			{
 				if (_sounds == null)
 				{
-					_sounds = (AudioMixerGroup)AssetDatabase.LoadAllAssetRepresentationsAtPath(AssetDatabase.GetAssetPath(MainMixer)).First(o => o is AudioMixerGroup g && g.name == "Sounds");
+					/*var allGroups = AssetDatabase.LoadAllAssetRepresentationsAtPath(AssetDatabase.GetAssetPath(MainMixer));
+
+                    foreach (var group in allGroups)
+                    {
+						WeaverLog.Log($"Asset at Music = {group.name} : {group.GetType()}");
+                    }*/
+
+					_sounds = (AudioMixerGroup)AssetDatabase.LoadAllAssetRepresentationsAtPath(AssetDatabase.GetAssetPath(ActorsMixer)).First(o => o is AudioMixerGroup g && g.name == "Actors");
 				}
 				return _sounds;
 			}

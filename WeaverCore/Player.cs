@@ -16,8 +16,36 @@ namespace WeaverCore
 		HeroController heroCtrl;
 		static ObjectPool NailStrikePool;
 		static ObjectPool SlashImpactPool;
-		static List<Player> Players = new List<Player>();
-		Player_I impl;
+
+		static List<Player> _players;
+
+		static List<Player> Players
+        {
+            get
+            {
+                if (_players == null)
+                {
+					_players = new List<Player>();
+					_players.AddRange(GameObject.FindObjectsOfType<Player>());
+                }
+				return _players;
+            }
+        }
+		Player_I _impl;
+
+		Player_I Impl
+        {
+			get
+            {
+                if (_impl == null)
+                {
+					Type implementationType = ImplFinder.GetImplementationType<Player_I>();
+					_impl = (Player_I)gameObject.AddComponent(implementationType);
+					_impl.Initialize();
+				}
+				return _impl;
+            }
+        }
 
 		/// <summary>
 		/// A list of all players in the game.
@@ -37,6 +65,12 @@ namespace WeaverCore
 		{
 			get
 			{
+#if UNITY_EDITOR
+                if (Players.Count == 0)
+                {
+					throw new Exception("There is no test player currently in the game. You can add one by going to \"WeaverCore\" -> \"Insert\" -> \"Demo Player\" at the top menu bar");
+                }
+#endif
 				return (Player.Players.Count <= 0) ? null : Player.Players[0];
 			}
 		}
@@ -109,19 +143,19 @@ namespace WeaverCore
 			switch (DirectionUtilities.DegreesToDirection(hit.Direction))
 			{
 				case CardinalDirection.Up:
-					transform.SetRotation2D(UnityEngine.Random.Range(70, 110));
+					gameObject.transform.SetRotation2D(UnityEngine.Random.Range(70, 110));
 					gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
 					break;
 				case CardinalDirection.Down:
-					transform.SetRotation2D(UnityEngine.Random.Range(70, 110));
+					gameObject.transform.SetRotation2D(UnityEngine.Random.Range(70, 110));
 					gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
 					break;
 				case CardinalDirection.Left:
-					transform.SetRotation2D(UnityEngine.Random.Range(340, 380));
+					gameObject.transform.SetRotation2D(UnityEngine.Random.Range(340, 380));
 					gameObject.transform.localScale = new Vector3(-1.5f, 1.5f, 1f);
 					break;
 				case CardinalDirection.Right:
-					transform.SetRotation2D(UnityEngine.Random.Range(340, 380));
+					gameObject.transform.SetRotation2D(UnityEngine.Random.Range(340, 380));
 					gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1f);
 					break;
 			}
@@ -137,9 +171,6 @@ namespace WeaverCore
 				Player.SlashImpactPool = ObjectPool.Create(EffectAssets.SlashImpactPrefab);
 				Player.SlashImpactPool.FillPool(1);
 			}
-			Type implementationType = ImplFinder.GetImplementationType<Player_I>();
-			this.impl = (Player_I)base.gameObject.AddComponent(implementationType);
-			this.impl.Initialize();
 			heroCtrl = GetComponent<HeroController>();
 		}
 
@@ -168,7 +199,7 @@ namespace WeaverCore
 		/// </summary>
 		public void SoulGain()
 		{
-			this.impl.SoulGain();
+			this.Impl.SoulGain();
 		}
 
 		/// <summary>
@@ -176,7 +207,7 @@ namespace WeaverCore
 		/// </summary>
 		public void RefreshSoulUI()
 		{
-			this.impl.RefreshSoulUI();
+			this.Impl.RefreshSoulUI();
 		}
 
 		/// <summary>
@@ -184,7 +215,7 @@ namespace WeaverCore
 		/// </summary>
 		public void EnterParryState()
 		{
-			this.impl.EnterParryState();
+			this.Impl.EnterParryState();
 		}
 
 		/// <summary>
@@ -192,7 +223,7 @@ namespace WeaverCore
 		/// </summary>
 		public void RecoverFromParry()
 		{
-			this.impl.RecoverFromParry();
+			this.Impl.RecoverFromParry();
 		}
 
 		/// <summary>
@@ -201,7 +232,7 @@ namespace WeaverCore
 		/// <param name="recoilDirection">The direction the player should recoil in</param>
 		public void Recoil(CardinalDirection recoilDirection)
 		{
-			this.impl.Recoil(recoilDirection);
+			this.Impl.Recoil(recoilDirection);
 		}
 
 		/// <summary>
@@ -211,7 +242,7 @@ namespace WeaverCore
 		{
 			get
 			{
-				return this.impl.HasDreamNail;
+				return this.Impl.HasDreamNail;
 			}
 		}
 
@@ -221,7 +252,7 @@ namespace WeaverCore
 		/// <param name="charmNumber">The charm ID to check for</param>
 		public bool HasCharmEquipped(int charmNumber)
 		{
-			return this.impl.HasCharmEquipped(charmNumber);
+			return this.Impl.HasCharmEquipped(charmNumber);
 		}
 
 		/// <summary>
@@ -231,11 +262,11 @@ namespace WeaverCore
 		{
 			get
 			{
-				return this.impl.EssenceCollected;
+				return this.Impl.EssenceCollected;
 			}
 			set
 			{
-				this.impl.EssenceCollected = value;
+				this.Impl.EssenceCollected = value;
 			}
 		}
 
@@ -246,11 +277,11 @@ namespace WeaverCore
 		{
 			get
 			{
-				return this.impl.EssenceSpent;
+				return this.Impl.EssenceSpent;
 			}
 			set
 			{
-				this.impl.EssenceSpent = value;
+				this.Impl.EssenceSpent = value;
 			}
 		}
 
@@ -259,7 +290,7 @@ namespace WeaverCore
 		/// </summary>
 		public void EnterRoarLock()
 		{
-			impl.EnterRoarLock();
+			Impl.EnterRoarLock();
 		}
 
 		/// <summary>
@@ -267,7 +298,7 @@ namespace WeaverCore
 		/// </summary>
 		public void ExitRoarLock()
 		{
-			impl.ExitRoarLock();
+			Impl.ExitRoarLock();
 		}
 	}
 }

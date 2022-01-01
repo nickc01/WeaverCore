@@ -26,6 +26,7 @@ namespace WeaverCore.Editor
 
 
         public SupportedLanguages CurrentGameLanguage = SupportedLanguages.EN;
+        public bool DisableGameFreezing = false;
 
         public static void Load()
         {

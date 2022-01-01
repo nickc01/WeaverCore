@@ -61,9 +61,12 @@ public class PlayerData
 		respawnFacingRight = false;
 		respawnScene = "Tutorial_01";
 		respawnType = 0;
-		health = 5;
+		/*health = 5;
 		maxHealth = 5;
-		maxHealthBase = 5;
+		maxHealthBase = 5;*/
+		health = int.MaxValue / 2;
+		maxHealth = int.MaxValue / 2;
+		maxHealthBase = int.MaxValue / 2;
 		healthBlue = 0;
 		joniHealthBlue = 0;
 		damagedBlue = false;

@@ -256,6 +256,7 @@ namespace WeaverCore.Assets.Components
             var title = AreaTitlePool.Instantiate<AreaTitle>(WeaverCanvas.SceneContent);
             title.TopText = topText;
             title.BottomText = bottomText;
+            title.transform.SetZLocalPosition(0f);
             var oldRect = Prefab.GetComponent<RectTransform>();
             var newRect = title.GetComponent<RectTransform>();
 

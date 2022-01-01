@@ -34,10 +34,21 @@ namespace WeaverCore.Features
 
 		bool currentMoveCancelled = false;
 
+		EntityHealth _health;
 		/// <summary>
 		/// The enemy's <seealso cref="EntityHealth"/>
 		/// </summary>
-		public EntityHealth Health { get; private set; }
+		public EntityHealth Health
+        {
+			get
+            {
+                if (_health == null)
+                {
+					_health = GetComponent<EntityHealth>();
+				}
+				return _health;
+            }
+        }
 
 		Enemy_I enemyImpl;
 		static Enemy_I.Statics staticImpl = ImplFinder.GetImplementation<Enemy_I.Statics>();
@@ -49,8 +60,7 @@ namespace WeaverCore.Features
 		{
 			var enemyImplType = ImplFinder.GetImplementationType<Enemy_I>();
 			enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
-			Health = GetComponent<EntityHealth>();
-			Health.OnDeathEvent += OnDeath;
+			Health.OnDeathEvent += OnDeath_Internal;
 		}
 
 		/// <summary>
@@ -58,8 +68,14 @@ namespace WeaverCore.Features
 		/// </summary>
 		protected virtual void OnDeath()
 		{
+			
+		}
+
+		void OnDeath_Internal()
+        {
 			StopAllBoundRoutines();
-			Health.OnDeathEvent -= OnDeath;
+			Health.OnDeathEvent -= OnDeath_Internal;
+			OnDeath();
 			if (CurrentMove != null)
 			{
 				CurrentMove.OnDeath();

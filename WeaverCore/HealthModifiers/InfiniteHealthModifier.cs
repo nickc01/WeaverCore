@@ -13,7 +13,7 @@ namespace WeaverCore
     /// </summary>
     public class InfiniteHealthModifier : IHealthModifier
     {
-        public int Priority => int.MaxValue;
+        public int Priority { get; set; } = int.MaxValue / 2;
 
         public int OnHealthChange(int oldHealth, int newHealth)
         {

@@ -14,8 +14,6 @@ namespace WeaverCore.Editor.Compilation
 {
 	public class BuildScreen : EditorWindow
 	{
-		public bool WeaverCoreOnly { get; private set; }
-
 		public const int WindowWidth = 400;
 		public const int WindowHeight = 400;
 
@@ -48,6 +46,7 @@ namespace WeaverCore.Editor.Compilation
 		[Serializable]
 		public class Settings
 		{
+			public bool WeaverCoreOnly = false;
 			public string ModName = PlayerSettings.productName;
 			public bool WindowsSupport = true;
 			public bool MacSupport = true;
@@ -87,13 +86,13 @@ namespace WeaverCore.Editor.Compilation
 			var y = (resolution.height / 2) - (WindowHeight / 2);
 
 			window.position = new Rect(x, y, WindowWidth, WindowHeight);
-			window.WeaverCoreOnly = weaverCoreOnly;
+			BuildSettings.WeaverCoreOnly = weaverCoreOnly;
 		}
 
 
 		private void OnGUI()
 		{
-			if (!WeaverCoreOnly)
+			if (!BuildSettings.WeaverCoreOnly)
 			{
 				EditorGUILayout.LabelField("Mod Name");
 				BuildSettings.ModName = EditorGUILayout.TextField(BuildSettings.ModName);
@@ -159,7 +158,7 @@ namespace WeaverCore.Editor.Compilation
 					Debug.LogError($"The module for building for the following platform {target} is not installed. This platform will be skipped");
 				}
 			}
-			if (WeaverCoreOnly)
+			if (BuildSettings.WeaverCoreOnly)
 			{
 				BuildTools.BuildWeaverCore();
 			}

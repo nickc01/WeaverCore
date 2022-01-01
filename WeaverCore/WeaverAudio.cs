@@ -42,17 +42,30 @@ namespace WeaverCore
 		/// <returns>Returns a new audio player for playing the audio clip</returns>
 		public static AudioPlayer Create(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
 		{
+			WeaverLog.Log("AUDIO_CREATE_A");
+			WeaverLog.Log("Base Object = " + baseObject);
+			WeaverLog.Log("CLIP = " + clip);
 			var audioObject = Pooling.Instantiate(baseObject, position, Quaternion.identity);
+			WeaverLog.Log("AUDIO OBJECT = " + audioObject);
+			WeaverLog.Log("AUDIO_CREATE_B");
 			var audioSource = audioObject.AudioSource;
-
+			WeaverLog.Log("AUDIO_CREATE_C");
 			audioObject.Channel = channel;
+			WeaverLog.Log("AUDIO_CREATE_D");
 			audioSource.playOnAwake = false;
+			WeaverLog.Log("AUDIO_CREATE_E");
 			audioSource.Stop();
+			WeaverLog.Log("AUDIO_CREATE_F");
 			audioSource.clip = clip;
+			WeaverLog.Log("AUDIO_CREATE_G");
 			audioSource.pitch = 1f;
+			WeaverLog.Log("AUDIO_CREATE_H");
 			audioSource.loop = false;
+			WeaverLog.Log("AUDIO_CREATE_I");
 			audioObject.gameObject.name = "(Sound) " + clip.name;
+			WeaverLog.Log("AUDIO_CREATE_J");
 			audioSource.volume = volume;
+			WeaverLog.Log("AUDIO_CREATE_K");
 
 			return audioObject;
 		}

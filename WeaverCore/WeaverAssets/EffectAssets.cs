@@ -27,6 +27,6 @@ namespace WeaverCore.Assets
 
 		public static GameObject TeleportGlowPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Death Glow"); } }
 		public static GameObject TeleLinePrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Tele Line"); } }
-		public static GameObject WhiteFlashPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("White Flash"); } }
+		public static GameObject WhiteFlashPrefab { get { return WeaverAssets.LoadWeaverAssets<GameObject>("White Flash").First(g => g.name == "White Flash"); } }
 	}
 }

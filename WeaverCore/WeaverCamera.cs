@@ -82,6 +82,20 @@ namespace WeaverCore
 			}
 		}
 
+		GameCameras _cameras;
+
+		public GameCameras Cameras
+        {
+			get
+            {
+                if (_cameras == null)
+                {
+					_cameras = transform.parent.parent.GetComponent<GameCameras>();
+                }
+				return _cameras;
+            }
+        }
+
 		static List<CameraExtension> featuresToAdd;
 
 		[OnFeatureLoad]

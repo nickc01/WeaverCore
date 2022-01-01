@@ -30,6 +30,12 @@ namespace WeaverCore.Editor.Compilation
 	public static class BundleTools
 	{
 		[Serializable]
+		class FirstEverBuild
+        {
+			public bool FirstEver = true;
+        }
+
+		[Serializable]
 		public class SceneData
 		{
 			public string Name;
@@ -453,6 +459,11 @@ namespace WeaverCore.Editor.Compilation
 
 		static void BeginBundleProcess()
 		{
+			var firstTime = true;
+            if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
+            {
+				firstTime = firstBuildData.FirstEver;
+            }
 			UnboundCoroutine.Start(BundleRoutine());
 			IEnumerator BundleRoutine()
 			{
@@ -576,12 +587,19 @@ namespace WeaverCore.Editor.Compilation
 				}
 				catch (Exception e)
 				{
-					Debug.LogError("Error creating Asset Bundles");
-					Debug.LogException(e);
+                    if (!firstTime)
+                    {
+						Debug.LogError("Error creating Asset Bundles");
+						Debug.LogException(e);
+					}
+					else
+                    {
+						DebugUtilities.ClearLog();
+                    }
 				}
 				finally
 				{
-					if (!Data.BundlingSuccessful)
+					if (!Data.BundlingSuccessful && !firstTime)
 					{
 						Debug.LogError("Error creating Asset Bundles");
 					}
@@ -900,10 +918,36 @@ namespace WeaverCore.Editor.Compilation
 
 		static void CompleteBundlingProcess()
 		{
+			var firstTime = true;
+			if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
+			{
+				firstTime = firstBuildData.FirstEver;
+			}
+			PersistentData.StoreData(new FirstEverBuild
+			{
+				FirstEver = false
+			});
+			PersistentData.SaveData();
 			//Debug.Log("M_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
 			if (!Data.BundlingSuccessful)
 			{
-				Debug.LogError("An error occured when creating the asset bundles");
+                if (firstTime)
+                {
+					DebugUtilities.ClearLog();
+					//Try Building Again, since the first ever build seems to have issues.
+					if (BuildScreen.BuildSettings.WeaverCoreOnly)
+					{
+						BuildTools.BuildWeaverCore();
+					}
+					else
+					{
+						BuildTools.BuildMod();
+					}
+				}
+				else
+                {
+					Debug.LogError("An error occured when creating the asset bundles");
+				}
 				return;
 			}
 

@@ -211,6 +211,15 @@ namespace WeaverCore.Components
 		}*/
 
         /// <summary>
+        /// Sets the new health without triggering any <see cref="IHealthModifier"/>s, events, or milestones
+        /// </summary>
+        /// <param name="newHealth">The new health value to set</param>
+        public void SetHealthRaw(int newHealth)
+        {
+            _health = newHealth;
+        }
+
+        /// <summary>
         /// Adds a health modifier. The modifier will be used to modify how the health gets changed when the player hits the enemy
         /// </summary>
         /// <param name="modifier">The modifier to be added</param>

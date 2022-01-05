@@ -20,6 +20,6 @@ namespace WeaverCore.Implementations
 
 		public abstract bool ShouldBeDead();
 
-		public abstract void OnDeath();
+		public abstract void OnDeath(HitInfo finalHit);
 	}
 }

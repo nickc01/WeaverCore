@@ -19,7 +19,7 @@ namespace WeaverCore.Editor.Implementations
             
         }
 
-        public override void OnDeath()
+        public override void OnDeath(HitInfo finalHit)
         {
             
         }

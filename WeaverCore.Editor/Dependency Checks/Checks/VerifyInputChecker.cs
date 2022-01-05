@@ -59,10 +59,19 @@ namespace WeaverCore.Editor
             {
                 var inputField = inputManData.Inputs[i];
 
-                if (currentFields.Any(f => f.m_Name == inputField.m_Name))
+                var currentFieldIndex = currentFields.FindIndex(i, f => f.m_Name == inputField.m_Name);
+
+                if (currentFieldIndex >= 0)
                 {
+                    var currentFieldFound = currentFields[currentFieldIndex];
+                    if (currentFieldFound.positiveButton != inputField.positiveButton)
+                    {
+                        var currentFieldParent = axes.GetArrayElementAtIndex(currentFieldIndex);
+                        currentFieldParent.FindPropertyRelative("positiveButton").stringValue = inputField.positiveButton;
+                    }
                     continue;
                 }
+
 
                 var parent = axes.GetArrayElementAtIndex(i);
 

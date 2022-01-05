@@ -76,7 +76,7 @@ namespace WeaverCore.Components
                     if (_health <= 0 && !HasModifier<InfiniteHealthModifier>())
                     {
                         _health = 0;
-                        OnDeath();
+                        OnDeath(LastAttackInfo);
                     }
                 }
             }
@@ -139,7 +139,7 @@ namespace WeaverCore.Components
         /// <summary>
         /// Called when the entity's health reaches zero
         /// </summary>
-        public event Action OnDeathEvent;
+        public event Action<HitInfo> OnDeathEvent;
 
         /// <summary>
         /// Called when the entity's health has been modified
@@ -546,7 +546,19 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Forces the entity to die
+        /// </summary>
         public void Die()
+        {
+            Die(LastAttackInfo);
+        }
+
+        /// <summary>
+        /// Forces the entity to die
+        /// </summary>
+        /// <param name="finalHit">The final hit on the entity</param>
+        public void Die(HitInfo finalHit)
         {
             if (Health > 0)
             {
@@ -554,7 +566,7 @@ namespace WeaverCore.Components
             }
             if (HasModifier<InfiniteHealthModifier>())
             {
-                OnDeath();
+                OnDeath(finalHit);
             }
         }
 
@@ -563,16 +575,29 @@ namespace WeaverCore.Components
         /// </summary>
         public void DoDeathEvent()
         {
-            OnDeath();
+            DoDeathEvent(LastAttackInfo);
         }
 
-        protected virtual void OnDeath()
+        /// <summary>
+        /// Calls the OnDeath Event, but does not change the health. This is if you only want to trigger the death event and nothing else
+        /// </summary>
+        /// <param name="finalHit">The final hit on the entity</param>
+        public void DoDeathEvent(HitInfo finalHit)
+        {
+            OnDeath(finalHit);
+        }
+
+        /// <summary>
+        /// Triggered when the entity dies
+        /// </summary>
+        /// <param name="finalHit">The final hit on the entity</param>
+        protected virtual void OnDeath(HitInfo finalHit)
         {
             if (OnDeathEvent != null)
             {
-                OnDeathEvent();
+                OnDeathEvent(finalHit);
             }
-            impl.OnDeath();
+            impl.OnDeath(finalHit);
         }
 
         protected virtual void Update()

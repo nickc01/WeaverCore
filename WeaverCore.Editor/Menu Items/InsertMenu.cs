@@ -35,7 +35,7 @@ namespace WeaverCore.Editor.Menu_Items
 			if (!Application.isPlaying)
 			{
 				Undo.RegisterCreatedObjectUndo(instance.gameObject, $"Create {prefabName}");
-				//EditorSceneManager.SaveScene(instance.scene);
+				Selection.activeGameObject = instance.gameObject;
 				EditorSceneManager.MarkSceneDirty(instance.scene);
 			}
 
@@ -94,6 +94,12 @@ namespace WeaverCore.Editor.Menu_Items
 		public static void InsertDreamWarpObject()
 		{
 			InsertObject("Dream Warp Object");
+		}
+
+		[MenuItem("WeaverCore/Insert/Template Enemy")]
+		public static void InsertTemplateEnemy()
+		{
+			InsertObject("Template Enemy");
 		}
 
 		[MenuItem("WeaverCore/Insert/Weaver Canvas")]

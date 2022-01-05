@@ -61,7 +61,7 @@ namespace WeaverCore.Features
 		[SerializeField]
 		int _bossStage = 1;
 		/// <summary>
-		/// The current stage/phase the boss is at
+		/// The current stage/phase the boss is at. The boss begins on boss stage 1 and is incremented every time the boss is stunned
 		/// </summary>
 		public int BossStage
 		{

@@ -4,6 +4,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Internal
 {
+
     /// <summary>
     /// The mod class for WeaverCore
     /// </summary>

@@ -2130,7 +2130,7 @@ public class GameManager : MonoBehaviour
 	// Token: 0x06000FEC RID: 4076 RVA: 0x0004CD14 File Offset: 0x0004AF14
 	public void RefreshTilemapInfo(string targetScene)
 	{
-		Debug.Log("Target Scene = " + targetScene);
+		//Debug.Log("Target Scene = " + targetScene);
 		var sceneManagerType = FindType("WeaverCore", "WeaverCore.Components.WeaverSceneManager");
 		var sceneDimProp = sceneManagerType.GetProperty("SceneDimensions");
 
@@ -2141,11 +2141,11 @@ public class GameManager : MonoBehaviour
 			{
 				foreach (var gm in scene.GetRootGameObjects())
 				{
-					Debug.Log("Root Object = " + gm.gameObject);
+					//Debug.Log("Root Object = " + gm.gameObject);
 					Component manager = gm.GetComponent(sceneManagerType);
 					if (manager != null)
 					{
-						Debug.Log("Found Scene Manager = " + gm.name);
+						//Debug.Log("Found Scene Manager = " + gm.name);
 						Rect dimensions = (Rect)sceneDimProp.GetValue(manager);
 						SceneDimensions = dimensions;
 						sceneWidth = dimensions.width;

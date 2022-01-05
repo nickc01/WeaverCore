@@ -23,6 +23,10 @@ namespace WeaverCore.Features
 		HashSet<uint> idList;
 		uint idCounter = 1;
 
+		[SerializeField]
+		[Tooltip("Should all PlayerDamager components be disabled when the enemy dies? This prevents the enemy from damaging the player after death")]
+		bool disableDamagersOnDeath = true;
+
 		/// <summary>
 		/// The previous move that was run
 		/// </summary>
@@ -50,7 +54,12 @@ namespace WeaverCore.Features
             }
         }
 
-		Enemy_I enemyImpl;
+		/// <summary>
+		/// Should all PlayerDamager components be disabled when the enemy dies?
+		/// </summary>
+		public bool DisableDamagersOnDeath { get => disableDamagersOnDeath; set => disableDamagersOnDeath = value; }
+
+        Enemy_I enemyImpl;
 		static Enemy_I.Statics staticImpl = ImplFinder.GetImplementation<Enemy_I.Statics>();
 
 		/// <summary>
@@ -71,9 +80,21 @@ namespace WeaverCore.Features
 			
 		}
 
-		void OnDeath_Internal()
+		void OnDeath_Internal(HitInfo finalHit)
         {
 			StopAllBoundRoutines();
+			var deathEffects = GetComponents<IDeathEffects>();
+            foreach (var deathEffect in deathEffects)
+            {
+				deathEffect.PlayDeathEffects(finalHit);
+            }
+            if (disableDamagersOnDeath)
+            {
+				foreach (var damager in GetComponentsInChildren<PlayerDamager>())
+				{
+					damager.damageDealt = 0;
+				}
+			}
 			Health.OnDeathEvent -= OnDeath_Internal;
 			OnDeath();
 			if (CurrentMove != null)

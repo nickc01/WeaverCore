@@ -19,7 +19,9 @@ namespace WeaverCore.Editor
         [MenuItem("WeaverCore/Create/New Mod")]
         static void CreateWeaverMod()
         {
-            GetWindow<CreateModMenu>().Show();
+            var window = GetWindow<CreateModMenu>();
+            window.titleContent = new GUIContent("Create Mod");
+            window.Show();
         }
 
 

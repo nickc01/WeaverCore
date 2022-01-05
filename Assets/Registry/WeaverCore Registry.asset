@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modTypeName: WeaverCore.Internal.WeaverCore_ModClass
   modAssemblyName: WeaverCore
-  features: []
-  featureTypeNames: []
-  featureAssemblyNames: []
+  features:
+  - {fileID: 11400000, guid: 724b9dd1d6da718439a7c17f49b71706, type: 2}
+  featureTypeNames:
+  - WeaverCore.Settings.GlobalSettings
+  featureAssemblyNames:
+  - WeaverCore

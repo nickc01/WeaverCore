@@ -13,8 +13,8 @@ namespace WeaverCore
     /// </summary>
     public static class Flings
     {
-        static ObjectPool GhostSlash1Pool;
-        static ObjectPool GhostSlash2Pool;
+        //static ObjectPool GhostSlash1Pool;
+        //static ObjectPool GhostSlash2Pool;
 
         static GameObject[] SpawnFlingsInternal(FlingInfo info, Vector3 spawnPoint, CardinalDirection direction)
         {
@@ -28,7 +28,8 @@ namespace WeaverCore
             for (int i = 0; i < prefabAmount; i++)
             {
                 Vector3 finalPosition = spawnPoint + new Vector3(UnityEngine.Random.Range(-info.OriginVariationX, info.OriginVariationX), UnityEngine.Random.Range(-info.OriginVariationY, info.OriginVariationY), 0f);
-                GameObject newFling = info.Pool.Instantiate(finalPosition, Quaternion.identity);
+                //GameObject newFling = info.Pool.Instantiate(finalPosition, Quaternion.identity);
+                GameObject newFling = Pooling.Instantiate(info.Prefab, finalPosition, Quaternion.identity);
                 Rigidbody2D rigidbody = newFling.GetComponent<Rigidbody2D>();
                 if (rigidbody != null)
                 {
@@ -73,20 +74,20 @@ namespace WeaverCore
         /// <returns>Returns the fling info needed to spawn the flings</returns>
         public static FlingInfo[] CreateNormalFlings()
         {
-            if (GhostSlash1Pool == null)
+            /*if (GhostSlash1Pool == null)
             {
                 GhostSlash1Pool = ObjectPool.Create(EffectAssets.GhostSlash1Prefab);
                 GhostSlash1Pool.FillPool(1);
 
                 GhostSlash2Pool = ObjectPool.Create(EffectAssets.GhostSlash2Prefab);
                 GhostSlash2Pool.FillPool(1);
-            }
+            }*/
 
             return new FlingInfo[2]
             {
                 new FlingInfo
                 {
-                    Pool = GhostSlash1Pool,
+                    Prefab = EffectAssets.SlashGhost1Prefab,
                     PrefabAmountMin = 2,
                     PrefabAmountMax = 3,
                     VelocityMin = 20f,
@@ -98,7 +99,7 @@ namespace WeaverCore
                 },
                 new FlingInfo
                 {
-                    Pool = GhostSlash2Pool,
+                    Prefab = EffectAssets.SlashGhost2Prefab,
                     PrefabAmountMin = 2,
                     PrefabAmountMax = 3,
                     VelocityMin = 10f,
@@ -128,6 +129,16 @@ namespace WeaverCore
         /// <summary>
         /// Spawns the flings
         /// </summary>
+        /// <param name="flings">The flings to spawn</param>
+        /// <param name="spawnPoint">The spawn point where the fling effects will originate from</param>
+        public static void SpawnFlings(FlingInfo[] flings, Vector3 spawnPoint)
+        {
+            SpawnFlings(flings, spawnPoint, CardinalDirection.Right);
+        }
+
+        /// <summary>
+        /// Spawns the flings
+        /// </summary>
         /// <param name="fling">The flings to spawn</param>
         /// <param name="spawnPoint">The spawn point where the fling effects will originate from</param>
         /// <param name="direction">The direction the flings should travel in</param>
@@ -135,6 +146,17 @@ namespace WeaverCore
         public static GameObject[] SpawnFlings(FlingInfo fling, Vector3 spawnPoint, CardinalDirection direction)
         {
             return SpawnFlingsInternal(fling, spawnPoint, direction);
+        }
+
+        /// <summary>
+        /// Spawns the flings
+        /// </summary>
+        /// <param name="fling">The flings to spawn</param>
+        /// <param name="spawnPoint">The spawn point where the fling effects will originate from</param>
+        /// <returns>Returns the fling objects that have been created</returns>
+        public static GameObject[] SpawnFlings(FlingInfo fling, Vector3 spawnPoint)
+        {
+            return SpawnFlings(fling, spawnPoint, CardinalDirection.Right);
         }
     }
 
@@ -144,9 +166,9 @@ namespace WeaverCore
     public struct FlingInfo
     {
         /// <summary>
-        /// The pool this fling originated from
+        /// The prefab to spawn
         /// </summary>
-        public ObjectPool Pool;
+        public GameObject Prefab;
 
         /// <summary>
         /// The minimum spawn velocity of the fling

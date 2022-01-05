@@ -19,10 +19,8 @@ namespace WeaverCore.Utilities
 		/// <param name="time">The amount of time needed to get from the <paramref name="start"/> to the <paramref name="end"/></param>
 		/// <param name="gravityScale">The gravity multiplier</param>
 		/// <returns>Returns the 2D velocity needed to reach the specified <paramref name="end"/> point.</returns>
-		public static Vector2 CalculateVelocityToReachPoint(Vector2 start, Vector2 end, double time, double gravityScale)
+		public static Vector2 CalculateVelocityToReachPoint(Vector2 start, Vector2 end, double time, double gravityScale = 1.0)
 		{
-			//Debug.DrawLine(start, end, Color.blue, 5f);
-
 			double a = Physics2D.gravity.y * gravityScale;
 
 			double yDest = end.y - start.y;
@@ -41,7 +39,7 @@ namespace WeaverCore.Utilities
 		/// <param name="time">The amount of time needed to get from the <paramref name="startY"/> to the <paramref name="endY"/></param>
 		/// <param name="gravityScale">The gravity multiplier</param>
 		/// <returns>Returns the vertical velocity needed to reach the height of <paramref name="endY"/></returns>
-		static float CalculateVerticalVelocity(float startY, float endY, float time, float gravityScale)
+		static float CalculateVerticalVelocity(float startY, float endY, float time, float gravityScale = 1f)
 		{
 			float a = Physics2D.gravity.y * gravityScale;
 			float newY = endY - startY;
@@ -57,7 +55,7 @@ namespace WeaverCore.Utilities
 		/// <param name="time">The amount of time needed to get from <paramref name="startY"/> to <paramref name="endY"/></param>
 		/// <param name="gravityScale">The gravity multiplier</param>
 		/// <returns>the time it takes to reach the peak of the curve and the peak height of the curve itself</returns>
-		public static (float timeToPeak, float peakHeight) CalculateMaximumOfCurve(float startY, float endY, float time, float gravityScale)
+		public static (float timeToPeak, float peakHeight) CalculateMaximumOfCurve(float startY, float endY, float time, float gravityScale = 1f)
 		{
 			var velocity = CalculateVerticalVelocity(startY, endY, time, gravityScale);
 

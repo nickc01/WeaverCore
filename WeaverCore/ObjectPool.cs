@@ -238,7 +238,7 @@ namespace WeaverCore
 		{
 			var pool = new GameObject().AddComponent<ObjectPool>();
 			pool.gameObject.name = "Object Pool - " + prefab.name;
-			//pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
+			pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
 			pool.Prefab = prefab;
 			return pool;
 		}

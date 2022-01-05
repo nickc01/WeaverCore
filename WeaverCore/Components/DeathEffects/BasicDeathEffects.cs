@@ -11,6 +11,7 @@ namespace WeaverCore.Components.DeathEffects
     /// </summary>
     public class BasicDeathEffects : MonoBehaviour, IDeathEffects
     {
+        [Header("Config")]
         [Tooltip("The journal entry to unlock when the death effects are played")]
         public string JournalEntryName;
 
@@ -30,6 +31,31 @@ namespace WeaverCore.Components.DeathEffects
         [SerializeField]
         [Tooltip("When set to true, will cause the enemy to rarely give the player 1 essence upon death")]
         private bool doEssenceChance = true;
+
+        [Header("Audio")]
+        [SerializeField]
+        protected AudioClip DamageSound;
+
+        [SerializeField]
+        protected float damageSoundVolume = 1f;
+
+        [SerializeField]
+        protected float damageSoundMinPitch = 0.75f;
+
+        [SerializeField]
+        protected float damageSoundMaxPitch = 1.25f;
+
+        [SerializeField]
+        protected AudioClip SwordDeathSound;
+
+        [SerializeField]
+        protected float swordDeathSoundVolume = 1f;
+
+        [SerializeField]
+        protected float swordDeathSoundMinPitch = 0.75f;
+
+        [SerializeField]
+        protected float swordDeathSoundMaxPitch = 1.25f;
 
         /// <summary>
         /// Have the death effects been played already?
@@ -57,7 +83,19 @@ namespace WeaverCore.Components.DeathEffects
         /// <summary>
         /// Used for playing the death sound effects
         /// </summary>
-        public virtual void EmitSounds() { }
+        public virtual void EmitSounds()
+        {
+            if (SwordDeathSound != null)
+            {
+                AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(SwordDeathSound, transform.position, swordDeathSoundVolume, AudioChannel.Sound);
+                weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(swordDeathSoundMinPitch, swordDeathSoundMaxPitch);
+            }
+            if (DamageSound != null)
+            {
+                AudioPlayer weaverAudioPlayer2 = WeaverAudio.PlayAtPoint(DamageSound, transform.position, damageSoundVolume, AudioChannel.Sound);
+                weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(damageSoundMinPitch, damageSoundMaxPitch);
+            }
+        }
 
         /// <summary>
         /// Plays the death effects
@@ -124,6 +162,19 @@ namespace WeaverCore.Components.DeathEffects
                 return true;
             }
             return false;
+        }
+
+        protected void ShakeCameraIfVisible(ShakeType shakeType = ShakeType.EnemyKillShake)
+        {
+            Renderer renderer = GetComponent<Renderer>();
+            if (renderer == null)
+            {
+                renderer = base.GetComponentInChildren<Renderer>();
+            }
+            if (renderer != null && renderer.isVisible)
+            {
+                CameraShaker.Instance.Shake(shakeType);
+            }
         }
 
         protected void EmitEssenceParticles()

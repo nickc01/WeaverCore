@@ -26,7 +26,7 @@ namespace WeaverCore.Game.Implementations
 			}
 		}
 
-        public override void OnDeath()
+        public override void OnDeath(HitInfo finalHit)
         {
 
         }

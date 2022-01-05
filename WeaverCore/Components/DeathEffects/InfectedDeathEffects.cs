@@ -4,43 +4,21 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components.DeathEffects
 {
+
     /// <summary>
     /// The death effects for infected enemies
     /// </summary>
     public class InfectedDeathEffects : BasicDeathEffects
     {
+        [Header("Infected Config")]
         [Tooltip("Defines how large the effects should be")]
-        public InfectedDeathType DeathType;
+        public InfectedDeathType DeathType = InfectedDeathType.Infected;
 
         [SerializeField]
         protected GameObject InfectedDeathWavePrefab;
 
         [SerializeField]
         protected GameObject DeathPuffPrefab;
-
-        [SerializeField]
-        protected AudioClip DamageSound;
-
-        [SerializeField]
-        protected float damageSoundVolume;
-
-        [SerializeField]
-        protected float damageSoundMinPitch;
-
-        [SerializeField]
-        protected float damageSoundMaxPitch;
-
-        [SerializeField]
-        protected AudioClip SwordDeathSound;
-
-        [SerializeField]
-        protected float swordDeathSoundVolume;
-
-        [SerializeField]
-        protected float swordDeathSoundMinPitch;
-
-        [SerializeField]
-        protected float swordDeathSoundMaxPitch;
 
         /// <inheritdoc/>
         public override void EmitEffects()
@@ -76,16 +54,6 @@ namespace WeaverCore.Components.DeathEffects
         public override void EmitSounds()
         {
             base.EmitSounds();
-            if (SwordDeathSound != null)
-            {
-                AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(SwordDeathSound, transform.position, swordDeathSoundVolume, AudioChannel.Sound);
-                weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(swordDeathSoundMinPitch, swordDeathSoundMaxPitch);
-            }
-            if (DamageSound != null)
-            {
-                AudioPlayer weaverAudioPlayer2 = WeaverAudio.PlayAtPoint(DamageSound, transform.position, damageSoundVolume, AudioChannel.Sound);
-                weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(damageSoundMinPitch, damageSoundMaxPitch);
-            }
         }
 
         private void EmitInfectedEffects()
@@ -102,20 +70,7 @@ namespace WeaverCore.Components.DeathEffects
             {
                 UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.position + EffectsOffset, Quaternion.identity);
             }
-            ShakeCamera(ShakeType.EnemyKillShake);
-        }
-
-        private void ShakeCamera(ShakeType shakeType = ShakeType.EnemyKillShake)
-        {
-            Renderer renderer = GetComponent<Renderer>();
-            if (renderer == null)
-            {
-                renderer = base.GetComponentInChildren<Renderer>();
-            }
-            if (renderer != null && renderer.isVisible)
-            {
-                CameraShaker.Instance.Shake(shakeType);
-            }
+            ShakeCameraIfVisible(ShakeType.EnemyKillShake);
         }
 
         private void EmitSmallInfectedEffects()
@@ -140,7 +95,7 @@ namespace WeaverCore.Components.DeathEffects
                 GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.position + EffectsOffset, Quaternion.identity);
                 gameObject.transform.localScale = new Vector3(2f, 2f, gameObject.transform.GetZLocalScale());
             }
-            ShakeCamera(ShakeType.AverageShake);
+            ShakeCameraIfVisible(ShakeType.AverageShake);
             if (InfectedDeathWavePrefab != null)
             {
                 GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);

@@ -204,6 +204,16 @@ namespace WeaverCore
         }
 
         /// <summary>
+        /// Looks through all the loaded registries, and finds the feature of the specified type
+        /// </summary>
+        /// <typeparam name="T">The type of feature to find</typeparam>
+        /// <returns>Returns the loaded feature (or null if it doesn't exist)</returns>
+        public static T GetFeature<T>() where T : class
+        {
+            return GetAllFeatures<T>().FirstOrDefault();
+        }
+
+        /// <summary>
         /// Goes through all of the loaded Registries, and find the specified features
         /// </summary>
         /// <typeparam name="T">The type of features to look for</typeparam>

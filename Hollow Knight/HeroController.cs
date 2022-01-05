@@ -4053,8 +4053,11 @@ public class HeroController : MonoBehaviour
 					if (flag)
 					{
 						terrainHit = true;
-						//this.nailTerrainImpactEffectPrefab.Spawn(raycastHit2D.point, Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0f, 360f)));
-						GameObject.Instantiate(nailTerrainImpactEffectPrefab, raycastHit2D.point, Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0f, 360f)));
+                        //this.nailTerrainImpactEffectPrefab.Spawn(raycastHit2D.point, Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0f, 360f)));
+                        if (nailTerrainImpactEffectPrefab != null)
+                        {
+							GameObject.Instantiate(nailTerrainImpactEffectPrefab, raycastHit2D.point, Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0f, 360f)));
+						}
 						if (attackDir == AttackDirection.normal)
 						{
 							if (this.cState.facingRight)

@@ -33,7 +33,7 @@ namespace Modding
 
         internal static void OnAttack(AttackDirection dir)
         {
-            Logger.LogFine("OnAttack Invoked");
+            //Logger.LogFine("OnAttack Invoked");
             if (ModHooks.AttackHook == null)
             {
                 return;
@@ -53,7 +53,7 @@ namespace Modding
 
         internal static void AfterAttack(AttackDirection dir)
         {
-            Logger.LogFine("AfterAttack Invoked");
+            //Logger.LogFine("AfterAttack Invoked");
             if (ModHooks.AfterAttackHook == null)
             {
                 return;
@@ -73,7 +73,7 @@ namespace Modding
 
         internal static Vector2 DashVelocityChange(Vector2 change)
         {
-            Logger.LogFine("DashVelocityChange Invoked");
+            //Logger.LogFine("DashVelocityChange Invoked");
             if (ModHooks.DashVectorHook == null)
             {
                 return change;
@@ -94,7 +94,7 @@ namespace Modding
 
         internal static int OnTakeDamage(ref int hazardType, int damage)
         {
-            Logger.LogFine("OnTakeDamage Invoked");
+            //Logger.LogFine("OnTakeDamage Invoked");
             if (ModHooks.TakeDamageHook == null)
             {
                 return damage;
@@ -115,7 +115,7 @@ namespace Modding
 
         internal static int AfterTakeDamage(int hazardType, int damageAmount)
         {
-            Logger.LogFine("AfterTakeDamage Invoked");
+            //Logger.LogFine("AfterTakeDamage Invoked");
             if (ModHooks.AfterTakeDamageHook == null)
             {
                 return damageAmount;

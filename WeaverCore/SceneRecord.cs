@@ -55,7 +55,27 @@ namespace WeaverCore
 		[SerializeField]
 		[Tooltip("A list of scenes to combine with in game")]
 		List<SceneUnion> sceneUnions = new List<SceneUnion>();
+
+		[SerializeField]
+		[Tooltip("A list of all the gates that are being changed to point to new destinations")]
+		List<GateRedirect> transitionRedirects = new List<GateRedirect>();
 #endif
+
+		/// <summary>
+		/// Contains all the information needed to change an existing Transition Point to point to a new scene
+		/// </summary>
+		[Serializable]
+		public class GateRedirect
+        {
+			[Tooltip("The name of the scene that contains the gate that's getting redirected")]
+			public string ContainingScene;
+			[Tooltip("The name of the gate to redirect")]
+			public string GateToRedirect;
+			[Tooltip("The new scene the gate will be directed to when the player touches it")]
+			public string NewDestinationScene;
+			[Tooltip("The new gate the player will be placed at when the player arrives at the new scene")]
+			public string NewDestinationGateName;
+        }
 
 		[Space(40f)]
 		[HideInInspector]
@@ -76,6 +96,20 @@ namespace WeaverCore
 		[HideInInspector]
 		[SerializeField]
 		List<string> sceneUnionPaths = new List<string>();
+
+
+		[HideInInspector]
+		[SerializeField]
+		List<string> transitionRedirects_containingScenes = new List<string>();
+		[HideInInspector]
+		[SerializeField]
+		List<string> transitionRedirects_gatesToRedirect = new List<string>();
+		[HideInInspector]
+		[SerializeField]
+		List<string> transitionRedirects_newDestinationScenes = new List<string>();
+		[HideInInspector]
+		[SerializeField]
+		List<string> transitionRedirects_newDestinationGateNames = new List<string>();
 
 
 		/// <summary>
@@ -110,6 +144,23 @@ namespace WeaverCore
 				}
 			}
 		}
+
+		public IEnumerable<GateRedirect> TransitionRedirects
+        {
+			get
+            {
+                for (int i = 0; i < transitionRedirects_containingScenes.Count; i++)
+                {
+					yield return new GateRedirect
+					{
+						ContainingScene = transitionRedirects_containingScenes[i],
+						NewDestinationGateName = transitionRedirects_newDestinationGateNames[i],
+						GateToRedirect = transitionRedirects_gatesToRedirect[i],
+						NewDestinationScene = transitionRedirects_newDestinationScenes[i]
+					};
+                }
+            }
+        }
 
 		/// <summary>
 		/// Replaces the <paramref name="oldScene"/> with the <paramref name="newScene"/>. Anytime the old scene gets loaded, the new scene will load instead
@@ -265,6 +316,11 @@ namespace WeaverCore
 
 			sceneToUnionizePaths = sceneUnions.Select(s => s.SceneToUniteWith).ToList();
 			sceneUnionPaths = sceneUnions.Select(s => AssetDatabase.GetAssetPath(s.UnionScene)).ToList();
+
+			transitionRedirects_containingScenes = transitionRedirects.Select(s => s.ContainingScene).ToList();
+			transitionRedirects_gatesToRedirect = transitionRedirects.Select(s => s.GateToRedirect).ToList();
+			transitionRedirects_newDestinationGateNames = transitionRedirects.Select(s => s.NewDestinationGateName).ToList();
+			transitionRedirects_newDestinationScenes = transitionRedirects.Select(s => s.NewDestinationScene).ToList();
 		}
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()

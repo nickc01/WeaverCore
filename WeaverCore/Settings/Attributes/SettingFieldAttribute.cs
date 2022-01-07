@@ -32,7 +32,7 @@ namespace WeaverCore.Settings
 		/// </summary>
 		/// <param name="enabled">Determines in what scenario should the field be visible in</param>
 		/// <param name="displayName">The display name of the field, property, or function</param>
-		public SettingFieldAttribute(EnabledType enabled = EnabledType.Both, string displayName = null)
+		public SettingFieldAttribute(EnabledType enabled = EnabledType.AlwaysVisible, string displayName = null)
 		{
 			IsEnabled = enabled;
 			DisplayName = displayName;
@@ -50,7 +50,7 @@ namespace WeaverCore.Settings
 		/// </summary>
 		/// <param name="enabled">Determines in what scenario should the field be visible in</param>
 		/// <param name="displayName">The display name of the field, property, or function</param>
-		public LangSettingFieldAttribute(string sheetTitle, string key, EnabledType enabled = EnabledType.Both)
+		public LangSettingFieldAttribute(string sheetTitle, string key, EnabledType enabled = EnabledType.AlwaysVisible)
 		{
 			IsEnabled = enabled;
 			DisplayName = WeaverLanguage.GetString(sheetTitle, key);
@@ -61,7 +61,7 @@ namespace WeaverCore.Settings
 		/// </summary>
 		/// <param name="enabled">Determines in what scenario should the field be visible in</param>
 		/// <param name="displayName">The display name of the field, property, or function</param>
-		public LangSettingFieldAttribute(string key, EnabledType enabled = EnabledType.Both)
+		public LangSettingFieldAttribute(string key, EnabledType enabled = EnabledType.AlwaysVisible)
 		{
 			IsEnabled = enabled;
 			DisplayName = WeaverLanguage.GetString(key);

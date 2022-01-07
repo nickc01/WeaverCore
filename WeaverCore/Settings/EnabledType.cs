@@ -14,7 +14,7 @@ namespace WeaverCore.Settings
 		/// <summary>
 		/// Element is never visible
 		/// </summary>
-		Never,
+		Hidden,
 		/// <summary>
 		/// Element is only visible from within the main menu
 		/// </summary>
@@ -26,6 +26,6 @@ namespace WeaverCore.Settings
 		/// <summary>
 		/// Element is visible anywhere
 		/// </summary>
-		Both
+		AlwaysVisible
 	}
 }

@@ -132,7 +132,41 @@ namespace WeaverCore.Components
 			}
 		}
 
-		[OnHarmonyPatch]
+		[OnInit]
+		static void Init()
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        }
+
+        private static void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+        {
+			var records = Registry.GetAllFeatures<SceneRecord>();
+			var sceneRedirectEnum = Enumerable.Empty<SceneRecord.GateRedirect>();
+            foreach (var record in records)
+            {
+				sceneRedirectEnum = sceneRedirectEnum.Concat(record.TransitionRedirects);
+            }
+
+			var redirects = sceneRedirectEnum.ToArray();
+
+			var sceneObjects = arg0.GetRootGameObjects();
+            for (int i = sceneObjects.GetLength(0) - 1; i >= 0; i--)
+            {
+                if (sceneObjects[i].TryGetComponent<TransitionPoint>(out var transition))
+                {
+                    foreach (var redirect in redirects)
+					{
+                        if (redirect.ContainingScene == arg0.name && transition.name == redirect.GateToRedirect)
+                        {
+							transition.targetScene = redirect.NewDestinationScene;
+							transition.entryPoint = redirect.NewDestinationGateName;
+                        }
+					}
+				}
+            }
+        }
+
+        [OnHarmonyPatch]
 		static void Patch(HarmonyPatcher patcher)
 		{
 			var orig = typeof(SceneManager).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance);

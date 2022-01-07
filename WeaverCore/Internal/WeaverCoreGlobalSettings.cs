@@ -8,7 +8,7 @@ namespace WeaverCore.Internal
         public override string TabName => "WeaverCore";
 
 
-        [SettingField(EnabledType.Both, "Open Debug Tools")]
+        [SettingField(EnabledType.AlwaysVisible, "Open Debug Tools")]
         public void OpenDebugTools()
         {
             SettingsScreen.Instance.Hide();

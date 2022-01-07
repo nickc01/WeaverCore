@@ -97,7 +97,7 @@ namespace WeaverCore.Editor
 				EditorGUILayout.LabelField("and having the type inherit from WeaverCore.Settings.Panel");*/
 				return;
 			}
-			EditorGUILayout.LabelField("Select the Panel to Create:");
+			EditorGUILayout.LabelField("Select the Class to Create:");
 			index = EditorGUILayout.Popup(index, settingsNames);
 
 			if (GUILayout.Button("Create"))

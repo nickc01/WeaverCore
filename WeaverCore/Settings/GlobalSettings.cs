@@ -78,7 +78,7 @@ namespace WeaverCore.Settings
 		{
 			get
 			{
-				return StringUtilities.Prettify(GetType().FullName.Replace("Panel",""));
+				return StringUtilities.Prettify(name);
 			}
 		}
 
@@ -322,7 +322,7 @@ namespace WeaverCore.Settings
 		/// <param name="displayName">The name of the property displayed on the panel</param>
 		/// <param name="description">The description of the property when hovering over the element</param>
 		/// <returns>The UIElement that has been added to the panel</returns>
-		public UIElement AddCustomPropertyElement<T>(Func<T> getter, Action<T> setter, string displayName, string description)
+		public UIElement AddPropertyElement<T>(Func<T> getter, Action<T> setter, string displayName, string description)
 		{
 			if (SettingsScreen.Instance != null)
 			{

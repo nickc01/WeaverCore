@@ -3,7 +3,7 @@
 
 WeaverCore is a core mod for Hollow Knight that makes it easy to develop new content for the game, such as new Enemies, Scenes, Bosses, and more
 
-[Click here]() for some guides on how to get started developing with WeaverCore
+[Click here](https://nickc01.github.io/WeaverCore) for some guides on how to get started developing with WeaverCore
 
 
 ## Notes for Developers

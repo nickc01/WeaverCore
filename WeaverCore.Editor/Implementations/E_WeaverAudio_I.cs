@@ -74,13 +74,6 @@ namespace WeaverCore.Editor.Implementations
 			{
 				if (_sounds == null)
 				{
-					/*var allGroups = AssetDatabase.LoadAllAssetRepresentationsAtPath(AssetDatabase.GetAssetPath(MainMixer));
-
-                    foreach (var group in allGroups)
-                    {
-						WeaverLog.Log($"Asset at Music = {group.name} : {group.GetType()}");
-                    }*/
-
 					_sounds = (AudioMixerGroup)AssetDatabase.LoadAllAssetRepresentationsAtPath(AssetDatabase.GetAssetPath(ActorsMixer)).First(o => o is AudioMixerGroup g && g.name == "Actors");
 				}
 				return _sounds;

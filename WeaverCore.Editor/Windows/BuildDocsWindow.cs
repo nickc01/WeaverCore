@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using WeaverCore.Editor.Compilation;
-//using WeaverCore.Editor.Helpers;
-//using WeaverCore.Editor.Routines;
 
 namespace WeaverCore.Editor
 {
+    /// <summary>
+    /// The main window used for building the documentation with DocFX
+    /// </summary>
     public class BuildDocsWindow : EditorWindow
     {
         static bool processStarted = false;
@@ -73,18 +74,6 @@ namespace WeaverCore.Editor
                     buildProcess.Start();
 
                     _ = ReadFromOutputStream(this, buildProcess.StandardOutput);
-
-                    //Repaint();
-                    /*buildProcess = new Process(new ProcessStartInfo
-                    {
-                        Arguments = $"{BuildTools.WeaverCoreFolder}{Path.DirectorySeparatorChar}docs_src~{Path.DirectorySeparatorChar}docfx.json",
-                        WorkingDirectory = $"{BuildTools.WeaverCoreFolder}{Path.DirectorySeparatorChar}Libraries{Path.DirectorySeparatorChar}docfx~",
-                        CreateNoWindow = true,
-                        ErrorDialog = false,
-                        FileName = $"{BuildTools.WeaverCoreFolder}{Path.DirectorySeparatorChar}Libraries{Path.DirectorySeparatorChar}docfx~{Path.DirectorySeparatorChar}docfx.exe",
-                    });
-                    buildProcess.EnableRaisingEvents = true;
-                    buildProcess.Exited += BuildProcess_Exited;*/
                 }
 
                 EditorGUI.BeginDisabledGroup(true);
@@ -129,7 +118,6 @@ namespace WeaverCore.Editor
             {
                 var line = await stdOutput.ReadLineAsync();
                 status += $"{FilterLine(line)}\n";
-                //window.Repaint();
             }
         }
 
@@ -146,28 +134,24 @@ namespace WeaverCore.Editor
             }
 
             return line;
-            /*line = Regex.Replace(line, @"(^.+?Warning\:)", @"<color=#ffa500ff>$1</color>");
-            line = Regex.Replace(line, @"(^.+?(?:Error|Exception)\:)", @"<color=#ff0000ff>$1</color>");
-            return line;*/
         }
 
         private Vector3 ScrollableSelectableLabel(Vector3 position, string text, GUIStyle style)
         {
-            // Extract scroll position and width from position vector.
+
             Vector2 scrollPos = new Vector2(position.x, position.y);
             float width = position.z;
-            //scrollPos = GUILayout.BeginScrollView(scrollPos,GUILayout.Height(EditorGUIUtility.singleLineHeight * 10f));
             scrollPos = GUILayout.BeginScrollView(scrollPos,GUILayout.Height(this.position.height - (EditorGUIUtility.singleLineHeight * 2.5f)));
-            // Calculate height of text.
+
             float pixelHeight = style.CalcHeight(new GUIContent(text), width);
             EditorGUILayout.LabelField(text, style, GUILayout.ExpandWidth(true), GUILayout.MinHeight(Mathf.Max(pixelHeight, this.position.height - (EditorGUIUtility.singleLineHeight * 2.5f)/*EditorGUIUtility.singleLineHeight * 10f*/)));
-            // Update the width on repaint, based on width of the SelectableLabel's rectangle.
+
             if (Event.current.type == EventType.Repaint)
             {
                 width = GUILayoutUtility.GetLastRect().width;
             }
             GUILayout.EndScrollView();
-            // Put scroll position and width back into the Vector3 used to track position.
+
             return new Vector3(scrollPos.x, scrollPos.y, width);
         }
     }

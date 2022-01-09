@@ -8,8 +8,6 @@ using UnityEditor;
 using UnityEngine;
 using WeaverCore.Editor.Enums;
 using WeaverCore.Interfaces;
-//using WeaverCore.Editor.Helpers;
-//using WeaverCore.Editor.Routines;
 
 namespace WeaverCore.Editor
 {
@@ -32,7 +30,6 @@ namespace WeaverCore.Editor
 			UnravelWindow window = (UnravelWindow)GetWindow(typeof(UnravelWindow));
 			window.Show();
 
-			//return new WaitTillTrue(() => Done);
 			yield return new WaitUntil(() => Done);
 		}
 

@@ -11,7 +11,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Tools
 {
-
+	/// <summary>
+	/// Used in the WeaverCore Debug Tools to dump the sprites of an in-game object (only the sprites, not the sprite maps)
+	/// </summary>
 	public class DumpSpritesTool : ToolsArea.ToolAction
 	{
 		public string ToolName => "Dump Sprites On Object";

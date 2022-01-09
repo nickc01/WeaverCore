@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace WeaverCore.Editor.Compilation
 {
+	/// <summary>
+	/// Represents a loaded asmdef file
+	/// </summary>
 	[Serializable]
 	public class AssemblyDefinitionFile
 	{
@@ -21,8 +24,6 @@ namespace WeaverCore.Editor.Compilation
 		public bool autoReferenced = true;
 		public List<string> defineConstraints;
 		public bool noEngineReferences = false;
-
-
 
 		[SerializeField]
 		List<string> precompiledReferences;

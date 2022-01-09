@@ -10,6 +10,9 @@ using PackageClient = UnityEditor.PackageManager.Client;
 namespace WeaverCore.Editor
 {
 
+	/// <summary>
+	/// Verifies if the Scriptable Build Pipeline is installed, and Text Mesh Pro is uninstalled (since WeaveCore provides its own version of TMPRO)
+	/// </summary>
     class VerifyPackages : DependencyCheck
     {
 

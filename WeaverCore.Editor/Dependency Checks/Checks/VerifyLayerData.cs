@@ -38,6 +38,9 @@ namespace WeaverCore.Editor
         }
     }
 
+    /// <summary>
+    /// Verifies the Tags and Layers are properly configured
+    /// </summary>
     class VerifyLayerData : DependencyCheck
     {
         private static string[] Tags = new string[]

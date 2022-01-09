@@ -37,6 +37,9 @@ namespace WeaverCore.Editor
         public int joyNum;
     }
 
+    /// <summary>
+    /// Verifies the Input Manager is properly configured for WeaverCore
+    /// </summary>
     class VerifyInputChecker : DependencyCheck
     {
 
@@ -47,8 +50,6 @@ namespace WeaverCore.Editor
             SerializedObject inputManager = new SerializedObject(inputManObject);
             var axes = inputManager.FindProperty("m_Axes");
 
-            //if (axes.arraySize <= 20)
-            //{
             var inputManData = JsonUtility.FromJson<InputList>(EditorAssets.LoadEditorAsset<TextAsset>("Input Manager Data").text);
 
             axes.arraySize = inputManData.Inputs.Count;
@@ -130,17 +131,5 @@ namespace WeaverCore.Editor
             }
             return fields;
         }
-        /*static bool ContainsAxisName(SerializedProperty axesProperties, string name)
-        {
-            for (int i = 0; i < axesProperties.arraySize; i++)
-            {
-                var parent = axesProperties.GetArrayElementAtIndex(i);
-                if (parent.FindPropertyRelative("m_Name").stringValue == name)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }*/
     }
 }

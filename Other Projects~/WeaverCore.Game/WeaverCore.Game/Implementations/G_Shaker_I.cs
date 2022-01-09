@@ -14,8 +14,6 @@ namespace WeaverCore.Game.Implementations
 		PlayMakerFSM shakerFSM;
 		FsmState ShakingHugeEvent;
 
-		//readonly Vector3 HugeShakeExtents = new Vector3(0.65f, 0.65f, 0f);
-		//readonly float HugeShakeTime = 1f;
 		bool CustomShake = false;
 		float ShakeDuration = 1;
 		Vector3 ShakeExtents = default;
@@ -31,7 +29,6 @@ namespace WeaverCore.Game.Implementations
 
 		void Awake()
 		{
-			//Debugger.Log("Weaver Game Cam Init!!!");
 			On.HutongGames.PlayMaker.Actions.ShakePosition.UpdateShaking += ShakePosition_UpdateShaking;
 			On.HutongGames.PlayMaker.Actions.ShakePosition.OnExit += ShakePosition_OnExit;
 			On.HutongGames.PlayMaker.Actions.ShakePosition.Reset += ShakePosition_Reset;
@@ -81,7 +78,6 @@ namespace WeaverCore.Game.Implementations
 					float num = Mathf.Clamp01(1f - GetTimer(self));
 					Vector3 a = Vector3.Scale(RumbleExtents, new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)));
 					transform.position = GetStartingWorldPosition(self) + a * ((!value) ? num : 1f);
-					//this.timer += Time.deltaTime;
 					SetTimer(self, GetTimer(self) + Time.deltaTime);
 					if (!value && GetTimer(self) > 1f)
 					{
@@ -116,7 +112,6 @@ namespace WeaverCore.Game.Implementations
 
 		public override void Shake(ShakeType type)
 		{
-			//shakerFSM.SendEvent("CANCEL SHAKE");
 			CustomShake = false;
 			switch (type)
 			{

@@ -12,6 +12,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
 {
+	/// <summary>
+	/// Used for unpacking Tk2D Sprite and animations dumped for the WeaverCore Debug Tools
+	/// </summary>
 	public static class TK2DUnpacker
 	{
 		/// <summary>
@@ -19,9 +22,14 @@ namespace WeaverCore.Editor
 		/// </summary>
 		public static List<Sprite> UnpackedSprites = new List<Sprite>();
 
+		/// <summary>
+		/// Should all sprites be flipped during import?
+		/// </summary>
 		public const bool FlipTK2DSpritesVertically = false;
-		//static Vector2 uvOffset = new Vector2(0.001f, 0.001f);
 
+		/// <summary>
+		/// A list of valid image extensions
+		/// </summary>
 		public static readonly List<string> ImageExtensions = new List<string>
 		{
 			".png",
@@ -29,6 +37,9 @@ namespace WeaverCore.Editor
 			".jpeg"
 		};
 
+		/// <summary>
+		/// Unpacks a Tk2D animation dumped from WeaverCore Debug Tools
+		/// </summary>
 		public static void UnpackTK2DAnimation()
 		{
 			UnpackedSprites.Clear();
@@ -41,6 +52,11 @@ namespace WeaverCore.Editor
 			UnpackTK2DAnimation(import, path);
 		}
 
+		/// <summary>
+		/// Unpacks a Tk2D animation dumped from WeaverCore Debug Tools
+		/// </summary>
+		/// <param name="import">The loaded animmap</param>
+		/// <param name="path">The path of the loaded animmap</param>
 		private static void UnpackTK2DAnimation(AnimationMapImport import, string path)
 		{
 			var info = new FileInfo(path);
@@ -48,7 +64,6 @@ namespace WeaverCore.Editor
 
 			Dictionary<string, List<Texture2D>> importedTextures = new Dictionary<string, List<Texture2D>>();
 
-			//List<Texture2D> importedTextures = new List<Texture2D>();
 			bool foundAllTextures = true;
 
 			foreach (var collection in import.collectionTextures)
@@ -80,40 +95,10 @@ namespace WeaverCore.Editor
 				importedTextures.Add(collection.collection.spriteCollectionName, texList);
 			}
 
-			
-
 			if (!foundAllTextures)
 			{
 				return;
 			}
-			/*List<Texture2D> importedTextures = new List<Texture2D>();
-
-			bool foundAllTextures = true;
-
-			foreach (var name in import.TextureNames)
-			{
-				bool found = false;
-				foreach (var ext in ImageExtensions)
-				{
-					var texFilePath = directory + name + ext;
-					if (File.Exists(texFilePath) && TK2dCommon.OpenImage(texFilePath, out var tex))
-					{
-						importedTextures.Add(tex);
-						found = true;
-						break;
-					}
-				}
-				if (!found)
-				{
-					Debug.LogError($"Unable to find the texture [{name}]. Make sure it's in the same folder as the spritemap file");
-					foundAllTextures = false;
-				}
-			}
-
-			if (!foundAllTextures)
-			{
-				return;
-			}*/
 
 
 			UnboundCoroutine.Start(UnpackTK2DAnimationAsync(info.Name, import, importedTextures));
@@ -122,10 +107,6 @@ namespace WeaverCore.Editor
 		static IEnumerator UnpackTK2DAnimationAsync(string name, AnimationMapImport import, Dictionary<string, List<Texture2D>> importedTextures)
 		{
 			var fileName = name.Split('.')[0];
-			//List<tk2dSpriteCollectionData> collections = new List<tk2dSpriteCollectionData>();
-
-			//collections.AddRange(import.TextureNames.Keys);
-
 			var totalUnpackedSprites = new List<Sprite>();
 
 			List<DirectoryInfo> directories = new List<DirectoryInfo>();
@@ -187,41 +168,9 @@ namespace WeaverCore.Editor
 						clip.WrapMode = WeaverAnimationData.WrapMode.SingleFrame;
 						break;
 				}
-				/*switch (clipRaw.wrapMode)
-				{
-					case WrapMode.Loop:
-						clip.WrapMode = WeaverAnimationData.WrapMode.Loop;
-						break;
-					case WrapMode.LoopSection:
-						clip.WrapMode = WeaverAnimationData.WrapMode.LoopSection;
-						break;
-					case WrapMode.Once:
-						clip.WrapMode = WeaverAnimationData.WrapMode.Once;
-						break;
-					case WrapMode.PingPong:
-						clip.WrapMode = WeaverAnimationData.WrapMode.PingPong;
-						break;
-					case WrapMode.RandomFrame:
-						clip.WrapMode = WeaverAnimationData.WrapMode.RandomFrame;
-						break;
-					case WrapMode.RandomLoop:
-						clip.WrapMode = WeaverAnimationData.WrapMode.RandomLoop;
-						break;
-					case WrapMode.Single:
-						clip.WrapMode = WeaverAnimationData.WrapMode.SingleFrame;
-						break;
-					default:
-						break;
-				}*/
 
 				foreach (var frameRaw in clipRaw.frames)
 				{
-					//clip.AddFrame(sprites[frameRaw.SpriteCollectionRaw.GetInstanceID()].GetSprite(frameRaw.SpriteID));
-					for (int i = 0; i < ExtractedSprites[frameRaw.spriteCollection.spriteCollectionName].Count; i++)
-					{
-						Debug.Log($"Extracted Sprite {i} = {ExtractedSprites[frameRaw.spriteCollection.spriteCollectionName][i]}");
-					}
-					Debug.Log("SpriteID = " + frameRaw.spriteId);
 					clip.AddFrame(ExtractedSprites[frameRaw.spriteCollection.spriteCollectionName][frameRaw.spriteId]);
 				}
 
@@ -229,12 +178,11 @@ namespace WeaverCore.Editor
 			}
 
 			AssetDatabase.CreateAsset(data, $"Assets\\{fileName} Animations\\{fileName}.asset");
-
-			//AssetDatabase.CreateAsset(data, "Assets/" + animationName + "/" + animationName + ".asset");
-
-			//UnpackSprites(name,import.spr)
 		}
 
+		/// <summary>
+		/// Unpacks a Tk2D sprite dumped from WeaverCore Debug Tools
+		/// </summary>
 		public static void UnpackTK2DSprites()
 		{
 			UnpackedSprites.Clear();
@@ -247,6 +195,11 @@ namespace WeaverCore.Editor
 			UnpackTK2DSprites(import, path);
 		}
 
+		/// <summary>
+		/// Unpacks a Tk2D sprite dumped from WeaverCore Debug Tools
+		/// </summary>
+		/// <param name="import">The imported spritemap</param>
+		/// <param name="path">The path fo the imported spritemap</param>
 		private static void UnpackTK2DSprites(SpriteMapImport import, string path)
 		{
 			var info = new FileInfo(path);
@@ -285,24 +238,17 @@ namespace WeaverCore.Editor
 			UnboundCoroutine.Start(UnpackSprites(info.GetFileName(), import, importedTextures, new DirectoryInfo($"Assets\\{info.GetFileName()} Unpacked")));
 		}
 
-		static int MoveTowards(int num, int dest)
-		{
-			if (num < dest)
-			{
-				num++;
-			}
-			else if (num > dest)
-			{
-				num--;
-			}
-			return num;
-		}
-
+		/// <summary>
+		/// Takes the UV coordinates of an image and uses it to tell of the image is rotated or not
+		/// </summary>
 		static bool AreUVsRotated(Vector2[] uvs)
 		{
 			return uvs[0].x == uvs[1].x && uvs[1].y == uvs[3].y;
 		}
 
+		/// <summary>
+		/// Gets the color at the specified pixel coordinates of a texture
+		/// </summary>
 		static Color GetTexColor(int x, int y, Texture2D source)
 		{
 			if (x < 0 || x >= source.width || y < 0 || y >= source.height)
@@ -315,6 +261,10 @@ namespace WeaverCore.Editor
 			}
 		}
 
+		/// <summary>
+		/// Converts an array of texture UVs into a rect
+		/// </summary>
+		/// <param name="uvs">The UVs of the texture</param>
 		static Rect UVsToRegion(IEnumerable<Vector2> uvs)
 		{
 			bool ranOnce = false;
@@ -352,6 +302,11 @@ namespace WeaverCore.Editor
 			return new Rect(min.x, min.y, max.x - min.x, max.y - min.y);
 		}
 
+		/// <summary>
+		/// Extracts a new texture from the specified region of an old texture
+		/// </summary>
+		/// <param name="region">The region to extract from the old texture</param>
+		/// <param name="source">The texture to extract from</param>
 		static Texture2D ExtractRegion(Rect region, Texture2D source)
 		{
 			Texture2D result = new Texture2D(Mathf.RoundToInt(region.width), Mathf.RoundToInt(region.height), source.format,false);
@@ -368,7 +323,11 @@ namespace WeaverCore.Editor
 			return result;
 		}
 
-
+		/// <summary>
+		/// Given a sprite definition, uses it to extract it out of an old texture
+		/// </summary>
+		/// <param name="source">The old texture to extract from</param>
+		/// <param name="sprite">The sprite definition that used to define where the sprite is located on the old texture</param>
 		static Texture2D ExtractSpriteFromTex(Texture2D source, tk2dSpriteDefinition sprite)
 		{
 			Vector2 vector2;
@@ -390,48 +349,7 @@ namespace WeaverCore.Editor
 			float x = source.width;
 			float y = source.height;
 
-			//Rect r = new Rect();
-
-			//Vector2 vector = new Vector2(0.001f, 0.001f);
-
-			//Vector2 vector2 = new Vector2((uvRegion.x + vector.x) / x, 1f - (uvRegion.y + uvRegion.height + vector.y) / y);
-			//Vector2 vector3 = new Vector2((uvRegion.x + uvRegion.width - vector.x) / x, 1f - (uvRegion.y - vector.y) / y);
-
-
-			//Vector2 vector2 = new Vector2(, );
-			//Vector2 vector3 = new Vector2(, );
-
-			//(uvRegion.x + vector.x);
-
-			//(uvRegion.y);
-
-			//(uvRegion.y + uvRegion.height + vector.y);
-
-			//uvRegion.y = ((-(vector3.y * y)) + 1f) + vector.y;
-			//r.y = (vector3.y * y) + vector.y;
-			//r.x = (vector2.x * x) - vector.x;
-			//r.width = (vector3.x * x) + vector.x - r.x;
-			//r.height = (vector2.y * y) - vector.y - r.y;
-
-			//Vector2 corner1 = new Vector2((vector2.x * x) - vector.x, (vector3.y * y) + vector.y);
-			//Vector2 corner2 = new Vector2((vector3.x * x) + vector.x, (vector2.y * y) - vector.y);
-
-			/*List<Vector2> multipliedUVs = new List<Vector2>();
-			foreach (var uv in sprite.uvs)
-			{
-				multipliedUVs.Add(new Vector2(Mathf.RoundToInt(uv.x * x),Mathf.RoundToInt(uv.y * y)));
-			}*/
-
 			var multipliedUVs = sprite.uvs.Select(u => new Vector2(Mathf.RoundToInt(u.x * x), Mathf.RoundToInt(u.y * y)));
-
-			//Debug.Log("Name = " + sprite.name);
-			//Debug.Log("Flipped = " + sprite.flipped + " Rotated = " + AreUVsRotated(sprite.uvs));
-			//Debug.Log("Rotated = " + AreUVsRotated(sprite.uvs));
-
-			/*for (int i = 0; i < multipliedUVs.Count; i++)
-			{
-				Debug.Log($"UV {i} = [x = {multipliedUVs[i].x}, y = {multipliedUVs[i].y}]");
-			}*/
 
 			var spriteTexture = ExtractRegion(UVsToRegion(multipliedUVs), source);
 			spriteTexture.name = sprite.name;
@@ -447,77 +365,17 @@ namespace WeaverCore.Editor
 			}
 
 			return spriteTexture;
-			//Debug.Log("UV Region = " + r);
-			//Debug.Log($"Corner 1 = {corner1.x},{corner1.y}");
-			//Debug.Log($"Corner 2 = {corner2.x},{corner2.y}");
-
-
-
-
-			//sprite.uvs
-			/*Vector2 PostProcessedBL = Vector2.zero;
-			Vector2 PostProcessedTR = Vector2.zero;
-
-			bool rotated = false;
-
-			if (sprite.uvs[0].x == sprite.uvs[1].x && sprite.uvs[2].x == sprite.uvs[3].x)
-			{
-				rotated = true;
-			}*/
-
-
-			/*if (rotated)
-			{
-				PostProcessedBL = sprite.uvs[1];
-				PostProcessedTR = sprite.uvs[2];
-			}
-			else
-			{
-				PostProcessedBL = sprite.uvs[0];
-				PostProcessedTR = sprite.uvs[3];
-			}
-
-			List<Vector2> TexUVs = new List<Vector2>();
-
-			foreach (var uv in sprite.uvs)
-			{
-				TexUVs.Add(new Vector2());
-			}
-
-			int PreBLx = Mathf.RoundToInt((PostProcessedBL.x * source.width) - uvOffset.x);
-			int PreTRy = source.height - Mathf.RoundToInt(((PostProcessedBL.y) * source.height) - uvOffset.y);
-			int PreTRx = Mathf.RoundToInt((PostProcessedTR.x * source.width) + uvOffset.x);
-			int PreBLy = source.height - Mathf.RoundToInt(((PostProcessedTR.y) * source.height) + uvOffset.y);
-
-			Vector2Int BottomLeft = new Vector2Int(PreBLx,PreBLy);
-			Vector2Int TopRight = new Vector2Int(PreTRx,PreTRy);*/
-
-			//int PreBLx2 = Mathf.RoundToInt((PostProcessedBL.x * source.width));
-			//int PreTRy2 = Mathf.RoundToInt(((PostProcessedBL.y) * source.height));
-			//int PreTRx2 = Mathf.RoundToInt((PostProcessedTR.x * source.width));
-			//int PreBLy2 = Mathf.RoundToInt(((PostProcessedTR.y) * source.height));
-
-			//Debug.Log("A = " + PreBLx);
-			//Debug.Log("B = " + PreTRy);
-			//Debug.Log("C = " + PreTRx);
-			//Debug.Log("D = " + PreBLy);
-
-			//Debug.Log("A2 = " + PreBLx2);
-			//Debug.Log("B2 = " + PreTRy2);
-			//Debug.Log("C2 = " + PreTRx2);
-			//Debug.Log("D2 = " + PreBLy2);
-			/*for (int i = 0; i < definition.uvs.GetLength(0); i++)
-			{
-				var uv = definition.uvs[i];
-
-			}*/
-
-			//return null;
 		}
 
+		/// <summary>
+		/// Unpacks all sprites from a spritemap
+		/// </summary>
+		/// <param name="name">The name of the spritemap</param>
+		/// <param name="spriteMap">The spritemap itself</param>
+		/// <param name="importedTextures">A list of imported textures to extract the sprites from</param>
+		/// <param name="outputDir">The output directory to put the sprites in</param>
 		static IEnumerator UnpackSprites(string name, SpriteMapImport spriteMap, List<Texture2D> importedTextures, DirectoryInfo outputDir)
 		{
-			//var outputDir = ;
 			outputDir.Create();
 			var relativeDir = PathUtilities.ConvertToProjectPath(outputDir.FullName);
 
@@ -535,11 +393,9 @@ namespace WeaverCore.Editor
 			try
 			{
 				AssetDatabase.StartAssetEditing();
-				//foreach (var map in spriteMap.collection.spriteDefinitions)
 				for (int i = 0; i < spriteMap.collection.spriteDefinitions.GetLength(0); i++)
 				{
 					var map = spriteMap.collection.spriteDefinitions[i];
-					//Debug.Log("Sprite Name = " + map.name);
 					if (map.name == "")
 					{
 						spritePaths.Add(null);
@@ -575,11 +431,20 @@ namespace WeaverCore.Editor
 			return (C - A) / (B - A);
 		}
 
+		/// <summary>
+		/// Called when the sprites have all been unpacked. Used to do some extra post processing
+		/// </summary>
+		/// <param name="name">The name of the spritemap</param>
+		/// <param name="spriteMap">The spritemap itself</param>
+		/// <param name="importedTextures">A list of all imported textures to extract the sprites from</param>
+		/// <param name="spritePaths">The paths of all the sprites extracted from the spritemap</param>
+		/// <param name="spriteTextures">A list of textures extracted from the spritemap</param>
+		/// <param name="outputDir">The output location where all the extracted sprites are located</param>
+		/// <returns></returns>
 		static IEnumerator PostUnpackSprites(string name, SpriteMapImport spriteMap, List<Texture2D> importedTextures, List<string> spritePaths, List<Texture2D> spriteTextures, DirectoryInfo outputDir)
 		{
 			var relativeDir = PathUtilities.ConvertToProjectPath(outputDir.FullName);
 			yield return null;
-			//yield return new WaitForSeconds(0.5f);
 
 			AssetDatabase.StartAssetEditing();
 
@@ -597,12 +462,9 @@ namespace WeaverCore.Editor
 
 					var definition = spriteMap.collection.spriteDefinitions.First(d => $"{d.name}{info.Extension}" == info.Name);
 					var relativePath = path;
-					Debug.Log("Relative Path = " + relativePath);
 					var importer = (TextureImporter)AssetImporter.GetAtPath(relativePath);
 					var settings = new TextureImporterSettings();
 					importer.ReadTextureSettings(settings);
-
-
 
 					var blPos = definition.positions[0];
 					var trPos = definition.positions[3];

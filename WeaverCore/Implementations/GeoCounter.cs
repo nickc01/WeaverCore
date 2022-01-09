@@ -37,8 +37,6 @@ namespace WeaverCore.Implementations
 		public abstract void SetDisplayToZero();
 		public abstract int Geo { get; }
 		public abstract bool CurrentlyTakingGeo { get; }
-		//public abstract TMP_Text GeoTextInterface { get; }
-
 		public abstract string GeoText { get; set; }
 	}
 }

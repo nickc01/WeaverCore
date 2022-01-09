@@ -21,7 +21,7 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns a type with the same name from the assembly</returns>
 		public static Type NameToType(string fullTypeName,string assemblyName)
 		{
-			if (string.IsNullOrEmpty(fullTypeName)/* || string.IsNullOrEmpty(assemblyName)*/)
+			if (string.IsNullOrEmpty(fullTypeName))
 			{
 				return null;
 			}

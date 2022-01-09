@@ -10,6 +10,9 @@ using WeaverCore.Editor.Compilation;
 
 namespace WeaverCore.Editor
 {
+	/// <summary>
+	/// The window used for unpacking TK2D sprites and animations
+	/// </summary>
 	public class UnpackTK2DWindow : EditorWindow
 	{
 		bool animation = false;

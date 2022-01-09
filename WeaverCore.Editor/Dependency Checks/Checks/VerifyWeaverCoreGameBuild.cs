@@ -6,6 +6,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
 {
+    /// <summary>
+    /// Builds WeaverCore and WeaverCore.Game so that the two are in sync with each other. This makes it easy to switch back and forth between the two projects
+    /// </summary>
     class VerifyWeaverCoreGameBuild : DependencyCheck
     {
         Action<DependencyCheckResult> Finish;

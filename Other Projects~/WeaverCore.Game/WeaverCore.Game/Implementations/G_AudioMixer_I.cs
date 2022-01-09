@@ -63,9 +63,6 @@ namespace WeaverCore.Game.Implementations
 			return null;
 		}
 
-
-
-
 		[OnRuntimeInit]
 		static void LoadAssets()
 		{
@@ -79,21 +76,6 @@ namespace WeaverCore.Game.Implementations
 			Mixers = Resources.FindObjectsOfTypeAll<AudioMixer>();
 			Snapshots = Resources.FindObjectsOfTypeAll<AudioMixerSnapshot>();
 			Groups = Resources.FindObjectsOfTypeAll<AudioMixerGroup>();
-
-			foreach (var mixer in Mixers)
-			{
-				WeaverLog.Log("MIXER = " + mixer.name);
-
-				foreach (var snapshot in Snapshots.Where(s => s.audioMixer == mixer))
-				{
-					WeaverLog.Log("SNAPSHOT = " + snapshot.name);
-				}
-
-				foreach (var group in Groups.Where(g => g.audioMixer == mixer))
-				{
-					WeaverLog.Log("GROUP = " + group.name);
-				}
-			}
 
 			LoadCueModifiers();
 		}
@@ -121,7 +103,7 @@ namespace WeaverCore.Game.Implementations
 
 		static HashSet<MusicCue> CreatedCues = new HashSet<MusicCue>();
 
-		//NOTE: THIS CREATES AN OBJECT THAT NEEDS TO BE DELETED LATER
+		//NOTE : This creates a MusicCue that gets deleted when CollectUnusedCues() is called
 		public MusicCue CreateCueFromPack(MusicPack pack)
 		{
 			LoadAssets();
@@ -184,7 +166,6 @@ namespace WeaverCore.Game.Implementations
 				snapshot.TransitionTo(snapshotTransitionTime);
 			}
 
-			//TODO : TRY REBUILDING A BETTER METHOD
 			CollectUnusedCues();
 		}
 
@@ -224,34 +205,5 @@ namespace WeaverCore.Game.Implementations
 
 			GameManager.instance.AudioManager.ApplyAtmosCue(currentCue, transitionTime);
 		}
-
-		/*protected IEnumerator BeginApplyAtmosCue(AtmosCue atmosCue, float transitionTime)
-		{
-			currentAtmosCue = atmosCue;
-			atmosCue.Snapshot.TransitionTo(transitionTime);
-			for (int i = 0; i < atmosSources.Length; i++)
-			{
-				if (atmosCue.IsChannelEnabled((AtmosChannels)i))
-				{
-					AudioSource audioSource = atmosSources[i];
-					if (!audioSource.isPlaying)
-					{
-						audioSource.Play();
-					}
-				}
-			}
-			yield return new WaitForSecondsRealtime(transitionTime);
-			for (int j = 0; j < atmosSources.Length; j++)
-			{
-				if (!atmosCue.IsChannelEnabled((AtmosChannels)j))
-				{
-					AudioSource audioSource2 = atmosSources[j];
-					if (audioSource2.isPlaying)
-					{
-						audioSource2.Stop();
-					}
-				}
-			}
-		}*/
 	}
 }

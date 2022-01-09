@@ -8,8 +8,14 @@ using UnityEditor;
 
 namespace WeaverCore.Editor.Utilities
 {
+	/// <summary>
+	/// Contains several utility functions related to build platforms
+	/// </summary>
 	public static class PlatformUtilities
 	{
+		/// <summary>
+		/// Gets the file extension for a target build platform
+		/// </summary>
 		public static string GetBuildTargetExtension(BuildTarget target)
 		{
 			switch (target)
@@ -25,7 +31,11 @@ namespace WeaverCore.Editor.Utilities
 			}
 		}
 
-		//Tests if a build target is available
+		/// <summary>
+		/// Tests if a build target is available
+		/// </summary>
+		/// <param name="buildTarget">The build target to test</param>
+		/// <returns>Returns whether this build target is supported or not</returns>
 		public static bool IsPlatformSupportLoaded(BuildTarget buildTarget)
 		{
 			var UnityEditor = System.Reflection.Assembly.Load("UnityEditor");
@@ -38,7 +48,6 @@ namespace WeaverCore.Editor.Utilities
 		/// <summary>
 		/// Returns all the supported build targets that this Unity Editor supports
 		/// </summary>
-		/// <returns></returns>
 		public static IEnumerable<BuildTarget> GetPCBuildTargets()
 		{
 			if (IsPlatformSupportLoaded(BuildTarget.StandaloneWindows))

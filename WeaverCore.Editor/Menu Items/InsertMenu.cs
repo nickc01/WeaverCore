@@ -14,7 +14,9 @@ using System.Collections;
 
 namespace WeaverCore.Editor.Menu_Items
 {
-
+	/// <summary>
+	/// Contains all menu items for inserting objects into a scene
+	/// </summary>
     public static class InsertMenu
 	{
 		static GameObject InsertObject(string prefabName)

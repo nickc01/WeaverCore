@@ -14,12 +14,7 @@ public class PlayerDamagerEditor : Editor
 
 		var hazardType = serializedObject.FindProperty("hazardType");
 
-		//EditorGUILayout.BeginHorizontal();
-
-		//EditorGUILayout.LabelField("Hazard Type");
 		hazardType.intValue = (int)(HazardType)EditorGUILayout.EnumPopup("Hazard Type", (HazardType)hazardType.intValue);
-
-		//EditorGUILayout.EndHorizontal();
 
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("shadowDashHazard"));
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("resetOnEnable"));

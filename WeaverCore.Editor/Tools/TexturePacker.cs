@@ -15,11 +15,21 @@ namespace WeaverCore.Editor
 {
 	public static class TexturePacker
 	{
+		/// <summary>
+		/// Checks if the "<paramref name="test"/>" number is near enough to "<paramref name="num"/>", with a specific margin of "<paramref name="error"/>"
+		/// </summary>
 		static bool NearbyNumber(float num, float test, float error = 1f)
 		{
 			return num >= test - error || num <= test + error;
 		}
 
+		/// <summary>
+		/// Used to pack multiple textures into one
+		/// </summary>
+		/// <param name="path">The output path of the final texture</param>
+		/// <param name="textures">The textures to pack</param>
+		/// <param name="padding">The amount of padding between sprites in the final texture</param>
+		/// <param name="deleteOld">Should the original texture be deleted when done?</param>
 		public static IEnumerator PackTextures(FileInfo path, List<Texture2D> textures, int padding = 0, bool deleteOld = false)
 		{
 			var atlas = new Texture2D(2, 2,TextureFormat.ARGB32,false);
@@ -28,40 +38,18 @@ namespace WeaverCore.Editor
 			int nonNullTexturesSize = 0;
 			using (var context = new ReadableTextureContext(textures))
 			{
-				yield return new WaitForSeconds(5f);
-
-				foreach (var tex in textures)
-				{
-					if (tex != null)
-					{
-						Debug.Log($"Format Before of {tex.name} = {tex.format}");
-					}
-				}
+				yield return new WaitForSeconds(1f);
 
 				var reimportedTextures = textures.Where(t => t != null).Select(t => AssetDatabase.LoadAssetAtPath<Texture2D>(AssetDatabase.GetAssetPath(t))).ToArray();
 				nonNullTexturesSize = reimportedTextures.GetLength(0);
 
-				foreach (var tex in reimportedTextures)
-				{
-					if (tex != null)
-					{
-						Debug.Log($"Format After of {tex.name} = {tex.format}");
-					}
-				}
-
 				uvs = atlas.PackTextures(reimportedTextures, padding, 16384);
-				Debug.Log("Format = " + atlas.format);
 			}
 
 			var atlasSize = new Vector2(atlas.width, atlas.height);
 
 			var relativePath = PathUtilities.ConvertToProjectPath(path.FullName);
-			/*using (var file = File.Create(path.FullName))
-			{
-				var bytes = texture.EncodeToPNG();
-				file.Write(bytes, 0, bytes.GetLength(0));
-				file.Close();
-			}*/
+
 			File.WriteAllBytes(path.FullName,atlas.EncodeToPNG());
 			AssetDatabase.ImportAsset(relativePath);
 			yield return null;
@@ -109,7 +97,6 @@ namespace WeaverCore.Editor
 					settings.spritePixelsPerUnit = averagePPU;
 				}
 
-				//var sheet = new SpriteMetaData[nonNullTexturesSize];
 				List<SpriteMetaData> sheet = new List<SpriteMetaData>();
 
 				int uvIndex = -1;

@@ -2,6 +2,9 @@
 
 namespace WeaverCore.Editor.Compilation
 {
+	/// <summary>
+	/// An exception thrown when something went wrong bulding an asset bundle
+	/// </summary>
 	[Serializable]
 	public class BundleException : Exception
 	{

@@ -8,7 +8,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
 {
-
+	/// <summary>
+	/// Used for playing music and atmosphere sounds in the editor
+	/// </summary>
     public class EditorMusic : MonoBehaviour
 	{
 		[Header("Music")]
@@ -119,7 +121,6 @@ namespace WeaverCore.Editor
 		IEnumerator ApplyMusicSnapshotRoutine(AudioMixerSnapshot snapshot, float delayTime, float transitionTime)
 		{
 			yield return new WaitForSeconds(delayTime);
-			//WeaverLog.Log("Snapshot = " + snapshot);
 			if (snapshot != null)
 			{
 				snapshot.TransitionTo(transitionTime);

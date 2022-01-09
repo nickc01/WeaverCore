@@ -8,6 +8,9 @@ using WeaverCore.Editor.Compilation;
 
 namespace WeaverCore.Editor
 {
+    /// <summary>
+    /// Contains general editor settings
+    /// </summary>
     [Serializable]
     public class GeneralSettings
     {
@@ -24,8 +27,14 @@ namespace WeaverCore.Editor
             }
         }
 
-
+        /// <summary>
+        /// The current language of the unity editor
+        /// </summary>
         public SupportedLanguages CurrentGameLanguage = SupportedLanguages.EN;
+
+        /// <summary>
+        /// Disables the Freezing effect that occurs when taking damage or parrying an attack in the editor
+        /// </summary>
         public bool DisableGameFreezing = false;
 
         public static void Load()

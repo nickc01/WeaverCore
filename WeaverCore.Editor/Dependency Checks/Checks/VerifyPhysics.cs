@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace WeaverCore.Editor
 {
-
+    /// <summary>
+    /// Verifies the gravity is configured
+    /// </summary>
     class VerifyPhysics : DependencyCheck
     {
         public override void StartCheck(Action<DependencyCheckResult> finishCheck)

@@ -8,6 +8,9 @@ using WeaverCore.Editor.Utilities;
 
 namespace WeaverCore.Editor
 {
+    /// <summary>
+    /// Verifies the WeaverCore.Editor asmdef is setup properly for development
+    /// </summary>
     class VerifyWeaverCoreEditorState : DependencyCheck
     {
         public override void StartCheck(Action<DependencyCheckResult> finishCheck)
@@ -25,8 +28,7 @@ namespace WeaverCore.Editor
             {
                 asm.Definition.excludePlatforms = new List<string>();
                 asm.Definition.includePlatforms = new List<string>();
-                //Debug.Log("Asm Definition Path = " + asm.AssemblyDefinitionPath);
-                //Debug.Log("Importing Asset = " + asm.AssemblyDefinitionPath);
+
                 asm.Save();
 
                 DebugUtilities.ClearLog();

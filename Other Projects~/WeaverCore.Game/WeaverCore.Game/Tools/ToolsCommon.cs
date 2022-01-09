@@ -10,11 +10,14 @@ namespace WeaverCore.Game.Tools
 {
 	public static class ToolsCommon
 	{
+		/// <summary>
+		/// The location where all the sprites and animations should be dumped to
+		/// </summary>
 		public static DirectoryInfo DumpLocation
 		{
 			get
 			{
-				return new FileInfo(typeof(Initialization).Assembly.Location).Directory.CreateSubdirectory("WeaverCore").CreateSubdirectory("Dumps");//.AddSlash() + "WeaverCore\\Dumps";
+				return new FileInfo(typeof(Initialization).Assembly.Location).Directory.CreateSubdirectory("WeaverCore").CreateSubdirectory("Dumps");
 			}
 		}
 	}

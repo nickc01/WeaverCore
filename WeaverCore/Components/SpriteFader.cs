@@ -24,6 +24,9 @@ namespace WeaverCore.Components
 		[Tooltip("The color to fade from")]
 		Color _fromColor;
 
+		/// <summary>
+		/// The color to fade from
+		/// </summary>
 		public Color FromColor
 		{
 			get
@@ -38,6 +41,10 @@ namespace WeaverCore.Components
 		[SerializeField]
 		[Tooltip("The color to fade to")]
 		Color _toColor;
+
+		/// <summary>
+		/// The color to fade to
+		/// </summary>
 		public Color ToColor
 		{
 			get

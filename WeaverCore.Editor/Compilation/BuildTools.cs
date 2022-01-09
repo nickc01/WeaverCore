@@ -19,15 +19,16 @@ using PackageClient = UnityEditor.PackageManager.Client;
 
 namespace WeaverCore.Editor.Compilation
 {
-	/*class WeaverCoreReady
-	{
-		public bool Ready = false;
-	}*/
-
-
+	/// <summary>
+	/// Contains the tools needed for building mod assemblies
+	/// </summary>
 	public static class BuildTools
 	{
 		static DirectoryInfo weaverCoreFolder;
+
+		/// <summary>
+		/// The folder that contains all of WeaverCore's assets
+		/// </summary>
 		public static DirectoryInfo WeaverCoreFolder
 		{
 			get
@@ -49,20 +50,39 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		public static FileInfo WeaverCoreBuildLocation = new FileInfo(WeaverCoreFolder.AddSlash() + $"Other Projects~{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}WeaverCore Build{Path.DirectorySeparatorChar}WeaverCore.dll");
 
+		/// <summary>
+		/// Used to represent an asynchronous assembly build task
+		/// </summary>
 		class BuildTask<T> : IAsyncBuildTask<T>
 		{
+			/// <inheritdoc/>
 			public T Result { get; set; }
 
+			/// <inheritdoc/>
 			public bool Completed { get; set; }
 
+			/// <inheritdoc/>
 			object IAsyncBuildTask.Result { get { return Result; } set { Result = (T)value; } }
 		}
 
+		/// <summary>
+		/// Contains all the parameters needed to build a mod assembly
+		/// </summary>
 		class BuildParameters
 		{
+			/// <summary>
+			/// The directory the mod is being placed in when built
+			/// </summary>
 			public DirectoryInfo BuildDirectory;
+
+			/// <summary>
+			/// The file name of the built assembly
+			/// </summary>
 			public string FileName;
 
+			/// <summary>
+			/// The full path of where the assembly is going to be located when built
+			/// </summary>
 			public FileInfo BuildPath
 			{
 				get
@@ -76,15 +96,40 @@ namespace WeaverCore.Editor.Compilation
 				}
 			}
 
+			/// <summary>
+			/// A list of script paths that are included in the build
+			/// </summary>
 			public List<string> Scripts = new List<string>();
+
+			/// <summary>
+			/// A list of assembly reference paths that are to be included in the build process
+			/// </summary>
 			public List<string> AssemblyReferences = new List<string>();
+
+			/// <summary>
+			/// A list of assembly reference paths to be excluded from the build process
+			/// </summary>
 			public List<string> ExcludedReferences = new List<string>();
+
+			/// <summary>
+			/// A list of #defines to include in the build process
+			/// </summary>
 			public List<string> Defines = new List<string>();
 
+			/// <summary>
+			/// The target platform the mod is being built against
+			/// </summary>
 			public BuildTarget Target = BuildTarget.StandaloneWindows;
+
+			/// <summary>
+			/// The target group the mod is being built against
+			/// </summary>
 			public BuildTargetGroup Group = BuildTargetGroup.Standalone;
 		}
 
+		/// <summary>
+		/// Contains the output information of a assembly build process
+		/// </summary>
 		public class BuildOutput
 		{
 			public bool Success;
@@ -117,7 +162,6 @@ namespace WeaverCore.Editor.Compilation
 			task.Result.OutputFiles = hkBuildTask.Result.OutputFiles;
 			if (!hkBuildTask.Result.Success)
 			{
-				//Debug.Log("Failed to build HollowKnight.dll");
 				task.Completed = true;
 				yield break;
 			}
@@ -125,11 +169,6 @@ namespace WeaverCore.Editor.Compilation
 			{
 				BuildPath = outputPath,
 				AssemblyReferences = hkBuildTask.Result.OutputFiles.Select(f => f.FullName).ToList(),
-				/*AssemblyReferences = new List<string>
-				{
-					hkFile.FullName,
-					hkFile.AddSlash()
-				},*/
 				Defines = new List<string>
 				{
 					"GAME_BUILD"
@@ -191,13 +230,10 @@ namespace WeaverCore.Editor.Compilation
 
 			if (!firstPassTask.Result.Success)
 			{
-				//Debug.Log("Failed to build HollowKnight.FirstPass.dll");
 				task.Completed = true;
 				task.Result = firstPassTask.Result;
 				yield break;
 			}
-
-			//Debug.Log("FIRST PASS BUILT!");
 
 			yield return BuildAssembly(new BuildParameters
 			{
@@ -219,11 +255,8 @@ namespace WeaverCore.Editor.Compilation
 				}
 			}, BuildPresetType.Game, task);
 
-			//Debug.Log("SECOND PASS BUILT!");
-
 			if (!task.Result.Success)
 			{
-				//Debug.Log("Failed to build HK.dll");
 				yield break;
 			}
 		}
@@ -282,7 +315,6 @@ namespace WeaverCore.Editor.Compilation
 				task.Result.OutputFiles.Add(parameters.BuildPath);
 			}
 			task.Result.Success = output.Success;
-			//Debug.Log("OUTPUT = " + output.Success);
 			task.Completed = true;
 		}
 
@@ -328,28 +360,41 @@ namespace WeaverCore.Editor.Compilation
 
 			foreach (var outputFile in weaverCoreTask.Result.OutputFiles)
 			{
-				//Debug.Log("New Reference = " + outputFile.FullName);
 				parameters.AssemblyReferences.Add(outputFile.FullName);
 			}
 
 			yield return BuildAssembly(parameters, BuildPresetType.Game, task);
 		}
 
+		/// <summary>
+		/// Starts the mod assembly build process
+		/// </summary>
 		public static void BuildMod()
 		{
 			BuildMod(new FileInfo(GetModBuildFileLocation()));
 		}
 
+		/// <summary>
+		/// Stars the mod assembly build process
+		/// </summary>
+		/// <param name="outputPath">The output location of the mod assembly</param>
 		public static void BuildMod(FileInfo outputPath)
 		{
 			UnboundCoroutine.Start(BuildModRoutine(outputPath, null));
 		}
 
+		/// <summary>
+		/// Builds the "WeaverCore.dll" assembly
+		/// </summary>
 		public static void BuildWeaverCore()
 		{
 			BuildWeaverCore(new FileInfo(GetModBuildFolder() + "WeaverCore.dll"));
 		}
 
+		/// <summary>
+		/// Builds the "WeaverCore.dll" assembly
+		/// </summary>
+		/// <param name="outputPath">The output location of the "WeaverCore.dll" assembly</param>
 		public static void BuildWeaverCore(FileInfo outputPath)
 		{
 			UnboundCoroutine.Start(BuildWeaverCoreRoutine(outputPath, null));
@@ -387,16 +432,12 @@ namespace WeaverCore.Editor.Compilation
 			yield return BuildPartialModAsmRoutine(modBuildLocation, task);
 			if (!task.Result.Success)
 			{
-				//Debug.Log("Failed to build Assembly-CSharp.dll");
 				yield break;
 			}
-			//Debug.Log("Done Building Assembly-CSharp.dll");
 			task.Result.Success = false;
-			//Debug.Log("Building WeaverCore.Game.dll");
 			yield return BuildWeaverCoreGameRoutine(null, task);
 			if (!task.Result.Success)
 			{
-				//Debug.Log("Failed to build WeaverCore.Game.dll");
 				yield break;
 			}
 			var weaverCoreOutputLocation = outputPath.Directory.CreateSubdirectory("WeaverCore").AddSlash() + "WeaverCore.dll";
@@ -407,9 +448,9 @@ namespace WeaverCore.Editor.Compilation
 		[OnInit]
 		static void Init()
 		{
-			//BuildWeaverCoreGameAsm();
 			bool ranMethod = false;
 
+			//Check if a build function is scheduled to run, and run it if there is one
 			if (PersistentData.ContainsData<BundleTools.BundleBuildData>())
 			{
 				var bundleData = BundleTools.Data;
@@ -429,41 +470,17 @@ namespace WeaverCore.Editor.Compilation
 						yield return new WaitForSeconds(0.5f);
 						if (EditorApplication.isCompiling)
 						{
-							//Debug.Log("A_ Waiting for Compilation to finish");
 							yield return new WaitUntil(() => !EditorApplication.isCompiling);
 						}
-						//Debug.Log("A_Compilation Done!");
 						method.Invoke(null, null);
 					}
 				}
 			}
 
-
+			//Check dependencies if a build function is not scheduled to be run
 			if (!ranMethod)
 			{
 				DependencyChecker.CheckDependencies();
-				/*IEnumerator DefaultRoutine()
-				{
-					if (EditorApplication.isCompiling)
-					{
-						//Debug.Log("B_ Waiting for Compilation to finish");
-						yield return new WaitUntil(() => !EditorApplication.isCompiling);
-					}
-
-					if (!PersistentData.TryGetData<WeaverCoreReady>(out var ready) || !ready.Ready)
-					{
-						DebugUtilities.ClearLog();
-					}
-
-					//Debug.Log("B_Compilation Done!");
-					//yield return BuildPartialWeaverCoreRoutine(WeaverCoreBuildLocation, null);
-					//yield return RunEnvironmentCheck();
-				}
-
-				if (!EditorApplication.isPlaying)
-				{
-					UnboundCoroutine.Start(DefaultRoutine());
-				}*/
 			}
 		}
 
@@ -510,11 +527,6 @@ namespace WeaverCore.Editor.Compilation
 					reader.ReadToDescendant("PropertyGroup");
 					reader.ReadToFollowing("PropertyGroup");
 					reader.ReadToDescendant("OutputPath");
-					//reader.NodeType == XmlNodeType.Prope
-					//reader.ReadEndElement();
-					//reader.ReadToFollowing("PropertyGroup");
-					//reader.ReadToFollowing("OutputPath");
-
 					if (outputPath == null)
 					{
 						var foundOutputPath = reader.ReadElementContentAsString();
@@ -528,8 +540,6 @@ namespace WeaverCore.Editor.Compilation
 						}
 
 					}
-					//Debug.Log("Output Path = " + foundOutputPath);
-					//reader.ReadEndElement();
 					reader.ReadToFollowing("ItemGroup");
 					List<XmlReference> References = new List<XmlReference>();
 					List<string> Scripts = new List<string>();
@@ -552,7 +562,6 @@ namespace WeaverCore.Editor.Compilation
 									{
 										hintPath = new FileInfo(PathUtilities.AddSlash(xmlProjectFile.Directory.FullName) + contents);
 									}
-									//reader.ReadEndElement();
 								}
 							}
 							if (referenceName.Contains("Version=") || referenceName.Contains("Culture=") || referenceName.Contains("PublicKeyToken=") || referenceName.Contains("processorArchitecture="))
@@ -576,61 +585,11 @@ namespace WeaverCore.Editor.Compilation
 						Scripts.Add(scriptFile.FullName);
 					}
 
-					/*reader.ReadToFollowing("ItemGroup");
-					while (reader.Read() && reader.Name != "ItemGroup")
-					{
-						if (reader.Name == "Compile")
-						{
-							var contents = reader.GetAttribute("Include");
-							if (Path.IsPathRooted(contents))
-							{
-								//Scripts.Add(new FileInfo(contents).FullName);
-							}
-							else
-							{
-								//Scripts.Add(new FileInfo(PathUtilities.AddSlash(xmlProjectFile.Directory.FullName) + contents).FullName);
-							}
-							if (!reader.IsEmptyElement)
-							{
-								reader.ReadEndElement();
-							}
-						}
-					}*/
-
-					/*Debug.Log("Results!");
-					foreach (var r in References)
-					{
-						Debug.Log($"Assembly Name = {r.AssemblyName}, Hint Path = {r.HintPath?.FullName}");
-					}
-
-					foreach (var s in Scripts)
-					{
-						Debug.Log("Script = " + s);
-					}
-
-					Debug.Log("Output Path = " + outputPath);*/
-
-
-
-
-
-					/*while (reader.Read())
-					{
-						Debug.Log("Reader Name = " + reader.Name);
-						Debug.Log("Reader Local Name = " + reader.LocalName);
-						//reader.IsStartElement()
-					}*/
-
 					List<DirectoryInfo> AssemblySearchDirectories = new List<DirectoryInfo>
 				{
 					new DirectoryInfo(PathUtilities.AddSlash(GameBuildSettings.Settings.HollowKnightLocation) + $"hollow_knight_Data{Path.DirectorySeparatorChar}Managed"),
 					new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory
 				};
-
-					/*foreach (var searchDir in AssemblySearchDirectories)
-					{
-						Debug.Log("Search Directory = " + searchDir.FullName);
-					}*/
 
 					List<string> AssemblyReferences = new List<string>();
 
@@ -638,10 +597,6 @@ namespace WeaverCore.Editor.Compilation
 
 					foreach (var xmlRef in References)
 					{
-						/*if (xmlRef.AssemblyName.Contains("UnityEngine"))
-						{
-							continue;
-						}*/
 						if (xmlRef.AssemblyName == "System")
 						{
 							continue;
@@ -656,7 +611,6 @@ namespace WeaverCore.Editor.Compilation
 							foreach (var searchDir in AssemblySearchDirectories)
 							{
 								var filePath = PathUtilities.AddSlash(searchDir.FullName) + xmlRef.AssemblyName + ".dll";
-								//Debug.Log("File Path = " + filePath);
 								if (File.Exists(filePath))
 								{
 									found = true;
@@ -676,11 +630,7 @@ namespace WeaverCore.Editor.Compilation
 					List<string> exclusions = new List<string>();
 					foreach (var sa in scriptAssemblies)
 					{
-						//Debug.Log("PROJECT FOLDER = " + PathUtilities.ProjectFolder);
-						//Debug.Log("FULL PATH = " + sa.FullName);
-						//Debug.Log("EXCLUDING ASSEMBLY = " + PathUtilities.ConvertToProjectPath(sa.FullName));
 						exclusions.Add(PathUtilities.ConvertToProjectPath(sa.FullName));
-						//Debug.Log("Exclusion = " + exclusions[exclusions.Count - 1]);
 					}
 
 					var weaverCoreLibraries = new DirectoryInfo(WeaverCoreFolder.AddSlash() + "Libraries").GetFiles("*.dll");
@@ -715,6 +665,9 @@ namespace WeaverCore.Editor.Compilation
 			yield break;
 		}
 
+		/// <summary>
+		/// Gets the location of where the mod assembly is going to be placed in
+		/// </summary>
 		public static string GetModBuildFolder()
 		{
 			string compileLocation = null;
@@ -736,11 +689,18 @@ namespace WeaverCore.Editor.Compilation
 			return PathUtilities.AddSlash(compileLocation);
 		}
 
+		/// <summary>
+		/// Gets the full path of where the mod assembly is going to be placed in
+		/// </summary>
+		/// <returns></returns>
 		public static string GetModBuildFileLocation()
 		{
 			return GetModBuildFolder() + BuildScreen.BuildSettings.ModName + ".dll";
 		}
 
+		/// <summary>
+		/// Called when a mod assembly build is completed
+		/// </summary>
 		public static void OnBuildFinish()
 		{
 			if (BuildScreen.BuildSettings.StartGame)
@@ -770,125 +730,6 @@ namespace WeaverCore.Editor.Compilation
 			}
 
 			DependencyChecker.CheckDependencies();
-			//UnboundCoroutine.Start(RunEnvironmentCheck());
 		}
-
-		/*static IEnumerator RunEnvironmentCheck()
-		{
-			//INSTALL THE NECESSARY PACKAGES
-			var listRequest = PackageClient.List();
-			var searchRequest = PackageClient.Search("com.unity.scriptablebuildpipeline");
-			yield return WaitForRequest(listRequest);
-			if (listRequest.Status == StatusCode.Failure)
-			{
-				Debug.LogError($"Failed to get a package listing with error code [{listRequest.Error.errorCode}], {listRequest.Error.message}");
-			}
-			yield return WaitForRequest(searchRequest);
-			if (searchRequest.Status == StatusCode.Failure)
-			{
-				Debug.LogError($"Failed to do a package search with the error code [{searchRequest.Error.errorCode}], {searchRequest.Error.message}");
-			}
-
-			var buildPipelineLatestVersion = searchRequest.Result[0].versions.latestCompatible;
-
-			bool makingChanges = false;
-			bool latestVersionInstalled = false;
-
-			foreach (var package in listRequest.Result)
-			{
-				if (package.name == "com.unity.textmeshpro")
-				{
-					DebugUtilities.ClearLog();
-					Debug.Log("Removing Text Mesh Pro package, since WeaverCore provides a version that is compatible with Hollow Knight");
-					makingChanges = true;
-					PackageClient.Remove(package.name);
-					//DebugUtilities.ClearLog();
-					//Break - since we can only do one request at a time
-					break;
-				}
-				else if (package.name == "com.unity.scriptablebuildpipeline")
-				{
-					//If it isn't the latest compatible version
-					if (package.version != buildPipelineLatestVersion)
-					{
-						DebugUtilities.ClearLog();
-						Debug.Log($"Updating the Scriptable Build Pipeline from [{package.version}] -> [{buildPipelineLatestVersion}]");
-						PackageClient.Remove(package.name);
-						makingChanges = true;
-						//DebugUtilities.ClearLog();
-						//Break - since we can only do one request at a time
-						break;
-					}
-					else
-					{
-						latestVersionInstalled = true;
-					}
-
-				}
-			}
-
-			if (!makingChanges && !latestVersionInstalled)
-			{
-				DebugUtilities.ClearLog();
-				PackageClient.Add("com.unity.scriptablebuildpipeline@" + buildPipelineLatestVersion);
-				makingChanges = true;
-			}
-
-			if (!makingChanges)
-			{
-				if (PlayerSettings.GetApiCompatibilityLevel(BuildTargetGroup.Standalone) != ApiCompatibilityLevel.NET_4_6)
-				{
-					DebugUtilities.ClearLog();
-					Debug.Log("Updating Project API Level from .Net Standard 2.0 to .Net 4.6");
-					PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
-					makingChanges = true;
-				}
-			}
-
-			if (!makingChanges)
-			{
-				var projectInfo = ScriptFinder.GetProjectScriptInfo();
-
-				var asm = projectInfo.FirstOrDefault(p => p.AssemblyName.Contains("WeaverCore.Editor"));
-
-				if (asm == null)
-				{
-					throw new Exception("Unable to find assembly \"WeaverCore.Editor\". Your WeaverCore files may not be in a valid state");
-				}
-
-				if (asm.Definition.includePlatforms.Count > 0)
-				{
-					makingChanges = true;
-					asm.Definition.excludePlatforms = new List<string>();
-					asm.Definition.includePlatforms = new List<string>();
-					//Debug.Log("Asm Definition Path = " + asm.AssemblyDefinitionPath);
-					//Debug.Log("Importing Asset = " + asm.AssemblyDefinitionPath);
-					asm.Save();
-
-					DebugUtilities.ClearLog();
-					Debug.Log("Updating WeaverCore.Editor State");
-
-					AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath,ImportAssetOptions.DontDownloadFromCacheServer);
-					AssetDatabase.Refresh();
-				}
-			}
-
-			if (!makingChanges)
-			{
-				if (!PersistentData.TryGetData<WeaverCoreReady>(out var ready) || !ready.Ready)
-				{
-					DebugUtilities.ClearLog();
-					Debug.Log("WeaverCore is Ready for Use!");
-					PersistentData.StoreData(new WeaverCoreReady
-					{
-						Ready = true
-					});
-
-					PersistentData.SaveData();
-				}
-			}
-
-			IEnumerator WaitForRequest<T>(Request<T> request) => new WaitUntil(() => request.IsCompleted);
-		}*/
 	}
 }

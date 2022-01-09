@@ -18,22 +18,6 @@ namespace WeaverCore.Editor.Implementations
 		{
 			private void LateUpdate()
 			{
-				/*foreach (var input in ButtonInputs)
-				{
-					if (input.Value.IsPressed != input.Value.PreviousState)
-					{
-						Debug.Log($"Input {input.Key} changed to {input.Value.IsPressed} from {input.Value.PreviousState}");
-					}
-				}*/
-
-				/*foreach (var input in JoystickInputs)
-				{
-					if (input.Value.Vector != input.Value.PreviousVector)
-					{
-						Debug.Log($"Input {input.Key} changed to {input.Value.Vector} from {input.Value.PreviousVector}");
-					}
-				}*/
-
 				foreach (var input in ButtonInputs)
 				{
 					if (!input.Value.StateUpdated)

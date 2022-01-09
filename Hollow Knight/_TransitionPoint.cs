@@ -76,7 +76,7 @@ public class TransitionPoint : MonoBehaviour
 	[Header("Cosmetics")]
 	public GameManager.SceneLoadVisualizations sceneLoadVisualization;
 
-	[Tooltip("If set to true, the default fade-in-from-black transition does not play, allowing for custom transitions")]
+	[Tooltip("If set to true, the default fade-in-from-black transition does not play, allowing for custom transitions. This should be checked if the player is dream warping into this scene")]
 	public bool customFade;
 
 	bool forceWaitFetch;

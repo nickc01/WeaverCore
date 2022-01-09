@@ -36,18 +36,6 @@ namespace WeaverCore.Editor.Implementations
                     Player.Player1.ExitRoarLock();
                 }
             }
-
-            /*public override RoarEmitter Spawn(GameObject source)
-            {
-                return Spawn(source, source.transform.position);
-            }
-
-            public override RoarEmitter Spawn(GameObject source, Vector3 spawnPosition)
-            {
-                var emitter = RoarEmitter.Spawn(source.transform.position);
-                emitter.stopAfterTime = 0f;
-                return emitter;
-            }*/
         }
     }
 }

@@ -12,13 +12,29 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Settings
 {
+	/// <summary>
+	/// Stores general build settings that are shared between WeaverCore and WeaverCore.Game
+	/// </summary>
 	public sealed class GameBuildSettings
 	{
+		/// <summary>
+		/// The location where the build settings are stored
+		/// </summary>
 		public static string GameBuildSettingsLocation = BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}Settings.txt";
 
+		/// <summary>
+		/// The currently configured folder location of Hollow Knight.exe
+		/// </summary>
 		public string HollowKnightLocation;
+
+		/// <summary>
+		/// The location of where the Unity Editor assemblies are located
+		/// </summary>
 		public string UnityEditorLocation;
 
+		/// <summary>
+		/// Gets the location of the "Mods" folder
+		/// </summary>
 		public string ModsLocation
 		{
 			get
@@ -82,15 +98,16 @@ namespace WeaverCore.Editor.Settings
 			else if (SystemInfo.operatingSystem.Contains("Mac"))
 			{
 				yield return Environment.GetEnvironmentVariable("HOME") + "/Library/Application Support/Steam/steamapps/common/Hollow Knight/hollow_knight.app";
-				//path += "Contents/Resources/Data/Managed/Mods/";
 			}
 			else if (SystemInfo.operatingSystem.Contains("Linux"))
 			{
 				yield return Environment.GetEnvironmentVariable("HOME") + "/.steam/steam/steamapps/common/Hollow Knight";
-				//path += "hollow_knight_Data/Managed/Mods";
 			}
 		}
 
+		/// <summary>
+		/// Verifies if the Hollow Knight location is configured correctly
+		/// </summary>
 		public static void Verify(GameBuildSettings settings)
 		{
 			var hkDirectory = new DirectoryInfo(settings.HollowKnightLocation);
@@ -116,12 +133,6 @@ namespace WeaverCore.Editor.Settings
 					PrintError();
 				}
 			}
-			
-
-			/*if (!hkDirectory.Exists || !Directory.Exists(hkDirectory.FullName + "\\hollow_knight_Data"))
-			{
-				Debug.LogError("The Hollow Knight directory is not configured correctly. Be sure to configure this in WeaverCore/Settings/General Settings");
-			}*/
 
 			var currentUEDirectory = new FileInfo(typeof(EditorWindow).Assembly.Location).Directory;
 
@@ -171,8 +182,6 @@ namespace WeaverCore.Editor.Settings
 
 		static StreamWriter GetWriter()
 		{
-			//File.Open(,FileMode.)
-			//return new StreamWriter(File.OpenWrite(GameBuildSettingsLocation));
 			return new StreamWriter(File.Open(GameBuildSettingsLocation,FileMode.Create,FileAccess.Write));
 		}
 

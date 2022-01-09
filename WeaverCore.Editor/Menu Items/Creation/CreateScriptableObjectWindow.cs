@@ -48,7 +48,6 @@ namespace WeaverCore.Editor
 		void Awake()
 		{
 			index = 0;
-			//GetValidTypes();
 		}
 
 		void GetValidTypes()
@@ -92,9 +91,6 @@ namespace WeaverCore.Editor
 				{
 					EditorGUILayout.LabelField(msg);
 				}
-				/*EditorGUILayout.LabelField($"No {formalTypeName} Types have been found.");
-				EditorGUILayout.LabelField("You can create one by creating a new script in the Assets folder,");
-				EditorGUILayout.LabelField("and having the type inherit from WeaverCore.Settings.Panel");*/
 				return;
 			}
 			EditorGUILayout.LabelField("Select the Class to Create:");

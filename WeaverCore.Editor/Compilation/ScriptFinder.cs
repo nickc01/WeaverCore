@@ -8,30 +8,64 @@ using UnityEngine;
 
 namespace WeaverCore.Editor.Compilation
 {
+	/// <summary>
+	/// Stores information about an assembly in the project
+	/// </summary>
 	[Serializable]
 	public class AssemblyInformation
 	{
+		/// <summary>
+		/// The name of the assembly
+		/// </summary>
 		public string AssemblyName;
+
+		/// <summary>
+		/// The asmdef file the assembly is defined in
+		/// </summary>
 		public AssemblyDefinitionFile Definition;
+
+		/// <summary>
+		/// The file path of the asmdef file
+		/// </summary>
 		public string AssemblyDefinitionPath;
+
+		/// <summary>
+		/// The GUID of the assembly
+		/// </summary>
 		public string AssemblyGUID;
+
+		/// <summary>
+		/// A list of all the script file paths that are a part of the assembly
+		/// </summary>
 		public List<string> ScriptPaths;
 
+		/// <summary>
+		/// Loads information about an assembly based on the <see cref="AssemblyDefinitionPath"/>
+		/// </summary>
 		public void Load()
 		{
 			Definition = AssemblyDefinitionFile.Load(AssemblyDefinitionPath);
 		}
 
+		/// <summary>
+		/// Saves all current information to the asmdef file
+		/// </summary>
 		public void Save()
 		{
 			AssemblyDefinitionFile.Save(AssemblyDefinitionPath, Definition);
 		}
 	}
 
+	/// <summary>
+	/// Used for finding all scripts in a project, and other information about them
+	/// </summary>
 	public static class ScriptFinder
 	{
 		static List<AssemblyInformation> infoCache;
 
+		/// <summary>
+		/// Gets all information about all scripts in the project
+		/// </summary>
 		public static List<AssemblyInformation> GetProjectScriptInfo()
 		{
 			List<AssemblyInformation> AssemblyInfo = new List<AssemblyInformation>();

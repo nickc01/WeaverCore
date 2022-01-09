@@ -7,8 +7,17 @@ using UnityEngine;
 
 namespace WeaverCore.Editor.Utilities
 {
+	/// <summary>
+	/// Used for loading assets that are located in the WeaverCore.Editor folder
+	/// </summary>
 	public static class EditorAssets
 	{
+		/// <summary>
+		/// Loads an editor assets
+		/// </summary>
+		/// <typeparam name="T">The type of asset to load</typeparam>
+		/// <param name="name">The name of the asset to load</param>
+		/// <returns>Returns an instance to the asset, or null if it doesn't exist</returns>
 		public static T LoadEditorAsset<T>(string name) where T : UnityEngine.Object
 		{
 			var assetIDs = AssetDatabase.FindAssets(name);
@@ -29,6 +38,12 @@ namespace WeaverCore.Editor.Utilities
 			return default(T);
 		}
 
+		/// <summary>
+		/// Loads an editor assets
+		/// </summary>
+		/// <param name="name">The name of the asset to load</param>
+		/// <param name="type">The type of asset to load</param>
+		/// <returns>Returns an instance to the asset, or null if it doesn't exist</returns>
 		public static UnityEngine.Object LoadEditorAsset(string name, Type type)
 		{
 			var assetPaths = AssetDatabase.FindAssets(name);

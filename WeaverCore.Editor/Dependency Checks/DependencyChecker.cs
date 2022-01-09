@@ -11,6 +11,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
 {
+    /// <summary>
+    /// Used for checking the project to make sure all of WeaverCore's dependencies are met
+    /// </summary>
     public static class DependencyChecker
     {
         static bool checkingDependencies = false;
@@ -99,6 +102,9 @@ namespace WeaverCore.Editor
             EditorUtility.DisplayProgressBar(progressTitle, progressInfo, progressProgress);
         }
 
+        /// <summary>
+        /// Checks the dependencies of a project to make sure all the WeaverCore's dependencies are satisfied
+        /// </summary>
         public static void CheckDependencies()
         {
             if (EditorApplication.isPlaying)

@@ -8,7 +8,6 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore.Game.Implementations
 {
-	// Token: 0x0200000E RID: 14
 	public class G_WeaverLanguage_I : WeaverLanguage_I
 	{
 		[OnRuntimeInit]
@@ -19,15 +18,9 @@ namespace WeaverCore.Game.Implementations
 
         private static string ModHooks_LanguageGetHook(string key, string sheetTitle, string orig)
         {
-			var currentLanguage = (SupportedLanguages)global::Language.Language.CurrentLanguage();
-			WeaverLog.Log("Key = " + key);
-			WeaverLog.Log("Sheet Title = " + sheetTitle);
-			WeaverLog.Log("Orig = " + orig);
-			WeaverLog.Log("Current Language = " + currentLanguage);
+			var currentLanguage = (SupportedLanguages)Language.Language.CurrentLanguage();
             foreach (var lTable in Registry.GetAllFeatures<LanguageTable>(t => t.Language == currentLanguage && t.SheetTitle == sheetTitle))
             {
-				WeaverLog.Log("Language Table Found = " + lTable.name);
-				WeaverLog.Log("Has Key = " + lTable.HasString(key));
                 if (lTable.HasString(key))
                 {
 					return lTable.GetString(key, orig);
@@ -38,17 +31,16 @@ namespace WeaverCore.Game.Implementations
 
         public override SupportedLanguages GetCurrentLanguage()
         {
-			return (SupportedLanguages)global::Language.Language.CurrentLanguage();
+			return (SupportedLanguages)Language.Language.CurrentLanguage();
         }
 
-        // Token: 0x06000033 RID: 51 RVA: 0x00002FC8 File Offset: 0x000011C8
         public override string GetString(string sheetTitle, string key, string fallback = null)
 		{
 			bool flag = this.HasString(sheetTitle, key);
 			string result;
 			if (flag)
 			{
-				result = global::Language.Language.Get(key, sheetTitle);
+				result = Language.Language.Get(key, sheetTitle);
 			}
 			else
 			{
@@ -57,35 +49,31 @@ namespace WeaverCore.Game.Implementations
 			return result;
 		}
 
-		// Token: 0x06000034 RID: 52 RVA: 0x00002FF4 File Offset: 0x000011F4
 		public override string GetString(string key, string fallback = null)
 		{
 			bool flag = this.HasString(key);
-			WeaverLog.Log($"HAS KEY {key} = {flag}");
 			string result;
 			if (flag)
 			{
-				result = global::Language.Language.Get(key);
+				result = Language.Language.Get(key);
 			}
 			else
 			{
 				result = fallback;
 			}
-			WeaverLog.Log("Result = " + result);
 			return result;
 		}
 
 		public override string GetStringInternal(string key)
 		{
-			return global::Language.Language.GetInternal(key, "General");
+			return Language.Language.GetInternal(key, "General");
 		}
 
 		public override string GetStringInternal(string key, string sheetTitle)
 		{
-			return global::Language.Language.GetInternal(key, sheetTitle);
+			return Language.Language.GetInternal(key, sheetTitle);
 		}
 
-		// Token: 0x06000035 RID: 53 RVA: 0x00003020 File Offset: 0x00001220
 		public override bool HasString(string sheetTitle, string key)
 		{
 			var currentLanguage = GetCurrentLanguage();
@@ -96,29 +84,23 @@ namespace WeaverCore.Game.Implementations
 					return true;
                 }
             }
-			return global::Language.Language.Has(key, sheetTitle);
+			return Language.Language.Has(key, sheetTitle);
 		}
 
-		// Token: 0x06000036 RID: 54 RVA: 0x0000303C File Offset: 0x0000123C
 		public override bool HasString(string key)
 		{
 			var currentLanguage = GetCurrentLanguage();
 
 			var allLangTables = Registry.GetAllFeatures<LanguageTable>();
-            foreach (var lTable in allLangTables)
-            {
-				WeaverLog.Log("ALL LANG TABLE = " + lTable.name);
-            }
 
 			foreach (var lTable in Registry.GetAllFeatures<LanguageTable>(t => t.Language == currentLanguage && t.SheetTitle == "General"))
 			{
-				WeaverLog.Log("FOUND TABLE = " + lTable.name);
 				if (lTable.HasString(key))
 				{
 					return true;
 				}
 			}
-			return global::Language.Language.Has(key);
+			return Language.Language.Has(key);
 		}
 	}
 }

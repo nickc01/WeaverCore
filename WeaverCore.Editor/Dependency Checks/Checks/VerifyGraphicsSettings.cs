@@ -3,7 +3,9 @@ using UnityEditor;
 
 namespace WeaverCore.Editor
 {
-
+    /// <summary>
+    /// Makes sure the graphics settings are configured properly
+    /// </summary>
     class VerifyGraphicsSettings : DependencyCheck
     {
         public override void StartCheck(Action<DependencyCheckResult> finishCheck)

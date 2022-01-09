@@ -13,7 +13,6 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Implementations
 {
-
 	public class G_EventManager_I : EventManager_I
 	{
 		static List<GameObject> ExcludedEventManagerObjects = new List<GameObject>();
@@ -36,7 +35,6 @@ namespace WeaverCore.Game.Implementations
 			{
 				if (PlayMakerFSM.FsmList.Count > 0)
 				{
-					//foreach (var fsmComponent in PlayMakerFSM.FsmList)
 					for (int i = PlayMakerFSM.FsmList.Count - 1; i >= 0; i--)
 					{
 						if (i >= PlayMakerFSM.FsmList.Count)
@@ -123,7 +121,6 @@ namespace WeaverCore.Game.Implementations
 				}
 				if (fsmEvent != null)
 				{
-					//WeaverLog.Log($"FSM Event Triggered {fsmEvent.Name} from object {source}");
 					switch (eventTarget.target)
 					{
 						case FsmEventTarget.EventTarget.Self:
@@ -171,16 +168,13 @@ namespace WeaverCore.Game.Implementations
 
 		static void TriggerEvent(GameObject targetObject, string eventName, GameObject source)
 		{
-			//WeaverLog.Log($"T_EVENT {targetObject?.name}, {eventName}, {source?.name}");
 			try
 			{
 				if (targetObject != null && !ExcludedEventManagerObjects.Contains(targetObject))
 				{
-					//WeaverLog.Log("A");
 					var receiver = targetObject.GetComponent<G_EventManager_I>();
 					if (receiver != null)
 					{
-						//WeaverLog.Log("B");
 						receiver.TriggerEventInternal(eventName, source);
 					}
 				}

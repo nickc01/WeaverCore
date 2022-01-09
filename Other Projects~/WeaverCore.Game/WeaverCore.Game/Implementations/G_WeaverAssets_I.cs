@@ -129,31 +129,16 @@ namespace WeaverCore.Game.Implementations
 			var assetNames = bundleName.GetAllAssetNames();
 			foreach (var assetName in assetNames)
 			{
-				//WeaverLog.Log("Name = " + assetName);
 				if (assetName.ToLower().Contains(lowerName))
 				{
-					//WeaverLog.Log("Contains Name!");
 					var asset = bundleName.LoadAsset<T>(assetName);
 					if (asset != null)
 					{
-						//WeaverLog.Log("Found Asset Name = " + assetName);
 						return asset;
 					}
-					/*else
-					{
-						WeaverLog.Log("Actual Type = " + bundleName.LoadAsset<UnityEngine.Object>(assetName)?.GetType().FullName);
-					}*/
 				}
 			}
-			//WeaverLog.Log("Returning Null");
 			return default(T);
-			/*var asset = assets.FirstOrDefault(a => a.Contains(lowerName));
-			if (asset != null)
-			{
-				var instance = bundleName.LoadAsset<T>(asset);
-				return instance;
-			}
-			return default(T);*/
 		}
 
         public override IEnumerable<T> LoadAssets<T>(string assetName)

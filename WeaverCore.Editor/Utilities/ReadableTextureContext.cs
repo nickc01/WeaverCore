@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace WeaverCore.Editor.Utilities
 {
+	/// <summary>
+	/// Used to temporarily make a texture readable
+	/// </summary>
 	public sealed class ReadableTextureContext : IDisposable
 	{
 		public class PreviousState
@@ -53,7 +56,7 @@ namespace WeaverCore.Editor.Utilities
 		/// Makes all the input textures readable
 		/// </summary>
 		/// <param name="textures">The textures to make readable</param>
-		/// <returns>A list the size of the textures list. This list stores whether the textures where readable or not previously. This is useful to revert the textures back to their previous state</returns>
+		/// <returns>Returns a list the size of the textures list. This list stores whether the textures where readable or not previously. This is useful to revert the textures back to their previous state</returns>
 		public static List<PreviousState> MakeTexturesReadable(List<Texture2D> textures)
 		{
 			try
@@ -100,6 +103,11 @@ namespace WeaverCore.Editor.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Reverts all textures back to their original states
+		/// </summary>
+		/// <param name="textures">The textures to revert</param>
+		/// <param name="previousStates">A list of the previosu states of the textures</param>
 		public static void RevertTextureReadability(List<Texture2D> textures, List<PreviousState> previousStates)
 		{
 			try

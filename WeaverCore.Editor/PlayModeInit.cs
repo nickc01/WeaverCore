@@ -9,6 +9,9 @@ using WeaverCore.Editor.Utilities;
 
 namespace WeaverCore.Editor
 {
+	/// <summary>
+	/// Used to spawn a GameManager when entering playmode
+	/// </summary>
 	public static class PlayModeInit
 	{
 		[OnRuntimeInit]

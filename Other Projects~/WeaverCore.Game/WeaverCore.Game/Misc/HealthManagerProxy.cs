@@ -13,7 +13,7 @@ using WeaverCore.Game;
 using WeaverCore.Utilities;
 
 /// <summary>
-/// Serves as a way of having a health manager by syncing it's properties with WeaverCore's EntityHealth and vice versa
+/// Serves as a way of having a health manager on a WeaverCore created object by syncing it's properties with WeaverCore's <see cref="EntityHealth"/> and vice versa
 /// </summary>
 public class HealthManagerProxy : HealthManager
 {
@@ -369,19 +369,6 @@ public class HealthManagerProxy : HealthManager
 				hp = previousHP;
 				weaverHealth.Health -= difference;
 			}
-			/*switch (weaverHealth.HealthDirection)
-			{
-				case HealthDirection.Down:
-					previousHP -= difference;
-					hp = previousHP;
-					weaverHealth.Health -= difference;
-					break;
-				case HealthDirection.Up:
-					previousHP += difference;
-					hp = previousHP;
-					weaverHealth.Health += difference;
-					break;
-			}*/
 		}
 	}
 }

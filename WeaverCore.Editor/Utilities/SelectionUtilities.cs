@@ -15,8 +15,17 @@ namespace WeaverCore.Editor.Utilities
 		public string LastSelectedDirectory = Path.GetTempPath();
 	}
 
+	/// <summary>
+	/// Contains several utility functions related to selecting files or directories
+	/// </summary>
 	public static class SelectionUtilities
 	{
+		/// <summary>
+		/// Prompts the user to select a file
+		/// </summary>
+		/// <param name="title">The title of the window</param>
+		/// <param name="extension">The extension to look for</param>
+		/// <returns>Returns the path of the selected file, or null if a file wasn't selected</returns>
 		public static string SelectFile(string title,string extension)
 		{
 			var lastDirectory = GetLastDirectory();
@@ -30,10 +39,16 @@ namespace WeaverCore.Editor.Utilities
 			return new FileInfo(file).FullName;
 		}
 
-		public static string SelectFolder(string title, string defaultName)
+		/// <summary>
+		/// Prompts the user to select a folder
+		/// </summary>
+		/// <param name="title">The title of the window</param>
+		/// <param name="defaultFolder">The default folder to start the window up on</param>
+		/// <returns>Returns the path to the selected folder, or null if a folder wasn't selected</returns>
+		public static string SelectFolder(string title, string defaultFolder)
 		{
 			var lastDirectory = GetLastDirectory();
-			var folder = EditorUtility.OpenFolderPanel(title, lastDirectory.LastSelectedDirectory, defaultName);
+			var folder = EditorUtility.OpenFolderPanel(title, lastDirectory.LastSelectedDirectory, defaultFolder);
 			lastDirectory.LastSelectedDirectory = folder;
 			SetLastDirectory(lastDirectory);
 			if (folder == null || folder == "")
@@ -61,30 +76,6 @@ namespace WeaverCore.Editor.Utilities
 		{
 			PersistentData.StoreData(settings);
 			PersistentData.SaveData();
-			//var selections = new LastDirectorySettings();
-			//selections.GetStoredSettings();
-			//var selections = LastDirectorySettings.Retrieve<LastDirectorySettings>();
-
-			//bool foundExisting = false;
-
-			/*foreach (var selection in selections.LastSelections)
-			{
-				if (selection.hash == hash && selection.directory != directory)
-				{
-					selection.directory = directory;
-					foundExisting = true;
-					//Debug.Log("Last Directory Json = " + JsonUtility.ToJson(selections));
-					//selections.SetStoredSettings();
-					break;
-				}
-			}*/
-
-			/*if (!foundExisting)
-			{
-				selections.LastSelections.Add(new DirectoryPair() { directory = directory, hash = hash });
-			}
-
-			selections.SetStoredSettings();*/
 		}
 	}
 }

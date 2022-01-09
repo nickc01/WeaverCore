@@ -8,15 +8,22 @@ using UnityEngine;
 using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
 
+/// <summary>
+/// Used for converting an atlas texture consisting multiple sprites, into multiple textures
+/// </summary>
 public class AtlasToTexturesConverter : EditorWindow
 {
+	[MenuItem("WeaverCore/Tools/Convert Atlas to Textures")]
+	public static void Convert()
+	{
+        Display();
+	}
+
 	Texture2D sourceTexture;
 
 	string folder;
 
 	bool deleteOriginal = false;
-
-
 
 	public static AtlasToTexturesConverter Display()
 	{
@@ -34,39 +41,11 @@ public class AtlasToTexturesConverter : EditorWindow
 
 	void OnGUI()
 	{
-		//TODO
 		sourceTexture = (Texture2D)EditorGUILayout.ObjectField("Atlas to Convert", sourceTexture, typeof(Texture2D), false);
 		deleteOriginal = EditorGUILayout.Toggle("Delete Original Atlas", deleteOriginal);
 
-		/*EditorGUILayout.BeginHorizontal();
-
-		folder = EditorGUILayout.TextField("Dump Location", folder);
-		if (GUILayout.Button("...", GUILayout.MaxWidth(30)))
-		{
-			string location = EditorUtility.OpenFolderPanel("Find where to dump the textures", Environment.CurrentDirectory, "");
-			if (location != null && location != "")
-			{
-				var fileInfo = new FileInfo(location);
-
-				folder = fileInfo.Directory.FullName;
-
-				try
-				{
-					folder = PathUtilities.ConvertToProjectPath(folder);
-				}
-				catch
-				{
-					Debug.LogError("Error : Folder path must be relative to the \"Assets\" folder");
-				}
-			}
-		}
-
-		EditorGUILayout.EndHorizontal();*/
-
-
 		if (GUILayout.Button("Convert"))
 		{
-			//ACTION
 			Close();
 			UnboundCoroutine.Start(Convert(sourceTexture,folder, deleteOriginal));
 		}
@@ -104,10 +83,6 @@ public class AtlasToTexturesConverter : EditorWindow
 
 		destFolder = "Assets/" + PathUtilities.ConvertToAssetPath(destFolder);
 
-		//Debug.Log("Dest Folder = " + destFolder);
-
-		//TextureImporter importer = (TextureImporter)TextureImporter.GetAtPath(AssetDatabase.GetAssetPath(texture));
-
 		List<string> CreatedFilePaths = new List<string>();
 
 		try
@@ -117,11 +92,6 @@ public class AtlasToTexturesConverter : EditorWindow
 				yield return null;
 
 				texture = AssetDatabase.LoadAssetAtPath<Texture2D>(AssetDatabase.GetAssetPath(texture));
-				//var sampleTexture = texture.Clone();
-				/*var rTex = RenderTexture.GetTemporary(texture.width, texture.height, 0, RenderTextureFormat.ARGB32);
-				Graphics.Blit(texture, rTex);
-				var sampleTexture = rTex.ToTexture2D();
-				RenderTexture.ReleaseTemporary(rTex);*/
 
 				AssetDatabase.StartAssetEditing();
 				foreach (var sprite in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(texture)).OfType<Sprite>())
@@ -158,8 +128,6 @@ public class AtlasToTexturesConverter : EditorWindow
 		}
 
 		yield return null;
-
-		//TODO : TRANSFER OVER PPU AND OTHER INFO, AND DELETE ORIGINAL TEXTURE IF TOGGLED
 
 		try
 		{
@@ -198,15 +166,5 @@ public class AtlasToTexturesConverter : EditorWindow
 		{
 			AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(texture));
 		}
-	}
-}
-
-
-public class ConvertAtlasToTextures : MonoBehaviour 
-{
-	[MenuItem("WeaverCore/Tools/Convert Atlas to Textures")]
-	public static void Convert()
-	{
-		AtlasToTexturesConverter.Display();
 	}
 }

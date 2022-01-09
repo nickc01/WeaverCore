@@ -16,6 +16,11 @@ namespace WeaverCore
 	public static class Warp
 	{
 		/// <summary>
+		/// Is the player currently dream warping?
+		/// </summary>
+		public static bool Warping { get; private set; }
+
+		/// <summary>
 		/// Contains customizable options for warping the player
 		/// </summary>
 		public class DreamWarpOptions
@@ -81,6 +86,7 @@ namespace WeaverCore
 
 		static IEnumerator DoDreamnailWarpRoutine(Vector3 effectsPosition, string destinationScene, string returnScene, string gateName, float warpDelay, bool noCharms, DreamWarpOptions options)
 		{
+			Warping = true;
 			if (options == default)
 			{
 				options = DreamWarpDefaults;
@@ -229,6 +235,8 @@ namespace WeaverCore
 			{
 				GameObject.Destroy(effects);
 			}
+
+			Warping = false;
 
 			yield break;
 		}

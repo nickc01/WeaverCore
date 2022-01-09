@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Importing Existing Sprites </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Importing Existing Sprites ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="importing-existing-sprites">Importing Existing Sprites</h1>
+
+<p>In many cases, it may be useful to import existing Hollow Knight sprites into the project so you can work with them. However, it isn't as simple as adding in the spritesheets into the &quot;Assets&quot; folder and adding them to an object, because they will otherwise look like this:</p>
+<p><img src="../images/incorrectSpriteImport.PNG" alt="Incorrect Sprite Import"></p>
+<p>In order to import the sprites properly, we need a way of splitting up the spritesheet into individual sprites we can work with. Luckily, WeaveCore provides a way of doing this via it's in-game Debug Tools. To get the information we need, we need to boot up Hollow Knight, go to the object we want to dump (Massive Moss Charger in this case), and find it in the WeaverCore Debug Tools:</p>
+<p><img src="../images/spriteInDebugTools.gif" alt="Sprite In Debug Tools"></p>
+<p>The object we want in this case is &quot;Mega Moss Charger&quot;. Make sure it's highlighted, and open up the &quot;Tools&quot; panel at the bottom of the screen. This will present us with some options we can do on the object:</p>
+<p><img src="../images/objectTools.PNG" alt="Object Tools"></p>
+<p>The one we need is <strong>&quot;Dump Sprites On Object&quot;</strong>. Click on it and it will proceed to dump all the sprites on the Massive Moss Charger. The dumped files will be placed into your Hollow Knight &quot;Mods&quot; directory. If you are using Steam on Windows, this should be located at:</p>
+<pre><code>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods
+</code></pre>
+<p>The files will be located in <strong>WeaverCore\WeaverCore\Dumps\Massive Moss Charger - [RANDOM NUMBERS]</strong>:</p>
+<p><img src="../images/dumpedSpriteFiles.PNG" alt="Dumped Sprite Files"></p>
+<p>These are the two files we need to import the sprites into a WeaverCore Project. Now, head back into the Unity Editor, and we need to go to &quot;WeaverCore -&gt; Tools -&gt; Unpack Sprite Map&quot;</p>
+<p><img src="../images/unpackSpriteMap.PNG" alt="Unpack Sprite Map"></p>
+<p>This will bring up a window where we can start unpacking the sprites.</p>
+<p><img src="../images/unpackSettings.PNG" alt="Unpack Settings"></p>
+<p>This is where we can specify the Unpack mode, which determines how we want the sprites to get unpacked. The two modes are:</p>
+<ol>
+<li><strong>To Textures</strong> : Will unpack all the sprites into individual files, one for each sprite</li>
+<li><strong>To Sprite</strong> : Will unpack all the sprites into a single file, and the unity sprite packer will create all the sprites from this single file</li>
+</ol>
+<p>You can pick whichever option will better suit your needs.</p>
+<p>When you are ready, click on the &quot;Begin&quot; button, and this will bring up a file selection window. From here, we need to select the spritemap file that was dumped by WeaverCore:</p>
+<p><img src="../images/selectSpriteMap.PNG" alt="Select Sprite Map"></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Make sure all the PNG files are also in the same location as the spritemap file, or else the import will fail</p>
+</div>
+<p>Once you selected the file, the import process will begin. Once it's done, it will create a folder that contains all the imported sprites that we can now use!</p>
+<p><img src="../images/finishedUnpackedSprites.PNG" alt="Finished Unpacked Sprites"></p>
+<h1 id="importing-animations">Importing Animations</h1>
+<p>Importing animations from existing objects is a very similar process to importing sprites.</p>
+<p>Instead of using the &quot;Dump Sprites On Object&quot; tool in the Debug Tools, we instead use &quot;Dump Animation Maps On Object&quot;:</p>
+<p><img src="../images/dumpAnimationMaps.PNG" alt="Dump Animation Maps"></p>
+<p>The tool will result in an &quot;animmap&quot; file getting dumped along side the image file:</p>
+<p><img src="../images/animMapDumped.PNG" alt="Anim Map Dumped"></p>
+<p>To import the animation data, we need to go to &quot;WeaverCore -&gt; Tools -&gt; Unpack Animation Map&quot;</p>
+<p><img src="../images/unpackAnimationMap.PNG" alt="Unpack Animation Map"></p>
+<p>From here, we follow the same steps when importing the spritemap. We specify unpack mode we want, click on &quot;Begin&quot;, find and open the &quot;animmap&quot; file, and the files will get imported into the project:</p>
+<p><img src="../images/unpackedAnimations.PNG" alt="Unpacked Animations"></p>
+<p>But this time, we have an extra file that was imported. This new object is a <a class="xref" href="../api/WeaverCore.Utilities.WeaverAnimationData.html">Weaver Animation Data</a> object that contains all the animation data of the Massive Moss Charger:</p>
+<p><img src="../images/weaverAnimationData.PNG" alt="Weaver Animation Data"></p>
+<p>To use it, we need to add a <a class="xref" href="../api/WeaverCore.Components.WeaverAnimationPlayer.html">Weaver Animation Data</a> component to an object of our choice:</p>
+<p><img src="../images/animationPlayerComponent.PNG" alt="Animation Player Component"></p>
+<p>Then, drag the imported animation data object into the &quot;Animation Data&quot; slot of the player:</p>
+<p><img src="../images/animationDataSlot.gif" alt="Animation Data Slot"></p>
+<p>With the Animation Player now configured, we can play an animation clip by using the <a class="xref" href="../api/WeaverCore.Components.WeaverAnimationPlayer.html#WeaverCore_Components_WeaverAnimationPlayer_PlayAnimation_System_String_System_Action_System_Boolean_">PlayAnimation</a> function:</p>
+<pre><code class="lang-cs">void Awake()
+{
+	var player = GetComponent&lt;WeaverAnimationPlayer&gt;();
+
+	//Play the &quot;Charge&quot; animation
+	player.PlayAnimation(&quot;Charge&quot;);
+}
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/docs_src~/articles/importingSprites.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

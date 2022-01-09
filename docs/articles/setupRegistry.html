@@ -80,7 +80,7 @@
 <p><img src="../images/modClassGenerated.PNG" alt="Mod Class Generated"></p>
 <p>With this new mod class created, you can now select it in the Registry:</p>
 <p><img src="../images/assigningModToRegistry.gif" alt="Assigning Mod To Registry"></p>
-<p>The registry is now all setup! To test it out, lets create a &quot;Global Settings&quot; object. To create one, first create a new script in the Assets folder, and put the following contents in it:</p>
+<p>The registry is now all setup! Lets test if it's working by adding a feature to it. We will quickly create a &quot;Global Settings&quot; object so we can add a settings panel to the in-game settings menu. We will go over more detail on <a class="xref" href="../api/WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> later, but for now, we will use a simple example. To create one, first create a new script in the Assets folder, and put the following contents in it:</p>
 <pre><code class="lang-cs">using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -100,7 +100,7 @@ public class TestSettingsScript : GlobalSettings
 </code></pre>
 <p>Now, go to &quot;WeaverCore -&gt; Create -&gt; Global Settings&quot; to create a new global settings object based on &quot;TestSettingsScript&quot;:</p>
 <p><img src="../images/createGlobalSettingsObject.gif" alt="Create Global Settings Object"></p>
-<p>Then, take the newly created &quot;Global Settings&quot; object, and add it to the Registry. You can add it by selecting the feature you want to add in the &quot;Feature to Add&quot; list, clicking on &quot;Add Feature&quot;, and dragging the object into the slot:</p>
+<p>Then, take the newly created object and add it to the Registry. You can add it by selecting the feature you want to add in the &quot;Feature to Add&quot; list, clicking on &quot;Add Feature&quot;, and dragging the object into the slot:</p>
 <p><img src="../images/addingFeatureToRegistry.gif" alt="Adding Feature To Registry"></p>
 <p>What the &quot;Global Settings&quot; object will do in-game is add a new section to the WeaverCore Settings Menu that will allow us to configure three different fields (testNumber, testString, and testToggle).</p>
 <h1 id="building-the-mod">Building the Mod</h1>
@@ -112,12 +112,17 @@ public class TestSettingsScript : GlobalSettings
 </div>
 <p>When you are ready to build, click on &quot;Compile&quot;, and WeaverCore will begin it's build process (this may take a while to complete):</p>
 <p><img src="../images/buildingMod.PNG" alt="Building Mod"></p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Make sure you don't minimize the Unity Editor while it's building. If the window doesn't have focus, it may not build correctly</p>
+</div>
 <p>You will know the build was successful when you see &quot;Asset Bundling Complete&quot; in the console</p>
 <p><img src="../images/buildCompleted.PNG" alt="Build Complete"></p>
 <p>With the build completed, you can now start up Hollow Knight, and you should see your mod show up in the Mod List on the top left corner</p>
 <p><img src="../images/modInHollowKnight.PNG" alt="Mod In Hollow Knight"></p>
 <p>And, since we added a &quot;Global Settings&quot; object as a feature to the mod's registry, we can now go over to the WeaverCore Settings Menu, and see the global settings the mod has added:</p>
 <p><img src="../images/newGlobalSettings.gif" alt="New Global Settings"></p>
+<p>Now that you know the basics on how WeaverCore works, I can now show you how to add many other new features to the game (new enemies, bosses, scenes, etc)</p>
 </article>
           </div>
           

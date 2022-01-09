@@ -24,7 +24,7 @@ With this new mod class created, you can now select it in the Registry:
 
 ![Assigning Mod To Registry](~/images/assigningModToRegistry.gif)
 
-The registry is now all setup! To test it out, lets create a "Global Settings" object. To create one, first create a new script in the Assets folder, and put the following contents in it:
+The registry is now all setup! Lets test if it's working by adding a feature to it. We will quickly create a "Global Settings" object so we can add a settings panel to the in-game settings menu. We will go over more detail on [GlobalSettings](xref:WeaverCore.Settings.GlobalSettings) later, but for now, we will use a simple example. To create one, first create a new script in the Assets folder, and put the following contents in it:
 
 ```cs
 using System.Collections;
@@ -49,7 +49,7 @@ Now, go to "WeaverCore -> Create -> Global Settings" to create a new global sett
 
 ![Create Global Settings Object](~/images/createGlobalSettingsObject.gif)
 
-Then, take the newly created "Global Settings" object, and add it to the Registry. You can add it by selecting the feature you want to add in the "Feature to Add" list, clicking on "Add Feature", and dragging the object into the slot:
+Then, take the newly created object and add it to the Registry. You can add it by selecting the feature you want to add in the "Feature to Add" list, clicking on "Add Feature", and dragging the object into the slot:
 
 ![Adding Feature To Registry](~/images/addingFeatureToRegistry.gif)
 
@@ -68,6 +68,9 @@ When you are ready to build, click on "Compile", and WeaverCore will begin it's 
 
 ![Building Mod](~/images/buildingMod.PNG)
 
+> [!WARNING]
+> Make sure you don't minimize the Unity Editor while it's building. If the window doesn't have focus, it may not build correctly
+
 You will know the build was successful when you see "Asset Bundling Complete" in the console
 
 ![Build Complete](~/images/buildCompleted.PNG)
@@ -79,3 +82,5 @@ With the build completed, you can now start up Hollow Knight, and you should see
 And, since we added a "Global Settings" object as a feature to the mod's registry, we can now go over to the WeaverCore Settings Menu, and see the global settings the mod has added:
 
 ![New Global Settings](~/images/newGlobalSettings.gif)
+
+Now that you know the basics on how WeaverCore works, I can now show you how to add many other new features to the game (new enemies, bosses, scenes, etc)

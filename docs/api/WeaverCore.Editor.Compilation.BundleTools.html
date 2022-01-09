@@ -72,7 +72,8 @@
   
   <h1 id="WeaverCore_Editor_Compilation_BundleTools" data-uid="WeaverCore.Editor.Compilation.BundleTools" class="text-break">Class BundleTools
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Contains tools needed for building mod asset bundles</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -92,11 +93,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Editor_Compilation_BundleTools_Data.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Compilation.BundleTools.Data%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Compilation/BundleTools.cs/#L58">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Compilation/BundleTools.cs/#L113">View Source</a>
   </span>
   <a id="WeaverCore_Editor_Compilation_BundleTools_Data_" data-uid="WeaverCore.Editor.Compilation.BundleTools.Data*"></a>
   <h4 id="WeaverCore_Editor_Compilation_BundleTools_Data" data-uid="WeaverCore.Editor.Compilation.BundleTools.Data">Data</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Contains all the data regarding the current build process</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -124,11 +126,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Editor_Compilation_BundleTools_BuildAndEmbedAssetBundles_System_IO_FileInfo_System_IO_FileInfo_System_Reflection_MethodInfo_.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Compilation.BundleTools.BuildAndEmbedAssetBundles(System.IO.FileInfo%2CSystem.IO.FileInfo%2CSystem.Reflection.MethodInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Compilation/BundleTools.cs/#L105">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Compilation/BundleTools.cs/#L203">View Source</a>
   </span>
   <a id="WeaverCore_Editor_Compilation_BundleTools_BuildAndEmbedAssetBundles_" data-uid="WeaverCore.Editor.Compilation.BundleTools.BuildAndEmbedAssetBundles*"></a>
   <h4 id="WeaverCore_Editor_Compilation_BundleTools_BuildAndEmbedAssetBundles_System_IO_FileInfo_System_IO_FileInfo_System_Reflection_MethodInfo_" data-uid="WeaverCore.Editor.Compilation.BundleTools.BuildAndEmbedAssetBundles(System.IO.FileInfo,System.IO.FileInfo,System.Reflection.MethodInfo)">BuildAndEmbedAssetBundles(FileInfo, FileInfo, MethodInfo)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Builds all the asset bundles in the project and embeds them into the mod assemblies. This method will reload the project several times before completing</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -147,35 +150,23 @@
       <tr>
         <td><span class="xref">System.IO.FileInfo</span></td>
         <td><span class="parametername">modDll</span></td>
-        <td></td>
+        <td><p>The file path to the mod dll</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.IO.FileInfo</span></td>
         <td><span class="parametername">weaverCoreDLL</span></td>
-        <td></td>
+        <td><p>The file path to WeaverCore.dll</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Reflection.MethodInfo</span></td>
         <td><span class="parametername">OnComplete</span></td>
-        <td></td>
+        <td><p>The method to call when the process is done</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Editor_Compilation_BundleTools_Test.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Compilation.BundleTools.Test%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Compilation/BundleTools.cs/#L294">View Source</a>
-  </span>
-  <a id="WeaverCore_Editor_Compilation_BundleTools_Test_" data-uid="WeaverCore.Editor.Compilation.BundleTools.Test*"></a>
-  <h4 id="WeaverCore_Editor_Compilation_BundleTools_Test" data-uid="WeaverCore.Editor.Compilation.BundleTools.Test">Test()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Test()</code></pre>
-  </div>
 </article>
           </div>
           
@@ -187,7 +178,7 @@
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Editor_Compilation_BundleTools.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Compilation.BundleTools%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Compilation/BundleTools.cs/#L30" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Compilation/BundleTools.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

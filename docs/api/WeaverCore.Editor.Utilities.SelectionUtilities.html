@@ -72,7 +72,8 @@
   
   <h1 id="WeaverCore_Editor_Utilities_SelectionUtilities" data-uid="WeaverCore.Editor.Utilities.SelectionUtilities" class="text-break">Class SelectionUtilities
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Contains several utility functions related to selecting files or directories</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -92,11 +93,12 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Editor_Utilities_SelectionUtilities_SelectFile_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Utilities.SelectionUtilities.SelectFile(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Utilities/SelectionUtilities.cs/#L20">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Utilities/SelectionUtilities.cs/#L29">View Source</a>
   </span>
   <a id="WeaverCore_Editor_Utilities_SelectionUtilities_SelectFile_" data-uid="WeaverCore.Editor.Utilities.SelectionUtilities.SelectFile*"></a>
   <h4 id="WeaverCore_Editor_Utilities_SelectionUtilities_SelectFile_System_String_System_String_" data-uid="WeaverCore.Editor.Utilities.SelectionUtilities.SelectFile(System.String,System.String)">SelectFile(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Prompts the user to select a file</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -115,12 +117,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">title</span></td>
-        <td></td>
+        <td><p>The title of the window</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">extension</span></td>
-        <td></td>
+        <td><p>The extension to look for</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -135,7 +139,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>Returns the path of the selected file, or null if a file wasn't selected</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -144,15 +149,16 @@
     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Editor_Utilities_SelectionUtilities_SelectFolder_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Utilities.SelectionUtilities.SelectFolder(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Utilities/SelectionUtilities.cs/#L33">View Source</a>
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Utilities/SelectionUtilities.cs/#L48">View Source</a>
   </span>
   <a id="WeaverCore_Editor_Utilities_SelectionUtilities_SelectFolder_" data-uid="WeaverCore.Editor.Utilities.SelectionUtilities.SelectFolder*"></a>
   <h4 id="WeaverCore_Editor_Utilities_SelectionUtilities_SelectFolder_System_String_System_String_" data-uid="WeaverCore.Editor.Utilities.SelectionUtilities.SelectFolder(System.String,System.String)">SelectFolder(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Prompts the user to select a folder</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string SelectFolder(string title, string defaultName)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string SelectFolder(string title, string defaultFolder)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -167,12 +173,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">title</span></td>
-        <td></td>
+        <td><p>The title of the window</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">defaultName</span></td>
-        <td></td>
+        <td><span class="parametername">defaultFolder</span></td>
+        <td><p>The default folder to start the window up on</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -187,7 +195,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>Returns the path to the selected folder, or null if a folder wasn't selected</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -202,7 +211,7 @@
                     <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Editor_Utilities_SelectionUtilities.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Utilities.SelectionUtilities%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Utilities/SelectionUtilities.cs/#L18" class="contribution-link">View Source</a>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore.Editor/Utilities/SelectionUtilities.cs/#L21" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

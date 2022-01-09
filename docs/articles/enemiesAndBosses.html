@@ -1,0 +1,945 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Adding Enemies </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Adding Enemies ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="adding-enemies">Adding Enemies</h1>
+
+<p>WeaverCore provides an easy way for both creating and testing new enemies and bosses.</p>
+<p>To get started, first add in a template enemy via WeaverCore -&gt; Insert -&gt; Template Enemy.</p>
+<p><img src="../images/templateEnemy.PNG" alt="Template Enemy"></p>
+<p>This will insert a template enemy that has most of the components we need to build our new enemy:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sprite Renderer</td>
+<td>Used for rendering a face sprite on the enemy</td>
+</tr>
+<tr>
+<td><a class="xref" href="../api/WeaverCore.Components.SpriteFlasher.html">Sprite Flasher</a></td>
+<td>Causes the sprite to flash a certain color when hit</td>
+</tr>
+<tr>
+<td><a class="xref" href="../api/WeaverCore.Components.PlayerDamager.html">Player Damager</a></td>
+<td>Causes the player to take damage when colliding with the enemy</td>
+</tr>
+<tr>
+<td>Box Collider 2D</td>
+<td>Allows other objects, like the player, to come in contact with this enemy</td>
+</tr>
+<tr>
+<td>Rigidbody 2D</td>
+<td>Allows the enemy to interact with it's enviroment, and have gravity applied to it</td>
+</tr>
+<tr>
+<td><a class="xref" href="../api/WeaverCore.Components.EntityHealth.html">Entity Health</a></td>
+<td>Keeps track of how much health the enemy has left</td>
+</tr>
+<tr>
+<td><a class="xref" href="../api/WeaverCore.Components.Recoiler.html">Recoiler</a></td>
+<td>Used to recoil the enemy backwards when the player hits it</td>
+</tr>
+<tr>
+<td>Enemy Dreamnail Reaction</td>
+<td>Allows the player to dreamnail this enemy for soul. This component can also be customized to display a message when dreamnailed</td>
+</tr>
+</tbody>
+</table>
+<p>You can find more information about these components by going over to the API Documentation.</p>
+<p>These components have most of what we need for the enemy to function, but there are a few missing ones that we need to fill in ourselves.</p>
+<h1 id="hit-effects">Hit Effects</h1>
+<p>What kind of effects should be played when the enemy gets hit? In WeaverCore, there are two main kinds of hit effects:</p>
+<ol>
+<li>The <a class="xref" href="../api/WeaverCore.Components.HitEffects.HitEffectsNormal.html">HitEffectsNormal</a> component, for enemies that aren't infected, like Hornet or Grimm</li>
+<li>The <a class="xref" href="../api/WeaverCore.Components.HitEffects.HitEffectsInfected.html">HitEffectsInfected</a> component, for enemies that are infected</li>
+</ol>
+<p>Be sure to add either one of these components to your enemy, or you can build your own by creating a component that inherits from <a class="xref" href="../api/WeaverCore.Interfaces.IHitEffects.html">IHitEffects</a>. Not having Hit Effects component will cause the enemy to emit nothing when hit</p>
+<h1 id="death-effects">Death effects</h1>
+<p>What kind of effects should be played when the enemy dies? Just like with HitEffects, there are two main kinds of Death Effects:</p>
+<ol>
+<li>The <a class="xref" href="../api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html">UninfectedDeathEffects</a> component, for enemies that aren't infected</li>
+<li>The <a class="xref" href="../api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html">InfectedDeathEffects</a> component, for enemies that are infected</li>
+</ol>
+<p>Be sure to have either one of these components attached to have death effects play for the enemy, or you can build your own by creating a script that inherits from <a class="xref" href="../api/WeaverCore.Interfaces.IDeathEffects.html">IDeathEffects</a> or <a class="xref" href="../api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html">BasicDeathEffects</a></p>
+<p><img src="../images/hitEffectsAdded.PNG" alt="Hit Effects Added"></p>
+<h1 id="enemy-logic">Enemy Logic</h1>
+<p>The final thing to do is to create a new script that inherits from <a class="xref" href="../api/WeaverCore.Features.Enemy.html">Enemy</a>, which will house the main logic for our Enemy, and add it to the Enemy Object:</p>
+<pre><code class="lang-cs">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using WeaverCore.Features;
+
+public class CustomEnemy : Enemy
+{
+
+}
+</code></pre>
+<p><img src="../images/addEnemyScript.gif" alt="Add Enemy Script"></p>
+<p>For this tutorial, we will create an enemy that has two moves, a slide move, and a lunge move. The slide move will slide on the ground to move towards the player, and the lunge move will do a lunge towards the player.</p>
+<p>In WeaverCore, we can split these two moves into their own objects by creating two classes that inherit from <a class="xref" href="../api/WeaverCore.Features.Enemy.html">IEnemyMove</a></p>
+<pre><code class="lang-cs">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using WeaverCore.Features;
+using WeaverCore.Interfaces;
+
+//CustomEnemy.cs
+public class CustomEnemy : Enemy
+{
+    void Start()
+	{
+
+	}
+}
+
+//SlideMove.cs
+public class SlideMove : MonoBehaviour, IEnemyMove
+{
+    public bool MoveEnabled =&gt; true;
+
+    public IEnumerator DoMove()
+    {
+        yield break;
+    }
+
+    public void OnCancel()
+    {
+
+    }
+
+    public void OnDeath()
+    {
+
+    }
+}
+
+//LungeMove.cs
+public class LungeMove : MonoBehaviour, IEnemyMove
+{
+    public bool MoveEnabled =&gt; true;
+
+    public IEnumerator DoMove()
+    {
+        yield break;
+    }
+
+    public void OnCancel()
+    {
+
+    }
+
+    public void OnDeath()
+    {
+
+    }
+}
+</code></pre>
+<p><a class="xref" href="../api/WeaverCore.Features.Enemy.html">IEnemyMove</a> has 4 major parts to it:</p>
+<ol>
+<li><strong>MoveEnabled</strong> is used to tell if the move is active or not</li>
+<li><strong>DoMove</strong> contains the move's main functionality</li>
+<li><strong>OnCancel</strong> is called when the move is abruptly cancelled</li>
+<li><strong>OnDeath</strong> is called when the enemy dies (looses all of it's health)</li>
+</ol>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You don't need to have the moves inherit from <strong>MonoBehaviour</strong>, but for this tutorial, we will be using it so that we can add the moves to the enemy object to make it easier to configure the moves</p>
+</div>
+<p>We can now add these new moves to the enemy object:</p>
+<p><img src="../images/addingMoveComponents.gif" alt="Add Move Components"></p>
+<p>In the CustomEnemy Start() function, we can then use GetComponents<ienemymove>() to get both of these moves attached on the object:<p>
+<pre><code class="lang-cs">using System.Collections.Generic;
+using WeaverCore.Features;
+using WeaverCore.Interfaces;
+
+public class CustomEnemy : Enemy
+{
+    IEnemyMove[] moves;
+
+    void Start()
+    {
+        moves = GetComponents&lt;IEnemyMove&gt;();
+    }
+}
+</code></pre>
+<p>Now we need to decide how we want to run our moves. Do we want the moves to be done randomly? Do we want them to be run in an alternating pattern? Do we also want to have a delay before the next move gets run?</p>
+<p>For this tutorial, we will simply run the moves in an alternating pattern, and there will also be a 0.5 second delay before the next move gets run.</p>
+<p>We can do this by first starting up a coroutine function that will house our code for running the moves:</p>
+<pre><code class="lang-cs">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using WeaverCore.Features;
+using WeaverCore.Interfaces;
+
+public class CustomEnemy : Enemy
+{
+    IEnemyMove[] moves;
+
+    Coroutine mainRoutine;
+
+    void Start()
+    {
+        moves = GetComponents&lt;IEnemyMove&gt;();
+
+		//Start the main routine for executing the moves
+        mainRoutine = StartCoroutine(MainRoutine());
+    }
+
+    IEnumerator MainRoutine()
+    {
+        //Loop forever
+        while (true)
+        {
+			//Loop over each of the moves in the moves list
+			//First the Lunge Move, then the Slide Move
+            foreach (var move in moves)
+            {
+				//Run the move
+                yield return RunMove(move);
+
+				//Wait 0.5 seconds before going to the next move
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+    }
+}
+</code></pre>
+<p>What this code will do is start up the MainRoutine() when the enemy starts up, and the routine will continuously alternate between the Lunge Move and the Slide move, with a 0.5 second delay between each move.</p>
+<p>The <a class="xref" href="../api/WeaverCore.Features.Enemy.html">Enemy</a> class provides a function called <a class="xref" href="../api/WeaverCore.Features.Enemy.html#WeaverCore_Features_Enemy_RunMove_WeaverCore_Interfaces_IEnemyMove_">RunMove</a> which will execute the move for us. This function will also handle the OnCancel and OnDeath callbacks that <a class="xref" href="../api/WeaverCore.Features.Enemy.html">IEnemyMove</a> requires, so you should always use this function when you want to execute a move.</p>
+<p>One issue with this code is that if the enemy dies, this coroutine doesn't stop running. The enemy will continue to slide and lunge towards the player even if the enemy has lost all of it's health. There are two ways this can be fixed:</p>
+<h3 id="fix-1--stopcoroutine">Fix 1 : StopCoroutine</h3>
+<p>The first way to stop the coroutine when the enemy dies is to override the <a class="xref" href="../api/WeaverCore.Features.Enemy.html#WeaverCore_Features_Enemy_OnDeath">OnDeath</a> function, which is called when the enemy dies. In this function, we can make a call to StopCoroutine to stop the MainRoutine from executing any moves after the enemy dies:</p>
+<pre><code class="lang-cs">	...
+    IEnumerator MainRoutine()
+    {
+		//Loop forever
+        while (true)
+        {
+            foreach (var move in moves)
+            {
+                yield return RunMove(move);
+
+				//Wait 0.5 seconds before going to the next move
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+    }
+	//--//--//--//--//--//--//--//--//--//--//---
+	//When the enemy dies, stop the main routine from executing any more moves
+    protected override void OnDeath()
+    {
+        StopCoroutine(mainRoutine);
+    }
+	//--//--//--//--//--//--//--//--//--//--//---
+</code></pre>
+<h3 id="fix-2--startboundroutine">Fix 2 : StartBoundRoutine</h3>
+<p>The other method is to instead use <a class="xref" href="../api/WeaverCore.Features.Enemy.html#WeaverCore_Features_Enemy_StartBoundRoutine_System_Collections_IEnumerator_">StartBoundRoutine</a> provided by the <a class="xref" href="../api/WeaverCore.Features.Enemy.html">Enemy</a> class, instead of StartCoroutine. What StartBoundRoutine does is that it will start up a routine like normal, but when the enemy dies, the coroutine is automatically stopped:</p>
+<pre><code class="lang-cs">    IEnemyMove[] moves;
+
+	uint mainRoutineID;
+
+    void Start()
+    {
+        moves = GetComponents&lt;IEnemyMove&gt;();
+
+		//--//--//--//--//--//--//--//--
+        mainRoutineID = StartBoundRoutine(MainRoutine());
+		//--//--//--//--//--//--//--//--
+    }
+</code></pre>
+<h2 id="implementing-the-moves---slide-move">Implementing the Moves - Slide Move</h2>
+<p>Now It's time to implement the individual moves. We will start with creating the Slide Move. When the move is executed, it will slide along the ground in the direction of the player. It will do this for about 10 seconds before stopping:</p>
+<pre><code class="lang-cs">using System.Collections;
+using UnityEngine;
+using WeaverCore;
+using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
+
+public class SlideMove : MonoBehaviour, IEnemyMove
+{
+    [SerializeField]
+    float moveSpeed = 5f;
+
+    [SerializeField]
+    float moveDuration = 10;
+
+    public bool MoveEnabled =&gt; true;
+
+    Rigidbody2D rb;
+
+    private void Awake()
+    {
+        rb = GetComponent&lt;Rigidbody2D&gt;();
+    }
+
+    public IEnumerator DoMove()
+    {
+        //Run the Move() function every frame until 10 seconds have elapsed
+        yield return CoroutineUtilities.RunForPeriod(moveDuration, Move);
+
+        //Stop moving when finished
+        rb.velocity = Vector2.zero;
+    }
+
+    void Move()
+    {
+        //If the player is to the right of the enemy
+        if (Player.Player1.transform.position.x &gt;= transform.position.x)
+        {
+            //Set the horizontal velocity to move to the right
+            rb.velocity = rb.velocity.With(x: moveSpeed);
+        }
+        //Otherwise, if the player is to the left of the enemy
+        else
+        {
+            //Set the horizontal velocity to move to the left
+            rb.velocity = rb.velocity.With(x: -moveSpeed);
+        }
+    }
+
+    public void OnCancel()
+    {
+        //Stop moving if the move is cancelled
+        rb.velocity = Vector2.zero;
+    }
+
+    public void OnDeath()
+    {
+        //Stop moving if the enemy dies while this move is running
+        rb.velocity = Vector2.zero;
+    }
+}
+</code></pre>
+<p>You can read over the commented code to get an idea of what's going on, but there are a few new functions here:</p>
+<ol>
+<li><a class="xref" href="../api/WeaverCore.Utilities.CoroutineUtilities.html#WeaverCore_Utilities_CoroutineUtilities_RunForPeriod_System_Single_System_Action_">CoroutineUtilities.RunForPeriod</a> is used to run a certain function every frame for a certain amount of time.</li>
+<li><a class="xref" href="../api/WeaverCore.Player.html#WeaverCore_Player_Player1">Player.Player1</a> is used to get the main player in the game.</li>
+<li>The <a class="xref" href="../api/WeaverCore.Utilities.VectorUtilities.html#WeaverCore_Utilities_VectorUtilities_With_UnityEngine_Vector2_System_Single_System_Single_">With</a> extension method is useful if we only want to modify one field of a vector. In this case, we are using it to create a new vector with only the &quot;X&quot; field modified</li>
+</ol>
+<h2 id="implementing-the-moves---lunge-move">Implementing the Moves - Lunge Move</h2>
+<p>Now for the Lunge Move. This move will cause the enemy to lunge towards the player, and the move will end when the enemy touches the ground:</p>
+<pre><code class="lang-cs">using System.Collections;
+using UnityEngine;
+using WeaverCore;
+using WeaverCore.Components;
+using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
+
+public class LungeMove : MonoBehaviour, IEnemyMove
+{
+    public bool MoveEnabled =&gt; true;
+
+    Rigidbody2D rb;
+    GroundDetector groundDetector;
+
+    private void Awake()
+    {
+        rb = GetComponent&lt;Rigidbody2D&gt;();
+        groundDetector = GetComponent&lt;GroundDetector&gt;();
+		//If there is no Ground Detector on the object, then add one
+        if (groundDetector == null)
+        {
+            groundDetector = gameObject.AddComponent&lt;GroundDetector&gt;();
+        }
+    }
+
+    public IEnumerator DoMove()
+    {
+        var startPos = transform.position;
+        var destPos = Player.Player1.transform.position;
+        float time = 0.6f;
+
+
+        //Calculate the initial velocity needed to get from the current position to the player's position in 0.6 seconds
+        var lungeVelocity = MathUtilties.CalculateVelocityToReachPoint(startPos, destPos, time);
+
+        //Set the velocity to start the lunge
+        rb.velocity = lungeVelocity;
+
+        //Wait for 0.6 seconds
+        yield return new WaitForSeconds(time);
+
+        //Wait until the enemy is touching the ground
+        yield return new WaitUntil(() =&gt; groundDetector.TouchingGround);
+    }
+
+    public void OnCancel() { }
+
+    public void OnDeath() { }
+}
+
+</code></pre>
+<p>This move makes use of <a class="xref" href="../api/WeaverCore.Utilities.MathUtilties.html#WeaverCore_Utilities_MathUtilties_CalculateVelocityToReachPoint_UnityEngine_Vector2_UnityEngine_Vector2_System_Double_System_Double_">MathUtilties.CalculateVelocityToReachPoint</a>, which allows us to calculate the initial velocity needed to travel from a start to end pososition in a certain amount of time.</p>
+<p>We also make use of the <a class="xref" href="../api/WeaverCore.Components.GroundDetector.html">GroundDetector</a> component to wait until the enemy is on the ground before finishing the move.</p>
+<h2 id="testing-our-enemy">Testing our Enemy</h2>
+<p>With the individual moves now implemented, we can now test out our enemy. Before we do that though, we should add some ground so the enemy doesn't fall into an endless void. We can do this by creating a simple Square Sprite, and giving it a BoxCollider2D. NOTE: The layer of this object must be set to &quot;Terrain&quot;.</p>
+<p><img src="../images/creatingSquare.PNG" alt="Creating Square"></p>
+<p><img src="../images/groundConfiguration.PNG" alt="Ground Configuration"></p>
+<p>Now we can hit the &quot;Play&quot; button in the Unity Editor to test out our creation:</p>
+<p><img src="../images/goIntoPlayMode.PNG" alt="Go Into Play Mode"></p>
+<p>Except... when we enter play mode, we get an error in the console saying &quot;There is no test player currently in the game&quot;</p>
+<p><img src="../images/enemyPlayerException.PNG" alt="Enemy Player Exception"></p>
+<p>Because our enemy's logic relies on there being a player in the game, it throws an error because we currently don't have a player in the scene to test with. We can fix this by going to WeaverCore -&gt; Insert -&gt; Demo Player, to insert a player into our scene.</p>
+<p><img src="../images/demoPlayer.PNG" alt="Demo Player"></p>
+<p>This demo player is a very basic version of the knight, with only the abilities to move around, double jump, and attack.</p>
+<p><strong>Controls</strong></p>
+<table>
+<thead>
+<tr>
+<th>Control Type</th>
+<th>Input</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Basic Movement</td>
+<td>WASD or Arrow Keys</td>
+</tr>
+<tr>
+<td>Attack</td>
+<td>X Key</td>
+</tr>
+<tr>
+<td>Jump and Double Jump</td>
+<td>Z Key</td>
+</tr>
+</tbody>
+</table>
+<p><em>Controllers are also supported!</em></p>
+<p>With the knight now inserted, we can play the game and see our enemy in action!</p>
+<div class="embeddedvideo"><iframe src="https://www.youtube-nocookie.com/embed/4y60ZC2FksU" frameborder="0" allowfullscreen="true"></iframe></div>
+<h1 id="creating-bosses">Creating bosses</h1>
+<p>Now, lets convert our new enemy into a boss. Only a few modifications need to be done. First, the CustomEnemy should inherit from <a class="xref" href="../api/WeaverCore.Features.Boss.html">Boss</a> instead of <a class="xref" href="../api/WeaverCore.Features.Enemy.html">Enemy</a>. Second, instead of using <a class="xref" href="../api/WeaverCore.Interfaces.IEnemyMove.html">IEnemyMove</a>, you should be using <a class="xref" href="../api/WeaverCore.Interfaces.IBossMove.html">IBossMove</a> for each of the moves:</p>
+<p><strong>CustomEnemy.cs</strong></p>
+<pre><code class="lang-cs">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using WeaverCore.Features;
+using WeaverCore.Interfaces;
+
+//--//--//--//--//--//--//--//This class inherits from Boss now
+public class CustomEnemy : Boss
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//
+{
+	//--//--//--//--//--//--//--
+    IBossMove[] moves;
+	//--//--//--//--//--//--//--
+
+    uint mainRoutineID;
+
+    void Start()
+    {
+		//--//--//--//--//--//--//--//--//--//--//--//--//
+        moves = GetComponents&lt;IBossMove&gt;();
+		//--//--//--//--//--//--//--//--//--//--//--//--//
+        mainRoutineID = StartBoundRoutine(MainRoutine());
+    }
+
+    IEnumerator MainRoutine()
+    {
+        //Loop forever
+        while (true)
+        {
+            foreach (var move in moves)
+            {
+                yield return RunMove(move);
+
+                //Wait 0.5 seconds before going to the next move
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+    }
+}
+</code></pre>
+<p><strong>LungeMove.cs</strong></p>
+<pre><code class="lang-cs">using System.Collections;
+using UnityEngine;
+using WeaverCore;
+using WeaverCore.Components;
+using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
+
+//--//--//--//--//--//--//--//--//Move inherits from IBossMove now
+public class LungeMove : MonoBehaviour, IBossMove
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//
+{
+    public bool MoveEnabled =&gt; true;
+
+    Rigidbody2D rb;
+    GroundDetector groundDetector;
+
+    private void Awake()
+    {
+        rb = GetComponent&lt;Rigidbody2D&gt;();
+        groundDetector = GetComponent&lt;GroundDetector&gt;();
+        if (groundDetector == null)
+        {
+            groundDetector = gameObject.AddComponent&lt;GroundDetector&gt;();
+        }
+    }
+
+    public IEnumerator DoMove()
+    {
+        var startPos = transform.position;
+        var destPos = Player.Player1.transform.position;
+        float time = 0.6f;
+
+
+        //Calculate the initial velocity needed to get from the current position to the player's position in 0.6 seconds
+        var lungeVelocity = MathUtilties.CalculateVelocityToReachPoint(startPos, destPos, time);
+
+        //Set the velocity to start the lunge
+        rb.velocity = lungeVelocity;
+
+        //Wait for 0.6 seconds
+        yield return new WaitForSeconds(time);
+
+        //Wait until the enemy is touching the ground
+        yield return new WaitUntil(() =&gt; groundDetector.TouchingGround);
+    }
+
+    public void OnCancel() { }
+
+    public void OnDeath() { }
+
+	//--//--//New function provided by IBossMove
+    public void OnStun() { }
+	//--//--//--//--//--//--//--//--//--//--//
+}
+</code></pre>
+<p><strong>SlideMove.cs</strong></p>
+<pre><code class="lang-cs">using System.Collections;
+using UnityEngine;
+using WeaverCore;
+using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
+
+//--//--//--//--//--//--//Move inherits from IBossMove now
+public class SlideMove : MonoBehaviour, IBossMove
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//
+{
+    [SerializeField]
+    float moveSpeed = 5f;
+
+    [SerializeField]
+    float moveDuration = 10;
+
+    public bool MoveEnabled =&gt; true;
+
+    Rigidbody2D rb;
+
+    private void Awake()
+    {
+        rb = GetComponent&lt;Rigidbody2D&gt;();
+    }
+
+    public IEnumerator DoMove()
+    {
+        //Run the Move() function every frame until 10 seconds have elapsed
+        yield return CoroutineUtilities.RunForPeriod(moveDuration, Move);
+
+        //Stop moving when finished
+        rb.velocity = Vector2.zero;
+    }
+
+    void Move()
+    {
+        //If the player is to the right of the enemy
+        if (Player.Player1.transform.position.x &gt;= transform.position.x)
+        {
+            //Set the horizontal velocity to move to the right
+            rb.velocity = rb.velocity.With(x: moveSpeed);
+        }
+        //Otherwise, if the player is to the left of the enemy
+        else
+        {
+            //Set the horizontal velocity to move to the left
+            rb.velocity = rb.velocity.With(x: -moveSpeed);
+        }
+    }
+
+    public void OnCancel()
+    {
+        //Stop moving if the move is cancelled
+        rb.velocity = Vector2.zero;
+    }
+
+    public void OnDeath()
+    {
+        //Stop moving if the enemy dies while this move is running
+        rb.velocity = Vector2.zero;
+    }
+
+//--//--//--//New function provided by IBossMove
+    public void OnStun()
+    {
+		//Stop moving if the enemy is stunned while this move is running
+        rb.velocity = Vector2.zero;
+    }
+//--//--//--//--//--//--//--//--//--//--//--//
+}
+</code></pre>
+<p>The <a class="xref" href="../api/WeaverCore.Features.Boss.html">Boss</a> class shares many of the same things the <a class="xref" href="../api/WeaverCore.Features.Enemy.html">Enemy</a> has, but with two key additions:</p>
+<ol>
+<li>The ability to get stunned</li>
+<li>Multiple Phases/Stages</li>
+</ol>
+<p>Bosses can have stun moments, which occur when their health depletes to a certain point. When a stun occurs, all routines started via <a class="xref" href="../api/WeaverCore.Features.Enemy.html#WeaverCore_Features_Enemy_StartBoundRoutine_System_Collections_IEnumerator_">StartBoundRoutine</a> are stopped, any move that was running is stopped, and the boss's phase counter also gets increased (<a class="xref" href="../api/WeaverCore.Features.Boss.html#WeaverCore_Features_Boss_BossStage">BossStage</a>).</p>
+<p>Stuns can be useful to execute a certain action when a certain health milestone is reached, whether it be giving the player a chance to heal, or to make the boss more difficult.</p>
+<p>Lets add a stun to our new boss. If the health of the boss goes below 50%, then the boss will have a shorter delay between moves:</p>
+<pre><code class="lang-cs">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using WeaverCore.Features;
+using WeaverCore.Interfaces;
+
+public class CustomEnemy : Boss
+{
+    IBossMove[] moves;
+
+    uint mainRoutineID;
+
+    float moveDelay = 0.5f;
+
+    void Start()
+    {
+        moves = GetComponents&lt;IBossMove&gt;();
+        mainRoutineID = StartBoundRoutine(MainRoutine());
+
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+        //When the health is depleted to 50%, trigger a stun
+        AddStunMilestone(Health.Health / 2);
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+    }
+
+    IEnumerator MainRoutine()
+    {
+        //Loop forever
+        while (true)
+        {
+            foreach (var move in moves)
+            {
+                yield return RunMove(move);
+
+                //Wait a bit before going to the next move
+                yield return new WaitForSeconds(moveDelay);
+            }
+        }
+    }
+
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+    //Called when the boss is stunned
+    protected override void OnStun()
+    {
+        base.OnStun();
+        //When the boss is stunned, cut to move delay in half
+        moveDelay /= 2f;
+
+		//Since all bound coroutines get stopped when stunned, we need to start the MainRoutine again
+        mainRoutineID = StartBoundRoutine(MainRoutine());
+    }
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+}
+
+</code></pre>
+<p>We will also modify the SlideMove so that when the boss is in its second stage, the boss will slide faster:</p>
+<pre><code class="lang-cs">using System.Collections;
+using UnityEngine;
+using WeaverCore;
+using WeaverCore.Features;
+using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
+
+public class SlideMove : MonoBehaviour, IBossMove
+{
+    [SerializeField]
+    float moveSpeed = 5f;
+
+    [SerializeField]
+    float moveDuration = 10;
+
+    public bool MoveEnabled =&gt; true;
+
+    Rigidbody2D rb;
+    Boss boss;
+
+    private void Awake()
+    {
+        rb = GetComponent&lt;Rigidbody2D&gt;();
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+        boss = GetComponent&lt;Boss&gt;();
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+    }
+
+    public IEnumerator DoMove()
+    {
+        //Run the Move() function every frame until 10 seconds have elapsed
+        yield return CoroutineUtilities.RunForPeriod(moveDuration, Move);
+
+        //Stop moving when finished
+        rb.velocity = Vector2.zero;
+    }
+
+    void Move()
+    {
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+        float speed = moveSpeed;
+        //Double the slide speed if the boss is on stage 2
+        if (boss.BossStage == 2)
+        {
+            speed *= 2;
+        }
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+
+        //If the player is to the right of the enemy
+        if (Player.Player1.transform.position.x &gt;= transform.position.x)
+        {
+            //Set the horizontal velocity to move to the right
+            rb.velocity = rb.velocity.With(x: speed);
+        }
+        //Otherwise, if the player is to the left of the enemy
+        else
+        {
+            //Set the horizontal velocity to move to the left
+            rb.velocity = rb.velocity.With(x: -speed);
+        }
+    }
+
+    public void OnCancel()
+    {
+        //Stop moving if the move is cancelled
+        rb.velocity = Vector2.zero;
+    }
+
+    public void OnDeath()
+    {
+        //Stop moving if the enemy dies while this move is running
+        rb.velocity = Vector2.zero;
+    }
+
+    public void OnStun()
+    {
+        //Stop moving if the enemy is stunned while this move is running
+        rb.velocity = Vector2.zero;
+    }
+}
+
+</code></pre>
+<p>Now lets test out the boss. The boss will get harder after half it's health is depleted:</p>
+<div class="embeddedvideo"><iframe src="https://www.youtube-nocookie.com/embed/JtN5RMygspk" frameborder="0" allowfullscreen="true"></iframe></div>
+<h1 id="adding-it-to-the-game">Adding it to the game</h1>
+<p>Now that our new boss is completed, we now need to figure out how it's going to be added to the game. There are two ways we can do this:</p>
+<h2 id="method-1---replacing-an-existing-enemyboss">Method 1 - Replacing an existing Enemy/Boss</h2>
+<p>The easiest method is to replace an existing boss. To make our new boss replace an existing one, we need to inherit from either <a class="xref" href="../api/WeaverCore.Features.BossReplacement.html">BossReplacement</a> or <a class="xref" href="../api/WeaverCore.Features.EnemyReplacement.html">EnemyReplacement</a></p>
+<pre><code class="lang-cs">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using WeaverCore.Features;
+using WeaverCore.Interfaces;
+
+//--//--//--//--//--//--//Now inherits from BossReplacement
+public class CustomEnemy : BossReplacement
+{
+    IBossMove[] moves;
+
+    uint mainRoutineID;
+
+    float moveDelay = 0.5f;
+	...
+}
+</code></pre>
+<p>When we head back to the Unity Editor, you will see a new field on the CustomEnemy component. This is where we put the name of the enemy we want to replace.</p>
+<p><img src="../images/EnemyToReplaceField.PNG" alt="Enemy To Replace Field"></p>
+<p>Now we need to find the name of the enemy we want to change. Luckily, WeaverCore provides a way of finding the exact name of an enemy in-game. First, start up the game with the WeaverCore mod installed. Then, go to the area with the enemy/boss you want to change. For this tutorial we will use Marmu. To get the name of Marmu, you will need to pause the game and open the debug tools by pressing CTRL and Numpad 7 on your keyboard (or you can open it via the WeaverCore Settings Menu). It is from here we can find the exact name of Marmu:</p>
+<p><img src="../images/findingExactName.gif" alt="Finding Exact Name"></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This is just one way of getting the name of an enemy. Another way would be to use Debug  Mod and find the name in the &quot;Enemies&quot; list</p>
+</div>
+<p>In this case, the exact name we want is &quot;Ghost Warrior Marmu&quot;, and that is the name we put into this field to replace Marmu with our own custom enemy.</p>
+<p><img src="../images/marmuEnemyToReplace.PNG" alt="Marmu Enemy To Replace"></p>
+<h3 id="adding-the-enemy-to-the-registry">Adding the enemy to the registry</h3>
+<p>Now we need to drag the enemy object into the &quot;Assets&quot; folder to create a prefab of our enemy:</p>
+<p><img src="../images/createEnemyPrefab.gif" alt="Create Enemy Prefab"></p>
+<p>And finally, add the enemy as a new entry into the mod's registry:</p>
+<p><img src="../images/addEnemyToRegistry.gif" alt="Add Enemy To Registry"></p>
+<p>Now you can build the mod via WeaverCore -&gt; Compilation -&gt; Mod, start up the game, and see your newly created enemy in the game!</p>
+<div class="embeddedvideo"><iframe src="https://www.youtube-nocookie.com/embed/5S56_1dUZos" frameborder="0" allowfullscreen="true"></iframe></div>
+<p>...Except, there is one slight problem. When the boss dies, we aren't sent back to Godhome. We are stuck in this room forever. This is an easy fix however, we just need to trigger the ending sequence when the boss dies:</p>
+<pre><code class="lang-cs">public class CustomEnemy : BossReplacement
+{
+	...
+    //Called when the boss is stunned
+    protected override void OnStun()
+    {
+        base.OnStun();
+        //When the boss is stunned, cut to move delay in half
+        moveDelay /= 2f;
+
+        //Since all bound coroutines get stopped when stunned, we need to start the MainRoutine again
+        mainRoutineID = StartBoundRoutine(MainRoutine());
+    }
+
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+    //Called when the boss dies
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+
+        //After two seconds, end the boss battle and return to godhome
+        Boss.EndBossBattle(2f);
+    }
+//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--
+}
+</code></pre>
+<p>Now, when the boss dies, the ending sequence will get triggered after 2 seconds:</p>
+<div class="embeddedvideo"><iframe src="https://www.youtube-nocookie.com/embed/CLIfHvfdrf4" frameborder="0" allowfullscreen="true"></iframe></div>
+<h2 id="method-2---manually-instantiating-it-advanced">Method 2 - Manually Instantiating it (Advanced)</h2>
+<p>The other option is to instantiate it manually via GameObject.Instantiate or something similar. To do this, first create a prefab of the enemy and add it to the registry (just like in Method 1).</p>
+<p>Then, to load the prefab from the registry at any time, you can call <a class="xref" href="../api/WeaverCore.Registry.html#WeaverCore_Registry_GetFeatures__1">Registry.GetFeatures</a> to load the enemy prefab. Then you can use GameObject.Instantiate to create the enemy in-game:</p>
+<pre><code class="lang-cs">public void LoadEnemy()
+{
+	//Load the prefab
+    var enemyPrefab = Registry.GetFeature&lt;CustomEnemy&gt;();
+
+    //Instantiate the enemy
+    var instance = GameObject.Instantiate(enemyPrefab);
+}
+</code></pre>
+</ienemymove></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/docs_src~/articles/enemiesAndBosses.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

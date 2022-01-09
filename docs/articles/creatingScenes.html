@@ -1,0 +1,537 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Creating New Scenes </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Creating New Scenes ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="creating-new-scenes">Creating New Scenes</h1>
+
+<p>WeaverCore can also be used to create new scenes, allowing you to add new areas to the game.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Currently, it is not possible to add new area types (such as crossroads, city of tears, deepnest, etc), but that is something I would like to make possible in the future</p>
+</div>
+<p>To get started, go to &quot;File -&gt; New Scene&quot;...</p>
+<p><img src="../images/newScene.PNG" alt="New Scene"></p>
+<p>...Select the &quot;Game Scene Template&quot; scene, and click &quot;Create&quot;:</p>
+<p><img src="../images/createGameTemplateScene.PNG" alt="Create Game Template Scene"></p>
+<p>This will create a new scene with a few required object created for you:</p>
+<p><img src="../images/newTemplateSceneCreated.PNG" alt="New Scene Template Created"></p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Make sure you save the scene (either via CTRL + S, or by going to &quot;File -&gt; Save&quot;), otherwise any new changes you make to this scene will be lost</p>
+</div>
+<h3 id="1--blurplane">1 : BlurPlane</h3>
+<p>The BlurPlane is a required object for every scene in Hollow Knight. Any objects you place behind it will be blurred. This allows you to differentiate between foreground and background objects. You are able to move and scale the blur plane as much as you want (but I don't recommend rotating it). You are also allowed to move it closer or farther away from the camera.</p>
+<h3 id="2--ground">2 : Ground</h3>
+<p>This object is entirely optional, and is meant to give you some ground to start off with</p>
+<h3 id="3--scenemanager">3 : SceneManager</h3>
+<p>This object is also required for every scene in Hollow Knight, and contains metadata about the current scene:</p>
+<p><img src="../images/sceneManagerInfo.PNG" alt="Scene Manager Info"></p>
+<p>I will go over each of the different things you can customize about it:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scene Type</td>
+<td>The type of scene this is. See <a class="xref" href="../api/GlobalEnums.SceneType.html">GlobalEnums.SceneType</a> for a list of valid options. Most of the time, this should be left as GAMEPLAY</td>
+</tr>
+<tr>
+<td>Map Zone</td>
+<td>The type of area this scene is located in. See <a class="xref" href="../api/GlobalEnums.MapZone.html">GlobalEnums.MapZone</a> for a list of valid options</td>
+</tr>
+<tr>
+<td>Is Windy</td>
+<td>Is the scene windy?</td>
+</tr>
+<tr>
+<td>Is Tremor Zone</td>
+<td>Does this scene experience tremors?</td>
+</tr>
+<tr>
+<td>Enviroment Type</td>
+<td>What type of environment does this scene have? Used to determine any extra environmental effects that occur</td>
+</tr>
+<tr>
+<td>Darkness Level</td>
+<td>The darkness level of the scene. If the darkness level is 1, then the scene requires a lantern. Not sure what higher levels do yet</td>
+</tr>
+<tr>
+<td>No Lantern</td>
+<td>If set to true, the player will not be able to hold a lantern when entering the scene</td>
+</tr>
+<tr>
+<td>Default Color</td>
+<td>The ambient color of the scene</td>
+</tr>
+<tr>
+<td>Default Intensity</td>
+<td>How intense the ambient color of the scene will be</td>
+</tr>
+<tr>
+<td>No Particles</td>
+<td>If set to true, the scene will not have any environmental particles playing in it</td>
+</tr>
+<tr>
+<td>Override Particles With</td>
+<td>Used to override the default map zone particles with something else</td>
+</tr>
+<tr>
+<td>Music Delay Time</td>
+<td>A delay before the scene's music starts playing</td>
+</tr>
+<tr>
+<td>Music Transition Time</td>
+<td>The time it takes to transition into the scene's music</td>
+</tr>
+<tr>
+<td>Transition Time</td>
+<td>Time time it takes to transition to all the other snapshots (Atmos, Actor, Shade, and Enviro Effect Snapshots). More info on these later</td>
+</tr>
+<tr>
+<td>Music</td>
+<td>The is the music pack that will be applied when the scene is loaded. A music pack contains all the different music tracks that will be played when the scene loads up (More info on this later)</td>
+</tr>
+<tr>
+<td>Custom Music Snapshot</td>
+<td>If set to true, then this allows you to specify a specific snapshot to use when loading the scene, rather than using the snapshot on the Music Pack. <a href="https://1drv.ms/x/s!Aj62egREH4PTxx1MpsfuioqJtSCH?e=7kmAV0">Click Here</a> to see what music snapshots enable which music tracks</td>
+</tr>
+<tr>
+<td>Can be Infected</td>
+<td>Does this scene have an infected variant (like the crossroads)? If this is set to true, then you can also specify a music pack that is played only when the scene is infected</td>
+</tr>
+<tr>
+<td>Atmos Snapshot</td>
+<td>This is used to apply an atmos snapshot to specify what atmosphere sounds are played in the scene. <a href="https://1drv.ms/x/s!Aj62egREH4PTxyT0dl7ijj9itSdV?e=SMNe12">Click Here</a> to see what snapshots enable what sounds</td>
+</tr>
+<tr>
+<td>Actor Snapshot</td>
+<td>This is used to apply an actor snapshot when the scene loads. This should be left &quot;On&quot;, because otherwise, the player's sound effects won't play when set to &quot;Off&quot;</td>
+</tr>
+<tr>
+<td>Shade Snapshot</td>
+<td>This is used to apply a shade snapshot when the scene loads. This should be left &quot;Away&quot;, because otherwise, the shade jingle effect will be played when set to &quot;Close&quot;</td>
+</tr>
+<tr>
+<td>Enviro Effects Snapshot</td>
+<td>This is used to specify what enviromental sound effects are played  when the scene loads. <a href="https://1drv.ms/x/s!Aj62egREH4PTxyIkYuCSF6zX5zsp?e=JpJksw">Click Here</a> to see what snapshots enable what effects</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4--door1">4 : door1</h3>
+<p>This object is an example of a transition point (also referred to as gates). A transition point is an object the player interacts with to transition both to AND from a scene. I will go over the list of options that can be configured on the TransitionPoint:</p>
+<p><img src="../images/transitionPointOptions.PNG" alt="Transition Point Options"></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gate Type</td>
+<td>The type of transition gate this is. This determines how the player enters and leaves a scene. See <a class="xref" href="../api/GlobalEnums.GatePosition.html">GatePosition</a> for a list of valid options and what they do</td>
+</tr>
+<tr>
+<td>Is a Door</td>
+<td>If this is set to true, then the player must press up on their controller to enter the game. They don't enter the transition immediately upon touching it</td>
+</tr>
+<tr>
+<td>Entry Delay</td>
+<td>The delay before the player spawns from this gate into the scene</td>
+</tr>
+<tr>
+<td>Always Enter Right</td>
+<td>Should the player always face right when spawning from this Transition Point?</td>
+</tr>
+<tr>
+<td>Always Enter Left</td>
+<td>Should the player always face left when spawning from this Transition Point?</td>
+</tr>
+<tr>
+<td>Target Scene</td>
+<td>The name of the scene the player will be sent to when the player touches this transition point</td>
+</tr>
+<tr>
+<td>Entry Point</td>
+<td>When the player is sent to the Target Scene, this is the name of the Transition Point the player will spawn at when they get there</td>
+</tr>
+<tr>
+<td>Entry Offset</td>
+<td>This is a positional offset applied to the player when they spawn at this Transition Point</td>
+</tr>
+<tr>
+<td>Non Hazard Gate</td>
+<td>Should the player respawn at this Transition Point if they take spike damage?</td>
+</tr>
+<tr>
+<td>Respawn Marker</td>
+<td>The object the player should respawn at if they take spike damage. Only used if &quot;Non Hazard Gate&quot; is set to false</td>
+</tr>
+<tr>
+<td>Scene Load Visualization</td>
+<td>This is used to customize the effects that are played when the player spawns in from this Transition Point</td>
+</tr>
+<tr>
+<td>Custom Fade</td>
+<td>If set to true, this disables the default &quot;Fade-in-from-black&quot; behavior that occurs when spawning in. This is used to implement custom transition fades</td>
+</tr>
+<tr>
+<td>Enable Atmos Snapshot</td>
+<td>Should a new atmos snapshot be applied when the player touches this transition point to go to a new scene? If set to false, then the atmos snapshot will remain unchanged. <a href="https://1drv.ms/x/s!Aj62egREH4PTxyT0dl7ijj9itSdV?e=SMNe12">Click Here</a> to see what snapshots enable what sounds</td>
+</tr>
+<tr>
+<td>Enable Enviro Snapshot</td>
+<td>Should a new enviro effects snapshot be applied when the player touches this transition point to go to a new scene? <a href="https://1drv.ms/x/s!Aj62egREH4PTxyIkYuCSF6zX5zsp?e=JpJksw">Click Here</a> to see what snapshots enable what effects</td>
+</tr>
+<tr>
+<td>Enable Actor Snapshot</td>
+<td>Should a new actor snapshot be applied when the player touches this transition point to go to a new scene? This should be left enabled, so the knight's walking sound effects are disabled when the player is transitioning to a new scene</td>
+</tr>
+<tr>
+<td>Enable Music Snapshot</td>
+<td>Should a new music snapshot be applied when the player touches this transition point to go to a new scene? <a href="https://1drv.ms/x/s!Aj62egREH4PTxx1MpsfuioqJtSCH?e=7kmAV0">Click Here</a> to see what music snapshots enable which music tracks</td>
+</tr>
+</tbody>
+</table>
+<h1 id="setting-up-the-scene">Setting up the scene</h1>
+<p>For this tutorial, what we are going to do is change the doorway leading from the Hall of Gods room so the player travels to our new scene when entering it:</p>
+<p><img src="../images/doorwayToReplace.PNG" alt="Doorway to Replace"></p>
+<p>First, we need to setup a transition point in our scene that the player will be spawned at when they arrive at our new scene. It will also act as our way of getting out of the scene.</p>
+<p>Lets take the existing &quot;door1&quot; transition point and move it so that it's on the ground:</p>
+<p><img src="../images/door1Positioned.PNG" alt="Door 1 Positioned"></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you ever need to create a new TransitionPoint in the scene, you can create one by going to &quot;WeaverCore -&gt; Insert -&gt; Transition Point&quot; <br> <img src="../images/insertTransitionPoint.PNG" alt="Insert Transition Point"></p>
+</div>
+<p>Make sure the Transition point is a door type. This means the player will need to press up on their controller in order to go back:</p>
+<p><img src="../images/isADoor.png" alt="Is a Door"></p>
+<p>Now we need to configure the target scene value and the Entry Point value:</p>
+<p><img src="../images/targetSceneAndEntryPointBlank.PNG" alt="Target Scene and Entry Point Blank"></p>
+<p>These values determine where the player will be transported to when they enter the door. We will configure these values so the player goes to the Hall of Gods room when they enter the door. To find these values for the Hall of Gods room, we need to start up Hollow Knight, go to the Hall of Gods room, and open the WeaverCore Debug Tools:</p>
+<p><img src="../images/doorDebugTools.gif" alt="Door Debug Tools"></p>
+<p>One neat thing that Team Cherry has done is that they have a standard way of naming their doorways/transition points. In our case, if we want to get the doorway at the left side of the scene, we simply search for the name &quot;left1&quot;, and we will find the transition point we want. The two values we need are the scene name &quot;GG_Workshop&quot;, and the name of the transition point the player will spawn at &quot;left1&quot;:</p>
+<p><img src="../images/sceneAndDoorName.PNG" alt="Scene and Door Name"></p>
+<p>We take these two values and fill them in the &quot;Target Scene&quot; and &quot;Entry Point&quot; fields:</p>
+<p><img src="../images/targetSceneAndEntryPoint.PNG" alt="Target Scene And Entry Point"></p>
+<p>Now when the player uses the door in our new scene, they will be transported to the left doorway of the Hall of Gods Room!</p>
+<p>Except, how is the player supposed to get to our new scene in the first place? What we now need to do is change the existing Hall of Gods doorway to transport the player to our new scene when the player uses it.</p>
+<p>To do this, we need to create a new object called a <a class="xref" href="../api/WeaverCore.SceneRecord.html">Scene Record</a>.</p>
+<h2 id="scene-record">Scene Record</h2>
+<p>A scene record is an object that contains a list of scene related changes we are applying to the game. We can easily create one by going over to &quot;WeaverCore -&gt; Create -&gt; Scene Record&quot;:</p>
+<p><img src="../images/creatingSceneRecord.PNG" alt="Creating Scene Record"></p>
+<p>Make sure you add it to the Registry to enable it in-game:</p>
+<p><img src="../images/addingSceneRecordToRegistry.gif" alt="Adding Scene Record To Registry"></p>
+<p>A scene record allows you to do some neat things with scenes:</p>
+<p><img src="../images/sceneRecordFields.PNG" alt="Scene Record Fields"></p>
+<ol>
+<li>You can add new scenes into the game by adding them to the <strong>&quot;Scene Additions&quot;</strong> list.</li>
+<li>You can replace an existing scene in the game with a new one by adding to the <strong>&quot;Scene Replacements&quot;</strong> list.</li>
+<li>You even can combine a new scene with another by adding to the <strong>&quot;Scene Unions&quot;</strong> list.</li>
+</ol>
+<p>However, the <strong>&quot;Transition Redirects&quot;</strong> list is the one we are concerned about for this tutorial. This list allows us to modify an existing transition point in the game and make it point to a new location. In our case, we want to use it to modify the doorway in the Hall of Gods room to transport us to our new scene when the player interacts with it. To get started, click on the dropdown arrow and click on the &quot;<strong>+</strong>&quot; to add a new list entry:</p>
+<p><img src="../images/AddNewRedirect.PNG" alt="Add New Redirect"></p>
+<p>This will create an empty entry that we can modify:</p>
+<p><img src="../images/emptyGateRedirect.PNG" alt="Empty Gate Redirect"></p>
+<p>The first two fields are used to specify the transition point we want to modify. In our case, it is the <strong>&quot;left1&quot;</strong> doorway in the <strong>&quot;GG_Workshop&quot;</strong> scene:</p>
+<p><img src="../images/gateSceneAndGateNameFilled.PNG" alt="Gate Scene and Name Filled"></p>
+<p>The last two values is used to specify the new destination we want this doorway to take the player to. In our case, it will be the name of the new scene we are creating (<strong>awesomeScene</strong>), and the name of the transition point the player will spawn at (<strong>door1</strong>):</p>
+<p><img src="../images/sceneAndGateInHierarchy.PNG" alt="Scene and Gate In Hierarchy"></p>
+<p><img src="../images/newSceneAndNewGateNameFilled.PNG" alt="New Scene and New Gate Name Filled"></p>
+<p>With the gate redirect now configured, the last thing is to add our scene asset to the <strong>&quot;Scene Additions&quot;</strong> list, so the game can properly load our new scene when the player touches the doorway:</p>
+<p><img src="../images/newSceneAddition.gif" alt="New Scene Addition"></p>
+<p>We now have enough to test out our new scene. Go ahead and build the mod, start up the game, and we should be able to access our new scene by entering the Hall of Gods Left Doorway:</p>
+<div class="embeddedvideo"><iframe src="https://www.youtube-nocookie.com/embed/5bhOOeOu2wE" frameborder="0" allowfullscreen="true"></iframe></div>
+<p>However, you may have noticed that the camera isn't moving around. We can fix this by going back to the Unity Editor, viewing the &quot;Weaver Scene Manager&quot; component on the &quot;SceneManager&quot; object, and unchecking the &quot;Auto Set Dimensions&quot; box:</p>
+<p><img src="../images/uncheckAutoSetDimensions.PNG" alt="Uncheck Auto Set Dimensions"></p>
+<p>When we uncheck this, we can see what the Scene Dimensions actually are:</p>
+<p><img src="../images/sceneDimensionsHighlight.PNG" alt="Scene Dimensions Highlight"></p>
+<p>Basically, the scene's dimensions are used to define the limits of where the player and camera can go. The camera is programmed to NEVER go beyond the scene boundaries. By default, the Scene Boundaries are automatically calculated to contain all the visible objects the player can interact with. This is normally fine, and we could just leave <strong>&quot;Auto Set Dimensions&quot;</strong> enabled if we wanted to. However, in this case, the scene boundaries are so small, the camera isn't able to move. So we can disable <strong>&quot;Auto Set Dimensions&quot;</strong>, and configure the scene boundaries ourselves:</p>
+<p><img src="../images/customizableSceneDimensions.PNG" alt="Customizable Scene Dimensions"></p>
+<p>The X and Y values indicate the bottom-left corner, and the W and H values indicate the width and height respectively. After tinkering with the values a bit, here's the ones I came up with:</p>
+<p><img src="../images/extendedSceneBoundaries.PNG" alt="Extended Scene Boundaries"></p>
+<pre><code>{
+	X: -20,
+	Y: -12.5,
+	W: 40,
+	H: 31.06699
+}
+</code></pre>
+<p>That should give the camera some more room to move around. Now if we build the mod and start up hollow knight again, the camera can now move around, while staying within the scene boundaries we set:</p>
+<p><img src="../images/cameraMovingInScene.gif" alt="Camera Moving In Scene"></p>
+<h1 id="adding-in-other-cool-things">Adding in other cool things</h1>
+<p>Now that we created our scene, lets put some things in it to make it more interesting.</p>
+<h2 id="npcs">NPCs</h2>
+<p>Lets add an NPC to our scene the player can talk to. To get started, insert a template NPC by going to &quot;WeaverCore -&gt; Insert -&gt; Weaver NPC&quot;:</p>
+<p><img src="../images/insertWeaverNPC.PNG" alt="Insert Weaver NPC"></p>
+<p><img src="../images/addedNPC.PNG" alt="Added NPC"></p>
+<p>This object contains most of the things we need to have a fully functioning NPC. You can customize it as much as you want, but just make sure the BoxCollider has <strong>Is Trigger</strong> enabled and you don't remove the components.</p>
+<p>However, we need one more thing in order to make this NPC talk. We need to create a new script, with a class that inherits from <a href="WeaverCore.Assets.Components.Conversation">Conversation</a>:</p>
+<pre><code class="lang-cs">//DemoConversation.cs
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using WeaverCore.Assets.Components;
+
+public class DemoConversation : Conversation
+{
+    protected override IEnumerator DoConversation()
+    {
+        //We will do the main conversation stuff here
+
+        yield break;
+    }
+}
+</code></pre>
+<p>Make sure you add this component to the NPC object we inserted:</p>
+<p><img src="../images/addDemoConversation.gif" alt="Add Demo Conversation"></p>
+<p>The DoConversation() function is where all the magic happens. This is where we control what the NPC is going to say when the player talks to it. There are three main functions we can use to control the flow of the conversation:</p>
+<ol>
+<li>The <a class="xref" href="../api/WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_Speak_System_String_">Speak()</a> function allows use to say a message</li>
+<li>The <a href="xref:WeaverCore.Assets.Components.Conversation.PresentYesNoQuestion">PresentYesNoQuestion()</a> function presents the player with a yes and no question (with an optional geo cost the player needs to pay)</li>
+<li>The <a class="xref" href="../api/WeaverCore.Assets.Components.Conversation.html#WeaverCore_Assets_Components_Conversation_DisplayTitle_System_String_System_String_">DisplayTitle()</a> function is used to display a title card in the bottom-left corner of the screen. This is used to display the name of the character we are talking to</li>
+</ol>
+<p>Here's an example of the functions in use:</p>
+<pre><code class="lang-cs">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using WeaverCore.Assets.Components;
+
+public class DemoConversation : Conversation
+{
+    protected override IEnumerator DoConversation()
+    {
+        //Displays the title card &quot;Mike&quot; in the bottom-left corner
+        DisplayTitle(&quot;Mike&quot;);
+
+        //Speaks two messages, split into two pages
+        yield return Speak(&quot;Hello! I am a test NPC, my name is Mike&quot;,
+            &quot;I am here to test out the conversation system made by WeaverCore!&quot;);
+
+        //Presents a yes and no question
+        yield return PresentYesNoQuestion(&quot;Is this dialog box working?&quot;);
+
+        //Was the result of the question a yes?
+        if (DialogBoxResult == YesNoResult.Yes)
+        {
+            yield return Speak(&quot;Good, that means it's working!&quot;);
+        }
+        //Was the result of the question a no?
+        else if (DialogBoxResult == YesNoResult.No)
+        {
+            yield return Speak(&quot;Well, the fact that you were able to select \&quot;No\&quot; in the first place means it should be working&quot;);
+        }
+
+        //Present a new question, but 5 geo is required to select &quot;Yes&quot;
+        yield return PresentYesNoQuestion(&quot;Test the dialog box again by spending geo?&quot;, 5);
+
+        if (DialogBoxResult == YesNoResult.Yes)
+        {
+            yield return Speak(&quot;Thanks for you donation&quot;, &quot;Well, thanks for stopping by&quot;);
+        }
+        else if (DialogBoxResult == YesNoResult.No)
+        {
+            yield return Speak(&quot;Come on! It's only 5 Geo&quot;, &quot;Well, thanks for stopping by&quot;);
+        }
+    }
+}
+</code></pre>
+<p>With this script now complete, we can now build the mod, start up the game, head into our new scene, and talk with the NPC:</p>
+<blockquote>
+<p>[!Video https://www.youtube.com/embed/IYEfPIDenBA</p>
+</blockquote>
+<h2 id="benches">Benches</h2>
+<p>Benches can also be added to our new scene, so when the player leaves the game and comes back, they will spawn on our bench in the new scene. To add one, go to &quot;WeaverCore -&gt; Insert -&gt; Weaver Bench&quot;:</p>
+<p><img src="../images/insertBench.PNG" alt="Insert Bench"></p>
+<p>This will insert a premade bench into the scene that we can customize.</p>
+<p><img src="../images/createdBench.PNG" alt="Created Bench"></p>
+<p>In fact, this bench is able to work in-game out of the box, so we can build our mod, go into our scene, and sit on our new bench:</p>
+<div class="embeddedvideo"><iframe src="https://www.youtube-nocookie.com/embed/hSa5c23bJpg" frameborder="0" allowfullscreen="true"></iframe></div>
+<h2 id="dreamwarp-object">DreamWarp Object</h2>
+<p>A final thing that can be inserted is a dreamwarp object. It is an object that the player dreamnails to get transported to a new scene. To add one, go to &quot;WeaverCore -&gt; Insert -&gt; Dreamnail Warp Object&quot;:</p>
+<p><img src="../images/addDreamnailObject.PNG" alt="Add Dreamnail Object"></p>
+<p>This will create a simple object, that when dreamnailed, warps the player to a new scene:</p>
+<p><img src="../images/dreamnailableObject.PNG" alt="Dreamnailable Object"></p>
+<h3 id="configuration">Configuration</h3>
+<p>On the object, there is a <a class="xref" href="../api/WeaverCore.Components.DreamWarper.html">Dream Warper</a> component that has three fields we need to fill in:</p>
+<p><img src="../images/dreamWarperConfig.PNG" alt="Dream Warper Config"></p>
+<ol>
+<li><strong>Destination Scene</strong> is the name of the scene the player will be transported to when they dreamnail this object</li>
+<li><strong>Return Scene</strong> is the name of the scene the player will be transported to when they leave the dream scene</li>
+<li><strong>Transition Gate Name</strong> is the name of the Transition Point the player will spawn at when they are transported to the destination scene</li>
+</ol>
+<p>Lets create a new scene the player will get transported to. You can create one by going to &quot;File -&gt; New Scene&quot;, selecting &quot;Game Scene Template&quot;, and clicking the Create button, just like before:</p>
+<p><img src="../images/newScene.PNG" alt="New Scene"></p>
+<p><img src="../images/createGameTemplateScene.PNG" alt="Create Game Template Scene"></p>
+<p>We will name it &quot;dreamScene&quot;:</p>
+<p><img src="../images/dreamScene.PNG" alt="Dream Scene"></p>
+<p>We will also disable the Transition Point component on the &quot;door1&quot; object. This turns the doorway into a one-way door, where the player cannot use it to leave the scene (don't worry, we will add a different way for the player to leave the scene):</p>
+<p><img src="../images/door1DreamSceneDisable.PNG" alt="Door 1 Dream Scene Disable"></p>
+<p>Also, since we don't want the camera to fade in from black when we enter the scene, we need to enable &quot;Custom Fade&quot;:</p>
+<p><img src="../images/enableCustomFadeDreamScene.PNG" alt="Enable Custom Fade Dream Scene"></p>
+<p>Now we need a way for the player to leave the dream scene. This can be accomplished via a &quot;Dream Fall Catcher&quot;. A dream fall catcher is an object that, when the player collides with it, will be warped out of the dream scene. We can add one by going to &quot;WeaverCore -&gt; Insert -&gt; Dream Fall Catcher&quot;. We will put it below the ground, so when the player falls off, they will collide with it and get sent back:</p>
+<p><img src="../images/dreamFallCatcher.PNG" alt="Dream Fall Catcher"></p>
+<p>On the fall catcher itself, we also need to specify the gate the player will return to. We will specify a gate name of &quot;dream_return&quot;:</p>
+<p><img src="../images/returningGateName.PNG" alt="Returning Gate Name"></p>
+<p>With the dream scene done, we can save it and head back into our initial scene that contains the dream warper object:</p>
+<p><img src="../images/backToInitialScene.PNG" alt="Back To Initial Scene"></p>
+<p>We now need to create a new Transition Point named &quot;dream_return&quot;. It can be created by going to &quot;WeaverCore -&gt; Insert -&gt; Transition Point&quot;, and renaming it to &quot;dream_return&quot;:</p>
+<p><img src="../images/dream_return_gate.PNG" alt="Dream Return Gate"></p>
+<p>Just like with the other TransitionPoint in the dreamScene, we also need to disable the WeaverTransitionPoint component so the door is one-way only, and enable <strong>Custom Fade</strong>, since we are using a custom dream warp camera fade:</p>
+<p><img src="../images/configureDreamReturnGate.PNG" alt="Configure Dream Return Gate"></p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Make sure that the dream_return gate has a gate type of <strong>Door</strong>, and &quot;<strong>Is A Door</strong>&quot; is set to true, otherwise the player will start sliding immediately upon returning back from the dream scene <br> <img src="../images/dreamReturnDoor.PNG" alt="Dream Return Door"></p>
+</div>
+<p>We can now fill in the following information into the Dream Warper component:</p>
+<ol>
+<li><strong>Destination Scene</strong> will be &quot;dreamScene&quot;</li>
+<li><strong>Return Scene</strong> will be &quot;awesomeScene&quot; (or whatever you named the main scene as)</li>
+<li><strong>Transition Gate Name</strong> will be &quot;door1&quot;, since the name of the TransitionPoint in the dream scene is &quot;door1&quot;.</li>
+</ol>
+<p><img src="../images/dreamWarperFilledIn.PNG" alt="Dream Warper Filled in"></p>
+<p>With the dream warper object all set, all that's left to do is add our new dream scene to the Scene Record:</p>
+<p><img src="../images/addDreamSceneToRecord.gif" alt="Add Dream Scene To Record"></p>
+<p>We can now build the mod and start up Hollow Knight To test it out. Here's a rough overview of what's going on:</p>
+<ol>
+<li>The player leaves the Hall of Gods room and enters &quot;awesomeScene&quot;</li>
+<li>The player dream nails the dream warper object, transporting them to &quot;dreamScene&quot;. They spawn at the &quot;door1&quot; transitionPoint</li>
+<li>The player falls off the map and hits the &quot;Dream Fall Catcher&quot;, which transports them back to &quot;awesomeScene&quot;</li>
+</ol>
+<div class="embeddedvideo"><iframe src="https://www.youtube-nocookie.com/embed//nB3Kz1abWBE" frameborder="0" allowfullscreen="true"></iframe></div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/docs_src~/articles/creatingScenes.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

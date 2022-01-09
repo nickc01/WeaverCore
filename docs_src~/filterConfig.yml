@@ -19,6 +19,8 @@ apiRules:
 - exclude:
       uidRegex: ^TMPro\.EditorUtilities
 - exclude:
+      uidRegex: ^WeaverCore\.Game\.Patches\.[\w]+?_Patches
+- exclude:
       uidRegex: ^TMPro\.SpriteAssetUtilities
 - exclude:
       uidRegex: ^UnityStandardAssets\.ImageEffects

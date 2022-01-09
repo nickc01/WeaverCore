@@ -18830,6 +18830,49 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Assets.Components.DetectHero.HeroInRange
   nameWithType: DetectHero.HeroInRange
+- uid: WeaverCore.Assets.Components.DoorControl
+  name: DoorControl
+  href: api/WeaverCore.Assets.Components.DoorControl.html
+  commentId: T:WeaverCore.Assets.Components.DoorControl
+  fullName: WeaverCore.Assets.Components.DoorControl
+  nameWithType: DoorControl
+- uid: WeaverCore.Assets.Components.DoorControl.PlayerInRange
+  name: PlayerInRange
+  href: api/WeaverCore.Assets.Components.DoorControl.html#WeaverCore_Assets_Components_DoorControl_PlayerInRange
+  commentId: P:WeaverCore.Assets.Components.DoorControl.PlayerInRange
+  fullName: WeaverCore.Assets.Components.DoorControl.PlayerInRange
+  nameWithType: DoorControl.PlayerInRange
+- uid: WeaverCore.Assets.Components.DoorControl.PlayerInRange*
+  name: PlayerInRange
+  href: api/WeaverCore.Assets.Components.DoorControl.html#WeaverCore_Assets_Components_DoorControl_PlayerInRange_
+  commentId: Overload:WeaverCore.Assets.Components.DoorControl.PlayerInRange
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.DoorControl.PlayerInRange
+  nameWithType: DoorControl.PlayerInRange
+- uid: WeaverCore.Assets.Components.EnemyDamager
+  name: EnemyDamager
+  href: api/WeaverCore.Assets.Components.EnemyDamager.html
+  commentId: T:WeaverCore.Assets.Components.EnemyDamager
+  fullName: WeaverCore.Assets.Components.EnemyDamager
+  nameWithType: EnemyDamager
+- uid: WeaverCore.Assets.Components.EnemyDamager.attackType
+  name: attackType
+  href: api/WeaverCore.Assets.Components.EnemyDamager.html#WeaverCore_Assets_Components_EnemyDamager_attackType
+  commentId: F:WeaverCore.Assets.Components.EnemyDamager.attackType
+  fullName: WeaverCore.Assets.Components.EnemyDamager.attackType
+  nameWithType: EnemyDamager.attackType
+- uid: WeaverCore.Assets.Components.EnemyDamager.damage
+  name: damage
+  href: api/WeaverCore.Assets.Components.EnemyDamager.html#WeaverCore_Assets_Components_EnemyDamager_damage
+  commentId: F:WeaverCore.Assets.Components.EnemyDamager.damage
+  fullName: WeaverCore.Assets.Components.EnemyDamager.damage
+  nameWithType: EnemyDamager.damage
+- uid: WeaverCore.Assets.Components.EnemyDamager.hitDirection
+  name: hitDirection
+  href: api/WeaverCore.Assets.Components.EnemyDamager.html#WeaverCore_Assets_Components_EnemyDamager_hitDirection
+  commentId: F:WeaverCore.Assets.Components.EnemyDamager.hitDirection
+  fullName: WeaverCore.Assets.Components.EnemyDamager.hitDirection
+  nameWithType: EnemyDamager.hitDirection
 - uid: WeaverCore.Assets.Components.EssenceEffects
   name: EssenceEffects
   href: api/WeaverCore.Assets.Components.EssenceEffects.html
@@ -18996,6 +19039,12 @@ references:
   commentId: T:WeaverCore.Assets.Components.MapUpdateMessage
   fullName: WeaverCore.Assets.Components.MapUpdateMessage
   nameWithType: MapUpdateMessage
+- uid: WeaverCore.Assets.Components.PlayerWeaponizer
+  name: PlayerWeaponizer
+  href: api/WeaverCore.Assets.Components.PlayerWeaponizer.html
+  commentId: T:WeaverCore.Assets.Components.PlayerWeaponizer
+  fullName: WeaverCore.Assets.Components.PlayerWeaponizer
+  nameWithType: PlayerWeaponizer
 - uid: WeaverCore.Assets.Components.RandomRotation
   name: RandomRotation
   href: api/WeaverCore.Assets.Components.RandomRotation.html
@@ -19215,12 +19264,6 @@ references:
   commentId: M:WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelText(System.String)
   fullName: WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelText(System.String)
   nameWithType: WeaverArrowPrompt.SetLabelText(String)
-- uid: WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelText(System.String,System.String)
-  name: SetLabelText(String, String)
-  href: api/WeaverCore.Assets.Components.WeaverArrowPrompt.html#WeaverCore_Assets_Components_WeaverArrowPrompt_SetLabelText_System_String_System_String_
-  commentId: M:WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelText(System.String,System.String)
-  fullName: WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelText(System.String, System.String)
-  nameWithType: WeaverArrowPrompt.SetLabelText(String, String)
 - uid: WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelText*
   name: SetLabelText
   href: api/WeaverCore.Assets.Components.WeaverArrowPrompt.html#WeaverCore_Assets_Components_WeaverArrowPrompt_SetLabelText_
@@ -19228,6 +19271,19 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelText
   nameWithType: WeaverArrowPrompt.SetLabelText
+- uid: WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelTextLang(System.String,System.String)
+  name: SetLabelTextLang(String, String)
+  href: api/WeaverCore.Assets.Components.WeaverArrowPrompt.html#WeaverCore_Assets_Components_WeaverArrowPrompt_SetLabelTextLang_System_String_System_String_
+  commentId: M:WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelTextLang(System.String,System.String)
+  fullName: WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelTextLang(System.String, System.String)
+  nameWithType: WeaverArrowPrompt.SetLabelTextLang(String, String)
+- uid: WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelTextLang*
+  name: SetLabelTextLang
+  href: api/WeaverCore.Assets.Components.WeaverArrowPrompt.html#WeaverCore_Assets_Components_WeaverArrowPrompt_SetLabelTextLang_
+  commentId: Overload:WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelTextLang
+  isSpec: "True"
+  fullName: WeaverCore.Assets.Components.WeaverArrowPrompt.SetLabelTextLang
+  nameWithType: WeaverArrowPrompt.SetLabelTextLang
 - uid: WeaverCore.Assets.Components.WeaverArrowPrompt.Shadow
   name: Shadow
   href: api/WeaverCore.Assets.Components.WeaverArrowPrompt.html#WeaverCore_Assets_Components_WeaverArrowPrompt_Shadow
@@ -19564,32 +19620,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Assets.EffectAssets.FireballHitPrefab
   nameWithType: EffectAssets.FireballHitPrefab
-- uid: WeaverCore.Assets.EffectAssets.GhostSlash1Prefab
-  name: GhostSlash1Prefab
-  href: api/WeaverCore.Assets.EffectAssets.html#WeaverCore_Assets_EffectAssets_GhostSlash1Prefab
-  commentId: P:WeaverCore.Assets.EffectAssets.GhostSlash1Prefab
-  fullName: WeaverCore.Assets.EffectAssets.GhostSlash1Prefab
-  nameWithType: EffectAssets.GhostSlash1Prefab
-- uid: WeaverCore.Assets.EffectAssets.GhostSlash1Prefab*
-  name: GhostSlash1Prefab
-  href: api/WeaverCore.Assets.EffectAssets.html#WeaverCore_Assets_EffectAssets_GhostSlash1Prefab_
-  commentId: Overload:WeaverCore.Assets.EffectAssets.GhostSlash1Prefab
-  isSpec: "True"
-  fullName: WeaverCore.Assets.EffectAssets.GhostSlash1Prefab
-  nameWithType: EffectAssets.GhostSlash1Prefab
-- uid: WeaverCore.Assets.EffectAssets.GhostSlash2Prefab
-  name: GhostSlash2Prefab
-  href: api/WeaverCore.Assets.EffectAssets.html#WeaverCore_Assets_EffectAssets_GhostSlash2Prefab
-  commentId: P:WeaverCore.Assets.EffectAssets.GhostSlash2Prefab
-  fullName: WeaverCore.Assets.EffectAssets.GhostSlash2Prefab
-  nameWithType: EffectAssets.GhostSlash2Prefab
-- uid: WeaverCore.Assets.EffectAssets.GhostSlash2Prefab*
-  name: GhostSlash2Prefab
-  href: api/WeaverCore.Assets.EffectAssets.html#WeaverCore_Assets_EffectAssets_GhostSlash2Prefab_
-  commentId: Overload:WeaverCore.Assets.EffectAssets.GhostSlash2Prefab
-  isSpec: "True"
-  fullName: WeaverCore.Assets.EffectAssets.GhostSlash2Prefab
-  nameWithType: EffectAssets.GhostSlash2Prefab
 - uid: WeaverCore.Assets.EffectAssets.NailStrikePrefab
   name: NailStrikePrefab
   href: api/WeaverCore.Assets.EffectAssets.html#WeaverCore_Assets_EffectAssets_NailStrikePrefab
@@ -21851,6 +21881,30 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.Awake
   nameWithType: BasicDeathEffects.Awake
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.DamageSound
+  name: DamageSound
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_DamageSound
+  commentId: F:WeaverCore.Components.DeathEffects.BasicDeathEffects.DamageSound
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.DamageSound
+  nameWithType: BasicDeathEffects.DamageSound
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMaxPitch
+  name: damageSoundMaxPitch
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_damageSoundMaxPitch
+  commentId: F:WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMaxPitch
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMaxPitch
+  nameWithType: BasicDeathEffects.damageSoundMaxPitch
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMinPitch
+  name: damageSoundMinPitch
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_damageSoundMinPitch
+  commentId: F:WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMinPitch
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMinPitch
+  nameWithType: BasicDeathEffects.damageSoundMinPitch
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundVolume
+  name: damageSoundVolume
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_damageSoundVolume
+  commentId: F:WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundVolume
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundVolume
+  nameWithType: BasicDeathEffects.damageSoundVolume
 - uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.DoEssenceChance
   name: DoEssenceChance()
   href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_DoEssenceChance
@@ -21960,36 +22014,49 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.PlayDeathEffects
   nameWithType: BasicDeathEffects.PlayDeathEffects
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.ShakeCameraIfVisible(WeaverCore.Enums.ShakeType)
+  name: ShakeCameraIfVisible(ShakeType)
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_ShakeCameraIfVisible_WeaverCore_Enums_ShakeType_
+  commentId: M:WeaverCore.Components.DeathEffects.BasicDeathEffects.ShakeCameraIfVisible(WeaverCore.Enums.ShakeType)
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.ShakeCameraIfVisible(WeaverCore.Enums.ShakeType)
+  nameWithType: BasicDeathEffects.ShakeCameraIfVisible(ShakeType)
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.ShakeCameraIfVisible*
+  name: ShakeCameraIfVisible
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_ShakeCameraIfVisible_
+  commentId: Overload:WeaverCore.Components.DeathEffects.BasicDeathEffects.ShakeCameraIfVisible
+  isSpec: "True"
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.ShakeCameraIfVisible
+  nameWithType: BasicDeathEffects.ShakeCameraIfVisible
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.SwordDeathSound
+  name: SwordDeathSound
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_SwordDeathSound
+  commentId: F:WeaverCore.Components.DeathEffects.BasicDeathEffects.SwordDeathSound
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.SwordDeathSound
+  nameWithType: BasicDeathEffects.SwordDeathSound
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMaxPitch
+  name: swordDeathSoundMaxPitch
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_swordDeathSoundMaxPitch
+  commentId: F:WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMaxPitch
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMaxPitch
+  nameWithType: BasicDeathEffects.swordDeathSoundMaxPitch
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMinPitch
+  name: swordDeathSoundMinPitch
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_swordDeathSoundMinPitch
+  commentId: F:WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMinPitch
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMinPitch
+  nameWithType: BasicDeathEffects.swordDeathSoundMinPitch
+- uid: WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundVolume
+  name: swordDeathSoundVolume
+  href: api/WeaverCore.Components.DeathEffects.BasicDeathEffects.html#WeaverCore_Components_DeathEffects_BasicDeathEffects_swordDeathSoundVolume
+  commentId: F:WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundVolume
+  fullName: WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundVolume
+  nameWithType: BasicDeathEffects.swordDeathSoundVolume
 - uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects
   name: InfectedDeathEffects
   href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html
   commentId: T:WeaverCore.Components.DeathEffects.InfectedDeathEffects
   fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects
   nameWithType: InfectedDeathEffects
-- uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects.DamageSound
-  name: DamageSound
-  href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html#WeaverCore_Components_DeathEffects_InfectedDeathEffects_DamageSound
-  commentId: F:WeaverCore.Components.DeathEffects.InfectedDeathEffects.DamageSound
-  fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects.DamageSound
-  nameWithType: InfectedDeathEffects.DamageSound
-- uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects.damageSoundMaxPitch
-  name: damageSoundMaxPitch
-  href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html#WeaverCore_Components_DeathEffects_InfectedDeathEffects_damageSoundMaxPitch
-  commentId: F:WeaverCore.Components.DeathEffects.InfectedDeathEffects.damageSoundMaxPitch
-  fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects.damageSoundMaxPitch
-  nameWithType: InfectedDeathEffects.damageSoundMaxPitch
-- uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects.damageSoundMinPitch
-  name: damageSoundMinPitch
-  href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html#WeaverCore_Components_DeathEffects_InfectedDeathEffects_damageSoundMinPitch
-  commentId: F:WeaverCore.Components.DeathEffects.InfectedDeathEffects.damageSoundMinPitch
-  fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects.damageSoundMinPitch
-  nameWithType: InfectedDeathEffects.damageSoundMinPitch
-- uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects.damageSoundVolume
-  name: damageSoundVolume
-  href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html#WeaverCore_Components_DeathEffects_InfectedDeathEffects_damageSoundVolume
-  commentId: F:WeaverCore.Components.DeathEffects.InfectedDeathEffects.damageSoundVolume
-  fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects.damageSoundVolume
-  nameWithType: InfectedDeathEffects.damageSoundVolume
 - uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects.DeathPuffPrefab
   name: DeathPuffPrefab
   href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html#WeaverCore_Components_DeathEffects_InfectedDeathEffects_DeathPuffPrefab
@@ -22058,30 +22125,62 @@ references:
   commentId: F:WeaverCore.Components.DeathEffects.InfectedDeathEffects.InfectedDeathWavePrefab
   fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects.InfectedDeathWavePrefab
   nameWithType: InfectedDeathEffects.InfectedDeathWavePrefab
-- uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects.SwordDeathSound
-  name: SwordDeathSound
-  href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html#WeaverCore_Components_DeathEffects_InfectedDeathEffects_SwordDeathSound
-  commentId: F:WeaverCore.Components.DeathEffects.InfectedDeathEffects.SwordDeathSound
-  fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects.SwordDeathSound
-  nameWithType: InfectedDeathEffects.SwordDeathSound
-- uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects.swordDeathSoundMaxPitch
-  name: swordDeathSoundMaxPitch
-  href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html#WeaverCore_Components_DeathEffects_InfectedDeathEffects_swordDeathSoundMaxPitch
-  commentId: F:WeaverCore.Components.DeathEffects.InfectedDeathEffects.swordDeathSoundMaxPitch
-  fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects.swordDeathSoundMaxPitch
-  nameWithType: InfectedDeathEffects.swordDeathSoundMaxPitch
-- uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects.swordDeathSoundMinPitch
-  name: swordDeathSoundMinPitch
-  href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html#WeaverCore_Components_DeathEffects_InfectedDeathEffects_swordDeathSoundMinPitch
-  commentId: F:WeaverCore.Components.DeathEffects.InfectedDeathEffects.swordDeathSoundMinPitch
-  fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects.swordDeathSoundMinPitch
-  nameWithType: InfectedDeathEffects.swordDeathSoundMinPitch
-- uid: WeaverCore.Components.DeathEffects.InfectedDeathEffects.swordDeathSoundVolume
-  name: swordDeathSoundVolume
-  href: api/WeaverCore.Components.DeathEffects.InfectedDeathEffects.html#WeaverCore_Components_DeathEffects_InfectedDeathEffects_swordDeathSoundVolume
-  commentId: F:WeaverCore.Components.DeathEffects.InfectedDeathEffects.swordDeathSoundVolume
-  fullName: WeaverCore.Components.DeathEffects.InfectedDeathEffects.swordDeathSoundVolume
-  nameWithType: InfectedDeathEffects.swordDeathSoundVolume
+- uid: WeaverCore.Components.DeathEffects.UninfectedDeathEffects
+  name: UninfectedDeathEffects
+  href: api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html
+  commentId: T:WeaverCore.Components.DeathEffects.UninfectedDeathEffects
+  fullName: WeaverCore.Components.DeathEffects.UninfectedDeathEffects
+  nameWithType: UninfectedDeathEffects
+- uid: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.Awake
+  name: Awake()
+  href: api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html#WeaverCore_Components_DeathEffects_UninfectedDeathEffects_Awake
+  commentId: M:WeaverCore.Components.DeathEffects.UninfectedDeathEffects.Awake
+  fullName: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.Awake()
+  nameWithType: UninfectedDeathEffects.Awake()
+- uid: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.Awake*
+  name: Awake
+  href: api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html#WeaverCore_Components_DeathEffects_UninfectedDeathEffects_Awake_
+  commentId: Overload:WeaverCore.Components.DeathEffects.UninfectedDeathEffects.Awake
+  isSpec: "True"
+  fullName: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.Awake
+  nameWithType: UninfectedDeathEffects.Awake
+- uid: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.EmitEffects
+  name: EmitEffects()
+  href: api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html#WeaverCore_Components_DeathEffects_UninfectedDeathEffects_EmitEffects
+  commentId: M:WeaverCore.Components.DeathEffects.UninfectedDeathEffects.EmitEffects
+  fullName: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.EmitEffects()
+  nameWithType: UninfectedDeathEffects.EmitEffects()
+- uid: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.EmitEffects*
+  name: EmitEffects
+  href: api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html#WeaverCore_Components_DeathEffects_UninfectedDeathEffects_EmitEffects_
+  commentId: Overload:WeaverCore.Components.DeathEffects.UninfectedDeathEffects.EmitEffects
+  isSpec: "True"
+  fullName: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.EmitEffects
+  nameWithType: UninfectedDeathEffects.EmitEffects
+- uid: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.slashEffectGhost1
+  name: slashEffectGhost1
+  href: api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html#WeaverCore_Components_DeathEffects_UninfectedDeathEffects_slashEffectGhost1
+  commentId: F:WeaverCore.Components.DeathEffects.UninfectedDeathEffects.slashEffectGhost1
+  fullName: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.slashEffectGhost1
+  nameWithType: UninfectedDeathEffects.slashEffectGhost1
+- uid: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.slashEffectGhost2
+  name: slashEffectGhost2
+  href: api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html#WeaverCore_Components_DeathEffects_UninfectedDeathEffects_slashEffectGhost2
+  commentId: F:WeaverCore.Components.DeathEffects.UninfectedDeathEffects.slashEffectGhost2
+  fullName: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.slashEffectGhost2
+  nameWithType: UninfectedDeathEffects.slashEffectGhost2
+- uid: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.uninfectedDeathPt
+  name: uninfectedDeathPt
+  href: api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html#WeaverCore_Components_DeathEffects_UninfectedDeathEffects_uninfectedDeathPt
+  commentId: F:WeaverCore.Components.DeathEffects.UninfectedDeathEffects.uninfectedDeathPt
+  fullName: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.uninfectedDeathPt
+  nameWithType: UninfectedDeathEffects.uninfectedDeathPt
+- uid: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.whiteWave
+  name: whiteWave
+  href: api/WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html#WeaverCore_Components_DeathEffects_UninfectedDeathEffects_whiteWave
+  commentId: F:WeaverCore.Components.DeathEffects.UninfectedDeathEffects.whiteWave
+  fullName: WeaverCore.Components.DeathEffects.UninfectedDeathEffects.whiteWave
+  nameWithType: UninfectedDeathEffects.whiteWave
 - uid: WeaverCore.Components.DreamFallCatcher
   name: DreamFallCatcher
   href: api/WeaverCore.Components.DreamFallCatcher.html
@@ -22347,6 +22446,12 @@ references:
   commentId: M:WeaverCore.Components.EntityHealth.Die
   fullName: WeaverCore.Components.EntityHealth.Die()
   nameWithType: EntityHealth.Die()
+- uid: WeaverCore.Components.EntityHealth.Die(WeaverCore.HitInfo)
+  name: Die(HitInfo)
+  href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_Die_WeaverCore_HitInfo_
+  commentId: M:WeaverCore.Components.EntityHealth.Die(WeaverCore.HitInfo)
+  fullName: WeaverCore.Components.EntityHealth.Die(WeaverCore.HitInfo)
+  nameWithType: EntityHealth.Die(HitInfo)
 - uid: WeaverCore.Components.EntityHealth.Die*
   name: Die
   href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_Die_
@@ -22360,6 +22465,12 @@ references:
   commentId: M:WeaverCore.Components.EntityHealth.DoDeathEvent
   fullName: WeaverCore.Components.EntityHealth.DoDeathEvent()
   nameWithType: EntityHealth.DoDeathEvent()
+- uid: WeaverCore.Components.EntityHealth.DoDeathEvent(WeaverCore.HitInfo)
+  name: DoDeathEvent(HitInfo)
+  href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_DoDeathEvent_WeaverCore_HitInfo_
+  commentId: M:WeaverCore.Components.EntityHealth.DoDeathEvent(WeaverCore.HitInfo)
+  fullName: WeaverCore.Components.EntityHealth.DoDeathEvent(WeaverCore.HitInfo)
+  nameWithType: EntityHealth.DoDeathEvent(HitInfo)
 - uid: WeaverCore.Components.EntityHealth.DoDeathEvent*
   name: DoDeathEvent
   href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_DoDeathEvent_
@@ -22555,12 +22666,12 @@ references:
   commentId: F:WeaverCore.Components.EntityHealth.MediumGeo
   fullName: WeaverCore.Components.EntityHealth.MediumGeo
   nameWithType: EntityHealth.MediumGeo
-- uid: WeaverCore.Components.EntityHealth.OnDeath
-  name: OnDeath()
-  href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_OnDeath
-  commentId: M:WeaverCore.Components.EntityHealth.OnDeath
-  fullName: WeaverCore.Components.EntityHealth.OnDeath()
-  nameWithType: EntityHealth.OnDeath()
+- uid: WeaverCore.Components.EntityHealth.OnDeath(WeaverCore.HitInfo)
+  name: OnDeath(HitInfo)
+  href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_OnDeath_WeaverCore_HitInfo_
+  commentId: M:WeaverCore.Components.EntityHealth.OnDeath(WeaverCore.HitInfo)
+  fullName: WeaverCore.Components.EntityHealth.OnDeath(WeaverCore.HitInfo)
+  nameWithType: EntityHealth.OnDeath(HitInfo)
 - uid: WeaverCore.Components.EntityHealth.OnDeath*
   name: OnDeath
   href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_OnDeath_
@@ -22628,6 +22739,19 @@ references:
   fullName.vb: WeaverCore.Components.EntityHealth.RemoveModifier(Of T)()
   nameWithType: EntityHealth.RemoveModifier<T>()
   nameWithType.vb: EntityHealth.RemoveModifier(Of T)()
+- uid: WeaverCore.Components.EntityHealth.SetHealthRaw(System.Int32)
+  name: SetHealthRaw(Int32)
+  href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_SetHealthRaw_System_Int32_
+  commentId: M:WeaverCore.Components.EntityHealth.SetHealthRaw(System.Int32)
+  fullName: WeaverCore.Components.EntityHealth.SetHealthRaw(System.Int32)
+  nameWithType: EntityHealth.SetHealthRaw(Int32)
+- uid: WeaverCore.Components.EntityHealth.SetHealthRaw*
+  name: SetHealthRaw
+  href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_SetHealthRaw_
+  commentId: Overload:WeaverCore.Components.EntityHealth.SetHealthRaw
+  isSpec: "True"
+  fullName: WeaverCore.Components.EntityHealth.SetHealthRaw
+  nameWithType: EntityHealth.SetHealthRaw
 - uid: WeaverCore.Components.EntityHealth.SmallGeo
   name: SmallGeo
   href: api/WeaverCore.Components.EntityHealth.html#WeaverCore_Components_EntityHealth_SmallGeo
@@ -22647,6 +22771,25 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Components.EntityHealth.Update
   nameWithType: EntityHealth.Update
+- uid: WeaverCore.Components.GroundDetector
+  name: GroundDetector
+  href: api/WeaverCore.Components.GroundDetector.html
+  commentId: T:WeaverCore.Components.GroundDetector
+  fullName: WeaverCore.Components.GroundDetector
+  nameWithType: GroundDetector
+- uid: WeaverCore.Components.GroundDetector.TouchingGround
+  name: TouchingGround
+  href: api/WeaverCore.Components.GroundDetector.html#WeaverCore_Components_GroundDetector_TouchingGround
+  commentId: P:WeaverCore.Components.GroundDetector.TouchingGround
+  fullName: WeaverCore.Components.GroundDetector.TouchingGround
+  nameWithType: GroundDetector.TouchingGround
+- uid: WeaverCore.Components.GroundDetector.TouchingGround*
+  name: TouchingGround
+  href: api/WeaverCore.Components.GroundDetector.html#WeaverCore_Components_GroundDetector_TouchingGround_
+  commentId: Overload:WeaverCore.Components.GroundDetector.TouchingGround
+  isSpec: "True"
+  fullName: WeaverCore.Components.GroundDetector.TouchingGround
+  nameWithType: GroundDetector.TouchingGround
 - uid: WeaverCore.Components.HitEffects
   name: WeaverCore.Components.HitEffects
   href: api/WeaverCore.Components.HitEffects.html
@@ -22795,6 +22938,37 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Components.HitEffects.HitEffectsNormal.PlayHitEffect
   nameWithType: HitEffectsNormal.PlayHitEffect
+- uid: WeaverCore.Components.NailTink
+  name: NailTink
+  href: api/WeaverCore.Components.NailTink.html
+  commentId: T:WeaverCore.Components.NailTink
+  fullName: WeaverCore.Components.NailTink
+  nameWithType: NailTink
+- uid: WeaverCore.Components.NailTink.Hit(WeaverCore.HitInfo)
+  name: Hit(HitInfo)
+  href: api/WeaverCore.Components.NailTink.html#WeaverCore_Components_NailTink_Hit_WeaverCore_HitInfo_
+  commentId: M:WeaverCore.Components.NailTink.Hit(WeaverCore.HitInfo)
+  fullName: WeaverCore.Components.NailTink.Hit(WeaverCore.HitInfo)
+  nameWithType: NailTink.Hit(HitInfo)
+- uid: WeaverCore.Components.NailTink.Hit*
+  name: Hit
+  href: api/WeaverCore.Components.NailTink.html#WeaverCore_Components_NailTink_Hit_
+  commentId: Overload:WeaverCore.Components.NailTink.Hit
+  isSpec: "True"
+  fullName: WeaverCore.Components.NailTink.Hit
+  nameWithType: NailTink.Hit
+- uid: WeaverCore.Components.NailTink.TinkEffectPrefab
+  name: TinkEffectPrefab
+  href: api/WeaverCore.Components.NailTink.html#WeaverCore_Components_NailTink_TinkEffectPrefab
+  commentId: F:WeaverCore.Components.NailTink.TinkEffectPrefab
+  fullName: WeaverCore.Components.NailTink.TinkEffectPrefab
+  nameWithType: NailTink.TinkEffectPrefab
+- uid: WeaverCore.Components.NailTink.TinkSound
+  name: TinkSound
+  href: api/WeaverCore.Components.NailTink.html#WeaverCore_Components_NailTink_TinkSound
+  commentId: F:WeaverCore.Components.NailTink.TinkSound
+  fullName: WeaverCore.Components.NailTink.TinkSound
+  nameWithType: NailTink.TinkSound
 - uid: WeaverCore.Components.PlayerDamager
   name: PlayerDamager
   href: api/WeaverCore.Components.PlayerDamager.html
@@ -23741,78 +23915,19 @@ references:
   commentId: T:WeaverCore.Components.WeaverTransitionPoint
   fullName: WeaverCore.Components.WeaverTransitionPoint
   nameWithType: WeaverTransitionPoint
-- uid: WeaverCore.DataTypes
-  name: WeaverCore.DataTypes
-  href: api/WeaverCore.DataTypes.html
-  commentId: N:WeaverCore.DataTypes
-  fullName: WeaverCore.DataTypes
-  nameWithType: WeaverCore.DataTypes
-- uid: WeaverCore.DataTypes.SpriteSheet
-  name: SpriteSheet
-  href: api/WeaverCore.DataTypes.SpriteSheet.html
-  commentId: T:WeaverCore.DataTypes.SpriteSheet
-  fullName: WeaverCore.DataTypes.SpriteSheet
-  nameWithType: SpriteSheet
-- uid: WeaverCore.DataTypes.SpriteSheet.Flipped
-  name: Flipped
-  href: api/WeaverCore.DataTypes.SpriteSheet.html#WeaverCore_DataTypes_SpriteSheet_Flipped
-  commentId: F:WeaverCore.DataTypes.SpriteSheet.Flipped
-  fullName: WeaverCore.DataTypes.SpriteSheet.Flipped
-  nameWithType: SpriteSheet.Flipped
-- uid: WeaverCore.DataTypes.SpriteSheet.Pivot
-  name: Pivot
-  href: api/WeaverCore.DataTypes.SpriteSheet.html#WeaverCore_DataTypes_SpriteSheet_Pivot
-  commentId: F:WeaverCore.DataTypes.SpriteSheet.Pivot
-  fullName: WeaverCore.DataTypes.SpriteSheet.Pivot
-  nameWithType: SpriteSheet.Pivot
-- uid: WeaverCore.DataTypes.SpriteSheet.SpriteName
-  name: SpriteName
-  href: api/WeaverCore.DataTypes.SpriteSheet.html#WeaverCore_DataTypes_SpriteSheet_SpriteName
-  commentId: F:WeaverCore.DataTypes.SpriteSheet.SpriteName
-  fullName: WeaverCore.DataTypes.SpriteSheet.SpriteName
-  nameWithType: SpriteSheet.SpriteName
-- uid: WeaverCore.DataTypes.SpriteSheet.UVs
-  name: UVs
-  href: api/WeaverCore.DataTypes.SpriteSheet.html#WeaverCore_DataTypes_SpriteSheet_UVs
-  commentId: F:WeaverCore.DataTypes.SpriteSheet.UVs
-  fullName: WeaverCore.DataTypes.SpriteSheet.UVs
-  nameWithType: SpriteSheet.UVs
-- uid: WeaverCore.DataTypes.SpriteSheet.WorldSize
-  name: WorldSize
-  href: api/WeaverCore.DataTypes.SpriteSheet.html#WeaverCore_DataTypes_SpriteSheet_WorldSize
-  commentId: F:WeaverCore.DataTypes.SpriteSheet.WorldSize
-  fullName: WeaverCore.DataTypes.SpriteSheet.WorldSize
-  nameWithType: SpriteSheet.WorldSize
-- uid: WeaverCore.DataTypes.TextureSheet
-  name: TextureSheet
-  href: api/WeaverCore.DataTypes.TextureSheet.html
-  commentId: T:WeaverCore.DataTypes.TextureSheet
-  fullName: WeaverCore.DataTypes.TextureSheet
-  nameWithType: TextureSheet
-- uid: WeaverCore.DataTypes.TextureSheet.Height
-  name: Height
-  href: api/WeaverCore.DataTypes.TextureSheet.html#WeaverCore_DataTypes_TextureSheet_Height
-  commentId: F:WeaverCore.DataTypes.TextureSheet.Height
-  fullName: WeaverCore.DataTypes.TextureSheet.Height
-  nameWithType: TextureSheet.Height
-- uid: WeaverCore.DataTypes.TextureSheet.Sprites
-  name: Sprites
-  href: api/WeaverCore.DataTypes.TextureSheet.html#WeaverCore_DataTypes_TextureSheet_Sprites
-  commentId: F:WeaverCore.DataTypes.TextureSheet.Sprites
-  fullName: WeaverCore.DataTypes.TextureSheet.Sprites
-  nameWithType: TextureSheet.Sprites
-- uid: WeaverCore.DataTypes.TextureSheet.TextureName
-  name: TextureName
-  href: api/WeaverCore.DataTypes.TextureSheet.html#WeaverCore_DataTypes_TextureSheet_TextureName
-  commentId: F:WeaverCore.DataTypes.TextureSheet.TextureName
-  fullName: WeaverCore.DataTypes.TextureSheet.TextureName
-  nameWithType: TextureSheet.TextureName
-- uid: WeaverCore.DataTypes.TextureSheet.Width
-  name: Width
-  href: api/WeaverCore.DataTypes.TextureSheet.html#WeaverCore_DataTypes_TextureSheet_Width
-  commentId: F:WeaverCore.DataTypes.TextureSheet.Width
-  fullName: WeaverCore.DataTypes.TextureSheet.Width
-  nameWithType: TextureSheet.Width
+- uid: WeaverCore.Components.WeaverTransitionPoint.DoTransition(System.String,System.Single)
+  name: DoTransition(String, Single)
+  href: api/WeaverCore.Components.WeaverTransitionPoint.html#WeaverCore_Components_WeaverTransitionPoint_DoTransition_System_String_System_Single_
+  commentId: M:WeaverCore.Components.WeaverTransitionPoint.DoTransition(System.String,System.Single)
+  fullName: WeaverCore.Components.WeaverTransitionPoint.DoTransition(System.String, System.Single)
+  nameWithType: WeaverTransitionPoint.DoTransition(String, Single)
+- uid: WeaverCore.Components.WeaverTransitionPoint.DoTransition*
+  name: DoTransition
+  href: api/WeaverCore.Components.WeaverTransitionPoint.html#WeaverCore_Components_WeaverTransitionPoint_DoTransition_
+  commentId: Overload:WeaverCore.Components.WeaverTransitionPoint.DoTransition
+  isSpec: "True"
+  fullName: WeaverCore.Components.WeaverTransitionPoint.DoTransition
+  nameWithType: WeaverTransitionPoint.DoTransition
 - uid: WeaverCore.Editor
   name: WeaverCore.Editor
   href: api/WeaverCore.Editor.html
@@ -24340,6 +24455,12 @@ references:
   commentId: F:WeaverCore.Editor.Compilation.BuildScreen.Settings.StartGame
   fullName: WeaverCore.Editor.Compilation.BuildScreen.Settings.StartGame
   nameWithType: BuildScreen.Settings.StartGame
+- uid: WeaverCore.Editor.Compilation.BuildScreen.Settings.WeaverCoreOnly
+  name: WeaverCoreOnly
+  href: api/WeaverCore.Editor.Compilation.BuildScreen.Settings.html#WeaverCore_Editor_Compilation_BuildScreen_Settings_WeaverCoreOnly
+  commentId: F:WeaverCore.Editor.Compilation.BuildScreen.Settings.WeaverCoreOnly
+  fullName: WeaverCore.Editor.Compilation.BuildScreen.Settings.WeaverCoreOnly
+  nameWithType: BuildScreen.Settings.WeaverCoreOnly
 - uid: WeaverCore.Editor.Compilation.BuildScreen.Settings.WindowsSupport
   name: WindowsSupport
   href: api/WeaverCore.Editor.Compilation.BuildScreen.Settings.html#WeaverCore_Editor_Compilation_BuildScreen_Settings_WindowsSupport
@@ -24359,19 +24480,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Compilation.BuildScreen.ShowBuildScreen
   nameWithType: BuildScreen.ShowBuildScreen
-- uid: WeaverCore.Editor.Compilation.BuildScreen.WeaverCoreOnly
-  name: WeaverCoreOnly
-  href: api/WeaverCore.Editor.Compilation.BuildScreen.html#WeaverCore_Editor_Compilation_BuildScreen_WeaverCoreOnly
-  commentId: P:WeaverCore.Editor.Compilation.BuildScreen.WeaverCoreOnly
-  fullName: WeaverCore.Editor.Compilation.BuildScreen.WeaverCoreOnly
-  nameWithType: BuildScreen.WeaverCoreOnly
-- uid: WeaverCore.Editor.Compilation.BuildScreen.WeaverCoreOnly*
-  name: WeaverCoreOnly
-  href: api/WeaverCore.Editor.Compilation.BuildScreen.html#WeaverCore_Editor_Compilation_BuildScreen_WeaverCoreOnly_
-  commentId: Overload:WeaverCore.Editor.Compilation.BuildScreen.WeaverCoreOnly
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Compilation.BuildScreen.WeaverCoreOnly
-  nameWithType: BuildScreen.WeaverCoreOnly
 - uid: WeaverCore.Editor.Compilation.BuildScreen.WindowHeight
   name: WindowHeight
   href: api/WeaverCore.Editor.Compilation.BuildScreen.html#WeaverCore_Editor_Compilation_BuildScreen_WindowHeight
@@ -24799,19 +24907,6 @@ references:
   commentId: F:WeaverCore.Editor.Compilation.BundleTools.SceneData.Path
   fullName: WeaverCore.Editor.Compilation.BundleTools.SceneData.Path
   nameWithType: BundleTools.SceneData.Path
-- uid: WeaverCore.Editor.Compilation.BundleTools.Test
-  name: Test()
-  href: api/WeaverCore.Editor.Compilation.BundleTools.html#WeaverCore_Editor_Compilation_BundleTools_Test
-  commentId: M:WeaverCore.Editor.Compilation.BundleTools.Test
-  fullName: WeaverCore.Editor.Compilation.BundleTools.Test()
-  nameWithType: BundleTools.Test()
-- uid: WeaverCore.Editor.Compilation.BundleTools.Test*
-  name: Test
-  href: api/WeaverCore.Editor.Compilation.BundleTools.html#WeaverCore_Editor_Compilation_BundleTools_Test_
-  commentId: Overload:WeaverCore.Editor.Compilation.BundleTools.Test
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Compilation.BundleTools.Test
-  nameWithType: BundleTools.Test
 - uid: WeaverCore.Editor.Compilation.CompilationMenuItems
   name: CompilationMenuItems
   href: api/WeaverCore.Editor.Compilation.CompilationMenuItems.html
@@ -25326,115 +25421,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.CreateScriptableObjectWindow.OpenCreationMenu
   nameWithType: CreateScriptableObjectWindow.OpenCreationMenu
-- uid: WeaverCore.Editor.DataTypes
-  name: WeaverCore.Editor.DataTypes
-  href: api/WeaverCore.Editor.DataTypes.html
-  commentId: N:WeaverCore.Editor.DataTypes
-  fullName: WeaverCore.Editor.DataTypes
-  nameWithType: WeaverCore.Editor.DataTypes
-- uid: WeaverCore.Editor.DataTypes.SpritePackage
-  name: SpritePackage
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html
-  commentId: T:WeaverCore.Editor.DataTypes.SpritePackage
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage
-  nameWithType: SpritePackage
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.#ctor(UnityEngine.Texture2D)
-  name: SpritePackage(Texture2D)
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage__ctor_UnityEngine_Texture2D_
-  commentId: M:WeaverCore.Editor.DataTypes.SpritePackage.#ctor(UnityEngine.Texture2D)
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.SpritePackage(UnityEngine.Texture2D)
-  nameWithType: SpritePackage.SpritePackage(Texture2D)
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.#ctor*
-  name: SpritePackage
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage__ctor_
-  commentId: Overload:WeaverCore.Editor.DataTypes.SpritePackage.#ctor
-  isSpec: "True"
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.SpritePackage
-  nameWithType: SpritePackage.SpritePackage
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.AddSprite(System.Int32,UnityEngine.Sprite)
-  name: AddSprite(Int32, Sprite)
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_AddSprite_System_Int32_UnityEngine_Sprite_
-  commentId: M:WeaverCore.Editor.DataTypes.SpritePackage.AddSprite(System.Int32,UnityEngine.Sprite)
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.AddSprite(System.Int32, UnityEngine.Sprite)
-  nameWithType: SpritePackage.AddSprite(Int32, Sprite)
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.AddSprite*
-  name: AddSprite
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_AddSprite_
-  commentId: Overload:WeaverCore.Editor.DataTypes.SpritePackage.AddSprite
-  isSpec: "True"
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.AddSprite
-  nameWithType: SpritePackage.AddSprite
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.GetAllIDs
-  name: GetAllIDs()
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_GetAllIDs
-  commentId: M:WeaverCore.Editor.DataTypes.SpritePackage.GetAllIDs
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.GetAllIDs()
-  nameWithType: SpritePackage.GetAllIDs()
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.GetAllIDs*
-  name: GetAllIDs
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_GetAllIDs_
-  commentId: Overload:WeaverCore.Editor.DataTypes.SpritePackage.GetAllIDs
-  isSpec: "True"
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.GetAllIDs
-  nameWithType: SpritePackage.GetAllIDs
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.GetAllSprites
-  name: GetAllSprites()
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_GetAllSprites
-  commentId: M:WeaverCore.Editor.DataTypes.SpritePackage.GetAllSprites
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.GetAllSprites()
-  nameWithType: SpritePackage.GetAllSprites()
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.GetAllSprites*
-  name: GetAllSprites
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_GetAllSprites_
-  commentId: Overload:WeaverCore.Editor.DataTypes.SpritePackage.GetAllSprites
-  isSpec: "True"
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.GetAllSprites
-  nameWithType: SpritePackage.GetAllSprites
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.GetSprite(System.Int32)
-  name: GetSprite(Int32)
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_GetSprite_System_Int32_
-  commentId: M:WeaverCore.Editor.DataTypes.SpritePackage.GetSprite(System.Int32)
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.GetSprite(System.Int32)
-  nameWithType: SpritePackage.GetSprite(Int32)
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.GetSprite*
-  name: GetSprite
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_GetSprite_
-  commentId: Overload:WeaverCore.Editor.DataTypes.SpritePackage.GetSprite
-  isSpec: "True"
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.GetSprite
-  nameWithType: SpritePackage.GetSprite
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.GetSpritesWithIDs
-  name: GetSpritesWithIDs()
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_GetSpritesWithIDs
-  commentId: M:WeaverCore.Editor.DataTypes.SpritePackage.GetSpritesWithIDs
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.GetSpritesWithIDs()
-  nameWithType: SpritePackage.GetSpritesWithIDs()
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.GetSpritesWithIDs*
-  name: GetSpritesWithIDs
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_GetSpritesWithIDs_
-  commentId: Overload:WeaverCore.Editor.DataTypes.SpritePackage.GetSpritesWithIDs
-  isSpec: "True"
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.GetSpritesWithIDs
-  nameWithType: SpritePackage.GetSpritesWithIDs
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.RemoveSprite(System.Int32)
-  name: RemoveSprite(Int32)
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_RemoveSprite_System_Int32_
-  commentId: M:WeaverCore.Editor.DataTypes.SpritePackage.RemoveSprite(System.Int32)
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.RemoveSprite(System.Int32)
-  nameWithType: SpritePackage.RemoveSprite(Int32)
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.RemoveSprite*
-  name: RemoveSprite
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_RemoveSprite_
-  commentId: Overload:WeaverCore.Editor.DataTypes.SpritePackage.RemoveSprite
-  isSpec: "True"
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.RemoveSprite
-  nameWithType: SpritePackage.RemoveSprite
-- uid: WeaverCore.Editor.DataTypes.SpritePackage.Texture
-  name: Texture
-  href: api/WeaverCore.Editor.DataTypes.SpritePackage.html#WeaverCore_Editor_DataTypes_SpritePackage_Texture
-  commentId: F:WeaverCore.Editor.DataTypes.SpritePackage.Texture
-  fullName: WeaverCore.Editor.DataTypes.SpritePackage.Texture
-  nameWithType: SpritePackage.Texture
 - uid: WeaverCore.Editor.DependencyCheck
   name: DependencyCheck
   href: api/WeaverCore.Editor.DependencyCheck.html
@@ -25615,36 +25601,6 @@ references:
   commentId: N:WeaverCore.Editor.Enums
   fullName: WeaverCore.Editor.Enums
   nameWithType: WeaverCore.Editor.Enums
-- uid: WeaverCore.Editor.Enums.Orientation
-  name: Orientation
-  href: api/WeaverCore.Editor.Enums.Orientation.html
-  commentId: T:WeaverCore.Editor.Enums.Orientation
-  fullName: WeaverCore.Editor.Enums.Orientation
-  nameWithType: Orientation
-- uid: WeaverCore.Editor.Enums.Orientation.Down
-  name: Down
-  href: api/WeaverCore.Editor.Enums.Orientation.html#WeaverCore_Editor_Enums_Orientation_Down
-  commentId: F:WeaverCore.Editor.Enums.Orientation.Down
-  fullName: WeaverCore.Editor.Enums.Orientation.Down
-  nameWithType: Orientation.Down
-- uid: WeaverCore.Editor.Enums.Orientation.Left
-  name: Left
-  href: api/WeaverCore.Editor.Enums.Orientation.html#WeaverCore_Editor_Enums_Orientation_Left
-  commentId: F:WeaverCore.Editor.Enums.Orientation.Left
-  fullName: WeaverCore.Editor.Enums.Orientation.Left
-  nameWithType: Orientation.Left
-- uid: WeaverCore.Editor.Enums.Orientation.Right
-  name: Right
-  href: api/WeaverCore.Editor.Enums.Orientation.html#WeaverCore_Editor_Enums_Orientation_Right
-  commentId: F:WeaverCore.Editor.Enums.Orientation.Right
-  fullName: WeaverCore.Editor.Enums.Orientation.Right
-  nameWithType: Orientation.Right
-- uid: WeaverCore.Editor.Enums.Orientation.Up
-  name: Up
-  href: api/WeaverCore.Editor.Enums.Orientation.html#WeaverCore_Editor_Enums_Orientation_Up
-  commentId: F:WeaverCore.Editor.Enums.Orientation.Up
-  fullName: WeaverCore.Editor.Enums.Orientation.Up
-  nameWithType: Orientation.Up
 - uid: WeaverCore.Editor.Enums.UnravelMode
   name: UnravelMode
   href: api/WeaverCore.Editor.Enums.UnravelMode.html
@@ -25675,6 +25631,12 @@ references:
   commentId: F:WeaverCore.Editor.GeneralSettings.CurrentGameLanguage
   fullName: WeaverCore.Editor.GeneralSettings.CurrentGameLanguage
   nameWithType: GeneralSettings.CurrentGameLanguage
+- uid: WeaverCore.Editor.GeneralSettings.DisableGameFreezing
+  name: DisableGameFreezing
+  href: api/WeaverCore.Editor.GeneralSettings.html#WeaverCore_Editor_GeneralSettings_DisableGameFreezing
+  commentId: F:WeaverCore.Editor.GeneralSettings.DisableGameFreezing
+  fullName: WeaverCore.Editor.GeneralSettings.DisableGameFreezing
+  nameWithType: GeneralSettings.DisableGameFreezing
 - uid: WeaverCore.Editor.GeneralSettings.Instance
   name: Instance
   href: api/WeaverCore.Editor.GeneralSettings.html#WeaverCore_Editor_GeneralSettings_Instance
@@ -26611,6 +26573,38 @@ references:
   fullName.vb: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssetFromBundle(Of T)(System.String, System.String)
   nameWithType: E_WeaverAssets_I.LoadAssetFromBundle<T>(String, String)
   nameWithType.vb: E_WeaverAssets_I.LoadAssetFromBundle(Of T)(String, String)
+- uid: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssets*
+  name: LoadAssets
+  href: api/WeaverCore.Editor.Implementations.E_WeaverAssets_I.html#WeaverCore_Editor_Implementations_E_WeaverAssets_I_LoadAssets_
+  commentId: Overload:WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssets
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssets
+  nameWithType: E_WeaverAssets_I.LoadAssets
+- uid: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssets``1(System.String)
+  name: LoadAssets<T>(String)
+  href: api/WeaverCore.Editor.Implementations.E_WeaverAssets_I.html#WeaverCore_Editor_Implementations_E_WeaverAssets_I_LoadAssets__1_System_String_
+  commentId: M:WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssets``1(System.String)
+  name.vb: LoadAssets(Of T)(String)
+  fullName: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssets<T>(System.String)
+  fullName.vb: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssets(Of T)(System.String)
+  nameWithType: E_WeaverAssets_I.LoadAssets<T>(String)
+  nameWithType.vb: E_WeaverAssets_I.LoadAssets(Of T)(String)
+- uid: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssetsFromBundle*
+  name: LoadAssetsFromBundle
+  href: api/WeaverCore.Editor.Implementations.E_WeaverAssets_I.html#WeaverCore_Editor_Implementations_E_WeaverAssets_I_LoadAssetsFromBundle_
+  commentId: Overload:WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssetsFromBundle
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssetsFromBundle
+  nameWithType: E_WeaverAssets_I.LoadAssetsFromBundle
+- uid: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssetsFromBundle``1(System.String,System.String)
+  name: LoadAssetsFromBundle<T>(String, String)
+  href: api/WeaverCore.Editor.Implementations.E_WeaverAssets_I.html#WeaverCore_Editor_Implementations_E_WeaverAssets_I_LoadAssetsFromBundle__1_System_String_System_String_
+  commentId: M:WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssetsFromBundle``1(System.String,System.String)
+  name.vb: LoadAssetsFromBundle(Of T)(String, String)
+  fullName: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssetsFromBundle<T>(System.String, System.String)
+  fullName.vb: WeaverCore.Editor.Implementations.E_WeaverAssets_I.LoadAssetsFromBundle(Of T)(System.String, System.String)
+  nameWithType: E_WeaverAssets_I.LoadAssetsFromBundle<T>(String, String)
+  nameWithType.vb: E_WeaverAssets_I.LoadAssetsFromBundle(Of T)(String, String)
 - uid: WeaverCore.Editor.Implementations.E_WeaverAudio_I
   name: E_WeaverAudio_I
   href: api/WeaverCore.Editor.Implementations.E_WeaverAudio_I.html
@@ -26834,6 +26828,19 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDemoPlayer
   nameWithType: InsertMenu.InsertDemoPlayer
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamFallCatcher
+  name: InsertDreamFallCatcher()
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertDreamFallCatcher
+  commentId: M:WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamFallCatcher
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamFallCatcher()
+  nameWithType: InsertMenu.InsertDreamFallCatcher()
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamFallCatcher*
+  name: InsertDreamFallCatcher
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertDreamFallCatcher_
+  commentId: Overload:WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamFallCatcher
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamFallCatcher
+  nameWithType: InsertMenu.InsertDreamFallCatcher
 - uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertDreamWarpObject
   name: InsertDreamWarpObject()
   href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertDreamWarpObject
@@ -26873,6 +26880,19 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertGameManager
   nameWithType: InsertMenu.InsertGameManager
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertTemplateEnemy
+  name: InsertTemplateEnemy()
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertTemplateEnemy
+  commentId: M:WeaverCore.Editor.Menu_Items.InsertMenu.InsertTemplateEnemy
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertTemplateEnemy()
+  nameWithType: InsertMenu.InsertTemplateEnemy()
+- uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertTemplateEnemy*
+  name: InsertTemplateEnemy
+  href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertTemplateEnemy_
+  commentId: Overload:WeaverCore.Editor.Menu_Items.InsertMenu.InsertTemplateEnemy
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Menu_Items.InsertMenu.InsertTemplateEnemy
+  nameWithType: InsertMenu.InsertTemplateEnemy
 - uid: WeaverCore.Editor.Menu_Items.InsertMenu.InsertWeaverBench
   name: InsertWeaverBench()
   href: api/WeaverCore.Editor.Menu_Items.InsertMenu.html#WeaverCore_Editor_Menu_Items_InsertMenu_InsertWeaverBench
@@ -27097,6 +27117,25 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Settings.GameBuildSettings.Verify
   nameWithType: GameBuildSettings.Verify
+- uid: WeaverCore.Editor.Settings.GeneralSettingsMenuItem
+  name: GeneralSettingsMenuItem
+  href: api/WeaverCore.Editor.Settings.GeneralSettingsMenuItem.html
+  commentId: T:WeaverCore.Editor.Settings.GeneralSettingsMenuItem
+  fullName: WeaverCore.Editor.Settings.GeneralSettingsMenuItem
+  nameWithType: GeneralSettingsMenuItem
+- uid: WeaverCore.Editor.Settings.GeneralSettingsMenuItem.OpenGeneralSettingsMenu
+  name: OpenGeneralSettingsMenu()
+  href: api/WeaverCore.Editor.Settings.GeneralSettingsMenuItem.html#WeaverCore_Editor_Settings_GeneralSettingsMenuItem_OpenGeneralSettingsMenu
+  commentId: M:WeaverCore.Editor.Settings.GeneralSettingsMenuItem.OpenGeneralSettingsMenu
+  fullName: WeaverCore.Editor.Settings.GeneralSettingsMenuItem.OpenGeneralSettingsMenu()
+  nameWithType: GeneralSettingsMenuItem.OpenGeneralSettingsMenu()
+- uid: WeaverCore.Editor.Settings.GeneralSettingsMenuItem.OpenGeneralSettingsMenu*
+  name: OpenGeneralSettingsMenu
+  href: api/WeaverCore.Editor.Settings.GeneralSettingsMenuItem.html#WeaverCore_Editor_Settings_GeneralSettingsMenuItem_OpenGeneralSettingsMenu_
+  commentId: Overload:WeaverCore.Editor.Settings.GeneralSettingsMenuItem.OpenGeneralSettingsMenu
+  isSpec: "True"
+  fullName: WeaverCore.Editor.Settings.GeneralSettingsMenuItem.OpenGeneralSettingsMenu
+  nameWithType: GeneralSettingsMenuItem.OpenGeneralSettingsMenu
 - uid: WeaverCore.Editor.Settings.GeneralSettingsScreen
   name: GeneralSettingsScreen
   href: api/WeaverCore.Editor.Settings.GeneralSettingsScreen.html
@@ -27141,25 +27180,6 @@ references:
   commentId: F:WeaverCore.Editor.Settings.GeneralSettingsScreen.WindowWidth
   fullName: WeaverCore.Editor.Settings.GeneralSettingsScreen.WindowWidth
   nameWithType: GeneralSettingsScreen.WindowWidth
-- uid: WeaverCore.Editor.Settings.SettingsScreenMenuItem
-  name: SettingsScreenMenuItem
-  href: api/WeaverCore.Editor.Settings.SettingsScreenMenuItem.html
-  commentId: T:WeaverCore.Editor.Settings.SettingsScreenMenuItem
-  fullName: WeaverCore.Editor.Settings.SettingsScreenMenuItem
-  nameWithType: SettingsScreenMenuItem
-- uid: WeaverCore.Editor.Settings.SettingsScreenMenuItem.OpenGeneralSettingsMenu
-  name: OpenGeneralSettingsMenu()
-  href: api/WeaverCore.Editor.Settings.SettingsScreenMenuItem.html#WeaverCore_Editor_Settings_SettingsScreenMenuItem_OpenGeneralSettingsMenu
-  commentId: M:WeaverCore.Editor.Settings.SettingsScreenMenuItem.OpenGeneralSettingsMenu
-  fullName: WeaverCore.Editor.Settings.SettingsScreenMenuItem.OpenGeneralSettingsMenu()
-  nameWithType: SettingsScreenMenuItem.OpenGeneralSettingsMenu()
-- uid: WeaverCore.Editor.Settings.SettingsScreenMenuItem.OpenGeneralSettingsMenu*
-  name: OpenGeneralSettingsMenu
-  href: api/WeaverCore.Editor.Settings.SettingsScreenMenuItem.html#WeaverCore_Editor_Settings_SettingsScreenMenuItem_OpenGeneralSettingsMenu_
-  commentId: Overload:WeaverCore.Editor.Settings.SettingsScreenMenuItem.OpenGeneralSettingsMenu
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Settings.SettingsScreenMenuItem.OpenGeneralSettingsMenu
-  nameWithType: SettingsScreenMenuItem.OpenGeneralSettingsMenu
 - uid: WeaverCore.Editor.Structures
   name: WeaverCore.Editor.Structures
   href: api/WeaverCore.Editor.Structures.html
@@ -27228,78 +27248,6 @@ references:
   commentId: F:WeaverCore.Editor.Structures.LayerIndex.Name
   fullName: WeaverCore.Editor.Structures.LayerIndex.Name
   nameWithType: LayerIndex.Name
-- uid: WeaverCore.Editor.Structures.SpriteData
-  name: SpriteData
-  href: api/WeaverCore.Editor.Structures.SpriteData.html
-  commentId: T:WeaverCore.Editor.Structures.SpriteData
-  fullName: WeaverCore.Editor.Structures.SpriteData
-  nameWithType: SpriteData
-- uid: WeaverCore.Editor.Structures.SpriteData.PixelsPerUnit
-  name: PixelsPerUnit
-  href: api/WeaverCore.Editor.Structures.SpriteData.html#WeaverCore_Editor_Structures_SpriteData_PixelsPerUnit
-  commentId: F:WeaverCore.Editor.Structures.SpriteData.PixelsPerUnit
-  fullName: WeaverCore.Editor.Structures.SpriteData.PixelsPerUnit
-  nameWithType: SpriteData.PixelsPerUnit
-- uid: WeaverCore.Editor.Structures.SpriteData.Sheet
-  name: Sheet
-  href: api/WeaverCore.Editor.Structures.SpriteData.html#WeaverCore_Editor_Structures_SpriteData_Sheet
-  commentId: F:WeaverCore.Editor.Structures.SpriteData.Sheet
-  fullName: WeaverCore.Editor.Structures.SpriteData.Sheet
-  nameWithType: SpriteData.Sheet
-- uid: WeaverCore.Editor.Structures.SpriteData.SpriteCoords
-  name: SpriteCoords
-  href: api/WeaverCore.Editor.Structures.SpriteData.html#WeaverCore_Editor_Structures_SpriteData_SpriteCoords
-  commentId: F:WeaverCore.Editor.Structures.SpriteData.SpriteCoords
-  fullName: WeaverCore.Editor.Structures.SpriteData.SpriteCoords
-  nameWithType: SpriteData.SpriteCoords
-- uid: WeaverCore.Editor.Structures.SpriteData.Texture
-  name: Texture
-  href: api/WeaverCore.Editor.Structures.SpriteData.html#WeaverCore_Editor_Structures_SpriteData_Texture
-  commentId: F:WeaverCore.Editor.Structures.SpriteData.Texture
-  fullName: WeaverCore.Editor.Structures.SpriteData.Texture
-  nameWithType: SpriteData.Texture
-- uid: WeaverCore.Editor.Structures.SpriteData.UVDimensions
-  name: UVDimensions
-  href: api/WeaverCore.Editor.Structures.SpriteData.html#WeaverCore_Editor_Structures_SpriteData_UVDimensions
-  commentId: F:WeaverCore.Editor.Structures.SpriteData.UVDimensions
-  fullName: WeaverCore.Editor.Structures.SpriteData.UVDimensions
-  nameWithType: SpriteData.UVDimensions
-- uid: WeaverCore.Editor.Structures.SpriteLocation
-  name: SpriteLocation
-  href: api/WeaverCore.Editor.Structures.SpriteLocation.html
-  commentId: T:WeaverCore.Editor.Structures.SpriteLocation
-  fullName: WeaverCore.Editor.Structures.SpriteLocation
-  nameWithType: SpriteLocation
-- uid: WeaverCore.Editor.Structures.SpriteLocation.FileLocation
-  name: FileLocation
-  href: api/WeaverCore.Editor.Structures.SpriteLocation.html#WeaverCore_Editor_Structures_SpriteLocation_FileLocation
-  commentId: F:WeaverCore.Editor.Structures.SpriteLocation.FileLocation
-  fullName: WeaverCore.Editor.Structures.SpriteLocation.FileLocation
-  nameWithType: SpriteLocation.FileLocation
-- uid: WeaverCore.Editor.Structures.SpriteLocation.Sprite
-  name: Sprite
-  href: api/WeaverCore.Editor.Structures.SpriteLocation.html#WeaverCore_Editor_Structures_SpriteLocation_Sprite
-  commentId: F:WeaverCore.Editor.Structures.SpriteLocation.Sprite
-  fullName: WeaverCore.Editor.Structures.SpriteLocation.Sprite
-  nameWithType: SpriteLocation.Sprite
-- uid: WeaverCore.Editor.Structures.SpriteLocation.SpriteDimensions
-  name: SpriteDimensions
-  href: api/WeaverCore.Editor.Structures.SpriteLocation.html#WeaverCore_Editor_Structures_SpriteLocation_SpriteDimensions
-  commentId: F:WeaverCore.Editor.Structures.SpriteLocation.SpriteDimensions
-  fullName: WeaverCore.Editor.Structures.SpriteLocation.SpriteDimensions
-  nameWithType: SpriteLocation.SpriteDimensions
-- uid: WeaverCore.Editor.Structures.SpriteLocation.UVHeight
-  name: UVHeight
-  href: api/WeaverCore.Editor.Structures.SpriteLocation.html#WeaverCore_Editor_Structures_SpriteLocation_UVHeight
-  commentId: F:WeaverCore.Editor.Structures.SpriteLocation.UVHeight
-  fullName: WeaverCore.Editor.Structures.SpriteLocation.UVHeight
-  nameWithType: SpriteLocation.UVHeight
-- uid: WeaverCore.Editor.Structures.SpriteLocation.UVWidth
-  name: UVWidth
-  href: api/WeaverCore.Editor.Structures.SpriteLocation.html#WeaverCore_Editor_Structures_SpriteLocation_UVWidth
-  commentId: F:WeaverCore.Editor.Structures.SpriteLocation.UVWidth
-  fullName: WeaverCore.Editor.Structures.SpriteLocation.UVWidth
-  nameWithType: SpriteLocation.UVWidth
 - uid: WeaverCore.Editor.TexturePacker
   name: TexturePacker
   href: api/WeaverCore.Editor.TexturePacker.html
@@ -28100,12 +28048,12 @@ references:
   commentId: T:WeaverCore.Editor.Utilities.AssetUtilities
   fullName: WeaverCore.Editor.Utilities.AssetUtilities
   nameWithType: AssetUtilities
-- uid: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject(System.Type,System.String,System.Boolean)
-  name: CreateScriptableObject(Type, String, Boolean)
-  href: api/WeaverCore.Editor.Utilities.AssetUtilities.html#WeaverCore_Editor_Utilities_AssetUtilities_CreateScriptableObject_System_Type_System_String_System_Boolean_
-  commentId: M:WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject(System.Type,System.String,System.Boolean)
-  fullName: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject(System.Type, System.String, System.Boolean)
-  nameWithType: AssetUtilities.CreateScriptableObject(Type, String, Boolean)
+- uid: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject(System.Type,System.String)
+  name: CreateScriptableObject(Type, String)
+  href: api/WeaverCore.Editor.Utilities.AssetUtilities.html#WeaverCore_Editor_Utilities_AssetUtilities_CreateScriptableObject_System_Type_System_String_
+  commentId: M:WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject(System.Type,System.String)
+  fullName: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject(System.Type, System.String)
+  nameWithType: AssetUtilities.CreateScriptableObject(Type, String)
 - uid: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject*
   name: CreateScriptableObject
   href: api/WeaverCore.Editor.Utilities.AssetUtilities.html#WeaverCore_Editor_Utilities_AssetUtilities_CreateScriptableObject_
@@ -28113,34 +28061,15 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject
   nameWithType: AssetUtilities.CreateScriptableObject
-- uid: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject``1(System.String,System.Boolean)
-  name: CreateScriptableObject<T>(String, Boolean)
-  href: api/WeaverCore.Editor.Utilities.AssetUtilities.html#WeaverCore_Editor_Utilities_AssetUtilities_CreateScriptableObject__1_System_String_System_Boolean_
-  commentId: M:WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject``1(System.String,System.Boolean)
-  name.vb: CreateScriptableObject(Of T)(String, Boolean)
-  fullName: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject<T>(System.String, System.Boolean)
-  fullName.vb: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject(Of T)(System.String, System.Boolean)
-  nameWithType: AssetUtilities.CreateScriptableObject<T>(String, Boolean)
-  nameWithType.vb: AssetUtilities.CreateScriptableObject(Of T)(String, Boolean)
-- uid: WeaverCore.Editor.Utilities.CreationUtilities
-  name: CreationUtilities
-  href: api/WeaverCore.Editor.Utilities.CreationUtilities.html
-  commentId: T:WeaverCore.Editor.Utilities.CreationUtilities
-  fullName: WeaverCore.Editor.Utilities.CreationUtilities
-  nameWithType: CreationUtilities
-- uid: WeaverCore.Editor.Utilities.CreationUtilities.CreateFileFromTemplate(System.IO.FileInfo,System.String,System.String)
-  name: CreateFileFromTemplate(FileInfo, String, String)
-  href: api/WeaverCore.Editor.Utilities.CreationUtilities.html#WeaverCore_Editor_Utilities_CreationUtilities_CreateFileFromTemplate_System_IO_FileInfo_System_String_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.CreationUtilities.CreateFileFromTemplate(System.IO.FileInfo,System.String,System.String)
-  fullName: WeaverCore.Editor.Utilities.CreationUtilities.CreateFileFromTemplate(System.IO.FileInfo, System.String, System.String)
-  nameWithType: CreationUtilities.CreateFileFromTemplate(FileInfo, String, String)
-- uid: WeaverCore.Editor.Utilities.CreationUtilities.CreateFileFromTemplate*
-  name: CreateFileFromTemplate
-  href: api/WeaverCore.Editor.Utilities.CreationUtilities.html#WeaverCore_Editor_Utilities_CreationUtilities_CreateFileFromTemplate_
-  commentId: Overload:WeaverCore.Editor.Utilities.CreationUtilities.CreateFileFromTemplate
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.CreationUtilities.CreateFileFromTemplate
-  nameWithType: CreationUtilities.CreateFileFromTemplate
+- uid: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject``1(System.String)
+  name: CreateScriptableObject<T>(String)
+  href: api/WeaverCore.Editor.Utilities.AssetUtilities.html#WeaverCore_Editor_Utilities_AssetUtilities_CreateScriptableObject__1_System_String_
+  commentId: M:WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject``1(System.String)
+  name.vb: CreateScriptableObject(Of T)(String)
+  fullName: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject<T>(System.String)
+  fullName.vb: WeaverCore.Editor.Utilities.AssetUtilities.CreateScriptableObject(Of T)(System.String)
+  nameWithType: AssetUtilities.CreateScriptableObject<T>(String)
+  nameWithType.vb: AssetUtilities.CreateScriptableObject(Of T)(String)
 - uid: WeaverCore.Editor.Utilities.DebugUtilities
   name: DebugUtilities
   href: api/WeaverCore.Editor.Utilities.DebugUtilities.html
@@ -28235,103 +28164,6 @@ references:
   commentId: F:WeaverCore.Editor.Utilities.LayerData.NameData
   fullName: WeaverCore.Editor.Utilities.LayerData.NameData
   nameWithType: LayerData.NameData
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities
-  name: MonoScriptUtilities
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html
-  commentId: T:WeaverCore.Editor.Utilities.MonoScriptUtilities
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities
-  nameWithType: MonoScriptUtilities
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.ChangeAssemblyName(System.String,System.String)
-  name: ChangeAssemblyName(String, String)
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_ChangeAssemblyName_System_String_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.MonoScriptUtilities.ChangeAssemblyName(System.String,System.String)
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.ChangeAssemblyName(System.String, System.String)
-  nameWithType: MonoScriptUtilities.ChangeAssemblyName(String, String)
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.ChangeAssemblyName*
-  name: ChangeAssemblyName
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_ChangeAssemblyName_
-  commentId: Overload:WeaverCore.Editor.Utilities.MonoScriptUtilities.ChangeAssemblyName
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.ChangeAssemblyName
-  nameWithType: MonoScriptUtilities.ChangeAssemblyName
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetAsmDefPaths
-  name: GetAsmDefPaths()
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetAsmDefPaths
-  commentId: M:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetAsmDefPaths
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetAsmDefPaths()
-  nameWithType: MonoScriptUtilities.GetAsmDefPaths()
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetAsmDefPaths*
-  name: GetAsmDefPaths
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetAsmDefPaths_
-  commentId: Overload:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetAsmDefPaths
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetAsmDefPaths
-  nameWithType: MonoScriptUtilities.GetAsmDefPaths
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAssemblyName(UnityEditor.MonoScript)
-  name: GetScriptAssemblyName(MonoScript)
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetScriptAssemblyName_UnityEditor_MonoScript_
-  commentId: M:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAssemblyName(UnityEditor.MonoScript)
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAssemblyName(UnityEditor.MonoScript)
-  nameWithType: MonoScriptUtilities.GetScriptAssemblyName(MonoScript)
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAssemblyName*
-  name: GetScriptAssemblyName
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetScriptAssemblyName_
-  commentId: Overload:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAssemblyName
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAssemblyName
-  nameWithType: MonoScriptUtilities.GetScriptAssemblyName
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAtPath(System.String)
-  name: GetScriptAtPath(String)
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetScriptAtPath_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAtPath(System.String)
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAtPath(System.String)
-  nameWithType: MonoScriptUtilities.GetScriptAtPath(String)
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAtPath*
-  name: GetScriptAtPath
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetScriptAtPath_
-  commentId: Overload:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAtPath
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptAtPath
-  nameWithType: MonoScriptUtilities.GetScriptAtPath
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptPathsUnderAssembly(System.String)
-  name: GetScriptPathsUnderAssembly(String)
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetScriptPathsUnderAssembly_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptPathsUnderAssembly(System.String)
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptPathsUnderAssembly(System.String)
-  nameWithType: MonoScriptUtilities.GetScriptPathsUnderAssembly(String)
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptPathsUnderAssembly*
-  name: GetScriptPathsUnderAssembly
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetScriptPathsUnderAssembly_
-  commentId: Overload:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptPathsUnderAssembly
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptPathsUnderAssembly
-  nameWithType: MonoScriptUtilities.GetScriptPathsUnderAssembly
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptsUnderAssembly(System.String)
-  name: GetScriptsUnderAssembly(String)
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetScriptsUnderAssembly_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptsUnderAssembly(System.String)
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptsUnderAssembly(System.String)
-  nameWithType: MonoScriptUtilities.GetScriptsUnderAssembly(String)
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptsUnderAssembly*
-  name: GetScriptsUnderAssembly
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_GetScriptsUnderAssembly_
-  commentId: Overload:WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptsUnderAssembly
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.GetScriptsUnderAssembly
-  nameWithType: MonoScriptUtilities.GetScriptsUnderAssembly
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.SetScriptAssemblyName(UnityEditor.MonoScript,System.String)
-  name: SetScriptAssemblyName(MonoScript, String)
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_SetScriptAssemblyName_UnityEditor_MonoScript_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.MonoScriptUtilities.SetScriptAssemblyName(UnityEditor.MonoScript,System.String)
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.SetScriptAssemblyName(UnityEditor.MonoScript, System.String)
-  nameWithType: MonoScriptUtilities.SetScriptAssemblyName(MonoScript, String)
-- uid: WeaverCore.Editor.Utilities.MonoScriptUtilities.SetScriptAssemblyName*
-  name: SetScriptAssemblyName
-  href: api/WeaverCore.Editor.Utilities.MonoScriptUtilities.html#WeaverCore_Editor_Utilities_MonoScriptUtilities_SetScriptAssemblyName_
-  commentId: Overload:WeaverCore.Editor.Utilities.MonoScriptUtilities.SetScriptAssemblyName
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.MonoScriptUtilities.SetScriptAssemblyName
-  nameWithType: MonoScriptUtilities.SetScriptAssemblyName
 - uid: WeaverCore.Editor.Utilities.PlatformUtilities
   name: PlatformUtilities
   href: api/WeaverCore.Editor.Utilities.PlatformUtilities.html
@@ -28496,126 +28328,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Utilities.ReadableTextureContext.TexturesReadable
   nameWithType: ReadableTextureContext.TexturesReadable
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext
-  name: ResizeTextureContext
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html
-  commentId: T:WeaverCore.Editor.Utilities.ResizeTextureContext
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext
-  nameWithType: ResizeTextureContext
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.#ctor(System.Collections.Generic.List{UnityEngine.Texture})
-  name: ResizeTextureContext(List<Texture>)
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext__ctor_System_Collections_Generic_List_UnityEngine_Texture__
-  commentId: M:WeaverCore.Editor.Utilities.ResizeTextureContext.#ctor(System.Collections.Generic.List{UnityEngine.Texture})
-  name.vb: ResizeTextureContext(List(Of Texture))
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeTextureContext(System.Collections.Generic.List<UnityEngine.Texture>)
-  fullName.vb: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeTextureContext(System.Collections.Generic.List(Of UnityEngine.Texture))
-  nameWithType: ResizeTextureContext.ResizeTextureContext(List<Texture>)
-  nameWithType.vb: ResizeTextureContext.ResizeTextureContext(List(Of Texture))
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.#ctor(UnityEngine.Texture[])
-  name: ResizeTextureContext(Texture[])
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext__ctor_UnityEngine_Texture___
-  commentId: M:WeaverCore.Editor.Utilities.ResizeTextureContext.#ctor(UnityEngine.Texture[])
-  name.vb: ResizeTextureContext(Texture())
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeTextureContext(UnityEngine.Texture[])
-  fullName.vb: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeTextureContext(UnityEngine.Texture())
-  nameWithType: ResizeTextureContext.ResizeTextureContext(Texture[])
-  nameWithType.vb: ResizeTextureContext.ResizeTextureContext(Texture())
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.#ctor*
-  name: ResizeTextureContext
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext__ctor_
-  commentId: Overload:WeaverCore.Editor.Utilities.ResizeTextureContext.#ctor
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeTextureContext
-  nameWithType: ResizeTextureContext.ResizeTextureContext
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.Dispose
-  name: Dispose()
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_Dispose
-  commentId: M:WeaverCore.Editor.Utilities.ResizeTextureContext.Dispose
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.Dispose()
-  nameWithType: ResizeTextureContext.Dispose()
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.Dispose*
-  name: Dispose
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_Dispose_
-  commentId: Overload:WeaverCore.Editor.Utilities.ResizeTextureContext.Dispose
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.Dispose
-  nameWithType: ResizeTextureContext.Dispose
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.Finalize
-  name: Finalize()
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_Finalize
-  commentId: M:WeaverCore.Editor.Utilities.ResizeTextureContext.Finalize
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.Finalize()
-  nameWithType: ResizeTextureContext.Finalize()
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.Finalize*
-  name: Finalize
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_Finalize_
-  commentId: Overload:WeaverCore.Editor.Utilities.ResizeTextureContext.Finalize
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.Finalize
-  nameWithType: ResizeTextureContext.Finalize
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.GetActualSizeOfImage(System.String)
-  name: GetActualSizeOfImage(String)
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_GetActualSizeOfImage_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.ResizeTextureContext.GetActualSizeOfImage(System.String)
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.GetActualSizeOfImage(System.String)
-  nameWithType: ResizeTextureContext.GetActualSizeOfImage(String)
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.GetActualSizeOfImage(UnityEngine.Texture)
-  name: GetActualSizeOfImage(Texture)
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_GetActualSizeOfImage_UnityEngine_Texture_
-  commentId: M:WeaverCore.Editor.Utilities.ResizeTextureContext.GetActualSizeOfImage(UnityEngine.Texture)
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.GetActualSizeOfImage(UnityEngine.Texture)
-  nameWithType: ResizeTextureContext.GetActualSizeOfImage(Texture)
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.GetActualSizeOfImage*
-  name: GetActualSizeOfImage
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_GetActualSizeOfImage_
-  commentId: Overload:WeaverCore.Editor.Utilities.ResizeTextureContext.GetActualSizeOfImage
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.GetActualSizeOfImage
-  nameWithType: ResizeTextureContext.GetActualSizeOfImage
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.PreviousSizes
-  name: PreviousSizes
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_PreviousSizes
-  commentId: F:WeaverCore.Editor.Utilities.ResizeTextureContext.PreviousSizes
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.PreviousSizes
-  nameWithType: ResizeTextureContext.PreviousSizes
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeToActualSize(System.Collections.Generic.List{UnityEngine.Texture})
-  name: ResizeToActualSize(List<Texture>)
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_ResizeToActualSize_System_Collections_Generic_List_UnityEngine_Texture__
-  commentId: M:WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeToActualSize(System.Collections.Generic.List{UnityEngine.Texture})
-  name.vb: ResizeToActualSize(List(Of Texture))
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeToActualSize(System.Collections.Generic.List<UnityEngine.Texture>)
-  fullName.vb: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeToActualSize(System.Collections.Generic.List(Of UnityEngine.Texture))
-  nameWithType: ResizeTextureContext.ResizeToActualSize(List<Texture>)
-  nameWithType.vb: ResizeTextureContext.ResizeToActualSize(List(Of Texture))
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeToActualSize*
-  name: ResizeToActualSize
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_ResizeToActualSize_
-  commentId: Overload:WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeToActualSize
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.ResizeToActualSize
-  nameWithType: ResizeTextureContext.ResizeToActualSize
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.RevertSizes(System.Collections.Generic.List{UnityEngine.Texture},System.Collections.Generic.List{System.Int32})
-  name: RevertSizes(List<Texture>, List<Int32>)
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_RevertSizes_System_Collections_Generic_List_UnityEngine_Texture__System_Collections_Generic_List_System_Int32__
-  commentId: M:WeaverCore.Editor.Utilities.ResizeTextureContext.RevertSizes(System.Collections.Generic.List{UnityEngine.Texture},System.Collections.Generic.List{System.Int32})
-  name.vb: RevertSizes(List(Of Texture), List(Of Int32))
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.RevertSizes(System.Collections.Generic.List<UnityEngine.Texture>, System.Collections.Generic.List<System.Int32>)
-  fullName.vb: WeaverCore.Editor.Utilities.ResizeTextureContext.RevertSizes(System.Collections.Generic.List(Of UnityEngine.Texture), System.Collections.Generic.List(Of System.Int32))
-  nameWithType: ResizeTextureContext.RevertSizes(List<Texture>, List<Int32>)
-  nameWithType.vb: ResizeTextureContext.RevertSizes(List(Of Texture), List(Of Int32))
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.RevertSizes*
-  name: RevertSizes
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_RevertSizes_
-  commentId: Overload:WeaverCore.Editor.Utilities.ResizeTextureContext.RevertSizes
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.RevertSizes
-  nameWithType: ResizeTextureContext.RevertSizes
-- uid: WeaverCore.Editor.Utilities.ResizeTextureContext.Textures
-  name: Textures
-  href: api/WeaverCore.Editor.Utilities.ResizeTextureContext.html#WeaverCore_Editor_Utilities_ResizeTextureContext_Textures
-  commentId: F:WeaverCore.Editor.Utilities.ResizeTextureContext.Textures
-  fullName: WeaverCore.Editor.Utilities.ResizeTextureContext.Textures
-  nameWithType: ResizeTextureContext.Textures
 - uid: WeaverCore.Editor.Utilities.SelectionUtilities
   name: SelectionUtilities
   href: api/WeaverCore.Editor.Utilities.SelectionUtilities.html
@@ -28648,109 +28360,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Utilities.SelectionUtilities.SelectFolder
   nameWithType: SelectionUtilities.SelectFolder
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker
-  name: SerializedObjectChecker
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html
-  commentId: T:WeaverCore.Editor.Utilities.SerializedObjectChecker
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker
-  nameWithType: SerializedObjectChecker
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.#ctor(System.String)
-  name: SerializedObjectChecker(String)
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker__ctor_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.SerializedObjectChecker.#ctor(System.String)
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.SerializedObjectChecker(System.String)
-  nameWithType: SerializedObjectChecker.SerializedObjectChecker(String)
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.#ctor(UnityEditor.SerializedObject)
-  name: SerializedObjectChecker(SerializedObject)
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker__ctor_UnityEditor_SerializedObject_
-  commentId: M:WeaverCore.Editor.Utilities.SerializedObjectChecker.#ctor(UnityEditor.SerializedObject)
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.SerializedObjectChecker(UnityEditor.SerializedObject)
-  nameWithType: SerializedObjectChecker.SerializedObjectChecker(SerializedObject)
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.#ctor*
-  name: SerializedObjectChecker
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker__ctor_
-  commentId: Overload:WeaverCore.Editor.Utilities.SerializedObjectChecker.#ctor
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.SerializedObjectChecker
-  nameWithType: SerializedObjectChecker.SerializedObjectChecker
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.Check
-  name: Check()
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_Check
-  commentId: M:WeaverCore.Editor.Utilities.SerializedObjectChecker.Check
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.Check()
-  nameWithType: SerializedObjectChecker.Check()
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.Check*
-  name: Check
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_Check_
-  commentId: Overload:WeaverCore.Editor.Utilities.SerializedObjectChecker.Check
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.Check
-  nameWithType: SerializedObjectChecker.Check
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.GetInt(System.String)
-  name: GetInt(String)
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_GetInt_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.SerializedObjectChecker.GetInt(System.String)
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.GetInt(System.String)
-  nameWithType: SerializedObjectChecker.GetInt(String)
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.GetInt*
-  name: GetInt
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_GetInt_
-  commentId: Overload:WeaverCore.Editor.Utilities.SerializedObjectChecker.GetInt
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.GetInt
-  nameWithType: SerializedObjectChecker.GetInt
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.GetString(System.String)
-  name: GetString(String)
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_GetString_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.SerializedObjectChecker.GetString(System.String)
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.GetString(System.String)
-  nameWithType: SerializedObjectChecker.GetString(String)
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.GetString*
-  name: GetString
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_GetString_
-  commentId: Overload:WeaverCore.Editor.Utilities.SerializedObjectChecker.GetString
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.GetString
-  nameWithType: SerializedObjectChecker.GetString
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.serializedObject
-  name: serializedObject
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_serializedObject
-  commentId: P:WeaverCore.Editor.Utilities.SerializedObjectChecker.serializedObject
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.serializedObject
-  nameWithType: SerializedObjectChecker.serializedObject
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.serializedObject*
-  name: serializedObject
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_serializedObject_
-  commentId: Overload:WeaverCore.Editor.Utilities.SerializedObjectChecker.serializedObject
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.serializedObject
-  nameWithType: SerializedObjectChecker.serializedObject
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.SetInt(System.String,System.Int32)
-  name: SetInt(String, Int32)
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_SetInt_System_String_System_Int32_
-  commentId: M:WeaverCore.Editor.Utilities.SerializedObjectChecker.SetInt(System.String,System.Int32)
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.SetInt(System.String, System.Int32)
-  nameWithType: SerializedObjectChecker.SetInt(String, Int32)
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.SetInt*
-  name: SetInt
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_SetInt_
-  commentId: Overload:WeaverCore.Editor.Utilities.SerializedObjectChecker.SetInt
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.SetInt
-  nameWithType: SerializedObjectChecker.SetInt
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.SetString(System.String,System.String)
-  name: SetString(String, String)
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_SetString_System_String_System_String_
-  commentId: M:WeaverCore.Editor.Utilities.SerializedObjectChecker.SetString(System.String,System.String)
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.SetString(System.String, System.String)
-  nameWithType: SerializedObjectChecker.SetString(String, String)
-- uid: WeaverCore.Editor.Utilities.SerializedObjectChecker.SetString*
-  name: SetString
-  href: api/WeaverCore.Editor.Utilities.SerializedObjectChecker.html#WeaverCore_Editor_Utilities_SerializedObjectChecker_SetString_
-  commentId: Overload:WeaverCore.Editor.Utilities.SerializedObjectChecker.SetString
-  isSpec: "True"
-  fullName: WeaverCore.Editor.Utilities.SerializedObjectChecker.SetString
-  nameWithType: SerializedObjectChecker.SetString
 - uid: WeaverCore.Editor.Utilities.SerializedObjectExtensions
   name: SerializedObjectExtensions
   href: api/WeaverCore.Editor.Utilities.SerializedObjectExtensions.html
@@ -28825,6 +28434,92 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Editor.Utilities.SerializedObjectExtensions.SetString
   nameWithType: SerializedObjectExtensions.SetString
+- uid: WeaverCore.EntityReplacements
+  name: EntityReplacements
+  href: api/WeaverCore.EntityReplacements.html
+  commentId: T:WeaverCore.EntityReplacements
+  fullName: WeaverCore.EntityReplacements
+  nameWithType: EntityReplacements
+- uid: WeaverCore.EntityReplacements.AddReplacement(System.String,UnityEngine.GameObject)
+  name: AddReplacement(String, GameObject)
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_AddReplacement_System_String_UnityEngine_GameObject_
+  commentId: M:WeaverCore.EntityReplacements.AddReplacement(System.String,UnityEngine.GameObject)
+  fullName: WeaverCore.EntityReplacements.AddReplacement(System.String, UnityEngine.GameObject)
+  nameWithType: EntityReplacements.AddReplacement(String, GameObject)
+- uid: WeaverCore.EntityReplacements.AddReplacement*
+  name: AddReplacement
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_AddReplacement_
+  commentId: Overload:WeaverCore.EntityReplacements.AddReplacement
+  isSpec: "True"
+  fullName: WeaverCore.EntityReplacements.AddReplacement
+  nameWithType: EntityReplacements.AddReplacement
+- uid: WeaverCore.EntityReplacements.HasReplacements(System.String)
+  name: HasReplacements(String)
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_HasReplacements_System_String_
+  commentId: M:WeaverCore.EntityReplacements.HasReplacements(System.String)
+  fullName: WeaverCore.EntityReplacements.HasReplacements(System.String)
+  nameWithType: EntityReplacements.HasReplacements(String)
+- uid: WeaverCore.EntityReplacements.HasReplacements(UnityEngine.GameObject)
+  name: HasReplacements(GameObject)
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_HasReplacements_UnityEngine_GameObject_
+  commentId: M:WeaverCore.EntityReplacements.HasReplacements(UnityEngine.GameObject)
+  fullName: WeaverCore.EntityReplacements.HasReplacements(UnityEngine.GameObject)
+  nameWithType: EntityReplacements.HasReplacements(GameObject)
+- uid: WeaverCore.EntityReplacements.HasReplacements*
+  name: HasReplacements
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_HasReplacements_
+  commentId: Overload:WeaverCore.EntityReplacements.HasReplacements
+  isSpec: "True"
+  fullName: WeaverCore.EntityReplacements.HasReplacements
+  nameWithType: EntityReplacements.HasReplacements
+- uid: WeaverCore.EntityReplacements.RemoveAllReplacements(System.String)
+  name: RemoveAllReplacements(String)
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_RemoveAllReplacements_System_String_
+  commentId: M:WeaverCore.EntityReplacements.RemoveAllReplacements(System.String)
+  fullName: WeaverCore.EntityReplacements.RemoveAllReplacements(System.String)
+  nameWithType: EntityReplacements.RemoveAllReplacements(String)
+- uid: WeaverCore.EntityReplacements.RemoveAllReplacements*
+  name: RemoveAllReplacements
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_RemoveAllReplacements_
+  commentId: Overload:WeaverCore.EntityReplacements.RemoveAllReplacements
+  isSpec: "True"
+  fullName: WeaverCore.EntityReplacements.RemoveAllReplacements
+  nameWithType: EntityReplacements.RemoveAllReplacements
+- uid: WeaverCore.EntityReplacements.RemoveReplacement(System.String,UnityEngine.GameObject)
+  name: RemoveReplacement(String, GameObject)
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_RemoveReplacement_System_String_UnityEngine_GameObject_
+  commentId: M:WeaverCore.EntityReplacements.RemoveReplacement(System.String,UnityEngine.GameObject)
+  fullName: WeaverCore.EntityReplacements.RemoveReplacement(System.String, UnityEngine.GameObject)
+  nameWithType: EntityReplacements.RemoveReplacement(String, GameObject)
+- uid: WeaverCore.EntityReplacements.RemoveReplacement(System.UInt32)
+  name: RemoveReplacement(UInt32)
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_RemoveReplacement_System_UInt32_
+  commentId: M:WeaverCore.EntityReplacements.RemoveReplacement(System.UInt32)
+  fullName: WeaverCore.EntityReplacements.RemoveReplacement(System.UInt32)
+  nameWithType: EntityReplacements.RemoveReplacement(UInt32)
+- uid: WeaverCore.EntityReplacements.RemoveReplacement*
+  name: RemoveReplacement
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_RemoveReplacement_
+  commentId: Overload:WeaverCore.EntityReplacements.RemoveReplacement
+  isSpec: "True"
+  fullName: WeaverCore.EntityReplacements.RemoveReplacement
+  nameWithType: EntityReplacements.RemoveReplacement
+- uid: WeaverCore.EntityReplacements.ReplaceObject(UnityEngine.GameObject,System.Collections.Generic.List{UnityEngine.GameObject}@,System.Boolean)
+  name: ReplaceObject(GameObject, out List<GameObject>, Boolean)
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_ReplaceObject_UnityEngine_GameObject_System_Collections_Generic_List_UnityEngine_GameObject___System_Boolean_
+  commentId: M:WeaverCore.EntityReplacements.ReplaceObject(UnityEngine.GameObject,System.Collections.Generic.List{UnityEngine.GameObject}@,System.Boolean)
+  name.vb: ReplaceObject(GameObject, ByRef List(Of GameObject), Boolean)
+  fullName: WeaverCore.EntityReplacements.ReplaceObject(UnityEngine.GameObject, out System.Collections.Generic.List<UnityEngine.GameObject>, System.Boolean)
+  fullName.vb: WeaverCore.EntityReplacements.ReplaceObject(UnityEngine.GameObject, ByRef System.Collections.Generic.List(Of UnityEngine.GameObject), System.Boolean)
+  nameWithType: EntityReplacements.ReplaceObject(GameObject, out List<GameObject>, Boolean)
+  nameWithType.vb: EntityReplacements.ReplaceObject(GameObject, ByRef List(Of GameObject), Boolean)
+- uid: WeaverCore.EntityReplacements.ReplaceObject*
+  name: ReplaceObject
+  href: api/WeaverCore.EntityReplacements.html#WeaverCore_EntityReplacements_ReplaceObject_
+  commentId: Overload:WeaverCore.EntityReplacements.ReplaceObject
+  isSpec: "True"
+  fullName: WeaverCore.EntityReplacements.ReplaceObject
+  nameWithType: EntityReplacements.ReplaceObject
 - uid: WeaverCore.Enums
   name: WeaverCore.Enums
   href: api/WeaverCore.Enums.html
@@ -30097,6 +29792,19 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Features.Enemy.CurrentMove
   nameWithType: Enemy.CurrentMove
+- uid: WeaverCore.Features.Enemy.DisableDamagersOnDeath
+  name: DisableDamagersOnDeath
+  href: api/WeaverCore.Features.Enemy.html#WeaverCore_Features_Enemy_DisableDamagersOnDeath
+  commentId: P:WeaverCore.Features.Enemy.DisableDamagersOnDeath
+  fullName: WeaverCore.Features.Enemy.DisableDamagersOnDeath
+  nameWithType: Enemy.DisableDamagersOnDeath
+- uid: WeaverCore.Features.Enemy.DisableDamagersOnDeath*
+  name: DisableDamagersOnDeath
+  href: api/WeaverCore.Features.Enemy.html#WeaverCore_Features_Enemy_DisableDamagersOnDeath_
+  commentId: Overload:WeaverCore.Features.Enemy.DisableDamagersOnDeath
+  isSpec: "True"
+  fullName: WeaverCore.Features.Enemy.DisableDamagersOnDeath
+  nameWithType: Enemy.DisableDamagersOnDeath
 - uid: WeaverCore.Features.Enemy.Health
   name: Health
   href: api/WeaverCore.Features.Enemy.html#WeaverCore_Features_Enemy_Health
@@ -30457,12 +30165,12 @@ references:
   commentId: F:WeaverCore.FlingInfo.OriginVariationY
   fullName: WeaverCore.FlingInfo.OriginVariationY
   nameWithType: FlingInfo.OriginVariationY
-- uid: WeaverCore.FlingInfo.Pool
-  name: Pool
-  href: api/WeaverCore.FlingInfo.html#WeaverCore_FlingInfo_Pool
-  commentId: F:WeaverCore.FlingInfo.Pool
-  fullName: WeaverCore.FlingInfo.Pool
-  nameWithType: FlingInfo.Pool
+- uid: WeaverCore.FlingInfo.Prefab
+  name: Prefab
+  href: api/WeaverCore.FlingInfo.html#WeaverCore_FlingInfo_Prefab
+  commentId: F:WeaverCore.FlingInfo.Prefab
+  fullName: WeaverCore.FlingInfo.Prefab
+  nameWithType: FlingInfo.Prefab
 - uid: WeaverCore.FlingInfo.PrefabAmountMax
   name: PrefabAmountMax
   href: api/WeaverCore.FlingInfo.html#WeaverCore_FlingInfo_PrefabAmountMax
@@ -30506,12 +30214,27 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Flings.CreateNormalFlings
   nameWithType: Flings.CreateNormalFlings
+- uid: WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo,UnityEngine.Vector3)
+  name: SpawnFlings(FlingInfo, Vector3)
+  href: api/WeaverCore.Flings.html#WeaverCore_Flings_SpawnFlings_WeaverCore_FlingInfo_UnityEngine_Vector3_
+  commentId: M:WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo,UnityEngine.Vector3)
+  fullName: WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo, UnityEngine.Vector3)
+  nameWithType: Flings.SpawnFlings(FlingInfo, Vector3)
 - uid: WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo,UnityEngine.Vector3,WeaverCore.Enums.CardinalDirection)
   name: SpawnFlings(FlingInfo, Vector3, CardinalDirection)
   href: api/WeaverCore.Flings.html#WeaverCore_Flings_SpawnFlings_WeaverCore_FlingInfo_UnityEngine_Vector3_WeaverCore_Enums_CardinalDirection_
   commentId: M:WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo,UnityEngine.Vector3,WeaverCore.Enums.CardinalDirection)
   fullName: WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo, UnityEngine.Vector3, WeaverCore.Enums.CardinalDirection)
   nameWithType: Flings.SpawnFlings(FlingInfo, Vector3, CardinalDirection)
+- uid: WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo[],UnityEngine.Vector3)
+  name: SpawnFlings(FlingInfo[], Vector3)
+  href: api/WeaverCore.Flings.html#WeaverCore_Flings_SpawnFlings_WeaverCore_FlingInfo___UnityEngine_Vector3_
+  commentId: M:WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo[],UnityEngine.Vector3)
+  name.vb: SpawnFlings(FlingInfo(), Vector3)
+  fullName: WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo[], UnityEngine.Vector3)
+  fullName.vb: WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo(), UnityEngine.Vector3)
+  nameWithType: Flings.SpawnFlings(FlingInfo[], Vector3)
+  nameWithType.vb: Flings.SpawnFlings(FlingInfo(), Vector3)
 - uid: WeaverCore.Flings.SpawnFlings(WeaverCore.FlingInfo[],UnityEngine.Vector3,WeaverCore.Enums.CardinalDirection)
   name: SpawnFlings(FlingInfo[], Vector3, CardinalDirection)
   href: api/WeaverCore.Flings.html#WeaverCore_Flings_SpawnFlings_WeaverCore_FlingInfo___UnityEngine_Vector3_WeaverCore_Enums_CardinalDirection_
@@ -31237,12 +30960,12 @@ references:
   commentId: F:WeaverCore.Implementations.HealthManager_I.Manager
   fullName: WeaverCore.Implementations.HealthManager_I.Manager
   nameWithType: HealthManager_I.Manager
-- uid: WeaverCore.Implementations.HealthManager_I.OnDeath
-  name: OnDeath()
-  href: api/WeaverCore.Implementations.HealthManager_I.html#WeaverCore_Implementations_HealthManager_I_OnDeath
-  commentId: M:WeaverCore.Implementations.HealthManager_I.OnDeath
-  fullName: WeaverCore.Implementations.HealthManager_I.OnDeath()
-  nameWithType: HealthManager_I.OnDeath()
+- uid: WeaverCore.Implementations.HealthManager_I.OnDeath(WeaverCore.HitInfo)
+  name: OnDeath(HitInfo)
+  href: api/WeaverCore.Implementations.HealthManager_I.html#WeaverCore_Implementations_HealthManager_I_OnDeath_WeaverCore_HitInfo_
+  commentId: M:WeaverCore.Implementations.HealthManager_I.OnDeath(WeaverCore.HitInfo)
+  fullName: WeaverCore.Implementations.HealthManager_I.OnDeath(WeaverCore.HitInfo)
+  nameWithType: HealthManager_I.OnDeath(HitInfo)
 - uid: WeaverCore.Implementations.HealthManager_I.OnDeath*
   name: OnDeath
   href: api/WeaverCore.Implementations.HealthManager_I.html#WeaverCore_Implementations_HealthManager_I_OnDeath_
@@ -32627,6 +32350,38 @@ references:
   fullName.vb: WeaverCore.Implementations.WeaverAssets_I.LoadAssetFromBundle(Of T)(System.String, System.String)
   nameWithType: WeaverAssets_I.LoadAssetFromBundle<T>(String, String)
   nameWithType.vb: WeaverAssets_I.LoadAssetFromBundle(Of T)(String, String)
+- uid: WeaverCore.Implementations.WeaverAssets_I.LoadAssets*
+  name: LoadAssets
+  href: api/WeaverCore.Implementations.WeaverAssets_I.html#WeaverCore_Implementations_WeaverAssets_I_LoadAssets_
+  commentId: Overload:WeaverCore.Implementations.WeaverAssets_I.LoadAssets
+  isSpec: "True"
+  fullName: WeaverCore.Implementations.WeaverAssets_I.LoadAssets
+  nameWithType: WeaverAssets_I.LoadAssets
+- uid: WeaverCore.Implementations.WeaverAssets_I.LoadAssets``1(System.String)
+  name: LoadAssets<T>(String)
+  href: api/WeaverCore.Implementations.WeaverAssets_I.html#WeaverCore_Implementations_WeaverAssets_I_LoadAssets__1_System_String_
+  commentId: M:WeaverCore.Implementations.WeaverAssets_I.LoadAssets``1(System.String)
+  name.vb: LoadAssets(Of T)(String)
+  fullName: WeaverCore.Implementations.WeaverAssets_I.LoadAssets<T>(System.String)
+  fullName.vb: WeaverCore.Implementations.WeaverAssets_I.LoadAssets(Of T)(System.String)
+  nameWithType: WeaverAssets_I.LoadAssets<T>(String)
+  nameWithType.vb: WeaverAssets_I.LoadAssets(Of T)(String)
+- uid: WeaverCore.Implementations.WeaverAssets_I.LoadAssetsFromBundle*
+  name: LoadAssetsFromBundle
+  href: api/WeaverCore.Implementations.WeaverAssets_I.html#WeaverCore_Implementations_WeaverAssets_I_LoadAssetsFromBundle_
+  commentId: Overload:WeaverCore.Implementations.WeaverAssets_I.LoadAssetsFromBundle
+  isSpec: "True"
+  fullName: WeaverCore.Implementations.WeaverAssets_I.LoadAssetsFromBundle
+  nameWithType: WeaverAssets_I.LoadAssetsFromBundle
+- uid: WeaverCore.Implementations.WeaverAssets_I.LoadAssetsFromBundle``1(System.String,System.String)
+  name: LoadAssetsFromBundle<T>(String, String)
+  href: api/WeaverCore.Implementations.WeaverAssets_I.html#WeaverCore_Implementations_WeaverAssets_I_LoadAssetsFromBundle__1_System_String_System_String_
+  commentId: M:WeaverCore.Implementations.WeaverAssets_I.LoadAssetsFromBundle``1(System.String,System.String)
+  name.vb: LoadAssetsFromBundle(Of T)(String, String)
+  fullName: WeaverCore.Implementations.WeaverAssets_I.LoadAssetsFromBundle<T>(System.String, System.String)
+  fullName.vb: WeaverCore.Implementations.WeaverAssets_I.LoadAssetsFromBundle(Of T)(System.String, System.String)
+  nameWithType: WeaverAssets_I.LoadAssetsFromBundle<T>(String, String)
+  nameWithType.vb: WeaverAssets_I.LoadAssetsFromBundle(Of T)(String, String)
 - uid: WeaverCore.Implementations.WeaverAudio_I
   name: WeaverAudio_I
   href: api/WeaverCore.Implementations.WeaverAudio_I.html
@@ -33239,6 +32994,38 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Internal.WeaverCore_ModClass.Initialize
   nameWithType: WeaverCore_ModClass.Initialize
+- uid: WeaverCore.Internal.WeaverCoreGlobalSettings
+  name: WeaverCoreGlobalSettings
+  href: api/WeaverCore.Internal.WeaverCoreGlobalSettings.html
+  commentId: T:WeaverCore.Internal.WeaverCoreGlobalSettings
+  fullName: WeaverCore.Internal.WeaverCoreGlobalSettings
+  nameWithType: WeaverCoreGlobalSettings
+- uid: WeaverCore.Internal.WeaverCoreGlobalSettings.OpenDebugTools
+  name: OpenDebugTools()
+  href: api/WeaverCore.Internal.WeaverCoreGlobalSettings.html#WeaverCore_Internal_WeaverCoreGlobalSettings_OpenDebugTools
+  commentId: M:WeaverCore.Internal.WeaverCoreGlobalSettings.OpenDebugTools
+  fullName: WeaverCore.Internal.WeaverCoreGlobalSettings.OpenDebugTools()
+  nameWithType: WeaverCoreGlobalSettings.OpenDebugTools()
+- uid: WeaverCore.Internal.WeaverCoreGlobalSettings.OpenDebugTools*
+  name: OpenDebugTools
+  href: api/WeaverCore.Internal.WeaverCoreGlobalSettings.html#WeaverCore_Internal_WeaverCoreGlobalSettings_OpenDebugTools_
+  commentId: Overload:WeaverCore.Internal.WeaverCoreGlobalSettings.OpenDebugTools
+  isSpec: "True"
+  fullName: WeaverCore.Internal.WeaverCoreGlobalSettings.OpenDebugTools
+  nameWithType: WeaverCoreGlobalSettings.OpenDebugTools
+- uid: WeaverCore.Internal.WeaverCoreGlobalSettings.TabName
+  name: TabName
+  href: api/WeaverCore.Internal.WeaverCoreGlobalSettings.html#WeaverCore_Internal_WeaverCoreGlobalSettings_TabName
+  commentId: P:WeaverCore.Internal.WeaverCoreGlobalSettings.TabName
+  fullName: WeaverCore.Internal.WeaverCoreGlobalSettings.TabName
+  nameWithType: WeaverCoreGlobalSettings.TabName
+- uid: WeaverCore.Internal.WeaverCoreGlobalSettings.TabName*
+  name: TabName
+  href: api/WeaverCore.Internal.WeaverCoreGlobalSettings.html#WeaverCore_Internal_WeaverCoreGlobalSettings_TabName_
+  commentId: Overload:WeaverCore.Internal.WeaverCoreGlobalSettings.TabName
+  isSpec: "True"
+  fullName: WeaverCore.Internal.WeaverCoreGlobalSettings.TabName
+  nameWithType: WeaverCoreGlobalSettings.TabName
 - uid: WeaverCore.Music
   name: Music
   href: api/WeaverCore.Music.html
@@ -35349,6 +35136,22 @@ references:
   fullName.vb: WeaverCore.Registry.GetAllFeatures(Of T)(System.Func(Of T, System.Boolean))
   nameWithType: Registry.GetAllFeatures<T>(Func<T, Boolean>)
   nameWithType.vb: Registry.GetAllFeatures(Of T)(Func(Of T, Boolean))
+- uid: WeaverCore.Registry.GetFeature*
+  name: GetFeature
+  href: api/WeaverCore.Registry.html#WeaverCore_Registry_GetFeature_
+  commentId: Overload:WeaverCore.Registry.GetFeature
+  isSpec: "True"
+  fullName: WeaverCore.Registry.GetFeature
+  nameWithType: Registry.GetFeature
+- uid: WeaverCore.Registry.GetFeature``1
+  name: GetFeature<T>()
+  href: api/WeaverCore.Registry.html#WeaverCore_Registry_GetFeature__1
+  commentId: M:WeaverCore.Registry.GetFeature``1
+  name.vb: GetFeature(Of T)()
+  fullName: WeaverCore.Registry.GetFeature<T>()
+  fullName.vb: WeaverCore.Registry.GetFeature(Of T)()
+  nameWithType: Registry.GetFeature<T>()
+  nameWithType.vb: Registry.GetFeature(Of T)()
 - uid: WeaverCore.Registry.GetFeatures*
   name: GetFeatures
   href: api/WeaverCore.Registry.html#WeaverCore_Registry_GetFeatures_
@@ -35539,6 +35342,36 @@ references:
   isSpec: "True"
   fullName: WeaverCore.SceneRecord.AddSceneUnion
   nameWithType: SceneRecord.AddSceneUnion
+- uid: WeaverCore.SceneRecord.GateRedirect
+  name: SceneRecord.GateRedirect
+  href: api/WeaverCore.SceneRecord.GateRedirect.html
+  commentId: T:WeaverCore.SceneRecord.GateRedirect
+  fullName: WeaverCore.SceneRecord.GateRedirect
+  nameWithType: SceneRecord.GateRedirect
+- uid: WeaverCore.SceneRecord.GateRedirect.GateScene
+  name: GateScene
+  href: api/WeaverCore.SceneRecord.GateRedirect.html#WeaverCore_SceneRecord_GateRedirect_GateScene
+  commentId: F:WeaverCore.SceneRecord.GateRedirect.GateScene
+  fullName: WeaverCore.SceneRecord.GateRedirect.GateScene
+  nameWithType: SceneRecord.GateRedirect.GateScene
+- uid: WeaverCore.SceneRecord.GateRedirect.GateToChange
+  name: GateToChange
+  href: api/WeaverCore.SceneRecord.GateRedirect.html#WeaverCore_SceneRecord_GateRedirect_GateToChange
+  commentId: F:WeaverCore.SceneRecord.GateRedirect.GateToChange
+  fullName: WeaverCore.SceneRecord.GateRedirect.GateToChange
+  nameWithType: SceneRecord.GateRedirect.GateToChange
+- uid: WeaverCore.SceneRecord.GateRedirect.NewGate
+  name: NewGate
+  href: api/WeaverCore.SceneRecord.GateRedirect.html#WeaverCore_SceneRecord_GateRedirect_NewGate
+  commentId: F:WeaverCore.SceneRecord.GateRedirect.NewGate
+  fullName: WeaverCore.SceneRecord.GateRedirect.NewGate
+  nameWithType: SceneRecord.GateRedirect.NewGate
+- uid: WeaverCore.SceneRecord.GateRedirect.NewScene
+  name: NewScene
+  href: api/WeaverCore.SceneRecord.GateRedirect.html#WeaverCore_SceneRecord_GateRedirect_NewScene
+  commentId: F:WeaverCore.SceneRecord.GateRedirect.NewScene
+  fullName: WeaverCore.SceneRecord.GateRedirect.NewScene
+  nameWithType: SceneRecord.GateRedirect.NewScene
 - uid: WeaverCore.SceneRecord.RemoveSceneReplacement(System.String,System.String)
   name: RemoveSceneReplacement(String, String)
   href: api/WeaverCore.SceneRecord.html#WeaverCore_SceneRecord_RemoveSceneReplacement_System_String_System_String_
@@ -35604,6 +35437,19 @@ references:
   isSpec: "True"
   fullName: WeaverCore.SceneRecord.SceneUnions
   nameWithType: SceneRecord.SceneUnions
+- uid: WeaverCore.SceneRecord.TransitionRedirects
+  name: TransitionRedirects
+  href: api/WeaverCore.SceneRecord.html#WeaverCore_SceneRecord_TransitionRedirects
+  commentId: P:WeaverCore.SceneRecord.TransitionRedirects
+  fullName: WeaverCore.SceneRecord.TransitionRedirects
+  nameWithType: SceneRecord.TransitionRedirects
+- uid: WeaverCore.SceneRecord.TransitionRedirects*
+  name: TransitionRedirects
+  href: api/WeaverCore.SceneRecord.html#WeaverCore_SceneRecord_TransitionRedirects_
+  commentId: Overload:WeaverCore.SceneRecord.TransitionRedirects
+  isSpec: "True"
+  fullName: WeaverCore.SceneRecord.TransitionRedirects
+  nameWithType: SceneRecord.TransitionRedirects
 - uid: WeaverCore.Settings
   name: WeaverCore.Settings
   href: api/WeaverCore.Settings.html
@@ -36429,24 +36275,24 @@ references:
   commentId: T:WeaverCore.Settings.EnabledType
   fullName: WeaverCore.Settings.EnabledType
   nameWithType: EnabledType
-- uid: WeaverCore.Settings.EnabledType.Both
-  name: Both
-  href: api/WeaverCore.Settings.EnabledType.html#WeaverCore_Settings_EnabledType_Both
-  commentId: F:WeaverCore.Settings.EnabledType.Both
-  fullName: WeaverCore.Settings.EnabledType.Both
-  nameWithType: EnabledType.Both
+- uid: WeaverCore.Settings.EnabledType.AlwaysVisible
+  name: AlwaysVisible
+  href: api/WeaverCore.Settings.EnabledType.html#WeaverCore_Settings_EnabledType_AlwaysVisible
+  commentId: F:WeaverCore.Settings.EnabledType.AlwaysVisible
+  fullName: WeaverCore.Settings.EnabledType.AlwaysVisible
+  nameWithType: EnabledType.AlwaysVisible
+- uid: WeaverCore.Settings.EnabledType.Hidden
+  name: Hidden
+  href: api/WeaverCore.Settings.EnabledType.html#WeaverCore_Settings_EnabledType_Hidden
+  commentId: F:WeaverCore.Settings.EnabledType.Hidden
+  fullName: WeaverCore.Settings.EnabledType.Hidden
+  nameWithType: EnabledType.Hidden
 - uid: WeaverCore.Settings.EnabledType.MenuOnly
   name: MenuOnly
   href: api/WeaverCore.Settings.EnabledType.html#WeaverCore_Settings_EnabledType_MenuOnly
   commentId: F:WeaverCore.Settings.EnabledType.MenuOnly
   fullName: WeaverCore.Settings.EnabledType.MenuOnly
   nameWithType: EnabledType.MenuOnly
-- uid: WeaverCore.Settings.EnabledType.Never
-  name: Never
-  href: api/WeaverCore.Settings.EnabledType.html#WeaverCore_Settings_EnabledType_Never
-  commentId: F:WeaverCore.Settings.EnabledType.Never
-  fullName: WeaverCore.Settings.EnabledType.Never
-  nameWithType: EnabledType.Never
 - uid: WeaverCore.Settings.EnabledType.PauseOnly
   name: PauseOnly
   href: api/WeaverCore.Settings.EnabledType.html#WeaverCore_Settings_EnabledType_PauseOnly
@@ -36592,22 +36438,6 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Settings.GlobalSettings.AddButtonElement
   nameWithType: GlobalSettings.AddButtonElement
-- uid: WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement*
-  name: AddCustomPropertyElement
-  href: api/WeaverCore.Settings.GlobalSettings.html#WeaverCore_Settings_GlobalSettings_AddCustomPropertyElement_
-  commentId: Overload:WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement
-  isSpec: "True"
-  fullName: WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement
-  nameWithType: GlobalSettings.AddCustomPropertyElement
-- uid: WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement``1(System.Func{``0},System.Action{``0},System.String,System.String)
-  name: AddCustomPropertyElement<T>(Func<T>, Action<T>, String, String)
-  href: api/WeaverCore.Settings.GlobalSettings.html#WeaverCore_Settings_GlobalSettings_AddCustomPropertyElement__1_System_Func___0__System_Action___0__System_String_System_String_
-  commentId: M:WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement``1(System.Func{``0},System.Action{``0},System.String,System.String)
-  name.vb: AddCustomPropertyElement(Of T)(Func(Of T), Action(Of T), String, String)
-  fullName: WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement<T>(System.Func<T>, System.Action<T>, System.String, System.String)
-  fullName.vb: WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement(Of T)(System.Func(Of T), System.Action(Of T), System.String, System.String)
-  nameWithType: GlobalSettings.AddCustomPropertyElement<T>(Func<T>, Action<T>, String, String)
-  nameWithType.vb: GlobalSettings.AddCustomPropertyElement(Of T)(Func(Of T), Action(Of T), String, String)
 - uid: WeaverCore.Settings.GlobalSettings.AddFieldElement(System.Reflection.FieldInfo)
   name: AddFieldElement(FieldInfo)
   href: api/WeaverCore.Settings.GlobalSettings.html#WeaverCore_Settings_GlobalSettings_AddFieldElement_System_Reflection_FieldInfo_
@@ -36689,6 +36519,15 @@ references:
   isSpec: "True"
   fullName: WeaverCore.Settings.GlobalSettings.AddPropertyElement
   nameWithType: GlobalSettings.AddPropertyElement
+- uid: WeaverCore.Settings.GlobalSettings.AddPropertyElement``1(System.Func{``0},System.Action{``0},System.String,System.String)
+  name: AddPropertyElement<T>(Func<T>, Action<T>, String, String)
+  href: api/WeaverCore.Settings.GlobalSettings.html#WeaverCore_Settings_GlobalSettings_AddPropertyElement__1_System_Func___0__System_Action___0__System_String_System_String_
+  commentId: M:WeaverCore.Settings.GlobalSettings.AddPropertyElement``1(System.Func{``0},System.Action{``0},System.String,System.String)
+  name.vb: AddPropertyElement(Of T)(Func(Of T), Action(Of T), String, String)
+  fullName: WeaverCore.Settings.GlobalSettings.AddPropertyElement<T>(System.Func<T>, System.Action<T>, System.String, System.String)
+  fullName.vb: WeaverCore.Settings.GlobalSettings.AddPropertyElement(Of T)(System.Func(Of T), System.Action(Of T), System.String, System.String)
+  nameWithType: GlobalSettings.AddPropertyElement<T>(Func<T>, Action<T>, String, String)
+  nameWithType.vb: GlobalSettings.AddPropertyElement(Of T)(Func(Of T), Action(Of T), String, String)
 - uid: WeaverCore.Settings.GlobalSettings.AddSpacing
   name: AddSpacing()
   href: api/WeaverCore.Settings.GlobalSettings.html#WeaverCore_Settings_GlobalSettings_AddSpacing
@@ -41157,6 +40996,40 @@ references:
   fullName.vb: WeaverCore.Utilities.WeaverAssets.LoadAssetFromBundle(Of T, ModType)(System.String)
   nameWithType: WeaverAssets.LoadAssetFromBundle<T, ModType>(String)
   nameWithType.vb: WeaverAssets.LoadAssetFromBundle(Of T, ModType)(String)
+- uid: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle*
+  name: LoadAssetsFromBundle
+  href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadAssetsFromBundle_
+  commentId: Overload:WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle
+  isSpec: "True"
+  fullName: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle
+  nameWithType: WeaverAssets.LoadAssetsFromBundle
+- uid: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle``1(System.String,System.String)
+  name: LoadAssetsFromBundle<T>(String, String)
+  href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadAssetsFromBundle__1_System_String_System_String_
+  commentId: M:WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle``1(System.String,System.String)
+  name.vb: LoadAssetsFromBundle(Of T)(String, String)
+  fullName: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle<T>(System.String, System.String)
+  fullName.vb: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle(Of T)(System.String, System.String)
+  nameWithType: WeaverAssets.LoadAssetsFromBundle<T>(String, String)
+  nameWithType.vb: WeaverAssets.LoadAssetsFromBundle(Of T)(String, String)
+- uid: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle``1(System.Type,System.String)
+  name: LoadAssetsFromBundle<T>(Type, String)
+  href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadAssetsFromBundle__1_System_Type_System_String_
+  commentId: M:WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle``1(System.Type,System.String)
+  name.vb: LoadAssetsFromBundle(Of T)(Type, String)
+  fullName: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle<T>(System.Type, System.String)
+  fullName.vb: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle(Of T)(System.Type, System.String)
+  nameWithType: WeaverAssets.LoadAssetsFromBundle<T>(Type, String)
+  nameWithType.vb: WeaverAssets.LoadAssetsFromBundle(Of T)(Type, String)
+- uid: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle``2(System.String)
+  name: LoadAssetsFromBundle<T, ModType>(String)
+  href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadAssetsFromBundle__2_System_String_
+  commentId: M:WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle``2(System.String)
+  name.vb: LoadAssetsFromBundle(Of T, ModType)(String)
+  fullName: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle<T, ModType>(System.String)
+  fullName.vb: WeaverCore.Utilities.WeaverAssets.LoadAssetsFromBundle(Of T, ModType)(System.String)
+  nameWithType: WeaverAssets.LoadAssetsFromBundle<T, ModType>(String)
+  nameWithType.vb: WeaverAssets.LoadAssetsFromBundle(Of T, ModType)(String)
 - uid: WeaverCore.Utilities.WeaverAssets.LoadWeaverAsset*
   name: LoadWeaverAsset
   href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadWeaverAsset_
@@ -41173,6 +41046,22 @@ references:
   fullName.vb: WeaverCore.Utilities.WeaverAssets.LoadWeaverAsset(Of T)(System.String)
   nameWithType: WeaverAssets.LoadWeaverAsset<T>(String)
   nameWithType.vb: WeaverAssets.LoadWeaverAsset(Of T)(String)
+- uid: WeaverCore.Utilities.WeaverAssets.LoadWeaverAssets*
+  name: LoadWeaverAssets
+  href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadWeaverAssets_
+  commentId: Overload:WeaverCore.Utilities.WeaverAssets.LoadWeaverAssets
+  isSpec: "True"
+  fullName: WeaverCore.Utilities.WeaverAssets.LoadWeaverAssets
+  nameWithType: WeaverAssets.LoadWeaverAssets
+- uid: WeaverCore.Utilities.WeaverAssets.LoadWeaverAssets``1(System.String)
+  name: LoadWeaverAssets<T>(String)
+  href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_LoadWeaverAssets__1_System_String_
+  commentId: M:WeaverCore.Utilities.WeaverAssets.LoadWeaverAssets``1(System.String)
+  name.vb: LoadWeaverAssets(Of T)(String)
+  fullName: WeaverCore.Utilities.WeaverAssets.LoadWeaverAssets<T>(System.String)
+  fullName.vb: WeaverCore.Utilities.WeaverAssets.LoadWeaverAssets(Of T)(System.String)
+  nameWithType: WeaverAssets.LoadWeaverAssets<T>(String)
+  nameWithType.vb: WeaverAssets.LoadWeaverAssets(Of T)(String)
 - uid: WeaverCore.Utilities.WeaverAssets.WeaverAssetBundleName
   name: WeaverAssetBundleName
   href: api/WeaverCore.Utilities.WeaverAssets.html#WeaverCore_Utilities_WeaverAssets_WeaverAssetBundleName
@@ -41241,6 +41130,19 @@ references:
   commentId: F:WeaverCore.Warp.DreamWarpOptions.DreamWarpSound
   fullName: WeaverCore.Warp.DreamWarpOptions.DreamWarpSound
   nameWithType: Warp.DreamWarpOptions.DreamWarpSound
+- uid: WeaverCore.Warp.Warping
+  name: Warping
+  href: api/WeaverCore.Warp.html#WeaverCore_Warp_Warping
+  commentId: P:WeaverCore.Warp.Warping
+  fullName: WeaverCore.Warp.Warping
+  nameWithType: Warp.Warping
+- uid: WeaverCore.Warp.Warping*
+  name: Warping
+  href: api/WeaverCore.Warp.html#WeaverCore_Warp_Warping_
+  commentId: Overload:WeaverCore.Warp.Warping
+  isSpec: "True"
+  fullName: WeaverCore.Warp.Warping
+  nameWithType: Warp.Warping
 - uid: WeaverCore.WeaverAudio
   name: WeaverAudio
   href: api/WeaverCore.WeaverAudio.html
@@ -41357,6 +41259,19 @@ references:
   commentId: T:WeaverCore.WeaverCamera
   fullName: WeaverCore.WeaverCamera
   nameWithType: WeaverCamera
+- uid: WeaverCore.WeaverCamera.Cameras
+  name: Cameras
+  href: api/WeaverCore.WeaverCamera.html#WeaverCore_WeaverCamera_Cameras
+  commentId: P:WeaverCore.WeaverCamera.Cameras
+  fullName: WeaverCore.WeaverCamera.Cameras
+  nameWithType: WeaverCamera.Cameras
+- uid: WeaverCore.WeaverCamera.Cameras*
+  name: Cameras
+  href: api/WeaverCore.WeaverCamera.html#WeaverCore_WeaverCamera_Cameras_
+  commentId: Overload:WeaverCore.WeaverCamera.Cameras
+  isSpec: "True"
+  fullName: WeaverCore.WeaverCamera.Cameras
+  nameWithType: WeaverCamera.Cameras
 - uid: WeaverCore.WeaverCamera.Instance
   name: Instance
   href: api/WeaverCore.WeaverCamera.html#WeaverCore_WeaverCamera_Instance

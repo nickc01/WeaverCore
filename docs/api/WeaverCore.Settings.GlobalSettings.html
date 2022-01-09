@@ -82,6 +82,7 @@
     <div class="level1"><span class="xref">UnityEngine.Object</span></div>
     <div class="level2"><span class="xref">UnityEngine.ScriptableObject</span></div>
     <div class="level3"><span class="xref">GlobalSettings</span></div>
+      <div class="level4"><a class="xref" href="WeaverCore.Internal.WeaverCoreGlobalSettings.html">WeaverCoreGlobalSettings</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -515,90 +516,6 @@
       <tr>
         <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
         <td><p>The UIElement that has been added to the panel</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddCustomPropertyElement__1_System_Func___0__System_Action___0__System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement%60%601(System.Func%7B%60%600%7D%2CSystem.Action%7B%60%600%7D%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L325">View Source</a>
-  </span>
-  <a id="WeaverCore_Settings_GlobalSettings_AddCustomPropertyElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement*"></a>
-  <h4 id="WeaverCore_Settings_GlobalSettings_AddCustomPropertyElement__1_System_Func___0__System_Action___0__System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddCustomPropertyElement``1(System.Func{``0},System.Action{``0},System.String,System.String)">AddCustomPropertyElement&lt;T&gt;(Func&lt;T&gt;, Action&lt;T&gt;, String, String)</h4>
-  <div class="markdown level1 summary"><p>Adds a custom property to the panel. Both retrieval and setting of the value can be customized</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public UIElement AddCustomPropertyElement&lt;T&gt;(Func&lt;T&gt; getter, Action&lt;T&gt; setter, string displayName, string description)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Func</span>&lt;T&gt;</td>
-        <td><span class="parametername">getter</span></td>
-        <td><p>The getter function for getting the value</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Action</span>&lt;T&gt;</td>
-        <td><span class="parametername">setter</span></td>
-        <td><p>The setter function for setting the value</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">displayName</span></td>
-        <td><p>The name of the property displayed on the panel</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">description</span></td>
-        <td><p>The description of the property when hovering over the element</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
-        <td><p>The UIElement that has been added to the panel</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>The type of the property element</p>
 </td>
       </tr>
     </tbody>
@@ -1161,6 +1078,90 @@
       <tr>
         <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
         <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddPropertyElement__1_System_Func___0__System_Action___0__System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddPropertyElement%60%601(System.Func%7B%60%600%7D%2CSystem.Action%7B%60%600%7D%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L325">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddPropertyElement__1_System_Func___0__System_Action___0__System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement``1(System.Func{``0},System.Action{``0},System.String,System.String)">AddPropertyElement&lt;T&gt;(Func&lt;T&gt;, Action&lt;T&gt;, String, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a custom property to the panel. Both retrieval and setting of the value can be customized</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddPropertyElement&lt;T&gt;(Func&lt;T&gt; getter, Action&lt;T&gt; setter, string displayName, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T&gt;</td>
+        <td><span class="parametername">getter</span></td>
+        <td><p>The getter function for getting the value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;T&gt;</td>
+        <td><span class="parametername">setter</span></td>
+        <td><p>The setter function for setting the value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The name of the property displayed on the panel</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the property when hovering over the element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the property element</p>
 </td>
       </tr>
     </tbody>

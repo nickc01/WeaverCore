@@ -7,10 +7,10 @@ title: Welcome to WeaverCore!
 
 WeaverCore is a Hollow Knight modding library designed to allow modders to take full advantage of the Unity Editor to make brand new content for the game, such as new Enemies, Bosses, Scenes, NPCs, and more
 
-If you want to see some examples of where WeaverCore is used, check out the [Inferno King Grimm](https://github.com/nickc01/Inferno-King-Grimm) project, and the [Corrupted Kin](https://github.com/nickc01/Corrupted-Kin)
+If you want to see some examples of where WeaverCore is used, check out the [Inferno King Grimm](https://github.com/nickc01/Inferno-King-Grimm) project, and the [Corrupted Kin](https://github.com/nickc01/Corrupted-Kin) project
 
 > [!NOTE]
-> This guide assumes you have some knowledge on how to program in C# and how to use the Unity Editor. If you need some guides on how to program in C#, you can look up some tutorials on how to do it ([Like Brackeys](https://www.youtube.com/watch?v=N775KsWQVkw)). If you are looking for a guide on how to install the Unity Editor, you can look [here](xref:installingUnity.md)
+> This guide assumes you have some knowledge on how to program in C# and how to use the Unity Editor. If you need some guides on how to program in C#, you can look up some tutorials on how to do it ([Like Brackeys](https://www.youtube.com/watch?v=N775KsWQVkw)). If you are looking for a guide on how to install the Unity Editor, you can [click here](xref:installingUnity.md)
 
 # Installation
 
@@ -28,7 +28,7 @@ When the project is fully loaded up in the Editor, right click on the "Assets" f
 ### Downloading WeaverCore
 
 The next step is to download WeaverCore. There are two main ways it can be installed:
-**Method 1 : Downloading the Zip**
+### Method 1 : Downloading the Zip
 
 To download WeaverCore as a zip, go to the [WeaverCore Repository Page](https://github.com/nickc01/WeaverCore) click on the "Code" button and then click on "Download ZIP". This will download the entire WeaverCore project as a zip file.
 
@@ -37,6 +37,28 @@ To download WeaverCore as a zip, go to the [WeaverCore Repository Page](https://
 Once downloaded, extract all the contents into a "WeaverCore" folder in the "Assets" folder of your project. The end result should look like this:
 
 ![WeaverCore Folder in Assets](~/images/weaverCoreFolderInAssets.gif)
+
+### Method 2 : Using GIT
+
+To use GIT to download WeaverCore, first make sure you have GIT installed on your computer. You can download it here : https://git-scm.com/download/win
+
+Next, open up a CMD or Powershell terminal in the "Assets" folder, you can do this by holding Shift and right clicking in the folder window, and you will see an option for either Powershell or CMD.
+
+![Right Click for Shell](~/images/rightClickForShell.PNG)
+
+Next, go to the WeaverCore repository page, and copy the HTTPS clone link
+
+![Copy HTTPS Clone](~/images/copyHttpsClone.PNG)
+
+Then, in the CMD or Powershell window, type in "git clone" and paste in the copied link, the result should look like this:
+
+![Clone Command](~/images/cloneCommand.PNG)
+
+Hit Enter, and the repository should start downloading into the Assets folder. This may take a while to finish
+
+![Cloning Repository](~/images/cloningRepository.PNG)
+
+### When you finished either method
 
 Once that's done, go back to the Unity Editor, and WeaverCore will start loading (this may take a while). You will know when it's done when you see "WeaverCore is Fully Setup!" in the Console
 

@@ -168,13 +168,13 @@ MonoBehaviour:
   customFade: 0
   gateType: 4
   enableAtmosSnapshot: 0
-  AtmosSnapshot: 0
+  m_AtmosSnapshot: 0
   enableEnviroSnapshot: 0
-  EnviroSnapshot: 2
+  m_EnviroSnapshot: 2
   enableActorSnapshot: 1
-  ActorSnapshot: 1
+  m_ActorSnapshot: 1
   enableMusicSnapshot: 0
-  MusicSnapshot: 0
+  m_MusicSnapshot: 0
 --- !u!61 &352129206
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352129204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.1, y: 17.44, z: 0}
+  m_LocalPosition: {x: -0.24, y: 2.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1020371488}
@@ -341,10 +341,10 @@ MonoBehaviour:
   autoSetDimensions: 1
   sceneDimensions:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+    x: -10
+    y: -2.5
+    width: 20
+    height: 11.126988
   music: {fileID: 0}
   customMusicSnapshot: 0
   musicSnapshot: 0

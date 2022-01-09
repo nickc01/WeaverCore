@@ -90,6 +90,7 @@ namespace WeaverCore.Assets.Components
 
         private void Start()
         {
+            gameObject.layer = LayerMask.NameToLayer("Hero Detector");
             eventManager = GetComponent<EventManager>();
             prompt = GetComponentInChildren<WeaverArrowPrompt>();
             prompt.HideInstant();

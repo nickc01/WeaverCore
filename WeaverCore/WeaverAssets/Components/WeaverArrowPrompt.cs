@@ -35,7 +35,7 @@ namespace WeaverCore.Assets.Components
 			{
 				if (_defaultPrefab == null)
 				{
-					_defaultPrefab = WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Arrow Prompt").GetComponent<WeaverArrowPrompt>();
+					_defaultPrefab = WeaverAssets.LoadWeaverAsset<GameObject>("Arrow Prompt").GetComponent<WeaverArrowPrompt>();
 				}
 				return _defaultPrefab;
 			}
@@ -251,7 +251,7 @@ namespace WeaverCore.Assets.Components
 		/// </summary>
 		/// <param name="langKey">The lang key to retrieve</param>
 		/// <param name="sheetTitle">The sheet title to retrie</param>
-		public void SetLabelText(string langKey, string sheetTitle = "Prompts")
+		public void SetLabelTextLang(string langKey, string sheetTitle = "Prompts")
 		{
 			SetLabelText(WeaverLanguage.GetString(langKey, sheetTitle, $"ERROR FINDING LANG_KEY: {langKey}, SHEET_TITLE: {sheetTitle}"));
 		}
@@ -268,7 +268,7 @@ namespace WeaverCore.Assets.Components
 		}
 
 		/// <summary>
-		/// Spawns a new arrow prompt
+		/// Spawns a new arrow prompt. Use the <see cref="Show"/> function to make the prompt visible
 		/// </summary>
 		/// <param name="spawnPosition">The position of the new prompt</param>
 		/// <returns>Returns an instance to the arrow prompt</returns>
@@ -278,7 +278,7 @@ namespace WeaverCore.Assets.Components
 		}
 
 		/// <summary>
-		/// Spawns a new arrow prompt
+		/// Spawns a new arrow prompt. Use the <see cref="Show"/> function to make the prompt visible
 		/// </summary>
 		/// <param name="prefab">The arrow prompt prefab to spawn</param>
 		/// <param name="spawnPosition">The position of the new prompt</param>
@@ -289,7 +289,7 @@ namespace WeaverCore.Assets.Components
 		}
 
 		/// <summary>
-		/// Spawns a new arrow prompt
+		/// Spawns a new arrow prompt. Use the <see cref="Show"/> function to make the prompt visible
 		/// </summary>
 		/// <param name="owner">The owner of the arrow prompt. If the owner is destroyed, so is the prompt</param>
 		/// <param name="spawnPosition">The position of the new prompt</param>
@@ -300,7 +300,7 @@ namespace WeaverCore.Assets.Components
 		}
 
 		/// <summary>
-		/// Spawns a new arrow prompt
+		/// Spawns a new arrow prompt. Use the <see cref="Show"/> function to make the prompt visible
 		/// </summary>
 		/// <param name="prefab">The arrow prompt prefab to spawn</param>
 		/// <param name="owner">The owner of the arrow prompt. If the owner is destroyed, so is the prompt</param>

@@ -48,7 +48,7 @@ namespace WeaverCore.Game.Patches
 		//which of course doesn't work with WeaverBenches
         private static void After_FixRespawnType(On.GameManager.orig_OnNextLevelReady orig, GameManager self)
         {
-			if (GameManager.instance.RespawningHero)
+			if (foundBenchWarp && GameManager.instance.RespawningHero)
 			{
 				Transform spawnPoint = HeroController.instance.LocateSpawnPoint();
 				if (spawnPoint != null && spawnPoint.gameObject != null

@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
-	/// <summary>
-	/// Plays the Boss Death Explosion, including shaking the camera and spawning particles
-	/// </summary>
-	public class BossDeathExplosion : MonoBehaviour
+
+    /// <summary>
+    /// Plays the Boss Death Explosion, including shaking the camera and spawning particles
+    /// </summary>
+    public class BossDeathExplosion : MonoBehaviour
 	{
 		public bool ShakeCamera;
 		public bool SpawnBloodParticles;

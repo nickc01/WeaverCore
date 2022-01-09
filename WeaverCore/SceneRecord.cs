@@ -68,13 +68,13 @@ namespace WeaverCore
 		public class GateRedirect
         {
 			[Tooltip("The name of the scene that contains the gate that's getting redirected")]
-			public string ContainingScene;
+			public string GateScene;
 			[Tooltip("The name of the gate to redirect")]
-			public string GateToRedirect;
+			public string GateToChange;
 			[Tooltip("The new scene the gate will be directed to when the player touches it")]
-			public string NewDestinationScene;
+			public string NewScene;
 			[Tooltip("The new gate the player will be placed at when the player arrives at the new scene")]
-			public string NewDestinationGateName;
+			public string NewGate;
         }
 
 		[Space(40f)]
@@ -153,10 +153,10 @@ namespace WeaverCore
                 {
 					yield return new GateRedirect
 					{
-						ContainingScene = transitionRedirects_containingScenes[i],
-						NewDestinationGateName = transitionRedirects_newDestinationGateNames[i],
-						GateToRedirect = transitionRedirects_gatesToRedirect[i],
-						NewDestinationScene = transitionRedirects_newDestinationScenes[i]
+						GateScene = transitionRedirects_containingScenes[i],
+						NewGate = transitionRedirects_newDestinationGateNames[i],
+						GateToChange = transitionRedirects_gatesToRedirect[i],
+						NewScene = transitionRedirects_newDestinationScenes[i]
 					};
                 }
             }
@@ -317,10 +317,10 @@ namespace WeaverCore
 			sceneToUnionizePaths = sceneUnions.Select(s => s.SceneToUniteWith).ToList();
 			sceneUnionPaths = sceneUnions.Select(s => AssetDatabase.GetAssetPath(s.UnionScene)).ToList();
 
-			transitionRedirects_containingScenes = transitionRedirects.Select(s => s.ContainingScene).ToList();
-			transitionRedirects_gatesToRedirect = transitionRedirects.Select(s => s.GateToRedirect).ToList();
-			transitionRedirects_newDestinationGateNames = transitionRedirects.Select(s => s.NewDestinationGateName).ToList();
-			transitionRedirects_newDestinationScenes = transitionRedirects.Select(s => s.NewDestinationScene).ToList();
+			transitionRedirects_containingScenes = transitionRedirects.Select(s => s.GateScene).ToList();
+			transitionRedirects_gatesToRedirect = transitionRedirects.Select(s => s.GateToChange).ToList();
+			transitionRedirects_newDestinationGateNames = transitionRedirects.Select(s => s.NewGate).ToList();
+			transitionRedirects_newDestinationScenes = transitionRedirects.Select(s => s.NewScene).ToList();
 		}
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()

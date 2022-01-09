@@ -149,7 +149,7 @@ namespace WeaverCore
 				{
 					try
 					{
-						if (method.attribute.ModType.IsAssignableFrom(imod.GetType()))
+						if (method.method.IsStatic && method.attribute.ModType != null && method.attribute.ModType.IsAssignableFrom(imod.GetType()))
 						{
 							var parameters = method.method.GetParameters();
 							if (parameters.GetLength(0) == 1 && parameters[0].ParameterType.IsAssignableFrom(imod.GetType()))
@@ -186,7 +186,7 @@ namespace WeaverCore
 				{
 					try
 					{
-						if (method.attribute.ModType.IsAssignableFrom(imod.GetType()))
+						if (method.method.IsStatic && method.attribute.ModType != null && method.attribute.ModType.IsAssignableFrom(imod.GetType()))
 						{
 							var parameters = method.method.GetParameters();
 							if (parameters.GetLength(0) == 1 && parameters[0].ParameterType.IsAssignableFrom(imod.GetType()))

@@ -498,7 +498,7 @@ namespace WeaverCore.Assets.Components
 			WeaverLog.Log("IN RANGE");
 
 			InstantiatedPrompt = WeaverArrowPrompt.Spawn(ArrowPrompt, gameObject, PromptMarker.transform.position);
-			InstantiatedPrompt.SetLabelText(langKey, sheetName);
+			InstantiatedPrompt.SetLabelTextLang(langKey, sheetName);
 			if (InstantiatedPrompt.Label.text == "PLACEHOLDER")
 			{
 				InstantiatedPrompt.SetLabelText(fallbackText);

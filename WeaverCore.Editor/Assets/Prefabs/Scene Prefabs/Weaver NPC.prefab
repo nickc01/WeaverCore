@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 4100770064152673519}
   - component: {fileID: 4100770064152673518}
   - component: {fileID: 4100770064152673517}
-  - component: {fileID: 4100770064152673516}
   m_Layer: 13
-  m_Name: Test NPC
+  m_Name: Weaver NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,18 +138,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecc378f57928f6b46bd7389e01e20b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4100770064152673516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100770064152673514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8278f80624ba3c4db1032a91705ea3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4100770064325026428

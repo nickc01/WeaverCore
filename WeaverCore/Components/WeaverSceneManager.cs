@@ -90,6 +90,10 @@ namespace WeaverCore.Components
 
 		void RefreshSceneDimensions()
 		{
+            if (!gameObject.scene.isLoaded)
+            {
+				return;
+            }
 			sceneDimensionsRefreshed = true;
 			if (autoSetDimensions)
 			{
@@ -156,10 +160,10 @@ namespace WeaverCore.Components
                 {
                     foreach (var redirect in redirects)
 					{
-                        if (redirect.ContainingScene == arg0.name && transition.name == redirect.GateToRedirect)
+                        if (redirect.GateScene == arg0.name && transition.name == redirect.GateToChange)
                         {
-							transition.targetScene = redirect.NewDestinationScene;
-							transition.entryPoint = redirect.NewDestinationGateName;
+							transition.targetScene = redirect.NewScene;
+							transition.entryPoint = redirect.NewGate;
                         }
 					}
 				}
@@ -241,9 +245,23 @@ namespace WeaverCore.Components
 			}
 		}
 
+        private void OnDrawGizmosSelected()
+        {
+            if (!autoSetDimensions)
+            {
+				var center = SceneDimensions.center;
+				var size = SceneDimensions.size;
+				Gizmos.color = new Color(0.5f, 1f, 0.5f, 0.5f);
+				Gizmos.DrawCube(new Vector3(center.x, center.y), new Vector3(size.x,size.y));
+				Gizmos.color = new Color(1f, 0.5f, 0.5f, 0.5f);
+				Gizmos.DrawWireCube(new Vector3(center.x, center.y), new Vector3(size.x, size.y));
+            }
+        }
+
 #if UNITY_EDITOR
-		public override void OnValidate()
+        public override void OnValidate()
 		{
+			RefreshSceneDimensions();
 			base.OnValidate();
 			if (!canBeInfected)
 			{

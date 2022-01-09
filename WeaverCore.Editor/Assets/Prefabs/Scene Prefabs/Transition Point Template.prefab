@@ -131,10 +131,10 @@ MonoBehaviour:
   customFade: 0
   gateType: 1
   enableAtmosSnapshot: 0
-  AtmosSnapshot: 0
+  m_AtmosSnapshot: 0
   enableEnviroSnapshot: 0
-  EnviroSnapshot: 2
+  m_EnviroSnapshot: 2
   enableActorSnapshot: 1
-  ActorSnapshot: 1
+  m_ActorSnapshot: 1
   enableMusicSnapshot: 0
-  MusicSnapshot: 0
+  m_MusicSnapshot: 0

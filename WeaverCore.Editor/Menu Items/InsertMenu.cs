@@ -9,6 +9,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
+using System.Linq;
+using System.Collections;
 
 namespace WeaverCore.Editor.Menu_Items
 {
@@ -31,6 +33,25 @@ namespace WeaverCore.Editor.Menu_Items
 			var instance = GameObject.Instantiate(prefab, null);
 
 			instance.name = prefab.name;
+
+			Vector3 oldPos = instance.transform.position;
+
+			var sceneView = ((IEnumerable)SceneView.sceneViews).OfType<SceneView>().FirstOrDefault();
+
+			if (sceneView != null)
+			{
+				var pivot = sceneView.pivot;
+
+				oldPos.x = pivot.x;
+				oldPos.y = pivot.y;
+			}
+			else
+            {
+				oldPos.x = 0;
+				oldPos.y = 0;
+            }
+
+			instance.transform.position = oldPos;
 
 			if (!Application.isPlaying)
 			{
@@ -94,6 +115,12 @@ namespace WeaverCore.Editor.Menu_Items
 		public static void InsertDreamWarpObject()
 		{
 			InsertObject("Dream Warp Object");
+		}
+
+		[MenuItem("WeaverCore/Insert/Dream Fall Catcher")]
+		public static void InsertDreamFallCatcher()
+		{
+			InsertObject("Dream Fall Catcher");
 		}
 
 		[MenuItem("WeaverCore/Insert/Template Enemy")]

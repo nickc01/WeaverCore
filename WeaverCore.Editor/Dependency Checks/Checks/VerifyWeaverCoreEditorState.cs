@@ -30,12 +30,11 @@ namespace WeaverCore.Editor
                 asm.Save();
 
                 DebugUtilities.ClearLog();
-                Debug.Log("Updating WeaverCore.Editor State");
-
-                AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
-                AssetDatabase.Refresh();
 
                 finishCheck(DependencyCheckResult.RequiresReload);
+
+                AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer | ImportAssetOptions.ForceUpdate);
+                AssetDatabase.Refresh();
             }
             else
             {

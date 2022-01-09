@@ -147,15 +147,18 @@ namespace WeaverCore
 
 			bool inPosition = false;
 
-			HeroController.instance.heroInPosition += Instance_heroInPosition;
+            if (!HeroController.instance.isHeroInPosition)
+            {
+				HeroController.instance.heroInPosition += Instance_heroInPosition;
 
-			void Instance_heroInPosition(bool forceDirect)
-			{
-				inPosition = true;
-				HeroController.instance.heroInPosition -= Instance_heroInPosition;
+				void Instance_heroInPosition(bool forceDirect)
+				{
+					inPosition = true;
+					HeroController.instance.heroInPosition -= Instance_heroInPosition;
+				}
+
+				yield return new WaitUntil(() => inPosition);
 			}
-
-			yield return new WaitUntil(() => inPosition);
 
 			yield return null;
 

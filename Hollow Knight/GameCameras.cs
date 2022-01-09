@@ -18,23 +18,6 @@ public class GameCameras : MonoBehaviour
 				GameCameras._instance = UnityEngine.Object.FindObjectOfType<GameCameras>();
 				if (GameCameras._instance == null)
 				{
-					//Component cam = DynAsm.WeaverCore_ASM.WeaverCore.WeaverCamera.Instance;
-					/*foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
-					{
-						if (asm.GetName().Name == "WeaverCore")
-						{
-							var ucType = asm.GetType("WeaverCore.WeaverCamera");
-							var cam = (Component)ucType.GetProperty("Instance").GetValue(null);
-							GameCameras._instance = cam.GetComponentInParent<GameCameras>();
-							if (GameCameras._instance == null)
-							{
-								Debug.LogError("Couldn't find GameCameras, make sure one exists in the scene.");
-								return null;
-							}
-							break;
-						}
-					}*/
-
 					var instanceProp = WeaverTypeHelpers.GetWeaverProperty("WeaverCore.WeaverCamera", "Instance");
 					var cam = (Component)instanceProp.GetValue(null);
 					GameCameras._instance = cam.GetComponentInParent<GameCameras>();
@@ -80,9 +63,6 @@ public class GameCameras : MonoBehaviour
 
 	private void SetupGameRefs()
 	{
-		//this.gm = GameManager.instance;
-		//this.gs = this.gm.gameSettings;
-		//this.canvasScaler = UIManager.instance.canvasScaler;
 		if (this.cameraController != null)
 		{
 			this.cameraController.GameInit();
@@ -99,17 +79,6 @@ public class GameCameras : MonoBehaviour
 		{
 			Debug.LogError("CameraTarget not set in inspector.");
 		}
-		/*if (this.sceneParticlesPrefab != null)
-		{
-			this.sceneParticles = UnityEngine.Object.Instantiate<SceneParticlesController>(this.sceneParticlesPrefab);
-			this.sceneParticles.name = "SceneParticlesController";
-			this.sceneParticles.transform.position = new Vector3(this.tk2dCam.transform.position.x, this.tk2dCam.transform.position.y, 0f);
-			this.sceneParticles.transform.SetParent(this.tk2dCam.transform);
-		}
-		else
-		{
-			Debug.LogError("Scene Particles Prefab not set in inspector.");
-		}*/
 		if (this.sceneColorManager != null)
 		{
 			this.sceneColorManager.GameInit();
@@ -121,7 +90,6 @@ public class GameCameras : MonoBehaviour
 		this.init = true;
 	}
 
-	// Token: 0x060004CC RID: 1228 RVA: 0x00018E1C File Offset: 0x0001701C
 	private void StartScene()
 	{
 		if (!this.init)
@@ -130,15 +98,10 @@ public class GameCameras : MonoBehaviour
 		}
 		if (GameManager.instance.IsGameplayScene() || GameManager.instance.ShouldKeepHUDCameraActive())
 		{
-			//this.MoveMenuToHUDCamera();
 			if (hudCamera != null && !this.hudCamera.gameObject.activeSelf)
 			{
 				this.hudCamera.gameObject.SetActive(true);
 			}
-		}
-		else
-		{
-			//this.DisableHUDCamIfAllowed();
 		}
 		if (GameManager.instance.IsMenuScene())
 		{
@@ -154,10 +117,6 @@ public class GameCameras : MonoBehaviour
 			{
 				this.cameraController.transform.SetPosition2D(17.5f, 17.5f);
 			}
-			/*else if (InGameCutsceneInfo.IsInCutscene)
-			{
-				//this.cameraController.transform.SetPosition2D(InGameCutsceneInfo.CameraPosition);
-			}*/
 			else
 			{
 				this.cameraController.transform.SetPosition2D(14.6f, 8.5f);
@@ -166,27 +125,21 @@ public class GameCameras : MonoBehaviour
 		this.cameraController.SceneInit();
 		this.cameraTarget.SceneInit();
 		this.sceneColorManager.SceneInit();
-		//this.sceneParticles.SceneInit();
 	}
 
 	public void DisableImageEffects()
 	{
-		//TODO TODO TODO
-		/*this.mainCamera.GetComponent<FastNoise>().enabled = false;
-		this.mainCamera.GetComponent<BloomOptimized>().enabled = false;
-		this.mainCamera.GetComponent<ColorCorrectionCurves>().enabled = false;*/
+
 	}
 
 	[Header("Controllers")]
 	public CameraController cameraController;
 
-	// Token: 0x04000497 RID: 1175
 	public CameraTarget cameraTarget;
 
 	[Header("Cameras")]
 	public Camera hudCamera;
 
-	// Token: 0x04000495 RID: 1173
 	public Camera mainCamera;
 
 	public Transform cameraParent;

@@ -26,37 +26,25 @@ public class HeroBox : MonoBehaviour
 
 	private void CheckForDamage(Collider2D otherCollider)
 	{
-		//if (!FSMUtility.ContainsFSM(otherCollider.gameObject, "damages_hero"))
-		//{
-			DamageHero component = otherCollider.gameObject.GetComponent<DamageHero>();
-			if (component != null)
-			{
-				if (heroCtrl.cState.shadowDashing && component.shadowDashHazard)
-				{
-					return;
-				}
-				damageDealt = component.damageDealt;
-				hazardType = component.hazardType;
-				damagingObject = otherCollider.gameObject;
-				collisionSide = ((damagingObject.transform.position.x > base.transform.position.x) ? CollisionSide.right : CollisionSide.left);
-				if (!HeroBox.IsHitTypeBuffered(hazardType))
-				{
-					ApplyBufferedHit();
-					return;
-				}
-				isHitBuffered = true;
-			}
-			return;
-		//}
-		/*PlayMakerFSM fsm = FSMUtility.LocateFSM(otherCollider.gameObject, "damages_hero");
-		int @int = FSMUtility.GetInt(fsm, "damageDealt");
-		int int2 = FSMUtility.GetInt(fsm, "hazardType");
-		if (otherCollider.transform.position.x > base.transform.position.x)
+		DamageHero component = otherCollider.gameObject.GetComponent<DamageHero>();
+		if (component != null)
 		{
-			this.heroCtrl.TakeDamage(otherCollider.gameObject, CollisionSide.right, @int, int2);
-			return;
+			if (heroCtrl.cState.shadowDashing && component.shadowDashHazard)
+			{
+				return;
+			}
+			damageDealt = component.damageDealt;
+			hazardType = component.hazardType;
+			damagingObject = otherCollider.gameObject;
+			collisionSide = ((damagingObject.transform.position.x > base.transform.position.x) ? CollisionSide.right : CollisionSide.left);
+			if (!HeroBox.IsHitTypeBuffered(hazardType))
+			{
+				ApplyBufferedHit();
+				return;
+			}
+			isHitBuffered = true;
 		}
-		this.heroCtrl.TakeDamage(otherCollider.gameObject, CollisionSide.left, @int, int2);*/
+		return;
 	}
 
 	private static bool IsHitTypeBuffered(int hazardType)

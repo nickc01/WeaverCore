@@ -72,7 +72,6 @@ public class LightBlur : PostEffectsBase
 
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
-		//Graphics.Blit(source, destination);
 		if (!CheckResources())
 		{
 			Debug.LogWarningFormat(this, "Light blur misconfigured or unsupported");

@@ -3,8 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(LightBlurredBackground))]
 public class BlurManager : MonoBehaviour
 {
-	//private ShaderQualities appliedShaderQuality;
-
 	private LightBlurredBackground lightBlurredBackground;
 
 	[SerializeField]
@@ -21,7 +19,6 @@ public class BlurManager : MonoBehaviour
 
 	protected void Awake()
 	{
-		//appliedShaderQuality = ShaderQualities.High;
 		lightBlurredBackground = GetComponent<LightBlurredBackground>();
 		int renderTextureWidth = baseWidth;
 		int renderTextureHeight = baseHeight;
@@ -42,19 +39,5 @@ public class BlurManager : MonoBehaviour
 			return;
 		}
 		lightBlurredBackground.enabled = true;
-		//ShaderQualities shaderQuality = unsafeInstance.gameSettings.shaderQuality;
-		/*if (shaderQuality != appliedShaderQuality)
-		{
-			appliedShaderQuality = shaderQuality;
-			if (shaderQuality <= ShaderQualities.Medium)
-			{
-				lightBlurredBackground.PassGroupCount = ((shaderQuality == ShaderQualities.Low) ? 1 : 2);
-				lightBlurredBackground.enabled = true;
-			}
-			else
-			{
-				lightBlurredBackground.enabled = false;
-			}
-		}*/
 	}
 }

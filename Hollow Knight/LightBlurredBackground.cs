@@ -81,8 +81,6 @@ public class LightBlurredBackground : MonoBehaviour
 	{
 		gameCameras = GameCameras.instance;
 		sceneCamera = gameCameras.mainCamera;
-		//gameCameras = GetComponent<GameCameras>();
-		//sceneCamera = gameCameras.mainCamera;
 		passGroupCount = 2;
 	}
 
@@ -97,7 +95,6 @@ public class LightBlurredBackground : MonoBehaviour
 		backgroundCamera.farClipPlane = distantFarClipPlane;
 		backgroundCamera.cullingMask &= ~blurPlaneLayer.value;
 		backgroundCamera.depth -= 5f;
-		//Debug.Log("Background Camera Created");
 		lightBlur = gameObject.AddComponent<LightBlur>();
 		lightBlur.PassGroupCount = passGroupCount;
 		UpdateCameraClipPlanes();
@@ -125,7 +122,6 @@ public class LightBlurredBackground : MonoBehaviour
 		Object.Destroy(renderTexture);
 		renderTexture = null;
 		sceneCamera.farClipPlane = distantFarClipPlane;
-		//Debug.Log("Background Camera Destroyed");
 		Object.Destroy(backgroundCamera.gameObject);
 		backgroundCamera = null;
 	}

@@ -61,7 +61,6 @@ namespace WeaverBuildTools.Commands
 							{
 								using (var compressedStream = new MemoryStream())
 								{
-									//Console.WriteLine("E");
 									using (var compressionStream = new GZipStream(compressedStream, CompressionMode.Compress))
 									{
                                         StreamUtilities.CopyTo(streamToEmbed, compressionStream);

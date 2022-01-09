@@ -296,7 +296,7 @@ namespace WeaverCore.Editor.Compilation
 			bool assetsChanged = false;
 			try
 			{
-				AssetDatabase.StartAssetEditing();
+				//AssetDatabase.StartAssetEditing();
 				foreach (var asm in Data.PreBuildInfo.Where(i => ExcludedAssemblies.Contains(i.AssemblyName)))
 				{
 					if (asm.Definition.includePlatforms.Count == 1 && asm.Definition.includePlatforms[0] == "Editor")
@@ -315,7 +315,7 @@ namespace WeaverCore.Editor.Compilation
 						"Editor"
 					};
 					asm.Save();
-					AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
+					//AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
 					assetsChanged = true;
 				}
 				if (assetsChanged)
@@ -342,7 +342,8 @@ namespace WeaverCore.Editor.Compilation
 			}
 			finally
 			{
-				AssetDatabase.StopAssetEditing();
+				UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
+				//AssetDatabase.StopAssetEditing();
 			}
 		}
 
@@ -721,7 +722,7 @@ namespace WeaverCore.Editor.Compilation
 			bool assetsChanged = false;
 			try
 			{
-				AssetDatabase.StartAssetEditing();
+				//AssetDatabase.StartAssetEditing();
 				if (Data.ExcludedAssemblies != null)
 				{
 					foreach (var exclusion in Data.ExcludedAssemblies)
@@ -733,7 +734,7 @@ namespace WeaverCore.Editor.Compilation
 							asmDef.Definition.excludePlatforms = exclusion.OriginalExcludedPlatforms;
 							asmDef.Save();
 							assetsChanged = true;
-							AssetDatabase.ImportAsset(asmDef.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
+							//AssetDatabase.ImportAsset(asmDef.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
 						}
 					}
 				}
@@ -757,7 +758,8 @@ namespace WeaverCore.Editor.Compilation
 			}
 			finally
 			{
-				AssetDatabase.StopAssetEditing();
+				UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
+				//AssetDatabase.StopAssetEditing();
 			}
 		}
 

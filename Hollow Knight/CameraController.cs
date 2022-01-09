@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.ImageEffects;
 
-// Token: 0x020000D5 RID: 213
 public class CameraController : MonoBehaviour
 {
 	internal static CameraController EditorInstance { get; private set; }
@@ -13,19 +12,17 @@ public class CameraController : MonoBehaviour
 	{
 		cam = GetComponent<Camera>();
 		EditorInstance = this;
+
+
 	}
 
-	// Token: 0x06000458 RID: 1112 RVA: 0x00014FE8 File Offset: 0x000131E8
 	public void GameInit()
 	{
 		cam = base.GetComponent<Camera>();
 		cameraParent = base.transform.parent.transform;
-		//this.fadeFSM = FSMUtility.LocateFSM(base.gameObject, "CameraFade");
 		ApplyEffectConfiguration(false, false);
-		//this.GameManager.instance.UnloadingLevel += this.OnLevelUnload;
 	}
 
-	// Token: 0x06000459 RID: 1113 RVA: 0x00015058 File Offset: 0x00013258
 	public void SceneInit()
 	{
 		sceneWidth = 0;
@@ -74,21 +71,17 @@ public class CameraController : MonoBehaviour
 
 	internal Rect GetCameraBounds()
 	{
-		return GameManager.instance.SceneDimensions;
+		var sceneDims = GameManager.instance.SceneDimensions;
+		return new Rect(sceneDims.xMin + 14.6f, sceneDims.yMin + 8.3f, sceneDims.width - 14.6f, sceneDims.height - 8.3f);
 	}
 
-	// Token: 0x0600045A RID: 1114 RVA: 0x000151AC File Offset: 0x000133AC
 	public void ApplyEffectConfiguration(bool isGameplayLevel, bool isBloomForced)
 	{
-		//bool flag = Platform.Current.GraphicsTier > Platform.GraphicsTiers.Low;
 		bool flag = true;
-		//base.GetComponent<FastNoise>().enabled = (isGameplayLevel && flag);
 		base.GetComponent<BloomOptimized>().enabled = (flag || isBloomForced);
-		//base.GetComponent<BrightnessEffect>().enabled = flag;
 		base.GetComponent<ColorCorrectionCurves>().enabled = true;
 	}
 
-	// Token: 0x0600045B RID: 1115 RVA: 0x000151FC File Offset: 0x000133FC
 	private void LateUpdate()
 	{
 		if (cameraParent == null)
@@ -161,19 +154,19 @@ public class CameraController : MonoBehaviour
 		{
 			var bounds = GetCameraBounds();
 
-			if (x + x2 < bounds.xMin)
+			if (transform.position.x < bounds.xMin)
 			{
 				base.transform.SetPositionX(bounds.xMin);
 			}
-			if (base.transform.position.x + x2 > bounds.xMax)
+			if (transform.position.x > bounds.xMax)
 			{
 				base.transform.SetPositionX(bounds.xMax);
 			}
-			if (base.transform.position.y + y2 < bounds.yMin)
+			if (transform.position.y < bounds.yMin)
 			{
 				base.transform.SetPositionY(bounds.yMin);
 			}
-			if (base.transform.position.y + y2 > bounds.yMax)
+			if (transform.position.y > bounds.yMax)
 			{
 				base.transform.SetPositionY(bounds.yMax);
 			}
@@ -184,7 +177,6 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600045C RID: 1116 RVA: 0x000156D7 File Offset: 0x000138D7
 	private void OnDisable()
 	{
 		if (hero_ctrl != null)
@@ -193,7 +185,6 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600045D RID: 1117 RVA: 0x000156FE File Offset: 0x000138FE
 	public void FreezeInPlace(bool freezeTargetAlso = false)
 	{
 		SetMode(CameraController.CameraMode.FROZEN);
@@ -203,43 +194,16 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600045E RID: 1118 RVA: 0x00015718 File Offset: 0x00013918
 	public void FadeOut(CameraFadeType type)
 	{
 		SetMode(CameraController.CameraMode.FROZEN);
-		/*if (type == CameraFadeType.LEVEL_TRANSITION)
-		{
-			this.fadeFSM.Fsm.Event("FADE OUT");
-			return;
-		}
-		if (type == CameraFadeType.HERO_DEATH)
-		{
-			this.fadeFSM.Fsm.Event("RESPAWN FADE");
-			return;
-		}
-		if (type == CameraFadeType.HERO_HAZARD_DEATH)
-		{
-			this.fadeFSM.Fsm.Event("HAZARD FADE");
-			return;
-		}
-		if (type == CameraFadeType.JUST_FADE)
-		{
-			this.fadeFSM.Fsm.Event("JUST FADE");
-			return;
-		}
-		if (type == CameraFadeType.START_FADE)
-		{
-			this.fadeFSM.Fsm.Event("START FADE");
-		}*/
 	}
 
-	// Token: 0x0600045F RID: 1119 RVA: 0x000157AC File Offset: 0x000139AC
 	public void FadeSceneIn()
 	{
-		//GameCameras.instance.cameraFadeFSM.Fsm.Event("FADE SCENE IN");
+		
 	}
 
-	// Token: 0x06000460 RID: 1120 RVA: 0x000157C8 File Offset: 0x000139C8
 	public void LockToArea(CameraLockArea lockArea)
 	{
 		if (!lockZoneList.Contains(lockArea))
@@ -307,7 +271,6 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000461 RID: 1121 RVA: 0x000159D0 File Offset: 0x00013BD0
 	public void ReleaseLock(CameraLockArea lockarea)
 	{
 		lockZoneList.Remove(lockarea);
@@ -347,27 +310,23 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000462 RID: 1122 RVA: 0x00015B49 File Offset: 0x00013D49
 	public void ResetStartTimer()
 	{
 		startLockedTimer = 0.5f;
 	}
 
-	// Token: 0x06000463 RID: 1123 RVA: 0x00015B58 File Offset: 0x00013D58
 	public void SnapTo(float x, float y)
 	{
 		camTarget.transform.position = new Vector3(x, y, camTarget.transform.position.z);
 		base.transform.position = new Vector3(x, y, base.transform.position.z);
 	}
 
-	// Token: 0x06000464 RID: 1124 RVA: 0x00015BB4 File Offset: 0x00013DB4
 	private void UpdateTargetDestinationDelta()
 	{
 		targetDeltaX = camTarget.transform.position.x + camTarget.xOffset + camTarget.dashOffset;
 		targetDeltaY = camTarget.transform.position.y + camTarget.fallOffset + lookOffset;
 	}
 
-	// Token: 0x06000465 RID: 1125 RVA: 0x00015C22 File Offset: 0x00013E22
 	public void SetMode(CameraController.CameraMode newMode)
 	{
 		if (newMode != mode)
@@ -382,7 +341,6 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000466 RID: 1126 RVA: 0x00015C54 File Offset: 0x00013E54
 	public Vector3 KeepWithinSceneBounds(Vector3 targetDest)
 	{
 		var bounds = GetCameraBounds();
@@ -417,7 +375,6 @@ public class CameraController : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06000467 RID: 1127 RVA: 0x00015D1C File Offset: 0x00013F1C
 	private Vector2 KeepWithinSceneBounds(Vector2 targetDest)
 	{
 		var bounds = GetCameraBounds();
@@ -447,7 +404,6 @@ public class CameraController : MonoBehaviour
 		return targetDest;
 	}
 
-	// Token: 0x06000468 RID: 1128 RVA: 0x00015DBC File Offset: 0x00013FBC
 	private bool IsAtSceneBounds(Vector2 targetDest)
 	{
 		var bounds = GetCameraBounds();
@@ -472,7 +428,6 @@ public class CameraController : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06000469 RID: 1129 RVA: 0x00015E0C File Offset: 0x0001400C
 	private bool IsAtHorizontalSceneBounds(Vector2 targetDest, out bool leftSide)
 	{
 		var bounds = GetCameraBounds();
@@ -492,7 +447,6 @@ public class CameraController : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600046A RID: 1130 RVA: 0x00015E44 File Offset: 0x00014044
 	private bool IsTouchingSides(float x)
 	{
 		var bounds = GetCameraBounds();
@@ -509,7 +463,6 @@ public class CameraController : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600046B RID: 1131 RVA: 0x00015E6C File Offset: 0x0001406C
 	public Vector2 KeepWithinLockBounds(Vector2 targetDest)
 	{
 		float x = targetDest.x;
@@ -533,7 +486,6 @@ public class CameraController : MonoBehaviour
 		return new Vector2(x, y);
 	}
 
-	// Token: 0x0600046C RID: 1132 RVA: 0x00015ED0 File Offset: 0x000140D0
 	private void GetTilemapInfo()
 	{
 		var sceneDimensions = GameManager.instance.SceneDimensions;
@@ -542,20 +494,13 @@ public class CameraController : MonoBehaviour
 		sceneHeight = sceneDimensions.height;
 		xLimit = sceneDimensions.xMax - 14.6f;
 		yLimit = sceneDimensions.yMax - 8.3f;
-		//this.tilemap = GameManager.instance.tilemap;
-		//sceneWidth = (float)this.tilemap.width;
-		//sceneHeight = (float)this.tilemap.height;
-		//xLimit = sceneWidth - 14.6f;
-		//yLimit = sceneHeight - 8.3f;
 	}
 
-	// Token: 0x0600046D RID: 1133 RVA: 0x00015F36 File Offset: 0x00014136
 	public void PositionToHero(bool forceDirect)
 	{
 		base.StartCoroutine(DoPositionToHero(forceDirect));
 	}
 
-	// Token: 0x0600046E RID: 1134 RVA: 0x00015F46 File Offset: 0x00014146
 	private IEnumerator DoPositionToHero(bool forceDirect)
 	{
 		yield return new WaitForFixedUpdate();
@@ -673,7 +618,6 @@ public class CameraController : MonoBehaviour
 		velocityX = Vector3.zero;
 		velocityY = Vector3.zero;
 		yield return new WaitForSeconds(0.1f);
-		//GameCameras.instance.cameraFadeFSM.Fsm.Event("LEVEL LOADED");
 		teleporting = false;
 		if (previousMode == CameraController.CameraMode.FROZEN)
 		{
@@ -710,7 +654,6 @@ public class CameraController : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0600046F RID: 1135 RVA: 0x00015F5C File Offset: 0x0001415C
 	private void PositionToHeroFacing()
 	{
 		if (hero_ctrl.cState.facingRight)
@@ -721,7 +664,6 @@ public class CameraController : MonoBehaviour
 		base.transform.SetPosition2D(camTarget.transform.position.x - 1f, camTarget.transform.position.y);
 	}
 
-	// Token: 0x06000470 RID: 1136 RVA: 0x00015FF4 File Offset: 0x000141F4
 	private void PositionToHeroFacing(Vector2 newPosition, bool useXOffset)
 	{
 		if (useXOffset)
@@ -737,7 +679,6 @@ public class CameraController : MonoBehaviour
 		base.transform.SetPosition2D(newPosition.x - 1f, newPosition.y);
 	}
 
-	// Token: 0x06000471 RID: 1137 RVA: 0x00016078 File Offset: 0x00014278
 	private Vector2 GetPositionToHeroFacing(Vector2 newPosition, bool useXOffset)
 	{
 		if (useXOffset)
@@ -751,23 +692,12 @@ public class CameraController : MonoBehaviour
 		return new Vector2(newPosition.x - 1f, newPosition.y);
 	}
 
-	// Token: 0x06000472 RID: 1138 RVA: 0x000160E7 File Offset: 0x000142E7
 	private IEnumerator FadeInFailSafe()
 	{
 		yield return new WaitForSeconds(5f);
-		/*if (this.fadeFSM.ActiveStateName != "Normal" && this.fadeFSM.ActiveStateName != "FadingOut")
-		{
-			Debug.LogFormat("Failsafe fade in activated. State: {0} Scene: {1}", new object[]
-			{
-				this.fadeFSM.ActiveStateName,
-				GameManager.instance.sceneName
-			});
-			this.fadeFSM.Fsm.Event("FADE SCENE IN");
-		}*/
 		yield break;
 	}
 
-	// Token: 0x06000473 RID: 1139 RVA: 0x000160F6 File Offset: 0x000142F6
 	private void StopFailSafe()
 	{
 		if (fadeInFailSafeCo != null)
@@ -776,7 +706,6 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000474 RID: 1140 RVA: 0x0001610C File Offset: 0x0001430C
 	private void OnLevelUnload()
 	{
 		if (verboseMode)
@@ -789,7 +718,6 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000475 RID: 1141 RVA: 0x0001616A File Offset: 0x0001436A
 	private void OnDestroy()
 	{
 		if (GameManager.instance != null)
@@ -841,9 +769,7 @@ public class CameraController : MonoBehaviour
 	private Vector3 panEndPos;
 	public Camera cam;
 	private HeroController hero_ctrl;
-	//public tk2dTileMap tilemap;
 	public CameraTarget camTarget;
-	//private PlayMakerFSM fadeFSM;
 	private Transform cameraParent;
 	public List<CameraLockArea> lockZoneList;
 	public float xLockMin = 30f;

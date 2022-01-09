@@ -3,7 +3,12 @@ guid: 2f3ad9c80c5a76c41b0f8b3e4590fed5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - EssenceCollectPrefab: {instanceID: 0}
+  - InfectedDeathWavePrefab: {fileID: 1981710639690590, guid: d1ff38f4378cb9047b90dafb0de036e1, type: 3}
+  - DeathPuffPrefab: {fileID: 1199975730311981, guid: 5acd7f22f0831ef42ab5f43da5152601, type: 3}
+  - DamageSound: {fileID: 8300000, guid: 4dd03c7f900f45e4cb9580542d0dff52, type: 3}
+  - SwordDeathSound: {fileID: 8300000, guid: 3f2433cf5ab9b59478e49da6c1b3fe33, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

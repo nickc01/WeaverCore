@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// A particle system that is created when an uninfected enemy dies
+	/// </summary>
 	public class UninfectedDeathParticles : MonoBehaviour
 	{
 		void Start()

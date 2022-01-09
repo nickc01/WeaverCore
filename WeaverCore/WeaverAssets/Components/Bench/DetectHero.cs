@@ -6,7 +6,10 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-	public class DetectHero : MonoBehaviour
+    /// <summary>
+    /// Used by <see cref="WeaverBench"/> to see if the player is within the bench's vicinity
+    /// </summary>
+    public class DetectHero : MonoBehaviour
     {
         GameObject Parent;
         GameObject Lit;
@@ -14,9 +17,10 @@ namespace WeaverCore.Assets.Components
         GameObject ParticleB;
         GameObject ParticleF;
 
-        //Color LightColor;
-
         bool heroInRange = false;
+        /// <summary>
+        /// Is the hero within range of the bench?
+        /// </summary>
         public bool HeroInRange => heroInRange;
 
 		private void Reset()

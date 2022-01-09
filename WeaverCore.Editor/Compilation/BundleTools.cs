@@ -15,46 +15,101 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.Build.Content;
 using UnityEditor.SceneManagement;
-//using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using WeaverBuildTools.Commands;
 using WeaverBuildTools.Enums;
 using WeaverCore.Attributes;
-using WeaverCore.Editor.Internal;
 using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Compilation
 {
+	/// <summary>
+	/// Contains tools needed for building mod asset bundles
+	/// </summary>
 	public static class BundleTools
 	{
+		/// <summary>
+		/// Used to keep track if this is the first time the user has built a mod
+		/// </summary>
+		[Serializable]
+		class FirstEverBuild
+        {
+			public bool FirstEver = true;
+        }
+
+		/// <summary>
+		/// Contains information about a scene in the project
+		/// </summary>
 		[Serializable]
 		public class SceneData
 		{
+			/// <summary>
+			/// The name of the scene
+			/// </summary>
 			public string Name;
+
+			/// <summary>
+			/// The file path of the scene
+			/// </summary>
 			public string Path;
 		}
 
+		/// <summary>
+		/// Contains information about a registry
+		/// </summary>
 		[Serializable]
 		public class RegistryInfo
 		{
+			/// <summary>
+			/// The file path of the registry
+			/// </summary>
 			public string Path;
+
+			/// <summary>
+			/// The assembly of the mod the registry is bound to
+			/// </summary>
 			public string AssemblyName;
+
+			/// <summary>
+			/// The type name of the mod the registry is bound to
+			/// </summary>
 			public string ModTypeName;
+
+			/// <summary>
+			/// The asset bundle the registry is a part of
+			/// </summary>
 			public string AssetBundleName;
 		}
 
+		/// <summary>
+		/// Used to keep track of excluded asmdef files during the build process
+		/// </summary>
 		[Serializable]
 		public class ExcludedAssembly
 		{
+			/// <summary>
+			/// The assembly name of the asmdef
+			/// </summary>
 			public string AssemblyName;
+
+			/// <summary>
+			/// The original list of included platforms for the asmdef
+			/// </summary>
 			public List<string> OriginalIncludedPlatforms;
+
+			/// <summary>
+			/// The original list of excluded platforms for the asmdef
+			/// </summary>
 			public List<string> OriginalExcludedPlatforms;
 		}
 
 		static BundleBuildData _data = null;
 
+		/// <summary>
+		/// Contains all the data regarding the current build process
+		/// </summary>
 		public static BundleBuildData Data
 		{
 			get
@@ -78,30 +133,73 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
+		/// <summary>
+		/// A class for containing all the persistent data for a build process
+		/// </summary>
 		public class BundleBuildData
 		{
+			/// <summary>
+			/// The full path location of the mod dll
+			/// </summary>
 			public string ModDLL;
+
+			/// <summary>
+			/// The full path location of "WeaverCore.dll"
+			/// </summary>
 			public string WeaverCoreDLL;
 
+			/// <summary>
+			/// The name of the mod currently being built
+			/// </summary>
 			public string ModName;
 
+			/// <summary>
+			/// Stores the next method in the build process to be run. This is used to execute the next action in the build process after scripts have been reloaded
+			/// </summary>
 			public SerializedMethod NextMethod;
 
+			/// <summary>
+			/// Stores a list of all the project's assembly information before the build process begins
+			/// </summary>
 			public List<AssemblyInformation> PreBuildInfo;
 
-			//public List<string> ExcludedAssemblies;
+			/// <summary>
+			/// A list of all the asmdefs being excluded from the build process
+			/// </summary>
 			public List<ExcludedAssembly> ExcludedAssemblies;
 
+			/// <summary>
+			/// Has the asset bundling been successful?
+			/// </summary>
 			public bool BundlingSuccessful = false;
+
+			/// <summary>
+			/// Is WeaverCore only getting built?
+			/// </summary>
 			public bool WeaverCoreOnly = false;
 
+			/// <summary>
+			/// Stores the method to run when the build process is complete
+			/// </summary>
 			public SerializedMethod OnComplete;
 
+			/// <summary>
+			/// Stores a list of all the registry information before the build process begins
+			/// </summary>
 			public List<RegistryInfo> Registries;
 
+			/// <summary>
+			/// Stores a list of all the scenes that have been closed down.
+			/// </summary>
 			public List<SceneData> ClosedScenes;
 		}
 
+		/// <summary>
+		/// Builds all the asset bundles in the project and embeds them into the mod assemblies. This method will reload the project several times before completing
+		/// </summary>
+		/// <param name="modDll">The file path to the mod dll</param>
+		/// <param name="weaverCoreDLL">The file path to WeaverCore.dll</param>
+		/// <param name="OnComplete">The method to call when the process is done</param>
 		public static void BuildAndEmbedAssetBundles(FileInfo modDll, FileInfo weaverCoreDLL, MethodInfo OnComplete)
 		{
 			Data = new BundleBuildData
@@ -125,28 +223,10 @@ namespace WeaverCore.Editor.Compilation
 			
 		}
 
-		static bool IsFileLocked(FileInfo file)
-		{
-			try
-			{
-				using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
-				{
-					stream.Close();
-				}
-			}
-			catch (IOException)
-			{
-				//the file is unavailable because it is:
-				//still being written to
-				//or being processed by another thread
-				//or does not exist (has already been processed)
-				return true;
-			}
-
-			//file is not locked
-			return false;
-		}
-
+		/// <summary>
+		/// Saves all open scenes and closes them
+		/// </summary>
+		/// <param name="whenDone">The function to call when done</param>
 		static IEnumerator UnloadScenes(Action whenDone)
 		{
 			EditorSceneManager.SaveOpenScenes();
@@ -184,35 +264,14 @@ namespace WeaverCore.Editor.Compilation
 			whenDone();
 		}
 
+		/// <summary>
+		/// Prepares the project for building the asset bundles. This function is used to disable any asmdefs that shouldn't be accounted for when building the asset bundles
+		/// </summary>
+		/// <param name="ExcludedAssemblies">The asmdefs to exclude</param>
+		/// <param name="whenReady">The function to call when done</param>
 		static void PrepareForAssetBundling(List<string> ExcludedAssemblies, MethodInfo whenReady)
 		{
-			//AssetDatabase.DisallowAutoRefresh();
 			Debug.Log("Preparing Assets for Bundling");
-
-			
-
-			//UnboundCoroutine.Start(Delay());
-			//IEnumerator Delay()
-			//{
-			/*yield return new WaitForSeconds(0.5f);
-			foreach (var registry in RegistryChecker.LoadAllRegistries())
-			{
-				registry.ReplaceAssemblyName("Assembly-CSharp", Data.ModName);
-				registry.ApplyChanges();
-			}*/
-			//Debug.Log("A_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			/*var buildCache = new DirectoryInfo("Library\\BuildCache");
-			if (buildCache.Exists)
-			{
-				buildCache.Delete(true);
-			}*/
-			//yield return new WaitForSeconds(0.5f);
-			//Debug.Log("B_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
-			//AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-			//yield return new WaitForSeconds(0.5f);
-			//Debug.Log("C_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
 #if REWRITE_REGISTRIES
 			foreach (var registry in RegistryChecker.LoadAllRegistries())
 			{
@@ -234,13 +293,10 @@ namespace WeaverCore.Editor.Compilation
 					Path = path
 				});
 			}
-			//yield return new WaitForSeconds(0.5f);
-			//Debug.Log("D_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
 			bool assetsChanged = false;
 			try
 			{
-				AssetDatabase.StartAssetEditing();
+				//AssetDatabase.StartAssetEditing();
 				foreach (var asm in Data.PreBuildInfo.Where(i => ExcludedAssemblies.Contains(i.AssemblyName)))
 				{
 					if (asm.Definition.includePlatforms.Count == 1 && asm.Definition.includePlatforms[0] == "Editor")
@@ -258,10 +314,8 @@ namespace WeaverCore.Editor.Compilation
 					{
 						"Editor"
 					};
-					//Debug.Log("Asm Definition Path = " + asm.AssemblyDefinitionPath);
-					//Debug.Log("Importing Asset = " + asm.AssemblyDefinitionPath);
 					asm.Save();
-					AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
+					//AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
 					assetsChanged = true;
 				}
 				if (assetsChanged)
@@ -288,13 +342,9 @@ namespace WeaverCore.Editor.Compilation
 			}
 			finally
 			{
-				AssetDatabase.StopAssetEditing();
-				//if (assetsChanged)
-				//{
-				//AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
-				//}
+				UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
+				//AssetDatabase.StopAssetEditing();
 			}
-			//}
 		}
 
 		public class MyContractResolver : Newtonsoft.Json.Serialization.DefaultContractResolver
@@ -311,74 +361,12 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
-		static string RemoveIllegalCharacters(string illegal)
-		{
-			string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
-
-			foreach (char c in invalid)
-			{
-				illegal = illegal.Replace(c.ToString(), "");
-			}
-			return illegal;
-		}
-
-		public static void Test()
-		{
-			Debug.Log("TESTING TESTING TESTING");
-			var interfaceType = typeof(AnimationMode).Assembly.GetType("UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface");
-			var editorCompInstance = interfaceType.GetProperty("Instance").GetValue(null, null);
-
-			var scriptAssembliesDict = (IDictionary)editorCompInstance.GetType().GetField("filePathToCustomScriptAssemblies", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(editorCompInstance);
-
-			var projectInfo = ScriptFinder.GetProjectScriptInfo();
-
-			var editorWeaverCoreASM = projectInfo.FirstOrDefault(a => a.AssemblyName.Contains("WeaverCore.Editor"));
-
-			var dirtyChangedAssemblyDefinitionFunc = editorCompInstance.GetType().GetMethod("DirtyChangedAssemblyDefinition");
-
-			Debug.Log("WeaverCore.Editor Path = " + editorWeaverCoreASM.AssemblyDefinitionPath);
-
-			//dirtyChangedAssemblyDefinitionFunc.Invoke(editorCompInstance, new object[] { editorWeaverCoreASM.AssemblyDefinitionPath });
-
-			Debug.Log("ENTIRE OBJECT");
-
-			var settings = new JsonSerializerSettings() 
-			{ 
-				ContractResolver = new MyContractResolver(),
-				Formatting = Formatting.Indented,
-				ReferenceLoopHandling = ReferenceLoopHandling.Serialize
-			};
-
-			foreach (var field in editorCompInstance.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-			{
-				if (field.Name != "ILPostProcessing")
-				{
-					Debug.Log($"{field.Name}");
-					//Debug.Log();
-					File.WriteAllText($"C:/ScratchDump/{RemoveIllegalCharacters(field.Name)}.json", JsonConvert.SerializeObject(field.GetValue(editorCompInstance), settings));
-				}
-			}
-
-			foreach (var prop in editorCompInstance.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-			{
-				Debug.Log($"{prop.Name} = ");
-				//Debug.Log(JsonConvert.SerializeObject(prop.GetValue(editorCompInstance), settings));
-				File.WriteAllText($"C:/ScratchDump/{RemoveIllegalCharacters(prop.Name)}.json", JsonConvert.SerializeObject(prop.GetValue(editorCompInstance), settings));
-			}
-
-			//Debug.Log(JsonConvert.SerializeObject(editorCompInstance, settings));
-
-			foreach (var item in scriptAssembliesDict)
-			{
-				Debug.Log("ASM = " + JsonConvert.SerializeObject(item, Formatting.Indented));
-			}
-
-			/*foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
-			{
-				Debug.Log("ASM = " + asm.Location);
-			}*/
-		}
-
+		/// <summary>
+		/// Builds all asset bundles in the project
+		/// </summary>
+		/// <param name="target">The target platform to build the asset bundles against</param>
+		/// <param name="group">The target group to build the asset bundles against</param>
+		/// <param name="outputDirectory">The output location to put the built bundles in</param>
 		static void BuildAssetBundles(BuildTarget target, BuildTargetGroup group, DirectoryInfo outputDirectory)
 		{
 			var buildInput = ContentBuildInterface.GenerateAssetBundleBuilds().ToList();
@@ -429,7 +417,6 @@ namespace WeaverCore.Editor.Compilation
 			var codeType = code.GetType();
 
 			var codeName = Enum.GetName(codeType, code);
-			//Debug.Log("Code Name = " + codeName);
 			switch (codeName)
 			{
 				case "Success":
@@ -451,46 +438,24 @@ namespace WeaverCore.Editor.Compilation
 				default:
 					break;
 			}
-
-
-
-			/*var code = ContentPipeline.BuildAssetBundles(new BundleBuildParameters(target, BuildTargetGroup.Standalone, targetFolder.FullName)
-			{
-				BundleCompression = UnityEngine.BuildCompression.LZ4,
-			}, new BundleBuildContent(buildInput), out var results);*/
-
-			/*switch (code)
-			{
-				case ReturnCode.Success:
-					break;
-				case ReturnCode.SuccessCached:
-					break;
-				case ReturnCode.SuccessNotRun:
-					break;
-				case ReturnCode.Error:
-					throw new BundleException("An error occured when creating an asset bundle");
-				case ReturnCode.Exception:
-					throw new BundleException("An exception occured when creating an asset bundle");
-				case ReturnCode.Canceled:
-					throw new BundleException("The asset bundle build was cancelled");
-				case ReturnCode.UnsavedChanges:
-					throw new BundleException("There are unsaved changes, be sure to save them and try again");
-				case ReturnCode.MissingRequiredObjects:
-					throw new BundleException("Some required objects are missing");
-				default:
-					break;
-			}*/
 		}
 
+		/// <summary>
+		/// Starts building the asset bundles. This is called after <see cref="PrepareForAssetBundling(List{string}, MethodInfo)"/> is called
+		/// </summary>
 		static void BeginBundleProcess()
 		{
+			var firstTime = true;
+            if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
+            {
+				firstTime = firstBuildData.FirstEver;
+            }
 			UnboundCoroutine.Start(BundleRoutine());
 			IEnumerator BundleRoutine()
 			{
 				yield return new WaitForSeconds(1f);
 				try
 				{
-					//Debug.Log("E_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
 					Debug.Log("Beginning Bundle Process");
 #if !MULTI_THREADED_EMBEDDING
 					var builtAssetBundles = new List<BuiltAssetBundle>();
@@ -506,9 +471,6 @@ namespace WeaverCore.Editor.Compilation
 					{
 						assemblies.Add(new FileInfo(Data.ModDLL));
 					}
-
-					//BuildSettings settings = new BuildSettings();
-					//settings.GetStoredSettings();
 
 					var temp = Path.GetTempPath();
 					var bundleBuilds = new DirectoryInfo(temp + "BundleBuilds\\");
@@ -563,7 +525,6 @@ namespace WeaverCore.Editor.Compilation
 						}
 						embeddingTasks.Add(Task.Run(() =>
 						{
-							//Debug.Log("RUNNING TASK!");
 							try
 							{
 								if (Data.WeaverCoreOnly)
@@ -595,9 +556,7 @@ namespace WeaverCore.Editor.Compilation
 						EmbedAssetBundles(assemblies, builtAssetBundles);
 					}
 #else
-					//Debug.Log("WAITING FOR TASKS");
 					Task.WaitAll(embeddingTasks.ToArray());
-					//Debug.Log("FINISHED WITH TASKS");
 #endif
 					Data.BundlingSuccessful = tasksSuccessful;
 					if (tasksSuccessful)
@@ -607,37 +566,34 @@ namespace WeaverCore.Editor.Compilation
 				}
 				catch (Exception e)
 				{
-					Debug.LogError("Error creating Asset Bundles");
-					Debug.LogException(e);
+                    if (!firstTime)
+                    {
+						Debug.LogError("Error creating Asset Bundles");
+						Debug.LogException(e);
+					}
+					else
+                    {
+						DebugUtilities.ClearLog();
+                    }
 				}
 				finally
 				{
-					if (!Data.BundlingSuccessful)
+					if (!Data.BundlingSuccessful && !firstTime)
 					{
 						Debug.LogError("Error creating Asset Bundles");
 					}
-					//Debug.Log("POST_4_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-					//UnboundCoroutine.Start(Delay());
-					//IEnumerator Delay()
-					//{
-						//Debug.Log("POST_5_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-						//yield return new WaitForSeconds(0.5f);
-						//Debug.Log("F_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-						DoneWithAssetBundling(typeof(BundleTools).GetMethod(nameof(CompleteBundlingProcess), BindingFlags.Static | BindingFlags.NonPublic));
-					//}
+					DoneWithAssetBundling(typeof(BundleTools).GetMethod(nameof(CompleteBundlingProcess), BindingFlags.Static | BindingFlags.NonPublic));
 				}
 			}
-			
-			//Debug.Log("Beginning Bundle Process!!!");
 		}
-
-		/*static void EmbedAssetBundle(List<FileInfo> assemblies, IEnumerable<BuiltAssetBundle> builtBundles, Dictionary<string,AssemblyName> bundleToAssemblyPairs)
-		{
-
-		}*/
 
 		static object embedLock = new object();
 
+		/// <summary>
+		/// Embeds the built asset bundles into the mod assemblies
+		/// </summary>
+		/// <param name="assemblies">The file paths of the mod assemblies to put the asset bundles into</param>
+		/// <param name="builtBundles">The asset bundles that have been built</param>
 		static void EmbedAssetBundles(List<FileInfo> assemblies, IEnumerable<BuiltAssetBundle> builtBundles)
 		{
 			Debug.Log("Embedding Asset Bundles");
@@ -647,49 +603,21 @@ namespace WeaverCore.Editor.Compilation
 				{"HollowKnight", "Assembly-CSharp" },
 				{"HollowKnight.FirstPass", "Assembly-CSharp-firstpass" }
 			};
-			/*foreach (var assembly in assemblies)
-			{
-				Debug.Log("Built Assembly = " + assembly.FullName);
-			}
-			foreach (var bundle in builtBundles)
-			{
-				Debug.Log("Built Bundle = " + bundle.File.FullName);
-			}*/
+
 			var bundlePairs = GetBundleToAssemblyPairs(assemblyReplacements);
-			/*foreach (var pair in bundlePairs)
-			{
-				Debug.Log($"Bundle Pair = {pair.Key} - {pair.Value.Name}");
-			}*/
-			/*if (builtBundles.Any())
-			{
-				Debug.Log("THERE ARE BUNDLES");
-			}
-			if (bundlePairs.Any())
-			{
-				Debug.Log("THERE ARE PAIRS");
-			}
-			foreach (var pair in bundlePairs)
-			{
-				Debug.Log($"PAIR = {pair.Key}, {pair.Value}");
-			}*/
 			foreach (var bundle in builtBundles)
 			{
-				//Debug.Log("BUNDLE = " + bundle.File.Name);
 				if (bundlePairs.ContainsKey(bundle.File.Name))
 				{
 					var asmName = bundlePairs[bundle.File.Name];
-					//Debug.Log("A_ NAME = " + asmName.Name);
 
 					var asmDllName = asmName.Name + ".dll";
-					//Debug.Log("ASMDLLNAME = " + asmDllName);
 
 					var asmFile = assemblies.FirstOrDefault(a => a.Name == asmDllName);
-					//Debug.Log("ASM FILE = " + asmFile?.FullName);
 
 					if (asmFile != null)
 					{
 						var processedBundleLocation = PostProcessBundle(bundle, assemblyReplacements);
-						//Debug.Log($"Embedding {processedBundleLocation} into {asmFile.FullName}");
 						lock (embedLock)
 						{
 							EmbedResourceCMD.EmbedResource(asmFile.FullName, processedBundleLocation, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
@@ -706,7 +634,6 @@ namespace WeaverCore.Editor.Compilation
 						if (sceneBundle.File.Exists)
 						{
 							var processedSceneBundleLocation = PostProcessBundle(sceneBundle, assemblyReplacements);
-							//Debug.Log($"Embedding {processedBundleLocation} into {asmFile.FullName}");
 							lock (embedLock)
 							{
 								EmbedResourceCMD.EmbedResource(asmFile.FullName, processedSceneBundleLocation, sceneBundle.File.Name + PlatformUtilities.GetBuildTargetExtension(sceneBundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
@@ -714,37 +641,35 @@ namespace WeaverCore.Editor.Compilation
 						}
 					}
 				}
-				//var assembly = assemblies.FirstOrDefault(a => a.Name == bundle.)
 			}
-			//Debug.Log("END");
 		}
 
 
+		/// <summary>
+		/// Embeds some assemblies and resources into WeaverCore.dll. These are needed for WeaverCore to function when running in Hollow Knight
+		/// </summary>
 		static void EmbedWeaverCoreResources()
 		{
 			var weaverGameLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}WeaverCore.Game.dll");
 			var harmonyLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}0Harmony.dll");
-			var iLGenLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}System.Reflection.Emit.ILGeneration.dll");
-			var emitLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}System.Reflection.Emit.dll");
-			var emitLightweightLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}System.Reflection.Emit.Lightweight.dll");
 
 			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, weaverGameLocation.FullName, "WeaverCore.Game", compression: CompressionMethod.NoCompression);
 			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, harmonyLocation.FullName, "0Harmony", compression: CompressionMethod.NoCompression);
-			//EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, iLGenLocation.FullName, "ILGeneration", compression: CompressionMethod.NoCompression);
-			//EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, emitLocation.FullName, "ReflectionEmit", compression: CompressionMethod.NoCompression);
-			//EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, emitLightweightLocation.FullName, "ReflectionEmitLightweight", compression: CompressionMethod.NoCompression);
 		}
 
+		/// <summary>
+		/// Pairs up each asset bundle with the assemblies they are to be embedded into
+		/// </summary>
+		/// <param name="assemblyReplacements">A list of overrides. Used to pair up an asset bundle with a different assembly</param>
+		/// <returns></returns>
 		static Dictionary<string, AssemblyName> GetBundleToAssemblyPairs(Dictionary<string, string> assemblyReplacements)
 		{
 			Dictionary<string, AssemblyName> bundleToAssemblyPairs = new Dictionary<string, AssemblyName>();
-			//var registryIDs = AssetDatabase.FindAssets($"t:{nameof(Registry)}");
 
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
 			foreach (var registry in Data.Registries)
 			{
-				//Debug.Log("Registry = " + JsonUtility.ToJson(registry, true));
 				var originalModName = registry.AssemblyName;
 
 				var assembly = assemblies.FirstOrDefault(a => a.GetName().Name == originalModName);
@@ -757,85 +682,19 @@ namespace WeaverCore.Editor.Compilation
 					{
 						asmName.Name = replacement;
 					}
-					/*if (asmName.Name == "Assembly-CSharp" && !Data.WeaverCoreOnly)
-					{
-						asmName.Name = Data.ModName;
-					}*/
-					//Debug.Log($"Adding Bundle Pair {bundleName} => {asmName.Name}");
+
 					bundleToAssemblyPairs.Add(registry.AssetBundleName, asmName);
-					/*var mod = registry.ModType;
-					if (mod != null)
-					{
-						assembly = mod.Assembly;
-					}
-					if (assembly != null)
-					{
-						
-					}*/
 				}
 			}
 
-			/*foreach (var id in registryIDs)
-			{
-				//Debug.Log("ID = " + id);
-				//Debug.Log("Path = " + AssetDatabase.GUIDToAssetPath(id));
-				var registry = AssetDatabase.LoadAssetAtPath<Registry>(AssetDatabase.GUIDToAssetPath(id));
-				//Debug.Log("Registry = " + registry);
-				//Debug.Log("Type = " + registry?.GetType());
-				var bundleName = GetAssetBundleName(registry);
-				//Assembly assembly = null;
-				//registry.ModAssemblyName;
-				//var modAssemblyName = registry.ModAssemblyName;
-				//var assemblyName = new AssemblyName(registry.ModAssemblyName);
-				//bundleToAssemblyPairs.Add(bundleName, assemblyName);
-
-				var originalModName = registry.ModAssemblyName;
-#if REWRITE_REGISTRIES
-				foreach (var replacement in assemblyReplacements)
-				{
-					if (registry.ModAssemblyName == replacement.Value)
-					{
-						originalModName = replacement.Key;
-						break;
-					}
-				}
-#endif
-
-
-				var assembly = assemblies.FirstOrDefault(a => a.GetName().Name == originalModName);
-				if (assembly != null)
-				{
-					var asmName = assembly.GetName();
-					asmName.Name = registry.ModAssemblyName;
-#if !REWRITE_REGISTRIES
-					if (assemblyReplacements.TryGetValue(asmName.Name,out var replacement))
-					{
-						asmName.Name = replacement;
-					}
-#endif
-					//Debug.Log($"Adding Bundle Pair {bundleName} => {asmName.Name}");
-					bundleToAssemblyPairs.Add(bundleName, asmName);
-				}
-				
-			}*/
-
 			return bundleToAssemblyPairs;
-
-
-
-			/*string GetAssetBundleName(UnityEngine.Object obj)
-			{
-				var path = AssetDatabase.GetAssetPath(obj);
-				if (path != null && path != "")
-				{
-					var import = AssetImporter.GetAtPath(path);
-					return import.assetBundleName;
-					//import.SetAssetBundleNameAndVariant(bundleName, import.assetBundleVariant);
-				}
-				return "";
-			}*/
 		}
 
+		/// <summary>
+		/// Gets the asset bundle an object is a part of
+		/// </summary>
+		/// <param name="obj">The object to check</param>
+		/// <returns>Returns the name of the asset bundle the object is a part of</returns>
 		static string GetAssetBundleName(UnityEngine.Object obj)
 		{
 			var path = AssetDatabase.GetAssetPath(obj);
@@ -843,32 +702,16 @@ namespace WeaverCore.Editor.Compilation
 			{
 				var import = AssetImporter.GetAtPath(path);
 				return import.assetBundleName;
-				//import.SetAssetBundleNameAndVariant(bundleName, import.assetBundleVariant);
 			}
 			return "";
 		}
 
+		/// <summary>
+		/// Called when asset bundling is done. This is used for clean up and to undo what <see cref="PrepareForAssetBundling(List{string}, MethodInfo)"/> has done
+		/// </summary>
+		/// <param name="whenFinished">The function to call when this is done</param>
 		static void DoneWithAssetBundling(MethodInfo whenFinished)
 		{
-			//Debug.Log("Done with Asset Bundling");
-			//UnboundCoroutine.Start(Routine());
-			//IEnumerator Routine()
-			//{
-			/*yield return new WaitForSeconds(0.5f);
-			foreach (var registry in RegistryChecker.LoadAllRegistries())
-			{
-				registry.ReplaceAssemblyName(Data.ModName, "Assembly-CSharp");
-				registry.ApplyChanges();
-			}*/
-			//Debug.Log("G_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitForSeconds(0.5f);
-			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
-			//Debug.Log("H_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
-			//Debug.Log("I_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitForSeconds(0.5f);
-			//Debug.Log("J_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
 #if REWRITE_REGISTRIES
 			foreach (var registry in RegistryChecker.LoadAllRegistries())
 			{
@@ -876,13 +719,10 @@ namespace WeaverCore.Editor.Compilation
 				registry.ApplyChanges();
 			}
 #endif
-			//yield return new WaitForSeconds(0.5f);
-			//Debug.Log("K_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-			//yield return new WaitUntil(() => !EditorApplication.isCompiling);
 			bool assetsChanged = false;
 			try
 			{
-				AssetDatabase.StartAssetEditing();
+				//AssetDatabase.StartAssetEditing();
 				if (Data.ExcludedAssemblies != null)
 				{
 					foreach (var exclusion in Data.ExcludedAssemblies)
@@ -894,7 +734,7 @@ namespace WeaverCore.Editor.Compilation
 							asmDef.Definition.excludePlatforms = exclusion.OriginalExcludedPlatforms;
 							asmDef.Save();
 							assetsChanged = true;
-							AssetDatabase.ImportAsset(asmDef.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
+							//AssetDatabase.ImportAsset(asmDef.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer);
 						}
 					}
 				}
@@ -918,23 +758,45 @@ namespace WeaverCore.Editor.Compilation
 			}
 			finally
 			{
-				//if (assetsChanged)
-				//{
-				//	AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
-				//}
-				//Debug.Log("L_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
-				//AssetDatabase.AllowAutoRefresh();
-				AssetDatabase.StopAssetEditing();
+				UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
+				//AssetDatabase.StopAssetEditing();
 			}
-			//}
 		}
 
+		/// <summary>
+		/// Called when the asset bundling process is fully completed
+		/// </summary>
 		static void CompleteBundlingProcess()
 		{
-			//Debug.Log("M_Editor File Locked = " + IsFileLocked(new FileInfo("Library\\ScriptAssemblies\\WeaverCore.Editor.dll")));
+			var firstTime = true;
+			if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
+			{
+				firstTime = firstBuildData.FirstEver;
+			}
+			PersistentData.StoreData(new FirstEverBuild
+			{
+				FirstEver = false
+			});
+			PersistentData.SaveData();
 			if (!Data.BundlingSuccessful)
 			{
-				Debug.LogError("An error occured when creating the asset bundles");
+                if (firstTime)
+                {
+					DebugUtilities.ClearLog();
+					//Try Building Again, since the first ever build seems to have issues.
+					if (BuildScreen.BuildSettings.WeaverCoreOnly)
+					{
+						BuildTools.BuildWeaverCore();
+					}
+					else
+					{
+						BuildTools.BuildMod();
+					}
+				}
+				else
+                {
+					Debug.LogError("An error occured when creating the asset bundles");
+				}
 				return;
 			}
 
@@ -947,17 +809,21 @@ namespace WeaverCore.Editor.Compilation
 			{
 				Data.OnComplete.Method.Invoke(null, null);
 			}
-			/*UnboundCoroutine.Start(LoadScenes(() =>
-			{
-				
-			}));*/
 		}
 
+		/// <summary>
+		/// Used to run AssetTools.Net over a built asset bundle. This is used to make sure that when the asset bundle is loaded in-game, any components on prefabs are pointed to the correct types in the mod assembly
+		/// 
+		/// This is also used to apply compression on the built asset bundle
+		/// </summary>
+		/// <param name="bundle">The bundle to post-process</param>
+		/// <param name="assemblyReplacements">A list of script assembly names to override</param>
+		/// <returns>Returns the path to the post-processed asset bundle</returns>
 		static string PostProcessBundle(BuiltAssetBundle bundle, Dictionary<string, string> assemblyReplacements)
 		{
 			Debug.Log($"Post Processing Bundle -> {bundle.File}");
 			var am = new AssetsManager();
-			am.LoadClassPackage(BuildTools.WeaverCoreFolder.AddSlash() + "Libraries\\classdata.tpk");
+			am.LoadClassPackage(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}classdata.tpk");
 
 			var bun = am.LoadBundleFile(bundle.File.FullName);
 
@@ -973,7 +839,6 @@ namespace WeaverCore.Editor.Compilation
 				}
 				//load the first entry in the bundle (hopefully the one we want)
 				var assetsFileData = BundleHelper.LoadAssetDataFromBundle(bun.file, bunIndex);
-				Debug.Log("Assets File Name = " + assetsFileName);
 
 				//I have a new update coming, but in the current release, assetsmanager
 				//will only load from file, not from the AssetsFile class. so we just
@@ -1002,7 +867,6 @@ namespace WeaverCore.Editor.Compilation
 								//change m_AssemblyName field
 								m_AssemblyNameValue.Set(newAsmName);
 								//rewrite the asset and add it to the pending list of changes
-								//Debug.Log($"Replacing in Monoscript {assemblyName} -> {newAsmName}");
 								assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, 0xffff, monoScriptInst.WriteToByteArray()));
 								break;
 							}
@@ -1041,7 +905,6 @@ namespace WeaverCore.Editor.Compilation
 									modAsmNameVal.Set(replacement.Value);
 									Debug.Log($"Replacing Registry Assembly From {replacement.Key} to {replacement.Value}");
 									modified = true;
-									//assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
 									break;
 								}
 							}
@@ -1059,7 +922,6 @@ namespace WeaverCore.Editor.Compilation
 										asmValue.Set(replacement.Value);
 										Debug.Log($"Replacing Registry Assembly From {replacement.Key} to {replacement.Value}");
 										modified = true;
-										//assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
 										break;
 									}
 								}
@@ -1105,7 +967,7 @@ namespace WeaverCore.Editor.Compilation
 				using (FileStream ms = File.OpenWrite(bundle.File.FullName + ".edit"))
 				using (AssetsFileWriter aw = new AssetsFileWriter(ms))
 				{
-					bun.file.Pack(modifiedBundle.reader, aw, AssetBundleCompressionType.NONE);
+					bun.file.Pack(modifiedBundle.reader, aw, BuildScreen.BuildSettings.CompressionType);
 				}
 			}
 

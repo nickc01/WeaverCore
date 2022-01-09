@@ -71,7 +71,6 @@ namespace WeaverCore.Editor.Implementations
 
             public override void EndBossBattle(float delayTime)
             {
-                //OnBossesDead?.Invoke();
                 if (OnBossesDead != null)
                 {
                     OnBossesDead.Invoke();
@@ -82,7 +81,6 @@ namespace WeaverCore.Editor.Implementations
             IEnumerator EndBossDelayed(float delayTime)
             {
                 yield return new WaitForSeconds(delayTime);
-                //OnBossSceneComplete?.Invoke();
                 if (OnBossSceneComplete != null)
                 {
                     OnBossSceneComplete.Invoke();

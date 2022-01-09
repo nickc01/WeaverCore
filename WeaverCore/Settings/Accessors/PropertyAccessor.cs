@@ -3,15 +3,17 @@ using System.Reflection;
 
 namespace WeaverCore.Settings
 {
-
+	/// <summary>
+	/// Used for accessing a property on a <see cref="GlobalSettings"/> object
+	/// </summary>
 	public class PropertyAccessor : IAccessor
 	{
-		public readonly Panel Panel;
+		public readonly GlobalSettings Panel;
 		public readonly PropertyInfo Property;
 		readonly string _description;
 		readonly string _displayName;
 
-		public PropertyAccessor(Panel panel, PropertyInfo property, string displayName, string description)
+		public PropertyAccessor(GlobalSettings panel, PropertyInfo property, string displayName, string description)
 		{
 			Panel = panel;
 			Property = property;

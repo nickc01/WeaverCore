@@ -2,6 +2,9 @@
 
 namespace WeaverCore.Settings
 {
+	/// <summary>
+	/// Used to insert a space between two UI Elements in the Settings Menu
+	/// </summary>
 	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true, Inherited = false)]
 	public sealed class SettingSpaceAttribute : Attribute
 	{

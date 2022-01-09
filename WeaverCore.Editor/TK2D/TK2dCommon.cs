@@ -11,13 +11,27 @@ using WeaverCore.Editor.TK2D;
 
 namespace WeaverCore.Editor
 {
+	/// <summary>
+	/// Contains common utility functions for importing TK2D Sprites and Animations
+	/// </summary>
 	public static class TK2dCommon
 	{
+		/// <summary>
+		/// Opens a .spritemap file
+		/// </summary>
+		/// <param name="result">The output data</param>
+		/// <returns>Returns true if the file was successfully opened</returns>
 		public static bool OpenSpriteMap(out SpriteMapImport result)
 		{
 			return OpenSpriteMap(out result, out var _);
 		}
 
+		/// <summary>
+		/// Opens a .spritemap file
+		/// </summary>
+		/// <param name="result">The output data</param>
+		/// <param name="path">The path of the file to open. If null, then the user will need to specify one</param>
+		/// <returns>Returns true if the file was successfully opened</returns>
 		public static bool OpenSpriteMap(out SpriteMapImport result, out string path)
 		{
 			path = EditorUtility.OpenFilePanel("Open Sprite Map", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "spritemap");
@@ -30,11 +44,22 @@ namespace WeaverCore.Editor
 			return true;
 		}
 
+		/// <summary>
+		/// Opens a .animmap file
+		/// </summary>
+		/// <param name="result">The output data</param>
+		/// <returns>Returns true if the file was successfully opened</returns>
 		public static bool OpenAnimationMap(out AnimationMapImport result)
 		{
 			return OpenAnimationMap(out result, out var _);
 		}
 
+		/// <summary>
+		/// Opens a .animmap file
+		/// </summary>
+		/// <param name="result">The output data</param>
+		/// <param name="path">The path of the file to open. If null, then the user will need to specify one</param>
+		/// <returns>Returns true if the file was successfully opened</returns>
 		public static bool OpenAnimationMap(out AnimationMapImport result, out string path)
 		{
 			path = EditorUtility.OpenFilePanel("Open Animation Map", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "animmap");
@@ -51,6 +76,12 @@ namespace WeaverCore.Editor
 			return true;
 		}
 
+		/// <summary>
+		/// Opens an image file
+		/// </summary>
+		/// <param name="path">The path of the image to open</param>
+		/// <param name="output">The output texture data</param>
+		/// <returns>Returns true if the file was successfully opened</returns>
 		public static bool OpenImage(string path, out Texture2D output)
 		{
 			var info = new FileInfo(path);
@@ -71,6 +102,11 @@ namespace WeaverCore.Editor
 			return true;
 		}
 
+		/// <summary>
+		/// Opens an image file
+		/// </summary>
+		/// <param name="output">The output texture data</param>
+		/// <returns>Returns true if the file was successfully opened</returns>
 		public static bool OpenImage(out Texture2D output)
 		{
 			var path = EditorUtility.OpenFilePanelWithFilters("Open Sprite Map", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), new string[] { "Image files", "png,jpg,jpeg", "All files", "*" });

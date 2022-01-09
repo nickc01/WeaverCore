@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssetsTools.NET;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,14 +12,16 @@ using WeaverCore.Editor.Utilities;
 
 namespace WeaverCore.Editor.Compilation
 {
+	/// <summary>
+	/// A window that is used to let the user customize how a mod is getting built
+	/// </summary>
 	public class BuildScreen : EditorWindow
 	{
-		public bool WeaverCoreOnly { get; private set; }
-
-		public const int WindowWidth = 300;
-		public const int WindowHeight = 300;
+		public const int WindowWidth = 400;
+		public const int WindowHeight = 400;
 
 		static Settings _settings;
+
 		public static Settings BuildSettings
 		{
 			get
@@ -44,16 +47,55 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
+		/// <summary>
+		/// Contains all the configured build settings the user specified
+		/// </summary>
 		[Serializable]
 		public class Settings
 		{
+			/// <summary>
+			/// Is the WeaverCore assembly only getting built?
+			/// </summary>
+			public bool WeaverCoreOnly = false;
+
+			/// <summary>
+			/// The name of the mod to build
+			/// </summary>
 			public string ModName = PlayerSettings.productName;
+
+			/// <summary>
+			/// Is the mod being built with Windows support?
+			/// </summary>
 			public bool WindowsSupport = true;
+
+			/// <summary>
+			/// Is the mod being built with Mac support?
+			/// </summary>
 			public bool MacSupport = true;
+
+			/// <summary>
+			/// Is the mod being built with Linux support?
+			/// </summary>
 			public bool LinuxSupport = true;
+
+			/// <summary>
+			/// Should the game be started up when the mod finishes building?
+			/// </summary>
 			public bool StartGame = true;
+
+			/// <summary>
+			/// The folder the mod is being placed in when built
+			/// </summary>
 			public string BuildLocation = GameBuildSettings.Settings.ModsLocation;
 
+			/// <summary>
+			/// What kind of asset bundle compression is being applied to the mod?
+			/// </summary>
+			public AssetBundleCompressionType CompressionType = AssetBundleCompressionType.LZ4;
+
+			/// <summary>
+			/// Gets a list of all the build modes the user has specified
+			/// </summary>
 			public IEnumerable<BuildTarget> GetBuildModes()
 			{
 				if (WindowsSupport)
@@ -71,7 +113,10 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
-
+		/// <summary>
+		/// Shows the build screen to the user
+		/// </summary>
+		/// <param name="weaverCoreOnly">Is weavercore only getting built?</param>
 		public static void ShowBuildScreen(bool weaverCoreOnly)
 		{
 			var window = GetWindow<BuildScreen>();
@@ -85,12 +130,13 @@ namespace WeaverCore.Editor.Compilation
 			var y = (resolution.height / 2) - (WindowHeight / 2);
 
 			window.position = new Rect(x, y, WindowWidth, WindowHeight);
+			BuildSettings.WeaverCoreOnly = weaverCoreOnly;
 		}
 
 
 		private void OnGUI()
 		{
-			if (!WeaverCoreOnly)
+			if (!BuildSettings.WeaverCoreOnly)
 			{
 				EditorGUILayout.LabelField("Mod Name");
 				BuildSettings.ModName = EditorGUILayout.TextField(BuildSettings.ModName);
@@ -105,6 +151,10 @@ namespace WeaverCore.Editor.Compilation
 
 			EditorGUILayout.LabelField("Linux Support");
 			BuildSettings.LinuxSupport = EditorGUILayout.Toggle(BuildSettings.LinuxSupport);
+
+			EditorGUILayout.Space();
+			EditorGUILayout.LabelField("Compression Method");
+			BuildSettings.CompressionType = (AssetBundleCompressionType)EditorGUILayout.EnumPopup(BuildSettings.CompressionType);
 
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("Auto-Start Game");
@@ -140,6 +190,9 @@ namespace WeaverCore.Editor.Compilation
 			EditorGUILayout.EndHorizontal();
 		}
 
+		/// <summary>
+		/// Begins the build process
+		/// </summary>
 		void Build()
 		{
 			Close();
@@ -152,7 +205,7 @@ namespace WeaverCore.Editor.Compilation
 					Debug.LogError($"The module for building for the following platform {target} is not installed. This platform will be skipped");
 				}
 			}
-			if (WeaverCoreOnly)
+			if (BuildSettings.WeaverCoreOnly)
 			{
 				BuildTools.BuildWeaverCore();
 			}

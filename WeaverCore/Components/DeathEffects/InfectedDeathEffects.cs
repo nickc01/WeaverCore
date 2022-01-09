@@ -1,176 +1,115 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using WeaverCore.Enums;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components.DeathEffects
 {
-	// Token: 0x0200001F RID: 31
-	public class InfectedDeathEffects : BasicDeathEffects
-	{
-		// Token: 0x06000098 RID: 152 RVA: 0x00003FB4 File Offset: 0x000021B4
-		public override void EmitEffects()
-		{
-			if (this.DeathType != InfectedDeathEffects.InfectedDeathType.SmallInfected)
-			{
-				if (this.DeathType != InfectedDeathEffects.InfectedDeathType.LargeInfected)
-				{
-					if (this.DeathType != InfectedDeathEffects.InfectedDeathType.Infected)
-					{
-						Debug.LogWarningFormat(this, "Enemy death type {0} not implemented!", new object[]
-						{
-							this.DeathType
-						});
-					}
-					else
-					{
-						this.EmitInfectedEffects();
-					}
-				}
-				else
-				{
-					this.EmitLargeInfectedEffects();
-				}
-			}
-			else
-			{
-				this.EmitSmallInfectedEffects();
-			}
-		}
 
-		public override void EmitSounds()
-		{
-			base.EmitSounds();
-			if (SwordDeathSound != null)
-			{
-				AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(SwordDeathSound, transform.position, swordDeathSoundVolume, AudioChannel.Sound);
-				weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(swordDeathSoundMinPitch, swordDeathSoundMaxPitch);
-			}
-			if (DamageSound != null)
-			{
-				AudioPlayer weaverAudioPlayer2 = WeaverAudio.PlayAtPoint(DamageSound, transform.position, damageSoundVolume, AudioChannel.Sound);
-				weaverAudioPlayer2.AudioSource.pitch = UnityEngine.Random.Range(damageSoundMinPitch, damageSoundMaxPitch);
-			}
-		}
+    /// <summary>
+    /// The death effects for infected enemies
+    /// </summary>
+    public class InfectedDeathEffects : BasicDeathEffects
+    {
+        [Header("Infected Config")]
+        [Tooltip("Defines how large the effects should be")]
+        public InfectedDeathType DeathType = InfectedDeathType.Infected;
 
-		// Token: 0x06000099 RID: 153 RVA: 0x00004024 File Offset: 0x00002224
-		private void EmitInfectedEffects()
-		{
-			EmitSounds();
-			if (InfectedDeathWavePrefab != null)
-			{
-				GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);
-			}
-			gameObject.transform.SetXLocalScale(1.25f);
-			gameObject.transform.SetYLocalScale(1.25f);
-			Blood.SpawnRandomBlood(transform.position + EffectsOffset);
-			if (DeathPuffPrefab != null)
-			{
-				UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.position + EffectsOffset, Quaternion.identity);
-			}
-			ShakeCamera(ShakeType.EnemyKillShake);
-		}
+        [SerializeField]
+        protected GameObject InfectedDeathWavePrefab;
 
-		// Token: 0x0600009A RID: 154 RVA: 0x00004188 File Offset: 0x00002388
-		private void ShakeCamera(ShakeType shakeType = ShakeType.EnemyKillShake)
-		{
-			Renderer renderer = base.GetComponent<Renderer>();
-			if (renderer == null)
-			{
-				renderer = base.GetComponentInChildren<Renderer>();
-			}
-			if (renderer != null && renderer.isVisible)
-			{
-				CameraShaker.Instance.Shake(shakeType);
-			}
-		}
+        [SerializeField]
+        protected GameObject DeathPuffPrefab;
 
-		// Token: 0x0600009B RID: 155 RVA: 0x000041D8 File Offset: 0x000023D8
-		private void EmitSmallInfectedEffects()
-		{
-			EmitSounds();
-			if (this.InfectedDeathWavePrefab != null)
-			{
-				GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.InfectedDeathWavePrefab, base.transform.position + this.EffectsOffset, Quaternion.identity);
-				Vector3 localScale = gameObject.transform.localScale;
-				localScale.x = 0.5f;
-				localScale.y = 0.5f;
-				gameObject.transform.localScale = localScale;
-			}
-			Blood.SpawnRandomBlood(base.transform.position + this.EffectsOffset);
-		}
+        /// <inheritdoc/>
+        public override void EmitEffects()
+        {
+            if (DeathType != InfectedDeathType.SmallInfected)
+            {
+                if (DeathType != InfectedDeathType.LargeInfected)
+                {
+                    if (DeathType != InfectedDeathType.Infected)
+                    {
+                        Debug.LogWarningFormat(this, "Enemy death type {0} not implemented!", new object[]
+                        {
+                            DeathType
+                        });
+                    }
+                    else
+                    {
+                        EmitInfectedEffects();
+                    }
+                }
+                else
+                {
+                    EmitLargeInfectedEffects();
+                }
+            }
+            else
+            {
+                EmitSmallInfectedEffects();
+            }
+        }
 
-		// Token: 0x0600009C RID: 156 RVA: 0x00004300 File Offset: 0x00002500
-		private void EmitLargeInfectedEffects()
-		{
-			EmitSounds();
-			if (this.DeathPuffPrefab != null)
-			{
-				GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.DeathPuffPrefab, base.transform.position + this.EffectsOffset, Quaternion.identity);
-				gameObject.transform.localScale = new Vector3(2f, 2f, gameObject.transform.GetZLocalScale());
-			}
-			this.ShakeCamera(ShakeType.AverageShake);
-			if (this.InfectedDeathWavePrefab != null)
-			{
-				GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(this.InfectedDeathWavePrefab, base.transform.position + this.EffectsOffset, Quaternion.identity);
-				gameObject2.transform.SetXLocalScale(2f);
-				gameObject2.transform.SetYLocalScale(2f);
-			}
-			Blood.SpawnRandomBlood(base.transform.position + this.EffectsOffset);
-		}
+        /// <inheritdoc/>
+        public override void EmitSounds()
+        {
+            base.EmitSounds();
+        }
 
-		// Token: 0x0400006F RID: 111
-		public InfectedDeathEffects.InfectedDeathType DeathType;
+        private void EmitInfectedEffects()
+        {
+            EmitSounds();
+            if (InfectedDeathWavePrefab != null)
+            {
+                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);
+            }
+            gameObject.transform.SetXLocalScale(1.25f);
+            gameObject.transform.SetYLocalScale(1.25f);
+            Blood.SpawnRandomBlood(transform.position + EffectsOffset);
+            if (DeathPuffPrefab != null)
+            {
+                UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.position + EffectsOffset, Quaternion.identity);
+            }
+            ShakeCameraIfVisible(ShakeType.EnemyKillShake);
+        }
 
-		// Token: 0x04000070 RID: 112
-		[SerializeField]
-		protected GameObject InfectedDeathWavePrefab;
+        private void EmitSmallInfectedEffects()
+        {
+            EmitSounds();
+            if (InfectedDeathWavePrefab != null)
+            {
+                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);
+                Vector3 localScale = gameObject.transform.localScale;
+                localScale.x = 0.5f;
+                localScale.y = 0.5f;
+                gameObject.transform.localScale = localScale;
+            }
+            Blood.SpawnRandomBlood(transform.position + EffectsOffset);
+        }
 
-		// Token: 0x04000071 RID: 113
-		[SerializeField]
-		protected GameObject DeathPuffPrefab;
+        private void EmitLargeInfectedEffects()
+        {
+            EmitSounds();
+            if (DeathPuffPrefab != null)
+            {
+                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.position + EffectsOffset, Quaternion.identity);
+                gameObject.transform.localScale = new Vector3(2f, 2f, gameObject.transform.GetZLocalScale());
+            }
+            ShakeCameraIfVisible(ShakeType.AverageShake);
+            if (InfectedDeathWavePrefab != null)
+            {
+                GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);
+                gameObject2.transform.SetXLocalScale(2f);
+                gameObject2.transform.SetYLocalScale(2f);
+            }
+            Blood.SpawnRandomBlood(transform.position + EffectsOffset);
+        }
 
-		// Token: 0x04000072 RID: 114
-		[SerializeField]
-		protected AudioClip DamageSound;
-
-		// Token: 0x04000073 RID: 115
-		[SerializeField]
-		protected float damageSoundVolume;
-
-		// Token: 0x04000074 RID: 116
-		[SerializeField]
-		protected float damageSoundMinPitch;
-
-		// Token: 0x04000075 RID: 117
-		[SerializeField]
-		protected float damageSoundMaxPitch;
-
-		// Token: 0x04000076 RID: 118
-		[SerializeField]
-		protected AudioClip SwordDeathSound;
-
-		// Token: 0x04000077 RID: 119
-		[SerializeField]
-		protected float swordDeathSoundVolume;
-
-		// Token: 0x04000078 RID: 120
-		[SerializeField]
-		protected float swordDeathSoundMinPitch;
-
-		// Token: 0x04000079 RID: 121
-		[SerializeField]
-		protected float swordDeathSoundMaxPitch;
-
-		// Token: 0x02000020 RID: 32
-		public enum InfectedDeathType
-		{
-			// Token: 0x0400007B RID: 123
-			Infected,
-			// Token: 0x0400007C RID: 124
-			SmallInfected,
-			// Token: 0x0400007D RID: 125
-			LargeInfected
-		}
-	}
+        public enum InfectedDeathType
+        {
+            Infected,
+            SmallInfected,
+            LargeInfected
+        }
+    }
 }

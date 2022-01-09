@@ -5,11 +5,10 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using WeaverCore.Interfaces;
-using WeaverCore.Utilities;
 
 namespace WeaverCore.Implementations
 {
-	public abstract class GeoCounter : MonoBehaviour, IImplementation
+    public abstract class GeoCounter : MonoBehaviour, IImplementation
 	{
 		protected abstract class Static_I : IImplementation
 		{
@@ -38,8 +37,6 @@ namespace WeaverCore.Implementations
 		public abstract void SetDisplayToZero();
 		public abstract int Geo { get; }
 		public abstract bool CurrentlyTakingGeo { get; }
-		//public abstract TMP_Text GeoTextInterface { get; }
-
 		public abstract string GeoText { get; set; }
 	}
 }

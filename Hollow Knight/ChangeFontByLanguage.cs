@@ -117,11 +117,6 @@ public class ChangeFontByLanguage : MonoBehaviour
 		fontSizeKO = 4.5f
 	};
 
-	/*private void Reset()
-	{
-		fontJA = DynAsm.WeaverCore_ASM.WeaverCore.Utilities.WeaverAssets.
-	}*/
-
 	private void Awake()
 	{
 		tmpro = GetComponent<TextMeshPro>();
@@ -154,25 +149,6 @@ public class ChangeFontByLanguage : MonoBehaviour
 		{
 			return;
 		}
-		/*switch (global::Language.Language.CurrentLanguage().ToString())
-		{
-			case "JA":
-				tmpro.fontSize = GetFontScale("JA");
-				tmpro.font = ((fontJA != null) ? fontJA : defaultFont);
-				return;
-			case "RU":
-				tmpro.fontSize = GetFontScale("RU");
-				tmpro.font = ((fontRU != null) ? fontRU : defaultFont);
-				return;
-			case "ZH":
-				tmpro.fontSize = GetFontScale("ZH");
-				tmpro.font = ((fontZH != null) ? fontZH : defaultFont);
-				return;
-			case "KO":
-				tmpro.fontSize = GetFontScale("KO");
-				tmpro.font = ((fontKO != null) ? fontKO : defaultFont);
-				return;
-		}*/
 		tmpro.fontSize = startFontSize;
 		if (defaultFont != null)
 		{

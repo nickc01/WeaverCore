@@ -19,12 +19,12 @@ namespace WeaverCore.Editor.Implementations
             
         }
 
-        public override void OnDeath()
+        public override void OnDeath(HitInfo finalHit)
         {
             
         }
 
-        public override void OnHit(HitInfo info, HitResult hitResult)
+        public override void OnHit(HitInfo info, EntityHealth.HitResult hitResult)
         {
             
         }

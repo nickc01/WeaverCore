@@ -25,8 +25,6 @@ public class EventRegister : MonoBehaviour
 
 	public void ReceiveEvent()
 	{
-		//FSMUtility.SendEventToGameObject(base.gameObject, subscribedEvent);
-		
 		if (this.OnReceivedEvent != null)
 		{
 			this.OnReceivedEvent();

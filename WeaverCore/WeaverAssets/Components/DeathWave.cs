@@ -6,18 +6,24 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-
-
-	public class DeathWave : MonoBehaviour
+	/// <summary>
+	/// Used to play a wave effect upon death
+	/// </summary>
+    public class DeathWave : MonoBehaviour
 	{
 		static ObjectPool DeathWavePool;
 
+		[Tooltip("Determines how long the death wave will last. The higher the number, the shorter it will live")]
 		public float Speed = 1f;
+
+		[Tooltip("How fast the death wave will expand in size")]
 		public float GrowthSpeed = 1f;
 
+		[Tooltip("A multiplier applied to the scale of the object")]
 		public float SizeMultiplier = 1f;
 
 		[SerializeField]
+		[Tooltip("The behaviour when the death wave is finished")]
 		OnDoneBehaviour doneBehaviour = OnDoneBehaviour.DestroyOrPool;
 
 		PoolableObject poolable;
@@ -50,14 +56,6 @@ namespace WeaverCore.Assets.Components
 			if (timer > 1f)
 			{
 				doneBehaviour.DoneWithObject(this);
-				/*if (poolable != null)
-				{
-					poolable.ReturnToPool();
-				}
-				else
-				{
-					Destroy(gameObject);
-				}*/
 			}
 		}
 
@@ -70,6 +68,12 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
+		/// <summary>
+		/// Spawns a death wave effect
+		/// </summary>
+		/// <param name="position">The position the death wave will spawn</param>
+		/// <param name="sizeMultiplier">A multiplier applied to the scale of the object</param>
+		/// <returns></returns>
 		public static DeathWave Spawn(Vector3 position, float sizeMultiplier)
 		{
 			if (DeathWavePool == null)

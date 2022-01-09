@@ -7,6 +7,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// An orange infectious blob object that will destroy itself when hitting a wall or the player
+	/// </summary>
 	public class Spatter : MonoBehaviour
 	{
 		public Sprite[] sprites;
@@ -33,7 +36,6 @@ namespace WeaverCore.Assets.Components
 		[SerializeField]
 		OnDoneBehaviour WhenDone;
 
-		// Use this for initialization
 		void Start()
 		{
 			gameObject.layer = LayerMask.NameToLayer("Terrain Detector");
@@ -44,14 +46,6 @@ namespace WeaverCore.Assets.Components
 				body = GetComponent<Rigidbody2D>();
 				spriteRenderer = GetComponent<SpriteRenderer>();
 			}
-			/*scaleModifier = UnityEngine.Random.Range(scaleModifierMin, scaleModifierMax);
-			rb2d.isKinematic = false;
-			circleCollider.enabled = true;
-			idleTimer = 0f;
-			animTimer = 0f;
-			spriteRenderer.sprite = sprites[0];
-			animFrame = 1;
-			state = 0f;*/
 			StartCoroutine(MainRoutine());
 		}
 
@@ -86,26 +80,6 @@ namespace WeaverCore.Assets.Components
 					else
 					{
 						WhenDone.DoneWithObject(this);
-						/*switch (WhenDone)
-						{
-							case OnDoneBehaviour.Disable:
-								gameObject.SetActive(false);
-								break;
-							case OnDoneBehaviour.DestroyOrPool:
-								var pool = GetComponent<PoolableObject>();
-								if (pool != null)
-								{
-									pool.ReturnToPool();
-								}
-								else
-								{
-									goto case OnDoneBehaviour.Destroy;
-								}
-								break;
-							case OnDoneBehaviour.Destroy:
-								Destroy(gameObject);
-								break;
-						}*/
 					}
 				}
 			}
@@ -143,7 +117,7 @@ namespace WeaverCore.Assets.Components
 		private void OnCollisionEnter2D(Collision2D collision)
 		{
 			collided = true;
-			var normal = GetSafeContactNormal(collision);//collision.GetSafeContact();
+			var normal = GetSafeContactNormal(collision);
 			float x = normal.x;
 			float y = normal.y;
 			if (y == -1f)
@@ -195,21 +169,9 @@ namespace WeaverCore.Assets.Components
 			{
 				ContactPoint2D contactPoint2D = contactsBuffer[0];
 				return contactPoint2D.normal;
-				/*return new Collision2DUtils.Collision2DSafeContact
-				{
-					Point = contactPoint2D.point,
-					Normal = contactPoint2D.normal,
-					IsLegitimate = true
-				};*/
 			}
 			Vector2 b = collision.collider.transform.TransformPoint(collision.collider.offset);
 			Vector2 a = collision.otherCollider.transform.TransformPoint(collision.otherCollider.offset);
-			/*return new Collision2DUtils.Collision2DSafeContact
-			{
-				Point = (a + b) * 0.5f,
-				Normal = (a - b).normalized,
-				IsLegitimate = false
-			};*/
 			return (a - b).normalized;
 		}
 	}

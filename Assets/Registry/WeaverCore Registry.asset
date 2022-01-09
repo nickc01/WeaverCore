@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e940547fdce306f4294a2b2dc6c8e311, type: 3}
   m_Name: WeaverCore Registry
   m_EditorClassIdentifier: 
-  modTypeName: WeaverCore.Internal.WeaverCore
+  modTypeName: WeaverCore.Internal.WeaverCore_ModClass
   modAssemblyName: WeaverCore
-  features: []
-  featureTypeNames: []
-  featureAssemblyNames: []
+  features:
+  - {fileID: 11400000, guid: 724b9dd1d6da718439a7c17f49b71706, type: 2}
+  featureTypeNames:
+  - WeaverCore.Settings.GlobalSettings
+  featureAssemblyNames:
+  - WeaverCore

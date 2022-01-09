@@ -8,6 +8,15 @@ namespace WeaverCore.Utilities
 {
 	public static class VectorUtilities
 	{
+		/// <summary>
+		/// Takes an existing vector, and a returns a new one with some fields modified
+		/// </summary>
+		/// <param name="v">The vector to base the new one from</param>
+		/// <param name="x">The new x-value. If left at NaN, the field will be left unchanged</param>
+		/// <param name="y">The new y-value. If left at NaN, the field will be left unchanged</param>
+		/// <param name="z">The new z-value. If left at NaN, the field will be left unchanged</param>
+		/// <param name="w">The new w-value. If left at NaN, the field will be left unchanged</param>
+		/// <returns>Returns a new vector with the modified fields</returns>
 		public static Vector4 With(this Vector4 v, float x = float.NaN, float y = float.NaN, float z = float.NaN, float w = float.NaN)
 		{
 			if (!float.IsNaN(x))
@@ -29,6 +38,14 @@ namespace WeaverCore.Utilities
 			return v;
 		}
 
+		/// <summary>
+		/// Takes an existing vector, and a returns a new one with some fields modified
+		/// </summary>
+		/// <param name="v">The vector to base the new one from</param>
+		/// <param name="x">The new x-value. If left at NaN, the field will be left unchanged</param>
+		/// <param name="y">The new y-value. If left at NaN, the field will be left unchanged</param>
+		/// <param name="z">The new z-value. If left at NaN, the field will be left unchanged</param>
+		/// <returns>Returns a new vector with the modified fields</returns>
 		public static Vector3 With(this Vector3 v, float x = float.NaN, float y = float.NaN, float z = float.NaN)
 		{
 			if (!float.IsNaN(x))
@@ -46,6 +63,13 @@ namespace WeaverCore.Utilities
 			return v;
 		}
 
+		/// <summary>
+		/// Takes an existing vector, and a returns a new one with some fields modified
+		/// </summary>
+		/// <param name="v">The vector to base the new one from</param>
+		/// <param name="x">The new x-value. If left at NaN, the field will be left unchanged</param>
+		/// <param name="y">The new y-value. If left at NaN, the field will be left unchanged</param>
+		/// <returns>Returns a new vector with the modified fields</returns>
 		public static Vector2 With(this Vector2 v, float x = float.NaN, float y = float.NaN)
 		{
 			if (!float.IsNaN(x))
@@ -59,41 +83,74 @@ namespace WeaverCore.Utilities
 			return v;
 		}
 
+		/// <summary>
+		/// Converts an angle (in degrees) into a vector pointing in the same direction
+		/// </summary>
+		/// <param name="angle">The angle to convert to a vector</param>
+		/// <param name="magnitude">The magnitude of the final vector</param>
+		/// <returns>The vector that points in the direction of the angle</returns>
 		public static Vector2 DegreesToVector(this float angle, float magnitude = 1f)
 		{
 			return RadiansToVector(angle * Mathf.Deg2Rad, magnitude);
 		}
 
+		/// <summary>
+		/// Converts a vector into an angle (in degrees)
+		/// </summary>
+		/// <param name="vector">The vector to convert</param>
+		/// <returns>Returns an angle that points in the direction of the vector</returns>
 		public static float VectorToDegrees(this Vector2 vector)
 		{
 			return Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
 		}
 
+		/// <summary>
+		/// Converts a vector into an angle (in radians)
+		/// </summary>
+		/// <param name="vector">The vector to convert</param>
+		/// <returns>Returns an angle that points in the direction of the vector</returns>
 		public static float VectorToRadians(this Vector2 vector)
 		{
 			return Mathf.Atan2(vector.y, vector.x);
 		}
 
+		/// <summary>
+		/// Converts a vector into an angle (in degrees)
+		/// </summary>
+		/// <param name="vector">The vector to convert</param>
+		/// <returns>Returns an angle that points in the direction of the vector</returns>
 		public static float VectorToDegrees(this Vector3 vector)
 		{
 			return Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
 		}
 
+		/// <summary>
+		/// Converts a vector into an angle (in radians)
+		/// </summary>
+		/// <param name="vector">The vector to convert</param>
+		/// <returns>Returns an angle that points in the direction of the vector</returns>
 		public static float VectorToRadians(this Vector3 vector)
 		{
 			return Mathf.Atan2(vector.y, vector.x);
 		}
 
-		/*public static Vector2 RadiansToVector(this float angle)
-		{
-			return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-		}*/
-
+		/// <summary>
+		/// Converts an angle (in radians) into a vector
+		/// </summary>
+		/// <param name="radiansAngle">The angle to convert into a vector</param>
+		/// <param name="magnitude">The magnitude of the final vector</param>
+		/// <returns>Returns a vector that points in the direction of the angle</returns>
 		public static Vector3 RadiansToVector(float radiansAngle, float magnitude = 1f)
 		{
 			return new Vector3(Mathf.Cos(radiansAngle) * magnitude, Mathf.Sin(radiansAngle) * magnitude);
 		}
 
+		/// <summary>
+		/// Gets the angle (in degrees) between two vectors
+		/// </summary>
+		/// <param name="Source">The first angle</param>
+		/// <param name="Destination">The second angle</param>
+		/// <returns>Returns the angle between the two vectors</returns>
 		public static float GetAngleBetween(this Vector3 Source, Vector3 Destination)
 		{
 			return Mathf.Atan2(Destination.y - Source.y, Destination.x - Source.x) * Mathf.Rad2Deg;
@@ -141,26 +198,31 @@ namespace WeaverCore.Utilities
 			return source;
 		}
 
-		/*public static void DecomposeVector(this Vector2 vector, out float angle, out float magnitude)
+		/// <summary>
+		/// Creates an array of values that are evenly spaced together.
+		/// </summary>
+		/// <param name="amountOfValues">The amount of values to create</param>
+		/// <param name="spacingBetweenValues">The amount of spacing between values</param>
+		/// <returns>Returns a list of values that are evenly spaced between one another</returns>
+		/// <example>
+		/// For example, if <paramref name="amountOfValues"/> = 7, and <paramref name="spacingBetweenValues"/> = 6, then the following list will be created:
+		/// [0, -6, 6, -12, 12, -18, 18]
+		/// 
+		/// If <paramref name="amountOfValues"/> = 8, and <paramref name="spacingBetweenValues"/> = 4, then the following list will be created:
+		/// [-2, 2, -6, 6, -10, 10, -14, 14]
+		/// </example>
+		public static float[] CalculateSpacedValues(int amountOfValues, float spacingBetweenValues)
 		{
-			angle = VectorToDegrees(vector);
-			magnitude = vector.magnitude;
-		}*/
-
-		public static float[] CalculateSpacedValues(int amountOfValues, float amountBetweenValues)
-		{
-			//List<float> angles = new List<float>();
 			float[] angles = new float[amountOfValues];
 			if (amountOfValues == 0)
 			{
 				return angles;
 			}
 			amountOfValues = Mathf.Abs(amountOfValues);
-			amountBetweenValues = Mathf.Abs(amountBetweenValues);
+			spacingBetweenValues = Mathf.Abs(spacingBetweenValues);
 
 			if (amountOfValues % 2 == 1)
 			{
-				//angles.Add(0);
 				angles[0] = 0f;
 				amountOfValues--;
 
@@ -168,25 +230,15 @@ namespace WeaverCore.Utilities
 				{
 					for (int i = 0; i < amountOfValues / 2; i++)
 					{
-						//yield return angleBetweenObjects * (i + 1);
-						//yield return -angleBetweenObjects * (i + 1);
-						//angles.Add(amountBetweenValues * (i + 1));
-						//angles.Add(-amountBetweenValues * (i + 1));
-						angles[1 + (i * 2)] = amountBetweenValues * (i + 1);
-						angles[2 + (i * 2)] = -amountBetweenValues * (i + 1);
+						angles[1 + (i * 2)] = spacingBetweenValues * (i + 1);
+						angles[2 + (i * 2)] = -spacingBetweenValues * (i + 1);
 					}
 				}
 			}
 			else
 			{
-				float startLeft = amountBetweenValues / 2;
+				float startLeft = spacingBetweenValues / 2;
 				float startRight = -startLeft;
-
-				//yield return startLeft;
-				//yield return startRight;
-
-				//angles.Add(startLeft);
-				//angles.Add(startRight);
 				angles[0] = startLeft;
 				angles[1] = startRight;
 
@@ -196,12 +248,8 @@ namespace WeaverCore.Utilities
 				{
 					for (int i = 0; i < amountOfValues / 2; i++)
 					{
-						//yield return startLeft + (angleBetweenObjects * (i + 1));
-						//yield return startRight - (angleBetweenObjects * (i + 1));
-						//angles.Add(startLeft + (amountBetweenValues * (i + 1)));
-						//angles.Add(startRight - (amountBetweenValues * (i + 1)));
-						angles[2 + (i * 2)] = startLeft + (amountBetweenValues * (i + 1));
-						angles[3 + (i * 2)] = startRight - (amountBetweenValues * (i + 1));
+						angles[2 + (i * 2)] = startLeft + (spacingBetweenValues * (i + 1));
+						angles[3 + (i * 2)] = startRight - (spacingBetweenValues * (i + 1));
 					}
 				}
 			}

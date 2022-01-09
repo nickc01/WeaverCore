@@ -6,15 +6,17 @@ using System.Text;
 
 namespace WeaverCore.Settings
 {
-
+	/// <summary>
+	/// Used for accessing a field on a <see cref="GlobalSettings"/> object
+	/// </summary>
 	public class FieldAccessor : IAccessor
 	{
-		public readonly Panel Panel;
+		public readonly GlobalSettings Panel;
 		public readonly FieldInfo Field;
 		readonly string _description;
 		readonly string _displayName;
 
-		public FieldAccessor(Panel panel, FieldInfo field, string displayName, string description)
+		public FieldAccessor(GlobalSettings panel, FieldInfo field, string displayName, string description)
 		{
 			Panel = panel;
 			Field = field;

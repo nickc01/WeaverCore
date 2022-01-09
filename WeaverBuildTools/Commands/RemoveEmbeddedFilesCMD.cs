@@ -12,7 +12,6 @@ namespace WeaverBuildTools.Commands
 		{
 			using (var definition = AssemblyDefinition.ReadAssembly(assemblyToRemoveFrom, new ReaderParameters { ReadWrite = true }))
 			{
-				//foreach (var resource in definition.MainModule.Resources)
 				for (int i = definition.MainModule.Resources.Count - 1; i >= 0; i--)
 				{
 					var resource = definition.MainModule.Resources[i];

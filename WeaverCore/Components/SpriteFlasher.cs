@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace WeaverCore.Components
 {
+	/// <summary>
+	/// This component causes the sprite to flash. This is also used by <see cref="EntityHealth"/> to flash the enemy upon hit
+	/// </summary>
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class SpriteFlasher : MonoBehaviour
 	{
@@ -26,7 +29,9 @@ namespace WeaverCore.Components
 
 		public Material CustomFlasherMaterial;
 		
-
+		/// <summary>
+		/// The color of the flash
+		/// </summary>
 		public Color FlashColor
 		{
 			get
@@ -44,6 +49,9 @@ namespace WeaverCore.Components
 			}
 		}
 
+		/// <summary>
+		/// How intense the flash is. 0 means no flash, while 1 means the sprite is fully flashing
+		/// </summary>
 		public float FlashIntensity
 		{
 			get { return flashIntensity; }
@@ -57,19 +65,6 @@ namespace WeaverCore.Components
 					UpdateBlock();
 				}
 			}
-		}
-
-
-
-		[Serializable]
-		public class SpriteFlasherException : Exception
-		{
-			public SpriteFlasherException() { }
-			public SpriteFlasherException(string message) : base(message) { }
-			public SpriteFlasherException(string message, Exception inner) : base(message, inner) { }
-			protected SpriteFlasherException(
-			  System.Runtime.Serialization.SerializationInfo info,
-			  System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
 		}
 
 		new SpriteRenderer renderer;
@@ -126,7 +121,7 @@ namespace WeaverCore.Components
 			renderer = GetComponentInChildren<SpriteRenderer>();
 			if (renderer == null)
 			{
-				throw new SpriteFlasherException("The GameObject " + gameObject.name + " does not have a SpriteRenderer Component");
+				throw new Exception("The GameObject " + gameObject.name + " does not have a SpriteRenderer Component");
 			}
 		}
 
@@ -152,12 +147,27 @@ namespace WeaverCore.Components
 			}
 		}
 
+		/// <summary>
+		/// Causes the sprite to flash
+		/// </summary>
+		/// <param name="BeginTime">How long it takes to go from no flash to full flash</param>
+		/// <param name="EndTime">How long it takes to go from full flash to no flash</param>
+		/// <param name="Intensity">The maximum intensity of the flash</param>
+		/// <param name="StayTime">How long the sprite should stay at full flash before fading out</param>
 		public void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8f, float StayTime = 0.05f)
 		{
 			DoFlash(BeginTime, EndTime, Intensity, FlashColor, StayTime);
 		}
 
 
+		/// <summary>
+		/// Causes the sprite to flash
+		/// </summary>
+		/// <param name="BeginTime">How long it takes to go from no flash to full flash</param>
+		/// <param name="EndTime">How long it takes to go from full flash to no flash</param>
+		/// <param name="Intensity">The maximum intensity of the flash</param>
+		/// <param name="FlashColor">The color of the flash. If left null, will use the default color (white)</param>
+		/// <param name="StayTime">How long the sprite should stay at full flash before fading out</param>
 		public void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8f, Color? FlashColor = null, float StayTime = 0.05f)
 		{
 			Start();
@@ -186,7 +196,6 @@ namespace WeaverCore.Components
 
 		private IEnumerator FlashRoutine(float BeginTime, float EndTime, float Intensity, float StayTime, Coroutine routine)
 		{
-			//FlashIntensity = 0.0f;
 			float clock = 0.0f;
 			while (clock <= BeginTime)
 			{
@@ -216,27 +225,6 @@ namespace WeaverCore.Components
 
 
 		public void FlashNormalHit() => flashFocusHeal();
-		/*{
-			DoFlash(0.01f, 0.35f, 0.85f, Color.white, 0.01f);
-		}*/
-
-		/*public void FlashInfected()
-		{
-			DoFlash(0.01f, 0.25f, 0.9f, new Color(1f, 0.31f, 0f), 0.01f);
-		}*/
-
-		/*public void FlashDung()
-		{
-			this.DoFlash(0.001f, 0.1f, 0.75f, new Color?(new Color(0.45f, 0.27f, 0f)), 0.05f);
-		}*/
-
-		// Token: 0x06000068 RID: 104 RVA: 0x00003660 File Offset: 0x00001860
-		/*public void FlashSpore()
-		{
-			this.DoFlash(0.001f, 0.1f, 0.75f, new Color?(new Color(0.95f, 0.9f, 0.15f)), 0.05f);
-		}*/
-
-
 		public void FlashingSuperDash() => DoFlash(0.1f, 0.1f, 0.7f, new Color(1f, 1f, 1f), 0.01f);
 		public void FlashingGhostWounded() => DoFlash(0.5f, 0.5f, 0.7f, new Color(1f, 1f, 1f), 0.01f);
 		public void FlashingWhiteStay() => DoFlash(0.01f, 0.01f, 0.6f, new Color(1f, 1f, 1f), 999f);

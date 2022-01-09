@@ -8,17 +8,31 @@ using UnityEngine.UI;
 
 namespace WeaverCore.Assets
 {
+	/// <summary>
+	/// Used in the <see cref="WeaverCoreDebugTools"/> menu to show the available tools to do on an object
+	/// </summary>
 	public class ToolsArea : MonoBehaviour
 	{
+		/// <summary>
+		/// Defines a certain action that can be done for an action in the <see cref="WeaverCoreDebugTools"/> menu
+		/// </summary>
 		public interface ToolAction
 		{
+			/// <summary>
+			/// The name of the tool
+			/// </summary>
 			public string ToolName { get; }
+
+			/// <summary>
+			/// Called when the tool is executed
+			/// </summary>
 			public void OnToolExecute();
+
 			/// <summary>
 			/// Called when the selected gameObject in the RuntimeHierarchy is updated. If this function returns true, the tools button will be displayed
 			/// </summary>
-			/// <param name="selection"></param>
-			/// <returns></returns>
+			/// <param name="selection">The newly selected onbject in the RuntimeHierachy</param>
+			/// <returns>Returns whether this tool is able to work on the object</returns>
 			public bool OnGameObjectUpdated(GameObject selection);
 		}
 
@@ -51,6 +65,9 @@ namespace WeaverCore.Assets
 			}
 		}
 
+		/// <summary>
+		/// Finds all available tools that can be added to the tools menu
+		/// </summary>
 		static IEnumerable<ToolAction> GetAllTools()
 		{
 			foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())

@@ -9,7 +9,7 @@ using WeaverCore.Utilities;
 namespace WeaverCore
 {
 	/// <summary>
-	/// Similar to <see cref="WeaverCanvas"/>, but this canvas will appear on top of everything else
+	/// Similar to <see cref="WeaverCanvas"/>, but this canvas will appear on top of everything else, and is mainly used for debugging tools that need to be visible above all other UI elements
 	/// </summary>
 	public class WeaverDebugCanvas : MonoBehaviour
 	{

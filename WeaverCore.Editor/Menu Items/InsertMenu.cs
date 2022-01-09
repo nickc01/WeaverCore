@@ -9,10 +9,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
+using System.Linq;
+using System.Collections;
 
 namespace WeaverCore.Editor.Menu_Items
 {
-	public static class InsertMenu
+	/// <summary>
+	/// Contains all menu items for inserting objects into a scene
+	/// </summary>
+    public static class InsertMenu
 	{
 		static GameObject InsertObject(string prefabName)
 		{
@@ -31,9 +36,30 @@ namespace WeaverCore.Editor.Menu_Items
 
 			instance.name = prefab.name;
 
+			Vector3 oldPos = instance.transform.position;
+
+			var sceneView = ((IEnumerable)SceneView.sceneViews).OfType<SceneView>().FirstOrDefault();
+
+			if (sceneView != null)
+			{
+				var pivot = sceneView.pivot;
+
+				oldPos.x = pivot.x;
+				oldPos.y = pivot.y;
+			}
+			else
+            {
+				oldPos.x = 0;
+				oldPos.y = 0;
+            }
+
+			instance.transform.position = oldPos;
+
 			if (!Application.isPlaying)
 			{
-				EditorSceneManager.SaveScene(instance.scene);
+				Undo.RegisterCreatedObjectUndo(instance.gameObject, $"Create {prefabName}");
+				Selection.activeGameObject = instance.gameObject;
+				EditorSceneManager.MarkSceneDirty(instance.scene);
 			}
 
 			return instance;
@@ -63,11 +89,51 @@ namespace WeaverCore.Editor.Menu_Items
 			InsertObject("GameManager");
 		}
 
+		[MenuItem("WeaverCore/Insert/Weaver NPC")]
+		public static void InsertWeaverNPC()
+		{
+			InsertObject("Weaver NPC");
+		}
+
+		[MenuItem("WeaverCore/Insert/Weaver Bench")]
+		public static void InsertWeaverBench()
+		{
+			InsertObject("Weaver Bench");
+		}
+
+		[MenuItem("WeaverCore/Insert/Weaver Scene Manager")]
+		public static void InsertWeaverSceneManager()
+		{
+			InsertObject("Weaver Scene Manager");
+		}
+
+		[MenuItem("WeaverCore/Insert/Transition Point")]
+		public static void InsertWeaverTransitionPoint()
+		{
+			InsertObject("Transition Point Template");
+		}
+
+		[MenuItem("WeaverCore/Insert/Dreamnail Warp Object")]
+		public static void InsertDreamWarpObject()
+		{
+			InsertObject("Dream Warp Object");
+		}
+
+		[MenuItem("WeaverCore/Insert/Dream Fall Catcher")]
+		public static void InsertDreamFallCatcher()
+		{
+			InsertObject("Dream Fall Catcher");
+		}
+
+		[MenuItem("WeaverCore/Insert/Template Enemy")]
+		public static void InsertTemplateEnemy()
+		{
+			InsertObject("Template Enemy");
+		}
+
 		[MenuItem("WeaverCore/Insert/Weaver Canvas")]
 		public static void InsertWeaverCanvas()
 		{
-			//var prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Canvas");
-
 			if (GameObject.FindObjectOfType<EventSystem>() == null)
 			{
 				var eventObject = new GameObject("Event System");
@@ -80,16 +146,6 @@ namespace WeaverCore.Editor.Menu_Items
 			}
 
 			InsertObject("Weaver Canvas");
-
-			/*var instance = GameObject.Instantiate(prefab, null);
-
-			instance.name = prefab.name;
-
-			if (!Application.isPlaying)
-			{
-				EditorSceneManager.SaveScene(instance.scene);
-			}*/
-
 		}
 	}
 }

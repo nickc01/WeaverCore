@@ -4,44 +4,63 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Implementations;
-using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	public static class HunterJournal
+	/// <summary>
+	/// Used for recording entries into the hunter's journal
+	/// </summary>
+    public static class HunterJournal
 	{
-		// Token: 0x060000B6 RID: 182 RVA: 0x00004CC7 File Offset: 0x00002EC7
+		/// <summary>
+		/// Has the player killed this enemy at least once?
+		/// </summary>
+		/// <param name="name">The name of the enemy in the hunter's journal</param>
+		/// <returns>Returns whether this player has killed the enemy before</returns>
 		public static bool HasKilled(string name)
 		{
 			return HunterJournal.impl.HasKilled(name);
 		}
 
-		// Token: 0x060000B7 RID: 183 RVA: 0x00004CD4 File Offset: 0x00002ED4
+		/// <summary>
+		/// How many kills are left to fully unlock the enemy?
+		/// </summary>
+		/// <param name="name">The name of the enemy in the hunter's journal</param>
+		/// <returns>Returns how many kills are left to fully unlock the enemy</returns>
 		public static int KillsLeft(string name)
 		{
 			return HunterJournal.impl.KillsLeft(name);
 
 		}
 
-		// Token: 0x060000B8 RID: 184 RVA: 0x00004CE1 File Offset: 0x00002EE1
+		/// <summary>
+		/// Records a kill for the enemy
+		/// </summary>
+		/// <param name="name">The name of the enemy in the hunter's journal</param>
 		public static void RecordKillFor(string name)
 		{
 			HunterJournal.impl.RecordKillFor(name);
 		}
 
-		// Token: 0x060000B9 RID: 185 RVA: 0x00004CEE File Offset: 0x00002EEE
+		/// <summary>
+		/// Does the enemy entry exist in the hunter's journal?
+		/// </summary>
+		/// <param name="name">The name of the enemy in the hunter's journal</param>
+		/// <returns>Returns whether the enemy entry exists in the hunter's journal</returns>
 		public static bool HasEntryFor(string name)
 		{
 			return HunterJournal.impl.HasEntryFor(name);
 		}
 
-		// Token: 0x060000BA RID: 186 RVA: 0x00004CFB File Offset: 0x00002EFB
+		/// <summary>
+		/// Displays an icon at the bottom-right of the screen indicating the hunter's journal was updated
+		/// </summary>
+		/// <param name="displayText">Should the text "Journal Updated" also be displayed?</param>
 		public static void DisplayJournalUpdate(bool displayText = false)
 		{
 			HunterJournal.impl.DisplayJournalUpdate(displayText);
 		}
 
-		// Token: 0x040000A0 RID: 160
 		private static HunterJournal_I impl = ImplFinder.GetImplementation<HunterJournal_I>();
 	}
 }

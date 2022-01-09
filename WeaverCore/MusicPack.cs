@@ -7,8 +7,10 @@ using WeaverCore.Enums;
 
 namespace WeaverCore
 {
-
-	[CreateAssetMenu(fileName = "MusicPack",menuName = "Music Pack")]
+	/// <summary>
+	/// An object that contains a list of music tracks to be played, and what music snapshot should be applied
+	/// </summary>
+	[CreateAssetMenu(fileName = "MusicPack",menuName = "WeaverCore/Music Pack")]
 	public class MusicPack : ScriptableObject
 	{
 		public AudioClip MainTrack;
@@ -31,8 +33,19 @@ namespace WeaverCore
 
 		public Music.SnapshotType Snapshot;
 
+		/// <summary>
+		/// The delay before the pack gets applied
+		/// </summary>
 		public float delay = 0f;
+
+		/// <summary>
+		/// How long it will take for the music pack to transition
+		/// </summary>
 		public float snapshotTransitionTime = 0f;
+
+		/// <summary>
+		/// Should the snapshots be applied when the pack is applied?
+		/// </summary>
 		public bool applySnapshot = true;
 	}
 }

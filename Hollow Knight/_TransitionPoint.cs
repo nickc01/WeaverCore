@@ -7,10 +7,6 @@ public class TransitionPoint : MonoBehaviour
 {
 	public delegate void BeforeTransitionEvent();
 
-	//private GameManager gm;
-
-	//private PlayerData playerData;
-
 	private bool activated;
 
 	[Header("Door Type Gate Settings")]
@@ -48,10 +44,8 @@ public class TransitionPoint : MonoBehaviour
 	[Tooltip("A positional offset applied to the player when they travel to the destination scene")]
 	public Vector2 entryOffset;
 
-	//[SerializeField]
 	private bool alwaysUnloadUnusedAssets;
 
-	//public PlayMakerFSM customFadeFSM;
 
 	[Header("Hazard Respawn")]
 	[Space(5f)]
@@ -61,8 +55,6 @@ public class TransitionPoint : MonoBehaviour
 	[Tooltip("The respawn marker that is used when \"nonHazardGate\" is set to true")]
 	public HazardRespawnMarker respawnMarker;
 
-	//[Header("Set Audio Snapshots")]
-	//[Space(5f)]
 	protected AudioMixerSnapshot atmosSnapshot;
 
 	protected AudioMixerSnapshot enviroSnapshot;
@@ -76,7 +68,7 @@ public class TransitionPoint : MonoBehaviour
 	[Header("Cosmetics")]
 	public GameManager.SceneLoadVisualizations sceneLoadVisualization;
 
-	[Tooltip("If set to true, the default fade-in-from-black transition does not play, allowing for custom transitions")]
+	[Tooltip("If set to true, the default fade-in-from-black transition does not play, allowing for custom transitions. This should be checked if the player is dream warping into this scene")]
 	public bool customFade;
 
 	bool forceWaitFetch;
@@ -107,8 +99,6 @@ public class TransitionPoint : MonoBehaviour
 
 	private void Start()
 	{
-		//gm = GameManager.instance;
-		//playerData = PlayerData.instance;
 		if (!nonHazardGate && respawnMarker == null)
 		{
 			Debug.LogError("Transition Gate " + base.name + " in " + GameManager.instance.sceneName + " does not have its respawn marker set in inspector.");
@@ -123,10 +113,6 @@ public class TransitionPoint : MonoBehaviour
 		}
 		if (!string.IsNullOrEmpty(targetScene) && !string.IsNullOrEmpty(entryPoint))
 		{
-			/*if ((bool)customFadeFSM)
-			{
-				customFadeFSM.SendEvent("FADE");
-			}*/
 			if (atmosSnapshot != null)
 			{
 				atmosSnapshot.TransitionTo(1.5f);
@@ -156,7 +142,6 @@ public class TransitionPoint : MonoBehaviour
 				HeroLeaveDirection = GetGatePosition(),
 				EntryDelay = entryDelay,
 				WaitForSceneTransitionCameraFade = true,
-				//PreventCameraFadeOut = (customFadeFSM != null),
 				Visualization = sceneLoadVisualization,
 				AlwaysUnloadUnusedAssets = alwaysUnloadUnusedAssets,
 				forceWaitFetch = forceWaitFetch
@@ -187,10 +172,8 @@ public class TransitionPoint : MonoBehaviour
 			UnityEditor.Handles.Label(position, targetScene);
 #endif
 			var scale = transform.localScale;
-			//((Vector3)collider.offset
 			Gizmos.color = myGreen;
 			Gizmos.DrawCube(transform.position + new Vector3(collider.offset.x * scale.x, collider.offset.y * scale.y), new Vector3(collider.size.x * scale.x, collider.size.y * scale.y));
-			//GizmoUtility.DrawText(GUI.skin, this.targetScene, position, new Color?(this.myGreen), 10, 0f);
 		}
 	}
 

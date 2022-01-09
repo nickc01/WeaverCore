@@ -9,6 +9,10 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Assets.TMPro
 {
+	/*
+	 * THIS REPLACES THE DEFAULT TMP_FontAsset OBJECT TO MAKE IT WORK WITH ASSET BUNDLES
+	 */
+
 #if UNITY_EDITOR
 	[System.ComponentModel.Browsable(false)]
 	[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -163,7 +167,7 @@ namespace WeaverCore.Assets.TMPro
 		[OnInit]
 		static void Init()
 		{
-			var patcher = WeaverCore.Utilities.HarmonyPatcher.Create("WeaverCore.TMPFONT.com");
+			var patcher = HarmonyPatcher.Create("WeaverCore.TMPFONT.com");
 
 			var fontType = typeof(global::TMPro.TMP_FontAsset);
 

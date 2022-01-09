@@ -14,12 +14,12 @@ namespace WeaverCore.Implementations
 		[HideInInspector]
 		public WeaverCore.Components.EntityHealth Manager;
 
-		public abstract void OnHit(HitInfo info, HitResult hitResult);
+		public abstract void OnHit(HitInfo info, EntityHealth.HitResult hitResult);
 		public abstract void OnInvincibleHit(HitInfo info);
 		public abstract void OnSuccessfulHit(HitInfo info);
 
 		public abstract bool ShouldBeDead();
 
-		public abstract void OnDeath();
+		public abstract void OnDeath(HitInfo finalHit);
 	}
 }

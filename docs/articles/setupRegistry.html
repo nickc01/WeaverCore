@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Setting Up A Registry </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Setting Up A Registry ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="setting-up-a-registry">Setting Up A Registry</h1>
+
+<p>In WeaverCore, the way new major content is added to the game (such as new enemies, scenes, bosses, etc) is done via a Registry. A registry is a object that contains a list of all the major things you will be added to the game. When your mod loads up in-game, the registries that are a part of that mod will also be loaded.</p>
+<p>To create a Registry, click on WeaverCore -&gt; Create -&gt; Registry on the top menu bar:</p>
+<p><img src="../images/createRegistry.gif" alt="Create Registry"></p>
+<p>This will create a blank Registry that we can start adding content to. However, notice that the new registry has no Mod configured yet:</p>
+<p><img src="../images/registryModClass.PNG" alt="Registry Mod Class"></p>
+<p>To fix this, the next order of business is to create a mod class. If you are familiar with the Hollow Knight Modding API, we need a mod class in order to properly load our mod.</p>
+<p>To create a new mod, go to WeaverCore -&gt; Create -&gt; New Mod, and from there, you can create a new script for your mod class:</p>
+<p><img src="../images/creatingNewMod.gif" alt="Creating New Mod"></p>
+<p>You now have a default mod class that you can modify:</p>
+<p><img src="../images/modClassGenerated.PNG" alt="Mod Class Generated"></p>
+<p>With this new mod class created, you can now select it in the Registry:</p>
+<p><img src="../images/assigningModToRegistry.gif" alt="Assigning Mod To Registry"></p>
+<p>The registry is now all setup! Lets test if it's working by adding a feature to it. We will quickly create a &quot;Global Settings&quot; object so we can add a settings panel to the in-game settings menu. We will go over more detail on <a class="xref" href="../api/WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a> later, but for now, we will use a simple example. To create one, first create a new script in the Assets folder, and put the following contents in it:</p>
+<pre><code class="lang-cs">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using WeaverCore.Settings;
+
+public class TestSettingsScript : GlobalSettings
+{
+    [SerializeField]
+    int testNumber = 123;
+
+    [SerializeField]
+    string testString = &quot;Cool String&quot;;
+
+    [SerializeField]
+    bool testToggle = false;
+}
+</code></pre>
+<p>Now, go to &quot;WeaverCore -&gt; Create -&gt; Global Settings&quot; to create a new global settings object based on &quot;TestSettingsScript&quot;:</p>
+<p><img src="../images/createGlobalSettingsObject.gif" alt="Create Global Settings Object"></p>
+<p>Then, take the newly created object and add it to the Registry. You can add it by selecting the feature you want to add in the &quot;Feature to Add&quot; list, clicking on &quot;Add Feature&quot;, and dragging the object into the slot:</p>
+<p><img src="../images/addingFeatureToRegistry.gif" alt="Adding Feature To Registry"></p>
+<p>What the &quot;Global Settings&quot; object will do in-game is add a new section to the WeaverCore Settings Menu that will allow us to configure three different fields (testNumber, testString, and testToggle).</p>
+<h1 id="building-the-mod">Building the Mod</h1>
+<p>With the feature now added, the final step is to build the mod. This is done by going to &quot;WeaverCore -&gt; Compilation -&gt; Mod&quot; and opening up the Mod Builder Window.</p>
+<p><img src="../images/buildWindow.PNG" alt="Build Window"></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you notice that some of the platform support options are greyed out, that means you don't have the proper platform modules installed. You can download and install the platform modules you need here : <a href="https://unity3d.com/unity/whats-new/2020.2.2">https://unity3d.com/unity/whats-new/2020.2.2</a></p>
+</div>
+<p>When you are ready to build, click on &quot;Compile&quot;, and WeaverCore will begin it's build process (this may take a while to complete):</p>
+<p><img src="../images/buildingMod.PNG" alt="Building Mod"></p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Make sure you don't minimize the Unity Editor while it's building. If the window doesn't have focus, it may not build correctly</p>
+</div>
+<p>You will know the build was successful when you see &quot;Asset Bundling Complete&quot; in the console</p>
+<p><img src="../images/buildCompleted.PNG" alt="Build Complete"></p>
+<p>With the build completed, you can now start up Hollow Knight, and you should see your mod show up in the Mod List on the top left corner</p>
+<p><img src="../images/modInHollowKnight.PNG" alt="Mod In Hollow Knight"></p>
+<p>And, since we added a &quot;Global Settings&quot; object as a feature to the mod's registry, we can now go over to the WeaverCore Settings Menu, and see the global settings the mod has added:</p>
+<p><img src="../images/newGlobalSettings.gif" alt="New Global Settings"></p>
+<p>Now that you know the basics on how WeaverCore works, I can now show you how to add many other new features to the game (new enemies, bosses, scenes, etc)</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/docs_src~/articles/setupRegistry.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

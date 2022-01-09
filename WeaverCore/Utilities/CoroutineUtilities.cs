@@ -117,35 +117,6 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-		/*/// <summary>
-		/// Starts a coroutine that isn't bound to a specific object. Please make sure that the coroutine is ended via <see cref="StopCoroutine(Coroutine)"/> to ensure it will stop
-		/// </summary>
-		/// <param name="routine">The Routine to execute</param>
-		/// <returns>The started coroutine</returns>
-		public static Coroutine StartCoroutine(IEnumerator routine)
-		{
-			InitStarterObject();
-			return starter.StartCoroutine(routine);
-		}
-
-		/// <summary>
-		/// Stops a coroutine that has been started via <see cref="StartCoroutine(IEnumerator)"/>
-		/// </summary>
-		/// <param name="coroutine">The coroutine to stop</param>
-		public static void StopCoroutine(Coroutine coroutine)
-		{
-			starter.StopCoroutine(coroutine);
-		}*/
-
-		/*static void InitStarterObject()
-		{
-			if (starter == null)
-			{
-				starter = new GameObject("__COROUTINE_STARTER_OBJECT__").AddComponent<StarterObject>();
-				GameObject.DontDestroyOnLoad(starter.gameObject);
-			}
-		}*/
-
 		/// <summary>
 		/// Will continously run the action function for a set period of time.
 		/// </summary>

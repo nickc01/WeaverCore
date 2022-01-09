@@ -7,8 +7,16 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
+	/// <summary>
+	/// Contains some utility functions related to strings
+	/// </summary>
 	public static class StringUtilities
 	{
+		/// <summary>
+		/// Makes a string look nicer (example: converts "thisIsATest123" to "This is a test 123"
+		/// </summary>
+		/// <param name="input">The input string</param>
+		/// <returns>The prettified string</returns>
 		public static string Prettify(string input)
 		{
 			StringBuilder builder = new StringBuilder(input);
@@ -32,9 +40,8 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
-		/// All </br> statements get replaced with new-line characters. You can also use </br:10> for multiple lines (this creates 10 new-lines for example)
+		/// All &lt;/br&gt; statements get replaced with new-line characters. You can also use &lt;/br:10&gt; for multiple lines (this creates 10 new-lines for example)
 		/// </summary>
-		/// <returns></returns>
 		public static string AddNewLines(string input)
 		{
 			StringBuilder result = new StringBuilder(input);
@@ -59,6 +66,9 @@ namespace WeaverCore.Utilities
 			return result.ToString();
 		}
 
+		/// <summary>
+		/// All &lt;/sp&gt; statements get replaced with space characters. You can also use &lt;/sp:10&gt; for multiple spaces (this creates 10 new spaces for example)
+		/// </summary>
 		public static string AddSpaces(string input)
 		{
 			StringBuilder result = new StringBuilder(input);

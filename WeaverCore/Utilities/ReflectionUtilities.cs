@@ -12,16 +12,17 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Utilities
 {
-	/*[System.AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
-	public abstract class FunctionHookAttribute : Attribute
-	{
-
-	}*/
-
-
-
+	/// <summary>
+	/// Contains many utility functions for reflection
+	/// </summary>
 	public static class ReflectionUtilities
 	{
+		/// <summary>
+		/// Retrives all types that inherit from <paramref name="parentType"/>
+		/// </summary>
+		/// <param name="parentType">The common base class to check for</param>
+		/// <param name="includeAbstract">Should abstract classes also be included?</param>
+		/// <returns>Returns a list of all types that inherit from <paramref name="parentType"/></returns>
 		public static IEnumerable<Type> GetChildrenOfType(Type parentType, bool includeAbstract = false)
 		{
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -62,11 +63,23 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Retrives all types that inherit from type <typeparamref name="T"/>
+		/// </summary>
+		/// <typeparam name="T">The common base class to check for</typeparam>
+		/// <param name="includeAbstract">Should abstract classes also be included?</param>
+		/// <returns>Returns a list of all types that inherit from type <typeparamref name="T"/></returns>
 		public static IEnumerable<Type> GetChildrenOfType<T>(bool includeAbstract = false)
 		{
 			return GetChildrenOfType(typeof(T), includeAbstract);
 		}
 
+		/// <summary>
+		/// Retrieves all types that inherit from type <typeparamref name="T"/>, and create instances of each of them
+		/// </summary>
+		/// <typeparam name="T">The common base class to check for</typeparam>
+		/// <param name="throwOnFailure">If an object fails to instantiate, should an exception be thrown? If false, that object will be skipped over</param>
+		/// <returns>Returns a list of all objects that inherit from type <typeparamref name="T"/></returns>
 		public static IEnumerable<T> GetObjectsOfType<T>(bool throwOnFailure = false)
 		{
 			foreach (var type in GetChildrenOfType(typeof(T)))
@@ -92,6 +105,13 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Creates a function that retrives a field value
+		/// </summary>
+		/// <typeparam name="SourceType">The type that contains the field</typeparam>
+		/// <typeparam name="FieldType">The type of the field</typeparam>
+		/// <param name="field">The field to create a getter for</param>
+		/// <returns>Returns a function that when invoked, will retrieve the field value</returns>
 		public static Func<SourceType, FieldType> CreateFieldGetter<SourceType, FieldType>(FieldInfo field)
 		{
 #if NET_4_6
@@ -117,11 +137,26 @@ namespace WeaverCore.Utilities
 #endif
 		}
 
+		/// <summary>
+		/// Creates a function that retrives a field value
+		/// </summary>
+		/// <typeparam name="SourceType">The type that contains the field</typeparam>
+		/// <typeparam name="FieldType">The type of the field</typeparam>
+		/// <param name="fieldName">The name of the field to create a getter for</param>
+		/// <param name="flags">The binding flags used to find the field</param>
+		/// <returns>Returns a function that when invoked, will retrieve the field value</returns>
 		public static Func<SourceType, FieldType> CreateFieldGetter<SourceType, FieldType>(string fieldName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
 		{
 			return CreateFieldGetter<SourceType, FieldType>(typeof(SourceType).GetField(fieldName, flags));
 		}
 
+		/// <summary>
+		/// Creates a funciton that sets a field value
+		/// </summary>
+		/// <typeparam name="SourceType">The type that contains the field</typeparam>
+		/// <typeparam name="FieldType">The type of the field</typeparam>
+		/// <param name="field">The field to create a setter for</param>
+		/// <returns>Returns a function that when invoked, will set the field value</returns>
 		public static Action<SourceType, FieldType> CreateFieldSetter<SourceType, FieldType>(FieldInfo field)
 		{
 #if NET_4_6
@@ -150,13 +185,21 @@ namespace WeaverCore.Utilities
 #endif
 		}
 
+		/// <summary>
+		/// Creates a funciton that sets a field value
+		/// </summary>
+		/// <typeparam name="SourceType">The type that contains the field</typeparam>
+		/// <typeparam name="FieldType">The type of the field</typeparam>
+		/// <param name="fieldName">The name of the field to create a setter for</param>
+		/// <param name="flags">The binding flags used to find the field</param>
+		/// <returns>Returns a function that when invoked, will set the field value</returns>
 		public static Action<SourceType, FieldType> CreateFieldSetter<SourceType, FieldType>(string fieldName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
 		{
 			return CreateFieldSetter<SourceType, FieldType>(typeof(SourceType).GetField(fieldName, flags));
 		}
 
 		/// <summary>
-		/// Converts a methodInfo object into a callable delegate
+		/// Converts a MethodInfo object into a callable delegate
 		/// </summary>
 		/// <typeparam name="DelegateType">The delegate type to convert type</typeparam>
 		/// <param name="method">The method info</param>
@@ -171,7 +214,7 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
-		/// Converts a methodInfo object into a callable delegate
+		/// Converts a MethodInfo object into a callable delegate
 		/// </summary>
 		/// <typeparam name="DelegateType">The delegate type to convert type</typeparam>
 		/// <param name="method">The method info</param>
@@ -187,7 +230,7 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
-		/// Converts a methodInfo object into a callable delegate
+		/// Converts a MethodInfo object into a callable delegate
 		/// </summary>
 		/// <typeparam name="DelegateType">The delegate type to convert type</typeparam>
 		/// <typeparam name="InstanceType">The instance type the method is bound to</typeparam>
@@ -200,7 +243,7 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
-		/// Converts a methodInfo object into a callable delegate
+		/// Converts a MethodInfo object into a callable delegate
 		/// </summary>
 		/// <typeparam name="DelegateType">The delegate type to convert type</typeparam>
 		/// <typeparam name="InstanceType">The instance type the method is bound to</typeparam>
@@ -217,51 +260,75 @@ namespace WeaverCore.Utilities
 			return (DelegateType)(object)Delegate.CreateDelegate(typeof(DelegateType), instance, typeof(InstanceType).GetMethod(methodName, Flags));
 		}
 
+		/// <summary>
+		/// Finds a method on a given type and returns a MethodInfo object for it
+		/// </summary>
+		/// <typeparam name="InstanceType">The instance type to find the method under</typeparam>
+		/// <param name="methodName">The name of the method to find</param>
+		/// <param name="flags">The binding flags to find the method with</param>
+		/// <returns>Returns a method info object for the fmound method</returns>
 		public static MethodInfo GetMethod<InstanceType>(string methodName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
 		{
 			return typeof(InstanceType).GetMethod(methodName, flags);
 		}
 
-		public static IEnumerable<ValueTuple<MethodInfo, T>> GetMethodsWithAttribute<T>(BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where T : Attribute
+		/// <summary>
+		/// Finds all methods that have a certain attribute type applied to them
+		/// </summary>
+		/// <typeparam name="AttriType">The type attribute to look for</typeparam>
+		/// <param name="flags">The binding flags to determine what kind of methods to find</param>
+		/// <returns>Returns all methods with the specified attribute type applied to them</returns>
+		public static IEnumerable<(MethodInfo method, AttriType attribute)> GetMethodsWithAttribute<AttriType>(BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where AttriType : Attribute
 		{
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
-				foreach (var method in GetMethodsWithAttribute<T>(assembly, flags))
+				foreach (var method in GetMethodsWithAttribute<AttriType>(assembly, flags))
 				{
 					yield return method;
 				}
 			}
 		}
 
-		public static IEnumerable<ValueTuple<MethodInfo, T>> GetMethodsWithAttribute<T>(Assembly assembly, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where T : Attribute
+		/// <summary>
+		/// Finds all methods in an assembly that have a certain attribute type applied to them
+		/// </summary>
+		/// <typeparam name="AttriType">The type attribute to look for</typeparam>
+		/// <param name="assembly">The assembly to look for the methods under</param>
+		/// <param name="flags">The binding flags to determine what kind of methods to find</param>
+		/// <returns>Returns all methods in the assembly with the specified attribute type applied to them</returns>
+		public static IEnumerable<(MethodInfo method, AttriType attribute)> GetMethodsWithAttribute<AttriType>(Assembly assembly, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where AttriType : Attribute
 		{
-			return GetMethodsWithAttribute<T>(assembly, null, flags);
-			/*foreach (var type in assembly.GetTypes())
-			{
-				foreach (var method in type.GetMethods(flags))
-				{
-					var attributes = method.GetCustomAttributes(typeof(T), false);
-					if (attributes.GetLength(0) > 0)
-					{
-						yield return new ValueTuple<MethodInfo, T>(method,(T)attributes[0]);
-					}
-				}
-			}*/
+			return GetMethodsWithAttribute<AttriType>(assembly, null, flags);
 		}
 
 
-		public static IEnumerable<ValueTuple<MethodInfo, T>> GetMethodsWithAttribute<T>(Type[] paramTypes, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where T : Attribute
+		/// <summary>
+		/// Finds all methods that have a certain attribute type applied to them and accept certain parameters
+		/// </summary>
+		/// <typeparam name="AttriType">The type attribute to look for</typeparam>
+		/// <param name="paramTypes">The type of parameters that the methods must have</param>
+		/// <param name="flags">The binding flags to determine what kind of methods to find</param>
+		/// <returns>Returns all methods with the specified attribute type applied to them</returns>
+		public static IEnumerable<(MethodInfo method, AttriType attribute)> GetMethodsWithAttribute<AttriType>(Type[] paramTypes, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where AttriType : Attribute
 		{
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
-				foreach (var method in GetMethodsWithAttribute<T>(assembly,paramTypes,flags))
+				foreach (var method in GetMethodsWithAttribute<AttriType>(assembly, paramTypes, flags))
 				{
 					yield return method;
 				}
 			}
 		}
 
-		public static IEnumerable<ValueTuple<MethodInfo, T>> GetMethodsWithAttribute<T>(Assembly assembly, Type[] paramTypes, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where T : Attribute
+		/// <summary>
+		/// Finds all methods in an assembly that have a certain attribute type applied to them and accept certain parameters
+		/// </summary>
+		/// <typeparam name="AttriType">The type attribute to look for</typeparam>
+		/// <param name="assembly">The assembly to look for the methods under</param>
+		/// <param name="paramTypes">The type of parameters that the methods must have</param>
+		/// <param name="flags">The binding flags to determine what kind of methods to find</param>
+		/// <returns>Returns all methods with the specified attribute type applied to them</returns>
+		public static IEnumerable<ValueTuple<MethodInfo, AttriType>> GetMethodsWithAttribute<AttriType>(Assembly assembly, Type[] paramTypes, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where AttriType : Attribute
 		{
 			if (assembly == null)
 			{
@@ -306,7 +373,7 @@ namespace WeaverCore.Utilities
 					object[] attributes = null;
 					try
 					{
-						attributes = method.GetCustomAttributes(typeof(T), false);
+						attributes = method.GetCustomAttributes(typeof(AttriType), false);
 					}
 					catch (Exception e)
 					{
@@ -315,21 +382,25 @@ namespace WeaverCore.Utilities
 					}
 					if (attributes != null && attributes.GetLength(0) > 0)
 					{
-						yield return new ValueTuple<MethodInfo, T>(method, (T)attributes[0]);
+						yield return new ValueTuple<MethodInfo, AttriType>(method, (AttriType)attributes[0]);
 					}
-					/*if (method.GetCustomAttributes(typeof(T), false).GetLength(0) > 0)
-					{
-						yield return method;
-					}*/
 				}
 			}
 		}
 
-		public static void ExecuteMethodsWithAttribute<T>(Assembly assembly, Func<MethodInfo, T,bool> ExecuteIf = null, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, bool throwOnError = false) where T : Attribute
+		/// <summary>
+		/// Finds all methods in an assembly that have a certain attribute type applied to them, and executes them
+		/// </summary>
+		/// <typeparam name="AttriType">The type attribute to look for</typeparam>
+		/// <param name="assembly">The assembly to look for the methods under</param>
+		/// <param name="ExecuteIf">If a delegate is specified here, then only the methods that satify this delegate will be executed</param>
+		/// <param name="flags">The binding flags to determine what kind of methods to find</param>
+		/// <param name="throwOnError">Should an exception be thrown if a method fails?</param>
+		public static void ExecuteMethodsWithAttribute<AttriType>(Assembly assembly, Func<MethodInfo, AttriType, bool> ExecuteIf = null, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, bool throwOnError = false) where AttriType : Attribute
 		{
-			List<ValueTuple<MethodInfo, T>> methods = new List<ValueTuple<MethodInfo, T>>();
+			List<ValueTuple<MethodInfo, AttriType>> methods = new List<ValueTuple<MethodInfo, AttriType>>();
 
-			methods.AddRange(GetMethodsWithAttribute<T>(assembly, flags));
+			methods.AddRange(GetMethodsWithAttribute<AttriType>(assembly, flags));
 
 			if (methods.Count == 0)
 			{
@@ -338,7 +409,7 @@ namespace WeaverCore.Utilities
 
 			if (methods[0].Item2 is PriorityAttribute)
 			{
-				methods.Sort(new PriorityAttribute.PairSorter<T>());
+				methods.Sort(new PriorityAttribute.MethodSorter<AttriType>());
 			}
 
 			while (methods.Count > 0)
@@ -347,7 +418,7 @@ namespace WeaverCore.Utilities
 				methods.RemoveAt(0);
 				try
 				{
-					if (ExecuteIf == null || ExecuteIf(method.Item1,method.Item2))
+					if (ExecuteIf == null || ExecuteIf(method.Item1, method.Item2))
 					{
 						method.Item1.Invoke(null, null);
 					}
@@ -366,232 +437,53 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-		public static void ExecuteMethodsWithAttribute<T>(Func<MethodInfo, T, bool> ExecuteIf = null, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, bool throwOnError = false) where T : Attribute
+		/// <summary>
+		/// Finds all methods that have a certain attribute type applied to them, and executes them
+		/// </summary>
+		/// <typeparam name="AttriType">The type attribute to look for</typeparam>
+		/// <param name="ExecuteIf">If a delegate is specified here, then only the methods that satify this delegate will be executed</param>
+		/// <param name="flags">The binding flags to determine what kind of methods to find</param>
+		/// <param name="throwOnError">Should an exception be thrown if a method fails?</param>
+		public static void ExecuteMethodsWithAttribute<AttriType>(Func<MethodInfo, AttriType, bool> ExecuteIf = null, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, bool throwOnError = false) where AttriType : Attribute
 		{
-			List<ValueTuple<MethodInfo, T>> methods = new List<ValueTuple<MethodInfo, T>>();
+			List<ValueTuple<MethodInfo, AttriType>> methods = new List<ValueTuple<MethodInfo, AttriType>>();
 
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
-				methods.AddRange(GetMethodsWithAttribute<T>(assembly, flags));
+				methods.AddRange(GetMethodsWithAttribute<AttriType>(assembly, flags));
 			}
 
 			if (methods.Count == 0)
 			{
 				return;
 			}
-
-			//bool sortable = false;
-
-			if (typeof(PriorityAttribute).IsAssignableFrom(typeof(T)))
+			if (typeof(PriorityAttribute).IsAssignableFrom(typeof(AttriType)))
 			{
-				//sortable = true;
-				methods.Sort(new PriorityAttribute.PairSorter<T>());
+				methods.Sort(new PriorityAttribute.MethodSorter<AttriType>());
 			}
-
-			/*if (methods[0].Item2 is PriorityAttribute)
+			while (methods.Count > 0)
 			{
-				
-			}*/
-
-			/*AssemblyLoadEventHandler NewAssemblyLoad = (s, args) =>
-			{
-				methods.AddRange(GetMethodsWithAttribute<T>(args.LoadedAssembly, flags));
-				if (sortable)
+				var method = methods[0];
+				methods.RemoveAt(0);
+				try
 				{
-					methods.Sort(new PriorityAttribute.PairSorter<T>());
-				}
-			};*/
-			//try
-			//{
-				//AppDomain.CurrentDomain.AssemblyLoad += NewAssemblyLoad;
-
-				while (methods.Count > 0)
-				{
-					var method = methods[0];
-					methods.RemoveAt(0);
-					try
+					if (ExecuteIf == null || ExecuteIf(method.Item1, method.Item2))
 					{
-						if (ExecuteIf == null || ExecuteIf(method.Item1,method.Item2))
-						{
-							method.Item1.Invoke(null, null);
-						}
-					}
-					catch (Exception e)
-					{
-						if (throwOnError)
-						{
-							throw;
-						}
-						else
-						{
-							WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name + "\n" + e);
-						}
+						method.Item1.Invoke(null, null);
 					}
 				}
-			/*}
-			finally
-			{
-				AppDomain.CurrentDomain.AssemblyLoad -= NewAssemblyLoad;
-			}*/
-		}
-
-		/*/// <summary>
-		/// Attempts to get the underlying type of <paramref name="memberInfo"/>.
-		/// 
-		/// Returns the underlying type if <paramref name="memberInfo"/> is derived from <see cref="FieldInfo"/> or <see cref="PropertyInfo"/>
-		/// </summary>
-		/// <param name="memberInfo"></param>
-		/// <returns></returns>
-		public static Type GetMemberType(this MemberInfo memberInfo)
-		{
-			if (memberInfo == null)
-			{
-				return null;
-			}
-			if (memberInfo is FieldInfo)
-			{
-				return ((FieldInfo)memberInfo).FieldType;
-			}
-			else if (memberInfo is PropertyInfo)
-			{
-				return ((PropertyInfo)memberInfo).PropertyType;
-			}
-			return null;
-		}*/
-
-		/*/// <summary>
-		/// Returns all the assemblies in the domain, similar to <see cref="AppDomain.GetAssemblies"/>
-		/// 
-		/// However, the problem with that function is that if there are any assemblies that get added afterwards, they won't appear in the array of assemblies returned
-		/// 
-		/// This function fixes that issue. If any new assemblies get loaded while using this IEnumerable, they will be automatically included
-		/// 
-		/// This function guarantees that all assemblies are enumerated over
-		/// </summary>
-		/// <param name="domain"></param>
-		/// <returns></returns>
-		public static IEnumerable<Assembly> AllAssemblies(this AppDomain domain)
-		{
-			return new AssemblyEnumerable(domain);
-		}*/
-
-
-		/*public static void CopyFields(object to, object from, string field)
-		{
-			foreach (var fromField in from.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
-			{
-				if (fromField.Name.ToLower() == field.ToLower())
+				catch (Exception e)
 				{
-					foreach (var toField in to.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
+					if (throwOnError)
 					{
-						if (toField.Name.ToLower() == field.ToLower())
-						{
-							toField.SetValue(to, fromField.GetValue(from));
-							return;
-						}
+						throw;
+					}
+					else
+					{
+						WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name + "\n" + e);
 					}
 				}
 			}
-			throw new Exception("Could not find field called : " + field);
-		}*/
-	}
-
-
-	/*sealed class AssemblyEnumerable : IEnumerable<Assembly>
-	{
-		AppDomain Domain;
-
-		public AssemblyEnumerable(AppDomain domain)
-		{
-			Domain = domain;
-		}
-
-		IEnumerator<Assembly> IEnumerable<Assembly>.GetEnumerator()
-		{
-			return new AssemblyEnumerator(Domain);
-		}
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return new AssemblyEnumerator(Domain);
 		}
 	}
-
-	sealed class AssemblyEnumerator : IEnumerator<Assembly>
-	{
-		AppDomain Domain;
-		Queue<Assembly> Assemblies;
-		bool disposedValue = false;
-
-		Assembly current = null;
-
-		public AssemblyEnumerator(AppDomain domain)
-		{
-			Domain = domain;
-			Assemblies = new Queue<Assembly>(Domain.GetAssemblies());
-			Domain.AssemblyLoad += OnNewAssemblyLoad;
-		}
-
-		private void OnNewAssemblyLoad(object sender, AssemblyLoadEventArgs args)
-		{
-			Assemblies.Enqueue(args.LoadedAssembly);
-		}
-
-		Assembly IEnumerator<Assembly>.Current
-		{
-			get
-			{
-				return current;
-			}
-		}
-
-		object IEnumerator.Current
-		{
-			get
-			{
-				return current;
-			}
-		}
-
-		bool IEnumerator.MoveNext()
-		{
-			if (Assemblies.Count == 0)
-			{
-				return false;
-			}
-			else
-			{
-				current = Assemblies.Dequeue();
-				return true;
-			}
-		}
-
-		void IEnumerator.Reset()
-		{
-			//Not possible to reset
-		}
-
-		void Dispose()
-		{
-			if (!disposedValue)
-			{
-				disposedValue = true;
-
-				Domain.AssemblyLoad -= OnNewAssemblyLoad;
-			}
-		}
-
-		~AssemblyEnumerator()
-		{
-			Dispose();
-		}
-
-		void IDisposable.Dispose()
-		{
-			Dispose();
-			GC.SuppressFinalize(this);
-		}
-
-
-	}*/
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GlobalEnums;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,41 +19,6 @@ namespace WeaverCore.Editor.Settings
 		public static string HollowKnightLocation => GameBuildSettings.Settings.HollowKnightLocation;
 
 		string hkDirTemp = "";
-		/*static Settings _settings;
-		public static Settings GeneralSettings
-		{
-			get
-			{
-				if (_settings == null)
-				{
-					LoadSettings();
-				}
-				return _settings;
-			}
-			set => _settings = value;
-		}
-
-		static void LoadSettings()
-		{
-			if (PersistentData.TryGetData(out Settings result))
-			{
-				_settings = result;
-			}
-			else
-			{
-				_settings = new Settings();
-			}
-			if (string.IsNullOrEmpty(_settings.HollowKnightDirectory))
-			{
-				_settings.HollowKnightDirectory = GameBuildSettings.GetSettings().HollowKnightLocation;
-			}
-		}*/
-
-		/*[Serializable]
-		public class Settings
-		{
-			public string HollowKnightDirectory = null;
-		}*/
 
 		public static void OpenSettingsScreen()
 		{
@@ -89,6 +55,10 @@ namespace WeaverCore.Editor.Settings
 
 			EditorGUILayout.EndHorizontal();
 
+			GeneralSettings.Instance.CurrentGameLanguage = (SupportedLanguages)EditorGUILayout.EnumPopup(new GUIContent("Current Game Language", "The current language the game will be using in the editor. Use this to test out Language Tables"), GeneralSettings.Instance.CurrentGameLanguage);
+
+			GeneralSettings.Instance.DisableGameFreezing = EditorGUILayout.Toggle(new GUIContent("Disable Game Freezing", "Disables the Freezing effect that occurs when taking damage or parrying an attack in the editor"), GeneralSettings.Instance.DisableGameFreezing);
+
 			EditorGUILayout.BeginHorizontal();
 			if (GUILayout.Button("Close"))
 			{
@@ -100,6 +70,7 @@ namespace WeaverCore.Editor.Settings
 				GameBuildSettings.Settings.HollowKnightLocation = hkDirTemp;
 				GameBuildSettings.Verify(GameBuildSettings.Settings);
 				GameBuildSettings.SaveSettings();
+				GeneralSettings.Save();
 			}
 
 			EditorGUILayout.EndHorizontal();

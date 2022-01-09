@@ -5,7 +5,13 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
-
+	/// <summary>
+	/// Contains snapshots and mixers that are related to the Music AudioMixer
+	/// 
+	/// These snapshots are used to change what music channels are being played in a scene
+	/// 
+	/// See this table for more info on what groups/mixers do what : https://1drv.ms/x/s!Aj62egREH4PTxx1MpsfuioqJtSCH?e=7kmAV0
+	/// </summary>
 	public static class Music
 	{
 		public enum SnapshotType
@@ -172,21 +178,44 @@ namespace WeaverCore
 		public static AudioMixerSnapshot HKDecline5Snapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 5");
 		public static AudioMixerSnapshot HKDecline6Snapshot => AudioMixer_I.Instance.GetSnapshotForMixer(MusicMixer, "HK Decline 6");
 
+		/// <summary>
+		/// Applies a music pack to change what music channels are being played
+		/// </summary>
+		/// <param name="pack">The pack to be applied</param>
 		public static void PlayMusicPack(MusicPack pack)
 		{
 			PlayMusicPack(pack, pack.delay, pack.snapshotTransitionTime, pack.applySnapshot);
 		}
 
+		/// <summary>
+		/// Applies a music pack to change what music channels are being played
+		/// </summary>
+		/// <param name="pack">The pack to be applied</param>
+		/// <param name="delayTime">The delay before the music pack is applied</param>
+		/// <param name="snapshotTransitionTime">The time it will take to transition to the new snapshots</param>
+		/// <param name="applySnapshot">Should the snapshots in the music pack also be applied?</param>
 		public static void PlayMusicPack(MusicPack pack, float delayTime, float snapshotTransitionTime, bool applySnapshot = true)
 		{
 			AudioMixer_I.Instance.PlayMusicPack(pack, delayTime, snapshotTransitionTime, applySnapshot);
 		}
 
+		/// <summary>
+		/// Applies a music snapshot to change what music channels are being played
+		/// </summary>
+		/// <param name="snapshot">The snapshot to be applied</param>
+		/// <param name="delayTime">The delay before the music pack is applied</param>
+		/// <param name="transitionTime">The time it will take to transition to the new snapshots</param>
 		public static void ApplyMusicSnapshot(SnapshotType snapshot, float delayTime, float transitionTime)
 		{
 			ApplyMusicSnapshot(GetSnapshot(snapshot), delayTime, transitionTime);
 		}
 
+		/// <summary>
+		/// Applies a snapshot to change what music channels are being played
+		/// </summary>
+		/// <param name="snapshot">The snapshot to be applied</param>
+		/// <param name="delayTime">The delay before the music pack is applied</param>
+		/// <param name="transitionTime">The time it will take to transition to the new snapshots</param>
 		public static void ApplyMusicSnapshot(AudioMixerSnapshot snapshot, float delayTime, float transitionTime)
 		{
 			AudioMixer_I.Instance.ApplyMusicSnapshot(snapshot, delayTime, transitionTime);

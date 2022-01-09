@@ -5,14 +5,17 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-	public class StunEffect : MonoBehaviour
+	/// <summary>
+	/// An effect that is instantiated when an enemy is stunned
+	/// </summary>
+    public class StunEffect : MonoBehaviour
 	{
 		static ObjectPool StunEffectPool;
-
 
 		PoolableObject poolComponent;
 
 		[SerializeField]
+		[Tooltip("The sound effect that is played when stunned")]
 		AudioClip StunSound;
 
 		void Start()
@@ -35,12 +38,20 @@ namespace WeaverCore.Assets.Components
 			}
 		}
 
-
+		/// <summary>
+		/// Spawns a stun effect
+		/// </summary>
+		/// <param name="position">The position to spawn the effect</param>
 		public static void Spawn(Vector3 position)
 		{
 			Spawn_Internal(position, null, false);
 		}
 
+		/// <summary>
+		/// Spawns a stun effect
+		/// </summary>
+		/// <param name="position">The position to spawn the effect</param>
+		/// <param name="clip">The sound to play when stunned</param>
 		public static void Spawn(Vector3 position, AudioClip clip)
 		{
 			Spawn_Internal(position, clip, true);

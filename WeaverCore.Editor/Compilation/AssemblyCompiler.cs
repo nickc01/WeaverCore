@@ -11,62 +11,79 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Compilation
 {
+	/// <summary>
+	/// Used for building DLL assemblies in WeaverCore
+	/// </summary>
 	public class AssemblyCompiler
 	{
+		/// <summary>
+		/// Contains the results of an assembly build process
+		/// </summary>
 		public class OutputDetails
 		{
+			/// <summary>
+			/// Was the build a success
+			/// </summary>
 			public bool Success;
+			/// <summary>
+			/// The output path of the DLL
+			/// </summary>
 			public string OutputPath;
+
+			/// <summary>
+			/// Any messages that were printed to the logs during the compilation process
+			/// </summary>
 			public CompilerMessage[] CompilerMessages;
 		}
 
+		/// <summary>
+		/// The directory the DLL will be built to
+		/// </summary>
 		public DirectoryInfo BuildDirectory { get; set; }
+
+		/// <summary>
+		/// The file name of the built DLL
+		/// </summary>
 		public string FileName { get; set; }
-		//public string BuildPath { get; set; }
-		//public bool BuildSuccessful { get; private set; }
+
+		/// <summary>
+		/// Is the DLL currently being built?
+		/// </summary>
 		public bool Building { get; private set; }
+
+		/// <summary>
+		/// A list of script paths to include in the DLL build
+		/// </summary>
 		public List<string> Scripts { get; set; }
-		/*public IEnumerable<FileInfo> Scripts
-		{
-			get
-			{
-				foreach (var script in ScriptPaths)
-				{
-					yield return new FileInfo(script);
-				}
-			}
-			set
-			{
-				ScriptPaths.Clear();
-				foreach (var script in value)
-				{
-					ScriptPaths.Add(script.FullName);
-				}
-			}
-		}*/
+
+		/// <summary>
+		/// A list of #define's to be included in the DLL build
+		/// </summary>
 		public List<string> Defines { get; set; }
+
+		/// <summary>
+		/// A list of assembly reference paths to include in the build process
+		/// </summary>
 		public List<string> References { get; set; }
-		/*public IEnumerable<FileInfo> References
-		{
-			get
-			{
-				foreach (var reference in ReferencePaths)
-				{
-					yield return new FileInfo(reference);
-				}
-			}
-			set
-			{
-				ReferencePaths.Clear();
-				foreach (var reference in value)
-				{
-					ReferencePaths.Add(reference.FullName);
-				}
-			}
-		}*/
+
+		/// <summary>
+		/// The target build platform of the build
+		/// </summary>
 		public BuildTarget Target { get; set; }
+
+		/// <summary>
+		/// The target build group of the build
+		/// </summary>
 		public BuildTargetGroup TargetGroup { get; set; }
+
+		/// <summary>
+		/// A list of excluded assembly reference paths
+		/// </summary>
 		public List<string> ExcludedReferences { get; set; }
+
+		/// <summary>
+		/// Some other compiler build flags
+		/// </summary>
 		public AssemblyBuilderFlags Flags { get; set; }
 		/// <summary>
 		/// Contains the output information of the compilation. This is null when the <see cref="Build"/> function has not been called yet
@@ -84,21 +101,6 @@ namespace WeaverCore.Editor.Compilation
 			Flags = AssemblyBuilderFlags.None;
 		}
 
-		/*public static List<FileInfo> GetAllInDirectory(string extension, string dir = null)
-		{
-			if (dir == null)
-			{
-				dir = new DirectoryInfo("Assets").FullName;
-			}
-			var directory = new DirectoryInfo(dir);
-			return directory.GetFiles(extension, SearchOption.AllDirectories).ToList();
-		}
-
-		public static List<FileInfo> GetAllRuntimeInDirectory(string extension, string dir = null)
-		{
-			return GetAllInDirectory(extension, dir).Where(f => !f.Directory.FullName.Contains("Editor\\")).ToList();
-		}*/
-
 		public delegate void buildCompleteAction(OutputDetails output);
 
 		void BuildInternal(buildCompleteAction onComplete)
@@ -109,9 +111,6 @@ namespace WeaverCore.Editor.Compilation
 				BuildDirectory.Create();
 			}
 			var outputPath = PathUtilities.AddSlash(BuildDirectory.FullName) + FileName;
-			//Debug.Log("Build Output Path = " + outputPath);
-			//Debug.Log("Build Directory = " + BuildDirectory.FullName);
-			//Debug.Log("Filename = " + FileName);
 			AssemblyBuilder builder = new AssemblyBuilder(outputPath, Scripts.ToArray());
 			builder.additionalDefines = Defines.ToArray();
 			builder.additionalReferences = References.ToArray();
@@ -124,7 +123,6 @@ namespace WeaverCore.Editor.Compilation
 			outputInfo.OutputPath = outputPath;
 			buildCompleteAction = (dest, messages) =>
 			{
-				//Debug.Log("---------Dest = " + dest);
 				outputInfo.CompilerMessages = messages;
 				Building = false;
 				if (messages.Any(cm => cm.type == CompilerMessageType.Error))
@@ -150,17 +148,12 @@ namespace WeaverCore.Editor.Compilation
 						{
 							Debug.LogError(message.message);
 						}
-						else
-						{
-							//Debug.LogWarning(message.message);
-						}
 					}
 				}
 				else
 				{
 					outputInfo.Success = true;
 				}
-				//Debug.Log("_____SUCCESS = " + outputInfo.Success);
 				builder.buildFinished -= buildCompleteAction;
 				Output = outputInfo;
 				if (onComplete != null)
@@ -196,6 +189,9 @@ namespace WeaverCore.Editor.Compilation
 			details.CompilerMessages = Output.CompilerMessages;
 		}
 
+		/// <summary>
+		/// Verifies all the input paths to make sure they work with the assembly compiler
+		/// </summary>
 		static string[] VerifyPaths(List<string> paths)
 		{
 			string[] output = new string[paths.Count  * 2];
@@ -220,6 +216,10 @@ namespace WeaverCore.Editor.Compilation
 			return output;
 		}
 
+		/// <summary>
+		/// Gets a list of references that unity includes by default when building an assembly
+		/// </summary>
+		/// <returns></returns>
 		public IEnumerable<string> GetDefaultReferences()
 		{
 			var outputPath = BuildDirectory.FullName + FileName;
@@ -243,6 +243,9 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
+		/// <summary>
+		/// Removes any references to editor assemblies
+		/// </summary>
 		public void RemoveEditorReferences()
 		{
 			var defaultReferences = GetDefaultReferences();
@@ -257,6 +260,9 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
+		/// <summary>
+		/// Adds in references to Unity assemblies
+		/// </summary>
 		public void AddUnityReferences()
 		{
 			var coreModuleLocation = new FileInfo(typeof(MonoBehaviour).Assembly.Location);
@@ -271,7 +277,6 @@ namespace WeaverCore.Editor.Compilation
 			{
 				if (hkFile.Name.Contains("UnityEngine"))
 				{
-					//Debug.Log("Adding File = " + hkFile.FullName);
 					References.Add(PathUtilities.ReplaceSlashes(hkFile.FullName));
 				}
 			}

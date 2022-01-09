@@ -368,7 +368,6 @@ public class SceneColorManager : MonoBehaviour
 			{
 				hero = HeroController.instance;
 			}
-			//hero.heroLight.color = Color.Lerp(HeroLightColorA, HeroLightColorB, Factor);
 		}
 	}
 

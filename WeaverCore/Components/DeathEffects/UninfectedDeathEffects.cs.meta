@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 65cbff1faa7f7ff4084ba8375f81cfb2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - EssenceCollectPrefab: {instanceID: 0}
+  - DamageSound: {fileID: 8300000, guid: 4dd03c7f900f45e4cb9580542d0dff52, type: 3}
+  - SwordDeathSound: {fileID: 8300000, guid: 3f2433cf5ab9b59478e49da6c1b3fe33, type: 3}
+  - uninfectedDeathPt: {fileID: 1901145673797302, guid: 4807e1e7c9afe8e42acf2668ab90d952, type: 3}
+  - whiteWave: {fileID: 225706361771549938, guid: 4e9e90ea4ef0b92418dee7d122693958, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

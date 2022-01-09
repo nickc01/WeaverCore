@@ -12,10 +12,36 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+	/// <summary>
+	/// A component used to access and manipulate the UI canvas
+	/// </summary>
 	public class WeaverCanvas : MonoBehaviour
 	{
+		/*[OnHarmonyPatch]
+		static void HarmonyPatch(HarmonyPatcher patcher)
+        {
+			var orig = typeof(Transform).GetProperty(nameof(Transform.position)).GetSetMethod();
+			var patch = typeof(WeaverCanvas).GetMethod(nameof(Position_Prefix), System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+			patcher.Patch(orig,patch,null);
+        }
+
+		static bool Position_Prefix(Transform __instance, Vector3 value)
+        {
+
+			//Transform __instance, Vector3 value
+			if (__instance.gameObject.name == "tk2dCamera")
+            {
+				Debug.Log("New Camera Position = " + value);
+            }
+			return true;
+        }*/
+
 		static GameObject _hudBlanker;
 		static GameObject _hudBlankerWhite;
+
+		/// <summary>
+		/// Gets the HUD blanker used to blank out the screen with a solid black color
+		/// </summary>
 		public static GameObject HUDBlanker
 		{
 			get
@@ -27,6 +53,10 @@ namespace WeaverCore
 				return _hudBlanker;
 			}
 		}
+
+		/// <summary>
+		/// Gets the HUD blanker used to blank out the screen with a solid white color
+		/// </summary>
 		public static GameObject HUDBlankerWhite
 		{
 			get
@@ -60,6 +90,9 @@ namespace WeaverCore
 			}
 		}
 
+		/// <summary>
+		/// Gets the current UI canvas in the game
+		/// </summary>
 		public static WeaverCanvas Instance { get; private set; }
 
 		/// <summary>
@@ -118,16 +151,13 @@ namespace WeaverCore
 				canvas.sortingLayerName = "HUD";
 				canvas.sortingOrder = 1;
 				canvas.normalizedSortingGridSize = 0.1f;
-				canvas.worldCamera = GameObject.FindObjectOfType<HUDCamera>().GetComponent<Camera>();
+				Debug.Log(WeaverCamera.Instance);
+				//WeaverCamera.Instance.
+				//canvas.worldCamera = GameObject.FindObjectOfType<HUDCamera>().GetComponent<Camera>();
+				canvas.worldCamera = WeaverCamera.Instance.Cameras.hudCamera;
 
 			}
-			/*if (transform.Find("CONTENT GOES HERE") == null)
-			{
-				var content = new GameObject("CONTENT GOES HERE");
-				var rt = content.AddComponent<RectTransform>();
-				rt.
-				content.transform.SetParent(transform);
-			}*/
+
 			StartCoroutine(Initializer());
 		}
 

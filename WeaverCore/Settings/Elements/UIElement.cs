@@ -84,7 +84,7 @@ namespace WeaverCore.Settings.Elements
 			OnAccessorChanged(_accessor);
 		}
 
-		public Panel Panel { get; internal set; }
+		public GlobalSettings Panel { get; internal set; }
 
 		/// <summary>
 		/// Called whenever the accessor gets changed

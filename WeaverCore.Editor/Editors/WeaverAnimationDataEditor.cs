@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using WeaverCore.Editor.DataTypes;
 using WeaverCore.Utilities;
 
 [CustomEditor(typeof(WeaverAnimationData))]
@@ -37,16 +36,14 @@ public class WeaverAnimationDataEditor : Editor
 
 	public override void OnInspectorGUI()
 	{
-		//serializedObject.UpdateIfRequiredOrScript();
 		EditorGUI.BeginChangeCheck();
-		//showClipsDropdown = EditorGUILayout.DropdownButton(new GUIContent("Clips"),FocusType.Keyboard);
+
 		showClipsDropdown = EditorGUILayout.Foldout(showClipsDropdown, "Clips");
 		if (showClipsDropdown)
 		{
 			clipScrollPosition = EditorGUILayout.BeginScrollView(clipScrollPosition,GUILayout.MaxHeight(maxClipScrollHeight), GUILayout.ExpandHeight(true));
 			var clipNames = serializedObject.FindProperty("clipNames");
 			for (int i = 0; i < clipNames.arraySize; i++)
-			//for (int i = clipNames.arraySize - 1; i >= 0; i--)
 			{
 				var value = clipNames.GetArrayElementAtIndex(i);
 
@@ -57,12 +54,10 @@ public class WeaverAnimationDataEditor : Editor
 				{
 					zeros = Mathf.Floor(Mathf.Log10(i));
 				}
-				//var zeros = Mathf.Floor(Mathf.Log10(i));
 
 				EditorGUILayout.LabelField(i.ToString(),GUILayout.MaxWidth(10f * (zeros + 1f)));
-				string oldName = value.stringValue;
+
 				value.stringValue = EditorGUILayout.TextField(value.stringValue);
-				//EditorGUILayout.SelectableLabel(value.stringValue);
 				if (GUILayout.Button("Edit", GUILayout.MaxWidth(50f)))
 				{
 					var clip = GetClip(value.stringValue);
@@ -74,7 +69,6 @@ public class WeaverAnimationDataEditor : Editor
 				}
 				if (GUILayout.Button("X", GUILayout.MaxWidth(35f)))
 				{
-					//data.RemoveClip(oldName);
 					RemoveClip(value.stringValue);
 					i--;
 				}
@@ -95,15 +89,8 @@ public class WeaverAnimationDataEditor : Editor
 		EditorGUI.indentLevel--;
 		if (framesFoldout)
 		{
-			//spriteFieldHeight = EditorGUI.GetPropertyHeight(SerializedPropertyType.B, new GUIContent(""));
-			/*var height = (spriteFieldHeight + 4f) * newClipFrames.Count + (EditorGUIUtility.singleLineHeight + 5f);
-			if (height > maxFrameScrollHeight)
-			{
-				height = maxFrameScrollHeight;
-			}*/
 			framesScrollPosition = EditorGUILayout.BeginScrollView(framesScrollPosition, GUILayout.MaxHeight(maxFrameScrollHeight), GUILayout.ExpandHeight(true));
 
-			//foreach (var clipFrame in newClipFrames)
 			for (int i = 0; i < newClipFrames.Count; i++)
 			{
 				EditorGUILayout.BeginHorizontal();
@@ -162,7 +149,6 @@ public class WeaverAnimationDataEditor : Editor
 			newClipLoopStart = 0;
 		}
 
-		//bool hasClip = data.HasClip(newClipName);
 		bool hasClip = HasClip(newClipName);
 		string text = "Add Clip";
 
@@ -177,19 +163,10 @@ public class WeaverAnimationDataEditor : Editor
 			if (hasClip)
 			{
 				RemoveClip(newClipName);
-				//data.RemoveClip(newClipName);
-				//data.AddClip(clip);
 			}
 			AddClip(clip);
 			
 		}
-
-
-		/*EditorGUILayout.LabelField("Add New Clip 1");
-		EditorGUILayout.LabelField("Add New Clip 2");
-		EditorGUILayout.LabelField("Add New Clip 3");
-		EditorGUILayout.LabelField("Add New Clip 4");*/
-
 
 		EditorGUILayout.Space();
 		EditorGUILayout.EndVertical();
@@ -198,8 +175,6 @@ public class WeaverAnimationDataEditor : Editor
 		{
 			serializedObject.ApplyModifiedProperties();
 		}
-
-		//base.OnInspectorGUI();
 	}
 
 	public bool HasClip(string clipName)
@@ -248,21 +223,17 @@ public class WeaverAnimationDataEditor : Editor
 
 		var clip = new WeaverAnimationData.Clip
 		{
-			FPS = clipFPSs.GetArrayElementAtIndex(clipIndex).floatValue,//clipFPSs[clipIndex],
-			LoopStart = clipLoopStarts.GetArrayElementAtIndex(clipIndex).intValue,//clipLoopStarts[clipIndex],
+			FPS = clipFPSs.GetArrayElementAtIndex(clipIndex).floatValue,
+			LoopStart = clipLoopStarts.GetArrayElementAtIndex(clipIndex).intValue,
 			Name = clipName,
-			WrapMode = (WeaverAnimationData.WrapMode)clipWrapModes.GetArrayElementAtIndex(clipIndex).enumValueIndex//clipWrapModes[clipIndex]
+			WrapMode = (WeaverAnimationData.WrapMode)clipWrapModes.GetArrayElementAtIndex(clipIndex).enumValueIndex
 		};
 
-		var frameStart = clipFrameStartIndexes.GetArrayElementAtIndex(clipIndex).intValue;//clipFrameStartIndexes[clipIndex];
-		var frameCount = clipFrameCounts.GetArrayElementAtIndex(clipIndex).intValue;//clipFrameCounts[clipIndex];
-
-		//Debug.Log("Frames_A = " + clip.Frames);
-		//Debug.Log("Frame Count = " + frameCount);
+		var frameStart = clipFrameStartIndexes.GetArrayElementAtIndex(clipIndex).intValue;
+		var frameCount = clipFrameCounts.GetArrayElementAtIndex(clipIndex).intValue;
 
 		for (int i = frameStart; i < frameStart + frameCount; i++)
 		{
-			//clip.AddFrame(frames[i]);
 			clip.AddFrame((Sprite)frames.GetArrayElementAtIndex(i).objectReferenceValue);
 		}
 		return clip;
@@ -285,58 +256,32 @@ public class WeaverAnimationDataEditor : Editor
 		var clipFrameCounts = serializedObject.FindProperty("clipFrameCounts"); //int
 		var frames = serializedObject.FindProperty("frames"); //Sprite
 
-		//var clipIndex = clipNames.IndexOf(clipName); //45
-
 		clipNames.DeleteArrayElementAtIndex(clipIndex);
 
-		//var frameCount = clipFrameCounts[clipIndex]; //1
 		var frameCount = clipFrameCounts.GetArrayElementAtIndex(clipIndex).intValue;
 
-		//var startFrameIndex = clipFrameStartIndexes[clipIndex]; //264
 		var startFrameIndex = clipFrameStartIndexes.GetArrayElementAtIndex(clipIndex).intValue;
 
 
 		for (int i = clipIndex + 1; i < clipFrameStartIndexes.arraySize; i++)
 		{
-			//clipFrameStartIndexes[i] = clipFrameStartIndexes[i] - frameCount;
 			var valueAtIndex = clipFrameStartIndexes.GetArrayElementAtIndex(i);
 			valueAtIndex.intValue = valueAtIndex.intValue - frameCount;
 		}
 
-		//clipFrameStartIndexes.RemoveAt(clipIndex);
-		//clipFrameCounts.RemoveAt(clipIndex);
 		clipFrameStartIndexes.DeleteArrayElementAtIndex(clipIndex);
 		clipFrameCounts.DeleteArrayElementAtIndex(clipIndex);
-
-		//From 0 to 2
 
 		if (frameCount > 0)
 		{
 			for (int i = startFrameIndex + frameCount; i < frames.arraySize; i++)
 			{
-				//Debug.Log("Moving Frame " + i + "to frame " + (i - frameCount));
 				frames.GetArrayElementAtIndex(i - frameCount).objectReferenceValue = frames.GetArrayElementAtIndex(i).objectReferenceValue;
 			}
 
 			frames.arraySize -= frameCount;
-
-			/*for (int i = 0; i < frameCount; i++)
-			{
-				Debug.Log("Deleting Frame = " + (frames.arraySize - 1));
-				frames.DeleteArrayElementAtIndex(frames.arraySize - 1);
-			}*/
-
-			/*for (int i = frameCount - 1; i >= 0; i--)
-			{
-				//frames.RemoveAt(startFrameIndex + i);
-				frames.DeleteArrayElementAtIndex(startFrameIndex + i);
-			}*/
 		}
 
-
-		//clipFPSs.RemoveAt(clipIndex);
-		//clipWrapModes.RemoveAt(clipIndex);
-		//clipLoopStarts.RemoveAt(clipIndex);
 		clipFPSs.DeleteArrayElementAtIndex(clipIndex);
 		clipWrapModes.DeleteArrayElementAtIndex(clipIndex);
 		clipLoopStarts.DeleteArrayElementAtIndex(clipIndex);
@@ -362,20 +307,16 @@ public class WeaverAnimationDataEditor : Editor
 		var frames = serializedObject.FindProperty("frames"); //Sprite
 
 		clipNames.InsertArrayElementAtIndex(clipNames.arraySize);
-		clipNames.GetArrayElementAtIndex(clipNames.arraySize - 1).stringValue = clip.Name; //Insert at 46
+		clipNames.GetArrayElementAtIndex(clipNames.arraySize - 1).stringValue = clip.Name;
 
 		clipFrameStartIndexes.InsertArrayElementAtIndex(clipFrameStartIndexes.arraySize);
 		clipFrameStartIndexes.GetArrayElementAtIndex(clipFrameStartIndexes.arraySize - 1).intValue = frames.arraySize;
 
 		clipFrameCounts.InsertArrayElementAtIndex(clipFrameCounts.arraySize);
 		clipFrameCounts.GetArrayElementAtIndex(clipFrameCounts.arraySize - 1).intValue = clip.Frames.Count;
-		//clipNames.Add(clip.Name);
-		//clipFrameStartIndexes.Add(frames.Count);
-		//clipFrameCounts.Add(clip.Frames.Count);
 
 		foreach (var frame in clip.Frames)
 		{
-			//frames.Add(frame);
 			frames.InsertArrayElementAtIndex(frames.arraySize);
 			frames.GetArrayElementAtIndex(frames.arraySize - 1).objectReferenceValue = frame;
 		}
@@ -388,11 +329,6 @@ public class WeaverAnimationDataEditor : Editor
 
 		clipLoopStarts.InsertArrayElementAtIndex(clipLoopStarts.arraySize);
 		clipLoopStarts.GetArrayElementAtIndex(clipLoopStarts.arraySize - 1).intValue = clip.LoopStart;
-
-
-		//clipFPSs.Add(clip.FPS);
-		//clipWrapModes.Add(clip.WrapMode);
-		//clipLoopStarts.Add(clip.LoopStart);
 
 		serializedObject.ApplyModifiedProperties();
 

@@ -152,18 +152,6 @@ namespace WeaverCore.Editor
 			var assemblyName = featureAssembies.GetArrayElementAtIndex(index).stringValue;
 
 			return TypeUtilities.NameToType(typeName, assemblyName);
-			/*foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-			{
-				if (assembly.GetName().Name == assemblyName)
-				{
-					var type = assembly.GetType(typeName);
-					if (type != null)
-					{
-						return type;
-					}
-				}
-			}
-			return null;*/
 		}
 
 		void SetFeature(UnityEngine.Object feature, Type type, int index)
@@ -231,15 +219,6 @@ namespace WeaverCore.Editor
 			serializedObject.FindProperty("featureAssemblyNames").arraySize--;
 		}
 
-		/*static string CreateBundleName(string name)
-		{
-			if (name == "")
-			{
-				return "";
-			}
-			return (Regex.Match(name, @"([^.]+?)\.?$").Groups[0].Value + "_bundle").ToLower().Replace(" ", "");
-		}*/
-
 		static void SetAssetBundleName(string bundleName, UnityEngine.Object obj)
 		{
 			if (obj == null)
@@ -276,7 +255,6 @@ namespace WeaverCore.Editor
 			//Test 1
 			if (!string.IsNullOrEmpty(modAssemblyName))
 			{
-				//foreach (var mod in mods)
 				for (int i = 0; i < mods.Count; i++)
 				{
 					if (mods[i].Assembly.GetName().Name == modAssemblyName && mods[i].FullName == modTypeName)

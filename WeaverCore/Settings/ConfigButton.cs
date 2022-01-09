@@ -6,24 +6,31 @@ using TMPro;
 
 namespace WeaverCore.Settings
 {
+	/// <summary>
+	/// The main button on the main menu and pause menu for opening up the Weaver Settings Menu
+	/// </summary>
 	public class ConfigButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 		[SerializeField]
+		[Tooltip("How fast to interpolate from the button's shrunken size to expanded size, and vice versa")]
 		float interpolationTime = 0.4f;
 		[SerializeField]
+		[Tooltip("The curve to be applied when interpolating the button's size")]
 		AnimationCurve interpolationCurve;
 
 		[SerializeField]
+		[Tooltip("How big the button is when expanded")]
 		Vector2 ExpandedSize;
 		[SerializeField]
+		[Tooltip("How big the button is when shrunken")]
 		Vector2 ShrunkSize;
 
 		[SerializeField]
+		[Tooltip("The icon that is shown when the button is shrunken")]
 		RawImage hamburgerIcon;
 		[SerializeField]
+		[Tooltip("The text that is shown when the button is expanded")]
 		TextMeshProUGUI buttonText;
-
-
 
 		Button button;
 		RectTransform rTransform;
@@ -46,11 +53,17 @@ namespace WeaverCore.Settings
 			ShrinkInstant();
 		}
 
+		/// <summary>
+		/// Called when the mouse hovers over this button
+		/// </summary>
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			ChangeSize(ExpandedSize,hamburgerIconColorFaded,buttonTextColor);
 		}
 
+		/// <summary>
+		/// Called when the mouse stops hovering over this button
+		/// </summary>
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			ChangeSize(ShrunkSize, hamburgerIconColor,buttonTextColorFaded);

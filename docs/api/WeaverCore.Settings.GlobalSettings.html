@@ -1,0 +1,1711 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GlobalSettings
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GlobalSettings
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WeaverCore.Settings.GlobalSettings">
+  
+  
+  <h1 id="WeaverCore_Settings_GlobalSettings" data-uid="WeaverCore.Settings.GlobalSettings" class="text-break">Class GlobalSettings
+  </h1>
+  <div class="markdown level0 summary"><p>Store global information about a mod, and creates a panel in the Settings Menu where they can be changed</p>
+<p>Inherit from this class to create a custom panel in the settings menu, then use <a class="xref" href="WeaverCore.Settings.SettingsScreen.html#WeaverCore_Settings_SettingsScreen_RegisterPanel__1">RegisterPanel&lt;T&gt;()</a> to register the panel and make it show up in the settings menu</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
+    <div class="level2"><span class="xref">UnityEngine.ScriptableObject</span></div>
+    <div class="level3"><span class="xref">GlobalSettings</span></div>
+      <div class="level4"><a class="xref" href="WeaverCore.Internal.WeaverCoreGlobalSettings.html">WeaverCoreGlobalSettings</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">UnityEngine.ScriptableObject.SetDirty()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.ScriptableObject.CreateInstance(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.ScriptableObject.CreateInstance(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.ScriptableObject.CreateInstance&lt;T&gt;()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.Settings.html">WeaverCore.Settings</a></h6>
+  <h6><strong>Assembly</strong>: WeaverCore.dll</h6>
+  <h5 id="WeaverCore_Settings_GlobalSettings_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class GlobalSettings : ScriptableObject</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_InPauseMenu.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.InPauseMenu%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L530">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_InPauseMenu_" data-uid="WeaverCore.Settings.GlobalSettings.InPauseMenu*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_InPauseMenu" data-uid="WeaverCore.Settings.GlobalSettings.InPauseMenu">InPauseMenu</h4>
+  <div class="markdown level1 summary"><p>If true, then the Weaver Settings Menu is being opened up in the pause menu.</p>
+<p>If false, then the Weaver Settings Menu is being opened up in the main menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool InPauseMenu { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_Selected.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.Selected%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L125">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_Selected_" data-uid="WeaverCore.Settings.GlobalSettings.Selected*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_Selected" data-uid="WeaverCore.Settings.GlobalSettings.Selected">Selected</h4>
+  <div class="markdown level1 summary"><p>Whether the panel is currently selected in the weaver settings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Selected { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_TabName.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.TabName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L77">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_TabName_" data-uid="WeaverCore.Settings.GlobalSettings.TabName*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_TabName" data-uid="WeaverCore.Settings.GlobalSettings.TabName">TabName</h4>
+  <div class="markdown level1 summary"><p>The name of the tab. Tabs are the buttons on the top row that are used to select the panel in the weaver settings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string TabName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_UIElements.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.UIElements%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L136">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_UIElements_" data-uid="WeaverCore.Settings.GlobalSettings.UIElements*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_UIElements" data-uid="WeaverCore.Settings.GlobalSettings.UIElements">UIElements</h4>
+  <div class="markdown level1 summary"><p>A list of all the currently shown UI elements. Returns null if the panel is not selected</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;UIElement&gt; UIElements { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.ObjectModel.ReadOnlyCollection</span>&lt;<a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddButtonElement_System_Action_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddButtonElement(System.Action%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L408">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddButtonElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddButtonElement_System_Action_System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement(System.Action,System.String,System.String)">AddButtonElement(Action, String, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a button to the settings menu</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddButtonElement(Action onClick, string displayName, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td><span class="parametername">onClick</span></td>
+        <td><p>The action to call when the button is pressed</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The name of the property displayed on the panel</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the property when hovering over the element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddButtonElement_System_Reflection_MethodInfo_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddButtonElement(System.Reflection.MethodInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L373">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddButtonElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddButtonElement_System_Reflection_MethodInfo_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement(System.Reflection.MethodInfo)">AddButtonElement(MethodInfo)</h4>
+  <div class="markdown level1 summary"><p>Adds a button to the settings menu</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddButtonElement(MethodInfo methodInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.MethodInfo</span></td>
+        <td><span class="parametername">methodInfo</span></td>
+        <td><p>The method to call when the button is pressed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddButtonElement_System_Reflection_MethodInfo_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddButtonElement(System.Reflection.MethodInfo%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L385">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddButtonElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddButtonElement_System_Reflection_MethodInfo_System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement(System.Reflection.MethodInfo,System.String,System.String)">AddButtonElement(MethodInfo, String, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a button to the settings menu</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddButtonElement(MethodInfo methodInfo, string displayName, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.MethodInfo</span></td>
+        <td><span class="parametername">methodInfo</span></td>
+        <td><p>The method to call when the button is pressed</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The name of the property displayed on the panel</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the property when hovering over the element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddButtonElement_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddButtonElement(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L341">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddButtonElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddButtonElement_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement(System.String)">AddButtonElement(String)</h4>
+  <div class="markdown level1 summary"><p>Adds a button to the settings menu</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddButtonElement(string methodName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">methodName</span></td>
+        <td><p>The name of the method to call when the button is pressed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddButtonElement_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddButtonElement(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L358">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddButtonElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddButtonElement_System_String_System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddButtonElement(System.String,System.String,System.String)">AddButtonElement(String, String, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a button to the settings menu</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddButtonElement(string methodName, string displayName, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">methodName</span></td>
+        <td><p>The name of the method to call when the button is pressed</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The name of the property displayed on the panel</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the property when hovering over the element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddFieldElement_System_Reflection_FieldInfo_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddFieldElement(System.Reflection.FieldInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L208">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddFieldElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddFieldElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddFieldElement_System_Reflection_FieldInfo_" data-uid="WeaverCore.Settings.GlobalSettings.AddFieldElement(System.Reflection.FieldInfo)">AddFieldElement(FieldInfo)</h4>
+  <div class="markdown level1 summary"><p>Adds a UI element to the panel for displaying the field in the settings menu.</p>
+<p>Returns null if the Settings Menu isn't open or the field is not compatible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddFieldElement(FieldInfo field)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.FieldInfo</span></td>
+        <td><span class="parametername">field</span></td>
+        <td><p>The field to display</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddFieldElement_System_Reflection_FieldInfo_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddFieldElement(System.Reflection.FieldInfo%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L222">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddFieldElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddFieldElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddFieldElement_System_Reflection_FieldInfo_System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddFieldElement(System.Reflection.FieldInfo,System.String,System.String)">AddFieldElement(FieldInfo, String, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a UI element to the panel for displaying the field in the settings menu.</p>
+<p>Returns null if the Settings Menu isn't open or the field is not compatible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddFieldElement(FieldInfo field, string displayName, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.FieldInfo</span></td>
+        <td><span class="parametername">field</span></td>
+        <td><p>The field to display</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The name of the field displayed on the panel</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the field when hovering over the element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddFieldElement_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddFieldElement(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L172">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddFieldElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddFieldElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddFieldElement_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddFieldElement(System.String)">AddFieldElement(String)</h4>
+  <div class="markdown level1 summary"><p>Adds a UI element to the panel for displaying the field in the settings menu.</p>
+<p>Returns null if the Settings Menu isn't open or the field is not compatible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddFieldElement(string fieldName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fieldName</span></td>
+        <td><p>The name of the field to display</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddFieldElement_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddFieldElement(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L191">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddFieldElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddFieldElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddFieldElement_System_String_System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddFieldElement(System.String,System.String,System.String)">AddFieldElement(String, String, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a UI element to the panel for displaying the field in the settings menu.</p>
+<p>Returns null if the Settings Menu isn't open or the field is not compatible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddFieldElement(string fieldName, string displayName, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fieldName</span></td>
+        <td><p>The name of the field to display</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The name of the field displayed on the panel</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the field when hovering over the element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddHeading_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddHeading(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L466">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddHeading_" data-uid="WeaverCore.Settings.GlobalSettings.AddHeading*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddHeading_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddHeading(System.String)">AddHeading(String)</h4>
+  <div class="markdown level1 summary"><p>Adds a header</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HeaderElement AddHeading(string headerText)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">headerText</span></td>
+        <td><p>The text the header will have</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.HeaderElement.html">HeaderElement</a></td>
+        <td><p>Returns the header element that was just created</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddHeading_System_String_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddHeading(System.String%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L483">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddHeading_" data-uid="WeaverCore.Settings.GlobalSettings.AddHeading*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddHeading_System_String_System_Single_" data-uid="WeaverCore.Settings.GlobalSettings.AddHeading(System.String,System.Single)">AddHeading(String, Single)</h4>
+  <div class="markdown level1 summary"><p>Adds a header</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HeaderElement AddHeading(string headerText, float fontSize)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">headerText</span></td>
+        <td><p>The text the header will have</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">fontSize</span></td>
+        <td><p>The font size the header will have. 58 is the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.HeaderElement.html">HeaderElement</a></td>
+        <td><p>Returns the header element that was just created</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddPropertyElement_System_Reflection_PropertyInfo_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddPropertyElement(System.Reflection.PropertyInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L284">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_System_Reflection_PropertyInfo_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement(System.Reflection.PropertyInfo)">AddPropertyElement(PropertyInfo)</h4>
+  <div class="markdown level1 summary"><p>Adds a UI element to the panel for displaying the property in the settings menu.</p>
+<p>Returns null if the Settings Menu isn't open or the property is not compatible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddPropertyElement(PropertyInfo property)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.PropertyInfo</span></td>
+        <td><span class="parametername">property</span></td>
+        <td><p>The property to display</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddPropertyElement_System_Reflection_PropertyInfo_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddPropertyElement(System.Reflection.PropertyInfo%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L298">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_System_Reflection_PropertyInfo_System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement(System.Reflection.PropertyInfo,System.String,System.String)">AddPropertyElement(PropertyInfo, String, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a UI element to the panel for displaying the property in the settings menu.</p>
+<p>Returns null if the Settings Menu isn't open or the property is not compatible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddPropertyElement(PropertyInfo property, string displayName, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.PropertyInfo</span></td>
+        <td><span class="parametername">property</span></td>
+        <td><p>The property to display</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The name of the property displayed on the panel</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the property when hovering over the element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddPropertyElement_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddPropertyElement(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L248">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement(System.String)">AddPropertyElement(String)</h4>
+  <div class="markdown level1 summary"><p>Adds a UI element to the panel for displaying the property in the settings menu.</p>
+<p>Returns null if the Settings Menu isn't open or the property is not compatible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddPropertyElement(string propertyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property to display</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddPropertyElement_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddPropertyElement(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L267">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_System_String_System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement(System.String,System.String,System.String)">AddPropertyElement(String, String, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a UI element to the panel for displaying the property in the settings menu.</p>
+<p>Returns null if the Settings Menu isn't open or the property is not compatible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddPropertyElement(string propertyName, string displayName, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property to display</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The name of the property displayed on the panel</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the property when hovering over the element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddPropertyElement__1_System_Func___0__System_Action___0__System_String_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddPropertyElement%60%601(System.Func%7B%60%600%7D%2CSystem.Action%7B%60%600%7D%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L325">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddPropertyElement_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddPropertyElement__1_System_Func___0__System_Action___0__System_String_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.AddPropertyElement``1(System.Func{``0},System.Action{``0},System.String,System.String)">AddPropertyElement&lt;T&gt;(Func&lt;T&gt;, Action&lt;T&gt;, String, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a custom property to the panel. Both retrieval and setting of the value can be customized</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement AddPropertyElement&lt;T&gt;(Func&lt;T&gt; getter, Action&lt;T&gt; setter, string displayName, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T&gt;</td>
+        <td><span class="parametername">getter</span></td>
+        <td><p>The getter function for getting the value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;T&gt;</td>
+        <td><span class="parametername">setter</span></td>
+        <td><p>The setter function for setting the value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">displayName</span></td>
+        <td><p>The name of the property displayed on the panel</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td><p>The description of the property when hovering over the element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>The UIElement that has been added to the panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the property element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddSpacing.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddSpacing%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L434">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddSpacing_" data-uid="WeaverCore.Settings.GlobalSettings.AddSpacing*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddSpacing" data-uid="WeaverCore.Settings.GlobalSettings.AddSpacing">AddSpacing()</h4>
+  <div class="markdown level1 summary"><p>Adds a spacing element</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SpaceElement AddSpacing()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.SpaceElement.html">SpaceElement</a></td>
+        <td><p>Returns the spacing element that was just created</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_AddSpacing_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.AddSpacing(System.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L450">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_AddSpacing_" data-uid="WeaverCore.Settings.GlobalSettings.AddSpacing*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_AddSpacing_System_Single_" data-uid="WeaverCore.Settings.GlobalSettings.AddSpacing(System.Single)">AddSpacing(Single)</h4>
+  <div class="markdown level1 summary"><p>Adds a spacing element</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SpaceElement AddSpacing(float spacing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">spacing</span></td>
+        <td><p>The amount of spacing to add. 35.5 is the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.SpaceElement.html">SpaceElement</a></td>
+        <td><p>Returns the spacing element that was just created</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_GetAllSettings.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.GetAllSettings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L99">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_GetAllSettings_" data-uid="WeaverCore.Settings.GlobalSettings.GetAllSettings*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_GetAllSettings" data-uid="WeaverCore.Settings.GlobalSettings.GetAllSettings">GetAllSettings()</h4>
+  <div class="markdown level1 summary"><p>Gets all the setting panels currently registered</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;GlobalSettings&gt; GetAllSettings()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="WeaverCore.Settings.GlobalSettings.html">GlobalSettings</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_GetElement_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.GetElement(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L510">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_GetElement_" data-uid="WeaverCore.Settings.GlobalSettings.GetElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_GetElement_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.GetElement(System.String)">GetElement(String)</h4>
+  <div class="markdown level1 summary"><p>Gets an element with the corresponding member name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement GetElement(string memberName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">memberName</span></td>
+        <td><p>The member name to look for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>Returns the corresponding element with the same member name, or null if no matches were found</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_GetHeaderElement_System_String_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.GetHeaderElement(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L520">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_GetHeaderElement_" data-uid="WeaverCore.Settings.GlobalSettings.GetHeaderElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_GetHeaderElement_System_String_" data-uid="WeaverCore.Settings.GlobalSettings.GetHeaderElement(System.String)">GetHeaderElement(String)</h4>
+  <div class="markdown level1 summary"><p>Gets a header element with the same title name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UIElement GetHeaderElement(string headerTitle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">headerTitle</span></td>
+        <td><p>The header title to look for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><p>Returns the corresponding header element with the same title, or null if no matches were found</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_GetSettings__1.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.GetSettings%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L90">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_GetSettings_" data-uid="WeaverCore.Settings.GlobalSettings.GetSettings*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_GetSettings__1" data-uid="WeaverCore.Settings.GlobalSettings.GetSettings``1">GetSettings&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Can be used anywhere and anytime to get a specific settings panel</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T GetSettings&lt;T&gt;()
+    where T : GlobalSettings</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>If the panel is registered, it will return a reference to the settings panel</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of panel to get</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_LoadSettings.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.LoadSettings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L107">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_LoadSettings_" data-uid="WeaverCore.Settings.GlobalSettings.LoadSettings*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_LoadSettings" data-uid="WeaverCore.Settings.GlobalSettings.LoadSettings">LoadSettings()</h4>
+  <div class="markdown level1 summary"><p>Loads the stored settings for this panel from disk</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LoadSettings()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_OnLoad.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.OnLoad%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L69">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_OnLoad_" data-uid="WeaverCore.Settings.GlobalSettings.OnLoad*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_OnLoad" data-uid="WeaverCore.Settings.GlobalSettings.OnLoad">OnLoad()</h4>
+  <div class="markdown level1 summary"><p>Called after the settings are loaded from a file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnLoad()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_OnPanelClose.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.OnPanelClose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L37">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_OnPanelClose_" data-uid="WeaverCore.Settings.GlobalSettings.OnPanelClose*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_OnPanelClose" data-uid="WeaverCore.Settings.GlobalSettings.OnPanelClose">OnPanelClose()</h4>
+  <div class="markdown level1 summary"><p>Called when the panel gets deselected in the weaver settings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnPanelClose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_OnPanelOpen.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.OnPanelOpen%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L29">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_OnPanelOpen_" data-uid="WeaverCore.Settings.GlobalSettings.OnPanelOpen*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_OnPanelOpen" data-uid="WeaverCore.Settings.GlobalSettings.OnPanelOpen">OnPanelOpen()</h4>
+  <div class="markdown level1 summary"><p>Called when the panel gets selected in the weaver settings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnPanelOpen()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_OnRegister.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.OnRegister%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L45">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_OnRegister_" data-uid="WeaverCore.Settings.GlobalSettings.OnRegister*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_OnRegister" data-uid="WeaverCore.Settings.GlobalSettings.OnRegister">OnRegister()</h4>
+  <div class="markdown level1 summary"><p>Called when the panel gets registered with the Settings Menu</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnRegister()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_OnSave.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.OnSave%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L61">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_OnSave_" data-uid="WeaverCore.Settings.GlobalSettings.OnSave*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_OnSave" data-uid="WeaverCore.Settings.GlobalSettings.OnSave">OnSave()</h4>
+  <div class="markdown level1 summary"><p>Called right before the settings are saved to a file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnSave()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_OnUnRegister.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.OnUnRegister%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L53">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_OnUnRegister_" data-uid="WeaverCore.Settings.GlobalSettings.OnUnRegister*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_OnUnRegister" data-uid="WeaverCore.Settings.GlobalSettings.OnUnRegister">OnUnRegister()</h4>
+  <div class="markdown level1 summary"><p>Called when the panel gets unregistered from the settings menu</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnUnRegister()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_RefreshAllElements.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.RefreshAllElements%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L497">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_RefreshAllElements_" data-uid="WeaverCore.Settings.GlobalSettings.RefreshAllElements*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_RefreshAllElements" data-uid="WeaverCore.Settings.GlobalSettings.RefreshAllElements">RefreshAllElements()</h4>
+  <div class="markdown level1 summary"><p>Refreshes all UI Elements so that they are displaying the most recent version of the fields and properties of this panel</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RefreshAllElements()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_RemoveAllElements.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.RemoveAllElements%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L422">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_RemoveAllElements_" data-uid="WeaverCore.Settings.GlobalSettings.RemoveAllElements*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_RemoveAllElements" data-uid="WeaverCore.Settings.GlobalSettings.RemoveAllElements">RemoveAllElements()</h4>
+  <div class="markdown level1 summary"><p>Removes all elements from the settings menu</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAllElements()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_RemoveUIElement_WeaverCore_Settings_Elements_UIElement_.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.RemoveUIElement(WeaverCore.Settings.Elements.UIElement)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L156">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_RemoveUIElement_" data-uid="WeaverCore.Settings.GlobalSettings.RemoveUIElement*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_RemoveUIElement_WeaverCore_Settings_Elements_UIElement_" data-uid="WeaverCore.Settings.GlobalSettings.RemoveUIElement(WeaverCore.Settings.Elements.UIElement)">RemoveUIElement(UIElement)</h4>
+  <div class="markdown level1 summary"><p>Removes a specific UI Element from the Settings Menu</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveUIElement(UIElement element)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Settings.Elements.UIElement.html">UIElement</a></td>
+        <td><span class="parametername">element</span></td>
+        <td><p>The element to remove</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Returns whether the element has been removed or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings_SaveSettings.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings.SaveSettings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L116">View Source</a>
+  </span>
+  <a id="WeaverCore_Settings_GlobalSettings_SaveSettings_" data-uid="WeaverCore.Settings.GlobalSettings.SaveSettings*"></a>
+  <h4 id="WeaverCore_Settings_GlobalSettings_SaveSettings" data-uid="WeaverCore.Settings.GlobalSettings.SaveSettings">SaveSettings()</h4>
+  <div class="markdown level1 summary"><p>Saves the stored settings for this panel to disk</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SaveSettings()</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Settings_GlobalSettings.md&amp;value=---%0Auid%3A%20WeaverCore.Settings.GlobalSettings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Settings/GlobalSettings.cs/#L21" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

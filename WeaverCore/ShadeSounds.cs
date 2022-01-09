@@ -3,6 +3,11 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
+	/// <summary>
+	/// Contains snapshots and mixers that are related to the Shade AudioMixer
+	/// 
+	/// These snapshots are used to enable and disable the shade sound effects in a scene
+	/// </summary>
 	public static class ShadeSounds
 	{
 		public enum SnapshotType
@@ -55,6 +60,11 @@ namespace WeaverCore
 		public static AudioMixerSnapshot CloseSnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(ShadeMixer, "Close");
 		public static AudioMixerSnapshot AwaySnapshot => AudioMixer_I.Instance.GetSnapshotForMixer(ShadeMixer, "Away");
 
+		/// <summary>
+		/// Applies a shade snapshot
+		/// </summary>
+		/// <param name="snapshot">The snapshot to apply</param>
+		/// <param name="transitionTime">How long should it take to transition to the new snapshot</param>
 		public static void ApplyShadeSounds(SnapshotType snapshot, float transitionTime)
 		{
 			GetSnapshot(snapshot).TransitionTo(transitionTime);

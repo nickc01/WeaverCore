@@ -1,0 +1,723 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BasicDeathEffects
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BasicDeathEffects
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects">
+  
+  
+  <h1 id="WeaverCore_Components_DeathEffects_BasicDeathEffects" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects" class="text-break">Class BasicDeathEffects
+  </h1>
+  <div class="markdown level0 summary"><p>Contains the most basic effects that are played on death. These are effects that virtually all enemies share</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
+    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
+    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
+    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
+    <div class="level5"><span class="xref">BasicDeathEffects</span></div>
+      <div class="level6"><a class="xref" href="WeaverCore.Components.DeathEffects.InfectedDeathEffects.html">InfectedDeathEffects</a></div>
+      <div class="level6"><a class="xref" href="WeaverCore.Components.DeathEffects.UninfectedDeathEffects.html">UninfectedDeathEffects</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="WeaverCore.Interfaces.IDeathEffects.html">IDeathEffects</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.Components.DeathEffects.html">WeaverCore.Components.DeathEffects</a></h6>
+  <h6><strong>Assembly</strong>: WeaverCore.dll</h6>
+  <h5 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BasicDeathEffects : MonoBehaviour, IDeathEffects</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_DamageSound.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.DamageSound%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L37">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_DamageSound" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.DamageSound">DamageSound</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Header(&quot;Audio&quot;)]
+[SerializeField]
+protected AudioClip DamageSound</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.AudioClip</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_damageSoundMaxPitch.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMaxPitch%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L46">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_damageSoundMaxPitch" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMaxPitch">damageSoundMaxPitch</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected float damageSoundMaxPitch</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_damageSoundMinPitch.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMinPitch%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L43">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_damageSoundMinPitch" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundMinPitch">damageSoundMinPitch</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected float damageSoundMinPitch</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_damageSoundVolume.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundVolume%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L40">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_damageSoundVolume" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.damageSoundVolume">damageSoundVolume</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected float damageSoundVolume</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_EffectsOffset.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.EffectsOffset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L24">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_EffectsOffset" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.EffectsOffset">EffectsOffset</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Space]
+[SerializeField]
+[Tooltip(&quot;An positional offset applied to the effects when played&quot;)]
+protected Vector3 EffectsOffset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_FreezeGameOnDeath.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.FreezeGameOnDeath%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L19">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_FreezeGameOnDeath" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.FreezeGameOnDeath">FreezeGameOnDeath</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;If set to true, the game will briefly slow down when playing the death effects&quot;)]
+public bool FreezeGameOnDeath</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_JournalEntryName.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.JournalEntryName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L16">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_JournalEntryName" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.JournalEntryName">JournalEntryName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Header(&quot;Config&quot;)]
+[Tooltip(&quot;The journal entry to unlock when the death effects are played&quot;)]
+public string JournalEntryName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_SwordDeathSound.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.SwordDeathSound%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L49">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_SwordDeathSound" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.SwordDeathSound">SwordDeathSound</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected AudioClip SwordDeathSound</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.AudioClip</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_swordDeathSoundMaxPitch.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMaxPitch%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L58">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_swordDeathSoundMaxPitch" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMaxPitch">swordDeathSoundMaxPitch</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected float swordDeathSoundMaxPitch</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_swordDeathSoundMinPitch.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMinPitch%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L55">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_swordDeathSoundMinPitch" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundMinPitch">swordDeathSoundMinPitch</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected float swordDeathSoundMinPitch</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_swordDeathSoundVolume.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundVolume%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L52">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_swordDeathSoundVolume" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.swordDeathSoundVolume">swordDeathSoundVolume</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected float swordDeathSoundVolume</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_HasBeenPlayed.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.HasBeenPlayed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L63">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_DeathEffects_BasicDeathEffects_HasBeenPlayed_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.HasBeenPlayed*"></a>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_HasBeenPlayed" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.HasBeenPlayed">HasBeenPlayed</h4>
+  <div class="markdown level1 summary"><p>Have the death effects been played already?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasBeenPlayed { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_Awake.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.Awake%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L65">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_DeathEffects_BasicDeathEffects_Awake_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.Awake*"></a>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_Awake" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.Awake">Awake()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Awake()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_DoEssenceChance.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.DoEssenceChance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L133">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_DeathEffects_BasicDeathEffects_DoEssenceChance_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.DoEssenceChance*"></a>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_DoEssenceChance" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.DoEssenceChance">DoEssenceChance()</h4>
+  <div class="markdown level1 summary"><p>Will randomly check if the player should receive essence from killing an enemy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DoEssenceChance()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Returns true if the player shouuld receive essence</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_EmitEffects.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.EmitEffects%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L81">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_DeathEffects_BasicDeathEffects_EmitEffects_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.EmitEffects*"></a>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_EmitEffects" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.EmitEffects">EmitEffects()</h4>
+  <div class="markdown level1 summary"><p>Used for playing the death effects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void EmitEffects()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_EmitEssenceParticles.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.EmitEssenceParticles%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L180">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_DeathEffects_BasicDeathEffects_EmitEssenceParticles_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.EmitEssenceParticles*"></a>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_EmitEssenceParticles" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.EmitEssenceParticles">EmitEssenceParticles()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void EmitEssenceParticles()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_EmitSounds.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.EmitSounds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L86">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_DeathEffects_BasicDeathEffects_EmitSounds_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.EmitSounds*"></a>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_EmitSounds" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.EmitSounds">EmitSounds()</h4>
+  <div class="markdown level1 summary"><p>Used for playing the death sound effects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void EmitSounds()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_OnValidate.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.OnValidate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L70">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_DeathEffects_BasicDeathEffects_OnValidate_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.OnValidate*"></a>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_OnValidate" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.OnValidate">OnValidate()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnValidate()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_PlayDeathEffects_WeaverCore_HitInfo_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.PlayDeathEffects(WeaverCore.HitInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L104">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_DeathEffects_BasicDeathEffects_PlayDeathEffects_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.PlayDeathEffects*"></a>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_PlayDeathEffects_WeaverCore_HitInfo_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.PlayDeathEffects(WeaverCore.HitInfo)">PlayDeathEffects(HitInfo)</h4>
+  <div class="markdown level1 summary"><p>Plays the death effects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void PlayDeathEffects(HitInfo finalBlow)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.HitInfo.html">HitInfo</a></td>
+        <td><span class="parametername">finalBlow</span></td>
+        <td><p>The final blow to the enemy</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects_ShakeCameraIfVisible_WeaverCore_Enums_ShakeType_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects.ShakeCameraIfVisible(WeaverCore.Enums.ShakeType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L167">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_DeathEffects_BasicDeathEffects_ShakeCameraIfVisible_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.ShakeCameraIfVisible*"></a>
+  <h4 id="WeaverCore_Components_DeathEffects_BasicDeathEffects_ShakeCameraIfVisible_WeaverCore_Enums_ShakeType_" data-uid="WeaverCore.Components.DeathEffects.BasicDeathEffects.ShakeCameraIfVisible(WeaverCore.Enums.ShakeType)">ShakeCameraIfVisible(ShakeType)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ShakeCameraIfVisible(ShakeType shakeType = ShakeType.EnemyKillShake)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Enums.ShakeType.html">ShakeType</a></td>
+        <td><span class="parametername">shakeType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="WeaverCore.Interfaces.IDeathEffects.html">IDeathEffects</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.CoroutineUtilities.html#WeaverCore_Utilities_CoroutineUtilities_RunCoroutineWhile__1___0_System_Collections_IEnumerator_System_Func_System_Boolean__">CoroutineUtilities.RunCoroutineWhile&lt;T&gt;(T, IEnumerator, Func&lt;Boolean&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_DeathEffects_BasicDeathEffects.md&amp;value=---%0Auid%3A%20WeaverCore.Components.DeathEffects.BasicDeathEffects%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/DeathEffects/BasicDeathEffects.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

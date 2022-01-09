@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace WeaverCore.Editor.Compilation
 {
+	/// <summary>
+	/// Used for serializing a method so it can be stored to a file
+	/// </summary>
 	[Serializable]
 	public struct SerializedMethod
 	{

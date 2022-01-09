@@ -24,7 +24,6 @@ namespace WeaverCore.Editor.Implementations
 		{
 			if (obj == PlayModeStateChange.ExitingPlayMode)
 			{
-				//Debug.Log("ON GAME CLOSE");
 				SaveSpecificSettings.SaveAllSettings();
 			}
 		}
@@ -32,7 +31,6 @@ namespace WeaverCore.Editor.Implementations
 		[OnRuntimeInit]
 		static void OnGameStart()
 		{
-			//Debug.Log("ON GAME START");
 			SaveSpecificSettings.LoadSaveSlot(1);
 		}
 
@@ -40,18 +38,12 @@ namespace WeaverCore.Editor.Implementations
 
 		public override void LoadSettings(SaveSpecificSettings settings)
 		{
-			/*var settingType = settings.GetType();
-			if (PersistentData.TryGetData<string>(settingType.FullName + "_SAVEDATA", out var json))
-			{
-				JsonUtility.FromJsonOverwrite(json, settings);
-			}*/
+
 		}
 
 		public override void SaveSettings(SaveSpecificSettings settings)
 		{
-			/*var settingType = settings.GetType();
-			PersistentData.StoreData(JsonUtility.ToJson(settings,true), settingType.FullName + "_SAVEDATA");
-			PersistentData.SaveData();*/
+
 		}
 	}
 }

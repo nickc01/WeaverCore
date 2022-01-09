@@ -1,0 +1,16 @@
+using WeaverCore;
+
+public class MODNAME : WeaverMod
+{
+    public MODNAME() : base("MODDISPLAYNAME") { }
+
+    public override string GetVersion()
+    {
+        return "1.0";
+    }
+
+    public override void Initialize()
+    {
+        
+    }
+}

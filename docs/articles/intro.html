@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Welcome to WeaverCore! </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Welcome to WeaverCore! ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="intro.md">
+<h1 id="welcome-to-weavercore">Welcome to WeaverCore!</h1>
+
+<p>WeaverCore is a Hollow Knight modding library designed to allow modders to take full advantage of the Unity Editor to make brand new content for the game, such as new Enemies, Bosses, Scenes, NPCs, and more</p>
+<p>If you want to see some examples of where WeaverCore is used, check out the <a href="https://github.com/nickc01/Inferno-King-Grimm">Inferno King Grimm</a> project, and the <a href="https://github.com/nickc01/Corrupted-Kin">Corrupted Kin</a> project</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This guide assumes you have some knowledge on how to program in C# and how to use the Unity Editor. If you need some guides on how to program in C#, you can look up some tutorials on how to do it (<a href="https://www.youtube.com/watch?v=N775KsWQVkw">Like Brackeys</a>). If you are looking for a guide on how to install the Unity Editor, you can <a class="xref" href="installingUnity.html">click here</a></p>
+</div>
+<h1 id="installation">Installation</h1>
+<p>First, open up the Unity Hub, and create a new 2D Unity Project:</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>WeaverCore requires Unity Editor version 2020.2.2 to work. Make sure you are creating the project under this version</p>
+</div>
+<p><img src="../images/createTutorialProject.PNG" alt="Create Tutorial Project"></p>
+<p>When the project is fully loaded up in the Editor, right click on the &quot;Assets&quot; folder and click on &quot;Show In Explorer&quot; to open it up in the Windows Explorer.</p>
+<p><img src="../images/openAssetsFolder.PNG" alt="Open Assets Folder"></p>
+<h3 id="downloading-weavercore">Downloading WeaverCore</h3>
+<p>The next step is to download WeaverCore. There are two main ways it can be installed:</p>
+<h3 id="method-1--downloading-the-zip">Method 1 : Downloading the Zip</h3>
+<p>To download WeaverCore as a zip, go to the <a href="https://github.com/nickc01/WeaverCore">WeaverCore Repository Page</a> click on the &quot;Code&quot; button and then click on &quot;Download ZIP&quot;. This will download the entire WeaverCore project as a zip file.</p>
+<p><img src="../images/downloadWeaverCoreZip.PNG" alt="Download WeaverCore Zip"></p>
+<p>Once downloaded, extract all the contents into a &quot;WeaverCore&quot; folder in the &quot;Assets&quot; folder of your project. The end result should look like this:</p>
+<p><img src="../images/weaverCoreFolderInAssets.gif" alt="WeaverCore Folder in Assets"></p>
+<h3 id="method-2--using-git">Method 2 : Using GIT</h3>
+<p>To use GIT to download WeaverCore, first make sure you have GIT installed on your computer. You can download it here : <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></p>
+<p>Next, open up a CMD or Powershell terminal in the &quot;Assets&quot; folder, you can do this by holding Shift and right clicking in the folder window, and you will see an option for either Powershell or CMD.</p>
+<p><img src="../images/rightClickForShell.PNG" alt="Right Click for Shell"></p>
+<p>Next, go to the WeaverCore repository page, and copy the HTTPS clone link</p>
+<p><img src="../images/copyHttpsClone.PNG" alt="Copy HTTPS Clone"></p>
+<p>Then, in the CMD or Powershell window, type in &quot;git clone&quot; and paste in the copied link, the result should look like this:</p>
+<p><img src="../images/cloneCommand.PNG" alt="Clone Command"></p>
+<p>Hit Enter, and the repository should start downloading into the Assets folder. This may take a while to finish</p>
+<p><img src="../images/cloningRepository.PNG" alt="Cloning Repository"></p>
+<h3 id="when-you-finished-either-method">When you finished either method</h3>
+<p>Once that's done, go back to the Unity Editor, and WeaverCore will start loading (this may take a while). You will know when it's done when you see &quot;WeaverCore is Fully Setup!&quot; in the Console</p>
+<p><img src="../images/weaverCoreFullySetup.PNG" alt="WeaverCore Fully Setup"></p>
+<p>The last step before we do anything is to check if WeaverCore has found your Hollow Knight installation, since the game is required for WeaverCore to function. Go to &quot;WeaverCore -&gt; Settings -&gt; General Settings&quot;, and make sure that the &quot;Hollow Knight Directory&quot; is set to the folder where Hollow Knight.exe is located. (Be sure to click apply to apply the settings).</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Make sure your Hollow Knight installation has the Hollow Knight Modding API installed. You can install it via the Scarab Mod Installer : <a href="https://github.com/fifty-six/Scarab/releases">https://github.com/fifty-six/Scarab/releases</a></p>
+</div>
+<p><img src="../images/generalSettings.png" alt="General Settings"></p>
+<p>Once that's done, you can now start modding with WeaverCore! Continue to &quot;Setting Up Registry&quot; to continue with the tutorial</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/docs_src~/articles/intro.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
+/*
+ * This file contains all the classes needed to import TK2D sprites and animations and convert them into something that can be used with WeaverCore
+ */
+
 namespace WeaverCore.Editor.TK2D
 {
 	[Serializable]
@@ -21,12 +25,6 @@ namespace WeaverCore.Editor.TK2D
 		public tk2dSpriteAnimation animation;
 		public List<CollectionTextures> collectionTextures;
 	}
-	/*[Serializable]
-	public class AnimationMapImport
-	{
-		public tk2dSpriteAnimation animation;
-		public Dictionary<tk2dSpriteCollectionData, List<string>> TextureNames;
-	}*/
 
 	[Serializable]
 	public class SpriteMapImport
@@ -95,12 +93,6 @@ namespace WeaverCore.Editor.TK2D
 		public bool needMaterialInstance;
 		public tk2dSpriteDefinition[] spriteDefinitions;
 		public bool premultipliedAlpha;
-		//public Material material;
-		//public Material[] materials;
-		//public Material[] materialInsts;
-		//public Texture2D[] textureInsts;
-		//public Texture[] textures;
-		//public TextAsset[] pngTextures;
 		public int[] materialPngTextureId;
 	}
 
@@ -127,8 +119,6 @@ namespace WeaverCore.Editor.TK2D
 		public Vector2[] uvs;
 		public Vector3[] positions;
 		public int[] indices;
-		//public Material material;
-		//public Material materialInst;
 		public int materialId;
 		public string sourceTextureGUID;
 		public Vector2[] normalizedUvs;

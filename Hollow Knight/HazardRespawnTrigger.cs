@@ -13,10 +13,6 @@ public class HazardRespawnTrigger : MonoBehaviour
 	private void Awake()
 	{
 		playerData = PlayerData.instance;
-		/*if (playerData == null)
-		{
-			Debug.LogError(base.name + "- Player Data reference is null, please check this is being set correctly.");
-		}*/
 	}
 
 	private void Reset()

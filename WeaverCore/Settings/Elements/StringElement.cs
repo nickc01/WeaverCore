@@ -1,34 +1,31 @@
 ﻿using System;
 using System.Reflection;
+using TMPro;
 using UnityEngine.UI;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Settings.Elements
 {
+	/// <summary>
+	/// A UI Element where the user can input any string value into it
+	/// </summary>
 	public class StringElement : UIElement
 	{
-		InputField inputField;
+		TMP_InputField inputField;
 
 		void Awake()
 		{
-			inputField = GetComponentInChildren<InputField>();
+			inputField = GetComponentInChildren<TMP_InputField>();
 			inputField.onEndEdit.AddListener(OnInputChange);
 		}
 
+		/// <inheritdoc/>
 		public override bool CanWorkWithAccessor(IAccessor accessor)
 		{
 			return accessor.MemberType == typeof(string);
-			/*if (memberInfo is FieldInfo)
-			{
-				return ((FieldInfo)memberInfo).FieldType == typeof(string);
-			}
-			else if (memberInfo is PropertyInfo)
-			{
-				return ((PropertyInfo)memberInfo).PropertyType == typeof(string);
-			}
-			return false;*/
 		}
 
+		/// <inheritdoc/>
 		protected override void OnAccessorChanged(IAccessor accessor)
 		{
 			inputField.text = (string)accessor.FieldValue;

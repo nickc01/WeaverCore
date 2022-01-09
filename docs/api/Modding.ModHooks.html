@@ -1,0 +1,1072 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ModHooks
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ModHooks
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Modding.ModHooks">
+  
+  
+  <h1 id="Modding_ModHooks" data-uid="Modding.ModHooks" class="text-break">Class ModHooks
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ModHooks</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Modding.html">Modding</a></h6>
+  <h6><strong>Assembly</strong>: HollowKnight.dll</h6>
+  <h5 id="Modding_ModHooks_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ModHooks</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_GetAllMods_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20Modding.ModHooks.GetAllMods(System.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L756">View Source</a>
+  </span>
+  <a id="Modding_ModHooks_GetAllMods_" data-uid="Modding.ModHooks.GetAllMods*"></a>
+  <h4 id="Modding_ModHooks_GetAllMods_System_Boolean_System_Boolean_" data-uid="Modding.ModHooks.GetAllMods(System.Boolean,System.Boolean)">GetAllMods(Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Returns an iterator over all mods.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;IMod&gt; GetAllMods(bool onlyEnabled = false, bool allowLoadError = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">onlyEnabled</span></td>
+        <td><p>Should the iterator only contain enabled mods.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">allowLoadError</span></td>
+        <td><p>Should the iterator contain mods which have load errors.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="Modding.IMod.html">IMod</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_AfterAttackHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.AfterAttackHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L620">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_AfterAttackHook" data-uid="Modding.ModHooks.AfterAttackHook">AfterAttackHook</h4>
+  <div class="markdown level1 summary"><p>Called at the end of the attack function</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action&lt;AttackDirection&gt; AfterAttackHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="GlobalEnums.AttackDirection.html">AttackDirection</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_AfterAttackHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>HeroController.Attack</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_AfterPlayerDeadHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.AfterPlayerDeadHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L670">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_AfterPlayerDeadHook" data-uid="Modding.ModHooks.AfterPlayerDeadHook">AfterPlayerDeadHook</h4>
+  <div class="markdown level1 summary"><p>Called after the player dies</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action AfterPlayerDeadHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_AfterPlayerDeadHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>GameManager.PlayerDead</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_AfterTakeDamageHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.AfterTakeDamageHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L640">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_AfterTakeDamageHook" data-uid="Modding.ModHooks.AfterTakeDamageHook">AfterTakeDamageHook</h4>
+  <div class="markdown level1 summary"><p>Called at the end of the take damage function</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event AfterTakeDamageHandler AfterTakeDamageHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.AfterTakeDamageHandler.html">AfterTakeDamageHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_ApplicationQuitHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.ApplicationQuitHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L658">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_ApplicationQuitHook" data-uid="Modding.ModHooks.ApplicationQuitHook">ApplicationQuitHook</h4>
+  <div class="markdown level1 summary"><p>Called when the game is fully closed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action ApplicationQuitHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_ApplicationQuitHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>GameManager.OnApplicationQuit</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_AttackHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.AttackHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L614">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_AttackHook" data-uid="Modding.ModHooks.AttackHook">AttackHook</h4>
+  <div class="markdown level1 summary"><p>Called whenever the player attacks</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action&lt;AttackDirection&gt; AttackHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="GlobalEnums.AttackDirection.html">AttackDirection</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_AttackHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>HeroController.Attack</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_BeforePlayerDeadHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.BeforePlayerDeadHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L664">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_BeforePlayerDeadHook" data-uid="Modding.ModHooks.BeforePlayerDeadHook">BeforePlayerDeadHook</h4>
+  <div class="markdown level1 summary"><p>Called when the player dies</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action BeforePlayerDeadHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_BeforePlayerDeadHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>GameManager.PlayerDead</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_DashPressedHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.DashPressedHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L647">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_DashPressedHook" data-uid="Modding.ModHooks.DashPressedHook">DashPressedHook</h4>
+  <div class="markdown level1 summary"><p>Called whenever the dash key is pressed.
+Returns whether or not to override normal dash functionality - if true, preventing a normal dash</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Func&lt;bool&gt; DashPressedHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_DashPressedHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>HeroController.LookForQueueInput</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_DashVectorHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.DashVectorHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L627">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_DashVectorHook" data-uid="Modding.ModHooks.DashVectorHook">DashVectorHook</h4>
+  <div class="markdown level1 summary"><p>Called during dash function to change velocity</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Func&lt;Vector2, Vector2&gt; DashVectorHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">UnityEngine.Vector2</span>, <span class="xref">UnityEngine.Vector2</span>&gt;</td>
+        <td><p>A changed vector.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_DashVectorHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>HeroController.Dash</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_DoAttackHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.DoAttackHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L652">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_DoAttackHook" data-uid="Modding.ModHooks.DoAttackHook">DoAttackHook</h4>
+  <div class="markdown level1 summary"><p>Called at the start of the DoAttack function</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action DoAttackHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_DrawBlackBordersHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.DrawBlackBordersHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L607">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_DrawBlackBordersHook" data-uid="Modding.ModHooks.DrawBlackBordersHook">DrawBlackBordersHook</h4>
+  <div class="markdown level1 summary"><p>Called when a SceneManager calls DrawBlackBorders and creates boarders for a scene. You may use or modify the
+bounds of an area of the scene with these.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action&lt;List&lt;GameObject&gt;&gt; DrawBlackBordersHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">UnityEngine.GameObject</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_DrawBlackBordersHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SceneManager.DrawBlackBorders</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_GetPlayerBoolHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.GetPlayerBoolHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L692">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_GetPlayerBoolHook" data-uid="Modding.ModHooks.GetPlayerBoolHook">GetPlayerBoolHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to get a bool from player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event GetBoolProxy GetPlayerBoolHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.GetBoolProxy.html">GetBoolProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_GetPlayerBoolHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.GetBool</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_GetPlayerFloatHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.GetPlayerFloatHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L712">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_GetPlayerFloatHook" data-uid="Modding.ModHooks.GetPlayerFloatHook">GetPlayerFloatHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to get a float from player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event GetFloatProxy GetPlayerFloatHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.GetFloatProxy.html">GetFloatProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_GetPlayerFloatHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.GetFloat</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_GetPlayerIntHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.GetPlayerIntHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L702">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_GetPlayerIntHook" data-uid="Modding.ModHooks.GetPlayerIntHook">GetPlayerIntHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to get an int from player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event GetIntProxy GetPlayerIntHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.GetIntProxy.html">GetIntProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_GetPlayerIntHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.GetInt</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_GetPlayerStringHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.GetPlayerStringHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L722">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_GetPlayerStringHook" data-uid="Modding.ModHooks.GetPlayerStringHook">GetPlayerStringHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to get a string from player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event GetStringProxy GetPlayerStringHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.GetStringProxy.html">GetStringProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_GetPlayerStringHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.GetString</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_GetPlayerVariableHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.GetPlayerVariableHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L742">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_GetPlayerVariableHook" data-uid="Modding.ModHooks.GetPlayerVariableHook">GetPlayerVariableHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to get a generic variable from player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event GetVariableProxy GetPlayerVariableHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.GetVariableProxy.html">GetVariableProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_GetPlayerVariableHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.GetVariable</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_GetPlayerVector3Hook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.GetPlayerVector3Hook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L732">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_GetPlayerVector3Hook" data-uid="Modding.ModHooks.GetPlayerVector3Hook">GetPlayerVector3Hook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to get a Vector3 from player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event GetVector3Proxy GetPlayerVector3Hook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.GetVector3Proxy.html">GetVector3Proxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_GetPlayerVector3Hook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.GetVector3</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_LanguageGetHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.LanguageGetHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L681">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_LanguageGetHook" data-uid="Modding.ModHooks.LanguageGetHook">LanguageGetHook</h4>
+  <div class="markdown level1 summary"><p>Called whenever localization specific strings are requested</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event LanguageGetProxy LanguageGetHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.LanguageGetProxy.html">LanguageGetProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_LanguageGetHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>N/A</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_NewGameHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.NewGameHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L676">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_NewGameHook" data-uid="Modding.ModHooks.NewGameHook">NewGameHook</h4>
+  <div class="markdown level1 summary"><p>Called whenever a new game is started</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action NewGameHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_NewGameHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>GameManager.LoadFirstScene</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_SetPlayerBoolHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.SetPlayerBoolHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L687">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_SetPlayerBoolHook" data-uid="Modding.ModHooks.SetPlayerBoolHook">SetPlayerBoolHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to set a bool in player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event SetBoolProxy SetPlayerBoolHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.SetBoolProxy.html">SetBoolProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_SetPlayerBoolHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.SetBool</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_SetPlayerFloatHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.SetPlayerFloatHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L707">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_SetPlayerFloatHook" data-uid="Modding.ModHooks.SetPlayerFloatHook">SetPlayerFloatHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to set a float in player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event SetFloatProxy SetPlayerFloatHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.SetFloatProxy.html">SetFloatProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_SetPlayerFloatHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.SetFloat</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_SetPlayerIntHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.SetPlayerIntHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L697">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_SetPlayerIntHook" data-uid="Modding.ModHooks.SetPlayerIntHook">SetPlayerIntHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to set an int in player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event SetIntProxy SetPlayerIntHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.SetIntProxy.html">SetIntProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_SetPlayerIntHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.SetInt</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_SetPlayerStringHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.SetPlayerStringHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L717">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_SetPlayerStringHook" data-uid="Modding.ModHooks.SetPlayerStringHook">SetPlayerStringHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to set a string in player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event SetStringProxy SetPlayerStringHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.SetStringProxy.html">SetStringProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_SetPlayerStringHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.SetString</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_SetPlayerVariableHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.SetPlayerVariableHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L737">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_SetPlayerVariableHook" data-uid="Modding.ModHooks.SetPlayerVariableHook">SetPlayerVariableHook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to set a generic variable in player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event SetVariableProxy SetPlayerVariableHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.SetVariableProxy.html">SetVariableProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_SetPlayerVariableHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.SetVariable</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_SetPlayerVector3Hook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.SetPlayerVector3Hook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L727">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_SetPlayerVector3Hook" data-uid="Modding.ModHooks.SetPlayerVector3Hook">SetPlayerVector3Hook</h4>
+  <div class="markdown level1 summary"><p>Called when anything in the game tries to set a Vector3 in player data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event SetVector3Proxy SetPlayerVector3Hook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.SetVector3Proxy.html">SetVector3Proxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_SetPlayerVector3Hook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PlayerData.SetVector3</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_TakeDamageHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.TakeDamageHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L634">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_TakeDamageHook" data-uid="Modding.ModHooks.TakeDamageHook">TakeDamageHook</h4>
+  <div class="markdown level1 summary"><p>Called when damage is dealt to the player</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event TakeDamageProxy TakeDamageHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.TakeDamageProxy.html">TakeDamageProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_TakeDamageHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>HeroController.TakeDamage</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks_TakeHealthHook.md&amp;value=---%0Auid%3A%20Modding.ModHooks.TakeHealthHook%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L747">View Source</a>
+  </span>
+  <h4 id="Modding_ModHooks_TakeHealthHook" data-uid="Modding.ModHooks.TakeHealthHook">TakeHealthHook</h4>
+  <div class="markdown level1 summary"><p>Called when health is taken from the player</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event TakeHealthProxy TakeHealthHook</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.TakeHealthProxy.html">TakeHealthProxy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Modding_ModHooks_TakeHealthHook_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>HeroController.TakeHealth</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=Modding_ModHooks.md&amp;value=---%0Auid%3A%20Modding.ModHooks%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/Modding/ModHooks.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

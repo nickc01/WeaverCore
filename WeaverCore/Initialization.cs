@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +11,10 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	public static class Initialization
+	/// <summary>
+	/// The main class used for initializing WeaverCore
+	/// </summary>
+    public static class Initialization
 	{
 		/// <summary>
 		/// Whether WeaverCore has been initialized or not
@@ -46,13 +50,10 @@ namespace WeaverCore
 #endif
 
 		/// <summary>
-		/// Initializes all the necessary components of WeaverCore. Does nothing if the mod is already initialized
+		/// Initializes all the necessary components of WeaverCore
 		/// </summary>
 		public static void Initialize()
 		{
-			//UnityEditor.EditorApplication.playModeStateChanged += EditorApplication_playModeStateChanged;
-			
-
 			if (!WeaverCoreInitialized)
 			{
 				WeaverCoreInitialized = true;
@@ -69,7 +70,6 @@ namespace WeaverCore
 				}
 			}
 
-			//Debug.Log("Playing Game = " + Application.isPlaying);
 			if (!WeaverCoreRuntimeInitialized && Application.isPlaying)
 			{
 				WeaverCoreRuntimeInitialized = true;
@@ -81,11 +81,6 @@ namespace WeaverCore
 			}
 		}
 
-		/*private static void EditorApplication_playModeStateChanged(UnityEditor.PlayModeStateChange obj)
-		{
-			Debug.Log("Play State = " + obj);
-		}*/
-
 		static void PatchAssembly(Assembly assembly)
 		{
 			var patcherInstance = HarmonyPatcher.Create("com." + assembly.GetName().Name + ".patch");
@@ -94,7 +89,7 @@ namespace WeaverCore
 			var patchArguments = new object[] { patcherInstance };
 
 			var inits = ReflectionUtilities.GetMethodsWithAttribute<OnHarmonyPatchAttribute>(assembly, patchParameters).ToList();
-			inits.Sort(new PriorityAttribute.PrioritySorter<OnHarmonyPatchAttribute>());
+			inits.Sort(new PriorityAttribute.MethodSorter<OnHarmonyPatchAttribute>());
 
 			foreach (var initPair in ReflectionUtilities.GetMethodsWithAttribute<OnHarmonyPatchAttribute>(assembly, patchParameters))
 			{
@@ -114,20 +109,104 @@ namespace WeaverCore
 			var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == assemblyName);
 			if (assembly == null)
 			{
-				assembly = ResourceLoader.LoadAssembly(assemblyName);
+				assembly = ResourceUtilities.LoadAssembly(assemblyName);
 			}
 			return assembly;
 		}
 
-		/*[OnInit]
-		static void InitTest()
+		[OnHarmonyPatch]
+		static void PatchModLoader(HarmonyPatcher patcher)
 		{
-			Debug.Log("Init Test");
+			if (Environment != RunningState.Game)
+			{
+				return;
+			}
+
+			var loadModM = typeof(IMod).Assembly.GetType("Modding.ModLoader").GetMethod("LoadMod", BindingFlags.NonPublic | BindingFlags.Static);
+
+			var loadMod_postfix = typeof(Initialization).GetMethod(nameof(LoadMods_Postfix), BindingFlags.NonPublic | BindingFlags.Static);
+
+			patcher.Patch(loadModM, null, loadMod_postfix);
+
+			var unloadModM = typeof(IMod).Assembly.GetType("Modding.ModLoader").GetMethod("UnloadMod", BindingFlags.NonPublic | BindingFlags.Static);
+
+			var unloadMod_postfix = typeof(Initialization).GetMethod(nameof(UnloadMods_Postfix), BindingFlags.NonPublic | BindingFlags.Static);
+
+			patcher.Patch(unloadModM, null, unloadMod_postfix);
 		}
 
-		static void RuntimeInitTest()
-		{
-			Debug.Log("Runtime Init Test");
-		}*/
+		static void LoadMods_Postfix(object mod)
+        {
+			var modInstanceT = mod.GetType();
+
+			var imod = modInstanceT.GetField("Mod").GetValue(mod);
+
+            if (imod != null)
+            {
+				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>().ToList();
+
+				foreach (var method in methods)
+				{
+					try
+					{
+						if (method.method.IsStatic && method.attribute.ModType != null && method.attribute.ModType.IsAssignableFrom(imod.GetType()))
+						{
+							var parameters = method.method.GetParameters();
+							if (parameters.GetLength(0) == 1 && parameters[0].ParameterType.IsAssignableFrom(imod.GetType()))
+							{
+								method.method.Invoke(null, new object[] { imod });
+							}
+							else
+							{
+								method.method.Invoke(null, null);
+							}
+						}
+					}
+					catch (Exception e)
+					{
+						WeaverLog.LogError($"Error running function : {method.method.DeclaringType.FullName}:{method.method.Name}");
+						WeaverLog.LogException(e);
+					}
+				}
+				//ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModLoadAttribute>((_, a) => a.ModType.IsAssignableFrom(imod.GetType()));
+			}
+        }
+
+		static void UnloadMods_Postfix(object mod)
+        {
+			var modInstanceT = mod.GetType();
+
+			var imod = modInstanceT.GetField("Mod").GetValue(mod);
+
+			if (imod != null)
+			{
+				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModUnloadAttribute>().ToList();
+
+				foreach (var method in methods)
+				{
+					try
+					{
+						if (method.method.IsStatic && method.attribute.ModType != null && method.attribute.ModType.IsAssignableFrom(imod.GetType()))
+						{
+							var parameters = method.method.GetParameters();
+							if (parameters.GetLength(0) == 1 && parameters[0].ParameterType.IsAssignableFrom(imod.GetType()))
+							{
+								method.method.Invoke(null, new object[] { imod });
+							}
+							else
+							{
+								method.method.Invoke(null, null);
+							}
+						}
+					}
+					catch (Exception e)
+					{
+						WeaverLog.LogError($"Error running function : {method.method.DeclaringType.FullName}:{method.method.Name}");
+						WeaverLog.LogException(e);
+					}
+				}
+				//ReflectionUtilities.ExecuteMethodsWithAttribute<AfterModUnloadAttribute>((_, a) => a.ModType.IsAssignableFrom(imod.GetType()));
+			}
+		}
 	}
 }

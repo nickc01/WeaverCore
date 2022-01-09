@@ -1,0 +1,1439 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ReflectionUtilities
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ReflectionUtilities
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WeaverCore.Utilities.ReflectionUtilities">
+  
+  
+  <h1 id="WeaverCore_Utilities_ReflectionUtilities" data-uid="WeaverCore.Utilities.ReflectionUtilities" class="text-break">Class ReflectionUtilities
+  </h1>
+  <div class="markdown level0 summary"><p>Contains many utility functions for reflection</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ReflectionUtilities</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.Utilities.html">WeaverCore.Utilities</a></h6>
+  <h6><strong>Assembly</strong>: WeaverCore.dll</h6>
+  <h5 id="WeaverCore_Utilities_ReflectionUtilities_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ReflectionUtilities</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_CreateFieldGetter__2_System_Reflection_FieldInfo_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.CreateFieldGetter%60%602(System.Reflection.FieldInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L115">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_CreateFieldGetter_" data-uid="WeaverCore.Utilities.ReflectionUtilities.CreateFieldGetter*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_CreateFieldGetter__2_System_Reflection_FieldInfo_" data-uid="WeaverCore.Utilities.ReflectionUtilities.CreateFieldGetter``2(System.Reflection.FieldInfo)">CreateFieldGetter&lt;SourceType, FieldType&gt;(FieldInfo)</h4>
+  <div class="markdown level1 summary"><p>Creates a function that retrives a field value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;SourceType, FieldType&gt; CreateFieldGetter&lt;SourceType, FieldType&gt;(FieldInfo field)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.FieldInfo</span></td>
+        <td><span class="parametername">field</span></td>
+        <td><p>The field to create a getter for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;SourceType, FieldType&gt;</td>
+        <td><p>Returns a function that when invoked, will retrieve the field value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">SourceType</span></td>
+        <td><p>The type that contains the field</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">FieldType</span></td>
+        <td><p>The type of the field</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_CreateFieldGetter__2_System_String_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.CreateFieldGetter%60%602(System.String%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L148">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_CreateFieldGetter_" data-uid="WeaverCore.Utilities.ReflectionUtilities.CreateFieldGetter*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_CreateFieldGetter__2_System_String_System_Reflection_BindingFlags_" data-uid="WeaverCore.Utilities.ReflectionUtilities.CreateFieldGetter``2(System.String,System.Reflection.BindingFlags)">CreateFieldGetter&lt;SourceType, FieldType&gt;(String, BindingFlags)</h4>
+  <div class="markdown level1 summary"><p>Creates a function that retrives a field value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;SourceType, FieldType&gt; CreateFieldGetter&lt;SourceType, FieldType&gt;(string fieldName, BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fieldName</span></td>
+        <td><p>The name of the field to create a getter for</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The binding flags used to find the field</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;SourceType, FieldType&gt;</td>
+        <td><p>Returns a function that when invoked, will retrieve the field value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">SourceType</span></td>
+        <td><p>The type that contains the field</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">FieldType</span></td>
+        <td><p>The type of the field</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_CreateFieldSetter__2_System_Reflection_FieldInfo_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.CreateFieldSetter%60%602(System.Reflection.FieldInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L160">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_CreateFieldSetter_" data-uid="WeaverCore.Utilities.ReflectionUtilities.CreateFieldSetter*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_CreateFieldSetter__2_System_Reflection_FieldInfo_" data-uid="WeaverCore.Utilities.ReflectionUtilities.CreateFieldSetter``2(System.Reflection.FieldInfo)">CreateFieldSetter&lt;SourceType, FieldType&gt;(FieldInfo)</h4>
+  <div class="markdown level1 summary"><p>Creates a funciton that sets a field value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Action&lt;SourceType, FieldType&gt; CreateFieldSetter&lt;SourceType, FieldType&gt;(FieldInfo field)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.FieldInfo</span></td>
+        <td><span class="parametername">field</span></td>
+        <td><p>The field to create a setter for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;SourceType, FieldType&gt;</td>
+        <td><p>Returns a function that when invoked, will set the field value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">SourceType</span></td>
+        <td><p>The type that contains the field</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">FieldType</span></td>
+        <td><p>The type of the field</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_CreateFieldSetter__2_System_String_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.CreateFieldSetter%60%602(System.String%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L196">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_CreateFieldSetter_" data-uid="WeaverCore.Utilities.ReflectionUtilities.CreateFieldSetter*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_CreateFieldSetter__2_System_String_System_Reflection_BindingFlags_" data-uid="WeaverCore.Utilities.ReflectionUtilities.CreateFieldSetter``2(System.String,System.Reflection.BindingFlags)">CreateFieldSetter&lt;SourceType, FieldType&gt;(String, BindingFlags)</h4>
+  <div class="markdown level1 summary"><p>Creates a funciton that sets a field value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Action&lt;SourceType, FieldType&gt; CreateFieldSetter&lt;SourceType, FieldType&gt;(string fieldName, BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fieldName</span></td>
+        <td><p>The name of the field to create a setter for</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The binding flags used to find the field</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;SourceType, FieldType&gt;</td>
+        <td><p>Returns a function that when invoked, will set the field value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">SourceType</span></td>
+        <td><p>The type that contains the field</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">FieldType</span></td>
+        <td><p>The type of the field</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_ExecuteMethodsWithAttribute__1_System_Func_System_Reflection_MethodInfo___0_System_Boolean__System_Reflection_BindingFlags_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.ExecuteMethodsWithAttribute%60%601(System.Func%7BSystem.Reflection.MethodInfo%2C%60%600%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L447">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_ExecuteMethodsWithAttribute_" data-uid="WeaverCore.Utilities.ReflectionUtilities.ExecuteMethodsWithAttribute*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_ExecuteMethodsWithAttribute__1_System_Func_System_Reflection_MethodInfo___0_System_Boolean__System_Reflection_BindingFlags_System_Boolean_" data-uid="WeaverCore.Utilities.ReflectionUtilities.ExecuteMethodsWithAttribute``1(System.Func{System.Reflection.MethodInfo,``0,System.Boolean},System.Reflection.BindingFlags,System.Boolean)">ExecuteMethodsWithAttribute&lt;AttriType&gt;(Func&lt;MethodInfo, AttriType, Boolean&gt;, BindingFlags, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Finds all methods that have a certain attribute type applied to them, and executes them</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ExecuteMethodsWithAttribute&lt;AttriType&gt;(Func&lt;MethodInfo, AttriType, bool&gt; ExecuteIf = null, BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic, bool throwOnError = false)
+    where AttriType : Attribute</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Reflection.MethodInfo</span>, AttriType, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">ExecuteIf</span></td>
+        <td><p>If a delegate is specified here, then only the methods that satify this delegate will be executed</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The binding flags to determine what kind of methods to find</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">throwOnError</span></td>
+        <td><p>Should an exception be thrown if a method fails?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">AttriType</span></td>
+        <td><p>The type attribute to look for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_ExecuteMethodsWithAttribute__1_System_Reflection_Assembly_System_Func_System_Reflection_MethodInfo___0_System_Boolean__System_Reflection_BindingFlags_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.ExecuteMethodsWithAttribute%60%601(System.Reflection.Assembly%2CSystem.Func%7BSystem.Reflection.MethodInfo%2C%60%600%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L399">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_ExecuteMethodsWithAttribute_" data-uid="WeaverCore.Utilities.ReflectionUtilities.ExecuteMethodsWithAttribute*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_ExecuteMethodsWithAttribute__1_System_Reflection_Assembly_System_Func_System_Reflection_MethodInfo___0_System_Boolean__System_Reflection_BindingFlags_System_Boolean_" data-uid="WeaverCore.Utilities.ReflectionUtilities.ExecuteMethodsWithAttribute``1(System.Reflection.Assembly,System.Func{System.Reflection.MethodInfo,``0,System.Boolean},System.Reflection.BindingFlags,System.Boolean)">ExecuteMethodsWithAttribute&lt;AttriType&gt;(Assembly, Func&lt;MethodInfo, AttriType, Boolean&gt;, BindingFlags, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Finds all methods in an assembly that have a certain attribute type applied to them, and executes them</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ExecuteMethodsWithAttribute&lt;AttriType&gt;(Assembly assembly, Func&lt;MethodInfo, AttriType, bool&gt; ExecuteIf = null, BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic, bool throwOnError = false)
+    where AttriType : Attribute</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.Assembly</span></td>
+        <td><span class="parametername">assembly</span></td>
+        <td><p>The assembly to look for the methods under</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Reflection.MethodInfo</span>, AttriType, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">ExecuteIf</span></td>
+        <td><p>If a delegate is specified here, then only the methods that satify this delegate will be executed</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The binding flags to determine what kind of methods to find</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">throwOnError</span></td>
+        <td><p>Should an exception be thrown if a method fails?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">AttriType</span></td>
+        <td><p>The type attribute to look for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_GetChildrenOfType_System_Type_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.GetChildrenOfType(System.Type%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L26">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_GetChildrenOfType_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetChildrenOfType*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_GetChildrenOfType_System_Type_System_Boolean_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetChildrenOfType(System.Type,System.Boolean)">GetChildrenOfType(Type, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Retrives all types that inherit from <code data-dev-comment-type="paramref" class="paramref">parentType</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;Type&gt; GetChildrenOfType(Type parentType, bool includeAbstract = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span></td>
+        <td><span class="parametername">parentType</span></td>
+        <td><p>The common base class to check for</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">includeAbstract</span></td>
+        <td><p>Should abstract classes also be included?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Type</span>&gt;</td>
+        <td><p>Returns a list of all types that inherit from <code data-dev-comment-type="paramref" class="paramref">parentType</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_GetChildrenOfType__1_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.GetChildrenOfType%60%601(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L72">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_GetChildrenOfType_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetChildrenOfType*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_GetChildrenOfType__1_System_Boolean_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetChildrenOfType``1(System.Boolean)">GetChildrenOfType&lt;T&gt;(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Retrives all types that inherit from type <code data-dev-comment-type="typeparamref" class="typeparamref">T</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;Type&gt; GetChildrenOfType&lt;T&gt;(bool includeAbstract = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">includeAbstract</span></td>
+        <td><p>Should abstract classes also be included?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Type</span>&gt;</td>
+        <td><p>Returns a list of all types that inherit from type <code data-dev-comment-type="typeparamref" class="typeparamref">T</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The common base class to check for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_GetMethod__1_System_String_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.GetMethod%60%601(System.String%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L270">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_GetMethod_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethod*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_GetMethod__1_System_String_System_Reflection_BindingFlags_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethod``1(System.String,System.Reflection.BindingFlags)">GetMethod&lt;InstanceType&gt;(String, BindingFlags)</h4>
+  <div class="markdown level1 summary"><p>Finds a method on a given type and returns a MethodInfo object for it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MethodInfo GetMethod&lt;InstanceType&gt;(string methodName, BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">methodName</span></td>
+        <td><p>The name of the method to find</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The binding flags to find the method with</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.MethodInfo</span></td>
+        <td><p>Returns a method info object for the fmound method</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">InstanceType</span></td>
+        <td><p>The instance type to find the method under</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute__1_System_Reflection_Assembly_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute%60%601(System.Reflection.Assembly%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L299">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute__1_System_Reflection_Assembly_System_Reflection_BindingFlags_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute``1(System.Reflection.Assembly,System.Reflection.BindingFlags)">GetMethodsWithAttribute&lt;AttriType&gt;(Assembly, BindingFlags)</h4>
+  <div class="markdown level1 summary"><p>Finds all methods in an assembly that have a certain attribute type applied to them</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;(MethodInfo method, AttriType attribute)&gt; GetMethodsWithAttribute&lt;AttriType&gt;(Assembly assembly, BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+    where AttriType : Attribute</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.Assembly</span></td>
+        <td><span class="parametername">assembly</span></td>
+        <td><p>The assembly to look for the methods under</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The binding flags to determine what kind of methods to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Reflection.MethodInfo</span>, AttriType&gt;&gt;</td>
+        <td><p>Returns all methods in the assembly with the specified attribute type applied to them</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">AttriType</span></td>
+        <td><p>The type attribute to look for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute__1_System_Reflection_Assembly_System_Type___System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute%60%601(System.Reflection.Assembly%2CSystem.Type%5B%5D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L331">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute__1_System_Reflection_Assembly_System_Type___System_Reflection_BindingFlags_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute``1(System.Reflection.Assembly,System.Type[],System.Reflection.BindingFlags)">GetMethodsWithAttribute&lt;AttriType&gt;(Assembly, Type[], BindingFlags)</h4>
+  <div class="markdown level1 summary"><p>Finds all methods in an assembly that have a certain attribute type applied to them and accept certain parameters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;(MethodInfo, AttriType)&gt; GetMethodsWithAttribute&lt;AttriType&gt;(Assembly assembly, Type[] paramTypes, BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+    where AttriType : Attribute</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.Assembly</span></td>
+        <td><span class="parametername">assembly</span></td>
+        <td><p>The assembly to look for the methods under</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Type</span>[]</td>
+        <td><span class="parametername">paramTypes</span></td>
+        <td><p>The type of parameters that the methods must have</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The binding flags to determine what kind of methods to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Reflection.MethodInfo</span>, AttriType&gt;&gt;</td>
+        <td><p>Returns all methods with the specified attribute type applied to them</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">AttriType</span></td>
+        <td><p>The type attribute to look for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute__1_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute%60%601(System.Reflection.BindingFlags)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L281">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute__1_System_Reflection_BindingFlags_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute``1(System.Reflection.BindingFlags)">GetMethodsWithAttribute&lt;AttriType&gt;(BindingFlags)</h4>
+  <div class="markdown level1 summary"><p>Finds all methods that have a certain attribute type applied to them</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;(MethodInfo method, AttriType attribute)&gt; GetMethodsWithAttribute&lt;AttriType&gt;(BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+    where AttriType : Attribute</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The binding flags to determine what kind of methods to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Reflection.MethodInfo</span>, AttriType&gt;&gt;</td>
+        <td><p>Returns all methods with the specified attribute type applied to them</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">AttriType</span></td>
+        <td><p>The type attribute to look for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute__1_System_Type___System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute%60%601(System.Type%5B%5D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L312">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_GetMethodsWithAttribute__1_System_Type___System_Reflection_BindingFlags_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetMethodsWithAttribute``1(System.Type[],System.Reflection.BindingFlags)">GetMethodsWithAttribute&lt;AttriType&gt;(Type[], BindingFlags)</h4>
+  <div class="markdown level1 summary"><p>Finds all methods that have a certain attribute type applied to them and accept certain parameters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;(MethodInfo method, AttriType attribute)&gt; GetMethodsWithAttribute&lt;AttriType&gt;(Type[] paramTypes, BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+    where AttriType : Attribute</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Type</span>[]</td>
+        <td><span class="parametername">paramTypes</span></td>
+        <td><p>The type of parameters that the methods must have</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The binding flags to determine what kind of methods to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Reflection.MethodInfo</span>, AttriType&gt;&gt;</td>
+        <td><p>Returns all methods with the specified attribute type applied to them</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">AttriType</span></td>
+        <td><p>The type attribute to look for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_GetObjectsOfType__1_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.GetObjectsOfType%60%601(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L83">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_GetObjectsOfType_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetObjectsOfType*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_GetObjectsOfType__1_System_Boolean_" data-uid="WeaverCore.Utilities.ReflectionUtilities.GetObjectsOfType``1(System.Boolean)">GetObjectsOfType&lt;T&gt;(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Retrieves all types that inherit from type <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>, and create instances of each of them</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; GetObjectsOfType&lt;T&gt;(bool throwOnFailure = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">throwOnFailure</span></td>
+        <td><p>If an object fails to instantiate, should an exception be thrown? If false, that object will be skipped over</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
+        <td><p>Returns a list of all objects that inherit from type <code data-dev-comment-type="typeparamref" class="typeparamref">T</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The common base class to check for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate__1_System_Reflection_MethodInfo_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate%60%601(System.Reflection.MethodInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L207">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate_" data-uid="WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate__1_System_Reflection_MethodInfo_" data-uid="WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate``1(System.Reflection.MethodInfo)">MethodToDelegate&lt;DelegateType&gt;(MethodInfo)</h4>
+  <div class="markdown level1 summary"><p>Converts a MethodInfo object into a callable delegate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DelegateType MethodToDelegate&lt;DelegateType&gt;(MethodInfo method)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.MethodInfo</span></td>
+        <td><span class="parametername">method</span></td>
+        <td><p>The method info</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DelegateType</span></td>
+        <td><p>The delegate that will call the method</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">DelegateType</span></td>
+        <td><p>The delegate type to convert type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate__1_System_Reflection_MethodInfo_System_Object_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate%60%601(System.Reflection.MethodInfo%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L223">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate_" data-uid="WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate__1_System_Reflection_MethodInfo_System_Object_" data-uid="WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate``1(System.Reflection.MethodInfo,System.Object)">MethodToDelegate&lt;DelegateType&gt;(MethodInfo, Object)</h4>
+  <div class="markdown level1 summary"><p>Converts a MethodInfo object into a callable delegate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DelegateType MethodToDelegate&lt;DelegateType&gt;(MethodInfo method, object instance)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.MethodInfo</span></td>
+        <td><span class="parametername">method</span></td>
+        <td><p>The method info</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">instance</span></td>
+        <td><p>The object instance that the method is bound to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DelegateType</span></td>
+        <td><p>The delegate that will call the method</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">DelegateType</span></td>
+        <td><p>The delegate type to convert type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate__2_System_String___1_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate%60%602(System.String%2C%60%601%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L254">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate_" data-uid="WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate__2_System_String___1_System_Reflection_BindingFlags_" data-uid="WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate``2(System.String,``1,System.Reflection.BindingFlags)">MethodToDelegate&lt;DelegateType, InstanceType&gt;(String, InstanceType, BindingFlags)</h4>
+  <div class="markdown level1 summary"><p>Converts a MethodInfo object into a callable delegate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DelegateType MethodToDelegate&lt;DelegateType, InstanceType&gt;(string methodName, InstanceType instance, BindingFlags Flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">methodName</span></td>
+        <td><p>The name of the method</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">InstanceType</span></td>
+        <td><span class="parametername">instance</span></td>
+        <td><p>The instance object the method is bound to</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">Flags</span></td>
+        <td><p>The binding flags used to find the method on the object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DelegateType</span></td>
+        <td><p>The delegate that will call the method</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">DelegateType</span></td>
+        <td><p>The delegate type to convert type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">InstanceType</span></td>
+        <td><p>The instance type the method is bound to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate__2_System_String_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate%60%602(System.String%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L240">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate_" data-uid="WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate*"></a>
+  <h4 id="WeaverCore_Utilities_ReflectionUtilities_MethodToDelegate__2_System_String_System_Reflection_BindingFlags_" data-uid="WeaverCore.Utilities.ReflectionUtilities.MethodToDelegate``2(System.String,System.Reflection.BindingFlags)">MethodToDelegate&lt;DelegateType, InstanceType&gt;(String, BindingFlags)</h4>
+  <div class="markdown level1 summary"><p>Converts a MethodInfo object into a callable delegate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DelegateType MethodToDelegate&lt;DelegateType, InstanceType&gt;(string methodName, BindingFlags Flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">methodName</span></td>
+        <td><p>The name of the method</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">Flags</span></td>
+        <td><p>The binding flags used to find the method on the object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DelegateType</span></td>
+        <td><p>The delegate that will call the method</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">DelegateType</span></td>
+        <td><p>The delegate type to convert type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">InstanceType</span></td>
+        <td><p>The instance type the method is bound to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_ReflectionUtilities.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.ReflectionUtilities%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/ReflectionUtilities.cs/#L18" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

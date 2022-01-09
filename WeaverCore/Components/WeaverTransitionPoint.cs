@@ -5,13 +5,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using WeaverCore;
+using WeaverCore.Assets.Components;
 using WeaverCore.Attributes;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	public class WeaverTransitionPoint : TransitionPoint
+    /// <summary>
+    /// An area in the game the player can transition to/from a scene
+    /// </summary>
+    public class WeaverTransitionPoint : TransitionPoint
 	{
 		[Header("Gate Type")]
 		[SerializeField]
@@ -35,52 +38,42 @@ unknown -> Don't use")]
 		bool enableAtmosSnapshot = false;
 		[SerializeField]
 		[Tooltip("The atmos snapshot that is applied when the player touches this transition point")]
-		private Atmos.SnapshotType AtmosSnapshot = Atmos.SnapshotType.atNone;
+		private Atmos.SnapshotType m_AtmosSnapshot = Atmos.SnapshotType.atNone;
 
 		[SerializeField]
 		[Tooltip("Should the TransitionPoint change the enviro effects snapshot when the player touches it?")]
 		bool enableEnviroSnapshot = false;
 		[SerializeField]
 		[Tooltip("The enviro effects snapshot that is applied when the player touches this transition point")]
-		private EnviroEffects.SnapshotType EnviroSnapshot = EnviroEffects.SnapshotType.enCliffs;
+		private EnviroEffects.SnapshotType m_EnviroSnapshot = EnviroEffects.SnapshotType.enCliffs;
 
 		[SerializeField]
 		[Tooltip("Should the TransitionPoint change the actor snapshot when the player touches it?")]
 		bool enableActorSnapshot = true;
 		[SerializeField]
 		[Tooltip("The actor snapshot that is applied when the player touches this transition point")]
-		private ActorSounds.SnapshotType ActorSnapshot = ActorSounds.SnapshotType.Off;
+		private ActorSounds.SnapshotType m_ActorSnapshot = ActorSounds.SnapshotType.Off;
 
 		[SerializeField]
 		[Tooltip("Should the TransitionPoint change the music snapshot when the player touches it?")]
 		bool enableMusicSnapshot = false;
 		[SerializeField]
 		[Tooltip("The music snapshot that is applied when the player touches this transition point")]
-		private Music.SnapshotType MusicSnapshot = Music.SnapshotType.Normal;
+		private Music.SnapshotType m_MusicSnapshot = Music.SnapshotType.Normal;
 
 		[OnHarmonyPatch]
 		static void Init(HarmonyPatcher patcher)
 		{
-			//Debug.Log("Patching Transition Points");
 			patcher.Patch(typeof(TransitionPoint).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance), null, typeof(WeaverTransitionPoint).GetMethod("Start_Detour", BindingFlags.NonPublic | BindingFlags.Static));
 			patcher.Patch(typeof(TransitionPoint).GetMethod("GetGatePosition", BindingFlags.Public | BindingFlags.Instance), typeof(WeaverTransitionPoint).GetMethod("Weaver_GetGatePosition", BindingFlags.NonPublic | BindingFlags.Static), null);
-			//Debug.Log("Patching Transition Points DONE");
-			//new Detour(typeof(TransitionPoint).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance), typeof(WeaverTransitionPoint).GetMethod("Start_Detour",BindingFlags.NonPublic | BindingFlags.Static));
-			//new Detour(typeof(TransitionPoint).GetMethod("GetGatePosition", BindingFlags.Public | BindingFlags.Instance), typeof(WeaverTransitionPoint).GetMethod("Weaver_GetGatePosition", BindingFlags.NonPublic | BindingFlags.Static));
 		}
 
 		static void Start_Detour(TransitionPoint __instance)
 		{
-			//Debug.LogError("A");
-			//orig(self);
-			//Debug.LogError("B");
 			if (__instance is WeaverTransitionPoint wtp)
 			{
-				//Debug.LogError("C");
 				wtp.Weaver_Start();
-				//Debug.LogError("D");
 			}
-			//Debug.LogError("E");
 		}
 
 		static bool Weaver_GetGatePosition(TransitionPoint __instance, ref GatePosition __result)
@@ -99,19 +92,39 @@ unknown -> Don't use")]
 		void Weaver_Start()
 		{
 			OnValidate();
+            if (gateType == GatePosition.door && GetComponent<DoorControl>() == null)
+            {
+				gameObject.AddComponent<DoorControl>();
+            }
 		}
 
-		private void Reset()
+        private void OnEnable()
+        {
+            if (TryGetComponent<DoorControl>(out var door))
+            {
+				door.enabled = true;
+            }
+        }
+
+        private void OnDisable()
+        {
+			if (TryGetComponent<DoorControl>(out var door))
+			{
+				door.enabled = false;
+			}
+		}
+
+        private void Reset()
 		{
 			UnboundCoroutine.Start(SetMasks(gameObject));
 		}
 
 		private void OnValidate()
 		{
-			atmosSnapshot = enableAtmosSnapshot ? Atmos.GetSnapshot(AtmosSnapshot) : null;
-			enviroSnapshot = enableEnviroSnapshot ? EnviroEffects.GetSnapshot(EnviroSnapshot) : null;
-			actorSnapshot = enableActorSnapshot ? ActorSounds.GetSnapshot(ActorSnapshot) : null;
-			musicSnapshot = enableMusicSnapshot ? Music.GetSnapshot(MusicSnapshot) : null;
+			atmosSnapshot = enableAtmosSnapshot ? Atmos.GetSnapshot(m_AtmosSnapshot) : null;
+			enviroSnapshot = enableEnviroSnapshot ? EnviroEffects.GetSnapshot(m_EnviroSnapshot) : null;
+			actorSnapshot = enableActorSnapshot ? ActorSounds.GetSnapshot(m_ActorSnapshot) : null;
+			musicSnapshot = enableMusicSnapshot ? Music.GetSnapshot(m_MusicSnapshot) : null;
 			UnboundCoroutine.Start(SetMasks(gameObject));
 		}
 
@@ -123,6 +136,74 @@ unknown -> Don't use")]
 				gameObject.tag = "TransitionGate";
 				gameObject.layer = LayerMask.NameToLayer("Hero Detector");
 			}
+		}
+
+		public IEnumerator DoTransition(string heroAnimation, float transitionTime = 0.3f)
+        {
+			var type = typeof(TransitionPoint);
+			if (atmosSnapshot != null)
+			{
+				atmosSnapshot.TransitionTo(transitionTime);
+			}
+			if (enviroSnapshot != null)
+			{
+				enviroSnapshot.TransitionTo(transitionTime);
+			}
+			if (actorSnapshot != null)
+			{
+				actorSnapshot.TransitionTo(transitionTime);
+			}
+			if (musicSnapshot != null)
+			{
+				musicSnapshot.TransitionTo(transitionTime);
+			}
+
+            //TODO : SEND COMPASS EVENT
+
+            if (!string.IsNullOrEmpty(heroAnimation))
+            {
+				HeroUtilities.PlayPlayerClip(heroAnimation);
+            }
+
+			type.GetField("activated", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(this, true);
+			//activated = true;
+			lastEntered = base.gameObject.name;
+
+			var f = type.GetField("OnBeforeTransition",BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
+
+			var onBeforeTransition = f.GetValue(this) as MulticastDelegate;
+
+			//var onBeforeTransition = type.GetEvent("OnBeforeTransition").GetOtherMethods
+
+			//onBeforeTransition.Invoke(this, null);
+			if (onBeforeTransition != null)
+			{
+				onBeforeTransition.DynamicInvoke();
+			}
+
+			EventManager.SendEventToGameObject("DOOR ENTER", gameObject, gameObject);
+			HeroController.instance.RelinquishControl();
+			HeroController.instance.StopAnimationControl();
+			PlayerData.instance.SetBool("disablePause", true);
+
+			EventManager.SendEventToGameObject("FADE OUT", WeaverCamera.Instance.Cameras.mainCamera.gameObject, gameObject);
+
+			yield return new WaitForSeconds(0.5f);
+
+			PlayerData.instance.SetBool("isInvincible", true);
+
+			GameManager.instance.BeginSceneTransition(new GameManager.SceneLoadInfo
+			{
+				SceneName = targetScene,
+				EntryGateName = entryPoint,
+				HeroLeaveDirection = GetGatePosition(),
+				EntryDelay = entryDelay,
+				WaitForSceneTransitionCameraFade = true,
+				//PreventCameraFadeOut = (customFadeFSM != null),
+				Visualization = sceneLoadVisualization,
+				AlwaysUnloadUnusedAssets = false,
+				forceWaitFetch = false
+			});
 		}
 	}
 

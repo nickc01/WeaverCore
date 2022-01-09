@@ -1,0 +1,2322 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TransformUtilities
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TransformUtilities
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WeaverCore.Utilities.TransformUtilities">
+  
+  
+  <h1 id="WeaverCore_Utilities_TransformUtilities" data-uid="WeaverCore.Utilities.TransformUtilities" class="text-break">Class TransformUtilities
+  </h1>
+  <div class="markdown level0 summary"><p>Contains many utility functions related to transforms</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">TransformUtilities</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.Utilities.html">WeaverCore.Utilities</a></h6>
+  <h6><strong>Assembly</strong>: WeaverCore.dll</h6>
+  <h5 id="WeaverCore_Utilities_TransformUtilities_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class TransformUtilities</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetHashOfTransform_UnityEngine_Transform_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetHashOfTransform(UnityEngine.Transform%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L502">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetHashOfTransform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetHashOfTransform*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetHashOfTransform_UnityEngine_Transform_System_Boolean_" data-uid="WeaverCore.Utilities.TransformUtilities.GetHashOfTransform(UnityEngine.Transform,System.Boolean)">GetHashOfTransform(Transform, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets a hash of the transform and it's hiearchy</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GetHashOfTransform(Transform transform, bool includeChildren = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td><p>The transform to check</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">includeChildren</span></td>
+        <td><p>Should child objects also be included in the hash?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Returns the hash of the transform's hiearchy</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetXLocalPosition_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetXLocalPosition(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L98">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetXLocalPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXLocalPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetXLocalPosition_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXLocalPosition(UnityEngine.Transform)">GetXLocalPosition(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the local x position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetXLocalPosition(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetXLocalRotation_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetXLocalRotation(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L228">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetXLocalRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXLocalRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetXLocalRotation_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXLocalRotation(UnityEngine.Transform)">GetXLocalRotation(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the local x rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetXLocalRotation(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetXLocalScale_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetXLocalScale(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L149">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetXLocalScale_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXLocalScale*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetXLocalScale_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXLocalScale(UnityEngine.Transform)">GetXLocalScale(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the local x scale of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetXLocalScale(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetXPosition_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetXPosition(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L19">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetXPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetXPosition_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXPosition(UnityEngine.Transform)">GetXPosition(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the x position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetXPosition(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetXRotation_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetXRotation(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L307">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetXRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetXRotation_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetXRotation(UnityEngine.Transform)">GetXRotation(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the x rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetXRotation(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetYLocalPosition_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetYLocalPosition(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L115">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetYLocalPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYLocalPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetYLocalPosition_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYLocalPosition(UnityEngine.Transform)">GetYLocalPosition(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the local y position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetYLocalPosition(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetYLocalRotation_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetYLocalRotation(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L245">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetYLocalRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYLocalRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetYLocalRotation_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYLocalRotation(UnityEngine.Transform)">GetYLocalRotation(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the local y rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetYLocalRotation(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetYLocalScale_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetYLocalScale(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L166">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetYLocalScale_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYLocalScale*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetYLocalScale_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYLocalScale(UnityEngine.Transform)">GetYLocalScale(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the local y scale of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetYLocalScale(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetYPosition_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetYPosition(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L36">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetYPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetYPosition_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYPosition(UnityEngine.Transform)">GetYPosition(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the y position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetYPosition(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetYRotation_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetYRotation(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L324">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetYRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetYRotation_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetYRotation(UnityEngine.Transform)">GetYRotation(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the y rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetYRotation(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetZLocalPosition_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetZLocalPosition(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L132">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetZLocalPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZLocalPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetZLocalPosition_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZLocalPosition(UnityEngine.Transform)">GetZLocalPosition(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the local z position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetZLocalPosition(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetZLocalRotation_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetZLocalRotation(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L262">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetZLocalRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZLocalRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetZLocalRotation_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZLocalRotation(UnityEngine.Transform)">GetZLocalRotation(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the local z rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetZLocalRotation(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetZLocalScale_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetZLocalScale(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L183">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetZLocalScale_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZLocalScale*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetZLocalScale_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZLocalScale(UnityEngine.Transform)">GetZLocalScale(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the local z scale of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetZLocalScale(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetZPosition_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetZPosition(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L53">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetZPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetZPosition_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZPosition(UnityEngine.Transform)">GetZPosition(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the z position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetZPosition(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_GetZRotation_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.GetZRotation(UnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L341">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_GetZRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_GetZRotation_UnityEngine_Transform_" data-uid="WeaverCore.Utilities.TransformUtilities.GetZRotation(UnityEngine.Transform)">GetZRotation(Transform)</h4>
+  <div class="markdown level1 summary"><p>Gets the z rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetZRotation(this Transform transform)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_JitterObject_UnityEngine_GameObject_UnityEngine_Vector3_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.JitterObject(UnityEngine.GameObject%2CUnityEngine.Vector3%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L423">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_JitterObject_" data-uid="WeaverCore.Utilities.TransformUtilities.JitterObject*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_JitterObject_UnityEngine_GameObject_UnityEngine_Vector3_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.JitterObject(UnityEngine.GameObject,UnityEngine.Vector3,System.Single)">JitterObject(GameObject, Vector3, Single)</h4>
+  <div class="markdown level1 summary"><p>Will rapidly jitter an object until the coroutine gets cancelled</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator JitterObject(GameObject gameObject, Vector3 amount, float jitterFPS = InfinityF)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">gameObject</span></td>
+        <td><p>The object to jitter</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><span class="parametername">amount</span></td>
+        <td><p>The amount of jitter to be applied</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">jitterFPS</span></td>
+        <td><p>How fast the jitter should be applied</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_JitterObject_UnityEngine_Transform_UnityEngine_Vector3_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.JitterObject(UnityEngine.Transform%2CUnityEngine.Vector3%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L389">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_JitterObject_" data-uid="WeaverCore.Utilities.TransformUtilities.JitterObject*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_JitterObject_UnityEngine_Transform_UnityEngine_Vector3_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.JitterObject(UnityEngine.Transform,UnityEngine.Vector3,System.Single)">JitterObject(Transform, Vector3, Single)</h4>
+  <div class="markdown level1 summary"><p>Will rapidly jitter an object until the coroutine gets cancelled</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator JitterObject(Transform transform, Vector3 amount, float jitterFPS = InfinityF)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td><p>The transform to jitter</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><span class="parametername">amount</span></td>
+        <td><p>The amount of jitter to be applied</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">jitterFPS</span></td>
+        <td><p>How fast the jitter should be applied</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetLocalPosition_UnityEngine_Transform_System_Single_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetLocalPosition(UnityEngine.Transform%2CSystem.Single%2CSystem.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L205">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetLocalPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.SetLocalPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetLocalPosition_UnityEngine_Transform_System_Single_System_Single_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetLocalPosition(UnityEngine.Transform,System.Single,System.Single,System.Single)">SetLocalPosition(Transform, Single, Single, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local position of the transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3 SetLocalPosition(this Transform transform, float x = NaNF, float y = NaNF, float z = NaNF)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td><p>The transform to set</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The new local x-position to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The new local y-position to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">z</span></td>
+        <td><p>The new local z-position to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><p>Returns the new local position that has just been set</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetLocalRotation_UnityEngine_Transform_System_Single_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetLocalRotation(UnityEngine.Transform%2CSystem.Single%2CSystem.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L284">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetLocalRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.SetLocalRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetLocalRotation_UnityEngine_Transform_System_Single_System_Single_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetLocalRotation(UnityEngine.Transform,System.Single,System.Single,System.Single)">SetLocalRotation(Transform, Single, Single, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local rotation of the transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3 SetLocalRotation(this Transform transform, float x = NaNF, float y = NaNF, float z = NaNF)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td><p>The transform to set</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The new local x-rotation to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The new local y-rotation to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">z</span></td>
+        <td><p>The new local z-rotation to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><p>Returns the new local rotation that has just been set</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetPosition_UnityEngine_Transform_System_Single_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetPosition(UnityEngine.Transform%2CSystem.Single%2CSystem.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L75">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.SetPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetPosition_UnityEngine_Transform_System_Single_System_Single_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetPosition(UnityEngine.Transform,System.Single,System.Single,System.Single)">SetPosition(Transform, Single, Single, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the position of the transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3 SetPosition(this Transform transform, float x = NaNF, float y = NaNF, float z = NaNF)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td><p>The transform to set</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The new x-position to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The new y-position to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">z</span></td>
+        <td><p>The new z-position to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><p>Returns the new position that has just been set</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetRotation_UnityEngine_Transform_System_Single_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetRotation(UnityEngine.Transform%2CSystem.Single%2CSystem.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L363">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.SetRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetRotation_UnityEngine_Transform_System_Single_System_Single_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetRotation(UnityEngine.Transform,System.Single,System.Single,System.Single)">SetRotation(Transform, Single, Single, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the rotation of the transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3 SetRotation(this Transform transform, float x = NaNF, float y = NaNF, float z = NaNF)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td><p>The transform to set</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The new x-rotation to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The new y-rotation to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">z</span></td>
+        <td><p>The new z-rotation to set. If it's set to NaN, it will leave it unchanged</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><p>Returns the new rotation that has just been set</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetXLocalPosition_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetXLocalPosition(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L106">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetXLocalPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXLocalPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetXLocalPosition_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXLocalPosition(UnityEngine.Transform,System.Single)">SetXLocalPosition(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local x position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetXLocalPosition(this Transform transform, float newX)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newX</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetXLocalRotation_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetXLocalRotation(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L236">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetXLocalRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXLocalRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetXLocalRotation_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXLocalRotation(UnityEngine.Transform,System.Single)">SetXLocalRotation(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local x rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetXLocalRotation(this Transform transform, float newX)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newX</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetXLocalScale_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetXLocalScale(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L157">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetXLocalScale_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXLocalScale*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetXLocalScale_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXLocalScale(UnityEngine.Transform,System.Single)">SetXLocalScale(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local x scale of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetXLocalScale(this Transform transform, float newX)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newX</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetXPosition_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetXPosition(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L27">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetXPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetXPosition_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXPosition(UnityEngine.Transform,System.Single)">SetXPosition(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the x position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetXPosition(this Transform transform, float newX)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newX</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetXRotation_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetXRotation(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L315">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetXRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetXRotation_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetXRotation(UnityEngine.Transform,System.Single)">SetXRotation(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the x rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetXRotation(this Transform transform, float newX)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newX</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetYLocalPosition_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetYLocalPosition(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L123">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetYLocalPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYLocalPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetYLocalPosition_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYLocalPosition(UnityEngine.Transform,System.Single)">SetYLocalPosition(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local y position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetYLocalPosition(this Transform transform, float newY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newY</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetYLocalRotation_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetYLocalRotation(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L253">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetYLocalRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYLocalRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetYLocalRotation_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYLocalRotation(UnityEngine.Transform,System.Single)">SetYLocalRotation(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local y rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetYLocalRotation(this Transform transform, float newY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newY</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetYLocalScale_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetYLocalScale(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L174">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetYLocalScale_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYLocalScale*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetYLocalScale_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYLocalScale(UnityEngine.Transform,System.Single)">SetYLocalScale(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local y scale of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetYLocalScale(this Transform transform, float newY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newY</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetYPosition_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetYPosition(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L44">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetYPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetYPosition_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYPosition(UnityEngine.Transform,System.Single)">SetYPosition(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the y position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetYPosition(this Transform transform, float newY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newY</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetYRotation_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetYRotation(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L332">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetYRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetYRotation_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetYRotation(UnityEngine.Transform,System.Single)">SetYRotation(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the y rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetYRotation(this Transform transform, float newY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newY</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetZLocalPosition_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetZLocalPosition(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L140">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetZLocalPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZLocalPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetZLocalPosition_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZLocalPosition(UnityEngine.Transform,System.Single)">SetZLocalPosition(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local z position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetZLocalPosition(this Transform transform, float newZ)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newZ</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetZLocalRotation_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetZLocalRotation(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L270">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetZLocalRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZLocalRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetZLocalRotation_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZLocalRotation(UnityEngine.Transform,System.Single)">SetZLocalRotation(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local z rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetZLocalRotation(this Transform transform, float newZ)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newZ</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetZLocalScale_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetZLocalScale(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L191">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetZLocalScale_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZLocalScale*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetZLocalScale_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZLocalScale(UnityEngine.Transform,System.Single)">SetZLocalScale(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the local z scale of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetZLocalScale(this Transform transform, float newZ)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newZ</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetZPosition_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetZPosition(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L61">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetZPosition_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZPosition*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetZPosition_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZPosition(UnityEngine.Transform,System.Single)">SetZPosition(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the z position of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetZPosition(this Transform transform, float newZ)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newZ</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SetZRotation_UnityEngine_Transform_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SetZRotation(UnityEngine.Transform%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L349">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SetZRotation_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZRotation*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SetZRotation_UnityEngine_Transform_System_Single_" data-uid="WeaverCore.Utilities.TransformUtilities.SetZRotation(UnityEngine.Transform,System.Single)">SetZRotation(Transform, Single)</h4>
+  <div class="markdown level1 summary"><p>Sets the z rotation of a transform</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SetZRotation(this Transform transform, float newZ)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">transform</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">newZ</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SpawnRandomObjects_UnityEngine_GameObject_UnityEngine_Vector3_System_Int32_System_Int32_System_Single_System_Single_System_Single_System_Single_UnityEngine_Vector2_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SpawnRandomObjects(UnityEngine.GameObject%2CUnityEngine.Vector3%2CSystem.Int32%2CSystem.Int32%2CSystem.Single%2CSystem.Single%2CSystem.Single%2CSystem.Single%2CUnityEngine.Vector2)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L441">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SpawnRandomObjects_" data-uid="WeaverCore.Utilities.TransformUtilities.SpawnRandomObjects*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SpawnRandomObjects_UnityEngine_GameObject_UnityEngine_Vector3_System_Int32_System_Int32_System_Single_System_Single_System_Single_System_Single_UnityEngine_Vector2_" data-uid="WeaverCore.Utilities.TransformUtilities.SpawnRandomObjects(UnityEngine.GameObject,UnityEngine.Vector3,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,UnityEngine.Vector2)">SpawnRandomObjects(GameObject, Vector3, Int32, Int32, Single, Single, Single, Single, Vector2)</h4>
+  <div class="markdown level1 summary"><p>Spawns a bunch of new objects. The quantity, rigidbody velocity, velocity angle, and spawn origin are all randomized</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameObject[] SpawnRandomObjects(GameObject obj, Vector3 spawnPoint, int quantityMin, int quantityMax, float minVelocity, float maxVelocity, float angleMin, float angleMax, Vector2 originOffset = default(Vector2))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to spawn</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><span class="parametername">spawnPoint</span></td>
+        <td><p>The place where all the objects will spawn</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">quantityMin</span></td>
+        <td><p>The minimum amount of objects to spawn</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">quantityMax</span></td>
+        <td><p>The maximum amount of objects to spawn</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">minVelocity</span></td>
+        <td><p>The minimum velocity to be applied to each object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">maxVelocity</span></td>
+        <td><p>The maximum amount of velocity to be applied to each object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">angleMin</span></td>
+        <td><p>The minimum velocity angle to be applied to each object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">angleMax</span></td>
+        <td><p>The maximum velocity angle to be applied to each object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector2</span></td>
+        <td><span class="parametername">originOffset</span></td>
+        <td><p>How far away can objects spawn from the <code data-dev-comment-type="paramref" class="paramref">spawnPoint</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span>[]</td>
+        <td><p>Returns a list of all the objects that have been spawned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities_SpawnRandomObjects_WeaverCore_ObjectPool_UnityEngine_Vector3_System_Int32_System_Int32_System_Single_System_Single_System_Single_System_Single_UnityEngine_Vector2_.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities.SpawnRandomObjects(WeaverCore.ObjectPool%2CUnityEngine.Vector3%2CSystem.Int32%2CSystem.Int32%2CSystem.Single%2CSystem.Single%2CSystem.Single%2CSystem.Single%2CUnityEngine.Vector2)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L475">View Source</a>
+  </span>
+  <a id="WeaverCore_Utilities_TransformUtilities_SpawnRandomObjects_" data-uid="WeaverCore.Utilities.TransformUtilities.SpawnRandomObjects*"></a>
+  <h4 id="WeaverCore_Utilities_TransformUtilities_SpawnRandomObjects_WeaverCore_ObjectPool_UnityEngine_Vector3_System_Int32_System_Int32_System_Single_System_Single_System_Single_System_Single_UnityEngine_Vector2_" data-uid="WeaverCore.Utilities.TransformUtilities.SpawnRandomObjects(WeaverCore.ObjectPool,UnityEngine.Vector3,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,UnityEngine.Vector2)">SpawnRandomObjects(ObjectPool, Vector3, Int32, Int32, Single, Single, Single, Single, Vector2)</h4>
+  <div class="markdown level1 summary"><p>Spawns a bunch of new objects. The quantity, rigidbody velocity, velocity angle, and spawn origin are all randomized</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameObject[] SpawnRandomObjects(ObjectPool pool, Vector3 spawnPoint, int quantityMin, int quantityMax, float minVelocity, float maxVelocity, float angleMin, float angleMax, Vector2 originOffset = default(Vector2))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a></td>
+        <td><span class="parametername">pool</span></td>
+        <td><p>The pool to spawn the objects from</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><span class="parametername">spawnPoint</span></td>
+        <td><p>The place where all the objects will spawn</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">quantityMin</span></td>
+        <td><p>The minimum amount of objects to spawn</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">quantityMax</span></td>
+        <td><p>The maximum amount of objects to spawn</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">minVelocity</span></td>
+        <td><p>The minimum velocity to be applied to each object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">maxVelocity</span></td>
+        <td><p>The maximum amount of velocity to be applied to each object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">angleMin</span></td>
+        <td><p>The minimum velocity angle to be applied to each object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">angleMax</span></td>
+        <td><p>The maximum velocity angle to be applied to each object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector2</span></td>
+        <td><span class="parametername">originOffset</span></td>
+        <td><p>How far away can objects spawn from the <code data-dev-comment-type="paramref" class="paramref">spawnPoint</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span>[]</td>
+        <td><p>Returns a list of all the objects that have been spawned</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Utilities_TransformUtilities.md&amp;value=---%0Auid%3A%20WeaverCore.Utilities.TransformUtilities%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Utilities/TransformUtilities.cs/#L14" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

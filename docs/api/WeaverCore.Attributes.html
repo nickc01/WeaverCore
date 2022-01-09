@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace WeaverCore.Attributes
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace WeaverCore.Attributes
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WeaverCore.Attributes">
+  
+  <h1 id="WeaverCore_Attributes" data-uid="WeaverCore.Attributes" class="text-break">Namespace WeaverCore.Attributes
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="WeaverCore.Attributes.AfterBuildAttribute.html">AfterBuildAttribute</a></h4>
+      <section><p>Called after the mod build process finished, or when the build process has failed. Can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.AfterCameraLoadAttribute.html">AfterCameraLoadAttribute</a></h4>
+      <section><p>Called when the in-game camera has loaded. Can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.AfterModLoadAttribute.html">AfterModLoadAttribute</a></h4>
+      <section><p>Called after a <a class="xref" href="Modding.Mod.html">Mod</a> of a specific type has loaded. Can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.AfterModUnloadAttribute.html">AfterModUnloadAttribute</a></h4>
+      <section><p>Called after a <a class="xref" href="Modding.Mod.html">Mod</a> of a specific type has unloaded. Can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.BeforeBuildAttribute.html">BeforeBuildAttribute</a></h4>
+      <section><p>Called before the mod build process begins. Can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.ExcludeFieldFromPoolAttribute.html">ExcludeFieldFromPoolAttribute</a></h4>
+      <section><p>Excludes a field from being modified by an <a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a></p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.OnFeatureLoadAttribute.html">OnFeatureLoadAttribute</a></h4>
+      <section><p>Called when a registry feature is loaded. Can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.OnFeatureUnloadAttribute.html">OnFeatureUnloadAttribute</a></h4>
+      <section><p>Called when a registry feature is unloaded. Can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.OnHarmonyPatchAttribute.html">OnHarmonyPatchAttribute</a></h4>
+      <section><p>Called for patching a method with a <a class="xref" href="WeaverCore.HarmonyPatcher.html">HarmonyPatcher</a></p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.OnInitAttribute.html">OnInitAttribute</a></h4>
+      <section><p>In the Unity Editor, this is called when the Unity Editor is loaded</p>
+<p>In Hollow Knight, this is called when the game starts</p>
+<p>This can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.OnRegistryLoadAttribute.html">OnRegistryLoadAttribute</a></h4>
+      <section><p>Called when a registry is loaded. This can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.OnRegistryUnloadAttribute.html">OnRegistryUnloadAttribute</a></h4>
+      <section><p>Called when a registry is unloaded. This can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.OnRuntimeInitAttribute.html">OnRuntimeInitAttribute</a></h4>
+      <section><p>In the Unity Editor, this is called when you enter play mode</p>
+<p>In Hollow Knight, this is called when the game starts</p>
+<p>This can be attached to a static method</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.PriorityAttribute.html">PriorityAttribute</a></h4>
+      <section><p>An attribute that allows you to specify a priority, changing the order this attribute gets processed</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.PriorityAttribute.MethodSorter-1.html">PriorityAttribute.MethodSorter&lt;T&gt;</a></h4>
+      <section><p>Sorts pairs of methods/attributes by their priority</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.PriorityAttribute.Sorter-1.html">PriorityAttribute.Sorter&lt;T&gt;</a></h4>
+      <section><p>Sorts attributes by their priority</p>
+</section>
+      <h4><a class="xref" href="WeaverCore.Attributes.ShowFeatureAttribute.html">ShowFeatureAttribute</a></h4>
+      <section><p>Adding this attribute to a class allows it to be added to a registry</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

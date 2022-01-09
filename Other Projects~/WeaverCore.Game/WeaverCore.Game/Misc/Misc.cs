@@ -33,35 +33,6 @@ namespace WeaverCore.Game
 			int infoAttackType = (int)hit.AttackType;
 
 			var attackType = (AttackTypes)infoAttackType;
-			/*AttackTypes attackType = AttackTypes.Generic;
-
-			switch (hit.AttackType)
-			{
-				case AttackType.Nail:
-					attackType = AttackTypes.Nail;
-					break;
-				case AttackType.Generic:
-					attackType = AttackTypes.Generic;
-					break;
-				case AttackType.Spell:
-					attackType = AttackTypes.Spell;
-					break;
-				case AttackType.Acid:
-					attackType = AttackTypes.Acid;
-					break;
-				case AttackType.Splatter:
-					attackType = AttackTypes.Splatter;
-					break;
-				case AttackType.RuinsWater:
-					attackType = AttackTypes.RuinsWater;
-					break;
-				case AttackType.SharpShadow:
-					attackType = AttackTypes.SharpShadow;
-					break;
-				case AttackType.NailBeam:
-					attackType = AttackTypes.NailBeam;
-					break;
-			}*/
 
 			return new HitInstance()
 			{

@@ -10,6 +10,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Tools
 {
+	/// <summary>
+	/// Used in the WeaverCore Debug Tools to dump the animations of an in-game object
+	/// </summary>
 	public class DumpAnimationMapsTool : ToolsArea.ToolAction
 	{
 		[Serializable]
@@ -55,11 +58,6 @@ namespace WeaverCore.Game.Tools
 
 		public static void DumpAnimatorMap(tk2dSpriteAnimator animator, DirectoryInfo dumpLocation)
 		{
-			/*var sprite = animator.GetComponent<tk2dSprite>();
-			if (sprite != null)
-			{
-				DumpSpritesTool.DumpObjectSprites(sprite, dumpLocation);
-			}*/
 			dumpLocation.Create();
 			var file = dumpLocation.AddSlash() + $"{animator.gameObject.name}.animmap";
 
@@ -72,12 +70,6 @@ namespace WeaverCore.Game.Tools
 					collections.Add(frame.spriteCollection);
 				}
 			}
-
-			//Dictionary<tk2dSpriteCollectionData, List<string>> textureNames = new Dictionary<tk2dSpriteCollectionData, List<string>>();
-
-			//List<tk2dSpriteCollectionData> collections = new List<tk2dSpriteCollectionData>();
-			//List<string> textureNames = new List<string>();
-
 			List<Dump.CollectionTextures> collectionTextures = new List<Dump.CollectionTextures>();
 
 			foreach (var collection in collections)
@@ -87,7 +79,6 @@ namespace WeaverCore.Game.Tools
 					collection = collection,
 					TextureNames = collection.textures.Select(t => collection.spriteCollectionName + "_" + t.name).ToList()
 				});
-				//textureNames.AddRange(collection.textures.Select(t => t.name));
 			}
 
 			var sourceData = new Dump
@@ -95,12 +86,7 @@ namespace WeaverCore.Game.Tools
 				animation = animator.Library,
 				collectionTextures = collectionTextures
 			};
-			/*var sourceData = new Dump
-			{
-				animation = animator.Library,
-				TextureNames = 
-		};*/
-			//var result = JsonUtility.ToJson(sourceData);
+
 			var result = JsonConvert.SerializeObject(sourceData, null, Formatting.Indented, new JsonSerializerSettings
 			{
 				ReferenceLoopHandling = ReferenceLoopHandling.Ignore,

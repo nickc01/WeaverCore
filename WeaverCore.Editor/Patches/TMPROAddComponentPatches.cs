@@ -5,15 +5,15 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Attributes;
-using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor.Patches
 {
-	static class TMPROAddComponentPatches
+	/// <summary>
+	/// Overrides the AddComponent function so that WeaverCore variants of TextMeshPro and TextMeshProUGUI are added instead of the regular ones
+	/// </summary>
+    static class TMPROAddComponentPatches
 	{
 		static Dictionary<Type, Type> TypeReplacements = new Dictionary<Type, Type>();
-
-
 
 		[OnInit]
 		static void Patch()

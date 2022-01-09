@@ -8,31 +8,16 @@ using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
+using static WeaverCore.PlayerInput;
 
 namespace WeaverCore.Editor.Implementations
 {
-	class E_PlayerInput_I : PlayerInput
+	class E_PlayerInput_I : PlayerInput_I
 	{
 		class InputUpdater : MonoBehaviour
 		{
 			private void LateUpdate()
 			{
-				/*foreach (var input in ButtonInputs)
-				{
-					if (input.Value.IsPressed != input.Value.PreviousState)
-					{
-						Debug.Log($"Input {input.Key} changed to {input.Value.IsPressed} from {input.Value.PreviousState}");
-					}
-				}*/
-
-				/*foreach (var input in JoystickInputs)
-				{
-					if (input.Value.Vector != input.Value.PreviousVector)
-					{
-						Debug.Log($"Input {input.Key} changed to {input.Value.Vector} from {input.Value.PreviousVector}");
-					}
-				}*/
-
 				foreach (var input in ButtonInputs)
 				{
 					if (!input.Value.StateUpdated)
@@ -252,7 +237,7 @@ namespace WeaverCore.Editor.Implementations
 
 
 
-		protected override PlayerInputButton GetInputButton(string buttonName)
+		public override PlayerInputButton GetInputButton(string buttonName)
 		{
 			if (ButtonInputs.TryGetValue(buttonName, out var button))
 			{
@@ -264,7 +249,7 @@ namespace WeaverCore.Editor.Implementations
 			}
 		}
 
-		protected override PlayerInputJoystick GetJoystick(string joystickName)
+		public override PlayerInputJoystick GetJoystick(string joystickName)
 		{
 			if (JoystickInputs.TryGetValue(joystickName,out var joystick))
 			{

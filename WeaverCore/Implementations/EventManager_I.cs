@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 
 
 namespace WeaverCore.Implementations
 {
-	public abstract class EventManager_I : MonoBehaviour, IImplementation
+    public abstract class EventManager_I : MonoBehaviour, IImplementation
     {
 		public abstract class Statics : IImplementation
 		{
@@ -39,12 +38,5 @@ namespace WeaverCore.Implementations
 		{
 			EventManager.BroadcastEventInternal(eventName, source);
 		}
-
-		/// <summary>
-		/// Sends the event to any playmaker FSMs that are on the current object
-		/// </summary>
-		/// <param name="eventName">The name of the event</param>
-		/// <param name="source">The gameObject the event came from</param>
-		//public abstract void TriggerEventToPlaymakerFSMs(string eventName, GameObject source);
 	}
 }

@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// A white flash effect that is spawned when an entity is teleported via the <see cref="WeaverCore.Utilities.Teleporter"/> functions
+	/// </summary>
 	public class WhiteFlash : MonoBehaviour
 	{
 		public float FlashIntensity = 0.5f;

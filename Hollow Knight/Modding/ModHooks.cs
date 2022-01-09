@@ -13,7 +13,6 @@ namespace Modding
 	{
         internal static void OnDrawBlackBorders(List<GameObject> borders)
         {
-            //Logger.LogFine("OnDrawBlackBorders Invoked");
             if (ModHooks.DrawBlackBordersHook == null)
             {
                 return;
@@ -33,7 +32,6 @@ namespace Modding
 
         internal static void OnAttack(AttackDirection dir)
         {
-            Logger.LogFine("OnAttack Invoked");
             if (ModHooks.AttackHook == null)
             {
                 return;
@@ -53,7 +51,6 @@ namespace Modding
 
         internal static void AfterAttack(AttackDirection dir)
         {
-            Logger.LogFine("AfterAttack Invoked");
             if (ModHooks.AfterAttackHook == null)
             {
                 return;
@@ -73,7 +70,6 @@ namespace Modding
 
         internal static Vector2 DashVelocityChange(Vector2 change)
         {
-            Logger.LogFine("DashVelocityChange Invoked");
             if (ModHooks.DashVectorHook == null)
             {
                 return change;
@@ -94,7 +90,6 @@ namespace Modding
 
         internal static int OnTakeDamage(ref int hazardType, int damage)
         {
-            Logger.LogFine("OnTakeDamage Invoked");
             if (ModHooks.TakeDamageHook == null)
             {
                 return damage;
@@ -115,7 +110,6 @@ namespace Modding
 
         internal static int AfterTakeDamage(int hazardType, int damageAmount)
         {
-            Logger.LogFine("AfterTakeDamage Invoked");
             if (ModHooks.AfterTakeDamageHook == null)
             {
                 return damageAmount;
@@ -134,12 +128,10 @@ namespace Modding
             return damageAmount;
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.GetBool
         /// </summary>
         /// <param name="target">Target Field Name</param>
-        // Token: 0x06004765 RID: 18277 RVA: 0x00182830 File Offset: 0x00180A30
         internal static bool GetPlayerBool(string target)
         {
             bool flag = PlayerData.instance.GetBoolInternal(target);
@@ -161,12 +153,10 @@ namespace Modding
             return flag;
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.GetFloat
         /// </summary>
         /// <param name="target">Target Field Name</param>
-        // Token: 0x06004769 RID: 18281 RVA: 0x001829F0 File Offset: 0x00180BF0
         internal static float GetPlayerFloat(string target)
         {
             float num = PlayerData.instance.GetFloatInternal(target);
@@ -188,12 +178,10 @@ namespace Modding
             return num;
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.GetInt
         /// </summary>
         /// <param name="target">Target Field Name</param>
-        // Token: 0x06004767 RID: 18279 RVA: 0x00182910 File Offset: 0x00180B10
         internal static int GetPlayerInt(string target)
         {
             int num = PlayerData.instance.GetIntInternal(target);
@@ -215,12 +203,10 @@ namespace Modding
             return num;
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.GetString
         /// </summary>
         /// <param name="target">Target Field Name</param>
-        // Token: 0x0600476B RID: 18283 RVA: 0x00182AD0 File Offset: 0x00180CD0
         internal static string GetPlayerString(string target)
         {
             string text = PlayerData.instance.GetStringInternal(target);
@@ -242,12 +228,10 @@ namespace Modding
             return text;
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.GetVariable
         /// </summary>
         /// <param name="target">Target Field Name</param>
-        // Token: 0x0600476F RID: 18287 RVA: 0x00182D5C File Offset: 0x00180F5C
         internal static T GetPlayerVariable<T>(string target)
         {
             Type typeFromHandle = typeof(T);
@@ -290,12 +274,10 @@ namespace Modding
             return t;
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.GetVector3
         /// </summary>
         /// <param name="target">Target Field Name</param>
-        // Token: 0x0600476D RID: 18285 RVA: 0x00182BB0 File Offset: 0x00180DB0
         internal static Vector3 GetPlayerVector3(string target)
         {
             Vector3 vector = PlayerData.instance.GetVector3Internal(target);
@@ -317,13 +299,11 @@ namespace Modding
             return vector;
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.SetBool
         /// </summary>
         /// <param name="target">Target Field Name</param>
         /// <param name="val">Value to set</param>
-        // Token: 0x06004764 RID: 18276 RVA: 0x001827C0 File Offset: 0x001809C0
         internal static void SetPlayerBool(string target, bool val)
         {
             bool flag = val;
@@ -344,13 +324,11 @@ namespace Modding
             PlayerData.instance.SetBoolInternal(target, flag);
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.SetFloat
         /// </summary>
         /// <param name="target">Target Field Name</param>
         /// <param name="val">Value to set</param>
-        // Token: 0x06004768 RID: 18280 RVA: 0x00182980 File Offset: 0x00180B80
         internal static void SetPlayerFloat(string target, float val)
         {
             float value = val;
@@ -371,13 +349,11 @@ namespace Modding
             PlayerData.instance.SetFloatInternal(target, value);
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.SetInt
         /// </summary>
         /// <param name="target">Target Field Name</param>
         /// <param name="val">Value to set</param>
-        // Token: 0x06004766 RID: 18278 RVA: 0x001828A0 File Offset: 0x00180AA0
         internal static void SetPlayerInt(string target, int val)
         {
             int num = val;
@@ -398,13 +374,11 @@ namespace Modding
             PlayerData.instance.SetIntInternal(target, num);
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.SetString
         /// </summary>
         /// <param name="target">Target Field Name</param>
         /// <param name="val">Value to set</param>
-        // Token: 0x0600476A RID: 18282 RVA: 0x00182A60 File Offset: 0x00180C60
         internal static void SetPlayerString(string target, string val)
         {
             string text = val;
@@ -425,13 +399,11 @@ namespace Modding
             PlayerData.instance.SetStringInternal(target, text);
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.SetVariable
         /// </summary>
         /// <param name="target">Target Field Name</param>
         /// <param name="orig">Value to set</param>
-        // Token: 0x0600476E RID: 18286 RVA: 0x00182C20 File Offset: 0x00180E20
         internal static void SetPlayerVariable<T>(string target, T orig)
         {
             Type typeFromHandle = typeof(T);
@@ -478,13 +450,11 @@ namespace Modding
             PlayerData.instance.SetVariableInternal<T>(target, t);
         }
 
-        // Modding.ModHooks
         /// <summary>
         ///     Called by the game in PlayerData.SetVector3
         /// </summary>
         /// <param name="target">Target Field Name</param>
         /// <param name="orig">Value to set</param>
-        // Token: 0x0600476C RID: 18284 RVA: 0x00182B40 File Offset: 0x00180D40
         internal static void SetPlayerVector3(string target, Vector3 orig)
         {
             Vector3 vector = orig;
@@ -566,27 +536,6 @@ namespace Modding
                 }
             }
         }
-
-        /*internal static string BeforeSceneLoad(string sceneName)
-        {
-            Logger.LogFine("BeforeSceneLoad Invoked");
-            if (ModHooks.BeforeSceneLoadHook == null)
-            {
-                return sceneName;
-            }
-            foreach (Func<string, string> func in ModHooks.BeforeSceneLoadHook.GetInvocationList())
-            {
-                try
-                {
-                    sceneName = func(sceneName);
-                }
-                catch (Exception message)
-                {
-                    Logger.LogError(message);
-                }
-            }
-            return sceneName;
-        }*/
 
         internal static void OnBeforePlayerDead()
         {
@@ -707,12 +656,6 @@ namespace Modding
         /// </summary>
         /// <remarks>GameManager.OnApplicationQuit</remarks>
         public static event Action ApplicationQuitHook;
-
-        /*/// <summary>
-        ///     Called right before a scene gets loaded, can change which scene gets loaded
-        /// </summary>
-        /// <remarks>N/A</remarks>
-        public static event Func<string, string> BeforeSceneLoadHook;*/
 
         /// <summary>
         ///     Called when the player dies

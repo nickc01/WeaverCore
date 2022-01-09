@@ -8,11 +8,16 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-	public class WeaverBench : MonoBehaviour
+	/// <summary>
+	/// Used to create custom benches in WeaverCore
+	/// </summary>
+    public class WeaverBench : MonoBehaviour
 	{
 		[SerializeField]
+		[Tooltip("An offset applied to the hero when they sit on the bench")]
 		Vector3 benchSitOffset = new Vector3(0f, 0.7f);
 		[SerializeField]
+		[Tooltip("Is the bench able to be sat on when immediately?")]
 		bool benchActiveOnStart = true;
 		[SerializeField]
 		[Tooltip("How long before the player falls asleep again on the bench")]
@@ -20,29 +25,38 @@ namespace WeaverCore.Assets.Components
 		[SerializeField]
 		[Tooltip("If the player sits on this bench, should the player also respawn at this bench?")]
 		bool setRespawnPoint = true;
+		[SerializeField]
+		[Tooltip("When the player starts up a game, should the player be resting on the bench? If false, the player will be laying on the ground in front of the bench")]
+		bool spawnSittingOnBench = true;
 
 		[Space]
 		[Header("Label")]
 		[SerializeField]
+		[Tooltip("The tranlation sheet name that is used to display the \"Rest\" text in multiple different languages")]
 		string sheetName = "Prompts";
 		[SerializeField]
-		string convoName = "REST";
+		[Tooltip("The language key that is used to display the \"Rest\" text in multiple different languages")]
+		string langKey = "REST";
 		[SerializeField]
-		[Tooltip("This text is used if the language sheet and convo name wasn't found")]
+		[Tooltip("This text is used if the language sheet and language key wasn't found")]
 		string fallbackText = "Rest";
 
 		[Space]
 		[Header("Audio")]
 		[SerializeField]
+		[Tooltip("The sound that is played when the player rests at a bench")]
 		AudioClip BenchRestSound;
 
 		[Space]
 		[Header("Prefabs")]
 		[SerializeField]
+		[Tooltip("The object that is created when the player is nearby the bench, and is used to display the \"Rest\" text")]
 		WeaverArrowPrompt ArrowPrompt;
 		[SerializeField]
+		[Tooltip("The object that is instantiated when the player sits on the bench and the map has been updated. This displays a \"Map Updated\" icon on the bottom-right corner of the screen")]
 		GameObject MapUpdateMsg;
 		[SerializeField]
+		[Tooltip("The object that is instantiated when the player sits on a bench and collects a charm for the first time. ")]
 		GameObject CharmEquipMsg;
 
 		Vector3 AdjustVectorInv;
@@ -68,14 +82,23 @@ namespace WeaverCore.Assets.Components
 		GameObject Health;
 		WeaverArrowPrompt InstantiatedPrompt;
 
-		public bool RespawnResting { get; set; } = false;
+		/*/// <summary>
+		/// When the player starts the game, should they be resting on the bench when they spawn in. Otherwise, they will be asleep next to the bench
+		/// </summary>*/
+		bool RespawnResting = false;
+
+		/// <summary>
+		/// An offset applied to the hero when they sit on the bench
+		/// </summary>
 		public Vector3 BenchSitOffset => benchSitOffset;
 
 		string getOffAnimation;
 
 		static GameObject BenchWhiteFlash;
 
-
+		/// <summary>
+		/// Is the bench currently active and ready to be sat on?
+		/// </summary>
 		public bool BenchActive => benchActive;
 
 
@@ -105,54 +128,35 @@ namespace WeaverCore.Assets.Components
 
 		private void Awake()
 		{
-			try
+			if (BenchWhiteFlash == null)
 			{
-				if (BenchWhiteFlash == null)
-				{
-					BenchWhiteFlash = WeaverAssets.LoadWeaverAsset<GameObject>("Bench White Flash");
-				}
-				eventManager = GetComponent<EventManager>();
-				benchActive = benchActiveOnStart;
-				Respawn();
-				eventManager.OnReceivedEvent += EventManager_OnReceivedEvent;
-				//StartCoroutine(TestRoutine());
-
-				//RespawnRoutine().MoveNext();
+				BenchWhiteFlash = WeaverAssets.LoadWeaverAsset<GameObject>("Bench White Flash");
 			}
-			catch (TypeLoadException e)
-			{
-				WeaverLog.Log("Type Load Exception occured!");
-				WeaverLog.LogException(e);
-				WeaverLog.Log("Failed Type Name = " + e.TypeName);
-				WeaverLog.Log("Target Site = " + e.TargetSite?.Name);
-				WeaverLog.Log("Stack Trace = " + e.StackTrace);
-				WeaverLog.Log("Source = " + e.Source);
-				WeaverLog.Log("Message = " + e.Message);
-				if (e.InnerException != null)
-				{
-					WeaverLog.Log("Now Printing inner Exception:");
-					WeaverLog.LogException(e.InnerException);
-				}
-				WeaverLog.Log("HResult = " + e.HResult);
-				if (e.Data != null)
-				{
-					foreach (var key in e.Data.Keys)
-					{
-						WeaverLog.Log($"Data Key: {key}, Value: {e.Data[key]}");
-					}
-				}
-			}
+			eventManager = GetComponent<EventManager>();
+			benchActive = benchActiveOnStart;
+			Respawn();
+			eventManager.OnReceivedEvent += EventManager_OnReceivedEvent;
 		}
 
-		/*IEnumerator TestRoutine()
-		{
-			var player = HeroController.instance;
-			yield return new WaitForSeconds(1f);
-			WeaverLog.Log("Bench Test!");
-			WeaverLog.Log("Player = " + player?.gameObject.name);
-			dynamic animator = GetComponent("tk2dSpriteAnimator");
-			WeaverLog.Log($"Animator = {animator}");
-		}*/
+/*#if UNITY_EDITOR
+		private void Start()
+        {
+			if (!HeroController.instance.isHeroInPosition)
+			{
+				HeroController.instance.heroInPosition += OnHeroInPosition;
+			}
+			else
+			{
+				Respawn();
+			}
+		}
+#endif*/
+
+		void OnHeroInPosition(bool forceDirect)
+        {
+			HeroController.instance.heroInPosition -= OnHeroInPosition;
+			Respawn();
+		}
 
 		private void EventManager_OnReceivedEvent(string eventName, GameObject source)
 		{
@@ -160,15 +164,36 @@ namespace WeaverCore.Assets.Components
 			{
 				ActivateBench();
 			}
+            else if (eventName == "RESPAWN")
+            {
+				RespawnSittingOnBench();
+            }
 		}
 
+		/// <summary>
+		/// If the bench isn't active, this will make the bench active and ready to be sat on
+		/// </summary>
 		public void ActivateBench()
 		{
 			benchActive = true;
 		}
 
+		/// <summary>
+		/// Respawns the player at this bench
+		/// </summary>
 		public void Respawn()
 		{
+			RespawnResting = false;
+			StopAllCoroutines();
+			StartCoroutine(RespawnRoutine());
+		}
+
+		/// <summary>
+		/// Respawns the player sitting on the bench. If "Spawn Sitting On Bench" is false, then the player will be laying on the ground
+		/// </summary>
+		public void RespawnSittingOnBench()
+        {
+			RespawnResting = spawnSittingOnBench;
 			StopAllCoroutines();
 			StartCoroutine(RespawnRoutine());
 		}
@@ -192,11 +217,7 @@ namespace WeaverCore.Assets.Components
 				HeroController.instance.StopAnimationControl();
 				HeroController.instance.MaxHealth();
 
-				//TODO : PLAY HERO ANIMATION
-				if (Initialization.Environment == Enums.RunningState.Game)
-				{
-					PlayPlayerClip("Sit Fall Asleep");
-				}
+				HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 				EventManager.BroadcastEvent("UPDATE BLUE HEALTH", gameObject);
 				EventManager.BroadcastEvent("HERO REVIVED", gameObject);
 
@@ -204,11 +225,8 @@ namespace WeaverCore.Assets.Components
 				var playerRB = HeroController.instance.GetComponent<Rigidbody2D>();
 				playerRB.isKinematic = true;
 				playerRB.velocity = default;
-
-				//yield return new WaitForSeconds(1.2f);
 			}
 			yield return null;
-			//yield return null;
 
 
 			var tilt = GetComponent<RestBenchTilt>();
@@ -218,13 +236,11 @@ namespace WeaverCore.Assets.Components
 				tilter = true;
 			}
 
-			WeaverLog.Log("Bench Active = " + benchActive);
 			if (!benchActive)
 			{
 				yield return new WaitUntil(() => benchActive);
 			}
 
-			//yield return null;
 			yield return InitRoutine();
 		}
 
@@ -240,10 +256,6 @@ namespace WeaverCore.Assets.Components
 			ParticleRest = transform.Find("Particle Rest")?.GetComponent<ParticleSystem>();
 			PromptMarker = transform.Find("Prompt Marker").gameObject;
 			Health = HudCanvas?.transform?.Find("Health")?.gameObject;
-			//HudBlanker = GameObject.Find("HUD Blanker White");
-
-			WeaverLog.Log("BENCH INIT");
-			WeaverLog.Log("Respawning Resting = " + RespawnResting);
 
 			if (RespawnResting)
 			{
@@ -271,20 +283,13 @@ namespace WeaverCore.Assets.Components
 				HeroController.instance.StopAnimationControl();
 				HeroController.instance.MaxHealth();
 
-				PlayPlayerClip("Sit Fall Asleep");
+				HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 
 				WeaverLog.Log("Sit Fall Asleep");
-				/*dynamic animator = HeroController.instance.GetComponent("tk2dSpriteAnimator");
-
-				if (animator != null)
-				{
-					animator.Play("Sit Fall Asleep");
-				}*/
 				EventManager.BroadcastEvent("UPDATE BLUE HEALTH", gameObject);
 				EventManager.BroadcastEvent("HERO REVIVED", gameObject);
 
 				HeroController.instance.AffectedByGravity(false);
-				//var playerRB = HeroController.instance.GetComponent<Rigidbody2D>();
 				playerRB.isKinematic = true;
 				playerRB.velocity = default;
 
@@ -297,8 +302,7 @@ namespace WeaverCore.Assets.Components
 				getOffAnimation = "Get Off";
 				playerRB.isKinematic = false;
 
-				//yield return PlayClipTillDone(animator, "Wake To Sit");
-				yield return PlayPlayerClipTillDone("Wake To Sit");
+				yield return HeroUtilities.PlayPlayerClipTillDone("Wake To Sit");
 
 				if (PlayerData.instance.GetBool("hasQuill") && PlayerData.instance.GetBool("hasMap"))
 				{
@@ -307,11 +311,10 @@ namespace WeaverCore.Assets.Components
 					if (gameMap != null)
 					{
 						gameMap.SendMessage("SetupMap", false);
-						//gameMap.SetupMap(false);
 					}
 					if (mapUpdated)
 					{
-						//TODO - Display Map Update MSG
+						//Display Map Update MSG
 						if (MapUpdateMsg != null)
 						{
 							GameObject.Instantiate(MapUpdateMsg);
@@ -369,7 +372,6 @@ namespace WeaverCore.Assets.Components
 					if (PlayerInput.quickMap.WasPressed)
 					{
 						WeaverLog.Log("GETTING UP_D");
-						//faceHeroRight = facingRight;
 						StartCoroutine(QuickMapRoutine());
 						yield break;
 					}
@@ -381,13 +383,7 @@ namespace WeaverCore.Assets.Components
 				{
 					sleeping = true;
 					getOffAnimation = "Wake";
-					PlayPlayerClip("Sit Fall Asleep");
-					/*dynamic animator = HeroController.instance.GetComponent("tk2dSpriteAnimator");
-
-					if (animator != null)
-					{
-						animator.Play("Sit Fall Asleep");
-					}*/
+					HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 				}
 			}
 
@@ -424,7 +420,7 @@ namespace WeaverCore.Assets.Components
 			PlayerData.instance.SetBool("atBench", false);
 			if (sleeping)
 			{
-				yield return PlayPlayerClipTillDone("Wake To Sit");
+				yield return HeroUtilities.PlayPlayerClipTillDone("Wake To Sit");
 			}
 
 			if (tilter)
@@ -448,9 +444,7 @@ namespace WeaverCore.Assets.Components
 
 			AdjustVectorInv = new Vector3(0f, -0.1f, 0f);
 
-
-			//yield return PlayPlayerClipTillDone(getOffAnimation);
-			PlayPlayerClip(getOffAnimation);
+			HeroUtilities.PlayPlayerClip(getOffAnimation);
 
 			Vector3 oldPos = HeroController.instance.transform.position;
 			Vector3 newPos = oldPos + AdjustVectorInv;
@@ -464,7 +458,7 @@ namespace WeaverCore.Assets.Components
 
 			yield return new WaitForSeconds(0.05f);
 
-			PlayPlayerClip("Idle");
+			HeroUtilities.PlayPlayerClip("Idle");
 
 			yield return new WaitForSeconds(0.1f);
 
@@ -504,7 +498,7 @@ namespace WeaverCore.Assets.Components
 			WeaverLog.Log("IN RANGE");
 
 			InstantiatedPrompt = WeaverArrowPrompt.Spawn(ArrowPrompt, gameObject, PromptMarker.transform.position);
-			InstantiatedPrompt.SetLabelText(convoName, sheetName);
+			InstantiatedPrompt.SetLabelTextLang(langKey, sheetName);
 			if (InstantiatedPrompt.Label.text == "PLACEHOLDER")
 			{
 				InstantiatedPrompt.SetLabelText(fallbackText);
@@ -557,13 +551,13 @@ namespace WeaverCore.Assets.Components
 								InstantiatedPrompt.Hide();
 								InstantiatedPrompt = null;
 							}
-							PlayPlayerClip("Sit");
+							HeroUtilities.PlayPlayerClip("Sit");
 
 
 							var selfX = transform.GetXPosition();
 							var sitVector = HeroController.instance.transform.position;
 							sitVector.x = selfX;
-							sitVector += benchSitOffset;//new Vector3(0f,0.1f);
+							sitVector += benchSitOffset;
 
 							var oldPos = HeroController.instance.transform.position;
 							var newPos = sitVector;
@@ -600,7 +594,6 @@ namespace WeaverCore.Assets.Components
 							if (gameFlasher != null)
 							{
 								gameFlasher.SendMessage("flashBenchRest");
-								//gameFlasher.flashBenchRest();
 							}
 
 							EventManager.BroadcastEvent("BENCHREST",gameObject);
@@ -668,6 +661,7 @@ namespace WeaverCore.Assets.Components
 								PlayerData.instance.SetInt("respawnType", 1);
 								PlayerData.instance.SetBool("respawnFacingRight", facingRight);
 								GameManager.instance.SetCurrentMapZoneAsRespawn();
+								WeaverLog.Log("SETTING RESPAWN POINT!!!");
 							}
 
 							yield return new WaitForSeconds(0.1f);
@@ -676,6 +670,8 @@ namespace WeaverCore.Assets.Components
 							GameManager.instance.TimePasses();
 							GameManager.instance.StoryRecord_rest();
 							GameManager.instance.AddToBenchList();
+
+							WeaverLog.Log("SAVED Respawn Type = " + PlayerData.instance.GetInt("respawnType"));
 
 							if (PlayerData.instance.GetBool("hasQuill") && PlayerData.instance.GetBool("hasMap"))
 							{
@@ -691,8 +687,8 @@ namespace WeaverCore.Assets.Components
 									{
 										GameObject.Instantiate(MapUpdateMsg);
 									}
-									yield return PlayPlayerClipTillDone("Map Update");
-									PlayPlayerClip("Sit Idle");
+									yield return HeroUtilities.PlayPlayerClipTillDone("Map Update");
+									HeroUtilities.PlayPlayerClip("Sit Idle");
 								}
 							}
 
@@ -759,7 +755,7 @@ namespace WeaverCore.Assets.Components
 				Debug.Log("INV Open = " + !PlayMakerUtilities.GetFsmBool(inv, "Inventory Control", "Open"));
 				if (inv != null && !PlayMakerUtilities.GetFsmBool(inv, "Inventory Control","Open"))
 				{
-					PlayPlayerClip("Sit Map Open");
+					HeroUtilities.PlayPlayerClip("Sit Map Open");
 					EventManager.BroadcastEvent("MAP OPENED", gameObject);
 					PlayerData.instance.SetBool("disablePause", true);
 					EventManager.BroadcastEvent("OPEN QUICK MAP", gameObject);
@@ -776,7 +772,7 @@ namespace WeaverCore.Assets.Components
 							{
 								EventManager.BroadcastEvent("OPEN INVENTORY MAP", gameObject);
 							}
-							PlayPlayerClip("Sit Map Close");
+							HeroUtilities.PlayPlayerClip("Sit Map Close");
 							yield return new WaitForSeconds(0.42f);
 							eventManager.OnReceivedEvent -= MapEventListener;
 							yield return RestingRoutine();
@@ -791,7 +787,6 @@ namespace WeaverCore.Assets.Components
 				}
 				else
 				{
-					//yield return null;
 					EventManager.BroadcastEvent("CLOSE QUICK MAP", gameObject);
 					eventManager.OnReceivedEvent -= MapEventListener;
 					yield return RestingRoutine();
@@ -800,7 +795,6 @@ namespace WeaverCore.Assets.Components
 			}
 			else
 			{
-				//yield return null;
 				eventManager.OnReceivedEvent -= MapEventListener;
 				yield return RestingRoutine();
 				yield break;
@@ -825,7 +819,7 @@ namespace WeaverCore.Assets.Components
 			yield return null;
 			EventManager.BroadcastEvent("CLOSE QUICK MAP", gameObject);
 
-			PlayPlayerClip("Sit Map Close");
+			HeroUtilities.PlayPlayerClip("Sit Map Close");
 			yield return null;
 			yield return CloseAnimState(false);
 		}
@@ -840,71 +834,13 @@ namespace WeaverCore.Assets.Components
 			yield return null;
 			HeroController.instance.RelinquishControl();
 			HeroController.instance.StopAnimationControl();
-			yield return PlayPlayerClipTillDone("Sit Map Close");
+			yield return HeroUtilities.PlayPlayerClipTillDone("Sit Map Close");
 
 			eventManager.OnReceivedEvent -= OpenInventoryMapListener;
 			yield return null;
 			PlayerData.instance.SetBool("disablePause", false);
 
 			yield return RestingRoutine();
-		}
-
-		/*static IEnumerator PlayClipTillDone(dynamic animator, string clip)
-		{
-			if (animator != null)
-			{
-				animator.Play(clip);
-				yield return new WaitForSeconds(animator.CurrentClip.Duration);
-			}
-		}*/
-
-		static Component heroAnimator = null;
-		static Type heroAnimatorType;
-		static PropertyInfo CurrentClipP;
-		static Type ClipType;
-		static PropertyInfo ClipDurationP;
-
-		static IEnumerator PlayPlayerClipTillDone(string clip)
-		{
-			if (Initialization.Environment == Enums.RunningState.Game)
-			{
-				if (heroAnimator == null)
-				{
-					heroAnimator = HeroController.instance.GetComponent("tk2dSpriteAnimator");
-					heroAnimatorType = heroAnimator.GetType();
-					CurrentClipP = heroAnimatorType.GetProperty("CurrentClip");
-					ClipType = CurrentClipP.PropertyType;
-					ClipDurationP = ClipType.GetProperty("Duration");
-				}
-				heroAnimator.SendMessage("Play", clip);
-				//heroAnimator.Play(clip);
-				yield return new WaitForSeconds((float)ClipDurationP.GetValue(CurrentClipP.GetValue(heroAnimator)));
-			}
-
-			var weaverAnim = HeroController.instance.GetComponent<WeaverAnimationPlayer>();
-			if (weaverAnim != null)
-			{
-				yield return weaverAnim.PlayAnimationTillDone(clip);
-			}
-		}
-
-		static void PlayPlayerClip(string clip)
-		{
-			if (Initialization.Environment == Enums.RunningState.Game)
-			{
-				if (heroAnimator == null)
-				{
-					heroAnimator = HeroController.instance.GetComponent("tk2dSpriteAnimator");
-					heroAnimatorType = heroAnimator.GetType();
-					CurrentClipP = heroAnimatorType.GetProperty("CurrentClip");
-					ClipType = CurrentClipP.PropertyType;
-					ClipDurationP = ClipType.GetProperty("Duration");
-				}
-				heroAnimator.SendMessage("Play", clip);
-			}
-
-			var weaverAnim = HeroController.instance.GetComponent<WeaverAnimationPlayer>();
-			weaverAnim?.PlayAnimation(clip);
 		}
 	}
 }

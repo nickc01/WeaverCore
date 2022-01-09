@@ -12,6 +12,9 @@ using WeaverCore.Assets.Components;
 
 namespace WeaverCore.Utilities
 {
+	/// <summary>
+	/// Used for teleporting an object/enemy from one place to another (with audio and particle effects too!)
+	/// </summary>
 	public static class Teleporter
 	{
 		static ObjectPool WhiteFlashPool;
@@ -19,23 +22,20 @@ namespace WeaverCore.Utilities
 		static ObjectPool TeleLinePool;
 
 
-		[Serializable]
-		public class TeleportException : Exception
-		{
-			public TeleportException() { }
-			public TeleportException(string message) : base(message) { }
-			public TeleportException(string message, Exception inner) : base(message, inner) { }
-			protected TeleportException(
-			  System.Runtime.Serialization.SerializationInfo info,
-			  System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
-		}
-
-
 		const float WARP_TIME = 20f / 60f;
 
+		/// <summary>
+		/// The type of teleport to be employed
+		/// </summary>
 		public enum TeleType
 		{
+			/// <summary>
+			/// An instantaneous teleport
+			/// </summary>
 			Quick,
+			/// <summary>
+			/// A teleport with a slight delay
+			/// </summary>
 			Delayed
 		}
 
@@ -111,7 +111,7 @@ namespace WeaverCore.Utilities
 			{
 				if (sprite == null)
 				{
-					throw new TeleportException("The entity to be teleported does not have a SpriteRenderer. Either add a sprite renderer to the entity, or set flashSprite to false");
+					throw new Exception("The entity to be teleported does not have a SpriteRenderer. Either add a sprite renderer to the entity, or set flashSprite to false");
 				}
 				if (flasher == null)
 				{
@@ -159,7 +159,6 @@ namespace WeaverCore.Utilities
 				}
 				if (teleInTime > 0f)
 				{
-					//yield return new Awaiters.WaitForSeconds(teleInTime);
 					yield return new WaitForSeconds(teleInTime);
 				}
 				if (playEffects)
@@ -186,9 +185,6 @@ namespace WeaverCore.Utilities
 					}
 
 					PlayTeleportSound(Destination, audioPitch);
-					//var teleportSound = HollowPlayer.Play(AudioAssets.Teleport, Destination, 1f, AudioChannel.Sound);
-
-					//teleportSound.AudioSource.pitch = audioPitch;
 				}
 				else
 				{
@@ -215,20 +211,9 @@ namespace WeaverCore.Utilities
 					if (playEffects)
 					{
 						SpawnTeleportGlow(Destination, teleportColor);
-						/*var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(Destination.x, Destination.y, Destination.z - 0.1f), Quaternion.identity);
-						glow.GetComponent<SpriteRenderer>().color = Color.Lerp(teleportColor,Color.white,0.5f);*/
-
 						SpawnTeleportLine(originalPosition, Destination, teleportColor);
-						/*var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, Destination, 0.5f), Quaternion.identity);
-						LookAt(teleLine, Destination);
-						teleLine.transform.localScale = new Vector3(Vector3.Distance(originalPosition, Destination), teleLine.transform.localScale.y, teleLine.transform.localScale.z);*/
-
-						//var mainModule = teleLine.GetComponent<ParticleSystem>().main;
-						//mainModule.startColor = Color.Lerp(teleportColor, Color.white, 0.5f);
 					}
 					PlayTeleportSound(Destination, audioPitch);
-					//var teleportSound = HollowPlayer.Play(AudioAssets.Teleport, Destination, 1f, AudioChannel.Sound);
-					//teleportSound.AudioSource.pitch = audioPitch;
 
 					while (fadeOutTimer < fadeOutTime)
 					{
@@ -286,7 +271,6 @@ namespace WeaverCore.Utilities
 				WhiteFlashPool = ObjectPool.Create(EffectAssets.WhiteFlashPrefab);
 			}
 			var whiteFlash = WhiteFlashPool.Instantiate<WhiteFlash>(originalPosition, Quaternion.identity);
-			//var whiteFlash = GameObject.Instantiate(EffectAssets.WhiteFlashPrefab, originalPosition, Quaternion.identity).GetComponent<WhiteFlash>();
 			whiteFlash.FadeInTime = 0f;
 			whiteFlash.FlashColor = Color.Lerp(color, Color.white, 0.5f);
 			whiteFlash.transform.localScale = Vector3.one * 2f;
@@ -301,8 +285,6 @@ namespace WeaverCore.Utilities
 				GlowPool = ObjectPool.Create(EffectAssets.TeleportGlowPrefab);
 			}
 			var sprite = GlowPool.Instantiate<SpriteRenderer>(new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - 0.1f), Quaternion.identity);
-			//var glow = GameObject.Instantiate(EffectAssets.TeleportGlowPrefab, new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - 0.1f), Quaternion.identity);
-			//var sprite = glow.GetComponent<SpriteRenderer>();
 			sprite.color = Color.Lerp(color, Color.white, 0.5f);
 			return sprite;
 		}
@@ -313,7 +295,6 @@ namespace WeaverCore.Utilities
 			{
 				TeleLinePool = ObjectPool.Create(EffectAssets.TeleLinePrefab);
 			}
-			//var teleLine = GameObject.Instantiate(EffectAssets.TeleLinePrefab, Vector3.Lerp(originalPosition, destination, 0.5f), Quaternion.identity);
 			var teleLine = TeleLinePool.Instantiate(Vector3.Lerp(originalPosition, destination, 0.5f), Quaternion.identity);
 			LookAt(teleLine, destination);
 			teleLine.transform.localScale = new Vector3(Vector3.Distance(originalPosition, destination), teleLine.transform.localScale.y, teleLine.transform.localScale.z);

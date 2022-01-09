@@ -8,7 +8,10 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
 {
-	public class EditorMusic : MonoBehaviour
+	/// <summary>
+	/// Used for playing music and atmosphere sounds in the editor
+	/// </summary>
+    public class EditorMusic : MonoBehaviour
 	{
 		[Header("Music")]
 		[SerializeField]
@@ -59,7 +62,7 @@ namespace WeaverCore.Editor
 					foreach (var guid in prefabGUIDs)
 					{
 						var path = AssetDatabase.GUIDToAssetPath(guid);
-						if (path.Contains("WeaverCore.Editor"))
+						if (path.Contains("WeaverCore.Editor\\") || path.Contains("WeaverCore.Editor/"))
 						{
 							var obj = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(path), default(Vector3), Quaternion.identity);
 							DontDestroyOnLoad(obj);
@@ -118,7 +121,6 @@ namespace WeaverCore.Editor
 		IEnumerator ApplyMusicSnapshotRoutine(AudioMixerSnapshot snapshot, float delayTime, float transitionTime)
 		{
 			yield return new WaitForSeconds(delayTime);
-			//WeaverLog.Log("Snapshot = " + snapshot);
 			if (snapshot != null)
 			{
 				snapshot.TransitionTo(transitionTime);
@@ -180,7 +182,6 @@ namespace WeaverCore.Editor
 				if ((enabledSources & (Atmos.AtmosSources)i) == (Atmos.AtmosSources)i)
 				{
 					AudioSource source = atmosSources[counter];
-					//Debug.Log("Playing Source = " + source.name);
 					if (!source.isPlaying)
 					{
 						source.Play();
@@ -189,17 +190,6 @@ namespace WeaverCore.Editor
 				counter++;
 			}
 			counter = 0;
-			/*for (int i = 0; i < atmosSources.Length; i++)
-			{
-				if (atmosCue.IsChannelEnabled((AtmosChannels)i))
-				{
-					AudioSource audioSource = atmosSources[i];
-					if (!audioSource.isPlaying)
-					{
-						audioSource.Play();
-					}
-				}
-			}*/
 			yield return new WaitForSecondsRealtime(transitionTime);
 			for (int i = 1; i < (int)Atmos.AtmosSources.Everything; i *= 2)
 			{
@@ -214,17 +204,6 @@ namespace WeaverCore.Editor
 				}
 				counter++;
 			}
-			/*for (int j = 0; j < atmosSources.Length; j++)
-			{
-				if (!atmosCue.IsChannelEnabled((AtmosChannels)j))
-				{
-					AudioSource audioSource2 = atmosSources[j];
-					if (audioSource2.isPlaying)
-					{
-						audioSource2.Stop();
-					}
-				}
-			}*/
 		}
 
 	}

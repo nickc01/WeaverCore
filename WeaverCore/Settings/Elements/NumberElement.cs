@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Settings.Elements
 {
+	/// <summary>
+	/// A UI Element where it's value can be set to any number. Adding the <see cref="SettingRangeAttribute"/> limits this number to a certain range
+	/// </summary>
 	public sealed class NumberElement : UIElement
 	{
-		InputField inputField;
+
+		TMP_InputField inputField;
 
 		string originalText;
 
@@ -20,22 +25,14 @@ namespace WeaverCore.Settings.Elements
 
 		void Awake()
 		{
-			inputField = GetComponentInChildren<InputField>();
+			inputField = GetComponentInChildren<TMP_InputField>();
 			inputField.onEndEdit.AddListener(OnInputChange);
 		}
 
+		/// <inheritdoc/>
 		public override bool CanWorkWithAccessor(IAccessor accessor)
 		{
 			Type type = accessor.MemberType;
-			/*if (memberInfo is FieldInfo)
-			{
-				type = ((FieldInfo)memberInfo).FieldType;
-			}
-			else if (memberInfo is PropertyInfo)
-			{
-				type = ((PropertyInfo)memberInfo).PropertyType;
-			}*/
-
 			if (type != null && type == typeof(float) || type == typeof(int) || type == typeof(long) || type == typeof(short) || type == typeof(double))
 			{
 				return true;
@@ -43,6 +40,7 @@ namespace WeaverCore.Settings.Elements
 			return false;
 		}
 
+		/// <inheritdoc/>
 		protected override void OnAccessorChanged(IAccessor accessor)
 		{
 			Title = accessor.FieldName;
@@ -50,7 +48,14 @@ namespace WeaverCore.Settings.Elements
 			originalText = inputField.text;
 			Title = accessor.FieldName;
 
-			rangeLimited = SettingsScreen.GetRangeOfNumberMember(accessor.MemberInfo, out lowerBound, out upperBound);
+            if (accessor.MemberInfo != null)
+            {
+				rangeLimited = SettingsScreen.GetRangeOfNumberMember(accessor.MemberInfo, out lowerBound, out upperBound);
+			}
+			else
+            {
+				rangeLimited = false;
+            }
 			base.OnAccessorChanged(accessor);
 		}
 

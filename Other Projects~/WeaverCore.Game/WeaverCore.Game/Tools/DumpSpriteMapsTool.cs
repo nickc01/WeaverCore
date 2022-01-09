@@ -10,10 +10,11 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Tools
 {
+	/// <summary>
+	/// Used in the WeaverCore Debug Tools to dump the sprites of an in-game object
+	/// </summary>
 	public class DumpSpriteMapsTool : ToolsArea.ToolAction
 	{
-
-
 		[Serializable]
 		class Dump
 		{
@@ -55,7 +56,6 @@ namespace WeaverCore.Game.Tools
 			dumpLocation.Create();
 			var file = dumpLocation.AddSlash() + $"{sprite.gameObject.name}.spritemap";
 			var sourceData = new Dump { collection = sprite.Collection, TextureNames = sprite.Collection.textures.Select(t => sprite.Collection.spriteCollectionName + "_" + t.name).ToList() };
-			//var result = JsonUtility.ToJson(sourceData);
 			var result = JsonConvert.SerializeObject(sourceData, null, Formatting.Indented, new JsonSerializerSettings
 			{
 				ReferenceLoopHandling = ReferenceLoopHandling.Ignore,

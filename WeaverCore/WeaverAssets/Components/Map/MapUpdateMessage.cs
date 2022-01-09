@@ -6,6 +6,9 @@ using WeaverCore.Components;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// Used to display the "Map Updated" text when the map gets updated. Called from <see cref="WeaverBench"/> when the player sits on it
+	/// </summary>
 	public class MapUpdateMessage : MonoBehaviour
     {
 		GameObject Animation;
@@ -47,7 +50,7 @@ namespace WeaverCore.Assets.Components
 		//AKA : Set State
 		IEnumerator Display()
 		{
-			string text_str = Language.GetString("MAP_UPDATED", "UI", "Map Updated");
+			string text_str = WeaverLanguage.GetString("MAP_UPDATED", "UI", "Map Updated");
 			Animation.GetComponent<WeaverAnimationPlayer>().PlayAnimation("Map Writing");
 			Text.GetComponent<TextMeshPro>().text = text_str;
 			Anim_Down = "Entry Full Down";

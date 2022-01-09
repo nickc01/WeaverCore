@@ -12,6 +12,9 @@ using GlobalEnums;
 
 namespace WeaverCore.Components
 {
+	/// <summary>
+	/// This component causes the player to take damage when colliding with it
+	/// </summary>
 	public class PlayerDamager : DamageHero
 	{
 		public new HazardType hazardType
@@ -21,78 +24,3 @@ namespace WeaverCore.Components
 		}
 	}
 }
-
-/*namespace WeaverCore.Components
-{
-	public class PlayerDamager : MonoBehaviour
-	{
-		[SerializeField]
-		int damageDealt = 1;
-		[SerializeField]
-		HazardType hazardType = HazardType.Normal;
-		[SerializeField]
-		bool shadowDashHazard = false;
-
-
-		DamageHero_I impl;
-
-		public int DamageDealt
-		{
-			get
-			{
-				return damageDealt;
-			}
-
-			set
-			{
-				damageDealt = value;
-				impl.Refresh();
-			}
-		}
-
-		public HazardType HazardType
-		{
-			get
-			{
-				return hazardType;
-			}
-
-			set
-			{
-				hazardType = value;
-				impl.Refresh();
-			}
-		}
-
-		public bool ShadowDashHazard
-		{
-			get
-			{
-				return shadowDashHazard;
-			}
-
-			set
-			{
-				shadowDashHazard = value;
-				impl.Refresh();
-			}
-		}
-
-		void Awake()
-		{
-			if (impl == null)
-			{
-				impl = gameObject.AddComponent(ImplFinder.GetImplementationType<DamageHero_I>()) as DamageHero_I;
-				impl.Damager = this;
-			}
-		}
-
-		void OnValidate()
-		{
-			if (impl != null)
-			{
-				impl.Refresh();
-			}
-		}
-	}
-}*/

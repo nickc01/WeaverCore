@@ -7,8 +7,17 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
+	/// <summary>
+	/// Contains some utility functions related to the Linear Interpolation
+	/// </summary>
 	public static class LerpUtilities
 	{
+		/// <summary>
+		/// Will move <paramref name="from"/> a value <paramref name="to"/> a value at a rate of 1 unit per second.
+		/// </summary>
+		/// <param name="from">The value to move from</param>
+		/// <param name="to">The value to move to</param>
+		/// <param name="action">The action that is called every frame until we get to the destination value</param>
 		public static IEnumerator TimeLerp(float from, float to, Action<float> action)
 		{
 			for (float t = from; t < to; t = AdjustTowards(t, to, Time.deltaTime))
@@ -19,6 +28,13 @@ namespace WeaverCore.Utilities
 			action(to);
 		}
 
+		/// <summary>
+		/// Will move <paramref name="from"/> a value <paramref name="to"/> a value at a rate of 1 unit per second.
+		/// </summary>
+		/// <param name="from">The value to move from</param>
+		/// <param name="to">The value to move to</param>
+		/// <param name="action">The action that is called every frame until we get to the destination value. However, if the action returns false at any time, the interpolation routine is cancelled</param>
+		/// <returns></returns>
 		public static IEnumerator TimeLerp(float from, float to, Func<float, bool> action)
 		{
 			for (float t = from; t < to; t = AdjustTowards(t, to, Time.deltaTime))
@@ -32,7 +48,13 @@ namespace WeaverCore.Utilities
 			action(to);
 		}
 
-
+		/// <summary>
+		/// Will adjust <paramref name="from"/> a value <paramref name="to"/> a value by a set <paramref name="amount"/>
+		/// </summary>
+		/// <param name="from">The value to adjust from</param>
+		/// <param name="to">The value to adjust to</param>
+		/// <param name="amount">The amount to move from the "from" value to the "to" value</param>
+		/// <returns>Returns the adjusted float value</returns>
 		public static float AdjustTowards(float from, float to, float amount)
 		{
 			if (from < to)

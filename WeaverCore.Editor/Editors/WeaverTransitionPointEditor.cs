@@ -70,7 +70,6 @@ public class WeaverTransitionPointEditor : Editor
 
 			EditorGUILayout.PropertyField(iterator, true);
 		}
-		//base.OnInspectorGUI();
 
 		serializedObject.ApplyModifiedProperties();
 	}

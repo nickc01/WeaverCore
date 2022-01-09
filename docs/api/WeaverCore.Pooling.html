@@ -1,0 +1,1266 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Pooling
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Pooling
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WeaverCore.Pooling">
+  
+  
+  <h1 id="WeaverCore_Pooling" data-uid="WeaverCore.Pooling" class="text-break">Class Pooling
+  </h1>
+  <div class="markdown level0 summary"><p>A class that makes it easy to pool any object you want. Acts as a drop-in replacement for GameObject.Instantiate, while still reaping the benefits of pooling</p>
+<p>This class handles creating <a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a>s for you, so you can just call <a class="xref" href="WeaverCore.Pooling.html#WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_">Instantiate(GameObject)</a> to instantiate a pooled object</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Pooling</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.html">WeaverCore</a></h6>
+  <h6><strong>Assembly</strong>: WeaverCore.dll</h6>
+  <h5 id="WeaverCore_Pooling_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class Pooling</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_CreatePool_UnityEngine_GameObject_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.CreatePool(UnityEngine.GameObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L305">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_CreatePool_" data-uid="WeaverCore.Pooling.CreatePool*"></a>
+  <h4 id="WeaverCore_Pooling_CreatePool_UnityEngine_GameObject_" data-uid="WeaverCore.Pooling.CreatePool(UnityEngine.GameObject)">CreatePool(GameObject)</h4>
+  <div class="markdown level1 summary"><p>Creates a new pool for a prefab</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ObjectPool CreatePool(GameObject prefab)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to create a new pool for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a></td>
+        <td><p>The new pool for the prefab</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_CreatePool_WeaverCore_PoolableObject_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.CreatePool(WeaverCore.PoolableObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L315">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_CreatePool_" data-uid="WeaverCore.Pooling.CreatePool*"></a>
+  <h4 id="WeaverCore_Pooling_CreatePool_WeaverCore_PoolableObject_" data-uid="WeaverCore.Pooling.CreatePool(WeaverCore.PoolableObject)">CreatePool(PoolableObject)</h4>
+  <div class="markdown level1 summary"><p>Creates a new pool for a prefab</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ObjectPool CreatePool(PoolableObject prefab)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.PoolableObject.html">PoolableObject</a></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to create a new pool for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a></td>
+        <td><p>The new pool for the prefab</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_CreatePool__1___0_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.CreatePool%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L326">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_CreatePool_" data-uid="WeaverCore.Pooling.CreatePool*"></a>
+  <h4 id="WeaverCore_Pooling_CreatePool__1___0_" data-uid="WeaverCore.Pooling.CreatePool``1(``0)">CreatePool&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Creates a new pool for a prefab</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ObjectPool CreatePool&lt;T&gt;(T prefab)
+    where T : Component</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to create a new pool for</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.ObjectPool.html">ObjectPool</a></td>
+        <td><p>The new pool for the prefab</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of component on the prefab</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Destroy_UnityEngine_GameObject_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Destroy(UnityEngine.GameObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L245">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Destroy_" data-uid="WeaverCore.Pooling.Destroy*"></a>
+  <h4 id="WeaverCore_Pooling_Destroy_UnityEngine_GameObject_" data-uid="WeaverCore.Pooling.Destroy(UnityEngine.GameObject)">Destroy(GameObject)</h4>
+  <div class="markdown level1 summary"><p>Destroys an existing object and returns it to a pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Destroy(GameObject gameObject)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">gameObject</span></td>
+        <td><p>The object to destroy</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Destroy_UnityEngine_GameObject_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Destroy(UnityEngine.GameObject%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L274">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Destroy_" data-uid="WeaverCore.Pooling.Destroy*"></a>
+  <h4 id="WeaverCore_Pooling_Destroy_UnityEngine_GameObject_System_Single_" data-uid="WeaverCore.Pooling.Destroy(UnityEngine.GameObject,System.Single)">Destroy(GameObject, Single)</h4>
+  <div class="markdown level1 summary"><p>Destroys an existing object and returns it to a pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Destroy(GameObject gameObject, float time)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">gameObject</span></td>
+        <td><p>The object to destroy</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>The delay before the object is returned to the pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Destroy_WeaverCore_PoolableObject_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Destroy(WeaverCore.PoolableObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L254">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Destroy_" data-uid="WeaverCore.Pooling.Destroy*"></a>
+  <h4 id="WeaverCore_Pooling_Destroy_WeaverCore_PoolableObject_" data-uid="WeaverCore.Pooling.Destroy(WeaverCore.PoolableObject)">Destroy(PoolableObject)</h4>
+  <div class="markdown level1 summary"><p>Destroys an existing object and returns it to a pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Destroy(PoolableObject poolableObject)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.PoolableObject.html">PoolableObject</a></td>
+        <td><span class="parametername">poolableObject</span></td>
+        <td><p>The object to destroy</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Destroy_WeaverCore_PoolableObject_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Destroy(WeaverCore.PoolableObject%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L284">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Destroy_" data-uid="WeaverCore.Pooling.Destroy*"></a>
+  <h4 id="WeaverCore_Pooling_Destroy_WeaverCore_PoolableObject_System_Single_" data-uid="WeaverCore.Pooling.Destroy(WeaverCore.PoolableObject,System.Single)">Destroy(PoolableObject, Single)</h4>
+  <div class="markdown level1 summary"><p>Destroys an existing object and returns it to a pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Destroy(PoolableObject poolableObject, float time)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.PoolableObject.html">PoolableObject</a></td>
+        <td><span class="parametername">poolableObject</span></td>
+        <td><p>The object to destroy</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>The delay before the object is returned to the pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Destroy__1___0_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Destroy%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L264">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Destroy_" data-uid="WeaverCore.Pooling.Destroy*"></a>
+  <h4 id="WeaverCore_Pooling_Destroy__1___0_" data-uid="WeaverCore.Pooling.Destroy``1(``0)">Destroy&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Destroys an existing object and returns it to a pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Destroy&lt;T&gt;(T component)
+    where T : Component</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">component</span></td>
+        <td><p>The object to destroy</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of component from the destroyed object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Destroy__1___0_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Destroy%60%601(%60%600%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L295">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Destroy_" data-uid="WeaverCore.Pooling.Destroy*"></a>
+  <h4 id="WeaverCore_Pooling_Destroy__1___0_System_Single_" data-uid="WeaverCore.Pooling.Destroy``1(``0,System.Single)">Destroy&lt;T&gt;(T, Single)</h4>
+  <div class="markdown level1 summary"><p>Destroys an existing object and returns it to a pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Destroy&lt;T&gt;(T component, float time)
+    where T : Component</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">component</span></td>
+        <td><p>The object to destroy</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>The delay before the object is returned to the pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of component from the destroyed object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate(UnityEngine.GameObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L135">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_" data-uid="WeaverCore.Pooling.Instantiate(UnityEngine.GameObject)">Instantiate(GameObject)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameObject Instantiate(GameObject prefab)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate(UnityEngine.GameObject%2CUnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L125">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_UnityEngine_Transform_" data-uid="WeaverCore.Pooling.Instantiate(UnityEngine.GameObject,UnityEngine.Transform)">Instantiate(GameObject, Transform)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameObject Instantiate(GameObject prefab, Transform parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent of the newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_UnityEngine_Transform_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate(UnityEngine.GameObject%2CUnityEngine.Transform%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L159">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_UnityEngine_Transform_System_Boolean_" data-uid="WeaverCore.Pooling.Instantiate(UnityEngine.GameObject,UnityEngine.Transform,System.Boolean)">Instantiate(GameObject, Transform, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameObject Instantiate(GameObject prefab, Transform parent, bool instantiateInWorldSpace)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent of the newly instantiated object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">instantiateInWorldSpace</span></td>
+        <td><p>Should the object be positioned in world space? If false, it will be positioned relative to the parent</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_UnityEngine_Vector3_UnityEngine_Quaternion_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate(UnityEngine.GameObject%2CUnityEngine.Vector3%2CUnityEngine.Quaternion)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L147">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_UnityEngine_Vector3_UnityEngine_Quaternion_" data-uid="WeaverCore.Pooling.Instantiate(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion)">Instantiate(GameObject, Vector3, Quaternion)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position of the newly instantiated object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Quaternion</span></td>
+        <td><span class="parametername">rotation</span></td>
+        <td><p>The rotation of the newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_UnityEngine_Vector3_UnityEngine_Quaternion_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate(UnityEngine.GameObject%2CUnityEngine.Vector3%2CUnityEngine.Quaternion%2CUnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L114">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate_UnityEngine_GameObject_UnityEngine_Vector3_UnityEngine_Quaternion_UnityEngine_Transform_" data-uid="WeaverCore.Pooling.Instantiate(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Transform)">Instantiate(GameObject, Vector3, Quaternion, Transform)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position of the newly instantiated object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Quaternion</span></td>
+        <td><span class="parametername">rotation</span></td>
+        <td><p>The rotation of the newly instantiated object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent of the newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.GameObject</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate__1___0_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L203">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate__1___0_" data-uid="WeaverCore.Pooling.Instantiate``1(``0)">Instantiate&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T Instantiate&lt;T&gt;(T prefab)
+    where T : Component</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The component type to get from the instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate__1___0_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate%60%601(%60%600%2CUnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L192">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate__1___0_UnityEngine_Transform_" data-uid="WeaverCore.Pooling.Instantiate``1(``0,UnityEngine.Transform)">Instantiate&lt;T&gt;(T, Transform)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T Instantiate&lt;T&gt;(T prefab, Transform parent)
+    where T : Component</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent of the newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The component type to get from the instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate__1___0_UnityEngine_Transform_System_Boolean_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate%60%601(%60%600%2CUnityEngine.Transform%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L229">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate__1___0_UnityEngine_Transform_System_Boolean_" data-uid="WeaverCore.Pooling.Instantiate``1(``0,UnityEngine.Transform,System.Boolean)">Instantiate&lt;T&gt;(T, Transform, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T Instantiate&lt;T&gt;(T prefab, Transform parent, bool instantiateInWorldSpace)
+    where T : Component</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent of the newly instantiated object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">instantiateInWorldSpace</span></td>
+        <td><p>Should the object be positioned in world space? If false, it will be positioned relative to the parent</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The component type to get from the instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate__1___0_UnityEngine_Vector3_UnityEngine_Quaternion_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate%60%601(%60%600%2CUnityEngine.Vector3%2CUnityEngine.Quaternion)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L216">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate__1___0_UnityEngine_Vector3_UnityEngine_Quaternion_" data-uid="WeaverCore.Pooling.Instantiate``1(``0,UnityEngine.Vector3,UnityEngine.Quaternion)">Instantiate&lt;T&gt;(T, Vector3, Quaternion)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T Instantiate&lt;T&gt;(T prefab, Vector3 position, Quaternion rotation)
+    where T : Component</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position of the newly instantiated object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Quaternion</span></td>
+        <td><span class="parametername">rotation</span></td>
+        <td><p>The rotation of the newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The component type to get from the instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling_Instantiate__1___0_UnityEngine_Vector3_UnityEngine_Quaternion_UnityEngine_Transform_.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling.Instantiate%60%601(%60%600%2CUnityEngine.Vector3%2CUnityEngine.Quaternion%2CUnityEngine.Transform)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L180">View Source</a>
+  </span>
+  <a id="WeaverCore_Pooling_Instantiate_" data-uid="WeaverCore.Pooling.Instantiate*"></a>
+  <h4 id="WeaverCore_Pooling_Instantiate__1___0_UnityEngine_Vector3_UnityEngine_Quaternion_UnityEngine_Transform_" data-uid="WeaverCore.Pooling.Instantiate``1(``0,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Transform)">Instantiate&lt;T&gt;(T, Vector3, Quaternion, Transform)</h4>
+  <div class="markdown level1 summary"><p>Instantiates a pooled object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T Instantiate&lt;T&gt;(T prefab, Vector3 position, Quaternion rotation, Transform parent)
+    where T : Component</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">prefab</span></td>
+        <td><p>The prefab to instantiate from a pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Vector3</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position of the newly instantiated object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Quaternion</span></td>
+        <td><span class="parametername">rotation</span></td>
+        <td><p>The rotation of the newly instantiated object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent of the newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Returns a newly instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The component type to get from the instantiated object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Pooling.md&amp;value=---%0Auid%3A%20WeaverCore.Pooling%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Pooling.cs/#L27" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -52,7 +52,6 @@ namespace WeaverCore
 		/// <summary>
 		/// Returns the player that is attacking. Returns null if the attacker is not a player
 		/// </summary>
-		/// <returns></returns>
 		public Player GetAttackingPlayer()
 		{
 			var playerLayer = LayerMask.NameToLayer("Player");

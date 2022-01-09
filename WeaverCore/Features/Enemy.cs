@@ -12,16 +12,20 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
-	/// <summary>
-	/// The base class for all enemies in WeaverCore
-	/// </summary>
-	[ShowFeature]
+    /// <summary>
+    /// The base class for all enemies
+    /// </summary>
+    [ShowFeature]
 	[RequireComponent(typeof(EntityHealth))]
 	public class Enemy : MonoBehaviour
 	{
 		Dictionary<uint, Coroutine> BoundRoutines;
 		HashSet<uint> idList;
 		uint idCounter = 1;
+
+		[SerializeField]
+		[Tooltip("Should all PlayerDamager components be disabled when the enemy dies? This prevents the enemy from damaging the player after death")]
+		bool disableDamagersOnDeath = true;
 
 		/// <summary>
 		/// The previous move that was run
@@ -34,12 +38,28 @@ namespace WeaverCore.Features
 
 		bool currentMoveCancelled = false;
 
+		EntityHealth _health;
 		/// <summary>
 		/// The enemy's <seealso cref="EntityHealth"/>
 		/// </summary>
-		public EntityHealth Health { get; private set; }
+		public EntityHealth Health
+        {
+			get
+            {
+                if (_health == null)
+                {
+					_health = GetComponent<EntityHealth>();
+				}
+				return _health;
+            }
+        }
 
-		Enemy_I enemyImpl;
+		/// <summary>
+		/// Should all PlayerDamager components be disabled when the enemy dies?
+		/// </summary>
+		public bool DisableDamagersOnDeath { get => disableDamagersOnDeath; set => disableDamagersOnDeath = value; }
+
+        Enemy_I enemyImpl;
 		static Enemy_I.Statics staticImpl = ImplFinder.GetImplementation<Enemy_I.Statics>();
 
 		/// <summary>
@@ -49,8 +69,7 @@ namespace WeaverCore.Features
 		{
 			var enemyImplType = ImplFinder.GetImplementationType<Enemy_I>();
 			enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
-			Health = GetComponent<EntityHealth>();
-			Health.OnDeathEvent += OnDeath;
+			Health.OnDeathEvent += OnDeath_Internal;
 		}
 
 		/// <summary>
@@ -58,8 +77,26 @@ namespace WeaverCore.Features
 		/// </summary>
 		protected virtual void OnDeath()
 		{
+			
+		}
+
+		void OnDeath_Internal(HitInfo finalHit)
+        {
 			StopAllBoundRoutines();
-			Health.OnDeathEvent -= OnDeath;
+			var deathEffects = GetComponents<IDeathEffects>();
+            foreach (var deathEffect in deathEffects)
+            {
+				deathEffect.PlayDeathEffects(finalHit);
+            }
+            if (disableDamagersOnDeath)
+            {
+				foreach (var damager in GetComponentsInChildren<PlayerDamager>())
+				{
+					damager.damageDealt = 0;
+				}
+			}
+			Health.OnDeathEvent -= OnDeath_Internal;
+			OnDeath();
 			if (CurrentMove != null)
 			{
 				CurrentMove.OnDeath();

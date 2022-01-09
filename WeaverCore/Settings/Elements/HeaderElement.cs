@@ -1,5 +1,8 @@
 ﻿namespace WeaverCore.Settings.Elements
 {
+	/// <summary>
+	/// A UI Element for inserting a big header between two UI Elements
+	/// </summary>
 	public class HeaderElement : UIElement
 	{
 		internal UIElement BoundToElement;
@@ -34,6 +37,7 @@
 			}
 		}
 
+		/// <inheritdoc/>
 		public override bool CanWorkWithAccessor(IAccessor accessor)
 		{
 			return false;

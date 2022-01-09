@@ -1,0 +1,825 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SpriteFlasher
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SpriteFlasher
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WeaverCore.Components.SpriteFlasher">
+  
+  
+  <h1 id="WeaverCore_Components_SpriteFlasher" data-uid="WeaverCore.Components.SpriteFlasher" class="text-break">Class SpriteFlasher
+  </h1>
+  <div class="markdown level0 summary"><p>This component causes the sprite to flash. This is also used by <a class="xref" href="WeaverCore.Components.EntityHealth.html">EntityHealth</a> to flash the enemy upon hit</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
+    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
+    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
+    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
+    <div class="level5"><span class="xref">SpriteFlasher</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.Components.html">WeaverCore.Components</a></h6>
+  <h6><strong>Assembly</strong>: WeaverCore.dll</h6>
+  <h5 id="WeaverCore_Components_SpriteFlasher_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[RequireComponent(typeof(SpriteRenderer))]
+public class SpriteFlasher : MonoBehaviour</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_CustomFlasherMaterial.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.CustomFlasherMaterial%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L30">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_SpriteFlasher_CustomFlasherMaterial" data-uid="WeaverCore.Components.SpriteFlasher.CustomFlasherMaterial">CustomFlasherMaterial</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Material CustomFlasherMaterial</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Material</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashColor.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L35">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashColor_" data-uid="WeaverCore.Components.SpriteFlasher.FlashColor*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashColor" data-uid="WeaverCore.Components.SpriteFlasher.FlashColor">FlashColor</h4>
+  <div class="markdown level1 summary"><p>The color of the flash</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color FlashColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashIntensity.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashIntensity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L55">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashIntensity_" data-uid="WeaverCore.Components.SpriteFlasher.FlashIntensity*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashIntensity" data-uid="WeaverCore.Components.SpriteFlasher.FlashIntensity">FlashIntensity</h4>
+  <div class="markdown level1 summary"><p>How intense the flash is. 0 means no flash, while 1 means the sprite is fully flashing</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float FlashIntensity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_DoFlash_System_Single_System_Single_System_Single_System_Nullable_UnityEngine_Color__System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.DoFlash(System.Single%2CSystem.Single%2CSystem.Single%2CSystem.Nullable%7BUnityEngine.Color%7D%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L171">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_DoFlash_" data-uid="WeaverCore.Components.SpriteFlasher.DoFlash*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_DoFlash_System_Single_System_Single_System_Single_System_Nullable_UnityEngine_Color__System_Single_" data-uid="WeaverCore.Components.SpriteFlasher.DoFlash(System.Single,System.Single,System.Single,System.Nullable{UnityEngine.Color},System.Single)">DoFlash(Single, Single, Single, Nullable&lt;Color&gt;, Single)</h4>
+  <div class="markdown level1 summary"><p>Causes the sprite to flash</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8F, Color? FlashColor = null, float StayTime = 0.05F)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">BeginTime</span></td>
+        <td><p>How long it takes to go from no flash to full flash</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">EndTime</span></td>
+        <td><p>How long it takes to go from full flash to no flash</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">Intensity</span></td>
+        <td><p>The maximum intensity of the flash</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">UnityEngine.Color</span>&gt;</td>
+        <td><span class="parametername">FlashColor</span></td>
+        <td><p>The color of the flash. If left null, will use the default color (white)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">StayTime</span></td>
+        <td><p>How long the sprite should stay at full flash before fading out</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_DoFlash_System_Single_System_Single_System_Single_System_Single_.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.DoFlash(System.Single%2CSystem.Single%2CSystem.Single%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L157">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_DoFlash_" data-uid="WeaverCore.Components.SpriteFlasher.DoFlash*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_DoFlash_System_Single_System_Single_System_Single_System_Single_" data-uid="WeaverCore.Components.SpriteFlasher.DoFlash(System.Single,System.Single,System.Single,System.Single)">DoFlash(Single, Single, Single, Single)</h4>
+  <div class="markdown level1 summary"><p>Causes the sprite to flash</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DoFlash(float BeginTime, float EndTime, float Intensity = 0.8F, float StayTime = 0.05F)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">BeginTime</span></td>
+        <td><p>How long it takes to go from no flash to full flash</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">EndTime</span></td>
+        <td><p>How long it takes to go from full flash to no flash</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">Intensity</span></td>
+        <td><p>The maximum intensity of the flash</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">StayTime</span></td>
+        <td><p>How long the sprite should stay at full flash before fading out</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashArmoured.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashArmoured%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L240">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashArmoured_" data-uid="WeaverCore.Components.SpriteFlasher.flashArmoured*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashArmoured" data-uid="WeaverCore.Components.SpriteFlasher.flashArmoured">flashArmoured()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashArmoured()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashBenchRest.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashBenchRest%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L241">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashBenchRest_" data-uid="WeaverCore.Components.SpriteFlasher.flashBenchRest*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashBenchRest" data-uid="WeaverCore.Components.SpriteFlasher.flashBenchRest">flashBenchRest()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashBenchRest()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashDreamImpact.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashDreamImpact%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L242">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashDreamImpact_" data-uid="WeaverCore.Components.SpriteFlasher.flashDreamImpact*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashDreamImpact" data-uid="WeaverCore.Components.SpriteFlasher.flashDreamImpact">flashDreamImpact()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashDreamImpact()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashDung.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashDung%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L235">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashDung_" data-uid="WeaverCore.Components.SpriteFlasher.flashDung*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashDung" data-uid="WeaverCore.Components.SpriteFlasher.flashDung">flashDung()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashDung()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashDungQuick.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashDungQuick%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L236">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashDungQuick_" data-uid="WeaverCore.Components.SpriteFlasher.flashDungQuick*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashDungQuick" data-uid="WeaverCore.Components.SpriteFlasher.flashDungQuick">flashDungQuick()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashDungQuick()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashFocusGet.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashFocusGet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L249">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashFocusGet_" data-uid="WeaverCore.Components.SpriteFlasher.flashFocusGet*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashFocusGet" data-uid="WeaverCore.Components.SpriteFlasher.flashFocusGet">flashFocusGet()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashFocusGet()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashFocusHeal.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashFocusHeal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L248">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashFocusHeal_" data-uid="WeaverCore.Components.SpriteFlasher.flashFocusHeal*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashFocusHeal" data-uid="WeaverCore.Components.SpriteFlasher.flashFocusHeal">flashFocusHeal()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashFocusHeal()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashGrimmflame.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashGrimmflame%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L254">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashGrimmflame_" data-uid="WeaverCore.Components.SpriteFlasher.FlashGrimmflame*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashGrimmflame" data-uid="WeaverCore.Components.SpriteFlasher.FlashGrimmflame">FlashGrimmflame()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashGrimmflame()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashGrimmHit.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashGrimmHit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L255">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashGrimmHit_" data-uid="WeaverCore.Components.SpriteFlasher.FlashGrimmHit*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashGrimmHit" data-uid="WeaverCore.Components.SpriteFlasher.FlashGrimmHit">FlashGrimmHit()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashGrimmHit()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashHealBlue.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashHealBlue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L251">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashHealBlue_" data-uid="WeaverCore.Components.SpriteFlasher.flashHealBlue*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashHealBlue" data-uid="WeaverCore.Components.SpriteFlasher.flashHealBlue">flashHealBlue()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashHealBlue()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashInfected.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashInfected%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L234">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashInfected_" data-uid="WeaverCore.Components.SpriteFlasher.flashInfected*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashInfected" data-uid="WeaverCore.Components.SpriteFlasher.flashInfected">flashInfected()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashInfected()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashInfectedLong.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashInfectedLong%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L239">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashInfectedLong_" data-uid="WeaverCore.Components.SpriteFlasher.flashInfectedLong*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashInfectedLong" data-uid="WeaverCore.Components.SpriteFlasher.flashInfectedLong">flashInfectedLong()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashInfectedLong()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashInfectedLoop.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashInfectedLoop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L253">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashInfectedLoop_" data-uid="WeaverCore.Components.SpriteFlasher.flashInfectedLoop*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashInfectedLoop" data-uid="WeaverCore.Components.SpriteFlasher.flashInfectedLoop">flashInfectedLoop()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashInfectedLoop()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashingFury.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashingFury%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L232">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashingFury_" data-uid="WeaverCore.Components.SpriteFlasher.FlashingFury*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashingFury" data-uid="WeaverCore.Components.SpriteFlasher.FlashingFury">FlashingFury()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashingFury()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashingGhostWounded.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashingGhostWounded%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L229">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashingGhostWounded_" data-uid="WeaverCore.Components.SpriteFlasher.FlashingGhostWounded*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashingGhostWounded" data-uid="WeaverCore.Components.SpriteFlasher.FlashingGhostWounded">FlashingGhostWounded()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashingGhostWounded()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashingOrange.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashingOrange%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L233">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashingOrange_" data-uid="WeaverCore.Components.SpriteFlasher.FlashingOrange*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashingOrange" data-uid="WeaverCore.Components.SpriteFlasher.FlashingOrange">FlashingOrange()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashingOrange()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashingSuperDash.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashingSuperDash%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L228">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashingSuperDash_" data-uid="WeaverCore.Components.SpriteFlasher.FlashingSuperDash*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashingSuperDash" data-uid="WeaverCore.Components.SpriteFlasher.FlashingSuperDash">FlashingSuperDash()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashingSuperDash()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashingWhiteStay.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashingWhiteStay%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L230">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashingWhiteStay_" data-uid="WeaverCore.Components.SpriteFlasher.FlashingWhiteStay*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashingWhiteStay" data-uid="WeaverCore.Components.SpriteFlasher.FlashingWhiteStay">FlashingWhiteStay()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashingWhiteStay()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashingWhiteStayMoth.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashingWhiteStayMoth%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L231">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashingWhiteStayMoth_" data-uid="WeaverCore.Components.SpriteFlasher.FlashingWhiteStayMoth*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashingWhiteStayMoth" data-uid="WeaverCore.Components.SpriteFlasher.FlashingWhiteStayMoth">FlashingWhiteStayMoth()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashingWhiteStayMoth()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashMothDepart.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashMothDepart%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L243">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashMothDepart_" data-uid="WeaverCore.Components.SpriteFlasher.flashMothDepart*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashMothDepart" data-uid="WeaverCore.Components.SpriteFlasher.flashMothDepart">flashMothDepart()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashMothDepart()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashNormalHit.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashNormalHit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L227">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashNormalHit_" data-uid="WeaverCore.Components.SpriteFlasher.FlashNormalHit*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashNormalHit" data-uid="WeaverCore.Components.SpriteFlasher.FlashNormalHit">FlashNormalHit()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashNormalHit()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashOvercharmed.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashOvercharmed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L247">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashOvercharmed_" data-uid="WeaverCore.Components.SpriteFlasher.flashOvercharmed*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashOvercharmed" data-uid="WeaverCore.Components.SpriteFlasher.flashOvercharmed">flashOvercharmed()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashOvercharmed()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashShadeGet.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashShadeGet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L245">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashShadeGet_" data-uid="WeaverCore.Components.SpriteFlasher.flashShadeGet*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashShadeGet" data-uid="WeaverCore.Components.SpriteFlasher.flashShadeGet">flashShadeGet()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashShadeGet()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_FlashShadowRecharge.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.FlashShadowRecharge%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L252">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_FlashShadowRecharge_" data-uid="WeaverCore.Components.SpriteFlasher.FlashShadowRecharge*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_FlashShadowRecharge" data-uid="WeaverCore.Components.SpriteFlasher.FlashShadowRecharge">FlashShadowRecharge()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlashShadowRecharge()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashSoulGet.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashSoulGet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L244">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashSoulGet_" data-uid="WeaverCore.Components.SpriteFlasher.flashSoulGet*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashSoulGet" data-uid="WeaverCore.Components.SpriteFlasher.flashSoulGet">flashSoulGet()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashSoulGet()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashSporeQuick.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashSporeQuick%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L237">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashSporeQuick_" data-uid="WeaverCore.Components.SpriteFlasher.flashSporeQuick*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashSporeQuick" data-uid="WeaverCore.Components.SpriteFlasher.flashSporeQuick">flashSporeQuick()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashSporeQuick()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashWhiteLong.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashWhiteLong%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L246">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashWhiteLong_" data-uid="WeaverCore.Components.SpriteFlasher.flashWhiteLong*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashWhiteLong" data-uid="WeaverCore.Components.SpriteFlasher.flashWhiteLong">flashWhiteLong()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashWhiteLong()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashWhitePulse.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashWhitePulse%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L250">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashWhitePulse_" data-uid="WeaverCore.Components.SpriteFlasher.flashWhitePulse*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashWhitePulse" data-uid="WeaverCore.Components.SpriteFlasher.flashWhitePulse">flashWhitePulse()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashWhitePulse()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_flashWhiteQuick.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.flashWhiteQuick%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L238">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_flashWhiteQuick_" data-uid="WeaverCore.Components.SpriteFlasher.flashWhiteQuick*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_flashWhiteQuick" data-uid="WeaverCore.Components.SpriteFlasher.flashWhiteQuick">flashWhiteQuick()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void flashWhiteQuick()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher_StopFlashing.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher.StopFlashing%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L141">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_SpriteFlasher_StopFlashing_" data-uid="WeaverCore.Components.SpriteFlasher.StopFlashing*"></a>
+  <h4 id="WeaverCore_Components_SpriteFlasher_StopFlashing" data-uid="WeaverCore.Components.SpriteFlasher.StopFlashing">StopFlashing()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopFlashing()</code></pre>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.CoroutineUtilities.html#WeaverCore_Utilities_CoroutineUtilities_RunCoroutineWhile__1___0_System_Collections_IEnumerator_System_Func_System_Boolean__">CoroutineUtilities.RunCoroutineWhile&lt;T&gt;(T, IEnumerator, Func&lt;Boolean&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Components_SpriteFlasher.md&amp;value=---%0Auid%3A%20WeaverCore.Components.SpriteFlasher%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Components/SpriteFlasher.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

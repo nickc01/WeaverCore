@@ -1,9 +1,13 @@
 ﻿using TMPro;
 using UnityEngine;
 
-
 namespace WeaverCore.Assets.TMPro
 {
+
+	/*
+	 * THIS REPLACES THE DEFAULT TextMeshPro OBJECT TO MAKE IT WORK WITH ASSET BUNDLES
+	 */
+
 #if UNITY_EDITOR
 	[System.ComponentModel.Browsable(false)]
 	[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]

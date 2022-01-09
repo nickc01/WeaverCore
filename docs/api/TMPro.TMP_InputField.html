@@ -1,0 +1,3718 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TMP_InputField
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TMP_InputField
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="TMPro.TMP_InputField">
+  
+  
+  <h1 id="TMPro_TMP_InputField" data-uid="TMPro.TMP_InputField" class="text-break">Class TMP_InputField
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
+    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
+    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
+    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
+    <div class="level5"><span class="xref">UnityEngine.EventSystems.UIBehaviour</span></div>
+    <div class="level6"><span class="xref">UnityEngine.UI.Selectable</span></div>
+    <div class="level7"><span class="xref">TMP_InputField</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">UnityEngine.EventSystems.IMoveHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IPointerDownHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IPointerUpHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IPointerEnterHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IPointerExitHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.ISelectHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IDeselectHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IUpdateSelectedHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IBeginDragHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IDragHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IEndDragHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IPointerClickHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.ISubmitHandler</span></div>
+    <div><span class="xref">UnityEngine.UI.ICanvasElement</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IScrollHandler</span></div>
+    <div><span class="xref">UnityEngine.EventSystems.IEventSystemHandler</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.s_Selectables</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.s_SelectableCount</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.m_CurrentIndex</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.AllSelectablesNoAlloc(UnityEngine.UI.Selectable[])</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.Awake()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.OnCanvasGroupChanged()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.IsInteractable()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.OnDidApplyAnimationProperties()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.OnTransformParentChanged()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.OnValidate()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.Reset()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.InstantClearState()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.FindSelectable(UnityEngine.Vector3)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.FindSelectableOnLeft()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.FindSelectableOnRight()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.FindSelectableOnUp()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.FindSelectableOnDown()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.OnMove(UnityEngine.EventSystems.AxisEventData)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.IsHighlighted()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.IsPressed()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.OnPointerUp(UnityEngine.EventSystems.PointerEventData)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.OnPointerEnter(UnityEngine.EventSystems.PointerEventData)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.OnPointerExit(UnityEngine.EventSystems.PointerEventData)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.Select()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.allSelectablesArray</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.allSelectableCount</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.allSelectables</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.navigation</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.transition</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.colors</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.spriteState</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.animationTriggers</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.targetGraphic</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.interactable</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.image</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.animator</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.UI.Selectable.currentSelectionState</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.Start()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.OnDestroy()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.IsActive()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.OnRectTransformDimensionsChange()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.OnBeforeTransformParentChanged()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.OnCanvasHierarchyChanged()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.EventSystems.UIBehaviour.IsDestroyed()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="TMPro.html">TMPro</a></h6>
+  <h6><strong>Assembly</strong>: HollowKnight.dll</h6>
+  <h5 id="TMPro_TMP_InputField_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[AddComponentMenu(&quot;UI/TextMeshPro - Input Field&quot;, 11)]
+public class TMP_InputField : Selectable, IMoveHandler, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IUpdateSelectedHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler, ISubmitHandler, ICanvasElement, IScrollHandler, IEventSystemHandler</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField__ctor.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1002">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField__ctor_" data-uid="TMPro.TMP_InputField.#ctor*"></a>
+  <h4 id="TMPro_TMP_InputField__ctor" data-uid="TMPro.TMP_InputField.#ctor">TMP_InputField()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TMP_InputField()</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_CaretPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_CaretPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L204">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_CaretPosition" data-uid="TMPro.TMP_InputField.m_CaretPosition">m_CaretPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int m_CaretPosition</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_CaretSelectPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_CaretSelectPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L206">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_CaretSelectPosition" data-uid="TMPro.TMP_InputField.m_CaretSelectPosition">m_CaretSelectPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int m_CaretSelectPosition</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_CaretVisible.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_CaretVisible%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L233">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_CaretVisible" data-uid="TMPro.TMP_InputField.m_CaretVisible">m_CaretVisible</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool m_CaretVisible</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_CursorVerts.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_CursorVerts%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L210">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_CursorVerts" data-uid="TMPro.TMP_InputField.m_CursorVerts">m_CursorVerts</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected UIVertex[] m_CursorVerts</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.UIVertex</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_GlobalFontAsset.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_GlobalFontAsset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L260">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_GlobalFontAsset" data-uid="TMPro.TMP_InputField.m_GlobalFontAsset">m_GlobalFontAsset</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected TMP_FontAsset m_GlobalFontAsset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_FontAsset.html">TMP_FontAsset</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_InputValidator.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_InputValidator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L277">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_InputValidator" data-uid="TMPro.TMP_InputField.m_InputValidator">m_InputValidator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected TMP_InputValidator m_InputValidator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputValidator.html">TMP_InputValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_isRichTextEditingAllowed.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_isRichTextEditingAllowed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L274">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_isRichTextEditingAllowed" data-uid="TMPro.TMP_InputField.m_isRichTextEditingAllowed">m_isRichTextEditingAllowed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected bool m_isRichTextEditingAllowed</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_isSelectAll.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_isSelectAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L265">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_isSelectAll" data-uid="TMPro.TMP_InputField.m_isSelectAll">m_isSelectAll</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool m_isSelectAll</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_Keyboard.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_Keyboard%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L86">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_Keyboard" data-uid="TMPro.TMP_InputField.m_Keyboard">m_Keyboard</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TouchScreenKeyboard m_Keyboard</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.TouchScreenKeyboard</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_Mesh.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_Mesh%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L219">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_Mesh" data-uid="TMPro.TMP_InputField.m_Mesh">m_Mesh</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[NonSerialized]
+protected Mesh m_Mesh</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Mesh</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_OnFocusSelectAll.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_OnFocusSelectAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L263">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_OnFocusSelectAll" data-uid="TMPro.TMP_InputField.m_OnFocusSelectAll">m_OnFocusSelectAll</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected bool m_OnFocusSelectAll</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_Placeholder.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_Placeholder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L107">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_Placeholder" data-uid="TMPro.TMP_InputField.m_Placeholder">m_Placeholder</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected Graphic m_Placeholder</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.UI.Graphic</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_ResetOnDeActivation.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_ResetOnDeActivation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L268">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_ResetOnDeActivation" data-uid="TMPro.TMP_InputField.m_ResetOnDeActivation">m_ResetOnDeActivation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected bool m_ResetOnDeActivation</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_ScrollSensitivity.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_ScrollSensitivity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L118">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_ScrollSensitivity" data-uid="TMPro.TMP_InputField.m_ScrollSensitivity">m_ScrollSensitivity</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected float m_ScrollSensitivity</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_StringPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_StringPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L200">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_StringPosition" data-uid="TMPro.TMP_InputField.m_StringPosition">m_StringPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int m_StringPosition</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_StringSelectPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_StringSelectPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L202">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_StringSelectPosition" data-uid="TMPro.TMP_InputField.m_StringSelectPosition">m_StringSelectPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int m_StringSelectPosition</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_Text.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_Text%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L184">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_Text" data-uid="TMPro.TMP_InputField.m_Text">m_Text</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected string m_Text</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_TextComponent.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_TextComponent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L102">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_TextComponent" data-uid="TMPro.TMP_InputField.m_TextComponent">m_TextComponent</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected TMP_Text m_TextComponent</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_Text.html">TMP_Text</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_TextComponentRectTransform.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_TextComponentRectTransform%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L104">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_TextComponentRectTransform" data-uid="TMPro.TMP_InputField.m_TextComponentRectTransform">m_TextComponentRectTransform</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected RectTransform m_TextComponentRectTransform</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.RectTransform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_TextViewport.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_TextViewport%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L99">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_TextViewport" data-uid="TMPro.TMP_InputField.m_TextViewport">m_TextViewport</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected RectTransform m_TextViewport</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.RectTransform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_VerticalScrollbar.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_VerticalScrollbar%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L110">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_VerticalScrollbar" data-uid="TMPro.TMP_InputField.m_VerticalScrollbar">m_VerticalScrollbar</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected Scrollbar m_VerticalScrollbar</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.UI.Scrollbar</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_m_VerticalScrollbarEventHandler.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.m_VerticalScrollbarEventHandler%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L113">View Source</a>
+  </span>
+  <h4 id="TMPro_TMP_InputField_m_VerticalScrollbarEventHandler" data-uid="TMPro.TMP_InputField.m_VerticalScrollbarEventHandler">m_VerticalScrollbarEventHandler</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected TMP_ScrollbarEventHandler m_VerticalScrollbarEventHandler</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_ScrollbarEventHandler.html">TMP_ScrollbarEventHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_asteriskChar.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.asteriskChar%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L818">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_asteriskChar_" data-uid="TMPro.TMP_InputField.asteriskChar*"></a>
+  <h4 id="TMPro_TMP_InputField_asteriskChar" data-uid="TMPro.TMP_InputField.asteriskChar">asteriskChar</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public char asteriskChar { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_caretBlinkRate.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.caretBlinkRate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L356">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_caretBlinkRate_" data-uid="TMPro.TMP_InputField.caretBlinkRate*"></a>
+  <h4 id="TMPro_TMP_InputField_caretBlinkRate" data-uid="TMPro.TMP_InputField.caretBlinkRate">caretBlinkRate</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float caretBlinkRate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_caretColor.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.caretColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L457">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_caretColor_" data-uid="TMPro.TMP_InputField.caretColor*"></a>
+  <h4 id="TMPro_TMP_InputField_caretColor" data-uid="TMPro.TMP_InputField.caretColor">caretColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color caretColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_caretPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.caretPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L901">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_caretPosition_" data-uid="TMPro.TMP_InputField.caretPosition*"></a>
+  <h4 id="TMPro_TMP_InputField_caretPosition" data-uid="TMPro.TMP_InputField.caretPosition">caretPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int caretPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_caretPositionInternal.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.caretPositionInternal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L841">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_caretPositionInternal_" data-uid="TMPro.TMP_InputField.caretPositionInternal*"></a>
+  <h4 id="TMPro_TMP_InputField_caretPositionInternal" data-uid="TMPro.TMP_InputField.caretPositionInternal">caretPositionInternal</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int caretPositionInternal { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_caretSelectPositionInternal.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.caretSelectPositionInternal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L867">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_caretSelectPositionInternal_" data-uid="TMPro.TMP_InputField.caretSelectPositionInternal*"></a>
+  <h4 id="TMPro_TMP_InputField_caretSelectPositionInternal" data-uid="TMPro.TMP_InputField.caretSelectPositionInternal">caretSelectPositionInternal</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int caretSelectPositionInternal { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_caretWidth.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.caretWidth%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L371">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_caretWidth_" data-uid="TMPro.TMP_InputField.caretWidth*"></a>
+  <h4 id="TMPro_TMP_InputField_caretWidth" data-uid="TMPro.TMP_InputField.caretWidth">caretWidth</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int caretWidth { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_characterLimit.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.characterLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L599">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_characterLimit_" data-uid="TMPro.TMP_InputField.characterLimit*"></a>
+  <h4 id="TMPro_TMP_InputField_characterLimit" data-uid="TMPro.TMP_InputField.characterLimit">characterLimit</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int characterLimit { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_characterValidation.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.characterValidation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L755">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_characterValidation_" data-uid="TMPro.TMP_InputField.characterValidation*"></a>
+  <h4 id="TMPro_TMP_InputField_characterValidation" data-uid="TMPro.TMP_InputField.characterValidation">characterValidation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.CharacterValidation characterValidation { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.CharacterValidation.html">TMP_InputField.CharacterValidation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_contentType.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.contentType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L694">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_contentType_" data-uid="TMPro.TMP_InputField.contentType*"></a>
+  <h4 id="TMPro_TMP_InputField_contentType" data-uid="TMPro.TMP_InputField.contentType">contentType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.ContentType contentType { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.ContentType.html">TMP_InputField.ContentType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_customCaretColor.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.customCaretColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L472">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_customCaretColor_" data-uid="TMPro.TMP_InputField.customCaretColor*"></a>
+  <h4 id="TMPro_TMP_InputField_customCaretColor" data-uid="TMPro.TMP_InputField.customCaretColor">customCaretColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool customCaretColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_fontAsset.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.fontAsset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L630">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_fontAsset_" data-uid="TMPro.TMP_InputField.fontAsset*"></a>
+  <h4 id="TMPro_TMP_InputField_fontAsset" data-uid="TMPro.TMP_InputField.fontAsset">fontAsset</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_FontAsset fontAsset { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_FontAsset.html">TMP_FontAsset</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_inputType.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.inputType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L725">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_inputType_" data-uid="TMPro.TMP_InputField.inputType*"></a>
+  <h4 id="TMPro_TMP_InputField_inputType" data-uid="TMPro.TMP_InputField.inputType">inputType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.InputType inputType { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.InputType.html">TMP_InputField.InputType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_inputValidator.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.inputValidator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L770">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_inputValidator_" data-uid="TMPro.TMP_InputField.inputValidator*"></a>
+  <h4 id="TMPro_TMP_InputField_inputValidator" data-uid="TMPro.TMP_InputField.inputValidator">inputValidator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputValidator inputValidator { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputValidator.html">TMP_InputValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_isFocused.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.isFocused%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L348">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_isFocused_" data-uid="TMPro.TMP_InputField.isFocused*"></a>
+  <h4 id="TMPro_TMP_InputField_isFocused" data-uid="TMPro.TMP_InputField.isFocused">isFocused</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool isFocused { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_isRichTextEditingAllowed.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.isRichTextEditingAllowed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L682">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_isRichTextEditingAllowed_" data-uid="TMPro.TMP_InputField.isRichTextEditingAllowed*"></a>
+  <h4 id="TMPro_TMP_InputField_isRichTextEditingAllowed" data-uid="TMPro.TMP_InputField.isRichTextEditingAllowed">isRichTextEditingAllowed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool isRichTextEditingAllowed { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_keyboardType.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.keyboardType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L740">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_keyboardType_" data-uid="TMPro.TMP_InputField.keyboardType*"></a>
+  <h4 id="TMPro_TMP_InputField_keyboardType" data-uid="TMPro.TMP_InputField.keyboardType">keyboardType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TouchScreenKeyboardType keyboardType { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.TouchScreenKeyboardType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_lineType.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.lineType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L709">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_lineType_" data-uid="TMPro.TMP_InputField.lineType*"></a>
+  <h4 id="TMPro_TMP_InputField_lineType" data-uid="TMPro.TMP_InputField.lineType">lineType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.LineType lineType { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.LineType.html">TMP_InputField.LineType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_mesh.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.mesh%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L285">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_mesh_" data-uid="TMPro.TMP_InputField.mesh*"></a>
+  <h4 id="TMPro_TMP_InputField_mesh" data-uid="TMPro.TMP_InputField.mesh">mesh</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Mesh mesh { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Mesh</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_multiLine.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.multiLine%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L810">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_multiLine_" data-uid="TMPro.TMP_InputField.multiLine*"></a>
+  <h4 id="TMPro_TMP_InputField_multiLine" data-uid="TMPro.TMP_InputField.multiLine">multiLine</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool multiLine { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_onDeselect.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.onDeselect%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L539">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_onDeselect_" data-uid="TMPro.TMP_InputField.onDeselect*"></a>
+  <h4 id="TMPro_TMP_InputField_onDeselect" data-uid="TMPro.TMP_InputField.onDeselect">onDeselect</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.SelectionEvent onDeselect { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.SelectionEvent.html">TMP_InputField.SelectionEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_onEndEdit.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.onEndEdit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L503">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_onEndEdit_" data-uid="TMPro.TMP_InputField.onEndEdit*"></a>
+  <h4 id="TMPro_TMP_InputField_onEndEdit" data-uid="TMPro.TMP_InputField.onEndEdit">onEndEdit</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.SubmitEvent onEndEdit { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.SubmitEvent.html">TMP_InputField.SubmitEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_onEndTextSelection.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.onEndTextSelection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L563">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_onEndTextSelection_" data-uid="TMPro.TMP_InputField.onEndTextSelection*"></a>
+  <h4 id="TMPro_TMP_InputField_onEndTextSelection" data-uid="TMPro.TMP_InputField.onEndTextSelection">onEndTextSelection</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.TextSelectionEvent onEndTextSelection { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.TextSelectionEvent.html">TMP_InputField.TextSelectionEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_onFocusSelectAll.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.onFocusSelectAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L646">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_onFocusSelectAll_" data-uid="TMPro.TMP_InputField.onFocusSelectAll*"></a>
+  <h4 id="TMPro_TMP_InputField_onFocusSelectAll" data-uid="TMPro.TMP_InputField.onFocusSelectAll">onFocusSelectAll</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool onFocusSelectAll { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_onSelect.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.onSelect%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L527">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_onSelect_" data-uid="TMPro.TMP_InputField.onSelect*"></a>
+  <h4 id="TMPro_TMP_InputField_onSelect" data-uid="TMPro.TMP_InputField.onSelect">onSelect</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.SelectionEvent onSelect { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.SelectionEvent.html">TMP_InputField.SelectionEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_onSubmit.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.onSubmit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L515">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_onSubmit_" data-uid="TMPro.TMP_InputField.onSubmit*"></a>
+  <h4 id="TMPro_TMP_InputField_onSubmit" data-uid="TMPro.TMP_InputField.onSubmit">onSubmit</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.SubmitEvent onSubmit { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.SubmitEvent.html">TMP_InputField.SubmitEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_onTextSelection.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.onTextSelection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L551">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_onTextSelection_" data-uid="TMPro.TMP_InputField.onTextSelection*"></a>
+  <h4 id="TMPro_TMP_InputField_onTextSelection" data-uid="TMPro.TMP_InputField.onTextSelection">onTextSelection</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.TextSelectionEvent onTextSelection { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.TextSelectionEvent.html">TMP_InputField.TextSelectionEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_onValidateInput.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.onValidateInput%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L587">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_onValidateInput_" data-uid="TMPro.TMP_InputField.onValidateInput*"></a>
+  <h4 id="TMPro_TMP_InputField_onValidateInput" data-uid="TMPro.TMP_InputField.onValidateInput">onValidateInput</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.OnValidateInput onValidateInput { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.OnValidateInput.html">TMP_InputField.OnValidateInput</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_onValueChanged.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.onValueChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L575">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_onValueChanged_" data-uid="TMPro.TMP_InputField.onValueChanged*"></a>
+  <h4 id="TMPro_TMP_InputField_onValueChanged" data-uid="TMPro.TMP_InputField.onValueChanged">onValueChanged</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_InputField.OnChangeEvent onValueChanged { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.OnChangeEvent.html">TMP_InputField.OnChangeEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_placeholder.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.placeholder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L410">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_placeholder_" data-uid="TMPro.TMP_InputField.placeholder*"></a>
+  <h4 id="TMPro_TMP_InputField_placeholder" data-uid="TMPro.TMP_InputField.placeholder">placeholder</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Graphic placeholder { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.UI.Graphic</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_pointSize.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.pointSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L614">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_pointSize_" data-uid="TMPro.TMP_InputField.pointSize*"></a>
+  <h4 id="TMPro_TMP_InputField_pointSize" data-uid="TMPro.TMP_InputField.pointSize">pointSize</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float pointSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_readOnly.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.readOnly%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L785">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_readOnly_" data-uid="TMPro.TMP_InputField.readOnly*"></a>
+  <h4 id="TMPro_TMP_InputField_readOnly" data-uid="TMPro.TMP_InputField.readOnly">readOnly</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool readOnly { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_resetOnDeActivation.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.resetOnDeActivation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L658">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_resetOnDeActivation_" data-uid="TMPro.TMP_InputField.resetOnDeActivation*"></a>
+  <h4 id="TMPro_TMP_InputField_resetOnDeActivation" data-uid="TMPro.TMP_InputField.resetOnDeActivation">resetOnDeActivation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool resetOnDeActivation { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_restoreOriginalTextOnEscape.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.restoreOriginalTextOnEscape%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L670">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_restoreOriginalTextOnEscape_" data-uid="TMPro.TMP_InputField.restoreOriginalTextOnEscape*"></a>
+  <h4 id="TMPro_TMP_InputField_restoreOriginalTextOnEscape" data-uid="TMPro.TMP_InputField.restoreOriginalTextOnEscape">restoreOriginalTextOnEscape</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool restoreOriginalTextOnEscape { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_richText.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.richText%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L797">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_richText_" data-uid="TMPro.TMP_InputField.richText*"></a>
+  <h4 id="TMPro_TMP_InputField_richText" data-uid="TMPro.TMP_InputField.richText">richText</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool richText { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_scrollSensitivity.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.scrollSensitivity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L442">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_scrollSensitivity_" data-uid="TMPro.TMP_InputField.scrollSensitivity*"></a>
+  <h4 id="TMPro_TMP_InputField_scrollSensitivity" data-uid="TMPro.TMP_InputField.scrollSensitivity">scrollSensitivity</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float scrollSensitivity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_selectionAnchorPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.selectionAnchorPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L915">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_selectionAnchorPosition_" data-uid="TMPro.TMP_InputField.selectionAnchorPosition*"></a>
+  <h4 id="TMPro_TMP_InputField_selectionAnchorPosition" data-uid="TMPro.TMP_InputField.selectionAnchorPosition">selectionAnchorPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int selectionAnchorPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_selectionColor.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.selectionColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L488">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_selectionColor_" data-uid="TMPro.TMP_InputField.selectionColor*"></a>
+  <h4 id="TMPro_TMP_InputField_selectionColor" data-uid="TMPro.TMP_InputField.selectionColor">selectionColor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color selectionColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_selectionFocusPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.selectionFocusPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L931">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_selectionFocusPosition_" data-uid="TMPro.TMP_InputField.selectionFocusPosition*"></a>
+  <h4 id="TMPro_TMP_InputField_selectionFocusPosition" data-uid="TMPro.TMP_InputField.selectionFocusPosition">selectionFocusPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int selectionFocusPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_selectionStringAnchorPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.selectionStringAnchorPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L960">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_selectionStringAnchorPosition_" data-uid="TMPro.TMP_InputField.selectionStringAnchorPosition*"></a>
+  <h4 id="TMPro_TMP_InputField_selectionStringAnchorPosition" data-uid="TMPro.TMP_InputField.selectionStringAnchorPosition">selectionStringAnchorPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int selectionStringAnchorPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_selectionStringFocusPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.selectionStringFocusPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L975">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_selectionStringFocusPosition_" data-uid="TMPro.TMP_InputField.selectionStringFocusPosition*"></a>
+  <h4 id="TMPro_TMP_InputField_selectionStringFocusPosition" data-uid="TMPro.TMP_InputField.selectionStringFocusPosition">selectionStringFocusPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int selectionStringFocusPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_shouldHideMobileInput.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.shouldHideMobileInput%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L297">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_shouldHideMobileInput_" data-uid="TMPro.TMP_InputField.shouldHideMobileInput*"></a>
+  <h4 id="TMPro_TMP_InputField_shouldHideMobileInput" data-uid="TMPro.TMP_InputField.shouldHideMobileInput">shouldHideMobileInput</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool shouldHideMobileInput { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_stringPosition.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.stringPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L947">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_stringPosition_" data-uid="TMPro.TMP_InputField.stringPosition*"></a>
+  <h4 id="TMPro_TMP_InputField_stringPosition" data-uid="TMPro.TMP_InputField.stringPosition">stringPosition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int stringPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_stringPositionInternal.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.stringPositionInternal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L854">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_stringPositionInternal_" data-uid="TMPro.TMP_InputField.stringPositionInternal*"></a>
+  <h4 id="TMPro_TMP_InputField_stringPositionInternal" data-uid="TMPro.TMP_InputField.stringPositionInternal">stringPositionInternal</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int stringPositionInternal { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_stringSelectPositionInternal.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.stringSelectPositionInternal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L880">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_stringSelectPositionInternal_" data-uid="TMPro.TMP_InputField.stringSelectPositionInternal*"></a>
+  <h4 id="TMPro_TMP_InputField_stringSelectPositionInternal" data-uid="TMPro.TMP_InputField.stringSelectPositionInternal">stringSelectPositionInternal</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int stringSelectPositionInternal { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_text.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.text%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L318">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_text_" data-uid="TMPro.TMP_InputField.text*"></a>
+  <h4 id="TMPro_TMP_InputField_text" data-uid="TMPro.TMP_InputField.text">text</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string text { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_textComponent.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.textComponent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L398">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_textComponent_" data-uid="TMPro.TMP_InputField.textComponent*"></a>
+  <h4 id="TMPro_TMP_InputField_textComponent" data-uid="TMPro.TMP_InputField.textComponent">textComponent</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TMP_Text textComponent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_Text.html">TMP_Text</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_textViewport.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.textViewport%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L386">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_textViewport_" data-uid="TMPro.TMP_InputField.textViewport*"></a>
+  <h4 id="TMPro_TMP_InputField_textViewport" data-uid="TMPro.TMP_InputField.textViewport">textViewport</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RectTransform textViewport { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.RectTransform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_verticalScrollbar.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.verticalScrollbar%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L422">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_verticalScrollbar_" data-uid="TMPro.TMP_InputField.verticalScrollbar*"></a>
+  <h4 id="TMPro_TMP_InputField_verticalScrollbar" data-uid="TMPro.TMP_InputField.verticalScrollbar">verticalScrollbar</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Scrollbar verticalScrollbar { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.UI.Scrollbar</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_wasCanceled.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.wasCanceled%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L833">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_wasCanceled_" data-uid="TMPro.TMP_InputField.wasCanceled*"></a>
+  <h4 id="TMPro_TMP_InputField_wasCanceled" data-uid="TMPro.TMP_InputField.wasCanceled">wasCanceled</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool wasCanceled { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_ActivateInputField.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.ActivateInputField%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2883">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_ActivateInputField_" data-uid="TMPro.TMP_InputField.ActivateInputField*"></a>
+  <h4 id="TMPro_TMP_InputField_ActivateInputField" data-uid="TMPro.TMP_InputField.ActivateInputField">ActivateInputField()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ActivateInputField()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_Append_System_Char_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.Append(System.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2278">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_Append_" data-uid="TMPro.TMP_InputField.Append*"></a>
+  <h4 id="TMPro_TMP_InputField_Append_System_Char_" data-uid="TMPro.TMP_InputField.Append(System.Char)">Append(Char)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Append(char input)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">input</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_Append_System_String_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.Append(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2261">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_Append_" data-uid="TMPro.TMP_InputField.Append*"></a>
+  <h4 id="TMPro_TMP_InputField_Append_System_String_" data-uid="TMPro.TMP_InputField.Append(System.String)">Append(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Append(string input)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">input</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_ClampCaretPos_System_Int32__.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.ClampCaretPos(System.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1019">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_ClampCaretPos_" data-uid="TMPro.TMP_InputField.ClampCaretPos*"></a>
+  <h4 id="TMPro_TMP_InputField_ClampCaretPos_System_Int32__" data-uid="TMPro.TMP_InputField.ClampCaretPos(System.Int32@)">ClampCaretPos(ref Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ClampCaretPos(ref int pos)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">pos</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_ClampStringPos_System_Int32__.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.ClampStringPos(System.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1007">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_ClampStringPos_" data-uid="TMPro.TMP_InputField.ClampStringPos*"></a>
+  <h4 id="TMPro_TMP_InputField_ClampStringPos_System_Int32__" data-uid="TMPro.TMP_InputField.ClampStringPos(System.Int32@)">ClampStringPos(ref Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ClampStringPos(ref int pos)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">pos</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_DeactivateInputField.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.DeactivateInputField%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2949">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_DeactivateInputField_" data-uid="TMPro.TMP_InputField.DeactivateInputField*"></a>
+  <h4 id="TMPro_TMP_InputField_DeactivateInputField" data-uid="TMPro.TMP_InputField.DeactivateInputField">DeactivateInputField()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeactivateInputField()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_DoStateTransition_UnityEngine_UI_Selectable_SelectionState_System_Boolean_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.DoStateTransition(UnityEngine.UI.Selectable.SelectionState%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L3134">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_DoStateTransition_" data-uid="TMPro.TMP_InputField.DoStateTransition*"></a>
+  <h4 id="TMPro_TMP_InputField_DoStateTransition_UnityEngine_UI_Selectable_SelectionState_System_Boolean_" data-uid="TMPro.TMP_InputField.DoStateTransition(UnityEngine.UI.Selectable.SelectionState,System.Boolean)">DoStateTransition(Selectable.SelectionState, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void DoStateTransition(Selectable.SelectionState state, bool instant)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.UI.Selectable.SelectionState</span></td>
+        <td><span class="parametername">state</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">instant</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Selectable.DoStateTransition(UnityEngine.UI.Selectable.SelectionState, System.Boolean)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_ForceLabelUpdate.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.ForceLabelUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2467">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_ForceLabelUpdate_" data-uid="TMPro.TMP_InputField.ForceLabelUpdate*"></a>
+  <h4 id="TMPro_TMP_InputField_ForceLabelUpdate" data-uid="TMPro.TMP_InputField.ForceLabelUpdate">ForceLabelUpdate()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ForceLabelUpdate()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_GraphicUpdateComplete.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.GraphicUpdateComplete%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2498">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_GraphicUpdateComplete_" data-uid="TMPro.TMP_InputField.GraphicUpdateComplete*"></a>
+  <h4 id="TMPro_TMP_InputField_GraphicUpdateComplete" data-uid="TMPro.TMP_InputField.GraphicUpdateComplete">GraphicUpdateComplete()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void GraphicUpdateComplete()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_KeyPressed_UnityEngine_Event_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.KeyPressed(UnityEngine.Event)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1569">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_KeyPressed_" data-uid="TMPro.TMP_InputField.KeyPressed*"></a>
+  <h4 id="TMPro_TMP_InputField_KeyPressed_UnityEngine_Event_" data-uid="TMPro.TMP_InputField.KeyPressed(UnityEngine.Event)">KeyPressed(Event)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TMP_InputField.EditState KeyPressed(Event evt)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Event</span></td>
+        <td><span class="parametername">evt</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_InputField.EditState.html">TMP_InputField.EditState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_LateUpdate.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.LateUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1300">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_LateUpdate_" data-uid="TMPro.TMP_InputField.LateUpdate*"></a>
+  <h4 id="TMPro_TMP_InputField_LateUpdate" data-uid="TMPro.TMP_InputField.LateUpdate">LateUpdate()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void LateUpdate()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_LayoutComplete.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.LayoutComplete%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2494">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_LayoutComplete_" data-uid="TMPro.TMP_InputField.LayoutComplete*"></a>
+  <h4 id="TMPro_TMP_InputField_LayoutComplete" data-uid="TMPro.TMP_InputField.LayoutComplete">LayoutComplete()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void LayoutComplete()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_MoveTextEnd_System_Boolean_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.MoveTextEnd(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1197">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_MoveTextEnd_" data-uid="TMPro.TMP_InputField.MoveTextEnd*"></a>
+  <h4 id="TMPro_TMP_InputField_MoveTextEnd_System_Boolean_" data-uid="TMPro.TMP_InputField.MoveTextEnd(System.Boolean)">MoveTextEnd(Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveTextEnd(bool shift)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">shift</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_MoveTextStart_System_Boolean_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.MoveTextStart(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1229">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_MoveTextStart_" data-uid="TMPro.TMP_InputField.MoveTextStart*"></a>
+  <h4 id="TMPro_TMP_InputField_MoveTextStart_System_Boolean_" data-uid="TMPro.TMP_InputField.MoveTextStart(System.Boolean)">MoveTextStart(Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveTextStart(bool shift)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">shift</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_MoveToEndOfLine_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.MoveToEndOfLine(System.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1261">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_MoveToEndOfLine_" data-uid="TMPro.TMP_InputField.MoveToEndOfLine*"></a>
+  <h4 id="TMPro_TMP_InputField_MoveToEndOfLine_System_Boolean_System_Boolean_" data-uid="TMPro.TMP_InputField.MoveToEndOfLine(System.Boolean,System.Boolean)">MoveToEndOfLine(Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveToEndOfLine(bool shift, bool ctrl)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">shift</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ctrl</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_MoveToStartOfLine_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.MoveToStartOfLine(System.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1278">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_MoveToStartOfLine_" data-uid="TMPro.TMP_InputField.MoveToStartOfLine*"></a>
+  <h4 id="TMPro_TMP_InputField_MoveToStartOfLine_System_Boolean_System_Boolean_" data-uid="TMPro.TMP_InputField.MoveToStartOfLine(System.Boolean,System.Boolean)">MoveToStartOfLine(Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveToStartOfLine(bool shift, bool ctrl)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">shift</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ctrl</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnBeginDrag_UnityEngine_EventSystems_PointerEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnBeginDrag(UnityEngine.EventSystems.PointerEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1410">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnBeginDrag_" data-uid="TMPro.TMP_InputField.OnBeginDrag*"></a>
+  <h4 id="TMPro_TMP_InputField_OnBeginDrag_UnityEngine_EventSystems_PointerEventData_" data-uid="TMPro.TMP_InputField.OnBeginDrag(UnityEngine.EventSystems.PointerEventData)">OnBeginDrag(PointerEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnBeginDrag(PointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.PointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnControlClick.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnControlClick%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2945">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnControlClick_" data-uid="TMPro.TMP_InputField.OnControlClick*"></a>
+  <h4 id="TMPro_TMP_InputField_OnControlClick" data-uid="TMPro.TMP_InputField.OnControlClick">OnControlClick()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnControlClick()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnDeselect_UnityEngine_EventSystems_BaseEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnDeselect(UnityEngine.EventSystems.BaseEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2990">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnDeselect_" data-uid="TMPro.TMP_InputField.OnDeselect*"></a>
+  <h4 id="TMPro_TMP_InputField_OnDeselect_UnityEngine_EventSystems_BaseEventData_" data-uid="TMPro.TMP_InputField.OnDeselect(UnityEngine.EventSystems.BaseEventData)">OnDeselect(BaseEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnDeselect(BaseEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.BaseEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Selectable.OnDeselect(UnityEngine.EventSystems.BaseEventData)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnDisable.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnDisable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1095">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnDisable_" data-uid="TMPro.TMP_InputField.OnDisable*"></a>
+  <h4 id="TMPro_TMP_InputField_OnDisable" data-uid="TMPro.TMP_InputField.OnDisable">OnDisable()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnDisable()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Selectable.OnDisable()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnDrag_UnityEngine_EventSystems_PointerEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnDrag(UnityEngine.EventSystems.PointerEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1418">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnDrag_" data-uid="TMPro.TMP_InputField.OnDrag*"></a>
+  <h4 id="TMPro_TMP_InputField_OnDrag_UnityEngine_EventSystems_PointerEventData_" data-uid="TMPro.TMP_InputField.OnDrag(UnityEngine.EventSystems.PointerEventData)">OnDrag(PointerEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnDrag(PointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.PointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnEnable.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnEnable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1049">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnEnable_" data-uid="TMPro.TMP_InputField.OnEnable*"></a>
+  <h4 id="TMPro_TMP_InputField_OnEnable" data-uid="TMPro.TMP_InputField.OnEnable">OnEnable()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnEnable()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Selectable.OnEnable()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnEndDrag_UnityEngine_EventSystems_PointerEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnEndDrag(UnityEngine.EventSystems.PointerEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1478">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnEndDrag_" data-uid="TMPro.TMP_InputField.OnEndDrag*"></a>
+  <h4 id="TMPro_TMP_InputField_OnEndDrag_UnityEngine_EventSystems_PointerEventData_" data-uid="TMPro.TMP_InputField.OnEndDrag(UnityEngine.EventSystems.PointerEventData)">OnEndDrag(PointerEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnEndDrag(PointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.PointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnFocus.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnFocus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1182">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnFocus_" data-uid="TMPro.TMP_InputField.OnFocus*"></a>
+  <h4 id="TMPro_TMP_InputField_OnFocus" data-uid="TMPro.TMP_InputField.OnFocus">OnFocus()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void OnFocus()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnPointerClick_UnityEngine_EventSystems_PointerEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnPointerClick(UnityEngine.EventSystems.PointerEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2935">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnPointerClick_" data-uid="TMPro.TMP_InputField.OnPointerClick*"></a>
+  <h4 id="TMPro_TMP_InputField_OnPointerClick_UnityEngine_EventSystems_PointerEventData_" data-uid="TMPro.TMP_InputField.OnPointerClick(UnityEngine.EventSystems.PointerEventData)">OnPointerClick(PointerEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnPointerClick(PointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.PointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnPointerDown_UnityEngine_EventSystems_PointerEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnPointerDown(UnityEngine.EventSystems.PointerEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1486">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnPointerDown_" data-uid="TMPro.TMP_InputField.OnPointerDown*"></a>
+  <h4 id="TMPro_TMP_InputField_OnPointerDown_UnityEngine_EventSystems_PointerEventData_" data-uid="TMPro.TMP_InputField.OnPointerDown(UnityEngine.EventSystems.PointerEventData)">OnPointerDown(PointerEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnPointerDown(PointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.PointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Selectable.OnPointerDown(UnityEngine.EventSystems.PointerEventData)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnScroll_UnityEngine_EventSystems_PointerEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnScroll(UnityEngine.EventSystems.PointerEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1748">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnScroll_" data-uid="TMPro.TMP_InputField.OnScroll*"></a>
+  <h4 id="TMPro_TMP_InputField_OnScroll_UnityEngine_EventSystems_PointerEventData_" data-uid="TMPro.TMP_InputField.OnScroll(UnityEngine.EventSystems.PointerEventData)">OnScroll(PointerEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnScroll(PointerEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.PointerEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnSelect_UnityEngine_EventSystems_BaseEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnSelect(UnityEngine.EventSystems.BaseEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2927">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnSelect_" data-uid="TMPro.TMP_InputField.OnSelect*"></a>
+  <h4 id="TMPro_TMP_InputField_OnSelect_UnityEngine_EventSystems_BaseEventData_" data-uid="TMPro.TMP_InputField.OnSelect(UnityEngine.EventSystems.BaseEventData)">OnSelect(BaseEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnSelect(BaseEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.BaseEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">UnityEngine.UI.Selectable.OnSelect(UnityEngine.EventSystems.BaseEventData)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnSubmit_UnityEngine_EventSystems_BaseEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnSubmit(UnityEngine.EventSystems.BaseEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2998">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnSubmit_" data-uid="TMPro.TMP_InputField.OnSubmit*"></a>
+  <h4 id="TMPro_TMP_InputField_OnSubmit_UnityEngine_EventSystems_BaseEventData_" data-uid="TMPro.TMP_InputField.OnSubmit(UnityEngine.EventSystems.BaseEventData)">OnSubmit(BaseEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnSubmit(BaseEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.BaseEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_OnUpdateSelected_UnityEngine_EventSystems_BaseEventData_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.OnUpdateSelected(UnityEngine.EventSystems.BaseEventData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1710">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_OnUpdateSelected_" data-uid="TMPro.TMP_InputField.OnUpdateSelected*"></a>
+  <h4 id="TMPro_TMP_InputField_OnUpdateSelected_UnityEngine_EventSystems_BaseEventData_" data-uid="TMPro.TMP_InputField.OnUpdateSelected(UnityEngine.EventSystems.BaseEventData)">OnUpdateSelected(BaseEventData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnUpdateSelected(BaseEventData eventData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.EventSystems.BaseEventData</span></td>
+        <td><span class="parametername">eventData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_ProcessEvent_UnityEngine_Event_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.ProcessEvent(UnityEngine.Event)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1705">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_ProcessEvent_" data-uid="TMPro.TMP_InputField.ProcessEvent*"></a>
+  <h4 id="TMPro_TMP_InputField_ProcessEvent_UnityEngine_Event_" data-uid="TMPro.TMP_InputField.ProcessEvent(UnityEngine.Event)">ProcessEvent(Event)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessEvent(Event e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Event</span></td>
+        <td><span class="parametername">e</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_Rebuild_UnityEngine_UI_CanvasUpdate_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.Rebuild(UnityEngine.UI.CanvasUpdate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2482">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_Rebuild_" data-uid="TMPro.TMP_InputField.Rebuild*"></a>
+  <h4 id="TMPro_TMP_InputField_Rebuild_UnityEngine_UI_CanvasUpdate_" data-uid="TMPro.TMP_InputField.Rebuild(UnityEngine.UI.CanvasUpdate)">Rebuild(CanvasUpdate)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Rebuild(CanvasUpdate update)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.UI.CanvasUpdate</span></td>
+        <td><span class="parametername">update</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_SelectAll.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.SelectAll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L1190">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_SelectAll_" data-uid="TMPro.TMP_InputField.SelectAll*"></a>
+  <h4 id="TMPro_TMP_InputField_SelectAll" data-uid="TMPro.TMP_InputField.SelectAll">SelectAll()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SelectAll()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_SendOnEndEdit.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.SendOnEndEdit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2340">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_SendOnEndEdit_" data-uid="TMPro.TMP_InputField.SendOnEndEdit*"></a>
+  <h4 id="TMPro_TMP_InputField_SendOnEndEdit" data-uid="TMPro.TMP_InputField.SendOnEndEdit">SendOnEndEdit()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SendOnEndEdit()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_SendOnEndTextSelection.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.SendOnEndTextSelection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2381">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_SendOnEndTextSelection_" data-uid="TMPro.TMP_InputField.SendOnEndTextSelection*"></a>
+  <h4 id="TMPro_TMP_InputField_SendOnEndTextSelection" data-uid="TMPro.TMP_InputField.SendOnEndTextSelection">SendOnEndTextSelection()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SendOnEndTextSelection()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_SendOnFocus.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.SendOnFocus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2356">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_SendOnFocus_" data-uid="TMPro.TMP_InputField.SendOnFocus*"></a>
+  <h4 id="TMPro_TMP_InputField_SendOnFocus" data-uid="TMPro.TMP_InputField.SendOnFocus">SendOnFocus()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SendOnFocus()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_SendOnFocusLost.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.SendOnFocusLost%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2364">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_SendOnFocusLost_" data-uid="TMPro.TMP_InputField.SendOnFocusLost*"></a>
+  <h4 id="TMPro_TMP_InputField_SendOnFocusLost" data-uid="TMPro.TMP_InputField.SendOnFocusLost">SendOnFocusLost()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SendOnFocusLost()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_SendOnSubmit.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.SendOnSubmit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2348">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_SendOnSubmit_" data-uid="TMPro.TMP_InputField.SendOnSubmit*"></a>
+  <h4 id="TMPro_TMP_InputField_SendOnSubmit" data-uid="TMPro.TMP_InputField.SendOnSubmit">SendOnSubmit()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SendOnSubmit()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_SendOnTextSelection.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.SendOnTextSelection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2372">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_SendOnTextSelection_" data-uid="TMPro.TMP_InputField.SendOnTextSelection*"></a>
+  <h4 id="TMPro_TMP_InputField_SendOnTextSelection" data-uid="TMPro.TMP_InputField.SendOnTextSelection">SendOnTextSelection()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SendOnTextSelection()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_SetGlobalFontAsset_TMPro_TMP_FontAsset_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.SetGlobalFontAsset(TMPro.TMP_FontAsset)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L3162">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_SetGlobalFontAsset_" data-uid="TMPro.TMP_InputField.SetGlobalFontAsset*"></a>
+  <h4 id="TMPro_TMP_InputField_SetGlobalFontAsset_TMPro_TMP_FontAsset_" data-uid="TMPro.TMP_InputField.SetGlobalFontAsset(TMPro.TMP_FontAsset)">SetGlobalFontAsset(TMP_FontAsset)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetGlobalFontAsset(TMP_FontAsset fontAsset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="TMPro.TMP_FontAsset.html">TMP_FontAsset</a></td>
+        <td><span class="parametername">fontAsset</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_SetGlobalPointSize_System_Single_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.SetGlobalPointSize(System.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L3152">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_SetGlobalPointSize_" data-uid="TMPro.TMP_InputField.SetGlobalPointSize*"></a>
+  <h4 id="TMPro_TMP_InputField_SetGlobalPointSize_System_Single_" data-uid="TMPro.TMP_InputField.SetGlobalPointSize(System.Single)">SetGlobalPointSize(Single)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetGlobalPointSize(float pointSize)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">pointSize</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_UpdateLabel.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.UpdateLabel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2393">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_UpdateLabel_" data-uid="TMPro.TMP_InputField.UpdateLabel*"></a>
+  <h4 id="TMPro_TMP_InputField_UpdateLabel" data-uid="TMPro.TMP_InputField.UpdateLabel">UpdateLabel()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateLabel()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_Validate_System_String_System_Int32_System_Char_.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.Validate(System.String%2CSystem.Int32%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L2754">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_Validate_" data-uid="TMPro.TMP_InputField.Validate*"></a>
+  <h4 id="TMPro_TMP_InputField_Validate_System_String_System_Int32_System_Char_" data-uid="TMPro.TMP_InputField.Validate(System.String,System.Int32,System.Char)">Validate(String, Int32, Char)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected char Validate(string text, int pos, char ch)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">pos</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">ch</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField_UnityEngine_UI_ICanvasElement_transform.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField.UnityEngine%23UI%23ICanvasElement%23transform%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L3172">View Source</a>
+  </span>
+  <a id="TMPro_TMP_InputField_UnityEngine_UI_ICanvasElement_transform_" data-uid="TMPro.TMP_InputField.UnityEngine#UI#ICanvasElement#transform*"></a>
+  <h4 id="TMPro_TMP_InputField_UnityEngine_UI_ICanvasElement_transform" data-uid="TMPro.TMP_InputField.UnityEngine#UI#ICanvasElement#transform">ICanvasElement.transform</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Transform ICanvasElement.transform { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.Transform</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IMoveHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IPointerDownHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IPointerUpHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IPointerEnterHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IPointerExitHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.ISelectHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IDeselectHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IUpdateSelectedHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IBeginDragHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IDragHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IEndDragHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IPointerClickHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.ISubmitHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.UI.ICanvasElement</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IScrollHandler</span>
+  </div>
+  <div>
+      <span class="xref">UnityEngine.EventSystems.IEventSystemHandler</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.CoroutineUtilities.html#WeaverCore_Utilities_CoroutineUtilities_RunCoroutineWhile__1___0_System_Collections_IEnumerator_System_Func_System_Boolean__">CoroutineUtilities.RunCoroutineWhile&lt;T&gt;(T, IEnumerator, Func&lt;Boolean&gt;)</a>
+  </div>
+  <div>
+      <span class="xref">Extensions.GetFirstInteractable(UnityEngine.UI.Selectable)</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=TMPro_TMP_InputField.md&amp;value=---%0Auid%3A%20TMPro.TMP_InputField%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/Hollow Knight/TextMesh Pro/TextMesh Pro/Plugins/TMPro/TMP_InputField.cs/#L14" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              
+              <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

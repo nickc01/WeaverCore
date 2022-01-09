@@ -1,10 +1,8 @@
 ﻿using GlobalEnums;
 using UnityEngine;
 
-// Token: 0x020000E1 RID: 225
 public class CameraTarget : MonoBehaviour
 {
-	// Token: 0x060004AE RID: 1198 RVA: 0x00017399 File Offset: 0x00015599
 	public void GameInit()
 	{
 		if (cameraCtrl == null)
@@ -13,7 +11,6 @@ public class CameraTarget : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004AF RID: 1199 RVA: 0x000173CC File Offset: 0x000155CC
 	public void SceneInit()
 	{
 		if (GameManager.instance.IsGameplayScene())
@@ -24,10 +21,6 @@ public class CameraTarget : MonoBehaviour
 			stickToHeroX = true;
 			stickToHeroY = true;
 			fallCatcher = 0f;
-			/*xLockMin = 0f;
-			xLockMax = cameraCtrl.xLimit;
-			yLockMin = 0f;
-			yLockMax = cameraCtrl.yLimit;*/
 
 			var cameraBounds = GameManager.instance.SceneDimensions;
 
@@ -42,7 +35,6 @@ public class CameraTarget : MonoBehaviour
 		mode = CameraTarget.TargetMode.FREE;
 	}
 
-	// Token: 0x060004B0 RID: 1200 RVA: 0x0001748C File Offset: 0x0001568C
 	public void Update()
 	{
 		if (HeroController.instance == null || !isGameplayScene)
@@ -298,10 +290,6 @@ public class CameraTarget : MonoBehaviour
 					{
 						cameraCtrl.transform.SetPositionY(sceneDimensions.yMin);
 					}
-					/*if (cameraCtrl.transform.position.y < 8.3f)
-					{
-						cameraCtrl.transform.SetPositionY(8.3f);
-					}*/
 					if (fallCatcher < 25f)
 					{
 						fallCatcher += 80f * Time.deltaTime;
@@ -346,7 +334,6 @@ public class CameraTarget : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004B1 RID: 1201 RVA: 0x00018088 File Offset: 0x00016288
 	public void EnterLockZone(float xLockMin_var, float xLockMax_var, float yLockMin_var, float yLockMax_var)
 	{
 		var cameraBounds = GameManager.instance.SceneDimensions;
@@ -387,7 +374,6 @@ public class CameraTarget : MonoBehaviour
 		stickToHeroY = false;
 	}
 
-	// Token: 0x060004B2 RID: 1202 RVA: 0x000181E4 File Offset: 0x000163E4
 	public void EnterLockZoneInstant(float xLockMin_var, float xLockMax_var, float yLockMin_var, float yLockMax_var)
 	{
 		xLockMin = xLockMin_var;
@@ -415,7 +401,6 @@ public class CameraTarget : MonoBehaviour
 		stickToHeroY = true;
 	}
 
-	// Token: 0x060004B3 RID: 1203 RVA: 0x000182C8 File Offset: 0x000164C8
 	public void ExitLockZone()
 	{
 		var cameraBounds = GameManager.instance.SceneDimensions;
@@ -467,7 +452,6 @@ public class CameraTarget : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004B4 RID: 1204 RVA: 0x000184D4 File Offset: 0x000166D4
 	private void SetDampTime()
 	{
 		if (slowTimer > 0f)
@@ -494,25 +478,21 @@ public class CameraTarget : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004B5 RID: 1205 RVA: 0x00018578 File Offset: 0x00016778
 	public void SetSuperDash(bool active)
 	{
 		superDashing = active;
 	}
 
-	// Token: 0x060004B6 RID: 1206 RVA: 0x00018581 File Offset: 0x00016781
 	public void SetQuake(bool quake)
 	{
 		quaking = quake;
 	}
 
-	// Token: 0x060004B7 RID: 1207 RVA: 0x0001858A File Offset: 0x0001678A
 	public void FreezeInPlace()
 	{
 		mode = CameraTarget.TargetMode.FREE;
 	}
 
-	// Token: 0x060004B8 RID: 1208 RVA: 0x00018594 File Offset: 0x00016794
 	public void PositionToStart()
 	{
 		float x = base.transform.position.x;
@@ -616,159 +596,101 @@ public class CameraTarget : MonoBehaviour
 		heroPrevPosition = heroTransform.position;
 	}
 
-	// Token: 0x04000455 RID: 1109
 	private readonly bool verboseMode;
 
-	// Token: 0x04000456 RID: 1110
-	//[HideInInspector]
-	//public GameManager gm;
-
-	// Token: 0x04000457 RID: 1111
-	//[HideInInspector]
-	//public HeroController hero_ctrl;
-
-	// Token: 0x04000458 RID: 1112
 	private Transform heroTransform;
 
-	// Token: 0x04000459 RID: 1113
 	public CameraController cameraCtrl;
 
-	// Token: 0x0400045A RID: 1114
 	public CameraTarget.TargetMode mode = TargetMode.FOLLOW_HERO;
 
-	// Token: 0x0400045B RID: 1115
 	public Vector3 destination;
 
-	// Token: 0x0400045C RID: 1116
 	private Vector3 velocityX;
 
-	// Token: 0x0400045D RID: 1117
 	private Vector3 velocityY;
 
-	// Token: 0x0400045E RID: 1118
 	public float xOffset;
 
-	// Token: 0x0400045F RID: 1119
 	public float dashOffset;
 
-	// Token: 0x04000460 RID: 1120
 	public float fallOffset;
 
-	// Token: 0x04000461 RID: 1121
 	public float fallOffset_multiplier = 5f;
 
-	// Token: 0x04000462 RID: 1122
 	public float xLockMin;
 
-	// Token: 0x04000463 RID: 1123
 	public float xLockMax;
 
-	// Token: 0x04000464 RID: 1124
 	public float yLockMin;
 
-	// Token: 0x04000465 RID: 1125
 	public float yLockMax;
 
-	// Token: 0x04000466 RID: 1126
 	public bool enteredLeft;
 
-	// Token: 0x04000467 RID: 1127
 	public bool enteredRight;
 
-	// Token: 0x04000468 RID: 1128
 	public bool enteredTop;
 
-	// Token: 0x04000469 RID: 1129
 	public bool enteredBot;
 
-	// Token: 0x0400046A RID: 1130
 	public bool exitedLeft;
 
-	// Token: 0x0400046B RID: 1131
 	public bool exitedRight;
 
-	// Token: 0x0400046C RID: 1132
 	public bool exitedTop;
 
-	// Token: 0x0400046D RID: 1133
 	public bool exitedBot;
 
-	// Token: 0x0400046E RID: 1134
 	public bool superDashing;
 
-	// Token: 0x0400046F RID: 1135
 	public bool quaking;
 
-	// Token: 0x04000470 RID: 1136
 	public float slowTime = 0.5f;
 
-	// Token: 0x04000471 RID: 1137
 	public float dampTimeNormal = 0.075f;
 
-	// Token: 0x04000472 RID: 1138
 	public float dampTimeSlow = 0.5f;
 
-	// Token: 0x04000473 RID: 1139
 	public float xLookAhead = 1f;
 
-	// Token: 0x04000474 RID: 1140
 	public float dashLookAhead = 1.5f;
 
-	// Token: 0x04000475 RID: 1141
 	public float superDashLookAhead = 6f;
 
-	// Token: 0x04000476 RID: 1142
 	private Vector3 heroPrevPosition;
 
-	// Token: 0x04000477 RID: 1143
 	private readonly float dampTime;
 
-	// Token: 0x04000478 RID: 1144
 	private float dampTimeX;
 
-	// Token: 0x04000479 RID: 1145
 	private float dampTimeY;
 
-	// Token: 0x0400047A RID: 1146
 	private float slowTimer;
 
-	// Token: 0x0400047B RID: 1147
 	private readonly float snapDistance;
 
-	// Token: 0x0400047C RID: 1148
 	public float fallCatcher;
 
-	// Token: 0x0400047D RID: 1149
 	public bool stickToHeroX;
 
-	// Token: 0x0400047E RID: 1150
 	public bool stickToHeroY;
 
-	// Token: 0x0400047F RID: 1151
 	public bool enteredFromLockZone;
 
-	// Token: 0x04000480 RID: 1152
 	private readonly float prevTarget_y;
 
-	// Token: 0x04000481 RID: 1153
 	private readonly float prevCam_y;
 
-	// Token: 0x04000482 RID: 1154
 	public bool fallStick;
 
-	// Token: 0x04000483 RID: 1155
 	private bool isGameplayScene;
 
-	// Token: 0x020000E2 RID: 226
 	public enum TargetMode
 	{
-		// Token: 0x04000485 RID: 1157
 		FOLLOW_HERO,
-		// Token: 0x04000486 RID: 1158
 		LOCK_ZONE,
-		// Token: 0x04000487 RID: 1159
 		BOSS,
-		// Token: 0x04000488 RID: 1160
 		FREE
 	}
 }

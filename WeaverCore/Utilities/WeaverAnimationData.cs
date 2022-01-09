@@ -7,15 +7,40 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
+	/// <summary>
+	/// Contains a series of animation clips that can be played with <see cref="WeaverCore.Components.WeaverAnimationPlayer"/>
+	/// </summary>
 	[CreateAssetMenu(fileName = "WeaverAnimation", menuName = "WeaverCore/Weaver Sprite Animation Data")]
 	public class WeaverAnimationData : ScriptableObject
 	{
+		/// <summary>
+		/// An animation clip that contains a series of sprites to play
+		/// </summary>
 		public struct Clip
 		{
+			/// <summary>
+			/// The name of the clip
+			/// </summary>
 			public string Name;
+
+			/// <summary>
+			/// The sprites to be played
+			/// </summary>
 			public List<Sprite> Frames;
+
+			/// <summary>
+			/// How many frames per second should the animation be playing at
+			/// </summary>
 			public float FPS;
+
+			/// <summary>
+			/// Determines how the animation will loop
+			/// </summary>
 			public WrapMode WrapMode;
+
+			/// <summary>
+			/// The frame index where the loop begins
+			/// </summary>
 			public int LoopStart;
 
 			public Clip(string name, float fps, WrapMode wrapMode = WrapMode.Once, IEnumerable<Sprite> frames = null, int loopStart = 0)
@@ -34,6 +59,10 @@ namespace WeaverCore.Utilities
 				LoopStart = loopStart;
 			}
 
+			/// <summary>
+			/// Adds some frames to the clip
+			/// </summary>
+			/// <param name="frames">The frames to add</param>
 			public void AddFrames(IEnumerable<Sprite> frames)
 			{
 				if (Frames == null)
@@ -46,6 +75,10 @@ namespace WeaverCore.Utilities
 				}
 			}
 
+			/// <summary>
+			/// Adds a frame to the clip
+			/// </summary>
+			/// <param name="sprite">The frame to add</param>
 			public void AddFrame(Sprite sprite)
 			{
 				if (Frames == null)
@@ -56,14 +89,38 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Determines how an animation clip will loop
+		/// </summary>
 		public enum WrapMode
 		{
+			/// <summary>
+			/// The clip will only play once
+			/// </summary>
 			Once,
+			/// <summary>
+			/// The clip will loop back to the start when it reaches the end
+			/// </summary>
 			Loop,
+			/// <summary>
+			/// The clip will loop back to the <seealso cref="Clip.LoopStart"/> index it reaches the end
+			/// </summary>
 			LoopSection,
+			/// <summary>
+			/// When the clip reaches the end, it will start playing the animation backwards
+			/// </summary>
 			PingPong,
+			/// <summary>
+			/// Will play a random frame in the clip's frames list
+			/// </summary>
 			RandomFrame,
+			/// <summary>
+			/// When the clip reaches the end, it will loop back to a random frame
+			/// </summary>
 			RandomLoop,
+			/// <summary>
+			/// Will only play a single frame
+			/// </summary>
 			SingleFrame
 		}
 
@@ -89,6 +146,11 @@ namespace WeaverCore.Utilities
 		[SerializeField]
 		List<int> clipLoopStarts = new List<int>();
 
+		/// <summary>
+		/// Adds a clip
+		/// </summary>
+		/// <param name="clip">The clip to be added</param>
+		/// <returns>Returns true if the clip is added, or false of the clip is already added</returns>
 		public bool AddClip(Clip clip)
 		{
 			if (HasClip(clip))
@@ -111,36 +173,54 @@ namespace WeaverCore.Utilities
 			return true;
 		}
 
+		/// <summary>
+		/// Returns whether the clip has been added
+		/// </summary>
+		/// <param name="clip">The clip to check for</param>
+		/// <returns>Returns whether the clip has been added</returns>
 		public bool HasClip(Clip clip)
 		{
 			return HasClip(clip.Name);
 		}
 
+		/// <summary>
+		/// Returns whether the clip with the specified name is added
+		/// </summary>
+		/// <param name="clipName">The clip name to check for</param>
+		/// <returns>Returns whether the clip with the specified name is added</returns>
 		public bool HasClip(string clipName)
 		{
-			//Debug.Log("Adding Clip Name = " + clipName);
-			//Debug.Log("Clip Names = " + (clipNames != null));
 			return clipNames.Contains(clipName);
 		}
 
+		/// <summary>
+		/// Removes a clip
+		/// </summary>
+		/// <param name="clip">The clip to remove</param>
+		/// <returns>Returns whether the clip has been removed</returns>
 		public bool RemoveClip(Clip clip)
 		{
 			return RemoveClip(clip.Name);
 		}
 
+		/// <summary>
+		/// Removes a clip with the specified name
+		/// </summary>
+		/// <param name="clipName">The name of the clip to remove</param>
+		/// <returns>Returns whether the clip has been removed</returns>
 		public bool RemoveClip(string clipName)
 		{
 			if (!HasClip(clipName))
 			{
 				return false;
 			}
-			var clipIndex = clipNames.IndexOf(clipName); //45
+			var clipIndex = clipNames.IndexOf(clipName);
 
 			clipNames.RemoveAt(clipIndex);
 
-			var frameCount = clipFrameCounts[clipIndex]; //3
+			var frameCount = clipFrameCounts[clipIndex];
 
-			var startFrameIndex = clipFrameStartIndexes[clipIndex]; //264
+			var startFrameIndex = clipFrameStartIndexes[clipIndex];
 
 
 			for (int i = clipIndex + 1; i < clipFrameStartIndexes.Count; i++)
@@ -151,7 +231,6 @@ namespace WeaverCore.Utilities
 			clipFrameStartIndexes.RemoveAt(clipIndex);
 			clipFrameCounts.RemoveAt(clipIndex);
 
-			//From 0 to 2
 			for (int i = frameCount - 1; i >= 0; i--)
 			{
 				frames.RemoveAt(startFrameIndex + i);
@@ -163,6 +242,12 @@ namespace WeaverCore.Utilities
 			return true;
 		}
 
+		/// <summary>
+		/// Finds a clip with the specified name
+		/// </summary>
+		/// <param name="clipName">The name of the clip to look for</param>
+		/// <returns>Returns the clip with the specified name</returns>
+		/// <exception cref="Exception">Throws an exception if the clip does not exist</exception>
 		public Clip GetClip(string clipName)
 		{
 			if (!HasClip(clipName))
@@ -170,7 +255,7 @@ namespace WeaverCore.Utilities
 				throw new Exception("The clip " + clipName + " does not exist on this animator");
 			}
 
-			var clipIndex = GetClipIndex(clipName);//clipNames.IndexOf(clipName);
+			var clipIndex = GetClipIndex(clipName);
 
 			var clip = new Clip
 			{
@@ -183,9 +268,6 @@ namespace WeaverCore.Utilities
 			var frameStart = clipFrameStartIndexes[clipIndex];
 			var frameCount = clipFrameCounts[clipIndex];
 
-			//Debug.Log("Frames_A = " + clip.Frames);
-			//Debug.Log("Frame Count = " + frameCount);
-
 			for (int i = frameStart; i < frameStart + frameCount; i++)
 			{
 				clip.AddFrame(frames[i]);
@@ -193,6 +275,29 @@ namespace WeaverCore.Utilities
 			return clip;
 		}
 
+		/// <summary>
+		/// Attempts to get a clip with the specified name
+		/// </summary>
+		/// <param name="clipName">The name of the clip to get</param>
+		/// <param name="clip">The output clip</param>
+		/// <returns>Returns true if a clip was found</returns>
+		public bool TryGetClip(string clipName, out Clip clip)
+        {
+            if (HasClip(clipName))
+            {
+				clip = GetClip(clipName);
+				return true;
+            }
+			else
+            {
+				clip = default;
+				return false;
+            }
+        }
+
+		/// <summary>
+		/// A list of all added clip names
+		/// </summary>
 		public IEnumerable<string> ClipNames
 		{
 			get
@@ -201,6 +306,9 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// A list of all added clips
+		/// </summary>
 		public IEnumerable<Clip> AllClips
 		{
 			get
@@ -212,6 +320,9 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// How many clips have been added
+		/// </summary>
 		public int AnimationCount
 		{
 			get
@@ -220,6 +331,9 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Removes all clips from the animation data object
+		/// </summary>
 		public void Clear()
 		{
 			for (int i = clipNames.Count - 1; i >= 0; i--)
@@ -228,8 +342,13 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-
-		public Sprite GetFrameFromClip(string clipName, int frameNumber)
+		/// <summary>
+		/// Given a frame index, will get the sprite corresponding to that frame
+		/// </summary>
+		/// <param name="clipName">The clip to get the frame from</param>
+		/// <param name="frameIndex">The frame index</param>
+		/// <returns>Returns the sprite at the frame index</returns>
+		public Sprite GetFrameFromClip(string clipName, int frameIndex)
 		{
 			if (!HasClip(clipName))
 			{
@@ -246,17 +365,17 @@ namespace WeaverCore.Utilities
 
 			if (wrapMode == WrapMode.PingPong)
 			{
-				if (frameNumber >= 0 && frameNumber < frameCount)
+				if (frameIndex >= 0 && frameIndex < frameCount)
 				{
-					return frames[startingFrame + frameNumber];
+					return frames[startingFrame + frameIndex];
 				}
 				else
 				{
-					frameNumber -= frameCount;
+					frameIndex -= frameCount;
 
-					if (frameNumber >= 0 && frameNumber < frameCount - 1)
+					if (frameIndex >= 0 && frameIndex < frameCount - 1)
 					{
-						return frames[endingFrame - frameNumber - 1];
+						return frames[endingFrame - frameIndex - 1];
 					}
 					else
 					{
@@ -266,49 +385,12 @@ namespace WeaverCore.Utilities
 			}
 			else
 			{
-				if (frameNumber < 0 || frameNumber >= frameCount)
+				if (frameIndex < 0 || frameIndex >= frameCount)
 				{
 					return null;
 				}
-				/*if (wrapMode == WrapMode.Loop)
-				{
-					Debug.Log("Clip Name = " + clipName);
-					Debug.Log("Starting Frame = " + startingFrame);
-					Debug.Log("Frame Number = " + frameNumber);
-				}*/
-				return frames[startingFrame + frameNumber];
+				return frames[startingFrame + frameIndex];
 			}
-
-			/*int clipIndex = GetClipIndex(clipName);
-
-			int startingFrame = clipFrameStartIndexes[clipIndex];
-			int frameCount = clipFrameCounts[clipIndex];
-			int endingFrame = startingFrame + frameCount - 1;
-			int loopStartFrame = clipLoopStarts[clipIndex] + startingFrame;
-
-
-
-
-			switch (GetClipWrapModeRaw(clipIndex))
-			{
-				case WrapMode.Loop:
-					break;
-				case WrapMode.PingPong:
-					break;
-				case WrapMode.ClampForever:
-					break;
-				//WrapMode.Once and WrapMode.Default case and WrapMode.Clamp
-				default:
-					if (frameNumber < 0 || frameNumber >= frameCount)
-					{
-						return null;
-					}
-					else
-					{
-						return frames[startingFrame + frameNumber];
-					}
-			}
-			*/
 		}
 
 		/// <summary>
@@ -326,70 +408,15 @@ namespace WeaverCore.Utilities
 			}
 
 			return GoToNextFrame(clipName, previousFrame, GetClipWrapMode(clipName));
-			/*if (!HasClip(clipName))
-			{
-				return -1;
-			}
-
-			int clipIndex = GetClipIndex(clipName);
-
-			int startingFrame = clipFrameStartIndexes[clipIndex];
-			int frameCount = clipFrameCounts[clipIndex];
-			int endingFrame = startingFrame + frameCount - 1;
-			int loopStartFrame = clipLoopStarts[clipIndex] + startingFrame;
-
-			switch (GetClipWrapModeRaw(clipIndex))
-			{
-				case WrapMode.Once:
-					previousFrame += 1;
-					if (previousFrame >= frameCount)
-					{
-						return -1;
-					}
-					else
-					{
-						return previousFrame;
-					}
-				case WrapMode.LoopSection:
-					previousFrame += 1;
-					if (previousFrame >= frameCount)
-					{
-						return loopStartFrame;
-					}
-					else
-					{
-						return previousFrame;
-					}
-				case WrapMode.PingPong:
-					previousFrame += 1;
-					if (previousFrame >= (frameCount * 2) - 1)
-					{
-						return 0;
-					}
-					else
-					{
-						return previousFrame;
-					}
-				case WrapMode.RandomFrame:
-					return -1;
-				case WrapMode.Loop:
-				case WrapMode.RandomLoop:
-					previousFrame += 1;
-					if (previousFrame >= frameCount)
-					{
-						return 0;
-					}
-					else
-					{
-						return previousFrame;
-					}
-				case WrapMode.SingleFrame:
-					return -1;
-				default:
-					return -1;
-			}*/
 		}
 
+		/// <summary>
+		/// Given the wrap mode and previous frame of a clip, will give the next frame in the clip
+		/// </summary>
+		/// <param name="clipName">The name of the clip to get the frame from</param>
+		/// <param name="previousFrame">The previous frame in the clip</param>
+		/// <param name="wrapMode">The wrap mode of the clip</param>
+		/// <returns>Returns the next frame in the clip's sequence</returns>
 		public int GoToNextFrame(string clipName, int previousFrame, WrapMode wrapMode)
 		{
 			if (!HasClip(clipName))
@@ -456,6 +483,12 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Gets the first frame of a clip
+		/// </summary>
+		/// <param name="clipName">The clip to get the first frame of</param>
+		/// <returns>Returns the starting frame of the clip</returns>
+		/// <exception cref="Exception">Throws if the clip doesn't exist in the Animation Data Object</exception>
 		public int GetStartingFrame(string clipName)
 		{
 			if (!HasClip(clipName))
@@ -521,7 +554,9 @@ namespace WeaverCore.Utilities
 			return clipNames.IndexOf(clipName);
 		}
 
-
+		/// <summary>
+		/// Gets the FPS of a certain clip
+		/// </summary>
 		public float GetClipFPS(string clipName)
 		{
 			if (!HasClip(clipName))
@@ -537,6 +572,9 @@ namespace WeaverCore.Utilities
 			return clipFPSs[clipIndex];
 		}
 
+		/// <summary>
+		/// Gets the amount of frames in a specific clip
+		/// </summary>
 		public int GetClipFrameCount(string clipName)
 		{
 			if (!HasClip(clipName))
@@ -552,6 +590,9 @@ namespace WeaverCore.Utilities
 			return clipFrameCounts[clipIndex];
 		}
 
+		/// <summary>
+		/// The amount of clips added to the data object
+		/// </summary>
 		public int ClipCount
 		{
 			get
@@ -560,6 +601,9 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Gets the duration of a specific clip
+		/// </summary>
 		public float GetClipDuration(string clipName)
 		{
 			if (!HasClip(clipName))

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
+	/// <summary>
+	/// Used to creating a pulsating light behind the bench
+	/// </summary>
 	public class LightPulse : MonoBehaviour
 	{
 		[SerializeField]

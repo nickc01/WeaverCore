@@ -7,30 +7,27 @@ using System.Linq;
 using System.IO;
 using WeaverCore.Editor.Utilities;
 using UnityEditorInternal;
-//using Toolbox.Editor.Internal;
 
+/// <summary>
+/// Used for converting multiple textures, into a single texture consisting of multiple sprites
+/// </summary>
 public class TexturesToAtlasConverter : EditorWindow
 {
+	[MenuItem("WeaverCore/Tools/Convert Textures to Atlas")]
+	public static void Convert()
+	{
+		Display();
+	}
 
 	public List<Texture2D> textureList;
-	/*[ExecuteAlways]
-	class DataHolder : MonoBehaviour
-	{
-		[SerializeField]
-		public List<GameObject> textures;
-	}*/
-
 	ReorderableList textures = null;
 	bool destroyOriginalTextures = false;
 	string outputAtlasName = "NEW_ATLAS";
 
-	//DataHolder holderObject;
 	SerializedObject serializedObject;
 	bool closed = false;
 
 	Vector2 scrollPosition;
-
-	//Rect testRect = new Rect(Vector2.zero, Vector2.one * 500f);
 
 	public static TexturesToAtlasConverter Display()
 	{
@@ -41,33 +38,10 @@ public class TexturesToAtlasConverter : EditorWindow
 		return window;
 	}
 
-	//private void Awake()
-	//{
-		//
-		//textures.onAddCallback
-		//Debug.Log("AWOKEN");
-	//}
-
-	//private void OnDestroy()
-	//{
-		//Debug.Log("DESTROYED");
-	//}
-
 	private void OnEnable()
 	{
-		/*Debug.Log("Enabled");
-		holderObject = GameObject.FindObjectOfType<DataHolder>();
-		if (holderObject == null)
-		{
-			var holderGM = new GameObject();
-			holderGM.hideFlags = HideFlags.DontSaveInEditor | HideFlags.HideAndDontSave;
-			holderObject = holderGM.AddComponent<DataHolder>();
-		}
-
-		serializedObject = new SerializedObject(holderObject);*/
 		serializedObject = new SerializedObject(this);
 
-		//textures = new ReorderableList(serializedObject.FindProperty("textureList"), "Textures", false,true,false);
 		textures = new ReorderableList(serializedObject, serializedObject.FindProperty("textureList"), false, true, true, true);
 
 		textures.drawHeaderCallback = (rect) => EditorGUI.LabelField(rect, "Textures");
@@ -81,12 +55,6 @@ public class TexturesToAtlasConverter : EditorWindow
 		};
 	}
 
-	//private void OnDisable()
-	//{
-		//Debug.Log("Disabled");
-		//DestroyImmediate(holderObject.gameObject);
-	//}
-
 	private void OnGUI()
 	{
 		if (serializedObject == null || closed)
@@ -99,8 +67,6 @@ public class TexturesToAtlasConverter : EditorWindow
 		EditorGUILayout.LabelField("Add the textures you want in the atlas to the list below");
 		EditorGUILayout.Space();
 		textures.DoLayoutList();
-		//EditorGUILayout.PropertyField(serializedObject.FindProperty("textures"));
-		//EditorGUILayout.PropertyField(serializedObject.FindProperty("testField"));
 
 		EditorGUILayout.Space();
 		if (GUILayout.Button(new GUIContent("Add Selected Textures", "Adds all the textures that are highlighted in the \"Project\" Window")))
@@ -120,13 +86,6 @@ public class TexturesToAtlasConverter : EditorWindow
 		{
 			closed = true;
 			Close();
-			/*List<Texture2D> list = new List<Texture2D>();
-
-			var texList = serializedObject.FindProperty("textureList");
-			for (int i = 0; i < textures.list.Count; i++)
-			{
-				list.Add((Texture2D)textures.list[i]);
-			}*/
 			UnboundCoroutine.Start(Convert(textureList, destroyOriginalTextures, outputAtlasName));
 		}
 
@@ -240,14 +199,5 @@ public class TexturesToAtlasConverter : EditorWindow
 		}
 
 		yield break;
-	}
-}
-
-public class ConvertTexturesToAtlas : MonoBehaviour
-{
-	[MenuItem("WeaverCore/Tools/Convert Textures to Atlas")]
-	public static void Convert()
-	{
-		TexturesToAtlasConverter.Display();
 	}
 }

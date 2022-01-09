@@ -39,6 +39,9 @@ namespace WeaverCore
 	[ShowFeature]
 	[CreateAssetMenu(fileName = "Scene Record", menuName = "WeaverCore/Scene Record")]
 	public class SceneRecord : ScriptableObject
+#if UNITY_EDITOR
+		,ISerializationCallbackReceiver //Make the class inhertit from ISerializationCallbackReceiver if in the Editor Enviroment
+#endif
 	{
 #if UNITY_EDITOR
 		[SerializeField]
@@ -52,7 +55,27 @@ namespace WeaverCore
 		[SerializeField]
 		[Tooltip("A list of scenes to combine with in game")]
 		List<SceneUnion> sceneUnions = new List<SceneUnion>();
+
+		[SerializeField]
+		[Tooltip("A list of all the gates that are being changed to point to new destinations")]
+		List<GateRedirect> transitionRedirects = new List<GateRedirect>();
 #endif
+
+		/// <summary>
+		/// Contains all the information needed to change an existing Transition Point to point to a new scene
+		/// </summary>
+		[Serializable]
+		public class GateRedirect
+        {
+			[Tooltip("The name of the scene that contains the gate that's getting redirected")]
+			public string GateScene;
+			[Tooltip("The name of the gate to redirect")]
+			public string GateToChange;
+			[Tooltip("The new scene the gate will be directed to when the player touches it")]
+			public string NewScene;
+			[Tooltip("The new gate the player will be placed at when the player arrives at the new scene")]
+			public string NewGate;
+        }
 
 		[Space(40f)]
 		[HideInInspector]
@@ -73,6 +96,20 @@ namespace WeaverCore
 		[HideInInspector]
 		[SerializeField]
 		List<string> sceneUnionPaths = new List<string>();
+
+
+		[HideInInspector]
+		[SerializeField]
+		List<string> transitionRedirects_containingScenes = new List<string>();
+		[HideInInspector]
+		[SerializeField]
+		List<string> transitionRedirects_gatesToRedirect = new List<string>();
+		[HideInInspector]
+		[SerializeField]
+		List<string> transitionRedirects_newDestinationScenes = new List<string>();
+		[HideInInspector]
+		[SerializeField]
+		List<string> transitionRedirects_newDestinationGateNames = new List<string>();
 
 
 		/// <summary>
@@ -108,25 +145,22 @@ namespace WeaverCore
 			}
 		}
 
-		/*/// <summary>
-		/// Adds
-		/// </summary>
-		/// <param name="scene"></param>
-		/// <returns></returns>
-		public bool AddSceneAddition(string scene)
-		{
-			if (!sceneAdditionPaths.Contains(scene))
-			{
-				sceneAdditionPaths.Add(scene);
-				return true;
-			}
-			return false;
-		}
-
-		public bool RemoveSceneAddition(string scene)
-		{
-			return sceneAdditionPaths.Remove(scene);
-		}*/
+		public IEnumerable<GateRedirect> TransitionRedirects
+        {
+			get
+            {
+                for (int i = 0; i < transitionRedirects_containingScenes.Count; i++)
+                {
+					yield return new GateRedirect
+					{
+						GateScene = transitionRedirects_containingScenes[i],
+						NewGate = transitionRedirects_newDestinationGateNames[i],
+						GateToChange = transitionRedirects_gatesToRedirect[i],
+						NewScene = transitionRedirects_newDestinationScenes[i]
+					};
+                }
+            }
+        }
 
 		/// <summary>
 		/// Replaces the <paramref name="oldScene"/> with the <paramref name="newScene"/>. Anytime the old scene gets loaded, the new scene will load instead
@@ -217,21 +251,10 @@ namespace WeaverCore
 		}
 
 #if UNITY_EDITOR
-		private void OnValidate()
-		{
-			sceneAdditionPaths = sceneAdditions.Select(s => AssetDatabase.GetAssetPath(s)).ToList();
-
-			sceneToReplacePaths = sceneReplacements.Select(s => s.SceneToReplace).ToList();
-			sceneReplacementPaths = sceneReplacements.Select(s => AssetDatabase.GetAssetPath(s.Replacement)).ToList();
-
-			sceneToUnionizePaths = sceneUnions.Select(s => s.SceneToUniteWith).ToList();
-			sceneUnionPaths = sceneUnions.Select(s => AssetDatabase.GetAssetPath(s.UnionScene)).ToList();
-		}
 
 		[BeforeBuild]
 		static void SetBundles()
 		{
-			Debug.Log("Before Build");
 			var scenes = AssetDatabase.FindAssets($"t:{nameof(SceneRecord)}");
 			foreach (var guid in scenes)
 			{
@@ -239,7 +262,6 @@ namespace WeaverCore
 				var record = AssetDatabase.LoadAssetAtPath<SceneRecord>(path);
 				if (record != null)
 				{
-					record.OnValidate();
 					var oldBundleName = GetAssetBundleName(record);
 					var match = Regex.Match(oldBundleName, @"([\d\w]+?)_bundle");
 					if (match.Success)
@@ -285,6 +307,27 @@ namespace WeaverCore
 			return "";
 		}
 
+        void ISerializationCallbackReceiver.OnBeforeSerialize()
+        {
+			sceneAdditionPaths = sceneAdditions.Select(s => AssetDatabase.GetAssetPath(s)).ToList();
+
+			sceneToReplacePaths = sceneReplacements.Select(s => s.SceneToReplace).ToList();
+			sceneReplacementPaths = sceneReplacements.Select(s => AssetDatabase.GetAssetPath(s.Replacement)).ToList();
+
+			sceneToUnionizePaths = sceneUnions.Select(s => s.SceneToUniteWith).ToList();
+			sceneUnionPaths = sceneUnions.Select(s => AssetDatabase.GetAssetPath(s.UnionScene)).ToList();
+
+			transitionRedirects_containingScenes = transitionRedirects.Select(s => s.GateScene).ToList();
+			transitionRedirects_gatesToRedirect = transitionRedirects.Select(s => s.GateToChange).ToList();
+			transitionRedirects_newDestinationGateNames = transitionRedirects.Select(s => s.NewGate).ToList();
+			transitionRedirects_newDestinationScenes = transitionRedirects.Select(s => s.NewScene).ToList();
+		}
+
+        void ISerializationCallbackReceiver.OnAfterDeserialize()
+        {
+            
+        }
+
 #endif
-	}
+    }
 }

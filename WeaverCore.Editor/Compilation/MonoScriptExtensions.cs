@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace WeaverCore.Editor.Compilation
 {
+	/// <summary>
+	/// Several extension methods for working with <see cref="MonoScript"/> objects
+	/// </summary>
 	public static class MonoScriptExtensions
 	{
 		static Type monoScriptType;
@@ -24,6 +27,9 @@ namespace WeaverCore.Editor.Compilation
 #endif
 		}
 
+		/// <summary>
+		/// Gets the assembly name a monoscript is a part of
+		/// </summary>
 		public static string GetScriptAssemblyName(this MonoScript script)
 		{
 #if UNITY_2019_4_OR_NEWER
@@ -56,6 +62,9 @@ namespace WeaverCore.Editor.Compilation
 #endif
 		}
 
+		/// <summary>
+		/// Gets the namespace the monoscript is a part of
+		/// </summary>
 		public static string GetScriptNamespace(this MonoScript script)
 		{
 #if UNITY_2019_4_OR_NEWER

@@ -10,9 +10,15 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	[ExecuteAlways]
+    /// <summary>
+    /// Contains information about the current scene
+    /// </summary>
+    [ExecuteAlways]
 	public class WeaverSceneManager : SceneManager
 	{
+		/// <summary>
+		/// The scene manager for the currently loaded scene
+		/// </summary>
 		public static SceneManager CurrentSceneManager { get; set; }
 
 		static GameObject shadePrefab;
@@ -84,13 +90,15 @@ namespace WeaverCore.Components
 
 		void RefreshSceneDimensions()
 		{
-			//Debug.Log("Scene Info Refreshed");
+            if (!gameObject.scene.isLoaded)
+            {
+				return;
+            }
 			sceneDimensionsRefreshed = true;
 			if (autoSetDimensions)
 			{
 				Vector3 sceneMax = new Vector3(float.NegativeInfinity, float.NegativeInfinity);
 				Vector3 sceneMin = new Vector3(float.PositiveInfinity, float.PositiveInfinity);
-				//sceneDimensions = new Rect(float.PositiveInfinity, float.PositiveInfinity, float.NegativeInfinity, float.NegativeInfinity);
 				foreach (var rootObj in gameObject.scene.GetRootGameObjects())
 				{
 					foreach (var collider in rootObj.GetComponentsInChildren<Collider2D>())
@@ -113,26 +121,6 @@ namespace WeaverCore.Components
 						{
 							sceneMax.y = bounds.max.y;
 						}
-						/*var bounds = collider.bounds;
-						if (bounds.min.x < sceneDimensions.x)
-						{
-							sceneDimensions.x = bounds.min.x;
-						}
-
-						if (bounds.min.y < sceneDimensions.y)
-						{
-							sceneDimensions.y = bounds.min.y;
-						}
-
-						if (bounds.max.x - bounds.min.x > sceneDimensions.width)
-						{
-							sceneDimensions.width = bounds.max.x - bounds.min.x;
-						}
-
-						if (bounds.size.y > sceneDimensions.height)
-						{
-							sceneDimensions.height = bounds.size.y;
-						}*/
 					}
 
 				}
@@ -148,7 +136,41 @@ namespace WeaverCore.Components
 			}
 		}
 
-		[OnHarmonyPatch]
+		[OnInit]
+		static void Init()
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        }
+
+        private static void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+        {
+			var records = Registry.GetAllFeatures<SceneRecord>();
+			var sceneRedirectEnum = Enumerable.Empty<SceneRecord.GateRedirect>();
+            foreach (var record in records)
+            {
+				sceneRedirectEnum = sceneRedirectEnum.Concat(record.TransitionRedirects);
+            }
+
+			var redirects = sceneRedirectEnum.ToArray();
+
+			var sceneObjects = arg0.GetRootGameObjects();
+            for (int i = sceneObjects.GetLength(0) - 1; i >= 0; i--)
+            {
+                if (sceneObjects[i].TryGetComponent<TransitionPoint>(out var transition))
+                {
+                    foreach (var redirect in redirects)
+					{
+                        if (redirect.GateScene == arg0.name && transition.name == redirect.GateToChange)
+                        {
+							transition.targetScene = redirect.NewScene;
+							transition.entryPoint = redirect.NewGate;
+                        }
+					}
+				}
+            }
+        }
+
+        [OnHarmonyPatch]
 		static void Patch(HarmonyPatcher patcher)
 		{
 			var orig = typeof(SceneManager).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -161,7 +183,6 @@ namespace WeaverCore.Components
 		static Func<SceneManager, float> GetMusicTransitionTime = ReflectionUtilities.CreateFieldGetter<SceneManager, float>("musicTransitionTime");
 		static void Weaver_Start_Patch(SceneManager __instance)
 		{
-			//SceneManager_Start_Patch(__instance);
 			if (__instance is WeaverSceneManager wsm)
 			{
 				wsm.Weaver_Start();
@@ -211,11 +232,6 @@ namespace WeaverCore.Components
 			}
 		}
 
-		/*static void SceneManager_Start_Patch(SceneManager instance)
-		{
-			
-		}*/
-
 		private void Awake()
 		{
 			if (Application.isPlaying)
@@ -229,9 +245,23 @@ namespace WeaverCore.Components
 			}
 		}
 
+        private void OnDrawGizmosSelected()
+        {
+            if (!autoSetDimensions)
+            {
+				var center = SceneDimensions.center;
+				var size = SceneDimensions.size;
+				Gizmos.color = new Color(0.5f, 1f, 0.5f, 0.5f);
+				Gizmos.DrawCube(new Vector3(center.x, center.y), new Vector3(size.x,size.y));
+				Gizmos.color = new Color(1f, 0.5f, 0.5f, 0.5f);
+				Gizmos.DrawWireCube(new Vector3(center.x, center.y), new Vector3(size.x, size.y));
+            }
+        }
+
 #if UNITY_EDITOR
-		public override void OnValidate()
+        public override void OnValidate()
 		{
+			RefreshSceneDimensions();
 			base.OnValidate();
 			if (!canBeInfected)
 			{

@@ -63,7 +63,7 @@ namespace WeaverCore.Game.Implementations
 		{
 			foreach (var loadedBundle in AssetBundle.GetAllLoadedAssetBundles())
 			{
-				if (loadedBundle.name == "weavercore_bundle")
+				if (loadedBundle.name == "weavercore_modclass_bundle")
 				{
 					weaverAssetBundle = loadedBundle;
 					return;
@@ -87,7 +87,7 @@ namespace WeaverCore.Game.Implementations
 
 			foreach (var resourceName in weaverAssembly.GetManifestResourceNames())
 			{
-				if (resourceName.EndsWith(extension) && resourceName.ToUpper().Contains("WEAVERCORE_BUNDLE"))
+				if (resourceName.EndsWith(extension) && resourceName.ToUpper().Contains("WEAVERCORE_MODCLASS_BUNDLE"))
 				{
 					try
 					{
@@ -97,13 +97,13 @@ namespace WeaverCore.Game.Implementations
 					}
 					catch (Exception e)
 					{
-						throw new WeaverAssets.WeaverAssetsException("Failed to load the WeaverAssets Asset Bundle", e);
+						throw new Exception("Failed to load the WeaverAssets Asset Bundle", e);
 					}
 				}
 			}
 			if (weaverAssetBundle == null)
 			{
-				throw new WeaverAssets.WeaverAssetsException("Unable to find the WeaverAssets Asset Bundle");
+				throw new Exception("Unable to find the WeaverAssets Asset Bundle");
 			}
 			LoadRegistries(weaverAssetBundle);
 
@@ -129,31 +129,55 @@ namespace WeaverCore.Game.Implementations
 			var assetNames = bundleName.GetAllAssetNames();
 			foreach (var assetName in assetNames)
 			{
-				//WeaverLog.Log("Name = " + assetName);
 				if (assetName.ToLower().Contains(lowerName))
 				{
-					//WeaverLog.Log("Contains Name!");
 					var asset = bundleName.LoadAsset<T>(assetName);
 					if (asset != null)
 					{
-						//WeaverLog.Log("Found Asset Name = " + assetName);
 						return asset;
 					}
-					/*else
-					{
-						WeaverLog.Log("Actual Type = " + bundleName.LoadAsset<UnityEngine.Object>(assetName)?.GetType().FullName);
-					}*/
 				}
 			}
-			//WeaverLog.Log("Returning Null");
 			return default(T);
-			/*var asset = assets.FirstOrDefault(a => a.Contains(lowerName));
-			if (asset != null)
-			{
-				var instance = bundleName.LoadAsset<T>(asset);
-				return instance;
-			}
-			return default(T);*/
 		}
-	}
+
+        public override IEnumerable<T> LoadAssets<T>(string assetName)
+        {
+			var assetNames = weaverAssetBundle.GetAllAssetNames();
+			foreach (var name in assetNames)
+			{
+				if (name.Contains(assetName))
+				{
+					var asset = weaverAssetBundle.LoadAsset<T>(name);
+					if (asset != null)
+					{
+						yield return asset;
+					}
+				}
+			}
+		}
+
+        public override IEnumerable<T> LoadAssetsFromBundle<T>(string bundleName, string assetName)
+        {
+			foreach (var bundle in AssetBundle.GetAllLoadedAssetBundles())
+			{
+				if (bundle.name.Contains(bundleName))
+				{
+					var assetNames = bundle.GetAllAssetNames();
+					foreach (var foundAssetName in assetNames)
+					{
+						if (foundAssetName.Contains(assetName))
+						{
+							var asset = bundle.LoadAsset<T>(foundAssetName);
+							if (asset != null)
+							{
+								yield return asset;
+							}
+						}
+					}
+					yield break;
+				}
+			}
+		}
+    }
 }

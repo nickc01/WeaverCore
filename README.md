@@ -1,37 +1,13 @@
-# **WeaverCore**
-Core mod for all of my mods for Hollow Knight
 
-## **Project details**
+![WeaverCore Logo](https://user-images.githubusercontent.com/12601671/148672184-c4eead6c-bbc3-4c1f-9d91-33b341be6a1d.png)
 
+WeaverCore is a core mod for Hollow Knight that makes it easy to develop new content for the game, such as new Enemies, Scenes, Bosses, and more
 
-### **WeaverCore**
-
-A library used to link Hollow Knight and the Unity Editor together;
-
-This library allows you to develop your mods in the Unity Editor, then transfer them seamlessly into Hollow Knight.
-
-The source code can be downloaded and placed inside of a folder called "WeaverCore" inside the "Assets" folder of any Unity Project Version 2017.4.10
+[Click here](https://nickc01.github.io/WeaverCore) for some guides on how to get started developing with WeaverCore
 
 
+## Notes for Developers
 
-## **Other Stuff**
+If you are looking to add some new features to WeaverCore, be sure to do it under the **develop** branch. This is to make sure the master branch is always kept as stable as possible
 
-### **WeaverCore.Dev**
-
-This is only used within the Unity Editor. Used for editor specific implementations in WeaverCore
-
-### **WeaverCore.Game**
-
-This is only used within the Hollow Knight Game. Used for game specific implementations in WeaverCore. Found under the "OtherProjects~" directory
-
-### **WeaverBuildTools**
-
-Contains several tools used when building WeaverCore Mods, such as embedding files into assemblies and loading them from assemblies
-
-### **Hollow Knight**
-
-Contains types that are found within hollow knight. 
-
-### **Weaver Assets**
-
-Contains assets that are shared across many WeaverCore Mods. The project files are contained in the "OtherProjects~" directory
+WeaverCore also uses DocFX for it's documentation. You can find the DocFX project files in the docs_src~ folder

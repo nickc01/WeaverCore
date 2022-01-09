@@ -1,0 +1,924 @@
+fileFormatVersion: 2
+guid: 1c1b8a35ec20ca1429bab891c9500cad
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8315120042410488710
+    second: Knight_Dream_Gate_Create0004
+  - first:
+      213: 5091365588499703365
+    second: Knight_Dream_Gate_Create0006
+  - first:
+      213: -1401756507028684355
+    second: Knight_Dream_Gate_Create0002
+  - first:
+      213: 6525526357458181647
+    second: Knight_Dream_Gate_Create0003
+  - first:
+      213: 266890166318456218
+    second: Knight_Dream_Gate_Create0007
+  - first:
+      213: -3673808818144130685
+    second: Knight_Dream_Gate_Create0005
+  - first:
+      213: -6974185095357066697
+    second: Knight_Dream_Gate_Create0000
+  - first:
+      213: -3408561665891099998
+    second: Knight_Dream_Gate_Create0001
+  - first:
+      213: 2048848850736284525
+    second: Knight_dream_gate_enter0007
+  - first:
+      213: -8465794651762092984
+    second: Knight_dream_gate_enter0006
+  - first:
+      213: -1693135500299685646
+    second: Knight_dream_gate_enter0012
+  - first:
+      213: 1086097186979464214
+    second: Knight_dream_gate_enter0009
+  - first:
+      213: -3021936645323425200
+    second: Knight_dream_gate_enter0000
+  - first:
+      213: 732456450675370422
+    second: Knight_dream_gate_enter0011
+  - first:
+      213: -5768751801668452552
+    second: Knight_dream_gate_enter0004
+  - first:
+      213: 2813296002944881360
+    second: Knight_dream_gate_enter0013
+  - first:
+      213: 7459560714005491340
+    second: Knight_dream_gate_enter0008
+  - first:
+      213: -6553277829500480666
+    second: Knight_dream_gate_enter0002
+  - first:
+      213: 3894811268874179630
+    second: Knight_dream_gate_enter0003
+  - first:
+      213: 8764543001139736466
+    second: Knight_dream_gate_enter0005
+  - first:
+      213: -6037408486167758557
+    second: Knight_dream_gate_enter0010
+  - first:
+      213: -2994792849463867031
+    second: Knight_dream_gate_enter0001
+  - first:
+      213: -1414867719666312176
+    second: Knight_Dream_Gate_Create0005_b
+  - first:
+      213: 5492313985106256718
+    second: Knight_Dream_Gate_Create0005_c
+  - first:
+      213: 3371262530080509119
+    second: knight_sprint0000
+  - first:
+      213: 7508519889336071736
+    second: knight_sprint0002
+  - first:
+      213: 2509514075743661193
+    second: knight_sprint0004
+  - first:
+      213: -669871574190399511
+    second: knight_sprint0005
+  - first:
+      213: -1282178183976536139
+    second: knight_sprint0001
+  - first:
+      213: 8144065854165623153
+    second: knight_sprint0003
+  - first:
+      213: 8259553368472355957
+    second: Knight_idle_to_sprint0000
+  - first:
+      213: -6861320871327051784
+    second: Knight_idle_to_sprint0002
+  - first:
+      213: 687957523730825788
+    second: Knight_idle_to_sprint0003
+  - first:
+      213: -4604438550278218027
+    second: Knight_idle_to_sprint0001
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0004
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 340
+        width: 92
+        height: 132
+      alignment: 9
+      pivot: {x: 0.3586956, y: 0.22727275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 683bb988f9d356370800000000000000
+      internalID: 8315120042410488710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0006
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 0
+        width: 79
+        height: 106
+      alignment: 9
+      pivot: {x: 0.41772157, y: 0.13207555}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5462c2c070a28a640800000000000000
+      internalID: 5091365588499703365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0002
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 107
+        height: 124
+      alignment: 9
+      pivot: {x: 0.5233644, y: 0.47580647}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db186f832e5fb8ce0800000000000000
+      internalID: -1401756507028684355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0003
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 246
+        width: 99
+        height: 114
+      alignment: 9
+      pivot: {x: 0.48484844, y: 0.35964906}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0e5ebcf5a35f8a50800000000000000
+      internalID: 6525526357458181647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0007
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 229
+        width: 77
+        height: 130
+      alignment: 9
+      pivot: {x: 0.2987012, y: 0.30769223}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9dd475313f24b300800000000000000
+      internalID: 266890166318456218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0005
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 252
+        width: 92
+        height: 126
+      alignment: 9
+      pivot: {x: 0.3586956, y: 0.26984125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38942d53852040dc0800000000000000
+      internalID: -3673808818144130685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0000
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 108
+        width: 90
+        height: 108
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.18518513}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7321b694b97b63f90800000000000000
+      internalID: -6974185095357066697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0001
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 219
+        width: 92
+        height: 106
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.16037738}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aa1c85693b52b0d0800000000000000
+      internalID: -3408561665891099998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0007
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 0
+        width: 92
+        height: 113
+      alignment: 9
+      pivot: {x: 0.4130434, y: 0.30088496}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d638a9aac29fe6c10800000000000000
+      internalID: 2048848850736284525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0006
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 0
+        width: 95
+        height: 114
+      alignment: 9
+      pivot: {x: 0.41052634, y: 0.30701762}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84491503e94738a80800000000000000
+      internalID: -8465794651762092984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0012
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 357
+      alignment: 9
+      pivot: {x: 0.4140625, y: 0.49299717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f0b80cab36c088e0800000000000000
+      internalID: -1693135500299685646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0009
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 114
+        width: 95
+        height: 113
+      alignment: 9
+      pivot: {x: 0.38947362, y: 0.30088496}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 614467d13a7921f00800000000000000
+      internalID: 1086097186979464214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0000
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 0
+        width: 90
+        height: 108
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.18518513}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05af2c9c1acef06d0800000000000000
+      internalID: -3021936645323425200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0011
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 357
+        width: 125
+        height: 153
+      alignment: 9
+      pivot: {x: 0.424, y: 0.33986932}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b9e2fbd2453a2a00800000000000000
+      internalID: 732456450675370422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0004
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 378
+        width: 92
+        height: 114
+      alignment: 9
+      pivot: {x: 0.33695653, y: 0.30701762}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83f3820fcc641ffa0800000000000000
+      internalID: -5768751801668452552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0013
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 234
+        width: 31
+        height: 272
+      alignment: 9
+      pivot: {x: 0.1935482, y: 0.47426468}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d25e872fc5da0720800000000000000
+      internalID: 2813296002944881360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0008
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 216
+        width: 87
+        height: 114
+      alignment: 9
+      pivot: {x: 0.39080453, y: 0.30701762}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8ea1ca62fea58760800000000000000
+      internalID: 7459560714005491340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0002
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 325
+        width: 91
+        height: 113
+      alignment: 9
+      pivot: {x: 0.41758233, y: 0.28318578}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6635e2ae8841e05a0800000000000000
+      internalID: -6553277829500480666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0003
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 360
+        width: 99
+        height: 113
+      alignment: 9
+      pivot: {x: 0.39393944, y: 0.30088496}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e241f64a6362d0630800000000000000
+      internalID: 3894811268874179630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0005
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 227
+        width: 95
+        height: 113
+      alignment: 9
+      pivot: {x: 0.38947362, y: 0.30088496}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29fe1994c69e1a970800000000000000
+      internalID: 8764543001139736466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0010
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 124
+        width: 101
+        height: 122
+      alignment: 9
+      pivot: {x: 0.41584158, y: 0.32786876}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 329ba0a28f0d63ca0800000000000000
+      internalID: -6037408486167758557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_dream_gate_enter0001
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 113
+        width: 92
+        height: 106
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.16037738}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96983df35cb5076d0800000000000000
+      internalID: -2994792849463867031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0005_b
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 126
+        width: 92
+        height: 126
+      alignment: 9
+      pivot: {x: 0.3586956, y: 0.26984125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01c5f152e416d5ce0800000000000000
+      internalID: -1414867719666312176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create0005_c
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 0
+        width: 92
+        height: 126
+      alignment: 9
+      pivot: {x: 0.3586956, y: 0.26984125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e432b2d487e983c40800000000000000
+      internalID: 5492313985106256718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_sprint0000
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 359
+        width: 75
+        height: 124
+      alignment: 9
+      pivot: {x: 0.53333324, y: 0.27419353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbc880ec86129ce20800000000000000
+      internalID: 3371262530080509119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_sprint0002
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 234
+        width: 73
+        height: 125
+      alignment: 9
+      pivot: {x: 0.5479452, y: 0.27999997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 836f4d8be0f933860800000000000000
+      internalID: 7508519889336071736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_sprint0004
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 112
+        width: 74
+        height: 122
+      alignment: 9
+      pivot: {x: 0.5405406, y: 0.25409836}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98c2b8381c593d220800000000000000
+      internalID: 2509514075743661193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_sprint0005
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 234
+        width: 72
+        height: 124
+      alignment: 9
+      pivot: {x: 0.5555555, y: 0.2822581}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9efdf373a5324b6f0800000000000000
+      internalID: -669871574190399511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_sprint0001
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 112
+        width: 73
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5479452, y: 0.25619835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b7b2552cb9c43ee0800000000000000
+      internalID: -1282178183976536139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_sprint0003
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 359
+        width: 72
+        height: 126
+      alignment: 9
+      pivot: {x: 0.5555555, y: 0.28571427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1712ee8ceb8850170800000000000000
+      internalID: 8144065854165623153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_idle_to_sprint0000
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 112
+        width: 79
+        height: 117
+      alignment: 9
+      pivot: {x: 0.49367088, y: 0.23076922}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5740d231704df9270800000000000000
+      internalID: 8259553368472355957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_idle_to_sprint0002
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 330
+        width: 85
+        height: 115
+      alignment: 9
+      pivot: {x: 0.47058824, y: 0.21739131}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ffc3963501b7c0a0800000000000000
+      internalID: -6861320871327051784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_idle_to_sprint0003
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 112
+        width: 74
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5675675, y: 0.25619835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c32888e09bd1c8900800000000000000
+      internalID: 687957523730825788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_idle_to_sprint0001
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 0
+        width: 81
+        height: 112
+      alignment: 9
+      pivot: {x: 0.48148155, y: 0.1964286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5de5d8ca88fb910c0800000000000000
+      internalID: -4604438550278218027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

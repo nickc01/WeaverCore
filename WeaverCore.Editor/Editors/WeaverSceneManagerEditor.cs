@@ -55,7 +55,6 @@ public class WeaverSceneManagerEditor : Editor
 			}
 			EditorGUILayout.PropertyField(iterator, true);
 		}
-		//base.OnInspectorGUI();
 
 		serializedObject.ApplyModifiedProperties();
 	}

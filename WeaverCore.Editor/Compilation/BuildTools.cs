@@ -458,10 +458,6 @@ namespace WeaverCore.Editor.Compilation
 				{
 					ranMethod = true;
 					var method = bundleData.NextMethod.Method;
-					bundleData.NextMethod = default;
-
-					PersistentData.StoreData(bundleData);
-					PersistentData.SaveData();
 
 					UnboundCoroutine.Start(Delay());
 
@@ -472,6 +468,10 @@ namespace WeaverCore.Editor.Compilation
 						{
 							yield return new WaitUntil(() => !EditorApplication.isCompiling);
 						}
+						yield return new WaitForSeconds(0.5f);
+						bundleData.NextMethod = default;
+						PersistentData.StoreData(bundleData);
+						PersistentData.SaveData();
 						method.Invoke(null, null);
 					}
 				}

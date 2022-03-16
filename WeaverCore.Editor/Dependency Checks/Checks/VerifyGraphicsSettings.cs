@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEditor;
+using UnityEngine;
 
 namespace WeaverCore.Editor
 {
@@ -23,6 +24,11 @@ namespace WeaverCore.Editor
                     break;
                 }
             }
+
+            graphicsSettings.FindProperty("m_TransparencySortMode").intValue = 3;
+            graphicsSettings.FindProperty("m_TransparencySortAxis").vector3Value = Vector3.forward;
+            graphicsSettings.ApplyModifiedProperties();
+
             finishCheck(DependencyCheckResult.Complete);
         }
     }

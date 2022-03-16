@@ -91,7 +91,7 @@ namespace WeaverCore.Editor.Compilation
 			/// <summary>
 			/// What kind of asset bundle compression is being applied to the mod?
 			/// </summary>
-			public AssetBundleCompressionType CompressionType = AssetBundleCompressionType.LZ4;
+			public AssetBundleCompressionType CompressionType = AssetBundleCompressionType.LZMA;
 
 			/// <summary>
 			/// Gets a list of all the build modes the user has specified

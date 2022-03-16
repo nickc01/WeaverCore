@@ -103,23 +103,26 @@ namespace WeaverCore.Components
 				{
 					foreach (var collider in rootObj.GetComponentsInChildren<Collider2D>())
 					{
-						var bounds = collider.bounds;
-						if (bounds.min.x < sceneMin.x)
-						{
-							sceneMin.x = bounds.min.x;
-						}
-						if (bounds.min.y < sceneMin.y)
-						{
-							sceneMin.y = bounds.min.y;
-						}
+                        if (collider.enabled && collider.gameObject.activeInHierarchy)
+                        {
+							var bounds = collider.bounds;
+							if (bounds.min.x < sceneMin.x)
+							{
+								sceneMin.x = bounds.min.x;
+							}
+							if (bounds.min.y < sceneMin.y)
+							{
+								sceneMin.y = bounds.min.y;
+							}
 
-						if (bounds.max.x > sceneMax.x)
-						{
-							sceneMax.x = bounds.max.x;
-						}
-						if (bounds.max.y > sceneMax.y)
-						{
-							sceneMax.y = bounds.max.y;
+							if (bounds.max.x > sceneMax.x)
+							{
+								sceneMax.x = bounds.max.x;
+							}
+							if (bounds.max.y > sceneMax.y)
+							{
+								sceneMax.y = bounds.max.y;
+							}
 						}
 					}
 

@@ -29,15 +29,28 @@ namespace WeaverCore.Game.Patches
 			UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
 		}
 
+		static Dictionary<string, Scene> unionizedScenes = new Dictionary<string, Scene>();
+
 		private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
 		{
-			foreach (var record in Registry.GetAllFeatures<SceneRecord>())
+			if (unionizedScenes.ContainsKey(arg0.path))
 			{
-				foreach (var replacement in record.SceneUnions)
+				unionizedScenes.Remove(arg0.path);
+				UnityEngine.SceneManagement.SceneManager.MergeScenes(arg0,unionizedScenes[arg0.path]);
+			}
+			else
+			{
+				foreach (var record in Registry.GetAllFeatures<SceneRecord>())
 				{
-					if (replacement.SceneToUnionize == arg0.name || replacement.SceneToUnionize == arg0.path)
+					foreach (var replacement in record.SceneUnions)
 					{
-						UnityEngine.SceneManagement.SceneManager.LoadScene(replacement.SceneUnion, LoadSceneMode.Additive);
+						if (replacement.SceneToUnionize == arg0.name || replacement.SceneToUnionize == arg0.path)
+						{
+							unionizedScenes.Add(replacement.SceneUnion, arg0);
+							UnityEngine.SceneManagement.SceneManager.LoadScene(replacement.SceneUnion, LoadSceneMode.Additive);
+							//var loadedScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(replacement.SceneUnion);
+							//UnityEngine.SceneManagement.SceneManager.MergeScenes(loadedScene, arg0);
+						}
 					}
 				}
 			}

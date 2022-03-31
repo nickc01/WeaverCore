@@ -27,7 +27,7 @@ namespace WeaverBuildTools.Commands
 				hash = HashUtilities.GetHash(streamToEmbed);
 			}
 			double previousTime = GetTime();
-			while (GetTime() - previousTime <= 10.0)
+			while (GetTime() - previousTime <= 20.0)
 			{
 				try
 				{
@@ -113,7 +113,7 @@ namespace WeaverBuildTools.Commands
 					}
 				}
 			}
-			if (GetTime() - previousTime > 10.0)
+			if (GetTime() - previousTime > 20.0f)
 			{
 				throw new Exception("Embedding Timeout");
 			}

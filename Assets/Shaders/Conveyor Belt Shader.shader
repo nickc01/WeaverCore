@@ -13,6 +13,7 @@ Shader "Custom/Conveyor Belt Shader"
         [PerRendererData] _ConveyorScaleY("Conveyor Scale Y", Float) = 1
         [PerRendererData] _ConveyorOffsetX("Conveyor Offset X", Float) = 1
         [PerRendererData] _ConveyorOffsetY("Conveyor Offset Y", Float) = 1
+        _BeltColor("Belt Color", Color) = (1,1,1,1)
     }
 
         SubShader

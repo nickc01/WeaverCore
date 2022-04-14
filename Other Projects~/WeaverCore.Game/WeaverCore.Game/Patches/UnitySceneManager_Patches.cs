@@ -35,8 +35,9 @@ namespace WeaverCore.Game.Patches
 		{
 			if (unionizedScenes.ContainsKey(arg0.path))
 			{
+				var destination = unionizedScenes[arg0.path];
 				unionizedScenes.Remove(arg0.path);
-				UnityEngine.SceneManagement.SceneManager.MergeScenes(arg0,unionizedScenes[arg0.path]);
+				UnityEngine.SceneManagement.SceneManager.MergeScenes(arg0, destination);
 			}
 			else
 			{

@@ -66,5 +66,15 @@ namespace WeaverCore.Utilities
 				return Mathf.Clamp(from - amount, from, to);
 			}
 		}
+
+		public static float UnclampedLerp(float a, float b, float t)
+        {
+			return ((b - a) * t) + a;
+        }
+
+		public static float UnclampedInverseLerp(float a, float b, float v)
+		{
+			return (v - a) / (b - a);
+		}
 	}
 }

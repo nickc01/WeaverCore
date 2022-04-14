@@ -11,7 +11,7 @@ namespace WeaverCore.Components.HitEffects
     /// <summary>
     /// The hit effects for non-infected enemies
     /// </summary>
-    [RequireComponent(typeof(SpriteFlasher))]
+    //[RequireComponent(typeof(SpriteFlasher))]
 	public class HitEffectsNormal : MonoBehaviour, IHitEffects
 	{
 		static ObjectPool UninfectedHitPool;
@@ -20,7 +20,8 @@ namespace WeaverCore.Components.HitEffects
 		[Tooltip("Should the sprite flash upon hit?")]
 		bool doFlashEffects = true;
 		bool firedOnCurrentFrame = false;
-		SpriteFlasher flasher;
+		//SpriteFlasher flasher;
+		SpriteFlasher[] flashers;
 
 		[SerializeField]
 		[Tooltip("The sound that is played when hit")]
@@ -43,7 +44,7 @@ namespace WeaverCore.Components.HitEffects
 				UninfectedHitPool = ObjectPool.Create(Assets.EffectAssets.UninfectedHitPrefab);
 			}
 
-			flasher = GetComponent<SpriteFlasher>();
+			flashers = GetComponentsInChildren<SpriteFlasher>();
 		}
 
         private void Reset()
@@ -67,7 +68,10 @@ namespace WeaverCore.Components.HitEffects
 
 				if (doFlashEffects)
 				{
-					flasher.FlashNormalHit();
+                    foreach (var flasher in flashers)
+                    {
+						flasher.FlashNormalHit();
+					}
 				}
 
 				GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);

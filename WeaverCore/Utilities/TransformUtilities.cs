@@ -92,6 +92,21 @@ namespace WeaverCore.Utilities
 			return newPos;
 		}
 
+		public static Vector2 GetLocalScaleXY(this Transform transform)
+        {
+			return transform.localScale;
+        }
+
+		public static void SetLocalScaleXY(this Transform transform, Vector2 value)
+        {
+			transform.localScale = new Vector3(value.x,value.y,transform.localScale.z);
+        }
+
+		public static void SetLocalScaleXY(this Transform transform, float x, float y)
+		{
+			transform.localScale = new Vector3(x, y, transform.localScale.z);
+		}
+
 		/// <summary>
 		/// Gets the local x position of a transform
 		/// </summary>

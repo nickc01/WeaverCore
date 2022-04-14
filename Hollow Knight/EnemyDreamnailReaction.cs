@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class EnemyDreamnailReaction : MonoBehaviour
 {
+	static Type spriteFlasherType;
+
+	static Type GetFlasherType()
+    {
+        if (spriteFlasherType == null)
+        {
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                if (asm.GetName().Name == "WeaverCore")
+                {
+					spriteFlasherType = asm.GetType("WeaverCore.Components.SpriteFlasher");
+					break;
+                }
+            }
+        }
+		return spriteFlasherType;
+    }
+
 	protected void Reset()
 	{
 		convoAmount = 8;
@@ -37,10 +55,17 @@ public class EnemyDreamnailReaction : MonoBehaviour
 			bool flag = HeroController.instance.transform.localScale.x <= 0f;
 			component.RecoilByDirection((!flag) ? 2 : 0, 2f);
 		}
-		Component flasher = GetComponent("WeaverCore.Components.SpriteFlasher");
-		if (flasher != null)
+
+		//var flasherType = typeof(WeaverCore)
+
+		Component[] flashers = GetComponentsInChildren(GetFlasherType());
+		//Component flasher = GetComponent("WeaverCore.Components.SpriteFlasher");
+		if (flashers != null)
 		{
-			flasher.SendMessage("flashDreamImpact");
+            foreach (var flasher in flashers)
+            {
+				flasher.SendMessage("flashDreamImpact");
+			}
 		}
 		state = EnemyDreamnailReaction.States.CoolingDown;
 		cooldownTimeRemaining = 0.2f;

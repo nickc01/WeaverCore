@@ -9,7 +9,7 @@ namespace WeaverCore.Components.HitEffects
 	/// <summary>
 	/// The hit effects for infected enemies
 	/// </summary>
-	[RequireComponent(typeof(SpriteFlasher))]
+	//[RequireComponent(typeof(SpriteFlasher))]
 	public class HitEffectsInfected : MonoBehaviour, IHitEffects
 	{
 		[SerializeField]
@@ -19,7 +19,8 @@ namespace WeaverCore.Components.HitEffects
 		[Tooltip("Should blood particles be emitted when hit?")]
 		bool doBlood = true;
 		bool firedOnCurrentFrame = false;
-		SpriteFlasher flasher;
+		//SpriteFlasher flasher;
+		SpriteFlasher[] flashers;
 
 
 		[Space]
@@ -100,7 +101,7 @@ namespace WeaverCore.Components.HitEffects
 
 		protected virtual void Start()
 		{
-			flasher = GetComponent<SpriteFlasher>();
+			flashers = GetComponentsInChildren<SpriteFlasher>();
 		}
 
 		protected virtual void Update()
@@ -120,7 +121,11 @@ namespace WeaverCore.Components.HitEffects
 
 				if (doFlashEffects)
 				{
-					flasher.flashInfected();
+                    foreach (var flasher in flashers)
+                    {
+						flasher.flashInfected();
+                    }
+					//flasher.flashInfected();
 				}
 
 				switch (DirectionUtilities.DegreesToDirection(hit.Direction))

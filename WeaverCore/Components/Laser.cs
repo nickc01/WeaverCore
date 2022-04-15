@@ -38,8 +38,80 @@ namespace WeaverCore.Components
         [field: SerializeField]
         public float TextureStretch { get; set; }
 
-        //[field: SerializeField]
-        //public float ColliderOffset { get; set; } = 0f;
+        [field: SerializeField]
+        public uint LengthSubdivisions { get; set; } = 10;
+
+        public (Vector2 start, Vector2 end) TextureTopEdge
+        {
+            get
+            {
+                CheckInit();
+                return (topEdgeStart, topEdgeEnd);
+            }
+        }
+
+        public (Vector2 start, Vector2 end) TextureBottomEdge
+        {
+            get
+            {
+                CheckInit();
+                return (bottomEdgeStart, bottomEdgeEnd);
+            }
+        }
+
+        public (Vector2 start, Vector2 end) TopColliderEdge
+        {
+            get
+            {
+                CheckInit();
+                return (polygonPoints[1], polygonPoints[2]);
+            }
+        }
+        public (Vector2 start, Vector2 end) BottomColliderEdge
+        {
+            get
+            {
+                CheckInit();
+                return (polygonPoints[0], polygonPoints[polygonPoints.Count - 1]);
+            }
+        }
+
+        public List<Vector2> TextureContactPoints
+        {
+            get
+            {
+                CheckInit();
+                return contactPoints;
+            }
+        }
+
+        public List<Vector2> ColliderContactPoints
+        {
+            get
+            {
+                CheckInit();
+                return colliderContactPoints;
+            }
+        }
+
+        public PolygonCollider2D MainCollider
+        {
+            get
+            {
+                CheckInit();
+                return mainCollider;
+            }
+        }
+
+        public MeshRenderer MainRenderer
+        {
+            get
+            {
+                CheckInit();
+                return mainRenderer;
+            }
+        }
+
 
         [SerializeField]
         Texture texture;
@@ -67,6 +139,18 @@ namespace WeaverCore.Components
             }
         }
 
+        Vector2 topEdgeStart;
+        Vector2 topEdgeEnd;
+
+        Vector2 bottomEdgeStart;
+        Vector2 bottomEdgeEnd;
+
+        [NonSerialized]
+        List<Vector2> contactPoints = new List<Vector2>();
+
+        [NonSerialized]
+        List<Vector2> colliderContactPoints = new List<Vector2>();
+
         [NonSerialized]
         List<Vector2> polygonPoints;
         [NonSerialized]
@@ -86,13 +170,23 @@ namespace WeaverCore.Components
 
         MaterialPropertyBlock block;
 
+        Recoiler recoiler;
+
         int texMainID;
         int colorID;
 
+        void CheckInit()
+        {
+            if (verticies == null)
+            {
+                Awake();
+            }
+        }
 
         private void Awake()
         {
-            Debug.Log("MASK = " + CollisionMask.value);
+            recoiler = GetComponentInParent<Recoiler>();
+            //Debug.Log("MASK = " + CollisionMask.value);
             texMainID = Shader.PropertyToID("_MainTex");
             colorID = Shader.PropertyToID("_Color");
             block = new MaterialPropertyBlock();
@@ -103,7 +197,6 @@ namespace WeaverCore.Components
             verticies = new List<Vector3>();
             indicies = new List<int>();
             uvs = new List<Vector2>();
-            mainCollider.isTrigger = true;
 
             if (mainRenderer.sharedMaterial == null)
             {
@@ -113,10 +206,15 @@ namespace WeaverCore.Components
             mesh = new Mesh();
 
             mesh.MarkDynamic();
+
+            UpdateMaterialValues();
+
+            UpdateMeshLists();
         }
 
         private void Reset()
         {
+            CheckInit();
             var mask = new LayerMask();
             mask.value = 256;
             CollisionMask = mask;
@@ -126,12 +224,10 @@ namespace WeaverCore.Components
 
         private void OnValidate()
         {
-            if (verticies == null)
-            {
-                Awake();
-            }
+            CheckInit();
             UpdateMaterialValues();
         }
+
 
         void UpdateMaterialValues()
         {
@@ -158,10 +254,7 @@ namespace WeaverCore.Components
             {
                 Quality = 200;
             }
-            if (verticies == null)
-            {
-                Awake();
-            }
+            CheckInit();
 
             if (ColliderQuality < 1)
             {
@@ -175,6 +268,7 @@ namespace WeaverCore.Components
             indicies.Clear();
             uvs.Clear();
             polygonPoints.Clear();
+            colliderContactPoints.Clear();
 
             Spread = Mathf.Clamp(Spread, 0.5f, 85f);
             var halfWidth = StartingWidth / 2f;
@@ -216,125 +310,91 @@ namespace WeaverCore.Components
             polygonPoints.Add(new Vector2(0f, -halfWidth));
             polygonPoints.Add(new Vector2(0f, halfWidth));
 
-            var extraStretch = halfWidth + TextureStretch;
+            var extraStretch = halfWidth * TextureStretch;
 
             for (int i = 0; i <= Quality; i++)
             {
-                //var targetDirection = Mathf.Lerp(firstDirection,secondDirection, i / (float)Quality);
                 var targetDirection = Vector2.Lerp(secondDirection, firstDirection, i / (float)Quality);
 
-                //var centerX = Mathf.InverseLerp(sourcePoint.x, targetDirection.x, 0f);
+                var rayStartPosition = new Vector2(0f, Mathf.Lerp(startLocation.y, -startLocation.y, i / (float)Quality));
 
-                //var uvY = Mathf.InverseLerp(secondDirection,firstDirection,)
-
-                verticies.Add(new Vector2(0f, Mathf.Lerp(startLocation.y, -startLocation.y, i / (float)Quality)));
+                verticies.Add(rayStartPosition * new Vector2(1f, TextureStretch));
 
                 var vertexUVy = LerpUtilities.UnclampedInverseLerp(extraStretch, -extraStretch, verticies[verticies.Count - 1].y);
 
-                uvs.Add(new Vector2(0f, vertexUVy) /*1f - (i / (float)Quality))*/);
+                uvs.Add(new Vector2(0f, vertexUVy));
+                Vector3 destVertex = default;
 
-                //Debug.DrawRay(laserOrigin, transform.TransformDirection(targetDirection), Color.red);
-
-                if (Physics2D.RaycastNonAlloc(transform.TransformPoint(verticies[verticies.Count - 1]), transform.TransformDirection(targetDirection).normalized, terrainHit, MaximumLength, CollisionMask.value) > 0)
+                if (Physics2D.RaycastNonAlloc(transform.TransformPoint(rayStartPosition), transform.TransformDirection(targetDirection / new Vector2(1f,TextureStretch)).normalized, terrainHit, MaximumLength, CollisionMask.value) > 0)
                 {
-                    //Debug.DrawLine(laserOrigin, terrainHit[0].point,Color.red);
-                    verticies.Add(transform.InverseTransformPoint(terrainHit[0].point));
+                    destVertex = transform.InverseTransformPoint(terrainHit[0].point);
                 }
                 else
                 {
-                    //Debug.DrawRay(laserOrigin, transform.TransformDirection(targetDirection).normalized * MaximumLength, Color.red);
-                    verticies.Add((Vector2)verticies[verticies.Count - 1] + (targetDirection).normalized * MaximumLength);
+                    destVertex = rayStartPosition + (targetDirection / new Vector2(1f, TextureStretch)).normalized * MaximumLength;
                 }
                 if (i % ColliderQuality == 0)
                 {
 
-                    var addedVertex = verticies[verticies.Count - 1];
+                    polygonPoints.Add(destVertex);
+                    colliderContactPoints.Add(destVertex);
 
-                    /*var firedLength = (verticies[verticies.Count - 1] - verticies[verticies.Count - 2]).magnitude;
-
-                    //var polygonDirection = 
-                    //var polygonDirection = Vector2.Lerp(secondDirection * new Vector2(0f, ColliderOffset), firstDirection * new Vector2(1f, ColliderOffset), i / (float)Quality);
-
-                    var adjustedFirstDirection = firstDirection.normalized * firedLength;
-                    var adjustedSecondDirection = secondDirection.normalized * firedLength;
-
-
-                    var polygonDirection = Vector2.Lerp(adjustedSecondDirection + new Vector2(0f, ColliderOffset), adjustedFirstDirection - new Vector2(0f, ColliderOffset), i / (float)Quality);
-
-
-                    var xDifference = (verticies[verticies.Count - 2] + (Vector3)polygonDirection).x - addedVertex.x;
-
-
-                    //var directionDifference = (polygonDirection.normalized * addedVertex.magnitude) - (targetDirection.normalized * addedVertex.magnitude);
-
-                    polygonPoints.Add(verticies[verticies.Count - 2] + (Vector3)polygonDirection + new Vector3(ColliderOffset * (i / (float)Quality) - 0.5f, 0f));
-                    */
-                    polygonPoints.Add(addedVertex);
-
-                    Debug.DrawLine(verticies[verticies.Count - 2], verticies[verticies.Count - 1], Color.magenta);
-                    Debug.DrawLine(verticies[verticies.Count - 2], polygonPoints[polygonPoints.Count - 1], Color.blue);
+                    destVertex.y *= TextureStretch;
+                    if (TextureStretch != 1f)
+                    {
+                        if (Physics2D.RaycastNonAlloc(transform.TransformPoint(rayStartPosition), transform.TransformDirection(targetDirection).normalized, terrainHit, MaximumLength, CollisionMask.value) > 0)
+                        {
+                            destVertex = transform.InverseTransformPoint(terrainHit[0].point);
+                        }
+                        else
+                        {
+                            destVertex = rayStartPosition + (targetDirection).normalized * MaximumLength;
+                        }
+                    }
                 }
-                //uvs.Add(verticies[verticies.Count - 1].With(y: 1f - (i / (float)Quality)));
+
+
+
+                var previousVertex = verticies[verticies.Count - 1];
+
+                for (int s = 0; s < LengthSubdivisions; s++)
+                {
+                    verticies.Add(Vector3.Lerp(previousVertex, destVertex,s / (float)LengthSubdivisions));
+                    uvs.Add(new Vector2(s / (float)LengthSubdivisions, vertexUVy));
+                }
+                verticies.Add(destVertex);
 
                 uvs.Add(new Vector2(1f, vertexUVy));
-
-                //Debug.DrawRay(transform.TransformPoint(verticies[verticies.Count - 2]), transform.TransformDirection(targetDirection), Color.blue);
-
-                //Debug.DrawLine(laserOrigin,transform.TransformPoint(verticies[verticies.Count - 1]),Color.red);
             }
 
-            var firstVertexSource = verticies[0];
-            var firstVertexDest = verticies[1];
+            topEdgeStart = verticies[0];
+            topEdgeEnd = verticies[(int)LengthSubdivisions + 1];
 
-            var lastVertexSource = verticies[verticies.Count - 2];
-            var lastVertexDest = verticies[verticies.Count - 1];
+            bottomEdgeStart = verticies[verticies.Count - 2 - (int)LengthSubdivisions];
+            bottomEdgeEnd = verticies[verticies.Count - 1];
 
-            int lastVertexIndex = verticies.Count - 1;
-
-            verticies.Add(firstVertexSource + new Vector3(0f, TextureStretch));
-            verticies.Add(firstVertexDest + new Vector3(0f, TextureStretch));
-
-            verticies.Add(lastVertexSource - new Vector3(0f, TextureStretch));
-            verticies.Add(lastVertexDest - new Vector3(0f, TextureStretch));
-
-            uvs.Add(new Vector2(0f, 0f));
-            uvs.Add(new Vector2(1f, 0f));
-
-            uvs.Add(new Vector2(0f, 1f));
-            uvs.Add(new Vector2(1f, 1f));
-
-            int vertexCount = verticies.Count;
-
+            contactPoints.Clear();
 
             for (int i = 0; i <= Quality - 1; i++)
             {
-                int vIndex = i * 2;
-                indicies.Add(vIndex);
-                indicies.Add(vIndex + 1);
-                indicies.Add(vIndex + 2);
+                int vIndex = i * 2 + ((int)LengthSubdivisions * i);
 
-                indicies.Add(vIndex + 2);
-                indicies.Add(vIndex + 1);
-                indicies.Add(vIndex + 3);
+                for (int s = 0; s <= LengthSubdivisions; s++)
+                {
+                    int currentIndex = vIndex + s;
+                    int nextIndex = vIndex + 2 + (int)LengthSubdivisions + s;
+
+                    indicies.Add(currentIndex);
+                    indicies.Add(currentIndex + 1);
+                    indicies.Add(nextIndex + 1);
+
+                    indicies.Add(currentIndex);
+                    indicies.Add(nextIndex + 1);
+                    indicies.Add(nextIndex);
+                }
+
+                contactPoints.Add(verticies[vIndex + (int)LengthSubdivisions + 1]);
             }
-
-            indicies.Add(0);
-            indicies.Add(vertexCount - 4);
-            indicies.Add(vertexCount - 3);
-
-            indicies.Add(0);
-            indicies.Add(vertexCount - 3);
-            indicies.Add(1);
-
-            indicies.Add(lastVertexIndex - 1);
-            indicies.Add(vertexCount - 1);
-            indicies.Add(vertexCount - 2);
-
-            indicies.Add(lastVertexIndex - 1);
-            indicies.Add(lastVertexIndex);
-            indicies.Add(vertexCount - 1);
-
-            //Debug.Log("VERTICIES = " + verticies.Count);
 
             mesh.Clear();
 
@@ -354,45 +414,17 @@ namespace WeaverCore.Components
                 FixedUpdate();
             }
 #endif
-            //verticies.Add(new Vector3(0f, -halfWidth));
         }
 
         private void FixedUpdate()
         {
-            if (verticies == null)
-            {
-                Awake();
-            }
+            CheckInit();
             mainCollider.SetPath(0, polygonPoints);
         }
 
         private void LateUpdate()
         {
             UpdateMeshLists();
-            /*var firingDirection = MathUtilties.CartesianToPolar(Vector2.right);
-
-            //cos (firstAngle) = MaximumLength / h
-            //h = MaximumLength / cos(firstAngle)
-
-            var halfWidth = StartingWidth / 2f;
-
-            var secondPos = new Vector3(0f, halfWidth);
-            var firstPos = new Vector3(0f, -halfWidth);
-
-
-
-            var firstAngle = firingDirection.x - Spread;
-            var firstLength = MaximumLength / Mathf.Cos(Mathf.Deg2Rad * firstAngle);
-            var firstDirection = MathUtilties.PolarToCartesian(firstAngle, firstLength);
-
-            var secondAngle = firingDirection.x + Spread;
-            var secondLength = MaximumLength / Mathf.Cos(Mathf.Deg2Rad * secondAngle);
-            var secondDirection = MathUtilties.PolarToCartesian(secondAngle, secondLength);
-
-            if (Physics2D.RaycastNonAlloc(transform.TransformPoint(verticies[0]), transform.TransformDirection(secondDirection).normalized, terrainHit, secondLength, CollisionMask.value) > 0)
-            {
-
-            }*/
         }
     }
 

@@ -289,7 +289,7 @@ public class TexturesToAtlasConverter : EditorWindow
 				Debug.Log("TEX = " + tex.name);
 				Debug.Log("Sprite Rect = " + spriteRect);
 				Debug.Log("OG PIVOT = " + $"{spritePivot.x}, {spritePivot.y}");
-				pivots.Add(new Vector2(LerpUtilities.LerpUnclamped(spriteRect.xMin, spriteRect.xMax, spritePivot.x), LerpUtilities.LerpUnclamped(spriteRect.yMin, spriteRect.yMax, spritePivot.y)));
+				pivots.Add(new Vector2(LerpUtilities.UnclampedLerp(spriteRect.xMin, spriteRect.xMax, spritePivot.x), LerpUtilities.UnclampedLerp(spriteRect.yMin, spriteRect.yMax, spritePivot.y)));
 				Debug.Log("ADJUSTED PIVOT = " + $"{pivots[pivots.Count - 1].x}, {pivots[pivots.Count - 1].y}");
 				Debug.Log("--------------------------------------");
 			}
@@ -364,7 +364,7 @@ public class TexturesToAtlasConverter : EditorWindow
 				{
 					alignment = (int)SpriteAlignment.Custom,
 					name = textures[i].name,
-					pivot = new Vector2(LerpUtilities.InverseLerpUnclamped(pivots[i].x, 0f, spriteRect.width), LerpUtilities.InverseLerpUnclamped(pivots[i].y, 0f,spriteRect.height)),
+					pivot = new Vector2(LerpUtilities.UnclampedInverseLerp(0f, spriteRect.width, pivots[i].x), LerpUtilities.UnclampedInverseLerp(0f,spriteRect.height, pivots[i].y)),
 					rect = spriteRect,
 					border = Vector4.zero
 				};

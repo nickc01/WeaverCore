@@ -139,6 +139,13 @@ namespace WeaverCore
         {
 			var modInstanceT = mod.GetType();
 
+			var errorState = modInstanceT.GetField("Error").GetValue(mod);
+
+            if (errorState != null)
+            {
+				return;
+            }
+
 			var imod = modInstanceT.GetField("Mod").GetValue(mod);
 
             if (imod != null)
@@ -175,6 +182,13 @@ namespace WeaverCore
 		static void UnloadMods_Postfix(object mod)
         {
 			var modInstanceT = mod.GetType();
+
+			var errorState = modInstanceT.GetField("Error").GetValue(mod);
+
+			if (errorState != null)
+			{
+				return;
+			}
 
 			var imod = modInstanceT.GetField("Mod").GetValue(mod);
 

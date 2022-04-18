@@ -20,7 +20,7 @@ namespace WeaverCore.Components
         [SerializeField]
         Vector2 scaleMinMax = new Vector2(1f,1.25f);
 
-
+        [SerializeField]
         float minimumImpactAThreshold = 0.2f;
 
         bool displayImpacts = false;
@@ -80,14 +80,17 @@ namespace WeaverCore.Components
 
         private void Awake()
         {
-            laser = GetComponentInChildren<Laser>();
-            laser.MainCollider.enabled = false;
-            laser.MainRenderer.enabled = false;
+            if (enabled)
+            {
+                laser = GetComponentInChildren<Laser>();
+                laser.MainCollider.enabled = false;
+                laser.MainRenderer.enabled = false;
 
-            originalSpread = laser.Spread;
-            originalWidth = laser.StartingWidth;
+                originalSpread = laser.Spread;
+                originalWidth = laser.StartingWidth;
 
-            StartCoroutine(TestRoutine());
+                StartCoroutine(TestRoutine());
+            }
         }
 
         IEnumerator TestRoutine()
@@ -215,10 +218,11 @@ namespace WeaverCore.Components
                 Awake();
             }
 
-            laser.transform.rotation = Quaternion.Slerp(laser.transform.rotation,Quaternion.Euler(0f,0f, MathUtilties.CartesianToPolar(Player.Player1.transform.position - laser.transform.position).x),2.5f * Time.deltaTime);
+            //laser.transform.rotation = Quaternion.Slerp(laser.transform.rotation,Quaternion.Euler(0f,0f, MathUtilties.CartesianToPolar(Player.Player1.transform.position - laser.transform.position).x),2.5f * Time.deltaTime);
 
             if (displayImpacts)
             {
+                //Debug.Log("DISPLAYING IMPACTS");
                 int spawnedImpactCounter = 0;
                 for (int i = 0; i < laser.ColliderContactPoints.Count - 1; i++)
                 {
@@ -236,8 +240,10 @@ namespace WeaverCore.Components
 
                     var dotProduct = Mathf.Abs(Vector3.Dot(laserDirection, normal));
 
+
                     if (dotProduct >= minimumImpactAThreshold)
                     {
+                        //Debug.Log("IMPACT BEING DISPLAYED");
                         if (spawnedImpactCounter >= spawnedImpacts.Count)
                         {
                             var impactEffect = Pooling.Instantiate(impactEffectPrefab);

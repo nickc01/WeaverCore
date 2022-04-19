@@ -246,6 +246,7 @@ namespace WeaverCore.Components
 
         void UpdateMeshLists()
         {
+            //float z = transform.GetZPosition();
             if (Quality < 2)
             {
                 Quality = 2;
@@ -277,19 +278,19 @@ namespace WeaverCore.Components
 
             var startLocation = new Vector3(0f, halfWidth);
 
-            var firingDirection = MathUtilties.CartesianToPolar(Vector2.right);
+            var firingDirection = MathUtilities.CartesianToPolar(Vector2.right);
 
             //firingDirection.x = Mathf.RoundToInt(firingDirection.x);//Mathf.RoundToInt(firingDirection.x * 10f) * 0.1f;
 
             var firstAngle = firingDirection.x - Spread;
             var firstLength = MaximumLength / Mathf.Cos(Mathf.Deg2Rad * firstAngle);
-            var firstDirection = MathUtilties.PolarToCartesian(firstAngle, MaximumLength);
+            var firstDirection = MathUtilities.PolarToCartesian(firstAngle, MaximumLength);
 
             //verticies[2] = verticies[1] + (Vector3)firstDirection;
 
             var secondAngle = firingDirection.x + Spread;
             var secondLength = MaximumLength / Mathf.Cos(Mathf.Deg2Rad * secondAngle);
-            var secondDirection = MathUtilties.PolarToCartesian(secondAngle, MaximumLength);
+            var secondDirection = MathUtilities.PolarToCartesian(secondAngle, MaximumLength);
 
             //verticies[3] = verticies[0] + (Vector3)secondDirection;
 
@@ -356,6 +357,8 @@ namespace WeaverCore.Components
 
 
                 var previousVertex = verticies[verticies.Count - 1];
+
+                destVertex.z = 0f;
 
                 for (int s = 0; s < LengthSubdivisions; s++)
                 {

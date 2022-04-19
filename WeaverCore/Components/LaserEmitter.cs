@@ -70,6 +70,8 @@ namespace WeaverCore.Components
 
         public bool FiringLaser { get; private set; } = false;
 
+        public Laser Laser => laser ??= GetComponentInChildren<Laser>();
+
         float originalSpread;
         float originalWidth;
 
@@ -82,14 +84,13 @@ namespace WeaverCore.Components
         {
             if (enabled)
             {
-                laser = GetComponentInChildren<Laser>();
-                laser.MainCollider.enabled = false;
-                laser.MainRenderer.enabled = false;
+                Laser.MainCollider.enabled = false;
+                Laser.MainRenderer.enabled = false;
 
-                originalSpread = laser.Spread;
-                originalWidth = laser.StartingWidth;
+                originalSpread = Laser.Spread;
+                originalWidth = Laser.StartingWidth;
 
-                StartCoroutine(TestRoutine());
+                //StartCoroutine(TestRoutine());
             }
         }
 
@@ -236,7 +237,7 @@ namespace WeaverCore.Components
 
                     normal.Normalize();
 
-                    var laserDirection = MathUtilties.PolarToCartesian(laser.transform.eulerAngles.z, 1f);
+                    var laserDirection = MathUtilities.PolarToCartesian(laser.transform.eulerAngles.z, 1f);
 
                     var dotProduct = Mathf.Abs(Vector3.Dot(laserDirection, normal));
 
@@ -268,7 +269,7 @@ namespace WeaverCore.Components
                         var data = spawnedImpactData[spawnedImpactCounter];
 
                         impact.transform.position = midPoint;
-                        impact.transform.rotation = Quaternion.Euler(0f, 0f, MathUtilties.CartesianToPolar(normal).x);
+                        impact.transform.rotation = Quaternion.Euler(0f, 0f, MathUtilities.CartesianToPolar(normal).x);
 
                         impact.transform.localScale = new Vector3(distance * data.RandomScale * dotProduct, distance * data.RandomScale * dotProduct, 1f);
                         spawnedImpactCounter++;

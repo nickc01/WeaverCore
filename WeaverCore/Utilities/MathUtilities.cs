@@ -9,7 +9,7 @@ namespace WeaverCore.Utilities
 	/// <summary>
 	/// Contains some utility functions related to math
 	/// </summary>
-	public static class MathUtilties
+	public static class MathUtilities
 	{
 		/// <summary>
 		/// Calculates the 2D velocity needed to reach the specified <paramref name="end"/> point.

@@ -103,7 +103,7 @@ namespace WeaverCore.Components
             verticies[0] = new Vector3(0f,halfWidth);
             verticies[1] = new Vector3(0f,-halfWidth);
 
-            var firingDirection = MathUtilties.CartesianToPolar(Vector2.right);
+            var firingDirection = MathUtilities.CartesianToPolar(Vector2.right);
 
             //cos (firstAngle) = MaximumLength / h
             //h = MaximumLength / cos(firstAngle)
@@ -112,13 +112,13 @@ namespace WeaverCore.Components
 
             var firstAngle = firingDirection.x - Spread;
             var firstLength = MaximumLength / Mathf.Cos(Mathf.Deg2Rad * firstAngle);
-            var firstDirection = MathUtilties.PolarToCartesian(firstAngle, firstLength);
+            var firstDirection = MathUtilities.PolarToCartesian(firstAngle, firstLength);
 
             verticies[2] = verticies[1] + (Vector3)firstDirection;
 
             var secondAngle = firingDirection.x + Spread;
             var secondLength = MaximumLength / Mathf.Cos(Mathf.Deg2Rad * secondAngle);
-            var secondDirection = MathUtilties.PolarToCartesian(secondAngle, secondLength);
+            var secondDirection = MathUtilities.PolarToCartesian(secondAngle, secondLength);
 
             verticies[3] = verticies[0] + (Vector3)secondDirection;
 

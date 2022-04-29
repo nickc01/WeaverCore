@@ -89,6 +89,7 @@ namespace WeaverCore.Components
 
                 originalSpread = Laser.Spread;
                 originalWidth = Laser.StartingWidth;
+                laser.gameObject.SetActive(false);
 
                 //StartCoroutine(TestRoutine());
             }
@@ -154,10 +155,14 @@ namespace WeaverCore.Components
             {
                 yield break;
             }
+            laser.gameObject.SetActive(true);
             FiringLaser = true;
             laser.Spread = chargeUpSpread;
             laser.StartingWidth = chargeUpWidth;
-            yield return PlayAnimationLoop(chargeUpAnimation, chargeUpAnimationFPS, ChargeUpDuration, 1);
+            if (ChargeUpDuration > 0)
+            {
+                yield return PlayAnimationLoop(chargeUpAnimation, chargeUpAnimationFPS, ChargeUpDuration, 1);
+            }
 
             laser.MainCollider.enabled = true;
             displayImpacts = true;
@@ -172,12 +177,14 @@ namespace WeaverCore.Components
             yield return PlayAnimation(endAnimation, endAnimationFPS);
             laser.MainRenderer.enabled = false;
             FiringLaser = false;
+            laser.gameObject.SetActive(false);
         }
 
         IEnumerator InterruptRoutine()
         {
             yield return PlayAnimation(endAnimation, endAnimationFPS);
             laser.MainRenderer.enabled = false;
+            laser.gameObject.SetActive(false);
         }
 
         public void StopLaser()

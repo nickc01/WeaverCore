@@ -45,13 +45,13 @@ namespace WeaverCore.Assets.Components
 				attacker.hitDirection = CardinalDirection.Up;
 				//SlashBox.transform.eulerAngles = new Vector3(0, 0, -90f);
 				//SlashBox.transform.localPosition = new Vector3(oldPosition.y, oldPosition.x, oldPosition.z);
-				SlashBox.transform.RotateAround(transform.position, transform.forward, -90f);
+				SlashBox.transform.RotateAround(transform.position, transform.forward, -90f * Player.Player1.transform.GetScaleX());
 			}
             else if (PlayerInput.down.IsPressed)
             {
 				attacker.hitDirection = CardinalDirection.Down;
 				//SlashBox.transform.eulerAngles = new Vector3(0, 0, 90f);
-				SlashBox.transform.RotateAround(transform.position, transform.forward, 90f);
+				SlashBox.transform.RotateAround(transform.position, transform.forward, 90f * Player.Player1.transform.GetScaleX());
 				//SlashBox.transform.localPosition = new Vector3(oldPosition.y, oldPosition.x, oldPosition.z);
 			}
 			else

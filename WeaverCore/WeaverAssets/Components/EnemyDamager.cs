@@ -26,9 +26,13 @@ namespace WeaverCore.Assets.Components
 		//[HideInInspector]
 		public CardinalDirection hitDirection;
 
+		const int DEFAULT_RECURSION_DEPTH = 3;
+
 		void OnTriggerEnter2D(Collider2D collider)
 		{
 			var obj = collider.transform;
+
+			int depth = 0;
 
 			while (obj != null)
 			{
@@ -46,6 +50,11 @@ namespace WeaverCore.Assets.Components
 					});
 				}
 				obj = obj.parent;
+				depth += DEFAULT_RECURSION_DEPTH;
+                if (depth == DEFAULT_RECURSION_DEPTH)
+                {
+					break;
+                }
 			}
 		}
 	}

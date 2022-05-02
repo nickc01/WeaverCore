@@ -428,6 +428,7 @@
   <ItemGroup>
     <Compile Include="Implementations\G_AudioMixer_I.cs" />
     <Compile Include="Implementations\G_GeoCounter_I.cs" />
+    <Compile Include="Implementations\G_HitTaker_I.cs" />
     <Compile Include="Implementations\G_HunterJournal_I.cs" />
     <Compile Include="Implementations\G_WeaverLanguage_I.cs" />
     <Compile Include="Implementations\G_PlayerInput_I.cs" />

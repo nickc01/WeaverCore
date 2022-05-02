@@ -67,6 +67,8 @@ namespace WeaverCore.Components
         [field: SerializeField]
         public float FireDuration { get; set; } = 3f;
 
+        public float EndDuration => endAnimation.Count * (1f / endAnimationFPS);
+
 
         public bool FiringLaser { get; private set; } = false;
 

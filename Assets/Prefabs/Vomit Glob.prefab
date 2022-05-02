@@ -2684,7 +2684,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7450155262499576844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2728,8 +2728,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomZRange: {x: 0.0041, y: 0.00499}
   randomScaleRange: {x: 1, y: 1.75}
-  lifeTimeRange: {x: 1.75, y: 2}
-  puddleCollider: {fileID: 7450155262856165255}
+  <lifeTimeRange>k__BackingField: {x: 1.75, y: 2}
+  puddleCollider: {fileID: 7450155262856165251}
   airSteamParticles: {fileID: 7450155262292547031}
   steamParticles: {fileID: 7450155263808976203}
   landSound: {fileID: 8300000, guid: ec49bfa583efff94495cf3936fb28af0, type: 3}

@@ -7,6 +7,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+
     public class VomitGlob : MonoBehaviour, IOnPool
     {
         static VomitGlob prefab;
@@ -35,7 +36,7 @@ namespace WeaverCore.Assets.Components
         public WeaverAnimationPlayer Animator => animator ??= GetComponent<WeaverAnimationPlayer>();
 
         [SerializeField]
-        GameObject puddleCollider;
+        Collider2D puddleCollider;
 
         [SerializeField]
         ParticleSystem airSteamParticles;
@@ -54,6 +55,8 @@ namespace WeaverCore.Assets.Components
         public bool PlaySounds { get; set; } = true;
 
         PlayerDamager damager;
+
+        int oldDamage = 0;
 
 
         private void Start()
@@ -76,24 +79,39 @@ namespace WeaverCore.Assets.Components
 
         void OnOtherLand(Collision2D collision, bool finish)
         {
+            oldDamage = damager.damageDealt;
+            transform.SetZPosition(randomZRange.RandomInRange());
             RB.velocity = default;
             airSteamParticles.Stop();
 
-            var normal = collision.GetContact(0).normal;
+
+            var contact = collision.GetContact(0);
+            var normal = contact.normal;
 
             var normalAngle = MathUtilities.CartesianToPolar(normal).x - 90f;
 
-            transform.rotation = Quaternion.Euler(0f, 0f, normalAngle);
+            var bounds = MainCollider.bounds;
+
+            transform.RotateAround(bounds.center,Vector3.forward, normalAngle);
+
+            MainCollider.enabled = false;
+            //transform.rotation = Quaternion.Euler(0f, 0f, normalAngle);
 
             transform.Translate(new Vector3(0f, 0.25f), Space.Self);
             steamParticles.Play();
-            puddleCollider.SetActive(true);
+            puddleCollider.gameObject.SetActive(true);
+            puddleCollider.enabled = true;
             Animator.PlayAnimation("Land");
             if (PlaySounds)
             {
                 WeaverAudio.PlayAtPoint(landSound, transform.position);
             }
-            MainCollider.enabled = false;
+            /*if (finish)
+            {
+                MainCollider.enabled = false;
+                damager.damageDealt
+            }*/
+            rb.isKinematic = true;
 
             if (finish)
             {
@@ -109,8 +127,10 @@ namespace WeaverCore.Assets.Components
 
         IEnumerator EndRoutine()
         {
-            var oldDamage = damager.damageDealt;
-            damager.damageDealt = 0;
+            //var oldDamage = damager.damageDealt;
+            //damager.damageDealt = 0;
+            //damager.damageDealt = 0;
+            puddleCollider.enabled = false;
 
             Vector3 oldScale = transform.localScale;
             Vector3 newScale = new Vector3(0.1f,0.1f);
@@ -121,8 +141,6 @@ namespace WeaverCore.Assets.Components
                 yield return null;
             }
 
-            MainCollider.enabled = false;
-            rb.isKinematic = true;
             damager.damageDealt = oldDamage;
 
             steamParticles.Stop();
@@ -136,16 +154,21 @@ namespace WeaverCore.Assets.Components
         void Init()
         {
             initialized = true;
-            transform.SetZPosition(UnityEngine.Random.Range(randomZRange.x, randomZRange.y));
 
             var scale = UnityEngine.Random.Range(randomScaleRange.x, randomScaleRange.y);
             transform.SetLocalScaleXY(scale, scale);
 
-            puddleCollider.SetActive(false);
+            puddleCollider.gameObject.SetActive(false);
+            puddleCollider.enabled = true;
             MainCollider.enabled = true;
         }
 
-        public static VomitGlob Spawn(Vector2 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
+        public void SetScale(float scale)
+        {
+            transform.SetLocalScaleXY(scale,scale);
+        }
+
+        public static VomitGlob Spawn(Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
         {
             if (prefab == null)
             {
@@ -157,7 +180,7 @@ namespace WeaverCore.Assets.Components
 
             instance.airSteamParticles.Play();
 
-            instance.transform.SetPosition2D(position);
+            instance.transform.position = position;
             instance.RB.velocity = velocity;
             instance.RB.gravityScale = gravityScale;
             instance.PlaySounds = playSounds;

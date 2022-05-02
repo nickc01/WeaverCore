@@ -109,5 +109,20 @@ namespace WeaverCore.Utilities
 		{
 			return new Vector2(Mathf.Atan2(y,x) * Mathf.Rad2Deg,Mathf.Sqrt((x*x) + (y*y)));
 		}
+
+		/// <summary>
+		/// Clamps an angle into the range -180 to 180
+		/// </summary>
+		/// <param name="degrees">The angle to clamp</param>
+		public static float ClampRotation(float degrees)
+        {
+			degrees %= 360f;
+
+            if (degrees > 180f)
+            {
+				degrees -= 360f;
+            }
+			return degrees;
+        }
 	}
 }

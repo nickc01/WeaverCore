@@ -31,6 +31,8 @@ namespace WeaverCore.Assets.Components
 		float accel;
 		float timer;
 
+		public float TransparencyMultiplier { get; set; } = 1f;
+
 		void Awake()
 		{
 			spriteRenderer = GetComponent<SpriteRenderer>();
@@ -40,12 +42,12 @@ namespace WeaverCore.Assets.Components
 			UpdateVisuals();
 		}
 
-		void UpdateVisuals()
+		public void UpdateVisuals()
 		{
 			float num = (1f + timer * 4f) * GrowthSpeed;
 			base.transform.localScale = new Vector3(num * SizeMultiplier, num * SizeMultiplier, num * SizeMultiplier);
 			Color color = spriteRenderer.color;
-			color.a = 1f - timer;
+			color.a = TransparencyMultiplier * (1f - timer);
 			this.spriteRenderer.color = color;
 		}
 
@@ -82,6 +84,7 @@ namespace WeaverCore.Assets.Components
 			}
 			var instance = DeathWavePool.Instantiate<DeathWave>(position, Quaternion.identity);
 			instance.SizeMultiplier = sizeMultiplier;
+			instance.TransparencyMultiplier = 1f;
 			instance.UpdateVisuals();
 			return instance;
 		}

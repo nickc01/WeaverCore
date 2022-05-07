@@ -124,5 +124,20 @@ namespace WeaverCore.Utilities
             }
 			return degrees;
         }
+
+		public static bool AngleIsWithinRange(float angleDegrees, Vector2 range)
+        {
+
+			//Clamp to range 0 - 360
+			angleDegrees = (360 + (angleDegrees % 360)) % 360;
+			range.x = (3600000 + range.x) % 360;
+			range.y = (3600000 + range.y) % 360;
+
+			if (range.x < range.y)
+            {
+				return range.x <= angleDegrees && angleDegrees <= range.y;
+            }
+			return range.x <= angleDegrees && angleDegrees <= range.y;
+		}
 	}
 }

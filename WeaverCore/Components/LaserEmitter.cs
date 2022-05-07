@@ -70,10 +70,14 @@ namespace WeaverCore.Components
 
         public bool FiringLaser { get; private set; } = false;
 
-        public Laser Laser => laser ??= GetComponentInChildren<Laser>();
+        public Laser Laser => laser ??= GetComponentInChildren<Laser>(true);
+
+        public float MinChargeUpDuration => chargeUpAnimation.Count * (1f / chargeUpAnimationFPS);
 
         float originalSpread;
         float originalWidth;
+
+        Coroutine partialAnimationRoutine;
 
         struct SpawnedImpactData
         {
@@ -130,14 +134,14 @@ namespace WeaverCore.Components
 
         }
 
-        IEnumerator PlayAnimation(List<Texture> textures, float fps)
+        IEnumerator PlayAnimation(List<Texture> textures, float fps, int startingFrame = 0)
         {
             laser.MainRenderer.enabled = true;
             laser.Texture = textures[0];
 
             float secondsPerFrame = 1f / fps;
 
-            for (int i = 0; i < textures.Count; i++)
+            for (int i = startingFrame; i < textures.Count; i++)
             {
                 laser.Texture = textures[i];
                 yield return new WaitForSeconds(secondsPerFrame);
@@ -147,6 +151,130 @@ namespace WeaverCore.Components
         public void FireLaser()
         {
             StartCoroutine(FireLaserRoutine());
+        }
+
+        public void FireChargeUpOnly()
+        {
+            StartCoroutine(FireChargeUpOnlyRoutine());
+        }
+
+        public IEnumerator FireChargeUpOnlyRoutine()
+        {
+            if (FiringLaser)
+            {
+                yield break;
+            }
+            laser.gameObject.SetActive(true);
+            FiringLaser = true;
+            laser.Spread = chargeUpSpread;
+            laser.StartingWidth = chargeUpWidth;
+            if (ChargeUpDuration > 0)
+            {
+                yield return PlayAnimationLoop(chargeUpAnimation, chargeUpAnimationFPS, ChargeUpDuration, 1);
+            }
+            /*laser.MainCollider.enabled = true;
+            displayImpacts = true;
+            laser.Spread = originalSpread;
+            laser.StartingWidth = originalWidth;
+            yield return PlayAnimationLoop(fireLoopAnimation, fireLoopAnimationFPS, FireDuration, 1);*/
+
+            yield return PlayAnimation(endAnimation, endAnimationFPS,2);
+            laser.MainRenderer.enabled = false;
+            FiringLaser = false;
+            laser.gameObject.SetActive(false);
+        }
+
+        public void FireLaserQuick()
+        {
+            StartCoroutine(FireLaserQuickRoutine());
+        }
+
+        public IEnumerator FireLaserQuickRoutine()
+        {
+            if (FiringLaser)
+            {
+                yield break;
+            }
+            laser.gameObject.SetActive(true);
+            FiringLaser = true;
+            laser.Spread = chargeUpSpread;
+            laser.StartingWidth = chargeUpWidth;
+            if (ChargeUpDuration > 0)
+            {
+                yield return PlayAnimation(chargeUpAnimation,chargeUpAnimationFPS,0);
+            }
+
+            laser.MainCollider.enabled = true;
+            displayImpacts = true;
+            laser.Spread = originalSpread;
+            laser.StartingWidth = originalWidth;
+            yield return PlayAnimationLoop(fireLoopAnimation, fireLoopAnimationFPS, FireDuration, 1);
+
+            laser.MainCollider.enabled = false;
+            displayImpacts = false;
+            ClearImpacts();
+
+            yield return PlayAnimation(endAnimation, endAnimationFPS);
+            laser.MainRenderer.enabled = false;
+            FiringLaser = false;
+            laser.gameObject.SetActive(false);
+        }
+
+        /// <summary>
+        /// Starts charging up the laser. This function is useful if you want to control when the laser's events are triggered
+        /// </summary>
+        /// <returns></returns>
+        public void ChargeUpLaser_P1()
+        {
+            laser.gameObject.SetActive(true);
+            FiringLaser = true;
+            laser.Spread = chargeUpSpread;
+            laser.StartingWidth = chargeUpWidth;
+
+            partialAnimationRoutine = StartCoroutine(PlayAnimationLoop(chargeUpAnimation, chargeUpAnimationFPS, float.PositiveInfinity, 1));
+        }
+
+        /// <summary>
+        /// Fires the laser. MUST BE CALLED AFTER <see cref="ChargeUpLaser_P1"/>. This function is useful if you want to control when the laser's events are triggered
+        /// </summary>
+        /// <returns></returns>
+        public void FireLaser_P2()
+        {
+            if (partialAnimationRoutine != null)
+            {
+                StopCoroutine(partialAnimationRoutine);
+            }
+            laser.MainCollider.enabled = true;
+            displayImpacts = true;
+            laser.Spread = originalSpread;
+            laser.StartingWidth = originalWidth;
+            partialAnimationRoutine = StartCoroutine(PlayAnimationLoop(fireLoopAnimation, fireLoopAnimationFPS, float.PositiveInfinity, 1));
+        }
+
+        /// <summary>
+        /// Ends the laser. MUST BE CALLED AFTER <see cref="FireLaser_P2"/>. This function is useful if you want to control when the laser's events are triggered
+        /// </summary>
+        /// <returns></returns>
+        public void EndLaser_P3()
+        {
+            if (partialAnimationRoutine != null)
+            {
+                StopCoroutine(partialAnimationRoutine);
+            }
+            laser.MainCollider.enabled = false;
+            displayImpacts = false;
+            ClearImpacts();
+
+            IEnumerator EndRoutine()
+            {
+                yield return PlayAnimation(endAnimation, endAnimationFPS);
+                laser.MainRenderer.enabled = false;
+                FiringLaser = false;
+                laser.gameObject.SetActive(false);
+                partialAnimationRoutine = null;
+            }
+
+            partialAnimationRoutine = StartCoroutine(EndRoutine());
         }
 
         public IEnumerator FireLaserRoutine()
@@ -206,6 +334,11 @@ namespace WeaverCore.Components
             displayImpacts = false;
             ClearImpacts();
             laser.MainCollider.enabled = false;
+            if (partialAnimationRoutine != null)
+            {
+                StopCoroutine(partialAnimationRoutine);
+                partialAnimationRoutine = null;
+            }
         }
 
 

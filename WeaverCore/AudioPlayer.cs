@@ -168,6 +168,7 @@ namespace WeaverCore
 
 		void IOnPool.OnPool()
 		{
+			transform.SetParent(null);
 			AudioSource.Stop();
 			AudioSource.pitch = 1f;
 			AudioSource.mute = false;

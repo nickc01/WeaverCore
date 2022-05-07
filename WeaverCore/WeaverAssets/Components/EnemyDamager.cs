@@ -32,6 +32,11 @@ namespace WeaverCore.Assets.Components
 		{
 			var obj = collider.transform;
 
+			HitEnemy(obj,gameObject,damage,attackType,hitDirection);
+		}
+
+		public static void HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
+        {
 			int depth = 0;
 
 			while (obj != null)
@@ -41,10 +46,10 @@ namespace WeaverCore.Assets.Components
 				{
 					hittable.Hit(new HitInfo()
 					{
-						Attacker = gameObject,
+						Attacker = attacker,
 						Damage = damage,
 						AttackStrength = 1f,
-						AttackType = attackType,
+						AttackType = type,
 						Direction = hitDirection.ToDegrees(),
 						IgnoreInvincible = false
 					});

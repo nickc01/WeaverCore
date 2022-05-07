@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEditor;
@@ -9,7 +8,9 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore.Editor.Implementations
 {
-	public class E_AudioMixer_I : AudioMixer_I
+
+
+    public class E_AudioMixer_I : AudioMixer_I
 	{
 		static bool assetsLoaded = false;
 

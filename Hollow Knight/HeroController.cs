@@ -7,6 +7,24 @@ using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
+    static Type spriteFlasherType;
+
+    static Type GetFlasherType()
+    {
+        if (spriteFlasherType == null)
+        {
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                if (asm.GetName().Name == "WeaverCore")
+                {
+                    spriteFlasherType = asm.GetType("WeaverCore.Components.SpriteFlasher");
+                    break;
+                }
+            }
+        }
+        return spriteFlasherType;
+    }
+
     public abstract class INTERNAL_INPUTMANAGER
     {
         public abstract bool IsInputPressed(string inputName);
@@ -4799,10 +4817,14 @@ return fsmBool.Value;
             if (shadowDashTimer <= 0f)
             {
                 //this.spriteFlash.FlashShadowRecharge();
-                Component flasher = GetComponent("WeaverCore.Components.SpriteFlasher");
-                if (flasher != null)
+                //Component flasher = GetComponent("WeaverCore.Components.SpriteFlasher");
+                Component[] flashers = GetComponentsInChildren(GetFlasherType());
+                if (flashers != null)
                 {
-                    flasher.SendMessage("FlashShadowRecharge");
+                    foreach (var flasher in flashers)
+                    {
+                        flasher.SendMessage("FlashShadowRecharge");
+                    }
                     //flasher.FlashShadowRecharge();
                 }
             }

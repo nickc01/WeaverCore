@@ -55,7 +55,7 @@ namespace WeaverCore.Components.DeathEffects
         public override void EmitEffects()
         {
             base.EmitEffects();
-            if (TryGetComponent<SpriteFlasher>(out var flasher))
+            foreach (var flasher in GetComponentsInChildren<SpriteFlasher>())
             {
                 flasher.flashFocusHeal();
             }

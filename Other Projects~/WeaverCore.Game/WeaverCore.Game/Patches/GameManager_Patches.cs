@@ -26,6 +26,63 @@ namespace WeaverCore.Game.Patches
 			On.GameMap.GetTilemapDimensions += GameMap_GetTilemapDimensions;
 		}
 
+		/*private static void GameManager_SetupSceneRefs(On.GameManager.orig_SetupSceneRefs orig, GameManager self, bool refreshTilemapInfo)
+		{
+			WeaverLog.Log("PATCH_A");
+			WeaverSceneManager.CurrentSceneManager = null;
+			WeaverLog.Log("PATCH_B");
+			var gm_sm = typeof(GameManager).GetProperty("sm");
+			WeaverLog.Log("PATCH_C = " + gm_sm);
+			bool found = false;
+			WeaverLog.Log("PATCH_D");
+			for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
+			{
+				WeaverLog.Log("PATCH_E = " + i);
+				var scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+				WeaverLog.Log("PATCH_F = " + scene);
+				var rootObjs = scene.GetRootGameObjects();
+				WeaverLog.Log("PATCH_G = " + rootObjs);
+				for (int j = 0; j < rootObjs.GetLength(0); j++)
+				{
+					WeaverLog.Log("PATCH_H = " + rootObjs[j]);
+					var sm = rootObjs[j].GetComponent<WeaverSceneManager>();
+					WeaverLog.Log("PATCH_I = " + sm);
+					if (sm != null)
+					{
+						WeaverLog.Log("PATCH_J");
+						WeaverSceneManager.CurrentSceneManager = sm;
+						WeaverLog.Log("PATCH_K");
+						WeaverLog.Log("PATCH_L = " + sm.SceneDimensions);
+						self.sceneWidth = sm.SceneDimensions.width;
+						WeaverLog.Log("PATCH_M");
+						self.sceneHeight = sm.SceneDimensions.height;
+						WeaverLog.Log("PATCH_N");
+						gm_sm.SetValue(self, sm);
+						WeaverLog.Log("PATCH_O");
+						found = true;
+						WeaverLog.Log("PATCH_P");
+						break;
+					}
+				}
+				if (found)
+				{
+					break;
+				}
+			}
+			WeaverLog.Log("PATCH_Q");
+			orig(self, refreshTilemapInfo);
+			WeaverLog.Log("PATCH_R");
+
+			var foundSceneManager = gm_sm.GetValue(self) as SceneManager;
+			WeaverLog.Log("PATCH_S = " + foundSceneManager);
+			if (foundSceneManager != null && WeaverSceneManager.CurrentSceneManager == null)
+			{
+				WeaverLog.Log("PATCH_T");
+				WeaverSceneManager.CurrentSceneManager = foundSceneManager;
+			}
+			WeaverLog.Log("PATCH_U");
+		}*/
+
 		private static void GameManager_SetupSceneRefs(On.GameManager.orig_SetupSceneRefs orig, GameManager self, bool refreshTilemapInfo)
 		{
 			WeaverSceneManager.CurrentSceneManager = null;
@@ -53,7 +110,17 @@ namespace WeaverCore.Game.Patches
 					break;
 				}
 			}
-			orig(self, refreshTilemapInfo);
+			try
+            {
+				orig(self, refreshTilemapInfo);
+			}
+			catch (Exception)
+            {
+                if (GameManager.instance.IsGameplayScene() && refreshTilemapInfo)
+                {
+					GameManager.instance.RefreshTilemapInfo(GameManager.instance.sceneName);
+                }
+            }
 
 			var foundSceneManager = gm_sm.GetValue(self) as SceneManager;
 			if (foundSceneManager != null && WeaverSceneManager.CurrentSceneManager == null)

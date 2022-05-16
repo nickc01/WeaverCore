@@ -121,7 +121,11 @@ namespace WeaverCore.Utilities
 			/// <summary>
 			/// Will only play a single frame
 			/// </summary>
-			SingleFrame
+			SingleFrame,
+			/// <summary>
+			/// Will constantly play a random frame
+			/// </summary>
+			RandomContinuous
 		}
 
 
@@ -478,6 +482,13 @@ namespace WeaverCore.Utilities
 					}
 				case WrapMode.SingleFrame:
 					return -1;
+				case WrapMode.RandomContinuous:
+					int newFrame = UnityEngine.Random.Range(0, frameCount - 1);
+                    if (newFrame >= previousFrame)
+                    {
+						newFrame++;
+                    }
+					return newFrame;
 				default:
 					return -1;
 			}
@@ -525,6 +536,8 @@ namespace WeaverCore.Utilities
 					return UnityEngine.Random.Range(0, frameCount);
 				case WrapMode.SingleFrame:
 					return loopStartFrame - startingFrame;
+				case WrapMode.RandomContinuous:
+					return UnityEngine.Random.Range(0, frameCount);
 				default:
 					return -1;
 			}

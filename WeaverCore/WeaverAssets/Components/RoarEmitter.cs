@@ -73,8 +73,20 @@ public class RoarEmitter : MonoBehaviour
 	{
 		StopAllCoroutines();
 		CameraShaker.Instance.SetRumble(WeaverCore.Enums.RumbleType.None);
-		Destroy(Wave1.gameObject);
-		Destroy(Wave2.gameObject);
+        if (Wave1 != null)
+        {
+			Destroy(Wave1.gameObject);
+		}
+
+        if (Wave2 != null)
+        {
+			Destroy(Wave2.gameObject);
+		}
+
+        if (Lines != null)
+        {
+			Destroy(Lines.gameObject);
+        }
 		RubbleParticles.Stop();
 		StartCoroutine(StoppingRoutine());
 	}

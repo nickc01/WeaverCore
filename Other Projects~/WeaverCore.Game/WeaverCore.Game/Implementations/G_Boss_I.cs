@@ -7,6 +7,7 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore.Game.Implementations
 {
+
     public class G_Boss_I : Boss_I
     {
         public class G_Statics : Boss_I.Statics

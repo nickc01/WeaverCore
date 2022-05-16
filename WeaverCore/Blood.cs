@@ -8,10 +8,11 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// Used for spawning blood particle effects
-	/// </summary>
-	public class Blood : MonoBehaviour
+
+    /// <summary>
+    /// Used for spawning blood particle effects
+    /// </summary>
+    public class Blood : MonoBehaviour
 	{
 		static GameObject bloodPrefab;
 

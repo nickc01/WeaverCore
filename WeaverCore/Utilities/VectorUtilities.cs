@@ -256,5 +256,10 @@ namespace WeaverCore.Utilities
 
 			return angles;
 		}
+
+		public static float RandomInRange(this Vector2 range)
+        {
+			return UnityEngine.Random.Range(range.x, range.y);
+        }
 	}
 }

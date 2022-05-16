@@ -62,9 +62,9 @@ namespace WeaverCore.Components.DeathEffects
             if (InfectedDeathWavePrefab != null)
             {
                 GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);
+                gameObject.transform.SetXLocalScale(1.25f);
+                gameObject.transform.SetYLocalScale(1.25f);
             }
-            gameObject.transform.SetXLocalScale(1.25f);
-            gameObject.transform.SetYLocalScale(1.25f);
             Blood.SpawnRandomBlood(transform.position + EffectsOffset);
             if (DeathPuffPrefab != null)
             {

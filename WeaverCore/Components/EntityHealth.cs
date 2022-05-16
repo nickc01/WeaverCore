@@ -348,9 +348,9 @@ namespace WeaverCore.Components
             {
                 return;
             }
-
+            NailDeflect.PlayDeflectEffects(hit.Attacker.transform.position, gameObject, DirectionUtilities.DegreesToDirection(hit.Direction), false);
             //Freeze the game for a moment
-            WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset1);
+            /*WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset1);
 
             CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
 
@@ -397,7 +397,7 @@ namespace WeaverCore.Components
             GameObject blockedHitEffect = Instantiate(EffectAssets.BlockedHitPrefab, v, Quaternion.identity);
             blockedHitEffect.transform.eulerAngles = eulerAngles;
 
-            WeaverAudio.PlayAtPoint(Assets.AudioAssets.DamageEnemy, transform.position, channel: AudioChannel.Sound);
+            WeaverAudio.PlayAtPoint(Assets.AudioAssets.SwordCling, transform.position, channel: AudioChannel.Sound);*/
 
         }
 
@@ -407,9 +407,23 @@ namespace WeaverCore.Components
             CardinalDirection cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
             if (DeflectBlows)
             {
+                Debug.Log("ATTACK TYPE = " + hit.AttackType);
                 if (hit.AttackType == AttackType.Nail)
                 {
-                    if (cardinalDirection == CardinalDirection.Right)
+                    Debug.Log("DIRECTION = " + cardinalDirection);
+                    switch (cardinalDirection)
+                    {
+                        case CardinalDirection.Up:
+                            Player.Player1.Recoil(CardinalDirection.Down);
+                            break;
+                        case CardinalDirection.Left:
+                            Player.Player1.Recoil(CardinalDirection.Right);
+                            break;
+                        case CardinalDirection.Right:
+                            Player.Player1.Recoil(CardinalDirection.Left);
+                            break;
+                    }
+                    /*if (cardinalDirection == CardinalDirection.Right)
                     {
                         //Make the player recoil left
                         Player.Player1.Recoil(CardinalDirection.Left);
@@ -418,7 +432,7 @@ namespace WeaverCore.Components
                     {
                         //Make the player recoil right
                         Player.Player1.Recoil(CardinalDirection.Right);
-                    }
+                    }*/
                 }
 
                 PlayInvincibleHitEffects(hit);
@@ -521,19 +535,22 @@ namespace WeaverCore.Components
                     }
                     AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
                     weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(0.85f, 1.15f);
-                    SpriteFlasher component = GetComponent<SpriteFlasher>();
-                    if (component != null)
+
+                    foreach (var component in GetComponentsInChildren<SpriteFlasher>())
                     {
-                        if (extraDamageType != ExtraDamageTypes.Spore)
+                        if (component != null)
                         {
-                            if (extraDamageType == ExtraDamageTypes.Dung || extraDamageType == ExtraDamageTypes.Dung2)
+                            if (extraDamageType != ExtraDamageTypes.Spore)
                             {
-                                component.flashDungQuick();
+                                if (extraDamageType == ExtraDamageTypes.Dung || extraDamageType == ExtraDamageTypes.Dung2)
+                                {
+                                    component.flashDungQuick();
+                                }
                             }
-                        }
-                        else
-                        {
-                            component.flashSporeQuick();
+                            else
+                            {
+                                component.flashSporeQuick();
+                            }
                         }
                     }
                 }

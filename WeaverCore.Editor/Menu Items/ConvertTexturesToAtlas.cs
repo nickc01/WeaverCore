@@ -23,6 +23,7 @@ public class TexturesToAtlasConverter : EditorWindow
 	ReorderableList textures = null;
 	bool destroyOriginalTextures = false;
 	string outputAtlasName = "NEW_ATLAS";
+	bool cropTextures = true;
 
 	SerializedObject serializedObject;
 	bool closed = false;
@@ -81,12 +82,13 @@ public class TexturesToAtlasConverter : EditorWindow
 
 		destroyOriginalTextures = EditorGUILayout.Toggle(new GUIContent("Destroy Original Textures"), destroyOriginalTextures);
 		outputAtlasName = EditorGUILayout.TextField(new GUIContent("Output Atlas Name"), outputAtlasName);
+		cropTextures = EditorGUILayout.Toggle(new GUIContent("Crop Textures", "Crops the textures so they can fit more tightly into the atlas"), cropTextures);
 
 		if (GUILayout.Button("Convert"))
 		{
 			closed = true;
 			Close();
-			UnboundCoroutine.Start(Convert(textureList, destroyOriginalTextures, outputAtlasName));
+			UnboundCoroutine.Start(Convert(textureList, destroyOriginalTextures, outputAtlasName,cropTextures));
 		}
 
 		EditorGUILayout.EndScrollView();
@@ -96,7 +98,165 @@ public class TexturesToAtlasConverter : EditorWindow
 		}
 	}
 
-	static IEnumerator Convert(List<Texture2D> textures, bool destroyOriginalTextures, string outputAtlasName)
+	static TextureImporterSettings GetImportData(Texture tex)
+    {
+		var texImport = (TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(tex));
+		var texSettings = new TextureImporterSettings();
+		texImport.ReadTextureSettings(texSettings);
+		return texSettings;
+	}
+
+	static Texture2D CropTexture(Texture2D input, Vector2 oldPivotCoordinates, out Vector2 newPivotCoordinates, int pixelPadding = 1)
+    {
+		var width = input.width;
+		var height = input.height;
+		var halfHeight = height / 2;
+		var halfWidth = width / 2;
+		var targetColor = default(Color);
+
+		float alphaThreshold = 5 / 255f;
+
+		newPivotCoordinates = oldPivotCoordinates;
+
+		int leftPoint = 0;
+
+		for (int i = 0; i < width; i++)
+		{
+            for (int y = 0; y < height; y++)
+            {
+				var color = input.GetPixel(i, y);
+				if (color.a >= alphaThreshold)
+				{
+					leftPoint = i - pixelPadding;
+					if (leftPoint < 0)
+					{
+						leftPoint = 0;
+					}
+					goto LeftLoopEnd;
+				}
+			}
+		}
+		LeftLoopEnd:
+
+		newPivotCoordinates.x -= leftPoint;
+
+		int rightPoint = width - 1;
+
+		for (int i = width - 1; i >= 0; i--)
+		{
+			for (int y = 0; y < height; y++)
+            {
+				var color = input.GetPixel(i, y);
+				if (color.a >= alphaThreshold)
+				{
+					rightPoint = i + pixelPadding;
+					if (rightPoint > width - 1)
+					{
+						rightPoint = width - 1;
+					}
+					goto RightLoopEnd;
+				}
+			}
+		}
+		RightLoopEnd:
+
+		int bottomPoint = 0;
+
+		for (int i = 0; i < height; i++)
+		{
+			for (int x = 0; x < width; x++)
+            {
+				var color = input.GetPixel(x, i);
+				if (color.a >= alphaThreshold)
+				{
+					bottomPoint = i - pixelPadding;
+					if (bottomPoint < 0)
+					{
+						bottomPoint = 0;
+					}
+					goto BottomLoopEnd;
+				}
+			}
+		}
+		BottomLoopEnd:
+
+		newPivotCoordinates.y -= bottomPoint;
+
+		int topPoint = height - 1;
+
+		for (int i = height - 1; i >= 0; i--)
+		{
+			for (int x = 0; x < width; x++)
+            {
+				var color = input.GetPixel(x, i);
+				if (color.a >= alphaThreshold)
+				{
+					topPoint = i + pixelPadding;
+					if (topPoint > height - 1)
+					{
+						topPoint = height - 1;
+					}
+					goto TopLoopEnd;
+				}
+			}
+		}
+		TopLoopEnd:
+
+		var newWidth = rightPoint - leftPoint + 1;
+		var newHeight = topPoint - bottomPoint + 1;
+
+		var croppedTexture = new Texture2D(newWidth, newHeight);
+
+		for (int x = leftPoint; x <= rightPoint; x++)
+		{
+			for (int y = bottomPoint; y <= topPoint; y++)
+			{
+				var sourcePixel = input.GetPixel(x, y);
+
+				/*if (CheckSimilarity(targetColor, sourcePixel) > backgroundFillPercentage)
+				{
+					sourcePixel = new Color(0f, 0f, 0f, 0f);
+				}*/
+				//GColorToAlpha(ref sourcePixel.a, ref sourcePixel.r, ref sourcePixel.g, ref sourcePixel.b, targetColor.r, targetColor.g, targetColor.b,0.5f);
+
+				croppedTexture.SetPixel(x - leftPoint, y - bottomPoint, sourcePixel);
+			}
+		}
+
+		croppedTexture.Apply();
+		return croppedTexture;
+	}
+
+	static Vector2 GetPivot(TextureImporterSettings settings)
+    {
+        switch ((SpriteAlignment)settings.spriteAlignment)
+        {
+            case SpriteAlignment.Center:
+				return new Vector2(0.5f,0.5f);
+            case SpriteAlignment.TopLeft:
+				return new Vector2(0f, 1f);
+			case SpriteAlignment.TopCenter:
+				return new Vector2(0.5f, 1f);
+			case SpriteAlignment.TopRight:
+				return new Vector2(1f, 1f);
+			case SpriteAlignment.LeftCenter:
+				return new Vector2(0f, 0.5f);
+			case SpriteAlignment.RightCenter:
+				return new Vector2(1f, 0.5f);
+			case SpriteAlignment.BottomLeft:
+				return new Vector2(0f, 0f);
+			case SpriteAlignment.BottomCenter:
+				return new Vector2(0.5f, 0f);
+			case SpriteAlignment.BottomRight:
+				return new Vector2(1f, 0f);
+			case SpriteAlignment.Custom:
+				return new Vector2(settings.spritePivot.x,settings.spritePivot.y);
+            default:
+				return default;
+        }
+    }
+
+	static IEnumerator Convert(List<Texture2D> textures, bool destroyOriginalTextures, string outputAtlasName, bool cropTextures)
 	{
 		if (textures.Count == 0)
 		{
@@ -112,12 +272,45 @@ public class TexturesToAtlasConverter : EditorWindow
 		Rect[] uvs = null;
 		Vector2 atlasSize = default;
 
+		float averagePPU = 0;
+		List<Vector2> pivots = new List<Vector2>();
+		bool editing = false;
 		try
 		{
+			foreach (var tex in textures)
+			{
+				var texImport = (TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(tex));
+				var texSettings = new TextureImporterSettings();
+				texImport.ReadTextureSettings(texSettings);
+				averagePPU += texSettings.spritePixelsPerUnit;
+				var spriteRect = new Rect(0f,0f, tex.width, tex.height);
+				var spritePivot = GetPivot(texSettings);
+
+				Debug.Log("TEX = " + tex.name);
+				Debug.Log("Sprite Rect = " + spriteRect);
+				Debug.Log("OG PIVOT = " + $"{spritePivot.x}, {spritePivot.y}");
+				pivots.Add(new Vector2(LerpUtilities.UnclampedLerp(spriteRect.xMin, spriteRect.xMax, spritePivot.x), LerpUtilities.UnclampedLerp(spriteRect.yMin, spriteRect.yMax, spritePivot.y)));
+				Debug.Log("ADJUSTED PIVOT = " + $"{pivots[pivots.Count - 1].x}, {pivots[pivots.Count - 1].y}");
+				Debug.Log("--------------------------------------");
+			}
+			averagePPU /= textures.Count;
+
+			List<Texture2D> resizedTextures = new List<Texture2D>();
 			using (var context = new ReadableTextureContext(textures))
 			{
+                //AssetDatabase.StartAssetEditing();
+                if (cropTextures)
+                {
+					for (int i = 0; i < textures.Count; i++)
+					{
+						resizedTextures.Add(CropTexture(textures[i], pivots[i], out var newPivot));
+						pivots[i] = newPivot;
+					}
+				}
+
+				editing = true;
 				AssetDatabase.StartAssetEditing();
-				uvs = atlas.PackTextures(textures.ToArray(), 0,8192);
+				uvs = atlas.PackTextures(cropTextures ? resizedTextures.ToArray() : textures.ToArray(), 0,8192);
 				atlasSize = new Vector2(atlas.width,atlas.height);
 				using (var handle = File.Create(outputPath))
 				{
@@ -131,12 +324,17 @@ public class TexturesToAtlasConverter : EditorWindow
 		}
 		finally
 		{
-			AssetDatabase.StopAssetEditing();
+            if (editing)
+            {
+				AssetDatabase.StopAssetEditing();
+			}
 		}
 
 		try
 		{
 			AssetDatabase.StartAssetEditing();
+			/*
+			 AssetDatabase.StartAssetEditing();
 			float averagePPU = 0;
 			List<Vector2> pivots = new List<Vector2>();
 			foreach (var tex in textures)
@@ -148,7 +346,8 @@ public class TexturesToAtlasConverter : EditorWindow
 				pivots.Add(texSettings.spritePivot);
 			}
 			averagePPU /= textures.Count;
-
+			 */
+			Debug.Log("OUTPUT PATH = " + outputPath);
 			var importer = (TextureImporter)AssetImporter.GetAtPath(outputPath);
 			var settings = new TextureImporterSettings();
 			importer.ReadTextureSettings(settings);
@@ -160,14 +359,21 @@ public class TexturesToAtlasConverter : EditorWindow
 
 			for (int i = 0; i < textures.Count; i++)
 			{
+				var spriteRect = new Rect(uvs[i].x * atlasSize.x, uvs[i].y * atlasSize.y, uvs[i].width * atlasSize.x, uvs[i].height * atlasSize.y);
 				sheet[i] = new SpriteMetaData
 				{
 					alignment = (int)SpriteAlignment.Custom,
 					name = textures[i].name,
-					pivot = pivots[i],
-					rect = new Rect(uvs[i].x * atlasSize.x, uvs[i].y * atlasSize.y, uvs[i].width * atlasSize.x, uvs[i].height * atlasSize.y),
+					pivot = new Vector2(LerpUtilities.UnclampedInverseLerp(0f, spriteRect.width, pivots[i].x), LerpUtilities.UnclampedInverseLerp(0f,spriteRect.height, pivots[i].y)),
+					rect = spriteRect,
 					border = Vector4.zero
 				};
+
+				Debug.Log("FINAL TEX = " + textures[i].name);
+				Debug.Log("FINAL PIVOT = " + $"{sheet[i].pivot.x}, {sheet[i].pivot.y}");
+				Debug.Log("FINAL UV = " + uvs[i]);
+				Debug.Log("FINAL RECT = " + sheet[i].rect);
+				Debug.Log("--------------------------------------");
 			}
 
 

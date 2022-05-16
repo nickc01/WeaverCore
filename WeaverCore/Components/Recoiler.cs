@@ -96,6 +96,10 @@ namespace WeaverCore.Components
 
 		static Func<Recoil, float> recoilSpeedDel;
 
+		static Func<Recoil, Vector2> recoilDirectionDel;
+
+		static Func<Recoil, float> recoilMagnitudeDel;
+
 
 		public float GetRecoilSpeed()
 		{
@@ -106,5 +110,38 @@ namespace WeaverCore.Components
 
 			return recoilSpeedDel.Invoke(this);
 		}
+
+
+
+		public Vector2 GetRecoilDirection()
+        {
+			if (recoilDirectionDel == null)
+			{
+				recoilDirectionDel = ReflectionUtilities.CreateFieldGetter<Recoil, Vector2>(typeof(Recoiler).BaseType.GetField("recoilDirection", BindingFlags.NonPublic | BindingFlags.Instance));
+			}
+			return recoilDirectionDel.Invoke(this);
+		}
+
+		public float GetRecoilMagnitude()
+		{
+			if (recoilMagnitudeDel == null)
+			{
+				recoilMagnitudeDel = ReflectionUtilities.CreateFieldGetter<Recoil, float>(typeof(Recoiler).BaseType.GetField("recoilSpeed", BindingFlags.NonPublic | BindingFlags.Instance));
+			}
+
+			return recoilSpeedDel.Invoke(this) / GetRecoilSpeed();
+		}
+
+		public Vector2 GetCurrentRecoilAmount()
+        {
+            if (IsRecoiling)
+            {
+				return GetRecoilDirection() * GetRecoilMagnitude() * GetRecoilSpeed() * Time.deltaTime;
+			}
+			else
+            {
+				return default;
+            }
+        }
 	}
 }

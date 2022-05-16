@@ -9,7 +9,7 @@ namespace WeaverCore.Utilities
 	/// <summary>
 	/// Contains some utility functions related to math
 	/// </summary>
-	public static class MathUtilties
+	public static class MathUtilities
 	{
 		/// <summary>
 		/// Calculates the 2D velocity needed to reach the specified <paramref name="end"/> point.
@@ -108,6 +108,36 @@ namespace WeaverCore.Utilities
 		public static Vector2 CartesianToPolar(float x, float y)
 		{
 			return new Vector2(Mathf.Atan2(y,x) * Mathf.Rad2Deg,Mathf.Sqrt((x*x) + (y*y)));
+		}
+
+		/// <summary>
+		/// Clamps an angle into the range -180 to 180
+		/// </summary>
+		/// <param name="degrees">The angle to clamp</param>
+		public static float ClampRotation(float degrees)
+        {
+			degrees %= 360f;
+
+            if (degrees > 180f)
+            {
+				degrees -= 360f;
+            }
+			return degrees;
+        }
+
+		public static bool AngleIsWithinRange(float angleDegrees, Vector2 range)
+        {
+
+			//Clamp to range 0 - 360
+			angleDegrees = (360 + (angleDegrees % 360)) % 360;
+			range.x = (3600000 + range.x) % 360;
+			range.y = (3600000 + range.y) % 360;
+
+			if (range.x < range.y)
+            {
+				return range.x <= angleDegrees && angleDegrees <= range.y;
+            }
+			return range.x <= angleDegrees && angleDegrees <= range.y;
 		}
 	}
 }

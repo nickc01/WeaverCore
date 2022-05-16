@@ -51,6 +51,7 @@ namespace WeaverCore.Editor
 			}
 		}
 
+
 		public static EditorMusic Instance
 		{
 			get

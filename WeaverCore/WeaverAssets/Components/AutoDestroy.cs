@@ -4,7 +4,6 @@ using WeaverCore.Enums;
 
 namespace WeaverCore.Assets.Components
 {
-
     /// <summary>
     /// This component is used to automatically destroy an object after a set condition. This can be setup to:
     /// 1. Destroy after a set amount of time has passed

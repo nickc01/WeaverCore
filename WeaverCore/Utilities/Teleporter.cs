@@ -16,8 +16,30 @@ namespace WeaverCore.Utilities
 	/// Used for teleporting an object/enemy from one place to another (with audio and particle effects too!)
 	/// </summary>
 	public static class Teleporter
-	{
-		static ObjectPool WhiteFlashPool;
+    {
+        class SingleContainer<T> : IEnumerable<T>
+        {
+			public T Value { get; set; }
+
+			public SingleContainer(T value)
+            {
+				Value = value;
+            }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+				yield return Value;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+				yield return Value;
+            }
+        }
+
+
+
+        static ObjectPool WhiteFlashPool;
 		static ObjectPool GlowPool;
 		static ObjectPool TeleLinePool;
 
@@ -104,30 +126,30 @@ namespace WeaverCore.Utilities
 				teleOutTime = 0f;
 			}
 
-			var sprite = entity.GetComponent<SpriteRenderer>();
-			var flasher = entity.GetComponent<SpriteFlasher>();
+			var sprites = entity.GetComponentsInChildren<SpriteRenderer>();
+			var flashers = entity.GetComponentsInChildren<SpriteFlasher>();
 
 			if (flashSprite)
 			{
-				if (sprite == null)
+				if (sprites == null || sprites.GetLength(0) == 0)
 				{
 					throw new Exception("The entity to be teleported does not have a SpriteRenderer. Either add a sprite renderer to the entity, or set flashSprite to false");
 				}
-				if (flasher == null)
-				{
-					flasher = entity.AddComponent<SpriteFlasher>();
-				}
 			}
 
-			float storedAlpha = sprite.color.a;
-
-			UnboundCoroutine.Start(TeleportRoutine(entity, Destination, teleInTime, teleOutTime, teleportColor, flashSprite, playEffects, audioPitch, sprite, flasher, storedAlpha));
+			UnboundCoroutine.Start(TeleportRoutine(entity, Destination, teleInTime, teleOutTime, teleportColor, flashSprite, playEffects, audioPitch, sprites, flashers));
 
 			return teleInTime + teleOutTime;
 		}
 
-		private static IEnumerator TeleportRoutine(GameObject entity, Vector3 Destination, float teleInTime, float teleOutTime, Color teleportColor, bool flashSprite, bool playEffects, float audioPitch, SpriteRenderer sprite, SpriteFlasher flasher, float storedAlpha)
+		private static IEnumerator TeleportRoutine(GameObject entity, Vector3 Destination, float teleInTime, float teleOutTime, Color teleportColor, bool flashSprite, bool playEffects, float audioPitch, IEnumerable<SpriteRenderer> sprites, IEnumerable<SpriteFlasher> flashers)
 		{
+			List<float> prevSpriteAlphas = new List<float>();
+            foreach (var sprite in sprites)
+            {
+				prevSpriteAlphas.Add(sprite.color.a);
+            }
+
 			if (teleInTime == 0f && teleOutTime == 0f)
 			{
 				var originalPosition = entity.transform.position;
@@ -148,7 +170,10 @@ namespace WeaverCore.Utilities
 			{
 				if (flashSprite)
 				{
-					flasher.DoFlash(teleInTime, 0.0f, 0.8f, teleportColor, 10f);
+                    foreach (var flasher in flashers)
+                    {
+						flasher.DoFlash(teleInTime, 0.0f, 0.8f, teleportColor, 10f);
+					}
 				}
 				WhiteFlash whiteFlash = null;
 
@@ -171,8 +196,11 @@ namespace WeaverCore.Utilities
 					entity.transform.position = Destination;
 					if (flashSprite)
 					{
-						flasher.StopFlashing();
-						flasher.FlashIntensity = 0f;
+                        foreach (var flasher in flashers)
+                        {
+							flasher.StopFlashing();
+							flasher.FlashIntensity = 0f;
+						}
 					}
 
 					var originalPosition = entity.transform.position;
@@ -190,9 +218,12 @@ namespace WeaverCore.Utilities
 				{
 					if (flashSprite)
 					{
-						flasher.StopFlashing();
-						flasher.FlashIntensity = 0.8f;
-						flasher.FlashColor = teleportColor;
+                        foreach (var flasher in flashers)
+                        {
+							flasher.StopFlashing();
+							flasher.FlashIntensity = 0.8f;
+							flasher.FlashColor = teleportColor;
+						}
 					}
 
 					float currentWarpTime = WARP_TIME;
@@ -225,7 +256,12 @@ namespace WeaverCore.Utilities
 						}
 						if (playEffects)
 						{
-							sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.Lerp(storedAlpha, 0f, fadeOutTimer / fadeOutTime));
+							int counter = 0;
+                            foreach (var sprite in sprites)
+                            {
+								sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.Lerp(prevSpriteAlphas[counter], 0f, fadeOutTimer / fadeOutTime));
+								counter++;
+							}
 						}
 					}
 
@@ -237,7 +273,10 @@ namespace WeaverCore.Utilities
 
 					if (playEffects)
 					{
-						flasher.DoFlash(0.0f, teleOutTime, 0.8f, teleportColor, 0f);
+                        foreach (var flasher in flashers)
+                        {
+							flasher.DoFlash(0.0f, teleOutTime, 0.8f, teleportColor, 0f);
+						}
 					}
 
 					while (fadeInTimer < fadeInTime)
@@ -250,7 +289,12 @@ namespace WeaverCore.Utilities
 						}
 						if (playEffects)
 						{
-							sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.Lerp(0f, storedAlpha, fadeInTimer / fadeInTime));
+							int counter = 0;
+                            foreach (var sprite in sprites)
+                            {
+								sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.Lerp(0f, prevSpriteAlphas[counter], fadeInTimer / fadeInTime));
+								counter++;
+							}
 						}
 					}
 				}

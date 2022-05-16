@@ -8,6 +8,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Components
 {
+
     /// <summary>
     /// When the player hits an object with this component attached, it will cause a nail parry to occur
     /// </summary>

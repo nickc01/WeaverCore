@@ -1,0 +1,2868 @@
+fileFormatVersion: 2
+guid: 47804b1db344ae246a8ea4bc9fe12ca9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 748308754338161330
+    second: charge_slash_effect0000
+  - first:
+      213: -1400375305025687427
+    second: charge_slash_effect0001
+  - first:
+      213: 5091083964630768117
+    second: charge_slash_effect0002
+  - first:
+      213: 967268621415395117
+    second: charge_slash_effect0003
+  - first:
+      213: 3647157263293986635
+    second: charge_slash_effect0004
+  - first:
+      213: 5943872390809735315
+    second: charge_slash_effect0005
+  - first:
+      213: -8104577371635241370
+    second: charge_slash_effect0006
+  - first:
+      213: -9068351241927828997
+    second: charge_slash_effect0007
+  - first:
+      213: -8774157792768904776
+    second: charge_slash_effect0008
+  - first:
+      213: -5300242216164115529
+    second: cyclone_slash_effect0000
+  - first:
+      213: -2541857745220171565
+    second: cyclone_slash_effect0003
+  - first:
+      213: -5339023422171297381
+    second: cyclone_slash_effect0004
+  - first:
+      213: -3379896600967730798
+    second: cyclone_slash_effect0005
+  - first:
+      213: -8241750912793253040
+    second: cyclone_slash_effect0006
+  - first:
+      213: 8585925003657467910
+    second: cyclone_slash_effect0007
+  - first:
+      213: 8403956745309048731
+    second: cyclone_slash_effect0008
+  - first:
+      213: 8620306091179902634
+    second: dash_burst0000
+  - first:
+      213: 1662604644419894391
+    second: dash_burst0001
+  - first:
+      213: -7676729594301199762
+    second: dash_burst0002
+  - first:
+      213: 1470571520297208166
+    second: dash_burst0003
+  - first:
+      213: 227394022410286294
+    second: dash_burst0004
+  - first:
+      213: -5826706265104385180
+    second: dash_burst0005
+  - first:
+      213: -8419680477017751155
+    second: dash_effect0000
+  - first:
+      213: 1642078651903826738
+    second: dash_effect0001
+  - first:
+      213: 8320781166219896335
+    second: dash_effect0002
+  - first:
+      213: 1256294463951354377
+    second: dash_effect0003
+  - first:
+      213: -4465859717386626959
+    second: dash_effect0004
+  - first:
+      213: -5890629425568313901
+    second: dash_effect0005
+  - first:
+      213: 8494735889768818760
+    second: dash_effect0006
+  - first:
+      213: -5189961042306245510
+    second: dash_effect0007
+  - first:
+      213: -8725062562297941690
+    second: dash_slash_effect0000
+  - first:
+      213: 2661496553685756584
+    second: dash_slash_effect0001
+  - first:
+      213: 117219777096701068
+    second: dash_slash_effect0002
+  - first:
+      213: 7042044563599733253
+    second: dash_slash_effect0003
+  - first:
+      213: 7410202443201102806
+    second: dash_slash_effect0004
+  - first:
+      213: 1461809612812281638
+    second: dash_slash_effect0005
+  - first:
+      213: -827665640277857399
+    second: dash_slash_effect0006
+  - first:
+      213: 6732762980260902664
+    second: dash_slash_effect0007
+  - first:
+      213: -5944985099755644925
+    second: dash_slash_effect0008
+  - first:
+      213: -7601995055036387684
+    second: down_slash_effect0000
+  - first:
+      213: -6032347060505428249
+    second: down_slash_effect0001
+  - first:
+      213: -3580234870794648771
+    second: down_slash_effect0002
+  - first:
+      213: 8742571186103476936
+    second: down_slash_effect0003
+  - first:
+      213: -3358173245718663467
+    second: dream_nail_impact0000
+  - first:
+      213: 4174110953004346247
+    second: dream_nail_impact0001
+  - first:
+      213: -3080736316195658425
+    second: dream_nail_impact0002
+  - first:
+      213: -1678625824879814015
+    second: dream_nail_impact0003
+  - first:
+      213: -4159808004894948548
+    second: dream_nail_impact0004
+  - first:
+      213: 8036514732027352037
+    second: dream_nail_impact0005
+  - first:
+      213: -5980295577052447198
+    second: mantis_down_slash0001
+  - first:
+      213: -3931500811603668150
+    second: mantis_down_slash0002
+  - first:
+      213: -35587075669392951
+    second: mantis_slash_left0001
+  - first:
+      213: -2588439563800445226
+    second: mantis_slash_left0002
+  - first:
+      213: 5214962080366859537
+    second: mantis_slash_left0005
+  - first:
+      213: -8338039777376515575
+    second: mantis_slash_left0006
+  - first:
+      213: -1498436720512799473
+    second: mantis_up_slash0000
+  - first:
+      213: 7847727913204965240
+    second: mantis_up_slash0001
+  - first:
+      213: 4341277526625436024
+    second: moth_wings_effect0000
+  - first:
+      213: 7458123963630396833
+    second: moth_wings_effect0001
+  - first:
+      213: 7522058581590260986
+    second: moth_wings_effect0002
+  - first:
+      213: -4848963578270799304
+    second: moth_wings_effect0003
+  - first:
+      213: -1224120471376842314
+    second: moth_wings_effect0004
+  - first:
+      213: -7292653602597836788
+    second: shadow_dash_trail0000
+  - first:
+      213: 4270725122983865448
+    second: shadow_dash_trail0001
+  - first:
+      213: 8878477623160057565
+    second: shadow_dash_trail0002
+  - first:
+      213: -6256640119478085899
+    second: shadow_dash_trail0003
+  - first:
+      213: 6495465278527601968
+    second: shadow_dash_trail0004
+  - first:
+      213: 6862367249333652548
+    second: shadow_dash_trail0005
+  - first:
+      213: -2450859962456044932
+    second: shadow_dash_trail0006
+  - first:
+      213: -2277075319049291381
+    second: shadow_dash_trail0007
+  - first:
+      213: -5164373206847029651
+    second: shadow_dash_trail0008
+  - first:
+      213: -8415148258145021417
+    second: shadow_dash_trail0009
+  - first:
+      213: 9167475925570296949
+    second: shadow_dash_trail0010
+  - first:
+      213: 2209754227135277909
+    second: shadow_dash_trail0011
+  - first:
+      213: -8706547447069253758
+    second: shadow_dash_trail0012
+  - first:
+      213: -5508577685384777625
+    second: slash_effect0004
+  - first:
+      213: -2974463402333511041
+    second: slash_effect0005
+  - first:
+      213: 4393175087481333885
+    second: slash_effect0006
+  - first:
+      213: 2341482865068835205
+    second: slash_effect0007
+  - first:
+      213: 2301136217629548032
+    second: slash_effect0008
+  - first:
+      213: 4988118470109872963
+    second: slash_effect0009
+  - first:
+      213: 5655632956055441793
+    second: slash_effect0010
+  - first:
+      213: -7627225966279094307
+    second: slash_effect0011
+  - first:
+      213: 4520125336459055851
+    second: slash_effect0012
+  - first:
+      213: -7743456218583083953
+    second: slash_effect0013
+  - first:
+      213: 4580763741100085292
+    second: slash_effect0014
+  - first:
+      213: 1544005963924977773
+    second: slash_effect0015
+  - first:
+      213: -5787884172920239792
+    second: slash_effect0016
+  - first:
+      213: -4830167501278143822
+    second: slash_effect0017
+  - first:
+      213: 7258033333841843757
+    second: slash_effect0018
+  - first:
+      213: -8019151425696856896
+    second: slash_effect0019
+  - first:
+      213: 8636618337436736967
+    second: slash_effect0020
+  - first:
+      213: 7868581526105347754
+    second: slashes_effect0000
+  - first:
+      213: 930108472142149218
+    second: slashes_effect0001
+  - first:
+      213: -4535039922467376427
+    second: slashes_effect0002
+  - first:
+      213: -8709142883499311781
+    second: slashes_effect0003
+  - first:
+      213: -1911782089756819012
+    second: slashes_effect0004
+  - first:
+      213: 8564800421908898396
+    second: slashes_effect0005
+  - first:
+      213: 7655184256710459511
+    second: slashes_effect0006
+  - first:
+      213: -1815313854720569715
+    second: slashes_effect0007
+  - first:
+      213: -6667218969261091674
+    second: superdash_break_effect0000
+  - first:
+      213: -3827951059319310588
+    second: superdash_break_effect0001
+  - first:
+      213: -4088049019720719771
+    second: superdash_break_effect0002
+  - first:
+      213: 8049262465604806396
+    second: superdash_break_effect0003
+  - first:
+      213: 245516960112156350
+    second: superdash_break_effect0004
+  - first:
+      213: 1366355660267300218
+    second: up_slash_effect0000
+  - first:
+      213: -6769223549106567621
+    second: up_slash_effect0000_0
+  - first:
+      213: 2719267621035124446
+    second: up_slash_effect0001
+  - first:
+      213: 1621547792873146447
+    second: up_slash_effect0002
+  - first:
+      213: -3258071188399952840
+    second: wall_puff0000
+  - first:
+      213: -5690569274408434296
+    second: wall_puff0001
+  - first:
+      213: 8561121517983405983
+    second: wall_puff0002
+  - first:
+      213: -7655425134441664494
+    second: wall_puff0003
+  - first:
+      213: -3646770903603833032
+    second: wall_puff0004
+  - first:
+      213: -1903512434268390579
+    second: wall_puff0005
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: charge_slash_effect0000
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 267
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b224ace8d6826a00800000000000000
+      internalID: 748308754338161330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charge_slash_effect0001
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 270
+        width: 402
+        height: 218
+      alignment: 9
+      pivot: {x: 0.5273632, y: 0.60091746}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d70f6bf541ed09ce0800000000000000
+      internalID: -1400375305025687427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charge_slash_effect0002
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 0
+        width: 392
+        height: 245
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0.59591836}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f9118164e927a640800000000000000
+      internalID: 5091083964630768117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charge_slash_effect0003
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 383
+        height: 270
+      alignment: 9
+      pivot: {x: 0.56657964, y: 0.5222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2fa8d5bfad6c6d00800000000000000
+      internalID: 967268621415395117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charge_slash_effect0004
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 392
+        height: 253
+      alignment: 9
+      pivot: {x: 0.5153061, y: 0.5335969}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b47bf9e153e4d9230800000000000000
+      internalID: 3647157263293986635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charge_slash_effect0005
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 0
+        width: 417
+        height: 246
+      alignment: 9
+      pivot: {x: 0.47242206, y: 0.60162604}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 390577c8270ec7250800000000000000
+      internalID: 5943872390809735315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charge_slash_effect0006
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 0
+        width: 397
+        height: 239
+      alignment: 9
+      pivot: {x: 0.48866498, y: 0.61506283}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66e230502d1c68f80800000000000000
+      internalID: -8104577371635241370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charge_slash_effect0007
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 811
+        width: 349
+        height: 180
+      alignment: 9
+      pivot: {x: 0.3696275, y: 0.74444443}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf95b66779eb62280800000000000000
+      internalID: -9068351241927828997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charge_slash_effect0008
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 488
+        width: 336
+        height: 77
+      alignment: 9
+      pivot: {x: 0.27380955, y: 1.6623374}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b1b8c699fdeb3680800000000000000
+      internalID: -8774157792768904776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyclone_slash_effect0000
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 262
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bb320a49c1c176b0800000000000000
+      internalID: -5300242216164115529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyclone_slash_effect0003
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 1076
+        width: 507
+        height: 84
+      alignment: 9
+      pivot: {x: 0.5167653, y: 0.53571427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d8839a19d189bcd0800000000000000
+      internalID: -2541857745220171565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyclone_slash_effect0004
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 1160
+        width: 464
+        height: 89
+      alignment: 9
+      pivot: {x: 0.51077586, y: 0.505618}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b994df12c7af7e5b0800000000000000
+      internalID: -5339023422171297381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyclone_slash_effect0005
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 392
+        width: 475
+        height: 93
+      alignment: 9
+      pivot: {x: 0.50526315, y: 0.50537634}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 299a4c9e2f13811d0800000000000000
+      internalID: -3379896600967730798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyclone_slash_effect0006
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 1249
+        width: 464
+        height: 88
+      alignment: 9
+      pivot: {x: 0.51077586, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05be4b3263b6f9d80800000000000000
+      internalID: -8241750912793253040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyclone_slash_effect0007
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 970
+        width: 470
+        height: 93
+      alignment: 9
+      pivot: {x: 0.51063824, y: 0.50537634}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 608d527fc45572770800000000000000
+      internalID: 8585925003657467910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyclone_slash_effect0008
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 1076
+        width: 464
+        height: 80
+      alignment: 9
+      pivot: {x: 0.51077586, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9fc4ef322ad0a470800000000000000
+      internalID: 8403956745309048731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_burst0000
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 1360
+        width: 232
+        height: 51
+      alignment: 9
+      pivot: {x: 0.875, y: 0.35294122}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa60ae3b7ba71a770800000000000000
+      internalID: 8620306091179902634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_burst0001
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 1445
+        width: 256
+        height: 160
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.4875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77cff808d12c21710800000000000000
+      internalID: 1662604644419894391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_burst0002
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 1148
+        width: 346
+        height: 160
+      alignment: 9
+      pivot: {x: 0.5635838, y: 0.50625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6ac2f66b17c67590800000000000000
+      internalID: -7676729594301199762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_burst0003
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 603
+        width: 374
+        height: 208
+      alignment: 9
+      pivot: {x: 0.45989305, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6690f1c9105886410800000000000000
+      internalID: 1470571520297208166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_burst0004
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 320
+        height: 224
+      alignment: 9
+      pivot: {x: 0.50625, y: 0.5089286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d4ffc998add72300800000000000000
+      internalID: 227394022410286294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_burst0005
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 1337
+        width: 172
+        height: 143
+      alignment: 9
+      pivot: {x: 0.23255824, y: 0.46853146}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46bf8e9e581632fa0800000000000000
+      internalID: -5826706265104385180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_effect0000
+      rect:
+        serializedVersion: 2
+        x: 1668
+        y: 1315
+        width: 191
+        height: 43
+      alignment: 9
+      pivot: {x: -0.05235602, y: 0.41860464}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d81c01d2739472b80800000000000000
+      internalID: -8419680477017751155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_effect0001
+      rect:
+        serializedVersion: 2
+        x: 1594
+        y: 970
+        width: 242
+        height: 102
+      alignment: 9
+      pivot: {x: 0.23140496, y: 0.51960784}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23bdaf375d5d9c610800000000000000
+      internalID: 1642078651903826738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_effect0002
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 1308
+        width: 301
+        height: 137
+      alignment: 9
+      pivot: {x: 0.41196012, y: 0.5109489}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f062c42a26a597370800000000000000
+      internalID: 8320781166219896335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_effect0003
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 991
+        width: 353
+        height: 157
+      alignment: 9
+      pivot: {x: 0.5070821, y: 0.52866244}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90a3c19a8214f6110800000000000000
+      internalID: 1256294463951354377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_effect0004
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1041
+        width: 337
+        height: 184
+      alignment: 9
+      pivot: {x: 0.4718101, y: 0.47826087}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17891788f341602c0800000000000000
+      internalID: -4465859717386626959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_effect0005
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 1605
+        width: 260
+        height: 146
+      alignment: 9
+      pivot: {x: 0.7153846, y: 0.43835616}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dd89815fb7404ea0800000000000000
+      internalID: -5890629425568313901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_effect0006
+      rect:
+        serializedVersion: 2
+        x: 1771
+        y: 603
+        width: 235
+        height: 123
+      alignment: 9
+      pivot: {x: 0.7787234, y: 0.2520325}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 848ae62e84d53e570800000000000000
+      internalID: 8494735889768818760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_effect0007
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1685
+        width: 74
+        height: 53
+      alignment: 9
+      pivot: {x: 2.7027028, y: 0.3773585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7c583bfded89f7b0800000000000000
+      internalID: -5189961042306245510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_slash_effect0000
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 265
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: -0.00000011920932, y: -0.00000047683716}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 641fb23b3d95ae680800000000000000
+      internalID: -8725062562297941690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_slash_effect0001
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 262
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: -0.00000011920932, y: -0.00000047683716}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aaad5da3098fe420800000000000000
+      internalID: 2661496553685756584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_slash_effect0002
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 270
+        width: 682
+        height: 122
+      alignment: 9
+      pivot: {x: 0.5, y: 0.42622948}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c84df7624c270a100800000000000000
+      internalID: 117219777096701068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_slash_effect0003
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 488
+        width: 683
+        height: 115
+      alignment: 9
+      pivot: {x: 0.49926794, y: 0.39999998}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50235d1683e5ab160800000000000000
+      internalID: 7042044563599733253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_slash_effect0004
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 488
+        width: 631
+        height: 107
+      alignment: 9
+      pivot: {x: 0.54041207, y: 0.4018692}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d3cbb47cd356d660800000000000000
+      internalID: 7410202443201102806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_slash_effect0005
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 903
+        width: 683
+        height: 67
+      alignment: 9
+      pivot: {x: 0.49926794, y: 0.7910448}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6276dec0914694410800000000000000
+      internalID: 1461809612812281638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_slash_effect0006
+      rect:
+        serializedVersion: 2
+        x: 1394
+        y: 903
+        width: 555
+        height: 52
+      alignment: 9
+      pivot: {x: 0.45225224, y: -0.09615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b217e3c7a8384f0800000000000000
+      internalID: -827665640277857399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_slash_effect0007
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 1315
+        width: 493
+        height: 45
+      alignment: 9
+      pivot: {x: 0.39756593, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 807f95342449f6d50800000000000000
+      internalID: 6732762980260902664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_slash_effect0008
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 239
+        width: 288
+        height: 29
+      alignment: 9
+      pivot: {x: 0.6076389, y: 1.3103448}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3081316bc8b2f7da0800000000000000
+      internalID: -5944985099755644925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: down_slash_effect0000
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 267
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.0000014901161}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9ea74846c9408690800000000000000
+      internalID: -7601995055036387684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: down_slash_effect0001
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 1751
+        width: 169
+        height: 199
+      alignment: 9
+      pivot: {x: 0.52071005, y: 0.5125628}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eeb3b82f4cc84ca0800000000000000
+      internalID: -6032347060505428249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: down_slash_effect0002
+      rect:
+        serializedVersion: 2
+        x: 1981
+        y: 0
+        width: 57
+        height: 158
+      alignment: 9
+      pivot: {x: -0.54385966, y: 0.34177214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3381d99a53705ec0800000000000000
+      internalID: -3580234870794648771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: down_slash_effect0003
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 259
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.0000014901161}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c263437c2ad35970800000000000000
+      internalID: 8742571186103476936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0000
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1919
+        width: 277
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5306859, y: 0.48181823}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dee7b2b93f5561d0800000000000000
+      internalID: -3358173245718663467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0001
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 603
+        width: 536
+        height: 132
+      alignment: 9
+      pivot: {x: 0.4869403, y: 0.530303}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78b24eedbcb6de930800000000000000
+      internalID: 4174110953004346247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0002
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 603
+        width: 524
+        height: 148
+      alignment: 9
+      pivot: {x: 0.4980916, y: 0.5135135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 745238294a60f35d0800000000000000
+      internalID: -3080736316195658425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0003
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 751
+        width: 508
+        height: 152
+      alignment: 9
+      pivot: {x: 0.54133856, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18add3db4b254b8e0800000000000000
+      internalID: -1678625824879814015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0004
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 927
+        width: 80
+        height: 77
+      alignment: 9
+      pivot: {x: -0.8250004, y: 0.77922076}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c33096eb8a46546c0800000000000000
+      internalID: -4159808004894948548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0005
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 246
+        width: 13
+        height: 13
+      alignment: 9
+      pivot: {x: -7.923086, y: 2.5384607}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e31faac19f678f60800000000000000
+      internalID: 8036514732027352037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis_down_slash0001
+      rect:
+        serializedVersion: 2
+        x: 1868
+        y: 270
+        width: 168
+        height: 202
+      alignment: 9
+      pivot: {x: 0.5178572, y: 0.490099}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ef2fd8bd8b10da0800000000000000
+      internalID: -5980295577052447198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis_down_slash0002
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 1561
+        width: 48
+        height: 153
+      alignment: 9
+      pivot: {x: -0.7916667, y: 0.47058824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a43143287d08079c0800000000000000
+      internalID: -3931500811603668150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis_slash_left0001
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 1948
+        width: 171
+        height: 99
+      alignment: 9
+      pivot: {x: 0.80701756, y: 0.6161617}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c181244eb1918ff0800000000000000
+      internalID: -35587075669392951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis_slash_left0002
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 1809
+        width: 120
+        height: 47
+      alignment: 9
+      pivot: {x: 1.0333333, y: 0.7659575}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de7b1d4ee3041cd0800000000000000
+      internalID: -2588439563800445226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis_slash_left0005
+      rect:
+        serializedVersion: 2
+        x: 1836
+        y: 970
+        width: 208
+        height: 102
+      alignment: 9
+      pivot: {x: 0.7932692, y: 0.54901963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 115166dc1644f5840800000000000000
+      internalID: 5214962080366859537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis_slash_left0006
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 1950
+        width: 167
+        height: 56
+      alignment: 9
+      pivot: {x: 0.6287425, y: 0.91071427}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90a4562dff4594c80800000000000000
+      internalID: -8338039777376515575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis_up_slash0000
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 1648
+        width: 164
+        height: 167
+      alignment: 9
+      pivot: {x: 0.49390244, y: 0.49700603}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0dee63edbb743be0800000000000000
+      internalID: -1498436720512799473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis_up_slash0001
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 1746
+        width: 51
+        height: 126
+      alignment: 9
+      pivot: {x: -0.54901963, y: 0.39682543}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87fdf7045fab8ec60800000000000000
+      internalID: 7847727913204965240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: moth_wings_effect0000
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 258
+        width: 6
+        height: 9
+      alignment: 9
+      pivot: {x: -3.6666682, y: -2.555553}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87145edc8e05f3c30800000000000000
+      internalID: 4341277526625436024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: moth_wings_effect0001
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 246
+        width: 7
+        height: 7
+      alignment: 9
+      pivot: {x: -4.285702, y: 1.4285728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a5a407ea34908760800000000000000
+      internalID: 7458123963630396833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: moth_wings_effect0002
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 258
+        width: 8
+        height: 7
+      alignment: 9
+      pivot: {x: -1.3750023, y: -3.9999974}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afcbd572d68b36860800000000000000
+      internalID: 7522058581590260986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: moth_wings_effect0003
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 259
+        width: 10
+        height: 8
+      alignment: 9
+      pivot: {x: -2.4999971, y: -3.2500024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83aac54015505bcb0800000000000000
+      internalID: -4848963578270799304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: moth_wings_effect0004
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 246
+        width: 14
+        height: 12
+      alignment: 9
+      pivot: {x: -0.85714257, y: -1.5833327}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b1bc4dbaec030fe0800000000000000
+      internalID: -1224120471376842314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0000
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 1490
+        width: 131
+        height: 123
+      alignment: 9
+      pivot: {x: 1.3053435, y: 0.5447154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c08ee23cf2a4bca90800000000000000
+      internalID: -7292653602597836788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0001
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 1492
+        width: 208
+        height: 156
+      alignment: 9
+      pivot: {x: 0.8125, y: 0.5576923}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86c2ac04fd9a44b30800000000000000
+      internalID: 4270725122983865448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0002
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1746
+        width: 263
+        height: 173
+      alignment: 9
+      pivot: {x: 0.62357414, y: 0.4913295}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddea5baab50b63b70800000000000000
+      internalID: 8878477623160057565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0003
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1225
+        width: 326
+        height: 169
+      alignment: 9
+      pivot: {x: 0.4785276, y: 0.4911243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f61d0fd5f2fb29a0800000000000000
+      internalID: -6256640119478085899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0004
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1394
+        width: 304
+        height: 167
+      alignment: 9
+      pivot: {x: 0.45394737, y: 0.497006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03d7581a147842a50800000000000000
+      internalID: 6495465278527601968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0005
+      rect:
+        serializedVersion: 2
+        x: 1682
+        y: 1076
+        width: 271
+        height: 57
+      alignment: 9
+      pivot: {x: 0.38745388, y: 0.6666666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44c8ec6a7a60c3f50800000000000000
+      internalID: 6862367249333652548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0006
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 565
+        width: 184
+        height: 28
+      alignment: 9
+      pivot: {x: 0.10326086, y: 1.0357144}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7a849f69dbccfdd0800000000000000
+      internalID: -2450859962456044932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0007
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 262
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.000001013279}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b89f141df043660e0800000000000000
+      internalID: -2277075319049291381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0008
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 259
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.000001013279}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6e765e2ee57458b0800000000000000
+      internalID: -5164373206847029651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0009
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 259
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.000001013279}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 712d40d9e33673b80800000000000000
+      internalID: -8415148258145021417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0010
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 253
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.000001013279}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57c109e68ca693f70800000000000000
+      internalID: 9167475925570296949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0011
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 267
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.000001013279}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55be05503cf9aae10800000000000000
+      internalID: 2209754227135277909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow_dash_trail0012
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 267
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.000001013279}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28f5a55e9312c2780800000000000000
+      internalID: -8706547447069253758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0004
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 265
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7603ff4e7c99d83b0800000000000000
+      internalID: -5508577685384777625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0005
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 1522
+        width: 97
+        height: 67
+      alignment: 9
+      pivot: {x: -0.42268053, y: -0.41791046}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f72e2828b4598b6d0800000000000000
+      internalID: -2974463402333511041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0006
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 1445
+        width: 114
+        height: 77
+      alignment: 9
+      pivot: {x: -0.21929817, y: -0.05194807}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d78ab6d4771b7fc30800000000000000
+      internalID: 4393175087481333885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0007
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 1648
+        width: 128
+        height: 144
+      alignment: 9
+      pivot: {x: -0.17968734, y: 0.4027778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5818714924e9e7020800000000000000
+      internalID: 2341482865068835205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0008
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1751
+        width: 157
+        height: 180
+      alignment: 9
+      pivot: {x: -0.13375802, y: 0.5611111}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00e589fa2374fef10800000000000000
+      internalID: 2301136217629548032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0009
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 1160
+        width: 148
+        height: 155
+      alignment: 9
+      pivot: {x: -0.25675663, y: 0.57419354}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343c674025b593540800000000000000
+      internalID: 4988118470109872963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0010
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 1360
+        width: 144
+        height: 130
+      alignment: 9
+      pivot: {x: -0.34027788, y: 0.5384615}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1815dad6538dc7e40800000000000000
+      internalID: 5655632956055441793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0011
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 1648
+        width: 159
+        height: 161
+      alignment: 9
+      pivot: {x: -0.16981122, y: 0.5031056}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddf8c4af466a62690800000000000000
+      internalID: -7627225966279094307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0012
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 784
+        width: 253
+        height: 257
+      alignment: 9
+      pivot: {x: 0.0632411, y: 0.5097276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be292eb7b06babe30800000000000000
+      internalID: 4520125336459055851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0013
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 270
+        width: 337
+        height: 290
+      alignment: 9
+      pivot: {x: 0.18397628, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f44d0958897b98490800000000000000
+      internalID: -7743456218583083953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0014
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1561
+        width: 273
+        height: 185
+      alignment: 9
+      pivot: {x: 0.0073260213, y: 0.5567568}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2092444a54229f30800000000000000
+      internalID: 4580763741100085292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0015
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 1337
+        width: 212
+        height: 155
+      alignment: 9
+      pivot: {x: -0.19811326, y: 0.60645163}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6835d26e396d6510800000000000000
+      internalID: 1544005963924977773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0016
+      rect:
+        serializedVersion: 2
+        x: 1661
+        y: 1160
+        width: 168
+        height: 132
+      alignment: 9
+      pivot: {x: -0.32142845, y: 0.71969694}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 059cbff920e4dafa0800000000000000
+      internalID: -5787884172920239792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0017
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 270
+        width: 447
+        height: 195
+      alignment: 9
+      pivot: {x: 0.5995526, y: 0.59999996}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ba1ea8bf3cc7fcb0800000000000000
+      internalID: -4830167501278143822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0018
+      rect:
+        serializedVersion: 2
+        x: 1219
+        y: 751
+        width: 427
+        height: 141
+      alignment: 9
+      pivot: {x: 0.529274, y: 0.75886524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d265697ccd6b9b460800000000000000
+      internalID: 7258033333841843757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0019
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 970
+        width: 413
+        height: 106
+      alignment: 9
+      pivot: {x: 0.51815975, y: 0.8867925}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c4854ff34046b090800000000000000
+      internalID: -8019151425696856896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0020
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1931
+        width: 188
+        height: 94
+      alignment: 9
+      pivot: {x: 1.1117022, y: 1.0531914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd9a8f7e9e6bd770800000000000000
+      internalID: 8636618337436736967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashes_effect0000
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 267
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: -1.0000079, y: 29}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa6d5bd5531d23d60800000000000000
+      internalID: 7868581526105347754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashes_effect0001
+      rect:
+        serializedVersion: 2
+        x: 1319
+        y: 1360
+        width: 151
+        height: 103
+      alignment: 9
+      pivot: {x: 0.86092716, y: 0.5631068}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2663d9c3ab868ec00800000000000000
+      internalID: 930108472142149218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashes_effect0002
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 1856
+        width: 120
+        height: 45
+      alignment: 9
+      pivot: {x: 1.0166667, y: 0.111111045}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d2fd1bd73d4011c0800000000000000
+      internalID: -4535039922467376427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashes_effect0003
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 256
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: -1.0000079, y: 29}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5df6e2c0b8e22780800000000000000
+      internalID: -8709142883499311781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashes_effect0004
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 265
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: -1.0000079, y: 29}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb14714815cf775e0800000000000000
+      internalID: -1911782089756819012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashes_effect0005
+      rect:
+        serializedVersion: 2
+        x: 1661
+        y: 392
+        width: 199
+        height: 94
+      alignment: 9
+      pivot: {x: 0.80904526, y: 0.5957447}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c52eefffa984cd670800000000000000
+      internalID: 8564800421908898396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashes_effect0006
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 1980
+        width: 150
+        height: 60
+      alignment: 9
+      pivot: {x: 0.62, y: 1.1333333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 770c367c58dac3a60800000000000000
+      internalID: 7655184256710459511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slashes_effect0007
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 267
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: -1.0000079, y: 29}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8e0985caa5bec6e0800000000000000
+      internalID: -1815313854720569715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: superdash_break_effect0000
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 1727
+        width: 131
+        height: 106
+      alignment: 9
+      pivot: {x: 0.08396947, y: 0.4811321}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a452710ca74973a0800000000000000
+      internalID: -6667218969261091674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: superdash_break_effect0001
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 1809
+        width: 173
+        height: 139
+      alignment: 9
+      pivot: {x: 0.30635837, y: 0.58992803}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40731bbfac260eac0800000000000000
+      internalID: -3827951059319310588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: superdash_break_effect0002
+      rect:
+        serializedVersion: 2
+        x: 1646
+        y: 751
+        width: 210
+        height: 151
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.45695364}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 562a92373155447c0800000000000000
+      internalID: -4088049019720719771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: superdash_break_effect0003
+      rect:
+        serializedVersion: 2
+        x: 1856
+        y: 751
+        width: 180
+        height: 152
+      alignment: 9
+      pivot: {x: 0.39444444, y: 0.4473684}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf6624ec099b4bf60800000000000000
+      internalID: 8049262465604806396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: superdash_break_effect0004
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 1492
+        width: 166
+        height: 145
+      alignment: 9
+      pivot: {x: 0.57228917, y: 0.48965517}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe91d9df50486300800000000000000
+      internalID: 245516960112156350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: up_slash_effect0000
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 1815
+        width: 164
+        height: 165
+      alignment: 9
+      pivot: {x: 0.49390244, y: 0.5636363}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a75a317db3546f210800000000000000
+      internalID: 1366355660267300218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: up_slash_effect0000_0
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 253
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: -0.0000023543828, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b364b460c03ee02a0800000000000000
+      internalID: -6769223549106567621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: up_slash_effect0001
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 784
+        width: 55
+        height: 143
+      alignment: 9
+      pivot: {x: -0.3818182, y: 0.3986014}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed625097e77ccb520800000000000000
+      internalID: 2719267621035124446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: up_slash_effect0002
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 256
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: -0.0000023543828, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f48c5845025e08610800000000000000
+      internalID: 1621547792873146447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_puff0000
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1605
+        width: 77
+        height: 80
+      alignment: 9
+      pivot: {x: 1.3376623, y: -0.11250007}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83c6c72248109c2d0800000000000000
+      internalID: -3258071188399952840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_puff0001
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 1833
+        width: 129
+        height: 107
+      alignment: 9
+      pivot: {x: 0.7519379, y: 0.19626169}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 885022515690701b0800000000000000
+      internalID: -5690569274408434296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_puff0002
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 1613
+        width: 132
+        height: 114
+      alignment: 9
+      pivot: {x: 0.63636357, y: 0.26315793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f979a5e69a63fc670800000000000000
+      internalID: 8561121517983405983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_puff0003
+      rect:
+        serializedVersion: 2
+        x: 1829
+        y: 1160
+        width: 171
+        height: 124
+      alignment: 9
+      pivot: {x: 0.53801167, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 210f101866772c590800000000000000
+      internalID: -7655425134441664494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_puff0004
+      rect:
+        serializedVersion: 2
+        x: 1323
+        y: 1160
+        width: 171
+        height: 134
+      alignment: 9
+      pivot: {x: 0.46198836, y: 0.50746274}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83796714f21146dc0800000000000000
+      internalID: -3646770903603833032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_puff0005
+      rect:
+        serializedVersion: 2
+        x: 1494
+        y: 1160
+        width: 167
+        height: 133
+      alignment: 9
+      pivot: {x: 0.44311377, y: 0.5263158}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4bb4e9b68d5595e0800000000000000
+      internalID: -1903512434268390579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

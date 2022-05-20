@@ -178,6 +178,11 @@ public class WeaverAnimationDataEditor : Editor
 	}
 
 	public bool HasClip(string clipName)
+    {
+		return HasClip(serializedObject, clipName);
+    }
+
+	public static bool HasClip(SerializedObject serializedObject, string clipName)
 	{
 		var clipNames = serializedObject.FindProperty("clipNames");
 
@@ -192,6 +197,11 @@ public class WeaverAnimationDataEditor : Editor
 	}
 
 	public int GetClipIndex(string clipName)
+    {
+		return GetClipIndex(serializedObject, clipName);
+    }
+
+	public static int GetClipIndex(SerializedObject serializedObject, string clipName)
 	{
 		var clipNames = serializedObject.FindProperty("clipNames");
 
@@ -206,13 +216,18 @@ public class WeaverAnimationDataEditor : Editor
 	}
 
 	public WeaverAnimationData.Clip GetClip(string clipName)
+    {
+		return GetClip(serializedObject, clipName);
+    }
+
+	public static WeaverAnimationData.Clip GetClip(SerializedObject serializedObject, string clipName)
 	{
-		if (!HasClip(clipName))
+		if (!HasClip(serializedObject, clipName))
 		{
 			throw new Exception("The clip " + clipName + " does not exist on this animator");
 		}
 
-		var clipIndex = GetClipIndex(clipName);
+		var clipIndex = GetClipIndex(serializedObject, clipName);
 
 		var clipFPSs = serializedObject.FindProperty("clipFPSs");
 		var clipLoopStarts = serializedObject.FindProperty("clipLoopStarts");
@@ -240,13 +255,18 @@ public class WeaverAnimationDataEditor : Editor
 	}
 
 	public bool RemoveClip(string clipName)
+    {
+		return RemoveClip(serializedObject, clipName);
+    }
+
+	public static bool RemoveClip(SerializedObject serializedObject, string clipName)
 	{
-		if (!HasClip(clipName))
+		if (!HasClip(serializedObject, clipName))
 		{
 			return false;
 		}
 
-		var clipIndex = GetClipIndex(clipName);
+		var clipIndex = GetClipIndex(serializedObject, clipName);
 
 		var clipNames = serializedObject.FindProperty("clipNames"); //string
 		var clipFPSs = serializedObject.FindProperty("clipFPSs"); //float
@@ -293,7 +313,12 @@ public class WeaverAnimationDataEditor : Editor
 
 	public bool AddClip(WeaverAnimationData.Clip clip)
 	{
-		if (HasClip(clip.Name))
+		return AddClip(serializedObject, clip);
+	}
+
+	public static bool AddClip(SerializedObject serializedObject, WeaverAnimationData.Clip clip)
+	{
+		if (HasClip(serializedObject, clip.Name))
 		{
 			return false;
 		}

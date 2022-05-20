@@ -134,7 +134,16 @@ namespace WeaverCore.Components
 			if (autoPlay && AnimationData.HasClip(autoPlayClip))
 			{
 				PlayAnimation(autoPlayClip);
-				onAnimationDone += s => OnClipFinish.DoneWithObject(this);
+
+				Action<string> onDone = null;
+
+				onDone = s =>
+				{
+					onAnimationDone -= onDone;
+					OnClipFinish.DoneWithObject(this);
+				};
+
+				onAnimationDone += onDone;
 			}
 		}
 
@@ -231,6 +240,7 @@ namespace WeaverCore.Components
 		/// <exception cref="Exception">Throws if the clip doesn't exist in <see cref="AnimationData"/></exception>
 		public void PlayAnimation(string clipName, bool forceOnce = false)
 		{
+			Debug.Log($"PLAYING ANIMATION {clipName} on object {gameObject.name}");
 			this.forceOnce = forceOnce;
 			if (!HasAnimationClip(clipName))
 			{

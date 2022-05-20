@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4503130700892710}
   - component: {fileID: 212424511248575862}
-  - component: {fileID: 95012893311086618}
   m_Layer: 0
   m_Name: fireball_impact_effect0003
   m_TagString: Untagged
@@ -51,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: afc12f1faab6c674dad759ac2ee21c48, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300044, guid: 5e26c18c0c910d448b010d40ae6c7022, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71b3e02701f00bc439105cce94c4da68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,25 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &95012893311086618
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212832651710196}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2ef7bb07965259a43864d98a8c08bad6, type: 2}
-  m_CullingMode: 2
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1813258973839688
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,8 +92,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4254935406976240}
   - component: {fileID: 114323080722249984}
-  - component: {fileID: 114353253887345242}
   - component: {fileID: 114893318045835460}
+  - component: {fileID: 5041402975287673554}
   m_Layer: 11
   m_Name: Fireball Hit
   m_TagString: Untagged
@@ -150,21 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomRotationMin: -20
   randomRotationMax: 20
---- !u!114 &114353253887345242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813258973839688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d8b42d611ac1d499d321ebfb68299e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestroyBehaviour: 3
-  destroyAfterTime: 1
-  lifeTime: 0.6
 --- !u!114 &114893318045835460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +142,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a6abec551ce95408d93cbfa3708833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5041402975287673554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813258973839688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8511d0753e02cad4e89ae86ce1afef39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationData: {fileID: 11400000, guid: 532c100d80f9ee24e8ec45f2e90d0aef, type: 2}
+  autoPlay: 1
+  OnClipFinish: 3
+  autoPlayClip: Spell Hit

@@ -38,7 +38,7 @@ MonoBehaviour:
     Padding: 4
     AtlasWidth: 1024
     AtlasHeight: 1024
-  atlas: {fileID: 2800000, guid: 3d44ccce4d509e142be979150fc07043, type: 3}
+  atlas: {fileID: 2800000, guid: 774cdb224155cee4ba5fa38929c07c3b, type: 3}
   m_glyphInfoList:
   - id: 33
     x: 999

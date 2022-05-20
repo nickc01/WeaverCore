@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Bench Effect Animations
+  m_EditorClassIdentifier: 
+  clipNames:
+  - Burst Effect
+  clipFrameStartIndexes: 00000000
+  clipFrameCounts: 08000000
+  frames:
+  - {fileID: 3964255121713219355, guid: a5833f65f8ddaf241a1052e80b8ba204, type: 3}
+  - {fileID: 173950675294721580, guid: a5833f65f8ddaf241a1052e80b8ba204, type: 3}
+  - {fileID: 1687566203550055265, guid: a5833f65f8ddaf241a1052e80b8ba204, type: 3}
+  - {fileID: -2708168963528852426, guid: a5833f65f8ddaf241a1052e80b8ba204, type: 3}
+  - {fileID: 4240871975899465858, guid: a5833f65f8ddaf241a1052e80b8ba204, type: 3}
+  - {fileID: -5696638860136004487, guid: a5833f65f8ddaf241a1052e80b8ba204, type: 3}
+  - {fileID: 2812855749812984459, guid: a5833f65f8ddaf241a1052e80b8ba204, type: 3}
+  - {fileID: 149982513890953301, guid: a5833f65f8ddaf241a1052e80b8ba204, type: 3}
+  clipFPSs:
+  - 20
+  clipWrapModes: 00000000
+  clipLoopStarts: 00000000

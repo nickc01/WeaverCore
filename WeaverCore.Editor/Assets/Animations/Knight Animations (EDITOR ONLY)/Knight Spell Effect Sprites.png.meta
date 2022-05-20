@@ -1,0 +1,1860 @@
+fileFormatVersion: 2
+guid: d047063dc8edddb45be4752104a27a5c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8868148650605356599
+    second: power_blast0000
+  - first:
+      213: -3120117970067528200
+    second: scream_effect0000
+  - first:
+      213: -7654330747703147321
+    second: power_blast0001
+  - first:
+      213: 3217221146337332066
+    second: scream_effect0001
+  - first:
+      213: 8126368456554049920
+    second: scream_effect0002
+  - first:
+      213: -7646315903777588552
+    second: power_blast0002
+  - first:
+      213: 8645783465373537025
+    second: scream_effect0003
+  - first:
+      213: -1622808032014550868
+    second: power_blast0003
+  - first:
+      213: -6494900907452690544
+    second: scream_effect0004
+  - first:
+      213: 8839524258536589564
+    second: power_blast0004
+  - first:
+      213: 3306621976885212819
+    second: scream_effect0005
+  - first:
+      213: -5477464082097548608
+    second: scream_effect0006
+  - first:
+      213: -5236777174098581916
+    second: scream_effect0007
+  - first:
+      213: -6621188024569721336
+    second: power_blast0005
+  - first:
+      213: 1475555682714020241
+    second: scream_effect0008
+  - first:
+      213: -3088065615280648671
+    second: power_blast0006
+  - first:
+      213: -414745437058774293
+    second: power_blast0007
+  - first:
+      213: -5115189998240404961
+    second: scream_effect0009
+  - first:
+      213: 5790156309825337641
+    second: scream_effect0010
+  - first:
+      213: 7018182218973672321
+    second: scream_effect0011
+  - first:
+      213: 270282140223142314
+    second: double_jump_wings0000
+  - first:
+      213: -4806081723185146277
+    second: double_jump_wings0001
+  - first:
+      213: -4844409786180459269
+    second: double_jump_wings0002
+  - first:
+      213: 8995895643146733019
+    second: double_jump_wings0003
+  - first:
+      213: 4227240324976204720
+    second: double_jump_wings0004
+  - first:
+      213: -5745200791376668769
+    second: double_jump_wings0005
+  - first:
+      213: 4045047021334850684
+    second: scream_effect0012
+  - first:
+      213: -5508577685384777625
+    second: slash_effect0004
+  - first:
+      213: -2974463402333511041
+    second: slash_effect0005
+  - first:
+      213: 4393175087481333885
+    second: slash_effect0006
+  - first:
+      213: 2341482865068835205
+    second: slash_effect0007
+  - first:
+      213: 2301136217629548032
+    second: slash_effect0008
+  - first:
+      213: 4988118470109872963
+    second: slash_effect0009
+  - first:
+      213: 5655632956055441793
+    second: slash_effect0010
+  - first:
+      213: -7627225966279094307
+    second: slash_effect0011
+  - first:
+      213: 4520125336459055851
+    second: slash_effect0012
+  - first:
+      213: -7743456218583083953
+    second: slash_effect0013
+  - first:
+      213: 4580763741100085292
+    second: slash_effect0014
+  - first:
+      213: 1544005963924977773
+    second: slash_effect0015
+  - first:
+      213: -5787884172920239792
+    second: slash_effect0016
+  - first:
+      213: -4830167501278143822
+    second: slash_effect0017
+  - first:
+      213: 7258033333841843757
+    second: slash_effect0018
+  - first:
+      213: -8019151425696856896
+    second: slash_effect0019
+  - first:
+      213: 8636618337436736967
+    second: slash_effect0020
+  - first:
+      213: -3358173245718663467
+    second: dream_nail_impact0000
+  - first:
+      213: 4174110953004346247
+    second: dream_nail_impact0001
+  - first:
+      213: -3080736316195658425
+    second: dream_nail_impact0002
+  - first:
+      213: -1678625824879814015
+    second: dream_nail_impact0003
+  - first:
+      213: -4159808004894948548
+    second: dream_nail_impact0004
+  - first:
+      213: 8036514732027352037
+    second: dream_nail_impact0005
+  - first:
+      213: 8548684786626283016
+    second: Knight_Dream_Gate_Create_Blade0003
+  - first:
+      213: 6845909353894367146
+    second: Knight_Dream_Gate_Create_Blade0002
+  - first:
+      213: -4969364527454837161
+    second: Knight_Dream_Gate_Create_Blade0004
+  - first:
+      213: 867515495299817031
+    second: tele_charge_new0004
+  - first:
+      213: -1568223545835588476
+    second: Knight_Dream_Gate_Create_Blade0000
+  - first:
+      213: 3647509262155103561
+    second: Knight_Dream_Gate_Create_Blade0005
+  - first:
+      213: -2348857990777218878
+    second: Knight_Dream_Gate_Create_Blade0001
+  - first:
+      213: -8644627379859571325
+    second: tele_charge_new0002
+  - first:
+      213: 5260711061079713375
+    second: Knight_Dream_Gate_enter_blade0006
+  - first:
+      213: 3543942723061304506
+    second: Knight_Dream_Gate_enter_blade0010
+  - first:
+      213: -6726201868177327530
+    second: Knight_Dream_Gate_enter_blade0011
+  - first:
+      213: 3491764904593739042
+    second: Knight_Dream_Gate_enter_blade0005
+  - first:
+      213: 4572916730453173223
+    second: Knight_Dream_Gate_enter_blade0000
+  - first:
+      213: 4009698569867069707
+    second: Knight_Dream_Gate_enter_blade0004
+  - first:
+      213: -7663516569697339051
+    second: Knight_Dream_Gate_enter_blade0002
+  - first:
+      213: -5773739850527897997
+    second: Knight_Dream_Gate_enter_blade0003
+  - first:
+      213: -4035803438013396892
+    second: Knight_Dream_Gate_enter_blade0001
+  - first:
+      213: 663640204383826640
+    second: Knight_Dream_Gate_enter_blade0008
+  - first:
+      213: 6290669673048683435
+    second: Knight_Dream_Gate_enter_blade0009
+  - first:
+      213: 5227213581480174217
+    second: Knight_Dream_Gate_enter_blade0007
+  - first:
+      213: 6973976999171235871
+    second: tele_charge_new0003
+  - first:
+      213: 8018878095740878599
+    second: tele_charge_new0000
+  - first:
+      213: 6666491431066935091
+    second: tele_charge_new0001
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: power_blast0000
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1969
+        width: 250
+        height: 62
+      alignment: 9
+      pivot: {x: 0.48000002, y: -0.0806452}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73621b6563ef11b70800000000000000
+      internalID: 8868148650605356599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0000
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 1855
+        width: 120
+        height: 151
+      alignment: 9
+      pivot: {x: 0.5333333, y: 0.19867551}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f5efc0cc3d13b4d0800000000000000
+      internalID: -3120117970067528200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power_blast0001
+      rect:
+        serializedVersion: 2
+        x: 1757
+        y: 1029
+        width: 280
+        height: 52
+      alignment: 9
+      pivot: {x: 0.47857141, y: -0.28846157}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c4cdc54dba56c590800000000000000
+      internalID: -7654330747703147321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0001
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 486
+        width: 282
+        height: 285
+      alignment: 9
+      pivot: {x: 0.5141844, y: 0.5368421}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26bcf47469dd5ac20800000000000000
+      internalID: 3217221146337332066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0002
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1107
+        width: 315
+        height: 288
+      alignment: 9
+      pivot: {x: 0.48253968, y: 0.53125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 081f7de4e09a6c070800000000000000
+      internalID: 8126368456554049920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power_blast0002
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 1139
+        width: 326
+        height: 67
+      alignment: 9
+      pivot: {x: 0.48159507, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8babaea8234d2e590800000000000000
+      internalID: -7646315903777588552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0003
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 772
+        width: 311
+        height: 285
+      alignment: 9
+      pivot: {x: 0.511254, y: 0.52982455}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1031982214efbf770800000000000000
+      internalID: 8645783465373537025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power_blast0003
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 683
+        width: 343
+        height: 72
+      alignment: 9
+      pivot: {x: 0.48979592, y: 0.06944448}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca83f1161b0aa79e0800000000000000
+      internalID: -1622808032014550868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0004
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 1345
+        width: 301
+        height: 286
+      alignment: 9
+      pivot: {x: 0.5016612, y: 0.52797204}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09f8bef390a7dd5a0800000000000000
+      internalID: -6494900907452690544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power_blast0004
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 1029
+        width: 350
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5, y: 0.014705896}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf88585ba7c4caa70800000000000000
+      internalID: 8839524258536589564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0005
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 486
+        width: 314
+        height: 286
+      alignment: 9
+      pivot: {x: 0.4968153, y: 0.5314685}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3963eb23b2b73ed20800000000000000
+      internalID: 3306621976885212819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0006
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1682
+        width: 314
+        height: 287
+      alignment: 9
+      pivot: {x: 0.4968153, y: 0.5331011}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c25d9c20732cf3b0800000000000000
+      internalID: -5477464082097548608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0007
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 1057
+        width: 306
+        height: 288
+      alignment: 9
+      pivot: {x: 0.5163399, y: 0.53125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 466eaf1e7ea3357b0800000000000000
+      internalID: -5236777174098581916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power_blast0005
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 1139
+        width: 339
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5162242, y: 0.014705896}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80e837c7290dc14a0800000000000000
+      internalID: -6621188024569721336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0008
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1395
+        width: 316
+        height: 287
+      alignment: 9
+      pivot: {x: 0.5221519, y: 0.5296167}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1996a7a531a3a7410800000000000000
+      internalID: 1475555682714020241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power_blast0006
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 1453
+        width: 347
+        height: 62
+      alignment: 9
+      pivot: {x: 0.49567723, y: 0.016129017}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12e49162facf425d0800000000000000
+      internalID: -3088065615280648671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power_blast0007
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 1515
+        width: 318
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5408805, y: 0.13846153}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beac5efe8378e3af0800000000000000
+      internalID: -414745437058774293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0009
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 202
+        width: 317
+        height: 284
+      alignment: 9
+      pivot: {x: 0.5205047, y: 0.5387324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1aef3c4cc13309b0800000000000000
+      internalID: -5115189998240404961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0010
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 202
+        width: 311
+        height: 269
+      alignment: 9
+      pivot: {x: 0.51446944, y: 0.56877327}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92930297c74ca5050800000000000000
+      internalID: 5790156309825337641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0011
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1347
+        width: 247
+        height: 209
+      alignment: 9
+      pivot: {x: 0.3765182, y: 0.4784689}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18373e25b87956160800000000000000
+      internalID: 7018182218973672321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double_jump_wings0000
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 1257
+        width: 131
+        height: 196
+      alignment: 9
+      pivot: {x: 0.51908404, y: 0.9081633}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9f12dac2c30c300800000000000000
+      internalID: 270282140223142314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double_jump_wings0001
+      rect:
+        serializedVersion: 2
+        x: 1641
+        y: 486
+        width: 254
+        height: 271
+      alignment: 9
+      pivot: {x: 0.44881892, y: 0.601476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b565d00f22e5d4db0800000000000000
+      internalID: -4806081723185146277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double_jump_wings0002
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 202
+        width: 288
+        height: 268
+      alignment: 9
+      pivot: {x: 0.4340278, y: 0.3358209}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf4a94c57f235ccb0800000000000000
+      internalID: -4844409786180459269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double_jump_wings0003
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 486
+        width: 359
+        height: 197
+      alignment: 9
+      pivot: {x: 0.48467967, y: 0.50761425}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd5ce36dc67d7dc70800000000000000
+      internalID: 8995895643146733019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double_jump_wings0004
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 771
+        width: 275
+        height: 169
+      alignment: 9
+      pivot: {x: 0.51272726, y: 0.9467456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bbd96ebdac2aaa30800000000000000
+      internalID: 4227240324976204720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: double_jump_wings0005
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 1453
+        width: 158
+        height: 140
+      alignment: 9
+      pivot: {x: 0.664557, y: 1.0642858}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9753b2d152f440b0800000000000000
+      internalID: -5745200791376668769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scream_effect0012
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 449
+        width: 11
+        height: 9
+      alignment: 9
+      pivot: {x: -8.272721, y: 0.44444448}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7c6a6695d4e22830800000000000000
+      internalID: 4045047021334850684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0004
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 436
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7603ff4e7c99d83b0800000000000000
+      internalID: -5508577685384777625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0005
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 1318
+        width: 97
+        height: 67
+      alignment: 9
+      pivot: {x: -0.42268053, y: -0.41791046}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f72e2828b4598b6d0800000000000000
+      internalID: -2974463402333511041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0006
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1947
+        width: 114
+        height: 77
+      alignment: 9
+      pivot: {x: -0.21929817, y: -0.05194807}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d78ab6d4771b7fc30800000000000000
+      internalID: 4393175087481333885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0007
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 1711
+        width: 128
+        height: 144
+      alignment: 9
+      pivot: {x: -0.17968734, y: 0.4027778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5818714924e9e7020800000000000000
+      internalID: 2341482865068835205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0008
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 1414
+        width: 157
+        height: 180
+      alignment: 9
+      pivot: {x: -0.13375802, y: 0.5611111}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00e589fa2374fef10800000000000000
+      internalID: 2301136217629548032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0009
+      rect:
+        serializedVersion: 2
+        x: 1804
+        y: 1257
+        width: 149
+        height: 156
+      alignment: 9
+      pivot: {x: -0.24832202, y: 0.57051283}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343c674025b593540800000000000000
+      internalID: 4988118470109872963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0010
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 1580
+        width: 150
+        height: 131
+      alignment: 9
+      pivot: {x: -0.32666677, y: 0.5419847}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1815dad6538dc7e40800000000000000
+      internalID: 5655632956055441793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0011
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 1788
+        width: 163
+        height: 162
+      alignment: 9
+      pivot: {x: -0.14723916, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddf8c4af466a62690800000000000000
+      internalID: -7627225966279094307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0012
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 771
+        width: 253
+        height: 258
+      alignment: 9
+      pivot: {x: 0.0632411, y: 0.50775194}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be292eb7b06babe30800000000000000
+      internalID: 4520125336459055851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0013
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 817
+        width: 341
+        height: 290
+      alignment: 9
+      pivot: {x: 0.1876833, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f44d0958897b98490800000000000000
+      internalID: -7743456218583083953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0014
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 771
+        width: 275
+        height: 188
+      alignment: 9
+      pivot: {x: 0.014545469, y: 0.55851066}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2092444a54229f30800000000000000
+      internalID: 4580763741100085292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0015
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 1257
+        width: 213
+        height: 157
+      alignment: 9
+      pivot: {x: -0.19248831, y: 0.60509557}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6835d26e396d6510800000000000000
+      internalID: 1544005963924977773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0016
+      rect:
+        serializedVersion: 2
+        x: 1623
+        y: 1257
+        width: 181
+        height: 139
+      alignment: 9
+      pivot: {x: -0.23756896, y: 0.72661865}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 059cbff920e4dafa0800000000000000
+      internalID: -5787884172920239792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0017
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 0
+        width: 454
+        height: 202
+      alignment: 9
+      pivot: {x: 0.592511, y: 0.5990099}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ba1ea8bf3cc7fcb0800000000000000
+      internalID: -4830167501278143822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0018
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 340
+        width: 433
+        height: 146
+      alignment: 9
+      pivot: {x: 0.5288684, y: 0.75342464}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d265697ccd6b9b460800000000000000
+      internalID: 7258033333841843757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0019
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1029
+        width: 415
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5204819, y: 0.8818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c4854ff34046b090800000000000000
+      internalID: -8019151425696856896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slash_effect0020
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 1947
+        width: 188
+        height: 94
+      alignment: 9
+      pivot: {x: 1.1117022, y: 1.0531914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd9a8f7e9e6bd770800000000000000
+      internalID: 8636618337436736967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0000
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1139
+        width: 360
+        height: 118
+      alignment: 9
+      pivot: {x: 0.625, y: 0.4745763}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dee7b2b93f5561d0800000000000000
+      internalID: -3358173245718663467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0001
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 202
+        width: 544
+        height: 138
+      alignment: 9
+      pivot: {x: 0.4944853, y: 0.5507246}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78b24eedbcb6de930800000000000000
+      internalID: 4174110953004346247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0002
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 0
+        width: 543
+        height: 152
+      alignment: 9
+      pivot: {x: 0.49723756, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 745238294a60f35d0800000000000000
+      internalID: -3080736316195658425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0003
+      rect:
+        serializedVersion: 2
+        x: 1424
+        y: 0
+        width: 522
+        height: 152
+      alignment: 9
+      pivot: {x: 0.52681994, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18add3db4b254b8e0800000000000000
+      internalID: -1678625824879814015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0004
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 1575
+        width: 93
+        height: 86
+      alignment: 9
+      pivot: {x: -0.60215086, y: 0.76744187}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c33096eb8a46546c0800000000000000
+      internalID: -4159808004894948548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dream_nail_impact0005
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 436
+        width: 13
+        height: 13
+      alignment: 9
+      pivot: {x: -7.923086, y: 2.5384607}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e31faac19f678f60800000000000000
+      internalID: 8036514732027352037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0003
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 771
+        width: 251
+        height: 288
+      alignment: 9
+      pivot: {x: 0.42231074, y: 0.3402778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80645a3458703a670800000000000000
+      internalID: 8548684786626283016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0002
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1257
+        width: 155
+        height: 216
+      alignment: 9
+      pivot: {x: 0.4, y: 0.22222227}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aafc563494e810f50800000000000000
+      internalID: 6845909353894367146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0004
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 427
+        height: 436
+      alignment: 9
+      pivot: {x: 0.43325526, y: 0.4059633}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 756a0a58a45490bb0800000000000000
+      internalID: -4969364527454837161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tele_charge_new0004
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 1594
+        width: 137
+        height: 194
+      alignment: 9
+      pivot: {x: 0.4306569, y: -0.046391726}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e1e762fb80a0c00800000000000000
+      internalID: 867515495299817031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0000
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 1736
+        width: 141
+        height: 141
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.17021275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484f01e6efc8c3ae0800000000000000
+      internalID: -1568223545835588476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0005
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 436
+        width: 408
+        height: 381
+      alignment: 9
+      pivot: {x: 0.44852942, y: 0.53018373}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94db3bd395e8e9230800000000000000
+      internalID: 3647509262155103561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_Create_Blade0001
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 1485
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.32222223, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c8d2e72a1e276fd0800000000000000
+      internalID: -2348857990777218878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tele_charge_new0002
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1858
+        width: 130
+        height: 182
+      alignment: 9
+      pivot: {x: 0.37692302, y: -0.08791208}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38dbadff23d180880800000000000000
+      internalID: -8644627379859571325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0006
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1556
+        width: 188
+        height: 269
+      alignment: 9
+      pivot: {x: 0.43085107, y: 0.5315985}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f56ef9d66dcc10940800000000000000
+      internalID: 5260711061079713375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0010
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 1107
+        width: 94
+        height: 211
+      alignment: 9
+      pivot: {x: 0.39361694, y: 0.6113744}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abc4668412d9e2130800000000000000
+      internalID: 3543942723061304506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0011
+      rect:
+        serializedVersion: 2
+        x: 1887
+        y: 202
+        width: 159
+        height: 266
+      alignment: 9
+      pivot: {x: 0.30188677, y: 0.61278194}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65ab8bfa90bb7a2a0800000000000000
+      internalID: -6726201868177327530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0005
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 1631
+        width: 255
+        height: 316
+      alignment: 9
+      pivot: {x: 0.4666667, y: 0.46202534}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22d4c793ead357030800000000000000
+      internalID: 3491764904593739042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0000
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 1877
+        width: 141
+        height: 141
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.17021275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e32a1ab983467f30800000000000000
+      internalID: 4572916730453173223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0004
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 486
+        width: 259
+        height: 272
+      alignment: 9
+      pivot: {x: 0.46332043, y: 0.40808827}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b098151ea9f45a730800000000000000
+      internalID: 4009698569867069707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0002
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 1593
+        width: 142
+        height: 143
+      alignment: 9
+      pivot: {x: 0.25352114, y: 0.30069935}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 559bedc6848b5a590800000000000000
+      internalID: -7663516569697339051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0003
+      rect:
+        serializedVersion: 2
+        x: 1795
+        y: 771
+        width: 159
+        height: 220
+      alignment: 9
+      pivot: {x: 0.42767292, y: 0.51363635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37684cf423e8fdfa0800000000000000
+      internalID: -5773739850527897997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0001
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 1395
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.32222223, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46849edd722fdf7c0800000000000000
+      internalID: -4035803438013396892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0008
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1825
+        width: 170
+        height: 207
+      alignment: 9
+      pivot: {x: 0.3470588, y: 0.5942029}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d237f0ff39b53900800000000000000
+      internalID: 663640204383826640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0009
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1059
+        width: 205
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4292683, y: 0.4965278}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba3b36dfcb2fc4750800000000000000
+      internalID: 6290669673048683435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_Dream_Gate_enter_blade0007
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1672
+        width: 144
+        height: 186
+      alignment: 9
+      pivot: {x: 0.30555558, y: 0.66129035}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9822931be0bca8840800000000000000
+      internalID: 5227213581480174217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tele_charge_new0003
+      rect:
+        serializedVersion: 2
+        x: 1491
+        y: 1257
+        width: 132
+        height: 192
+      alignment: 9
+      pivot: {x: 0.39393932, y: -0.03125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f10a85b812b88c060800000000000000
+      internalID: 6973976999171235871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tele_charge_new0000
+      rect:
+        serializedVersion: 2
+        x: 1895
+        y: 486
+        width: 141
+        height: 209
+      alignment: 9
+      pivot: {x: 0.4042553, y: -0.04306221}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70fbbc96427c84f60800000000000000
+      internalID: 8018878095740878599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tele_charge_new0001
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1473
+        width: 139
+        height: 199
+      alignment: 9
+      pivot: {x: 0.41007194, y: -0.045226216}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33f1eeec2a2248c50800000000000000
+      internalID: 6666491431066935091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

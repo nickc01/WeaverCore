@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Teleport Animations
+  m_EditorClassIdentifier: 
+  clipNames:
+  - Death Glow
+  clipFrameStartIndexes: 00000000
+  clipFrameCounts: 05000000
+  frames:
+  - {fileID: -7481494428759831470, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -4190962772349927123, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -2411927482635579181, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 3602460126422121108, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -5447230373782437181, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  clipFPSs:
+  - 24
+  clipWrapModes: 00000000
+  clipLoopStarts: 00000000

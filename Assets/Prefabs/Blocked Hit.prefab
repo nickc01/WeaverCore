@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4257464422071438}
-  - component: {fileID: 95398044905224480}
   - component: {fileID: 212382857362613176}
-  - component: {fileID: 114285886072292540}
   - component: {fileID: 8036630841570720367}
+  - component: {fileID: 5634595983478354871}
   m_Layer: 0
   m_Name: Blocked Hit
   m_TagString: Untagged
@@ -34,25 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95398044905224480
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903223762206802}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a831930a21d9ab4448601c8b8db3ca4f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &212382857362613176
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -98,27 +78,12 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.82812494, y: 1.2268518}
+  m_Size: {x: 1.8124999, y: 2.3082263}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114285886072292540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903223762206802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d8b42d611ac1d499d321ebfb68299e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestroyBehaviour: 3
-  destroyAfterTime: 0
-  lifeTime: 0
 --- !u!114 &8036630841570720367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +96,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a6abec551ce95408d93cbfa3708833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5634595983478354871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903223762206802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8511d0753e02cad4e89ae86ce1afef39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationData: {fileID: 11400000, guid: 31d76b8989dc54041a0bb999df0c82ee, type: 2}
+  autoPlay: 1
+  OnClipFinish: 3
+  autoPlayClip: Block

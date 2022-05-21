@@ -71,7 +71,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -83,7 +83,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,10 +97,10 @@ TextureImporter:
       name: item_get_ball_o0001
       rect:
         serializedVersion: 2
-        x: 115.0761
-        y: 115.0761
-        width: 150.8478
-        height: 150.8478
+        x: 16
+        y: 12
+        width: 151
+        height: 151
       alignment: 9
       pivot: {x: 0.4999999, y: 0.4999999}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,7 +146,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 79c8a4a2db9007243be60c14f49041e1
     internalID: 0
     vertices: []
     indices: 
@@ -157,5 +157,5 @@ TextureImporter:
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 
-  assetBundleName: 
+  assetBundleName: weavercore_modclass_bundle
   assetBundleVariant: 

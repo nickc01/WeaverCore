@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Perpetua-SDF Material
-  m_Shader: {fileID: 4800000, guid: 01ce1a353426a214aaf441ce71c5da3d, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0631afa44e5c9c84c82ae4087e841fc8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3d44ccce4d509e142be979150fc07043, type: 3}
+        m_Texture: {fileID: 2800000, guid: 774cdb224155cee4ba5fa38929c07c3b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:

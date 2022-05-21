@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0cd7f19463d4d9d5b3a36b850823, type: 3}
   m_Name: Chinese Bold SDF
   m_EditorClassIdentifier: 
-  hashCode: 147748970
+  hashCode: 185744363
   material: {fileID: 2100000, guid: 4175063c0e04af040a589ca6e7a0863e, type: 2}
-  materialHashCode: -1408766047
+  materialHashCode: -1536210415
   fontAssetType: 1
   m_fontInfo:
     Name: Source Han Serif
@@ -38,7 +38,7 @@ MonoBehaviour:
     Padding: 5
     AtlasWidth: 2048
     AtlasHeight: 2048
-  atlas: {fileID: 2800000, guid: 8871b6b806ea6334fa8bcef05217675f, type: 3}
+  atlas: {fileID: 2800000, guid: 2185737cc0508734aa7386644f6a477e, type: 3}
   m_glyphInfoList:
   - id: 32
     x: 6

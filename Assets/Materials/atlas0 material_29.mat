@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: atlas0 material_29
-  m_Shader: {fileID: 4800000, guid: f55e5b36b106e734e8a506c0959a17df, type: 3}
+  m_Shader: {fileID: 4800000, guid: 227ac21f7763c00489cc458e3938e326, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0cd7f19463d4d9d5b3a36b850823, type: 3}
   m_Name: Japanese SDF
   m_EditorClassIdentifier: 
-  hashCode: 1187488584
+  hashCode: -1403625226
   material: {fileID: 2100000, guid: c7488030435bc5248a6e67063f925afb, type: 2}
-  materialHashCode: -2029037620
+  materialHashCode: -77340756
   fontAssetType: 1
   m_fontInfo:
     Name: HannariMincho
@@ -38,7 +38,7 @@ MonoBehaviour:
     Padding: 5
     AtlasWidth: 2048
     AtlasHeight: 2048
-  atlas: {fileID: 2800000, guid: 9b86e7395b66bff44b82bd7435bd3b7e, type: 3}
+  atlas: {fileID: 2800000, guid: 60a836d715be9a247b83bdb65dd4382d, type: 3}
   m_glyphInfoList:
   - id: 10
     x: 6

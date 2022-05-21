@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0cd7f19463d4d9d5b3a36b850823, type: 3}
   m_Name: Russian Fallback SDF
   m_EditorClassIdentifier: 
-  hashCode: 3605469
+  hashCode: -1237501924
   material: {fileID: 2100000, guid: 2ee95c7062e3062408a92399fe56c203, type: 2}
-  materialHashCode: 499294006
+  materialHashCode: -1718931898
   fontAssetType: 1
   m_fontInfo:
     Name: Perpetua
@@ -38,7 +38,7 @@ MonoBehaviour:
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
-  atlas: {fileID: 2800000, guid: 7e0bc943f7ee8cc4bb3328974cae2d77, type: 3}
+  atlas: {fileID: 2800000, guid: a98fb8a1d49582841abecec09d8d5732, type: 3}
   m_glyphInfoList:
   - id: 1040
     x: 406

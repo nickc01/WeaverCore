@@ -1,11 +1,10 @@
 fileFormatVersion: 2
 guid: 802f960aabfbfcd4ba4ed56d5a7998a8
-timeCreated: 1628691736
-licenseType: Free
-NativeFormatImporter:
+ShaderImporter:
   externalObjects: {}
-  usedFileIDs: []
-  mainObjectFileID: 4800000
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

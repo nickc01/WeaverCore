@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Stun Impact Animations
+  m_EditorClassIdentifier: 
+  clipNames:
+  - stun_impact_effect000
+  clipFrameStartIndexes: 00000000
+  clipFrameCounts: 07000000
+  frames:
+  - {fileID: -2065084316360014273, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 3260717071641291093, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 7026240481891188227, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 8154678710636754230, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: -4339518857855529125, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 31608600711016641, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 288794694154961482, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  clipFPSs:
+  - 20
+  clipWrapModes: 00000000
+  clipLoopStarts: 00000000

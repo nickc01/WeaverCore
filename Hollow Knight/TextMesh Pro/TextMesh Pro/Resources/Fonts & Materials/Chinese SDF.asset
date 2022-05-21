@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0cd7f19463d4d9d5b3a36b850823, type: 3}
   m_Name: Chinese SDF
   m_EditorClassIdentifier: 
-  hashCode: 1054621680
+  hashCode: -2011853042
   material: {fileID: 2100000, guid: dcce93ee7eed24b4a882429aa7734ffe, type: 2}
-  materialHashCode: -1765248353
+  materialHashCode: 620161099
   fontAssetType: 1
   m_fontInfo:
     Name: Noto Serif CJK SC
@@ -38,7 +38,7 @@ MonoBehaviour:
     Padding: 5
     AtlasWidth: 4096
     AtlasHeight: 4096
-  atlas: {fileID: 2800000, guid: bf6a685fadb9ff14195f4e37375e631d, type: 3}
+  atlas: {fileID: 2800000, guid: 35ad0f3b09dbc1747bb59a9c83f86243, type: 3}
   m_glyphInfoList:
   - id: 32
     x: 6

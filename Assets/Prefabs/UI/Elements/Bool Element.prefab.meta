@@ -1,8 +1,7 @@
 fileFormatVersion: 2
 guid: e8e18078dc1ceab47a85e865918fc3c1
-NativeFormatImporter:
+PrefabImporter:
   externalObjects: {}
-  mainObjectFileID: 100100000
   userData: 
-  assetBundleName: 
+  assetBundleName: weavercore_modclass_bundle
   assetBundleVariant: 

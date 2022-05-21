@@ -8,6 +8,60 @@ using System.IO;
 using WeaverCore.Editor.Utilities;
 using UnityEditorInternal;
 
+/*public class RemoveAllObjectsFromAsset : EditorWindow
+{
+	[MenuItem("WeaverCore/Tools/Remove All Objects From Asset")]
+	public static void Convert()
+	{
+		Display();
+	}
+
+	UnityEngine.Object obj;
+	bool closed = false;
+
+	public static RemoveAllObjectsFromAsset Display()
+	{
+		var window = GetWindow<RemoveAllObjectsFromAsset>();
+		window.titleContent = new GUIContent("Remove All Objects From Asset");
+		window.Show();
+
+		return window;
+	}
+
+    private void OnGUI()
+    {
+		obj = EditorGUILayout.ObjectField(new GUIContent("Asset", "The asset to remove all embedded objects from"), obj, typeof(UnityEngine.Object), true);
+
+		if (GUILayout.Button("Remove Objects"))
+		{
+			closed = true;
+			Close();
+			RemoveObjects();
+			//UnboundCoroutine.Start(Convert(spriteList, destroyOriginalTextures, outputAtlasName, cropTextures));
+		}
+
+		EditorGUILayout.EndScrollView();
+	}
+
+	void RemoveObjects()
+    {
+        if (obj != null)
+        {
+			var path = AssetDatabase.GetAssetPath(obj);
+			var internalObjects = AssetDatabase.LoadAllAssetsAtPath(path);
+
+			var assetUniquePath = AssetDatabase.GenerateUniqueAssetPath(path);
+
+			foreach (var internalObject in internalObjects)
+            {
+                if (internalObject != obj)
+                {
+					AssetDatabase.Remove
+                }
+            }
+        }
+    }
+}*/
 /// <summary>
 /// Used for converting multiple textures, into a single texture consisting of multiple sprites
 /// </summary>
@@ -267,8 +321,7 @@ public class TexturesToAtlasConverter : EditorWindow
 			outputAtlasName = "NEW_ATLAS";
 		}
 		var outputPath = AssetDatabase.GenerateUniqueAssetPath("Assets/" + outputAtlasName + ".png");
-
-		var atlas = new Texture2D(8192, 8192, textures[0].format, false);
+		//Debug.Log("NEWLY CREATED ATLAS = " + atlas);
 		Rect[] uvs = null;
 		Vector2 atlasSize = default;
 
@@ -310,6 +363,8 @@ public class TexturesToAtlasConverter : EditorWindow
 
 				editing = true;
 				AssetDatabase.StartAssetEditing();
+				var atlas = new Texture2D(8192, 8192, TextureFormat.RGBA32, false);
+				Debug.Log("ATLAS = " + atlas);
 				uvs = atlas.PackTextures(cropTextures ? resizedTextures.ToArray() : textures.ToArray(), 0,8192);
 				atlasSize = new Vector2(atlas.width,atlas.height);
 				using (var handle = File.Create(outputPath))

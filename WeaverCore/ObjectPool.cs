@@ -509,11 +509,11 @@ namespace WeaverCore
 				Component component = componentPath.Component;
 				Type type = component.GetType();
 
-				if (component is IOnPool)
+				if (component is IOnPool && component != null)
 				{
 					((IOnPool)component).OnPool();
 				}
-				if (component is MonoBehaviour)
+				if (component is MonoBehaviour && component != null)
 				{
 					((MonoBehaviour)component).StopAllCoroutines();
 				}

@@ -5,8 +5,10 @@ using System.Linq;
 using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Enums;
+using WeaverCore.Features;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
+using WeaverCore.Internal;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
@@ -637,6 +639,15 @@ namespace WeaverCore.Components
             if (Player.Player1 != null)
             {
                 Player.Player1.RefreshSoulUI();
+            }
+            var enemy = GetComponent<Enemy>();
+            if (enemy is Boss)
+            {
+                EnemyHPBars_Interop.MarkAsBoss(gameObject);
+            }
+            else
+            {
+                EnemyHPBars_Interop.MarkAsNonBoss(gameObject);
             }
             StartCoroutine(CheckPersistence());
         }

@@ -8,6 +8,7 @@ using WeaverCore.Attributes;
 using WeaverCore.Components;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
+using WeaverCore.Internal;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Features

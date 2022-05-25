@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8511d0753e02cad4e89ae86ce1afef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationData: {fileID: 11400000, guid: eb956e1199d9e5a4dbdf22cecc7a6567, type: 2}
+  animationData: {fileID: 11400000, guid: 49b6f8f4d98574f4bb77bb24447dab84, type: 2}
   autoPlay: 1
   OnClipFinish: 0
   autoPlayClip: Impact

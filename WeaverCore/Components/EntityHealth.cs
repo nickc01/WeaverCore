@@ -16,7 +16,7 @@ namespace WeaverCore.Components
     /// <summary>
     /// Used to keep track of the health of an enemy
     /// </summary>
-    public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable
+    public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable, IOnPool
     {
         /// <summary>
         /// The enum used when determining if a hit on the enemy was valid
@@ -658,6 +658,40 @@ namespace WeaverCore.Components
             if (impl.ShouldBeDead())
             {
                 gameObject.SetActive(false);
+            }
+        }
+
+        static Type DisableHPBarType = null;
+        static Type BossMarkerType = null;
+
+        void IOnPool.OnPool()
+        {
+            if (DisableHPBarType == null || BossMarkerType == null)
+            {
+                foreach (var comp in GetComponents<MonoBehaviour>())
+                {
+                    var type = comp.GetType();
+                    if (type.Name == "DisableHPBar")
+                    {
+                        DisableHPBarType = type;
+                    }
+                    else if (type.Name == "BossMarker")
+                    {
+                        BossMarkerType = type;
+                    }
+                }
+            }
+
+            EnemyHPBars_Interop.DisableHPBar(gameObject);
+
+            if (DisableHPBarType != null && TryGetComponent(DisableHPBarType,out var disableBarComp))
+            {
+                Destroy(disableBarComp);
+            }
+
+            if (BossMarkerType != null && TryGetComponent(BossMarkerType,out var markerComp))
+            {
+                Destroy(markerComp);
             }
         }
     }

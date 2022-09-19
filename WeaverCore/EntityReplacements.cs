@@ -15,7 +15,7 @@ namespace WeaverCore
     /// </summary>
     public static class EntityReplacements
     {
-        static Dictionary<uint, (string objectName, GameObject replacement)> replacements = new Dictionary<uint, (string objectName, GameObject replacement)>();
+        static Dictionary<uint, (string objectName, GameObject replacement, Func<GameObject, bool> condition)> replacements = new Dictionary<uint, (string objectName, GameObject replacement, Func<GameObject, bool> condition)>();
 
         static uint replacementCounter = 0;
 
@@ -25,7 +25,14 @@ namespace WeaverCore
         {
             if (replacement is Component c)
             {
-                AddReplacement(replacement.ThingToReplace, c.gameObject);
+                if (replacement is IObjectReplacementConditional conditional)
+                {
+                    AddReplacement(replacement.ThingToReplace, c.gameObject,conditional.CanReplaceObject);
+                }
+                else
+                {
+                    AddReplacement(replacement.ThingToReplace, c.gameObject);
+                }
             }
         }
 
@@ -48,7 +55,23 @@ namespace WeaverCore
         {
             replacementCounter++;
 
-            replacements.Add(replacementCounter, (nameToReplace, replacement));
+            replacements.Add(replacementCounter, (nameToReplace, replacement,gm => true));
+
+            return replacementCounter;
+        }
+
+        /// <summary>
+        /// Replaces an existing object with a new one
+        /// </summary>
+        /// <param name="nameToReplace">The name of the object to be replaced</param>
+        /// <param name="replacement">The object to replace it with</param>
+        /// <param name="condition">Used to only allow the replacement to occur under a certain condition</param>
+        /// <returns>The ID of the new replacement. This is used in <see cref="RemoveReplacement(uint)"/> to undo the replacement</returns>
+        public static uint AddReplacement(string nameToReplace, GameObject replacement, Func<GameObject, bool> condition)
+        {
+            replacementCounter++;
+
+            replacements.Add(replacementCounter, (nameToReplace, replacement,condition));
 
             return replacementCounter;
         }
@@ -142,7 +165,7 @@ namespace WeaverCore
             newObjects = new List<GameObject>();
             foreach (var pair in replacements)
             {
-                if (objectToReplace.name == pair.Value.objectName)
+                if ((pair.Value.objectName == null || objectToReplace.name == pair.Value.objectName) && pair.Value.condition(objectToReplace))
                 {
                     var replacement = GameObject.Instantiate(pair.Value.replacement, objectToReplace.transform.position, objectToReplace.transform.rotation);
                     newObjects.Add(replacement);

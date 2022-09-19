@@ -377,8 +377,18 @@ namespace WeaverCore.Utilities
 					}
 					catch (Exception e)
 					{
-						WeaverLog.LogWarning($"There was an error reading attribute info from {method.DeclaringType.FullName}:{method.Name}() in assembly {method.DeclaringType.Assembly.GetName().Name}, see output.log for more details");
-						UnityEngine.Debug.LogException(e);
+						try
+                        {
+							WeaverLog.LogWarning($"There was an error reading attribute info from {method.DeclaringType.FullName}:{method.Name}() in assembly {method.DeclaringType.Assembly.GetName().Name}, see output.log for more details");
+							UnityEngine.Debug.LogException(e);
+						}
+						catch (Exception)
+                        {
+							//WeaverLog.LogWarning("Error Reading Attribute info from unknown method. See logs for details");
+							//WeaverLog.LogWarning
+							Debug.LogWarning("Error Reading Attribute info from unknown method");
+							Debug.LogException(e);
+                        }
 					}
 					if (attributes != null && attributes.GetLength(0) > 0)
 					{
@@ -431,7 +441,16 @@ namespace WeaverCore.Utilities
 					}
 					else
 					{
-						WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name + "\n" + e);
+						try
+						{
+							WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
+							UnityEngine.Debug.LogException(e);
+						}
+						catch (Exception)
+						{
+							Debug.LogWarning("Error running unknown method");
+							Debug.LogException(e);
+						}
 					}
 				}
 			}
@@ -480,7 +499,17 @@ namespace WeaverCore.Utilities
 					}
 					else
 					{
-						WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name + "\n" + e);
+						//WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name + "\n" + e);
+						try
+						{
+							WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
+							UnityEngine.Debug.LogException(e);
+						}
+						catch (Exception)
+						{
+							Debug.LogWarning("Error running unknown method");
+							Debug.LogException(e);
+						}
 					}
 				}
 			}

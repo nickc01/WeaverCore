@@ -249,22 +249,28 @@ namespace WeaverCore.Components
         /// <summary>
         /// Starts charging up the laser. This function is useful if you want to control when the laser's events are triggered
         /// </summary>
-        /// <returns></returns>
-        public void ChargeUpLaser_P1()
+        /// <returns>Returns the minimum duration of the animation</returns>
+        public float ChargeUpLaser_P1()
         {
+            if (partialAnimationRoutine != null)
+            {
+                StopCoroutine(partialAnimationRoutine);
+            }
             laser.gameObject.SetActive(true);
             FiringLaser = true;
             laser.Spread = chargeUpSpread;
             laser.StartingWidth = chargeUpWidth;
 
             partialAnimationRoutine = StartCoroutine(PlayAnimationLoop(chargeUpAnimationSTRING, float.PositiveInfinity));
+
+            return GetInitialClipDuration(chargeUpAnimationSTRING);
         }
 
         /// <summary>
         /// Fires the laser. MUST BE CALLED AFTER <see cref="ChargeUpLaser_P1"/>. This function is useful if you want to control when the laser's events are triggered
         /// </summary>
-        /// <returns></returns>
-        public void FireLaser_P2()
+        /// <returns>Returns the minimum duration of the animation</returns>
+        public float FireLaser_P2()
         {
             if (partialAnimationRoutine != null)
             {
@@ -275,13 +281,15 @@ namespace WeaverCore.Components
             laser.Spread = originalSpread;
             laser.StartingWidth = originalWidth;
             partialAnimationRoutine = StartCoroutine(PlayAnimationLoop(fireLoopAnimationSTRING, float.PositiveInfinity));
+
+            return GetInitialClipDuration(fireLoopAnimationSTRING);
         }
 
         /// <summary>
         /// Ends the laser. MUST BE CALLED AFTER <see cref="FireLaser_P2"/>. This function is useful if you want to control when the laser's events are triggered
         /// </summary>
-        /// <returns></returns>
-        public void EndLaser_P3()
+        /// <returns>Returns the duration of the animation</returns>
+        public float EndLaser_P3()
         {
             if (partialAnimationRoutine != null)
             {
@@ -301,6 +309,8 @@ namespace WeaverCore.Components
             }
 
             partialAnimationRoutine = StartCoroutine(EndRoutine());
+
+            return GetInitialClipDuration(endAnimationSTRING);
         }
 
         public IEnumerator FireLaserRoutine()
@@ -448,6 +458,13 @@ namespace WeaverCore.Components
                     spawnedImpactData.RemoveAt(j);
                 }
             }
+        }
+
+        float GetInitialClipDuration(string clipName)
+        {
+            var clip = animationData.GetClip(clipName);
+
+            return clip.Frames.Count * (1f / clip.FPS);
         }
     }
 }

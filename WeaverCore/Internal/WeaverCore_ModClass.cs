@@ -19,7 +19,7 @@ namespace WeaverCore.Internal
 
         public override string GetVersion()
         {
-            return "1.0.1.1";
+            return "1.0.1.2";
         }
     }
 }

@@ -330,10 +330,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns all methods with the specified attribute type applied to them</returns>
 		public static IEnumerable<ValueTuple<MethodInfo, AttriType>> GetMethodsWithAttribute<AttriType>(Assembly assembly, Type[] paramTypes, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where AttriType : Attribute
 		{
-			if (assembly == null)
+			List<ValueTuple<MethodInfo, AttriType>> methodsWithAttributes = new List<(MethodInfo, AttriType)>();
+
+            if (assembly == null)
 			{
-				yield break;
-			}
+				return methodsWithAttributes;
+                //yield break;
+            }
 			Type[] types = null;
 
 			try
@@ -348,16 +351,50 @@ namespace WeaverCore.Utilities
 					WeaverLog.Log("Broken Assembly Found [" + assembly.GetName().Name + "]");
 				}
 #endif
-				yield break;
-			}
+                return methodsWithAttributes;
+                //yield break;
+            }
 
 			foreach (var type in types)
 			{
-				foreach (var method in type.GetMethods(flags))
+				MethodInfo[] methods = null;
+
+				try
+				{
+					methods = type.GetMethods(flags);
+				}
+				catch (Exception e)
+				{
+					Debug.LogWarning($"WeaverCore Warning: Failed to obtain methods for type {type.FullName} in assembly {assembly.GetName().Name}. This may signify that {assembly.GetName().Name} has a problem");
+                    Debug.LogWarning(e);
+					continue;
+				}
+
+				//try
+				//{
+				foreach (var method in methods)
 				{
 					if (paramTypes != null)
 					{
-						var parameters = method.GetParameters();
+						ParameterInfo[] parameters = null;
+						try
+                        {
+							parameters = method.GetParameters();
+						}
+						catch (Exception e)
+                        {
+							try
+                            {
+                                Debug.LogWarning($"WeaverCore Warning: Failed to obtain method parameters for {type.FullName}:{method.Name} in assembly {assembly.GetName().Name}. This may signify that {assembly.GetName().Name} has a problem");
+                                Debug.LogWarning(e);
+							}
+							catch (Exception)
+                            {
+                                Debug.LogWarning(e);
+							}
+							continue;
+						}
+
 						if (parameters.Length != paramTypes.GetLength(0))
 						{
 							continue;
@@ -378,24 +415,26 @@ namespace WeaverCore.Utilities
 					catch (Exception e)
 					{
 						try
-                        {
-							WeaverLog.LogWarning($"There was an error reading attribute info from {method.DeclaringType.FullName}:{method.Name}() in assembly {method.DeclaringType.Assembly.GetName().Name}, see output.log for more details");
-							UnityEngine.Debug.LogException(e);
+						{
+                            Debug.LogWarning($"There was an error reading attribute info from {type.FullName}:{method.Name}() in assembly {assembly.GetName().Name}, see output.log for more details");
+                            Debug.LogWarning(e);
 						}
 						catch (Exception)
-                        {
-							//WeaverLog.LogWarning("Error Reading Attribute info from unknown method. See logs for details");
-							//WeaverLog.LogWarning
-							Debug.LogWarning("Error Reading Attribute info from unknown method");
-							Debug.LogException(e);
-                        }
+						{
+                            Debug.LogWarning("Error Reading Attribute info from unknown method");
+                            Debug.LogWarning(e);
+						}
 					}
 					if (attributes != null && attributes.GetLength(0) > 0)
 					{
-						yield return new ValueTuple<MethodInfo, AttriType>(method, (AttriType)attributes[0]);
-					}
+						methodsWithAttributes.Add(new ValueTuple<MethodInfo, AttriType>(method, (AttriType)attributes[0]));
+                        //yield return new ValueTuple<MethodInfo, AttriType>(method, (AttriType)attributes[0]);
+                    }
 				}
+				/*}*/
 			}
+
+			return methodsWithAttributes;
 		}
 
 		/// <summary>

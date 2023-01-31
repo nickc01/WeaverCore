@@ -24,6 +24,7 @@ namespace WeaverCore.Game.Patches
 			{
 				flasher.DoFlash(0.01f, 0.75f, 0.9f, Color.white, 0.25f);
 			}
+			orig(self);
 		}
 	}
 }

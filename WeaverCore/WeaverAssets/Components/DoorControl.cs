@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using WeaverCore.Components;
 
 namespace WeaverCore.Assets.Components
@@ -21,9 +22,15 @@ namespace WeaverCore.Assets.Components
         [Tooltip("The delay before the player can use this doorway")]
         float activationDelay = 1f;
 
+        [field: SerializeField]
+        [field: Tooltip("The label to display when the text prompt shows up. If the label starts with \"LANGKEY:\" it will find lookup the label using the specified language key")]
+        public string PromptLabel { get; set; } = "LANGKEY:ENTER";
+
         WeaverArrowPrompt prompt;
 
         bool started = false;
+
+        public UnityEvent<string> OnEnter = new UnityEvent<string>();
 
         private void Awake()
         {
@@ -85,14 +92,22 @@ namespace WeaverCore.Assets.Components
                 yield return new WaitUntil(() => PlayerInRange);
 
                 prompt = WeaverArrowPrompt.Spawn(gameObject, promptMarker.transform.position);
-                prompt.SetLabelTextLang("ENTER");
+                if (PromptLabel.StartsWith("LANGKEY:"))
+                {
+                    prompt.SetLabelTextLang(PromptLabel.Substring(8));
+                }
+                else
+                {
+                    prompt.SetLabelText(PromptLabel);
+                }
                 prompt.Show();
 
                 while (true)
                 {
                     if ((PlayerInput.up.WasPressed || PlayerInput.down.WasPressed) && HeroController.instance.CanInteract())
                     {
-                        yield return EnterRoutine();
+                        Enter();
+                        prompt.Hide();
                         yield break;
                     }
                     else if (!PlayerInRange)
@@ -122,13 +137,15 @@ namespace WeaverCore.Assets.Components
             }
         }
 
-        IEnumerator EnterRoutine()
+        void Enter()
         {
-            var doorWay = GetComponent<WeaverTransitionPoint>();
+            //Debug.LogError("BEGIN ENTER");
+            OnEnter?.Invoke(overHero ? "Exit" : "Enter");
+            /*var doorWay = GetComponent<WeaverTransitionPoint>();
             if (doorWay != null)
             {
                 yield return doorWay.DoTransition(overHero ? "Exit" : "Enter");
-            }
+            }*/
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

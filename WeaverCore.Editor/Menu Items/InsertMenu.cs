@@ -131,7 +131,19 @@ namespace WeaverCore.Editor.Menu_Items
 			InsertObject("Template Enemy");
 		}
 
-		[MenuItem("WeaverCore/Insert/Weaver Canvas")]
+        [MenuItem("WeaverCore/Insert/Camera Lock Region")]
+        public static void InsertCameraLockRegion()
+        {
+            InsertObject("Camera Lock Region");
+        }
+
+        [MenuItem("WeaverCore/Insert/Dream Return Warp")]
+        public static void InsertDreamReturnWarp()
+        {
+            InsertObject("Dream Return Warp");
+        }
+
+        [MenuItem("WeaverCore/Insert/Weaver Canvas")]
 		public static void InsertWeaverCanvas()
 		{
 			if (GameObject.FindObjectOfType<EventSystem>() == null)

@@ -13,6 +13,7 @@ public class CameraTarget : MonoBehaviour
 
 	public void SceneInit()
 	{
+		//Debug.LogError("TARGET SCENE INIT");
 		if (GameManager.instance.IsGameplayScene())
 		{
 			isGameplayScene = true;

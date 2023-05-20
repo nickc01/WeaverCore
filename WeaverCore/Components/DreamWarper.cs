@@ -7,10 +7,11 @@ using UnityEngine;
 
 namespace WeaverCore.Components
 {
-	/// <summary>
-	/// When an object is dreamnailed with this component attached, this will cause the player to be warped to a new scene
-	/// </summary>
-	[RequireComponent(typeof(DreamNailable))]
+
+    /// <summary>
+    /// When an object is dreamnailed with this component attached, this will cause the player to be warped to a new scene
+    /// </summary>
+    [RequireComponent(typeof(DreamNailable))]
 	public class DreamWarper : MonoBehaviour
 	{
 		[SerializeField]

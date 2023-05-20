@@ -1,4 +1,5 @@
 ﻿using GlobalEnums;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,11 +8,18 @@ public class CameraLockArea : MonoBehaviour
 {
 	private void Awake()
 	{
-		box2d = base.GetComponent<Collider2D>();
+		if (Application.isPlaying)
+		{
+            box2d = base.GetComponent<Collider2D>();
+        }
 	}
 
 	private IEnumerator Start()
 	{
+		if (!Application.isPlaying)
+		{
+			yield break;
+		}
 		gcams = GameCameras.instance;
 		if (gcams == null)
 		{
@@ -24,10 +32,10 @@ public class CameraLockArea : MonoBehaviour
 		{
 			yield break;
 		}
-		if (!ValidateBounds())
+		/*if (!ValidateBounds())
 		{
 			Debug.LogError("Camera bounds are unspecified for " + name + ", please specify lock area bounds for this Camera Lock Area.");
-		}
+		}*/
 		if (box2d != null)
 		{
 			leftSideX = box2d.bounds.min.x;
@@ -38,7 +46,7 @@ public class CameraLockArea : MonoBehaviour
 		yield break;
 	}
 
-	private bool IsInApplicableGameState()
+    private bool IsInApplicableGameState()
 	{
 		GameManager unsafeInstance = GameManager.instance;
 		return !(unsafeInstance == null) && (unsafeInstance.gameState == GameState.PLAYING || unsafeInstance.gameState == GameState.ENTERING_LEVEL);
@@ -46,7 +54,11 @@ public class CameraLockArea : MonoBehaviour
 
 	public void OnTriggerEnter2D(Collider2D otherCollider)
 	{
-		if (IsInApplicableGameState() && otherCollider.CompareTag("Player"))
+        if (!Application.isPlaying)
+        {
+			return;
+        }
+        if (IsInApplicableGameState() && otherCollider.CompareTag("Player"))
 		{
 			heroPos = otherCollider.gameObject.transform.position;
 			if (box2d != null)
@@ -94,7 +106,11 @@ public class CameraLockArea : MonoBehaviour
 
 	public void OnTriggerStay2D(Collider2D otherCollider)
 	{
-		if (!base.isActiveAndEnabled || !box2d.isActiveAndEnabled)
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+        if (!base.isActiveAndEnabled || !box2d.isActiveAndEnabled)
 		{
 			Debug.LogWarning("Fix for Unity trigger event queue!");
 			return;
@@ -111,7 +127,11 @@ public class CameraLockArea : MonoBehaviour
 
 	public void OnTriggerExit2D(Collider2D otherCollider)
 	{
-		if (otherCollider.CompareTag("Player"))
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+        if (otherCollider.CompareTag("Player"))
 		{
 			heroPos = otherCollider.gameObject.transform.position;
 			if (box2d != null)
@@ -159,7 +179,11 @@ public class CameraLockArea : MonoBehaviour
 
 	public void OnDisable()
 	{
-		if (cameraCtrl != null)
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+        if (cameraCtrl != null)
 		{
 			cameraCtrl.ReleaseLock(this);
 		}
@@ -168,6 +192,8 @@ public class CameraLockArea : MonoBehaviour
 	private bool ValidateBounds()
 	{
 		var cameraBounds = GameManager.instance.SceneDimensions;
+
+		Debug.Log("Camera Bounds = " + cameraBounds);
 
 		if (cameraXMin < cameraBounds.xMin)
 		{
@@ -271,6 +297,7 @@ public class CameraLockArea : MonoBehaviour
 
 	private CameraTarget camTarget;
 
+	[NonSerialized]
 	private Collider2D box2d;
 }
 

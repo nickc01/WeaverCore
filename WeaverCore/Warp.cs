@@ -228,7 +228,6 @@ namespace WeaverCore
 
 			HeroController.instance.RegainControl();
 			HeroController.instance.StartAnimationControl();
-			HeroController.instance.AcceptInput();
 			HeroController.instance.GetComponent<Renderer>().enabled = true;
 
 			if (effects != null)

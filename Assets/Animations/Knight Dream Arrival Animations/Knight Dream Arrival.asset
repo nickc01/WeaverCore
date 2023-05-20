@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Knight Dream Arrival
+  m_EditorClassIdentifier: 
+  clipNames:
+  - Warp In
+  - DN Item
+  - DN Get 1
+  - DN Get 2
+  - DN Get 3
+  - DN End
+  clipFrameStartIndexes: 000000001a0000001d00000021000000270000002f000000
+  clipFrameCounts: 1a0000000300000004000000060000000800000002000000
+  frames:
+  - {fileID: -4336397332779671557, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -9071411488629067240, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -2277173687064592017, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: 8094470500982177743, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -2996764981584904438, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: 5062854500780747579, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: 6810256129591957007, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: 5919486751939605935, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -4258937120657150662, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -6792400743354264608, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: 9173658645522376120, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: 2091607243199902445, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -9026682213395799547, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -4616254307263003893, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -4616254307263003893, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -4616254307263003893, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -4616254307263003893, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -4616254307263003893, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -4616254307263003893, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -4616254307263003893, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -4616254307263003893, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -3820233702546800551, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -8637532954442096408, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: 5181410895590919052, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -8862758705477337453, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: -2491868318588401709, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  - {fileID: 349347176065747761, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: -5090023149674406104, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: -6306342170572110962, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 3004147910688221110, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 2254731109990423992, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 5968294879992139177, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: -7108310044298269090, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 676949559984679748, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 8719088624606817433, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 7009360342159536347, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 8782294208607245448, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: -7728028451899208988, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 456589445161838762, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: -4271872033231156825, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: -6110341584075197237, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: -7706027513120011536, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 562122332318199392, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: -6606152827122610120, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 2130325228265890899, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 4916649599932928572, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 7446789127053982753, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 8719088624606817433, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  - {fileID: 676949559984679748, guid: afc0a19b1b2f11e4cb4e5ca020f0accd, type: 3}
+  clipFPSs:
+  - 12
+  - 12
+  - 12
+  - 12
+  - 12
+  - 12
+  clipWrapModes: 000000000100000000000000020000000200000000000000
+  clipLoopStarts: 000000000000000000000000020000000300000000000000

@@ -94,7 +94,11 @@ unknown -> Don't use")]
 			OnValidate();
             if (gateType == GatePosition.door && GetComponent<DoorControl>() == null)
             {
-				gameObject.AddComponent<DoorControl>();
+				var doorControl = gameObject.AddComponent<DoorControl>();
+				doorControl.OnEnter.AddListener((knight_anim) =>
+				{
+					StartCoroutine(DoTransition(knight_anim));
+				});
             }
 		}
 

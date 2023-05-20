@@ -145,6 +145,7 @@ public class GameManager : MonoBehaviour
         if (this == GameManager._instance)
         {
             SetupStatusModifiers();
+            //LevelActivated(UnityEngine.SceneManagement.SceneManager.GetActiveScene(), UnityEngine.SceneManagement.SceneManager.GetActiveScene());
         }
     }
 
@@ -227,6 +228,7 @@ public class GameManager : MonoBehaviour
                     tilemapDirty = true;
                 }
                 SetupSceneRefs(true);
+                //Debug.LogError("BEGIN SCENE - AAA");
                 BeginScene();
                 OnNextLevelReady();
                 return;
@@ -346,6 +348,7 @@ public class GameManager : MonoBehaviour
         };
         sceneLoad.Complete += delegate ()
         {
+            Debug.LogError("BEGIN SCENE - BBB");
             SetupSceneRefs(false);
             BeginScene();
             /*if (this.gameMap != null)
@@ -1264,6 +1267,7 @@ public class GameManager : MonoBehaviour
             yield return Resources.UnloadUnusedAssets();
         }
         //GCManager.Collect();
+        Debug.LogError("BEGIN SCENE - CCC");
         SetupSceneRefs(true);
         BeginScene();
         OnNextLevelReady();
@@ -1574,6 +1578,7 @@ public class GameManager : MonoBehaviour
 
     public void BeginScene()
     {
+        //Debug.LogError("GAME MANAGER BEGIN SCENE");
         //this.inputHandler.SceneInit();
         //this.ui.SceneInit();
         if (hero_ctrl)

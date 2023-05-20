@@ -132,8 +132,7 @@ MonoBehaviour:
   musicDelayTime: 0
   musicTransitionTime: 0
   transitionTime: 1
-  borderPrefab: {fileID: 7503125592364704171, guid: 9235acfcdc68f6748982004de78aba96,
-    type: 3}
+  borderPrefab: {fileID: 7503125592364704171, guid: 9235acfcdc68f6748982004de78aba96, type: 3}
   manualMapTrigger: 0
   hollowShadeObject: {fileID: 0}
   dreamgateObject: {fileID: 0}

@@ -4,6 +4,8 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
+
     /// <summary>
     /// When the player touches an object with this component attached, and they are in a dream scene, the player will get transported to the scene there were previously
     /// </summary>
@@ -79,13 +81,19 @@ namespace WeaverCore.Components
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
-			collidingWithPlayer = true;
+			if (collision.CompareTag("Player"))
+			{
+                collidingWithPlayer = true;
+            }
 		}
 
 		private void OnTriggerExit2D(Collider2D collision)
 		{
-			collidingWithPlayer = false;
-		}
+            if (collision.CompareTag("Player"))
+            {
+                collidingWithPlayer = false;
+            }
+        }
 
 
 		IEnumerator WaitForHeroInPosition()

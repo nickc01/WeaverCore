@@ -2721,7 +2721,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2491868318588401709, guid: c3b0c5415c04f8f419218d71f837f158, type: 3}
+  m_Sprite: {fileID: -2491868318588401709, guid: c337d552bced76848b07dabc6fffc788, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2744,7 +2744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8511d0753e02cad4e89ae86ce1afef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationData: {fileID: 11400000, guid: cd8114bb9caaa4c43a80c822a76007ba, type: 2}
+  animationData: {fileID: 11400000, guid: 8827e63667e2bb7498bc19b8d969c00b, type: 2}
   autoPlay: 1
-  OnClipFinish: 0
+  OnClipFinish: 1
   autoPlayClip: Warp In

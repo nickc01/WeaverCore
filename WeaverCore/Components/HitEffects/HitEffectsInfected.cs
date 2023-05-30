@@ -123,7 +123,10 @@ namespace WeaverCore.Components.HitEffects
 				{
                     foreach (var flasher in flashers)
                     {
-						flasher.flashInfected();
+						if (flasher != null && flasher.isActiveAndEnabled)
+						{
+                            flasher.flashInfected();
+                        }
                     }
 					//flasher.flashInfected();
 				}

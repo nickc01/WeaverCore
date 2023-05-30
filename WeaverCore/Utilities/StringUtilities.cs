@@ -92,5 +92,18 @@ namespace WeaverCore.Utilities
 			}
 			return result.ToString();
 		}
-	}
+
+		public static bool TryFind(this string input, string strToFind, out int index)
+		{
+			index = input.IndexOf(strToFind);
+			return index >= 0;
+		}
+
+        public static bool TryFind(this string input, string strToFind, out int startIndex, out int endIndex)
+        {
+            startIndex = input.IndexOf(strToFind);
+			endIndex = startIndex + strToFind.Length;
+            return startIndex >= 0;
+        }
+    }
 }

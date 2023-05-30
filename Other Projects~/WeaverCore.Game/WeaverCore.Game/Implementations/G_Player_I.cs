@@ -1,12 +1,20 @@
 ﻿using HutongGames.PlayMaker;
 using System;
+using UnityEngine;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Implementations
 {
 	public class G_Player_I : Player_I
 	{
+		static bool inCutsceneLock = false;
+		static int previousDarknessLevel = 0;
+
+		static GameObject HudCanvas = null;
+		static AudioClip dreamGhostAppear = null;
+
 		public override bool HasDreamNail
 		{
 			get
@@ -119,5 +127,88 @@ namespace WeaverCore.Game.Implementations
 		{
 			HeroController.instance.SoulGain();
 		}
-	}
+
+        public override void EnterCutsceneLock(bool playSound, int darknessLevel = -1)
+        {
+            if (inCutsceneLock)
+			{
+				throw new Exception("The player is already in a cutscene lock");
+			}
+			inCutsceneLock = true;
+
+			var vignette = GameObject.FindGameObjectWithTag("Vignette");
+
+			previousDarknessLevel = PlayMakerUtilities.GetFsmInt(vignette, "Darkness Control", "Darkness Level");
+
+			if (previousDarknessLevel != darknessLevel)
+			{
+                PlayMakerUtilities.SetFsmInt(vignette, "Darkness Control", "Darkness Level", darknessLevel);
+
+                HeroController.instance.SetDarkness(darknessLevel);
+
+                EventManager.SendEventToGameObject("SCENE RESET", vignette);
+            }
+
+			EventManager.SendEventToGameObject("FSM CANCEL", HeroController.instance.gameObject);
+
+			if (HudCanvas == null)
+			{
+				HudCanvas = GameObject.Find("Hud Canvas");
+            }
+
+			EventManager.SendEventToGameObject("OUT", HudCanvas);
+
+			HeroController.instance.RelinquishControl();
+			HeroController.instance.StartAnimationControl();
+
+			PlayerData.instance.SetBool("disablePause", true);
+
+			HeroController.instance.GetComponent<Rigidbody2D>().velocity = default;
+
+			HeroController.instance.AffectedByGravity(true);
+
+			if (playSound)
+			{
+				if (dreamGhostAppear == null)
+				{
+					dreamGhostAppear = WeaverAssets.LoadWeaverAsset<AudioClip>("dream_ghost_appear");
+				}
+
+				WeaverAudio.PlayAtPoint(dreamGhostAppear, Player.Player1.transform.position);
+			}
+        }
+
+        public override void ExitCutsceneLock()
+        {
+            if (!inCutsceneLock)
+            {
+                throw new Exception("The player is already out of a cutscene lock");
+            }
+
+            if (HudCanvas == null)
+            {
+                HudCanvas = GameObject.Find("Hud Canvas");
+            }
+
+			HeroController.instance.RegainControl();
+			HeroController.instance.StartAnimationControl();
+
+            EventManager.SendEventToGameObject("IN", HudCanvas);
+
+            PlayerData.instance.SetBool("disablePause", false);
+
+            var vignette = GameObject.FindGameObjectWithTag("Vignette");
+
+            var currentDarknessLevel = PlayMakerUtilities.GetFsmInt(vignette, "Darkness Control", "Darkness Level");
+
+            if (previousDarknessLevel != currentDarknessLevel)
+            {
+                PlayMakerUtilities.SetFsmInt(vignette, "Darkness Control", "Darkness Level", previousDarknessLevel);
+
+                HeroController.instance.SetDarkness(previousDarknessLevel);
+
+                EventManager.SendEventToGameObject("SCENE RESET", vignette);
+            }
+        }
+    }
 }

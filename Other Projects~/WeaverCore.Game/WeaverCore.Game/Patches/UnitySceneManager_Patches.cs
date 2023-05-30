@@ -8,10 +8,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using WeaverCore.Attributes;
 using WeaverCore.Utilities;
-
 namespace WeaverCore.Game.Patches
 {
-	public static class UnitySceneManager_Patches
+
+    public static class UnitySceneManager_Patches
 	{
 		[OnHarmonyPatch]
 		static void Patch(HarmonyPatcher patcher)
@@ -37,6 +37,7 @@ namespace WeaverCore.Game.Patches
 			{
 				var destination = unionizedScenes[arg0.path];
 				unionizedScenes.Remove(arg0.path);
+				WeaverLog.Log($"MERGING {arg0.path} with {destination.path}");
 				UnityEngine.SceneManagement.SceneManager.MergeScenes(arg0, destination);
 			}
 			else
@@ -48,7 +49,8 @@ namespace WeaverCore.Game.Patches
 						if (replacement.SceneToUnionize == arg0.name || replacement.SceneToUnionize == arg0.path)
 						{
 							unionizedScenes.Add(replacement.SceneUnion, arg0);
-							UnityEngine.SceneManagement.SceneManager.LoadScene(replacement.SceneUnion, LoadSceneMode.Additive);
+                            WeaverLog.Log($"LOADING SCENE UNION {replacement.SceneUnion} to combine with {arg0.path}");
+                            UnityEngine.SceneManagement.SceneManager.LoadScene(replacement.SceneUnion, LoadSceneMode.Additive);
 							//var loadedScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(replacement.SceneUnion);
 							//UnityEngine.SceneManagement.SceneManager.MergeScenes(loadedScene, arg0);
 						}

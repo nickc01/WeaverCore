@@ -33,7 +33,8 @@ namespace WeaverCore.Game.Implementations
 
 		public override void LoadSettings(SaveSpecificSettings settings)
 		{
-			var modData = GetModData();
+            //WeaverLog.Log("LOADING SETTINGS");
+            var modData = GetModData();
 			var settingsType = settings.GetType();
 			var key = settingsType.FullName;
 			if (!defaultState.ContainsKey(settingsType))
@@ -54,7 +55,10 @@ namespace WeaverCore.Game.Implementations
 		public override void SaveSettings(SaveSpecificSettings settings)
 		{
 			var modData = GetModData();
-			var token = JToken.Parse(JsonUtility.ToJson(settings));
+			var result = JsonUtility.ToJson(settings,true);
+			//WeaverLog.Log("RESULT = " + result);
+
+            var token = JToken.Parse(JsonUtility.ToJson(settings));
 			var key = settings.GetType().FullName;
 			if (modData.ContainsKey(key))
 			{
@@ -69,7 +73,8 @@ namespace WeaverCore.Game.Implementations
 		[OnInit]
 		static void Init()
 		{
-			ModHooks.BeforeSavegameSaveHook += ModHooks_BeforeSavegameSaveHook;
+            //WeaverLog.Log("SAVE INIT");
+            ModHooks.BeforeSavegameSaveHook += ModHooks_BeforeSavegameSaveHook;
 			ModHooks.AfterSavegameLoadHook += ModHooks_AfterSavegameLoadHook;
 			On.GameManager.LoadGame += GameManager_LoadGame;
 		}
@@ -86,11 +91,13 @@ namespace WeaverCore.Game.Implementations
 
 		private static void ModHooks_AfterSavegameLoadHook(SaveGameData obj)
 		{
-			SaveSpecificSettings.LoadSaveSlot(_saveSlot);
+            //WeaverLog.Log("LOADING WEAVERCORE SETTINGS");
+            SaveSpecificSettings.LoadSaveSlot(_saveSlot);
 		}
 
 		private static void ModHooks_BeforeSavegameSaveHook(SaveGameData obj)
 		{
+			//WeaverLog.Log("SAVING WEAVERCORE SETTINGS");
 			SaveSpecificSettings.SaveAllSettings();
 		}
 	}

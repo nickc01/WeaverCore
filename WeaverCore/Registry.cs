@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using WeaverCore.Attributes;
 using WeaverCore.Utilities;
 
@@ -24,7 +25,8 @@ namespace WeaverCore
         string modTypeName = "";
 
         [SerializeField]
-        string modAssemblyName = "";
+        [FormerlySerializedAs("modAssemblyName")]
+        string __modAssemblyName = "";
 
         [SerializeField]
         List<UnityEngine.Object> features;
@@ -47,7 +49,7 @@ namespace WeaverCore
 			{
 				if (_modeTypeCached == null || (_modeTypeCached != null && _modeTypeCached.FullName != modTypeName))
 				{
-                    _modeTypeCached = TypeUtilities.NameToType(modTypeName, modAssemblyName);
+                    _modeTypeCached = TypeUtilities.NameToType(modTypeName, __modAssemblyName);
                 }
                 return _modeTypeCached;
 			}
@@ -60,7 +62,7 @@ namespace WeaverCore
         /// <summary>
         /// The name of the assembly this registry is bound to
         /// </summary>
-        public string ModAssemblyName => modAssemblyName;
+        public string ModAssemblyName => __modAssemblyName;
 
         /// <summary>
         /// Is this registry currently enabled?
@@ -102,7 +104,7 @@ namespace WeaverCore
         public static Registry Create(Type modType)
 		{
             var newRegistry = ScriptableObject.CreateInstance<Registry>();
-            newRegistry.modAssemblyName = modType.Assembly.GetName().Name;
+            newRegistry.__modAssemblyName = modType.Assembly.GetName().Name;
             newRegistry.modTypeName = modType.FullName;
             newRegistry._modeTypeCached = modType;
             newRegistry.EnableRegistry();

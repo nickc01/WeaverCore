@@ -29,7 +29,7 @@ namespace WeaverCore.Editor
 			}
 
 			var modTypeName = serializedObject.GetString("modTypeName");
-			var modAssemblyName = serializedObject.GetString("modAssemblyName");
+			var modAssemblyName = serializedObject.GetString("__modAssemblyName");
 
 			var modIndex = GetIndexOfMod(mods, modTypeName, modAssemblyName);
 
@@ -118,7 +118,7 @@ namespace WeaverCore.Editor
 		void UpdateMod(Type modType)
 		{
 			serializedObject.SetString("modTypeName", modType.FullName);
-			serializedObject.SetString("modAssemblyName", modType.Assembly.GetName().Name);
+			serializedObject.SetString("__modAssemblyName", modType.Assembly.GetName().Name);
 
 			var bundleName = $"{modType.Name.ToLower()}_bundle";
 

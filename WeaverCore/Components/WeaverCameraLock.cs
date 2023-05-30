@@ -30,7 +30,7 @@ public class WeaverCameraLock : CameraLockArea
     }
 #endif
 
-    void RefreshCamBounds()
+    public void RefreshCamBounds()
     {
         var camBounds = new Bounds
         {
@@ -51,6 +51,11 @@ public class WeaverCameraLock : CameraLockArea
             //camLock.DoDreamNailTrigger();
             //Debug.LogError("CAM LOCK INIT");
         }
+    }
+
+    private void OnEnable()
+    {
+        RefreshCamBounds();
     }
 
 

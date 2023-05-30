@@ -300,5 +300,15 @@ namespace WeaverCore
 		{
 			Impl.ExitRoarLock();
 		}
+
+		public void EnterCutsceneLock(bool playSound, int darknessLevel = -1)
+		{
+			Impl.EnterCutsceneLock(playSound);
+		}
+
+		public void ExitCutsceneLock()
+		{
+			Impl.ExitCutsceneLock();
+		}
 	}
 }

@@ -64,7 +64,9 @@ namespace WeaverCore.Components
                 PlayMakerUtilities.SetFsmFloat(hudBlanker.gameObject, "Blanker Control", "Fade Time", 1f);
                 EventManager.SendEventToGameObject("FADE OUT", hudBlanker.gameObject, gameObject);
             }
+            playerRenderer.enabled = false;
             yield return new WaitForSeconds(0.75f);
+            playerRenderer.enabled = false;
 
             if (dreamEnterAudio != null)
             {

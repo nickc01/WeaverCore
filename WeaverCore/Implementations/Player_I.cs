@@ -29,5 +29,8 @@ namespace WeaverCore.Implementations
 
 		public abstract void EnterRoarLock();
 		public abstract void ExitRoarLock();
-	}
+
+        public abstract void EnterCutsceneLock(bool playSound, int darknessLevel = -1);
+        public abstract void ExitCutsceneLock();
+    }
 }

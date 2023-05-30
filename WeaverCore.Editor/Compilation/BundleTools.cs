@@ -879,7 +879,7 @@ namespace WeaverCore.Editor.Compilation
 						AssetTypeValueField monoBehaviourInst = null;
 						try
 						{
-							monoBehaviourInst = am.GetTypeInstance(assetsFileInst, info).GetBaseField();
+                            monoBehaviourInst = am.GetTypeInstance(assetsFileInst, info).GetBaseField();
 						}
 						catch (Exception e)
 						{
@@ -892,40 +892,49 @@ namespace WeaverCore.Editor.Compilation
 							continue;
 						}
 
-						//If this MonoBehaviour has a field called "modAssemblyName", then it's a Registry object
-						//If MonoBehaviour is a registry, replace the "modAssemblyName" variable from "Assembly-CSharp"
-						if (!monoBehaviourInst.Get("modAssemblyName").IsDummy())
+						//If this MonoBehaviour has a field called "__modAssemblyName", then it's a Registry object
+						//If MonoBehaviour is a registry, replace the "__modAssemblyName" variable from "Assembly-CSharp"
+						//__modAssemblyName
+
+						var assemblyField = monoBehaviourInst.Get(str => str.StartsWith("__") && str.Contains("AssemblyName"));
+
+                        if (!assemblyField.IsDummy())
 						{
 							bool modified = false;
-							var modAsmNameVal = monoBehaviourInst.Get("modAssemblyName").GetValue();
+							var modAsmNameVal = assemblyField.GetValue();
 							foreach (var replacement in assemblyReplacements)
 							{
 								if (modAsmNameVal.AsString() == replacement.Key)
 								{
 									modAsmNameVal.Set(replacement.Value);
-									Debug.Log($"Replacing Registry Assembly From {replacement.Key} to {replacement.Value}");
+									Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
 									modified = true;
 									break;
 								}
 							}
 
-							var featureAsms = monoBehaviourInst.Get("featureAssemblyNames").Get("Array");
-							var featureAsmVals = featureAsms.GetValue();
-							var array = featureAsmVals.AsArray();
-							for (int i = 0; i < array.size; i++)
+							var featuresField = monoBehaviourInst.Get("featureAssemblyNames");
+
+							if (!featuresField.IsDummy())
 							{
-								var asmValue = featureAsms[i].GetValue();
-								foreach (var replacement in assemblyReplacements)
-								{
-									if (asmValue.AsString() == replacement.Key)
-									{
-										asmValue.Set(replacement.Value);
-										Debug.Log($"Replacing Registry Assembly From {replacement.Key} to {replacement.Value}");
-										modified = true;
-										break;
-									}
-								}
-							}
+                                var featureAsms = monoBehaviourInst.Get("featureAssemblyNames").Get("Array");
+                                var featureAsmVals = featureAsms.GetValue();
+                                var array = featureAsmVals.AsArray();
+                                for (int i = 0; i < array.size; i++)
+                                {
+                                    var asmValue = featureAsms[i].GetValue();
+                                    foreach (var replacement in assemblyReplacements)
+                                    {
+                                        if (asmValue.AsString() == replacement.Key)
+                                        {
+                                            asmValue.Set(replacement.Value);
+                                            Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
+                                            modified = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
 							if (modified)
 							{
 								assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));

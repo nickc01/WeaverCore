@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Settings
 {
+
     /// <summary>
     /// Used for storing save file specific settings.
     /// </summary>

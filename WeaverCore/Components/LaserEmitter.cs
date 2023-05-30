@@ -388,6 +388,11 @@ namespace WeaverCore.Components
             spawnedImpactData.Clear();
         }
 
+        private void OnDisable()
+        {
+            ClearImpacts();
+        }
+
         private void LateUpdate()
         {
             if (laser == null)

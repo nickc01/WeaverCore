@@ -13,8 +13,10 @@ using UnityEditor;
 
 namespace WeaverCore
 {
+
+
 #if UNITY_EDITOR
-	[Serializable]
+    [Serializable]
 	struct SceneReplacement
 	{
 		[Tooltip("The name of the scene to replace in-game")]

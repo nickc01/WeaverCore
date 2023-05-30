@@ -43,7 +43,7 @@ namespace WeaverCore.Features
 		/// <summary>
 		/// The enemy's <seealso cref="EntityHealth"/>
 		/// </summary>
-		public EntityHealth Health
+		public EntityHealth HealthComponent
         {
 			get
             {
@@ -70,7 +70,7 @@ namespace WeaverCore.Features
 		{
 			var enemyImplType = ImplFinder.GetImplementationType<Enemy_I>();
 			enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
-			Health.OnDeathEvent += OnDeath_Internal;
+			HealthComponent.OnDeathEvent += OnDeath_Internal;
 		}
 
 		/// <summary>
@@ -96,7 +96,7 @@ namespace WeaverCore.Features
 					damager.damageDealt = 0;
 				}
 			}
-			Health.OnDeathEvent -= OnDeath_Internal;
+			HealthComponent.OnDeathEvent -= OnDeath_Internal;
 			OnDeath();
 			if (CurrentMove != null)
 			{

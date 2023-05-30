@@ -16,10 +16,10 @@ GameObject:
   - component: {fileID: 1884184218305895404}
   - component: {fileID: 1884184218305895403}
   - component: {fileID: 1884184218305895402}
-  - component: {fileID: 1884184218305895401}
   - component: {fileID: 8141419492035408521}
   - component: {fileID: 3235366223693770209}
-  m_Layer: 22
+  - component: {fileID: -570980103801429217}
+  m_Layer: 11
   m_Name: Mantis Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,20 +281,6 @@ MonoBehaviour:
   hazardType: 1
   shadowDashHazard: 0
   resetOnEnable: 0
---- !u!114 &1884184218305895401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884184218305895188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8516679943671fa4aa63aff309cf2138, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <deflectTimer>k__BackingField: 0
-  <repeatDelay>k__BackingField: 0.25
 --- !u!114 &8141419492035408521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,3 +307,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a6abec551ce95408d93cbfa3708833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-570980103801429217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884184218305895188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8516679943671fa4aa63aff309cf2138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <deflectTimer>k__BackingField: 0
+  <repeatDelay>k__BackingField: 0.25

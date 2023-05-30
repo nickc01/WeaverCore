@@ -553,5 +553,17 @@ namespace WeaverCore.Utilities
 				}
 			}
 		}
+
+		public static Assembly FindLoadedAssembly(string assemblyName)
+		{
+			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+			{
+                if (assembly.FullName == assemblyName || assembly.GetName().Name == assemblyName)
+                {
+					return assembly;
+                }
+            }
+			return null;
+		}
 	}
 }

@@ -25,9 +25,18 @@ namespace WeaverCore.Game.Patches
 			On.GameManager.SetupSceneRefs += GameManager_SetupSceneRefs;
 
 			On.GameMap.GetTilemapDimensions += GameMap_GetTilemapDimensions;
+
+            On.GameManager.Awake += GameManager_Awake;
 		}
 
-		/*private static void GameManager_SetupSceneRefs(On.GameManager.orig_SetupSceneRefs orig, GameManager self, bool refreshTilemapInfo)
+        private static void GameManager_Awake(On.GameManager.orig_Awake orig, GameManager self)
+        {
+			self.GetType().GetField("verboseMode", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(self, true);
+
+			orig(self);
+        }
+
+        /*private static void GameManager_SetupSceneRefs(On.GameManager.orig_SetupSceneRefs orig, GameManager self, bool refreshTilemapInfo)
 		{
 			WeaverLog.Log("PATCH_A");
 			WeaverSceneManager.CurrentSceneManager = null;
@@ -84,7 +93,7 @@ namespace WeaverCore.Game.Patches
 			WeaverLog.Log("PATCH_U");
 		}*/
 
-		private static void GameManager_SetupSceneRefs(On.GameManager.orig_SetupSceneRefs orig, GameManager self, bool refreshTilemapInfo)
+        private static void GameManager_SetupSceneRefs(On.GameManager.orig_SetupSceneRefs orig, GameManager self, bool refreshTilemapInfo)
 		{
 			Debug.Log("SETTING UP SCENE REFS");
 			WeaverSceneManager.CurrentSceneManager = null;

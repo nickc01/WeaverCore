@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using WeaverCore.Assets;
+using WeaverCore.Attributes;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
@@ -13,6 +15,8 @@ namespace WeaverCore
 	/// </summary>
     public class Player : MonoBehaviour
 	{
+		static object[] paramCache = new object[1];
+
 		HeroController heroCtrl;
 		static ObjectPool NailStrikePool;
 		static ObjectPool SlashImpactPool;
@@ -27,6 +31,16 @@ namespace WeaverCore
                 {
 					_players = new List<Player>();
 					_players.AddRange(GameObject.FindObjectsOfType<Player>());
+
+					foreach (var player in _players)
+					{
+                        paramCache[0] = player;
+                        WeaverLog.Log("P_INIT_G");
+                        foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
+                        {
+                            method.Invoke(null, paramCache);
+                        }
+                    }
                 }
 				return _players;
             }
@@ -176,22 +190,54 @@ namespace WeaverCore
 
 		private void Start()
 		{
-			Player.Players.AddIfNotContained(this);
+			if (Player.Players.AddIfNotContained(this))
+			{
+				paramCache[0] = this;
+				WeaverLog.Log("P_INIT_A");
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
+				{
+					method.Invoke(null, paramCache);
+				}
+			}
 		}
 
 		private void OnEnable()
 		{
-			Player.Players.AddIfNotContained(this);
+			if (Player.Players.AddIfNotContained(this))
+			{
+                paramCache[0] = this;
+                WeaverLog.Log("P_INIT_B");
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
+                {
+                    method.Invoke(null, paramCache);
+                }
+            }
 		}
 
 		private void OnDisable()
 		{
-			Player.Players.Remove(this);
+			if (Player.Players.Remove(this))
+			{
+                paramCache[0] = this;
+                WeaverLog.Log("P_INIT_C");
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninit>())
+                {
+                    method.Invoke(null, paramCache);
+                }
+            }
 		}
 
 		private void OnDestroy()
 		{
-			Player.Players.Remove(this);
+			if (Player.Players.Remove(this))
+			{
+                paramCache[0] = this;
+                WeaverLog.Log("P_INIT_D");
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninit>())
+                {
+                    method.Invoke(null, paramCache);
+                }
+            }
 		}
 
 		/// <summary>

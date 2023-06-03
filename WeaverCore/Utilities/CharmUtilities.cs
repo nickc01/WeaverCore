@@ -121,7 +121,7 @@ namespace WeaverCore.Utilities
             return -1;
         }
 
-        [OnFeatureLoad]
+        [OnFeatureLoad(priority: int.MinValue)]
         static void OnCharmLoad(IWeaverCharm charm)
         {
             WeaverLog.Log($"LOADING CHARM {charm.GetType()}");
@@ -163,7 +163,7 @@ namespace WeaverCore.Utilities
             }*/
         }
 
-        [OnFeatureUnload]
+        [OnFeatureUnload(priority: int.MinValue)]
         static void OnCharmUnload(IWeaverCharm charm)
         {
             disabledCharms.Add(charm);

@@ -33,12 +33,20 @@ namespace WeaverCore.Game.Patches
 
 		private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
 		{
+			WeaverLog.Log("LOADED SCENE = " + arg0.name);
 			if (unionizedScenes.ContainsKey(arg0.path))
 			{
 				var destination = unionizedScenes[arg0.path];
 				unionizedScenes.Remove(arg0.path);
-				WeaverLog.Log($"MERGING {arg0.path} with {destination.path}");
-				UnityEngine.SceneManagement.SceneManager.MergeScenes(arg0, destination);
+				try
+				{
+					WeaverLog.Log($"MERGING {arg0.path} with {destination.path}");
+					UnityEngine.SceneManagement.SceneManager.MergeScenes(arg0, destination);
+				}
+				catch (Exception e)
+				{
+					UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(arg0);
+				}
 			}
 			else
 			{

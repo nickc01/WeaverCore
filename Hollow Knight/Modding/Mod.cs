@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,12 +43,19 @@ namespace Modding
 			return null;
 		}
 
-		/// <inheritdoc />
 		/// <summary>
-		///     Called after preloading of all mods.
+		/// A list of requested scenes to be preloaded and actions to execute on loading of those scenes
 		/// </summary>
-		/// <param name="preloadedObjects">The preloaded objects relevant to this <see cref="T:Modding.Mod" /></param>
-		public virtual void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
+		/// <returns>List of tuples containg scene names and the respective actions.</returns>
+		public virtual (string, Func<IEnumerator>)[] PreloadSceneHooks() => Array.Empty<(string, Func<IEnumerator>)>();
+
+
+        /// <inheritdoc />
+        /// <summary>
+        ///     Called after preloading of all mods.
+        /// </summary>
+        /// <param name="preloadedObjects">The preloaded objects relevant to this <see cref="T:Modding.Mod" /></param>
+        public virtual void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
 		{
 			this.Initialize();
 		}

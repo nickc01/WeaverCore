@@ -44,11 +44,11 @@ namespace WeaverCore.Utilities
 
 		public static T GetRandomElement<T>(this List<T> list, int startIndex, int endIndex)
 		{
-			if (startIndex < 0 || startIndex >= list.Count)
+			if (startIndex < 0 || startIndex > list.Count)
 			{
 				throw new Exception("Invalid Start Index");
 			}
-			if (endIndex < 0 || endIndex >= list.Count)
+			if (endIndex < 0 || endIndex > list.Count)
 			{
 				throw new Exception("Invalid End Index");
 			}

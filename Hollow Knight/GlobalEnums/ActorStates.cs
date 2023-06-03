@@ -2,7 +2,7 @@
 
 namespace GlobalEnums
 {
-	public enum ActorStates
+    public enum ActorStates
 	{
 		grounded,
 		idle,

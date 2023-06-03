@@ -556,13 +556,22 @@ namespace WeaverCore.Components
                         }
                     }
                 }
-                int num = 1;
+                /*int num = 1;
                 if (extraDamageType == ExtraDamageTypes.Dung2)
                 {
                     num = 2;
-                }
-                Health -= num;
+                }*/
+                Health -= GetDamageOfType(extraDamageType);
             }
+        }
+
+        public static int GetDamageOfType(ExtraDamageTypes extraDamageTypes)
+        {
+            if ((uint)extraDamageTypes <= 1u || extraDamageTypes != ExtraDamageTypes.Dung2)
+            {
+                return 1;
+            }
+            return 2;
         }
 
         /// <summary>

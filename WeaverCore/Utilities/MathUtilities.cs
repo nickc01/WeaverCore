@@ -89,12 +89,12 @@ namespace WeaverCore.Utilities
 			return PolarToCartesian(angleAndMagnitude.x, angleAndMagnitude.y);
 		}
 
-		/// <summary>
-		/// Converts a set of cartesian coordinates to polar coordinates
-		/// </summary>
-		/// <param name="vector">The x-y coordinates</param>
-		/// <returns>Returns the polar coordinates (x is the angle, y is the magnitude)</returns>
-		public static Vector2 CartesianToPolar(Vector2 vector)
+        /// <summary>
+        /// Converts a set of cartesian coordinates to polar coordinates
+        /// </summary>
+        /// <param name="vector">The x-y coordinates</param>
+        /// <returns>Returns the polar coordinates (x is the angle in degrees, y is the magnitude)</returns>
+        public static Vector2 CartesianToPolar(Vector2 vector)
 		{
 			return CartesianToPolar(vector.x, vector.y);
 		}
@@ -104,7 +104,7 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		/// <param name="x">The x coordinates</param>
 		/// <param name="y">The y coordinates</param>
-		/// <returns>Returns the polar coordinates (x is the angle, y is the magnitude)</returns>
+		/// <returns>Returns the polar coordinates (x is the angle in degrees, y is the magnitude)</returns>
 		public static Vector2 CartesianToPolar(float x, float y)
 		{
 			return new Vector2(Mathf.Atan2(y,x) * Mathf.Rad2Deg,Mathf.Sqrt((x*x) + (y*y)));

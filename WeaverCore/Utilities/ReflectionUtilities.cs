@@ -565,5 +565,35 @@ namespace WeaverCore.Utilities
             }
 			return null;
 		}
-	}
+
+		public static object ReflectGetField(this object obj, string fieldName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+		{
+			return obj.GetType().GetField(fieldName, flags).GetValue(obj);
+		}
+
+        public static void ReflectSetField(this object obj, string fieldName, object value, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+            obj.GetType().GetField(fieldName, flags).SetValue(obj, value);
+        }
+
+        public static object ReflectGetProperty(this object obj, string propertyName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+            return obj.GetType().GetProperty(propertyName, flags).GetValue(obj);
+        }
+
+        public static void ReflectSetProperty(this object obj, string propertyName, object value, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+            obj.GetType().GetProperty(propertyName, flags).SetValue(obj, value);
+        }
+
+        public static object ReflectCallMethod(this object obj, string methodName, object[] parameters = null, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+            return obj.GetType().GetMethod(methodName, flags).Invoke(obj, parameters);
+        }
+
+        public static MethodInfo ReflectGetMethod(this object obj, string methodName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+			return obj.GetType().GetMethod(methodName, flags);
+        }
+    }
 }

@@ -5,6 +5,8 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+
+
     /// <summary>
     /// Used to damage an <see cref="WeaverCore.Features.Enemy"/> on contact
     /// </summary>

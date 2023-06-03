@@ -1,5 +1,4 @@
 ﻿using Modding;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,7 +7,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
     public abstract class InspectRegion : MonoBehaviour
     {
         [SerializeField]
@@ -21,7 +19,7 @@ namespace WeaverCore.Components
         /// <summary>
         /// Is set to true if the player is currently within range of inspecting
         /// </summary>
-        public bool PlayerInRange { get; private set; } = false;
+        public bool PlayerInRange => isActiveAndEnabled && triggerTracker.InsideCount > 0;
 
         /// <summary>
         /// Is set to true if the player is currently inspecting
@@ -43,6 +41,9 @@ namespace WeaverCore.Components
         [SerializeField]
         float moveToOffset = 0.25f;
 
+        [SerializeField]
+        protected bool heroLooksUp = false;
+
         [field: SerializeField]
         public bool EnableKnightDamageInterrupt { get; set; } = true;
 
@@ -52,11 +53,18 @@ namespace WeaverCore.Components
 
         public event Modding.Delegates.AfterTakeDamageHandler OnKnightDamaged;
 
+        TrackTriggerObjects triggerTracker = null;
+
         protected virtual void Awake()
         {
+            triggerTracker = gameObject.GetComponent<TrackTriggerObjects>();
+
+            if (triggerTracker == null)
+            {
+                triggerTracker = gameObject.AddComponent<TrackTriggerObjects>();
+            }
             promptMarker = transform.Find("Prompt Marker");
             gameObject.layer = LayerMask.NameToLayer("Hero Detector");
-            StartCoroutine(InitRoutine());
         }
 
         private int KnightTookDamage(int hazardType, int damageAmount)
@@ -81,17 +89,19 @@ namespace WeaverCore.Components
 
         protected virtual void OnEnable()
         {
+            StartCoroutine(InitRoutine());
             ModHooks.AfterTakeDamageHook += KnightTookDamage;
         }
 
         protected virtual void OnDisable()
         {
-            PlayerInRange = false;
+            StopAllCoroutines();
             ModHooks.AfterTakeDamageHook -= KnightTookDamage;
         }
 
         protected virtual void OnDestroy()
         {
+            StopAllCoroutines();
             ModHooks.AfterTakeDamageHook -= KnightTookDamage;
         }
 
@@ -138,7 +148,7 @@ namespace WeaverCore.Components
                         PlayerInspecting = true;
                         yield return InspectRoutine();
                         PlayerInspecting = false;
-                        yield break;
+                        break;
                     }
                     else if (!PlayerInRange || !Inspectable)
                     {
@@ -225,6 +235,11 @@ namespace WeaverCore.Components
 
             HeroUtilities.PlayPlayerClip("Idle");
 
+            if (heroLooksUp)
+            {
+                HeroUtilities.PlayPlayerClip("LookUp");
+            }
+
             yield return OnInspectRoutine();
 
             HeroController.instance.RegainControl();
@@ -238,7 +253,7 @@ namespace WeaverCore.Components
         /// </summary>
         protected abstract IEnumerator OnInspectRoutine();
 
-        protected virtual void OnTriggerEnter2D(Collider2D collision)
+        /*protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             PlayerInRange = true;
         }
@@ -246,6 +261,6 @@ namespace WeaverCore.Components
         protected virtual void OnTriggerExit2D(Collider2D collision)
         {
             PlayerInRange = false;
-        }
+        }*/
     }
 }

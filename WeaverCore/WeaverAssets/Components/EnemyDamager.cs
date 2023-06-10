@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using Mono.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 using WeaverCore.Enums;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
@@ -30,16 +34,28 @@ namespace WeaverCore.Assets.Components
 
 		const int DEFAULT_RECURSION_DEPTH = 3;
 
+		public UnityEvent<GameObject, float> OnHitObject;
+
 		void OnTriggerEnter2D(Collider2D collider)
 		{
 			var obj = collider.transform;
 
-			HitEnemy(obj,gameObject,damage,attackType,hitDirection);
+			var hits = HitEnemy(obj,gameObject,damage,attackType,hitDirection);
+
+			foreach (var hit in hits)
+			{
+				if (hit is Component c)
+				{
+                    OnHitObject.Invoke(c.gameObject, damage);
+                }
+            }
 		}
 
-		public static void HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
+		public static List<IHittable> HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
         {
-			int depth = 0;
+            List<IHittable> hitObjects = new List<IHittable>();
+
+            int depth = 0;
 
 			while (obj != null)
 			{
@@ -55,7 +71,9 @@ namespace WeaverCore.Assets.Components
 						Direction = hitDirection.ToDegrees(),
 						IgnoreInvincible = false
 					});
-				}
+					hitObjects.Add(hittable);
+
+                }
 				obj = obj.parent;
 				depth += DEFAULT_RECURSION_DEPTH;
                 if (depth == DEFAULT_RECURSION_DEPTH)
@@ -63,6 +81,7 @@ namespace WeaverCore.Assets.Components
 					break;
                 }
 			}
-		}
+			return hitObjects;
+        }
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore.Implementations;
@@ -54,6 +55,143 @@ namespace WeaverCore.Utilities
 		{
 			return PlayMakerUtilities.impl.GetAllFsmsOnObject(gameObject);
 		}
+
+		public static MonoBehaviour GetPlaymakerFSMOnObject(GameObject gameObject, string name)
+		{
+			if (PlayMakerAvailable)
+			{
+				var playMakerFSMs = gameObject.GetComponents(PlayMakerFSMType);
+
+				foreach (var pmFSM in playMakerFSMs)
+				{
+					if ((string)pmFSM.ReflectGetProperty("Fsm").ReflectGetProperty("Name") == name)
+					{
+						return (MonoBehaviour)pmFSM;
+					}
+				}
+			}
+            return null;
+        }
+
+		public static object GetFSMOnPlayMakerComponent(Component playmakerComponent)
+		{
+			try
+			{
+				if (playmakerComponent == null)
+				{
+					throw new ArgumentNullException(nameof(playmakerComponent));
+				}
+
+				return playmakerComponent.ReflectGetProperty("Fsm");
+
+            }
+			catch (Exception)
+			{
+				throw new Exception("The component is not a PlayMakerFSM");
+			}
+		}
+
+		public static IEnumerable GetStatesOnFSM(object fsm)
+		{
+            if (fsm == null)
+            {
+                throw new ArgumentNullException(nameof(fsm));
+            }
+
+			try
+			{
+				return (IEnumerable)fsm.ReflectGetProperty("States");
+			}
+			catch (Exception)
+			{
+
+                throw new Exception("The component is not an Fsm");
+            }
+        }
+
+		public static string GetStateName(object stateObject)
+		{
+            if (stateObject == null)
+            {
+                throw new ArgumentNullException(nameof(stateObject));
+            }
+
+            try
+            {
+                return (string)stateObject.ReflectGetProperty("Name");
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("The component is not an FSMEvent");
+            }
+        }
+
+		public static object FindStateOnFSM(object fsm, string name)
+		{
+			foreach (var state in GetStatesOnFSM(fsm))
+			{
+				if (GetStateName(state) == name)
+				{
+					return state;
+				}
+			}
+			return null;
+        }
+
+		public static IEnumerable GetStateActions(object stateObject)
+		{
+            if (stateObject == null)
+            {
+                throw new ArgumentNullException(nameof(stateObject));
+            }
+
+            try
+            {
+                return (IEnumerable)stateObject.ReflectGetProperty("Actions");
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("The component is not an FSMEvent");
+            }
+        }
+
+        public static object GetActionData(object stateObject)
+        {
+            if (stateObject == null)
+            {
+                throw new ArgumentNullException(nameof(stateObject));
+            }
+
+            try
+            {
+                return stateObject.ReflectGetProperty("ActionData");
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("The component is not an FSMEvent");
+            }
+        }
+
+        public static string GetActionName(object actionObject)
+		{
+            if (actionObject == null)
+            {
+                throw new ArgumentNullException(nameof(actionObject));
+            }
+
+            try
+            {
+                return (string)actionObject.ReflectGetProperty("Name");
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("The component is not an FSMStateAction");
+            }
+        }
 
 		/// <summary>
 		/// Gets the Object value in a PlayMakerFSM

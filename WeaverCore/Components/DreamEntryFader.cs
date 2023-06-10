@@ -39,6 +39,7 @@ namespace WeaverCore.Components
                 }
             }
 
+            WeaverLog.Log("DREAM ENTRY START");
             HeroController.instance.RelinquishControl();
             HeroController.instance.StopAnimationControl();
             var playerRenderer = HeroController.instance.GetComponent<Renderer>();
@@ -47,6 +48,8 @@ namespace WeaverCore.Components
             EventManager.BroadcastEvent("UPDATE BLUE HEALTH", gameObject);
 
             yield return null;
+
+            playerRenderer.enabled = false;
 
             if (heroFacesLeft)
             {

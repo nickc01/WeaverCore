@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Godseeker Crowd
+  m_EditorClassIdentifier: 
+  clipNames:
+  - Front
+  - LookL
+  - ReturnL
+  - LookR
+  - ReturnR
+  - LookUp
+  - LookUpReturn
+  clipFrameStartIndexes: 00000000010000000300000005000000080000000b0000000e000000
+  clipFrameCounts: 01000000020000000200000003000000030000000300000003000000
+  frames:
+  - {fileID: 3840770041035190958, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 2406411651790891548, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 4994427561568763872, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 2406411651790891548, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 3840770041035190958, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 4998601028761676195, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: -5757071183443775090, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: -1638888565655779362, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: -5757071183443775090, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 4998601028761676195, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 3840770041035190958, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: -8383748131950408713, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 1471181200998446812, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 4590240166828661180, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 4590240166828661180, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: 1471181200998446812, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  - {fileID: -8383748131950408713, guid: 206b1270a7ab20f4dbad0aae7223e702, type: 3}
+  clipFPSs:
+  - 30
+  - 12
+  - 12
+  - 12
+  - 12
+  - 12
+  - 12
+  clipWrapModes: 06000000000000000000000000000000000000000000000000000000
+  clipLoopStarts: 00000000000000000000000000000000000000000000000000000000

@@ -20,7 +20,7 @@ namespace WeaverCore.Internal
 
         public override string GetVersion()
         {
-            return "1.0.1.3";
+            return "1.1.0.0 Beta";
         }
 
         public override List<(string, string)> GetPreloadNames()

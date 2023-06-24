@@ -166,14 +166,17 @@ public class TransitionPoint : MonoBehaviour
 		if (base.transform != null)
 		{
 			var collider = GetComponent<BoxCollider2D>();
-			Vector3 position = base.transform.position + new Vector3(0f, collider.bounds.extents.y + 1.5f, 0f);
+			if (collider != null)
+			{
+				Vector3 position = base.transform.position + new Vector3(0f, collider.bounds.extents.y + 1.5f, 0f);
 #if UNITY_EDITOR
-			UnityEditor.Handles.color = myGreen;
-			UnityEditor.Handles.Label(position, targetScene);
+				UnityEditor.Handles.color = myGreen;
+				UnityEditor.Handles.Label(position, targetScene);
 #endif
-			var scale = transform.localScale;
-			Gizmos.color = myGreen;
-			Gizmos.DrawCube(transform.position + new Vector3(collider.offset.x * scale.x, collider.offset.y * scale.y), new Vector3(collider.size.x * scale.x, collider.size.y * scale.y));
+				var scale = transform.localScale;
+				Gizmos.color = myGreen;
+				Gizmos.DrawCube(transform.position + new Vector3(collider.offset.x * scale.x, collider.offset.y * scale.y), new Vector3(collider.size.x * scale.x, collider.size.y * scale.y));
+			}
 		}
 	}
 

@@ -21,6 +21,7 @@ public class BossSceneController : MonoBehaviour
 
     public Transform heroSpawn;
 
+    [HideInInspector]
     public GameObject transitionPrefab;
 
     public EventRegister endTransitionEvent;

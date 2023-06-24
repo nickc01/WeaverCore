@@ -52,6 +52,20 @@ namespace WeaverCore.Settings
             GetField<T>(settings, fieldName, flags).SetValue(settings, newValue);
         }
 
+        public static bool TryGetFieldValue<T>(this SaveSpecificSettings settings, string fieldName, out T result, BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+            if (HasField<T>(settings,fieldName, flags))
+            {
+                result = GetFieldValue<T>(settings, fieldName, flags);
+                return true;
+            }
+            else
+            {
+                result = default;
+                return false;
+            }
+        }
+
         static FieldInfo GetField<T>(SaveSpecificSettings instance, string fieldName, BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
             var field = instance.GetType().GetField(fieldName, flags);

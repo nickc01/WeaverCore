@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using WeaverCore.Utilities;
 
@@ -21,12 +22,31 @@ namespace WeaverCore.Internal
 
         internal static GameObject ggBattleTransitions;
 
+        internal static AudioEvent statueDownSound;
+        internal static AudioEvent statueUpSound;
+
+        internal static AudioEvent BossLeverSwitchSound;
+
+        internal static GameObject dreamImpactPrefab;
+        internal static GameObject dreamBurstEffectPrefab;
+        internal static GameObject dreamBurstEffectOffPrefab;
+
         internal static GameObject dreamAreaEffect;
+
+        internal static RuntimeAnimatorController[] statueAnimators;
 
 
         public static void SetMageKnightStatue(GameObject preloadedStatue)
         {
             mageKnightStatue = preloadedStatue;
+
+            var bossStatue = preloadedStatue.GetComponent<BossStatue>();
+
+            statueDownSound = bossStatue.statueDownSound;
+            statueUpSound = bossStatue.statueUpSound;
+
+            statueAnimators = mageKnightStatue.GetComponentsInChildren<Animator>(true).Select(a => a.runtimeAnimatorController).ToArray();
+
             //WeaverLog.Log("A");
             var trophyPlaque = mageKnightStatue.GetComponentInChildren<BossStatueTrophyPlaque>();
 
@@ -43,6 +63,13 @@ namespace WeaverCore.Internal
             //WeaverLog.Log("C");
             AudioPlayerPrefab = statueLever.audioPlayerPrefab;
             StrikeNailR = statueLever.strikeNailPrefab;
+            BossLeverSwitchSound = statueLever.switchSound;
+
+            var statueDreamLever = mageKnightStatue.GetComponentInChildren<BossStatueDreamToggle>(true);
+
+            dreamImpactPrefab = statueDreamLever.dreamImpactPrefab;
+            dreamBurstEffectPrefab = statueDreamLever.dreamBurstEffectPrefab;
+            dreamBurstEffectOffPrefab = statueDreamLever.dreamBurstEffectOffPrefab;
 
             //WeaverLog.Log("D");
             var inspectObject = mageKnightStatue.transform.Find("Inspect");

@@ -11,7 +11,6 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Components
 {
-
     /// <summary>
     /// This component allows an action to be done when the player dreamnails an object
     /// </summary>

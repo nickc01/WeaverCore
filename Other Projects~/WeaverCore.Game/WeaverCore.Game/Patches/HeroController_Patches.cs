@@ -22,9 +22,26 @@ namespace WeaverCore.Game.Patches
 			On.HeroController.Respawn += HeroController_Respawn;
 			On.HeroController.LocateSpawnPoint += HeroController_LocateSpawnPoint;
             On.GameManager.OnNextLevelReady += After_FixRespawnType;
+
+            //On.HeroController.Pause += HeroController_Pause;
+            //On.HeroController.UnPause += HeroController_UnPause;
 		}
 
-		static bool foundBenchWarp = false;
+        private static void HeroController_UnPause(On.HeroController.orig_UnPause orig, HeroController self)
+        {
+			WeaverLog.Log("UNPAUSING PLAYER");
+			WeaverLog.Log(new System.Diagnostics.StackTrace());
+			orig(self);
+        }
+
+        private static void HeroController_Pause(On.HeroController.orig_Pause orig, HeroController self)
+        {
+			WeaverLog.Log("PAUSING PLAYER");
+            WeaverLog.Log(new System.Diagnostics.StackTrace());
+            orig(self);
+        }
+
+        static bool foundBenchWarp = false;
 
 		[AfterModLoad("Benchwarp.Benchwarp")]
 		static void BenchwarpLoaded()

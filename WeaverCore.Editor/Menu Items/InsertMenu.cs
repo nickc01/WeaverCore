@@ -19,8 +19,54 @@ namespace WeaverCore.Editor.Menu_Items
 	/// </summary>
     public static class InsertMenu
 	{
-		static GameObject InsertObject(string prefabName)
-		{
+        static GameObject InsertObject(string prefabName)
+        {
+            var prefab = WeaverAssets.LoadWeaverAsset<GameObject>(prefabName);
+            if (prefab == null)
+            {
+                prefab = EditorAssets.LoadEditorAsset<GameObject>(prefabName);
+            }
+
+            if (prefab == null)
+            {
+                return null;
+            }
+
+            var instance = GameObject.Instantiate(prefab, null);
+
+            instance.name = prefab.name;
+
+            Vector3 oldPos = instance.transform.position;
+
+            var sceneView = ((IEnumerable)SceneView.sceneViews).OfType<SceneView>().FirstOrDefault();
+
+            if (sceneView != null)
+            {
+                var pivot = sceneView.pivot;
+
+                oldPos.x = pivot.x;
+                oldPos.y = pivot.y;
+            }
+            else
+            {
+                oldPos.x = 0;
+                oldPos.y = 0;
+            }
+
+            instance.transform.position = oldPos;
+
+            if (!Application.isPlaying)
+            {
+                Undo.RegisterCreatedObjectUndo(instance.gameObject, $"Create {prefabName}");
+                Selection.activeGameObject = instance.gameObject;
+                EditorSceneManager.MarkSceneDirty(instance.scene);
+            }
+
+            return instance;
+        }
+
+		static GameObject InsertObject(string prefabName, Vector3 position, Quaternion rotation)
+        {
 			var prefab = WeaverAssets.LoadWeaverAsset<GameObject>(prefabName);
 			if (prefab == null)
 			{
@@ -36,24 +82,8 @@ namespace WeaverCore.Editor.Menu_Items
 
 			instance.name = prefab.name;
 
-			Vector3 oldPos = instance.transform.position;
-
-			var sceneView = ((IEnumerable)SceneView.sceneViews).OfType<SceneView>().FirstOrDefault();
-
-			if (sceneView != null)
-			{
-				var pivot = sceneView.pivot;
-
-				oldPos.x = pivot.x;
-				oldPos.y = pivot.y;
-			}
-			else
-            {
-				oldPos.x = 0;
-				oldPos.y = 0;
-            }
-
-			instance.transform.position = oldPos;
+			instance.transform.position = position;
+			instance.transform.rotation = rotation;
 
 			if (!Application.isPlaying)
 			{
@@ -141,6 +171,20 @@ namespace WeaverCore.Editor.Menu_Items
         public static void InsertDreamReturnWarp()
         {
             InsertObject("Dream Return Warp");
+        }
+
+        //Godhome Statue Template
+
+        [MenuItem("WeaverCore/Insert/Godhome Statue Template")]
+        public static void InsertGodhomeStatueTemplate()
+        {
+            InsertObject("Godhome Statue Template");
+        }
+
+        [MenuItem("WeaverCore/Insert/Boss Scene Controller")]
+        public static void InsertBossSceneController()
+        {
+            InsertObject("Boss Scene Controller", default, default);
         }
 
         [MenuItem("WeaverCore/Insert/Weaver Canvas")]

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class HazardRespawnMarker : MonoBehaviour
 {
 	public bool respawnFacingRight;
@@ -15,11 +15,12 @@ public class HazardRespawnMarker : MonoBehaviour
 
 	private void Awake()
 	{
+
 		if (transform.parent != null && transform.parent.name.Contains("top"))
 		{
 			groundSenseDistance = 50f;
 		}
-		heroSpawnLocation = Physics2D.Raycast(transform.position, groundSenseRay, groundSenseDistance, 256).point;
+		heroSpawnLocation = Physics2D.Raycast(transform.position, groundSenseRay, groundSenseDistance, LayerMask.GetMask("Terrain")).point;
 	}
 
 	private void Update()

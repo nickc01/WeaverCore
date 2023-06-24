@@ -196,6 +196,17 @@ namespace WeaverCore.Assets.Components
             }
         }
 
+        public void ForceDisappear(float time)
+        {
+            IEnumerator Wait(float time)
+            {
+                yield return new WaitForSeconds(time);
+                ForceDisappear();
+            }
+
+            StartCoroutine(Wait(time));
+        }
+
         IEnumerator EndRoutine()
         {
             if (scaleCoroutine != null)

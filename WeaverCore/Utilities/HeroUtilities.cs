@@ -17,6 +17,18 @@ namespace WeaverCore.Utilities
 		static Type ClipType;
 		static PropertyInfo ClipDurationP;
 
+		static void InitHeroAnim()
+		{
+            if (heroAnimator == null)
+            {
+                heroAnimator = HeroController.instance.GetComponent("tk2dSpriteAnimator");
+                heroAnimatorType = heroAnimator.GetType();
+                CurrentClipP = heroAnimatorType.GetProperty("CurrentClip");
+                ClipType = CurrentClipP.PropertyType;
+                ClipDurationP = ClipType.GetProperty("Duration");
+            }
+        }
+
 		/// <summary>
 		/// Plays an animation clip on the player, and waits until the clip is done
 		/// </summary>
@@ -25,15 +37,8 @@ namespace WeaverCore.Utilities
 		{
 			if (Initialization.Environment == Enums.RunningState.Game)
 			{
-				if (heroAnimator == null)
-				{
-					heroAnimator = HeroController.instance.GetComponent("tk2dSpriteAnimator");
-					heroAnimatorType = heroAnimator.GetType();
-					CurrentClipP = heroAnimatorType.GetProperty("CurrentClip");
-					ClipType = CurrentClipP.PropertyType;
-					ClipDurationP = ClipType.GetProperty("Duration");
-				}
-				heroAnimator.SendMessage("Play", clip);
+				InitHeroAnim();
+                heroAnimator.SendMessage("Play", clip);
 				yield return new WaitForSeconds((float)ClipDurationP.GetValue(CurrentClipP.GetValue(heroAnimator)));
 			}
 
@@ -52,19 +57,28 @@ namespace WeaverCore.Utilities
 		{
 			if (Initialization.Environment == Enums.RunningState.Game)
 			{
-				if (heroAnimator == null)
-				{
-					heroAnimator = HeroController.instance.GetComponent("tk2dSpriteAnimator");
-					heroAnimatorType = heroAnimator.GetType();
-					CurrentClipP = heroAnimatorType.GetProperty("CurrentClip");
-					ClipType = CurrentClipP.PropertyType;
-					ClipDurationP = ClipType.GetProperty("Duration");
-				}
-				heroAnimator.SendMessage("Play", clip);
+                InitHeroAnim();
+                heroAnimator.SendMessage("Play", clip);
 			}
 
 			var weaverAnim = HeroController.instance.GetComponent<WeaverAnimationPlayer>();
 			weaverAnim?.PlayAnimation(clip);
+		}
+
+		public static void PauseCurrentAnimation(bool pause)
+		{
+            InitHeroAnim();
+
+			if (pause)
+			{
+				//heroAnimator.SendMessage("Pause");
+				heroAnimator.ReflectCallMethod("Pause");
+			}
+			else
+			{
+                //heroAnimator.SendMessage("Resume");
+                heroAnimator.ReflectCallMethod("Resume");
+            }
 		}
 	}
 

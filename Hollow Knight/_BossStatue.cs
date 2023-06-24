@@ -62,14 +62,18 @@ public class BossStatue : MonoBehaviour
 
     [Header("Statue Data")]
     [FormerlySerializedAs("statueStateInt")]
+    [HideInInspector]
     public string statueStatePD;
 
+    [HideInInspector]
     public BossUIDetails bossDetails;
 
     [Space]
     [FormerlySerializedAs("dreamStatueStateInt")]
+    [HideInInspector]
     public string dreamStatueStatePD;
 
+    [HideInInspector]
     public BossUIDetails dreamBossDetails;
 
     [Space]
@@ -119,12 +123,15 @@ public class BossStatue : MonoBehaviour
 
     public AudioSource statueShakeLoop;
 
+    [HideInInspector]
     public AudioSource audioSourcePrefab;
 
+    [HideInInspector]
     public AudioEvent statueDownSound;
 
     public float statueDownSoundDelay;
 
+    [HideInInspector]
     public AudioEvent statueUpSound;
 
     public float statueUpSoundDelay = 0.3f;

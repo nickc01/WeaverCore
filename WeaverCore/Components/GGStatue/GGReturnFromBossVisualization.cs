@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 using WeaverCore.Internal;
 
@@ -31,8 +32,10 @@ namespace WeaverCore.Components.GGStatue
         {
             var currentDoor = gameObject.name;
 
-            var entryGate = HeroController.instance.GetEntryGateName();
+           // WeaverLog.Log("CURRENT DOOR NAME = " + currentDoor);
 
+            var entryGate = HeroController.instance.GetEntryGateName();
+            //WeaverLog.Log("ENTRY GATE = " + entryGate);
             if (currentDoor == entryGate)
             {
                 PlayerData.instance.SetString("bossReturnEntryGate", "");
@@ -52,8 +55,15 @@ namespace WeaverCore.Components.GGStatue
 
             if (GG_Internal.ggBattleTransitions != null)
             {
-                transitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions, Vector3.zero, Quaternion.identity);
-                EventManager.SendEventToGameObject("GG TRANSITION OUT INSTANT", transitions, gameObject);
+                //transitions = GameObject.Find("gg_battle_transitions(Clone)");
+                /*transitions = GameObject.FindObjectsOfType<EventRegister>(true).Select(e => e.gameObject).FirstOrDefault(g => g.name.StartsWith("gg_battle_transitions"));*/
+                //WeaverLog.Log("Found Transition Object = " + transitions);
+                if (transitions == null)
+                {
+                    transitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions);
+                }
+                //EventManager.SendEventToGameObject("GG TRANSITION OUT INSTANT", transitions, gameObject);
+                EventRegister.SendEvent("GG TRANSITION OUT INSTANT");
             }
 
             var hudCamera = GameObject.FindObjectOfType<HUDCamera>()?.gameObject;
@@ -71,7 +81,8 @@ namespace WeaverCore.Components.GGStatue
 
             if (transitions != null)
             {
-                EventManager.SendEventToGameObject("GG TRANSITION IN STATUE", transitions, gameObject);
+                //EventManager.SendEventToGameObject("GG TRANSITION IN STATUE", transitions, gameObject);
+                EventRegister.SendEvent("GG TRANSITION IN STATUE");
             }
 
             yield return new WaitForSeconds(1f);

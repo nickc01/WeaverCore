@@ -61,11 +61,31 @@ unknown -> Don't use")]
 		[Tooltip("The music snapshot that is applied when the player touches this transition point")]
 		private Music.SnapshotType m_MusicSnapshot = Music.SnapshotType.Normal;
 
+		[SerializeField]
+		[Tooltip("If set to true, the door will be functional and display text above it when the player is nearby")]
+		bool enableDoorControl = true;
+
+		public bool EnableDoorControl
+		{
+			get => enableDoorControl;
+			set
+			{
+				if (enableDoorControl != value)
+				{
+					enableDoorControl = value;
+					if (TryGetComponent<DoorControl>(out var door))
+					{
+						door.enabled = enableDoorControl && enabled;
+					}
+				}
+			}
+		}
+
 		[OnHarmonyPatch]
 		static void Init(HarmonyPatcher patcher)
 		{
-			patcher.Patch(typeof(TransitionPoint).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance), null, typeof(WeaverTransitionPoint).GetMethod("Start_Detour", BindingFlags.NonPublic | BindingFlags.Static));
-			patcher.Patch(typeof(TransitionPoint).GetMethod("GetGatePosition", BindingFlags.Public | BindingFlags.Instance), typeof(WeaverTransitionPoint).GetMethod("Weaver_GetGatePosition", BindingFlags.NonPublic | BindingFlags.Static), null);
+			patcher.Patch(typeof(TransitionPoint).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance), null, typeof(WeaverTransitionPoint).GetMethod(nameof(Start_Detour), BindingFlags.NonPublic | BindingFlags.Static));
+			patcher.Patch(typeof(TransitionPoint).GetMethod("GetGatePosition", BindingFlags.Public | BindingFlags.Instance), typeof(WeaverTransitionPoint).GetMethod(nameof(Weaver_GetGatePosition), BindingFlags.NonPublic | BindingFlags.Static), null);
 		}
 
 		static void Start_Detour(TransitionPoint __instance)
@@ -91,11 +111,18 @@ unknown -> Don't use")]
 
 		void Weaver_Start()
 		{
-			OnValidate();
+            if (gameObject != null)
+            {
+                gameObject.tag = "TransitionGate";
+                gameObject.layer = LayerMask.NameToLayer("Hero Detector");
+            }
+            //OnValidate();
             if (gateType == GatePosition.door && GetComponent<DoorControl>() == null)
             {
 				var doorControl = gameObject.AddComponent<DoorControl>();
-				doorControl.OnEnter.AddListener((knight_anim) =>
+				doorControl.enabled = EnableDoorControl;
+
+                doorControl.OnEnter.AddListener((knight_anim) =>
 				{
 					StartCoroutine(DoTransition(knight_anim));
 				});
@@ -106,7 +133,7 @@ unknown -> Don't use")]
         {
             if (TryGetComponent<DoorControl>(out var door))
             {
-				door.enabled = true;
+				door.enabled = EnableDoorControl;
             }
         }
 
@@ -118,7 +145,8 @@ unknown -> Don't use")]
 			}
 		}
 
-        private void Reset()
+#if UNITY_EDITOR
+		private void Reset()
 		{
 			UnboundCoroutine.Start(SetMasks(gameObject));
 		}
@@ -141,6 +169,7 @@ unknown -> Don't use")]
 				gameObject.layer = LayerMask.NameToLayer("Hero Detector");
 			}
 		}
+#endif
 
 		public IEnumerator DoTransition(string heroAnimation, float transitionTime = 0.3f)
         {

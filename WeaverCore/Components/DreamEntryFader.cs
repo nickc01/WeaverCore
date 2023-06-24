@@ -10,19 +10,19 @@ namespace WeaverCore.Components
 	{
         [SerializeField]
         [Tooltip("Specifies which specific door in the scene should the player come from for this entry fader to activate. Leave blank for any entry door")]
-        string entryDoor = "";
+        protected string entryDoor = "";
 
         [SerializeField]
-        bool heroFacesLeft = false;
+        protected bool heroFacesLeft = false;
 
         [SerializeField]
-        AudioClip dreamEnterAudio;
+        protected AudioClip dreamEnterAudio;
 
 
         public string EntryDoor => entryDoor;
 
 
-        private void Awake()
+        protected virtual void Awake()
         {
             StartCoroutine(MainRoutine());
         }
@@ -96,7 +96,7 @@ namespace WeaverCore.Components
             cutscene.gameObject.SetActive(false);
         }
 
-        IEnumerator WaitForHero()
+        protected IEnumerator WaitForHero()
         {
             if (HeroController.instance == null)
             {

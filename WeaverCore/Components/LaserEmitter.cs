@@ -351,6 +351,16 @@ namespace WeaverCore.Components
             laser.gameObject.SetActive(false);
         }
 
+        public void StopLaserAfter(float time)
+        {
+            IEnumerator Routine(float t)
+            {
+                yield return new WaitForSeconds(t);
+                StopLaser();
+            }
+            StartCoroutine(Routine(time));
+        }
+
         public void StopLaser()
         {
             if (!FiringLaser)

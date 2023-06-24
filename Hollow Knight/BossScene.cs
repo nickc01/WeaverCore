@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Boss Scene", menuName = "Hollow Knight/Boss Scene")]
 public class BossScene : ScriptableObject
 {
     [Serializable]
@@ -38,26 +38,24 @@ public class BossScene : ScriptableObject
             GGUnlock
         }
 
-        //public PersistentBoolData persistentBool;
+        public BoolTest[] boolTests;
 
-        //public BoolTest[] boolTests;
+        public IntTest[] intTests;
 
-        //public IntTest[] intTests;
-
-        //public SharedDataTest[] sharedData;
+        public SharedDataTest[] sharedData;
 
         public bool IsUnlocked()
         {
-            return true;
-            /*bool flag = true;
-            if (!string.IsNullOrEmpty(persistentBool.id) && !string.IsNullOrEmpty(persistentBool.sceneName))
+            //return true;
+            bool flag = true;
+            /*if (!string.IsNullOrEmpty(persistentBool.id) && !string.IsNullOrEmpty(persistentBool.sceneName))
             {
                 PersistentBoolData persistentBoolData = SceneData.instance.FindMyState(persistentBool);
                 if (persistentBoolData == null || !persistentBoolData.activated)
                 {
                     flag = false;
                 }
-            }
+            }*/
             if (flag)
             {
                 BoolTest[] array = boolTests;
@@ -115,7 +113,7 @@ public class BossScene : ScriptableObject
                     }
                 }
             }
-            return flag;*/
+            return flag;
         }
     }
 
@@ -202,8 +200,9 @@ public class BossScene : ScriptableObject
 
     public bool IsUnlockedSelf(BossSceneCheckSource source)
     {
-        return true;
-        /*if (GameManager.instance.playerData.unlockedBossScenes.Contains(base.name))
+        //return true;
+        var unlockedScenes = GameManager.instance.playerData.GetVariable<List<string>>("unlockedBossScenes");
+        if (unlockedScenes != null && unlockedScenes.Contains(base.name))
         {
             return true;
         }
@@ -222,6 +221,6 @@ public class BossScene : ScriptableObject
         {
             return true;
         }
-        return false;*/
+        return false;
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace WeaverCore.Assets.Components
 {
     /// <summary>
-    /// Used for fitting the text in the <see cref="AreaTitle"/> into place
+    /// Used for fitting the text in the <see cref="WeaverBossTitle"/> into place
     /// </summary>
     [ExecuteInEditMode]
     public class AreaTitleTextFitter : MonoBehaviour

@@ -194,9 +194,17 @@ namespace WeaverCore.Components.GGStatue
 
                 if (GG_Internal.ggBattleTransitions != null)
                 {
-                    var battleTransitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions, Vector3.zero, Quaternion.identity);
+                    var battleTransitions = GameObject.Find("gg_battle_transitions(Clone)");
 
-                    EventManager.SendEventToGameObject("GG TRANSITION OUT", battleTransitions, gameObject);
+                    if (battleTransitions == null)
+                    {
+                        battleTransitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions, Vector3.zero, Quaternion.identity);
+                    }
+
+                    //var battleTransitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions, Vector3.zero, Quaternion.identity);
+
+                    EventRegister.SendEvent("GG TRANSITION OUT");
+                    /*EventManager.SendEventToGameObject("GG TRANSITION OUT", battleTransitions, gameObject);*/
 
                     transitionEventHooked = true;
                     fullyTransitionedOut = false;
@@ -221,7 +229,7 @@ namespace WeaverCore.Components.GGStatue
                         SceneName = bossSceneToLoad,
                         EntryGateName = "door_dreamEnter",
                         EntryDelay = 0f,
-                        Visualization = GameManager.SceneLoadVisualizations.Default,
+                        Visualization = GameManager.SceneLoadVisualizations.GodsAndGlory,
                         PreventCameraFadeOut = true,
                         WaitForSceneTransitionCameraFade = false,
                         AlwaysUnloadUnusedAssets = false

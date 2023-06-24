@@ -12,7 +12,7 @@ namespace WeaverCore.Assets.Components
     /// Used to show an area title in the corner of the screen. Used to show the name of bosses or NPCs
     /// </summary>
     [ExecuteInEditMode]
-    public class AreaTitle : MonoBehaviour
+    public class WeaverBossTitle : MonoBehaviour
     {
         static ObjectPool AreaTitlePool;
         static GameObject Prefab;
@@ -134,7 +134,7 @@ namespace WeaverCore.Assets.Components
         /// <param name="fadeInTime">The amount of time the text will take to fade in</param>
         /// <param name="waitTime">How long the text will wait before fading out</param>
         /// <param name="fadeOutTime">The amount of time the text will take to fade out</param>
-        /// <param name="deleteWhenDone">Should the <see cref="AreaTitle"/> be deleted when done?</param>
+        /// <param name="deleteWhenDone">Should the <see cref="WeaverBossTitle"/> be deleted when done?</param>
         public void DoFade(float fadeInTime, float waitTime, float fadeOutTime, bool deleteWhenDone)
         {
             if (DoingFade)
@@ -234,7 +234,7 @@ namespace WeaverCore.Assets.Components
         /// Spawns the Area Title, but will not fade in/out by default. You will need to control this manually by calling <see cref="DoFade(float, float, float, bool)"/>
         /// </summary>
         /// <returns>Returns the new area title object</returns>
-        public static AreaTitle SpawnNoFade()
+        public static WeaverBossTitle SpawnNoFade()
         {
             return SpawnNoFade("Top Text", "Bottom Text");
         }
@@ -245,7 +245,7 @@ namespace WeaverCore.Assets.Components
         /// <param name="topText">The top (smaller) text</param>
         /// <param name="bottomText">The bottom (larger) text</param>
         /// <returns>Returns the new area title object</returns>
-        public static AreaTitle SpawnNoFade(string topText, string bottomText)
+        public static WeaverBossTitle SpawnNoFade(string topText, string bottomText)
         {
             if (AreaTitlePool == null)
             {
@@ -253,7 +253,7 @@ namespace WeaverCore.Assets.Components
                 AreaTitlePool = ObjectPool.Create(Prefab);
             }
 
-            var title = AreaTitlePool.Instantiate<AreaTitle>(WeaverCanvas.SceneContent);
+            var title = AreaTitlePool.Instantiate<WeaverBossTitle>(WeaverCanvas.SceneContent);
             title.TopText = topText;
             title.BottomText = bottomText;
             title.transform.SetZLocalPosition(0f);
@@ -275,9 +275,9 @@ namespace WeaverCore.Assets.Components
         /// <param name="fadeInTime">The amount of time the text will take to fade in</param>
         /// <param name="waitTime">How long the text will wait before fading out</param>
         /// <param name="fadeOutTime">The amount of time the text will take to fade out</param>
-        /// <param name="deleteWhenDone">Should the <see cref="AreaTitle"/> be deleted when done?</param>
+        /// <param name="deleteWhenDone">Should the <see cref="WeaverBossTitle"/> be deleted when done?</param>
         /// <returns>Returns the new area title object</returns>
-        public static AreaTitle Spawn(string topText, string bottomText, float fadeInTime = 1.5f, float waitTime = 4.5f, float fadeOutTime = 1.5f, bool deleteWhenDone = true)
+        public static WeaverBossTitle Spawn(string topText, string bottomText, float fadeInTime = 1.5f, float waitTime = 4.5f, float fadeOutTime = 1.5f, bool deleteWhenDone = true)
         {
             var title = SpawnNoFade(topText, bottomText);
             title.DoFade(fadeInTime, waitTime, fadeOutTime, deleteWhenDone);
@@ -290,9 +290,9 @@ namespace WeaverCore.Assets.Components
         /// <param name="fadeInTime">The amount of time the text will take to fade in</param>
         /// <param name="waitTime">How long the text will wait before fading out</param>
         /// <param name="fadeOutTime">The amount of time the text will take to fade out</param>
-        /// <param name="deleteWhenDone">Should the <see cref="AreaTitle"/> be deleted when done?</param>
+        /// <param name="deleteWhenDone">Should the <see cref="WeaverBossTitle"/> be deleted when done?</param>
         /// <returns>Returns the new area title object</returns>
-        public static AreaTitle Spawn(float fadeInTime = 1.5f, float waitTime = 4.5f, float fadeOutTime = 1.5f, bool deleteWhenDone = true)
+        public static WeaverBossTitle Spawn(float fadeInTime = 1.5f, float waitTime = 4.5f, float fadeOutTime = 1.5f, bool deleteWhenDone = true)
         {
             return Spawn("Top Text", "Bottom Text", fadeInTime, waitTime, fadeOutTime, deleteWhenDone);
         }

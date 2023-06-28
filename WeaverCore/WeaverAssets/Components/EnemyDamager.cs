@@ -59,20 +59,22 @@ namespace WeaverCore.Assets.Components
 
 			while (obj != null)
 			{
-				IHittable hittable = obj.GetComponent<IHittable>();
-				if (hittable != null)
+				var hittables = obj.GetComponents<IHittable>();
+				if (hittables != null && hittables.Length > 0)
 				{
-					hittable.Hit(new HitInfo()
+					foreach (var hittable in hittables)
 					{
-						Attacker = attacker,
-						Damage = damage,
-						AttackStrength = 1f,
-						AttackType = type,
-						Direction = hitDirection.ToDegrees(),
-						IgnoreInvincible = false
-					});
-					hitObjects.Add(hittable);
-
+                        hittable.Hit(new HitInfo()
+                        {
+                            Attacker = attacker,
+                            Damage = damage,
+                            AttackStrength = 1f,
+                            AttackType = type,
+                            Direction = hitDirection.ToDegrees(),
+                            IgnoreInvincible = false
+                        });
+                        hitObjects.Add(hittable);
+                    }
                 }
 				obj = obj.parent;
 				depth += DEFAULT_RECURSION_DEPTH;

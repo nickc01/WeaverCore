@@ -9,7 +9,7 @@ namespace WeaverCore.Components
 {
     public class CollisionCounter : MonoBehaviour, IOnPool
     {
-        [SerializeField]
+        [NonSerialized]
         List<Collider2D> collidedObjects = new List<Collider2D>();
 
         public IEnumerable<Collider2D> CollidedObjects => collidedObjects;

@@ -19,11 +19,14 @@ namespace WeaverCore.Components
 
         public bool Hit(HitInfo hit)
         {
-            if (deflectTimer <= 0f)
-            {
-                deflectTimer = repeatDelay;
-                OnDeflect(hit);
-                return true;
+			if (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam || hit.AttackType == AttackType.Generic)
+			{
+                if (deflectTimer <= 0f)
+                {
+                    deflectTimer = repeatDelay;
+                    OnDeflect(hit);
+                    return true;
+                }
             }
             return false;
         }

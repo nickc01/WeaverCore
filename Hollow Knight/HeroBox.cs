@@ -27,12 +27,12 @@ public class HeroBox : MonoBehaviour
 	private void CheckForDamage(Collider2D otherCollider)
 	{
 		DamageHero component = otherCollider.gameObject.GetComponent<DamageHero>();
-		if (component != null && component.damageDealt > 0)
+		if (component != null && component.damageDealt > 0 && (!heroCtrl.cState.shadowDashing || !component.shadowDashHazard))
 		{
-			if (heroCtrl.cState.shadowDashing && component.shadowDashHazard)
+			/*if (heroCtrl.cState.shadowDashing && component.shadowDashHazard)
 			{
 				return;
-			}
+			}*/
 			damageDealt = component.damageDealt;
 			hazardType = component.hazardType;
 			damagingObject = otherCollider.gameObject;

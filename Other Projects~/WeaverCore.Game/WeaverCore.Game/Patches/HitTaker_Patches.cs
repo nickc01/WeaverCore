@@ -15,21 +15,24 @@ namespace WeaverCore.Game.Patches
 			HitInfo info = Misc.ConvertHitInstance(damageInstance);
 			if (targetGameObject != null)
 			{
-				Transform transform = targetGameObject.transform;
-				for (int i = 0; i < recursionDepth; i++)
-				{
-					IHittable hittable = transform.GetComponent<IHittable>();
-					if (hittable != null)
-					{
-						hittable.Hit(info);
-					}
-					transform = transform.parent;
-					if (transform == null)
-					{
-						break;
-					}
-				}
-			}
+                Transform transform = targetGameObject.transform;
+                for (int i = 0; i < recursionDepth; i++)
+                {
+                    var hittables = transform.GetComponents<IHittable>();
+                    if (hittables != null && hittables.Length > 0)
+                    {
+                        foreach (var hittable in hittables)
+                        {
+                            hittable.Hit(info);
+                        }
+                    }
+                    transform = transform.parent;
+                    if (transform == null)
+                    {
+                        break;
+                    }
+                }
+            }
 			orig(targetGameObject, damageInstance, recursionDepth);
 		}
 

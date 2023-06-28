@@ -42,7 +42,7 @@ namespace WeaverCore.Editor
 				Debug.LogError($"Failed to do a package search with the error code [{searchRequest.Error.errorCode}], {searchRequest.Error.message}");
 			}
 
-			var buildPipelineVersion = searchRequest.Result[0].versions.compatible.FirstOrDefault(v => v == "1.21.3") ?? searchRequest.Result[0].versions.verified;
+			var buildPipelineVersion = searchRequest.Result[0].versions.compatible.FirstOrDefault(v => v == "1.20.2") ?? searchRequest.Result[0].versions.verified;
 
             bool latestVersionInstalled = false;
 

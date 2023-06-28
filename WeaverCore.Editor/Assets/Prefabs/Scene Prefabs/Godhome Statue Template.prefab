@@ -5924,7 +5924,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aafbec7e3b8df734399c60149ff9771a, type: 2}
+  - {fileID: 2100000, guid: ea113a387301e554a9750277abcd2a62, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -8620,7 +8620,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aafbec7e3b8df734399c60149ff9771a, type: 2}
+  - {fileID: 2100000, guid: ea113a387301e554a9750277abcd2a62, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20116,7 +20116,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aafbec7e3b8df734399c60149ff9771a, type: 2}
+  - {fileID: 2100000, guid: ea113a387301e554a9750277abcd2a62, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25906,7 +25906,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c2201641cab11b84bada777ec4b1795d, type: 2}
+  - {fileID: 2100000, guid: 0ae6500efb1f7134f8f11defd8a6675f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28635,7 +28635,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aafbec7e3b8df734399c60149ff9771a, type: 2}
+  - {fileID: 2100000, guid: ea113a387301e554a9750277abcd2a62, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31349,7 +31349,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aafbec7e3b8df734399c60149ff9771a, type: 2}
+  - {fileID: 2100000, guid: ea113a387301e554a9750277abcd2a62, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -31558,7 +31558,7 @@ SpriteRenderer:
   m_Size: {x: 1.28125, y: 1.265625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1522682535171705876
@@ -34450,7 +34450,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c2201641cab11b84bada777ec4b1795d, type: 2}
+  - {fileID: 2100000, guid: 0ae6500efb1f7134f8f11defd8a6675f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37415,7 +37415,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aafbec7e3b8df734399c60149ff9771a, type: 2}
+  - {fileID: 2100000, guid: ea113a387301e554a9750277abcd2a62, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -39984,7 +39984,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aafbec7e3b8df734399c60149ff9771a, type: 2}
+  - {fileID: 2100000, guid: ea113a387301e554a9750277abcd2a62, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -43043,6 +43043,10 @@ MonoBehaviour:
   dreamBossNameSheet: 
   dreamBossDescKey: 
   dreamBossDescSheet: 
+  nameOverride: 
+  descOverride: 
+  dreamNameOverride: 
+  dreamDescOverride: 
 --- !u!114 &1522682535171706769
 MonoBehaviour:
   m_ObjectHideFlags: 0

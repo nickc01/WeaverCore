@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Particle_Crossroads
+  m_Name: Statue Particles
   m_Shader: {fileID: 4800000, guid: 67fe76fd8582f4a4cb69ec52f33b603e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5

@@ -108,8 +108,8 @@ namespace WeaverCore.Components
 
         private string ModHooks_LanguageGetHook(string key, string sheetTitle, string orig)
         {
-            WeaverLog.Log("SHEET = " + sheetTitle);
-            WeaverLog.Log("KEY = " + key);
+            //WeaverLog.Log("SHEET = " + sheetTitle);
+            //WeaverLog.Log("KEY = " + key);
             //areaEvent + "_MAIN"
             //areaEvent + "_SUB"
             //areaEvent + "_SUPER"

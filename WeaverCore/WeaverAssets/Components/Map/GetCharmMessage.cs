@@ -59,18 +59,18 @@ namespace WeaverCore.Assets.Components
 
             if (CharmIconList.Instance != null)
             {
-                WeaverLog.Log("CHARM ICON LIST FOUND");
-                WeaverLog.Log("ID 123 = " + charmID);
+                //WeaverLog.Log("CHARM ICON LIST FOUND");
+                //WeaverLog.Log("ID 123 = " + charmID);
                 charmIcon = CharmIconList.Instance.GetSprite(charmID);
-                WeaverLog.Log("LIST CHARM ICON = " + charmIcon);
+                //WeaverLog.Log("LIST CHARM ICON = " + charmIcon);
             }
             else
             {
                 foreach (var charm in Registry.GetAllFeatures<IWeaverCharm>())
                 {
-                    WeaverLog.Log("CHARMDEF = " + charm.GetType());
-                    WeaverLog.Log("DISABLED = " + CharmUtilities.CharmDisabled(charm));
-                    WeaverLog.Log("CHARM ID 1 = " + CharmUtilities.GetCustomCharmID(charm));
+                    //WeaverLog.Log("CHARMDEF = " + charm.GetType());
+                    //WeaverLog.Log("DISABLED = " + CharmUtilities.CharmDisabled(charm));
+                    //WeaverLog.Log("CHARM ID 1 = " + CharmUtilities.GetCustomCharmID(charm));
                     if (!CharmUtilities.CharmDisabled(charm) && CharmUtilities.GetCustomCharmID(charm) == charmID)
                     {
                         charmIcon = charm.CharmSprite;
@@ -83,15 +83,15 @@ namespace WeaverCore.Assets.Components
             {
                 
             }*/
-            WeaverLog.Log("CHARM ICON 2 = " + charmIcon);
+            //WeaverLog.Log("CHARM ICON 2 = " + charmIcon);
             icon.sprite = charmIcon;
 
-            WeaverLog.Log("Sprite = " + icon.sprite);
+            //WeaverLog.Log("Sprite = " + icon.sprite);
 
-            WeaverLog.Log("CHARM NAME ID = " + $"CHARM_NAME_{charmID}");
+            //WeaverLog.Log("CHARM NAME ID = " + $"CHARM_NAME_{charmID}");
 
             var charmText = WeaverLanguage.GetString($"CHARM_NAME_{charmID}", "UI", "Unknown Charm");
-            WeaverLog.Log("CHARM TEXT = " + charmText);
+            //WeaverLog.Log("CHARM TEXT = " + charmText);
             text.text = charmText;
 
             Show();

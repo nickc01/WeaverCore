@@ -184,10 +184,10 @@ namespace WeaverCore.Assets.Components
             while (true)
             {
                 var newPos = HeroController.instance.transform.position;
-                if (playerPos != newPos)
+                /*if (playerPos != newPos)
                 {
                     WeaverLog.Log("Player Pos = " + newPos);
-                }
+                }*/
                 playerPos = newPos;
                 yield return null;
             }

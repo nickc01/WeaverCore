@@ -5,7 +5,7 @@ namespace WeaverCore.Game.Patches
 {
     static class Test_Patches
     {
-        [OnHarmonyPatch]
+        /*[OnHarmonyPatch]
         static void Patch(HarmonyPatcher patcher)
         {
             var positionMethod = typeof(Transform).GetProperty(nameof(Transform.position)).GetSetMethod();
@@ -36,7 +36,7 @@ namespace WeaverCore.Game.Patches
                 WeaverLog.Log("Local Pos = " + value);
                 WeaverLog.Log(new System.Diagnostics.StackTrace());
             }
-        }
+        }*/
     }
 
 }

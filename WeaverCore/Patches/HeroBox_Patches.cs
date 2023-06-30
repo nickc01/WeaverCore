@@ -40,7 +40,7 @@ public static class HeroBox_Patches
     {
         if (otherCollider.TryGetComponent<ForcePlayerDamager>(out var forceDamager))
         {
-            WeaverLog.Log("HAS FORCED BUFFER HIT");
+            //WeaverLog.Log("HAS FORCED BUFFER HIT");
             damageDealtSet(__instance, forceDamager.damageDealt);
             hazardTypeSet(__instance, (int)forceDamager.hazardType);
             damagingObjectSet(__instance, otherCollider.gameObject);
@@ -48,12 +48,12 @@ public static class HeroBox_Patches
 
             if (IsHitTypeBuffered((int)forceDamager.hazardType))
             {
-                WeaverLog.Log("FORCING BUFFERED HIT");
+                //WeaverLog.Log("FORCING BUFFERED HIT");
                 ApplyBufferedHit(__instance);
             }
             else
             {
-                WeaverLog.Log("PREPARING FORCED BUFFER HIT");
+                //WeaverLog.Log("PREPARING FORCED BUFFER HIT");
                 isHitBufferedSet(__instance, true);
             }
             return false;

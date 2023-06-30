@@ -305,7 +305,7 @@ namespace WeaverCore.Utilities
 
             if (TryParseCharm(key, "CHARM_NAME_", out _, out charm))
             {
-                WeaverLog.Log("CHARM NAME FOUND = " + charm.GetType().FullName);
+                //WeaverLog.Log("CHARM NAME FOUND = " + charm.GetType().FullName);
                 if (CharmDisabled(charm))
                 {
                     return $"DISABLED - {charm.Name}";

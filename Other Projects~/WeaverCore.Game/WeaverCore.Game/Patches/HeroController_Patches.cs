@@ -29,14 +29,12 @@ namespace WeaverCore.Game.Patches
 
         private static void HeroController_UnPause(On.HeroController.orig_UnPause orig, HeroController self)
         {
-			WeaverLog.Log("UNPAUSING PLAYER");
 			WeaverLog.Log(new System.Diagnostics.StackTrace());
 			orig(self);
         }
 
         private static void HeroController_Pause(On.HeroController.orig_Pause orig, HeroController self)
         {
-			WeaverLog.Log("PAUSING PLAYER");
             WeaverLog.Log(new System.Diagnostics.StackTrace());
             orig(self);
         }

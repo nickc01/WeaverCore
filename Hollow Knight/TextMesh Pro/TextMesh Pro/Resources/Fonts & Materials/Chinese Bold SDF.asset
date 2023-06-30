@@ -35330,3 +35330,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  editorAtlasTextureName: chinese_body_bold Atlas R Channeled
+  editorMaterialName: Chinese Bold Material

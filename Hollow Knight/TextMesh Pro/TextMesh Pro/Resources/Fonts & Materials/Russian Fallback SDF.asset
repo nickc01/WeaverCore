@@ -1245,3 +1245,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  editorAtlasTextureName: russian_body_fallback Atlas - R Channeled
+  editorMaterialName: Russian Fallback Material

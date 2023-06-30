@@ -135,7 +135,7 @@ namespace WeaverCore.Components.GGStatue
 
                 var details = statue.UsingDreamVersion ? statue.dreamBossDetails : statue.bossDetails;
 
-                WeaverLog.Log("DETAILS = " + JsonUtility.ToJson(details, true));
+                //WeaverLog.Log("DETAILS = " + JsonUtility.ToJson(details, true));
 
                 ui.Setup(statue, details.nameSheet, details.nameKey, details.descriptionSheet, details.descriptionKey);
             }

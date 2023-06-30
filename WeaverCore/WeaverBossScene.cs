@@ -41,7 +41,7 @@ namespace WeaverCore
 
         static void IsUnlockedSelf_Postfix(BossScene __instance, BossSceneCheckSource source, ref bool __result)
         {
-            WeaverLog.Log("RESULT = " + __result);
+            //WeaverLog.Log("RESULT = " + __result);
             if (__instance is WeaverBossScene wbs)
             {
                 bool weaverUnlocked = true;

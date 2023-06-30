@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0198808c216d53543917554106d02bb2, type: 3}
+  m_Name: Font Asset Container
+  m_EditorClassIdentifier: 
+  WeaverCoreFonts:
+  - {fileID: 11400000, guid: b5b9d1e35a9aa8f4383622c6410ffdf4, type: 2}
+  - {fileID: 11400000, guid: 6a645d8d70701774780024de7b41b621, type: 2}
+  - {fileID: 11400000, guid: f7f1fad0307467d45976bd86ebddd8b3, type: 2}
+  - {fileID: 11400000, guid: d821e29c947c03d4bafcda5691c11a71, type: 2}
+  - {fileID: 11400000, guid: 29666a9430ff4f945916c0ccf9da471a, type: 2}
+  - {fileID: 11400000, guid: c1afacdee4f90794e89c454f6930f7c0, type: 2}
+  - {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
+  - {fileID: 11400000, guid: 60325ca7b249a814aa6777a5c2b42cd4, type: 2}
+  - {fileID: 11400000, guid: 12c8b63d6a2119940b8916551fa7a017, type: 2}
+  - {fileID: 11400000, guid: ddf0ecd37a3d40d41981044ce94f2c99, type: 2}
+  - {fileID: 11400000, guid: 926d102b51827f84db6c9ed544d04067, type: 2}
+  - {fileID: 11400000, guid: 145a97aee3d55d94583ae566c8d98b1f, type: 2}
+  - {fileID: 11400000, guid: 8747ec9faedf0b7449f5db366fed40a4, type: 2}
+  - {fileID: 11400000, guid: 89aa440df0446804d9d2aff314ee9456, type: 2}
+  - {fileID: 11400000, guid: 0af4484a258598c4ca786ca462ca6175, type: 2}
+  - {fileID: 11400000, guid: 6e823a4015af85c43b3a6dfdd1033636, type: 2}
+  - {fileID: 11400000, guid: 9b18fc5bc880c6a43a74e39f46552eb9, type: 2}

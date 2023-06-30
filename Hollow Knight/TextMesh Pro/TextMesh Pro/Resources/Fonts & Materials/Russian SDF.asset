@@ -2081,3 +2081,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  editorAtlasTextureName: russian_body Atlas - R Channeled
+  editorMaterialName: Russian Material

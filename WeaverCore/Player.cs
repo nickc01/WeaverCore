@@ -35,7 +35,7 @@ namespace WeaverCore
 					foreach (var player in _players)
 					{
                         paramCache[0] = player;
-                        WeaverLog.Log("P_INIT_G");
+                        //WeaverLog.Log("P_INIT_G");
                         foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
                         {
                             method.Invoke(null, paramCache);
@@ -193,7 +193,7 @@ namespace WeaverCore
 			if (Player.Players.AddIfNotContained(this))
 			{
 				paramCache[0] = this;
-				WeaverLog.Log("P_INIT_A");
+				//WeaverLog.Log("P_INIT_A");
                 foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
 				{
 					method.Invoke(null, paramCache);
@@ -206,7 +206,7 @@ namespace WeaverCore
 			if (Player.Players.AddIfNotContained(this))
 			{
                 paramCache[0] = this;
-                WeaverLog.Log("P_INIT_B");
+                //WeaverLog.Log("P_INIT_B");
                 foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
                 {
                     method.Invoke(null, paramCache);
@@ -219,7 +219,7 @@ namespace WeaverCore
 			if (Player.Players.Remove(this))
 			{
                 paramCache[0] = this;
-                WeaverLog.Log("P_INIT_C");
+                //WeaverLog.Log("P_INIT_C");
                 foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninit>())
                 {
                     method.Invoke(null, paramCache);
@@ -232,7 +232,7 @@ namespace WeaverCore
 			if (Player.Players.Remove(this))
 			{
                 paramCache[0] = this;
-                WeaverLog.Log("P_INIT_D");
+                //WeaverLog.Log("P_INIT_D");
                 foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninit>())
                 {
                     method.Invoke(null, paramCache);

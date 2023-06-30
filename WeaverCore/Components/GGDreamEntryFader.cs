@@ -29,7 +29,7 @@ namespace WeaverCore.Components
                 exitRoarInterupt = true;
             });
 
-            WeaverLog.Log("DREAM ENTRY FADER START");
+            //WeaverLog.Log("DREAM ENTRY FADER START");
             if (Initialization.Environment == RunningState.Game)
             {
                 StartCoroutine(GGMainRoutine());
@@ -43,10 +43,10 @@ namespace WeaverCore.Components
 
         IEnumerator GGMainRoutine()
         {
-            WeaverLog.Log("DREAM ENTRY FADER GGMAINROUTINE");
+            //WeaverLog.Log("DREAM ENTRY FADER GGMAINROUTINE");
             yield return WaitForHero();
 
-            WeaverLog.Log("HERO IN POSITION");
+            //WeaverLog.Log("HERO IN POSITION");
 
             if (!string.IsNullOrEmpty(EntryDoor))
             {
@@ -56,7 +56,7 @@ namespace WeaverCore.Components
                 }
             }
 
-            WeaverLog.Log("DOING DREAM ENTRY");
+            //WeaverLog.Log("DOING DREAM ENTRY");
             HeroController.instance.RelinquishControl();
             HeroController.instance.StopAnimationControl();
             var playerRenderer = HeroController.instance.GetComponent<Renderer>();

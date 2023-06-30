@@ -84,7 +84,7 @@ namespace WeaverCore.Assets.Components
 
         static void DoDreamReturn_Postfix(BossSceneController __instance)
         {
-            WeaverLog.Log("DOING SCENE TRANSITION");
+            //WeaverLog.Log("DOING SCENE TRANSITION");
             var transition = GameObject.FindObjectOfType<WeaverBossSceneTransition>();
 
             if (transition != null)

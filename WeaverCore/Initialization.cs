@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using TMPro;
 using UnityEngine;
+using WeaverCore.Assets;
 using WeaverCore.Attributes;
 using WeaverCore.Enums;
 using WeaverCore.Utilities;
@@ -57,6 +59,14 @@ namespace WeaverCore
 			if (!WeaverCoreInitialized)
 			{
 				WeaverCoreInitialized = true;
+
+#if !UNITY_EDITOR
+				if (Application.isPlaying)
+				{
+					ReplaceFonts();
+                }
+#endif
+
 #if UNITY_EDITOR
 				LoadAsmIfNotFound("WeaverCore.Editor");
 #else
@@ -81,7 +91,87 @@ namespace WeaverCore
 			}
 		}
 
-		static void PatchAssembly(Assembly assembly)
+		static void ReplaceFonts()
+		{
+			try
+			{
+				FontAssetContainer.InGameFonts = new HashSet<TMP_FontAsset>();
+
+				var currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+
+
+				foreach (var gm in currentScene.GetRootGameObjects())
+				{
+					CheckGMForFonts(gm);
+				}
+
+				foreach (var gm in Resources.FindObjectsOfTypeAll<GameObject>())
+				{
+					CheckGMForFonts(gm);
+				}
+
+				foreach (var font in Resources.FindObjectsOfTypeAll<TMP_FontAsset>())
+				{
+					AddFont(font);
+				}
+
+				foreach (var gm in GameObject.FindObjectsOfType<GameObject>())
+				{
+					CheckGMForFonts(gm);
+				}
+			}
+			catch (Exception e)
+			{
+				WeaverLog.Log("ERROR IN REPLACEFONTS");
+				WeaverLog.LogException(e);
+			}
+		}
+
+		static bool fontsReplaced = false;
+
+		[OnRegistryLoad]
+		static void OnRegistryLoad(Registry registry)
+		{
+			if (!fontsReplaced && Environment == RunningState.Game)
+			{
+				fontsReplaced = true;
+
+                var fontAssetContainer = FontAssetContainer.Load();
+
+                fontAssetContainer.ReplaceFonts();
+            }
+        }
+
+        static void CheckGMForFonts(GameObject gm)
+        {
+			foreach (var tmp in gm.GetComponents<TextMeshPro>())
+			{
+				AddFont(tmp.font);
+			}
+
+			for (int i = 0; i < gm.transform.childCount; i++)
+			{
+				CheckGMForFonts(gm.transform.GetChild(i).gameObject);
+			}
+        }
+
+        static void AddFont(TMP_FontAsset font)
+        {
+            if (font != null)
+            {
+				FontAssetContainer.InGameFonts.Add(font);
+            }
+
+            foreach (var fallback in font.fallbackFontAssets)
+            {
+				if (fallback != null && !FontAssetContainer.InGameFonts.Contains(fallback))
+				{
+                    AddFont(fallback);
+                }
+            }
+        }
+
+        static void PatchAssembly(Assembly assembly)
 		{
 			var patcherInstance = HarmonyPatcher.Create("com." + assembly.GetName().Name + ".patch");
 

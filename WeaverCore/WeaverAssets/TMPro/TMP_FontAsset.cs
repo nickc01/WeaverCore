@@ -163,8 +163,154 @@ namespace WeaverCore.Assets.TMPro
 		[SerializeField]
 		List<global::TMPro.TMP_FontAsset> TMP_FontWeights_italicTypeface;
 
+		[SerializeField]
+		string editorAtlasTextureName;
+
+        [SerializeField]
+        string editorMaterialName;
+
+		[NonSerialized]
+		public bool FontReplaced = false;
+
 #if UNITY_EDITOR
-		[OnInit]
+		[NonSerialized]
+        Texture2D loadedAtlas;
+
+        [NonSerialized]
+        bool atlasRefreshed = false;
+
+        [NonSerialized]
+        Material loadedMaterial;
+
+        [NonSerialized]
+        bool materialRefreshed = false;
+#endif
+
+        public Texture2D RefreshAtlas()
+		{
+#if UNITY_EDITOR
+			if (!atlasRefreshed)
+			{
+				atlasRefreshed = true;
+				if (!string.IsNullOrEmpty(editorAtlasTextureName))
+				{
+					var assetIDs = UnityEditor.AssetDatabase.FindAssets(editorAtlasTextureName);
+
+					foreach (var id in assetIDs)
+					{
+                        loadedAtlas = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(UnityEditor.AssetDatabase.GUIDToAssetPath(id));
+						if (loadedAtlas != null)
+						{
+							break;
+						}
+					}
+                }
+			}
+
+			if (loadedAtlas != null)
+			{
+				return loadedAtlas;
+			}
+#endif
+
+			return atlas;
+        }
+
+        public Material RefreshMaterial()
+        {
+#if UNITY_EDITOR
+            if (!materialRefreshed)
+            {
+                materialRefreshed = true;
+                if (!string.IsNullOrEmpty(editorMaterialName))
+                {
+                    var assetIDs = UnityEditor.AssetDatabase.FindAssets(editorMaterialName);
+
+                    foreach (var id in assetIDs)
+                    {
+                        loadedMaterial = UnityEditor.AssetDatabase.LoadAssetAtPath<Material>(UnityEditor.AssetDatabase.GUIDToAssetPath(id));
+                        if (loadedMaterial != null)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (loadedMaterial != null)
+            {
+                return loadedMaterial;
+            }
+#endif
+
+            return material;
+        }
+
+#if UNITY_EDITOR
+
+		[BeforeBuild]
+		static void BeforeBuild()
+		{
+			var weaverFontIDs = UnityEditor.AssetDatabase.FindAssets("t:WeaverCore.Assets.TMPro.TMP_FontAsset");
+
+			var trajanProAtlas = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("t:Texture2D \"Trajan Pro Regular SDF Atlas\"")[0]));
+
+			foreach (var id in weaverFontIDs)
+			{
+				var font = UnityEditor.AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(UnityEditor.AssetDatabase.GUIDToAssetPath(id));
+
+				if (font != null)
+				{
+					if (!string.IsNullOrEmpty(font.editorAtlasTextureName) && !string.IsNullOrEmpty(font.editorMaterialName))
+					{
+                        font.atlas = trajanProAtlas;
+						font.material.mainTexture = trajanProAtlas;
+                    }
+				}
+			}
+
+
+		}
+
+		[AfterBuild]
+		static void AfterBuild()
+		{
+            var weaverFontIDs = UnityEditor.AssetDatabase.FindAssets("t:WeaverCore.Assets.TMPro.TMP_FontAsset");
+
+            foreach (var id in weaverFontIDs)
+            {
+                var font = UnityEditor.AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(UnityEditor.AssetDatabase.GUIDToAssetPath(id));
+
+                if (font != null)
+                {
+                    if (!string.IsNullOrEmpty(font.editorAtlasTextureName) && !string.IsNullOrEmpty(font.editorMaterialName))
+                    {
+						font.material = LoadEditorAsset<Material>("Material", font.editorMaterialName);
+						font.atlas = LoadEditorAsset<Texture2D>("Texture2D", font.editorAtlasTextureName);
+						if (font.material != null)
+						{
+							font.material.mainTexture = font.atlas;
+						}
+                    }
+                }
+            }
+        }
+
+		static T LoadEditorAsset<T>(string type, string name) where T : UnityEngine.Object
+		{
+			var guids = UnityEditor.AssetDatabase.FindAssets($"t:{type} \"{name}\"");
+
+			var guid = guids.FirstOrDefault();
+
+			if (string.IsNullOrEmpty(guid))
+			{
+				return default;
+			}
+
+			return UnityEditor.AssetDatabase.LoadAssetAtPath<T>(UnityEditor.AssetDatabase.GUIDToAssetPath(guid));
+		}
+
+        [OnInit]
 		static void Init()
 		{
 			var patcher = HarmonyPatcher.Create("WeaverCore.TMPFONT.com");
@@ -178,12 +324,37 @@ namespace WeaverCore.Assets.TMPro
 		}
 #endif
 
+        static void ShallowCopy<T>(T from, T to, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+        {
+            foreach (var field in typeof(T).GetFields(flags))
+            {
+                field.SetValue(to, field.GetValue(from));
+            }
+        }
 
-		void Awake()
+        void Awake()
 		{
-			if (!Application.isPlaying || Initialization.Environment == Enums.RunningState.Editor)
+			if (FontReplaced || !Application.isPlaying || Initialization.Environment == Enums.RunningState.Editor)
 			{
 				return;
+			}
+			if (FontAssetContainer.InGameFonts != null)
+			{
+				var pair = FontAssetContainer.sourceDestPairs.FirstOrDefault(p => p.Item2 == name);
+
+				if (pair != default)
+				{
+					var source = FontAssetContainer.InGameFonts.FirstOrDefault(f => f.name == pair.Item1);
+
+					if (source != null)
+					{
+						Debug.Log($"Replacing {name} with {source.name}");
+
+						ShallowCopy<global::TMPro.TMP_FontAsset>(source, this);
+
+						return;
+                    }
+                }
 			}
 
 			var type = typeof(global::TMPro.TMP_FontAsset);
@@ -281,8 +452,110 @@ namespace WeaverCore.Assets.TMPro
 			type.GetField("fontWeights", BindingFlags.Public | BindingFlags.Instance).SetValue(this,weights);
 		}
 
-
 #if UNITY_EDITOR
+        void RefreshJaggedFields()
+		{
+            var type = typeof(global::TMPro.TMP_FontAsset);
+
+
+            var fontInfo = (FaceInfo)type.GetField("m_fontInfo", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
+
+            this.FaceInfo_Ascender = fontInfo.Ascender;
+            this.FaceInfo_AtlasHeight = fontInfo.AtlasHeight;
+            this.FaceInfo_AtlasWidth = fontInfo.AtlasWidth;
+            this.FaceInfo_Baseline = fontInfo.Baseline;
+            this.FaceInfo_CapHeight = fontInfo.CapHeight;
+            this.FaceInfo_CenterLine = fontInfo.CenterLine;
+            this.FaceInfo_CharacterCount = fontInfo.CharacterCount;
+            this.FaceInfo_Descender = fontInfo.Descender;
+            this.FaceInfo_LineHeight = fontInfo.LineHeight;
+            this.FaceInfo_Name = fontInfo.Name;
+            this.FaceInfo_Padding = fontInfo.Padding;
+            this.FaceInfo_PointSize = fontInfo.PointSize;
+            this.FaceInfo_Scale = fontInfo.Scale;
+            this.FaceInfo_strikethrough = fontInfo.strikethrough;
+            this.FaceInfo_strikethroughThickness = fontInfo.strikethroughThickness;
+            this.FaceInfo_SubscriptOffset = fontInfo.SubscriptOffset;
+            this.FaceInfo_SubSize = fontInfo.SubSize;
+            this.FaceInfo_SuperscriptOffset = fontInfo.SuperscriptOffset;
+            this.FaceInfo_TabWidth = fontInfo.TabWidth;
+            this.FaceInfo_Underline = fontInfo.Underline;
+            this.FaceInfo_UnderlineThickness = fontInfo.UnderlineThickness;
+
+            var glyphList = (List<TMP_Glyph>)type.GetField("m_glyphInfoList", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
+
+            this.TMP_Glyph_height = new List<float>();
+            this.TMP_Glyph_id = new List<int>();
+            this.TMP_Glyph_scale = new List<float>();
+            this.TMP_Glyph_width = new List<float>();
+            this.TMP_Glyph_x = new List<float>();
+            this.TMP_Glyph_xAdvance = new List<float>();
+            this.TMP_Glyph_xOffset = new List<float>();
+            this.TMP_Glyph_y = new List<float>();
+            this.TMP_Glyph_yOffset = new List<float>();
+
+            for (int i = 0; i < glyphList.Count; i++)
+            {
+                this.TMP_Glyph_height.Add(glyphList[i].height);
+                this.TMP_Glyph_id.Add(glyphList[i].id);
+                this.TMP_Glyph_scale.Add(glyphList[i].scale);
+                this.TMP_Glyph_width.Add(glyphList[i].width);
+                this.TMP_Glyph_x.Add(glyphList[i].x);
+                this.TMP_Glyph_xAdvance.Add(glyphList[i].xAdvance);
+                this.TMP_Glyph_xOffset.Add(glyphList[i].xOffset);
+                this.TMP_Glyph_y.Add(glyphList[i].y);
+                this.TMP_Glyph_yOffset.Add(glyphList[i].yOffset);
+            }
+
+            var kerningTable = (KerningTable)type.GetField("m_kerningInfo", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
+            //TODO TODO TODO
+            this.KerningTable_AscII_Left = new List<int>();
+            this.KerningTable_AscII_Right = new List<int>();
+            this.KerningTable_XadvanceOffset = new List<float>();
+
+
+            for (int i = 0; i < kerningTable.kerningPairs.Count; i++)
+            {
+                this.KerningTable_AscII_Left.Add(kerningTable.kerningPairs[i].AscII_Left);
+                this.KerningTable_AscII_Right.Add(kerningTable.kerningPairs[i].AscII_Right);
+                this.KerningTable_XadvanceOffset.Add(kerningTable.kerningPairs[i].XadvanceOffset);
+            }
+
+            var kerningPair = (KerningPair)type.GetField("m_kerningPair", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
+
+            this.KerningPair_AscII_Left = kerningPair.AscII_Left;
+            this.KerningPair_AscII_Right = kerningPair.AscII_Right;
+            this.KerningPair_XadvanceOffset = kerningPair.XadvanceOffset;
+
+
+            var fontSettings = (FontCreationSetting)type.GetField("fontCreationSettings", BindingFlags.Public | BindingFlags.Instance).GetValue(this);
+
+
+            this.FontCreationSetting_fontAtlasHeight = fontSettings.fontAtlasHeight;
+            this.FontCreationSetting_fontAtlasWidth = fontSettings.fontAtlasWidth;
+            this.FontCreationSetting_fontCharacterSet = fontSettings.fontCharacterSet;
+            this.FontCreationSetting_fontKerning = fontSettings.fontKerning;
+            this.FontCreationSetting_fontPackingMode = fontSettings.fontPackingMode;
+            this.FontCreationSetting_fontPadding = fontSettings.fontPadding;
+            this.FontCreationSetting_fontRenderMode = fontSettings.fontRenderMode;
+            this.FontCreationSetting_fontSize = fontSettings.fontSize;
+            this.FontCreationSetting_fontSizingMode = fontSettings.fontSizingMode;
+            this.FontCreationSetting_fontSourcePath = fontSettings.fontSourcePath;
+            this.FontCreationSetting_fontStyleModifier = fontSettings.fontStlyeModifier;
+            this.FontCreationSetting_fontStyle = fontSettings.fontStyle;
+
+            var fontWeights = (TMP_FontWeights[])type.GetField("fontWeights", BindingFlags.Public | BindingFlags.Instance).GetValue(this);
+
+            this.TMP_FontWeights_italicTypeface = new List<global::TMPro.TMP_FontAsset>();
+            this.TMP_FontWeights_regularTypeface = new List<global::TMPro.TMP_FontAsset>();
+
+            for (int i = 0; i < fontWeights.GetLength(0); i++)
+            {
+                this.TMP_FontWeights_italicTypeface.Add(fontWeights[i].italicTypeface);
+                this.TMP_FontWeights_regularTypeface.Add(fontWeights[i].regularTypeface);
+            }
+        }
+
 		static bool PatchedOnValidate(object __instance)
 		{
 			if (Application.isPlaying || !(__instance is TMP_FontAsset))
@@ -291,105 +564,7 @@ namespace WeaverCore.Assets.TMPro
 			}
 			var obj = __instance as TMP_FontAsset;
 
-			var type = typeof(global::TMPro.TMP_FontAsset);
-
-
-			var fontInfo = (FaceInfo)type.GetField("m_fontInfo", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(obj);
-
-			obj.FaceInfo_Ascender = fontInfo.Ascender;
-			obj.FaceInfo_AtlasHeight = fontInfo.AtlasHeight;
-			obj.FaceInfo_AtlasWidth = fontInfo.AtlasWidth;
-			obj.FaceInfo_Baseline = fontInfo.Baseline;
-			obj.FaceInfo_CapHeight = fontInfo.CapHeight;
-			obj.FaceInfo_CenterLine = fontInfo.CenterLine;
-			obj.FaceInfo_CharacterCount = fontInfo.CharacterCount;
-			obj.FaceInfo_Descender = fontInfo.Descender;
-			obj.FaceInfo_LineHeight = fontInfo.LineHeight;
-			obj.FaceInfo_Name = fontInfo.Name;
-			obj.FaceInfo_Padding = fontInfo.Padding;
-			obj.FaceInfo_PointSize = fontInfo.PointSize;
-			obj.FaceInfo_Scale = fontInfo.Scale;
-			obj.FaceInfo_strikethrough = fontInfo.strikethrough;
-			obj.FaceInfo_strikethroughThickness = fontInfo.strikethroughThickness;
-			obj.FaceInfo_SubscriptOffset = fontInfo.SubscriptOffset;
-			obj.FaceInfo_SubSize = fontInfo.SubSize;
-			obj.FaceInfo_SuperscriptOffset = fontInfo.SuperscriptOffset;
-			obj.FaceInfo_TabWidth = fontInfo.TabWidth;
-			obj.FaceInfo_Underline = fontInfo.Underline;
-			obj.FaceInfo_UnderlineThickness = fontInfo.UnderlineThickness;
-
-			var glyphList = (List<TMP_Glyph>)type.GetField("m_glyphInfoList", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(obj);
-
-			obj.TMP_Glyph_height = new List<float>();
-			obj.TMP_Glyph_id = new List<int>();
-			obj.TMP_Glyph_scale = new List<float>();
-			obj.TMP_Glyph_width = new List<float>();
-			obj.TMP_Glyph_x = new List<float>();
-			obj.TMP_Glyph_xAdvance = new List<float>();
-			obj.TMP_Glyph_xOffset = new List<float>();
-			obj.TMP_Glyph_y = new List<float>();
-			obj.TMP_Glyph_yOffset = new List<float>();
-
-			for (int i = 0; i < glyphList.Count; i++)
-			{
-				obj.TMP_Glyph_height.Add(glyphList[i].height);
-				obj.TMP_Glyph_id.Add(glyphList[i].id);
-				obj.TMP_Glyph_scale.Add(glyphList[i].scale);
-				obj.TMP_Glyph_width.Add(glyphList[i].width);
-				obj.TMP_Glyph_x.Add(glyphList[i].x);
-				obj.TMP_Glyph_xAdvance.Add(glyphList[i].xAdvance);
-				obj.TMP_Glyph_xOffset.Add(glyphList[i].xOffset);
-				obj.TMP_Glyph_y.Add(glyphList[i].y);
-				obj.TMP_Glyph_yOffset.Add(glyphList[i].yOffset);
-			}
-
-			var kerningTable = (KerningTable)type.GetField("m_kerningInfo", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(obj);
-			//TODO TODO TODO
-			obj.KerningTable_AscII_Left = new List<int>();
-			obj.KerningTable_AscII_Right = new List<int>();
-			obj.KerningTable_XadvanceOffset = new List<float>();
-
-
-			for (int i = 0; i < kerningTable.kerningPairs.Count; i++)
-			{
-				obj.KerningTable_AscII_Left.Add(kerningTable.kerningPairs[i].AscII_Left);
-				obj.KerningTable_AscII_Right.Add(kerningTable.kerningPairs[i].AscII_Right);
-				obj.KerningTable_XadvanceOffset.Add(kerningTable.kerningPairs[i].XadvanceOffset);
-			}
-
-			var kerningPair = (KerningPair)type.GetField("m_kerningPair", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(obj);
-
-			obj.KerningPair_AscII_Left = kerningPair.AscII_Left;
-			obj.KerningPair_AscII_Right = kerningPair.AscII_Right;
-			obj.KerningPair_XadvanceOffset = kerningPair.XadvanceOffset;
-
-
-			var fontSettings = (FontCreationSetting)type.GetField("fontCreationSettings", BindingFlags.Public | BindingFlags.Instance).GetValue(obj);
-
-
-			obj.FontCreationSetting_fontAtlasHeight = fontSettings.fontAtlasHeight;
-			obj.FontCreationSetting_fontAtlasWidth = fontSettings.fontAtlasWidth;
-			obj.FontCreationSetting_fontCharacterSet = fontSettings.fontCharacterSet;
-			obj.FontCreationSetting_fontKerning = fontSettings.fontKerning;
-			obj.FontCreationSetting_fontPackingMode = fontSettings.fontPackingMode;
-			obj.FontCreationSetting_fontPadding = fontSettings.fontPadding;
-			obj.FontCreationSetting_fontRenderMode = fontSettings.fontRenderMode;
-			obj.FontCreationSetting_fontSize = fontSettings.fontSize;
-			obj.FontCreationSetting_fontSizingMode = fontSettings.fontSizingMode;
-			obj.FontCreationSetting_fontSourcePath = fontSettings.fontSourcePath;
-			obj.FontCreationSetting_fontStyleModifier = fontSettings.fontStlyeModifier;
-			obj.FontCreationSetting_fontStyle = fontSettings.fontStyle;
-
-			var fontWeights = (TMP_FontWeights[])type.GetField("fontWeights", BindingFlags.Public | BindingFlags.Instance).GetValue(obj);
-
-			obj.TMP_FontWeights_italicTypeface = new List<global::TMPro.TMP_FontAsset>();
-			obj.TMP_FontWeights_regularTypeface = new List<global::TMPro.TMP_FontAsset>();
-
-			for (int i = 0; i < fontWeights.GetLength(0); i++)
-			{
-				obj.TMP_FontWeights_italicTypeface.Add(fontWeights[i].italicTypeface);
-				obj.TMP_FontWeights_regularTypeface.Add(fontWeights[i].regularTypeface);
-			}
+			obj.RefreshJaggedFields();
 
 			return true;
 		}

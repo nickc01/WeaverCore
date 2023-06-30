@@ -42,14 +42,14 @@ namespace WeaverCore.Assets.Components
 
         public void BeginDreamReturn()
         {
-            WeaverLog.Log("DREAM RETURN EVENT");
+            //WeaverLog.Log("DREAM RETURN EVENT");
             StopAllCoroutines();
             DreamReturn();
         }
 
         public void BeginDreamExit()
         {
-            WeaverLog.Log("DREAM EXIT EVENT");
+            //WeaverLog.Log("DREAM EXIT EVENT");
             StopAllCoroutines();
             DreamExit();
         }

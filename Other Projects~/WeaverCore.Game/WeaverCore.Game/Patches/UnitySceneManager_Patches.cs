@@ -33,14 +33,14 @@ namespace WeaverCore.Game.Patches
 
 		private static void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
 		{
-			WeaverLog.Log("LOADED SCENE = " + arg0.name);
+			Debug.Log("LOADED SCENE = " + arg0.name);
 			if (unionizedScenes.ContainsKey(arg0.path))
 			{
 				var destination = unionizedScenes[arg0.path];
 				unionizedScenes.Remove(arg0.path);
 				try
 				{
-					WeaverLog.Log($"MERGING {arg0.path} with {destination.path}");
+                    Debug.Log($"MERGING {arg0.path} with {destination.path}");
 					UnityEngine.SceneManagement.SceneManager.MergeScenes(arg0, destination);
 				}
 				catch (Exception e)
@@ -57,7 +57,7 @@ namespace WeaverCore.Game.Patches
 						if (replacement.SceneToUnionize == arg0.name || replacement.SceneToUnionize == arg0.path)
 						{
 							unionizedScenes.Add(replacement.SceneUnion, arg0);
-                            WeaverLog.Log($"LOADING SCENE UNION {replacement.SceneUnion} to combine with {arg0.path}");
+                            Debug.Log($"LOADING SCENE UNION {replacement.SceneUnion} to combine with {arg0.path}");
                             UnityEngine.SceneManagement.SceneManager.LoadScene(replacement.SceneUnion, LoadSceneMode.Additive);
 							//var loadedScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(replacement.SceneUnion);
 							//UnityEngine.SceneManagement.SceneManager.MergeScenes(loadedScene, arg0);

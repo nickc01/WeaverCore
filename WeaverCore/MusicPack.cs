@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Enums;
+using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
@@ -13,6 +14,8 @@ namespace WeaverCore
 	[CreateAssetMenu(fileName = "MusicPack",menuName = "WeaverCore/Music Pack")]
 	public class MusicPack : ScriptableObject
 	{
+		public static MusicPack None => WeaverAssets.LoadWeaverAsset<MusicPack>("None Music Pack");
+
 		public AudioClip MainTrack;
 		public MusicSyncType MainTrackSync;
 

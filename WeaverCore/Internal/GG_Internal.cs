@@ -201,6 +201,8 @@ namespace WeaverCore.Internal
                 }
             }
 
+
+            GameObject.Destroy(mageKnightStatue);
             //WeaverLog.Log("O");
         }
     }

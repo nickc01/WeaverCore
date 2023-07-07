@@ -8,11 +8,11 @@ using WeaverCore.Enums;
 
 namespace WeaverCore.Components.HitEffects
 {
+
     /// <summary>
     /// The hit effects for non-infected enemies
     /// </summary>
-    //[RequireComponent(typeof(SpriteFlasher))]
-	public class HitEffectsNormal : MonoBehaviour, IHitEffects
+    public class HitEffectsNormal : MonoBehaviour, IHitEffects
 	{
 		static ObjectPool UninfectedHitPool;
 

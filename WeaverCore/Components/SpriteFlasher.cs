@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Implementations;
 
 namespace WeaverCore.Components
 {
@@ -13,6 +14,8 @@ namespace WeaverCore.Components
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class SpriteFlasher : MonoBehaviour
 	{
+		static SpriteFlasher_I impl;
+
 		static Material flasherMaterial;
 
 		Material previousMaterial;
@@ -71,6 +74,11 @@ namespace WeaverCore.Components
 
 		void Start()
 		{
+			if (impl == null)
+			{
+				impl = ImplFinder.GetImplementation<SpriteFlasher_I>();
+            }
+
 			if (!ranOnce)
 			{
 				ranOnce = true;
@@ -88,6 +96,8 @@ namespace WeaverCore.Components
 					previousMaterial = renderer.material;
 				}
 				renderer.material = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
+
+				impl.OnFlasherInit(this);
 			}
 		}
 

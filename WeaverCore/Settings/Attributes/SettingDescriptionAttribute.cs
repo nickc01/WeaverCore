@@ -44,7 +44,7 @@ namespace WeaverCore.Settings
 		/// <param name="description">The text describing the settings property</param>
 		public LangSettingDescriptionAttribute(string sheetTitle, string key, string fallback = null)
 		{
-			WeaverLog.Log($"TRANSLATING DESCRIPTION = {sheetTitle} - {key}");
+			//WeaverLog.Log($"TRANSLATING DESCRIPTION = {sheetTitle} - {key}");
 			Description = WeaverLanguage.GetString(sheetTitle, key, fallback);
             if (Description == null)
             {
@@ -58,7 +58,7 @@ namespace WeaverCore.Settings
 		/// <param name="description">The text describing the settings property</param>
 		public LangSettingDescriptionAttribute(string key, string fallback = null)
 		{
-			WeaverLog.Log($"TRANSLATING DESCRIPTION = {key}");
+			//WeaverLog.Log($"TRANSLATING DESCRIPTION = {key}");
 			Description = WeaverLanguage.GetString(key, fallback);
 			if (Description == null)
 			{

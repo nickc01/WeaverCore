@@ -150,6 +150,11 @@ namespace WeaverCore.Components
 			PointAwayFrom(collision.transform.position);
 		}
 
+		public void ForceHit(GameObject collision)
+		{
+			OnHit(collision);
+        }
+
 		protected virtual void OnCollisionEnter2D(Collision2D collision)
 		{
 			OnHit(collision.gameObject);

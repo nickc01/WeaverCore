@@ -244,7 +244,14 @@ namespace WeaverCore
 		/// <param name="gameObject">The object to destroy</param>
 		public static void Destroy(GameObject gameObject)
 		{
-			gameObject.GetComponent<PoolableObject>().ReturnToPool();
+			if (gameObject.TryGetComponent<PoolableObject>(out var pool))
+			{
+				pool.ReturnToPool();
+			}
+			else
+			{
+				GameObject.Destroy(gameObject);
+			}
 		}
 
 		/// <summary>
@@ -263,7 +270,18 @@ namespace WeaverCore
 		/// <param name="component">The object to destroy</param>
 		public static void Destroy<T>(T component) where T : Component
 		{
-			Destroy(component.GetComponent<PoolableObject>());
+			if (component is PoolableObject selfPool)
+			{
+				Destroy(selfPool);
+			}
+			else if (component.TryGetComponent<PoolableObject>(out var pool))
+			{
+				Destroy(pool);
+			}
+			else
+			{
+				GameObject.Destroy(component.gameObject);
+			}
 		}
 
 		/// <summary>

@@ -1,0 +1,1392 @@
+fileFormatVersion: 2
+guid: d05dc73568d6fac4788cd66a2a7db852
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2774471464280525057
+    second: base_glow0000
+  - first:
+      213: 2422807095094859325
+    second: base_glow0001
+  - first:
+      213: -6370393839414806827
+    second: base_glow0002
+  - first:
+      213: 2489357071674731517
+    second: base_glow0003
+  - first:
+      213: -2801966795403514342
+    second: base_glow0004
+  - first:
+      213: 2970898209918849536
+    second: base_glow0005
+  - first:
+      213: 2494283897937415288
+    second: base_glow0006
+  - first:
+      213: 4940188328998063137
+    second: base_glow0007
+  - first:
+      213: -8980747651013543888
+    second: base_glow0008
+  - first:
+      213: -2758386004050400559
+    second: Ghost_Glow0000
+  - first:
+      213: -6349011693255798576
+    second: Ghost_Glow0001
+  - first:
+      213: 1952390281415840155
+    second: Ghost_Glow0002
+  - first:
+      213: -3886896231043574632
+    second: Ghost_Glow0003
+  - first:
+      213: 6150973929722459224
+    second: Ghost_Glow0004
+  - first:
+      213: -4719074191956039882
+    second: Ghost_Glow0005
+  - first:
+      213: -105116481143341577
+    second: Ghost_Glow0006
+  - first:
+      213: -1162222149767915213
+    second: Ghost_Glow0007
+  - first:
+      213: 622044098428817764
+    second: Ghost_Glow0008
+  - first:
+      213: 4466858903756444334
+    second: Ghost_Glow0009
+  - first:
+      213: -6082626602702557934
+    second: Ghost_Glow0010
+  - first:
+      213: -2460459599551192911
+    second: Ghost_Glow0011
+  - first:
+      213: -7821601161313411817
+    second: Ghost_Glow0012
+  - first:
+      213: 6510328199281683884
+    second: Ghost_Glow0013
+  - first:
+      213: -510559233056803627
+    second: blast_effect0000
+  - first:
+      213: 5835649098647741652
+    second: blast_effect0001
+  - first:
+      213: -1658880980632375204
+    second: blast_effect0002
+  - first:
+      213: -3778581910366161016
+    second: blast_effect0003
+  - first:
+      213: -7960695174976311283
+    second: blast_effect0004
+  - first:
+      213: 3074347014805919880
+    second: teleport_effect0000
+  - first:
+      213: 1218206402172121923
+    second: teleport_effect0001
+  - first:
+      213: 2320311855833741903
+    second: teleport_effect0002
+  - first:
+      213: -7938720909223943691
+    second: teleport_effect0003
+  - first:
+      213: -8329624852386957838
+    second: teleport_effect0004
+  - first:
+      213: 5401966193355310865
+    second: teleport_effect0005
+  - first:
+      213: -8232576855482048442
+    second: ghost_death_effect_005
+  - first:
+      213: -9203462112064070064
+    second: ghost_death_effect_015
+  - first:
+      213: 8508299007434377141
+    second: ghost_death_effect_012
+  - first:
+      213: 6986584838740834170
+    second: ghost_death_effect_006
+  - first:
+      213: -9085745600998275677
+    second: ghost_death_effect_011
+  - first:
+      213: -2246436993811561826
+    second: ghost_death_effect_016
+  - first:
+      213: -2602348928816932335
+    second: ghost_death_effect_010
+  - first:
+      213: -7462298882968673557
+    second: ghost_death_effect_014
+  - first:
+      213: 3549065149077306572
+    second: ghost_death_effect_017
+  - first:
+      213: -2233987156487805838
+    second: ghost_death_effect_000
+  - first:
+      213: 3149698263630648404
+    second: ghost_death_effect_009
+  - first:
+      213: 3127444501010435940
+    second: ghost_death_effect_004
+  - first:
+      213: -1479280184865810130
+    second: ghost_death_effect_013
+  - first:
+      213: 5542193525050252444
+    second: ghost_death_effect_003
+  - first:
+      213: -481912374891873104
+    second: ghost_death_effect_018
+  - first:
+      213: -6397932138993059637
+    second: ghost_death_effect_002
+  - first:
+      213: -5507441546455635657
+    second: ghost_death_effect_007
+  - first:
+      213: 9118749082859525016
+    second: ghost_death_effect_001
+  - first:
+      213: -2188754667932309951
+    second: ghost_death_effect_008
+  - first:
+      213: 182464969811996216
+    second: Ghost_Glow_empty
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: base_glow0000
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 346
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5208334, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10906e3d817e08620800000000000000
+      internalID: 2774471464280525057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_glow0001
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 722
+        width: 73
+        height: 67
+      alignment: 9
+      pivot: {x: 0.4931507, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d36dc66673a8f9120800000000000000
+      internalID: 2422807095094859325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_glow0002
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 722
+        width: 79
+        height: 86
+      alignment: 9
+      pivot: {x: 0.4556962, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d6f75a0e80d797a0800000000000000
+      internalID: -6370393839414806827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_glow0003
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 926
+        width: 87
+        height: 57
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfb67484119fb8220800000000000000
+      internalID: 2489357071674731517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_glow0004
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 893
+        width: 80
+        height: 57
+      alignment: 9
+      pivot: {x: 0.46249998, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ea8878b0a6d19d0800000000000000
+      internalID: -2801966795403514342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_glow0005
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 941
+        width: 89
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5280899, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0029e027e20ca3920800000000000000
+      internalID: 2970898209918849536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_glow0006
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 893
+        width: 77
+        height: 61
+      alignment: 9
+      pivot: {x: 0.45454544, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87c49896df97d9220800000000000000
+      internalID: 2494283897937415288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_glow0007
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 885
+        width: 59
+        height: 84
+      alignment: 9
+      pivot: {x: 0.44067794, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12cc5796c131f8440800000000000000
+      internalID: 4940188328998063137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_glow0008
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 954
+        width: 74
+        height: 58
+      alignment: 9
+      pivot: {x: 0.5135135, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 038f9ebe799fd5380800000000000000
+      internalID: -8980747651013543888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0000
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 394
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1daaa2b3b8e38b9d0800000000000000
+      internalID: -2758386004050400559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0001
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 418
+        width: 163
+        height: 155
+      alignment: 9
+      pivot: {x: 0.47852758, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d0dfa4e087c3e7a0800000000000000
+      internalID: -6349011693255798576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0002
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 397
+        width: 192
+        height: 170
+      alignment: 9
+      pivot: {x: 0.43749997, y: 0.5470588}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9157b2ed98481b10800000000000000
+      internalID: 1952390281415840155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0003
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 811
+        width: 261
+        height: 180
+      alignment: 9
+      pivot: {x: 0.532567, y: 0.5166667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 894d7d5b878fe0ac0800000000000000
+      internalID: -3886896231043574632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0004
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 0
+        width: 286
+        height: 185
+      alignment: 9
+      pivot: {x: 0.5104895, y: 0.5027027}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 854bbc72336ac5550800000000000000
+      internalID: 6150973929722459224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0005
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 713
+        width: 114
+        height: 180
+      alignment: 9
+      pivot: {x: 0.6403509, y: 0.48333332}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6372fbf660b728eb0800000000000000
+      internalID: -4719074191956039882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0006
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 546
+        width: 144
+        height: 167
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5329341}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fd79690e1d8a8ef0800000000000000
+      internalID: -105116481143341577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0007
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 454
+        width: 70
+        height: 177
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49717513}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3391efccc15fedfe0800000000000000
+      internalID: -1162222149767915213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0008
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 638
+        width: 87
+        height: 171
+      alignment: 9
+      pivot: {x: 0.49425286, y: 0.5146199}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4615a71dfc1f1a800800000000000000
+      internalID: 622044098428817764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0009
+      rect:
+        serializedVersion: 2
+        x: 1922
+        y: 194
+        width: 70
+        height: 158
+      alignment: 9
+      pivot: {x: 0.5, y: 0.56329113}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea2913ca1887dfd30800000000000000
+      internalID: 4466858903756444334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0010
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 272
+        width: 78
+        height: 182
+      alignment: 9
+      pivot: {x: 0.44871792, y: 0.489011}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21da29cf45b269ba0800000000000000
+      internalID: -6082626602702557934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0011
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 809
+        width: 78
+        height: 182
+      alignment: 9
+      pivot: {x: 0.46153843, y: 0.489011}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b02d80c701baddd0800000000000000
+      internalID: -2460459599551192911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0012
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 185
+        width: 65
+        height: 161
+      alignment: 9
+      pivot: {x: 0.5230769, y: 0.50931674}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71d91253f27147390800000000000000
+      internalID: -7821601161313411817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow0013
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 885
+        width: 69
+        height: 129
+      alignment: 9
+      pivot: {x: 0.49275362, y: 0.51937985}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cada4690105595a50800000000000000
+      internalID: 6510328199281683884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blast_effect0000
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 885
+        width: 137
+        height: 127
+      alignment: 9
+      pivot: {x: 0.4817519, y: 0.5748032}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d47ad425112ae8f0800000000000000
+      internalID: -510559233056803627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blast_effect0001
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 639
+        width: 233
+        height: 246
+      alignment: 9
+      pivot: {x: 0.47210303, y: 0.46747968}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d42ab6cfe36cf050800000000000000
+      internalID: 5835649098647741652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blast_effect0002
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 346
+        width: 304
+        height: 292
+      alignment: 9
+      pivot: {x: 0.53289473, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5071c889887af8e0800000000000000
+      internalID: -1658880980632375204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blast_effect0003
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 352
+        height: 346
+      alignment: 9
+      pivot: {x: 0.49715906, y: 0.5086705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88778e5b5c7cf8bc0800000000000000
+      internalID: -3778581910366161016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blast_effect0004
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 273
+        height: 272
+      alignment: 9
+      pivot: {x: 0.42857143, y: 0.4522059}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d00fe5a7aede58190800000000000000
+      internalID: -7960695174976311283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teleport_effect0000
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 941
+        width: 97
+        height: 82
+      alignment: 9
+      pivot: {x: 0.46391752, y: 0.80487794}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8881ac542564aaa20800000000000000
+      internalID: 3074347014805919880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teleport_effect0001
+      rect:
+        serializedVersion: 2
+        x: 1488
+        y: 363
+        width: 181
+        height: 149
+      alignment: 9
+      pivot: {x: 0.53038675, y: 0.56375843}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3437398b440f7e010800000000000000
+      internalID: 1218206402172121923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teleport_effect0002
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 185
+        width: 217
+        height: 233
+      alignment: 9
+      pivot: {x: 0.5299539, y: 0.55364805}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4af81fd657633020800000000000000
+      internalID: 2320311855833741903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teleport_effect0003
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 638
+        width: 248
+        height: 303
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5280528}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f1adbae46ff3d190800000000000000
+      internalID: -7938720909223943691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teleport_effect0004
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 272
+        width: 190
+        height: 367
+      alignment: 9
+      pivot: {x: 0.53157896, y: 0.52316076}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f5b539345a376c80800000000000000
+      internalID: -8329624852386957838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: teleport_effect0005
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 418
+        width: 121
+        height: 393
+      alignment: 9
+      pivot: {x: 0.4958678, y: 0.51653945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 117cc9bc1a3a7fa40800000000000000
+      internalID: 5401966193355310865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_005
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 637
+        width: 199
+        height: 198
+      alignment: 9
+      pivot: {x: 0.5125628, y: 0.510101}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 640e3eec7f200cd80800000000000000
+      internalID: -8232576855482048442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_015
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 435
+        width: 215
+        height: 202
+      alignment: 9
+      pivot: {x: 0.4837209, y: 0.5346535}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e97aa98fbb64080800000000000000
+      internalID: -9203462112064070064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_012
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 573
+        width: 162
+        height: 149
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.51677847}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b74fec4edc831670800000000000000
+      internalID: 8508299007434377141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_006
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 0
+        width: 216
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5046296, y: 0.51141554}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a77f642f4e555f060800000000000000
+      internalID: 6986584838740834170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_011
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 219
+        width: 207
+        height: 216
+      alignment: 9
+      pivot: {x: 0.5362319, y: 0.5694444}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a50ee4a382f8e180800000000000000
+      internalID: -9085745600998275677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_016
+      rect:
+        serializedVersion: 2
+        x: 1803
+        y: 0
+        width: 221
+        height: 169
+      alignment: 9
+      pivot: {x: 0.5022624, y: 0.46153846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e92c09dc47d03d0e0800000000000000
+      internalID: -2246436993811561826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_010
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 194
+        width: 194
+        height: 203
+      alignment: 9
+      pivot: {x: 0.5618557, y: 0.56157637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11a9f34ef6992ebd0800000000000000
+      internalID: -2602348928816932335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_014
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 0
+        width: 230
+        height: 194
+      alignment: 9
+      pivot: {x: 0.49130434, y: 0.4948454}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be2abd0f3b6907890800000000000000
+      internalID: -7462298882968673557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_017
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 363
+        width: 171
+        height: 149
+      alignment: 9
+      pivot: {x: 0.57894737, y: 0.51677847}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cccb87703ffc04130800000000000000
+      internalID: 3549065149077306572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_000
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 567
+        width: 176
+        height: 185
+      alignment: 9
+      pivot: {x: 0.59090906, y: 0.4972973}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27462c074884ff0e0800000000000000
+      internalID: -2233987156487805838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_009
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 363
+        width: 167
+        height: 183
+      alignment: 9
+      pivot: {x: 0.5508982, y: 0.56284153}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4549e5902e9f5bb20800000000000000
+      internalID: 3149698263630648404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_004
+      rect:
+        serializedVersion: 2
+        x: 1357
+        y: 0
+        width: 226
+        height: 184
+      alignment: 9
+      pivot: {x: 0.40707964, y: 0.48369566}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46fc979243ae66b20800000000000000
+      internalID: 3127444501010435940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_013
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 835
+        width: 213
+        height: 174
+      alignment: 9
+      pivot: {x: 0.5023474, y: 0.5114942}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e299cc9628a887be0800000000000000
+      internalID: -1479280184865810130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_003
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 194
+        width: 210
+        height: 169
+      alignment: 9
+      pivot: {x: 0.43333334, y: 0.4733728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9c1711b5a3d9ec40800000000000000
+      internalID: 5542193525050252444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_018
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 752
+        width: 177
+        height: 174
+      alignment: 9
+      pivot: {x: 0.51412433, y: 0.5114942}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bc74b19f37ef49f0800000000000000
+      internalID: -481912374891873104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_002
+      rect:
+        serializedVersion: 2
+        x: 1583
+        y: 0
+        width: 220
+        height: 188
+      alignment: 9
+      pivot: {x: 0.5772728, y: 0.5744681}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc873460e9af537a0800000000000000
+      internalID: -6397932138993059637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_007
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 194
+        width: 187
+        height: 146
+      alignment: 9
+      pivot: {x: 0.48663104, y: 0.8424658}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 739a84ad713a193b0800000000000000
+      internalID: -5507441546455635657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_001
+      rect:
+        serializedVersion: 2
+        x: 1531
+        y: 194
+        width: 204
+        height: 168
+      alignment: 9
+      pivot: {x: 0.60784316, y: 0.6011905}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 893d2c74afd4c8e70800000000000000
+      internalID: 9118749082859525016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_death_effect_008
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 926
+        width: 85
+        height: 90
+      alignment: 9
+      pivot: {x: 0.4588235, y: 0.7333333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 146aa6dd93bff91e0800000000000000
+      internalID: -2188754667932309951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost_Glow_empty
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 394
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: -0.0000031590662, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83ea89d5cee388200800000000000000
+      internalID: 182464969811996216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

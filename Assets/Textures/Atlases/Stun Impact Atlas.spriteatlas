@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Stun Impact Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 63
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 26
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: -2065084316360014273, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+    - {fileID: 3260717071641291093, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+    - {fileID: 7026240481891188227, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+    - {fileID: 8154678710636754230, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+    - {fileID: -4339518857855529125, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+    - {fileID: 31608600711016641, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+    - {fileID: 288794694154961482, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+    totalSpriteSurfaceArea: 582120
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -4339518857855529125, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 31608600711016641, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 288794694154961482, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: -2065084316360014273, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 3260717071641291093, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 7026240481891188227, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  - {fileID: 8154678710636754230, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - stun_impact_effect0004
+  - stun_impact_effect0005
+  - stun_impact_effect0006
+  - stun_impact_effect0000
+  - stun_impact_effect0001
+  - stun_impact_effect0002
+  - stun_impact_effect0003
+  m_RenderDataMap: {}
+  m_Tag: Stun Impact Atlas
+  m_IsVariant: 0

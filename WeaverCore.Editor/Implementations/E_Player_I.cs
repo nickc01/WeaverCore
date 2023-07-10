@@ -87,5 +87,15 @@ namespace WeaverCore.Editor.Implementations
         {
             
         }
+
+        public override void EnterCutsceneLock(bool playSound, int darknessLevel = -1)
+        {
+            
+        }
+
+        public override void ExitCutsceneLock()
+        {
+            
+        }
     }
 }

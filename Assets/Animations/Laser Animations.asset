@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Laser Animations
+  m_EditorClassIdentifier: 
+  clipNames:
+  - Ball Antic
+  - Ball Shoot
+  - Ball End
+  - Impact
+  - Beam Antic
+  - Beam Shoot
+  - Beam End
+  - Ball Antic and Shoot
+  clipFrameStartIndexes: 0000000004000000080000000c0000000f00000012000000160000001b000000
+  clipFrameCounts: 0400000004000000040000000300000003000000040000000500000008000000
+  frames:
+  - {fileID: 4607682494655286643, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -9216393941389622479, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 6164453923328065601, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 2228544924832398451, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -5645945261962799481, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -2818224219102476148, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 5794121869269129722, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -2446198114211308632, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -5627336885711713877, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -7667298051336030745, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 1525519379604132923, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -7484352702399234711, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -446730526668968752, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -5873154221069985535, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -2306821651476374638, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 4507014894130384913, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -5493393182843922405, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 2060734080654818494, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 4758036419807082934, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 3071054744052113261, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -7363219722445360670, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -9109771959620355895, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -3952045818111727668, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 2274301902459892381, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -1230724704742421303, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 296476421690897001, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -1479644144983919900, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 4607682494655286643, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -9216393941389622479, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 6164453923328065601, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 2228544924832398451, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -5645945261962799481, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -2818224219102476148, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: 5794121869269129722, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  - {fileID: -2446198114211308632, guid: cda00962bf8bf10468cf6305ad0681df, type: 3}
+  clipFPSs:
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
+  clipWrapModes: 0200000002000000000000000100000002000000020000000000000002000000
+  clipLoopStarts: 0100000001000000000000000000000001000000010000000000000005000000

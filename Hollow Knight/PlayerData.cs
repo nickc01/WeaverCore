@@ -41,6 +41,15 @@ public class PlayerData
     public List<string> scenesVisited;
     public bool hasDoubleJump;
     public List<string> scenesEncounteredBench;
+    public string currentBossStatueCompletionKey;
+    public int bossStatueTargetLevel;
+    public bool equippedCharm_23;
+    public bool brokenCharm_23;
+    public int nailDamage;
+    public BossSequenceController.BossSequenceData currentBossSequence;
+    public int MPCharge;
+    public int MPReserve;
+    public string bossReturnEntryGate;
 
     protected PlayerData()
     {
@@ -68,6 +77,21 @@ public class PlayerData
         scenesVisited = new List<string>();
         hasDoubleJump = true;
         scenesEncounteredBench = new List<string>();
+        nailDamage = 5;
+        currentBossStatueCompletionKey = "";
+        bossStatueTargetLevel = -1;
+        equippedCharm_23 = false;
+        brokenCharm_23 = false;
+        currentBossSequence = null;
+        bossReturnEntryGate = "";
+        MPCharge = 0;
+        MPReserve = 0;
+    }
+
+    public void ClearMP()
+    {
+        MPCharge = 0;
+        MPReserve = 0;
     }
 
     public bool GetBool(string boolName)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -6,6 +7,7 @@ using System.Text;
 using UnityEngine;
 using WeaverCore.Implementations;
 using WeaverCore.Internal;
+using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
@@ -150,6 +152,39 @@ namespace WeaverCore
                 receiver.TriggerEventInternal(eventName, source);
             }
             implStatics.TriggerEventToGameObjectPlaymakerFSMs(eventName, destination, source, true);
+        }
+
+        /// <summary>
+        /// Sends an event to a specific gameObject
+        /// </summary>
+        /// <param name="eventName">The event to fire</param>
+        /// <param name="destination">The object receiving the event</param>
+        /// <param name="delay">The delay before the event gets sent</param>
+        /// <param name="source">The object sending the event</param>
+        public static void SendEventToGameObject(string eventName, GameObject destination, float delay, GameObject source = null)
+        {
+            if (destination == null)
+            {
+                return;
+            }
+
+            IEnumerator Delay(float delay)
+            {
+                yield return new WaitForSeconds(delay);
+
+                if (!Application.isPlaying || destination == null)
+                {
+                    yield break;
+                }
+
+                foreach (var receiver in destination.GetComponents<EventManager>())
+                {
+                    receiver.TriggerEventInternal(eventName, source);
+                }
+                implStatics.TriggerEventToGameObjectPlaymakerFSMs(eventName, destination, source, true);
+            }
+
+            UnboundCoroutine.Start(Delay(delay));
         }
 
         internal void TriggerEventInternal(string eventName, GameObject source)

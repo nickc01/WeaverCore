@@ -1,0 +1,756 @@
+fileFormatVersion: 2
+guid: cda00962bf8bf10468cf6305ad0681df
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1479644144983919900
+    second: laser0011
+  - first:
+      213: 4607682494655286643
+    second: beam_shot_effect0000
+  - first:
+      213: -9216393941389622479
+    second: beam_shot_effect0001
+  - first:
+      213: 6164453923328065601
+    second: beam_shot_effect0002
+  - first:
+      213: 2228544924832398451
+    second: beam_shot_effect0003
+  - first:
+      213: -5645945261962799481
+    second: beam_shot_effect0004
+  - first:
+      213: -2818224219102476148
+    second: beam_shot_effect0005
+  - first:
+      213: 5794121869269129722
+    second: beam_shot_effect0006
+  - first:
+      213: -2446198114211308632
+    second: beam_shot_effect0007
+  - first:
+      213: -5627336885711713877
+    second: beam_shot_effect0008
+  - first:
+      213: -7667298051336030745
+    second: beam_shot_effect0009
+  - first:
+      213: 1525519379604132923
+    second: beam_shot_effect0010
+  - first:
+      213: -7484352702399234711
+    second: beam_shot_effect0011
+  - first:
+      213: -446730526668968752
+    second: impact0000
+  - first:
+      213: -5873154221069985535
+    second: impact0001
+  - first:
+      213: -2306821651476374638
+    second: impact0002
+  - first:
+      213: 4507014894130384913
+    second: laser0000
+  - first:
+      213: -5493393182843922405
+    second: laser0001
+  - first:
+      213: 2060734080654818494
+    second: laser0002
+  - first:
+      213: 4758036419807082934
+    second: laser0003
+  - first:
+      213: 3071054744052113261
+    second: laser0004
+  - first:
+      213: -7363219722445360670
+    second: laser0005
+  - first:
+      213: -9109771959620355895
+    second: laser0006
+  - first:
+      213: -3952045818111727668
+    second: laser0007
+  - first:
+      213: 2274301902459892381
+    second: laser0008
+  - first:
+      213: -1230724704742421303
+    second: laser0009
+  - first:
+      213: 296476421690897001
+    second: laser0010
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: laser0011
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 189
+        width: 28
+        height: 18
+      alignment: 9
+      pivot: {x: 0, y: 0.38888896}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e23f385d7f377be0800000000000000
+      internalID: -1479644144983919900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0000
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 144
+        width: 34
+        height: 31
+      alignment: 9
+      pivot: {x: 0.4411765, y: 0.4516129}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37dc6bbf0d6c1ff30800000000000000
+      internalID: 4607682494655286643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0001
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 210
+        width: 57
+        height: 53
+      alignment: 9
+      pivot: {x: 0.4561404, y: 0.45283017}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 133c8657a8ac81080800000000000000
+      internalID: -9216393941389622479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0002
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 88
+        width: 56
+        height: 56
+      alignment: 9
+      pivot: {x: 0.4642857, y: 0.4642857}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1408b3ebe2a8c8550800000000000000
+      internalID: 6164453923328065601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0003
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 360
+        width: 60
+        height: 58
+      alignment: 9
+      pivot: {x: 0.46666667, y: 0.46551722}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c72a24dc16dee10800000000000000
+      internalID: 2228544924832398451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0004
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 88
+        width: 126
+        height: 122
+      alignment: 9
+      pivot: {x: 0.40476194, y: 0.48360655}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 786586f92b295a1b0800000000000000
+      internalID: -5645945261962799481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0005
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 88
+        width: 105
+        height: 101
+      alignment: 9
+      pivot: {x: 0.46666667, y: 0.46534654}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c888efa1108a3e8d0800000000000000
+      internalID: -2818224219102476148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0006
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 88
+        width: 110
+        height: 106
+      alignment: 9
+      pivot: {x: 0.48181817, y: 0.46226415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af9db1b342bd86050800000000000000
+      internalID: 5794121869269129722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0007
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 263
+        width: 101
+        height: 97
+      alignment: 9
+      pivot: {x: 0.49504954, y: 0.4639175}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ab543096cb5d0ed0800000000000000
+      internalID: -2446198114211308632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0008
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 184
+        height: 88
+      alignment: 9
+      pivot: {x: 0.2771739, y: 0.4659091}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba943b7daeea7e1b0800000000000000
+      internalID: -5627336885711713877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0009
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 0
+        width: 197
+        height: 73
+      alignment: 9
+      pivot: {x: 0.2284264, y: 0.47945204}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e5321f9b09489590800000000000000
+      internalID: -7667298051336030745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0010
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 210
+        width: 202
+        height: 53
+      alignment: 9
+      pivot: {x: 0.17821783, y: 0.5283019}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b34574f0bcbbb2510800000000000000
+      internalID: 1525519379604132923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beam_shot_effect0011
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 313
+        width: 194
+        height: 23
+      alignment: 9
+      pivot: {x: 0.09793814, y: 0.5217392}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96d32c7fedc322890800000000000000
+      internalID: -7484352702399234711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact0000
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 353
+        width: 113
+        height: 113
+      alignment: 9
+      pivot: {x: 0.8495575, y: 0.460177}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dca29fe3f4ecc9f0800000000000000
+      internalID: -446730526668968752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact0001
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 222
+        width: 109
+        height: 131
+      alignment: 9
+      pivot: {x: 0.853211, y: 0.48091602}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 109990e6a5d5e7ea0800000000000000
+      internalID: -5873154221069985535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: impact0002
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 88
+        width: 115
+        height: 134
+      alignment: 9
+      pivot: {x: 0.8521739, y: 0.51492536}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29b12971ee58cffd0800000000000000
+      internalID: -2306821651476374638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0000
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 73
+        width: 49
+        height: 14
+      alignment: 9
+      pivot: {x: 0, y: 0.3571429}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1105902ca222c8e30800000000000000
+      internalID: 4507014894130384913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0001
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 404
+        width: 113
+        height: 16
+      alignment: 9
+      pivot: {x: 0, y: 0.37499997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b181905610c83c3b0800000000000000
+      internalID: -5493393182843922405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0002
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 363
+        width: 113
+        height: 22
+      alignment: 9
+      pivot: {x: 0, y: 0.3636363}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebcb8f56ab2399c10800000000000000
+      internalID: 2060734080654818494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0003
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 0
+        width: 113
+        height: 53
+      alignment: 9
+      pivot: {x: 0, y: 0.4716981}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b9f8f62ae0f70240800000000000000
+      internalID: 4758036419807082934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0004
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 263
+        width: 113
+        height: 50
+      alignment: 9
+      pivot: {x: 0, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6f1101c4049e9a20800000000000000
+      internalID: 3071054744052113261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0005
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 210
+        width: 113
+        height: 52
+      alignment: 9
+      pivot: {x: 0, y: 0.4807692}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e17e78aca690d990800000000000000
+      internalID: -7363219722445360670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0006
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 263
+        width: 113
+        height: 47
+      alignment: 9
+      pivot: {x: 0, y: 0.4680851}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c8b30a1ba6939180800000000000000
+      internalID: -9109771959620355895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0007
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 466
+        width: 113
+        height: 41
+      alignment: 9
+      pivot: {x: 0, y: 0.4146341}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc7e16b64438729c0800000000000000
+      internalID: -3952045818111727668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0008
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 53
+        width: 113
+        height: 33
+      alignment: 9
+      pivot: {x: 0, y: 0.45454547}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d92fd10d781ff8f10800000000000000
+      internalID: 2274301902459892381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0009
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 336
+        width: 113
+        height: 27
+      alignment: 9
+      pivot: {x: 0, y: 0.4074074}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ccc785d6669beee0800000000000000
+      internalID: -1230724704742421303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser0010
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 385
+        width: 113
+        height: 19
+      alignment: 9
+      pivot: {x: 0, y: 0.36842105}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9623a271cbb4d1400800000000000000
+      internalID: 296476421690897001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

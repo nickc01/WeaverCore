@@ -3,10 +3,11 @@ using WeaverCore.Enums;
 
 namespace WeaverCore.Utilities
 {
-	/// <summary>
-	/// Contains many utility functions for handling cardinal directions
-	/// </summary>
-	public static class DirectionUtilities
+
+    /// <summary>
+    /// Contains many utility functions for handling cardinal directions
+    /// </summary>
+    public static class DirectionUtilities
 	{
 		/// <summary>
 		/// Converts a cardinal direction to degrees

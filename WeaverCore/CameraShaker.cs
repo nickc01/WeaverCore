@@ -9,9 +9,10 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// Used to shake the camera
-	/// </summary>
+
+    /// <summary>
+    /// Used to shake the camera
+    /// </summary>
     public class CameraShaker : MonoBehaviour
 	{
 		[AfterCameraLoad(int.MinValue)]

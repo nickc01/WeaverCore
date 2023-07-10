@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4772041848026635}
   - component: {fileID: 198095419267925743}
   - component: {fileID: 199465293902028021}
-  - component: {fileID: 114343835230613126}
+  - component: {fileID: 3147240894660714659}
   m_Layer: 0
   m_Name: Death Puff Med
   m_TagString: Untagged
@@ -2539,8 +2539,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 30e9cd64dc7b6494eb0afe0a618a229d, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e524d1624d0ff3943b908b8928a3c00a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2586,7 +2585,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &114343835230613126
+--- !u!114 &3147240894660714659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2595,6 +2594,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1199975730311981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683eb0359493ea645a0a594d0ff71681, type: 3}
+  m_Script: {fileID: 11500000, guid: 59d8b42d611ac1d499d321ebfb68299e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyBehaviour: 3
+  destroyAfterTime: 0
+  lifeTime: 0

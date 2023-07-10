@@ -1,0 +1,605 @@
+fileFormatVersion: 2
+guid: f2cc27a3686484f4c9af95aa29a184ac
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2065084316360014273
+    second: stun_impact_effect0000
+  - first:
+      213: 3260717071641291093
+    second: stun_impact_effect0001
+  - first:
+      213: 7026240481891188227
+    second: stun_impact_effect0002
+  - first:
+      213: 8154678710636754230
+    second: stun_impact_effect0003
+  - first:
+      213: -4339518857855529125
+    second: stun_impact_effect0004
+  - first:
+      213: 31608600711016641
+    second: stun_impact_effect0005
+  - first:
+      213: 288794694154961482
+    second: stun_impact_effect0006
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: 63
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: 26
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: stun_impact_effect0000
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 308
+        height: 270
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 27}
+        - {x: -38, y: -32}
+        - {x: 31, y: -28}
+        - {x: 29, y: 27}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f36812c61c85753e0800000000000000
+      internalID: -2065084316360014273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stun_impact_effect0001
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 0
+        width: 308
+        height: 270
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 72, y: 53}
+        - {x: 56, y: 63}
+        - {x: 20, y: 35}
+        - {x: 0, y: 56}
+        - {x: 16, y: 79}
+        - {x: 16, y: 93}
+        - {x: 4, y: 93}
+        - {x: -8, y: 68}
+        - {x: -25, y: 61}
+        - {x: -11, y: 16}
+        - {x: -46, y: 21}
+        - {x: -76, y: 40}
+        - {x: -109, y: 21}
+        - {x: -86, y: 11}
+        - {x: -76, y: -1}
+        - {x: -67, y: -27}
+        - {x: -49, y: -61}
+        - {x: 7, y: -84}
+        - {x: 23, y: -68}
+        - {x: 19, y: -43}
+        - {x: 71, y: -37}
+        - {x: 69, y: -20}
+        - {x: 98, y: -15}
+        - {x: 101, y: 28}
+        - {x: 67, y: 29}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5592b3096e4604d20800000000000000
+      internalID: 3260717071641291093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stun_impact_effect0002
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 0
+        width: 308
+        height: 270
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -145, y: 7}
+        - {x: -147, y: 55}
+        - {x: -73, y: 52}
+        - {x: -73, y: 7}
+      - - {x: 83, y: -61}
+        - {x: 71, y: -73}
+        - {x: 57, y: -67}
+        - {x: 46, y: -80}
+        - {x: 37, y: -66}
+        - {x: 44, y: -56}
+        - {x: 40, y: -40}
+        - {x: 25, y: -34}
+        - {x: 24, y: -12}
+        - {x: 48, y: -15}
+        - {x: 54, y: -32}
+        - {x: 73, y: -46}
+        - {x: 79, y: -31}
+        - {x: 108, y: -47}
+        - {x: 107, y: -69}
+      - - {x: 106, y: -23}
+        - {x: 106, y: -6}
+        - {x: 132, y: -3}
+        - {x: 132, y: -23}
+      - - {x: 69, y: -10}
+        - {x: 68, y: 9}
+        - {x: 83, y: 11}
+        - {x: 92, y: 26}
+        - {x: 117, y: 35}
+        - {x: 140, y: 36}
+        - {x: 146, y: 18}
+        - {x: 98, y: -2}
+        - {x: 98, y: -10}
+      - - {x: 19, y: 1}
+        - {x: 21, y: 17}
+        - {x: 34, y: 17}
+        - {x: 35, y: 0}
+      - - {x: 36, y: 20}
+        - {x: 38, y: 42}
+        - {x: 65, y: 67}
+        - {x: 83, y: 82}
+        - {x: 102, y: 81}
+        - {x: 104, y: 68}
+        - {x: 86, y: 45}
+        - {x: 73, y: 20}
+      - - {x: 26, y: 39}
+        - {x: -1, y: 36}
+        - {x: -20, y: 27}
+        - {x: -41, y: 29}
+        - {x: -41, y: 52}
+        - {x: -31, y: 59}
+        - {x: -12, y: 50}
+        - {x: -6, y: 57}
+        - {x: -19, y: 69}
+        - {x: -30, y: 79}
+        - {x: -22, y: 99}
+        - {x: -13, y: 100}
+        - {x: 0, y: 91}
+        - {x: 2, y: 73}
+        - {x: 12, y: 72}
+        - {x: 14, y: 61}
+        - {x: 34, y: 63}
+        - {x: 34, y: 49}
+      - - {x: 2, y: 104}
+        - {x: 2, y: 132}
+        - {x: 22, y: 132}
+        - {x: 22, y: 105}
+      - - {x: -1, y: -115}
+        - {x: -10, y: -83}
+        - {x: -11, y: -68}
+        - {x: -16, y: -64}
+        - {x: -27, y: -84}
+        - {x: -42, y: -84}
+        - {x: -42, y: -67}
+        - {x: -56, y: -66}
+        - {x: -55, y: -49}
+        - {x: -36, y: -31}
+        - {x: -21, y: -31}
+        - {x: 5, y: -37}
+        - {x: 11, y: -42}
+        - {x: 11, y: -74}
+        - {x: 18, y: -76}
+        - {x: 19, y: -114}
+      - - {x: -75, y: -35}
+        - {x: -74, y: -18}
+        - {x: -51, y: -18}
+        - {x: -51, y: -36}
+      - - {x: -49, y: -26}
+        - {x: -49, y: -9}
+        - {x: -31, y: -10}
+        - {x: -29, y: -26}
+      - - {x: -28, y: -12}
+        - {x: -37, y: -5}
+        - {x: -42, y: 8}
+        - {x: -12, y: 10}
+        - {x: -12, y: -12}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30ef79ddd78328160800000000000000
+      internalID: 7026240481891188227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stun_impact_effect0003
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 270
+        width: 308
+        height: 270
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: -11}
+        - {x: -69, y: 10}
+        - {x: -40, y: 10}
+        - {x: -40, y: -11}
+      - - {x: -84, y: -35}
+        - {x: -84, y: -14}
+        - {x: -60, y: -14}
+        - {x: -60, y: -35}
+      - - {x: -43, y: -116}
+        - {x: -64, y: -116}
+        - {x: -59, y: -80}
+        - {x: -80, y: -78}
+        - {x: -75, y: -62}
+        - {x: -58, y: -58}
+        - {x: -49, y: -39}
+        - {x: -26, y: -39}
+        - {x: -34, y: -68}
+        - {x: -30, y: -86}
+      - - {x: -16, y: -125}
+        - {x: -16, y: -73}
+        - {x: 23, y: -73}
+        - {x: 23, y: -125}
+      - - {x: 55, y: -108}
+        - {x: 55, y: -83}
+        - {x: 75, y: -83}
+        - {x: 75, y: -108}
+      - - {x: 41, y: -73}
+        - {x: 41, y: -35}
+        - {x: 114, y: -35}
+        - {x: 114, y: -73}
+      - - {x: 113, y: -22}
+        - {x: 114, y: -7}
+        - {x: 137, y: -7}
+        - {x: 136, y: -22}
+      - - {x: 74, y: -6}
+        - {x: 74, y: 9}
+        - {x: 99, y: 9}
+        - {x: 99, y: -6}
+      - - {x: 30, y: 11}
+        - {x: 30, y: 26}
+        - {x: 47, y: 26}
+        - {x: 47, y: 12}
+      - - {x: 133, y: 6}
+        - {x: 99, y: 4}
+        - {x: 96, y: 15}
+        - {x: 102, y: 35}
+        - {x: 151, y: 42}
+        - {x: 150, y: 23}
+      - - {x: 66, y: 28}
+        - {x: 56, y: 43}
+        - {x: 57, y: 55}
+        - {x: 88, y: 89}
+        - {x: 105, y: 90}
+        - {x: 119, y: 63}
+        - {x: 103, y: 39}
+        - {x: 90, y: 26}
+      - - {x: 22, y: 53}
+        - {x: 22, y: 72}
+        - {x: 39, y: 72}
+        - {x: 39, y: 53}
+      - - {x: 5, y: 110}
+        - {x: 3, y: 134}
+        - {x: 25, y: 134}
+        - {x: 25, y: 109}
+      - - {x: -2, y: 47}
+        - {x: -25, y: 83}
+        - {x: -25, y: 106}
+        - {x: -11, y: 105}
+        - {x: 13, y: 77}
+        - {x: 13, y: 47}
+      - - {x: -45, y: 44}
+        - {x: -58, y: 62}
+        - {x: -59, y: 81}
+        - {x: -42, y: 80}
+        - {x: -31, y: 64}
+        - {x: -29, y: 44}
+      - - {x: -105, y: 13}
+        - {x: -154, y: 30}
+        - {x: -154, y: 55}
+        - {x: -121, y: 60}
+        - {x: -81, y: 36}
+        - {x: -83, y: 16}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 635b1fcf41d3b2170800000000000000
+      internalID: 8154678710636754230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stun_impact_effect0004
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 540
+        width: 308
+        height: 270
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33, y: 14}
+        - {x: 33, y: 36}
+        - {x: 54, y: 36}
+        - {x: 54, y: 14}
+      - - {x: 113, y: 54}
+        - {x: 112, y: 35}
+        - {x: 69, y: 33}
+        - {x: 69, y: 50}
+        - {x: 62, y: 52}
+        - {x: 63, y: 66}
+        - {x: 85, y: 89}
+        - {x: 108, y: 89}
+        - {x: 108, y: 73}
+        - {x: 122, y: 72}
+        - {x: 122, y: 59}
+      - - {x: 95, y: 4}
+        - {x: 93, y: 22}
+        - {x: 112, y: 24}
+        - {x: 122, y: 38}
+        - {x: 151, y: 40}
+        - {x: 146, y: 26}
+        - {x: 129, y: 8}
+      - - {x: -7, y: 50}
+        - {x: -7, y: 90}
+        - {x: 17, y: 90}
+        - {x: 17, y: 50}
+      - - {x: 28, y: 58}
+        - {x: 28, y: 78}
+        - {x: 43, y: 78}
+        - {x: 43, y: 58}
+      - - {x: -28, y: 85}
+        - {x: -28, y: 108}
+        - {x: -10, y: 108}
+        - {x: -10, y: 85}
+      - - {x: -60, y: 48}
+        - {x: -59, y: 85}
+        - {x: -38, y: 86}
+        - {x: -35, y: 49}
+      - - {x: -139, y: 18}
+        - {x: -139, y: 47}
+        - {x: -92, y: 48}
+        - {x: -92, y: 18}
+      - - {x: -57, y: -15}
+        - {x: -75, y: -6}
+        - {x: -75, y: 11}
+        - {x: -55, y: 11}
+        - {x: -43, y: -2}
+        - {x: -43, y: -15}
+      - - {x: -91, y: -35}
+        - {x: -91, y: -14}
+        - {x: -61, y: -14}
+        - {x: -61, y: -35}
+      - - {x: -80, y: -82}
+        - {x: -80, y: -65}
+        - {x: -64, y: -65}
+        - {x: -64, y: -82}
+      - - {x: -57, y: -73}
+        - {x: -57, y: -53}
+        - {x: -33, y: -53}
+        - {x: -33, y: -73}
+      - - {x: -63, y: -122}
+        - {x: -62, y: -74}
+        - {x: -34, y: -74}
+        - {x: -34, y: -122}
+      - - {x: -18, y: -130}
+        - {x: -18, y: -79}
+        - {x: 9, y: -79}
+        - {x: 9, y: -130}
+      - - {x: 57, y: -111}
+        - {x: 56, y: -91}
+        - {x: 75, y: -91}
+        - {x: 75, y: -110}
+      - - {x: 71, y: -75}
+        - {x: 45, y: -62}
+        - {x: 46, y: -35}
+        - {x: 105, y: -48}
+        - {x: 107, y: -62}
+        - {x: 83, y: -61}
+        - {x: 87, y: -75}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f896d279ee6c3c0800000000000000
+      internalID: -4339518857855529125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stun_impact_effect0005
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 270
+        width: 308
+        height: 270
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55, y: 68}
+        - {x: -55, y: 87}
+        - {x: -41, y: 87}
+        - {x: -41, y: 68}
+      - - {x: -9, y: 66}
+        - {x: -9, y: 94}
+        - {x: 14, y: 94}
+        - {x: 14, y: 66}
+      - - {x: 71, y: 36}
+        - {x: 71, y: 74}
+        - {x: 108, y: 74}
+        - {x: 108, y: 36}
+      - - {x: 60, y: -69}
+        - {x: 60, y: -49}
+        - {x: 78, y: -49}
+        - {x: 78, y: -69}
+      - - {x: -14, y: -133}
+        - {x: -14, y: -82}
+        - {x: 8, y: -82}
+        - {x: 8, y: -133}
+      - - {x: -63, y: -125}
+        - {x: -63, y: -73}
+        - {x: -39, y: -73}
+        - {x: -39, y: -125}
+      - - {x: -84, y: -31}
+        - {x: -84, y: 7}
+        - {x: -46, y: 7}
+        - {x: -46, y: -31}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c03a39dadb407000800000000000000
+      internalID: 31608600711016641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stun_impact_effect0006
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 270
+        width: 308
+        height: 270
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 77}
+        - {x: -6, y: 100}
+        - {x: 13, y: 100}
+        - {x: 13, y: 77}
+      - - {x: 84, y: 55}
+        - {x: 84, y: 75}
+        - {x: 112, y: 79}
+        - {x: 110, y: 55}
+      - - {x: -84, y: -10}
+        - {x: -84, y: 13}
+        - {x: -61, y: 13}
+        - {x: -61, y: -10}
+      - - {x: -18, y: -134}
+        - {x: -18, y: -111}
+        - {x: 7, y: -111}
+        - {x: 7, y: -134}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a42cf168e31020400800000000000000
+      internalID: 288794694154961482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

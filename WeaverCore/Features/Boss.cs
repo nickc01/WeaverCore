@@ -103,7 +103,7 @@ namespace WeaverCore.Features
 		/// <param name="health">The health milestone. When the boss's health goes below this value, the stun will trigger</param>
 		public void AddStunMilestone(int health)
 		{
-			Health.AddHealthMilestone(health, Stun);
+			HealthComponent.AddHealthMilestone(health, Stun);
 		}
 
 		/// <summary>

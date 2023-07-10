@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
@@ -41,9 +42,9 @@ namespace WeaverCore.Editor
 				Debug.LogError($"Failed to do a package search with the error code [{searchRequest.Error.errorCode}], {searchRequest.Error.message}");
 			}
 
-			var buildPipelineLatestVersion = searchRequest.Result[0].versions.latestCompatible;
+			var buildPipelineVersion = searchRequest.Result[0].versions.compatible.FirstOrDefault(v => v == "1.20.2") ?? searchRequest.Result[0].versions.verified;
 
-			bool latestVersionInstalled = false;
+            bool latestVersionInstalled = false;
 
 			foreach (var package in listRequest.Result)
 			{
@@ -63,10 +64,10 @@ namespace WeaverCore.Editor
 				else if (package.name == "com.unity.scriptablebuildpipeline")
 				{
 					//If it isn't the latest compatible version
-					if (package.version != buildPipelineLatestVersion)
+					if (package.version != buildPipelineVersion)
 					{
 						DebugUtilities.ClearLog();
-						Debug.Log($"Updating the Scriptable Build Pipeline from [{package.version}] -> [{buildPipelineLatestVersion}]");
+						Debug.Log($"Updating the Scriptable Build Pipeline from [{package.version}] -> [{buildPipelineVersion}]");
 						PackageClient.Remove(package.name);
 						//makingChanges = true;
 						//DebugUtilities.ClearLog();
@@ -86,7 +87,7 @@ namespace WeaverCore.Editor
 			if (!latestVersionInstalled)
 			{
 				DebugUtilities.ClearLog();
-				PackageClient.Add("com.unity.scriptablebuildpipeline@" + buildPipelineLatestVersion);
+				PackageClient.Add("com.unity.scriptablebuildpipeline@" + buildPipelineVersion);
 
 				Finish(DependencyCheckResult.RequiresReload);
 				yield break;

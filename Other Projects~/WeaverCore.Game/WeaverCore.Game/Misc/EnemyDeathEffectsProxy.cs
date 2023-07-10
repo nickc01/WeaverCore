@@ -8,7 +8,8 @@ using WeaverCore;
 using WeaverCore.Attributes;
 using WeaverCore.Components;
 using WeaverCore.Interfaces;
-using WeaverCore.Utilities;
+
+
 
 public class EnemyDeathEffectsProxy : EnemyDeathEffects
 {

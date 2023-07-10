@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 511b900f04bab9d4e83cda1f0eb11083
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dreamEnterAudio: {fileID: 8300000, guid: 1f1076e9f8f53dc4c8db3147cd5c13b5, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -183,7 +183,7 @@ namespace WeaverCore.Components
 			if (currentFrame != -1)
 			{
 				timer += Time.deltaTime * PlaybackSpeed;
-				if (timer >= frameTime)
+				while (currentFrame != -1 && timer >= frameTime)
 				{
 					timer -= frameTime;
 					if (forceOnce)
@@ -240,7 +240,7 @@ namespace WeaverCore.Components
 		/// <exception cref="Exception">Throws if the clip doesn't exist in <see cref="AnimationData"/></exception>
 		public void PlayAnimation(string clipName, bool forceOnce = false)
 		{
-			Debug.Log($"PLAYING ANIMATION {clipName} on object {gameObject.name}");
+			//Debug.Log($"PLAYING ANIMATION {clipName} on object {gameObject.name}");
 			this.forceOnce = forceOnce;
 			if (!HasAnimationClip(clipName))
 			{

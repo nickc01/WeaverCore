@@ -12,6 +12,24 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Patches
 {
+	static class GlowResponse_Patches
+	{
+		[OnInit]
+		static void Init()
+		{
+            On.GlowResponse.OnTriggerEnter2D += GlowResponse_OnTriggerEnter2D;
+		}
+
+        private static void GlowResponse_OnTriggerEnter2D(On.GlowResponse.orig_OnTriggerEnter2D orig, GlowResponse self, Collider2D collision)
+        {
+			if (self.soundEffect.Clips == null)
+			{
+				self.soundEffect.Clips = new AudioClip[0];
+			}
+			orig(self,collision);
+        }
+    }
+
 	static class CameraController_Patches
 	{
 		static Func<CameraController, bool> verboseMode;

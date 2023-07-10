@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-
 namespace Modding
 {
 	public class ModHooks
@@ -226,6 +225,35 @@ namespace Modding
                 }
             }
             return text;
+        }
+
+        /// <summary>
+        ///     Called whenever localization specific strings are requested
+        /// </summary>
+        /// <remarks>N/A</remarks>
+        internal static string LanguageGet(string key, string sheet)
+        {
+            string res = "";
+            //string res = Language.GetInternal(key, sheet);
+
+            if (LanguageGetHook == null)
+                return res;
+
+            Delegate[] invocationList = LanguageGetHook.GetInvocationList();
+
+            foreach (LanguageGetProxy toInvoke in invocationList)
+            {
+                try
+                {
+                    res = toInvoke(key, sheet, res);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+
+            return res;
         }
 
         /// <summary>

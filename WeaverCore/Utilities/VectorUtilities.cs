@@ -8,6 +8,28 @@ namespace WeaverCore.Utilities
 {
 	public static class VectorUtilities
 	{
+		public static Color With(this Color c, float r = float.NaN, float g = float.NaN, float b = float.NaN, float a = float.NaN)
+		{
+            if (!float.IsNaN(r))
+            {
+                c.r = r;
+            }
+            if (!float.IsNaN(g))
+            {
+                c.g = g;
+            }
+            if (!float.IsNaN(b))
+            {
+                c.b = b;
+            }
+            if (!float.IsNaN(a))
+            {
+                c.a = a;
+            }
+            return c;
+        }
+
+
 		/// <summary>
 		/// Takes an existing vector, and a returns a new one with some fields modified
 		/// </summary>

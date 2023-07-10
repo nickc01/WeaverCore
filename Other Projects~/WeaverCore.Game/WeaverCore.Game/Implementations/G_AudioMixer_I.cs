@@ -7,12 +7,21 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
 using WeaverCore.Attributes;
+using WeaverCore.Components;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Implementations
 {
-	public class G_AudioMixer_I : AudioMixer_I
+    public class G_SpriteFlasher_I : SpriteFlasher_I
+    {
+        public override void OnFlasherInit(SpriteFlasher flasher)
+        {
+			flasher.gameObject.AddComponent<SpriteFlashProxy>();
+        }
+    }
+
+    public class G_AudioMixer_I : AudioMixer_I
 	{
 		static AudioMixer[] Mixers;
 		static AudioMixerGroup[] Groups;

@@ -36,7 +36,15 @@ namespace WeaverCore.Game.Implementations
 
         public override string GetString(string sheetTitle, string key, string fallback = null)
 		{
-			bool flag = this.HasString(sheetTitle, key);
+            var result = Language.Language.Get(key, sheetTitle);
+
+            if (string.IsNullOrEmpty(result))
+            {
+                result = fallback;
+            }
+
+            return result;
+            /*bool flag = this.HasString(sheetTitle, key);
 			string result;
 			if (flag)
 			{
@@ -46,12 +54,21 @@ namespace WeaverCore.Game.Implementations
 			{
 				result = fallback;
 			}
-			return result;
-		}
+			return result;*/
+        }
 
 		public override string GetString(string key, string fallback = null)
 		{
-			bool flag = this.HasString(key);
+            var result = Language.Language.Get(key);
+
+			if (string.IsNullOrEmpty(result))
+			{
+				result = fallback;
+			}
+
+			return result;
+
+            /*bool flag = this.HasString(key);
 			string result;
 			if (flag)
 			{
@@ -61,8 +78,8 @@ namespace WeaverCore.Game.Implementations
 			{
 				result = fallback;
 			}
-			return result;
-		}
+			return result;*/
+        }
 
 		public override string GetStringInternal(string key)
 		{

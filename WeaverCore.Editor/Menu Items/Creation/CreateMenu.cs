@@ -44,7 +44,13 @@ namespace WeaverCore.Editor
 			AssetUtilities.CreateScriptableObject<WeaverAnimationData>();
 		}
 
-		[MenuItem("WeaverCore/Create/Global Settings")]
+        /*[MenuItem("WeaverCore/Create/Custom Charm")]
+        static void CreateCustomCharmMenuItem()
+        {
+            AssetUtilities.CreateScriptableObject<CustomCharm>();
+        }*/
+
+        [MenuItem("WeaverCore/Create/Global Settings")]
 		public static void CreateModSettingsMenuItem()
 		{
 			CreateScriptableObjectWindow.OpenCreationMenu("Create Global Settings", typeof(GlobalSettings), $"No Global Setting Types have been found.\nYou can create one by creating a new script in the Assets folder,\nand having the type inherit from {nameof(WeaverCore.Settings.GlobalSettings)}", "Global Settings");
@@ -55,5 +61,11 @@ namespace WeaverCore.Editor
 		{
 			CreateScriptableObjectWindow.OpenCreationMenu("Create Save Settings", typeof(SaveSpecificSettings), $"No Save Specific Settings Types have been found.\nYou can create one by creating a new script in the Assets folder,\nand having the type inherit from {nameof(WeaverCore.Settings.SaveSpecificSettings)}", "Save Specific Settings");
 		}
-	}
+
+        [MenuItem("WeaverCore/Create/Weaver Charm")]
+        public static void CreateWeaverCharmMenuItem()
+        {
+            CreateScriptableObjectWindow.OpenCreationMenu("Create Weaver Charm", typeof(WeaverCharm), $"No Weaver Charm Types have been found.\nYou can create one by creating a new script in the Assets folder,\nand having the type inherit from {nameof(WeaverCore.Features.WeaverCharm)}", "Weaver Charm");
+        }
+    }
 }

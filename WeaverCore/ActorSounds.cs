@@ -8,12 +8,13 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// Contains groups and snapshots that are related to the Actors AudioMixer
-	/// 
-	/// See this table for more info on what groups/mixers do what : https://1drv.ms/x/s!Aj62egREH4PTxyBaaVb5nI-NmXiX?e=bXtNVc
-	/// </summary>
-	public static class ActorSounds
+
+    /// <summary>
+    /// Contains groups and snapshots that are related to the Actors AudioMixer
+    /// 
+    /// See this table for more info on what groups/mixers do what : https://1drv.ms/x/s!Aj62egREH4PTxyBaaVb5nI-NmXiX?e=bXtNVc
+    /// </summary>
+    public static class ActorSounds
 	{
 		public enum SnapshotType
 		{

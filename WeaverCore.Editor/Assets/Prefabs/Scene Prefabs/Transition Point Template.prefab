@@ -138,3 +138,4 @@ MonoBehaviour:
   m_ActorSnapshot: 1
   enableMusicSnapshot: 0
   m_MusicSnapshot: 0
+  enableDoorControl: 1

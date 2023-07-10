@@ -239,13 +239,13 @@ namespace WeaverCore.Assets.Components
         }
 
         /// <summary>
-        /// Display an <see cref="AreaTitle"/>. This is mainly used to display the name of the NPC the player is talking to
+        /// Display an <see cref="WeaverBossTitle"/>. This is mainly used to display the name of the NPC the player is talking to
         /// </summary>
         /// <param name="title"></param>
         /// <param name="minorText"></param>
         protected void DisplayTitle(string title, string minorText = "")
         {
-            AreaTitle.Spawn(minorText,title);
+            WeaverBossTitle.Spawn(minorText,title);
         }
     }
 }

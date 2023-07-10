@@ -50,7 +50,15 @@ namespace WeaverCore.Editor
             SerializedObject inputManager = new SerializedObject(inputManObject);
             var axes = inputManager.FindProperty("m_Axes");
 
-            var inputManData = JsonUtility.FromJson<InputList>(EditorAssets.LoadEditorAsset<TextAsset>("Input Manager Data").text);
+            var inputData = EditorAssets.LoadEditorAsset<TextAsset>("Input Manager Data");
+
+            if (inputData == null)
+            {
+                finishCheck(DependencyCheckResult.Complete);
+                return;
+            }
+
+            var inputManData = JsonUtility.FromJson<InputList>(inputData.text);
 
             axes.arraySize = inputManData.Inputs.Count;
 

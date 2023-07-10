@@ -1,0 +1,696 @@
+fileFormatVersion: 2
+guid: 206b1270a7ab20f4dbad0aae7223e702
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1638888565655779362
+    second: Godseeker_watch0007
+  - first:
+      213: -5757071183443775090
+    second: Godseeker_watch0006
+  - first:
+      213: 3840770041035190958
+    second: Godseeker_watch0004
+  - first:
+      213: 2406411651790891548
+    second: Godseeker_watch0003
+  - first:
+      213: -2621635996262773664
+    second: Godseeker_young_stand0001
+  - first:
+      213: 4998601028761676195
+    second: Godseeker_watch0005
+  - first:
+      213: -6309804246776476817
+    second: Godseeker_young_stand0000
+  - first:
+      213: 4994427561568763872
+    second: Godseeker_watch0002
+  - first:
+      213: -217092392840974527
+    second: Godseeker_young_stand0002
+  - first:
+      213: -5692984512885134638
+    second: Godseeker_young_stand0003
+  - first:
+      213: -5237698691492409776
+    second: Godseeker_young_stand_back
+  - first:
+      213: -8383748131950408713
+    second: Godseeker_lookup0000
+  - first:
+      213: 4590240166828661180
+    second: Godseeker_lookup0002
+  - first:
+      213: 1471181200998446812
+    second: Godseeker_lookup0001
+  - first:
+      213: 8109970214227026753
+    second: Godseeker_stand_look_up0002
+  - first:
+      213: -6404548332427579223
+    second: Godseeker_stand_look_up0001
+  - first:
+      213: 3363471197620044518
+    second: Godseeker_stand_look_up0000
+  - first:
+      213: -2401393828393509979
+    second: Godseeker_stand_look_up0003
+  - first:
+      213: -4357751695386617004
+    second: Godseeker_sing0002
+  - first:
+      213: -7241765764352067109
+    second: Godseeker_sing0000
+  - first:
+      213: -7523532063912842325
+    second: Godseeker_sing0001
+  - first:
+      213: -4243553073625099118
+    second: Godseeker_sing_back0000
+  - first:
+      213: 228679855356022127
+    second: Godseeker_sing_back0001
+  - first:
+      213: -8949320839575613636
+    second: Godseeker_sing_back0002
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Godseeker_watch0007
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 0
+        width: 128
+        height: 375
+      alignment: 9
+      pivot: {x: 0.5625, y: 0.50666666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed743a1688f7149e0800000000000000
+      internalID: -1638888565655779362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_watch0006
+      rect:
+        serializedVersion: 2
+        x: 1786
+        y: 0
+        width: 128
+        height: 374
+      alignment: 9
+      pivot: {x: 0.5390625, y: 0.5080214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e81323cc246ca10b0800000000000000
+      internalID: -5757071183443775090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_watch0004
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 405
+        width: 132
+        height: 373
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5093834}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea27dd7c0082d4530800000000000000
+      internalID: 3840770041035190958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_watch0003
+      rect:
+        serializedVersion: 2
+        x: 1270
+        y: 0
+        width: 130
+        height: 375
+      alignment: 9
+      pivot: {x: 0.4923077, y: 0.50666666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1a6b58c5aa456120800000000000000
+      internalID: 2406411651790891548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_young_stand0001
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 0
+        width: 159
+        height: 449
+      alignment: 9
+      pivot: {x: 0.5534591, y: 0.51224947}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06c416093f31e9bd0800000000000000
+      internalID: -2621635996262773664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_watch0005
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 130
+        height: 374
+      alignment: 9
+      pivot: {x: 0.50769234, y: 0.5080214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a9ed35e6299e5540800000000000000
+      internalID: 4998601028761676195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_young_stand0000
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 449
+        width: 155
+        height: 451
+      alignment: 9
+      pivot: {x: 0.516129, y: 0.5121951}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6b03a4e7721f68a0800000000000000
+      internalID: -6309804246776476817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_watch0002
+      rect:
+        serializedVersion: 2
+        x: 1658
+        y: 0
+        width: 128
+        height: 375
+      alignment: 9
+      pivot: {x: 0.4921875, y: 0.50666666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eff9b7d765cf4540800000000000000
+      internalID: 4994427561568763872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_young_stand0002
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 158
+        height: 452
+      alignment: 9
+      pivot: {x: 0.6139241, y: 0.51106197}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14f26417e9bbcfcf0800000000000000
+      internalID: -217092392840974527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_young_stand0003
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 0
+        width: 155
+        height: 451
+      alignment: 9
+      pivot: {x: 0.6451613, y: 0.5121951}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2da6ead8fb47ef0b0800000000000000
+      internalID: -5692984512885134638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_young_stand_back
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 451
+        width: 155
+        height: 451
+      alignment: 9
+      pivot: {x: 0.516129, y: 0.5121951}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e01156ac4ff47b0800000000000000
+      internalID: -5237698691492409776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_lookup0000
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 0
+        width: 133
+        height: 349
+      alignment: 9
+      pivot: {x: 0.49624062, y: 0.5444126}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fb40c43e71f6ab80800000000000000
+      internalID: -8383748131950408713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_lookup0002
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 375
+        width: 133
+        height: 337
+      alignment: 9
+      pivot: {x: 0.49624062, y: 0.56379825}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb95d819c1fc3bf30800000000000000
+      internalID: 4590240166828661180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_lookup0001
+      rect:
+        serializedVersion: 2
+        x: 1270
+        y: 375
+        width: 133
+        height: 340
+      alignment: 9
+      pivot: {x: 0.49624062, y: 0.5588235}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd6beb5f18faa6410800000000000000
+      internalID: 1471181200998446812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_stand_look_up0002
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 451
+        width: 155
+        height: 428
+      alignment: 9
+      pivot: {x: 0.4516129, y: 0.53971964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 143200ef0f66c8070800000000000000
+      internalID: 8109970214227026753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_stand_look_up0001
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 0
+        width: 162
+        height: 407
+      alignment: 9
+      pivot: {x: 0.40740743, y: 0.5675676}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a075d279397e17a0800000000000000
+      internalID: -6404548332427579223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_stand_look_up0000
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 407
+        width: 162
+        height: 405
+      alignment: 9
+      pivot: {x: 0.40740743, y: 0.5703704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e2866adb337dae20800000000000000
+      internalID: 3363471197620044518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_stand_look_up0003
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 0
+        width: 155
+        height: 451
+      alignment: 9
+      pivot: {x: 0.5354839, y: 0.5121951}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ab1ac449098caed0800000000000000
+      internalID: -2401393828393509979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_sing0002
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 0
+        width: 164
+        height: 405
+      alignment: 9
+      pivot: {x: 0.39634144, y: 0.5703704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45bdf11ebe72683c0800000000000000
+      internalID: -4357751695386617004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_sing0000
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 405
+        width: 163
+        height: 406
+      alignment: 9
+      pivot: {x: 0.41104296, y: 0.5689655}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd9b535e764108b90800000000000000
+      internalID: -7241765764352067109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_sing0001
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 0
+        width: 162
+        height: 405
+      alignment: 9
+      pivot: {x: 0.40740743, y: 0.5703704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baba632037b079790800000000000000
+      internalID: -7523532063912842325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_sing_back0000
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 451
+        width: 155
+        height: 451
+      alignment: 9
+      pivot: {x: 0.5096774, y: 0.5121951}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2941f0d76fedb15c0800000000000000
+      internalID: -4243553073625099118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_sing_back0001
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 0
+        width: 155
+        height: 451
+      alignment: 9
+      pivot: {x: 0.5096774, y: 0.5121951}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6d88c9ed1f6c2300800000000000000
+      internalID: 228679855356022127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Godseeker_sing_back0002
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 452
+        width: 156
+        height: 451
+      alignment: 9
+      pivot: {x: 0.5128205, y: 0.5121951}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3f4818ac10adc380800000000000000
+      internalID: -8949320839575613636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

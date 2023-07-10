@@ -113,18 +113,31 @@ namespace WeaverCore.Components
         }
 
 
+        /*[SerializeField]
+        Texture texture;*/
+
         [SerializeField]
-        Texture texture;
+        Sprite sprite;
 
         [SerializeField]
         Color color = Color.white;
 
-        public Texture Texture
+        /*public Texture Texture
         {
             get => texture;
             set
             {
                 texture = value;
+                UpdateMaterialValues();
+            }
+        }*/
+
+        public Sprite Sprite
+        {
+            get => sprite;
+            set
+            {
+                sprite = value;
                 UpdateMaterialValues();
             }
         }
@@ -138,6 +151,9 @@ namespace WeaverCore.Components
                 UpdateMaterialValues();
             }
         }
+
+        public Vector2 SpriteOffset { get; private set; }
+        public Vector2 SpriteScale { get; private set; }
 
         Vector2 topEdgeStart;
         Vector2 topEdgeEnd;
@@ -233,15 +249,45 @@ namespace WeaverCore.Components
         {
             mainRenderer.GetPropertyBlock(block);
 
-            var tex = texture;
+            /*var tex = texture;
             if (tex == null)
             {
                 tex = Texture2D.whiteTexture;
+            }*/
+            var currentSprite = this.sprite;
+            if (currentSprite == null)
+            {
+                var blankTexture = Texture2D.whiteTexture;
+                currentSprite = Sprite.Create(blankTexture, new Rect(0f, 0f, blankTexture.width, blankTexture.height), new Vector2(0.5f, 0.5f), blankTexture.width);
             }
 
-            block.SetTexture(texMainID, tex);
+            block.SetTexture(texMainID, currentSprite.texture);
             block.SetColor(colorID, color);
+
+            var textureSize = new Vector2(currentSprite.texture.width,currentSprite.texture.height);
+            var spriteRect = currentSprite.rect;
+
+            SpriteOffset = new Vector2(spriteRect.x / textureSize.x, spriteRect.y / textureSize.y);
+            SpriteScale = new Vector2(spriteRect.width / textureSize.x, spriteRect.height / textureSize.y);
+
+            //Debug.Log("FINAL SIZE = " + new Vector4(spriteRect.x / textureSize.x, spriteRect.y / textureSize.y, spriteRect.width / textureSize.x, spriteRect.height / textureSize.y));
+
+            //block.SetVector("_MainTex_ST",new Vector4(spriteRect.width / textureSize.x,spriteRect.height / textureSize.y, spriteRect.x / textureSize.x, spriteRect.y / textureSize.y));
+            //block.SetVector("_MainTex_ST",new Vector4(0.5f,0.5f,0.5f,0.5f));
+            //block.SetVector("_MainTex_ST", new Vector4(1f,1f,0f,0f));
+            //Debug.Log("ST = " + block.GetVector("_MainTex_ST"));
+
             mainRenderer.SetPropertyBlock(block);
+
+            //var texRect = currentSprite.textureRect;
+
+            //mainRenderer.sharedMaterial.mainTextureOffset = new Vector2(0.5f,0.5f);
+            //mainRenderer.sharedMaterial.mainTextureScale = new Vector2(1f,1f);
+        }
+
+        Vector2 AdjustUVCoordinate(Vector2 uv)
+        {
+            return new Vector2(Mathf.Lerp(SpriteOffset.x,SpriteOffset.x + SpriteScale.x,uv.x),Mathf.Lerp(SpriteOffset.y,SpriteOffset.y + SpriteScale.y,uv.y));
         }
 
         void UpdateMeshLists()
@@ -323,7 +369,7 @@ namespace WeaverCore.Components
 
                 var vertexUVy = LerpUtilities.UnclampedInverseLerp(extraStretch, -extraStretch, verticies[verticies.Count - 1].y);
 
-                uvs.Add(new Vector2(0f, vertexUVy));
+                uvs.Add(AdjustUVCoordinate(new Vector2(0f, vertexUVy)));
                 Vector3 destVertex = default;
 
                 if (Physics2D.RaycastNonAlloc(transform.TransformPoint(rayStartPosition), transform.TransformDirection(targetDirection / new Vector2(1f,TextureStretch)).normalized, terrainHit, MaximumLength, CollisionMask.value) > 0)
@@ -363,11 +409,11 @@ namespace WeaverCore.Components
                 for (int s = 0; s < LengthSubdivisions; s++)
                 {
                     verticies.Add(Vector3.Lerp(previousVertex, destVertex,s / (float)LengthSubdivisions));
-                    uvs.Add(new Vector2(s / (float)LengthSubdivisions, vertexUVy));
+                    uvs.Add(AdjustUVCoordinate(new Vector2(s / (float)LengthSubdivisions, vertexUVy)));
                 }
                 verticies.Add(destVertex);
 
-                uvs.Add(new Vector2(1f, vertexUVy));
+                uvs.Add(AdjustUVCoordinate(new Vector2(1f, vertexUVy)));
             }
 
             topEdgeStart = verticies[0];

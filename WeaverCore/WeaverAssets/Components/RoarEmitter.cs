@@ -31,7 +31,14 @@ public class RoarEmitter : MonoBehaviour
 			Wave2 = transform.Find("Wave 2");
 			Wave2Sprite = Wave2.GetComponent<SpriteRenderer>();
 			Lines = transform.Find("Lines");
-			RubbleParticles = transform.Find("Rubble Fall").GetComponent<ParticleSystem>();
+
+			var rubble = transform.Find("Rubble Fall");
+
+			if (rubble != null)
+			{
+                RubbleParticles = rubble.GetComponent<ParticleSystem>();
+            }
+
 		}
 
 		Wave2Sprite.enabled = false;
@@ -87,8 +94,8 @@ public class RoarEmitter : MonoBehaviour
         {
 			Destroy(Lines.gameObject);
         }
-		RubbleParticles.Stop();
-		StartCoroutine(StoppingRoutine());
+        RubbleParticles?.Stop();
+        StartCoroutine(StoppingRoutine());
 	}
 
 	/// <summary>

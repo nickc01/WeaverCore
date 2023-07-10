@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 973058946717985104}
   - component: {fileID: 973058946717985119}
   - component: {fileID: 973058946717985118}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Dream Fall Catcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}

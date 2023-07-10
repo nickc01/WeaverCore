@@ -5,8 +5,10 @@ using System.Linq;
 using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Enums;
+using WeaverCore.Features;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
+using WeaverCore.Internal;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
@@ -14,7 +16,7 @@ namespace WeaverCore.Components
     /// <summary>
     /// Used to keep track of the health of an enemy
     /// </summary>
-    public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable
+    public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable, IOnPool
     {
         /// <summary>
         /// The enum used when determining if a hit on the enemy was valid
@@ -554,13 +556,22 @@ namespace WeaverCore.Components
                         }
                     }
                 }
-                int num = 1;
+                /*int num = 1;
                 if (extraDamageType == ExtraDamageTypes.Dung2)
                 {
                     num = 2;
-                }
-                Health -= num;
+                }*/
+                Health -= GetDamageOfType(extraDamageType);
             }
+        }
+
+        public static int GetDamageOfType(ExtraDamageTypes extraDamageTypes)
+        {
+            if ((uint)extraDamageTypes <= 1u || extraDamageTypes != ExtraDamageTypes.Dung2)
+            {
+                return 1;
+            }
+            return 2;
         }
 
         /// <summary>
@@ -638,6 +649,15 @@ namespace WeaverCore.Components
             {
                 Player.Player1.RefreshSoulUI();
             }
+            var enemy = GetComponent<Enemy>();
+            if (enemy is Boss)
+            {
+                EnemyHPBars_Interop.MarkAsBoss(gameObject);
+            }
+            else
+            {
+                EnemyHPBars_Interop.MarkAsNonBoss(gameObject);
+            }
             StartCoroutine(CheckPersistence());
         }
 
@@ -647,6 +667,40 @@ namespace WeaverCore.Components
             if (impl.ShouldBeDead())
             {
                 gameObject.SetActive(false);
+            }
+        }
+
+        static Type DisableHPBarType = null;
+        static Type BossMarkerType = null;
+
+        void IOnPool.OnPool()
+        {
+            if (DisableHPBarType == null || BossMarkerType == null)
+            {
+                foreach (var comp in GetComponents<MonoBehaviour>())
+                {
+                    var type = comp.GetType();
+                    if (type.Name == "DisableHPBar")
+                    {
+                        DisableHPBarType = type;
+                    }
+                    else if (type.Name == "BossMarker")
+                    {
+                        BossMarkerType = type;
+                    }
+                }
+            }
+
+            EnemyHPBars_Interop.DisableHPBar(gameObject);
+
+            if (DisableHPBarType != null && TryGetComponent(DisableHPBarType,out var disableBarComp))
+            {
+                Destroy(disableBarComp);
+            }
+
+            if (BossMarkerType != null && TryGetComponent(BossMarkerType,out var markerComp))
+            {
+                Destroy(markerComp);
             }
         }
     }

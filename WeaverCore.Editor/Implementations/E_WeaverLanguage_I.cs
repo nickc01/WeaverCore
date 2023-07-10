@@ -1,6 +1,8 @@
 ﻿using GlobalEnums;
 using Language;
+using Modding;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEditor;
 using WeaverCore.Features;
 using WeaverCore.Implementations;
@@ -45,7 +47,10 @@ namespace WeaverCore.Editor.Implementations
                     }
                 }
             }
-            return fallback;
+
+            var modHookResult = (string)typeof(ModHooks).GetMethod("LanguageGet", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, new object[] { key, sheetTitle });
+
+            return !string.IsNullOrEmpty(modHookResult) ? modHookResult : fallback;
         }
 
         public override string GetString(string key, string fallback = null)
@@ -69,7 +74,10 @@ namespace WeaverCore.Editor.Implementations
                     }
                 }
             }
-            return false;
+
+            var modHookResult = (string)typeof(ModHooks).GetMethod("LanguageGet", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, new object[] { key, sheetTitle });
+
+            return !string.IsNullOrEmpty(modHookResult);
         }
 
         public override bool HasString(string key)

@@ -19,7 +19,7 @@ namespace WeaverCore.Assets.Components
         Vector2 randomScaleRange = new Vector2(1f,1.75f);
 
         [field: SerializeField]
-        public Vector2 lifeTimeRange { get; private set; } = new Vector2(1.75f,2.0f);
+        public Vector2 lifeTimeRange { get; set; } = new Vector2(1.75f,2.0f);
 
         bool initialized = false;
 
@@ -58,6 +58,39 @@ namespace WeaverCore.Assets.Components
 
         int oldDamage = 0;
 
+        bool forceDisappear = false;
+        bool hasLifeTime = true;
+        public bool HasLifeTime
+        {
+            get => hasLifeTime;
+            set
+            {
+                if (hasLifeTime != value)
+                {
+                    hasLifeTime = value;
+                    if (value && Grounded && lifeTimeRoutine == null)
+                    {
+                        lifeTimeRoutine = StartCoroutine(OnTerrainWait(UnityEngine.Random.Range(lifeTimeRange.x, lifeTimeRange.y)));
+                    }
+
+                    if (!value && lifeTimeRoutine != null)
+                    {
+                        StopCoroutine(lifeTimeRoutine);
+                        lifeTimeRoutine = null;
+                    }
+                }
+            }
+        }
+
+
+        Coroutine lifeTimeRoutine = null;
+        Coroutine scaleCoroutine = null;
+
+        IEnumerator MaxLifetimeRoutine(float time)
+        {
+            yield return new WaitForSeconds(time);
+            Pooling.Destroy(this);
+        }
 
         private void Start()
         {
@@ -69,12 +102,26 @@ namespace WeaverCore.Assets.Components
             {
                 Init();
             }
+
+            StartCoroutine(MaxLifetimeRoutine(10));
         }
 
         void OnTerrainLand(Collision2D collision)
         {
+            if (scaleCoroutine != null)
+            {
+                StopCoroutine(scaleCoroutine);
+                scaleCoroutine = null;
+            }
             OnOtherLand(collision, false);
-            StartCoroutine(OnTerrainWait(UnityEngine.Random.Range(lifeTimeRange.x,lifeTimeRange.y)));
+            if (HasLifeTime)
+            {
+                lifeTimeRoutine = StartCoroutine(OnTerrainWait(UnityEngine.Random.Range(lifeTimeRange.x, lifeTimeRange.y)));
+            }
+            else if (forceDisappear)
+            {
+                StartCoroutine(EndRoutine());
+            }
         }
 
         void OnOtherLand(Collision2D collision, bool finish)
@@ -121,12 +168,52 @@ namespace WeaverCore.Assets.Components
 
         IEnumerator OnTerrainWait(float waitTime)
         {
+            /*for (float t = 0; t < waitTime; t += Time.deltaTime)
+            {
+                if (HasLifeTime)
+                {
+                    yield return null;
+                }
+                else
+                {
+                    yield break;
+                }
+            }*/
             yield return new WaitForSeconds(waitTime);
             yield return EndRoutine();
         }
 
+        public void ForceDisappear()
+        {
+            if (!forceDisappear)
+            {
+                forceDisappear = true;
+                HasLifeTime = false;
+                if (Grounded)
+                {
+                    StartCoroutine(EndRoutine());
+                }
+            }
+        }
+
+        public void ForceDisappear(float time)
+        {
+            IEnumerator Wait(float time)
+            {
+                yield return new WaitForSeconds(time);
+                ForceDisappear();
+            }
+
+            StartCoroutine(Wait(time));
+        }
+
         IEnumerator EndRoutine()
         {
+            if (scaleCoroutine != null)
+            {
+                StopCoroutine(scaleCoroutine);
+                scaleCoroutine = null;
+            }
             //var oldDamage = damager.damageDealt;
             //damager.damageDealt = 0;
             //damager.damageDealt = 0;
@@ -168,6 +255,29 @@ namespace WeaverCore.Assets.Components
             transform.SetLocalScaleXY(scale,scale);
         }
 
+        IEnumerator ScaleRoutine(float oldScale, float newScale, AnimationCurve curve, float time)
+        {
+            for (float t = 0; t < time; t += Time.deltaTime)
+            {
+                SetScale(Mathf.Lerp(oldScale,newScale, curve.Evaluate(t / time)));
+                yield return null;
+            }
+
+            SetScale(newScale);
+            scaleCoroutine = null;
+        }
+
+        public void SetScaleGradually(float newScale, AnimationCurve curve, float time = 0.5f)
+        {
+            if (scaleCoroutine != null)
+            {
+                StopCoroutine(scaleCoroutine);
+                scaleCoroutine = null;
+            }
+
+            scaleCoroutine = StartCoroutine(ScaleRoutine(transform.localScale.x, newScale, curve, time));
+        }
+
         public static VomitGlob Spawn(Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
         {
             if (prefab == null)
@@ -195,6 +305,11 @@ namespace WeaverCore.Assets.Components
             Grounded = false;
             rb.velocity = default;
             rb.isKinematic = false;
+            forceDisappear = false;
+            hasLifeTime = true;
+            lifeTimeRoutine = null;
+            scaleCoroutine = null;
+            StopAllCoroutines();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

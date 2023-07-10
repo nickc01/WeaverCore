@@ -31,7 +31,11 @@ namespace WeaverCore.Components
 		[SerializeField]
 		Rect sceneDimensions;
 
-		[NonSerialized]
+        [field: SerializeField]
+        [field: Tooltip("The gate to return to if the player dies. This is only used if the player warped into this scene via dreamnail")]
+        public string DreamReturnGateName { get; private set; } = "";
+
+        [NonSerialized]
 		bool sceneDimensionsRefreshed = false;
 
 		[Header("Audio")]

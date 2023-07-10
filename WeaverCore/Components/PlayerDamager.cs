@@ -12,10 +12,10 @@ using GlobalEnums;
 
 namespace WeaverCore.Components
 {
-	/// <summary>
-	/// This component causes the player to take damage when colliding with it
-	/// </summary>
-	public class PlayerDamager : DamageHero
+    /// <summary>
+    /// This component causes the player to take damage when colliding with it
+    /// </summary>
+    public class PlayerDamager : DamageHero
 	{
 		public new HazardType hazardType
 		{

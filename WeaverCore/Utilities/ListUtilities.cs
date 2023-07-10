@@ -42,6 +42,20 @@ namespace WeaverCore.Utilities
 			return list[UnityEngine.Random.Range(0,list.Count)];
 		}
 
+		public static T GetRandomElement<T>(this List<T> list, int startIndex, int endIndex)
+		{
+			if (startIndex < 0 || startIndex > list.Count)
+			{
+				throw new Exception("Invalid Start Index");
+			}
+			if (endIndex < 0 || endIndex > list.Count)
+			{
+				throw new Exception("Invalid End Index");
+			}
+
+            return list[UnityEngine.Random.Range(startIndex, endIndex)];
+        }
+
 		/// <summary>
 		/// Randomizes the list
 		/// </summary>

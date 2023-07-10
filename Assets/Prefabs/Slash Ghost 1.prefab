@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 50361749400880818}
   - component: {fileID: 114432380976253646}
   - component: {fileID: 8005769917327156820}
+  - component: {fileID: 3668888272369743563}
   m_Layer: 11
   m_Name: Slash Ghost 1
   m_TagString: Untagged
@@ -134,3 +135,17 @@ MonoBehaviour:
   autoPlay: 1
   OnClipFinish: 3
   autoPlayClip: Slash Ghost 1
+--- !u!114 &3668888272369743563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109907540402092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801bb3ac81133224e88103ff3539444c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 50361749400880818}
+  angleOffset: 0

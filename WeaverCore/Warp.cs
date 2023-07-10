@@ -60,7 +60,7 @@ namespace WeaverCore
 					_dreamWarpDefaults = new DreamWarpOptions
 					{
 						DreamWarpSound = WeaverAssets.LoadWeaverAsset<AudioClip>("Dream Enter"),
-						DreamArriveSound = WeaverAssets.LoadWeaverAsset<AudioClip>("Dream Arrive"),
+						DreamArriveSound = WeaverAssets.LoadWeaverAsset<AudioClip>("Enter Dream World"),
 						DreamParticles = WeaverAssets.LoadWeaverAsset<GameObject>("Dream Particles"),
 						DreamArriveParticles = WeaverAssets.LoadWeaverAsset<GameObject>("Dream Arrive Particles")
 					};
@@ -228,7 +228,6 @@ namespace WeaverCore
 
 			HeroController.instance.RegainControl();
 			HeroController.instance.StartAnimationControl();
-			HeroController.instance.AcceptInput();
 			HeroController.instance.GetComponent<Renderer>().enabled = true;
 
 			if (effects != null)

@@ -1,0 +1,3301 @@
+fileFormatVersion: 2
+guid: 5468ba66978f1154daab7908a9458e93
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: ground_plink_026
+  - first:
+      213: 21300002
+    second: ground_plink_035
+  - first:
+      213: 21300004
+    second: ground_plink_002
+  - first:
+      213: 21300006
+    second: ground_plink_056
+  - first:
+      213: 21300008
+    second: ground_plink_087
+  - first:
+      213: 21300010
+    second: ground_plink_058
+  - first:
+      213: 21300012
+    second: ground_plink_019
+  - first:
+      213: 21300014
+    second: ground_plink_smaller0013
+  - first:
+      213: 21300016
+    second: ground_plink_081
+  - first:
+      213: 21300018
+    second: ground_plink_smaller0003
+  - first:
+      213: 21300020
+    second: ground_plink_051
+  - first:
+      213: 21300022
+    second: ground_plink_smaller0006
+  - first:
+      213: 21300024
+    second: ground_plink_052
+  - first:
+      213: 21300026
+    second: ground_plink_048
+  - first:
+      213: 21300028
+    second: ground_plink_047
+  - first:
+      213: 21300030
+    second: ground_plink_017
+  - first:
+      213: 21300032
+    second: ground_plink_030
+  - first:
+      213: 21300034
+    second: ground_plink_001
+  - first:
+      213: 21300036
+    second: ground_plink_034
+  - first:
+      213: 21300038
+    second: ground_plink_016
+  - first:
+      213: 21300040
+    second: ground_plink_083
+  - first:
+      213: 21300042
+    second: ground_plink_037
+  - first:
+      213: 21300044
+    second: ground_plink_000
+  - first:
+      213: 21300046
+    second: ground_plink_005
+  - first:
+      213: 21300048
+    second: ground_plink_smaller0001
+  - first:
+      213: 21300050
+    second: ground_plink_044
+  - first:
+      213: 21300052
+    second: ground_plink_069
+  - first:
+      213: 21300054
+    second: ground_plink_072
+  - first:
+      213: 21300056
+    second: ground_plink_088
+  - first:
+      213: 21300058
+    second: ground_plink_041
+  - first:
+      213: 21300060
+    second: ground_plink_073
+  - first:
+      213: 21300062
+    second: ground_plink_046
+  - first:
+      213: 21300064
+    second: ground_plink_020
+  - first:
+      213: 21300066
+    second: ground_plink_062
+  - first:
+      213: 21300068
+    second: ground_plink_036
+  - first:
+      213: 21300070
+    second: ground_plink_065
+  - first:
+      213: 21300072
+    second: ground_plink_smaller0010
+  - first:
+      213: 21300074
+    second: ground_plink_029
+  - first:
+      213: 21300076
+    second: ground_plink_022
+  - first:
+      213: 21300078
+    second: ground_plink_053
+  - first:
+      213: 21300080
+    second: ground_plink_033
+  - first:
+      213: 21300082
+    second: ground_plink_074
+  - first:
+      213: 21300084
+    second: ground_plink_071
+  - first:
+      213: 21300086
+    second: ground_plink_smaller0008
+  - first:
+      213: 21300088
+    second: ground_plink_045
+  - first:
+      213: 21300090
+    second: ground_plink_smaller0009
+  - first:
+      213: 21300092
+    second: ground_plink_027
+  - first:
+      213: 21300094
+    second: ground_plink_024
+  - first:
+      213: 21300096
+    second: ground_plink_085
+  - first:
+      213: 21300098
+    second: ground_plink_014
+  - first:
+      213: 21300100
+    second: ground_plink_013
+  - first:
+      213: 21300102
+    second: ground_plink_077
+  - first:
+      213: 21300104
+    second: ground_plink_068
+  - first:
+      213: 21300106
+    second: ground_plink_015
+  - first:
+      213: 21300108
+    second: ground_plink_040
+  - first:
+      213: 21300110
+    second: ground_plink_082
+  - first:
+      213: 21300112
+    second: ground_plink_011
+  - first:
+      213: 21300114
+    second: ground_plink_089
+  - first:
+      213: 21300116
+    second: ground_plink_078
+  - first:
+      213: 21300118
+    second: ground_plink_042
+  - first:
+      213: 21300120
+    second: ground_plink_064
+  - first:
+      213: 21300122
+    second: ground_plink_028
+  - first:
+      213: 21300124
+    second: ground_plink_043
+  - first:
+      213: 21300126
+    second: ground_plink_063
+  - first:
+      213: 21300128
+    second: ground_plink_006
+  - first:
+      213: 21300130
+    second: ground_plink_039
+  - first:
+      213: 21300132
+    second: ground_plink_smaller0000
+  - first:
+      213: 21300134
+    second: ground_plink_079
+  - first:
+      213: 21300136
+    second: ground_plink_049
+  - first:
+      213: 21300138
+    second: ground_plink_smaller0012
+  - first:
+      213: 21300140
+    second: ground_plink_009
+  - first:
+      213: 21300142
+    second: ground_plink_004
+  - first:
+      213: 21300144
+    second: ground_plink_076
+  - first:
+      213: 21300146
+    second: ground_plink_smaller0011
+  - first:
+      213: 21300148
+    second: ground_plink_008
+  - first:
+      213: 21300150
+    second: ground_plink_smaller0005
+  - first:
+      213: 21300152
+    second: ground_plink_smaller0007
+  - first:
+      213: 21300154
+    second: ground_plink_023
+  - first:
+      213: 21300156
+    second: ground_plink_055
+  - first:
+      213: 21300158
+    second: ground_plink_smaller0002
+  - first:
+      213: 21300160
+    second: ground_plink_066
+  - first:
+      213: 21300162
+    second: ground_plink_057
+  - first:
+      213: 21300164
+    second: ground_plink_smaller0015
+  - first:
+      213: 21300166
+    second: ground_plink_080
+  - first:
+      213: 21300168
+    second: ground_plink_smaller0004
+  - first:
+      213: 21300170
+    second: ground_plink_084
+  - first:
+      213: 21300172
+    second: ground_plink_061
+  - first:
+      213: 21300174
+    second: ground_plink_059
+  - first:
+      213: 21300176
+    second: ground_plink_050
+  - first:
+      213: 21300178
+    second: ground_plink_018
+  - first:
+      213: 21300180
+    second: ground_plink_025
+  - first:
+      213: 21300182
+    second: ground_plink_032
+  - first:
+      213: 21300184
+    second: ground_plink_060
+  - first:
+      213: 21300186
+    second: ground_plink_031
+  - first:
+      213: 21300188
+    second: ground_plink_007
+  - first:
+      213: 21300190
+    second: ground_plink_070
+  - first:
+      213: 21300192
+    second: ground_plink_012
+  - first:
+      213: 21300194
+    second: ground_plink_067
+  - first:
+      213: 21300196
+    second: ground_plink_054
+  - first:
+      213: 21300198
+    second: ground_plink_010
+  - first:
+      213: 21300200
+    second: ground_plink_smaller0014
+  - first:
+      213: 21300202
+    second: ground_plink_021
+  - first:
+      213: 21300204
+    second: ground_plink_075
+  - first:
+      213: 21300206
+    second: ground_plink_086
+  - first:
+      213: 21300208
+    second: ground_plink_003
+  - first:
+      213: 21300210
+    second: ground_plink_038
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 12
+  maxTextureSize: 512
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ground_plink_026
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df7d771683814b718d34d5741a2cd374
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_035
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d985d125e96d48e18a0988ddb2252686
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_002
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b243ac96c4804645b7d2948f170fe0cc
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_056
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1961d0bf2b104a7c89e80d796e75c383
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_087
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8577134af3724c598934460375281ebb
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_058
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 127
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82493f6109724d7a89fd212e85addf72
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_019
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d36ff207b404409480b5a055ac5d347e
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0013
+      rect:
+        serializedVersion: 2
+        x: 116.02675
+        y: 158
+        width: 104.89713
+        height: 125.97325
+      alignment: 9
+      pivot: {x: 0.53360134, y: 0.50804436}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.475315, y: -62.986626}
+        - {x: -52.475315, y: -11.986626}
+        - {x: -52.475315, y: 59.013374}
+        - {x: -43.475315, y: 63.013374}
+        - {x: 23.524685, y: 63.013374}
+        - {x: 38.524685, y: 56.013374}
+        - {x: 52.524685, y: 25.013374}
+        - {x: 52.524685, y: -33.986626}
+        - {x: 33.524685, y: -62.986626}
+      physicsShape:
+      - - {x: 7.524685, y: 11.013374}
+        - {x: -4.475315, y: 11.013374}
+        - {x: -6.475315, y: 6.0133743}
+        - {x: -6.475315, y: -5.9866257}
+        - {x: -2.475315, y: -8.986626}
+        - {x: 7.524685, y: -8.986626}
+        - {x: 13.524685, y: -2.9866257}
+        - {x: 13.524685, y: 6.0133743}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1be64c1fc21e497a994de2b90ef85078
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_081
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f675a95e2a9d4419b818a04d8cadebdc
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0003
+      rect:
+        serializedVersion: 2
+        x: 420.0761
+        y: 326.0761
+        width: 76.84776
+        height: 92.87257
+      alignment: 9
+      pivot: {x: 0.5091505, y: 0.4514134}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -37.5, y: -41.5124}
+        - {x: -38.5, y: -36.5124}
+        - {x: -38.5, y: 33.4876}
+        - {x: -0.5, y: 44.4876}
+        - {x: 9.5, y: 46.4876}
+        - {x: 34.5, y: 46.4876}
+        - {x: 38.5, y: 33.4876}
+        - {x: 38.5, y: -39.5124}
+        - {x: 21.5, y: -46.5124}
+        - {x: -33.5, y: -46.5124}
+      physicsShape:
+      - - {x: -4.5, y: 5.4875984}
+        - {x: -9.5, y: 3.4875984}
+        - {x: -9.5, y: -10.512402}
+        - {x: -3.5, y: -15.512402}
+        - {x: 5.5, y: -15.512402}
+        - {x: 8.5, y: -14.512402}
+        - {x: 11.5, y: -9.512402}
+        - {x: 11.5, y: 2.4875984}
+        - {x: 9.5, y: 5.4875984}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3e8704cebfb4e7a85fb72ae4191823a
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_051
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c97a4b94292f4283bb1921d1a00841dc
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0006
+      rect:
+        serializedVersion: 2
+        x: 124.05763
+        y: 320.02676
+        width: 97.91562
+        height: 120.93034
+      alignment: 9
+      pivot: {x: 0.45899078, y: 0.49593216}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.01544, y: -36.491924}
+        - {x: -49.01544, y: -15.491924}
+        - {x: -49.01544, y: 27.508076}
+        - {x: -1.0154419, y: 60.508076}
+        - {x: 33.98456, y: 60.508076}
+        - {x: 48.98456, y: -19.491924}
+        - {x: 48.98456, y: -35.491924}
+        - {x: 45.98456, y: -41.491924}
+        - {x: -13.015442, y: -60.491924}
+        - {x: -29.015442, y: -60.491924}
+      physicsShape:
+      - - {x: 1.9845581, y: 9.508076}
+        - {x: -12.015442, y: 9.508076}
+        - {x: -16.015442, y: 4.5080757}
+        - {x: -16.015442, y: -4.4919243}
+        - {x: -10.015442, y: -11.491924}
+        - {x: 5.984558, y: -11.491924}
+        - {x: 6.984558, y: -9.491924}
+        - {x: 6.984558, y: 6.5080757}
+        - {x: 3.984558, y: 8.508076}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b307f8f0e904868a44dda550849934b
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_052
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff3d0d470ce456d9d6526c2ff050d59
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_048
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 15
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd7eab69744c45a7b3a78af51a2b0ad0
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_047
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e95ba9b12bf24da68ab32d334dd0e9b6
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_017
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 20
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 591e8332c4e641a8bbd21d2dde371f73
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_030
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb1624354c3a47f682307e8b41cf5568
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_001
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05cbb0bfd25e48738b0fb1fa5fd0c09e
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_034
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35e93dd05ca146b78c9129888b36c218
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_016
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 127
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab3f12e88e44d9a84a7650a74b94b40
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_083
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d60e671e4a64185b1d2c2c9478f4afa
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_037
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 132
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4720f7b16ca349108633c4c5653e0467
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_000
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 132
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf665b35ca8b455f94955e8952aa6d78
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_005
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c68d6265a05484691579ad0d329bb4e
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0001
+      rect:
+        serializedVersion: 2
+        x: 307.0761
+        y: 366.0761
+        width: 78.84776
+        height: 77.84776
+      alignment: 9
+      pivot: {x: 0.50634134, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35.5, y: -39}
+        - {x: -39.5, y: -28}
+        - {x: -39.5, y: 27}
+        - {x: -36.5, y: 39}
+        - {x: 24.5, y: 39}
+        - {x: 39.5, y: 35}
+        - {x: 39.5, y: -31}
+        - {x: 36.5, y: -39}
+      physicsShape:
+      - - {x: -3.5, y: 10}
+        - {x: -9.5, y: 8}
+        - {x: -9.5, y: -6}
+        - {x: -7.5, y: -10}
+        - {x: 11.5, y: -10}
+        - {x: 11.5, y: 10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d86ef7c669943bf9add9d25b11d4b62
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_044
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f22390b19acc43e3ab531e52321a180b
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_069
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf469f1c331454bbbb152ff647cf8c3
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_072
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32acbbb848f443329196f1333ff25587
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_088
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d165fd569ba4bc38ca3577f907f7621
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_041
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 137
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 429cdda472a840b88a53f286b0134912
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_073
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e93be1f2e345c89c8ac6220f051adf
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_046
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 232
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b40d6d7684a5481d88493369d859088d
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_020
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63a4af68b9254b98a6c0a605e8de24bb
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_062
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b948d78646b945ddbc8a6f1b53b20241
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_036
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 127
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1b9cf5b185d4d348806f957dad593eb
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_065
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4671a1ca69d4c67b55368613d31d471
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0010
+      rect:
+        serializedVersion: 2
+        x: 0.036284924
+        y: 127
+        width: 122.963715
+        height: 119.92388
+      alignment: 9
+      pivot: {x: 0.47952124, y: 0.53367186}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5181427, y: -59.96194}
+        - {x: -61.518143, y: -28.96194}
+        - {x: -61.518143, y: 38.03806}
+        - {x: -25.518143, y: 60.03806}
+        - {x: -11.518143, y: 60.03806}
+        - {x: 32.481857, y: 41.03806}
+        - {x: 61.481857, y: -7.961941}
+        - {x: 61.481857, y: -41.96194}
+        - {x: 58.481857, y: -44.96194}
+        - {x: 29.481857, y: -59.96194}
+      physicsShape:
+      - - {x: -13.518143, y: 0.038059235}
+        - {x: -9.518143, y: -6.961941}
+        - {x: 8.481857, y: -6.961941}
+        - {x: 8.481857, y: 8.038059}
+        - {x: 6.4818573, y: 15.038059}
+        - {x: -8.518143, y: 15.038059}
+        - {x: -13.518143, y: 11.038059}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e255e5275af4cf7be009d90fd3642f1
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_029
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 732b58e77ea5419db8e239df99d7d525
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_022
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b45b617f872489c95ccb7dfe0f78005
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_053
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db711c662404481b8d71c92f76cc6590
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_033
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 237
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d963c8af11f4bad99aa4e64eaddb107
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_074
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15f5f083acd546a59a46d59f91361611
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_071
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 15
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078baed5533c4ec9851fba7db53cf30e
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0008
+      rect:
+        serializedVersion: 2
+        x: 125.051315
+        y: 32.07612
+        width: 120.948685
+        height: 121.84776
+      alignment: 9
+      pivot: {x: 0.47084996, y: 0.49179304}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55.525658, y: -27}
+        - {x: -60.525658, y: 5}
+        - {x: -60.525658, y: 42}
+        - {x: -8.525658, y: 61}
+        - {x: 30.474342, y: 61}
+        - {x: 54.474342, y: 35}
+        - {x: 60.474342, y: 14}
+        - {x: 60.474342, y: -47}
+        - {x: 40.474342, y: -55}
+        - {x: -0.52565765, y: -57}
+        - {x: -22.525658, y: -61}
+        - {x: -28.525658, y: -61}
+        - {x: -48.525658, y: -30}
+      physicsShape:
+      - - {x: -12.525658, y: 10}
+        - {x: -14.525658, y: 4}
+        - {x: -14.525658, y: -7}
+        - {x: -6.5256577, y: -13}
+        - {x: 1.4743423, y: -13}
+        - {x: 7.4743423, y: -6}
+        - {x: 7.4743423, y: 8}
+        - {x: 0.47434235, y: 10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07cda2ed40424fd6862cdd7a683e55f8
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_045
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53d95aea6d674acd87f1920f7fddf15e
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0009
+      rect:
+        serializedVersion: 2
+        x: 0.051316738
+        y: 261.0761
+        width: 121.948685
+        height: 107.843636
+      alignment: 9
+      pivot: {x: 0.5252272, y: 0.55370414}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -60.974342, y: -44.997936}
+        - {x: -35.974342, y: -53.997936}
+        - {x: 9.025658, y: -53.997936}
+        - {x: 61.025658, y: -25.997936}
+        - {x: 61.025658, y: 43.002064}
+        - {x: 16.025658, y: 54.002064}
+        - {x: 15.025658, y: 54.002064}
+        - {x: -55.974342, y: 41.002064}
+        - {x: -42.974342, y: 2.0020638}
+        - {x: -55.974342, y: -1.9979362}
+        - {x: -60.974342, y: -7.9979362}
+      physicsShape:
+      - - {x: -3.9743423, y: 17.002064}
+        - {x: 9.025658, y: 17.002064}
+        - {x: 14.025658, y: 14.002064}
+        - {x: 14.025658, y: 0.0020637512}
+        - {x: 6.0256577, y: -5.9979362}
+        - {x: 0.025657654, y: -5.9979362}
+        - {x: -1.9743423, y: -4.9979362}
+        - {x: -7.9743423, y: 1.0020638}
+        - {x: -7.9743423, y: 7.0020638}
+        - {x: -4.9743423, y: 14.002064}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f165c128d2824c17a4c655e10f275a1c
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_027
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 142
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59285fa69cfa43e494e8879b8b7175fc
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_024
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b24fa682c6e640c8a676dbcc61469c1a
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_085
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 318
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c820cb769fc04224929b6d783b01004c
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_014
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 15
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8895e3bbbf7c4cf89a26c2871ffb1e8d
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_013
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d7df75a761f4751a6102f5d4fe80544
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_077
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 233
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 012c17ab32f84ed9beca8cf260f876ec
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_068
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 20
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c699c1383dbb42fcb572f9053429a85f
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_015
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80d100b75aa4458afc24f191b603596
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_040
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 147
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d84c2e6003c4015b6b0c079c483203e
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_082
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df61b1456c5c44dabb28f6fcfd392d9f
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_011
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 132
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f49d3c22372485cb2e9291598e86629
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_089
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 137
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88aec8bb540b48129b20375f8885ad93
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_078
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95a2b7e2761b460bac8126f734d18edc
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_042
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 25
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f59de583ad44465185410a73bea920c8
+      internalID: 21300118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_064
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 227
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9810666cd864a72b8320eb75880ca72
+      internalID: 21300120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_028
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 127
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36224a67bd264023aadcf70264a45952
+      internalID: 21300122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_043
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba0f916e6694b6abb87ae379d024f31
+      internalID: 21300124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_063
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c6505404c44d3fa1bdb14e68c52fdf
+      internalID: 21300126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_006
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4f7a3dfc98947ee8d154673b9cad247
+      internalID: 21300128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_039
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 142
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 945a41eb9127402abffd36dbe98c9c76
+      internalID: 21300130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0000
+      rect:
+        serializedVersion: 2
+        x: 425.0761
+        y: 218.07613
+        width: 78.84776
+        height: 77.84776
+      alignment: 9
+      pivot: {x: 0.50634134, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 37.5, y: -39}
+        - {x: -39.5, y: -39}
+        - {x: -39.5, y: 39}
+        - {x: 37.5, y: 39}
+        - {x: 39.5, y: 35}
+        - {x: 39.5, y: -27}
+      physicsShape:
+      - - {x: -7.5, y: 10}
+        - {x: -9.5, y: 5}
+        - {x: -9.5, y: -7}
+        - {x: -5.5, y: -10}
+        - {x: 6.5, y: -10}
+        - {x: 10.5, y: -8}
+        - {x: 10.5, y: 5}
+        - {x: 8.5, y: 10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82684af8a27644479bbe774d31d2c3b9
+      internalID: 21300132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_079
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 222
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec09cbc73148461e829bd26e6987e45c
+      internalID: 21300134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_049
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 246
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c99396a5af248bd926403af4b42897a
+      internalID: 21300136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0012
+      rect:
+        serializedVersion: 2
+        x: 225.07613
+        y: 126
+        width: 99.84776
+        height: 125.92388
+      alignment: 9
+      pivot: {x: 0.540061, y: 0.50824356}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: -62.96194}
+        - {x: -50, y: -18.96194}
+        - {x: -50, y: 48.03806}
+        - {x: -31, y: 63.03806}
+        - {x: 7, y: 63.03806}
+        - {x: 50, y: 31.03806}
+        - {x: 50, y: -24.96194}
+        - {x: 43, y: -62.96194}
+      physicsShape:
+      - - {x: 9, y: 11.038059}
+        - {x: 0, y: 11.038059}
+        - {x: -6, y: 10.038059}
+        - {x: -6, y: -6.961941}
+        - {x: -1, y: -9.961941}
+        - {x: 11, y: -9.961941}
+        - {x: 13, y: -5.961941}
+        - {x: 14, y: -2.9619408}
+        - {x: 14, y: 7.038059}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5654a1b8222a468bbc4ad1e6125de5fb
+      internalID: 21300138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_009
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 127
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7888a008b41e480cafab1a483b5055c4
+      internalID: 21300140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_004
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 137
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4de1ed2ac9414f4bbc1a72d29728c034
+      internalID: 21300142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_076
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 242
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698988ce193e41c29bacc359aa6748dd
+      internalID: 21300144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0011
+      rect:
+        serializedVersion: 2
+        x: 0.036284924
+        y: 0
+        width: 122.963715
+        height: 122.98709
+      alignment: 9
+      pivot: {x: 0.48032615, y: 0.52037984}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32.518143, y: -61.493546}
+        - {x: -61.518143, y: -29.493546}
+        - {x: -61.518143, y: 56.506454}
+        - {x: -58.518143, y: 61.506454}
+        - {x: 24.481857, y: 61.506454}
+        - {x: 54.481857, y: 53.506454}
+        - {x: 61.481857, y: 21.506454}
+        - {x: 61.481857, y: -53.493546}
+        - {x: 31.481857, y: -61.493546}
+      physicsShape:
+      - - {x: 5.4818573, y: 12.506454}
+        - {x: -9.518143, y: 12.506454}
+        - {x: -12.518143, y: 11.506454}
+        - {x: -12.518143, y: -5.4935455}
+        - {x: -11.518143, y: -8.493546}
+        - {x: 2.4818573, y: -8.493546}
+        - {x: 7.4818573, y: -4.4935455}
+        - {x: 8.481857, y: 2.5064545}
+        - {x: 8.481857, y: 8.506454}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18818046dedf4cbcb099aa348fa8c79a
+      internalID: 21300146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_008
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9cc731093d74ec791464554fd297476
+      internalID: 21300148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0005
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 253
+        width: 81
+        height: 114
+      alignment: 9
+      pivot: {x: 0.5316211, y: 0.47952566}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26.516605, y: -57}
+        - {x: 40.516605, y: -32}
+        - {x: 40.516605, y: 39}
+        - {x: -4.4833946, y: 57}
+        - {x: -35.483395, y: 57}
+        - {x: -40.483395, y: -3}
+        - {x: -40.483395, y: -36}
+        - {x: -22.483395, y: -50}
+        - {x: -4.4833946, y: -57}
+      physicsShape:
+      - - {x: 9.516605, y: 8}
+        - {x: 13.516605, y: 6}
+        - {x: 13.516605, y: -10}
+        - {x: 6.5166054, y: -13}
+        - {x: -5.4833946, y: -13}
+        - {x: -8.483395, y: -11}
+        - {x: -8.483395, y: 7}
+        - {x: -7.4833946, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba6cbe4adfb242e18d87181a351b4dc6
+      internalID: 21300150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0007
+      rect:
+        serializedVersion: 2
+        x: 250.06586
+        y: 0.07612038
+        width: 113.88283
+        height: 121.84776
+      alignment: 9
+      pivot: {x: 0.46769947, y: 0.49179316}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -39.00727, y: -61}
+        - {x: -57.00727, y: -6}
+        - {x: -57.00727, y: 36}
+        - {x: -2.0072708, y: 61}
+        - {x: 28.99273, y: 61}
+        - {x: 30.99273, y: 58}
+        - {x: 56.99273, y: -14}
+        - {x: 56.99273, y: -56}
+        - {x: 55.99273, y: -59}
+        - {x: 42.99273, y: -61}
+      physicsShape:
+      - - {x: -15.007271, y: 5}
+        - {x: -16.00727, y: 0}
+        - {x: -14.007271, y: -7}
+        - {x: -10.007271, y: -12}
+        - {x: 7.992729, y: -12}
+        - {x: 7.992729, y: 7}
+        - {x: -6.007271, y: 10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a66f46274d24535b6cdcc1957017c98
+      internalID: 21300152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_023
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc8fa9c088ba4f07acefb80f835292e1
+      internalID: 21300154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_055
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3966dd04081341078a9ca13c1b864011
+      internalID: 21300156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0002
+      rect:
+        serializedVersion: 2
+        x: 225.07613
+        y: 371.0761
+        width: 77.84776
+        height: 78.87257
+      alignment: 9
+      pivot: {x: 0.5128456, y: 0.48082474}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36, y: -39.5124}
+        - {x: -39, y: -36.5124}
+        - {x: -39, y: 39.4876}
+        - {x: 30, y: 39.4876}
+        - {x: 39, y: 33.4876}
+        - {x: 39, y: -36.5124}
+        - {x: 31, y: -39.5124}
+      physicsShape:
+      - - {x: -6, y: 8.487598}
+        - {x: -9, y: 6.4875984}
+        - {x: -9, y: -10.512402}
+        - {x: -7, y: -11.512402}
+        - {x: 9, y: -11.512402}
+        - {x: 12, y: -5.5124016}
+        - {x: 12, y: 5.4875984}
+        - {x: 10, y: 8.487598}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0a83b057c914faf8335447d7229fd77
+      internalID: 21300158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_066
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 247
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70c67719168d496ba15dfb4858a711cc
+      internalID: 21300160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_057
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f92c0a5a600f4167b9dc4fc517ada5ec
+      internalID: 21300162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0015
+      rect:
+        serializedVersion: 2
+        x: 0.01291275
+        y: 372.0761
+        width: 85.910965
+        height: 84.84776
+      alignment: 9
+      pivot: {x: 0.48872793, y: 0.4941071}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.968395, y: -42.5}
+        - {x: -42.968395, y: -21.5}
+        - {x: -42.968395, y: 18.5}
+        - {x: -37.968395, y: 35.5}
+        - {x: -15.968395, y: 42.5}
+        - {x: 20.031605, y: 42.5}
+        - {x: 41.031605, y: 28.5}
+        - {x: 43.031605, y: 19.5}
+        - {x: 43.031605, y: -19.5}
+        - {x: 22.031605, y: -42.5}
+      physicsShape:
+      - - {x: -9.968395, y: 9.5}
+        - {x: -10.968395, y: 8.5}
+        - {x: -10.968395, y: -5.5}
+        - {x: -8.968395, y: -10.5}
+        - {x: 5.031605, y: -10.5}
+        - {x: 9.031605, y: -7.5}
+        - {x: 9.031605, y: 3.5}
+        - {x: 8.031605, y: 9.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec8f473cf5149c3b56e21ef949025ba
+      internalID: 21300164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_080
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 15
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc28aeb76f347c2a53048d05898a296
+      internalID: 21300166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0004
+      rect:
+        serializedVersion: 2
+        x: 343.0761
+        y: 218.02675
+        width: 77.84776
+        height: 107.9465
+      alignment: 9
+      pivot: {x: 0.50089544, y: 0.45368075}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: -54}
+        - {x: -39, y: -40}
+        - {x: -39, y: 31}
+        - {x: 10, y: 54}
+        - {x: 36, y: 54}
+        - {x: 39, y: 38}
+        - {x: 39, y: -41}
+        - {x: 37, y: -47}
+        - {x: 3, y: -54}
+      physicsShape:
+      - - {x: -5, y: 5}
+        - {x: -11, y: 0}
+        - {x: -11, y: -11}
+        - {x: -5, y: -16}
+        - {x: 3, y: -16}
+        - {x: 11, y: -12}
+        - {x: 11, y: 0}
+        - {x: 9, y: 5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6da8dc27df7449c082479e5c59fac7ab
+      internalID: 21300168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_084
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4968da51e4fa486b92b99715bffea9ac
+      internalID: 21300170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_061
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad7d08b06ee436ab0df6e10dcc14d4c
+      internalID: 21300172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_059
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 123
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8c02a0acee846eeb4446dfc01e9f93e
+      internalID: 21300174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_050
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c472fc86779a4f25bf4cb724b148bf95
+      internalID: 21300176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_018
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 10
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 880347ac0f8e479b98216228a9c01f7f
+      internalID: 21300178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_025
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc7ec2fc37a4cf183f60eceeb466a7f
+      internalID: 21300180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_032
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d7daaeb085a420992c4774e96feedd2
+      internalID: 21300182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_060
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 30
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71ef63c19e814e5c98ac1e998b7cdcda
+      internalID: 21300184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_031
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 132
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d94ecb17c6da454fac6f65aaf1ac0d57
+      internalID: 21300186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_007
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f6ef7ff8364f3cb8528493b3b549ba
+      internalID: 21300188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_070
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 127
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76461219fa27469f90956e67aef2137a
+      internalID: 21300190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_012
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 5
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab9e8fdb86864f7c88c8824872e84271
+      internalID: 21300192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_067
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 451
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59c11e489e9941b68ce9b732d103a968
+      internalID: 21300194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_054
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 235
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01c677d94e55451e8b12e960b6883e96
+      internalID: 21300196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_010
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 238
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edb9a321c10b4ae3a08e95f74bff7d36
+      internalID: 21300198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_smaller0014
+      rect:
+        serializedVersion: 2
+        x: 340.05972
+        y: 88
+        width: 106.86415
+        height: 125.95709
+      alignment: 9
+      pivot: {x: 0.5141132, y: 0.5081095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -49.491806, y: -32.97855}
+        - {x: -53.491806, y: -5.97855}
+        - {x: -53.491806, y: 55.02145}
+        - {x: -51.491806, y: 63.02145}
+        - {x: 53.508194, y: 63.02145}
+        - {x: 53.508194, y: -28.97855}
+        - {x: 46.508194, y: -62.97855}
+        - {x: -4.491806, y: -62.97855}
+      physicsShape:
+      - - {x: -4.491806, y: 11.02145}
+        - {x: -8.491806, y: 8.02145}
+        - {x: -8.491806, y: -3.97855}
+        - {x: -6.491806, y: -8.97855}
+        - {x: 5.508194, y: -8.97855}
+        - {x: 11.508194, y: -3.97855}
+        - {x: 11.508194, y: 5.02145}
+        - {x: 5.508194, y: 11.02145}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 063f222b942f4b64bb12270b133d675a
+      internalID: 21300200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_021
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 373
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28b216f883cf49a8a1387bb8f0228d6e
+      internalID: 21300202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_075
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 20
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042ed74976574ebc85378d885fb1b1cc
+      internalID: 21300204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_086
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 252
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f483e0373d141749d3b29a4b931b637
+      internalID: 21300206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_003
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 240
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf5ac8ce1014dbd94872934b1263691
+      internalID: 21300208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_plink_038
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 1
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -0.5, y: -0.5}
+        - {x: -0.5, y: 0.5}
+        - {x: 0.5, y: 0.5}
+        - {x: 0.5, y: -0.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35940a3d54b44d858e83c6c3573e5808
+      internalID: 21300210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 345388c2f59d8184aa949a2990089e23
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

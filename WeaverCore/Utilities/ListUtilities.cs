@@ -122,5 +122,10 @@ namespace WeaverCore.Utilities
 			}
 			return hash;
 		}
+
+		public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
+		{
+			return source.OrderBy(e => UnityEngine.Random.Range(0f,1f));
+		}
 	}
 }

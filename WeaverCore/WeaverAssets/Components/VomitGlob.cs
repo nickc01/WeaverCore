@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WeaverCore.Attributes;
 using WeaverCore.Components;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
@@ -56,6 +58,10 @@ namespace WeaverCore.Assets.Components
 
         PlayerDamager damager;
 
+        [NonSerialized]
+        [ExcludeFieldFromPool]
+        SpriteRenderer halo;
+
         int oldDamage = 0;
 
         bool forceDisappear = false;
@@ -86,6 +92,10 @@ namespace WeaverCore.Assets.Components
         Coroutine lifeTimeRoutine = null;
         Coroutine scaleCoroutine = null;
 
+        [NonSerialized]
+        [ExcludeFieldFromPool]
+        Color oldHaloColor;
+
         IEnumerator MaxLifetimeRoutine(float time)
         {
             yield return new WaitForSeconds(time);
@@ -98,6 +108,15 @@ namespace WeaverCore.Assets.Components
             {
                 damager = GetComponent<PlayerDamager>();
             }
+
+            if (halo == null)
+            {
+                halo = transform.Find("Halo").GetComponent<SpriteRenderer>();
+                oldHaloColor = halo.color;
+            }
+
+            halo.color = oldHaloColor;
+
             if (!initialized)
             {
                 Init();
@@ -207,6 +226,16 @@ namespace WeaverCore.Assets.Components
             StartCoroutine(Wait(time));
         }
 
+        IEnumerator HaloFadeRoutine(float time, Color from, Color to)
+        {
+            for (float t = 0; t < time; t += Time.deltaTime)
+            {
+                halo.color = Color.Lerp(from, to, t / time);
+                yield return null;
+            }
+            halo.color = to;
+        }
+
         IEnumerator EndRoutine()
         {
             if (scaleCoroutine != null)
@@ -221,6 +250,8 @@ namespace WeaverCore.Assets.Components
 
             Vector3 oldScale = transform.localScale;
             Vector3 newScale = new Vector3(0.1f,0.1f);
+
+            StartCoroutine(HaloFadeRoutine(shrinkTime, oldHaloColor, oldHaloColor.With(a: 0f)));
 
             for (float t = 0; t < shrinkTime; t += Time.deltaTime)
             {
@@ -300,6 +331,7 @@ namespace WeaverCore.Assets.Components
 
         public void OnPool()
         {
+            halo.color = oldHaloColor;
             MainRenderer.enabled = true;
             initialized = false;
             Grounded = false;

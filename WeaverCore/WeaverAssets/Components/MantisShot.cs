@@ -64,7 +64,7 @@ namespace WeaverCore.Assets.Components
             while (Time.time < startTime + 4f && !(WithinMarginOfError(RB.velocity.x,0f,0.1f) && WithinMarginOfError(RB.velocity.y,0f,0.1f)))
             {
                 var pos = transform.position;
-                if (RB.velocity.y == 0f || (WithinMarginOfError(pos.x, targetPos.x,2f) && WithinMarginOfError(pos.y,targetPos.y,2f)))
+                if (RB.velocity.y == 0f || (WithinMarginOfError(pos.x, targetPos.x,2f) && WithinMarginOfError(pos.y,targetPos.y,2f)) || (pos.y < targetPos.y - 0.5f && Time.time < startTime + 2f))
                 {
                     yield return ApplyBoomerangForce(xForce);
                     yield break;

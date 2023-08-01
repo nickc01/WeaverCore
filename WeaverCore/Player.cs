@@ -10,9 +10,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// A class for accessing and doing things related to the player
-	/// </summary>
+    /// <summary>
+    /// A class for accessing and doing things related to the player
+    /// </summary>
     public class Player : MonoBehaviour
 	{
 		static object[] paramCache = new object[1];
@@ -89,10 +89,12 @@ namespace WeaverCore
 			}
 		}
 
-		/// <summary>
-		/// Gets the player that is nearest to a certain position
-		/// </summary>
-		public static Player NearestPlayer(Vector3 position)
+		public static Player Player1Raw => (Player.Players.Count <= 0) ? null : Player.Players[0];
+
+        /// <summary>
+        /// Gets the player that is nearest to a certain position
+        /// </summary>
+        public static Player NearestPlayer(Vector3 position)
 		{
 			float num = float.PositiveInfinity;
 			Player result = null;

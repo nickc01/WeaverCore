@@ -114,5 +114,10 @@ namespace WeaverCore.Editor.Implementations
 		{
 			EditorMusic.Instance.ApplyAtmosPack(snapshot, transitionTime, enabledSources);
 		}
-	}
+
+        public override void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot)
+        {
+			EditorMusic.Instance.PlayMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
+        }
+    }
 }

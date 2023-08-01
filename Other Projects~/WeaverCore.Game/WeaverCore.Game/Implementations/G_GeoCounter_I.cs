@@ -20,7 +20,7 @@ namespace WeaverCore.Game.Implementations
 		private static void GeoCounter_Awake(On.GeoCounter.orig_Awake orig, GeoCounter self)
 		{
 			orig(self);
-			if (self.gameObject.GetComponent<G_GeoCounter_I>() == null)
+			if (self.gameObject.GetComponent<WeaverCore.Implementations.GeoCounter>() == null)
 			{
 				self.gameObject.AddComponent<G_GeoCounter_I>();
 			}
@@ -30,7 +30,18 @@ namespace WeaverCore.Game.Implementations
 		{
 			public override WeaverCore.Implementations.GeoCounter GetCounter()
 			{
-				return HeroController.instance.geoCounter.GetComponent<WeaverCore.Implementations.GeoCounter>();
+				if (HeroController.instance.geoCounter != null)
+				{
+                    var geoCounterImpl = HeroController.instance.geoCounter.GetComponent<WeaverCore.Implementations.GeoCounter>();
+
+                    if (geoCounterImpl == null)
+                    {
+                        geoCounterImpl = HeroController.instance.geoCounter.gameObject.AddComponent<G_GeoCounter_I>();
+                    }
+                    return geoCounterImpl;
+                }
+
+				return null;
 			}
 		}
 

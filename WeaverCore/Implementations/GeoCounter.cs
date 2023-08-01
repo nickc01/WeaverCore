@@ -24,7 +24,7 @@ namespace WeaverCore.Implementations
 				if (statics == null)
 				{
 					statics = ImplFinder.GetImplementation<Static_I>();
-				}
+                }
 				return statics.GetCounter();
 			}
 		}

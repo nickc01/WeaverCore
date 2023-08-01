@@ -94,6 +94,15 @@ namespace WeaverCore.Components
             }
         }
 
+        public List<Vector2> ColliderContactNormals
+        {
+            get
+            {
+                CheckInit();
+                return collisionContactNormals;
+            }
+        }
+
         public PolygonCollider2D MainCollider
         {
             get
@@ -166,6 +175,9 @@ namespace WeaverCore.Components
 
         [NonSerialized]
         List<Vector2> colliderContactPoints = new List<Vector2>();
+
+        [NonSerialized]
+        List<Vector2> collisionContactNormals = new List<Vector2>();
 
         [NonSerialized]
         List<Vector2> polygonPoints;
@@ -316,6 +328,7 @@ namespace WeaverCore.Components
             uvs.Clear();
             polygonPoints.Clear();
             colliderContactPoints.Clear();
+            collisionContactNormals.Clear();
 
             Spread = Mathf.Clamp(Spread, 0.5f, 85f);
             var halfWidth = StartingWidth / 2f;
@@ -371,20 +384,24 @@ namespace WeaverCore.Components
 
                 uvs.Add(AdjustUVCoordinate(new Vector2(0f, vertexUVy)));
                 Vector3 destVertex = default;
+                Vector2 destNormal = default;
 
                 if (Physics2D.RaycastNonAlloc(transform.TransformPoint(rayStartPosition), transform.TransformDirection(targetDirection / new Vector2(1f,TextureStretch)).normalized, terrainHit, MaximumLength, CollisionMask.value) > 0)
                 {
                     destVertex = transform.InverseTransformPoint(terrainHit[0].point);
+                    destNormal = terrainHit[0].normal;
                 }
                 else
                 {
                     destVertex = rayStartPosition + (targetDirection / new Vector2(1f, TextureStretch)).normalized * MaximumLength;
+                    destNormal = (rayStartPosition - (Vector2)destVertex).normalized;
                 }
                 if (i % ColliderQuality == 0)
                 {
 
                     polygonPoints.Add(destVertex);
                     colliderContactPoints.Add(destVertex);
+                    collisionContactNormals.Add(destNormal);
 
                     destVertex.y *= TextureStretch;
                     if (TextureStretch != 1f)

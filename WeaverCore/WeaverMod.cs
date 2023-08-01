@@ -52,7 +52,8 @@ namespace WeaverCore
         }
 
 
-        bool firstLoad = true;
+        static Dictionary<IMod, bool> firstLoadedMods = new Dictionary<IMod, bool>();
+        //bool firstLoad = true;
 
         public IEnumerable<Registry> Registries
         {
@@ -67,41 +68,49 @@ namespace WeaverCore
             return GetType().Assembly.GetName().Version.ToString();
         }
 
-        [AfterModLoad(typeof(WeaverMod))]
-        static void WeaverModLoaded(WeaverMod loadedMod)
+        [AfterModLoad(typeof(IMod))]
+        static void WeaverModLoaded(IMod loadedMod)
         {
-            if (loadedMod.firstLoad)
+            if (!firstLoadedMods.ContainsKey(loadedMod))
             {
-                loadedMod.firstLoad = false;
+                firstLoadedMods.Add(loadedMod, true);
 
                 var modType = loadedMod.GetType();
 
-                WeaverLog.Log("Loading Weaver Mod " + modType.Name);
+                if (loadedMod is WeaverMod)
+                {
+                    WeaverLog.Log("Loading Weaver Mod " + modType.Name);
+                }
                 RegistryLoader.LoadAllRegistries(modType);
             }
             else
             {
-                loadedMod.EnableRegistries();
+                EnableRegistries(loadedMod);
             }
         }
 
-        [AfterModUnload(typeof(WeaverMod))]
-        static void WeaverModUnloaded(WeaverMod unloadedMod)
+        [AfterModUnload(typeof(IMod))]
+        static void WeaverModUnloaded(IMod unloadedMod)
         {
-            unloadedMod.DisableRegistries();
+            DisableRegistries(unloadedMod);
         }
 
-        public void EnableRegistries()
+        static IEnumerable<Registry> GetModRegistries(IMod mod)
         {
-            foreach (var registry in Registries)
+            return Registry.FindModRegistries(mod.GetType());
+        }
+
+        public static void EnableRegistries(IMod mod)
+        {
+            foreach (var registry in GetModRegistries(mod))
             {
                 registry.EnableRegistry();
             }
         }
 
-        public void DisableRegistries()
+        public static void DisableRegistries(IMod mod)
         {
-            foreach (var registry in Registries)
+            foreach (var registry in GetModRegistries(mod))
             {
                 registry.DisableRegistry();
             }

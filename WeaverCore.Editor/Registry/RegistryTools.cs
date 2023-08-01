@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -45,7 +46,7 @@ namespace WeaverCore.Editor
 				{
 					foreach (var type in assembly.GetTypes())
 					{
-						if (typeof(WeaverMod).IsAssignableFrom(type) && !type.IsGenericType && !type.IsAbstract)
+						if (typeof(IMod).IsAssignableFrom(type) && !type.IsGenericType && !type.IsAbstract)
 						{
 							modsCached.Add(type);
 						}

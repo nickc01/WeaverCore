@@ -410,6 +410,12 @@ public class CameraTarget : MonoBehaviour
 		{
 			return;
 		}
+
+		if (HeroController.instance == null)
+		{
+			return;
+		}
+
 		if (HeroController.instance.cState.hazardDeath || HeroController.instance.cState.dead || (HeroController.instance.transitionState != HeroTransitionState.WAITING_TO_TRANSITION && HeroController.instance.transitionState != HeroTransitionState.WAITING_TO_ENTER_LEVEL))
 		{
 			mode = CameraTarget.TargetMode.FREE;

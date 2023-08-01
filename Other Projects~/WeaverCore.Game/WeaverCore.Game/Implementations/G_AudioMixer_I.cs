@@ -214,5 +214,19 @@ namespace WeaverCore.Game.Implementations
 
 			GameManager.instance.AudioManager.ApplyAtmosCue(currentCue, transitionTime);
 		}
-	}
+
+        public override void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot)
+        {
+            GameManager.instance.AudioManager.ApplyMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
+            if (applySnapshot)
+            {
+				var snapshot = musicCue.Snapshot;
+				if (snapshot != null)
+				{
+                    snapshot.TransitionTo(transitionTime);
+                }
+                //var snapshot = Music.GetSnapshot(pack.Snapshot);
+            }
+        }
+    }
 }

@@ -392,7 +392,10 @@ namespace WeaverCore.Components
         {
             for (int i = spawnedImpacts.Count - 1; i >= 0; i--)
             {
-                Pooling.Destroy(spawnedImpacts[i]);
+                if (spawnedImpacts[i] != null)
+                {
+                    Pooling.Destroy(spawnedImpacts[i]);
+                }
             }
             spawnedImpacts.Clear();
             spawnedImpactData.Clear();
@@ -423,13 +426,17 @@ namespace WeaverCore.Components
 
                     var midPoint = Vector3.Lerp(end, start, 0.5f);
 
-                    var normal = Quaternion.Euler(0f, 0f, -90f) * (end - start);
-                    var distance = normal.magnitude;
+                    var calculatedNormal = Quaternion.Euler(0f, 0f, -90f) * (end - start);
+                    //var normal = Quaternion.Euler(0f, 0f, -90f) * (end - start);
+                    var normal = laser.ColliderContactNormals[i];
+                    //var distance = normal.magnitude;
+                    var distance = Mathf.Min(calculatedNormal.magnitude, normal.magnitude);
 
                     normal.Normalize();
 
                     var laserDirection = MathUtilities.PolarToCartesian(laser.transform.eulerAngles.z, 1f);
 
+                    //var dotProduct = Mathf.Abs(Vector3.Dot(laserDirection, calculatedNormal));
                     var dotProduct = Mathf.Abs(Vector3.Dot(laserDirection, normal));
 
 

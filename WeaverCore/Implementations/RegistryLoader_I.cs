@@ -4,6 +4,7 @@ using UnityEngine;
 using WeaverCore.Utilities;
 using WeaverCore.Interfaces;
 using System.Reflection;
+using Modding;
 
 namespace WeaverCore.Implementations
 {
@@ -11,7 +12,7 @@ namespace WeaverCore.Implementations
     {
         public abstract void LoadRegistries(Assembly assembly);
 
-        public void LoadRegistries<Mod>() where Mod : WeaverMod
+        public void LoadRegistries<Mod>() where Mod : IMod
         {
             LoadRegistries(typeof(Mod));
         }

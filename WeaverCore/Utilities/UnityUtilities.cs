@@ -33,5 +33,21 @@ namespace WeaverCore.Utilities
         {
             return ((object)obj) == null;
         }
+
+        public static bool ObjectIsAlive(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj is UnityEngine.Object unityObj)
+            {
+                return UnityUtilities.ObjectIsAlive(unityObj);
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

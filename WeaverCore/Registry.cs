@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -83,7 +84,7 @@ namespace WeaverCore
         /// Creates a new registry bound to the specified mod
         /// </summary>
         /// <typeparam name="TMod">The type of mod the new registry will be bound to</typeparam>
-        public static Registry Create<TMod>() where TMod : WeaverMod
+        public static Registry Create<TMod>() where TMod : IMod
 		{
             return Create(typeof(TMod));
 		}
@@ -92,7 +93,7 @@ namespace WeaverCore
         /// Creates a new registry bound to the specified mod
         /// </summary>
         /// <param name="mod">The mod this new registry will be bound to</param>
-        public static Registry Create(WeaverMod mod)
+        public static Registry Create(IMod mod)
 		{
             return Create(mod.GetType());
 		}
@@ -379,7 +380,7 @@ namespace WeaverCore
         /// </summary>
         /// <typeparam name="Mod">The mod type that is associated with the registry</typeparam>
         /// <returns>Returns all the registries that are bound to the mod</returns>
-        public static IEnumerable<Registry> FindModRegistries<Mod>() where Mod : WeaverMod
+        public static IEnumerable<Registry> FindModRegistries<Mod>() where Mod : IMod
         {
             return FindModRegistries(typeof(Mod));
         }

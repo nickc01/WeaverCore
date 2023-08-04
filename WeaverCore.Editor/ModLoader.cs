@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,17 +21,17 @@ namespace WeaverCore.Editor
             {
                 try
                 {
-                    List<WeaverMod> weaverMods = new List<WeaverMod>();
+                    List<IMod> mods = new List<IMod>();
                     foreach (var type in assembly.GetTypes())
                     {
-                        if (typeof(WeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.ContainsGenericParameters)
+                        if (typeof(IMod).IsAssignableFrom(type) && !type.IsAbstract && !type.ContainsGenericParameters)
                         {
-                            weaverMods.Add((WeaverMod)Activator.CreateInstance(type));
+                            mods.Add((IMod)Activator.CreateInstance(type));
                         }
                     }
-                    foreach (var mod in weaverMods.OrderBy(m => m.LoadPriority()))
+                    foreach (var mod in mods.OrderBy(m => m.LoadPriority()))
                     {
-                        mod.Initialize();
+                        mod.Initialize(new Dictionary<string, Dictionary<string, UnityEngine.GameObject>>());
                         var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>().ToList();
 
                         foreach (var method in methods)

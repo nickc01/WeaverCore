@@ -16,6 +16,7 @@ using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 
 using PackageClient = UnityEditor.PackageManager.Client;
+using System.Threading.Tasks;
 
 namespace WeaverCore.Editor.Compilation
 {
@@ -420,7 +421,44 @@ namespace WeaverCore.Editor.Compilation
 			BundleTools.BuildAndEmbedAssetBundles(null, outputPath, typeof(BuildTools).GetMethod(nameof(OnBuildFinish)));
 		}
 
-		static IEnumerator BuildModRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
+        static IEnumerator RunCustomPreBuildCode(BuildPipelineCustomizer customizer, Action onSuccess = null, Action onFailed = null)
+        {
+            bool done = false;
+            bool successful = false;
+            if (customizer != null)
+            {
+                async Task Runner()
+                {
+                    try
+                    {
+                        successful = await customizer.BeforeBuildBegin();
+                    }
+                    finally
+                    {
+                        done = true;
+                    }
+                }
+
+                _ = Runner();
+
+                yield return new WaitUntil(() => done);
+
+                if (successful)
+                {
+                    onSuccess?.Invoke();
+                }
+                else
+                {
+                    onFailed?.Invoke();
+                }
+            }
+            else
+            {
+                onSuccess?.Invoke();
+            }
+        }
+
+        static IEnumerator BuildModRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
 		{
 			if (task == null)
 			{
@@ -442,7 +480,23 @@ namespace WeaverCore.Editor.Compilation
 			}
 			var weaverCoreOutputLocation = outputPath.Directory.CreateSubdirectory("WeaverCore").AddSlash() + "WeaverCore.dll";
 			File.Copy(WeaverCoreBuildLocation.FullName, weaverCoreOutputLocation, true);
-			BundleTools.BuildAndEmbedAssetBundles(modBuildLocation, new FileInfo(weaverCoreOutputLocation),typeof(BuildTools).GetMethod(nameof(OnBuildFinish)));
+
+
+			Action continueBuildProcess = () =>
+			{
+                BundleTools.BuildAndEmbedAssetBundles(modBuildLocation, new FileInfo(weaverCoreOutputLocation), typeof(BuildTools).GetMethod(nameof(OnBuildFinish)));
+            };
+
+			GameBuildSettings.LoadBuildSettings();
+
+			if (BuildPipelineCustomizer.TryGetCurrentCustomizer(out var customizer))
+			{
+                UnboundCoroutine.Start(RunCustomPreBuildCode(customizer, continueBuildProcess));
+            }
+			else
+			{
+				continueBuildProcess();
+            }
 		}
 
 		[OnInit]
@@ -698,38 +752,75 @@ namespace WeaverCore.Editor.Compilation
 			return GetModBuildFolder() + BuildScreen.BuildSettings.ModName + ".dll";
 		}
 
+		static IEnumerator RunCustomPostBuildCode(BuildPipelineCustomizer customizer, Action onSuccess = null, Action onError = null)
+		{
+			bool done = false;
+			bool successful = false;
+
+			customizer.OnLoadSettings();
+            async Task Runner()
+            {
+				successful = await customizer.OnAfterBuildFinished();
+				done = true;
+            }
+
+			_ = Runner();
+			yield return new WaitUntil(() => done);
+
+			if (successful)
+			{
+				onSuccess?.Invoke();
+			}
+			else
+			{
+				onError?.Invoke();
+			}
+        }
+
 		/// <summary>
 		/// Called when a mod assembly build is completed
 		/// </summary>
 		public static void OnBuildFinish()
 		{
-			if (BuildScreen.BuildSettings.StartGame)
+            Action onPostBuildSuccess = () =>
+            {
+                if (BuildScreen.BuildSettings.StartGame)
+                {
+                    Debug.Log("<b>Starting Game</b>");
+                    var hkEXE = new FileInfo(GameBuildSettings.Settings.HollowKnightLocation + "\\hollow_knight.exe");
+
+
+                    if (hkEXE.FullName.Contains("steamapps"))
+                    {
+                        var steamDirectory = hkEXE.Directory;
+                        while (steamDirectory.Name != "Steam")
+                        {
+                            steamDirectory = steamDirectory.Parent;
+                            if (steamDirectory == null)
+                            {
+                                break;
+                            }
+                        }
+                        if (steamDirectory != null)
+                        {
+                            System.Diagnostics.Process.Start(steamDirectory.FullName + "\\steam.exe", "steam://rungameid/367520");
+                            return;
+                        }
+                    }
+                    System.Diagnostics.Process.Start(hkEXE.FullName);
+                }
+
+                DependencyChecker.CheckDependencies();
+            };
+
+            if (BuildPipelineCustomizer.TryGetCurrentCustomizer(out var customizer))
 			{
-				Debug.Log("<b>Starting Game</b>");
-				var hkEXE = new FileInfo(GameBuildSettings.Settings.HollowKnightLocation + "\\hollow_knight.exe");
-
-
-				if (hkEXE.FullName.Contains("steamapps"))
-				{
-					var steamDirectory = hkEXE.Directory;
-					while (steamDirectory.Name != "Steam")
-					{
-						steamDirectory = steamDirectory.Parent;
-						if (steamDirectory == null)
-						{
-							break;
-						}
-					}
-					if (steamDirectory != null)
-					{
-						System.Diagnostics.Process.Start(steamDirectory.FullName + "\\steam.exe", "steam://rungameid/367520");
-						return;
-					}
-				}
-				System.Diagnostics.Process.Start(hkEXE.FullName);
+				UnboundCoroutine.Start(RunCustomPostBuildCode(customizer, onPostBuildSuccess));
 			}
-
-			DependencyChecker.CheckDependencies();
+			else
+			{
+				onPostBuildSuccess();
+            }
 		}
 	}
 }

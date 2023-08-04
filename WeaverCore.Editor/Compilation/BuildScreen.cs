@@ -1,5 +1,6 @@
 ﻿using AssetsTools.NET;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,8 @@ using UnityEditor;
 using UnityEngine;
 using WeaverCore.Editor.Settings;
 using WeaverCore.Editor.Utilities;
+using WeaverCore.Utilities;
+using static WeaverCore.Editor.Compilation.BundleTools;
 
 namespace WeaverCore.Editor.Compilation
 {
@@ -45,7 +48,13 @@ namespace WeaverCore.Editor.Compilation
 			{
 				_settings = new Settings();
 			}
-		}
+            var customizer = BuildPipelineCustomizer.GetCurrentPipelineCustomizer();
+
+            if (customizer != null)
+            {
+                customizer.OnLoadSettings();
+            }
+        }
 
 		/// <summary>
 		/// Contains all the configured build settings the user specified
@@ -176,6 +185,13 @@ namespace WeaverCore.Editor.Compilation
 			}
 			EditorGUILayout.EndHorizontal();
 			EditorGUILayout.Space();
+            var customizer = BuildPipelineCustomizer.GetCurrentPipelineCustomizer();
+
+            if (customizer != null)
+            {
+				customizer.BuildScreenOnGUIExtension(this);
+            }
+            EditorGUILayout.Space();
 
 			EditorGUILayout.BeginHorizontal();
 			if (GUILayout.Button("Close"))
@@ -195,24 +211,49 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		void Build()
 		{
-			Close();
+            var customizer = BuildPipelineCustomizer.GetCurrentPipelineCustomizer();
+
+            if (customizer != null && !customizer.PreBuildVerify())
+            {
+				return;
+            }
+            Close();
 			BuildSettings.ModName = BuildSettings.ModName.Replace(" ", "");
-			PersistentData.StoreData(BuildSettings);
-			foreach (var target in BuildSettings.GetBuildModes())
+
+            if (customizer != null)
+            {
+                customizer.OnSaveSettings();
+            }
+            PersistentData.StoreData(BuildSettings);
+            PersistentData.StoreData(new FirstEverBuild
+            {
+                FirstBuild = true
+            });
+            foreach (var target in BuildSettings.GetBuildModes())
 			{
 				if (!PlatformUtilities.IsPlatformSupportLoaded(target))
 				{
 					Debug.LogError($"The module for building for the following platform {target} is not installed. This platform will be skipped");
 				}
 			}
-			if (BuildSettings.WeaverCoreOnly)
+
+            if (BuildSettings.WeaverCoreOnly)
+            {
+                BuildTools.BuildWeaverCore();
+            }
+            else
+            {
+                BuildTools.BuildMod();
+            }
+
+            /*if (customizer != null)
 			{
-				BuildTools.BuildWeaverCore();
-			}
-			else
+                //UnboundCoroutine.Start(RunCustomPreBuildCode(customizer,continueToBuild));
+            }
+            else
 			{
-				BuildTools.BuildMod();
-			}
+				continueToBuild();
+			}*/
 		}
 	}
 }

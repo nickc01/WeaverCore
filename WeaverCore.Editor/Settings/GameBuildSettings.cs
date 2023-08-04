@@ -84,6 +84,15 @@ namespace WeaverCore.Editor.Settings
 			}
 		}
 
+		public static void LoadBuildSettings()
+		{
+            if (_settings == null)
+            {
+                _settings = LoadSettings();
+                Verify(_settings);
+            }
+        }
+
 		static IEnumerable<string> GetDefaultInstallPaths()
 		{
 			if (SystemInfo.operatingSystem.Contains("Windows"))

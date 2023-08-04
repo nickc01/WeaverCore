@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections;
 using UnityEngine;
 using WeaverCore.Editor.Compilation;
@@ -35,4 +35,4 @@ namespace WeaverCore.Editor
             }
         }
     }
-}
+}*/

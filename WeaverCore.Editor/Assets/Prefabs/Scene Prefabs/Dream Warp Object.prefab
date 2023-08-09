@@ -2616,9 +2616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b252a7af65c96045b2e6bbfdf79ffff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationScene: Ancient Aspid Room
+  destinationScene: PUT DEST SCENE HERE
   returnScene: GG_Workshop
-  transitionGateName: Ancient Aspid Entry
+  transitionGateName: PUT DEST DOOR NAME HERE
   warpDelay: 1.75
   canUseCharms: 1
 --- !u!212 &6012867602641612490
@@ -2661,7 +2661,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3037461390911029010, guid: b71533ac8f733754a977a0a0027473dc, type: 3}
+  m_Sprite: {fileID: 3037461390911029010, guid: b71533ac8f733754a977a0a0027473dc,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

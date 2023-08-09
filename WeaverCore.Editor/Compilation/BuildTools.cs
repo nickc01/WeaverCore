@@ -639,11 +639,27 @@ namespace WeaverCore.Editor.Compilation
 						Scripts.Add(scriptFile.FullName);
 					}
 
-					List<DirectoryInfo> AssemblySearchDirectories = new List<DirectoryInfo>
-				{
-					new DirectoryInfo(PathUtilities.AddSlash(GameBuildSettings.Settings.HollowKnightLocation) + $"hollow_knight_Data{Path.DirectorySeparatorChar}Managed"),
-					new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory
-				};
+					var managedFolder = PathUtilities.AddSlash(GameBuildSettings.Settings.HollowKnightLocation) + $"hollow_knight_Data{Path.DirectorySeparatorChar}Managed";
+
+					if (!Directory.Exists(managedFolder))
+					{
+                        managedFolder = PathUtilities.AddSlash(GameBuildSettings.Settings.HollowKnightLocation) + $"Hollow Knight_Data{Path.DirectorySeparatorChar}Managed";
+                    }
+
+					Debug.Log("Hollow Knight Location = " + GameBuildSettings.Settings.HollowKnightLocation);
+					Debug.Log("Managed Folder Location = " + managedFolder);
+
+
+                    List<DirectoryInfo> AssemblySearchDirectories = new List<DirectoryInfo>
+					{
+						new DirectoryInfo(managedFolder),
+						new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory
+					};
+
+					foreach (var path in AssemblySearchDirectories)
+					{
+						Debug.Log("Assembly Search Directory = " + path);
+					}
 
 					List<string> AssemblyReferences = new List<string>();
 
@@ -787,27 +803,39 @@ namespace WeaverCore.Editor.Compilation
                 if (BuildScreen.BuildSettings.StartGame)
                 {
                     Debug.Log("<b>Starting Game</b>");
-                    var hkEXE = new FileInfo(GameBuildSettings.Settings.HollowKnightLocation + "\\hollow_knight.exe");
 
 
-                    if (hkEXE.FullName.Contains("steamapps"))
-                    {
-                        var steamDirectory = hkEXE.Directory;
-                        while (steamDirectory.Name != "Steam")
-                        {
-                            steamDirectory = steamDirectory.Parent;
-                            if (steamDirectory == null)
+					var exeDir = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
+
+					var exes = exeDir.EnumerateFileSystemInfos("*.exe", SearchOption.TopDirectoryOnly);
+
+					foreach (var hkEXE in exes)
+					{
+						if (hkEXE.Name.ToLower().Contains("hollow") && hkEXE.Name.ToLower().Contains("knight"))
+						{
+                            if (hkEXE.FullName.Contains("steamapps"))
                             {
-                                break;
+                                var steamDirectory = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
+                                while (steamDirectory.Name != "Steam")
+                                {
+                                    steamDirectory = steamDirectory.Parent;
+                                    if (steamDirectory == null)
+                                    {
+                                        break;
+                                    }
+                                }
+                                if (steamDirectory != null)
+                                {
+                                    System.Diagnostics.Process.Start(steamDirectory.FullName + "\\steam.exe", "steam://rungameid/367520");
+                                    return;
+                                }
                             }
+                            System.Diagnostics.Process.Start(hkEXE.FullName);
+							return;
                         }
-                        if (steamDirectory != null)
-                        {
-                            System.Diagnostics.Process.Start(steamDirectory.FullName + "\\steam.exe", "steam://rungameid/367520");
-                            return;
-                        }
-                    }
-                    System.Diagnostics.Process.Start(hkEXE.FullName);
+					}
+
+                    //var hkEXE = new FileInfo(GameBuildSettings.Settings.HollowKnightLocation + "\\hollow_knight.exe");
                 }
 
                 DependencyChecker.CheckDependencies();

@@ -56,6 +56,24 @@ namespace WeaverCore.Editor.Settings
 				{
 					path += "hollow_knight_Data/Managed/Mods";
 				}
+
+				if (!Directory.Exists(path))
+				{
+                    path = PathUtilities.AddSlash(HollowKnightLocation);
+                    if (SystemInfo.operatingSystem.Contains("Windows"))
+                    {
+                        path += "Hollow Knight_Data\\Managed\\Mods";
+                    }
+                    else if (SystemInfo.operatingSystem.Contains("Mac"))
+                    {
+                        path += "Contents/Resources/Data/Managed/Mods/";
+                    }
+                    else if (SystemInfo.operatingSystem.Contains("Linux"))
+                    {
+                        path += "Hollow Knight_Data/Managed/Mods";
+                    }
+                }
+
 				return path;
 			}
 		}
@@ -163,7 +181,13 @@ namespace WeaverCore.Editor.Settings
 					return false;
 				}
 
-				if (SystemInfo.operatingSystem.Contains("Windows") && hkDirectory.Name != "Hollow Knight")
+				if (hkDirectory.Name.ToLower().Contains("hollow") && hkDirectory.Name.ToLower().Contains("knight"))
+				{
+					return true;
+				}
+				return false;
+
+				/*if (SystemInfo.operatingSystem.Contains("Windows") && hkDirectory.Name != "Hollow Knight")
 				{
 					return false;
 				}
@@ -175,7 +199,7 @@ namespace WeaverCore.Editor.Settings
 				{
 					return false;
 				}
-				return true;
+				return true;*/
 			}
 		}
 

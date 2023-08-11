@@ -15,6 +15,10 @@ namespace WeaverCore.Settings
     [ShowFeature]
 	public abstract class SaveSpecificSettings : ScriptableObject
 	{
+		[field: SerializeField]
+		[field: Tooltip("If set to false, then this will not get enabled when loading a save file in-game")]
+		public bool Enabled { get; private set; } = true;
+
 		static SaveSpecificSettings_I impl = ImplFinder.GetImplementation<SaveSpecificSettings_I>();
 		/// <summary>
 		/// Returns true if a save file is currently loaded

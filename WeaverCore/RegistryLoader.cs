@@ -81,6 +81,7 @@ namespace WeaverCore
                     {
                         if (name.EndsWith(extension))
                         {
+                            WeaverLog.Log("Loading embedded bundle stream : " + name);
                             var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
 
                             if (bundle != null)

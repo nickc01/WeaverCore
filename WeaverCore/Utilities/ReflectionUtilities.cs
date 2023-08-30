@@ -581,9 +581,11 @@ namespace WeaverCore.Utilities
             return obj.GetType().GetProperty(propertyName, flags).GetValue(obj);
         }
 
-        public static void ReflectSetProperty(this object obj, string propertyName, object value, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        public static bool ReflectSetProperty(this object obj, string propertyName, object value, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
-            obj.GetType().GetProperty(propertyName, flags).SetValue(obj, value);
+			var property = obj.GetType().GetProperty(propertyName, flags);
+            property?.SetValue(obj, value);
+			return property != null;
         }
 
         public static object ReflectCallMethod(this object obj, string methodName, object[] parameters = null, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)

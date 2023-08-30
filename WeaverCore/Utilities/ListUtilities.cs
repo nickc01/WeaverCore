@@ -66,15 +66,36 @@ namespace WeaverCore.Utilities
 			list.Sort(Randomizer<T>.Instance);
 		}
 
-		/// <summary>
-		/// Checks if the two lists are equivalent
-		/// </summary>
-		/// <typeparam name="T">The type of element in the lists</typeparam>
-		/// <param name="listA">The first list to compare</param>
-		/// <param name="listB">The second list to compare</param>
-		/// <param name="comparer">The comparer used to check for element equality. If this is null, will use the default comparer</param>
-		/// <returns></returns>
-		public static bool AreEquivalent<T>(this IEnumerable<T> listA, IEnumerable<T> listB, EqualityComparer<T> comparer = null)
+        class SortByComparer<T> : IComparer<T>
+        {
+			public readonly Func<T, int> Getter;
+			public readonly Comparer<int> Comparer = Comparer<int>.Default;
+
+            public SortByComparer(Func<T, int> getter)
+            {
+                Getter = getter;
+            }
+
+            public int Compare(T x, T y)
+            {
+				return Comparer.Compare(Getter(x), Getter(y));
+            }
+        }
+
+        public static void SortBy<T>(this List<T> list, Func<T,int> getter)
+		{
+			list.Sort(new SortByComparer<T>(getter));
+		}
+
+        /// <summary>
+        /// Checks if the two lists are equivalent
+        /// </summary>
+        /// <typeparam name="T">The type of element in the lists</typeparam>
+        /// <param name="listA">The first list to compare</param>
+        /// <param name="listB">The second list to compare</param>
+        /// <param name="comparer">The comparer used to check for element equality. If this is null, will use the default comparer</param>
+        /// <returns></returns>
+        public static bool AreEquivalent<T>(this IEnumerable<T> listA, IEnumerable<T> listB, EqualityComparer<T> comparer = null)
 		{
 			if (comparer == null)
 			{

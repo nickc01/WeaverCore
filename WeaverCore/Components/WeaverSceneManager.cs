@@ -42,7 +42,7 @@ namespace WeaverCore.Components
 		[Space]
 		[SerializeField]
 		[Tooltip("The music pack that is applied when the scene is loaded> If left empty, the music will be left unchanged")]
-		private MusicPack music;
+		private MusicCue music;
 
 		[SerializeField]
 		[Tooltip("If set to true, then a custom music snapshot will be applied. If set to false, then it will use the snapshot configured on the music pack")]
@@ -58,7 +58,7 @@ namespace WeaverCore.Components
 
 		[SerializeField]
 		[Tooltip("The music pack that is played when the scene is in it's infected state. Only used of \"Can Be Infected\" is enabled")]
-		private MusicPack infectedMusic;
+		private MusicCue infectedMusic;
 
 		[SerializeField]
 		[Tooltip("The atmos snapshot pack to be applied. This determines what kind of atmosphere sounds are played in the scene")]
@@ -221,7 +221,7 @@ namespace WeaverCore.Components
 				ActorSounds.ApplyActorSounds(actorSnapshot, transitionTime);
 				ShadeSounds.ApplyShadeSounds(shadeSnapshot, transitionTime);
 				EnviroEffects.ApplyEnviroEffectsSnapshot(enviroEffectsSnapshot, transitionTime);
-				MusicPack x = music;
+                MusicCue x = music;
 				if (PlayerData.instance.GetBool("crossroadsInfected") && infectedMusic != null)
 				{
 					x = infectedMusic;
@@ -230,7 +230,7 @@ namespace WeaverCore.Components
 				var musicTransitionTime = GetMusicTransitionTime(this);
 				if (x != null)
 				{
-					Music.PlayMusicPack(x, musicDelayTime, musicTransitionTime, !customMusicSnapshot);
+					Music.PlayMusicCue(x, musicDelayTime, musicTransitionTime, !customMusicSnapshot);
 				}
 				if (customMusicSnapshot)
 				{

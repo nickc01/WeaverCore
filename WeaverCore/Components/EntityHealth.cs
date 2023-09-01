@@ -13,6 +13,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
     /// <summary>
     /// Used to keep track of the health of an enemy
     /// </summary>

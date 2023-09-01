@@ -105,6 +105,18 @@ namespace WeaverCore.Utilities
 			return v;
 		}
 
+        public static Vector4 FlipW(this Vector4 v) => new Vector4(v.x, v.y, v.z, -v.w);
+        public static Vector4 FlipZ(this Vector4 v) => new Vector4(v.x, v.y, -v.z, v.w);
+        public static Vector4 FlipY(this Vector4 v) => new Vector4(v.x, -v.y, v.z, v.w);
+        public static Vector4 FlipX(this Vector4 v) => new Vector4(-v.x, v.y, v.z, v.w);
+
+        public static Vector3 FlipZ(this Vector3 v) => new Vector3(v.x, v.y, -v.z);
+        public static Vector3 FlipY(this Vector3 v) => new Vector3(v.x, -v.y, v.z);
+        public static Vector3 FlipX(this Vector3 v) => new Vector3(-v.x, v.y, v.z);
+
+        public static Vector2 FlipY(this Vector2 v) => new Vector2(v.x, -v.y);
+        public static Vector2 FlipX(this Vector2 v) => new Vector2(-v.x,v.y);
+
 		/// <summary>
 		/// Converts an angle (in degrees) into a vector pointing in the same direction
 		/// </summary>

@@ -18,7 +18,7 @@ namespace WeaverCore.Editor.Implementations
 
 		void Awake()
 		{
-			NeutralPosition = transform.position;
+			NeutralPosition = Vector3.zero;
 			StartCoroutine(RumbleRoutine());
 		}
 

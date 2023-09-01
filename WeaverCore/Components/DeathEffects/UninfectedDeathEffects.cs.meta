@@ -7,8 +7,12 @@ MonoImporter:
   - EssenceCollectPrefab: {instanceID: 0}
   - DamageSound: {fileID: 8300000, guid: 4dd03c7f900f45e4cb9580542d0dff52, type: 3}
   - SwordDeathSound: {fileID: 8300000, guid: 3f2433cf5ab9b59478e49da6c1b3fe33, type: 3}
-  - uninfectedDeathPt: {fileID: 1901145673797302, guid: 4807e1e7c9afe8e42acf2668ab90d952, type: 3}
-  - whiteWave: {fileID: 225706361771549938, guid: 4e9e90ea4ef0b92418dee7d122693958, type: 3}
+  - uninfectedDeathPt: {fileID: 1901145673797302, guid: 4807e1e7c9afe8e42acf2668ab90d952,
+      type: 3}
+  - whiteWave: {fileID: 225706361771549938, guid: 4e9e90ea4ef0b92418dee7d122693958,
+      type: 3}
+  - corpseParticlesPrefab: {fileID: 6763730398196509696, guid: fe6b5dd2373442146a8dc9d15961d6e5,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

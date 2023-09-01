@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Enums;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Components.DeathEffects
 {
@@ -19,6 +20,15 @@ namespace WeaverCore.Components.DeathEffects
 
         [SerializeField]
         protected GameObject whiteWave;
+
+        [SerializeField]
+        protected bool doCorpseParticles = true;
+
+        [SerializeField]
+        protected ParticleSystem corpseParticlesPrefab;
+
+        [SerializeField]
+        protected float corpseParticlesIntensity = 300;
 
         FlingInfo ghost1Fling;
         FlingInfo ghost2Fling;
@@ -67,6 +77,14 @@ namespace WeaverCore.Components.DeathEffects
             Flings.SpawnFlings(ghost2Fling, transform.position + EffectsOffset);
 
             Pooling.Instantiate(whiteWave, transform.position + EffectsOffset, Quaternion.identity);
+
+            if (doCorpseParticles && corpseParticlesPrefab != null)
+            {
+                var particles = Pooling.Instantiate(corpseParticlesPrefab, transform);
+                particles.transform.SetLocalPosition(0f,0f);
+                var emit = particles.emission;
+                emit.rateOverTimeMultiplier = corpseParticlesIntensity;
+            }
         }
     }
 }

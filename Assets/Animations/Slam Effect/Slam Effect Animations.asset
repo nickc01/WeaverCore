@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Slam Effect Animations
+  m_EditorClassIdentifier: 
+  clipNames:
+  - Slam Effect
+  clipFrameStartIndexes: 00000000
+  clipFrameCounts: 05000000
+  frames:
+  - {fileID: 21300000, guid: 5b87064c6490fbf499fc762fda212e6f, type: 3}
+  - {fileID: 21300000, guid: e4c6c9dd610e381499edce2f311454e3, type: 3}
+  - {fileID: 21300000, guid: d32a195be4e7d68479bc205cbef6299d, type: 3}
+  - {fileID: 21300000, guid: 2061465e544322e478bc0b5ab521f8cb, type: 3}
+  - {fileID: 21300000, guid: 0cc4189315219bd4fbcb269302a064ea, type: 3}
+  clipFPSs:
+  - 12
+  clipWrapModes: 00000000
+  clipLoopStarts: 00000000

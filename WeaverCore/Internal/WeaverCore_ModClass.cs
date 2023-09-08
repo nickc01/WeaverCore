@@ -29,8 +29,10 @@ namespace WeaverCore.Internal
         {
             return new List<(string, string)>
             {
-                ("GG_Workshop", "GG_Statue_Mage_Knight")/*,
+                ("GG_Workshop", "GG_Statue_Mage_Knight"),/*,
                 ("End_Game_Completion", "credits object")*/
+                ("Tutorial_01", "_Enemies/Crawler 1"),
+                ("Tutorial_01", "_Props/Health Cocoon")
             };
         }
 
@@ -40,6 +42,46 @@ namespace WeaverCore.Internal
             {
                 GG_Internal.SetMageKnightStatue(mageKnightStatue);
             }
+
+            if (preloadedObjects.TryGetValue("Tutorial_01", out var tutorialSceneDict))
+            {
+                foreach (var pair in tutorialSceneDict)
+                {
+                    WeaverLog.Log($"DICT CONTENTS = {pair.Key}:{pair.Value}");
+                }
+
+                if (tutorialSceneDict.TryGetValue("_Enemies/Crawler 1", out var crawler))
+                {
+                    var enemyDeathEffects = crawler.GetComponent("EnemyDeathEffects");
+
+                    var journalPrefab = enemyDeathEffects.ReflectGetField("journalUpdateMessagePrefab") as GameObject;
+
+                    Other_Preloads.JournalUpdateMsg = journalPrefab;
+
+                    WeaverLog.Log("JOURNAL PREFAB = " + journalPrefab);
+
+                    GameObject.Destroy(crawler);
+                }
+
+                if (tutorialSceneDict.TryGetValue("_Props/Health Cocoon", out var healthCocoonObj))
+                {
+                    var cocoon = healthCocoonObj.GetComponent<HealthCocoon>();
+                    foreach (var fling in cocoon.flingPrefabs)
+                    {
+                        if (fling.prefab.name == "Health Scuttler")
+                        {
+                            var scuttlerControl = fling.prefab.GetComponent<ScuttlerControl>();
+                            Other_Preloads.HealthCocoonFlashPrefab = scuttlerControl.screenFlash;
+                            WeaverLog.Log("FLASH PREFAB = " + scuttlerControl.screenFlash);
+                            break;
+                        }
+                    }
+
+                    GameObject.Destroy(healthCocoonObj);
+                }
+            }
+
+
 
             /*if (preloadedObjects.TryGetValue("End_Game_Completion", out var endSceneDict) && endSceneDict.TryGetValue("credits object", out var creditsObject))
             {

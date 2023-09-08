@@ -14,6 +14,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Features
 {
+
     /// <summary>
     /// The base class for all bosses
     /// </summary>

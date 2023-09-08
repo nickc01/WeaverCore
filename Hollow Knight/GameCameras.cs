@@ -53,7 +53,12 @@ public class GameCameras : MonoBehaviour
 		transform.localPosition = default;
 	}
 
-	public void SceneInit()
+    private void Start()
+    {
+        
+    }
+
+    public void SceneInit()
 	{
         //Debug.LogError("GAME CAMERAS START SCENE A");
         if (this == GameCameras._instance)

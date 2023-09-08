@@ -35,7 +35,6 @@ namespace WeaverCore
 					foreach (var player in _players)
 					{
                         paramCache[0] = player;
-                        //WeaverLog.Log("P_INIT_G");
                         foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
                         {
                             method.Invoke(null, paramCache);

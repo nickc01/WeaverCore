@@ -430,6 +430,8 @@
     <Compile Include="Implementations\G_GeoCounter_I.cs" />
     <Compile Include="Implementations\G_HitTaker_I.cs" />
     <Compile Include="Implementations\G_HunterJournal_I.cs" />
+    <Compile Include="Implementations\G_InventoryNavigator_I.cs" />
+    <Compile Include="Implementations\G_SpriteFlasher_I.cs" />
     <Compile Include="Implementations\G_WeaverLanguage_I.cs" />
     <Compile Include="Implementations\G_PlayerInput_I.cs" />
     <Compile Include="Implementations\G_PlayMaker_I.cs" />
@@ -438,12 +440,15 @@
     <Compile Include="Implementations\G_WeaverSettingsPanel_I.cs" />
     <Compile Include="Implementations\G_WeaverAssets_I.cs" />
     <Compile Include="Misc\EnemyDeathEffectsProxy.cs" />
+    <Compile Include="Misc\MethodAction.cs" />
+    <Compile Include="Misc\PlayMakerExtensions.cs" />
     <Compile Include="Misc\HealthManagerProxy.cs" />
     <Compile Include="Misc\SettingStorage.cs" />
     <Compile Include="Misc\SpriteFlashProxy.cs" />
     <Compile Include="Patches\CameraTarget_Patches.cs" />
     <Compile Include="Patches\GameManager_Patches.cs" />
     <Compile Include="Patches\HUDCamera_Patches.cs" />
+    <Compile Include="Patches\SaveSlotBackgrounds_Patches.cs" />
     <Compile Include="Patches\TextMeshPro_Patches.cs" />
     <Compile Include="Patches\TK2DCamera_Patches.cs" />
     <Compile Include="Patches\TMP_Text_Patches.cs" />

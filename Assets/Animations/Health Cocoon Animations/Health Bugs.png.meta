@@ -1,0 +1,2088 @@
+fileFormatVersion: 2
+guid: 3ad52acf14bd5b8448e665306dbe1877
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6799092345626002828
+    second: health_plant_010017
+  - first:
+      213: -913394081556208479
+    second: health_plant_010014
+  - first:
+      213: -3592403023099458314
+    second: health_plant_010013
+  - first:
+      213: 4843854120272830649
+    second: health_plant_010016
+  - first:
+      213: -2056530979297142373
+    second: health_plant_010015
+  - first:
+      213: 8932672671316909656
+    second: health_plant_020008
+  - first:
+      213: 8856620560888307253
+    second: health_plant_020013
+  - first:
+      213: -218365514057269412
+    second: health_plant_020018
+  - first:
+      213: 8971214199676306013
+    second: health_plant_020019
+  - first:
+      213: -1889083117225586782
+    second: health_plant_020012
+  - first:
+      213: -582206289814013171
+    second: health_plant_020007
+  - first:
+      213: 7504852924827415039
+    second: health_plant_020010
+  - first:
+      213: 8326467060723173453
+    second: health_plant_020009
+  - first:
+      213: 2238144172293182295
+    second: health_plant_020014
+  - first:
+      213: -7902134535769187751
+    second: health_plant_020016
+  - first:
+      213: 3372893014338824197
+    second: health_plant_020021
+  - first:
+      213: 4465484823500034086
+    second: health_plant_020015
+  - first:
+      213: 7339946268164152825
+    second: health_plant_020017
+  - first:
+      213: 3383545346468605886
+    second: health_plant_020022
+  - first:
+      213: 1151776843137006954
+    second: health_plant_020011
+  - first:
+      213: -3019618328186118719
+    second: health_plant_020020
+  - first:
+      213: -2547238115406141089
+    second: health_cocoon_top0014
+  - first:
+      213: -5739374850253575856
+    second: health_cocoon_top0022
+  - first:
+      213: 2053277195803045008
+    second: health_cocoon_top0021
+  - first:
+      213: 64857933359805173
+    second: health_cocoon_top0012
+  - first:
+      213: -4739647733258162041
+    second: health_cocoon_top0001
+  - first:
+      213: 4183540307489831521
+    second: health_cocoon_top0017
+  - first:
+      213: 1138661913689657146
+    second: health_cocoon_top0008
+  - first:
+      213: 7332076328665150292
+    second: health_cocoon_top0013
+  - first:
+      213: -2879210099136752996
+    second: health_cocoon_top0018
+  - first:
+      213: -5488293994195373739
+    second: health_cocoon_top0010
+  - first:
+      213: 1938385744776849345
+    second: health_cocoon_top0009
+  - first:
+      213: 4975817402342449251
+    second: health_cocoon_top0015
+  - first:
+      213: 7882114033442173623
+    second: health_cocoon_top0006
+  - first:
+      213: 5515608052658740532
+    second: health_cocoon_top0003
+  - first:
+      213: -6126712594833464129
+    second: health_cocoon_top0007
+  - first:
+      213: -5921202327324125647
+    second: health_cocoon_top0004
+  - first:
+      213: -3159734865631251968
+    second: health_cocoon_top0005
+  - first:
+      213: 3800596537003071226
+    second: health_cocoon_top0011
+  - first:
+      213: 6313685661351581604
+    second: health_cocoon_top0002
+  - first:
+      213: 6554298738850410570
+    second: health_cocoon_top0000
+  - first:
+      213: 2622448758519428943
+    second: health_cocoon_top0020
+  - first:
+      213: -1869811068325715724
+    second: health_cocoon_top0016
+  - first:
+      213: -6232794509541081102
+    second: health_cocoon_top0019
+  - first:
+      213: -2291912409947900
+    second: fly0000
+  - first:
+      213: 6741157815145070689
+    second: fly0003
+  - first:
+      213: 5534614647192728886
+    second: fly0001
+  - first:
+      213: 3476258773985572337
+    second: fly0002
+  - first:
+      213: -35322962912470699
+    second: land0002
+  - first:
+      213: 4176993091207340036
+    second: land0000
+  - first:
+      213: 8693394920572800146
+    second: land0001
+  - first:
+      213: -5815893998421809060
+    second: land_fly0003
+  - first:
+      213: 3645057397141987456
+    second: land_fly0002
+  - first:
+      213: -4909430402286300207
+    second: land_fly0001
+  - first:
+      213: 1970456756465746472
+    second: land_fly0000
+  - first:
+      213: 4601007091923989808
+    second: run0002
+  - first:
+      213: -3624693819535147726
+    second: run0003
+  - first:
+      213: 7319737683187132998
+    second: run0000
+  - first:
+      213: 6688780661324505807
+    second: run0001
+  - first:
+      213: 351547015956459380
+    second: spawn0003
+  - first:
+      213: -3189973590492223458
+    second: spawn0000
+  - first:
+      213: 5868628130700222833
+    second: spawn0001
+  - first:
+      213: 8485877021985576682
+    second: spawn0002
+  - first:
+      213: 5289755978590637641
+    second: burst0003
+  - first:
+      213: 8226786587691644510
+    second: burst0000
+  - first:
+      213: -6797645406418724587
+    second: burst0001
+  - first:
+      213: 5713743146955776433
+    second: burst0002
+  - first:
+      213: -3000783992870299066
+    second: appear0004
+  - first:
+      213: 6170650779892414028
+    second: appear0000
+  - first:
+      213: 6262514811672970054
+    second: appear0002
+  - first:
+      213: 3489205478870128941
+    second: appear0005
+  - first:
+      213: 6225706626971131307
+    second: appear0003
+  - first:
+      213: -5257141816863940480
+    second: appear0001
+  - first:
+      213: -4756750563433163817
+    second: appear0006
+  - first:
+      213: -2830395548207035819
+    second: land_to_idle0000
+  - first:
+      213: -8273738667988182640
+    second: land_to_idle0001
+  - first:
+      213: 2389380257273495147
+    second: land_to_idle0002
+  - first:
+      213: 4104030783406303400
+    second: land_to_idle0003
+  - first:
+      213: 2073914005478603409
+    second: land_to_idle0004
+  - first:
+      213: 2236187168930207475
+    second: land_to_idle0007
+  - first:
+      213: -6699006842125365714
+    second: land_to_idle0006
+  - first:
+      213: -4209952752092269
+    second: land_to_idle0005
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: health_plant_010017
+      rect:
+        serializedVersion: 2
+        x: 1928
+        y: 0
+        width: 107
+        height: 231
+      alignment: 9
+      pivot: {x: 0.44859812, y: 0.53246754}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c858d18177a3b5e50800000000000000
+      internalID: 6799092345626002828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_010014
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 658
+        width: 89
+        height: 236
+      alignment: 9
+      pivot: {x: 0.43820223, y: 0.5211864}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4e5e41ce8f253f0800000000000000
+      internalID: -913394081556208479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_010013
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 658
+        width: 103
+        height: 234
+      alignment: 9
+      pivot: {x: 0.44660193, y: 0.525641}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fc0e1edb78352ec0800000000000000
+      internalID: -3592403023099458314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_010016
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1760
+        width: 113
+        height: 227
+      alignment: 9
+      pivot: {x: 0.4778761, y: 0.5418502}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b0aca698a3d83340800000000000000
+      internalID: 4843854120272830649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_010015
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 658
+        width: 83
+        height: 237
+      alignment: 9
+      pivot: {x: 0.44578314, y: 0.5189873}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b99586568fbb573e0800000000000000
+      internalID: -2056530979297142373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020008
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 1519
+        width: 179
+        height: 299
+      alignment: 9
+      pivot: {x: 0.45251396, y: 0.5250836}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85e1fac977a37fb70800000000000000
+      internalID: 8932672671316909656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020013
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 953
+        width: 187
+        height: 295
+      alignment: 9
+      pivot: {x: 0.47593582, y: 0.5322034}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53e1b2ac97909ea70800000000000000
+      internalID: 8856620560888307253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020018
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 658
+        width: 187
+        height: 295
+      alignment: 9
+      pivot: {x: 0.47593582, y: 0.5322034}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5fbb6fc8b538fcf0800000000000000
+      internalID: -218365514057269412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020019
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 1248
+        width: 181
+        height: 304
+      alignment: 9
+      pivot: {x: 0.49171272, y: 0.51644737}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5285a778c7208c70800000000000000
+      internalID: 8971214199676306013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020012
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 945
+        width: 187
+        height: 287
+      alignment: 9
+      pivot: {x: 0.47593582, y: 0.5470383}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2afc496e9e0a8c5e0800000000000000
+      internalID: -1889083117225586782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020007
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 346
+        width: 189
+        height: 299
+      alignment: 9
+      pivot: {x: 0.4814815, y: 0.5250836}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b33adc6769be7f0800000000000000
+      internalID: -582206289814013171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020010
+      rect:
+        serializedVersion: 2
+        x: 1358
+        y: 0
+        width: 193
+        height: 304
+      alignment: 9
+      pivot: {x: 0.49222797, y: 0.51644737}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff1b3e309f7962860800000000000000
+      internalID: 7504852924827415039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020009
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 658
+        width: 175
+        height: 299
+      alignment: 9
+      pivot: {x: 0.44, y: 0.5250836}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d48456c1dad8d8370800000000000000
+      internalID: 8326467060723173453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020014
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 346
+        width: 187
+        height: 299
+      alignment: 9
+      pivot: {x: 0.47593582, y: 0.5250836}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75355a9344c7f0f10800000000000000
+      internalID: 2238144172293182295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020016
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 346
+        width: 187
+        height: 307
+      alignment: 9
+      pivot: {x: 0.47593582, y: 0.51140064}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95a912cc18af55290800000000000000
+      internalID: -7902134535769187751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020021
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 658
+        width: 190
+        height: 287
+      alignment: 9
+      pivot: {x: 0.46842107, y: 0.5470383}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 508ef01835ceece20800000000000000
+      internalID: 3372893014338824197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020015
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 346
+        width: 187
+        height: 304
+      alignment: 9
+      pivot: {x: 0.47593582, y: 0.51644737}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6201e9ea9c698fd30800000000000000
+      internalID: 4465484823500034086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020017
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 1232
+        width: 187
+        height: 287
+      alignment: 9
+      pivot: {x: 0.47593582, y: 0.5470383}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fdd0600e3abcd560800000000000000
+      internalID: 7339946268164152825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020022
+      rect:
+        serializedVersion: 2
+        x: 1851
+        y: 346
+        width: 188
+        height: 295
+      alignment: 9
+      pivot: {x: 0.47340426, y: 0.5322034}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebfefa9d094c4fe20800000000000000
+      internalID: 3383545346468605886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020011
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 0
+        width: 189
+        height: 307
+      alignment: 9
+      pivot: {x: 0.4814815, y: 0.51140064}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6db3bbbfeeebff00800000000000000
+      internalID: 1151776843137006954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_plant_020020
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 1552
+        width: 178
+        height: 307
+      alignment: 9
+      pivot: {x: 0.5, y: 0.51140064}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cd153f01292816d0800000000000000
+      internalID: -3019618328186118719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0014
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 0
+        width: 183
+        height: 325
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.22153848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f59a1ec0e6466acd0800000000000000
+      internalID: -2547238115406141089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0022
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 346
+        width: 183
+        height: 310
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.18387097}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05923d17bf4a950b0800000000000000
+      internalID: -5739374850253575856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0021
+      rect:
+        serializedVersion: 2
+        x: 1551
+        y: 0
+        width: 188
+        height: 310
+      alignment: 9
+      pivot: {x: 0.35638297, y: 0.18387097}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09c20491bb4be7c10800000000000000
+      internalID: 2053277195803045008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0012
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 1200
+        width: 183
+        height: 354
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.28531075}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f2f6ce52fb66e000800000000000000
+      internalID: 64857933359805173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0001
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 346
+        width: 183
+        height: 312
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.18910256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78079a29f73693eb0800000000000000
+      internalID: -4739647733258162041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0017
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 493
+        width: 183
+        height: 468
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.4594017}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16ab57b8ebbee0a30800000000000000
+      internalID: 4183540307489831521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0008
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 183
+        height: 493
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.48681542}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3f0db44af65dcf00800000000000000
+      internalID: 1138661913689657146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0013
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 1554
+        width: 183
+        height: 314
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.19426754}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 453f22ce294c0c560800000000000000
+      internalID: 7332076328665150292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0018
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 0
+        width: 183
+        height: 337
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.24925816}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c929c376badfa08d0800000000000000
+      internalID: -2879210099136752996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0010
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 346
+        width: 183
+        height: 312
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.18910256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5513315c0b9a5d3b0800000000000000
+      internalID: -5488293994195373739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0009
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 965
+        width: 183
+        height: 312
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.18910256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c7ea1b909786ea10800000000000000
+      internalID: 1938385744776849345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0015
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 0
+        width: 183
+        height: 341
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.2580645}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36024dd7097ad0540800000000000000
+      internalID: 4975817402342449251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0006
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 0
+        width: 256
+        height: 346
+      alignment: 9
+      pivot: {x: 0.453125, y: 0.26878613}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b23172c3f4e26d60800000000000000
+      internalID: 7882114033442173623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0003
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 0
+        width: 183
+        height: 331
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.23564953}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43d120b0d406b8c40800000000000000
+      internalID: 5515608052658740532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0007
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 961
+        width: 183
+        height: 407
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.3783784}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb42a001b5b89faa0800000000000000
+      internalID: -6126712594833464129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0004
+      rect:
+        serializedVersion: 2
+        x: 1293
+        y: 346
+        width: 182
+        height: 311
+      alignment: 9
+      pivot: {x: 0.43406594, y: 0.18649517}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13611acead9a3dda0800000000000000
+      internalID: -5921202327324125647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0005
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 0
+        width: 187
+        height: 329
+      alignment: 9
+      pivot: {x: 0.37433156, y: 0.23100305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 002f1a571ed5624d0800000000000000
+      internalID: -3159734865631251968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0011
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 653
+        width: 183
+        height: 312
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.18910256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af6d5aaf96e6eb430800000000000000
+      internalID: 3800596537003071226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0002
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 1277
+        width: 183
+        height: 312
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.18910256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a7965c58a7be9750800000000000000
+      internalID: 6313685661351581604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0000
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 1589
+        width: 183
+        height: 312
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.18910256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4038f01afb85fa50800000000000000
+      internalID: 6554298738850410570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0020
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 346
+        width: 187
+        height: 465
+      alignment: 9
+      pivot: {x: 0.37433156, y: 0.455914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f47f635604fc46420800000000000000
+      internalID: 2622448758519428943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0016
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1368
+        width: 183
+        height: 392
+      alignment: 9
+      pivot: {x: 0.40437156, y: 0.35459185}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f02a537db81d06e0800000000000000
+      internalID: -1869811068325715724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health_cocoon_top0019
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 811
+        width: 182
+        height: 389
+      alignment: 9
+      pivot: {x: 0.43406594, y: 0.34961438}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ff7cc49a6aa089a0800000000000000
+      internalID: -6232794509541081102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fly0000
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 1901
+        width: 56
+        height: 68
+      alignment: 9
+      pivot: {x: 0.48214287, y: 0.5441176}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 401e2fe848bd7fff0800000000000000
+      internalID: -2291912409947900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fly0003
+      rect:
+        serializedVersion: 2
+        x: 1985
+        y: 231
+        width: 62
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5161291, y: 0.5692308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 160029211576d8d50800000000000000
+      internalID: 6741157815145070689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fly0001
+      rect:
+        serializedVersion: 2
+        x: 1928
+        y: 231
+        width: 57
+        height: 73
+      alignment: 9
+      pivot: {x: 0.49122807, y: 0.5068493}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 635b89ea2b6eecc40800000000000000
+      internalID: 5534614647192728886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fly0002
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1922
+        width: 64
+        height: 62
+      alignment: 9
+      pivot: {x: 0.484375, y: 0.5967742}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f5bebadfe62e3030800000000000000
+      internalID: 3476258773985572337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land0002
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 1922
+        width: 62
+        height: 65
+      alignment: 9
+      pivot: {x: 0.46774194, y: 0.5692308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 559103fc3f1828ff0800000000000000
+      internalID: -35322962912470699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land0000
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1760
+        width: 70
+        height: 65
+      alignment: 9
+      pivot: {x: 0.4714286, y: 0.5692308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 400aca6f519a7f930800000000000000
+      internalID: 4176993091207340036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land0001
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 1990
+        width: 58
+        height: 58
+      alignment: 9
+      pivot: {x: 0.48275864, y: 0.44827586}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c4de4ee9425a870800000000000000
+      internalID: 8693394920572800146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_fly0003
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 1972
+        width: 63
+        height: 60
+      alignment: 9
+      pivot: {x: 0.31746033, y: 0.6166667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c58edbce83bc94fa0800000000000000
+      internalID: -5815893998421809060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_fly0002
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 1901
+        width: 69
+        height: 58
+      alignment: 9
+      pivot: {x: 0.4347826, y: 0.5344828}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 080ee8ee368d59230800000000000000
+      internalID: 3645057397141987456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_fly0001
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 1922
+        width: 59
+        height: 68
+      alignment: 9
+      pivot: {x: 0.47457623, y: 0.5147059}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d3d8367f033edbb0800000000000000
+      internalID: -4909430402286300207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_fly0000
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1984
+        width: 65
+        height: 60
+      alignment: 9
+      pivot: {x: 0.47692308, y: 0.6166667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 822c866eaf7785b10800000000000000
+      internalID: 1970456756465746472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: run0002
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 1868
+        width: 77
+        height: 54
+      alignment: 9
+      pivot: {x: 0.29870132, y: 0.6296296}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 035be2ba29f0adf30800000000000000
+      internalID: 4601007091923989808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: run0003
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1825
+        width: 65
+        height: 67
+      alignment: 9
+      pivot: {x: 0.35384616, y: 0.47761193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23dbd03fc2082bdc0800000000000000
+      internalID: -3624693819535147726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: run0000
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 1987
+        width: 62
+        height: 59
+      alignment: 9
+      pivot: {x: 0.40322584, y: 0.5423729}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64ae86724aee49560800000000000000
+      internalID: 7319737683187132998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: run0001
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1892
+        width: 67
+        height: 65
+      alignment: 9
+      pivot: {x: 0.37313432, y: 0.46153846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc2efb2a29253dc50800000000000000
+      internalID: 6688780661324505807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn0003
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 1972
+        width: 53
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5094339, y: 0.5285714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47feeeff522f0e400800000000000000
+      internalID: 351547015956459380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn0000
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 1989
+        width: 46
+        height: 57
+      alignment: 9
+      pivot: {x: 0.4347826, y: 0.57894737}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1865dfabefeab3d0800000000000000
+      internalID: -3189973590492223458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn0001
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 1921
+        width: 47
+        height: 67
+      alignment: 9
+      pivot: {x: 0.48936176, y: 0.5373134}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1716049013e817150800000000000000
+      internalID: 5868628130700222833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn0002
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1859
+        width: 54
+        height: 62
+      alignment: 9
+      pivot: {x: 0.46296299, y: 0.5967742}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae6991ff034e3c570800000000000000
+      internalID: 8485877021985576682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burst0003
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 325
+        width: 111
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4954955, y: 1.388889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ec464490df86940800000000000000
+      internalID: 5289755978590637641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burst0000
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1868
+        width: 85
+        height: 40
+      alignment: 9
+      pivot: {x: 0.5058824, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e56fe4a60da6b2270800000000000000
+      internalID: 8226786587691644510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burst0001
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1987
+        width: 95
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5473684, y: 0.64}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5199851b489e9a1a0800000000000000
+      internalID: -6797645406418724587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burst0002
+      rect:
+        serializedVersion: 2
+        x: 1358
+        y: 304
+        width: 116
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5258621, y: 1.032258}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b12f149e1b4b4f40800000000000000
+      internalID: 5713743146955776433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear0004
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 1859
+        width: 54
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0.53846157}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64a99497bd21b56d0800000000000000
+      internalID: -3000783992870299066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear0000
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1984
+        width: 50
+        height: 63
+      alignment: 9
+      pivot: {x: 0.52000004, y: 0.52380955}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c467978d03e82a550800000000000000
+      internalID: 6170650779892414028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear0002
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1957
+        width: 57
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 643c36e7a0ce8e650800000000000000
+      internalID: 6262514811672970054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear0005
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 1924
+        width: 54
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0.5538462}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29966c75e52c6030800000000000000
+      internalID: 3489205478870128941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear0003
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 1959
+        width: 57
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5087719, y: 0.5294118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: badd8682137266650800000000000000
+      internalID: 6225706626971131307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear0001
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 1901
+        width: 54
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0.5070423}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08029fffe51ea07b0800000000000000
+      internalID: -5257141816863940480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear0006
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1921
+        width: 53
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5471698, y: 0.53968257}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d35d6d9090acfdb0800000000000000
+      internalID: -4756750563433163817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_to_idle0000
+      rect:
+        serializedVersion: 2
+        x: 1551
+        y: 310
+        width: 87
+        height: 27
+      alignment: 9
+      pivot: {x: 0.49425286, y: 1.2962962}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55ac547be3a68b8d0800000000000000
+      internalID: -2830395548207035819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_to_idle0001
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 1859
+        width: 67
+        height: 44
+      alignment: 9
+      pivot: {x: 0.47761193, y: 0.7727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09996228486cd2d80800000000000000
+      internalID: -8273738667988182640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_to_idle0002
+      rect:
+        serializedVersion: 2
+        x: 1474
+        y: 304
+        width: 67
+        height: 38
+      alignment: 9
+      pivot: {x: 0.4925373, y: 0.9210526}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6e3e1c3fa8c82120800000000000000
+      internalID: 2389380257273495147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_to_idle0003
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 1818
+        width: 82
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5121951, y: 1.44}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a86330e04274f830800000000000000
+      internalID: 4104030783406303400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_to_idle0004
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 310
+        width: 73
+        height: 32
+      alignment: 9
+      pivot: {x: 0.49315068, y: 1.09375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19a7247ccc508cc10800000000000000
+      internalID: 2073914005478603409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_to_idle0007
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 307
+        width: 77
+        height: 30
+      alignment: 9
+      pivot: {x: 0.48051944, y: 1.1333333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f61f5fd168880f10800000000000000
+      internalID: 2236187168930207475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_to_idle0006
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 1988
+        width: 70
+        height: 28
+      alignment: 9
+      pivot: {x: 0.4857143, y: 1.2142857}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2ec43b15c85803a0800000000000000
+      internalID: -6699006842125365714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_to_idle0005
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 307
+        width: 66
+        height: 38
+      alignment: 9
+      pivot: {x: 0.46969697, y: 0.8947369}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39bb0bdf11b01fff0800000000000000
+      internalID: -4209952752092269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

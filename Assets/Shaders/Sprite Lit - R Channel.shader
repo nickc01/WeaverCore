@@ -5,7 +5,7 @@ Shader "Sprites/Sprite Lit - R Channel"
     Properties
     {
         [PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
-        _Color("Tint", Color) = (1,1,1,1)
+        [PerRendererData] _Color("Tint", Color) = (1,1,1,1)
         [MaterialToggle] PixelSnap("Pixel snap", Float) = 0
         [HideInInspector] _RendererColor("RendererColor", Color) = (1,1,1,1)
         [HideInInspector] _Flip("Flip", Vector) = (1,1,1,1)
@@ -30,7 +30,7 @@ Shader "Sprites/Sprite Lit - R Channel"
             Blend One OneMinusSrcAlpha
 
             CGPROGRAM
-            #pragma surface surf Lambert vertex:vert nofog nolightmap nodynlightmap keepalpha noinstancing
+            #pragma surface surf Lambert vertex:vert nofog nolightmap nodynlightmap alpha noinstancing
             #pragma multi_compile_local _ PIXELSNAP_ON
             #pragma multi_compile _ ETC1_EXTERNAL_ALPHA
             #include "UnitySprites.cginc"
@@ -40,6 +40,8 @@ Shader "Sprites/Sprite Lit - R Channel"
                 float2 uv_MainTex;
                 fixed4 color;
             };
+
+            //fixed4 _Color;
 
             void vert(inout appdata_full v, out Input o)
             {
@@ -57,8 +59,8 @@ Shader "Sprites/Sprite Lit - R Channel"
             {
                 fixed4 c = SampleSpriteTexture(IN.uv_MainTex);
                 o.Albedo = IN.color * c.r;
-                o.Alpha = c.r;
-            }
+                o.Alpha = c.r * IN.color.a;
+}
             ENDCG
         }
 

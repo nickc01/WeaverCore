@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Text;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.Audio;
 using WeaverCore.Attributes;
 using WeaverCore.Implementations;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Implementations
 {

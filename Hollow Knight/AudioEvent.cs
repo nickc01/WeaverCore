@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Reflection;
 using UnityEngine;
 
 
 [Serializable]
 public struct AudioEvent
 {
+    static MethodInfo playAtPointMethod;
+    static PropertyInfo audioSourceProperty;
+
     public AudioClip Clip;
 
     public float PitchMin;
@@ -31,12 +35,36 @@ public struct AudioEvent
 
     public void SpawnAndPlayOneShot(AudioSource prefab, Vector3 position)
     {
-        if (!(Clip == null) && !(Volume < Mathf.Epsilon) && !(prefab == null))
+        if (!(Clip == null) && !(Volume < Mathf.Epsilon))
         {
-            AudioSource audioSource = GameObject.Instantiate(prefab, position, Quaternion.identity); //prefab.Spawn(position);
-            audioSource.volume = Volume;
+#if UNITY_EDITOR
+            if (playAtPointMethod == null)
+            {
+                playAtPointMethod = WeaverTypeHelpers.GetWeaverMethod("WeaverCore.WeaverAudio", "PlayAtPoint");
+
+            }
+
+            Debug.Log("SOUND = " + Clip.name);
+
+            var instance = playAtPointMethod.Invoke(null, new object[] {Clip, position, Volume, 2});
+
+            if (audioSourceProperty == null)
+            {
+                audioSourceProperty = instance.GetType().GetProperty("AudioSource");
+            }
+
+            var audioSource = (AudioSource)audioSourceProperty.GetValue(instance);
+
             audioSource.pitch = SelectPitch();
-            audioSource.PlayOneShot(Clip);
+#else
+            if (prefab != null)
+            {
+                AudioSource audioSource = GameObject.Instantiate(prefab, position, Quaternion.identity);
+                audioSource.volume = Volume;
+                audioSource.pitch = SelectPitch();
+                audioSource.PlayOneShot(Clip);
+            }
+#endif
         }
     }
 }

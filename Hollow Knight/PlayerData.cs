@@ -50,6 +50,7 @@ public class PlayerData
     public int MPCharge;
     public int MPReserve;
     public string bossReturnEntryGate;
+    public List<string> scenesEncounteredCocoon;
 
     protected PlayerData()
     {
@@ -86,6 +87,7 @@ public class PlayerData
         bossReturnEntryGate = "";
         MPCharge = 0;
         MPReserve = 0;
+        scenesEncounteredCocoon = new List<string>();
     }
 
     public void ClearMP()

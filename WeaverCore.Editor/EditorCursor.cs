@@ -80,6 +80,8 @@ public class EditorCursor : MonoBehaviour
             yield return null;
         }
 
+        transform.position = to;
+
         if (moveCoroutine != null)
         {
             moveCoroutine = null;

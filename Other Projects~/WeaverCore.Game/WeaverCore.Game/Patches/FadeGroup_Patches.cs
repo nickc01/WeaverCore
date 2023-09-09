@@ -34,7 +34,7 @@ namespace WeaverCore.Game.Patches
         {
             if (self.animators == null)
             {
-                self.animators = new InvAnimateUpAndDown[];
+                self.animators = new InvAnimateUpAndDown[0];
             }
         }
     }

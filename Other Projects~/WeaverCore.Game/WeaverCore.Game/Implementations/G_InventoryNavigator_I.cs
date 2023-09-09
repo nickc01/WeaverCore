@@ -667,6 +667,8 @@ namespace WeaverCore.Game.Implementations
         GameObject actualRightArrow => transform.parent.parent.Find("Border").Find("Arrow Right").gameObject;
         GameObject actualLeftArrow => transform.parent.parent.Find("Border").Find("Arrow Left").gameObject;
 
+        public override FadeGroup MainFadeGroup => MainPanel.transform.parent.GetComponent<FadeGroup>();
+
         void MainState()
         {
             /*if (firstStartup)

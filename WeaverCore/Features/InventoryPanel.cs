@@ -208,32 +208,32 @@ namespace WeaverCore.Features
 
         protected virtual void OnInventoryOpen()
         {
-            WeaverLog.Log("INV PANEL - INV OPEN");
+            //WeaverLog.Log("INV PANEL - INV OPEN");
         }
 
         protected virtual void OnInventoryClose()
         {
-            WeaverLog.Log("INV PANEL - INV CLOSE");
+            //WeaverLog.Log("INV PANEL - INV CLOSE");
         }
 
         protected virtual void OnPaneOpenBegin()
         {
-            WeaverLog.Log("INV PANEL - PANE OPEN BEGIN");
+            //WeaverLog.Log("INV PANEL - PANE OPEN BEGIN");
         }
 
         protected virtual void OnPaneOpenEnd()
         {
-            WeaverLog.Log("INV PANEL - PANE OPEN END");
+            //WeaverLog.Log("INV PANEL - PANE OPEN END");
         }
 
         protected virtual void OnPaneCloseBegin()
         {
-            WeaverLog.Log("INV PANEL - PANE CLOSE BEGIN");
+            //WeaverLog.Log("INV PANEL - PANE CLOSE BEGIN");
         }
 
         protected virtual void OnPaneCloseEnd()
         {
-            WeaverLog.Log("INV PANEL - PANE CLOSE END");
+            //WeaverLog.Log("INV PANEL - PANE CLOSE END");
         }
 
 
@@ -261,7 +261,6 @@ namespace WeaverCore.Features
 
                 _customPaneData = (IDictionary)inventoryHelper.GetField("_customPaneData", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
             }
-            WeaverLog.Log("ADDING PANEL = " + panel.GetType().FullName);
             panel.PanelGUID = Guid.NewGuid();
 
             var eventName = panel.PanelGUID.ToString();

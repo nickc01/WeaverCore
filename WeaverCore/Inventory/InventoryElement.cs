@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
 using WeaverCore.Features;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Inventory
 {
     public abstract class InventoryElement : MonoBehaviour
     {
+        const float GIZMO_ARROW_ANGLE = 35f;
+
         [NonSerialized]
         InventoryPanel _mainPanel;
 
@@ -18,6 +21,10 @@ namespace WeaverCore.Inventory
             Down,
             Right
         }
+
+        [HideInInspector]
+        [SerializeField]
+        Color gizmoColor = default;
 
         /// <summary>
         /// Can this inventory element be highlighted by the cursor?
@@ -75,5 +82,48 @@ namespace WeaverCore.Inventory
         /// <param name="move">The movement direction the player is going in</param>
         /// <returns>The next element to move to, or null if there is no element to move to</returns>
         public abstract InventoryElement NavigateTo(MoveDirection move);
+
+
+        protected virtual void OnDrawGizmos()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                var dest = NavigateTo((MoveDirection)i);
+                if (dest != null)
+                {
+                    GizmoDrawToObject(dest.transform.position);
+                }
+            }
+        }
+
+        void GizmoDrawToObject(Vector3 destination)
+        {
+            if (gizmoColor == default)
+            {
+                gizmoColor = Color.HSVToRGB(UnityEngine.Random.Range(0f,1f), 1f, 1f);
+            }
+            var vectToDest = (Vector2)(destination - transform.position).normalized;
+
+            var angle = MathUtilities.CartesianToPolar(vectToDest).x;
+
+            var upAngle = angle + 90f;
+
+            var upVector = MathUtilities.PolarToCartesian(upAngle, 1f);
+
+            var startOffset = (vectToDest * 0.25f) + (upVector * 0.25f);
+
+            //Gizmos.color = Color.red;
+            Gizmos.color = gizmoColor;
+
+            var trueDest = destination - (Vector3)(vectToDest * 0.25f);
+
+            Gizmos.DrawLine(transform.position + (Vector3)startOffset, trueDest);
+
+            var firstAngle = upAngle + 90f - GIZMO_ARROW_ANGLE;
+            var secondAngle = upAngle + 90f + GIZMO_ARROW_ANGLE;
+
+            Gizmos.DrawLine(trueDest, trueDest + (Vector3)MathUtilities.PolarToCartesian(firstAngle, 0.25f));
+            Gizmos.DrawLine(trueDest, trueDest + (Vector3)MathUtilities.PolarToCartesian(secondAngle, 0.25f));
+        }
     }
 }

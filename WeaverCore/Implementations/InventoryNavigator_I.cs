@@ -50,6 +50,7 @@ namespace WeaverCore.Implementations
 		InventoryInputManager _inputManager;
 		public InventoryInputManager InputManager => _inputManager ??= GetComponent<InventoryInputManager>();
 
+
 		[NonSerialized]
 		InventoryPanel _panel;
 		public InventoryPanel MainPanel => _panel ??= GetComponent<InventoryPanel>();
@@ -57,6 +58,11 @@ namespace WeaverCore.Implementations
 		//public abstract GameObject GetHighlightedObject();
 
 		//public abstract void UpdateHighlightedObject(GameObject obj);
+
+		/// <summary>
+		/// The main fade group that is used to fade in and out the inventory panel
+		/// </summary>
+		public abstract FadeGroup MainFadeGroup { get; }
 
 		public abstract Vector3 GetCursorPosition();
 
@@ -82,5 +88,29 @@ namespace WeaverCore.Implementations
 		public abstract Vector3 GetCursorPosForElement(InventoryElement element);
 		public abstract Vector2 GetCursorBoundsForElement(InventoryElement element);
 		public abstract Vector2 GetCursorOffsetForElement(InventoryElement element);
+
+        public InventoryElement FindNextElement(InventoryElement element, InventoryElement.MoveDirection direction)
+        {
+            var currentElement = element;
+            for (int i = 0; i < 20; i++)
+            {
+                var newElement = currentElement.NavigateTo(direction);
+
+                if (newElement == null)
+                {
+                    return element;
+                }
+
+                if (newElement.Highlightable)
+                {
+                    return newElement;
+                }
+                else
+                {
+                    currentElement = newElement;
+                }
+            }
+            return element;
+        }
     }
 }

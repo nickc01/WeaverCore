@@ -170,7 +170,7 @@ namespace WeaverCore.Features
             InventoryNavigator_I.InventoryCloseEvent.AddListener(OnInventoryClose);
             InventoryNavigator_I.PaneOpenBeginEvent.AddListener(name =>
             {
-                if (name == transform.parent.name)
+                if (name == $"{GetType().FullName}_{PanelGUID}")
                 {
                     OnPaneOpenBegin();
                 }
@@ -178,7 +178,7 @@ namespace WeaverCore.Features
 
             InventoryNavigator_I.PaneOpenEndEvent.AddListener(name =>
             {
-                if (name == transform.parent.name)
+                if (name == $"{GetType().FullName}_{PanelGUID}")
                 {
                     OnPaneOpenEnd();
                 }
@@ -186,7 +186,7 @@ namespace WeaverCore.Features
 
             InventoryNavigator_I.PaneCloseBeginEvent.AddListener(name =>
             {
-                if (name == transform.parent.name)
+                if (name == $"{GetType().FullName}_{PanelGUID}")
                 {
                     OnPaneCloseBegin();
                 }
@@ -194,7 +194,7 @@ namespace WeaverCore.Features
 
             InventoryNavigator_I.PaneCloseEndEvent.AddListener(name =>
             {
-                if (name == transform.parent.name)
+                if (name == $"{GetType().FullName}_{PanelGUID}")
                 {
                     OnPaneCloseEnd();
                 }

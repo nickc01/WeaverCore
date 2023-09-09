@@ -91,6 +91,7 @@ namespace WeaverCore.Implementations
 
         public InventoryElement FindNextElement(InventoryElement element, InventoryElement.MoveDirection direction)
         {
+			//Debug.Log("DOING FIND ELEMENT");
             var currentElement = element;
             for (int i = 0; i < 20; i++)
             {
@@ -110,6 +111,7 @@ namespace WeaverCore.Implementations
                     currentElement = newElement;
                 }
             }
+			//Debug.Log("FOUND ELEMENT = " + element);
             return element;
         }
     }

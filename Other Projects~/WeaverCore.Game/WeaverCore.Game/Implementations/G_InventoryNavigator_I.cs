@@ -500,32 +500,40 @@ namespace WeaverCore.Game.Implementations
 
         private void InputManager_OnDownEvent()
         {
+            //WeaverLog.Log("D CURRENT STATE = " + uiFSM.ActiveStateName);
             if (uiFSM.ActiveStateName == mainInputState.Name)
             {
+                //WeaverLog.Log("D FINDING ELEMENT");
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Down));
             }
         }
 
         private void InputManager_OnUpEvent()
         {
+            //WeaverLog.Log("U CURRENT STATE = " + uiFSM.ActiveStateName);
             if (uiFSM.ActiveStateName == mainInputState.Name)
             {
+                //WeaverLog.Log("U FINDING ELEMENT");
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Up));
             }
         }
 
         private void InputManager_OnRightEvent()
         {
+            //WeaverLog.Log("R CURRENT STATE = " + uiFSM.ActiveStateName);
             if (uiFSM.ActiveStateName == mainInputState.Name)
             {
+               // WeaverLog.Log("R FINDING ELEMENT");
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Right));
             }
         }
 
         private void InputManager_OnLeftEvent()
         {
+           // WeaverLog.Log("L CURRENT STATE = " + uiFSM.ActiveStateName);
             if (uiFSM.ActiveStateName == mainInputState.Name)
             {
+                //WeaverLog.Log("L FINDING ELEMENT");
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Left));
             }
         }
@@ -725,10 +733,13 @@ namespace WeaverCore.Game.Implementations
 
         public override void HighlightElement(InventoryElement element)
         {
+            //WeaverLog.Log("TRYING TO HIGHLIGHT ELEMENT = " + element);
+            //WeaverLog.Log("CURRENTLY HIGHLIGED = " + highlightedElement);
             if (element == highlightedElement)
             {
                 return;
             }
+
 
             /*if (element == null)
             {
@@ -739,7 +750,10 @@ namespace WeaverCore.Game.Implementations
                 WeaverLog.Log("TRYING TO HIGHLIGHT ELEMENT = " + element.name);
             }*/
 
-            if (inventoryFSM.ActiveStateName != mainInputState.Name)
+            //WeaverLog.Log("H CURRENT STATE = " + inventoryFSM.ActiveStateName);
+            //WeaverLog.Log("MAIN INPUT STATE = " + mainInputState.Name);
+
+            if (uiFSM.ActiveStateName != mainInputState.Name)
             {
                 elementTargetOverride = element;
                 inventoryFSM.SetState(mainInputState.Name);
@@ -795,6 +809,8 @@ namespace WeaverCore.Game.Implementations
                 }
 
                 highlightedElement.OnHighlight();
+
+                //WeaverLog.Log("MOVING CURSOR TO = " + highlightedElement);
 
                 cursorUpdaterFSM.GetGameObjectVariable("Item").Value = highlightedElement.gameObject;
                 cursorUpdaterFSM.SendEvent("UPDATE CURSOR");

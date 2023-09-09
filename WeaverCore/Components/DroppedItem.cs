@@ -12,11 +12,11 @@ namespace WeaverCore.Components
     public abstract class DroppedItem : MonoBehaviour
 	{
         [SerializeField]
-        SaveSpecificSettings settingsStorage;
+        protected SaveSpecificSettings settingsStorage;
 
         [SerializeField]
         [Tooltip("The field in Settings Storage that will store whether or not this item has already been collected. Leave this field empty if this item can always be collected.")]
-        string settingsField;
+        protected string settingsField;
 
         [field: SerializeField]
         [field: Tooltip("If set to false, then this item will not spawn in the world")]

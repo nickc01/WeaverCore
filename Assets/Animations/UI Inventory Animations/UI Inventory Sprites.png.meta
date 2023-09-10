@@ -1,0 +1,1320 @@
+fileFormatVersion: 2
+guid: 467585c2c2ceee940b990c3a58661034
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8963803342283945200
+    second: Border_Fleur_arrow0000
+  - first:
+      213: -3261746063714868236
+    second: Border_Fleur_arrow0001
+  - first:
+      213: 5218134310099880527
+    second: Border_Fleur_arrow0002
+  - first:
+      213: -8694914641912400249
+    second: Border_Fleur_arrow0003
+  - first:
+      213: 7515959327522355996
+    second: Border_Fleur_arrow0004
+  - first:
+      213: -3511276485527793462
+    second: Border_Fleur_arrow0005
+  - first:
+      213: -7868492784197859231
+    second: Border_Fleur_arrow0006
+  - first:
+      213: 6583837897667334801
+    second: Border_Fleur_arrow0007
+  - first:
+      213: -2998517458612569337
+    second: Border_Fleur_arrow0008
+  - first:
+      213: 8699038342356968180
+    second: Border_Fleur_arrow0009
+  - first:
+      213: -525420020732284519
+    second: Border_Fleur_arrow0010
+  - first:
+      213: 8893454853055408546
+    second: Border_Fleur_bottom0000
+  - first:
+      213: 961296171953808374
+    second: Border_Fleur_bottom0001
+  - first:
+      213: 414494090020775971
+    second: Border_Fleur_bottom0002
+  - first:
+      213: 1194325320259943565
+    second: Border_Fleur_bottom0003
+  - first:
+      213: -4324919809357627845
+    second: Border_Fleur_bottom0004
+  - first:
+      213: -7053056347982052650
+    second: Border_Fleur_bottom0005
+  - first:
+      213: 719555813675603032
+    second: Border_Fleur_bottom0006
+  - first:
+      213: 1941491490056693154
+    second: Border_Fleur_bottom0007
+  - first:
+      213: 3706656923012073376
+    second: Border_Fleur_bottom0008
+  - first:
+      213: 9067000094043763085
+    second: Border_Fleur_corner0000
+  - first:
+      213: 4585539394561143897
+    second: Border_Fleur_corner0001
+  - first:
+      213: -3310920522236764840
+    second: Border_Fleur_corner0002
+  - first:
+      213: -9060356365395212144
+    second: Border_Fleur_corner0003
+  - first:
+      213: 1685820444274000557
+    second: Border_Fleur_corner0004
+  - first:
+      213: -9119944712123894306
+    second: Border_Fleur_corner0005
+  - first:
+      213: -7912101330310085715
+    second: Border_Fleur_corner0006
+  - first:
+      213: 6109272894325014361
+    second: Border_Fleur_corner0007
+  - first:
+      213: 4389522413157304673
+    second: Border_Fleur_corner0008
+  - first:
+      213: 4324098078694026945
+    second: Border_Fleur_corner0009
+  - first:
+      213: -3715595567004958644
+    second: Border_Fleur_top0009
+  - first:
+      213: -7955684080440971982
+    second: Border_Fleur_top0000
+  - first:
+      213: -7558094433865246024
+    second: Border_Fleur_top0001
+  - first:
+      213: 4649118499683047916
+    second: Border_Fleur_top0002
+  - first:
+      213: -5898292507044196261
+    second: Border_Fleur_top0003
+  - first:
+      213: 4234930579929442608
+    second: Border_Fleur_top0004
+  - first:
+      213: -7799082160819723782
+    second: Border_Fleur_top0005
+  - first:
+      213: 8396783317657234115
+    second: Border_Fleur_top0006
+  - first:
+      213: -708746493728825119
+    second: Border_Fleur_top0007
+  - first:
+      213: 1176235499063556918
+    second: Border_Fleur_top0008
+  - first:
+      213: -4897118597283705069
+    second: Border_Fleur_top0010
+  - first:
+      213: 5229821904196982554
+    second: Border_Fleur_top0011
+  - first:
+      213: -803841887257461683
+    second: Border_Fleur_top0012
+  - first:
+      213: -2184984976748431815
+    second: Border_Fleur_top0013
+  - first:
+      213: -1035721058544112130
+    second: Border_Fleur_top0014
+  - first:
+      213: -4257308743806072949
+    second: Border_Fleur_top0015
+  - first:
+      213: 6128267554120759395
+    second: Border_Fleur_top0016
+  - first:
+      213: -4478085776826431210
+    second: Border_Fleur_top0017
+  - first:
+      213: 5898357397617513675
+    second: Border_Fleur_top0018
+  - first:
+      213: 6031937352539852104
+    second: Border_Fleur_top0019
+  - first:
+      213: 560938479370713278
+    second: Border_Fleur_top0020
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0000
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 170
+        width: 17
+        height: 28
+      alignment: 9
+      pivot: {x: 1.7647058, y: 0.42857137}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f43b45c5a3d56c70800000000000000
+      internalID: 8963803342283945200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0001
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 200
+        width: 29
+        height: 49
+      alignment: 9
+      pivot: {x: 1.0344827, y: 0.51020414}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f32fbc8c33fbb2d0800000000000000
+      internalID: -3261746063714868236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0002
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 200
+        width: 30
+        height: 51
+      alignment: 9
+      pivot: {x: 1, y: 0.4901961}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4a08c712898a6840800000000000000
+      internalID: 5218134310099880527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0003
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 170
+        width: 38
+        height: 77
+      alignment: 9
+      pivot: {x: 0.7894737, y: 0.5064935}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 786f7786335755780800000000000000
+      internalID: -8694914641912400249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0004
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 821
+        width: 55
+        height: 123
+      alignment: 9
+      pivot: {x: 0.5454545, y: 0.5284553}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1bf047ef2d0e4860800000000000000
+      internalID: 7515959327522355996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0005
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 85
+        width: 43
+        height: 79
+      alignment: 9
+      pivot: {x: 0.6976744, y: 0.50632906}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac01fe3d3a0754fc0800000000000000
+      internalID: -3511276485527793462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0006
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 821
+        width: 47
+        height: 108
+      alignment: 9
+      pivot: {x: 0.63829786, y: 0.48148146}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1688928708f7dc290800000000000000
+      internalID: -7868492784197859231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0007
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 821
+        width: 55
+        height: 130
+      alignment: 9
+      pivot: {x: 0.5454545, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 192573d6fad7e5b50800000000000000
+      internalID: 6583837897667334801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0008
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 847
+        width: 55
+        height: 133
+      alignment: 9
+      pivot: {x: 0.5454545, y: 0.49624062}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70b379a12402366d0800000000000000
+      internalID: -2998517458612569337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0009
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 875
+        width: 60
+        height: 133
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49624062}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f2a0bb684139b870800000000000000
+      internalID: 8699038342356968180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_arrow0010
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 714
+        width: 60
+        height: 133
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49624062}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 991bf52664555b8f0800000000000000
+      internalID: -525420020732284519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_bottom0000
+      rect:
+        serializedVersion: 2
+        x: 763
+        y: 255
+        width: 233
+        height: 43
+      alignment: 9
+      pivot: {x: 0.4935622, y: 0.39534882}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a9675eb116eb6b70800000000000000
+      internalID: 8893454853055408546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_bottom0001
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 340
+        width: 289
+        height: 47
+      alignment: 9
+      pivot: {x: 0.49480966, y: 0.4468085}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f3ef3576c5375d00800000000000000
+      internalID: 961296171953808374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_bottom0002
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 666
+        width: 375
+        height: 48
+      alignment: 9
+      pivot: {x: 0.49600002, y: 0.4583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 328ef25cd2490c500800000000000000
+      internalID: 414494090020775971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_bottom0003
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 104
+        width: 485
+        height: 51
+      alignment: 9
+      pivot: {x: 0.4969072, y: 0.4509804}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8c395c0d88139010800000000000000
+      internalID: 1194325320259943565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_bottom0004
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 52
+        width: 605
+        height: 52
+      alignment: 9
+      pivot: {x: 0.49752066, y: 0.46153846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3e3039095ccaf3c0800000000000000
+      internalID: -4324919809357627845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_bottom0005
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 0
+        width: 721
+        height: 52
+      alignment: 9
+      pivot: {x: 0.49791956, y: 0.46153846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d247b5ce928e1e90800000000000000
+      internalID: -7053056347982052650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_bottom0006
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 510
+        width: 729
+        height: 52
+      alignment: 9
+      pivot: {x: 0.49794242, y: 0.46153846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 854933e33306cf900800000000000000
+      internalID: 719555813675603032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_bottom0007
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 562
+        width: 729
+        height: 52
+      alignment: 9
+      pivot: {x: 0.49794242, y: 0.46153846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a5e547493091fa10800000000000000
+      internalID: 1941491490056693154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_bottom0008
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 614
+        width: 729
+        height: 52
+      alignment: 9
+      pivot: {x: 0.49794242, y: 0.46153846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a7806035d0b07330800000000000000
+      internalID: 3706656923012073376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0000
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 200
+        width: 20
+        height: 45
+      alignment: 9
+      pivot: {x: 5.9, y: -0.8888889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8179e7eb8474dd70800000000000000
+      internalID: 9067000094043763085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0001
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 170
+        width: 47
+        height: 54
+      alignment: 9
+      pivot: {x: 2.787234, y: -0.64814794}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 954706cb8cb13af30800000000000000
+      internalID: 4585539394561143897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0002
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 85
+        width: 61
+        height: 85
+      alignment: 9
+      pivot: {x: 2.180328, y: -0.09411773}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85dd688b35f3d02d0800000000000000
+      internalID: -3310920522236764840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0003
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 714
+        width: 74
+        height: 107
+      alignment: 9
+      pivot: {x: 1.7972972, y: 0.018691598}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0984b26b3e5234280800000000000000
+      internalID: -9060356365395212144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0004
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 744
+        width: 79
+        height: 145
+      alignment: 9
+      pivot: {x: 1.6962024, y: 0.21379311}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da20b0023cc356710800000000000000
+      internalID: 1685820444274000557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0005
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 714
+        width: 89
+        height: 161
+      alignment: 9
+      pivot: {x: 1.5056179, y: 0.27329195}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed537a69a927f6180800000000000000
+      internalID: -9119944712123894306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0006
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 844
+        width: 128
+        height: 178
+      alignment: 9
+      pivot: {x: 1.046875, y: 0.33146065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da3c8fb92c1923290800000000000000
+      internalID: -7912101330310085715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0007
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 666
+        width: 155
+        height: 178
+      alignment: 9
+      pivot: {x: 0.8645162, y: 0.33146065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95f3a2e345f78c450800000000000000
+      internalID: 6109272894325014361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0008
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 744
+        width: 192
+        height: 178
+      alignment: 9
+      pivot: {x: 0.6979167, y: 0.33146065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1694bd9c067baec30800000000000000
+      internalID: 4389522413157304673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_corner0009
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 744
+        width: 208
+        height: 177
+      alignment: 9
+      pivot: {x: 0.6442308, y: 0.3333333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cea182ea48420c30800000000000000
+      internalID: 4324098078694026945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0009
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 170
+        width: 855
+        height: 85
+      alignment: 9
+      pivot: {x: 0.49824563, y: 0.7882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4047a3948d8f6cc0800000000000000
+      internalID: -3715595567004958644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0000
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 255
+        width: 33
+        height: 13
+      alignment: 9
+      pivot: {x: 0.45454592, y: 5.1538463}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23de518da7bb79190800000000000000
+      internalID: -7955684080440971982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0001
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 224
+        width: 33
+        height: 28
+      alignment: 9
+      pivot: {x: 0.45454592, y: 2.392857}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bada9a28214c1790800000000000000
+      internalID: -7558094433865246024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0002
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 170
+        width: 55
+        height: 30
+      alignment: 9
+      pivot: {x: 0.4181817, y: 2.2333333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce91e44b4acf48040800000000000000
+      internalID: 4649118499683047916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0003
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 510
+        width: 215
+        height: 44
+      alignment: 9
+      pivot: {x: 0.4976744, y: 1.5227273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b505840273e052ea0800000000000000
+      internalID: -5898292507044196261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0004
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 425
+        width: 395
+        height: 73
+      alignment: 9
+      pivot: {x: 0.49620256, y: 0.9178082}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0392221ccee75ca30800000000000000
+      internalID: 4234930579929442608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0005
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 666
+        width: 482
+        height: 78
+      alignment: 9
+      pivot: {x: 0.49585065, y: 0.8589744}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af12146981814c390800000000000000
+      internalID: -7799082160819723782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0006
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 425
+        width: 600
+        height: 85
+      alignment: 9
+      pivot: {x: 0.49833333, y: 0.7882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3caa2e870fd578470800000000000000
+      internalID: 8396783317657234115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0007
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 659
+        height: 85
+      alignment: 9
+      pivot: {x: 0.49620634, y: 0.7882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e06d7da1d60a26f0800000000000000
+      internalID: -708746493728825119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0008
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 255
+        width: 763
+        height: 85
+      alignment: 9
+      pivot: {x: 0.49803406, y: 0.7882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b33e554f3d25010800000000000000
+      internalID: 1176235499063556918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0010
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 85
+        width: 925
+        height: 85
+      alignment: 9
+      pivot: {x: 0.5027027, y: 0.7882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31f02f1f490f90cb0800000000000000
+      internalID: -4897118597283705069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0011
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1032
+        height: 85
+      alignment: 9
+      pivot: {x: 0.499031, y: 0.7882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a17d736205f049840800000000000000
+      internalID: 5229821904196982554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0012
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 88
+        width: 2
+        height: 2
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4c707eff0e28d4f0800000000000000
+      internalID: -803841887257461683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0013
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 85
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.6666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 936385d7dbf5da1e0800000000000000
+      internalID: -2184984976748431815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0014
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 100
+        width: 3
+        height: 1
+      alignment: 9
+      pivot: {x: 0.33333334, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efd261b4f2160a1f0800000000000000
+      internalID: -1035721058544112130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0015
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 90
+        width: 2
+        height: 2
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b874642f0400be4c0800000000000000
+      internalID: -4257308743806072949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0016
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 92
+        width: 2
+        height: 2
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3687beb1fdafb0550800000000000000
+      internalID: 6128267554120759395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0017
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 94
+        width: 2
+        height: 2
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 619088e36b4aad1c0800000000000000
+      internalID: -4478085776826431210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0018
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 96
+        width: 2
+        height: 2
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc41a436dcc2bd150800000000000000
+      internalID: 5898357397617513675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0019
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 98
+        width: 2
+        height: 2
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84d4c85401fb5b350800000000000000
+      internalID: 6031937352539852104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_Fleur_top0020
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 164
+        width: 5
+        height: 5
+      alignment: 9
+      pivot: {x: 0.4, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb83db3339ad8c700800000000000000
+      internalID: 560938479370713278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

@@ -2,6 +2,7 @@
 using UnityEditor;
 using WeaverCore.Components;
 
+
 [CustomEditor(typeof(ForcePlayerDamager))]
 public class ForcePlayerDamagerEditor : Editor
 {

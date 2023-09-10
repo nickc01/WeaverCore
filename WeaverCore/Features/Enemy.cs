@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GlobalEnums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
+
     /// <summary>
     /// The base class for all enemies
     /// </summary>

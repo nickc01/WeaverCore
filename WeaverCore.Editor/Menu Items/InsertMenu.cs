@@ -167,6 +167,12 @@ namespace WeaverCore.Editor.Menu_Items
             InsertObject("Camera Lock Region");
         }
 
+        [MenuItem("WeaverCore/Insert/Health Cocoon")]
+        public static void InsertHealthCocoon()
+        {
+            InsertObject("Health Cocoon Pack");
+        }
+
         [MenuItem("WeaverCore/Insert/Dream Return Warp")]
         public static void InsertDreamReturnWarp()
         {

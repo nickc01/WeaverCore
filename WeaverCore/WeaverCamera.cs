@@ -115,7 +115,13 @@ namespace WeaverCore
 			}
 		}
 
-		[OnFeatureUnload]
+        /*private void OnDestroy()
+        {
+			WeaverLog.Log("Weaver Camera Destroyed!!!");
+			WeaverLog.Log("Destroyed Trace = " + new System.Diagnostics.StackTrace());
+        }*/
+
+        [OnFeatureUnload]
 		static void OnFeatureUnload(CameraExtension feature)
 		{
 			if (_instance == null)
@@ -137,11 +143,16 @@ namespace WeaverCore
 
 		void Awake()
 		{
-			if (_instance != null && _instance != this)
+			if (_instance != null || _instance == this)
 			{
 				return;
 			}
+			//WeaverLog.Log("CAM INSTANCE = " + _instance);
+			//WeaverLog.Log("CAM INSTANCE NULL = " + (_instance == null));
+			//WeaverLog.Log("TRACE = " + new System.Diagnostics.StackTrace());
 			_instance = this;
+			//WeaverLog.Log("CALLING AFTER CAM LOAD ATTRIBUTE");
+			//WeaverLog.Log("NAME = " + name);
 			ReflectionUtilities.ExecuteMethodsWithAttribute<AfterCameraLoadAttribute>();
 
 			if (featuresToAdd != null)

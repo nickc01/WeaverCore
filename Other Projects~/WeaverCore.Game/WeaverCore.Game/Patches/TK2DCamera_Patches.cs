@@ -21,7 +21,7 @@ namespace WeaverCore.Game.Patches
 			}
 		}
 
-		private static void Tk2dCamera_Awake(On.tk2dCamera.orig_Awake orig, tk2dCamera self)
+        private static void Tk2dCamera_Awake(On.tk2dCamera.orig_Awake orig, tk2dCamera self)
 		{
 			orig(self);
 			self.gameObject.AddComponent<WeaverCamera>();

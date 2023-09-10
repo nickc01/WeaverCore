@@ -12,7 +12,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Patches
 {
-	static class GlowResponse_Patches
+    static class GlowResponse_Patches
 	{
 		[OnInit]
 		static void Init()

@@ -32,7 +32,19 @@ namespace WeaverCore.Editor
 			AssetUtilities.CreateScriptableObject<MusicPack>();
 		}
 
-		[MenuItem("WeaverCore/Create/Scene Record")]
+        [MenuItem("WeaverCore/Create/Music Cue")]
+        static void CreateMusicCueMenuItem()
+        {
+            AssetUtilities.CreateScriptableObject<MusicCue>();
+        }
+
+        [MenuItem("WeaverCore/Create/Custom Map Zone")]
+        static void CreateCustomMapZoneMenuItem()
+        {
+            AssetUtilities.CreateScriptableObject<CustomMapZone>();
+        }
+
+        [MenuItem("WeaverCore/Create/Scene Record")]
 		static void CreateSceneRecordMenuItem()
 		{
 			AssetUtilities.CreateScriptableObject<SceneRecord>();

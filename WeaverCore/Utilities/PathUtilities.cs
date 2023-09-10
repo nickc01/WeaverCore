@@ -8,10 +8,11 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
-	/// <summary>
-	/// Contains utility functions related to file paths
-	/// </summary>
-	public static class PathUtilities
+
+    /// <summary>
+    /// Contains utility functions related to file paths
+    /// </summary>
+    public static class PathUtilities
 	{
 		/// <summary>
 		/// A list of reserved characters that can't exist in a file's name

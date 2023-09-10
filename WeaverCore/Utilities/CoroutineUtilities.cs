@@ -173,5 +173,17 @@ namespace WeaverCore.Utilities
 				}
 			}
 		}
-	}
+
+		public static IEnumerator RunAfter(float time, Action action)
+		{
+			yield return new WaitForSeconds(time);
+			action();
+		}
+
+        public static IEnumerator RunAfter(float time, Func<IEnumerator> action)
+        {
+            yield return new WaitForSeconds(time);
+            yield return action();
+        }
+    }
 }

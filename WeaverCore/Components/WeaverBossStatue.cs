@@ -10,7 +10,6 @@ using WeaverCore.Settings;
 
 namespace WeaverCore.Components
 {
-
     public class WeaverBossStatue : BossStatue, ISerializationCallbackReceiver
     {
         [SerializeField]

@@ -7,7 +7,7 @@ using WeaverCore.Utilities;
 namespace WeaverCore.Components
 {
     [ExecuteAlways]
-    [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(PolygonCollider2D))]
+    [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class Laser : MonoBehaviour
     {
         [field: SerializeField]
@@ -40,6 +40,9 @@ namespace WeaverCore.Components
 
         [field: SerializeField]
         public uint LengthSubdivisions { get; set; } = 10;
+
+        [field: SerializeField]
+        public bool CollideWithTerrain { get; set; } = true;
 
         public (Vector2 start, Vector2 end) TextureTopEdge
         {
@@ -386,7 +389,7 @@ namespace WeaverCore.Components
                 Vector3 destVertex = default;
                 Vector2 destNormal = default;
 
-                if (Physics2D.RaycastNonAlloc(transform.TransformPoint(rayStartPosition), transform.TransformDirection(targetDirection / new Vector2(1f,TextureStretch)).normalized, terrainHit, MaximumLength, CollisionMask.value) > 0)
+                if (CollideWithTerrain && Physics2D.RaycastNonAlloc(transform.TransformPoint(rayStartPosition), transform.TransformDirection(targetDirection / new Vector2(1f,TextureStretch)).normalized, terrainHit, MaximumLength, CollisionMask.value) > 0)
                 {
                     destVertex = transform.InverseTransformPoint(terrainHit[0].point);
                     destNormal = terrainHit[0].normal;
@@ -406,7 +409,7 @@ namespace WeaverCore.Components
                     destVertex.y *= TextureStretch;
                     if (TextureStretch != 1f)
                     {
-                        if (Physics2D.RaycastNonAlloc(transform.TransformPoint(rayStartPosition), transform.TransformDirection(targetDirection).normalized, terrainHit, MaximumLength, CollisionMask.value) > 0)
+                        if (CollideWithTerrain && Physics2D.RaycastNonAlloc(transform.TransformPoint(rayStartPosition), transform.TransformDirection(targetDirection).normalized, terrainHit, MaximumLength, CollisionMask.value) > 0)
                         {
                             destVertex = transform.InverseTransformPoint(terrainHit[0].point);
                         }
@@ -485,7 +488,10 @@ namespace WeaverCore.Components
         private void FixedUpdate()
         {
             CheckInit();
-            mainCollider.SetPath(0, polygonPoints);
+            if (mainCollider != null)
+            {
+                mainCollider.SetPath(0, polygonPoints);
+            }
         }
 
         private void LateUpdate()

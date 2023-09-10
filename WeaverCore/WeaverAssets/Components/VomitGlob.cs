@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using WeaverCore.Attributes;
 using WeaverCore.Components;
 using WeaverCore.Interfaces;
@@ -48,6 +49,20 @@ namespace WeaverCore.Assets.Components
 
         [SerializeField]
         AudioClip landSound;
+
+        [SerializeField]
+        List<GameObject> enableOnLand;
+
+        [SerializeField]
+        List<GameObject> disableOnLand;
+
+        [SerializeField]
+        [ExcludeFieldFromPool]
+        public UnityEvent onDisappear;
+
+        [SerializeField]
+        [ExcludeFieldFromPool]
+        public UnityEvent onLand;
 
         [SerializeField]
         float shrinkTime = 0.25f;
@@ -172,6 +187,24 @@ namespace WeaverCore.Assets.Components
             {
                 WeaverAudio.PlayAtPoint(landSound, transform.position);
             }
+
+            foreach (var obj in enableOnLand)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(true);
+                }
+            }
+
+            foreach (var obj in disableOnLand)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(false);
+                }
+            }
+
+            onLand.Invoke();
             /*if (finish)
             {
                 MainCollider.enabled = false;
@@ -238,6 +271,8 @@ namespace WeaverCore.Assets.Components
 
         IEnumerator EndRoutine()
         {
+            onDisappear.Invoke();
+
             if (scaleCoroutine != null)
             {
                 StopCoroutine(scaleCoroutine);
@@ -310,6 +345,16 @@ namespace WeaverCore.Assets.Components
         }
 
         public static VomitGlob Spawn(Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
+        {
+            if (prefab == null)
+            {
+                prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Vomit Glob").GetComponent<VomitGlob>();
+            }
+
+            return Spawn(prefab, position, velocity, gravityScale, playSounds);
+        }
+
+        public static VomitGlob Spawn(VomitGlob prefab, Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
         {
             if (prefab == null)
             {

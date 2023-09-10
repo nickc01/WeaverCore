@@ -13,16 +13,33 @@ namespace WeaverCore.Editor.Compilation
 {
     public abstract class BuildPipelineCustomizer
     {
+        static bool typeFound = false;
+        static Type pipelineTypeFound = null;
+
         static BuildPipelineCustomizer _currentCustomizer;
 
         public static Type GetCurrentPipelineCustomizerType()
         {
-            return AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).FirstOrDefault(t => typeof(BuildPipelineCustomizer).IsAssignableFrom(t) && !t.IsAbstract && !t.ContainsGenericParameters && t.IsClass);
+            if (!typeFound)
+            {
+                pipelineTypeFound = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).FirstOrDefault(t => typeof(BuildPipelineCustomizer).IsAssignableFrom(t) && !t.IsAbstract && !t.ContainsGenericParameters && t.IsClass);
+                typeFound = true;
+            }
+            return pipelineTypeFound;
         }
 
         public static BuildPipelineCustomizer GetCurrentPipelineCustomizer()
         {
-            return _currentCustomizer ??= (BuildPipelineCustomizer)Activator.CreateInstance(GetCurrentPipelineCustomizerType());
+            if (_currentCustomizer == null)
+            {
+                var pipelineType = GetCurrentPipelineCustomizerType();
+                if (pipelineType != null)
+                {
+                    _currentCustomizer = (BuildPipelineCustomizer)Activator.CreateInstance(pipelineType);
+                }
+            }
+
+            return _currentCustomizer;
         }
 
         public static bool TryGetCurrentCustomizer(out BuildPipelineCustomizer customizer)

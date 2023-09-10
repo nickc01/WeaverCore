@@ -105,7 +105,10 @@ namespace WeaverCore.Components
         {
             if (enabled)
             {
-                Laser.MainCollider.enabled = false;
+                if (Laser.MainCollider != null)
+                {
+                    Laser.MainCollider.enabled = false;
+                }
                 Laser.MainRenderer.enabled = false;
 
                 originalSpread = Laser.Spread;
@@ -198,11 +201,6 @@ namespace WeaverCore.Components
             {
                 yield return PlayAnimationLoop(chargeUpAnimationSTRING, ChargeUpDuration);
             }
-            /*laser.MainCollider.enabled = true;
-            displayImpacts = true;
-            laser.Spread = originalSpread;
-            laser.StartingWidth = originalWidth;
-            yield return PlayAnimationLoop(fireLoopAnimation, fireLoopAnimationFPS, FireDuration, 1);*/
 
             yield return PlayAnimation(endAnimationSTRING,2);
             laser.MainRenderer.enabled = false;
@@ -230,13 +228,19 @@ namespace WeaverCore.Components
                 yield return PlayAnimation(chargeUpAnimationSTRING,0);
             }
 
-            laser.MainCollider.enabled = true;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = true;
+            }
             displayImpacts = true;
             laser.Spread = originalSpread;
             laser.StartingWidth = originalWidth;
             yield return PlayAnimationLoop(fireLoopAnimationSTRING, FireDuration);
 
-            laser.MainCollider.enabled = false;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = false;
+            }
             displayImpacts = false;
             ClearImpacts();
 
@@ -276,7 +280,10 @@ namespace WeaverCore.Components
             {
                 StopCoroutine(partialAnimationRoutine);
             }
-            laser.MainCollider.enabled = true;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = true;
+            }
             displayImpacts = true;
             laser.Spread = originalSpread;
             laser.StartingWidth = originalWidth;
@@ -295,7 +302,10 @@ namespace WeaverCore.Components
             {
                 StopCoroutine(partialAnimationRoutine);
             }
-            laser.MainCollider.enabled = false;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = false;
+            }
             displayImpacts = false;
             ClearImpacts();
 
@@ -328,13 +338,19 @@ namespace WeaverCore.Components
                 yield return PlayAnimationLoop(chargeUpAnimationSTRING, ChargeUpDuration);
             }
 
-            laser.MainCollider.enabled = true;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = true;
+            }
             displayImpacts = true;
             laser.Spread = originalSpread;
             laser.StartingWidth = originalWidth;
             yield return PlayAnimationLoop(fireLoopAnimationSTRING, FireDuration);
 
-            laser.MainCollider.enabled = false;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = false;
+            }
             displayImpacts = false;
             ClearImpacts();
 
@@ -379,7 +395,10 @@ namespace WeaverCore.Components
             FiringLaser = false;
             displayImpacts = false;
             ClearImpacts();
-            laser.MainCollider.enabled = false;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = false;
+            }
             if (partialAnimationRoutine != null)
             {
                 StopCoroutine(partialAnimationRoutine);

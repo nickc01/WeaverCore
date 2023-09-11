@@ -34,7 +34,7 @@ namespace WeaverCore.Assets.Components
             {
                 _icon.sprite = value;
                 Vector3 scale = value.bounds.size;
-                scale.x = (1f / scale.x) + 0.1666667f;
+                scale.x = (1f / scale.y) + 0.1666667f;
                 scale.y = (1f / scale.y) + 0.1666667f;
                 scale.z = 1f;
                 _icon.transform.localScale = scale;

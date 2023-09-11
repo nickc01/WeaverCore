@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
@@ -8,10 +9,9 @@ namespace WeaverCore.Components
         [SerializeField]
         int charmID = 0;
 
-
-        public override void GiveItem()
+        protected override void OnGiveItem()
         {
-            GiveCharm(charmID);
+            CharmUtilities.GiveCharmToPlayer(charmID);
         }
     }
 }

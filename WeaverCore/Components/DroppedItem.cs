@@ -8,15 +8,14 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
     public abstract class DroppedItem : MonoBehaviour
-	{
-        [SerializeField]
-        protected SaveSpecificSettings settingsStorage;
+    {
+        [field: SerializeField]
+        public SaveSpecificSettings SettingsStorage { get; set; } = null;
 
-        [SerializeField]
-        [Tooltip("The field in Settings Storage that will store whether or not this item has already been collected. Leave this field empty if this item can always be collected.")]
-        protected string settingsField;
+        [field: SerializeField]
+        [field: Tooltip("The bool field in Settings Storage that will store if this item has been collected. Leave this field empty if this item can always be collected.")]
+        public string SettingsField { get; set; } = "";
 
         [field: SerializeField]
         [field: Tooltip("If set to false, then this item will not spawn in the world")]
@@ -28,28 +27,31 @@ namespace WeaverCore.Components
 
         [field: SerializeField]
         [field: Tooltip("The speed range the object will be flung at")]
-        public Vector2 flingSpeedMinMax = new Vector2(20,20);
+        public Vector2 FlingSpeedMinMax = new Vector2(20, 20);
 
         [field: SerializeField]
         [field: Tooltip("The angle range the object will be flung at")]
-        public Vector2 flingAngleMinMax = new Vector2(82, 86);
+        public Vector2 FlingAngleMinMax = new Vector2(82, 86);
 
-        InspectRegion inspectRegion;
+        [NonSerialized]
+        InspectRegion _inspectionRegion;
 
+        public InspectRegion InspectionRegion => _inspectionRegion ??= GetComponentInChildren<InspectRegion>();
+
+        [NonSerialized]
         Rigidbody2D rb;
 
         public Rigidbody2D RB => rb ??= GetComponent<Rigidbody2D>();
 
         protected virtual void Awake()
         {
-            inspectRegion = GetComponentInChildren<InspectRegion>();
-            if (inspectRegion == null)
+            if (InspectionRegion == null)
             {
                 throw new Exception("A dropped item requires an inspect region");
             }
-            inspectRegion.Inspectable = false;
+            InspectionRegion.Inspectable = false;
 
-            inspectRegion.OnInspect.AddListener(GiveItem);
+            InspectionRegion.OnInspect.AddListener(GiveItem);
 
             StartCoroutine(DroppedItemRoutine());
         }
@@ -58,10 +60,14 @@ namespace WeaverCore.Components
         {
             transform.rotation = Quaternion.identity;
 
-            if (!ItemActive || (settingsStorage.HasField<bool>(settingsField) && settingsStorage.GetFieldValue<bool>(settingsField))) {
+            if (!CanSpawn())
+            {
+                WeaverLog.Log("ITEM DESTROYED");
                 Destroy(gameObject);
                 yield break;
             }
+
+            OnActive();
 
             if (FlingOnStart)
             {
@@ -69,13 +75,10 @@ namespace WeaverCore.Components
                 particleTrail.Play();
                 RB.gravityScale = 0.85f;
 
-                float speed = flingSpeedMinMax.RandomInRange();
-                float angle = flingAngleMinMax.RandomInRange();
+                float speed = FlingSpeedMinMax.RandomInRange();
+                float angle = FlingAngleMinMax.RandomInRange();
                 Vector2 velocity = new Vector2(speed * Mathf.Cos(angle * Mathf.Deg2Rad), speed * Mathf.Sin(angle * Mathf.Deg2Rad));
                 RB.velocity = velocity;
-
-                //yield return new WaitUntil(() => RB.velocity.magnitude < 1f);
-
 
                 float idleCounter = 0f;
 
@@ -102,41 +105,67 @@ namespace WeaverCore.Components
                 bouncer.StopBounce();
             }
 
-            inspectRegion.Inspectable = true;
+            InspectionRegion.Inspectable = true;
         }
 
-        public abstract void GiveItem();
-
-        public void GiveCharm(int charmID)
+        /// <summary>
+        /// Gives the item to the player. This is automatically called when the player goes near the item and inspects it
+        /// </summary>
+        public void GiveItem()
         {
-            PlayerData.instance.SetBool($"gotCharm_{charmID}", true);
-            GameManager.instance.StoryRecord_acquired($"gotCharm_{charmID}");
-            GameManager.instance.IncrementPlayerDataInt("charmsOwned");
-
-            if (!GameManager.instance.GetPlayerDataBool("hasCharm"))
+            try
             {
-                PlayerData.instance.SetBool("hasCharm", true);
+                ItemActive = false;
+                GetComponent<SpriteRenderer>().enabled = false;
+                OnGiveItem();
+
+                if (SettingsStorage.HasField<bool>(SettingsField))
+                {
+                    SettingsStorage.SetFieldValue(SettingsField, true);
+                }
             }
-
-            GetCharmMessage.Spawn(charmID);
-
-            GetComponent<SpriteRenderer>().enabled = false;
-
-            ItemActive = false;
-
-            if (settingsStorage.HasField<bool>(settingsField))
+            catch (Exception e)
             {
-                settingsStorage.SetFieldValue(settingsField, true);
+                WeaverLog.LogError($"Error collecting item {gameObject.name} : {e}");
             }
         }
 
-        /*IEnumerator Finish()
+        /// <summary>
+        /// Called when the player picks up an item. Implement your custom item behavior in here
+        /// </summary>
+        protected abstract void OnGiveItem();
+
+        /// <summary>
+        /// Called when the item is spawned
+        /// </summary>
+        protected virtual void OnActive()
         {
-            for (float t = 0; t < 1f; t += Time.deltaTime)
+
+        }
+
+        /// <summary>
+        /// Returns whether or not this item can spawn.
+        /// </summary>
+        /// <returns>Returns true if the item can spawn. If false, then the item will get destroyed</returns>
+        protected virtual bool CanSpawn()
+        {
+            WeaverLog.Log("ITEM ACTIVE = " + ItemActive);
+            if (ItemActive)
             {
-                //ABORT IF HERO IS DAMAGED
-                yield return null;
+                WeaverLog.Log("HAS FIELD = " + SettingsStorage.HasField<bool>(SettingsField));
+                if (SettingsStorage.HasField<bool>(SettingsField))
+                {
+                    return !SettingsStorage.GetFieldValue<bool>(SettingsField);
+                }
+                else
+                {
+                    return true;
+                }
             }
-        }*/
+            else
+            {
+                return false;
+            }
+        }
     }
 }

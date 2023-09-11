@@ -1,4 +1,4 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,16 +7,16 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-    /// <summary>
-    /// The message that is displayed when a new charm is acquired
-    /// </summary>
-    public class GetCharmMessage : MonoBehaviour
-	{
+    public class ItemGetMessage : MonoBehaviour
+    {
         [SerializeField]
-        SpriteRenderer icon;
+        SpriteRenderer _icon;
 
         [SerializeField]
-        TextMeshPro text;
+        SpriteRenderer _backboard;
+
+        [SerializeField]
+        TextMeshPro _text;
 
         [SerializeField]
         float upTime = 0.3f;
@@ -27,14 +27,42 @@ namespace WeaverCore.Assets.Components
         [SerializeField]
         float showTime = 4.25f;
 
-        int charmID;
+        public Sprite Icon
+        {
+            get => _icon.sprite;
+            set
+            {
+                _icon.sprite = value;
+                Vector3 scale = value.bounds.size;
+                scale.x = (1f / scale.x) + 0.1666667f;
+                scale.y = (1f / scale.y) + 0.1666667f;
+                scale.z = 1f;
+                _icon.transform.localScale = scale;
+            }
+        }
+        public string Text
+        {
+            get => _text.text;
+            set
+            {
+                _text.text = value;
+
+                var width = Mathf.Clamp(_text.preferredWidth, 6f, float.PositiveInfinity);
+
+                var backBoardWidth = 12f + (width - 6f);
+
+                var spriteWidth = backBoardWidth / _backboard.transform.localScale.x;
+
+                _backboard.size = _backboard.size.With(x: spriteWidth);
+            }
+        }
 
         EventListener listener;
-
         Coroutine fadeRoutine;
 
         private void Awake()
         {
+            _icon.transform.localScale = Vector3.one;
             EventManager.BroadcastEvent("DESTROY JOURNAL MSG", gameObject);
             listener = GetComponent<EventListener>();
             listener.ListenForEvent("DESTROY JOURNAL MSG", (source, destination) =>
@@ -54,41 +82,6 @@ namespace WeaverCore.Assets.Components
         IEnumerator MainRoutine()
         {
             transform.position = new Vector3(-11.91f, -6.22f);
-
-            Sprite charmIcon = null;
-
-            if (CharmIconList.Instance != null)
-            {
-                //WeaverLog.Log("CHARM ICON LIST FOUND");
-                //WeaverLog.Log("ID 123 = " + charmID);
-                charmIcon = CharmIconList.Instance.GetSprite(charmID);
-                //WeaverLog.Log("LIST CHARM ICON = " + charmIcon);
-            }
-            else
-            {
-                foreach (var charm in Registry.GetAllFeatures<IWeaverCharm>())
-                {
-                    //WeaverLog.Log("CHARMDEF = " + charm.GetType());
-                    //WeaverLog.Log("DISABLED = " + CharmUtilities.CharmDisabled(charm));
-                    //WeaverLog.Log("CHARM ID 1 = " + CharmUtilities.GetCustomCharmID(charm));
-                    if (!CharmUtilities.CharmDisabled(charm) && CharmUtilities.GetCustomCharmID(charm) == charmID)
-                    {
-                        charmIcon = charm.CharmSprite;
-                        break;
-                    }
-                }
-            }
-
-            //WeaverLog.Log("CHARM ICON 2 = " + charmIcon);
-            icon.sprite = charmIcon;
-
-            //WeaverLog.Log("Sprite = " + icon.sprite);
-
-            //WeaverLog.Log("CHARM NAME ID = " + $"CHARM_NAME_{charmID}");
-
-            var charmText = WeaverLanguage.GetString($"CHARM_NAME_{charmID}", "UI", "Unknown Charm");
-            //WeaverLog.Log("CHARM TEXT = " + charmText);
-            text.text = charmText;
 
             Show();
 
@@ -127,7 +120,7 @@ namespace WeaverCore.Assets.Components
             {
                 foreach (var graphic in graphics)
                 {
-                    graphic.color = graphic.color.With(a: Mathf.Lerp(0f,1f,t / upTime));
+                    graphic.color = graphic.color.With(a: Mathf.Lerp(0f, 1f, t / upTime));
                 }
                 yield return null;
             }
@@ -178,13 +171,42 @@ namespace WeaverCore.Assets.Components
             }
         }
 
-        public static GetCharmMessage Spawn(int charmID)
+        public static ItemGetMessage SpawnCharm(IWeaverCharm charm)
         {
-            var prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Charm Get Message");
+            return SpawnCharm(CharmUtilities.GetCustomCharmID(charm));
+        }
 
-            var instance = GameObject.Instantiate(prefab).GetComponent<GetCharmMessage>();
-            instance.charmID = charmID;
+        public static ItemGetMessage SpawnCharm(int charmID)
+        {
+            Sprite charmIcon = null;
+
+            if (CharmIconList.Instance != null)
+            {
+                charmIcon = CharmIconList.Instance.GetSprite(charmID);
+            }
+            else
+            {
+                foreach (var charm in Registry.GetAllFeatures<IWeaverCharm>())
+                {
+                    if (!CharmUtilities.CharmDisabled(charm) && CharmUtilities.GetCustomCharmID(charm) == charmID)
+                    {
+                        charmIcon = charm.CharmSprite;
+                        break;
+                    }
+                }
+            }
+
+            return Spawn(charmIcon, WeaverLanguage.GetString($"CHARM_NAME_{charmID}", "UI", "Unknown Charm"));
+        }
+
+        public static ItemGetMessage Spawn(Sprite itemSprite, string itemText)
+        {
+            var prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Item Get Message");
+
+            var instance = GameObject.Instantiate(prefab).GetComponent<ItemGetMessage>();
+            instance.Icon = itemSprite;
+            instance.Text = itemText;
             return instance;
         }
     }
-}*/
+}

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using WeaverCore.Assets.Components;
 using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
 
@@ -323,6 +324,38 @@ namespace WeaverCore.Utilities
             }
 
             return orig;
+        }
+
+        public static bool GiveCharmToPlayer(IWeaverCharm charm, bool displayCollectMessage = true)
+        {
+            return GiveCharmToPlayer(GetCustomCharmID(charm), displayCollectMessage);
+        }
+
+        public static bool GiveCharmToPlayer(int charmID, bool displayCollectMessage = true)
+        {
+            bool alreadyCollected = false;
+            if (PlayerData.instance.GetBool($"gotCharm_{charmID}") == true)
+            {
+                alreadyCollected = true;
+            }
+            else
+            {
+                GameManager.instance.IncrementPlayerDataInt("charmsOwned");
+            }
+
+            PlayerData.instance.SetBool($"gotCharm_{charmID}", true);
+            GameManager.instance.StoryRecord_acquired($"gotCharm_{charmID}");
+
+            if (!GameManager.instance.GetPlayerDataBool("hasCharm"))
+            {
+                PlayerData.instance.SetBool("hasCharm", true);
+            }
+
+            if (displayCollectMessage)
+            {
+                ItemGetMessage.SpawnCharm(charmID);
+            }
+            return alreadyCollected;
         }
     }
 

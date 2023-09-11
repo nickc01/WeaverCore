@@ -62,7 +62,6 @@ namespace WeaverCore.Components
 
             if (!CanSpawn())
             {
-                WeaverLog.Log("ITEM DESTROYED");
                 Destroy(gameObject);
                 yield break;
             }
@@ -149,10 +148,8 @@ namespace WeaverCore.Components
         /// <returns>Returns true if the item can spawn. If false, then the item will get destroyed</returns>
         protected virtual bool CanSpawn()
         {
-            WeaverLog.Log("ITEM ACTIVE = " + ItemActive);
             if (ItemActive)
             {
-                WeaverLog.Log("HAS FIELD = " + SettingsStorage.HasField<bool>(SettingsField));
                 if (SettingsStorage.HasField<bool>(SettingsField))
                 {
                     return !SettingsStorage.GetFieldValue<bool>(SettingsField);

@@ -164,6 +164,8 @@ namespace WeaverCore.Features
             var navigatorType = ImplFinder.GetImplementationType<InventoryNavigator_I>();
             Navigator = (InventoryNavigator_I)gameObject.AddComponent(navigatorType);
 
+            OnSetup();
+
             Navigator.InitPanel(this);
 
             InventoryNavigator_I.InventoryOpenEvent.AddListener(OnInventoryOpen);
@@ -202,8 +204,6 @@ namespace WeaverCore.Features
 
 
             Navigator.SetStartupElement(StartElement);
-
-            OnSetup();
         }
 
         protected virtual void OnInventoryOpen()
@@ -286,6 +286,16 @@ namespace WeaverCore.Features
             }
 
             return true;
+        }
+
+        public void ShowCursor()
+        {
+            Navigator.ShowCursor();
+        }
+
+        public void HideCursor()
+        {
+            Navigator.HideCursor();
         }
 
         [AfterGameCameraStartLoad]

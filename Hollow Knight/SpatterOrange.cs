@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using UnityEngine;
 
 public class SpatterOrange : MonoBehaviour
@@ -37,6 +38,8 @@ public class SpatterOrange : MonoBehaviour
 
     private int animFrame;
 
+    //static MethodInfo poolReturnMethod;
+
     private void Start()
     {
         scaleModifier = UnityEngine.Random.Range(scaleModifierMin, scaleModifierMax);
@@ -51,6 +54,13 @@ public class SpatterOrange : MonoBehaviour
         spriteRenderer.sprite = sprites[0];
         animFrame = 1;
         state = 0f;
+    }
+
+    private void Reset()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -78,6 +88,14 @@ public class SpatterOrange : MonoBehaviour
             {
                 //base.gameObject.Recycle();
                 GameObject.Destroy(gameObject);
+                //Pooling.Destroy();
+                /*if (poolReturnMethod == null)
+                {
+                    var pooler = WeaverTypeHelpers.GetWeaverType("WeaverCore.Pooling");
+
+                    poolReturnMethod = pooler.GetMethod("Destroy", new Type[] { typeof(GameObject) });
+                }
+                poolReturnMethod.Invoke(null, new object[] { gameObject });*/
             }
             else
             {

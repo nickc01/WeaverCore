@@ -55,10 +55,6 @@ namespace WeaverCore.Implementations
 		InventoryPanel _panel;
 		public InventoryPanel MainPanel => _panel ??= GetComponent<InventoryPanel>();
 
-		//public abstract GameObject GetHighlightedObject();
-
-		//public abstract void UpdateHighlightedObject(GameObject obj);
-
 		/// <summary>
 		/// The main fade group that is used to fade in and out the inventory panel
 		/// </summary>
@@ -73,12 +69,6 @@ namespace WeaverCore.Implementations
 		/// </summary>
 		public abstract bool CanCloseInventory { get; set; }
 
-		//public abstract GameObject LeftArrow { get; }
-		//public abstract GameObject RightArrow { get; }
-
-		//public abstract void HighlightLeftArrow(InventoryElement arrowRepresentation);
-		//public abstract void HighlightRightArrow(InventoryElement arrowRepresentation);
-
 		public abstract void HighlightElement(InventoryElement element);
 
 		public abstract InventoryElement HighlightedElement { get; }
@@ -91,7 +81,6 @@ namespace WeaverCore.Implementations
 
         public InventoryElement FindNextElement(InventoryElement element, InventoryElement.MoveDirection direction)
         {
-			//Debug.Log("DOING FIND ELEMENT");
             var currentElement = element;
             for (int i = 0; i < 20; i++)
             {
@@ -111,8 +100,10 @@ namespace WeaverCore.Implementations
                     currentElement = newElement;
                 }
             }
-			//Debug.Log("FOUND ELEMENT = " + element);
             return element;
         }
+
+		public abstract void ShowCursor();
+		public abstract void HideCursor();
     }
 }

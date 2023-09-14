@@ -7,7 +7,6 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Components
 {
-
     public class CollisionCounter : MonoBehaviour, IOnPool
     {
         [NonSerialized]

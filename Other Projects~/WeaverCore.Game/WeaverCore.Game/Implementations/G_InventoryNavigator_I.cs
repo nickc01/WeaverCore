@@ -701,10 +701,10 @@ namespace WeaverCore.Game.Implementations
                 var size = GetCursorBoundsForElement(startupElement);
                 var offset = GetCursorOffsetForElement(startupElement);
 
-                //cursorBL.localPosition = new Vector3((-size.x / 2f) + offset.x, (-size.y / 2f) + offset.y, 0f);
-                //cursorBR.localPosition = new Vector3((size.x / 2f) + offset.x, (-size.y / 2f) + offset.y, 0f);
-                //cursorTL.localPosition = new Vector3((-size.x / 2f) + offset.x, (size.y / 2f) + offset.y, 0f);
-                //cursorTR.localPosition = new Vector3((size.x / 2f) + offset.x, (size.y / 2f) + offset.y, 0f);
+                cursorBL.localPosition = new Vector3((-size.x / 2f) + offset.x, (-size.y / 2f) + offset.y, 0f);
+                cursorBR.localPosition = new Vector3((size.x / 2f) + offset.x, (-size.y / 2f) + offset.y, 0f);
+                cursorTL.localPosition = new Vector3((-size.x / 2f) + offset.x, (size.y / 2f) + offset.y, 0f);
+                cursorTR.localPosition = new Vector3((size.x / 2f) + offset.x, (size.y / 2f) + offset.y, 0f);
                 cursorUpdaterFSM.GetGameObjectVariable("Item").Value = highlightedElement.gameObject;
                 cursorUpdaterFSM.SendEvent("UPDATE CURSOR");
                 //HighlightElement(highlightedElement);
@@ -865,6 +865,16 @@ namespace WeaverCore.Game.Implementations
         public override Vector2 GetCursorOffsetForElement(InventoryElement element)
         {
             return element.CursorOffset;
+        }
+
+        public override void ShowCursor()
+        {
+            cursorFSM.SendEvent("DOWN");
+        }
+
+        public override void HideCursor()
+        {
+            cursorFSM.SendEvent("CURSOR ACTIVATE");
         }
 
         /*void OnEnable()

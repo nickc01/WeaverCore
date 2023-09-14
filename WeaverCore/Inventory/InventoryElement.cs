@@ -69,12 +69,40 @@ namespace WeaverCore.Inventory
         /// <summary>
         /// Used to determine the size of the cursor when highlighting this inventory element. By default, it uses the bounds of the Collider attached to this element
         /// </summary>
-        public virtual Vector2 CursorSize => transform.GetComponent<Collider2D>().bounds.size;
+        public virtual Vector2 CursorSize
+        {
+            get
+            {
+                //transform.GetComponent<Collider2D>().bounds.size
+                if (TryGetComponent<Collider2D>(out var collider))
+                {
+                    return collider.bounds.size;
+                }
+                else
+                {
+                    return GetComponent<SpriteRenderer>().bounds.size;
+                }
+            }
+        }
 
         /// <summary>
         /// Used to determine the offset of the cursor when highlighting this inventory element. By default, it uses the offset of the Collider attached to this element
         /// </summary>
-        public virtual Vector2 CursorOffset => transform.GetComponent<Collider2D>().offset;
+        public virtual Vector2 CursorOffset
+        {
+            get
+            {
+                //transform.GetComponent<Collider2D>().offset;
+                if (TryGetComponent<Collider2D>(out var collider))
+                {
+                    return collider.offset;
+                }
+                else
+                {
+                    return GetComponent<SpriteRenderer>().bounds.center;
+                }
+            }
+        }
 
         /// <summary>
         /// Called when the player wants to move to a nearby element. For example, if the player wants to move up in the UI, this function specifies which element the player will go to next

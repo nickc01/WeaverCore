@@ -445,6 +445,7 @@
     <Compile Include="Misc\HealthManagerProxy.cs" />
     <Compile Include="Misc\SettingStorage.cs" />
     <Compile Include="Misc\SpriteFlashProxy.cs" />
+    <Compile Include="Patches\AcidCorpseSplash_Patches.cs" />
     <Compile Include="Patches\CameraTarget_Patches.cs" />
     <Compile Include="Patches\FadeGroup_Patches.cs" />
     <Compile Include="Patches\GameManager_Patches.cs" />

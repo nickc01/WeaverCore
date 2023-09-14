@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: db6253b1a566a6645b3150c5e21e74c7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - splashInParticles: {fileID: 187299407388268410, guid: 3c5fb1f4cb4b11b48bb58a475689a6a0,
+      type: 3}
+  - splashOutParticles: {fileID: 4837230227396172745, guid: 21f39288f29a3e940ae6311a74a805d6,
+      type: 3}
+  - spatterParticles: {fileID: 2127415791068871687, guid: 52f1dc225dec62f4485dfea31195b636,
+      type: 3}
+  - dripParticles: {fileID: 5357542874091361433, guid: c58e645375c554f4087d759d3ebaafff,
+      type: 3}
+  - splashSound: {fileID: 8300000, guid: a89ebcb3fbfea434384dc95f81a3953b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

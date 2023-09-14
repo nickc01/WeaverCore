@@ -7,7 +7,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Internal
 {
-
     internal static class GG_Internal
     {
         internal static GameObject mageKnightStatue;
@@ -63,6 +62,7 @@ namespace WeaverCore.Internal
 
             //WeaverLog.Log("C");
             AudioPlayerPrefab = statueLever.audioPlayerPrefab;
+            Other_Preloads.AudioPlayerPrefab = AudioPlayerPrefab;
             StrikeNailR = statueLever.strikeNailPrefab;
             BossLeverSwitchSound = statueLever.switchSound;
 

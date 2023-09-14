@@ -42,6 +42,11 @@ namespace WeaverCore.Assets.Components
 
 			var hits = HitEnemy(obj,gameObject,damage,attackType,hitDirection);
 
+			if (attackType == AttackType.Acid)
+			{
+				EventManager.SendEventToGameObject("ACID", collider.gameObject, gameObject);
+			}
+
 			foreach (var hit in hits)
 			{
 				if (hit is Component c)

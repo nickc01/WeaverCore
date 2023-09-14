@@ -16,6 +16,8 @@ namespace WeaverCore.Editor.Implementations
 
         FadeGroup fadeGroup;
 
+        bool visible = false;
+
         //InventoryPanel loadedPanel;
 
         public override bool CanCloseInventory { get; set; }
@@ -131,6 +133,7 @@ namespace WeaverCore.Editor.Implementations
             InputManager.OnUpEvent += InputManager_OnUpEvent;
             InputManager.OnDownEvent += InputManager_OnDownEvent;
             InputManager.OnSelectEvent += InputManager_OnSelectEvent;
+            InputManager.OnCancelEvent += InputManager_OnCancelEvent;
         }
 
         public override void SetStartupElement(InventoryElement element)
@@ -140,6 +143,13 @@ namespace WeaverCore.Editor.Implementations
 
         IEnumerator FadeIn()
         {
+            yield return null;
+            var camera = GameObject.FindObjectsOfType<Camera>().FirstOrDefault(c => c.name == "tk2dCamera");
+            if (camera != null)
+            {
+                camera.fieldOfView = 34.6f;
+                camera.cullingMask = camera.cullingMask | LayerMask.GetMask("UI");
+            }
             InvOpened();
             Internal_OnPaneOpenBegin();
             MainFadeGroup.FadeUp();
@@ -149,9 +159,20 @@ namespace WeaverCore.Editor.Implementations
                 startupElement = MainPanel.RightArrow;
             }
             HighlightElement(startupElement);
+            visible = true;
             Internal_OnPaneOpenEnd();
             //var renderables = GetComponentsInChildren<Renderer>();
             //yield break;
+        }
+
+        IEnumerator FadeOut()
+        {
+            InvClosed();
+            Internal_OnPaneCloseBegin();
+            MainFadeGroup.FadeDown();
+            cursor.gameObject.SetActive(false);
+            yield return new WaitForSeconds(MainFadeGroup.fadeOutTime);
+            Internal_OnPaneCloseEnd();
         }
 
         static void InvOpened()
@@ -168,30 +189,51 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnSelectEvent()
         {
-            if (highlightedElement != null && highlightedElement.Selectable)
+            if (visible && highlightedElement != null && highlightedElement.Selectable)
             {
                 highlightedElement.OnClick();
             }
         }
 
+        private void InputManager_OnCancelEvent()
+        {
+            if (visible)
+            {
+                visible = false;
+                StartCoroutine(FadeOut());
+            }
+        }
+
         private void InputManager_OnDownEvent()
         {
-            HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Down));
+            if (visible)
+            {
+                HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Down));
+            }
         }
 
         private void InputManager_OnUpEvent()
         {
-            HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Up));
+            if (visible)
+            {
+                HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Up));
+            }
         }
 
         private void InputManager_OnRightEvent()
         {
-            HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Right));
+            if (visible)
+            {
+                HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Right));
+            }
         }
 
         private void InputManager_OnLeftEvent()
         {
-            HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Left));
+            if (visible)
+            {
+                HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Left));
+            }
         }
 
         /*static void PaneOpenBegin(GameObject pane)
@@ -261,9 +303,14 @@ namespace WeaverCore.Editor.Implementations
             PaneCloseEndEvent?.Invoke($"{MainPanel.GetType().FullName}_{MainPanel.PanelGUID}");
         }
 
-        /*public override void UpdateHighlightedObject(GameObject obj)
+        public override void ShowCursor()
         {
-            
-        }*/
+            cursor.gameObject.SetActive(true);
+        }
+
+        public override void HideCursor()
+        {
+            cursor.gameObject.SetActive(false);
+        }
     }
 }

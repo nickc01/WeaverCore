@@ -1,5 +1,6 @@
 ﻿namespace WeaverCore.Inventory
 {
+
     public abstract class ArrowElement : InventoryElement
     {
         public enum ArrowState

@@ -179,6 +179,18 @@ namespace WeaverCore.Editor.Menu_Items
             InsertObject("Dream Return Warp");
         }
 
+        [MenuItem("WeaverCore/Insert/Water")]
+        public static void InsertWater()
+        {
+            InsertObject("Water Pack");
+        }
+
+        [MenuItem("WeaverCore/Insert/Acid")]
+        public static void InsertAcid()
+        {
+            InsertObject("Acid Pack");
+        }
+
         //Godhome Statue Template
 
         [MenuItem("WeaverCore/Insert/Godhome Statue Template")]

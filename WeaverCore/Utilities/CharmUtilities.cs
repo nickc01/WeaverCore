@@ -122,6 +122,30 @@ namespace WeaverCore.Utilities
             return -1;
         }
 
+        public static IEnumerable<IWeaverCharm> GetLoadedCharms()
+        {
+            foreach (var pair in addedCustomCharms)
+            {
+                if (!disabledCharms.Contains(pair.Value))
+                {
+                    yield return pair.Value;
+                }
+            }
+        }
+        
+        public static int GetLoadedCharmCount()
+        {
+            int count = 0;
+            foreach (var pair in addedCustomCharms)
+            {
+                if (!disabledCharms.Contains(pair.Value))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
         [OnFeatureLoad(priority: int.MinValue)]
         static void OnCharmLoad(IWeaverCharm charm)
         {

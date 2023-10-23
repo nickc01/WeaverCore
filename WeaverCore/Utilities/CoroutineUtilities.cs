@@ -185,5 +185,25 @@ namespace WeaverCore.Utilities
             yield return new WaitForSeconds(time);
             yield return action();
         }
+
+		/// <summary>
+		/// Waits until either the predicate returns true or if the time has elapsed
+		/// </summary>
+		/// <param name="time">The time to wait</param>
+		/// <param name="predicate">The predicate to check</param>
+		public static IEnumerator WaitForTimeOrPredicate(float time, Func<bool> predicate)
+		{
+			for (float t = 0; t < time; t += Time.deltaTime)
+			{
+				if (predicate())
+				{
+					yield break;
+				}
+				else
+				{
+					yield return null;
+				}
+			}
+		}
     }
 }

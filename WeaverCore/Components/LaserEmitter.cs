@@ -119,14 +119,14 @@ namespace WeaverCore.Components
             }
         }
 
-        IEnumerator TestRoutine()
+        /*IEnumerator TestRoutine()
         {
             while (true)
             {
                 yield return new WaitForSeconds(0.5f);
                 yield return FireLaserRoutine();
             }
-        }
+        }*/
 
         IEnumerator PlayAnimationLoop(string animationName, float duration)
         {
@@ -189,7 +189,7 @@ namespace WeaverCore.Components
 
         public IEnumerator FireChargeUpOnlyRoutine()
         {
-            if (FiringLaser)
+            /*if (FiringLaser)
             {
                 yield break;
             }
@@ -203,6 +203,32 @@ namespace WeaverCore.Components
             }
 
             yield return PlayAnimation(endAnimationSTRING,2);
+            laser.MainRenderer.enabled = false;
+            FiringLaser = false;
+            laser.gameObject.SetActive(false);*/
+            yield return PlayChargeUpInRoutine(ChargeUpDuration);
+            yield return PlayChargeUpOutRoutine();
+        }
+
+        public IEnumerator PlayChargeUpInRoutine(float playDuration)
+        {
+            if (FiringLaser)
+            {
+                yield break;
+            }
+            laser.gameObject.SetActive(true);
+            FiringLaser = true;
+            laser.Spread = chargeUpSpread;
+            laser.StartingWidth = chargeUpWidth;
+            if (playDuration > 0)
+            {
+                yield return PlayAnimationLoop(chargeUpAnimationSTRING, playDuration);
+            }
+        }
+
+        public IEnumerator PlayChargeUpOutRoutine()
+        {
+            yield return PlayAnimation(endAnimationSTRING, 2);
             laser.MainRenderer.enabled = false;
             FiringLaser = false;
             laser.gameObject.SetActive(false);

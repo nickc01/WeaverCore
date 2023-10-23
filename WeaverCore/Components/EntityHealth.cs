@@ -46,7 +46,7 @@ namespace WeaverCore.Components
         //A list of milestones that get executed when the health reaches certain points
         private List<(int destHealth, Action action)> HealthMilestones = new List<(int destHealth, Action action)>();
         private new Collider2D collider;
-        private HealthManager_I impl;
+        protected HealthManager_I impl;
 
         [SerializeField]
         [Tooltip("The current health value of the enemy")]
@@ -160,6 +160,15 @@ namespace WeaverCore.Components
 
         private AudioClip extraDamageClip;
         private Recoiler recoil;
+
+        /// <summary>
+        /// The recoiler on the enemy. If a recoiler is attached to the object, then the enemy will recoil when hit
+        /// </summary>
+        public Recoiler Recoiler
+        {
+            get => recoil;
+            set => recoil = value;
+        }
 
         [Space]
         [Space]
@@ -444,7 +453,7 @@ namespace WeaverCore.Components
             }
         }
 
-        private void NormalHit(HitInfo hit)
+        protected virtual void NormalHit(HitInfo hit)
         {
             Player player = hit.GetAttackingPlayer();
             //If acid is ignored

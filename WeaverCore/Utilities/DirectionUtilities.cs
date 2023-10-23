@@ -3,7 +3,6 @@ using WeaverCore.Enums;
 
 namespace WeaverCore.Utilities
 {
-
     /// <summary>
     /// Contains many utility functions for handling cardinal directions
     /// </summary>

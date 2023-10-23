@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace WeaverCore.Utilities
@@ -148,5 +149,94 @@ namespace WeaverCore.Utilities
 		{
 			return source.OrderBy(e => UnityEngine.Random.Range(0f,1f));
 		}
-	}
+
+        /*        public bool Contains(T item)
+        {
+            if (m_buckets != null)
+            {
+                int num = InternalGetHashCode(item);
+                for (int num2 = m_buckets[num % m_buckets.Length] - 1; num2 >= 0; num2 = m_slots[num2].next)
+                {
+                    if (m_slots[num2].hashCode == num && m_comparer.Equals(m_slots[num2].value, item))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }*/
+
+		class HashSetGetters<T>
+		{
+			//public static Func<HashSet<T>, int[]> bucketGetter;
+			//public static Func<HashSet<T>, int[]> slotsGetter;
+			//public static Func<HashSet<T>,T,int> internalGetHashCode;
+
+			public delegate int InternalIndexOfDelegate(HashSet<T> instance, T item);
+			public static InternalIndexOfDelegate InternalIndexOf;
+
+            public delegate bool TryGetValueDelegate(HashSet<T> instance, T equalValue, out T actualValue);
+            public static TryGetValueDelegate TryGetValue;
+
+            public static FieldInfo slotsGetter;
+			public static Type slotType;
+			public static FieldInfo slotsValueGetter;
+
+            public static bool Initialized = false;
+
+        }
+
+		public static bool TryGetEquivalent<T>(this HashSet<T> set, T source, out T equivalent)
+		{
+			if (!HashSetGetters<T>.Initialized)
+			{
+				HashSetGetters<T>.Initialized = true;
+                if (HashSetGetters<T>.InternalIndexOf == null)
+                {
+                    HashSetGetters<T>.InternalIndexOf = ReflectionUtilities.MethodToDelegate<HashSetGetters<T>.InternalIndexOfDelegate, HashSet<T>>("InternalIndexOf");
+                }
+
+                if (HashSetGetters<T>.TryGetValue == null)
+                {
+                    HashSetGetters<T>.TryGetValue = ReflectionUtilities.MethodToDelegate<HashSetGetters<T>.TryGetValueDelegate, HashSet<T>>("TryGetValue");
+                }
+
+				if (HashSetGetters<T>.slotsGetter == null)
+				{
+					HashSetGetters<T>.slotsGetter = typeof(HashSet<T>).GetField("_slots", BindingFlags.NonPublic | BindingFlags.Instance);
+
+					HashSetGetters<T>.slotType = typeof(HashSet<T>).GetNestedType("Slot", BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+
+					HashSetGetters<T>.slotsValueGetter = HashSetGetters<T>.slotType.GetField("value", BindingFlags.Instance | BindingFlags.NonPublic);
+                }
+            }
+
+
+			if (HashSetGetters<T>.TryGetValue != null)
+			{
+				return HashSetGetters<T>.TryGetValue(set, source, out equivalent);
+			}
+			else
+			{
+				var index = HashSetGetters<T>.InternalIndexOf(set, source);
+
+				if (index < 0)
+				{
+					equivalent = default;
+					return false;
+				}
+				else
+				{
+					var slots = (Array)HashSetGetters<T>.slotsGetter.GetValue(set);
+
+					var slot = slots.GetValue(index);
+
+					equivalent = (T)HashSetGetters<T>.slotsValueGetter.GetValue(slot);
+
+					return true;
+				}
+			}
+		}
+    }
 }

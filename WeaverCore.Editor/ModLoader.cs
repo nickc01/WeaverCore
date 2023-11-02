@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
@@ -64,6 +65,9 @@ namespace WeaverCore.Editor
                     WeaverLog.Log("Error Loading Mod [" + assembly.GetName().Name + " : " + e);
                 }
             }
+
+            //ModHooks.OnFinishedLoadingMods();
+            typeof(ModHooks).GetMethod("OnFinishedLoadingMods", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, null);
         }
     }
 }

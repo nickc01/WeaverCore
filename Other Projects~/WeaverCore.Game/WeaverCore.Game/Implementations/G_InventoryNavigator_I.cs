@@ -16,27 +16,31 @@ using WeaverCore.Utilities;
 namespace WeaverCore.Game.Implementations
 {
     public class G_InventoryNavigator_I : InventoryNavigator_I
-	{
+    {
         static PlayMakerFSM inventoryFSM;
 
-        PlayMakerFSM uiFSM;
-        PlayMakerFSM cursorUpdaterFSM;
-        PlayMakerFSM cursorFSM;
+        bool paneOpen = false;
 
-        Transform cursorBL;
-        Transform cursorBR;
-        Transform cursorTL;
-        Transform cursorTR;
+        PlayMakerFSM uiFSM;
+        //PlayMakerFSM cursorUpdaterFSM;
+        //PlayMakerFSM cursorFSM;
+
+        //Transform cursorBL;
+        //Transform cursorBR;
+        //Transform cursorTL;
+        //Transform cursorTR;
 
         FsmState lArrowState;
-		FsmState rArrowState;
-		FsmState mainInputState;
+        FsmState rArrowState;
+        FsmState mainInputState;
         Transform background;
-		//ArrowElement.ArrowState currentArrow;
+        //ArrowElement.ArrowState currentArrow;
 
         InventoryElement startupElement;
 
         EventManager manager;
+
+        WeaverCore.Inventory.Cursor cursor;
 
         InventoryElement elementTargetOverride = null;
 
@@ -44,7 +48,8 @@ namespace WeaverCore.Game.Implementations
 
         public override Vector3 GetCursorPosition()
         {
-            return transform.TransformPoint(cursorUpdaterFSM.GetVector3Variable("Item Pos").Value);
+            return cursor.CursorPosition;
+            //return transform.TransformPoint(cursorUpdaterFSM.GetVector3Variable("Item Pos").Value);
         }
 
         /*public override GameObject GetHighlightedObject()
@@ -286,7 +291,7 @@ namespace WeaverCore.Game.Implementations
             //WeaverLog.Log("FULLY INIT");
             try
             {
-                
+
             }
             catch (Exception e)
             {
@@ -351,20 +356,35 @@ namespace WeaverCore.Game.Implementations
         bool awoken = false;
 
         void Awake()
-		{
+        {
             if (awoken)
             {
                 return;
             }
             awoken = true;
-            uiFSM = transform.parent.GetComponents<PlayMakerFSM>().FirstOrDefault(c => c.FsmName == "Empty UI");
-            cursorUpdaterFSM = transform.parent.GetComponents<PlayMakerFSM>().FirstOrDefault(c => c.FsmName == "Update Cursor");
-            cursorFSM = transform.parent.Find("Cursor").GetComponent<PlayMakerFSM>();
 
-            cursorBL = cursorFSM.transform.Find("BL");
+            var background = transform.Find("Background");
+
+            if (background != null && background.TryGetComponent<SpriteRenderer>(out var backgroundRenderer))
+            {
+                GameObject.Destroy(backgroundRenderer);
+            }
+
+            uiFSM = transform.parent.GetComponents<PlayMakerFSM>().FirstOrDefault(c => c.FsmName == "Empty UI");
+
+            uiFSM.RemoveAction("Cursor Down", 0);
+            uiFSM.AddMethod("Cursor Down", () =>
+            {
+                cursor.Hide();
+            });
+
+            //cursorUpdaterFSM = transform.parent.GetComponents<PlayMakerFSM>().FirstOrDefault(c => c.FsmName == "Update Cursor");
+            //cursorFSM = transform.parent.Find("Cursor").GetComponent<PlayMakerFSM>();
+
+            /*cursorBL = cursorFSM.transform.Find("BL");
             cursorBR = cursorFSM.transform.Find("BR");
             cursorTL = cursorFSM.transform.Find("TL");
-            cursorTR = cursorFSM.transform.Find("TR");
+            cursorTR = cursorFSM.transform.Find("TR");*/
 
 
             if (manager == null)
@@ -388,9 +408,9 @@ namespace WeaverCore.Game.Implementations
 
             mainInputState = uiFSM.AddState("Main Input");
 
-			var heartPieceState = uiFSM.GetState("Init Heart Piece");
+            var heartPieceState = uiFSM.GetState("Init Heart Piece");
 
-			heartPieceState.ChangeFsmTransition("FINISHED", mainInputState.Name);
+            heartPieceState.ChangeFsmTransition("FINISHED", mainInputState.Name);
 
             lArrowState.ChangeFsmTransition("UI RIGHT", mainInputState.Name);
             rArrowState.ChangeFsmTransition("UI LEFT", mainInputState.Name);
@@ -407,20 +427,20 @@ namespace WeaverCore.Game.Implementations
             InputManager.OnSelectEvent += InputManager_OnSelectEvent;
 
 
-            var updateState = cursorUpdaterFSM.GetState("Update");
+            //var updateState = cursorUpdaterFSM.GetState("Update");
 
             //var setVectAction = (SetFsmVector3)updateState.Actions[3];
 
             //var actualCursor = setVectAction.gameObject.GameObject.Value;
 
-            var actualCursor = transform.parent.Find("Cursor").gameObject;
+            //var actualCursor = transform.parent.Find("Cursor").gameObject;
 
             //cursorFSM.RemoveAction("Update", 7);
             //cursorFSM.RemoveAction("Update", 6);
             //cursorFSM.RemoveAction("Update", 5);
             //cursorFSM.RemoveAction("Update", 4);
 
-            var cursorActivateState = cursorFSM.GetState("Cursor Activate");
+            //var cursorActivateState = cursorFSM.GetState("Cursor Activate");
 
             /*cursorActivateState.InsertMethod(() =>
             {
@@ -437,7 +457,7 @@ namespace WeaverCore.Game.Implementations
             }, 0);*/
 
             //cursorFSM.RemoveAction("Update", 3);
-            cursorUpdaterFSM.RemoveAction("Update", 2);
+            /*cursorUpdaterFSM.RemoveAction("Update", 2);
             cursorUpdaterFSM.RemoveAction("Update", 1);
             cursorUpdaterFSM.RemoveAction("Update", 0);
 
@@ -477,7 +497,7 @@ namespace WeaverCore.Game.Implementations
                     //PlayMakerUtilities.SetFsmFloat(actualCursor, "Cursor Movement", "Box Offset Y", itemOffset.y);
                     //EventManager.SendEventToGameObject("CURSOR MOVE", actualCursor);
                 }
-            }, 0);
+            }, 0);*/
 
             /*foreach (var action in updateState.Actions)
             {
@@ -523,14 +543,14 @@ namespace WeaverCore.Game.Implementations
             //WeaverLog.Log("R CURRENT STATE = " + uiFSM.ActiveStateName);
             if (uiFSM.ActiveStateName == mainInputState.Name)
             {
-               // WeaverLog.Log("R FINDING ELEMENT");
+                // WeaverLog.Log("R FINDING ELEMENT");
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Right));
             }
         }
 
         private void InputManager_OnLeftEvent()
         {
-           // WeaverLog.Log("L CURRENT STATE = " + uiFSM.ActiveStateName);
+            // WeaverLog.Log("L CURRENT STATE = " + uiFSM.ActiveStateName);
             if (uiFSM.ActiveStateName == mainInputState.Name)
             {
                 //WeaverLog.Log("L FINDING ELEMENT");
@@ -672,19 +692,31 @@ namespace WeaverCore.Game.Implementations
             fadeGroup.animators = animators.Distinct().ToArray();
         }
 
-        GameObject actualRightArrow => transform.parent.parent.Find("Border").Find("Arrow Right").gameObject;
-        GameObject actualLeftArrow => transform.parent.parent.Find("Border").Find("Arrow Left").gameObject;
+        //GameObject actualRightArrow => transform.parent.parent.Find("Border").Find("Arrow Right").gameObject;
+        //GameObject actualLeftArrow => transform.parent.parent.Find("Border").Find("Arrow Left").gameObject;
 
         public override FadeGroup MainFadeGroup => MainPanel.transform.parent.GetComponent<FadeGroup>();
 
         void MainState()
         {
+            transform.parent.Find("Cursor").position = new Vector3(9999, 9999, 9999);
+
+            if (cursor == null)
+            {
+                var prefab = MainPanel.CustomCursor;
+                if (prefab == null)
+                {
+                    prefab = WeaverCore.Inventory.Cursor.DefaultCursorPrefab;
+                }
+                cursor = GameObject.Instantiate(prefab, transform.parent);
+            }
             /*if (firstStartup)
             {
                 firstStartup = false;
                 return;
             }*/
 
+            //IF FIRST TIME
             if (highlightedElement == null)
             {
                 if (startupElement == null)
@@ -694,19 +726,21 @@ namespace WeaverCore.Game.Implementations
                 //WeaverLog.Log("STARTUP ELEMENT = " + startupElement.name);
                 firstStartup = true;
                 //WeaverLog.Log("CURSOR FSM BEFORE POS = " + cursorFSM.transform.localPosition);
-                cursorFSM.transform.localPosition = GetCursorPosForElement(startupElement);
+                //cursorFSM.transform.localPosition = GetCursorPosForElement(startupElement);
                 //WeaverLog.Log("CURSOR FSM AFTER POS = " + cursorFSM.transform.localPosition);
                 highlightedElement = startupElement;
 
-                var size = GetCursorBoundsForElement(startupElement);
-                var offset = GetCursorOffsetForElement(startupElement);
+                //var size = GetCursorBoundsForElement(startupElement);
+                //var offset = GetCursorOffsetForElement(startupElement);
 
-                cursorBL.localPosition = new Vector3((-size.x / 2f) + offset.x, (-size.y / 2f) + offset.y, 0f);
+                cursor.Begin(MainPanel, highlightedElement);
+                cursor.Show();
+                /*cursorBL.localPosition = new Vector3((-size.x / 2f) + offset.x, (-size.y / 2f) + offset.y, 0f);
                 cursorBR.localPosition = new Vector3((size.x / 2f) + offset.x, (-size.y / 2f) + offset.y, 0f);
                 cursorTL.localPosition = new Vector3((-size.x / 2f) + offset.x, (size.y / 2f) + offset.y, 0f);
                 cursorTR.localPosition = new Vector3((size.x / 2f) + offset.x, (size.y / 2f) + offset.y, 0f);
                 cursorUpdaterFSM.GetGameObjectVariable("Item").Value = highlightedElement.gameObject;
-                cursorUpdaterFSM.SendEvent("UPDATE CURSOR");
+                cursorUpdaterFSM.SendEvent("UPDATE CURSOR");*/
                 //HighlightElement(highlightedElement);
 
                 return;
@@ -761,7 +795,7 @@ namespace WeaverCore.Game.Implementations
                 return;
             }
 
-            if (element is LeftArrowElement)
+            /*if (element is LeftArrowElement)
             {
                 var prevHighlightedElement = highlightedElement;
                 highlightedElement = element;
@@ -799,7 +833,7 @@ namespace WeaverCore.Game.Implementations
                 //cursorFSM.GetGameObjectVariable("Item").Value = actualRightArrow;
                 //cursorFSM.SendEvent("UPDATE CURSOR");
             }
-            else
+            else*/
             {
                 var prevHighlightedElement = highlightedElement;
                 highlightedElement = element;
@@ -813,8 +847,10 @@ namespace WeaverCore.Game.Implementations
 
                 //WeaverLog.Log("MOVING CURSOR TO = " + highlightedElement);
 
-                cursorUpdaterFSM.GetGameObjectVariable("Item").Value = highlightedElement.gameObject;
-                cursorUpdaterFSM.SendEvent("UPDATE CURSOR");
+                cursor.MoveTo(highlightedElement);
+
+                //cursorUpdaterFSM.GetGameObjectVariable("Item").Value = highlightedElement.gameObject;
+                //cursorUpdaterFSM.SendEvent("UPDATE CURSOR");
             }
         }
 
@@ -834,17 +870,25 @@ namespace WeaverCore.Game.Implementations
 
         void Internal_OnPaneOpenEnd()
         {
+            Debug.Log("FULLY OPENED PANEL");
+            paneOpen = true;
 
+            //MainPanel.LeftArrow.OnMovePaneL.AddListener(MoveToPaneL);
+            //MainPanel.RightArrow.OnMovePaneR.AddListener(MoveToPaneR);
         }
 
         void Internal_OnPaneCloseBegin()
         {
-
+            Debug.Log("BEGINNING CLOSE PANEL");
+            paneOpen = false;
+            //MainPanel.LeftArrow.OnMovePaneL.RemoveListener(MoveToPaneL);
+            //MainPanel.RightArrow.OnMovePaneR.RemoveListener(MoveToPaneR);
         }
 
         void Internal_OnPaneCloseEnd()
         {
             highlightedElement = null;
+            GameObject.Destroy(cursor.gameObject);
         }
 
         public override Vector3 GetCursorPosForElement(InventoryElement element)
@@ -854,7 +898,16 @@ namespace WeaverCore.Game.Implementations
             //return element.CursorPos;
             //return element.CursorPos - element.transform.position;
 
-            return transform.InverseTransformPoint(element.CursorPos);
+            //return transform.InverseTransformPoint(element.CursorPos);
+
+            if (cursor.transform.parent != null)
+            {
+                return cursor.transform.parent.InverseTransformPoint(element.CursorPos);
+            }
+            else
+            {
+                return element.CursorPos;
+            }
         }
 
         public override Vector2 GetCursorBoundsForElement(InventoryElement element)
@@ -869,12 +922,28 @@ namespace WeaverCore.Game.Implementations
 
         public override void ShowCursor()
         {
-            cursorFSM.SendEvent("DOWN");
+            cursor.Show();
+            //cursorFSM.SendEvent("DOWN");
         }
 
         public override void HideCursor()
         {
-            cursorFSM.SendEvent("CURSOR ACTIVATE");
+            cursor.Hide();
+            //cursorFSM.SendEvent("CURSOR ACTIVATE");
+        }
+
+        public override void MovePaneLeft()
+        {
+            WeaverLog.Log("MOVING PANE LEFT");
+            //EventManager.SendEventToGameObject("MOVE PANE L", transform.parent.gameObject, gameObject);
+            EventManager.BroadcastEvent("MOVE PANE L", gameObject);
+        }
+
+        public override void MovePaneRight()
+        {
+            WeaverLog.Log("MOVING PANE RIGHT");
+            //EventManager.SendEventToGameObject("MOVE PANE R", transform.parent.gameObject, gameObject);
+            EventManager.BroadcastEvent("MOVE PANE R", gameObject);
         }
 
         /*void OnEnable()

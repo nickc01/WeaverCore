@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace WeaverCore.Inventory
 {
@@ -8,6 +9,8 @@ namespace WeaverCore.Inventory
         [Tooltip("The element to go to when on a right input")]
         InventoryElement OnRight;
 
+        //public UnityEvent OnMovePaneL;
+
         public override ArrowState ArrowType => ArrowState.Left;
 
         public override InventoryElement NavigateTo(MoveDirection move)
@@ -16,7 +19,23 @@ namespace WeaverCore.Inventory
             {
                 return OnRight;
             }
+            else if (move == MoveDirection.Left)
+            {
+                //OnMovePaneL.Invoke();
+                if (MainPanel != null && MainPanel.Navigator != null)
+                {
+                    MainPanel.Navigator.MovePaneLeft();
+                }
+            }
             return null;
+        }
+
+        public override bool Selectable => true;
+
+        public override void OnClick()
+        {
+            //OnMovePaneL.Invoke();
+            MainPanel.Navigator.MovePaneLeft();
         }
     }
 }

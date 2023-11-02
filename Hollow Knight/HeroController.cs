@@ -3,6 +3,7 @@ using Modding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class HeroController : MonoBehaviour
@@ -296,8 +297,8 @@ return fsmBool.Value;
 
     private void Update()
     {
+        ModHooks.OnHeroUpdate();
         orig_Update();
-
     }
 
     private void LateUpdate()
@@ -1088,9 +1089,20 @@ return fsmBool.Value;
         }
     }
 
+    //static Action<PlayerData, HeroController> onCharmUpdate;
+    static MethodInfo onCharmUpdate;
+
     public void CharmUpdate()
     {
         orig_CharmUpdate();
+
+        if (onCharmUpdate == null)
+        {
+            onCharmUpdate = typeof(ModHooks).GetMethod("OnCharmUpdate", BindingFlags.NonPublic | BindingFlags.Static);
+            //onCharmUpdate = ReflectionUtilities.MethodToDelegate<Action<Collider2D, GameObject>>(typeof(ModHooks).GetMethod("OnSlashHit", BindingFlags.Static | BindingFlags.NonPublic));
+        }
+
+        onCharmUpdate.Invoke(null, new object[] { playerData, this });
         //ModHooks.OnCharmUpdate();
         //this.playerData.UpdateBlueHealth();
     }

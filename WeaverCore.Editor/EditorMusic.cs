@@ -9,7 +9,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
 {
-
     /// <summary>
     /// Used for playing music and atmosphere sounds in the editor
     /// </summary>

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
@@ -32,7 +34,9 @@ namespace WeaverCore.Editor.Implementations
 		static void OnGameStart()
 		{
 			SaveSpecificSettings.LoadSaveSlot(1);
-		}
+
+			typeof(ModHooks).GetMethod("OnSavegameLoad", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, new object[] { 1 });
+        }
 
 		public override int CurrentSaveSlot => 1;
 

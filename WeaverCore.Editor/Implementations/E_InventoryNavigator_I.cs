@@ -12,7 +12,8 @@ namespace WeaverCore.Editor.Implementations
 {
     public class E_InventoryNavigator_I : InventoryNavigator_I
     {
-        EditorCursor cursor;
+        //EditorCursor cursor;
+        WeaverCore.Inventory.Cursor cursor;
 
         FadeGroup fadeGroup;
 
@@ -57,12 +58,21 @@ namespace WeaverCore.Editor.Implementations
 
         public override Vector3 GetCursorPosForElement(InventoryElement element)
         {
-            return element.CursorPos;
+            if (cursor.transform.parent != null)
+            {
+                return cursor.transform.parent.InverseTransformPoint(element.CursorPos);
+            }
+            else
+            {
+                return element.CursorPos;
+            }
+
         }
 
         public override Vector3 GetCursorPosition()
         {
-            return cursor.CursorDestination;
+            //return cursor.CursorDestination;
+            return cursor.CursorPosition;
         }
 
         /*public override GameObject GetHighlightedObject()
@@ -84,10 +94,16 @@ namespace WeaverCore.Editor.Implementations
             {
                 prevHighlightedElement.OnUnHighlight();
             }
+            else
+            {
+                cursor.Begin(MainPanel, element);
+                cursor.Show();
+            }
 
             highlightedElement.OnHighlight();
 
-            cursor.MoveToPosition(GetCursorPosForElement(highlightedElement), GetCursorBoundsForElement(highlightedElement), GetCursorOffsetForElement(highlightedElement));
+            cursor.MoveTo(highlightedElement);
+            //cursor.MoveToPosition(GetCursorPosForElement(highlightedElement), GetCursorBoundsForElement(highlightedElement), GetCursorOffsetForElement(highlightedElement));
         }
 
         /*public override void HighlightLeftArrow(InventoryElement arrowRepresentation)
@@ -105,8 +121,15 @@ namespace WeaverCore.Editor.Implementations
             //loadedPanel = panel;
             if (cursor == null)
             {
-                var cursorPrefab = EditorAssets.LoadEditorAsset<GameObject>("Editor Cursor");
-                cursor = GameObject.Instantiate(cursorPrefab, Vector3.zero, Quaternion.identity).GetComponent<EditorCursor>();
+                var cursorPrefab = panel.CustomCursor;
+
+                if (cursorPrefab == null)
+                {
+                    cursorPrefab = WeaverCore.Inventory.Cursor.DefaultCursorPrefab;
+                }
+                //var cursorPrefab = EditorAssets.LoadEditorAsset<GameObject>("Editor Cursor");
+                //cursor = GameObject.Instantiate(cursorPrefab, Vector3.zero, Quaternion.identity).GetComponent<EditorCursor>();
+                cursor = GameObject.Instantiate(cursorPrefab, Vector3.zero, Quaternion.identity);
             }
 
             if (MainFadeGroup.spriteRenderers == null)
@@ -134,6 +157,24 @@ namespace WeaverCore.Editor.Implementations
             InputManager.OnDownEvent += InputManager_OnDownEvent;
             InputManager.OnSelectEvent += InputManager_OnSelectEvent;
             InputManager.OnCancelEvent += InputManager_OnCancelEvent;
+        }
+
+        private IEnumerator Start()
+        {
+            yield return null;
+            foreach (var camera in GameObject.FindObjectsOfType<Camera>())
+            {
+                if (camera.name == "tk2dCamera")
+                {
+                    camera.orthographic = true;
+                }
+            }
+            /*var camera = Camera.main;
+
+            if (camera != null)
+            {
+                camera.orthographic = true;
+            }*/
         }
 
         public override void SetStartupElement(InventoryElement element)
@@ -170,8 +211,11 @@ namespace WeaverCore.Editor.Implementations
             InvClosed();
             Internal_OnPaneCloseBegin();
             MainFadeGroup.FadeDown();
-            cursor.gameObject.SetActive(false);
+            cursor.Hide();
+            //cursor.gameObject.SetActive(false);
             yield return new WaitForSeconds(MainFadeGroup.fadeOutTime);
+            cursor.End();
+            GameObject.Destroy(cursor.gameObject);
             Internal_OnPaneCloseEnd();
         }
 
@@ -197,7 +241,7 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnCancelEvent()
         {
-            if (visible)
+            if (visible && cursor.CanMove())
             {
                 visible = false;
                 StartCoroutine(FadeOut());
@@ -206,7 +250,7 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnDownEvent()
         {
-            if (visible)
+            if (visible && cursor.CanMove())
             {
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Down));
             }
@@ -214,7 +258,7 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnUpEvent()
         {
-            if (visible)
+            if (visible && cursor.CanMove())
             {
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Up));
             }
@@ -222,7 +266,7 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnRightEvent()
         {
-            if (visible)
+            if (visible && cursor.CanMove())
             {
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Right));
             }
@@ -230,7 +274,7 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnLeftEvent()
         {
-            if (visible)
+            if (visible && cursor.CanMove())
             {
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Left));
             }
@@ -311,6 +355,16 @@ namespace WeaverCore.Editor.Implementations
         public override void HideCursor()
         {
             cursor.gameObject.SetActive(false);
+        }
+
+        public override void MovePaneLeft()
+        {
+            WeaverLog.Log("MOVING PANE LEFT");
+        }
+
+        public override void MovePaneRight()
+        {
+            WeaverLog.Log("MOVING PANE RIGHT");
         }
     }
 }

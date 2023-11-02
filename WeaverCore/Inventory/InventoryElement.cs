@@ -112,17 +112,22 @@ namespace WeaverCore.Inventory
         public abstract InventoryElement NavigateTo(MoveDirection move);
 
 
+#if UNITY_EDITOR
         protected virtual void OnDrawGizmos()
         {
-            for (int i = 0; i < 4; i++)
+            if (!Application.isPlaying)
             {
-                var dest = NavigateTo((MoveDirection)i);
-                if (dest != null)
+                for (int i = 0; i < 4; i++)
                 {
-                    GizmoDrawToObject(dest.transform.position);
+                    var dest = NavigateTo((MoveDirection)i);
+                    if (dest != null)
+                    {
+                        GizmoDrawToObject(dest.transform.position);
+                    }
                 }
             }
         }
+#endif
 
         void GizmoDrawToObject(Vector3 destination)
         {

@@ -13,14 +13,14 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
-	[ShowFeature]
+    [ShowFeature]
     [RequireComponent(typeof(InventoryInputManager))]
-	public abstract class InventoryPanel : MonoBehaviour
-	{
+    public abstract class InventoryPanel : MonoBehaviour
+    {
         static Dictionary<Type, InventoryPanel> instances = new Dictionary<Type, InventoryPanel>();
 
-		static HashSet<InventoryPanel> loadedPanelPrefabs = new HashSet<InventoryPanel>();
-		static Assembly sfCoreAssembly;
+        static HashSet<InventoryPanel> loadedPanelPrefabs = new HashSet<InventoryPanel>();
+        static Assembly sfCoreAssembly;
         static MethodInfo addInventoryPageMethod;
         static MethodInfo doCopyPaneMethod;
         static object emptyEnum;
@@ -35,6 +35,8 @@ namespace WeaverCore.Features
         [Tooltip("The boolean field in the save settings used to store whether this panel is enabled")]
         string settingsEnabledBool;
 
+        public SaveSpecificSettings Settings => settings;
+
         [field: NonSerialized]
         public Guid PanelGUID { get; private set; }
 
@@ -46,8 +48,12 @@ namespace WeaverCore.Features
 
         public InventoryNavigator_I Navigator { get; private set; }
 
-        public InventoryElement LeftArrow { get; private set; }
-        public InventoryElement RightArrow { get; private set; }
+        public LeftArrowElement LeftArrow { get; private set; }
+        public RightArrowElement RightArrow { get; private set; }
+
+        [field: SerializeField]
+        [field: Tooltip("A custom cursor to use when this panel becomes active. Leave empty for default cursor")]
+        public WeaverCore.Inventory.Cursor CustomCursor { get; private set; }
 
         /// <summary>
         /// The currently highlighted element
@@ -58,7 +64,7 @@ namespace WeaverCore.Features
         {
             get
             {
-                if (settings.TryGetFieldValue<bool>(settingsEnabledBool,out var result))
+                if (settings.TryGetFieldValue<bool>(settingsEnabledBool, out var result))
                 {
                     return result;
                 }
@@ -77,7 +83,7 @@ namespace WeaverCore.Features
         {
             if (key == $"{GetType().FullName}_{PanelGUID}_LANG_KEY")
             {
-                if (instances.TryGetValue(GetType(),out var instance))
+                if (instances.TryGetValue(GetType(), out var instance))
                 {
                     return instance.PanelTitle;
                 }
@@ -128,8 +134,8 @@ namespace WeaverCore.Features
 
         void Setup()
         {
-            LeftArrow = transform.Find("Arrow Left").GetComponent<InventoryElement>();
-            RightArrow = transform.Find("Arrow Right").GetComponent<InventoryElement>();
+            LeftArrow = transform.Find("Arrow Left").GetComponent<LeftArrowElement>();
+            RightArrow = transform.Find("Arrow Right").GetComponent<RightArrowElement>();
 
             if (Initialization.Environment == Enums.RunningState.Game)
             {
@@ -238,7 +244,7 @@ namespace WeaverCore.Features
 
 
         static bool SFCoreAddPanel(InventoryPanel panel)
-		{
+        {
             if (sfCoreAssembly == null)
             {
                 sfCoreAssembly = ReflectionUtilities.FindLoadedAssembly("SFCore");
@@ -281,7 +287,7 @@ namespace WeaverCore.Features
             if (gameCamerasStarted)
             {
                 var paneData = _customPaneData[eventName];
-                var ret = (GameObject)doCopyPaneMethod.Invoke(null, new object[] {GameCameras.instance, paneData});
+                var ret = (GameObject)doCopyPaneMethod.Invoke(null, new object[] { GameCameras.instance, paneData });
                 panel.OnCreate(ret);
             }
 
@@ -307,18 +313,19 @@ namespace WeaverCore.Features
 
         [OnFeatureLoad]
         static void OnPanelLoad(InventoryPanel panel)
-		{
+        {
             //WeaverLog.Log("NEW PANEL LOADED = " + panel.GetType().FullName);
-			if (loadedPanelPrefabs.Add(panel)) {
-				SFCoreAddPanel(panel);
+            if (loadedPanelPrefabs.Add(panel))
+            {
+                SFCoreAddPanel(panel);
             }
         }
 
         [OnFeatureUnload]
-		static void OnPanelUnload(InventoryPanel panel)
-		{
-           // WeaverLog.Log("NEW PANEL UNLOADED = " + panel.GetType().FullName);
+        static void OnPanelUnload(InventoryPanel panel)
+        {
+            // WeaverLog.Log("NEW PANEL UNLOADED = " + panel.GetType().FullName);
             //Not sure what do to here yet
         }
-	}
+    }
 }

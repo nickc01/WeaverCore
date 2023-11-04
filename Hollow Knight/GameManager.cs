@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (!atteptedEditorLoad)
+            if (!attemptedEditorLoad)
             {
                 LoadGameManagerEditor();
             }
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (!atteptedEditorLoad)
+            if (!attemptedEditorLoad)
             {
                 LoadGameManagerEditor();
             }
@@ -100,11 +100,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private static bool atteptedEditorLoad = false;
+    private static bool attemptedEditorLoad = false;
 
     private static void LoadGameManagerEditor()
     {
-        atteptedEditorLoad = true;
+        attemptedEditorLoad = true;
 #if UNITY_EDITOR
         string[] guids = UnityEditor.AssetDatabase.FindAssets("GameManager");
         foreach (string id in guids)

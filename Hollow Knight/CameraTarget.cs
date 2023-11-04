@@ -404,6 +404,11 @@ public class CameraTarget : MonoBehaviour
 
 	public void ExitLockZone()
 	{
+
+		if (GameManager.instance == null)
+		{
+			return;
+		}
 		var cameraBounds = GameManager.instance.SceneDimensions;
 
 		if (mode == CameraTarget.TargetMode.FREE)

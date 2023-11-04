@@ -253,27 +253,41 @@ namespace WeaverCore.Game.Patches
 
 		private static void CameraController_SceneInit(On.CameraController.orig_SceneInit orig, CameraController self)
 		{
-			Debug.Log("INIT A = " + self);
-			Debug.Log("Hero_Ctrl = " + self.GetType().GetField("hero_ctrl", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(self));
-			Debug.Log("HeroController.instance = " + HeroController.instance);
-			Debug.Log("GM = " + self.GetType().GetField("gm", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(self));
-			Debug.Log("Active Scene = " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-			Debug.Log("ENTIRE OBJECT = " + JsonUtility.ToJson(self,true));
+			//Debug.Log("INIT A = " + self);
+			//Debug.Log("Hero_Ctrl = " + self.GetType().GetField("hero_ctrl", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(self));
+			//Debug.Log("HeroController.instance = " + HeroController.instance);
+			//Debug.Log("GM = " + self.GetType().GetField("gm", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(self));
+			//Debug.Log("Active Scene = " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+			//Debug.Log("ENTIRE OBJECT = " + JsonUtility.ToJson(self,true));
 			self.sceneWidth = 0f;
-			Debug.Log("INIT B");
+			//Debug.Log("INIT B");
 			self.sceneHeight = 0f;
-			Debug.Log("INIT C");
-			orig(self);
-			Debug.Log("INIT D");
+			//Debug.Log("INIT C");
+			try
+			{
+				orig(self);
+			}
+			catch (NullReferenceException)
+			{
+				if (self.GetType().GetField("hero_ctrl", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(self) == null)
+				{
+					Debug.LogError("CameraController.SceneInit failed. There is no player in the scene");
+				}
+				else
+				{
+					throw;
+				}
+			}
+			//Debug.Log("INIT D");
 			if (WeaverSceneManager.CurrentSceneManager is WeaverSceneManager wsm)
 			{
-				Debug.Log("INIT E = " + wsm);
+				//Debug.Log("INIT E = " + wsm);
 				self.xLockMin = wsm.SceneDimensions.xMin + 14.6f;
-				Debug.Log("INIT F");
+				//Debug.Log("INIT F");
 				self.yLockMin = wsm.SceneDimensions.yMin + 8.3f;
-				Debug.Log("INIT G");
+				//Debug.Log("INIT G");
 			}
-			Debug.Log("INIT H");
+			//Debug.Log("INIT H");
 		}
 
 		private static void CameraController_LateUpdate(On.CameraController.orig_LateUpdate orig, CameraController self)

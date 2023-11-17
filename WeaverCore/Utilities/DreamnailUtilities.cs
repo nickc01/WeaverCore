@@ -1,4 +1,5 @@
-﻿using WeaverCore.Implementations;
+﻿using UnityEngine;
+using WeaverCore.Implementations;
 
 namespace WeaverCore.Utilities
 {
@@ -11,7 +12,11 @@ namespace WeaverCore.Utilities
 		public static void DisplayEnemyDreamnailMessage(int convoAmount, string convoTitle)
 		{
 			Impl.DisplayEnemyDreamMessage(convoAmount, convoTitle);
-
         }
+
+		public static bool IsLayerDreamnailable(int layer)
+		{
+			return !Physics2D.GetIgnoreLayerCollision(LayerMask.NameToLayer("Attack"), layer);
+		}
 	}
 }

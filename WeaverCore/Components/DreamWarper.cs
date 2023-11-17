@@ -32,11 +32,12 @@ namespace WeaverCore.Components
 		[SerializeField]
 		[Tooltip("Are charms usable in the destination scene?")]
 		bool canUseCharms = true;
-		private void Reset()
+		protected override void Reset()
 		{
 			returnScene = gameObject.scene.name;
 			soulAmount = 0;
 			flashWhenHit = false;
+			base.Reset();
 		}
 
 		private void Awake()

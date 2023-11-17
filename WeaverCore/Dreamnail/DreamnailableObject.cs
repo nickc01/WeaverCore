@@ -81,5 +81,10 @@ namespace WeaverCore.Dreamnail
         {
             return soulAmount;
         }
+
+        protected virtual void Reset()
+        {
+            gameObject.layer = 19;
+        }
     }
 }

@@ -26,10 +26,11 @@ namespace WeaverCore.Dreamnail
             return base.OnDreamnailHit(player);
         }
 
-        private void Reset()
+        protected override void Reset()
         {
             convoAmount = 8;
             convoTitle = "GENERIC";
+            base.Reset();
         }
     }
 }

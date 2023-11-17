@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using WeaverCore.Assets;
+using WeaverCore.Attributes;
 using WeaverCore.Enums;
 using WeaverCore.Features;
 using WeaverCore.Implementations;
@@ -142,6 +143,7 @@ namespace WeaverCore.Components
         /// <summary>
         /// Called when the entity's health reaches zero
         /// </summary>
+        [field: ExcludeFieldFromPool]
         public event Action<HitInfo> OnDeathEvent;
 
         /// <summary>
@@ -683,8 +685,11 @@ namespace WeaverCore.Components
         static Type DisableHPBarType = null;
         static Type BossMarkerType = null;
 
-        void IOnPool.OnPool()
+        public virtual void OnPool()
         {
+            OnDeathEvent = null;
+            OnHealthChangeEvent = null;
+
             if (DisableHPBarType == null || BossMarkerType == null)
             {
                 foreach (var comp in GetComponents<MonoBehaviour>())

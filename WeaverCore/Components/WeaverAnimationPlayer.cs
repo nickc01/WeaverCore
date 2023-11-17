@@ -39,6 +39,11 @@ namespace WeaverCore.Components
 		bool forceOnce = false;
 
 		/// <summary>
+		/// If set to true, then the animation will play at the same speed even if the game is paused or the player gets stunned
+		/// </summary>
+		public bool UnscaledTimeMode { get; set; } = false;
+
+		/// <summary>
 		/// The current frame index that is playing
 		/// </summary>
 		public int PlayingFrame
@@ -129,6 +134,11 @@ namespace WeaverCore.Components
 		/// </summary>
 		public Guid PlayingGUID { get; private set; }
 
+		/// <summary>
+		/// The clip that is played when the animator starts (assuming <see cref="autoPlay"/> is set to true)
+		/// </summary>
+		public string AutoPlayClip => autoPlayClip;
+
 		protected virtual void OnEnable()
 		{
 			if (autoPlay && AnimationData.HasClip(autoPlayClip))
@@ -182,7 +192,14 @@ namespace WeaverCore.Components
 		{
 			if (currentFrame != -1)
 			{
-				timer += Time.deltaTime * PlaybackSpeed;
+				if (UnscaledTimeMode)
+				{
+                    timer += Time.unscaledDeltaTime * PlaybackSpeed;
+                }
+				else
+				{
+                    timer += Time.deltaTime * PlaybackSpeed;
+                }
 				while (currentFrame != -1 && timer >= frameTime)
 				{
 					timer -= frameTime;
@@ -240,7 +257,7 @@ namespace WeaverCore.Components
 		/// <exception cref="Exception">Throws if the clip doesn't exist in <see cref="AnimationData"/></exception>
 		public void PlayAnimation(string clipName, bool forceOnce = false)
 		{
-			//Debug.Log($"PLAYING ANIMATION {clipName} on object {gameObject.name}");
+			Debug.Log($"PLAYING ANIMATION {clipName} on object {gameObject.name}");
 			this.forceOnce = forceOnce;
 			if (!HasAnimationClip(clipName))
 			{

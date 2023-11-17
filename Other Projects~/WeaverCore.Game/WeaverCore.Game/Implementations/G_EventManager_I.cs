@@ -13,7 +13,7 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Implementations
 {
-	public class G_EventManager_I : EventManager_I
+    public class G_EventManager_I : EventManager_I
 	{
 		static List<GameObject> ExcludedEventManagerObjects = new List<GameObject>();
 

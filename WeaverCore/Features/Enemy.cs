@@ -14,7 +14,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
-
     /// <summary>
     /// The base class for all enemies
     /// </summary>
@@ -70,8 +69,11 @@ namespace WeaverCore.Features
 		/// </summary>
 		protected virtual void Awake()
 		{
-			var enemyImplType = ImplFinder.GetImplementationType<Enemy_I>();
-			enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
+			if (enemyImpl == null)
+			{
+                var enemyImplType = ImplFinder.GetImplementationType<Enemy_I>();
+                enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
+            }
 			HealthComponent.OnDeathEvent += OnDeath_Internal;
 		}
 
@@ -429,5 +431,5 @@ namespace WeaverCore.Features
 		{
 
 		}
-	}
+    }
 }

@@ -61,13 +61,10 @@ namespace WeaverCore.Components
 			set
 			{
 				value = Mathf.Clamp01(value);
-				if (flashIntensity != value)
-				{
-					Start();
-					flashIntensity = value;
-					UpdateBlock();
-				}
-			}
+                Start();
+                flashIntensity = value;
+                UpdateBlock();
+            }
 		}
 
 		new SpriteRenderer renderer;

@@ -9,9 +9,10 @@ using static WeaverCore.PlayerInput;
 
 namespace WeaverCore.Implementations
 {
-	/// <summary>
-	/// Used for accessing input from the player's controller
-	/// </summary>
+
+    /// <summary>
+    /// Used for accessing input from the player's controller
+    /// </summary>
     public abstract class PlayerInput_I : IImplementation
 	{
 		static PlayerInput_I impl = ImplFinder.GetImplementation<PlayerInput_I>();

@@ -87,7 +87,9 @@ namespace WeaverCore.Utilities
 				}
 				Frames.Add(sprite);
 			}
-		}
+
+            public float Duration => Frames.Count * (1f / FPS);
+        }
 
 		/// <summary>
 		/// Determines how an animation clip will loop

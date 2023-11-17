@@ -6,10 +6,11 @@ using UnityEngine;
 
 namespace WeaverCore.Interfaces
 {
-	/// <summary>
-	/// Interface for Enemy hit effects
-	/// </summary>
-	public interface IHitEffects
+
+    /// <summary>
+    /// Interface for Enemy hit effects
+    /// </summary>
+    public interface IHitEffects
 	{
 		/// <summary>
 		/// Plays the enemy's hit effects

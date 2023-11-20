@@ -19,6 +19,10 @@ namespace WeaverCore.Components
         [Tooltip("The tink prefab that is spawned when the player hits this object")]
         public GameObject TinkEffectPrefab;
 
+        [SerializeField]
+        [Tooltip("If set to true, then the tink effect will play even if the EntityHealth component is marked as invicible")]
+        bool forceValidHit = false;
+
         string collisionLayerName = "Tinker";
         int collisionLayerID = 16;
 
@@ -44,12 +48,20 @@ namespace WeaverCore.Components
 
             if (healthManager != null)
             {
-                var validity = healthManager.IsValidHit(hit);
-                if (validity == EntityHealth.HitResult.Valid)
+                if (forceValidHit)
                 {
                     StartCoroutine(HitRoutine(hit));
+                    return true;
                 }
-                return validity == EntityHealth.HitResult.Valid;
+                else
+                {
+                    var validity = healthManager.IsValidHit(hit);
+                    if (validity == EntityHealth.HitResult.Valid)
+                    {
+                        StartCoroutine(HitRoutine(hit));
+                    }
+                    return validity == EntityHealth.HitResult.Valid;
+                }
             }
             else
             {

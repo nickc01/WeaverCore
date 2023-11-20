@@ -82,7 +82,7 @@ namespace WeaverCore.Assets.Components
                     }
                 }
 				obj = obj.parent;
-				depth += DEFAULT_RECURSION_DEPTH;
+				depth += 1;
                 if (depth == DEFAULT_RECURSION_DEPTH)
                 {
 					break;

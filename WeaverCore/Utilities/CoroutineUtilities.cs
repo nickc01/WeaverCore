@@ -64,6 +64,13 @@ namespace WeaverCore.Utilities
 						yield return null;
 					}
 				}
+				else if (instruction is WaitForSecondsRealtime wfsr)
+				{
+					while (wfsr.keepWaiting)
+					{
+						yield return null;
+					}
+				}
 				else if (instruction is AsyncOperation)
 				{
 					var operation = (AsyncOperation)instruction;

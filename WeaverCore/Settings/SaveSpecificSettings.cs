@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -140,13 +141,15 @@ namespace WeaverCore.Settings
 			SaveCurrentlyLoaded = true;
 			CurrentSaveSlot = slot;
 
+
 			WeaverLog.Log("Loading WeaverCore Save data for slot " + CurrentSaveSlot);
 			foreach (var save in saveData)
 			{
 				impl.LoadSettings(save);
 				save.OnSaveLoaded(CurrentSaveSlot);
 			}
-		}
+			ModHooks.OnSavegameLoad(CurrentSaveSlot);
+        }
 
 		public static void SaveAllSettings()
 		{
@@ -156,6 +159,9 @@ namespace WeaverCore.Settings
 				save.OnSaveUnloaded(CurrentSaveSlot);
 				impl.SaveSettings(save);
 			}
-		}
+
+			ModHooks.OnSavegameSave(CurrentSaveSlot);
+
+        }
 	}
 }

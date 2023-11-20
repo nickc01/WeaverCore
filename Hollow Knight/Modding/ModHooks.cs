@@ -720,7 +720,7 @@ namespace Modding
         ///     Called directly after a save has been loaded
         /// </summary>
         /// <remarks>GameManager.LoadGame</remarks>
-        internal static void OnSavegameLoad(int id)
+        public static void OnSavegameLoad(int id)
         {
             Logger.LogFine("OnSavegameLoad Invoked");
 
@@ -859,6 +859,179 @@ namespace Modding
                 }
             }
             remove => _finishedLoadingModsHook -= value;
+        }
+
+        /// <summary>
+        ///     Called directly before save has been saved to allow for changes to the data before persisted.
+        /// </summary>
+        /// <remarks>GameManager.SaveGame</remarks>
+        public static event Action<SaveGameData> BeforeSavegameSaveHook;
+
+        /// <summary>
+        ///     Called directly before save has been saved to allow for changes to the data before persisted.
+        /// </summary>
+        /// <remarks>GameManager.SaveGame</remarks>
+        internal static void OnBeforeSaveGameSave(SaveGameData data)
+        {
+            Logger.LogFine("OnBeforeSaveGameSave Invoked");
+
+            if (BeforeSavegameSaveHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = BeforeSavegameSaveHook.GetInvocationList();
+
+            foreach (Action<SaveGameData> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(data);
+                }
+
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called directly after a save has been loaded.  Allows for accessing SaveGame instance.
+        /// </summary>
+        /// <remarks>GameManager.LoadGame</remarks>
+        public static event Action<SaveGameData> AfterSavegameLoadHook;
+
+        /// <summary>
+        ///     Called directly after a save has been loaded.  Allows for accessing SaveGame instance.
+        /// </summary>
+        /// <remarks>GameManager.LoadGame</remarks>
+        internal static void OnAfterSaveGameLoad(SaveGameData data)
+        {
+            Logger.LogFine("OnAfterSaveGameLoad Invoked");
+
+            if (AfterSavegameLoadHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = AfterSavegameLoadHook.GetInvocationList();
+
+            foreach (Action<SaveGameData> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(data);
+                }
+
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called after a game has been cleared from a slot.
+        /// </summary>
+        public static event Action<int> AfterSaveGameClearHook;
+
+        /// <summary>
+        ///     Called after a game has been cleared from a slot.
+        /// </summary>
+        internal static void OnAfterSaveGameClear(int saveSlot)
+        {
+            Logger.LogFine("OnAfterSaveGameClear Invoked");
+
+            if (AfterSaveGameClearHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = AfterSaveGameClearHook.GetInvocationList();
+
+            foreach (Action<int> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(saveSlot);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+
+        /// <summary>
+        ///     Called before a save file is deleted
+        /// </summary>
+        /// <remarks>GameManager.ClearSaveFile</remarks>
+        public static event Action<int> SavegameClearHook;
+
+        /// <summary>
+        ///     Called before a save file is deleted
+        /// </summary>
+        /// <remarks>GameManager.ClearSaveFile</remarks>
+        internal static void OnSavegameClear(int id)
+        {
+            Logger.LogFine("OnSavegameClear Invoked");
+
+            if (SavegameClearHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = SavegameClearHook.GetInvocationList();
+
+            foreach (Action<int> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(id);
+                }
+
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+
+        /// <summary>
+        ///     Called directly after a save has been saved
+        /// </summary>
+        /// <remarks>GameManager.SaveGame</remarks>
+        public static event Action<int> SavegameSaveHook;
+
+        /// <summary>
+        ///     Called directly after a save has been saved
+        /// </summary>
+        /// <remarks>GameManager.SaveGame</remarks>
+        public static void OnSavegameSave(int id)
+        {
+            Logger.LogFine("OnSavegameSave Invoked");
+
+            if (SavegameSaveHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = SavegameSaveHook.GetInvocationList();
+
+            foreach (Action<int> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(id);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
         }
 
         /// <summary>

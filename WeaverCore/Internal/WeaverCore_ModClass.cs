@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using WeaverCore.Assets;
@@ -32,7 +34,8 @@ namespace WeaverCore.Internal
                 ("GG_Workshop", "GG_Statue_Mage_Knight"),/*,
                 ("End_Game_Completion", "credits object")*/
                 ("Tutorial_01", "_Enemies/Crawler 1"),
-                ("Tutorial_01", "_Props/Health Cocoon")
+                ("Tutorial_01", "_Props/Health Cocoon"),
+                ("Tutorial_01", "_Props/Chest")
             };
         }
 
@@ -78,6 +81,48 @@ namespace WeaverCore.Internal
                     }
 
                     GameObject.Destroy(healthCocoonObj);
+                }
+
+                if (tutorialSceneDict.TryGetValue("_Props/Chest", out var chestObj))
+                {
+                    var pmFSM = PlayMakerUtilities.GetPlaymakerFSMOnObject(chestObj, "Chest Control");
+                    var fsm = PlayMakerUtilities.GetFSMOnPlayMakerComponent(pmFSM);
+                    var spawnItemState = PlayMakerUtilities.FindStateOnFSM(fsm, "Spawn Items");
+                    var actionData = PlayMakerUtilities.GetActionData(spawnItemState);
+
+                    var fsmObjects = (IList)actionData.GetType().GetField("fsmGameObjectParams", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(actionData);
+                    Type fsmObjectType = null;
+                    PropertyInfo valueProperty = null;
+
+                    foreach (var fsmObject in fsmObjects)
+                    {
+                        if (fsmObjectType == null)
+                        {
+                            fsmObjectType = fsmObject.GetType();
+                            valueProperty = fsmObjectType.GetProperty("Value");
+                        }
+
+                        var gm = valueProperty.GetValue(fsmObject) as GameObject;
+                        if (gm != null)
+                        {
+                            if (gm.name == "Geo Small")
+                            {
+                                Other_Preloads.smallGeoPrefab = gm;
+                            }
+
+                            if (gm.name == "Geo Med")
+                            {
+                                Other_Preloads.mediumGeoPrefab = gm;
+                            }
+
+                            if (gm.name == "Geo Large")
+                            {
+                                Other_Preloads.largeGeoPrefab = gm;
+                            }
+                        }
+                    }
+
+                    GameObject.Destroy(chestObj);
                 }
             }
 

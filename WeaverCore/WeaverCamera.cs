@@ -12,10 +12,11 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// A component used to access and manipulate the camera
-	/// </summary>
-	public class WeaverCamera : MonoBehaviour
+
+    /// <summary>
+    /// A component used to access and manipulate the camera
+    /// </summary>
+    public class WeaverCamera : MonoBehaviour
 	{
 #if UNITY_EDITOR
 		//This is for editor only. The game only version can be found in the TK2DCameraPatch class in the WeaverCore.Game project

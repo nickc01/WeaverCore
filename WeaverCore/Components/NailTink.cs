@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore;
@@ -8,7 +9,6 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Components
 {
-
     /// <summary>
     /// When the player hits an object with this component attached, it will cause a nail parry to occur
     /// </summary>
@@ -19,6 +19,12 @@ namespace WeaverCore.Components
         [Tooltip("The tink prefab that is spawned when the player hits this object")]
         public GameObject TinkEffectPrefab;
 
+        [Tooltip("The volume of the tink sound")]
+        public float TinkSoundVolume = 1f;
+
+        [Tooltip("The pitch of the tink sound")]
+        public float TinkSoundPitch = 1f;
+
         [SerializeField]
         [Tooltip("If set to true, then the tink effect will play even if the EntityHealth component is marked as invicible")]
         bool forceValidHit = false;
@@ -28,6 +34,8 @@ namespace WeaverCore.Components
 
         Enemy enemy;
         EntityHealth healthManager;
+
+        public event Action<IHittable, HitInfo> OnTink;
 
         public bool Hit(HitInfo hit)
         {
@@ -50,6 +58,7 @@ namespace WeaverCore.Components
             {
                 if (forceValidHit)
                 {
+                    OnTink?.Invoke(this, hit);
                     StartCoroutine(HitRoutine(hit));
                     return true;
                 }
@@ -58,6 +67,7 @@ namespace WeaverCore.Components
                     var validity = healthManager.IsValidHit(hit);
                     if (validity == EntityHealth.HitResult.Valid)
                     {
+                        OnTink?.Invoke(this, hit);
                         StartCoroutine(HitRoutine(hit));
                     }
                     return validity == EntityHealth.HitResult.Valid;
@@ -65,6 +75,7 @@ namespace WeaverCore.Components
             }
             else
             {
+                OnTink?.Invoke(this, hit);
                 StartCoroutine(HitRoutine(hit));
                 return true;
             }
@@ -77,7 +88,11 @@ namespace WeaverCore.Components
             CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
 
             //PLAY AUDIO
-            WeaverAudio.PlayAtPoint(TinkSound, transform.position);
+            if (TinkSound != null)
+            {
+                var instance = WeaverAudio.PlayAtPoint(TinkSound, transform.position, TinkSoundVolume);
+                instance.AudioSource.pitch = TinkSoundPitch;
+            }
 
             var attackDirection = hit.Direction;
 

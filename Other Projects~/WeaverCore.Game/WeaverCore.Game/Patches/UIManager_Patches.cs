@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine.UIElements;
 using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Patches
 {
-
-	static class UIManager_Patches
+    static class UIManager_Patches
 	{
 		[OnInit]
 		static void Init()

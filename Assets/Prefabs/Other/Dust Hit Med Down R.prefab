@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6545483976056465354}
   - component: {fileID: 6342886658638044920}
   - component: {fileID: 6341360515620425648}
+  - component: {fileID: -2241813394382159795}
+  - component: {fileID: -8395524571421908489}
   m_Layer: 0
   m_Name: Dust Hit Med Down R
   m_TagString: Untagged
@@ -2386,3 +2388,30 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-2241813394382159795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6540208257724356351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d8b42d611ac1d499d321ebfb68299e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyBehaviour: 3
+  destroyAfterTime: 0
+  lifeTime: 0
+--- !u!114 &-8395524571421908489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6540208257724356351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a6abec551ce95408d93cbfa3708833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -153,6 +153,10 @@ namespace WeaverCore.Assets.Components
                     HideConversationBox();
                     EventManager.SendEventToGameObject("TALK END", gameObject, gameObject);
                 }
+                else
+                {
+                    yield return new WaitForSeconds(0.5f);
+                }
             }
         }
 

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Chest
+  m_EditorClassIdentifier: 
+  clipNames:
+  - Idle
+  - Open
+  - Burst
+  - Opened
+  clipFrameStartIndexes: 0000000001000000050000000a000000
+  clipFrameCounts: 01000000040000000500000001000000
+  frames:
+  - {fileID: 3518425699545186054, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: -3466838935143327533, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: -3226918197584251138, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: -9205197738243077549, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: -9221894349242287360, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: 8226786587691644510, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: -6797645406418724587, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: 5713743146955776433, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: 5289755978590637641, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: 435177193389851268, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  - {fileID: 6725027201985145184, guid: d599a7d5acedc244bad4dfeb3dc1eb48, type: 3}
+  clipFPSs:
+  - 30
+  - 12
+  - 20
+  - 30
+  clipWrapModes: 01000000000000000000000001000000
+  clipLoopStarts: 00000000000000000000000000000000

@@ -3,14 +3,16 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// Contains snapshots and mixers that are related to the EnviroEffects AudioMixer
-	/// 
-	/// These snapshots are used to change what enviroment sounds are being played in a scene
-	/// 
-	/// See this table for more info on what groups/mixers do what : https://1drv.ms/x/s!Aj62egREH4PTxyIkYuCSF6zX5zsp?e=JpJksw
-	/// </summary>
-	public static class EnviroEffects
+
+
+    /// <summary>
+    /// Contains snapshots and mixers that are related to the EnviroEffects AudioMixer
+    /// 
+    /// These snapshots are used to change what enviroment sounds are being played in a scene
+    /// 
+    /// See this table for more info on what groups/mixers do what : https://1drv.ms/x/s!Aj62egREH4PTxyIkYuCSF6zX5zsp?e=JpJksw
+    /// </summary>
+    public static class EnviroEffects
 	{
 		public enum SnapshotType
 		{

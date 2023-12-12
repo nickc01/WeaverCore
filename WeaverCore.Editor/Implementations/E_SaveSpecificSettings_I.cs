@@ -35,7 +35,7 @@ namespace WeaverCore.Editor.Implementations
 		{
 			SaveSpecificSettings.LoadSaveSlot(1);
 
-			typeof(ModHooks).GetMethod("OnSavegameLoad", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, new object[] { 1 });
+			typeof(ModHooks).GetMethod("OnSavegameLoad", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public).Invoke(null, new object[] { 1 });
         }
 
 		public override int CurrentSaveSlot => 1;

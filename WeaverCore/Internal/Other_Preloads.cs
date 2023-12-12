@@ -7,5 +7,9 @@ namespace WeaverCore.Internal
         public static GameObject JournalUpdateMsg;
         public static GameObject HealthCocoonFlashPrefab;
         public static AudioSource AudioPlayerPrefab;
+
+        public static GameObject smallGeoPrefab;
+        public static GameObject mediumGeoPrefab;
+        public static GameObject largeGeoPrefab;
     }
 }

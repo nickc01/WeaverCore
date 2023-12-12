@@ -148,8 +148,10 @@ namespace WeaverCore.Settings
 				impl.LoadSettings(save);
 				save.OnSaveLoaded(CurrentSaveSlot);
 			}
+#if UNITY_EDITOR
 			ModHooks.OnSavegameLoad(CurrentSaveSlot);
-        }
+#endif
+		}
 
 		public static void SaveAllSettings()
 		{

@@ -6,6 +6,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
     public class DialogueInspectRegion : InspectRegion
     {
         public enum TextCentering

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Shockwave Animations
+  m_EditorClassIdentifier: 
+  clipNames:
+  - Idle
+  - Impact
+  - Shockwave
+  - Shockwave Spurt
+  clipFrameStartIndexes: 00000000040000000a00000012000000
+  clipFrameCounts: 04000000060000000800000006000000
+  frames:
+  - {fileID: 8383647162600775311, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: -2863985982329714721, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: -4333332403319240863, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 3802806615999022041, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: -9009410264318535451, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 6768788204375205473, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: -8408676393092120586, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 731966017206271586, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: -2382919131264659668, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 2666837726816025645, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 552883790325353187, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 882508743903177579, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: -7349026358546410036, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 7223252738327569526, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 3136086195823973439, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 6026420536989410960, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 2241739407508588311, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: -1743480868078399168, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 552883790325353187, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 882508743903177579, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: -7349026358546410036, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 7223252738327569526, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 3136086195823973439, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  - {fileID: 6026420536989410960, guid: 5c6fce7863eea76409eeb76b514952a5, type: 3}
+  clipFPSs:
+  - 20
+  - 20
+  - 20
+  - 20
+  clipWrapModes: 01000000000000000200000000000000
+  clipLoopStarts: 00000000000000000200000000000000

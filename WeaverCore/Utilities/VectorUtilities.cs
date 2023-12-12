@@ -295,5 +295,10 @@ namespace WeaverCore.Utilities
         {
 			return UnityEngine.Random.Range(range.x, range.y);
         }
+
+		public static float ClampInRange(this Vector2 range, float value)
+		{
+			return Mathf.Clamp(value, range.x, range.y);
+		}
 	}
 }

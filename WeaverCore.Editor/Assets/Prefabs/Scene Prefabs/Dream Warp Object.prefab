@@ -2557,7 +2557,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6012867602641612491}
-  - component: {fileID: 6012867602641612484}
   - component: {fileID: 6012867602641612485}
   - component: {fileID: 6012867602641612490}
   - component: {fileID: 6012867602641612489}
@@ -2583,27 +2582,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6012867602641612484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6012867602641612486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b7b838ff7f34e4aa961a98cbf91b96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convoAmount: 8
-  convoTitle: GENERIC
-  startSuppressed: 0
-  noSoul: 0
-  dreamImpactPrefab: {fileID: 0}
-  allowUseChildColliders: 0
-  DreamnailEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &6012867602641612485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2616,6 +2594,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b252a7af65c96045b2e6bbfdf79ffff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soulAmount: 0
+  cooldownDuration: 0.2
+  recoilWhenHit: 0
+  flashWhenHit: 1
   destinationScene: PUT DEST SCENE HERE
   returnScene: GG_Workshop
   transitionGateName: PUT DEST DOOR NAME HERE

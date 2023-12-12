@@ -200,36 +200,41 @@ namespace WeaverCore.Components
 				{
                     timer += Time.deltaTime * PlaybackSpeed;
                 }
-				while (currentFrame != -1 && timer >= frameTime)
-				{
-					timer -= frameTime;
-					if (forceOnce)
-					{
-						currentFrame = AnimationData.GoToNextFrame(PlayingClip, currentFrame, WeaverAnimationData.WrapMode.Once);
-					}
-					else
-					{
-						currentFrame = AnimationData.GoToNextFrame(PlayingClip, currentFrame);
-					}
-					if (currentFrame == -1)
-					{
-						PlayingGUID = default(Guid);
-						string originalClip = PlayingClip;
-						PlayingClip = null;
-						if (onAnimationDone != null)
-						{
-							onAnimationDone(originalClip);
-							onAnimationDone = null;
-						}
-					}
-					else
-					{
-						SpriteRenderer.sprite = AnimationData.GetFrameFromClip(PlayingClip, currentFrame);
-						OnPlayingFrame(currentFrame);
-					}
-				}
-			}
+				UpdatePlayingAnimationState();
+            }
 		}
+
+		void UpdatePlayingAnimationState()
+		{
+            while (currentFrame != -1 && timer >= frameTime)
+            {
+                timer -= frameTime;
+                if (forceOnce)
+                {
+                    currentFrame = AnimationData.GoToNextFrame(PlayingClip, currentFrame, WeaverAnimationData.WrapMode.Once);
+                }
+                else
+                {
+                    currentFrame = AnimationData.GoToNextFrame(PlayingClip, currentFrame);
+                }
+                if (currentFrame == -1)
+                {
+                    PlayingGUID = default(Guid);
+                    string originalClip = PlayingClip;
+                    PlayingClip = null;
+                    if (onAnimationDone != null)
+                    {
+                        onAnimationDone(originalClip);
+                        onAnimationDone = null;
+                    }
+                }
+                else
+                {
+                    SpriteRenderer.sprite = AnimationData.GetFrameFromClip(PlayingClip, currentFrame);
+                    OnPlayingFrame(currentFrame);
+                }
+            }
+        }
 
 		void OnAnimationDataUpdate()
 		{
@@ -250,6 +255,29 @@ namespace WeaverCore.Components
 		}
 
 		/// <summary>
+		/// Immediately skips the current frame
+		/// </summary>
+		public void SkipFrame()
+		{
+			SkipFrames(1);
+		}
+
+		/// <summary>
+		/// Immediately skips the specified amount of frames
+		/// </summary>
+		/// <param name="frames">The amount of frames to skip. Must be greater than zero in order to do anything</param>
+		public void SkipFrames(int frames)
+		{
+			if (frames <= 0)
+			{
+				return;
+			}
+
+			timer = frameTime * frames;
+            UpdatePlayingAnimationState();
+        }
+
+		/// <summary>
 		/// Plays an animation clip with the specified name
 		/// </summary>
 		/// <param name="clipName">The name of the clip to be played</param>
@@ -257,7 +285,6 @@ namespace WeaverCore.Components
 		/// <exception cref="Exception">Throws if the clip doesn't exist in <see cref="AnimationData"/></exception>
 		public void PlayAnimation(string clipName, bool forceOnce = false)
 		{
-			Debug.Log($"PLAYING ANIMATION {clipName} on object {gameObject.name}");
 			this.forceOnce = forceOnce;
 			if (!HasAnimationClip(clipName))
 			{

@@ -191,6 +191,17 @@ namespace WeaverCore.Editor.Menu_Items
             InsertObject("Acid Pack");
         }
 
+        [MenuItem("WeaverCore/Insert/Chest")]
+        public static void InsertChest()
+        {
+            InsertObject("Chest");
+        }
+        [MenuItem("WeaverCore/Insert/Geo Rock")]
+        public static void InsertGeoRock()
+        {
+            InsertObject("Geo Rock");
+        }
+
         //Godhome Statue Template
 
         [MenuItem("WeaverCore/Insert/Godhome Statue Template")]

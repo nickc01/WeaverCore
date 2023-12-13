@@ -161,9 +161,9 @@ namespace WeaverCore.Settings
 				save.OnSaveUnloaded(CurrentSaveSlot);
 				impl.SaveSettings(save);
 			}
-
+#if UNITY_EDITOR
 			ModHooks.OnSavegameSave(CurrentSaveSlot);
-
-        }
+#endif
+		}
 	}
 }

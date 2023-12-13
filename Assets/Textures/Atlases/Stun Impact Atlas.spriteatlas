@@ -54,35 +54,14 @@ SpriteAtlas:
       enableTightPacking: 1
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: -2065084316360014273, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-    - {fileID: 3260717071641291093, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-    - {fileID: 7026240481891188227, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-    - {fileID: 8154678710636754230, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-    - {fileID: -4339518857855529125, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-    - {fileID: 31608600711016641, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-    - {fileID: 288794694154961482, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-    totalSpriteSurfaceArea: 582120
+    packables: []
+    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: -4339518857855529125, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-  - {fileID: 31608600711016641, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-  - {fileID: 288794694154961482, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-  - {fileID: -2065084316360014273, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-  - {fileID: 3260717071641291093, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-  - {fileID: 7026240481891188227, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-  - {fileID: 8154678710636754230, guid: f2cc27a3686484f4c9af95aa29a184ac, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - stun_impact_effect0004
-  - stun_impact_effect0005
-  - stun_impact_effect0006
-  - stun_impact_effect0000
-  - stun_impact_effect0001
-  - stun_impact_effect0002
-  - stun_impact_effect0003
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
   m_Tag: Stun Impact Atlas
   m_IsVariant: 0

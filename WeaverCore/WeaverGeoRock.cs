@@ -81,6 +81,7 @@ namespace WeaverCore
 
         [SerializeField]
         [Tooltip("The name of the int field in the Save Settings used to keep track of the remaining hits left before this geo rock breaks")]
+        [SaveSpecificFieldName(typeof(int), nameof(saveSettings))]
         protected string hitsRemainingSaveSettingsField;
 
         [NonSerialized]

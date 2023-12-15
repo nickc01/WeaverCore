@@ -31,6 +31,7 @@ namespace WeaverCore.Components
 
         [SerializeField]
         [Tooltip("The bool field on the save specific settings object for storing whether or not this area has been visited before")]
+        [SaveSpecificFieldName(typeof(bool), nameof(settings))]
         string saveSettingsVisitedField;
 
         [OnHarmonyPatch]

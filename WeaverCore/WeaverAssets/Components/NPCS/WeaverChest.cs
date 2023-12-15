@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using WeaverCore.Attributes;
 using WeaverCore.Components;
 using WeaverCore.Settings;
 
@@ -31,6 +32,7 @@ namespace WeaverCore.Assets.Components
 
         [SerializeField]
         [Tooltip("The name of the boolean field in the Save Specific Settings that stores whether the chest has already been opened")]
+        [SaveSpecificFieldName(typeof(bool), nameof(chestSaveSettings))]
         protected string chestOpenedSaveField;
 
         [Header("Effects")]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Serialization;
 using WeaverCore.Attributes;
 using WeaverCore.Settings;
 using WeaverCore.Utilities;
@@ -48,7 +49,7 @@ namespace WeaverCore
 
                 foreach (var test in wbs.WeaverBossTests.boolTests)
                 {
-                    if (!test.settings.TryGetFieldValue<bool>(test.settingsBoolField,out var result) || result != test.value)
+                    if (!test.settingsStorageForBool.TryGetFieldValue<bool>(test.settingsBoolField,out var result) || result != test.value)
                     {
                         weaverUnlocked = false;
                         break;
@@ -59,7 +60,7 @@ namespace WeaverCore
                 {
                     foreach (var test in wbs.WeaverBossTests.intTests)
                     {
-                        if (!test.settings.TryGetFieldValue<int>(test.settingsIntField, out var result) || !CompareInt(test.value, test.comparison, result))
+                        if (!test.settingsStorageForInt.TryGetFieldValue<int>(test.settingsIntField, out var result) || !CompareInt(test.value, test.comparison, result))
                         {
                             weaverUnlocked = false;
                             break;
@@ -90,7 +91,8 @@ namespace WeaverCore
             [Serializable]
             public struct BoolTest
             {
-                public SaveSpecificSettings settings;
+                [FormerlySerializedAs("settings")]
+                public SaveSpecificSettings settingsStorageForBool;
 
                 public string settingsBoolField;
 
@@ -100,7 +102,8 @@ namespace WeaverCore
             [Serializable]
             public struct IntTest
             {
-                public SaveSpecificSettings settings;
+                [FormerlySerializedAs("settings")]
+                public SaveSpecificSettings settingsStorageForInt;
 
                 public enum Comparison
                 {
@@ -117,9 +120,9 @@ namespace WeaverCore
                 public Comparison comparison;
             }
 
-            public BoolTest[] boolTests;
+            public BoolTest[] boolTests = new BoolTest[0];
 
-            public IntTest[] intTests;
+            public IntTest[] intTests = new IntTest[0];
         }
 
         [SerializeField]
@@ -192,7 +195,7 @@ namespace WeaverCore
                 {
                     weaverBossTests.boolTests[i] = new WeaverBossTest.BoolTest
                     {
-                        settings = Registry.GetAllFeatures<SaveSpecificSettings>(s => s.GetType().FullName == settingsArray[i]).FirstOrDefault(),//settingsArray[i],
+                        settingsStorageForBool = Registry.GetAllFeatures<SaveSpecificSettings>(s => s.GetType().FullName == settingsArray[i]).FirstOrDefault(),//settingsArray[i],
                         settingsBoolField = fieldArray[i],
                         value = boolValueArray[i]
                     };
@@ -202,7 +205,7 @@ namespace WeaverCore
                 {
                     weaverBossTests.intTests[i] = new WeaverBossTest.IntTest
                     {
-                        settings = Registry.GetAllFeatures<SaveSpecificSettings>(s => s.GetType().FullName == settingsArray[boolSize + i]).FirstOrDefault(),
+                        settingsStorageForInt = Registry.GetAllFeatures<SaveSpecificSettings>(s => s.GetType().FullName == settingsArray[boolSize + i]).FirstOrDefault(),
                         settingsIntField = fieldArray[boolSize + i],
                         comparison = intComparisonArray[i],
                         value = intValueArray[i]
@@ -217,6 +220,11 @@ namespace WeaverCore
         {
 #if UNITY_EDITOR
             bossTestData = JsonUtility.ToJson(new DataContainer() { tests = bossTests});
+
+            if (weaverBossTests == null)
+            {
+                weaverBossTests = new WeaverBossTest();
+            }
 
             settingsCount = weaverBossTests.intTests.Length + weaverBossTests.boolTests.Length;
 
@@ -233,13 +241,13 @@ namespace WeaverCore
             {
                 //settingsArray[i] = weaverBossTests.boolTests[i].settings;
 
-                if (weaverBossTests.boolTests[i].settings == null)
+                if (weaverBossTests.boolTests[i].settingsStorageForBool == null)
                 {
                     settingsArray[i] = null;
                 }
                 else
                 {
-                    settingsArray[i] = weaverBossTests.boolTests[i].settings.GetType().FullName;
+                    settingsArray[i] = weaverBossTests.boolTests[i].settingsStorageForBool.GetType().FullName;
                 }
                 fieldArray[i] = weaverBossTests.boolTests[i].settingsBoolField;
                 testTypeArray[i] = TestType.Bool;
@@ -251,7 +259,7 @@ namespace WeaverCore
 
             for (int i = 0; i < weaverBossTests.intTests.Length; i++)
             {
-                settingsArray[startIndex + i] = weaverBossTests.boolTests[i].settings.GetType().FullName;
+                settingsArray[startIndex + i] = weaverBossTests.boolTests[i].settingsStorageForBool.GetType().FullName;
                 fieldArray[startIndex + i] = weaverBossTests.intTests[i].settingsIntField;
                 testTypeArray[startIndex + i] = TestType.Int;
                 intComparisonArray[i] = weaverBossTests.intTests[i].comparison;

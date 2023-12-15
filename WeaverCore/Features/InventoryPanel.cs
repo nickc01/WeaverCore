@@ -33,6 +33,7 @@ namespace WeaverCore.Features
 
         [SerializeField]
         [Tooltip("The boolean field in the save settings used to store whether this panel is enabled")]
+        [SaveSpecificFieldName(typeof(bool), nameof(settings))]
         string settingsEnabledBool;
 
         public SaveSpecificSettings Settings => settings;

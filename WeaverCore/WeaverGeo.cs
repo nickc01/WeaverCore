@@ -13,18 +13,24 @@ using static GeoControl;
 
 namespace WeaverCore
 {
-
+    /// <summary>
+    /// The class used for spawning Geo in WeaverCore
+    /// </summary>
     public class WeaverGeo : GeoControl, ISerializationCallbackReceiver, IOnPool
 	{
         static Func<GeoControl, HeroController> heroGetter;
         static Action<GeoControl, HeroController> heroSetter;
         static Func<GeoControl, Rigidbody2D> bodyGetter;
         static Action<GeoControl> callAwake;
+        static Func<GeoControl, bool> attractedGetter;
 
         static WeaverGeo _smallPrefab;
         static WeaverGeo _mediumPrefab;
         static WeaverGeo _largePrefab;
 
+        /// <summary>
+        /// Gets the small geo prefab
+        /// </summary>
         public static WeaverGeo SmallPrefab
         {
             get
@@ -41,6 +47,9 @@ namespace WeaverCore
             }
         }
 
+        /// <summary>
+        /// Gets the medium geo prefab
+        /// </summary>
         public static WeaverGeo MediumPrefab
         {
             get
@@ -57,6 +66,9 @@ namespace WeaverCore
             }
         }
 
+        /// <summary>
+        /// Gets the large geo prefab
+        /// </summary>
         public static WeaverGeo LargePrefab
         {
             get
@@ -161,6 +173,7 @@ namespace WeaverCore
             heroSetter = ReflectionUtilities.CreateFieldSetter<GeoControl, HeroController>("hero");
             callAwake = ReflectionUtilities.MethodToDelegate<Action<GeoControl>>(typeof(GeoControl).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance));
             bodyGetter = ReflectionUtilities.CreateFieldGetter<GeoControl, Rigidbody2D>("body");
+            attractedGetter = ReflectionUtilities.CreateFieldGetter<GeoControl, bool>("attracted");
 
             {
                 var orig = typeof(GeoControl).GetMethod(nameof(SetSize), BindingFlags.Public | BindingFlags.Instance);
@@ -274,103 +287,17 @@ namespace WeaverCore
 
         static bool WeaverOnEnablePrefix(GeoControl __instance)
         {
-            /*if (__instance is WeaverGeo wGeo)
-            {
-                if (heroGetter(wGeo) == null)
-                {
-                    heroSetter(wGeo, HeroController.instance);
-                }
-
-                if (bodyGetter(__instance) == null)
-                {
-                    callAwake(__instance);
-                }
-            }*/
             return true;
         }
 
         static bool WeaverOnTriggerEnter2DPrefix(GeoControl __instance, Collider2D collision)
         {
-            /*Debug.Log("T A = " + __instance);
-            Debug.Log("TRULY NULL = " + UnityUtilities.IsObjectTrulyNull(__instance));
-            Debug.Log("ACTUAL NULL = " + (__instance is null));
-            Debug.Log("NULL = " + (__instance == null));
-            Debug.Log("EQUALS NULL = " + __instance.Equals(null));
-            Debug.Log("IS = " + (__instance is WeaverGeo));
-            Debug.Log("TYPE = " + __instance.GetType());*/
             if (__instance is WeaverGeo)
             {
                 if (heroGetter(__instance) == null)
                 {
                     heroSetter(__instance, HeroController.instance);
                 }
-
-                /*Debug.Log("T B");
-                if (heroGetter(__instance) == null)
-                {
-                    heroSetter(__instance, HeroController.instance);
-                }
-                Debug.Log("T C");
-                var hero = heroGetter(__instance);
-                Debug.Log("T D = " + hero);
-                //Debug.Log("TRIGGER ENTER 2D PREFIX");
-
-                bool flag = false;
-                float num = 0f;
-                Debug.Log("T E");
-                if (collision.tag == "HeroBox")
-                {
-                    Debug.Log("T F");
-                    var size = (Size)typeof(GeoControl).GetField("size", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance);
-                    Debug.Log("T G = " + size);
-                    hero.AddGeo(size.value);
-                    Debug.Log("T H");
-                    //VibrationManager.PlayVibrationClipOneShot(pickupVibration);
-                    num = Mathf.Max(num, (float)typeof(GeoControl).GetMethod("PlayCollectSound", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, null));
-                    Debug.Log("T I = " + num);
-                    flag = true;
-                }
-                else if (collision.tag == "Acid")
-                {
-                    Debug.Log("T J = " + __instance.acidEffect);
-                    if ((bool)__instance.acidEffect)
-                    {
-                        Debug.Log("T K");
-                        __instance.acidEffect.gameObject.SetActive(value: true);
-                        Debug.Log("T L");
-                        num = Mathf.Max(num, __instance.acidEffect.main.duration + __instance.acidEffect.main.startLifetime.constant);
-                        Debug.Log("T M");
-                    }
-                    Debug.Log("T N");
-                    flag = true;
-                }
-                Debug.Log("T O = " + flag);
-                if (flag)
-                {
-                    Debug.Log("T P");
-                    var getterRoutine = (Coroutine)typeof(GeoControl).GetField("getterRoutine", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance);
-                    Debug.Log("T Q = " + getterRoutine);
-                    if (getterRoutine != null)
-                    {
-                        Debug.Log("T R");
-                        __instance.StopCoroutine(getterRoutine);
-                        Debug.Log("T S");
-                    }
-                    Debug.Log("T T");
-                    __instance.Disable(num);
-                    Debug.Log("T U");
-                }
-                Debug.Log("T V");*/
-
-                /*if (bodyGetter(__instance) == null)
-                {
-                    callAwake(__instance);
-                }
-
-                if (heroGetter(__instance) == null)
-                {
-                    heroSetter(__instance, HeroController.instance);
-                }*/
 
                 return true;
             }
@@ -398,7 +325,7 @@ namespace WeaverCore
                 heroSetter(this, HeroController.instance);
             }
 #if !UNITY_EDITOR
-            if (hitGround)
+            if (hitGround && !attractedGetter(this))
             {
                 var oldVelocity = RB.velocity;
 
@@ -423,6 +350,12 @@ namespace WeaverCore
 #endif
         }
 
+        /// <summary>
+        /// Spwns some large geo, which is flung in random directions
+        /// </summary>
+        /// <param name="amount"> the amount of large geo to spawn</param>
+        /// <param name="spawnPos">The position to spawn them at</param>
+        /// <returns> Returns the spawned geo</returns>
         public static List<WeaverGeo> FlingLarge(int amount, Vector3 spawnPos)
         {
             return FlingGeoPrefab(new FlingUtils.Config
@@ -439,6 +372,13 @@ namespace WeaverCore
             }, spawnPos);
         }
 
+
+        /// <summary>
+        /// Spwns some medium geo, which is flung in random directions
+        /// </summary>
+        /// <param name="amount"> the amount of medium geo to spawn</param>
+        /// <param name="spawnPos">The position to spawn them at</param>
+        /// <returns> Returns the spawned geo</returns>
         public static List<WeaverGeo> FlingMedium(int amount, Vector3 spawnPos)
         {
             return FlingGeoPrefab(new FlingUtils.Config
@@ -455,6 +395,13 @@ namespace WeaverCore
             }, spawnPos);
         }
 
+
+        /// <summary>
+        /// Spwns some small geo, which is flung in random directions
+        /// </summary>
+        /// <param name="amount"> the amount of small geo to spawn</param>
+        /// <param name="spawnPos">The position to spawn them at</param>
+        /// <returns> Returns the spawned geo</returns>
         public static List<WeaverGeo> FlingSmall(int amount, Vector3 spawnPos)
         {
             return FlingGeoPrefab(new FlingUtils.Config
@@ -471,11 +418,25 @@ namespace WeaverCore
             }, spawnPos);
         }
 
+        /// <summary>
+        /// Flings a geo prefab. This function is used to offer more customization when flinging the geo
+        /// </summary>
+        /// <param name="flingInfo">Rhe parameters used to control how the geo gets flung</param>
+        /// <param name="spawnPos"> Where the geo will spawn</param>
+        /// <returns>Returns a list of the spawned geo</returns>
         public static List<WeaverGeo> FlingGeoPrefab(FlingUtils.Config flingInfo, Vector3 spawnPos)
         {
             return FlingUtilities.SpawnPooledAndFling(flingInfo, null, spawnPos).Select(g => g.GetComponent<WeaverGeo>()).ToList();
         }
 
+        /// <summary>
+        /// Flings small, medium and large geo
+        /// </summary>
+        /// <param name="smallAmount”>The amount of small geo to spawn</param>
+        /// <param name="mediumAmount">The amount of medium geo to spawn</param>
+        /// <param name="largeAmount"> The amount of large geo to spawn</param>
+        /// <param name="spawnPos">Where the geo is going to spawn at</param>
+        /// <returns> Returns a list of all the spawned geo</returns>
         public static List<WeaverGeo> FlingGeo(int smallAmount, int mediumAmount, int largeAmount, Vector3 spawnPos)
         {
             var total = new List<WeaverGeo>();

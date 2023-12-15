@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
+using WeaverCore.Attributes;
 using WeaverCore.Settings;
 
 namespace WeaverCore.Components
@@ -14,9 +15,12 @@ namespace WeaverCore.Components
     public class PerSaveTrigger : MonoBehaviour
     {
         [SerializeField]
+        [Tooltip("TEST1")]
         SaveSpecificSettings settingsStorage;
 
         [SerializeField]
+        [SaveSpecificFieldName(typeof(bool), nameof(settingsStorage))]
+        [Tooltip("TEST2")]
         string saveFieldName = "";
 
         [SerializeField]

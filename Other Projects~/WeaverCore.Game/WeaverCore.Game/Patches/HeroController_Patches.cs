@@ -13,7 +13,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Patches
 {
-	static class HeroController_Player
+    static class HeroController_Player
 	{
 		[OnInit]
 		static void Init()

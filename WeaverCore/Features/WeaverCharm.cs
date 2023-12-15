@@ -20,14 +20,17 @@ namespace WeaverCore.Features
 
         [SerializeField]
         [Tooltip("The name of a boolean field on the Settings Storage for storing whether or not the charm has been acquired")]
+        [SaveSpecificFieldName(typeof(bool), nameof(settingsStorage))]
         string acquired_settingsField;
 
         [SerializeField]
         [Tooltip("The name of a boolean field on the Settings Storage for storing whether or not the charm has been equipped")]
+        [SaveSpecificFieldName(typeof(bool), nameof(settingsStorage))]
         string equipped_settingsField;
 
         [SerializeField]
         [Tooltip("The name of a boolean field on the Settings Storage for storing whether or not the charm has been newly collected")]
+        [SaveSpecificFieldName(typeof(bool), nameof(settingsStorage))]
         string newlyCollected_settingsField;
 
         [field: SerializeField]

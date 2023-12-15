@@ -18,10 +18,12 @@ namespace WeaverCore.Components
 
         [SerializeField]
         [Tooltip("The name of the field within the SaveSpecificSettings object that contains the completion state of the statue")]
+        [SaveSpecificFieldName(typeof(Completion), nameof(settings))]
         string normalStatueStateField;
 
         [SerializeField]
         [Tooltip("The name of the field within the SaveSpecificSettings object that contains the completion state of the statue (dream version)")]
+        [SaveSpecificFieldName(typeof(Completion), nameof(settings))]
         string dreamStatueStateField;
 
         [SerializeField]

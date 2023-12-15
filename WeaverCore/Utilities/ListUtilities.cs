@@ -150,6 +150,32 @@ namespace WeaverCore.Utilities
 			return source.OrderBy(e => UnityEngine.Random.Range(0f,1f));
 		}
 
+		/*public static int IndexOf<T>(this IEnumerable<T> values, T value)
+		{
+			int index = 0;
+			foreach (var val in values)
+			{
+				if (val.Equals(value))
+				{
+					return index;
+				}
+				index++;
+			}
+			return -1;
+		}*/
+
+        public static int IndexOf<T>(this T[] values, T value)
+        {
+			for (int i = 0; i < values.Length; i++)
+            {
+				if (values[i].Equals(value))
+				{
+					return i;
+				}
+            }
+			return -1;
+        }
+
         /*        public bool Contains(T item)
         {
             if (m_buckets != null)
@@ -167,7 +193,7 @@ namespace WeaverCore.Utilities
             return false;
         }*/
 
-		class HashSetGetters<T>
+        class HashSetGetters<T>
 		{
 			//public static Func<HashSet<T>, int[]> bucketGetter;
 			//public static Func<HashSet<T>, int[]> slotsGetter;

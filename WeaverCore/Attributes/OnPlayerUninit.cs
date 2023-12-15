@@ -2,6 +2,7 @@
 
 namespace WeaverCore.Attributes
 {
+
     [System.AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
     public sealed class OnPlayerUninit : PriorityAttribute
     {

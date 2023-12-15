@@ -450,6 +450,7 @@
     <Compile Include="Patches\FadeGroup_Patches.cs" />
     <Compile Include="Patches\GameManager_Patches.cs" />
     <Compile Include="Patches\HUDCamera_Patches.cs" />
+    <Compile Include="Patches\JournalList_Patches.cs" />
     <Compile Include="Patches\SaveSlotBackgrounds_Patches.cs" />
     <Compile Include="Patches\TextMeshPro_Patches.cs" />
     <Compile Include="Patches\TK2DCamera_Patches.cs" />

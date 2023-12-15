@@ -8,6 +8,10 @@ namespace WeaverCore.Assets.Components
     {
         EventManager listener;
 
+        [SerializeField]
+        [Tooltip("Dont touch this unless you know what you are doing")]
+        bool playNextSceneEvents = true;
+
         //string destScene = "";
         //string entryDoor = "";
 
@@ -44,14 +48,37 @@ namespace WeaverCore.Assets.Components
         {
             //WeaverLog.Log("DREAM RETURN EVENT");
             StopAllCoroutines();
-            DreamReturn();
+            StartCoroutine(DreamReturn());
+            if (playNextSceneEvents)
+            {
+                StartCoroutine(NextSceneTransitions());
+            }
         }
 
         public void BeginDreamExit()
         {
             //WeaverLog.Log("DREAM EXIT EVENT");
             StopAllCoroutines();
-            DreamExit();
+            StartCoroutine(DreamExit());
+        }
+
+        IEnumerator NextSceneTransitions()
+        {
+            var hudBlanker = WeaverCanvas.HUDBlankerWhite;
+            if (hudBlanker != null)
+            {
+                PlayMakerUtilities.SetFsmFloat(hudBlanker.gameObject, "Blanker Control", "Fade Time", 0f);
+                EventManager.SendEventToGameObject("FADE IN", hudBlanker.gameObject, gameObject);
+            }
+            yield return null;
+
+            GameManager.instance.TimePasses();
+            GameManager.instance.ResetSemiPersistentItems();
+
+            PlayMakerUtilities.SetFsmBool(WeaverCamera.Instance.gameObject, "CameraFade", "No Fade", true);
+
+            HeroController.instance.RelinquishControl();
+            HeroController.instance.EnterWithoutInput(true);
         }
 
         /*void FadeOut()
@@ -81,7 +108,7 @@ namespace WeaverCore.Assets.Components
             });
         }*/
 
-        void DreamExit()
+        IEnumerator DreamExit()
         {
             if (StaticVariableList.Exists("ggCinematicEnding") && StaticVariableList.GetValue<bool>("ggCinematicEnding"))
             {
@@ -91,7 +118,7 @@ namespace WeaverCore.Assets.Components
             {
                 if (StaticVariableList.Exists("ggEndScene"))
                 {
-                    DreamFinish(StaticVariableList.GetValue<string>("ggEndScene"));
+                    yield return DreamFinish(StaticVariableList.GetValue<string>("ggEndScene"));
                 }
             }
         }
@@ -117,7 +144,7 @@ namespace WeaverCore.Assets.Components
             GameManager.instance.ChangeToScene(cinematicScene, "door1", 0f);
         }
 
-        void DreamReturn()
+        IEnumerator DreamReturn()
         {
             PlayMakerUtilities.SetFsmBool(Player.Player1.gameObject, "Dream Return", "Dream Returning", true);
             var dreamReturnScene = PlayerData.instance.GetString("dreamReturnScene");
@@ -133,7 +160,7 @@ namespace WeaverCore.Assets.Components
 
             HeroController.instance.MaxHealth();
 
-            DreamFinish(dreamReturnScene);
+            yield return DreamFinish(dreamReturnScene);
 
             /*yield return new WaitForSeconds(1f);
 
@@ -145,13 +172,15 @@ namespace WeaverCore.Assets.Components
 
         }
 
-        void DreamFinish(string returnScene)
+        IEnumerator DreamFinish(string returnScene)
         {
             PlayMakerUtilities.SetFsmBool(WeaverCamera.Instance.gameObject, "CameraFade", "No Fade", true);
 
             var bossReturnEntryGate = PlayerData.instance.GetString("bossReturnEntryGate");
 
             StaticVariableList.SetValue("finishedBossReturning", true);
+
+            yield return null;
 
             var hudCamera = GameObject.FindObjectOfType<HUDCamera>()?.gameObject;
             if (hudCamera != null)

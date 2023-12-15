@@ -30,13 +30,13 @@ namespace WeaverCore.Components.GGStatue
 
         IEnumerator VisualizationRoutine()
         {
-            var currentDoor = gameObject.name;
+            var doorEntry = gameObject.name;
 
            // WeaverLog.Log("CURRENT DOOR NAME = " + currentDoor);
 
-            var entryGate = HeroController.instance.GetEntryGateName();
+            var doorEntered = HeroController.instance.GetEntryGateName();
             //WeaverLog.Log("ENTRY GATE = " + entryGate);
-            if (currentDoor == entryGate)
+            if (doorEntry == doorEntered)
             {
                 PlayerData.instance.SetString("bossReturnEntryGate", "");
             }
@@ -48,6 +48,8 @@ namespace WeaverCore.Components.GGStatue
             inspect.SetActive(false);
 
             HeroController.instance.ClearMPSendEvents();
+
+            EventRegister.SendEvent("K HATCHLING END");
 
             yield return new WaitForSeconds(0.25f);
 
@@ -62,8 +64,8 @@ namespace WeaverCore.Components.GGStatue
                 {
                     transitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions);
                 }
-                //EventManager.SendEventToGameObject("GG TRANSITION OUT INSTANT", transitions, gameObject);
-                EventRegister.SendEvent("GG TRANSITION OUT INSTANT");
+                //EventRegister.SendEvent("GG TRANSITION OUT INSTANT");
+                EventManager.SendEventToGameObject("GG TRANSITION OUT INSTANT", transitions, gameObject);
             }
 
             var hudCamera = GameObject.FindObjectOfType<HUDCamera>()?.gameObject;
@@ -82,7 +84,8 @@ namespace WeaverCore.Components.GGStatue
             if (transitions != null)
             {
                 //EventManager.SendEventToGameObject("GG TRANSITION IN STATUE", transitions, gameObject);
-                EventRegister.SendEvent("GG TRANSITION IN STATUE");
+                //EventRegister.SendEvent("GG TRANSITION IN STATUE");
+                EventManager.SendEventToGameObject("GG TRANSITION IN STATUE", transitions, gameObject);
             }
 
             yield return new WaitForSeconds(1f);

@@ -135,9 +135,13 @@ public class SaveSpecificFieldNameDrawer : PropertyDrawer
         }*/
 
         var validFields = fields.Where(f => fieldNameAttribute.ExpectedFieldType.IsAssignableFrom(f.FieldType)).ToArray();
-        var validNames = validFields.Select(f => f.Name).ToArray();
+        var validNames = validFields.Select(f => f.Name).Prepend("Not Specified").ToArray();
 
         var oldValue = property.stringValue;
+        if (string.IsNullOrEmpty(oldValue))
+        {
+            oldValue = "Not Specified";
+        }
         int index = validNames.IndexOf(oldValue);
 
         if (index == -1)
@@ -148,6 +152,13 @@ public class SaveSpecificFieldNameDrawer : PropertyDrawer
 
         index = EditorGUI.Popup(position, property.displayName, index, validNames);
 
-        property.stringValue = validNames[index];
+        if (validNames[index] == "Not Specified")
+        {
+            property.stringValue = "";
+        }
+        else
+        {
+            property.stringValue = validNames[index];
+        }
     }
 }

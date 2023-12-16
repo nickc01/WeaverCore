@@ -1,4 +1,4 @@
-﻿using WeaverCore.Attributes;
+﻿/*using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Patches
 {
@@ -26,3 +26,4 @@ namespace WeaverCore.Game.Patches
 
     }
 }
+*/

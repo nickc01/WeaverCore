@@ -42,6 +42,10 @@ public class SaveSpecificFieldNameDrawer : PropertyDrawer
 
         var script = scriptProp.objectReferenceValue as MonoScript;
 
+        if (script == null)
+        {
+            return;
+        }
         var typeName = script.name;
         var typeNamespace = MonoScriptExtensions.GetScriptNamespace(script);
         var typeAssemblyName = MonoScriptExtensions.GetScriptAssemblyName(script).Replace(".dll", "");

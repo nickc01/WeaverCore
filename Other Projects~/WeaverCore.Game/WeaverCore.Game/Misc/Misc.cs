@@ -8,7 +8,7 @@ using WeaverCore.Enums;
 
 namespace WeaverCore.Game
 {
-	public static class Misc
+    public static class Misc
 	{
 		public static HitInfo ConvertHitInstance(HitInstance hitInstance, Transform target = null)
 		{

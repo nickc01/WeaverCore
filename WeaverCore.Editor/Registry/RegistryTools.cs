@@ -39,6 +39,7 @@ namespace WeaverCore.Editor
         /// </summary>
         public static List<Type> GetAllMods()
         {
+			modsCached = null;
             if (modsCached == null)
             {
                 WeaverLog.Log("BEGINNING SEARCH FOR MODS");
@@ -63,6 +64,7 @@ namespace WeaverCore.Editor
                         }
                     }
                 }
+                WeaverLog.Log("ENDING SEARCH FOR MODS");
             }
             return modsCached;
         }

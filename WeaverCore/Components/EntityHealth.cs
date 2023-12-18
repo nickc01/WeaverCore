@@ -340,10 +340,10 @@ namespace WeaverCore.Components
                     }
                     break;
                 case AttackType.Spell:
-                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
+                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.TransformPoint(EffectsOffset + new Vector3(0f, -0.2f, -0.0031f)), Quaternion.identity);
                     break;
                 case AttackType.SharpShadow:
-                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
+                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.TransformPoint(EffectsOffset + new Vector3(0f, -0.2f, -0.0031f)), Quaternion.identity);
                     break;
                 default:
                     break;
@@ -352,7 +352,7 @@ namespace WeaverCore.Components
             IHitEffects hitEffects = GetComponent<IHitEffects>();
             if (hitEffects != null && hit.AttackType != AttackType.RuinsWater)
             {
-                hitEffects.PlayHitEffect(hit);
+                hitEffects.PlayHitEffect(hit, EffectsOffset);
             }
         }
 

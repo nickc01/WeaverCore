@@ -74,7 +74,7 @@ namespace WeaverCore.Components.HitEffects
 					}
 				}
 
-				GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.position + effectsOffset, Quaternion.identity);
+				GameObject hitParticles = Instantiate(Assets.EffectAssets.UninfectedHitPrefab, transform.TransformPoint(effectsOffset), Quaternion.identity);
 
 				var direction = DirectionUtilities.DegreesToDirection(hit.Direction);
 
@@ -94,7 +94,7 @@ namespace WeaverCore.Components.HitEffects
 						break;
 				}
 
-				Flings.SpawnFlings(NormalFlings, transform.position + effectsOffset, direction);
+				Flings.SpawnFlings(NormalFlings, transform.TransformPoint(effectsOffset), direction);
 			}
 		}
 	}

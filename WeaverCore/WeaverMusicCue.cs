@@ -9,7 +9,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	[CreateAssetMenu(fileName = "WeaverMusicCue", menuName = "WeaverCore/Weaver Music Cue", order = 1000)]
+	[CreateAssetMenu(fileName = "WeaverMusicCue", menuName = "WeaverCore/Music Cue")]
     public class WeaverMusicCue : MusicCue, ISerializationCallbackReceiver
 	{
         static Func<MusicCue, MusicChannelInfo[]> channelInfosGetter;
@@ -47,15 +47,19 @@ namespace WeaverCore
 
 
         [SerializeField]
+        [HideInInspector]
         List<AudioClip> channelInfos_clip;
 
         [SerializeField]
+        [HideInInspector]
         List<MusicChannelSync> channelInfos_sync;
 
         [SerializeField]
+        [HideInInspector]
         List<string> alternatives_PlayerDataBoolKey;
 
         [SerializeField]
+        [HideInInspector]
         List<MusicCue> alternatives_Cue;
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()

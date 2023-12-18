@@ -61,14 +61,14 @@ namespace WeaverCore.Components.DeathEffects
             EmitSounds();
             if (InfectedDeathWavePrefab != null)
             {
-                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);
+                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.TransformPoint(EffectsOffset), Quaternion.identity);
                 gameObject.transform.SetXLocalScale(1.25f);
                 gameObject.transform.SetYLocalScale(1.25f);
             }
-            Blood.SpawnRandomBlood(transform.position + EffectsOffset);
+            Blood.SpawnRandomBlood(transform.TransformPoint(EffectsOffset));
             if (DeathPuffPrefab != null)
             {
-                UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.position + EffectsOffset, Quaternion.identity);
+                UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.TransformPoint(EffectsOffset), Quaternion.identity);
             }
             ShakeCameraIfVisible(ShakeType.EnemyKillShake);
         }
@@ -78,13 +78,13 @@ namespace WeaverCore.Components.DeathEffects
             EmitSounds();
             if (InfectedDeathWavePrefab != null)
             {
-                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);
+                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.TransformPoint(EffectsOffset), Quaternion.identity);
                 Vector3 localScale = gameObject.transform.localScale;
                 localScale.x = 0.5f;
                 localScale.y = 0.5f;
                 gameObject.transform.localScale = localScale;
             }
-            Blood.SpawnRandomBlood(transform.position + EffectsOffset);
+            Blood.SpawnRandomBlood(transform.TransformPoint(EffectsOffset));
         }
 
         private void EmitLargeInfectedEffects()
@@ -92,17 +92,17 @@ namespace WeaverCore.Components.DeathEffects
             EmitSounds();
             if (DeathPuffPrefab != null)
             {
-                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.position + EffectsOffset, Quaternion.identity);
+                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(DeathPuffPrefab, transform.TransformPoint(EffectsOffset), Quaternion.identity);
                 gameObject.transform.localScale = new Vector3(2f, 2f, gameObject.transform.GetZLocalScale());
             }
             ShakeCameraIfVisible(ShakeType.AverageShake);
             if (InfectedDeathWavePrefab != null)
             {
-                GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.position + EffectsOffset, Quaternion.identity);
+                GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(InfectedDeathWavePrefab, transform.TransformPoint(EffectsOffset), Quaternion.identity);
                 gameObject2.transform.SetXLocalScale(2f);
                 gameObject2.transform.SetYLocalScale(2f);
             }
-            Blood.SpawnRandomBlood(transform.position + EffectsOffset);
+            Blood.SpawnRandomBlood(transform.TransformPoint(EffectsOffset));
         }
 
         public enum InfectedDeathType

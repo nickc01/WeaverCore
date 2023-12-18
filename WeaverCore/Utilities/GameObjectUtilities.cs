@@ -1,7 +1,4 @@
-﻿#if UNITY_EDITOR
-#endif
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace WeaverCore.Utilities
 {

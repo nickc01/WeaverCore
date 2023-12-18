@@ -3,6 +3,7 @@
 using AssetsTools.NET;
 using AssetsTools.NET.Extra;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections;
@@ -17,6 +18,7 @@ using UnityEditor;
 using UnityEditor.Build.Content;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using WeaverBuildTools.Commands;
 using WeaverBuildTools.Enums;
@@ -331,7 +333,29 @@ namespace WeaverCore.Editor.Compilation
 				PersistentData.StoreData(Data);
 				PersistentData.SaveData();
 
-				ReflectionUtilities.ExecuteMethodsWithAttribute<BeforeBuildAttribute>();
+				var modNameParam = new object[] { BuildScreen.BuildSettings.ModName };
+
+				foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<BeforeBuildAttribute>())
+				{
+                    try
+                    {
+                        var parameters = method.method.GetParameters();
+
+                        if (parameters.Length == 0)
+                        {
+                            method.method.Invoke(null, null);
+                        }
+                        else if (parameters.Length == 1 && parameters[0].ParameterType == typeof(string))
+                        {
+                            method.method.Invoke(null, modNameParam);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        WeaverLog.LogError($"Failed to run method BeforeBuild method {method.method.DeclaringType.FullName}:{method.method.Name}");
+                        WeaverLog.LogException(e);
+                    }
+                }
 
 				if (!assetsChanged && whenReady != null)
 				{
@@ -785,9 +809,32 @@ namespace WeaverCore.Editor.Compilation
 				PersistentData.StoreData(Data);
 				PersistentData.SaveData();
 
-				ReflectionUtilities.ExecuteMethodsWithAttribute<AfterBuildAttribute>();
+                //ReflectionUtilities.ExecuteMethodsWithAttribute<AfterBuildAttribute>();
+                var modNameParam = new object[] { BuildScreen.BuildSettings.ModName };
 
-				if (!assetsChanged && whenFinished != null)
+                foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<AfterBuildAttribute>())
+                {
+					try
+					{
+						var parameters = method.method.GetParameters();
+
+						if (parameters.Length == 0)
+						{
+							method.method.Invoke(null, null);
+						}
+						else if (parameters.Length == 1 && parameters[0].ParameterType == typeof(string))
+						{
+							method.method.Invoke(null, modNameParam);
+						}
+					}
+					catch (Exception e)
+					{
+						WeaverLog.LogError($"Failed to run AfterBuild method {method.method.DeclaringType.FullName}:{method.method.Name}");
+						WeaverLog.LogException(e);
+					}
+                }
+
+                if (!assetsChanged && whenFinished != null)
 				{
 					whenFinished.Invoke(null, null);
 				}
@@ -985,48 +1032,144 @@ namespace WeaverCore.Editor.Compilation
                         }
                         else
                         {
-                            var assemblyField = monoBehaviourInst.Get(str => str.StartsWith("__") && str.Contains("AssemblyName"));
+                            var reservedObjectGUIDsField = monoBehaviourInst.Get("reservedObjectGUIDs");
 
-                            if (!assemblyField.IsDummy())
-                            {
+							//If IsDummy() is false, then this is a FieldUpdater
+							if (!reservedObjectGUIDsField.IsDummy())
+							{
+                                var modName = BuildScreen.BuildSettings.ModName;
+
                                 bool modified = false;
-                                var modAsmNameVal = assemblyField.GetValue();
-                                foreach (var replacement in assemblyReplacements)
+
+								var componentTypeNamesField = monoBehaviourInst.Get("componentTypeNames").Get("Array");
+
+								var componentTypenamesValue = componentTypeNamesField.GetValue();
+
+								var componentTypenamesArray = componentTypenamesValue.AsArray();
+
+                                for (int i = 0; i < componentTypenamesArray.size; i++)
                                 {
-                                    if (modAsmNameVal.AsString() == replacement.Key)
+									var valueAtIndex = componentTypeNamesField[i].GetValue();
+
+									var split = valueAtIndex.AsString().Split(':');
+									WeaverLog.Log("FOUND SPLIT = " + split[0] + ":" + split[1]);
+                                    bool changed = false;
+                                    if (split[0] == "Assembly-CSharp")
                                     {
-                                        modAsmNameVal.Set(replacement.Value);
-                                        Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
-                                        modified = true;
-                                        break;
+                                        changed = true;
+                                        split[0] = modName;
+                                        WeaverLog.Log("Changing Assembly-CSharp to " + modName);
                                     }
-                                }
-
-                                var featuresField = monoBehaviourInst.Get("featureAssemblyNames");
-
-                                if (!featuresField.IsDummy())
-                                {
-                                    var featureAsms = monoBehaviourInst.Get("featureAssemblyNames").Get("Array");
-                                    var featureAsmVals = featureAsms.GetValue();
-                                    var array = featureAsmVals.AsArray();
-                                    for (int i = 0; i < array.size; i++)
+                                    else if (split[0] == "HollowKnight")
                                     {
-                                        var asmValue = featureAsms[i].GetValue();
-                                        foreach (var replacement in assemblyReplacements)
+                                        changed = true;
+                                        split[0] = "Assembly-CSharp";
+                                        WeaverLog.Log("Changing HollowKnight to Assembly-CSharp");
+                                    }
+
+                                    if (changed)
+                                    {
+										valueAtIndex.Set($"{split[0]}:{split[1]}");
+										WeaverLog.Log("NEW VALUE = " + split[0] + ":" + split[1]);
+										modified = true;
+                                        //serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
+                                        //fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
+                                    }
+
+                                    /*var asmValue = featureAsms[i].GetValue();
+                                    foreach (var replacement in assemblyReplacements)
+                                    {
+                                        if (asmValue.AsString() == replacement.Key)
                                         {
-                                            if (asmValue.AsString() == replacement.Key)
-                                            {
-                                                asmValue.Set(replacement.Value);
-                                                Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
-                                                modified = true;
-                                                break;
-                                            }
+                                            asmValue.Set(replacement.Value);
+                                            Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
+                                            modified = true;
+                                            break;
                                         }
-                                    }
+                                    }*/
                                 }
+
                                 if (modified)
                                 {
                                     assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+                                }
+                                /*
+								 for (int i = 0; i < fieldUpdater.componentTypeNames.Count; i++)
+									{
+										//var split = fieldUpdater.componentTypeNames[i].Split(':');
+										var split = serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue.Split(':');
+
+										bool changed = false;
+
+										if (split[0] == "Assembly-CSharp")
+										{
+											changed = true;
+											split[0] = modName;
+											WeaverLog.Log("Changing Assembly-CSharp to " + modName);
+										}
+
+										if (split[0] == "HollowKnight")
+										{
+											changed = true;
+											split[0] = "Assembly-CSharp";
+											WeaverLog.Log("Changing HollowKnight to Assembly-CSharp");
+										}
+
+										if (changed)
+										{
+											updated = true;
+											serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
+											//fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
+										}
+									}
+								 */
+
+                            }
+                            else
+							{
+                                var assemblyField = monoBehaviourInst.Get(str => str.StartsWith("__") && str.Contains("AssemblyName"));
+
+                                if (!assemblyField.IsDummy())
+                                {
+                                    bool modified = false;
+                                    var modAsmNameVal = assemblyField.GetValue();
+                                    foreach (var replacement in assemblyReplacements)
+                                    {
+                                        if (modAsmNameVal.AsString() == replacement.Key)
+                                        {
+                                            modAsmNameVal.Set(replacement.Value);
+                                            Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
+                                            modified = true;
+                                            break;
+                                        }
+                                    }
+
+                                    var featuresField = monoBehaviourInst.Get("featureAssemblyNames");
+
+                                    if (!featuresField.IsDummy())
+                                    {
+                                        var featureAsms = monoBehaviourInst.Get("featureAssemblyNames").Get("Array");
+                                        var featureAsmVals = featureAsms.GetValue();
+                                        var array = featureAsmVals.AsArray();
+                                        for (int i = 0; i < array.size; i++)
+                                        {
+                                            var asmValue = featureAsms[i].GetValue();
+                                            foreach (var replacement in assemblyReplacements)
+                                            {
+                                                if (asmValue.AsString() == replacement.Key)
+                                                {
+                                                    asmValue.Set(replacement.Value);
+                                                    Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
+                                                    modified = true;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (modified)
+                                    {
+                                        assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+                                    }
                                 }
                             }
                         }

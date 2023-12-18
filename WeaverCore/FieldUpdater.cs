@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Utilities;
@@ -526,12 +528,102 @@ namespace WeaverCore
         [SerializeField]
         List<UnityEngine.Object> reservedObjects = new List<UnityEngine.Object>();
 
+/*#if UNITY_EDITOR
+        [BeforeBuild]
+        static void BeforeBuild(string modName)
+        {
 
+            var fieldUpdaterGUIDs = UnityEditor.AssetDatabase.FindAssets("t:FieldUpdater");
 
-		/*[OnInit]
-		static void Test()
-		{
-			//WeaverLog.Log("TEST = " + JsonUtility.ToJson(new UpdatedField.Container<float>(123.45f)));
-		}*/
-	}
+            foreach (var fieldUpdater in fieldUpdaterGUIDs.Select(guid => UnityEditor.AssetDatabase.LoadAssetAtPath<FieldUpdater>(AssetDatabase.GUIDToAssetPath(guid))))
+            {
+                using var serializedObject = new SerializedObject(fieldUpdater);
+
+                bool updated = false;
+
+                for (int i = 0; i < fieldUpdater.componentTypeNames.Count; i++)
+                {
+                    //var split = fieldUpdater.componentTypeNames[i].Split(':');
+                    var split = serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue.Split(':');
+
+                    bool changed = false;
+
+                    if (split[0] == "Assembly-CSharp")
+                    {
+                        changed = true;
+                        split[0] = modName;
+                        WeaverLog.Log("Changing Assembly-CSharp to " + modName);
+                    }
+
+                    if (split[0] == "HollowKnight")
+                    {
+                        changed = true;
+                        split[0] = "Assembly-CSharp";
+                        WeaverLog.Log("Changing HollowKnight to Assembly-CSharp");
+                    }
+
+                    if (changed)
+                    {
+                        updated = true;
+                        serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
+                        //fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
+                    }
+                }
+
+                if (updated)
+                {
+                    serializedObject.ApplyModifiedProperties();
+                }
+            }
+        }
+
+        [AfterBuild]
+        static void AfterBuild(string modName)
+        {
+            var fieldUpdaterGUIDs = UnityEditor.AssetDatabase.FindAssets("t:FieldUpdater");
+
+            foreach (var fieldUpdater in fieldUpdaterGUIDs.Select(guid => UnityEditor.AssetDatabase.LoadAssetAtPath<FieldUpdater>(AssetDatabase.GUIDToAssetPath(guid))))
+            {
+                using var serializedObject = new SerializedObject(fieldUpdater);
+
+                bool updated = false;
+
+                for (int i = 0; i < fieldUpdater.componentTypeNames.Count; i++)
+                {
+                    //var split = fieldUpdater.componentTypeNames[i].Split(':');
+                    var split = serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue.Split(':');
+
+                    bool changed = false;
+
+                    if (split[0] == "Assembly-CSharp")
+                    {
+                        changed = true;
+                        split[0] = "HollowKnight";
+                        WeaverLog.Log("Changing Assembly-CSharp to HollowKnight");
+                    }
+
+                    if (split[0] == modName)
+                    {
+                        changed = true;
+                        split[0] = "Assembly-CSharp";
+                        WeaverLog.Log($"Changing {modName} to Assembly-CSharp");
+                    }
+
+                    if (changed)
+                    {
+                        updated = true;
+                        serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
+                        //fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
+                    }
+                }
+
+                if (updated)
+                {
+                    serializedObject.ApplyModifiedProperties();
+                }
+            }
+        }
+
+#endif*/
+    }
 }

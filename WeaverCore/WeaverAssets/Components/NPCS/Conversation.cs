@@ -79,7 +79,8 @@ namespace WeaverCore.Assets.Components
         /// <summary>
         /// Starts a conversation with the player
         /// </summary>
-        public IEnumerator StartConversationRoutine()
+        /// <param name="makePlayerLookUp">Should the player look up when starting the convo?</param>
+        public IEnumerator StartConversationRoutine(bool makePlayerLookUp = true)
         {
             if (eventReceiver == null)
             {
@@ -89,7 +90,11 @@ namespace WeaverCore.Assets.Components
                 }
                 eventReceiver.OnReceivedEvent += EventReceiver_OnReceivedEvent;
             }
-            HeroUtilities.PlayPlayerClip("LookUp");
+            if (makePlayerLookUp)
+            {
+                HeroUtilities.PlayPlayerClip("LookUp");
+            }
+
             var dialogManager = GameObject.Find("DialogueManager");
             if (dialogManager != null)
             {

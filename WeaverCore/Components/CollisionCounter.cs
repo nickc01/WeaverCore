@@ -7,13 +7,22 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Monitors and tracks collisions with 2D colliders.
+    /// </summary>
     public class CollisionCounter : MonoBehaviour, IOnPool
     {
         [NonSerialized]
         List<Collider2D> collidedObjects = new List<Collider2D>();
 
+        /// <summary>
+        /// Gets the collection of colliders that the object has collided with.
+        /// </summary>
         public IEnumerable<Collider2D> CollidedObjects => collidedObjects;
 
+        /// <summary>
+        /// Gets the count of currently collided objects.
+        /// </summary>
         public int CollidedObjectCount => collidedObjects.Count;
 
         private void OnEnable()
@@ -36,6 +45,10 @@ namespace WeaverCore.Components
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
         }
 
+        /// <summary>
+        /// Called when a 2D collider enters the trigger zone.
+        /// </summary>
+        /// <param name="collision">The collider that entered the trigger zone.</param>
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (!collidedObjects.Contains(collision))
@@ -44,6 +57,10 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Called when a 2D collider exits the trigger zone.
+        /// </summary>
+        /// <param name="collision">The collider that exited the trigger zone.</param>
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collidedObjects.Contains(collision))
@@ -52,6 +69,10 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Called when a 2D collision occurs.
+        /// </summary>
+        /// <param name="collision">The collision data.</param>
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (!collidedObjects.Contains(collision.collider))
@@ -60,6 +81,10 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Called when a 2D collision ends.
+        /// </summary>
+        /// <param name="collision">The collision data.</param>
         private void OnCollisionExit2D(Collision2D collision)
         {
             if (collidedObjects.Contains(collision.collider))
@@ -68,11 +93,19 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Clears the list of collided objects when the object is pooled.
+        /// </summary>
         public void OnPool()
         {
             collidedObjects.Clear();
         }
 
+        /// <summary>
+        /// Finds the nearest target collider based on the given source position.
+        /// </summary>
+        /// <param name="sourcePos">The source position from which to find the nearest target.</param>
+        /// <returns>The nearest target collider or null if none found.</returns>
         public Collider2D GetNearestTarget(Vector3 sourcePos)
         {
             float nearestDistance = float.PositiveInfinity;
@@ -87,22 +120,22 @@ namespace WeaverCore.Components
                         collidedObjects.RemoveAt(i);
                     }
                 }
+
+                foreach (var enemy in collidedObjects)
                 {
-                    foreach (var enemy in collidedObjects)
+                    if (!Physics2D.Linecast(sourcePos, enemy.transform.position, 256))
                     {
-                        if (!Physics2D.Linecast(sourcePos, enemy.transform.position, 256))
+                        float sqrMagnitude = (sourcePos - enemy.transform.position).sqrMagnitude;
+                        if (sqrMagnitude < nearestDistance)
                         {
-                            float sqrMagnitude = (sourcePos - enemy.transform.position).sqrMagnitude;
-                            if (sqrMagnitude < nearestDistance)
-                            {
-                                nearestTarget = enemy;
-                                nearestDistance = sqrMagnitude;
-                            }
+                            nearestTarget = enemy;
+                            nearestDistance = sqrMagnitude;
                         }
                     }
-                    return nearestTarget;
                 }
+                return nearestTarget;
             }
+
             return nearestTarget;
         }
     }

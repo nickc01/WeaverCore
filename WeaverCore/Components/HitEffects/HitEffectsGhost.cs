@@ -30,7 +30,7 @@ namespace WeaverCore.Components.HitEffects
         float hitSoundVolume = 1f;
 
         [Space]
-        [Tooltip("Prefab for ghost hit point.")]
+        [Tooltip("Prefab for ghost hit particles.")]
         public GameObject ghostHitPt;
 
         [Tooltip("Prefab for ghost slash effect 1.")]

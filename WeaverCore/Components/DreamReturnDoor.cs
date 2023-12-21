@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using WeaverCore.Assets.Components;
@@ -6,6 +6,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Component for handling Dream Return doors in the game. The player interacts with these to exit dream scenes
+    /// </summary>
     public class DreamReturnDoor : MonoBehaviour
 	{
         [NonSerialized]
@@ -15,14 +18,16 @@ namespace WeaverCore.Components
         bool entering = false;
 
         [SerializeField]
+        [Tooltip("Sound played when entering the dream")]
         AudioClip dreamEnterSound;
 
         [SerializeField]
+        [Tooltip("Name of the scene to return to")]
         string returningScene = "";
 
         [SerializeField]
+        [Tooltip("Name of the gate to return to")]
         string returningGateName = "door_dreamReturn";
-
 
         private void Awake()
         {
@@ -33,17 +38,12 @@ namespace WeaverCore.Components
             }
 
             doorControl.PromptLabel = "LANGKEY:EXIT";
-            //Debug.LogError("ADDING HOOK");
+
             doorControl.OnEnter.AddListener((knight_anim) =>
             {
-                //Debug.LogError("STARTING ENTER 1");
                 StartCoroutine(OnEnterRoutine());
             });
-
-
-            //StartCoroutine(MainRoutine());
         }
-
 
         IEnumerator OnEnterRoutine()
         {
@@ -73,7 +73,7 @@ namespace WeaverCore.Components
 
             animation.gameObject.SetActive(true);
 
-            animation.transform.position = Player.Player1.transform.position + new Vector3(0,-1,-2);
+            animation.transform.position = Player.Player1.transform.position + new Vector3(0, -1, -2);
 
             HeroController.instance.GetComponent<Renderer>().enabled = false;
 
@@ -112,14 +112,5 @@ namespace WeaverCore.Components
                 AlwaysUnloadUnusedAssets = false
             });
         }
-
-        /*IEnumerator MainRoutine()
-        {
-            var particles = GetComponentInChildren<ParticleSystem>();
-
-
-
-            yield break;
-        }*/
     }
 }

@@ -1,4 +1,4 @@
-﻿using Modding;
+using Modding;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,35 +7,42 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Used for creating regions the player can inspect. Useful for picking up items or talking to NPCs.
+    /// </summary>
     public abstract class InspectRegion : MonoBehaviour
     {
+        /// <summary>
+        /// The prefab for the inspection prompt.
+        /// </summary>
         [SerializeField]
-        WeaverArrowPrompt promptPrefab;
+        [Tooltip("Prefab for the inspection prompt.")]
+        public WeaverArrowPrompt promptPrefab;
 
-        WeaverArrowPrompt prompt;
+        private WeaverArrowPrompt prompt;
 
-        Transform promptMarker;
+        private Transform promptMarker;
 
         /// <summary>
-        /// Is set to true if the player is currently within range of inspecting
+        /// Is set to true if the player is currently within range of inspecting.
         /// </summary>
         public bool PlayerInRange => isActiveAndEnabled && triggerTracker.InsideCount > 0;
 
         /// <summary>
-        /// Is set to true if the player is currently inspecting
+        /// Is set to true if the player is currently inspecting.
         /// </summary>
         public bool PlayerInspecting { get; private set; } = false;
 
         [field: SerializeField]
-        [field: Tooltip("Whether or not this inspect region can actually be inspected")]
+        [field: Tooltip("Whether or not this inspect region can actually be inspected.")]
         public bool Inspectable { get; set; } = true;
 
         [SerializeField]
-        [Tooltip("The name of the event that is triggered when the player is out of range. Leave empty if no event should be fired")]
+        [Tooltip("The name of the event that is triggered when the player is out of range. Leave empty if no event should be fired.")]
         string exitRangeEvent = "";
 
         [SerializeField]
-        [Tooltip("The name of the event that is triggered when the player is in range. Leave empty if no event should be fired")]
+        [Tooltip("The name of the event that is triggered when the player is in range. Leave empty if no event should be fired.")]
         string enterRangeEvent = "";
 
         [SerializeField]
@@ -47,13 +54,22 @@ namespace WeaverCore.Components
         [field: SerializeField]
         public bool EnableKnightDamageInterrupt { get; set; } = true;
 
+        /// <summary>
+        /// Is set to true if the region has been fully inspected.
+        /// </summary>
         public bool FullyInspected { get; protected set; } = false;
 
+        /// <summary>
+        /// Event triggered when the region is inspected.
+        /// </summary>
         public UnityEvent OnInspect;
 
+        /// <summary>
+        /// Event triggered after the Knight takes damage.
+        /// </summary>
         public event Modding.Delegates.AfterTakeDamageHandler OnKnightDamaged;
 
-        TrackTriggerObjects triggerTracker = null;
+        private TrackTriggerObjects triggerTracker = null;
 
         protected virtual void Awake()
         {

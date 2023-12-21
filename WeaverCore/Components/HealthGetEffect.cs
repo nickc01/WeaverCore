@@ -1,10 +1,13 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Used to play effects when the player picks up blue health pickups
+    /// </summary>
     public class HealthGetEffect : MonoBehaviour
     {
         [SerializeField]

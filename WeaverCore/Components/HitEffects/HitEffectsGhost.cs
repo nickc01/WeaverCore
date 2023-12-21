@@ -1,4 +1,4 @@
-﻿using GlobalEnums;
+using GlobalEnums;
 using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Enums;
@@ -7,41 +7,53 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components.HitEffects
 {
+    /// <summary>
+    /// Handles hit effects for a ghost character.
+    /// </summary>
     public class HitEffectsGhost : MonoBehaviour, IHitEffects
     {
+        /// <summary>
+        /// Offset for displaying hit effects.
+        /// </summary>
         public Vector3 effectOffset;
 
         [SerializeField]
+        [Tooltip("Sound played when the ghost is hit.")]
         AudioClip hitSound;
 
         [SerializeField]
+        [Tooltip("Pitch range for the hit sound.")]
         Vector2 hitSoundPitchRange = new Vector2(0.75f, 1.25f);
 
         [SerializeField]
+        [Tooltip("Volume of the hit sound.")]
         float hitSoundVolume = 1f;
 
         [Space]
+        [Tooltip("Prefab for ghost hit point.")]
         public GameObject ghostHitPt;
 
+        [Tooltip("Prefab for ghost slash effect 1.")]
         public GameObject slashEffectGhost1;
 
+        [Tooltip("Prefab for ghost slash effect 2.")]
         public GameObject slashEffectGhost2;
 
         private SpriteFlasher spriteFlash;
 
         private bool didFireThisFrame;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             spriteFlash = GetComponent<SpriteFlasher>();
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             didFireThisFrame = false;
         }
 
-        private void Reset()
+        protected virtual Reset()
         {
             ghostHitPt = WeaverAssets.LoadWeaverAsset<GameObject>("Ghost Hit Pt");
 
@@ -57,6 +69,11 @@ namespace WeaverCore.Components.HitEffects
             return Pooling.Instantiate(prefab, position, Quaternion.identity);
         }
 
+        /// <summary>
+        /// Spawns and plays hit effects based on the hit information.
+        /// </summary>
+        /// <param name="hit">Information about the hit.</param>
+        /// <param name="effectsOffset">Offset for hit effects.</param>
         public void PlayHitEffect(HitInfo hit, Vector3 effectsOffset = default)
         {
             if (!didFireThisFrame)

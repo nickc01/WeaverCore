@@ -8,7 +8,8 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Patches
 {
-	class TMP_Text_Patches
+
+    class TMP_Text_Patches
 	{
 		static Func<TMP_Text, bool> GetPreferredWidthDirty;
 		static Func<TMP_Text, bool> GetPreferredHeightDirty;

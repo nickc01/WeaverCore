@@ -103,7 +103,34 @@ public class SaveSpecificFieldNameDrawer : PropertyDrawer
         }*/
 
         var settingsStorageProp = property.serializedObject.FindProperty(fieldNameAttribute.SaveSettingsName);
-        var settingsStorageField = scriptType.GetField(fieldNameAttribute.SaveSettingsName, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+
+        Type settingsFieldHostType = scriptType;
+
+
+        FieldInfo settingsStorageField = null;
+
+        int counter = 10;
+
+        while (settingsStorageField == null)
+        {
+            settingsStorageField = settingsFieldHostType.GetField(fieldNameAttribute.SaveSettingsName, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+            if (settingsStorageField == null)
+            {
+                settingsFieldHostType = settingsFieldHostType.BaseType;
+
+                if (settingsFieldHostType == typeof(UnityEngine.Object))
+                {
+                    break;
+                }
+                
+            }
+
+            counter--;
+            if (counter == 0)
+            {
+                break;
+            }
+        }
 
         if (settingsStorageProp == null)
         {

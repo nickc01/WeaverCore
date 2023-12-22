@@ -90,6 +90,7 @@ namespace WeaverCore.Features
             }
             set
             {
+                WeaverLog.Log("SETTING KILL COUNT TO = " + value);
                 if (saveSettings.HasField<int>(killCountSaveFieldName))
                 {
                     saveSettings.SetFieldValue(killCountSaveFieldName, value);
@@ -107,7 +108,6 @@ namespace WeaverCore.Features
         {
             get
             {
-                return true;
                 if (saveSettings.TryGetFieldValue<bool>(discoveredSaveFieldName, out var result))
                 {
                     return result;
@@ -120,6 +120,7 @@ namespace WeaverCore.Features
             }
             set
             {
+                WeaverLog.Log("SETTING DISCOVERED TO = " + value);
                 if (saveSettings.HasField<bool>(discoveredSaveFieldName))
                 {
                     saveSettings.SetFieldValue(discoveredSaveFieldName, value);
@@ -149,6 +150,7 @@ namespace WeaverCore.Features
             }
             set
             {
+                WeaverLog.Log("SETTING IS NEW NETRY TO = " + value);
                 if (saveSettings.HasField<bool>(isNewEntrySaveFieldName))
                 {
                     saveSettings.SetFieldValue(isNewEntrySaveFieldName, value);

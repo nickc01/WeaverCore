@@ -39,32 +39,32 @@ namespace WeaverCore.Editor
         /// </summary>
         public static List<Type> GetAllMods()
         {
-			modsCached = null;
+			//modsCached = null;
             if (modsCached == null)
             {
-                WeaverLog.Log("BEGINNING SEARCH FOR MODS");
+                //WeaverLog.Log("BEGINNING SEARCH FOR MODS");
                 modsCached = new List<Type>();
                 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     foreach (var type in assembly.GetTypes())
                     {
-                        if (typeof(IMod).IsAssignableFrom(type))
-                        {
-                            WeaverLog.LogWarning("Maybe found mod = " + type);
+                        //if (typeof(IMod).IsAssignableFrom(type))
+                        //{
+                            //WeaverLog.LogWarning("Maybe found mod = " + type);
 
                             if (typeof(IMod).IsAssignableFrom(type) && !type.IsGenericType && !type.IsAbstract)
                             {
-                                WeaverLog.Log("Added mod = " + type);
+                                //WeaverLog.Log("Added mod = " + type);
                                 modsCached.Add(type);
                             }
-                            else
-                            {
-                                WeaverLog.LogError("Didn't add following mod = " + type);
-                            }
-                        }
+                            //else
+                            //{
+                            //    WeaverLog.LogError("Didn't add following mod = " + type);
+                            //}
+                        //}
                     }
                 }
-                WeaverLog.Log("ENDING SEARCH FOR MODS");
+                //WeaverLog.Log("ENDING SEARCH FOR MODS");
             }
             return modsCached;
         }

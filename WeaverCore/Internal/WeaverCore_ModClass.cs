@@ -35,7 +35,8 @@ namespace WeaverCore.Internal
                 ("End_Game_Completion", "credits object")*/
                 ("Tutorial_01", "_Enemies/Crawler 1"),
                 ("Tutorial_01", "_Props/Health Cocoon"),
-                ("Tutorial_01", "_Props/Chest")
+                ("Tutorial_01", "_Props/Chest"),
+                ("Tutorial_01", "_Enemies/Buzzer")
             };
         }
 
@@ -59,7 +60,7 @@ namespace WeaverCore.Internal
 
                     var journalPrefab = enemyDeathEffects.ReflectGetField("journalUpdateMessagePrefab") as GameObject;
 
-                    Other_Preloads.JournalUpdateMsg = journalPrefab;
+                    Other_Preloads.JournalUpdateMessagePrefab = journalPrefab;
 
                     WeaverLog.Log("JOURNAL PREFAB = " + journalPrefab);
 
@@ -81,6 +82,29 @@ namespace WeaverCore.Internal
                     }
 
                     GameObject.Destroy(healthCocoonObj);
+                }
+
+                if (tutorialSceneDict.TryGetValue("_Enemies/Buzzer", out var buzzerObj))
+                {
+                    var deathEffects = buzzerObj.GetComponent("EnemyDeathEffects");
+
+                    var deathEffectsType = deathEffects.GetType();
+
+                    Other_Preloads.JournalUpdateMessagePrefab = (GameObject)deathEffectsType.GetField("journalUpdateMessagePrefab", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(deathEffects);
+
+                    var journalUpdateMessageSpawnedField = deathEffectsType.GetField("journalUpdateMessageSpawned", BindingFlags.NonPublic | BindingFlags.Static);
+
+                    Other_Preloads.GetJournalUpdateMessageSpawnedFunc = () =>
+                    {
+                        return journalUpdateMessageSpawnedField.GetValue(null) as GameObject;
+                    };
+
+                    Other_Preloads.SetJournalUpdateMessageSpawnedFunc = val =>
+                    {
+                        journalUpdateMessageSpawnedField.SetValue(null, val);
+                    };
+
+                    GameObject.Destroy(buzzerObj);
                 }
 
                 if (tutorialSceneDict.TryGetValue("_Props/Chest", out var chestObj))

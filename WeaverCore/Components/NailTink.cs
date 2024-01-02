@@ -29,6 +29,9 @@ namespace WeaverCore.Components
         [Tooltip("If set to true, then the tink effect will play even if the EntityHealth component is marked as invicible")]
         bool forceValidHit = false;
 
+        [SerializeField]
+        float evasionTime = 0.2f;
+
         string collisionLayerName = "Tinker";
         int collisionLayerID = 16;
 
@@ -37,8 +40,15 @@ namespace WeaverCore.Components
 
         public event Action<IHittable, HitInfo> OnTink;
 
+        float lastHitTime = 0;
+
         public bool Hit(HitInfo hit)
         {
+            if (Time.time < lastHitTime + evasionTime)
+            {
+                return false;
+            }
+
             if (!(hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam))
             {
                 return false;
@@ -60,6 +70,7 @@ namespace WeaverCore.Components
                 {
                     OnTink?.Invoke(this, hit);
                     StartCoroutine(HitRoutine(hit));
+                    lastHitTime = Time.time;
                     return true;
                 }
                 else
@@ -69,6 +80,7 @@ namespace WeaverCore.Components
                     {
                         OnTink?.Invoke(this, hit);
                         StartCoroutine(HitRoutine(hit));
+                        lastHitTime = Time.time;
                     }
                     return validity == EntityHealth.HitResult.Valid;
                 }
@@ -77,6 +89,7 @@ namespace WeaverCore.Components
             {
                 OnTink?.Invoke(this, hit);
                 StartCoroutine(HitRoutine(hit));
+                lastHitTime = Time.time;
                 return true;
             }
         }

@@ -13,6 +13,8 @@ namespace WeaverCore.Implementations
 	{
 		public static AudioMixer_I Instance = ImplFinder.GetImplementation<AudioMixer_I>();
 
+		public abstract MusicCue ActiveMusicCue { get; }
+
 		public abstract AudioMixer GetMixer(string mixerName);
 
 		public abstract AudioMixerSnapshot GetSnapshotForMixer(AudioMixer mixer, string snapshotName);

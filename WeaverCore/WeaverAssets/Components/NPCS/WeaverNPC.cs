@@ -224,6 +224,7 @@ namespace WeaverCore.Assets.Components
 
             var conversation = GetComponent<Conversation>();
             yield return conversation.StartConversationRoutine();
+            conversation.HideConversationBox();
             yield return EndConvo();
         }
 

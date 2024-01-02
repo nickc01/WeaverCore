@@ -20,6 +20,8 @@ namespace WeaverCore.Components
     /// </summary>
     public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable, IOnPool
     {
+        static List<IHitEffects> _hitEffectsCache = new List<IHitEffects>();
+
         /// <summary>
         /// The enum used when determining if a hit on the enemy was valid
         /// </summary>
@@ -349,10 +351,21 @@ namespace WeaverCore.Components
                     break;
             }
 
-            IHitEffects hitEffects = GetComponent<IHitEffects>();
+
+            /*IHitEffects hitEffects = GetComponent<IHitEffects>();
             if (hitEffects != null && hit.AttackType != AttackType.RuinsWater)
             {
                 hitEffects.PlayHitEffect(hit, EffectsOffset);
+            }*/
+
+            GetComponents(_hitEffectsCache);
+
+            for (int i = 0; i < _hitEffectsCache.Count; i++)
+            {
+                if (!(_hitEffectsCache[i] is MonoBehaviour) || (_hitEffectsCache[i] is MonoBehaviour c && c.enabled))
+                {
+                    _hitEffectsCache[i].PlayHitEffect(hit, EffectsOffset);
+                }
             }
         }
 

@@ -40,6 +40,38 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
+		/// Adds page markers between strings so it can be used in a dialogue conversation
+		/// </summary>
+		/// <param name="strings">The strings to pagify</param>
+		/// <returns>Returns the final string with page separators</returns>
+        public static string Pagify(params string[] strings)
+        {
+			return Pagify((IEnumerable<string>)strings);
+        }
+
+        /// <summary>
+        /// Adds page markers between strings so it can be used in a dialogue conversation
+        /// </summary>
+        /// <param name="strings">The strings to pagify</param>
+        /// <returns>Returns the final string with page separators</returns>
+        public static string Pagify(IEnumerable<string> strings)
+		{
+			const string page = "<page>";
+
+            StringBuilder builder = new StringBuilder();
+
+			foreach (var str in strings)
+			{
+				builder.Append(str);
+				builder.Append(page);
+			}
+
+			builder.Length -= page.Length;
+			WeaverLog.Log("BUILDER = " + builder.ToString());
+			return builder.ToString();
+        }
+
+		/// <summary>
 		/// All &lt;/br&gt; statements get replaced with new-line characters. You can also use &lt;/br:10&gt; for multiple lines (this creates 10 new-lines for example)
 		/// </summary>
 		public static string AddNewLines(string input)

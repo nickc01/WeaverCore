@@ -51,34 +51,43 @@ namespace WeaverCore.Assets.Components
 		/// </summary>
 		public GameObject Owner { get; private set; }
 
+		[NonSerialized]
+		TextMeshPro _label;
 		/// <summary>
 		/// The text object for displaying the label
 		/// </summary>
-		public TextMeshPro Label { get; private set; }
+		public TextMeshPro Label => _label ??= GetComponentInChildren<TextMeshPro>();
 
+		[NonSerialized]
+		SpriteRenderer _shadow;
 		/// <summary>
 		/// The sprite for displaying a drop shadow
 		/// </summary>
-		public SpriteRenderer Shadow { get; private set; }
+		public SpriteRenderer Shadow => _shadow ??= transform.Find("Shadow").GetComponent<SpriteRenderer>();
 
+		[NonSerialized]
+		SpriteRenderer _renderer;
 		/// <summary>
 		/// The main sprite of the prompt
 		/// </summary>
-		public SpriteRenderer Renderer { get; private set; }
+		public SpriteRenderer Renderer => _renderer ??= GetComponent<SpriteRenderer>();
 
 		/// <summary>
 		/// Is the prompt currently visible?
 		/// </summary>
 		public bool IsVisible { get; private set; }
-		WeaverAnimationPlayer anim;
+
+		[NonSerialized]
+		WeaverAnimationPlayer _animator;
+		public WeaverAnimationPlayer Animator => _animator ??= GetComponent<WeaverAnimationPlayer>();
 
 		private void Awake()
 		{
-			anim = GetComponent<WeaverAnimationPlayer>();
-			Label = GetComponentInChildren<TextMeshPro>();
-			Renderer = GetComponent<SpriteRenderer>();
+			//anim = GetComponent<WeaverAnimationPlayer>();
+			//Label = GetComponentInChildren<TextMeshPro>();
+			//Renderer = GetComponent<SpriteRenderer>();
 			Label.gameObject.SetActive(false);
-			Shadow = transform.Find("Shadow").GetComponent<SpriteRenderer>();
+			//Shadow = transform.Find("Shadow").GetComponent<SpriteRenderer>();
 			Shadow.gameObject.SetActive(false);
 		}
 
@@ -111,7 +120,7 @@ namespace WeaverCore.Assets.Components
 		/// </summary>
 		public void Show()
 		{
-			anim.PlayAnimation("Up");
+			Animator.PlayAnimation("Up");
 			transform.SetZPosition(0f);
 			IsVisible = true;
 			StopAllCoroutines();
@@ -123,8 +132,8 @@ namespace WeaverCore.Assets.Components
 		/// </summary>
 		public void ShowInstant()
         {
-			anim.StopCurrentAnimation();
-			Renderer.sprite = anim.AnimationData.GetFrameFromClip("Up",anim.AnimationData.GetClipFrameCount("Up") - 1);
+			Animator.StopCurrentAnimation();
+			Renderer.sprite = Animator.AnimationData.GetFrameFromClip("Up",Animator.AnimationData.GetClipFrameCount("Up") - 1);
 			transform.SetZPosition(0f);
 			IsVisible = true;
 
@@ -155,8 +164,8 @@ namespace WeaverCore.Assets.Components
 		/// </summary>
 		public void HideInstant()
         {
-			anim.StopCurrentAnimation();
-			Renderer.sprite = anim.AnimationData.GetFrameFromClip("Down", anim.AnimationData.GetClipFrameCount("Down") - 1);
+			Animator.StopCurrentAnimation();
+			Renderer.sprite = Animator.AnimationData.GetFrameFromClip("Down", Animator.AnimationData.GetClipFrameCount("Down") - 1);
 			IsVisible = false;
 			StopAllCoroutines();
 
@@ -193,7 +202,7 @@ namespace WeaverCore.Assets.Components
 		/// </summary>
 		public void Hide()
 		{
-			anim.PlayAnimation("Down");
+			Animator.PlayAnimation("Down");
 			IsVisible = false;
 			StopAllCoroutines();
 			StartCoroutine(FadeRoutine(fadedInAlpha, fadedOutAlpha, fadeOutTime));
@@ -264,7 +273,7 @@ namespace WeaverCore.Assets.Components
 
 		private void OnEnable()
 		{
-			anim.PlayAnimation("Blank");
+			Animator.PlayAnimation("Blank");
 		}
 
 		/// <summary>

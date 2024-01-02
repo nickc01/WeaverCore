@@ -4,7 +4,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {
-	public abstract class HunterJournal_I : MonoBehaviour, IImplementation
+	public abstract class HunterJournal_I : IImplementation
 	{
 		public abstract bool HasKilled(string name);
 

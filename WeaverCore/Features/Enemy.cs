@@ -316,6 +316,7 @@ namespace WeaverCore.Features
         /// <returns>Returns an IEnumerator for use in a coroutine function</returns>
         public IEnumerator RunMoveWhile(IEnemyMove move, Func<bool> predicate)
         {
+
             CurrentMove = move;
             currentMoveCancelled = false;
 

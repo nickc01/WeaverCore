@@ -16,6 +16,8 @@ public class ForcePlayerDamagerEditor : Editor
 
         //EditorGUILayout.PropertyField(serializedObject.FindProperty("shadowDashHazard"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("resetOnEnable"));
+
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("immediateDamageOnContact"));
         serializedObject.ApplyModifiedProperties();
     }
 }

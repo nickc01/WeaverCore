@@ -36,7 +36,8 @@ namespace WeaverCore.Internal
                 ("Tutorial_01", "_Enemies/Crawler 1"),
                 ("Tutorial_01", "_Props/Health Cocoon"),
                 ("Tutorial_01", "_Props/Chest"),
-                ("Tutorial_01", "_Enemies/Buzzer")
+                ("Tutorial_01", "_Enemies/Buzzer"),
+                ("Town", "_NPCs/Elderbug/Dream Dialogue")
             };
         }
 
@@ -147,6 +148,44 @@ namespace WeaverCore.Internal
                     }
 
                     GameObject.Destroy(chestObj);
+                }
+            }
+
+            if (preloadedObjects.TryGetValue("Town", out var townSceneDict))
+            {
+                if (townSceneDict.TryGetValue("_NPCs/Elderbug/Dream Dialogue", out var dreamDialogueObj))
+                {
+                    var npcPlayMakerFSM = PlayMakerUtilities.GetPlaymakerFSMOnObject(dreamDialogueObj, "npc_dream_dialogue");
+
+                    var impactState = PlayMakerUtilities.FindStateOnFSM(PlayMakerUtilities.GetFSMOnPlayMakerComponent(npcPlayMakerFSM), "Impact");
+
+                    var actionData = PlayMakerUtilities.GetActionData(impactState);
+
+                    var fsmObjects = (IList)actionData.GetType().GetField("fsmGameObjectParams", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(actionData);
+
+                    Type fsmObjectType = null;
+                    PropertyInfo valueProperty = null;
+
+                    foreach (var fsmObject in fsmObjects)
+                    {
+                        if (fsmObjectType == null)
+                        {
+                            fsmObjectType = fsmObject.GetType();
+                            valueProperty = fsmObjectType.GetProperty("Value");
+                        }
+
+                        var gm = valueProperty.GetValue(fsmObject) as GameObject;
+                        if (gm != null)
+                        {
+                            if (gm.name == "dream_area_effect")
+                            {
+                                Other_Preloads.dream_area_effectPrefab = gm;
+                                break;
+                            }
+                        }
+                    }
+
+                    GameObject.Destroy(dreamDialogueObj);
                 }
             }
 

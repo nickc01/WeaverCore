@@ -39,7 +39,7 @@ namespace WeaverCore.Game.Implementations
                     WeaverAudio.PlayAtPoint(roarSound, source.transform.position);
                 }
 
-                var emitter = RoarEmitter.Spawn(source.transform.position);
+                var emitter = RoarEmitter.Spawn(spawnPosition);
 
                 emitter.stopAfterTime = duration;
 

@@ -104,7 +104,11 @@ namespace WeaverCore.Assets.Components
 				prefab = DefaultPrefab;
             }
 
-			return Pooling.Instantiate(prefab, position, Quaternion.identity);
+			var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
+
+			instance.transform.localScale = prefab.transform.localScale;
+
+			return instance;
 		}
 
         public virtual void OnPool()

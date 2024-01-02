@@ -178,7 +178,9 @@ namespace WeaverCore.Game.Implementations
 		static FieldInfo cueSnapshotSetter = null;
 		static FieldInfo cueChannelEnabledSetter = null;
 
-		public override void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
+		public override MusicCue ActiveMusicCue => GameManager.instance.AudioManager.CurrentMusicCue;
+
+        public override void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
 		{
 			if (currentCue != null)
 			{

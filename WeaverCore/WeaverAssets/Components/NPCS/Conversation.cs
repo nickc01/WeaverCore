@@ -109,7 +109,7 @@ namespace WeaverCore.Assets.Components
         /// <summary>
         /// Shows the conversation box
         /// </summary>
-        protected void ShowConversationBox()
+        public void ShowConversationBox()
         {
             if (!boxVisible)
             {
@@ -125,7 +125,7 @@ namespace WeaverCore.Assets.Components
         /// <summary>
         /// Hides the conversation box
         /// </summary>
-        protected void HideConversationBox()
+        public void HideConversationBox()
         {
             if (boxVisible)
             {
@@ -155,7 +155,6 @@ namespace WeaverCore.Assets.Components
                     EventManager.SendEventToGameObject("TALK START", gameObject, gameObject);
                     StartDialogBoxConversation(text.GetComponent("DialogueBox"), message);
                     yield return new WaitUntil(() => !talking);
-                    HideConversationBox();
                     EventManager.SendEventToGameObject("TALK END", gameObject, gameObject);
                 }
                 else
@@ -192,7 +191,7 @@ namespace WeaverCore.Assets.Components
         }
 
         /// <summary>
-        /// Presents a yes/no question prompt to the player
+        /// Presents a yes/no question prompt to the player. The result is stored in <see cref="DialogBoxResult"/>
         /// </summary>
         /// <param name="message">The message to say in the prompt</param>
         protected IEnumerator PresentYesNoQuestion(string message)
@@ -201,7 +200,7 @@ namespace WeaverCore.Assets.Components
         }
 
         /// <summary>
-        /// Presents a yes/no question prompt to the player
+        /// Presents a yes/no question prompt to the player. The result is stored in <see cref="DialogBoxResult"/>
         /// </summary>
         /// <param name="message">The message to speak</param>
         /// <param name="geoCost">How much geo the player need to pay to select "Yes"</param>

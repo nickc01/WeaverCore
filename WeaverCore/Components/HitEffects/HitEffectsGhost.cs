@@ -9,7 +9,7 @@ namespace WeaverCore.Components.HitEffects
 {
     public class HitEffectsGhost : MonoBehaviour, IHitEffects
     {
-        public Vector3 effectOffset;
+        //public Vector3 effectOffset;
 
         [SerializeField]
         AudioClip hitSound;
@@ -74,7 +74,7 @@ namespace WeaverCore.Components.HitEffects
                 {
                     spriteFlash.flashFocusHeal();
                 }
-                GameObject ghostHitObj = Pooling.Instantiate(ghostHitPt, transform.position + effectOffset, Quaternion.identity);
+                GameObject ghostHitObj = Pooling.Instantiate(ghostHitPt, transform.position + effectsOffset, Quaternion.identity);
                 switch (DirectionUtilities.DegreesToDirection(hit.Direction))
                 {
                     case CardinalDirection.Right:
@@ -92,7 +92,7 @@ namespace WeaverCore.Components.HitEffects
                                 OriginVariationX = 0f,
                                 OriginVariationY = 0f
                             };
-                            FlingUtilities.SpawnPooledAndFling(config, transform, effectOffset);
+                            FlingUtilities.SpawnPooledAndFling(config, transform, effectsOffset);
                             config = new FlingUtils.Config
                             {
                                 Prefab = slashEffectGhost2,
@@ -105,7 +105,7 @@ namespace WeaverCore.Components.HitEffects
                                 OriginVariationX = 0f,
                                 OriginVariationY = 0f
                             };
-                            FlingUtilities.SpawnPooledAndFling(config, transform, effectOffset);
+                            FlingUtilities.SpawnPooledAndFling(config, transform, effectsOffset);
                             break;
                         }
                     case CardinalDirection.Left:
@@ -123,7 +123,7 @@ namespace WeaverCore.Components.HitEffects
                                 OriginVariationX = 0f,
                                 OriginVariationY = 0f
                             };
-                            FlingUtilities.SpawnPooledAndFling(config, transform, effectOffset);
+                            FlingUtilities.SpawnPooledAndFling(config, transform, effectsOffset);
                             config = new FlingUtils.Config
                             {
                                 Prefab = slashEffectGhost2,
@@ -136,7 +136,7 @@ namespace WeaverCore.Components.HitEffects
                                 OriginVariationX = 0f,
                                 OriginVariationY = 0f
                             };
-                            FlingUtilities.SpawnPooledAndFling(config, transform, effectOffset);
+                            FlingUtilities.SpawnPooledAndFling(config, transform, effectsOffset);
                             break;
                         }
                     case CardinalDirection.Up:
@@ -154,7 +154,7 @@ namespace WeaverCore.Components.HitEffects
                                 OriginVariationX = 0f,
                                 OriginVariationY = 0f
                             };
-                            FlingUtilities.SpawnPooledAndFling(config, transform, effectOffset);
+                            FlingUtilities.SpawnPooledAndFling(config, transform, effectsOffset);
                             config = new FlingUtils.Config
                             {
                                 Prefab = slashEffectGhost2,
@@ -167,7 +167,7 @@ namespace WeaverCore.Components.HitEffects
                                 OriginVariationX = 0f,
                                 OriginVariationY = 0f
                             };
-                            FlingUtilities.SpawnPooledAndFling(config, transform, effectOffset);
+                            FlingUtilities.SpawnPooledAndFling(config, transform, effectsOffset);
                             break;
                         }
                     case CardinalDirection.Down:
@@ -185,7 +185,7 @@ namespace WeaverCore.Components.HitEffects
                                 OriginVariationX = 0f,
                                 OriginVariationY = 0f
                             };
-                            FlingUtilities.SpawnPooledAndFling(config, transform, effectOffset);
+                            FlingUtilities.SpawnPooledAndFling(config, transform, effectsOffset);
                             config = new FlingUtils.Config
                             {
                                 Prefab = slashEffectGhost2,
@@ -198,7 +198,7 @@ namespace WeaverCore.Components.HitEffects
                                 OriginVariationX = 0f,
                                 OriginVariationY = 0f
                             };
-                            FlingUtilities.SpawnPooledAndFling(config, transform, effectOffset);
+                            FlingUtilities.SpawnPooledAndFling(config, transform, effectsOffset);
                             break;
                         }
                 }

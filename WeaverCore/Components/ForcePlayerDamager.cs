@@ -14,6 +14,10 @@ namespace WeaverCore.Components
         static Func<HeroController, bool> CanTakeDamage;
         static Action<HeroController> CancelDash;
 
+        [SerializeField]
+        [Tooltip("Should damage be triggered immediately upon contact with the player?")]
+        bool immediateDamageOnContact = true;
+
         public new HazardType hazardType
         {
             get => (HazardType)base.hazardType;
@@ -41,6 +45,15 @@ namespace WeaverCore.Components
                 }
 
                 controller.TakeDamage(source, damageSide, damageAmount, (int)hazardType);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (immediateDamageOnContact && (collision.CompareTag("Player") || collision.CompareTag("HeroBox")))
+            {
+                WeaverLog.Log("IMMEDIATELY DAMAGING");
+                ForceDamage(HeroController.instance, gameObject, CollisionSide.bottom, damageDealt, hazardType);
             }
         }
 

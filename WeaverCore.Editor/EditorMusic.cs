@@ -71,6 +71,7 @@ namespace WeaverCore.Editor
 			}
 		}*/
 
+		public MusicCue ActiveMusicCue { get; private set; }
 
 		public static EditorMusic Instance
 		{
@@ -174,6 +175,8 @@ namespace WeaverCore.Editor
             ApplyClipToSource(MainAlt, musicCue.GetChannelInfo(MusicChannels.MainAlt));
             ApplyClipToSource(Sub, musicCue.GetChannelInfo(MusicChannels.Sub));
             ApplyClipToSource(Tension, musicCue.GetChannelInfo(MusicChannels.Tension));
+
+			ActiveMusicCue = musicCue;
 
             if (applySnapshot)
             {

@@ -427,6 +427,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\G_AudioMixer_I.cs" />
+    <Compile Include="Implementations\G_DreamnailUtilities_I.cs" />
     <Compile Include="Implementations\G_GeoCounter_I.cs" />
     <Compile Include="Implementations\G_HitTaker_I.cs" />
     <Compile Include="Implementations\G_HunterJournal_I.cs" />
@@ -445,13 +446,20 @@
     <Compile Include="Misc\HealthManagerProxy.cs" />
     <Compile Include="Misc\SettingStorage.cs" />
     <Compile Include="Misc\SpriteFlashProxy.cs" />
+    <Compile Include="Misc\WeaverJournalEntryStats.cs" />
     <Compile Include="Patches\AcidCorpseSplash_Patches.cs" />
+    <Compile Include="Patches\Application_Patches.cs" />
+    <Compile Include="Patches\BeginSceneTransition_Patches.cs" />
     <Compile Include="Patches\CameraTarget_Patches.cs" />
     <Compile Include="Patches\FadeGroup_Patches.cs" />
     <Compile Include="Patches\GameManager_Patches.cs" />
     <Compile Include="Patches\HUDCamera_Patches.cs" />
     <Compile Include="Patches\JournalList_Patches.cs" />
+    <Compile Include="Patches\ObjectPool_Patches.cs" />
     <Compile Include="Patches\SaveSlotBackgrounds_Patches.cs" />
+    <Compile Include="Patches\SendDreamImpact_Patches.cs" />
+    <Compile Include="Patches\TESTING_Patches.cs" />
+    <Compile Include="Patches\Test_Patches.cs" />
     <Compile Include="Patches\TextMeshPro_Patches.cs" />
     <Compile Include="Patches\TK2DCamera_Patches.cs" />
     <Compile Include="Patches\TMP_Text_Patches.cs" />

@@ -11,6 +11,10 @@ namespace WeaverCore.Utilities
     /// </summary>
     public static class ListUtilities
 	{
+		static class GenericGlobals<T>
+		{
+			public static Func<List<T>, T[]> internalArrayGetter;
+		}
 		/// <summary>
 		/// Adds an item to the list if it's not already in it
 		/// </summary>
@@ -145,7 +149,22 @@ namespace WeaverCore.Utilities
 			return hash;
 		}
 
-		public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
+        private static Random rng = new Random();
+
+        public static void ShuffleInPlace<T>(this IList<T> source)
+        {
+            int n = source.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = source[k];
+                source[k] = source[n];
+                source[n] = value;
+            }
+        }
+
+        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
 		{
 			return source.OrderBy(e => UnityEngine.Random.Range(0f,1f));
 		}

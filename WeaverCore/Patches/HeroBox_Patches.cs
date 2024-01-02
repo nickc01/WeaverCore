@@ -40,7 +40,7 @@ public static class HeroBox_Patches
     {
         if (otherCollider.TryGetComponent<ForcePlayerDamager>(out var forceDamager))
         {
-            //WeaverLog.Log("HAS FORCED BUFFER HIT");
+            WeaverLog.Log("HAS FORCED BUFFER HIT");
             damageDealtSet(__instance, forceDamager.damageDealt);
             hazardTypeSet(__instance, (int)forceDamager.hazardType);
             damagingObjectSet(__instance, otherCollider.gameObject);

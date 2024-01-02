@@ -5,12 +5,13 @@ using System.Text;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// A cache that stores objects in a dictonary structure. When an object gets destroyed or garbage collected, the cache object automatically removes it
-	/// </summary>
-	/// <typeparam name="TKey">The key data type</typeparam>
-	/// <typeparam name="TValue">The value data type</typeparam>
-	public sealed class Cache<TKey,TValue> where TValue : class
+
+    /// <summary>
+    /// A cache that stores objects in a dictonary structure. When an object gets destroyed or garbage collected, the cache object automatically removes it
+    /// </summary>
+    /// <typeparam name="TKey">The key data type</typeparam>
+    /// <typeparam name="TValue">The value data type</typeparam>
+    public sealed class Cache<TKey,TValue> where TValue : class
 	{
 		Dictionary<TKey, WeakReference> cachedObjects = new Dictionary<TKey, WeakReference>();
 

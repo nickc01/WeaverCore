@@ -1,4 +1,4 @@
-﻿using Modding;
+using Modding;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -8,13 +8,16 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Base class for any items dropped on the floor that the player can collect
+    /// </summary>
     public abstract class DroppedItem : MonoBehaviour
     {
         [field: SerializeField]
         public SaveSpecificSettings SettingsStorage { get; set; } = null;
 
         [field: SerializeField]
-        [field: Tooltip("The bool field in Settings Storage that will store if this item has been collected. Leave this field empty if this item can always be collected.")]
+        [field: Tooltip("The bool field in Settings Storage that will store whether this item has been collected. Leave this field empty if this item can always be collected.")]
         public string SettingsField { get; set; } = "";
 
         [field: SerializeField]

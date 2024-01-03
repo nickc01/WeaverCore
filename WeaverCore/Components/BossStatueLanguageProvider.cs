@@ -1,59 +1,48 @@
-﻿using Modding;
+using Modding;
 using UnityEngine;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Used for providing simple strings for a Boss Staru's Name and Description
+    /// </summary>
     [RequireComponent(typeof(WeaverBossStatue))]
     public class BossStatueLanguageProvider : MonoBehaviour
     {
-        /*[Header("Boss Name")]
-        [Space]
+        /// <summary>
+        /// The localized name value for the boss.
+        /// </summary>
         [SerializeField]
-        string nameKey;
-
-        [SerializeField]
-        string nameSheet;*/
-
-        [SerializeField]
+        [Tooltip("The localized name value for the boss.")]
         string nameValue;
 
-        /*[Header("Boss Description")]
-        [Space]
+        /// <summary>
+        /// The localized description value for the boss.
+        /// </summary>
         [SerializeField]
-        string descKey;
-
-        [SerializeField]
-        string descSheet;*/
-
-        [SerializeField]
+        [Tooltip("The localized description value for the boss.")]
         string descValue;
 
-
-        /*[Header("Dream Boss Name")]
-        [Space]
+        /// <summary>
+        /// The localized dream boss name value.
+        /// </summary>
         [SerializeField]
-        string dreamNameKey;
-
-        [SerializeField]
-        string dreamNameSheet;*/
-
-        [SerializeField]
+        [Tooltip("The localized dream boss name value.")]
         string dreamNameValue;
 
-        /*[Header("Dream Boss Description")]
-        [Space]
+        /// <summary>
+        /// The localized dream boss description value.
+        /// </summary>
         [SerializeField]
-        string dreamDescKey;
-
-        [SerializeField]
-        string dreamDescSheet;*/
-
-        [SerializeField]
+        [Tooltip("The localized dream boss description value.")]
         string dreamDescValue;
 
+        /// <summary>
+        /// The locked text displayed when the statue hasn't been unlocked yet.
+        /// </summary>
         [SerializeField]
+        [Tooltip("The locked text displayed when the statue hasn't been unlocked yet.")]
         string lockedText;
-
 
         BossStatue statue;
         DialogueInspectRegion lockedInspect;
@@ -61,7 +50,6 @@ namespace WeaverCore.Components
         private void Awake()
         {
             statue = GetComponent<BossStatue>();
-
             lockedInspect = transform.Find("Inspect_Locked").GetComponent<DialogueInspectRegion>();
         }
 
@@ -70,6 +58,9 @@ namespace WeaverCore.Components
             ModHooks.LanguageGetHook += ModHooks_LanguageGetHook;
         }
 
+        /// <summary>
+        /// Handles the language get hook and returns the localized text based on the provided key and sheet title.
+        /// </summary>
         private string ModHooks_LanguageGetHook(string key, string sheetTitle, string orig)
         {
             if (key == statue.bossDetails.nameKey && sheetTitle == statue.bossDetails.nameSheet)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,30 +6,46 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
+    /// <summary>
+    /// Represents a region the player can inspect that triggers dialogue.
+    /// </summary>
     public class DialogueInspectRegion : InspectRegion
     {
+        /// <summary>
+        /// Enumeration for text centering options.
+        /// </summary>
         public enum TextCentering
         {
             Center,
             CenterTop
         }
 
+        /// <summary>
+        /// Gets or sets the text alignment.
+        /// </summary>
         [field: SerializeField]
         public TextCentering TextAlignment { get; private set; } = TextCentering.Center;
 
-        bool damaged = false;
+        private bool damaged = false;
 
+        /// <summary>
+        /// Gets or sets the conversation text key.
+        /// </summary>
         [field: SerializeField]
         public string TextConvo { get; set; }
 
+        /// <summary>
+        /// Gets or sets the text sheet.
+        /// </summary>
         [field: SerializeField]
         public string TextSheet { get; set; } = "CP3";
 
-        bool dialogActive = false;
+        private bool dialogActive = false;
 
+        /// <summary>
+        /// Gets a value indicating whether the dialogue is currently active.
+        /// </summary>
         public bool Talking => dialogActive;
-
 
         protected override void Awake()
         {
@@ -48,6 +64,12 @@ namespace WeaverCore.Components
             EventManager.OnEventTriggered -= EventManager_OnEventTriggered;
         }
 
+        /// <summary>
+        /// Handles the knight being damaged during dialogue.
+        /// </summary>
+        /// <param name="hazardType">The type of hazard.</param>
+        /// <param name="damageAmount">The amount of damage.</param>
+        /// <returns>The adjusted damage amount.</returns>
         private int DialogueInspectRegion_OnKnightDamaged(int hazardType, int damageAmount)
         {
             damaged = true;
@@ -83,7 +105,7 @@ namespace WeaverCore.Components
             }
         }
 
-        IEnumerator MainRoutine(GameObject dialogueManager)
+        private IEnumerator MainRoutine(GameObject dialogueManager)
         {
             var text = dialogueManager.transform.Find("Text").GetComponent<TextMeshPro>();
 
@@ -119,6 +141,13 @@ namespace WeaverCore.Components
             text.alignment = TextAlignmentOptions.TopLeft;
         }
 
+        /// <summary>
+        /// Handles the event triggered by the EventManager.
+        /// </summary>
+        /// <param name="eventName">The name of the event.</param>
+        /// <param name="source">The source GameObject of the event.</param>
+        /// <param name="destination">The destination GameObject of the event.</param>
+        /// <param name="eventType">The type of event.</param>
         private void EventManager_OnEventTriggered(string eventName, GameObject source, GameObject destination, EventManager.EventType eventType)
         {
             if (dialogActive && eventType == EventManager.EventType.Broadcast && eventName == "CONVO_FINISH")

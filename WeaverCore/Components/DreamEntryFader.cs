@@ -1,24 +1,30 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using WeaverCore.Enums;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
+    /// <summary>
+    /// Manages the fading effect when entering a dream sequence.
+    /// </summary>
     public class DreamEntryFader : MonoBehaviour
-	{
+    {
         [SerializeField]
-        [Tooltip("Specifies which specific door in the scene should the player come from for this entry fader to activate. Leave blank for any entry door")]
+        [Tooltip("Specifies which door in the scene should the player come out of for this entry fader to activate. Leave blank for any entry door")]
         protected string entryDoor = "";
 
         [SerializeField]
+        [Tooltip("Does the hero face left upon entry?")]
         protected bool heroFacesLeft = false;
 
         [SerializeField]
+        [Tooltip("The audio clip to play when entering the dream.")]
         protected AudioClip dreamEnterAudio;
 
-
+        /// <summary>
+        /// Gets the entry door associated with this DreamEntryFader.
+        /// </summary>
         public string EntryDoor => entryDoor;
 
 

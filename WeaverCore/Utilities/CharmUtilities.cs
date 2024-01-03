@@ -82,7 +82,7 @@ namespace WeaverCore.Utilities
 
             addedCustomCharms.Add(ids[0], charm);
             charmsToID.Add(charm, ids[0]);
-            ($"Registered Charm {charm.GetType().FullName} - {ids[0]}");
+            Debug.Log($"Registered Charm {charm.GetType().FullName} - {ids[0]}");
 
             return ids[0];
 #endif

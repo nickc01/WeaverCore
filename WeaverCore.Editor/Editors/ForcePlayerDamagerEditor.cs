@@ -4,6 +4,7 @@ using WeaverCore.Components;
 
 
 [CustomEditor(typeof(ForcePlayerDamager))]
+[CanEditMultipleObjects]
 public class ForcePlayerDamagerEditor : Editor
 {
     public override void OnInspectorGUI()

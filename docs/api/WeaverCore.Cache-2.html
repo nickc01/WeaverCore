@@ -1,30 +1,30 @@
 ﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
-  
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Cache&lt;TKey, TValue&gt;
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Cache&lt;TKey, TValue&gt;
-   ">
-    <meta name="generator" content="docfx 2.58.9.0">
-    
+ ">
+    <meta name="generator" content="docfx ">
+  
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+  
+  
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../index.html">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
@@ -48,7 +48,7 @@
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -58,7 +58,7 @@
         </div>
       </header>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
           <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
           <div class="sidetoggle collapse" id="sidetoggle">
@@ -68,27 +68,27 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="WeaverCore.Cache`2">
-  
-  
+
+
+
   <h1 id="WeaverCore_Cache_2" data-uid="WeaverCore.Cache`2" class="text-break">Class Cache&lt;TKey, TValue&gt;
-  </h1>
+</h1>
   <div class="markdown level0 summary"><p>A cache that stores objects in a dictonary structure. When an object gets destroyed or garbage collected, the cache object automatically removes it</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">Cache&lt;TKey, TValue&gt;</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.html">WeaverCore</a></h6>
   <h6><strong>Assembly</strong>: WeaverCore.dll</h6>
   <h5 id="WeaverCore_Cache_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class Cache&lt;TKey, TValue&gt;
-    where TValue : class</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class Cache&lt;TKey, TValue&gt; where TValue : class</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Name</th>
@@ -109,25 +109,25 @@
     </tbody>
   </table>
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_CacheSize.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.CacheSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Cache_2_CacheSize.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.CacheSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L22">View Source</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Cache.cs/#L23">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_CacheSize_" data-uid="WeaverCore.Cache`2.CacheSize*"></a>
   <h4 id="WeaverCore_Cache_2_CacheSize" data-uid="WeaverCore.Cache`2.CacheSize">CacheSize</h4>
   <div class="markdown level1 summary"><p>The amount of objects in the cache. This will include objects that are no longer alive. You can get an accurate count by calling <a class="xref" href="WeaverCore.Cache-2.html#WeaverCore_Cache_2_RefreshCache">RefreshCache()</a> first</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int CacheSize { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -136,31 +136,31 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_CacheObject__0__1_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.CacheObject(%600%2C%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Cache_2_CacheObject__0__1_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.CacheObject(%600%2C%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L128">View Source</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Cache.cs/#L129">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_CacheObject_" data-uid="WeaverCore.Cache`2.CacheObject*"></a>
   <h4 id="WeaverCore_Cache_2_CacheObject__0__1_" data-uid="WeaverCore.Cache`2.CacheObject(`0,`1)">CacheObject(TKey, TValue)</h4>
   <div class="markdown level1 summary"><p>Caches an object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void CacheObject(TKey key, TValue value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -185,22 +185,22 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_GetCachedObject__0_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.GetCachedObject(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Cache_2_GetCachedObject__0_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.GetCachedObject(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L72">View Source</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Cache.cs/#L73">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_GetCachedObject_" data-uid="WeaverCore.Cache`2.GetCachedObject*"></a>
   <h4 id="WeaverCore_Cache_2_GetCachedObject__0_" data-uid="WeaverCore.Cache`2.GetCachedObject(`0)">GetCachedObject(TKey)</h4>
   <div class="markdown level1 summary"><p>Gets the cached object based on the key. Make sure to use <a class="xref" href="WeaverCore.Cache-2.html#WeaverCore_Cache_2_IsCached__0_">IsCached(TKey)</a> before calling, or it could thrown an exception</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TValue GetCachedObject(TKey key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -218,7 +218,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -235,22 +235,22 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_GetCachedObject__0__1__.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.GetCachedObject(%600%2C%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Cache_2_GetCachedObject__0__1__.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.GetCachedObject(%600%2C%601%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L91">View Source</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Cache.cs/#L92">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_GetCachedObject_" data-uid="WeaverCore.Cache`2.GetCachedObject*"></a>
   <h4 id="WeaverCore_Cache_2_GetCachedObject__0__1__" data-uid="WeaverCore.Cache`2.GetCachedObject(`0,`1@)">GetCachedObject(TKey, out TValue)</h4>
   <div class="markdown level1 summary"><p>Gets the cached object based on the key</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool GetCachedObject(TKey key, out TValue obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -274,7 +274,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -283,7 +283,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>Returns whether the object was in the cache or not</p>
 </td>
       </tr>
@@ -291,22 +291,22 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_IsCached__0_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.IsCached(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Cache_2_IsCached__0_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.IsCached(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L59">View Source</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Cache.cs/#L60">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_IsCached_" data-uid="WeaverCore.Cache`2.IsCached*"></a>
   <h4 id="WeaverCore_Cache_2_IsCached__0_" data-uid="WeaverCore.Cache`2.IsCached(`0)">IsCached(TKey)</h4>
   <div class="markdown level1 summary"><p>Checks if an object under the specified key is still alive</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool IsCached(TKey key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -324,7 +324,7 @@
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -333,7 +333,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>Returns whether the object is still in the cache</p>
 </td>
       </tr>
@@ -341,38 +341,38 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_RefreshCache.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.RefreshCache%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Cache_2_RefreshCache.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.RefreshCache%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L36">View Source</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Cache.cs/#L37">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_RefreshCache_" data-uid="WeaverCore.Cache`2.RefreshCache*"></a>
   <h4 id="WeaverCore_Cache_2_RefreshCache" data-uid="WeaverCore.Cache`2.RefreshCache">RefreshCache()</h4>
   <div class="markdown level1 summary"><p>Refreshes the cache by removing deleted objects</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void RefreshCache()</code></pre>
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2_RemoveCachedObject__0_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.RemoveCachedObject(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Cache_2_RemoveCachedObject__0_.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602.RemoveCachedObject(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L112">View Source</a>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Cache.cs/#L113">View Source</a>
   </span>
   <a id="WeaverCore_Cache_2_RemoveCachedObject_" data-uid="WeaverCore.Cache`2.RemoveCachedObject*"></a>
   <h4 id="WeaverCore_Cache_2_RemoveCachedObject__0_" data-uid="WeaverCore.Cache`2.RemoveCachedObject(`0)">RemoveCachedObject(TKey)</h4>
   <div class="markdown level1 summary"><p>Removes an object from the cache</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void RemoveCachedObject(TKey key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -389,18 +389,38 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectCallMethod_System_Object_System_String_System_Object___System_Reflection_BindingFlags_">ReflectionUtilities.ReflectCallMethod(object, string, object[], BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectGetField_System_Object_System_String_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectGetField(object, string, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectGetMethod_System_Object_System_String_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectGetMethod(object, string, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectGetProperty_System_Object_System_String_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectGetProperty(object, string, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectSetField_System_Object_System_String_System_Object_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectSetField(object, string, object, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectSetProperty_System_Object_System_String_System_Object_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectSetProperty(object, string, object, BindingFlags)</a>
+  </div>
+
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/new/develop/apiSpec/new?filename=WeaverCore_Cache_2.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Cache_2.md&amp;value=---%0Auid%3A%20WeaverCore.Cache%602%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/nickc01/WeaverCore/blob/develop/WeaverCore/Cache.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Cache.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -416,9 +436,9 @@
                   <i aria-hidden="true">☾</i>
                 </div>
               </div>
-          
+
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <h5>In This Article</h5>
+              <h5>In this article</h5>
               <div></div>
               <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
               </nav>
@@ -426,7 +446,7 @@
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -435,8 +455,8 @@
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-              
-              <span>Generated by <strong>DocFX</strong></span>
+        
+        <span>Generated by <strong>DocFX</strong></span>
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">
               <div class="icon">
@@ -454,8 +474,8 @@
         </div>
         <script type="text/javascript" src="../styles/toggle-theme.js"></script>
       </footer>    </div>
-    
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>
     <script type="text/javascript" src="../styles/main.js"></script>
   </body>

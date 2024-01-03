@@ -1,0 +1,579 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class InspectRegion
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class InspectRegion
+ ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WeaverCore.Components.InspectRegion">
+
+
+
+  <h1 id="WeaverCore_Components_InspectRegion" data-uid="WeaverCore.Components.InspectRegion" class="text-break">Class InspectRegion
+</h1>
+  <div class="markdown level0 summary"><p>Used for creating regions the player can inspect. Useful for picking up items or talking to NPCs.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">Object</span></div>
+    <div class="level2"><span class="xref">Component</span></div>
+    <div class="level3"><span class="xref">Behaviour</span></div>
+    <div class="level4"><span class="xref">MonoBehaviour</span></div>
+    <div class="level5"><span class="xref">InspectRegion</span></div>
+      <div class="level6"><a class="xref" href="WeaverCore.Components.DialogueInspectRegion.html">DialogueInspectRegion</a></div>
+      <div class="level6"><a class="xref" href="WeaverCore.Components.GGStatue.GGStatueInspect.html">GGStatueInspect</a></div>
+      <div class="level6"><a class="xref" href="WeaverCore.Components.ItemInspectRegion.html">ItemInspectRegion</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.html">WeaverCore</a>.<a class="xref" href="WeaverCore.Components.html">Components</a></h6>
+  <h6><strong>Assembly</strong>: WeaverCore.dll</h6>
+  <h5 id="WeaverCore_Components_InspectRegion_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class InspectRegion : MonoBehaviour</code></pre>
+  </div>
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_OnInspect.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.OnInspect%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L65">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_InspectRegion_OnInspect" data-uid="WeaverCore.Components.InspectRegion.OnInspect">OnInspect</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the region is inspected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnInspect</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEvent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_heroLooksUp.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.heroLooksUp%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L52">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_InspectRegion_heroLooksUp" data-uid="WeaverCore.Components.InspectRegion.heroLooksUp">heroLooksUp</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+protected bool heroLooksUp</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_promptPrefab.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.promptPrefab%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L20">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_InspectRegion_promptPrefab" data-uid="WeaverCore.Components.InspectRegion.promptPrefab">promptPrefab</h4>
+  <div class="markdown level1 summary"><p>The prefab for the inspection prompt.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeField]
+[Tooltip(&quot;Prefab for the inspection prompt.&quot;)]
+public WeaverArrowPrompt promptPrefab</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Assets.Components.WeaverArrowPrompt.html">WeaverArrowPrompt</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_EnableKnightDamageInterrupt.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.EnableKnightDamageInterrupt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L54">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_EnableKnightDamageInterrupt_" data-uid="WeaverCore.Components.InspectRegion.EnableKnightDamageInterrupt*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_EnableKnightDamageInterrupt" data-uid="WeaverCore.Components.InspectRegion.EnableKnightDamageInterrupt">EnableKnightDamageInterrupt</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableKnightDamageInterrupt { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_FullyInspected.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.FullyInspected%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L60">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_FullyInspected_" data-uid="WeaverCore.Components.InspectRegion.FullyInspected*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_FullyInspected" data-uid="WeaverCore.Components.InspectRegion.FullyInspected">FullyInspected</h4>
+  <div class="markdown level1 summary"><p>Is set to true if the region has been fully inspected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FullyInspected { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_Inspectable.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.Inspectable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L36">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_Inspectable_" data-uid="WeaverCore.Components.InspectRegion.Inspectable*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_Inspectable" data-uid="WeaverCore.Components.InspectRegion.Inspectable">Inspectable</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Inspectable { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_PlayerInRange.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.PlayerInRange%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L29">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_PlayerInRange_" data-uid="WeaverCore.Components.InspectRegion.PlayerInRange*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_PlayerInRange" data-uid="WeaverCore.Components.InspectRegion.PlayerInRange">PlayerInRange</h4>
+  <div class="markdown level1 summary"><p>Is set to true if the player is currently within range of inspecting.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PlayerInRange { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_PlayerInspecting.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.PlayerInspecting%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L34">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_PlayerInspecting_" data-uid="WeaverCore.Components.InspectRegion.PlayerInspecting*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_PlayerInspecting" data-uid="WeaverCore.Components.InspectRegion.PlayerInspecting">PlayerInspecting</h4>
+  <div class="markdown level1 summary"><p>Is set to true if the player is currently inspecting.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PlayerInspecting { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_Awake.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.Awake%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L74">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_Awake_" data-uid="WeaverCore.Components.InspectRegion.Awake*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_Awake" data-uid="WeaverCore.Components.InspectRegion.Awake">Awake()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Awake()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_OnDestroy.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.OnDestroy%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L118">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_OnDestroy_" data-uid="WeaverCore.Components.InspectRegion.OnDestroy*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_OnDestroy" data-uid="WeaverCore.Components.InspectRegion.OnDestroy">OnDestroy()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDestroy()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_OnDisable.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.OnDisable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L112">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_OnDisable_" data-uid="WeaverCore.Components.InspectRegion.OnDisable*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_OnDisable" data-uid="WeaverCore.Components.InspectRegion.OnDisable">OnDisable()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDisable()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_OnEnable.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.OnEnable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L106">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_OnEnable_" data-uid="WeaverCore.Components.InspectRegion.OnEnable*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_OnEnable" data-uid="WeaverCore.Components.InspectRegion.OnEnable">OnEnable()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnEnable()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_OnInspectRoutine.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.OnInspectRoutine%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L270">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_OnInspectRoutine_" data-uid="WeaverCore.Components.InspectRegion.OnInspectRoutine*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_OnInspectRoutine" data-uid="WeaverCore.Components.InspectRegion.OnInspectRoutine">OnInspectRoutine()</h4>
+  <div class="markdown level1 summary"><p>Called to play the default item pickup animation and trigger the OnInspect UnityEvent. You can override this to provide your own custom animations</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract IEnumerator OnInspectRoutine()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_Reset.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.Reset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L101">View Source</a>
+  </span>
+  <a id="WeaverCore_Components_InspectRegion_Reset_" data-uid="WeaverCore.Components.InspectRegion.Reset*"></a>
+  <h4 id="WeaverCore_Components_InspectRegion_Reset" data-uid="WeaverCore.Components.InspectRegion.Reset">Reset()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Reset()</code></pre>
+  </div>
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion_OnKnightDamaged.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion.OnKnightDamaged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L70">View Source</a>
+  </span>
+  <h4 id="WeaverCore_Components_InspectRegion_OnKnightDamaged" data-uid="WeaverCore.Components.InspectRegion.OnKnightDamaged">OnKnightDamaged</h4>
+  <div class="markdown level1 summary"><p>Event triggered after the Knight takes damage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event AfterTakeDamageHandler OnKnightDamaged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Modding.Delegates.AfterTakeDamageHandler.html">AfterTakeDamageHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectCallMethod_System_Object_System_String_System_Object___System_Reflection_BindingFlags_">ReflectionUtilities.ReflectCallMethod(object, string, object[], BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectGetField_System_Object_System_String_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectGetField(object, string, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectGetMethod_System_Object_System_String_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectGetMethod(object, string, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectGetProperty_System_Object_System_String_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectGetProperty(object, string, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectSetField_System_Object_System_String_System_Object_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectSetField(object, string, object, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectSetProperty_System_Object_System_String_System_Object_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectSetProperty(object, string, object, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.CoroutineUtilities.html#WeaverCore_Utilities_CoroutineUtilities_RunCoroutineWhile__1___0_System_Collections_IEnumerator_System_Func_System_Boolean__">CoroutineUtilities.RunCoroutineWhile&lt;T&gt;(T, IEnumerator, Func&lt;bool&gt;)</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Components_InspectRegion.md&amp;value=---%0Auid%3A%20WeaverCore.Components.InspectRegion%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore/Components/InspectRegion.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In this article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        
+        <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

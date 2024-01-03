@@ -117,6 +117,7 @@ namespace WeaverCore.Utilities
 
 		/// <summary>
 		/// Ends an in-game cutscene and unfreezes the player
+		/// </summary>
 		public static void EndInGameCutscene()
 		{
 			HeroController.instance.RegainControl();

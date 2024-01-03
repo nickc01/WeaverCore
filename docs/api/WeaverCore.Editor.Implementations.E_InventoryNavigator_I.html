@@ -1,0 +1,697 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class E_InventoryNavigator_I
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class E_InventoryNavigator_I
+ ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I">
+
+
+
+  <h1 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I" class="text-break">Class E_InventoryNavigator_I
+</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">Object</span></div>
+    <div class="level2"><span class="xref">Component</span></div>
+    <div class="level3"><span class="xref">Behaviour</span></div>
+    <div class="level4"><span class="xref">MonoBehaviour</span></div>
+    <div class="level5"><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html">InventoryNavigator_I</a></div>
+    <div class="level6"><span class="xref">E_InventoryNavigator_I</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="WeaverCore.Interfaces.IImplementation.html">IImplementation</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_InventoryOpenEvent">InventoryNavigator_I.InventoryOpenEvent</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_InventoryCloseEvent">InventoryNavigator_I.InventoryCloseEvent</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_PaneOpenBeginEvent">InventoryNavigator_I.PaneOpenBeginEvent</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_PaneOpenEndEvent">InventoryNavigator_I.PaneOpenEndEvent</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_PaneCloseBeginEvent">InventoryNavigator_I.PaneCloseBeginEvent</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_PaneCloseEndEvent">InventoryNavigator_I.PaneCloseEndEvent</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_OnInventoryOpen">InventoryNavigator_I.OnInventoryOpen</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_OnInventoryClose">InventoryNavigator_I.OnInventoryClose</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_OnPaneOpenBegin">InventoryNavigator_I.OnPaneOpenBegin</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_OnPaneOpenEnd">InventoryNavigator_I.OnPaneOpenEnd</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_OnPaneCloseBegin">InventoryNavigator_I.OnPaneCloseBegin</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_OnPaneCloseEnd">InventoryNavigator_I.OnPaneCloseEnd</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_InputManager">InventoryNavigator_I.InputManager</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_MainPanel">InventoryNavigator_I.MainPanel</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_EnableCursorMovement">InventoryNavigator_I.EnableCursorMovement</a>
+    </div>
+    <div>
+      <a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_FindNextElement_WeaverCore_Inventory_InventoryElement_WeaverCore_Inventory_InventoryElement_MoveDirection_">InventoryNavigator_I.FindNextElement(InventoryElement, InventoryElement.MoveDirection)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WeaverCore.html">WeaverCore</a>.<a class="xref" href="WeaverCore.Editor.html">Editor</a>.<a class="xref" href="WeaverCore.Editor.Implementations.html">Implementations</a></h6>
+  <h6><strong>Assembly</strong>: WeaverCore.Editor.dll</h6>
+  <h5 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class E_InventoryNavigator_I : InventoryNavigator_I, IImplementation</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_CanCloseInventory.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.CanCloseInventory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L24">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_CanCloseInventory_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.CanCloseInventory*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_CanCloseInventory" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.CanCloseInventory">CanCloseInventory</h4>
+  <div class="markdown level1 summary"><p>Can the inventory be closed? Note: This is ignored if the player takes damage or gets stun locked by a boss</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanCloseInventory { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_CanCloseInventory">InventoryNavigator_I.CanCloseInventory</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_HighlightedElement.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.HighlightedElement%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L35">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_HighlightedElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.HighlightedElement*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_HighlightedElement" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.HighlightedElement">HighlightedElement</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override InventoryElement HighlightedElement { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Inventory.InventoryElement.html">InventoryElement</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_HighlightedElement">InventoryNavigator_I.HighlightedElement</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_MainFadeGroup.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.MainFadeGroup%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L37">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_MainFadeGroup_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.MainFadeGroup*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_MainFadeGroup" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.MainFadeGroup">MainFadeGroup</h4>
+  <div class="markdown level1 summary"><p>The main fade group that is used to fade in and out the inventory panel</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override FadeGroup MainFadeGroup { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FadeGroup.html">FadeGroup</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_MainFadeGroup">InventoryNavigator_I.MainFadeGroup</a></div>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorBoundsForElement_WeaverCore_Inventory_InventoryElement_.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorBoundsForElement(WeaverCore.Inventory.InventoryElement)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L49">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorBoundsForElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorBoundsForElement*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorBoundsForElement_WeaverCore_Inventory_InventoryElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorBoundsForElement(WeaverCore.Inventory.InventoryElement)">GetCursorBoundsForElement(InventoryElement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Vector2 GetCursorBoundsForElement(InventoryElement element)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Inventory.InventoryElement.html">InventoryElement</a></td>
+        <td><span class="parametername">element</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_GetCursorBoundsForElement_WeaverCore_Inventory_InventoryElement_">InventoryNavigator_I.GetCursorBoundsForElement(InventoryElement)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorOffsetForElement_WeaverCore_Inventory_InventoryElement_.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorOffsetForElement(WeaverCore.Inventory.InventoryElement)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L54">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorOffsetForElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorOffsetForElement*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorOffsetForElement_WeaverCore_Inventory_InventoryElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorOffsetForElement(WeaverCore.Inventory.InventoryElement)">GetCursorOffsetForElement(InventoryElement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Vector2 GetCursorOffsetForElement(InventoryElement element)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Inventory.InventoryElement.html">InventoryElement</a></td>
+        <td><span class="parametername">element</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_GetCursorOffsetForElement_WeaverCore_Inventory_InventoryElement_">InventoryNavigator_I.GetCursorOffsetForElement(InventoryElement)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorPosForElement_WeaverCore_Inventory_InventoryElement_.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorPosForElement(WeaverCore.Inventory.InventoryElement)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L59">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorPosForElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorPosForElement*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorPosForElement_WeaverCore_Inventory_InventoryElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorPosForElement(WeaverCore.Inventory.InventoryElement)">GetCursorPosForElement(InventoryElement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Vector3 GetCursorPosForElement(InventoryElement element)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Inventory.InventoryElement.html">InventoryElement</a></td>
+        <td><span class="parametername">element</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_GetCursorPosForElement_WeaverCore_Inventory_InventoryElement_">InventoryNavigator_I.GetCursorPosForElement(InventoryElement)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorPosition.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorPosition%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L72">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorPosition_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorPosition*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_GetCursorPosition" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.GetCursorPosition">GetCursorPosition()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Vector3 GetCursorPosition()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_GetCursorPosition">InventoryNavigator_I.GetCursorPosition()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_HideCursor.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.HideCursor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L355">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_HideCursor_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.HideCursor*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_HideCursor" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.HideCursor">HideCursor()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void HideCursor()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_HideCursor">InventoryNavigator_I.HideCursor()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_HighlightElement_WeaverCore_Inventory_InventoryElement_.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.HighlightElement(WeaverCore.Inventory.InventoryElement)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L83">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_HighlightElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.HighlightElement*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_HighlightElement_WeaverCore_Inventory_InventoryElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.HighlightElement(WeaverCore.Inventory.InventoryElement)">HighlightElement(InventoryElement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void HighlightElement(InventoryElement element)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Inventory.InventoryElement.html">InventoryElement</a></td>
+        <td><span class="parametername">element</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_HighlightElement_WeaverCore_Inventory_InventoryElement_">InventoryNavigator_I.HighlightElement(InventoryElement)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_InitPanel_WeaverCore_Features_InventoryPanel_.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.InitPanel(WeaverCore.Features.InventoryPanel)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L119">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_InitPanel_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.InitPanel*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_InitPanel_WeaverCore_Features_InventoryPanel_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.InitPanel(WeaverCore.Features.InventoryPanel)">InitPanel(InventoryPanel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void InitPanel(InventoryPanel panel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Features.InventoryPanel.html">InventoryPanel</a></td>
+        <td><span class="parametername">panel</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_InitPanel_WeaverCore_Features_InventoryPanel_">InventoryNavigator_I.InitPanel(InventoryPanel)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_MovePaneLeft.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.MovePaneLeft%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L360">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_MovePaneLeft_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.MovePaneLeft*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_MovePaneLeft" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.MovePaneLeft">MovePaneLeft()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void MovePaneLeft()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_MovePaneLeft">InventoryNavigator_I.MovePaneLeft()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_MovePaneRight.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.MovePaneRight%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L365">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_MovePaneRight_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.MovePaneRight*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_MovePaneRight" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.MovePaneRight">MovePaneRight()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void MovePaneRight()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_MovePaneRight">InventoryNavigator_I.MovePaneRight()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_SetStartupElement_WeaverCore_Inventory_InventoryElement_.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.SetStartupElement(WeaverCore.Inventory.InventoryElement)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L180">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_SetStartupElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.SetStartupElement*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_SetStartupElement_WeaverCore_Inventory_InventoryElement_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.SetStartupElement(WeaverCore.Inventory.InventoryElement)">SetStartupElement(InventoryElement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetStartupElement(InventoryElement element)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WeaverCore.Inventory.InventoryElement.html">InventoryElement</a></td>
+        <td><span class="parametername">element</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_SetStartupElement_WeaverCore_Inventory_InventoryElement_">InventoryNavigator_I.SetStartupElement(InventoryElement)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I_ShowCursor.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I.ShowCursor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L350">View Source</a>
+  </span>
+  <a id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_ShowCursor_" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.ShowCursor*"></a>
+  <h4 id="WeaverCore_Editor_Implementations_E_InventoryNavigator_I_ShowCursor" data-uid="WeaverCore.Editor.Implementations.E_InventoryNavigator_I.ShowCursor">ShowCursor()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ShowCursor()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="WeaverCore.Implementations.InventoryNavigator_I.html#WeaverCore_Implementations_InventoryNavigator_I_ShowCursor">InventoryNavigator_I.ShowCursor()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="WeaverCore.Interfaces.IImplementation.html">IImplementation</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectCallMethod_System_Object_System_String_System_Object___System_Reflection_BindingFlags_">ReflectionUtilities.ReflectCallMethod(object, string, object[], BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectGetField_System_Object_System_String_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectGetField(object, string, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectGetMethod_System_Object_System_String_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectGetMethod(object, string, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectGetProperty_System_Object_System_String_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectGetProperty(object, string, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectSetField_System_Object_System_String_System_Object_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectSetField(object, string, object, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.ReflectionUtilities.html#WeaverCore_Utilities_ReflectionUtilities_ReflectSetProperty_System_Object_System_String_System_Object_System_Reflection_BindingFlags_">ReflectionUtilities.ReflectSetProperty(object, string, object, BindingFlags)</a>
+  </div>
+  <div>
+      <a class="xref" href="WeaverCore.Utilities.CoroutineUtilities.html#WeaverCore_Utilities_CoroutineUtilities_RunCoroutineWhile__1___0_System_Collections_IEnumerator_System_Func_System_Boolean__">CoroutineUtilities.RunCoroutineWhile&lt;T&gt;(T, IEnumerator, Func&lt;bool&gt;)</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Tianuhlan/sanctuary-unity/new/amoh_bossfight_complete/apiSpec/new?filename=WeaverCore_Editor_Implementations_E_InventoryNavigator_I.md&amp;value=---%0Auid%3A%20WeaverCore.Editor.Implementations.E_InventoryNavigator_I%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Tianuhlan/sanctuary-unity/blob/amoh_bossfight_complete/Assets/WeaverCore/WeaverCore.Editor/Implementations/E_InventoryNavigator_I.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In this article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        
+        <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

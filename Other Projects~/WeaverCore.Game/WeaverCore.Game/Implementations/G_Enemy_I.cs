@@ -2,6 +2,7 @@
 using HutongGames.PlayMaker.Actions;
 using System.Collections;
 using UnityEngine;
+using WeaverCore.Assets.Components;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
 

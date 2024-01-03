@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using WeaverCore.Assets.Components;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Editor.Implementations

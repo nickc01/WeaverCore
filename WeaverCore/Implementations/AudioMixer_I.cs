@@ -7,8 +7,6 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {
-
-
     public abstract class AudioMixer_I : IImplementation
 	{
 		public static AudioMixer_I Instance = ImplFinder.GetImplementation<AudioMixer_I>();

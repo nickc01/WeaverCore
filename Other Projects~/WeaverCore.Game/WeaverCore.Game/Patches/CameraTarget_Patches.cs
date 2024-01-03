@@ -391,17 +391,17 @@ namespace WeaverCore.Game.Patches
 				{
 					if (HeroController.instance.cState.falling && self.cameraCtrl.transform.position.y > y + 0.1f && !self.fallStick && !HeroController.instance.cState.transitioning && (self.cameraCtrl.transform.position.y - 0.1f >= self.yLockMin || self.mode != CameraTarget.TargetMode.LOCK_ZONE))
 					{
-						Debug.Log("A");
+						//Debug.Log("A");
 						self.cameraCtrl.transform.SetPositionY(self.cameraCtrl.transform.position.y - self.fallCatcher * Time.deltaTime);
 						if (self.mode == CameraTarget.TargetMode.LOCK_ZONE && self.cameraCtrl.transform.position.y < self.yLockMin)
 						{
-							Debug.Log("B");
+							//Debug.Log("B");
 							self.cameraCtrl.transform.SetPositionY(self.yLockMin);
 						}
 						var sceneDimensions = CameraController_Patches.GetCameraLimits(self.cameraCtrl);
 						if (self.cameraCtrl.transform.position.y < sceneDimensions.yMin)
 						{
-							Debug.Log("C");
+							//Debug.Log("C");
 							self.cameraCtrl.transform.SetPositionY(sceneDimensions.yMin);
 						}
 						if (self.fallCatcher < 25f)
@@ -420,20 +420,20 @@ namespace WeaverCore.Game.Patches
 						self.fallCatcher = 0f;
 						if (heroTransformGetter(self).position.y + 0.1f >= self.yLockMin || self.mode != CameraTarget.TargetMode.LOCK_ZONE)
 						{
-							Debug.Log("D");
+							//Debug.Log("D");
 							self.cameraCtrl.transform.SetPositionY(heroTransformGetter(self).position.y + 0.1f);
 							self.transform.SetPositionY(self.cameraCtrl.transform.position.y);
 							num2 = self.cameraCtrl.transform.position.y;
 						}
 						if (self.mode == CameraTarget.TargetMode.LOCK_ZONE && self.cameraCtrl.transform.position.y < self.yLockMin)
 						{
-							Debug.Log("E");
+							//Debug.Log("E");
 							self.cameraCtrl.transform.SetPositionY(self.yLockMin);
 						}
 						var sceneDimensions = CameraController_Patches.GetCameraLimits(self.cameraCtrl);
 						if (self.cameraCtrl.transform.position.y < sceneDimensions.yMin)
 						{
-							Debug.Log("F");
+							//Debug.Log("F");
 							self.cameraCtrl.transform.SetPositionY(sceneDimensions.yMin);
 						}
 					}

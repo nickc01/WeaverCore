@@ -5,6 +5,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Inventory
 {
+    /// <summary>
+    /// The default cursor used in an inventory pane
+    /// </summary>
     public class DefaultCursor : Cursor
     {
         [SerializeField]
@@ -93,10 +96,6 @@ namespace WeaverCore.Inventory
             lastPos = new Vector3(float.PositiveInfinity, float.PositiveInfinity);
             back.localPosition = new Vector3(0f, 0f, 2f);
             back.localScale = Vector3.zero;
-            /*bl.localPosition = new Vector3(-0.5f, -0.5f, 0f);
-            br.localPosition = new Vector3(0.5f, -0.5f, 0f);
-            tl.localPosition = new Vector3(-0.5f, 0.5f, 0f);
-            tr.localPosition = new Vector3(0.5f, 0.5f, 0f);*/
 
             bl.localPosition = Vector3.zero;
             br.localPosition = Vector3.zero;
@@ -112,13 +111,6 @@ namespace WeaverCore.Inventory
             {
                 fader.Fade(true);
             }
-
-            //EVENT - UP
-
-            /*if (uiChangeSelectionClip != null)
-            {
-                WeaverAudio.PlayAtPoint(uiChangeSelectionClip, transform.position, uiChangeSelectionVolume);
-            }*/
 
             OnMoveTo(beginElement);
         }

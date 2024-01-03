@@ -9,6 +9,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+    /// <summary>
+    /// Used for playing music in WeaverCore
+    /// </summary>
 	[CreateAssetMenu(fileName = "WeaverMusicCue", menuName = "WeaverCore/Music Cue")]
     public class WeaverMusicCue : MusicCue, ISerializationCallbackReceiver
 	{

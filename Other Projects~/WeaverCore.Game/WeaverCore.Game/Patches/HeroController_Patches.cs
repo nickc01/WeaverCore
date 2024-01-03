@@ -27,7 +27,7 @@ namespace WeaverCore.Game.Patches
             //On.HeroController.UnPause += HeroController_UnPause;
 		}
 
-        private static void HeroController_UnPause(On.HeroController.orig_UnPause orig, HeroController self)
+        /*private static void HeroController_UnPause(On.HeroController.orig_UnPause orig, HeroController self)
         {
 			WeaverLog.Log(new System.Diagnostics.StackTrace());
 			orig(self);
@@ -37,7 +37,7 @@ namespace WeaverCore.Game.Patches
         {
             WeaverLog.Log(new System.Diagnostics.StackTrace());
             orig(self);
-        }
+        }*/
 
         static bool foundBenchWarp = false;
 

@@ -7,20 +7,35 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Used to control a white shockwave that scrolls across the screen
+    /// </summary>
     public class Shockwave : MonoBehaviour, IOnPool
     {
-        static Shockwave shockwaveSmall;
+        /// <summary>
+        /// The default prefab for a small shockwave
+        /// </summary>
         public static Shockwave ShockwaveSmall => shockwaveSmall ??= WeaverAssets.LoadWeaverAsset<GameObject>("Shockwave Wave Small").GetComponent<Shockwave>();
 
-        static Shockwave shockwaveShort;
+        private static Shockwave shockwaveSmall;
+
+        /// <summary>
+        /// The default prefab for a short shockwave
+        /// </summary>
         public static Shockwave ShockwaveShort => shockwaveShort ??= WeaverAssets.LoadWeaverAsset<GameObject>("Shockwave Wave Short").GetComponent<Shockwave>();
 
-        static Shockwave shockwaveZ;
+        private static Shockwave shockwaveShort;
+
+        /// <summary>
+        /// The default prefab for a large shockwave
+        /// </summary>
         public static Shockwave ShockwaveZ => shockwaveZ ??= WeaverAssets.LoadWeaverAsset<GameObject>("Shockwave Wave Z").GetComponent<Shockwave>();
 
-        static RaycastHit2D[] hitCache = new RaycastHit2D[1];
+        private static Shockwave shockwaveZ;
 
-        enum CollisionType
+        private static RaycastHit2D[] hitCache = new RaycastHit2D[1];
+
+        private enum CollisionType
         {
             None,
             Hit,
@@ -28,28 +43,35 @@ namespace WeaverCore.Components
         }
 
         [SerializeField]
-        ShockwaveSpurt spurtLeftPrefab;
+        [Tooltip("Prefab for the left spurt of the shockwave. Used only if the shockwave is travelling to the left")]
+        private ShockwaveSpurt spurtLeftPrefab;
 
         [SerializeField]
-        ShockwaveSpurt spurtRightPrefab;
+        [Tooltip("Prefab for the right spurt of the shockwave. Used only if the shockwave is travelling to the right")]
+        private ShockwaveSpurt spurtRightPrefab;
 
         [SerializeField]
-        bool spawnSpurts = false;
+        [Tooltip("Determines whether spurts should be spawned along with the shockwave.")]
+        private bool spawnSpurts = false;
 
         [NonSerialized]
-        Coroutine spawnWaveRoutine;
+        private Coroutine spawnWaveRoutine;
 
         [NonSerialized]
-        Rigidbody2D rb;
+        private Rigidbody2D rb;
 
         [NonSerialized]
-        CollisionType hitType;
+        private CollisionType hitType;
 
         [NonSerialized]
-        List<ParticleSystem> particles = new List<ParticleSystem>();
+        private List<ParticleSystem> particles = new List<ParticleSystem>();
 
-        float speed = 1f;
+        [NonSerialized]
+        private float speed = 1f;
 
+        /// <summary>
+        /// Awake is called when the script instance is being loaded.
+        /// </summary>
         private void Awake()
         {
             if (particles.Count == 0)
@@ -64,7 +86,11 @@ namespace WeaverCore.Components
             StartCoroutine(MainRoutine());
         }
 
-        IEnumerator MainRoutine()
+        /// <summary>
+        /// Main coroutine for the shockwave behavior.
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator MainRoutine()
         {
             foreach (var particle in particles)
             {
@@ -77,23 +103,16 @@ namespace WeaverCore.Components
             var rocksStomp = transform.Find("Burst Rocks Stomp");
 
             Vector2 raycastFrom;
-            float angleMin, angleMax, direction;
             ShockwaveSpurt spurtPrefab;
 
             if (scale.x >= 0)
             {
                 raycastFrom = Vector2.one;
-                angleMin = 95f;
-                angleMax = 105f;
-                direction = 0;
                 spurtPrefab = spurtRightPrefab;
             }
             else
             {
-                raycastFrom = new Vector2(-1f,0f);
-                angleMin = 75f;
-                angleMax = 85f;
-                direction = 180f;
+                raycastFrom = new Vector2(-1f, 0f);
                 speed *= -1f;
                 spurtPrefab = spurtLeftPrefab;
             }
@@ -113,7 +132,7 @@ namespace WeaverCore.Components
                 speed += incrementer;
                 rb.velocity = rb.velocity.With(x: speed);
 
-                if (Physics2D.RaycastNonAlloc((Vector2)transform.position + raycastFrom, Vector2.left,hitCache, 2f,8) > 0)
+                if (Physics2D.RaycastNonAlloc((Vector2)transform.position + raycastFrom, Vector2.left, hitCache, 2f, 8) > 0)
                 {
                     hitType = CollisionType.Hit;
                 }
@@ -155,7 +174,14 @@ namespace WeaverCore.Components
             //yield return new WaitForSeconds(0.15f);
         }
 
-        IEnumerator SpawnRoutine(ShockwaveSpurt prefab, float scaleX, float scaleY)
+        /// <summary>
+        /// Coroutine for spawning spurts along with the shockwave.
+        /// </summary>
+        /// <param name="prefab">Prefab of the spurt.</param>
+        /// <param name="scaleX">X scale of the spurt.</param>
+        /// <param name="scaleY">Y scale of the spurt.</param>
+        /// <returns></returns>
+        private IEnumerator SpawnRoutine(ShockwaveSpurt prefab, float scaleX, float scaleY)
         {
             while (true)
             {
@@ -165,6 +191,10 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Called when the collider enters another collider trigger.
+        /// </summary>
+        /// <param name="collision">The other Collider2D involved in this collision.</param>
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.layer == 8)
@@ -173,6 +203,9 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Called when the object is retrieved from the object pool.
+        /// </summary>
         public void OnPool()
         {
             hitType = CollisionType.None;
@@ -186,6 +219,14 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Spawns a shockwave instance.
+        /// </summary>
+        /// <param name="prefab">Prefab of the shockwave.</param>
+        /// <param name="position">Position of the shockwave.</param>
+        /// <param name="faceRight">Determines the initial facing direction.</param>
+        /// <param name="speed">Speed of the shockwave.</param>
+        /// <returns>The spawned shockwave instance.</returns>
         public static Shockwave Spawn(Shockwave prefab, Vector3 position, bool faceRight = true, float speed = 1f)
         {
             var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);

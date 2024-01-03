@@ -2,7 +2,9 @@
 
 namespace WeaverCore.Inventory
 {
-
+    /// <summary>
+    /// Represents an the left and right arrows in an inventory pane. These are used to move to different panes
+    /// </summary>
     public abstract class ArrowElement : InventoryElement
     {
         public enum ArrowState

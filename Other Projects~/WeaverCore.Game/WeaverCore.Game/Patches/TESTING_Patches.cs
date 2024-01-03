@@ -13,7 +13,7 @@ namespace WeaverCore.Game.Patches
             //On.HutongGames.PlayMaker.Actions.SendMessage.OnEnter += SendMessage_OnEnter;
         }
 
-        private static void SendMessage_OnEnter(On.HutongGames.PlayMaker.Actions.SendMessage.orig_OnEnter orig, HutongGames.PlayMaker.Actions.SendMessage self)
+        /*private static void SendMessage_OnEnter(On.HutongGames.PlayMaker.Actions.SendMessage.orig_OnEnter orig, HutongGames.PlayMaker.Actions.SendMessage self)
         {
             WeaverLog.Log("SEND MESSAGE CALLED FROM OBJECT = " + self.gameObject.GameObject);
             WeaverLog.Log("SEND MESSAGE FSM = " + self.Fsm.Name);
@@ -36,6 +36,6 @@ namespace WeaverCore.Game.Patches
             }
 
             orig(self, info);
-        }
+        }*/
     }
 }

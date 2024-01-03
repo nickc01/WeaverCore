@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace WeaverCore.Interfaces
 {
-
     /// <summary>
     /// Interface for Enemy hit effects
     /// </summary>
@@ -17,6 +16,6 @@ namespace WeaverCore.Interfaces
 		/// </summary>
 		/// <param name="hit">The hit on the enemy</param>
 		/// <param name="effectsOffset">An offset applied to the effects</param>
-		void PlayHitEffect(HitInfo hit, Vector3 effectsOffset = default(Vector3));
+		void PlayHitEffect(HitInfo hit, Vector3 effectsOffset = default);
 	}
 }

@@ -321,7 +321,7 @@ public class TexturesToAtlasConverter : EditorWindow
 			outputAtlasName = "NEW_ATLAS";
 		}
 		var outputPath = AssetDatabase.GenerateUniqueAssetPath("Assets/" + outputAtlasName + ".png");
-		//Debug.Log("NEWLY CREATED ATLAS = " + atlas);
+		//("NEWLY CREATED ATLAS = " + atlas);
 		Rect[] uvs = null;
 		Vector2 atlasSize = default;
 
@@ -338,13 +338,7 @@ public class TexturesToAtlasConverter : EditorWindow
 				averagePPU += texSettings.spritePixelsPerUnit;
 				var spriteRect = new Rect(0f,0f, tex.width, tex.height);
 				var spritePivot = GetPivot(texSettings);
-
-				Debug.Log("TEX = " + tex.name);
-				Debug.Log("Sprite Rect = " + spriteRect);
-				Debug.Log("OG PIVOT = " + $"{spritePivot.x}, {spritePivot.y}");
 				pivots.Add(new Vector2(LerpUtilities.UnclampedLerp(spriteRect.xMin, spriteRect.xMax, spritePivot.x), LerpUtilities.UnclampedLerp(spriteRect.yMin, spriteRect.yMax, spritePivot.y)));
-				Debug.Log("ADJUSTED PIVOT = " + $"{pivots[pivots.Count - 1].x}, {pivots[pivots.Count - 1].y}");
-				Debug.Log("--------------------------------------");
 			}
 			averagePPU /= textures.Count;
 
@@ -364,7 +358,6 @@ public class TexturesToAtlasConverter : EditorWindow
 				editing = true;
 				AssetDatabase.StartAssetEditing();
 				var atlas = new Texture2D(8192, 8192, TextureFormat.RGBA32, false);
-				Debug.Log("ATLAS = " + atlas);
 				uvs = atlas.PackTextures(cropTextures ? resizedTextures.ToArray() : textures.ToArray(), 0,8192);
 				atlasSize = new Vector2(atlas.width,atlas.height);
 				using (var handle = File.Create(outputPath))
@@ -388,7 +381,7 @@ public class TexturesToAtlasConverter : EditorWindow
 		try
 		{
 			AssetDatabase.StartAssetEditing();
-			/*
+            /*
 			 AssetDatabase.StartAssetEditing();
 			float averagePPU = 0;
 			List<Vector2> pivots = new List<Vector2>();
@@ -402,7 +395,6 @@ public class TexturesToAtlasConverter : EditorWindow
 			}
 			averagePPU /= textures.Count;
 			 */
-			Debug.Log("OUTPUT PATH = " + outputPath);
 			var importer = (TextureImporter)AssetImporter.GetAtPath(outputPath);
 			var settings = new TextureImporterSettings();
 			importer.ReadTextureSettings(settings);
@@ -423,12 +415,6 @@ public class TexturesToAtlasConverter : EditorWindow
 					rect = spriteRect,
 					border = Vector4.zero
 				};
-
-				Debug.Log("FINAL TEX = " + textures[i].name);
-				Debug.Log("FINAL PIVOT = " + $"{sheet[i].pivot.x}, {sheet[i].pivot.y}");
-				Debug.Log("FINAL UV = " + uvs[i]);
-				Debug.Log("FINAL RECT = " + sheet[i].rect);
-				Debug.Log("--------------------------------------");
 			}
 
 

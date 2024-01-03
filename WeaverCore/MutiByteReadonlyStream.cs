@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 
+/// <summary>
+/// A stream that combines multiple byte arrays into one single stream
+/// </summary>
 public class MultiByteReadonlyStream : Stream
 {
     int dataArrayIndex = 0;

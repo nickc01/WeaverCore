@@ -17,25 +17,6 @@ namespace WeaverCore
 	/// </summary>
 	public class WeaverCanvas : MonoBehaviour
 	{
-		/*[OnHarmonyPatch]
-		static void HarmonyPatch(HarmonyPatcher patcher)
-        {
-			var orig = typeof(Transform).GetProperty(nameof(Transform.position)).GetSetMethod();
-			var patch = typeof(WeaverCanvas).GetMethod(nameof(Position_Prefix), System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
-			patcher.Patch(orig,patch,null);
-        }
-
-		static bool Position_Prefix(Transform __instance, Vector3 value)
-        {
-
-			//Transform __instance, Vector3 value
-			if (__instance.gameObject.name == "tk2dCamera")
-            {
-				Debug.Log("New Camera Position = " + value);
-            }
-			return true;
-        }*/
-
 		static GameObject _hudBlanker;
 		static GameObject _hudBlankerWhite;
 

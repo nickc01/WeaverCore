@@ -434,10 +434,8 @@ namespace WeaverCore.Components
             CardinalDirection cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
             if (DeflectBlows)
             {
-                Debug.Log("ATTACK TYPE = " + hit.AttackType);
                 if (hit.AttackType == AttackType.Nail)
                 {
-                    Debug.Log("DIRECTION = " + cardinalDirection);
                     switch (cardinalDirection)
                     {
                         case CardinalDirection.Up:

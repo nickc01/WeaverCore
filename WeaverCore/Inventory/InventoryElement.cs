@@ -5,6 +5,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Inventory
 {
+    /// <summary>
+    /// An inventory element in the <see cref="InventoryPanel"/> that a cursor can highlight and select
+    /// </summary>
     public abstract class InventoryElement : MonoBehaviour
     {
         const float GIZMO_ARROW_ANGLE = 35f;
@@ -145,7 +148,6 @@ namespace WeaverCore.Inventory
 
             var startOffset = (vectToDest * 0.25f) + (upVector * 0.25f);
 
-            //Gizmos.color = Color.red;
             Gizmos.color = gizmoColor;
 
             var trueDest = destination - (Vector3)(vectToDest * 0.25f);

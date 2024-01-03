@@ -4,9 +4,13 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+    /// <summary>
+    /// Applies a certain darkness level when the player comes in contact with this collider
+    /// </summary>
     public class DarknessRegion : MonoBehaviour
     {
         [SerializeField]
+        [Tooltip("The darkness to apply when the player enters this region")]
         int darknessWithinRegion = -1;
 
 

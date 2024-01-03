@@ -285,7 +285,7 @@ namespace WeaverCore.Assets.Components
 
 				HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 
-				WeaverLog.Log("Sit Fall Asleep");
+				//WeaverLog.Log("Sit Fall Asleep");
 				EventManager.BroadcastEvent("UPDATE BLUE HEALTH", gameObject);
 				EventManager.BroadcastEvent("HERO REVIVED", gameObject);
 
@@ -293,11 +293,11 @@ namespace WeaverCore.Assets.Components
 				playerRB.isKinematic = true;
 				playerRB.velocity = default;
 
-				WeaverLog.Log("Before Wait");
+				//WeaverLog.Log("Before Wait");
 
 				yield return new WaitForSeconds(1.2f);
 
-				WeaverLog.Log("After Wait");
+				//WeaverLog.Log("After Wait");
 
 				getOffAnimation = "Get Off";
 				playerRB.isKinematic = false;
@@ -340,7 +340,7 @@ namespace WeaverCore.Assets.Components
 
 		IEnumerator RestingRoutine()
 		{
-			WeaverLog.Log("RESTING");
+			//WeaverLog.Log("RESTING");
 			PlayerData.instance.SetBool("atBench",true);
 
 			while (true)
@@ -349,21 +349,21 @@ namespace WeaverCore.Assets.Components
 				{
 					if (PlayerInput.jump.WasPressed || PlayerInput.attack.WasPressed || PlayerInput.up.WasPressed || PlayerInput.down.WasPressed)
 					{
-						WeaverLog.Log("GETTING UP_A");
+						//WeaverLog.Log("GETTING UP_A");
 						faceHeroRight = facingRight;
 						StartCoroutine(GetUpRoutine());
 						yield break;
 					}
 					if (PlayerInput.left.WasPressed)
 					{
-						WeaverLog.Log("GETTING UP_B");
+						//WeaverLog.Log("GETTING UP_B");
 						faceHeroRight = false;
 						StartCoroutine(GetUpRoutine());
 						yield break;
 					}
 					if (PlayerInput.right.WasPressed)
 					{
-						WeaverLog.Log("GETTING UP_C");
+						//WeaverLog.Log("GETTING UP_C");
 						faceHeroRight = true;
 						StartCoroutine(GetUpRoutine());
 						yield break;
@@ -371,7 +371,7 @@ namespace WeaverCore.Assets.Components
 
 					if (PlayerInput.quickMap.WasPressed)
 					{
-						WeaverLog.Log("GETTING UP_D");
+						//WeaverLog.Log("GETTING UP_D");
 						StartCoroutine(QuickMapRoutine());
 						yield break;
 					}
@@ -386,8 +386,6 @@ namespace WeaverCore.Assets.Components
 					HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 				}
 			}
-
-			yield break;
 		}
 
 		//GET UP
@@ -486,16 +484,16 @@ namespace WeaverCore.Assets.Components
 
 		IEnumerator IdleRoutine()
 		{
-			WeaverLog.Log("IDLING");
+			//WeaverLog.Log("IDLING");
 			if (InstantiatedPrompt != null)
 			{
 				InstantiatedPrompt.Hide();
 				InstantiatedPrompt = null;
 			}
 
-			WeaverLog.Log("WAITING TO BE IN RANGE");
+			//WeaverLog.Log("WAITING TO BE IN RANGE");
 			yield return new WaitUntil(() => DetectRange.HeroInRange);
-			WeaverLog.Log("IN RANGE");
+			//WeaverLog.Log("IN RANGE");
 
 			InstantiatedPrompt = WeaverArrowPrompt.Spawn(ArrowPrompt, gameObject, PromptMarker.transform.position);
 			InstantiatedPrompt.SetLabelTextLang(langKey, sheetName);
@@ -515,15 +513,15 @@ namespace WeaverCore.Assets.Components
 
 				if (PlayerInput.down.WasPressed || PlayerInput.up.WasPressed)
 				{
-					WeaverLog.Log("GOING ONTO BENCH");
+					//WeaverLog.Log("GOING ONTO BENCH");
 					if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Town")
 					{
 						EventRegister.SendEvent("HIDE INTERACT REMINDER");
 					}
-					WeaverLog.Log("BENCH_A");
+					//WeaverLog.Log("BENCH_A");
 					if (HeroController.instance.CanInput())
 					{
-						WeaverLog.Log("BENCH_B");
+						//WeaverLog.Log("BENCH_B");
 						var onGround = HeroController.instance.GetState("onGround");
 						var attacking = HeroController.instance.GetState("attacking");
 						var attackingUp = HeroController.instance.GetState("upAttacking");
@@ -533,7 +531,7 @@ namespace WeaverCore.Assets.Components
 
 						if (onGround && !(attacking || attackingUp || attackingDown || dashing || backDashing))
 						{
-							WeaverLog.Log("BENCH_C");
+							//WeaverLog.Log("BENCH_C");
 							EventManager.BroadcastEvent("BENCH SIT",gameObject);
 							HeroController.instance.RelinquishControl();
 							PlayerData.instance.SetBool("atBench", true);
@@ -671,7 +669,7 @@ namespace WeaverCore.Assets.Components
 							GameManager.instance.StoryRecord_rest();
 							GameManager.instance.AddToBenchList();
 
-							WeaverLog.Log("SAVED Respawn Type = " + PlayerData.instance.GetInt("respawnType"));
+							//WeaverLog.Log("SAVED Respawn Type = " + PlayerData.instance.GetInt("respawnType"));
 
 							if (PlayerData.instance.GetBool("hasQuill") && PlayerData.instance.GetBool("hasMap"))
 							{
@@ -719,7 +717,7 @@ namespace WeaverCore.Assets.Components
 				yield return null;
 			}
 
-			yield break;
+			//yield break;
 		}
 
 		void MapEventListener(string eventName, GameObject src)
@@ -747,12 +745,12 @@ namespace WeaverCore.Assets.Components
 		{
 			yield return null;
 			eventManager.OnReceivedEvent += MapEventListener;
-			Debug.Log("PLAYER HAS MAP = " + PlayerData.instance.GetBool("hasMap"));
+			//Debug.Log("PLAYER HAS MAP = " + PlayerData.instance.GetBool("hasMap"));
 			if (PlayerData.instance.GetBool("hasMap"))
 			{
 				var inv = GetInventory();
-				Debug.Log("INV = " + inv);
-				Debug.Log("INV Open = " + !PlayMakerUtilities.GetFsmBool(inv, "Inventory Control", "Open"));
+				//Debug.Log("INV = " + inv);
+				//Debug.Log("INV Open = " + !PlayMakerUtilities.GetFsmBool(inv, "Inventory Control", "Open"));
 				if (inv != null && !PlayMakerUtilities.GetFsmBool(inv, "Inventory Control","Open"))
 				{
 					HeroUtilities.PlayPlayerClip("Sit Map Open");
@@ -799,8 +797,6 @@ namespace WeaverCore.Assets.Components
 				yield return RestingRoutine();
 				yield break;
 			}
-
-			yield break;
 		}
 
 		IEnumerator MapIdleState()

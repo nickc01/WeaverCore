@@ -10,7 +10,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
+    /// <summary>
+    /// WeaverCore's implementation of breakable objects. Used for implementing grass and breakable props
+    /// </summary>
     public class WeaverBreakable : Breakable, IHittable, ISerializationCallbackReceiver
     {
         static Func<Breakable, bool> isBrokenGetter;
@@ -18,27 +20,19 @@ namespace WeaverCore.Components
         static Action<Breakable, AudioEvent> breakAudioEventSetter;
         static Action<Breakable, AudioSource> audioSourcePrefabSetter;
 
-        /*[Space]
-        [Header("Break Sounds")]
-        [SerializeField]
-        List<AudioClip> breakSounds;
-
-        [SerializeField]
-        Vector2 pitchMinMax = new Vector2(1, 1);*/
-
-        //[HideInInspector]
+        [HideInInspector]
         [SerializeField]
         AudioClip breakAudioEvent_Clip;
 
-        //[HideInInspector]
+        [HideInInspector]
         [SerializeField]
         float breakAudioEvent_PitchMin;
 
-        //[HideInInspector]
+        [HideInInspector]
         [SerializeField]
         float breakAudioEvent_PitchMax;
 
-        //[HideInInspector]
+        [HideInInspector]
         [SerializeField]
         float breakAudioEvent_Volume;
 

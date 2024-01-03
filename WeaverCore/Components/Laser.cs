@@ -6,44 +6,77 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Renders a laser beam that can interact with the terrain.
+    /// </summary>
     [ExecuteAlways]
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class Laser : MonoBehaviour
     {
+        /// <summary>
+        /// How wide the laser should be at the start.
+        /// </summary>
         [field: SerializeField]
         [field: Tooltip("How wide the laser should be at the start")]
         public float StartingWidth { get; set; } = 0.25f;
 
+        /// <summary>
+        /// The angle in degrees the laser should spread out.
+        /// </summary>
         [field: SerializeField]
         [field: Tooltip("The angle in degrees the laser should spread out")]
         [field: Range(0.5f, 85f)]
         public float Spread { get; set; } = 5f;
 
+        /// <summary>
+        /// The maximum length of the laser beam.
+        /// </summary>
         [field: SerializeField]
         [field: Tooltip("The maximum length of the laser beam")]
         public float MaximumLength { get; set; } = 20f;
 
+        /// <summary>
+        /// The collision mask the laser will use for collision.
+        /// </summary>
         [field: SerializeField]
         [field: Tooltip("The collision mask the laser will use for collision")]
         public LayerMask CollisionMask { get; set; }
 
+        /// <summary>
+        /// The quality of the laser beam.
+        /// </summary>
         [field: SerializeField]
         [field: Range(2, 200)]
         public int Quality { get; set; } = 10;
 
+        /// <summary>
+        /// The quality of the laser beam collider.
+        /// </summary>
         [field: SerializeField]
         [field: Range(1, 6)]
         public int ColliderQuality { get; set; } = 1;
 
+        /// <summary>
+        /// The stretch factor for the laser beam texture.
+        /// </summary>
         [field: SerializeField]
         public float TextureStretch { get; set; }
 
+        /// <summary>
+        /// The number of subdivisions for the length of the laser beam.
+        /// </summary>
         [field: SerializeField]
         public uint LengthSubdivisions { get; set; } = 10;
 
+        /// <summary>
+        /// Determines if the laser should collide with terrain.
+        /// </summary>
         [field: SerializeField]
         public bool CollideWithTerrain { get; set; } = true;
 
+        /// <summary>
+        /// Returns the texture coordinates for the top edge of the laser beam.
+        /// </summary>
         public (Vector2 start, Vector2 end) TextureTopEdge
         {
             get
@@ -53,6 +86,9 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Returns the texture coordinates for the bottom edge of the laser beam.
+        /// </summary>
         public (Vector2 start, Vector2 end) TextureBottomEdge
         {
             get
@@ -62,6 +98,9 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Returns the collider coordinates for the top edge of the laser beam.
+        /// </summary>
         public (Vector2 start, Vector2 end) TopColliderEdge
         {
             get
@@ -70,6 +109,10 @@ namespace WeaverCore.Components
                 return (polygonPoints[1], polygonPoints[2]);
             }
         }
+
+        /// <summary>
+        /// Returns the collider coordinates for the bottom edge of the laser beam.
+        /// </summary>
         public (Vector2 start, Vector2 end) BottomColliderEdge
         {
             get
@@ -79,6 +122,9 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Returns the texture contact points of the laser beam.
+        /// </summary>
         public List<Vector2> TextureContactPoints
         {
             get
@@ -88,6 +134,9 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Returns the collider contact points of the laser beam.
+        /// </summary>
         public List<Vector2> ColliderContactPoints
         {
             get
@@ -97,6 +146,9 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Returns the collider contact normals of the laser beam.
+        /// </summary>
         public List<Vector2> ColliderContactNormals
         {
             get
@@ -106,6 +158,9 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Returns the main collider of the laser beam.
+        /// </summary>
         public PolygonCollider2D MainCollider
         {
             get
@@ -115,6 +170,9 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Returns the main renderer of the laser beam.
+        /// </summary>
         public MeshRenderer MainRenderer
         {
             get
@@ -124,26 +182,15 @@ namespace WeaverCore.Components
             }
         }
 
-
-        /*[SerializeField]
-        Texture texture;*/
-
         [SerializeField]
         Sprite sprite;
 
         [SerializeField]
         Color color = Color.white;
 
-        /*public Texture Texture
-        {
-            get => texture;
-            set
-            {
-                texture = value;
-                UpdateMaterialValues();
-            }
-        }*/
-
+        /// <summary>
+        /// Gets or sets the sprite of the laser beam.
+        /// </summary>
         public Sprite Sprite
         {
             get => sprite;
@@ -154,6 +201,9 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Gets or sets the color of the laser beam.
+        /// </summary>
         public Color Color
         {
             get => color;
@@ -164,7 +214,14 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Gets the sprite offset of the laser beam.
+        /// </summary>
         public Vector2 SpriteOffset { get; private set; }
+
+        /// <summary>
+        /// Gets the sprite scale of the laser beam.
+        /// </summary>
         public Vector2 SpriteScale { get; private set; }
 
         Vector2 topEdgeStart;
@@ -201,8 +258,6 @@ namespace WeaverCore.Components
 
         MaterialPropertyBlock block;
 
-        Recoiler recoiler;
-
         int texMainID;
         int colorID;
 
@@ -216,8 +271,6 @@ namespace WeaverCore.Components
 
         private void Awake()
         {
-            recoiler = GetComponentInParent<Recoiler>();
-            //Debug.Log("MASK = " + CollisionMask.value);
             texMainID = Shader.PropertyToID("_MainTex");
             colorID = Shader.PropertyToID("_Color");
             block = new MaterialPropertyBlock();
@@ -264,11 +317,6 @@ namespace WeaverCore.Components
         {
             mainRenderer.GetPropertyBlock(block);
 
-            /*var tex = texture;
-            if (tex == null)
-            {
-                tex = Texture2D.whiteTexture;
-            }*/
             var currentSprite = this.sprite;
             if (currentSprite == null)
             {
@@ -285,19 +333,7 @@ namespace WeaverCore.Components
             SpriteOffset = new Vector2(spriteRect.x / textureSize.x, spriteRect.y / textureSize.y);
             SpriteScale = new Vector2(spriteRect.width / textureSize.x, spriteRect.height / textureSize.y);
 
-            //Debug.Log("FINAL SIZE = " + new Vector4(spriteRect.x / textureSize.x, spriteRect.y / textureSize.y, spriteRect.width / textureSize.x, spriteRect.height / textureSize.y));
-
-            //block.SetVector("_MainTex_ST",new Vector4(spriteRect.width / textureSize.x,spriteRect.height / textureSize.y, spriteRect.x / textureSize.x, spriteRect.y / textureSize.y));
-            //block.SetVector("_MainTex_ST",new Vector4(0.5f,0.5f,0.5f,0.5f));
-            //block.SetVector("_MainTex_ST", new Vector4(1f,1f,0f,0f));
-            //Debug.Log("ST = " + block.GetVector("_MainTex_ST"));
-
             mainRenderer.SetPropertyBlock(block);
-
-            //var texRect = currentSprite.textureRect;
-
-            //mainRenderer.sharedMaterial.mainTextureOffset = new Vector2(0.5f,0.5f);
-            //mainRenderer.sharedMaterial.mainTextureScale = new Vector2(1f,1f);
         }
 
         Vector2 AdjustUVCoordinate(Vector2 uv)
@@ -307,7 +343,6 @@ namespace WeaverCore.Components
 
         void UpdateMeshLists()
         {
-            //float z = transform.GetZPosition();
             if (Quality < 2)
             {
                 Quality = 2;
@@ -336,39 +371,20 @@ namespace WeaverCore.Components
             Spread = Mathf.Clamp(Spread, 0.5f, 85f);
             var halfWidth = StartingWidth / 2f;
 
-            //verticies.Add(new Vector3(0f, halfWidth));
-
             var startLocation = new Vector3(0f, halfWidth);
 
             var firingDirection = MathUtilities.CartesianToPolar(Vector2.right);
-
-            //firingDirection.x = Mathf.RoundToInt(firingDirection.x);//Mathf.RoundToInt(firingDirection.x * 10f) * 0.1f;
 
             var firstAngle = firingDirection.x - Spread;
             var firstLength = MaximumLength / Mathf.Cos(Mathf.Deg2Rad * firstAngle);
             var firstDirection = MathUtilities.PolarToCartesian(firstAngle, MaximumLength);
 
-            //verticies[2] = verticies[1] + (Vector3)firstDirection;
-
             var secondAngle = firingDirection.x + Spread;
             var secondLength = MaximumLength / Mathf.Cos(Mathf.Deg2Rad * secondAngle);
             var secondDirection = MathUtilities.PolarToCartesian(secondAngle, MaximumLength);
 
-            //verticies[3] = verticies[0] + (Vector3)secondDirection;
-
             float sourcePointX = startLocation.x - (secondDirection.x * startLocation.y / secondDirection.y);
             Vector2 sourcePoint = new Vector2(sourcePointX, 0f);
-
-            //Debug.DrawLine(transform.TransformPoint(startLocation), transform.TransformPoint(sourcePoint));
-
-            //Debug.DrawRay(transform.TransformPoint(startLocation),transform.TransformDirection(firstDirection));
-            //Debug.DrawRay(transform.TransformPoint(startLocation),transform.TransformDirection(secondDirection));
-
-            //Debug.DrawLine(transform.TransformPoint(startLocation),transform.TransformPoint(-startLocation));
-
-            //Debug.Log("Source Point = " + sourcePoint);
-
-            //Vector2 laserOrigin = transform.TransformPoint(sourcePoint);
 
             polygonPoints.Add(new Vector2(0f, -halfWidth));
             polygonPoints.Add(new Vector2(0f, halfWidth));

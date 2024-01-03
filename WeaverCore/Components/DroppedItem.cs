@@ -128,7 +128,7 @@ namespace WeaverCore.Components
             }
             catch (Exception e)
             {
-                WeaverLog.LogError($"Error collecting item {gameObject.name} : {e}");
+                Debug.LogError($"Error collecting item {gameObject.name} : {e}");
             }
         }
 

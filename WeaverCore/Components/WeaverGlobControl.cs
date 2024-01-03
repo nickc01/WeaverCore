@@ -7,34 +7,78 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Main class for handling breakable globs in WeaverCore.
+    /// </summary>
     public class WeaverGlobControl : MonoBehaviour, ISerializationCallbackReceiver
     {
+        /// <summary>
+        /// The renderer component for the glob.
+        /// </summary>
         public Renderer rend;
 
         [Space]
+        /// <summary>
+        /// The minimum scale of the glob.
+        /// </summary>
+        [Tooltip("The minimum scale of the glob.")]
         public float minScale = 0.6f;
 
+        /// <summary>
+        /// The maximum scale of the glob.
+        /// </summary>
+        [Tooltip("The maximum scale of the glob.")]
         public float maxScale = 1.6f;
 
         [Space]
+        /// <summary>
+        /// Animation name for landing.
+        /// </summary>
+        [Tooltip("Animation name for landing.")]
         public string landAnim = "Glob Land";
 
+        /// <summary>
+        /// Animation name for wobbling.
+        /// </summary>
+        [Tooltip("Animation name for wobbling.")]
         public string wobbleAnim = "Glob Wobble";
 
+        /// <summary>
+        /// Animation name for breaking.
+        /// </summary>
+        [Tooltip("Animation name for breaking.")]
         public string breakAnim = "Glob Break";
 
         [Space]
+        /// <summary>
+        /// Prefab for the audio player.
+        /// </summary>
         [HideInInspector]
+        [Tooltip("Prefab for the audio player.")]
         public AudioSource audioPlayerPrefab;
 
+        /// <summary>
+        /// Audio event for the break sound.
+        /// </summary>
+        [Tooltip("Audio event for the break sound.")]
         public AudioEvent breakSound;
 
+        /// <summary>
+        /// Color override for blood.
+        /// </summary>
+        [Tooltip("Color override for blood.")]
         public Color bloodColorOverride = new Color(1f, 0.537f, 0.188f);
 
         [Space]
+        /// <summary>
+        /// Child GameObject for displaying splat.
+        /// </summary>
         public GameObject splatChild;
 
         [Space]
+        /// <summary>
+        /// Collider for detecting ground.
+        /// </summary>
         public Collider2D groundCollider;
 
         private bool landed;

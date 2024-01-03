@@ -92,25 +92,42 @@ namespace WeaverCore.Utilities
 			return newPos;
 		}
 
-		public static Vector2 GetLocalScaleXY(this Transform transform)
+        /// <summary>
+        /// Gets the local scale of the transform in the XY plane.
+        /// </summary>
+        /// <param name="transform">The transform to retrieve the local scale from.</param>
+        /// <returns>The local scale of the transform in the XY plane.</returns>
+        public static Vector2 GetLocalScaleXY(this Transform transform)
         {
-			return transform.localScale;
+            return transform.localScale;
         }
 
-		public static void SetLocalScaleXY(this Transform transform, Vector2 value)
+        /// <summary>
+        /// Sets the local scale of the transform in the XY plane.
+        /// </summary>
+        /// <param name="transform">The transform to set the local scale for.</param>
+        /// <param name="value">The new local scale in the XY plane.</param>
+        public static void SetLocalScaleXY(this Transform transform, Vector2 value)
         {
-			transform.localScale = new Vector3(value.x,value.y,transform.localScale.z);
+            transform.localScale = new Vector3(value.x, value.y, transform.localScale.z);
         }
 
-		public static void SetLocalScaleXY(this Transform transform, float x, float y)
-		{
-			transform.localScale = new Vector3(x, y, transform.localScale.z);
-		}
+        /// <summary>
+        /// Sets the local scale of the transform in the XY plane using individual components.
+        /// </summary>
+        /// <param name="transform">The transform to set the local scale for.</param>
+        /// <param name="x">The new local scale along the X-axis.</param>
+        /// <param name="y">The new local scale along the Y-axis.</param>
+        public static void SetLocalScaleXY(this Transform transform, float x, float y)
+        {
+            transform.localScale = new Vector3(x, y, transform.localScale.z);
+        }
 
-		/// <summary>
-		/// Gets the local x position of a transform
-		/// </summary>
-		public static float GetXLocalPosition(this Transform transform)
+
+        /// <summary>
+        /// Gets the local x position of a transform
+        /// </summary>
+        public static float GetXLocalPosition(this Transform transform)
 		{
 			return transform.localPosition.x;
 		}

@@ -6,8 +6,6 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
-
-
     /// <summary>
     /// Misc utility functions for animation related tasks
     /// </summary>

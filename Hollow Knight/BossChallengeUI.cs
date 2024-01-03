@@ -263,12 +263,12 @@ public class BossChallengeUI : MonoBehaviour
         GameManager.instance.playerData.bossReturnEntryGate = bossStatue.dreamReturnGate.name;
         BossSceneController.SetupEvent = delegate (BossSceneController self)
         {
-            //Debug.Log("BOSS SCENE SETUP");
+            //("BOSS SCENE SETUP");
             self.BossLevel = level;
             self.DreamReturnEvent = "DREAM RETURN";
             self.OnBossesDead += delegate
             {
-                //Debug.Log("BOSS SCENE BOSSES DEAD");
+                //("BOSS SCENE BOSSES DEAD");
                 string fieldName = (bossStatue.UsingDreamVersion ? bossStatue.dreamStatueStatePD : bossStatue.statueStatePD);
                 BossStatue.Completion playerDataVariable = GameManager.instance.GetPlayerDataVariable<BossStatue.Completion>(fieldName);
                 switch (level)
@@ -289,7 +289,7 @@ public class BossChallengeUI : MonoBehaviour
             };
             self.OnBossSceneComplete += delegate
             {
-                //Debug.Log("BOSS SCENE COMPLETED");
+                //("BOSS SCENE COMPLETED");
                 self.DoDreamReturn();
             };
         };

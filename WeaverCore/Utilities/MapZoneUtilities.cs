@@ -13,6 +13,9 @@ using WeaverCore.Features;
 
 namespace WeaverCore.Utilities
 {
+    /// <summary>
+    /// Contains some utility functions related to Map Zones
+    /// </summary>
     public static class MapZoneUtilities
     {
         static bool cacheDirty = true;
@@ -34,6 +37,10 @@ namespace WeaverCore.Utilities
             return registries.SelectMany(r => r.GetFeatures<CustomMapZone>());
         }
 
+        /// <summary>
+        /// Gets a list of all the custom map zones
+        /// </summary>
+        /// <returns>Returns a list of all the custom map zones</returns>
         public static List<CustomMapZone> GetCustomMapZones()
         {
             if (cacheDirty || customMapZonesCached == null)
@@ -56,6 +63,11 @@ namespace WeaverCore.Utilities
             cacheDirty = true;
         }
 
+        /// <summary>
+        /// Gets a list of all the map zones in the game (including custom ones)
+        /// </summary>
+        /// <param name="mapZoneIndexes">The ID of each of the map zones. These also serve as indexes within the <see cref="MapZone"/> enum, and can be casted to a <see cref="MapZone"/></param>
+        /// <param name="mapZoneNames">The internal names of each map zone.</param>
         public static void GetAllMapZones(out int[] mapZoneIndexes, out string[] mapZoneNames)
         {
             if (_mapZoneIndexes == null)

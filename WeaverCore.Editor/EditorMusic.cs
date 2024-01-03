@@ -291,7 +291,6 @@ namespace WeaverCore.Editor
 				if ((enabledSources & (Atmos.AtmosSources)i) != (Atmos.AtmosSources)i)
 				{
 					AudioSource source = atmosSources[counter];
-					Debug.Log("Stopping Source = " + source.name);
 					if (source.isPlaying)
 					{
 						source.Stop();

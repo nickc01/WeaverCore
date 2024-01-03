@@ -88,7 +88,7 @@ namespace WeaverCore.Components
             {
                 if (Initialization.Environment == Enums.RunningState.Game)
                 {
-                    WeaverLog.LogError("Couldn't find dialog manager");
+                    Debug.LogError("Couldn't find dialog manager");
                 }
                 else
                 {

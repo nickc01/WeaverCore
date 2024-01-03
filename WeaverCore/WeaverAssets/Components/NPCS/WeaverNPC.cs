@@ -8,7 +8,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-
     /// <summary>
     /// A custom NPC that the player can talk to
     /// </summary>
@@ -185,10 +184,6 @@ namespace WeaverCore.Assets.Components
             while (true)
             {
                 var newPos = HeroController.instance.transform.position;
-                /*if (playerPos != newPos)
-                {
-                    WeaverLog.Log("Player Pos = " + newPos);
-                }*/
                 playerPos = newPos;
                 yield return null;
             }

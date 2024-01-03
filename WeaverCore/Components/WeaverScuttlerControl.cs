@@ -9,7 +9,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
+    /// <summary>
+    /// WeaverCore's implementation of ground scuttlers
+    /// </summary>
     public class WeaverScuttlerControl : ScuttlerControl, IHittable, ISerializationCallbackReceiver
     {
         static Func<ScuttlerControl, AudioSource> sourceGetter;

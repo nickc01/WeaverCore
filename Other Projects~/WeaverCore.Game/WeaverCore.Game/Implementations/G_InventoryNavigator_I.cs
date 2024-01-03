@@ -91,11 +91,7 @@ namespace WeaverCore.Game.Implementations
                 {
                     var gameCamera = GameObject.FindObjectOfType<GameCameras>();
 
-                    //WeaverLog.Log("Game Camera = " + gameCamera?.name ?? "null");
-
                     inventoryFSM = gameCamera.transform.Find("HudCamera").Find("Inventory").GetComponents<PlayMakerFSM>().FirstOrDefault(c => c.FsmName == "Inventory Control");
-
-                    //WeaverLog.Log("INVENTORY FSM = " + inventoryFSM?.name ?? "null");
 
                     if (!initialized)
                     {
@@ -190,96 +186,6 @@ namespace WeaverCore.Game.Implementations
                         inventoryFSM.GetGameObjectVariable("Current Pane").Value = null;
                         inventoryFSM.GetGameObjectVariable("Prev Pane").Value = null;
                     });
-
-                    /*AddActionIfUnique("OPEN_CLEAR_ACTION", "Open", () =>
-                    {
-                        inventoryFSM.GetGameObjectVariable("Current Pane").Value = null;
-                        inventoryFSM.GetGameObjectVariable("Prev Pane").Value = null;
-                    });
-
-
-                    AddActionIfUnique("PANE_FINAL_POS_PREV_CLOSE_ACTION", "Pane Final Pos", () =>
-                    {
-                        var prevPane = inventoryFSM.GetGameObjectVariable("Prev Pane").Value;
-
-                        if (prevPane != null)
-                        {
-                            PaneCloseEnd(prevPane);
-                        }
-                    });
-
-                    AddActionIfUnique("TWEEN_PANES_PREV_PANE_CLOSE_ACTION", "Tween Panes", () =>
-                    {
-                        var prevPane = inventoryFSM.GetGameObjectVariable("Prev Pane").Value;
-
-                        foreach (var action in inventoryFSM.FsmStates.First(s => s.Name == inventoryFSM.ActiveStateName).Actions)
-                        {
-                            WeaverLog.Log("Action = " + action.Name + " - " + action.GetType().FullName);
-                        }
-
-                        if (prevPane != null)
-                        {
-                            WeaverLog.Log("CLOSE A");
-                            PaneCloseBegin(prevPane);
-                        }
-                    });
-
-                    AddActionIfUnique("R_LOCK_CLOSE_CUR_PANE_CLOSE_ACTION", "R Lock Close", () =>
-                    {
-                        var currentPane = inventoryFSM.GetGameObjectVariable("Current Pane").Value;
-
-                        if (currentPane != null)
-                        {
-                            WeaverLog.Log("CLOSE B");
-                            PaneCloseBegin(currentPane);
-                        }
-                    });
-
-                    AddActionIfUnique("REGAIN_CONTROL_2_CUR_PANE_CLOSE_ACTION", "Regain Control 2", () =>
-                    {
-                        var currentPane = inventoryFSM.GetGameObjectVariable("Current Pane").Value;
-
-                        if (currentPane != null)
-                        {
-                            PaneCloseEnd(currentPane);
-                        }
-                    }, 0);
-
-                    AddActionIfUnique("DAMAGE_CLOSE_CUR_PANE_CLOSE_ACTION", "Damage Close", () =>
-                    {
-                        var currentPane = inventoryFSM.GetGameObjectVariable("Current Pane").Value;
-
-                        if (currentPane != null)
-                        {
-                            PaneCloseEnd(currentPane);
-                        }
-                    }, 0);
-
-                    AddActionIfUnique("CLOSE_CUR_PANE_CLOSE_ACTION", "Close", () =>
-                    {
-                        WeaverLog.Log("Current State = " + inventoryFSM.ActiveStateName);
-                        foreach (var action in inventoryFSM.FsmStates.First(s => s.Name == inventoryFSM.ActiveStateName).Actions)
-                        {
-                            WeaverLog.Log("Action = " + action.Name + " - " + action.GetType().FullName);
-                        }
-                        var currentPane = inventoryFSM.GetGameObjectVariable("Current Pane").Value;
-
-                        if (currentPane != null)
-                        {
-                            WeaverLog.Log("CLOSE C");
-                            PaneCloseBegin(currentPane);
-                        }
-                    });
-
-                    AddActionIfUnique("REGAIN_CONTROL_CUR_PANE_CLOSE_ACTION", "Regain Control", () =>
-                    {
-                        var currentPane = inventoryFSM.GetGameObjectVariable("Current Pane").Value;
-
-                        if (currentPane != null)
-                        {
-                            PaneCloseEnd(currentPane);
-                        }
-                    }, 0);*/
                 }
             }
         }
@@ -287,8 +193,6 @@ namespace WeaverCore.Game.Implementations
         static IEnumerator OnInitRoutine()
         {
             yield return null;
-            //yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Menu_Title");
-            //WeaverLog.Log("FULLY INIT");
             try
             {
 
@@ -303,8 +207,7 @@ namespace WeaverCore.Game.Implementations
         static void AddActionIfUnique(string name, string state, Action action, int index = -1)
         {
             if (!inventoryFSM.FindActionsByType<MethodAction>(state).Any(a => a.ActionName == name))
-            {
-                //WeaverLog.Log("ACTIONS OF METHOD = " + inventoryFSM.FindActionsByType<MethodAction>(state).Count());
+            {;
                 var addedAction = AddAction(state, action, index);
                 addedAction.ActionName = name;
             }
@@ -316,11 +219,6 @@ namespace WeaverCore.Game.Implementations
             var stateInstance = inventoryFSM.GetState(state);
 
             stateInstance.Fsm = inventoryFSM.Fsm;
-
-            //stateInstance.AddMethod(action);
-
-            //WeaverLog.Log("ADDING ACTION IN STATE = " + state);
-
             if (index < 0)
             {
                 return stateInstance.AddMethod(() =>
@@ -870,7 +768,7 @@ namespace WeaverCore.Game.Implementations
 
         void Internal_OnPaneOpenEnd()
         {
-            Debug.Log("FULLY OPENED PANEL");
+            //Debug.Log("FULLY OPENED PANEL");
             paneOpen = true;
 
             //MainPanel.LeftArrow.OnMovePaneL.AddListener(MoveToPaneL);
@@ -879,7 +777,7 @@ namespace WeaverCore.Game.Implementations
 
         void Internal_OnPaneCloseBegin()
         {
-            Debug.Log("BEGINNING CLOSE PANEL");
+            //Debug.Log("BEGINNING CLOSE PANEL");
             paneOpen = false;
             //MainPanel.LeftArrow.OnMovePaneL.RemoveListener(MoveToPaneL);
             //MainPanel.RightArrow.OnMovePaneR.RemoveListener(MoveToPaneR);
@@ -934,14 +832,14 @@ namespace WeaverCore.Game.Implementations
 
         public override void MovePaneLeft()
         {
-            WeaverLog.Log("MOVING PANE LEFT");
+            //WeaverLog.Log("MOVING PANE LEFT");
             //EventManager.SendEventToGameObject("MOVE PANE L", transform.parent.gameObject, gameObject);
             EventManager.BroadcastEvent("MOVE PANE L", gameObject);
         }
 
         public override void MovePaneRight()
         {
-            WeaverLog.Log("MOVING PANE RIGHT");
+            //WeaverLog.Log("MOVING PANE RIGHT");
             //EventManager.SendEventToGameObject("MOVE PANE R", transform.parent.gameObject, gameObject);
             EventManager.BroadcastEvent("MOVE PANE R", gameObject);
         }

@@ -56,6 +56,12 @@ namespace WeaverCore.Utilities
 			return PlayMakerUtilities.impl.GetAllFsmsOnObject(gameObject);
 		}
 
+		/// <summary>
+		/// Gets a PlayMakerFSM component on an object with the specified name
+		/// </summary>
+		/// <param name="gameObject">The gameObject to get the component on</param>
+		/// <param name="name">The name of the PlayMakerFSM</param>
+		/// <returns>Returns the PlayMakerFSM component with the specified name, or null if it can't be found</returns>
 		public static MonoBehaviour GetPlaymakerFSMOnObject(GameObject gameObject, string name)
 		{
 			if (PlayMakerAvailable)
@@ -73,7 +79,13 @@ namespace WeaverCore.Utilities
             return null;
         }
 
-		public static object GetFSMOnPlayMakerComponent(Component playmakerComponent)
+        /// <summary>
+        /// Gets the "FSM" on a PlayMakerFSM
+        /// </summary>
+        /// <param name="playmakerComponent">The PlayMakerFSM to check</param>
+        /// <returns>Returns the "FSM" on the PlayMakerFSM, or null if it couldn't be found</returns>
+        /// <exception cref="Exception">Throws if the component isn't a PlayMakerFSM or is null</exception>
+        public static object GetFSMOnPlayMakerComponent(Component playmakerComponent)
 		{
 			try
 			{
@@ -91,7 +103,14 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-		public static IEnumerable GetStatesOnFSM(object fsm)
+
+        /// <summary>
+        /// Gets states on an FSM.
+        /// </summary>
+        /// <param name="fsm">The FSM object to get states from</param>
+        /// <returns>Returns an IEnumerable representing the states on the FSM</returns>
+        /// <exception cref="ArgumentNullException">Thrown if fsm is null or isn't an FSM</exception>
+        public static IEnumerable GetStatesOnFSM(object fsm)
 		{
             if (fsm == null)
             {
@@ -109,7 +128,14 @@ namespace WeaverCore.Utilities
             }
         }
 
-		public static string GetStateName(object stateObject)
+        /// <summary>
+        /// Gets the name of a state object.
+        /// </summary>
+        /// <param name="stateObject">The state object to get the name from</param>
+        /// <returns>Returns the name of the state object</returns>
+        /// <exception cref="ArgumentNullException">Thrown if stateObject is null</exception>
+        /// <exception cref="Exception">Thrown if stateObject is not a State Object</exception>
+        public static string GetStateName(object stateObject)
 		{
             if (stateObject == null)
             {
@@ -127,7 +153,13 @@ namespace WeaverCore.Utilities
             }
         }
 
-		public static object FindStateOnFSM(object fsm, string name)
+        /// <summary>
+        /// Finds a state on an FSM by name.
+        /// </summary>
+        /// <param name="fsm">The FSM object to search</param>
+        /// <param name="name">The name of the state to find</param>
+        /// <returns>Returns the state object with the specified name, or null if not found</returns>
+        public static object FindStateOnFSM(object fsm, string name)
 		{
 			foreach (var state in GetStatesOnFSM(fsm))
 			{
@@ -139,7 +171,14 @@ namespace WeaverCore.Utilities
 			return null;
         }
 
-		public static IEnumerable GetStateActions(object stateObject)
+        /// <summary>
+        /// Gets actions on a state object.
+        /// </summary>
+        /// <param name="stateObject">The state object to get actions from</param>
+        /// <returns>Returns an IEnumerable representing the actions on the state</returns>
+        /// <exception cref="ArgumentNullException">Thrown if stateObject is null</exception>
+        /// <exception cref="Exception">Thrown if stateObject is not a State Object</exception>
+        public static IEnumerable GetStateActions(object stateObject)
 		{
             if (stateObject == null)
             {
@@ -157,6 +196,13 @@ namespace WeaverCore.Utilities
             }
         }
 
+        /// <summary>
+        /// Gets action data from an state object.
+        /// </summary>
+        /// <param name="actionObject">The action object to get data from</param>
+        /// <returns>Returns the action data from the action object</returns>
+        /// <exception cref="ArgumentNullException">Thrown if stateObject is null</exception>
+        /// <exception cref="Exception">Thrown if actionObject is not a State Object</exception>
         public static object GetActionData(object stateObject)
         {
             if (stateObject == null)
@@ -175,6 +221,13 @@ namespace WeaverCore.Utilities
             }
         }
 
+        /// <summary>
+        /// Gets the name of an action object.
+        /// </summary>
+        /// <param name="actionObject">The action object to get the name from</param>
+        /// <returns>Returns the name of the action object</returns>
+        /// <exception cref="ArgumentNullException">Thrown if actionObject is null</exception>
+        /// <exception cref="Exception">Thrown if actionObject is not an FSMStateAction</exception>
         public static string GetActionName(object actionObject)
 		{
             if (actionObject == null)

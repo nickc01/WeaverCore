@@ -67,12 +67,18 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Interpolates between two floats (unclamped)
+		/// </summary>
 		public static float UnclampedLerp(float a, float b, float t)
         {
 			return ((b - a) * t) + a;
         }
 
-		public static float UnclampedInverseLerp(float a, float b, float v)
+        /// <summary>
+        /// Does the inverse of a linear intepolation between two floats (unclamped)
+        /// </summary>
+        public static float UnclampedInverseLerp(float a, float b, float v)
 		{
 			return (v - a) / (b - a);
 		}

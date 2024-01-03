@@ -5,8 +5,9 @@ using WeaverCore.Components;
 
 namespace WeaverCore.Assets.Components
 {
-
-
+    /// <summary>
+    /// Used to animate the Godhome crowd
+    /// </summary>
     public class GG_CrowdAnimationControl : MonoBehaviour
     {
         Sprite currentSprite;

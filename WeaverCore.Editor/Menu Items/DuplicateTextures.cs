@@ -39,7 +39,7 @@ public class DuplicateTextures : EditorWindow
 		var clone = texture.Clone();
 		//var texturePath = AssetDatabase.GetAssetPath(texture);
 		var texturePath = AssetDatabase.GenerateUniqueAssetPath("Assets/CLONED_TEXTURE.PNG");
-		Debug.Log("Path = " + texturePath);
+        Debug.Log("Path = " + texturePath);
 
 		var png = clone.EncodeToPNG();
 

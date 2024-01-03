@@ -125,17 +125,36 @@ namespace WeaverCore.Utilities
 			return result.ToString();
 		}
 
-		public static bool TryFind(this string input, string strToFind, out int index)
-		{
-			index = input.IndexOf(strToFind);
-			return index >= 0;
-		}
+        /// <summary>
+        /// Tries to find the specified substring in the input string and returns the index of the first occurrence.
+        /// </summary>
+        /// <param name="input">The input string to search within.</param>
+        /// <param name="strToFind">The substring to find.</param>
+        /// <param name="index">When this method returns, contains the zero-based index of the first occurrence of the substring,
+        /// or -1 if the substring is not found.</param>
+        /// <returns>True if the substring is found; otherwise, false.</returns>
+        public static bool TryFind(this string input, string strToFind, out int index)
+        {
+            index = input.IndexOf(strToFind);
+            return index >= 0;
+        }
 
+        /// <summary>
+        /// Tries to find the specified substring in the input string and returns the start and end indices of the substring.
+        /// </summary>
+        /// <param name="input">The input string to search within.</param>
+        /// <param name="strToFind">The substring to find.</param>
+        /// <param name="startIndex">When this method returns, contains the zero-based index of the first occurrence of the substring,
+        /// or -1 if the substring is not found.</param>
+        /// <param name="endIndex">When this method returns, contains the zero-based index of the end of the substring,
+        /// or -1 if the substring is not found.</param>
+        /// <returns>True if the substring is found; otherwise, false.</returns>
         public static bool TryFind(this string input, string strToFind, out int startIndex, out int endIndex)
         {
             startIndex = input.IndexOf(strToFind);
-			endIndex = startIndex + strToFind.Length;
+            endIndex = startIndex + strToFind.Length;
             return startIndex >= 0;
         }
+
     }
 }

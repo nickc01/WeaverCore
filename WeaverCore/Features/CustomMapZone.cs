@@ -10,8 +10,19 @@ namespace WeaverCore.Features
     [ShowFeature]
 	public class CustomMapZone : ScriptableObject
 	{
+		/// <summary>
+		/// The name of the map zone
+		/// </summary>
 		public string MapZoneName;
+
+		/// <summary>
+		/// The unique id of the map zone
+		/// </summary>
 		public int MapZoneID;
+
+		/// <summary>
+		/// The background image used in the save file selection menu
+		/// </summary>
 		public Sprite MapZoneBackgroundImage;
 
 		public MapZone MapZone => (MapZone)MapZoneID;

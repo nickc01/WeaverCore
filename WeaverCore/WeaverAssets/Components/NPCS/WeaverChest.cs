@@ -9,6 +9,9 @@ using WeaverCore.Settings;
 
 namespace WeaverCore.Assets.Components
 {
+    /// <summary>
+    /// WeaverCore's implementation of chests
+    /// </summary>
     public class WeaverChest : MonoBehaviour
     {
         [Header("Geo")]
@@ -152,11 +155,17 @@ namespace WeaverCore.Assets.Components
             }
         }
 
+        /// <summary>
+        /// Opens up the chest
+        /// </summary>
         public void OpenChest()
         {
             StruckByNail = true;
         }
 
+        /// <summary>
+        /// Called when the chest is opened
+        /// </summary>
         protected virtual void OnOpen()
         {
 

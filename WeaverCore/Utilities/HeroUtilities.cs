@@ -83,6 +83,10 @@ namespace WeaverCore.Utilities
             }
 		}
 
+		/// <summary>
+		/// Begins an in-game cutscene that freezes the player
+		/// </summary>
+		/// <param name="playSound">If true, a cutscene sound effect is played</param>
 		public static void BeginInGameCutscene(bool playSound = true)
 		{
 			EventManager.SendEventToGameObject("FSM CANCEL", Player.Player1.gameObject);
@@ -111,6 +115,8 @@ namespace WeaverCore.Utilities
             }
         }
 
+		/// <summary>
+		/// Ends an in-game cutscene and unfreezes the player
 		public static void EndInGameCutscene()
 		{
 			HeroController.instance.RegainControl();

@@ -10,6 +10,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+    /// <summary>
+    /// Contains data used for managing Godhome boss scenes. These contains test conditions that can be used to only unlock a Godhome bossfight only if certain criteria are met
+    /// </summary>
     [CreateAssetMenu(fileName = "New Boss Scene", menuName = "WeaverCore/Boss Scene")]
     public class WeaverBossScene : BossScene, ISerializationCallbackReceiver
 	{
@@ -42,7 +45,6 @@ namespace WeaverCore
 
         static void IsUnlockedSelf_Postfix(BossScene __instance, BossSceneCheckSource source, ref bool __result)
         {
-            //WeaverLog.Log("RESULT = " + __result);
             if (__instance is WeaverBossScene wbs)
             {
                 bool weaverUnlocked = true;
@@ -276,8 +278,6 @@ namespace WeaverCore
 #if !UNITY_EDITOR
             var tests = JsonUtility.FromJson<DataContainer>(bossTestData);
             bossTests = tests.tests;
-            WeaverLog.Log("Tests = " + JsonUtility.ToJson(tests));
-            
 #endif
             //JsonUtility.FromJsonOverwrite(bossTestData,)
         }

@@ -1,20 +1,46 @@
 ﻿using System;
 using UnityEngine;
+using WeaverCore.Features;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Inventory
 {
+    /// <summary>
+    /// Used to receive input events from the player within an <see cref="InventoryPanel"/>
+    /// </summary>
     public sealed class InventoryInputManager : MonoBehaviour
     {
+        /// <summary>
+        /// Called when the left input was pressed
+        /// </summary>
         public event Action OnLeftEvent;
+
+        /// <summary>
+        /// Called when the right input was pressed
+        /// </summary>
         public event Action OnRightEvent;
+
+        /// <summary>
+        /// Called when the up input was pressed
+        /// </summary>
         public event Action OnUpEvent;
+
+        /// <summary>
+        /// Called when the down input was pressed
+        /// </summary>
         public event Action OnDownEvent;
 
         public event Action OnRsUpEvent;
         public event Action OnRsDownEvent;
 
+        /// <summary>
+        /// Called when the select input was pressed
+        /// </summary>
         public event Action OnSelectEvent;
+
+        /// <summary>
+        /// Called when the cancel input was pressed
+        /// </summary>
         public event Action OnCancelEvent;
 
 
@@ -31,7 +57,6 @@ namespace WeaverCore.Inventory
 
         void GameSetup()
         {
-            WeaverLog.Log("GAME INPUT MANAGER SETUP");
             manager = transform.parent.GetComponent<EventManager>();
             if (manager == null)
             {
@@ -93,49 +118,49 @@ namespace WeaverCore.Inventory
 
         void OnLeft()
         {
-            WeaverLog.Log("LEFT PRESSSED");
+            //WeaverLog.Log("LEFT PRESSSED");
             OnLeftEvent?.Invoke();
         }
 
         void OnRight()
         {
-            WeaverLog.Log("RIGHT PRESSSED");
+            //WeaverLog.Log("RIGHT PRESSSED");
             OnRightEvent?.Invoke();
         }
 
         void OnUp()
         {
-            WeaverLog.Log("UP PRESSSED");
+            //WeaverLog.Log("UP PRESSSED");
             OnUpEvent?.Invoke();
         }
 
         void OnDown()
         {
-            WeaverLog.Log("DOWN PRESSSED");
+            //WeaverLog.Log("DOWN PRESSSED");
             OnDownEvent?.Invoke();
         }
 
         void OnRSUp()
         {
-            WeaverLog.Log("Right Stick UP PRESSSED");
+            //WeaverLog.Log("Right Stick UP PRESSSED");
             OnUpEvent?.Invoke();
         }
 
         void OnRSDown()
         {
-            WeaverLog.Log("Right Stick DOWN PRESSSED");
+            //WeaverLog.Log("Right Stick DOWN PRESSSED");
             OnDownEvent?.Invoke();
         }
 
         void OnSelect()
         {
-            WeaverLog.Log("SELECT PRESSSED");
+            //WeaverLog.Log("SELECT PRESSSED");
             OnSelectEvent?.Invoke();
         }
 
         void OnCancel()
         {
-            WeaverLog.Log("CANCEL PRESSSED");
+            //WeaverLog.Log("CANCEL PRESSSED");
             OnCancelEvent?.Invoke();
         }
     }

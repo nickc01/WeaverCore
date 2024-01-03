@@ -10,7 +10,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-
+    /// <summary>
+    /// WeaverCore's implementation of a Nosk Vomit Glob
+    /// </summary>
     public class VomitGlob : MonoBehaviour, IOnPool
     {
         static VomitGlob prefab;
@@ -344,6 +346,14 @@ namespace WeaverCore.Assets.Components
             scaleCoroutine = StartCoroutine(ScaleRoutine(transform.localScale.x, newScale, curve, time));
         }
 
+        /// <summary>
+        /// Spawns a <see cref="VomitGlob"/> at the specified position with the given velocity, gravity scale, and sound settings.
+        /// </summary>
+        /// <param name="position">The position where the <see cref="VomitGlob"/> should be spawned.</param>
+        /// <param name="velocity">The initial velocity of the <see cref="VomitGlob"/>.</param>
+        /// <param name="gravityScale">The gravity scale applied to the <see cref="VomitGlob"/> (default is 0.7f).</param>
+        /// <param name="playSounds">Flag indicating whether to play sounds for the spawned <see cref="VomitGlob"/> (default is true).</param>
+        /// <returns>The spawned <see cref="VomitGlob"/> instance.</returns>
         public static VomitGlob Spawn(Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
         {
             if (prefab == null)
@@ -354,6 +364,15 @@ namespace WeaverCore.Assets.Components
             return Spawn(prefab, position, velocity, gravityScale, playSounds);
         }
 
+        /// <summary>
+        /// Spawns a <see cref="VomitGlob"/> using the specified prefab at the given position with the provided velocity, gravity scale, and sound settings.
+        /// </summary>
+        /// <param name="prefab">The <see cref="VomitGlob"/> prefab to be used for spawning.</param>
+        /// <param name="position">The position where the <see cref="VomitGlob"/> should be spawned.</param>
+        /// <param name="velocity">The initial velocity of the <see cref="VomitGlob"/>.</param>
+        /// <param name="gravityScale">The gravity scale applied to the <see cref="VomitGlob"/> (default is 0.7f).</param>
+        /// <param name="playSounds">Flag indicating whether to play sounds for the spawned <see cref="VomitGlob"/> (default is true).</param>
+        /// <returns>The spawned <see cref="VomitGlob"/> instance.</returns>
         public static VomitGlob Spawn(VomitGlob prefab, Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
         {
             if (prefab == null)
@@ -373,6 +392,7 @@ namespace WeaverCore.Assets.Components
 
             return instance;
         }
+
 
         public void OnPool()
         {

@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
-
     /// <summary>
     /// Contains some utility functions related to math
     /// </summary>
@@ -156,9 +155,14 @@ namespace WeaverCore.Utilities
 			return degrees;
         }
 
+		/// <summary>
+		/// Checks if an angle is within a certain range
+		/// </summary>
+		/// <param name="angleDegrees">The angle in degrees</param>
+		/// <param name="range">The range the angle should be in</param>
+		/// <returns>Returns true if the angle is within the range</returns>
 		public static bool AngleIsWithinRange(float angleDegrees, Vector2 range)
         {
-
 			//Clamp to range 0 - 360
 			angleDegrees = (360 + (angleDegrees % 360)) % 360;
 			range.x = (3600000 + range.x) % 360;

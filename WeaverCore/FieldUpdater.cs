@@ -13,23 +13,41 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+    /// <summary>
+    ///  Used for updating many fields at once on GameObjects
+    /// </summary>
     [CreateAssetMenu(fileName = "FieldUpdater", menuName = "WeaverCore/Field Updater")]
     public class FieldUpdater : ScriptableObject
-	{
+    {
+        /// <summary>
+        /// List view for accessing and modifying updated fields.
+        /// </summary>
         public class UpdatedFieldListView : IList<UpdatedField>
         {
+            /// <summary>
+            /// Source <see cref="FieldUpdater"/> for the list view.
+            /// </summary>
             public readonly FieldUpdater SourceUpdater;
 
+            /// <summary>
+            /// Creates an instance of <see cref="UpdatedFieldListView"/>.
+            /// </summary>
+            /// <param name="sourceUpdater">Source <see cref="FieldUpdater"/> for the list view.</param>
             public UpdatedFieldListView(FieldUpdater sourceUpdater)
             {
                 SourceUpdater = sourceUpdater;
             }
 
+            /// <inheritdoc/>
             public UpdatedField this[int index]
             {
                 get
                 {
-                    return new UpdatedField(SourceUpdater.componentTypeNames[index], SourceUpdater.fieldNames[index], SourceUpdater.fieldTypes[index], SourceUpdater.fieldValueContainers[index],SourceUpdater);
+                    return new UpdatedField(SourceUpdater.componentTypeNames[index],
+                        SourceUpdater.fieldNames[index],
+                        SourceUpdater.fieldTypes[index],
+                        SourceUpdater.fieldValueContainers[index],
+                        SourceUpdater);
                 }
                 set
                 {
@@ -40,10 +58,13 @@ namespace WeaverCore
                 }
             }
 
+            /// <inheritdoc/>
             public int Count => SourceUpdater.componentTypeNames.Count;
 
+            /// <inheritdoc/>
             public bool IsReadOnly => false;
 
+            /// <inheritdoc/>
             public void Add(UpdatedField item)
             {
                 SourceUpdater.componentTypeNames.Add(item.ComponentTypeName);
@@ -52,6 +73,7 @@ namespace WeaverCore
                 SourceUpdater.fieldValueContainers.Add(item.FieldValueJson);
             }
 
+            /// <inheritdoc/>
             public void Clear()
             {
                 SourceUpdater.componentTypeNames.Clear();
@@ -60,6 +82,7 @@ namespace WeaverCore
                 SourceUpdater.fieldValueContainers.Clear();
             }
 
+            /// <inheritdoc/>
             public bool Contains(UpdatedField item)
             {
                 for (int i = 0; i < Count; i++)
@@ -76,6 +99,7 @@ namespace WeaverCore
                 return false;
             }
 
+            /// <inheritdoc/>
             public void CopyTo(UpdatedField[] array, int arrayIndex)
             {
                 for (int i = 0; i < Count; i++)
@@ -84,6 +108,7 @@ namespace WeaverCore
                 }
             }
 
+            /// <inheritdoc/>
             public IEnumerator<UpdatedField> GetEnumerator()
             {
                 for (int i = 0; i < Count; i++)
@@ -92,6 +117,7 @@ namespace WeaverCore
                 }
             }
 
+            /// <inheritdoc/>
             public int IndexOf(UpdatedField item)
             {
                 for (int i = 0; i < Count; i++)
@@ -108,6 +134,7 @@ namespace WeaverCore
                 return -1;
             }
 
+            /// <inheritdoc/>
             public void Insert(int index, UpdatedField item)
             {
                 SourceUpdater.componentTypeNames.Insert(index, item.ComponentTypeName);
@@ -116,6 +143,7 @@ namespace WeaverCore
                 SourceUpdater.fieldValueContainers.Insert(index, item.FieldValueJson);
             }
 
+            /// <inheritdoc/>
             public bool Remove(UpdatedField item)
             {
                 var index = IndexOf(item);
@@ -132,15 +160,16 @@ namespace WeaverCore
                 }
             }
 
+            /// <inheritdoc/>
             public void RemoveAt(int index)
             {
-
                 SourceUpdater.componentTypeNames.RemoveAt(index);
                 SourceUpdater.fieldNames.RemoveAt(index);
                 SourceUpdater.fieldTypes.RemoveAt(index);
                 SourceUpdater.fieldValueContainers.RemoveAt(index);
             }
 
+            /// <inheritdoc/>
             IEnumerator IEnumerable.GetEnumerator()
             {
                 for (int i = 0; i < Count; i++)
@@ -250,25 +279,9 @@ namespace WeaverCore
                 FieldName = $"{memberInfo}:{member.Name}";
                 FieldType = $"{memberType.Assembly.GetName().Name}:{memberType.FullName}";
 
-                /*if (typeof(UnityEngine.Object).IsAssignableFrom(memberType))
-                {
-
-                    FieldValueContainer = 
-                }
-                else
-                {
-                    FieldValueContainer = JsonUtility.ToJson(RawCreateContainer(newMemberValue, memberType));
-                }*/
                 FieldValueJson = valueJson;
 
                 sourceUpdater = fieldUpdater;
-
-                //FieldValueContainer = JsonUtility.ToJson(RawCreateContainer(newMemberValue, memberType));
-
-                /*if (typeof(UnityEngine.Object).IsAssignableFrom(memberType) && newMemberValue is UnityEngine.Object unityObj && unityObj != null)
-                {
-                    reservedObjects.Add(unityObj);
-                }*/
             }
 
             public Type ComponentType
@@ -320,19 +333,6 @@ namespace WeaverCore
                     return null;
                 }
             }
-
-            /*public object NewFieldValue
-            {
-                get
-                {
-                    return RawGetValue(FieldValueContainer, MemberType).ValueRaw;
-                }
-
-                set
-                {
-                    FieldValueContainer = JsonUtility.ToJson(RawCreateContainer(value, MemberType));
-                }
-            }*/
 
             public bool Equals(UpdatedField other)
             {
@@ -410,14 +410,6 @@ namespace WeaverCore
                 var containerType = typeof(Container<>).MakeGenericType(objType ?? obj.GetType());
 
                 return (IContainer)Activator.CreateInstance(containerType, obj);
-                /*if (typeof(UnityEngine.Object).IsAssignableFrom(objType))
-                {
-                    return new UnityObjectContainer(obj as UnityEngine.Object);
-                }
-                else
-                {
-                    
-                }*/
             }
 
             public static IContainer RawGetJsonValue(string containerJson, Type objType)
@@ -425,14 +417,6 @@ namespace WeaverCore
                 var containerType = typeof(Container<>).MakeGenericType(objType);
 
                 return (IContainer)JsonUtility.FromJson(containerJson, containerType);
-                /*if (typeof(UnityEngine.Object).IsAssignableFrom(objType))
-                {
-                    return (UnityObjectContainer)JsonUtility.FromJson(containerJson, typeof(UnityObjectContainer));
-                }
-                else
-                {
-                   
-                }*/
             }
         }
 
@@ -472,10 +456,10 @@ namespace WeaverCore
         }
 
         /// <summary>
-        /// Applies the Field Updater to an object
+        /// Applies the Field Updater to a <see cref="GameObject"/>.
         /// </summary>
-        /// <param name="obj">The object to have it's component fields changed</param>
-        /// <param name="throwOnError">If set to true, then this function will throw an exception if a field could not be set, or a component is missing</param>
+        /// <param name="obj">The object to have its component fields changed.</param>
+        /// <param name="throwOnError">If set to true, then this function will throw an exception if a field could not be set, or a component is missing.</param>
         public void ApplyToObject(GameObject obj, bool throwOnError = true)
         {
             foreach (var field in Fields)
@@ -527,103 +511,5 @@ namespace WeaverCore
 
         [SerializeField]
         List<UnityEngine.Object> reservedObjects = new List<UnityEngine.Object>();
-
-/*#if UNITY_EDITOR
-        [BeforeBuild]
-        static void BeforeBuild(string modName)
-        {
-
-            var fieldUpdaterGUIDs = UnityEditor.AssetDatabase.FindAssets("t:FieldUpdater");
-
-            foreach (var fieldUpdater in fieldUpdaterGUIDs.Select(guid => UnityEditor.AssetDatabase.LoadAssetAtPath<FieldUpdater>(AssetDatabase.GUIDToAssetPath(guid))))
-            {
-                using var serializedObject = new SerializedObject(fieldUpdater);
-
-                bool updated = false;
-
-                for (int i = 0; i < fieldUpdater.componentTypeNames.Count; i++)
-                {
-                    //var split = fieldUpdater.componentTypeNames[i].Split(':');
-                    var split = serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue.Split(':');
-
-                    bool changed = false;
-
-                    if (split[0] == "Assembly-CSharp")
-                    {
-                        changed = true;
-                        split[0] = modName;
-                        WeaverLog.Log("Changing Assembly-CSharp to " + modName);
-                    }
-
-                    if (split[0] == "HollowKnight")
-                    {
-                        changed = true;
-                        split[0] = "Assembly-CSharp";
-                        WeaverLog.Log("Changing HollowKnight to Assembly-CSharp");
-                    }
-
-                    if (changed)
-                    {
-                        updated = true;
-                        serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
-                        //fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
-                    }
-                }
-
-                if (updated)
-                {
-                    serializedObject.ApplyModifiedProperties();
-                }
-            }
-        }
-
-        [AfterBuild]
-        static void AfterBuild(string modName)
-        {
-            var fieldUpdaterGUIDs = UnityEditor.AssetDatabase.FindAssets("t:FieldUpdater");
-
-            foreach (var fieldUpdater in fieldUpdaterGUIDs.Select(guid => UnityEditor.AssetDatabase.LoadAssetAtPath<FieldUpdater>(AssetDatabase.GUIDToAssetPath(guid))))
-            {
-                using var serializedObject = new SerializedObject(fieldUpdater);
-
-                bool updated = false;
-
-                for (int i = 0; i < fieldUpdater.componentTypeNames.Count; i++)
-                {
-                    //var split = fieldUpdater.componentTypeNames[i].Split(':');
-                    var split = serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue.Split(':');
-
-                    bool changed = false;
-
-                    if (split[0] == "Assembly-CSharp")
-                    {
-                        changed = true;
-                        split[0] = "HollowKnight";
-                        WeaverLog.Log("Changing Assembly-CSharp to HollowKnight");
-                    }
-
-                    if (split[0] == modName)
-                    {
-                        changed = true;
-                        split[0] = "Assembly-CSharp";
-                        WeaverLog.Log($"Changing {modName} to Assembly-CSharp");
-                    }
-
-                    if (changed)
-                    {
-                        updated = true;
-                        serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
-                        //fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
-                    }
-                }
-
-                if (updated)
-                {
-                    serializedObject.ApplyModifiedProperties();
-                }
-            }
-        }
-
-#endif*/
     }
 }

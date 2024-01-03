@@ -39,20 +39,10 @@ public class FieldUpdaterEditor : Editor
 
     private void OnEnable()
     {
-        //EditorGUI.BeginChangeCheck();
-
-        //WeaverLog.Log("CHECKING RESERVED OBJECTS");
         if (CheckReservedObjects() > 0)
         {
-            WeaverLog.Log("APPLYING MODIFIED PROPERTIES");
             serializedObject.ApplyModifiedProperties();
         }
-
-        /*if (EditorGUI.EndChangeCheck())
-        {
-            WeaverLog.Log("APPLYING MODIFIED PROPERTIES");
-            
-        }*/
     }
 
     int CheckReservedObjects()
@@ -74,7 +64,7 @@ public class FieldUpdaterEditor : Editor
                 }
             }
         }
-        //WeaverLog.Log("VALID GUIDS = " + validGUIDs.Count);
+        //("VALID GUIDS = " + validGUIDs.Count);
         return RemoveGUIDByPredicate(s => !validGUIDs.Contains(s));
     }
 
@@ -129,7 +119,7 @@ public class FieldUpdaterEditor : Editor
 
         if (DisplayFieldUpdateCreator(out var newField))
         {
-            //WeaverLog.Log("UPDATED FIELD = " + JsonUtility.ToJson(newField));
+            //("UPDATED FIELD = " + JsonUtility.ToJson(newField));
             updated = true;
             Add(newField);
         }
@@ -204,7 +194,7 @@ public class FieldUpdaterEditor : Editor
 
     UpdateState DisplayUpdatedField(FieldUpdater.UpdatedField field)
     {
-        //WeaverLog.Log("FIELD DATA = " + field.FieldValueJson);
+        //("FIELD DATA = " + field.FieldValueJson);
         UpdateState updateState = UpdateState.None;
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField(field.ComponentTypeName.Split(':')[1], GUILayout.MaxWidth(250f));
@@ -291,10 +281,8 @@ public class FieldUpdaterEditor : Editor
 
                     while (currentType != null && currentType != typeof(Component))
                     {
-                        WeaverLog.Log("CURRENT TYPE = " + currentType);
                         foreach (var newField in currentType.GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Where(f => IsDisplayableField(f.FieldType)))
                         {
-                            WeaverLog.Log("FOUND FIELD = " + newField.Name);
                             if (!addedFields.Contains($"field_{newField.Name}"))
                             {
                                 addedFields.Add($"field_{newField.Name}");
@@ -304,7 +292,6 @@ public class FieldUpdaterEditor : Editor
 
                         foreach (var newProperty in currentType.GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Where(p => IsDisplayableField(p.PropertyType) && p.GetSetMethod() != null))
                         {
-                            WeaverLog.Log("FOUND PROPERTY = " + newProperty.Name);
                             if (!addedFields.Contains($"property_{newProperty.Name}"))
                             {
                                 addedFields.Add($"property_{newProperty.Name}");
@@ -313,11 +300,6 @@ public class FieldUpdaterEditor : Editor
                         }
 
                         currentType = currentType.BaseType;
-                    }
-
-                    foreach (var member in members)
-                    {
-                        WeaverLog.Log($"MEMBER = {member.DeclaringType.FullName}:{member.Name}");
                     }
 
                     /*members.AddRange(selectedType.GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Where(f => IsDisplayableField(f.FieldType)));
@@ -528,7 +510,7 @@ public class FieldUpdaterEditor : Editor
             if (predicate(reservedObjectGUIDs.GetArrayElementAtIndex(i).stringValue))
             {
                 removedCount++;
-                //WeaverLog.Log("REMOVING ID = " + reservedObjectGUIDs.GetArrayElementAtIndex(i).stringValue);
+                //("REMOVING ID = " + reservedObjectGUIDs.GetArrayElementAtIndex(i).stringValue);
                 reservedObjects.GetArrayElementAtIndex(i).objectReferenceValue = null;
                 reservedObjects.DeleteArrayElementAtIndex(i);
                 reservedObjectGUIDs.DeleteArrayElementAtIndex(i);

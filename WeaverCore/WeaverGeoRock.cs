@@ -14,6 +14,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+    /// <summary>
+    /// A small rock that spawns geo when hit by the player
+    /// </summary>
     public class WeaverGeoRock : GeoRock, ISerializationCallbackReceiver
     {
         [HideInInspector]

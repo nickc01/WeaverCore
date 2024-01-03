@@ -554,48 +554,97 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-		public static Assembly FindLoadedAssembly(string assemblyName)
-		{
-			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-			{
+        /// <summary>
+        /// Finds a loaded assembly by its full name or simple name.
+        /// </summary>
+        /// <param name="assemblyName">The full name or simple name of the assembly.</param>
+        /// <returns>The loaded assembly or null if not found.</returns>
+        public static Assembly FindLoadedAssembly(string assemblyName)
+        {
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
                 if (assembly.FullName == assemblyName || assembly.GetName().Name == assemblyName)
                 {
-					return assembly;
+                    return assembly;
                 }
             }
-			return null;
-		}
+            return null;
+        }
 
-		public static object ReflectGetField(this object obj, string fieldName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-		{
-			return obj.GetType().GetField(fieldName, flags).GetValue(obj);
-		}
+        /// <summary>
+        /// Gets the value of a field using reflection.
+        /// </summary>
+        /// <param name="obj">The object containing the field.</param>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The value of the specified field.</returns>
+        public static object ReflectGetField(this object obj, string fieldName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+            return obj.GetType().GetField(fieldName, flags).GetValue(obj);
+        }
 
+        /// <summary>
+        /// Sets the value of a field using reflection.
+        /// </summary>
+        /// <param name="obj">The object containing the field.</param>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="value">The value to set.</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
         public static void ReflectSetField(this object obj, string fieldName, object value, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
             obj.GetType().GetField(fieldName, flags).SetValue(obj, value);
         }
 
+        /// <summary>
+        /// Gets the value of a property using reflection.
+        /// </summary>
+        /// <param name="obj">The object containing the property.</param>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The value of the specified property.</returns>
         public static object ReflectGetProperty(this object obj, string propertyName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
             return obj.GetType().GetProperty(propertyName, flags).GetValue(obj);
         }
 
+        /// <summary>
+        /// Sets the value of a property using reflection.
+        /// </summary>
+        /// <param name="obj">The object containing the property.</param>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="value">The value to set.</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>True if the property was successfully set; otherwise, false.</returns>
         public static bool ReflectSetProperty(this object obj, string propertyName, object value, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
-			var property = obj.GetType().GetProperty(propertyName, flags);
+            var property = obj.GetType().GetProperty(propertyName, flags);
             property?.SetValue(obj, value);
-			return property != null;
+            return property != null;
         }
 
+        /// <summary>
+        /// Calls a method using reflection.
+        /// </summary>
+        /// <param name="obj">The object containing the method.</param>
+        /// <param name="methodName">The name of the method.</param>
+        /// <param name="parameters">An array of parameters to pass to the method.</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The result of the method invocation.</returns>
         public static object ReflectCallMethod(this object obj, string methodName, object[] parameters = null, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
             return obj.GetType().GetMethod(methodName, flags).Invoke(obj, parameters);
         }
 
+        /// <summary>
+        /// Gets the MethodInfo object for a method using reflection.
+        /// </summary>
+        /// <param name="obj">The object containing the method.</param>
+        /// <param name="methodName">The name of the method.</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The MethodInfo object for the specified method.</returns>
         public static MethodInfo ReflectGetMethod(this object obj, string methodName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
-			return obj.GetType().GetMethod(methodName, flags);
+            return obj.GetType().GetMethod(methodName, flags);
         }
     }
 }

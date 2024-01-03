@@ -13,6 +13,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
+    /// <summary>
+    /// Used to add new inventory panes to the player's inventory menu
+    /// </summary>
     [ShowFeature]
     [RequireComponent(typeof(InventoryInputManager))]
     public abstract class InventoryPanel : MonoBehaviour

@@ -8,6 +8,9 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore.Utilities
 {
+    /// <summary>
+    /// Contains utility functions related to Dreamnailing
+    /// </summary>
     public static class DreamnailUtilities
 	{
 		static DreamnailUtilities_I _impl;
@@ -128,13 +131,6 @@ namespace WeaverCore.Utilities
                 if (sheetTitle == "Minor NPC" && key == convoTitle)
                 {
                     return pickedOption;
-                    /*if (int.TryParse(key.Replace($"{convoTitle}_", ""), out var result))
-                    {
-                        if (result > 0 && result <= convoAmount)
-                        {
-                            return possibleOptions.ElementAt(result - 1);
-                        }
-                    }*/
                 }
 
                 return orig;
@@ -143,11 +139,9 @@ namespace WeaverCore.Utilities
             IEnumerator TemporaryOverrideRoutine()
             {
                 yield return new WaitForSeconds(1f);
-                WeaverLog.Log("REMOVING LANG HOOK");
                 ModHooks.LanguageGetHook -= ModHooks_LanguageGetHook;
             }
 
-            WeaverLog.Log("ADDING LANG HOOK");
             ModHooks.LanguageGetHook += ModHooks_LanguageGetHook;
 
             UnboundCoroutine.Start(TemporaryOverrideRoutine());

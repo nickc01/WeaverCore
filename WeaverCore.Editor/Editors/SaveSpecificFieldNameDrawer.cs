@@ -79,29 +79,6 @@ public class SaveSpecificFieldNameDrawer : PropertyDrawer
             return;
         }
 
-        /*FieldInfo FindField(Type type, string saveSettingsName)
-        {
-            var settingsStorageField = type.GetField(saveSettingsName, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
-
-            if (settingsStorageField != null && typeof(SaveSpecificSettings).IsAssignableFrom(settingsStorageField.FieldType))
-            {
-                return settingsStorageField;
-            }
-            else
-            {
-                foreach (var subType in type.GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Public))
-                {
-                    WeaverLog.Log("SUB TYPE = " + subType.FullName);
-                    settingsStorageField = FindField(subType, saveSettingsName);
-                    if (settingsStorageField != null)
-                    {
-                        return settingsStorageField;
-                    }
-                }
-                return null;
-            }
-        }*/
-
         var settingsStorageProp = property.serializedObject.FindProperty(fieldNameAttribute.SaveSettingsName);
 
         Type settingsFieldHostType = scriptType;

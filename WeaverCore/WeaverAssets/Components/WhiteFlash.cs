@@ -97,6 +97,12 @@ namespace WeaverCore.Assets.Components
 			Destroy(gameObject);
 		}
 
+		/// <summary>
+		/// Spawns a white flash
+		/// </summary>
+		/// <param name="position">The position to spawn it at</param>
+		/// <param name="prefab">The prefab to spawn. If null, will use the default prefab</param>
+		/// <returns></returns>
 		public static WhiteFlash Spawn(Vector3 position, WhiteFlash prefab = null)
 		{
 			if (prefab == null)

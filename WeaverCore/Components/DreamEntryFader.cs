@@ -45,7 +45,7 @@ namespace WeaverCore.Components
                 }
             }
 
-            //WeaverLog.Log("DREAM ENTRY START");
+            //("DREAM ENTRY START");
             HeroController.instance.RelinquishControl();
             HeroController.instance.StopAnimationControl();
             var playerRenderer = HeroController.instance.GetComponent<Renderer>();

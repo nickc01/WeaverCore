@@ -2,13 +2,18 @@
 
 namespace WeaverCore.Inventory
 {
+    /// <summary>
+    /// Used to group many <see cref="InventoryElement"/> objects into a grid. When attached to a parent object, all child objects will be arranged into a grid
+    /// </summary>
     [ExecuteAlways]
     public class InventoryGridGrouper : MonoBehaviour
     {
         [SerializeField]
+        [Tooltip("How many inventory elements can be placed in a row before starting a new column")]
         int maxRowSize = 4;
 
         [SerializeField]
+        [Tooltip("The amount of spacing between each inventory element")]
         Vector2 spacing = new Vector2(1, 1);
 
         private void LateUpdate()

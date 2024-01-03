@@ -151,6 +151,11 @@ namespace WeaverCore.Utilities
 
         private static Random rng = new Random();
 
+		/// <summary>
+		/// Shuffles the elements in a list. Note: This modifies the list itself
+		/// </summary>
+		/// <typeparam name="T">The type of elements in the list</typeparam>
+		/// <param name="source">The list to shuffle</param>
         public static void ShuffleInPlace<T>(this IList<T> source)
         {
             int n = source.Count;
@@ -164,25 +169,24 @@ namespace WeaverCore.Utilities
             }
         }
 
+		/// <summary>
+		/// Takes in an IEnumerable, and returns a new IEnumerable with the elements shuffled around
+		/// </summary>
+		/// <typeparam name="T">The type of the elements in the IEnumerable</typeparam>
+		/// <param name="source">The source IEnumerator to use</param>
+		/// <returns>Returns a new IEnumerable with the elements shuffled around</returns>
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
 		{
 			return source.OrderBy(e => UnityEngine.Random.Range(0f,1f));
 		}
 
-		/*public static int IndexOf<T>(this IEnumerable<T> values, T value)
-		{
-			int index = 0;
-			foreach (var val in values)
-			{
-				if (val.Equals(value))
-				{
-					return index;
-				}
-				index++;
-			}
-			return -1;
-		}*/
-
+		/// <summary>
+		/// Gets the index of a value in an array
+		/// </summary>
+		/// <typeparam name="T">The type of elements in the array</typeparam>
+		/// <param name="values">The array to check</param>
+		/// <param name="value">The value to find</param>
+		/// <returns>Returns the index of the value. Returns -1 if the value couldn't be found</returns>
         public static int IndexOf<T>(this T[] values, T value)
         {
 			for (int i = 0; i < values.Length; i++)
@@ -195,29 +199,8 @@ namespace WeaverCore.Utilities
 			return -1;
         }
 
-        /*        public bool Contains(T item)
-        {
-            if (m_buckets != null)
-            {
-                int num = InternalGetHashCode(item);
-                for (int num2 = m_buckets[num % m_buckets.Length] - 1; num2 >= 0; num2 = m_slots[num2].next)
-                {
-                    if (m_slots[num2].hashCode == num && m_comparer.Equals(m_slots[num2].value, item))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }*/
-
         class HashSetGetters<T>
 		{
-			//public static Func<HashSet<T>, int[]> bucketGetter;
-			//public static Func<HashSet<T>, int[]> slotsGetter;
-			//public static Func<HashSet<T>,T,int> internalGetHashCode;
-
 			public delegate int InternalIndexOfDelegate(HashSet<T> instance, T item);
 			public static InternalIndexOfDelegate InternalIndexOf;
 
@@ -232,6 +215,14 @@ namespace WeaverCore.Utilities
 
         }
 
+		/// <summary>
+		/// Attempts to find a value in a hashset that is equivalent to a source value
+		/// </summary>
+		/// <typeparam name="T">The type of elements in the HashSet</typeparam>
+		/// <param name="set">The HashSet to check over</param>
+		/// <param name="source">The source value to find</param>
+		/// <param name="equivalent">The equivalent value found in the HashSet</param>
+		/// <returns>Returns true if an equivalent has been found</returns>
 		public static bool TryGetEquivalent<T>(this HashSet<T> set, T source, out T equivalent)
 		{
 			if (!HashSetGetters<T>.Initialized)

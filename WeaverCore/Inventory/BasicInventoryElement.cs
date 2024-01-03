@@ -3,7 +3,9 @@ using UnityEngine.Events;
 
 namespace WeaverCore.Inventory
 {
-
+    /// <summary>
+    /// A basic implementation of an inventory element
+    /// </summary>
     public class BasicInventoryElement : InventoryElement
     {
         [SerializeField]
@@ -34,6 +36,7 @@ namespace WeaverCore.Inventory
         [Tooltip("Called when the element is clicked on")]
         UnityEvent onClick;
 
+        /// <inheritdoc/>
         public override InventoryElement NavigateTo(MoveDirection move)
         {
             switch (move)
@@ -51,10 +54,13 @@ namespace WeaverCore.Inventory
             }
         }
 
+        /// <inheritdoc/>
         public override bool Highlightable => highlightable;
 
+        /// <inheritdoc/>
         public override bool Selectable => selectable;
 
+        /// <inheritdoc/>
         public override void OnClick()
         {
             onClick?.Invoke();

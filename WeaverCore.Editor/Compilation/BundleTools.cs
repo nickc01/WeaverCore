@@ -275,7 +275,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <param name="whenReady">The function to call when done</param>
 		static void PrepareForAssetBundling(List<string> ExcludedAssemblies, MethodInfo whenReady)
 		{
-			Debug.Log("Preparing Assets for Bundling");
+            Debug.Log("Preparing Assets for Bundling");
 #if REWRITE_REGISTRIES
 			foreach (var registry in RegistryChecker.LoadAllRegistries())
 			{
@@ -352,8 +352,8 @@ namespace WeaverCore.Editor.Compilation
                     }
                     catch (Exception e)
                     {
-                        WeaverLog.LogError($"Failed to run method BeforeBuild method {method.method.DeclaringType.FullName}:{method.method.Name}");
-                        WeaverLog.LogException(e);
+                        Debug.LogError($"Failed to run method BeforeBuild method {method.method.DeclaringType.FullName}:{method.method.Name}");
+                        Debug.LogException(e);
                     }
                 }
 
@@ -404,7 +404,7 @@ namespace WeaverCore.Editor.Compilation
 
 			foreach (var bundleInput in buildInput)
 			{
-				Debug.Log("Found Asset Bundle -> " + bundleInput.assetBundleName);
+                Debug.Log("Found Asset Bundle -> " + bundleInput.assetBundleName);
 			}
 
 			Assembly scriptBuildAssembly = null;
@@ -487,7 +487,7 @@ namespace WeaverCore.Editor.Compilation
 				yield return new WaitForSeconds(1f);
 				try
 				{
-					Debug.Log("Beginning Bundle Process");
+                    Debug.Log("Beginning Bundle Process");
 #if !MULTI_THREADED_EMBEDDING
 					var builtAssetBundles = new List<BuiltAssetBundle>();
 #else
@@ -546,7 +546,7 @@ namespace WeaverCore.Editor.Compilation
 						{
 							if (bundleFile.Extension == "" && !bundleFile.Name.Contains("BundleBuilds"))
 							{
-								Debug.Log("Finished Building Bundle = " + bundleFile.Name);
+								("Finished Building Bundle = " + bundleFile.Name);
 								builtBundles.Add(new BuiltAssetBundle
 								{
 									File = bundleFile,
@@ -571,7 +571,7 @@ namespace WeaverCore.Editor.Compilation
 							{
 								tasksSuccessful = false;
 								Debug.LogError("Error occured when embedding asset bundles");
-								Debug.LogException(e);
+								Exception(e);
 							}
 						}));
 #endif
@@ -604,7 +604,7 @@ namespace WeaverCore.Editor.Compilation
                     if (!firstTime)
                     {
 						Debug.LogError("Error creating Asset Bundles");
-						Debug.LogException(e);
+                        Debug.LogException(e);
 					}
 					else
                     {
@@ -631,7 +631,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <param name="builtBundles">The asset bundles that have been built</param>
 		static void EmbedAssetBundles(List<FileInfo> assemblies, IEnumerable<BuiltAssetBundle> builtBundles)
 		{
-			Debug.Log("Embedding Asset Bundles");
+            Debug.Log("Embedding Asset Bundles");
 			var assemblyReplacements = new Dictionary<string, string>
 			{
 				{"Assembly-CSharp", Data.ModName },
@@ -829,8 +829,8 @@ namespace WeaverCore.Editor.Compilation
 					}
 					catch (Exception e)
 					{
-						WeaverLog.LogError($"Failed to run AfterBuild method {method.method.DeclaringType.FullName}:{method.method.Name}");
-						WeaverLog.LogException(e);
+						Debug.LogError($"Failed to run AfterBuild method {method.method.DeclaringType.FullName}:{method.method.Name}");
+                        Debug.LogException(e);
 					}
                 }
 
@@ -883,7 +883,7 @@ namespace WeaverCore.Editor.Compilation
 				return;
 			}
 
-			Debug.Log("<b>Asset Bundling Complete</b>");
+            Debug.Log("<b>Asset Bundling Complete</b>");
 			foreach (var scene in Data.ClosedScenes)
 			{
 				EditorSceneManager.OpenScene(scene.Path, OpenSceneMode.Additive);
@@ -904,8 +904,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <returns>Returns the path to the post-processed asset bundle</returns>
 		static string PostProcessBundle(BuiltAssetBundle bundle, Dictionary<string, string> assemblyReplacements)
 		{
-
-			Debug.Log($"Post Processing Bundle -> {bundle.File}");
+            Debug.Log($"Post Processing Bundle -> {bundle.File}");
 			var am = new AssetsManager();
 			am.LoadClassPackage(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}classdata.tpk");
 
@@ -1052,25 +1051,21 @@ namespace WeaverCore.Editor.Compilation
 									var valueAtIndex = componentTypeNamesField[i].GetValue();
 
 									var split = valueAtIndex.AsString().Split(':');
-									WeaverLog.Log("FOUND SPLIT = " + split[0] + ":" + split[1]);
                                     bool changed = false;
                                     if (split[0] == "Assembly-CSharp")
                                     {
                                         changed = true;
                                         split[0] = modName;
-                                        WeaverLog.Log("Changing Assembly-CSharp to " + modName);
                                     }
                                     else if (split[0] == "HollowKnight")
                                     {
                                         changed = true;
                                         split[0] = "Assembly-CSharp";
-                                        WeaverLog.Log("Changing HollowKnight to Assembly-CSharp");
                                     }
 
                                     if (changed)
                                     {
 										valueAtIndex.Set($"{split[0]}:{split[1]}");
-										WeaverLog.Log("NEW VALUE = " + split[0] + ":" + split[1]);
 										modified = true;
                                         //serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
                                         //fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
@@ -1082,7 +1077,7 @@ namespace WeaverCore.Editor.Compilation
                                         if (asmValue.AsString() == replacement.Key)
                                         {
                                             asmValue.Set(replacement.Value);
-                                            Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
+                                            ($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
                                             modified = true;
                                             break;
                                         }
@@ -1105,14 +1100,14 @@ namespace WeaverCore.Editor.Compilation
 										{
 											changed = true;
 											split[0] = modName;
-											WeaverLog.Log("Changing Assembly-CSharp to " + modName);
+											("Changing Assembly-CSharp to " + modName);
 										}
 
 										if (split[0] == "HollowKnight")
 										{
 											changed = true;
 											split[0] = "Assembly-CSharp";
-											WeaverLog.Log("Changing HollowKnight to Assembly-CSharp");
+											("Changing HollowKnight to Assembly-CSharp");
 										}
 
 										if (changed)
@@ -1189,7 +1184,7 @@ namespace WeaverCore.Editor.Compilation
 
                             if (FontAssetContainer.RemovedTextures.Contains(textureName))
                             {
-                                //WeaverLog.Log("REMOVING Texture = " + textureName);
+                                //("REMOVING Texture = " + textureName);
                                 assetReplacers.Enqueue(new AssetsRemover(0, info.index, (int)info.curFileType, 0xffff));
                             }
                         }

@@ -3,7 +3,9 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
-
+    /// <summary>
+    /// Used for controlling the music played during a Godhome bossfight
+    /// </summary>
     public class BossSceneMusicController : MonoBehaviour
     {
         [SerializeField]

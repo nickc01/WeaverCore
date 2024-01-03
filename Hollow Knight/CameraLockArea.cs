@@ -99,7 +99,7 @@ public class CameraLockArea : MonoBehaviour
 			cameraCtrl.LockToArea(this);
 			if (verboseMode)
 			{
-				Debug.Log("Lockzone Enter Lock " + base.name);
+                Debug.Log("Lockzone Enter Lock " + base.name);
 			}
 		}
 	}
@@ -119,7 +119,7 @@ public class CameraLockArea : MonoBehaviour
 		{
 			if (verboseMode)
 			{
-				Debug.Log("Lockzone Stay Lock " + base.name);
+                Debug.Log("Lockzone Stay Lock " + base.name);
 			}
 			cameraCtrl.LockToArea(this);
 		}
@@ -172,7 +172,7 @@ public class CameraLockArea : MonoBehaviour
 			cameraCtrl.ReleaseLock(this);
 			if (verboseMode)
 			{
-				Debug.Log("Lockzone Exit Lock " + base.name);
+                Debug.Log("Lockzone Exit Lock " + base.name);
 			}
 		}
 	}
@@ -193,7 +193,7 @@ public class CameraLockArea : MonoBehaviour
 	{
 		var cameraBounds = GameManager.instance.SceneDimensions;
 
-		Debug.Log("Camera Bounds = " + cameraBounds);
+        Debug.Log("Camera Bounds = " + cameraBounds);
 
 		if (cameraXMin < cameraBounds.xMin)
 		{

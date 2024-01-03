@@ -9,8 +9,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-
-
     /// <summary>
     /// Used to damage an <see cref="WeaverCore.Features.Enemy"/> on contact
     /// </summary>
@@ -56,7 +54,16 @@ namespace WeaverCore.Assets.Components
             }
 		}
 
-		public static List<IHittable> HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
+        /// <summary>
+        /// Hits a specified enemy
+        /// </summary>
+        /// <param name="obj">The transform of the enemy to hit</param>
+        /// <param name="attacker">The GameObject initiating the attack.</param>
+        /// <param name="damage">The amount of damage to be dealt.</param>
+        /// <param name="type">The type of attack.</param>
+        /// <param name="hitDirection">The cardinal direction of the attack.</param>
+        /// <returns>A list of IHittable objects that were successfully hit.</returns>
+        public static List<IHittable> HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
         {
             List<IHittable> hitObjects = new List<IHittable>();
 

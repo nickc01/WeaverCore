@@ -2,8 +2,16 @@
 
 namespace WeaverCore.Utilities
 {
+    /// <summary>
+    /// Contains utility functions related to Colliders
+    /// </summary>
     public static class ColliderUtilities
     {
+        /// <summary>
+        /// Gets the world space boundaries of a polygon collider
+        /// </summary>
+        /// <param name="collider2D">The collider to get the bounds of</param>
+        /// <returns>Returns the boundaries of the polygon collider</returns>
         public static Bounds GetBoundsSafe(this PolygonCollider2D collider2D)
         {
             Vector3 min = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);

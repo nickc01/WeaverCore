@@ -5,8 +5,16 @@ using System.Reflection;
 
 namespace WeaverCore
 {
+    /// <summary>
+    /// Used to help with mod interop
+    /// </summary>
     public static class Interop
     {
+        /// <summary>
+        /// Gets a mod by its name.
+        /// </summary>
+        /// <param name="modName">The name of the mod to retrieve.</param>
+        /// <returns>The mod with the specified name, or null if not found.</returns>
         public static IMod GetModByName(string modName)
         {
             var mod = WeaverMod.LoadedMods.FirstOrDefault(m => m.GetName() == modName);
@@ -27,6 +35,11 @@ namespace WeaverCore
             return mod;
         }
 
+        /// <summary>
+        /// Gets the assembly of a mod by its name.
+        /// </summary>
+        /// <param name="modName">The name of the mod to retrieve the assembly for.</param>
+        /// <returns>The assembly of the mod with the specified name, or null if not found.</returns>
         public static Assembly GetModAssembly(string modName)
         {
             return GetModByName(modName).GetType().Assembly;

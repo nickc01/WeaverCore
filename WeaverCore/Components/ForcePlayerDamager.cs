@@ -24,7 +24,14 @@ namespace WeaverCore.Components
             set => base.hazardType = (int)value;
         }
 
-
+        /// <summary>
+        /// Forces the player to take damage. Ignores shadow dash and desolate dive invincibility
+        /// </summary>
+        /// <param name="controller">The player to damage</param>
+        /// <param name="source">The source of the damage</param>
+        /// <param name="damageSide">Which direction the damage is coming from</param>
+        /// <param name="damageAmount">The amount of damage to deal</param>
+        /// <param name="hazardType">The type of damage to deal</param>
         public static void ForceDamage(HeroController controller, GameObject source, CollisionSide damageSide, int damageAmount, HazardType hazardType)
         {
             if (damageAmount > 0 && CanForceDamage(controller))
@@ -33,8 +40,6 @@ namespace WeaverCore.Components
                 {
                     CancelDash = ReflectionUtilities.MethodToDelegate<Action<HeroController>>(typeof(HeroController).GetMethod("CancelDash", BindingFlags.Instance | BindingFlags.NonPublic));
                 }
-
-                //controller.cState.shadowDashing = false;
 
                 controller.CancelParryInvuln();
                 CancelDash(controller);
@@ -52,7 +57,6 @@ namespace WeaverCore.Components
         {
             if (immediateDamageOnContact && (collision.CompareTag("Player") || collision.CompareTag("HeroBox")))
             {
-                WeaverLog.Log("IMMEDIATELY DAMAGING");
                 ForceDamage(HeroController.instance, gameObject, CollisionSide.bottom, damageDealt, hazardType);
             }
         }

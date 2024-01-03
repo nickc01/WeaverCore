@@ -6,6 +6,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+    /// <summary>
+    /// WeaverCore's implementation of a mantis shot
+    /// </summary>
     public class MantisShot : MonoBehaviour
     {
         static MantisShot prefab;
@@ -108,7 +111,13 @@ namespace WeaverCore.Assets.Components
             return Mathf.Abs(a - b) <= error;
         }
 
-
+        /// <summary>
+        /// Spawns a mantis shot
+        /// </summary>
+        /// <param name="position">The position to spawn it at</param>
+        /// <param name="velocity">The starting velocity of the mantis shot</param>
+        /// <param name="playLaunchSound">If set to true, will play a sound when it is launched</param>
+        /// <returns></returns>
         public static MantisShot Spawn(Vector3 position, Vector2 velocity, bool playLaunchSound = true)
         {
             if (prefab == null)

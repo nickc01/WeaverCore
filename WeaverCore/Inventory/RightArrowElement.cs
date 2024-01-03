@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 namespace WeaverCore.Inventory
 {
+    /// <summary>
+    /// The component representing the right arrow in an Inventory Pane
+    /// </summary>
     public class RightArrowElement : ArrowElement
     {
         [SerializeField]

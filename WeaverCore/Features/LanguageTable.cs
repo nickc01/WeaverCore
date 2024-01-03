@@ -7,8 +7,6 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Features
 {
-
-
     /// <summary>
     /// A table thats used for storing translations. 
     /// </summary>

@@ -181,12 +181,22 @@ namespace WeaverCore.Utilities
 			}
 		}
 
+		/// <summary>
+		/// Runs a function after a specified amount of time
+		/// </summary>
+		/// <param name="time">The time to wait</param>
+		/// <param name="action">The function to run</param>
 		public static IEnumerator RunAfter(float time, Action action)
 		{
 			yield return new WaitForSeconds(time);
 			action();
 		}
 
+        /// <summary>
+        /// Runs a function after a specified amount of time
+        /// </summary>
+        /// <param name="time">The time to wait</param>
+        /// <param name="action">The function to run</param>
         public static IEnumerator RunAfter(float time, Func<IEnumerator> action)
         {
             yield return new WaitForSeconds(time);

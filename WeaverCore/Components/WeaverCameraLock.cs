@@ -8,6 +8,9 @@ using WeaverCore.Components;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// When the player comes in contact with this object, the camera will be locked to a certain area
+    /// </summary>
     [ExecuteAlways]
     public class WeaverCameraLock : CameraLockArea
     {
@@ -16,8 +19,6 @@ namespace WeaverCore.Components
         {
             Gizmos.color = new Color(1f, 1f, 0f, 0.5f);
             var camBounds = new Bounds();
-            // - 14.6f
-            // - 8.3f
             camBounds.min = transform.TransformPoint(new Vector3(-0.5f, -0.5f));
             camBounds.max = transform.TransformPoint(new Vector3(0.5f, 0.5f));
             Gizmos.DrawCube(camBounds.center, camBounds.size);
@@ -50,8 +51,6 @@ namespace WeaverCore.Components
             if (__instance is WeaverCameraLock camLock)
             {
                 camLock.RefreshCamBounds();
-                //camLock.DoDreamNailTrigger();
-                //Debug.LogError("CAM LOCK INIT");
             }
         }
 

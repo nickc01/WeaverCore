@@ -7,6 +7,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
+    /// <summary>
+    /// Used to add custom charms to the game
+    /// </summary>
     [ShowFeature]
     [CreateAssetMenu(fileName = "WeaverCharm", menuName = "WeaverCore/Weaver Charm")]
     public abstract class WeaverCharm : ScriptableObject, IWeaverCharm

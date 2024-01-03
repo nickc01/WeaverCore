@@ -4,6 +4,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Updates the compass to wherever the player is located. Not sure if this gets triggered in-game
+    /// </summary>
     public class WeaverCompassUpdater : MonoBehaviour
     {
         bool hooked = false;

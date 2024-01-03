@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
-
     /// <summary>
     /// Contains utility functions related to file paths
     /// </summary>

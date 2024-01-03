@@ -34,10 +34,8 @@ public class RemoveEmbeddedObjects : EditorWindow
 	void RemoveEmbeddedAssets()
 	{
 		var path = AssetDatabase.GetAssetPath(obj);
-		Debug.Log("Path = " + path);
 		foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(path))
         {
-			Debug.Log("Asset = " + asset);
             if (asset != obj)
             {
 				AssetDatabase.RemoveObjectFromAsset(asset);

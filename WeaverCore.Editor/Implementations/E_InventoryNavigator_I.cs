@@ -221,13 +221,13 @@ namespace WeaverCore.Editor.Implementations
 
         static void InvOpened()
         {
-            //WeaverLog.Log("INV OPENED");
+            //("INV OPENED");
             InventoryOpenEvent?.Invoke();
         }
 
         static void InvClosed()
         {
-            //WeaverLog.Log("INV CLOSED");
+            //("INV CLOSED");
             InventoryCloseEvent?.Invoke();
         }
 
@@ -282,7 +282,7 @@ namespace WeaverCore.Editor.Implementations
 
         /*static void PaneOpenBegin(GameObject pane)
         {
-            //WeaverLog.Log("PANE OPEN BEGIN = " + pane.gameObject.name);
+            //("PANE OPEN BEGIN = " + pane.gameObject.name);
             var nav = pane.GetComponentInChildren<E_InventoryNavigator_I>();
             if (nav != null)
             {
@@ -293,7 +293,7 @@ namespace WeaverCore.Editor.Implementations
 
         static void PaneOpenEnd(GameObject pane)
         {
-            //WeaverLog.Log("PANE OPEN END = " + pane.gameObject.name);
+            //("PANE OPEN END = " + pane.gameObject.name);
             var nav = pane.GetComponentInChildren<E_InventoryNavigator_I>();
             if (nav != null)
             {
@@ -304,8 +304,8 @@ namespace WeaverCore.Editor.Implementations
 
         static void PaneCloseBegin(GameObject pane)
         {
-            //WeaverLog.Log("PANE CLOSE BEGIN = " + pane.gameObject.name);
-            //WeaverLog.Log(new System.Diagnostics.StackTrace());
+            //("PANE CLOSE BEGIN = " + pane.gameObject.name);
+            //(new System.Diagnostics.StackTrace());
             var nav = pane.GetComponentInChildren<E_InventoryNavigator_I>();
             if (nav != null)
             {
@@ -316,8 +316,8 @@ namespace WeaverCore.Editor.Implementations
 
         static void PaneCloseEnd(GameObject pane)
         {
-            //WeaverLog.Log("PANE CLOSE END = " + pane.gameObject.name);
-            //WeaverLog.Log(new System.Diagnostics.StackTrace());
+            //("PANE CLOSE END = " + pane.gameObject.name);
+            //(new System.Diagnostics.StackTrace());
             var nav = pane.GetComponentInChildren<E_InventoryNavigator_I>();
             if (nav != null)
             {
@@ -359,12 +359,12 @@ namespace WeaverCore.Editor.Implementations
 
         public override void MovePaneLeft()
         {
-            WeaverLog.Log("MOVING PANE LEFT");
+            Debug.Log("MOVING PANE LEFT");
         }
 
         public override void MovePaneRight()
         {
-            WeaverLog.Log("MOVING PANE RIGHT");
+            Debug.Log("MOVING PANE RIGHT");
         }
     }
 }

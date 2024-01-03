@@ -9,40 +9,68 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Controller for managing area titles in the game.
+    /// </summary>
     public class WeaverAreaTitleController : AreaTitleController
     {
+        /// <summary>
+        /// Gets or sets the center text for the area title.
+        /// </summary>
         [field: SerializeField]
+        [field: Tooltip("The center text for the area title.")]
         public string CenterText { get; set; }
 
+        /// <summary>
+        /// Gets or sets the upper text for the area title.
+        /// </summary>
         [field: SerializeField]
+        [field: Tooltip("The upper text for the area title.")]
         public string UpperText { get; set; }
 
+        /// <summary>
+        /// Gets or sets the lower text for the area title.
+        /// </summary>
         [field: SerializeField]
+        [field: Tooltip("The lower text for the area title.")]
         public string LowerText { get; set; }
 
         [Space]
         [Header("Settings")]
+
+        /// <summary>
+        /// Determines whether the large title should always be shown.
+        /// </summary>
         [SerializeField]
+        [Tooltip("Determines whether the large title should always be shown.")]
         bool alwaysShowLargeTitle = false;
 
+        /// <summary>
+        /// The save specific settings that store whether or not this area has been visited before.
+        /// </summary>
         [SerializeField]
-        [Tooltip("The save specific settings that stores whether or not this area has been visited before")]
+        [Tooltip("The save specific settings that store whether or not this area has been visited before.")]
         SaveSpecificSettings settings;
 
+        /// <summary>
+        /// The bool field on the save specific settings object for storing whether or not this area has been visited before.
+        /// </summary>
         [SerializeField]
-        [Tooltip("The bool field on the save specific settings object for storing whether or not this area has been visited before")]
+        [Tooltip("The bool field on the save specific settings object for storing whether or not this area has been visited before.")]
         [SaveSpecificFieldName(typeof(bool), nameof(settings))]
         string saveSettingsVisitedField;
 
+        /// <summary>
+        /// Harmony patch method for OnDestroy.
+        /// </summary>
         [OnHarmonyPatch]
         static void Patch(HarmonyPatcher patcher)
         {
-            var destroyMethod = typeof(AreaTitleController).GetMethod(nameof(OnDestroy),BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var destroyMethod = typeof(AreaTitleController).GetMethod(nameof(OnDestroy), BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             var post = typeof(WeaverAreaTitleController).GetMethod(nameof(OnDestroy_Post), BindingFlags.Static | BindingFlags.NonPublic);
 
             patcher.Patch(destroyMethod, null, post);
-
 
             var finishMethod = typeof(AreaTitleController).GetMethod("Finish", BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -58,8 +86,6 @@ namespace WeaverCore.Components
                 ModHooks.LanguageGetHook -= wtc.ModHooks_LanguageGetHook;
             }
         }
-
-        //static void 
 
         static bool Finish_Pre(AreaTitleController __instance)
         {
@@ -88,7 +114,7 @@ namespace WeaverCore.Components
                 }
                 if (visited)
                 {
-                    wtc.StartCoroutine((IEnumerator)typeof(AreaTitleController).GetMethod("VisitPause", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(__instance,new object[] {true}));
+                    wtc.StartCoroutine((IEnumerator)typeof(AreaTitleController).GetMethod("VisitPause", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(__instance, new object[] { true }));
                 }
                 else
                 {
@@ -100,8 +126,6 @@ namespace WeaverCore.Components
             return true;
         }
 
-
-
         private void OnEnable()
         {
             ModHooks.LanguageGetHook += ModHooks_LanguageGetHook;
@@ -109,12 +133,6 @@ namespace WeaverCore.Components
 
         private string ModHooks_LanguageGetHook(string key, string sheetTitle, string orig)
         {
-            //WeaverLog.Log("SHEET = " + sheetTitle);
-            //WeaverLog.Log("KEY = " + key);
-            //areaEvent + "_MAIN"
-            //areaEvent + "_SUB"
-            //areaEvent + "_SUPER"
-
             if (sheetTitle == "Titles")
             {
                 if (key == $"{areaEvent}_MAIN")

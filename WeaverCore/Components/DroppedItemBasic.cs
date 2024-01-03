@@ -12,14 +12,14 @@ namespace WeaverCore.Components
         /// Gets or sets the sprite of the item.
         /// </summary>
         [field: SerializeField]
-        [Tooltip("The sprite of the item.")]
+        [field: Tooltip("The sprite of the item.")]
         Sprite ItemSprite { get; set; }
 
         /// <summary>
         /// The name of the item.
         /// </summary>
         [field: SerializeField]
-        [Tooltip("The name of the item.")]
+        [field: Tooltip("The name of the item.")]
         string ItemName { get; set; }
 
         /// <summary>

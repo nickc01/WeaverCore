@@ -84,20 +84,20 @@ namespace WeaverCore.Features
                 }
                 else
                 {
-                    WeaverLog.LogError($"Error: {killCountSaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. KillCount will not be saved");
+                    Debug.LogError($"Error: {killCountSaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. KillCount will not be saved");
                     return _killCount_internal;
                 }
             }
             set
             {
-                WeaverLog.Log("SETTING KILL COUNT TO = " + value);
+                Debug.Log("SETTING KILL COUNT TO = " + value);
                 if (saveSettings.HasField<int>(killCountSaveFieldName))
                 {
                     saveSettings.SetFieldValue(killCountSaveFieldName, value);
                 }
                 else
                 {
-                    WeaverLog.LogError($"Error: {killCountSaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"KillCount\" will not be saved");
+                    Debug.LogError($"Error: {killCountSaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"KillCount\" will not be saved");
                     _killCount_internal = value;
                 }
             }
@@ -114,20 +114,20 @@ namespace WeaverCore.Features
                 }
                 else
                 {
-                    WeaverLog.LogError($"Error: {discoveredSaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"Discovered\" will not be saved");
+                    Debug.LogError($"Error: {discoveredSaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"Discovered\" will not be saved");
                     return discovered_internal;
                 }
             }
             set
             {
-                WeaverLog.Log("SETTING DISCOVERED TO = " + value);
+                Debug.Log("SETTING DISCOVERED TO = " + value);
                 if (saveSettings.HasField<bool>(discoveredSaveFieldName))
                 {
                     saveSettings.SetFieldValue(discoveredSaveFieldName, value);
                 }
                 else
                 {
-                    WeaverLog.LogError($"Error: {discoveredSaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"Discovered\" will not be saved");
+                    Debug.LogError($"Error: {discoveredSaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"Discovered\" will not be saved");
                     discovered_internal = value;
                 }
             }
@@ -144,20 +144,20 @@ namespace WeaverCore.Features
                 }
                 else
                 {
-                    WeaverLog.LogError($"Error: {isNewEntrySaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"IsNewEntry\" will not be saved");
+                    Debug.LogError($"Error: {isNewEntrySaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"IsNewEntry\" will not be saved");
                     return _isNewEntry_internal;
                 }
             }
             set
             {
-                WeaverLog.Log("SETTING IS NEW NETRY TO = " + value);
+                Debug.Log("SETTING IS NEW NETRY TO = " + value);
                 if (saveSettings.HasField<bool>(isNewEntrySaveFieldName))
                 {
                     saveSettings.SetFieldValue(isNewEntrySaveFieldName, value);
                 }
                 else
                 {
-                    WeaverLog.LogError($"Error: {isNewEntrySaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"IsNewEntry\" will not be saved");
+                    Debug.LogError($"Error: {isNewEntrySaveFieldName} is not a valid field in {saveSettings.GetType().FullName}. \"IsNewEntry\" will not be saved");
                     _isNewEntry_internal = value;
                 }
             }

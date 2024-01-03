@@ -2,16 +2,45 @@
 
 namespace WeaverCore.Interfaces
 {
+    /// <summary>
+    /// Interface used for implementing custom charms.
+    /// </summary>
     public interface IWeaverCharm
-	{
-		string Name { get; }
-		string Description { get; }
-		int NotchCost { get; }
+    {
+        /// <summary>
+        /// The name of the charm.
+        /// </summary>
+        string Name { get; }
 
-		bool Acquired { get; set; }
-		bool Equipped { get; set; }
-		bool NewlyCollected { get; set; }
+        /// <summary>
+        /// The description of the charm.
+        /// </summary>
+        string Description { get; }
 
-		Sprite CharmSprite { get; }
+        /// <summary>
+        /// The notch cost of the charm.
+        /// </summary>
+        int NotchCost { get; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the charm has been acquired.
+        /// </summary>
+        bool Acquired { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the charm is equipped.
+        /// </summary>
+        bool Equipped { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the charm has been newly collected.
+        /// </summary>
+        bool NewlyCollected { get; set; }
+
+        /// <summary>
+        /// The sprite of the charm.
+        /// </summary>
+        Sprite CharmSprite { get; }
     }
+
 }

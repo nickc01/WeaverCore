@@ -198,7 +198,7 @@ namespace DependenciesHunter
             SortByPath();
 
             EditorUtility.ClearProgressBar();
-            
+
             Debug.Log(filteredOutput.ToString());
             Debug.Log(_result.OutputDescription);
             filteredOutput.Clear();
@@ -844,7 +844,7 @@ namespace DependenciesHunter
             var type = AssetDatabase.GetMainAssetTypeAtPath(path);
 
             var importer = AssetImporter.GetAtPath(path);
-            //Debug.Log("Asset Bundle Name of " + path + " = " + importer.assetBundleName);
+            //("Asset Bundle Name of " + path + " = " + importer.assetBundleName);
             /*if (importer.assetBundleName == WeaverAssets.WeaverAssetBundleName)
             {
                 return (T)asset;

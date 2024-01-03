@@ -88,7 +88,7 @@ namespace RuntimeInspectorNamespace
 				}
 				catch( Exception e )
 				{
-					Debug.LogException( e );
+                    Debug.LogException( e );
 				}
 
 				Close();
@@ -151,7 +151,7 @@ namespace RuntimeInspectorNamespace
 			}
 			catch( Exception e )
 			{
-				Debug.LogException( e );
+                Debug.LogException( e );
 			}
 
 			Close();
@@ -199,7 +199,7 @@ namespace RuntimeInspectorNamespace
 			}
 			catch( Exception e )
 			{
-				Debug.LogException( e );
+                Debug.LogException( e );
 			}
 		}
 
@@ -218,7 +218,7 @@ namespace RuntimeInspectorNamespace
 			}
 			catch( Exception e )
 			{
-				Debug.LogException( e );
+                Debug.LogException( e );
 			}
 		}
 

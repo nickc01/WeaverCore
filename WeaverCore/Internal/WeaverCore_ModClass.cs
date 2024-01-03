@@ -50,11 +50,6 @@ namespace WeaverCore.Internal
 
             if (preloadedObjects.TryGetValue("Tutorial_01", out var tutorialSceneDict))
             {
-                foreach (var pair in tutorialSceneDict)
-                {
-                    WeaverLog.Log($"DICT CONTENTS = {pair.Key}:{pair.Value}");
-                }
-
                 if (tutorialSceneDict.TryGetValue("_Enemies/Crawler 1", out var crawler))
                 {
                     var enemyDeathEffects = crawler.GetComponent("EnemyDeathEffects");
@@ -62,8 +57,6 @@ namespace WeaverCore.Internal
                     var journalPrefab = enemyDeathEffects.ReflectGetField("journalUpdateMessagePrefab") as GameObject;
 
                     Other_Preloads.JournalUpdateMessagePrefab = journalPrefab;
-
-                    WeaverLog.Log("JOURNAL PREFAB = " + journalPrefab);
 
                     GameObject.Destroy(crawler);
                 }
@@ -77,7 +70,6 @@ namespace WeaverCore.Internal
                         {
                             var scuttlerControl = fling.prefab.GetComponent<ScuttlerControl>();
                             Other_Preloads.HealthCocoonFlashPrefab = scuttlerControl.screenFlash;
-                            WeaverLog.Log("FLASH PREFAB = " + scuttlerControl.screenFlash);
                             break;
                         }
                     }

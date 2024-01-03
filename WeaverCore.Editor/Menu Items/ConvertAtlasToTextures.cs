@@ -120,8 +120,6 @@ public class AtlasToTexturesConverter : EditorWindow
 
     Vector2 ConvertToSpriteCoords(Vector2 vertex, Sprite sprite)
 	{
-		WeaverLog.Log("Bounds: Bottom-Left = " + sprite.bounds.min + " Top-Right = " + sprite.bounds.max);
-		WeaverLog.Log("Rect = " + sprite.rect);
 		return vertex;
 	}
 

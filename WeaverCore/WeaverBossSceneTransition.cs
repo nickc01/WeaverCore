@@ -4,6 +4,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+    /// <summary>
+    /// Used for playing scene transitions in Godhome fights. This gets played when a boss is defeated
+    /// </summary>
     public class WeaverBossSceneTransition : MonoBehaviour
     {
         EventManager listener;
@@ -11,9 +14,6 @@ namespace WeaverCore.Assets.Components
         [SerializeField]
         [Tooltip("Dont touch this unless you know what you are doing")]
         bool playNextSceneEvents = true;
-
-        //string destScene = "";
-        //string entryDoor = "";
 
         private void Awake()
         {
@@ -26,27 +26,10 @@ namespace WeaverCore.Assets.Components
             listener.AddReceiverForEvent("DREAM RETURN", BeginDreamReturn);
 
             listener.AddReceiverForEvent("DREAM EXIT", BeginDreamExit);
-            /*listener.AddReceiverForEvent((e, source, dest) =>
-            {
-                if (e == "DREAM EXIT")
-                {
-                    WeaverLog.Log("DREAM EXIT EVENT");
-                    StopAllCoroutines();
-                    DreamExit();
-                }
-                else if (e == "DREAM RETURN")
-                {
-                    WeaverLog.Log("DREAM RETURN EVENT");
-                    StopAllCoroutines();
-                    DreamReturn();
-                    //FadeOut();
-                }
-            });*/
         }
 
         public void BeginDreamReturn()
         {
-            //WeaverLog.Log("DREAM RETURN EVENT");
             StopAllCoroutines();
             StartCoroutine(DreamReturn());
             if (playNextSceneEvents)
@@ -57,7 +40,6 @@ namespace WeaverCore.Assets.Components
 
         public void BeginDreamExit()
         {
-            //WeaverLog.Log("DREAM EXIT EVENT");
             StopAllCoroutines();
             StartCoroutine(DreamExit());
         }
@@ -80,33 +62,6 @@ namespace WeaverCore.Assets.Components
             HeroController.instance.RelinquishControl();
             HeroController.instance.EnterWithoutInput(true);
         }
-
-        /*void FadeOut()
-        {
-            var hudBlanker = WeaverCanvas.HUDBlankerWhite;
-            if (hudBlanker != null)
-            {
-                PlayMakerUtilities.SetFsmFloat(hudBlanker.gameObject, "Blanker Control", "Fade Time", 0f);
-                EventManager.SendEventToGameObject("FADE IN", hudBlanker.gameObject, gameObject);
-            }
-
-            GameManager.instance.TimePasses();
-            GameManager.instance.ResetSemiPersistentItems();
-            PlayMakerUtilities.SetFsmBool(WeaverCamera.Instance.gameObject, "CameraFade", "No Fade", true);
-            HeroController.instance.RelinquishControl();
-            HeroController.instance.EnterWithoutInput(true);
-
-            GameManager.instance.BeginSceneTransition(new GameManager.SceneLoadInfo
-            {
-                SceneName = destScene,
-                EntryGateName = entryDoor,
-                EntryDelay = 0f,
-                Visualization = GameManager.SceneLoadVisualizations.GodsAndGlory,
-                PreventCameraFadeOut = true,
-                WaitForSceneTransitionCameraFade = false,
-                AlwaysUnloadUnusedAssets = false
-            });
-        }*/
 
         IEnumerator DreamExit()
         {
@@ -161,15 +116,6 @@ namespace WeaverCore.Assets.Components
             HeroController.instance.MaxHealth();
 
             yield return DreamFinish(dreamReturnScene);
-
-            /*yield return new WaitForSeconds(1f);
-
-            GameManager.instance.TimePasses();
-            GameManager.instance.ResetSemiPersistentItems();
-            PlayMakerUtilities.SetFsmBool(WeaverCamera.Instance.gameObject, "CameraFade", "No Fade", true);
-            PlayMakerUtilities.SetFsmBool(HeroController.instance.gameObject, "Dream Return", "Dream Returning", true);
-            HeroController.instance.EnterWithoutInput(true);*/
-
         }
 
         IEnumerator DreamFinish(string returnScene)

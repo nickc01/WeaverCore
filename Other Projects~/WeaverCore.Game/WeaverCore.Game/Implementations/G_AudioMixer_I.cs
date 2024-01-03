@@ -210,8 +210,6 @@ namespace WeaverCore.Game.Implementations
 
         public override void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot)
         {
-			//Debug.Log("APPLYING MUSIC CUE = " + musicCue.name);
-			//Debug.Log("IS DIFFERENT = " + (GameManager.instance.AudioManager.CurrentMusicCue != musicCue));
             GameManager.instance.AudioManager.ApplyMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
             if (applySnapshot)
             {
@@ -220,7 +218,6 @@ namespace WeaverCore.Game.Implementations
 				{
                     snapshot.TransitionTo(transitionTime);
                 }
-                //var snapshot = Music.GetSnapshot(pack.Snapshot);
             }
         }
     }

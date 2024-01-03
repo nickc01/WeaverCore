@@ -13,9 +13,6 @@ namespace WeaverCore
     /// </summary>
     public static class Flings
     {
-        //static ObjectPool GhostSlash1Pool;
-        //static ObjectPool GhostSlash2Pool;
-
         static GameObject[] SpawnFlingsInternal(FlingInfo info, Vector3 spawnPoint, CardinalDirection direction)
         {
             float angleMin = info.AngleMin;
@@ -74,15 +71,6 @@ namespace WeaverCore
         /// <returns>Returns the fling info needed to spawn the flings</returns>
         public static FlingInfo[] CreateNormalFlings()
         {
-            /*if (GhostSlash1Pool == null)
-            {
-                GhostSlash1Pool = ObjectPool.Create(EffectAssets.GhostSlash1Prefab);
-                GhostSlash1Pool.FillPool(1);
-
-                GhostSlash2Pool = ObjectPool.Create(EffectAssets.GhostSlash2Prefab);
-                GhostSlash2Pool.FillPool(1);
-            }*/
-
             return new FlingInfo[2]
             {
                 new FlingInfo

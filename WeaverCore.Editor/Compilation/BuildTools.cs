@@ -337,7 +337,7 @@ namespace WeaverCore.Editor.Compilation
 				{
 					Success = false
 				};
-				Debug.Log("Failed to build WeaverCore");
+                Debug.Log("Failed to build WeaverCore");
 				yield break;
 			}
 
@@ -646,8 +646,8 @@ namespace WeaverCore.Editor.Compilation
                         managedFolder = PathUtilities.AddSlash(GameBuildSettings.Settings.HollowKnightLocation) + $"Hollow Knight_Data{Path.DirectorySeparatorChar}Managed";
                     }
 
-					Debug.Log("Hollow Knight Location = " + GameBuildSettings.Settings.HollowKnightLocation);
-					Debug.Log("Managed Folder Location = " + managedFolder);
+                    Debug.Log("Hollow Knight Location = " + GameBuildSettings.Settings.HollowKnightLocation);
+                    Debug.Log("Managed Folder Location = " + managedFolder);
 
 
                     List<DirectoryInfo> AssemblySearchDirectories = new List<DirectoryInfo>
@@ -658,7 +658,7 @@ namespace WeaverCore.Editor.Compilation
 
 					foreach (var path in AssemblySearchDirectories)
 					{
-						Debug.Log("Assembly Search Directory = " + path);
+                        Debug.Log("Assembly Search Directory = " + path);
 					}
 
 					List<string> AssemblyReferences = new List<string>();

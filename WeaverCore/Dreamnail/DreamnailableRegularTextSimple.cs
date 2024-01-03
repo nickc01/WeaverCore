@@ -5,6 +5,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Dreamnail
 {
+    /// <summary>
+    /// A simple version of <see cref="DreamnailableRegularText"/>. Displays one of several possible messages upon dreamnailing
+    /// </summary>
     public class DreamnailableRegularTextSimple : DreamnailableObject
     {
         [SerializeField]

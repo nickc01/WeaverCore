@@ -4,6 +4,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// WeaverCore's implementation of surface water
+    /// </summary>
     public class WeaverSurfaceWater : MonoBehaviour
     {
         [SerializeField]

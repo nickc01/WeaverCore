@@ -2,6 +2,9 @@
 
 namespace WeaverCore.Utilities
 {
+    /// <summary>
+    /// Contains utility functions related to the Camera
+    /// </summary>
     public static class CameraUtilities
 	{
 		/// <summary>

@@ -48,7 +48,7 @@ namespace WeaverCore.Components.HitEffects
             didFireThisFrame = false;
         }
 
-        protected virtual Reset()
+        protected virtual void Reset()
         {
             ghostHitPt = WeaverAssets.LoadWeaverAsset<GameObject>("Ghost Hit Pt");
 

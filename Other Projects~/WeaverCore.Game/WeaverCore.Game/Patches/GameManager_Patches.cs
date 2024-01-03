@@ -95,7 +95,7 @@ namespace WeaverCore.Game.Patches
 
         private static void GameManager_SetupSceneRefs(On.GameManager.orig_SetupSceneRefs orig, GameManager self, bool refreshTilemapInfo)
 		{
-			Debug.Log("SETTING UP SCENE REFS");
+			//Debug.Log("SETTING UP SCENE REFS");
 			WeaverSceneManager.CurrentSceneManager = null;
 			var gm_sm = typeof(GameManager).GetProperty("sm");
 			bool found = false;

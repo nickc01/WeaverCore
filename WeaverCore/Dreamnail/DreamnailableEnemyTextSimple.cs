@@ -4,6 +4,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Dreamnail
 {
+    /// <summary>
+    /// A simple version of <see cref="DreamnailableEnemyText"/>. Displays one of several possible enemy messages upon dreamnailing
+    /// </summary>
     public class DreamnailableEnemyTextSimple : DreamnailableObject
     {
         [SerializeField]

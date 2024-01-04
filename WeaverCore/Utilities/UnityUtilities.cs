@@ -29,9 +29,34 @@ namespace WeaverCore.Utilities
             };
         }
 
+        /// <summary>
+        /// Checks if an object is truly null (Completely deallocated)
+        /// </summary>
+        /// <param name="obj">The object to check</param>
         public static bool IsObjectTrulyNull(UnityEngine.Object obj)
         {
             return ((object)obj) == null;
+        }
+        
+        /// <summary>
+        /// Checks if an object is still alive
+        /// </summary>
+        /// <param name="obj">The object to check</param>
+        /// <returns>Returns true if the object is still alive, and false if destroyed</returns>
+        public static bool ObjectIsAlive(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj is UnityEngine.Object unityObj)
+            {
+                return UnityUtilities.ObjectIsAlive(unityObj);
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

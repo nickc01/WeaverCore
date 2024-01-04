@@ -1,23 +1,27 @@
-﻿using UnityEngine;
+using UnityEngine;
 using WeaverCore.Features;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Represents an item that, when dropped, gives a WeaverCharm to the player.
+    /// </summary>
     public class DroppedCustomCharmItem : DroppedItem
     {
         [SerializeField]
+        [Tooltip("The charm to give to the player when collecting this item")]
         WeaverCharm charm;
 
-        public override void GiveItem()
+        protected override void OnGiveItem()
         {
             if (charm == null)
             {
                 throw new System.Exception("No charm has been specified");
             }
 
-            GiveCharm(CharmUtilities.GetCustomCharmID(charm));
+            CharmUtilities.GiveCharmToPlayer(charm);
         }
     }
 }

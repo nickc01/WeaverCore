@@ -193,7 +193,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4879908461866923347, guid: b71533ac8f733754a977a0a0027473dc, type: 3}
+  m_Sprite: {fileID: -4879908461866923347, guid: b71533ac8f733754a977a0a0027473dc,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -288,8 +289,10 @@ MonoBehaviour:
   langKey: REST
   fallbackText: Rest
   BenchRestSound: {fileID: 8300000, guid: 13184ea08b2dc4c4fb02a297825bc003, type: 3}
-  ArrowPrompt: {fileID: 2108503044856503622, guid: 052528e37bb95334f8c7dd0a916daab4, type: 3}
-  MapUpdateMsg: {fileID: 4222469482727747742, guid: 28e26cbd5466ba44885d7f96a5ec838d, type: 3}
+  ArrowPrompt: {fileID: 2108503044856503622, guid: 052528e37bb95334f8c7dd0a916daab4,
+    type: 3}
+  MapUpdateMsg: {fileID: 4222469482727747742, guid: 28e26cbd5466ba44885d7f96a5ec838d,
+    type: 3}
   CharmEquipMsg: {fileID: 0}
 --- !u!1 &557714926990644202
 GameObject:
@@ -363,7 +366,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3964255121713219355, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  m_Sprite: {fileID: 3964255121713219355, guid: 4bfe5e5234b7912448dc64f900b0672e,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

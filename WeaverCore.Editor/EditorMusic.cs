@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.MPE;
 using UnityEngine;
 using UnityEngine.Audio;
 using WeaverCore.Attributes;
@@ -8,7 +9,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Editor
 {
-
     /// <summary>
     /// Used for playing music and atmosphere sounds in the editor
     /// </summary>
@@ -39,8 +39,27 @@ namespace WeaverCore.Editor
 		Coroutine ApplySnapshotRoutine;
 		Coroutine ApplyAtmosRoutine;
 
-		IEnumerable<AudioSource> Sources
+		List<AudioSource> _sources;
+		List<AudioSource> Sources
 		{
+			get
+			{
+				if (_sources == null)
+				{
+					_sources = new List<AudioSource>
+					{
+						Main,
+						MainAlt,
+						Action,
+						Sub,
+						Tension,
+						Extra
+					};
+				}
+				return _sources;
+			}
+		}
+		/*{
 			get
 			{
 				yield return Main;
@@ -50,8 +69,9 @@ namespace WeaverCore.Editor
 				yield return Tension;
 				yield return Extra;
 			}
-		}
+		}*/
 
+		public MusicCue ActiveMusicCue { get; private set; }
 
 		public static EditorMusic Instance
 		{
@@ -104,6 +124,17 @@ namespace WeaverCore.Editor
 			ApplyMusicRoutine = StartCoroutine(ApplyMusicPack(pack,delayTime,snapshotTransitionTime,applySnapshot));
 		}
 
+		public void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot = true)
+		{
+            if (ApplyMusicRoutine != null)
+            {
+                StopCoroutine(ApplyMusicRoutine);
+                ApplyMusicRoutine = null;
+            }
+
+            ApplyMusicRoutine = StartCoroutine(ApplyMusicCue(musicCue, delayTime, transitionTime, applySnapshot));
+        }
+
 		public void ApplyMusicSnapshot(Music.SnapshotType snapshot, float delayTime, float transitionTime)
 		{
 			ApplyMusicSnapshot(Music.GetSnapshot(snapshot), delayTime, transitionTime);
@@ -130,7 +161,54 @@ namespace WeaverCore.Editor
 			ApplySnapshotRoutine = null;
 		}
 
-		IEnumerator ApplyMusicPack(MusicPack pack, float delayTime, float snapshotTransitionTime, bool applySnapshot = true)
+        IEnumerator ApplyMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot = true)
+        {
+            yield return new WaitForSeconds(delayTime);
+            foreach (var source in Sources)
+            {
+                source.Stop();
+                source.clip = null;
+            }
+            ApplyClipToSource(Action, musicCue.GetChannelInfo(MusicChannels.Action));
+            ApplyClipToSource(Extra, musicCue.GetChannelInfo(MusicChannels.Extra));
+            ApplyClipToSource(Main, musicCue.GetChannelInfo(MusicChannels.Main));
+            ApplyClipToSource(MainAlt, musicCue.GetChannelInfo(MusicChannels.MainAlt));
+            ApplyClipToSource(Sub, musicCue.GetChannelInfo(MusicChannels.Sub));
+            ApplyClipToSource(Tension, musicCue.GetChannelInfo(MusicChannels.Tension));
+
+			ActiveMusicCue = musicCue;
+
+            if (applySnapshot)
+            {
+				//var snapshot = Music.GetSnapshot(musicCue.Snapshot);
+				//snapshot.TransitionTo(snapshotTransitionTime);
+				var snapshot = musicCue.Snapshot;
+
+				if (snapshot != null)
+				{
+					snapshot.TransitionTo(transitionTime);
+				}
+            }
+
+            yield return new WaitForSecondsRealtime(transitionTime);
+            for (int k = 0; k < Sources.Count; k++)
+            {
+                MusicCue.MusicChannelInfo channelInfo2 = musicCue.GetChannelInfo((MusicChannels)k);
+                if (channelInfo2 == null || !channelInfo2.IsEnabled)
+                {
+                    AudioSource audioSource2 = Sources[k];
+                    if (audioSource2.isPlaying)
+                    {
+                        audioSource2.clip = null;
+                        audioSource2.Stop();
+                    }
+                }
+            }
+
+            ApplyMusicRoutine = null;
+        }
+
+        IEnumerator ApplyMusicPack(MusicPack pack, float delayTime, float snapshotTransitionTime, bool applySnapshot = true)
 		{
 			yield return new WaitForSeconds(delayTime);
 			foreach (var source in Sources)
@@ -150,11 +228,26 @@ namespace WeaverCore.Editor
 				var snapshot = Music.GetSnapshot(pack.Snapshot);
 				snapshot.TransitionTo(snapshotTransitionTime);
 			}
-			ApplyMusicRoutine = null;
+
+            ApplyMusicRoutine = null;
 		}
 
+        void ApplyClipToSource(AudioSource source, MusicCue.MusicChannelInfo channel)
+        {
+            if (channel != null && channel.IsEnabled)
+            {
+                if (source.clip != channel.Clip)
+                {
+                    source.clip = channel.Clip;
+                }
+                //source.clip = channel;
+                source.volume = 1f;
+                source.Play();
+            }
+            //SYNC STUFF IS HERE
+        }
 
-		void ApplyClipToSource(AudioSource source, AudioClip clip)
+        void ApplyClipToSource(AudioSource source, AudioClip clip)
 		{
 			if (clip != null)
 			{
@@ -198,7 +291,6 @@ namespace WeaverCore.Editor
 				if ((enabledSources & (Atmos.AtmosSources)i) != (Atmos.AtmosSources)i)
 				{
 					AudioSource source = atmosSources[counter];
-					Debug.Log("Stopping Source = " + source.name);
 					if (source.isPlaying)
 					{
 						source.Stop();

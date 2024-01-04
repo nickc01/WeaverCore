@@ -46,6 +46,17 @@ namespace WeaverCore.Editor.Implementations
 		public override void Initialize()
         {
             gameObject.layer = LayerMask.NameToLayer("Player");
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).name == "Slash")
+                {
+                    if (!transform.TryGetComponent<EditorSlashNotifier>(out var slashNotifier))
+                    {
+                        transform.gameObject.AddComponent<EditorSlashNotifier>();
+                    }
+                }
+            }
         }
 
         public override void SoulGain()

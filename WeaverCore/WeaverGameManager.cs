@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace WeaverCore
 {
-
 	/// <summary>
 	/// An object used to do actions that are related to the whole game
 	/// </summary>

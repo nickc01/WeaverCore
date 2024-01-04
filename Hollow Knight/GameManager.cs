@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (!atteptedEditorLoad)
+            if (!attemptedEditorLoad)
             {
                 LoadGameManagerEditor();
             }
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (!atteptedEditorLoad)
+            if (!attemptedEditorLoad)
             {
                 LoadGameManagerEditor();
             }
@@ -100,11 +100,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private static bool atteptedEditorLoad = false;
+    private static bool attemptedEditorLoad = false;
 
     private static void LoadGameManagerEditor()
     {
-        atteptedEditorLoad = true;
+        attemptedEditorLoad = true;
 #if UNITY_EDITOR
         string[] guids = UnityEditor.AssetDatabase.FindAssets("GameManager");
         foreach (string id in guids)
@@ -228,7 +228,6 @@ public class GameManager : MonoBehaviour
                     tilemapDirty = true;
                 }
                 SetupSceneRefs(true);
-                //Debug.LogError("BEGIN SCENE - AAA");
                 BeginScene();
                 OnNextLevelReady();
                 return;
@@ -348,7 +347,6 @@ public class GameManager : MonoBehaviour
         };
         sceneLoad.Complete += delegate ()
         {
-            Debug.LogError("BEGIN SCENE - BBB");
             SetupSceneRefs(false);
             BeginScene();
             /*if (this.gameMap != null)
@@ -1267,7 +1265,6 @@ public class GameManager : MonoBehaviour
             yield return Resources.UnloadUnusedAssets();
         }
         //GCManager.Collect();
-        Debug.LogError("BEGIN SCENE - CCC");
         SetupSceneRefs(true);
         BeginScene();
         OnNextLevelReady();
@@ -1578,7 +1575,6 @@ public class GameManager : MonoBehaviour
 
     public void BeginScene()
     {
-        //Debug.LogError("GAME MANAGER BEGIN SCENE");
         //this.inputHandler.SceneInit();
         //this.ui.SceneInit();
         if (hero_ctrl)

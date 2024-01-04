@@ -167,10 +167,39 @@ namespace WeaverCore.Editor.Menu_Items
             InsertObject("Camera Lock Region");
         }
 
+        [MenuItem("WeaverCore/Insert/Health Cocoon")]
+        public static void InsertHealthCocoon()
+        {
+            InsertObject("Health Cocoon Pack");
+        }
+
         [MenuItem("WeaverCore/Insert/Dream Return Warp")]
         public static void InsertDreamReturnWarp()
         {
             InsertObject("Dream Return Warp");
+        }
+
+        [MenuItem("WeaverCore/Insert/Water")]
+        public static void InsertWater()
+        {
+            InsertObject("Water Pack");
+        }
+
+        [MenuItem("WeaverCore/Insert/Acid")]
+        public static void InsertAcid()
+        {
+            InsertObject("Acid Pack");
+        }
+
+        [MenuItem("WeaverCore/Insert/Chest")]
+        public static void InsertChest()
+        {
+            InsertObject("Chest");
+        }
+        [MenuItem("WeaverCore/Insert/Geo Rock")]
+        public static void InsertGeoRock()
+        {
+            InsertObject("Geo Rock");
         }
 
         //Godhome Statue Template

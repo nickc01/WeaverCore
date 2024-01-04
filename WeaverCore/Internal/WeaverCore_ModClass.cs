@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using WeaverCore.Assets;
@@ -22,15 +24,20 @@ namespace WeaverCore.Internal
 
         public override string GetVersion()
         {
-            return "1.2.0.1";
+            return "2.0.0.0";
         }
 
         public override List<(string, string)> GetPreloadNames()
         {
             return new List<(string, string)>
             {
-                ("GG_Workshop", "GG_Statue_Mage_Knight")/*,
+                ("GG_Workshop", "GG_Statue_Mage_Knight"),/*,
                 ("End_Game_Completion", "credits object")*/
+                ("Tutorial_01", "_Enemies/Crawler 1"),
+                ("Tutorial_01", "_Props/Health Cocoon"),
+                ("Tutorial_01", "_Props/Chest"),
+                ("Tutorial_01", "_Enemies/Buzzer"),
+                ("Town", "_NPCs/Elderbug/Dream Dialogue")
             };
         }
 
@@ -40,6 +47,141 @@ namespace WeaverCore.Internal
             {
                 GG_Internal.SetMageKnightStatue(mageKnightStatue);
             }
+
+            if (preloadedObjects.TryGetValue("Tutorial_01", out var tutorialSceneDict))
+            {
+                if (tutorialSceneDict.TryGetValue("_Enemies/Crawler 1", out var crawler))
+                {
+                    var enemyDeathEffects = crawler.GetComponent("EnemyDeathEffects");
+
+                    var journalPrefab = enemyDeathEffects.ReflectGetField("journalUpdateMessagePrefab") as GameObject;
+
+                    Other_Preloads.JournalUpdateMessagePrefab = journalPrefab;
+
+                    GameObject.Destroy(crawler);
+                }
+
+                if (tutorialSceneDict.TryGetValue("_Props/Health Cocoon", out var healthCocoonObj))
+                {
+                    var cocoon = healthCocoonObj.GetComponent<HealthCocoon>();
+                    foreach (var fling in cocoon.flingPrefabs)
+                    {
+                        if (fling.prefab.name == "Health Scuttler")
+                        {
+                            var scuttlerControl = fling.prefab.GetComponent<ScuttlerControl>();
+                            Other_Preloads.HealthCocoonFlashPrefab = scuttlerControl.screenFlash;
+                            break;
+                        }
+                    }
+
+                    GameObject.Destroy(healthCocoonObj);
+                }
+
+                if (tutorialSceneDict.TryGetValue("_Enemies/Buzzer", out var buzzerObj))
+                {
+                    var deathEffects = buzzerObj.GetComponent("EnemyDeathEffects");
+
+                    var deathEffectsType = deathEffects.GetType();
+
+                    Other_Preloads.JournalUpdateMessagePrefab = (GameObject)deathEffectsType.GetField("journalUpdateMessagePrefab", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(deathEffects);
+
+                    var journalUpdateMessageSpawnedField = deathEffectsType.GetField("journalUpdateMessageSpawned", BindingFlags.NonPublic | BindingFlags.Static);
+
+                    Other_Preloads.GetJournalUpdateMessageSpawnedFunc = () =>
+                    {
+                        return journalUpdateMessageSpawnedField.GetValue(null) as GameObject;
+                    };
+
+                    Other_Preloads.SetJournalUpdateMessageSpawnedFunc = val =>
+                    {
+                        journalUpdateMessageSpawnedField.SetValue(null, val);
+                    };
+
+                    GameObject.Destroy(buzzerObj);
+                }
+
+                if (tutorialSceneDict.TryGetValue("_Props/Chest", out var chestObj))
+                {
+                    var pmFSM = PlayMakerUtilities.GetPlaymakerFSMOnObject(chestObj, "Chest Control");
+                    var fsm = PlayMakerUtilities.GetFSMOnPlayMakerComponent(pmFSM);
+                    var spawnItemState = PlayMakerUtilities.FindStateOnFSM(fsm, "Spawn Items");
+                    var actionData = PlayMakerUtilities.GetActionData(spawnItemState);
+
+                    var fsmObjects = (IList)actionData.GetType().GetField("fsmGameObjectParams", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(actionData);
+                    Type fsmObjectType = null;
+                    PropertyInfo valueProperty = null;
+
+                    foreach (var fsmObject in fsmObjects)
+                    {
+                        if (fsmObjectType == null)
+                        {
+                            fsmObjectType = fsmObject.GetType();
+                            valueProperty = fsmObjectType.GetProperty("Value");
+                        }
+
+                        var gm = valueProperty.GetValue(fsmObject) as GameObject;
+                        if (gm != null)
+                        {
+                            if (gm.name == "Geo Small")
+                            {
+                                Other_Preloads.smallGeoPrefab = gm;
+                            }
+
+                            if (gm.name == "Geo Med")
+                            {
+                                Other_Preloads.mediumGeoPrefab = gm;
+                            }
+
+                            if (gm.name == "Geo Large")
+                            {
+                                Other_Preloads.largeGeoPrefab = gm;
+                            }
+                        }
+                    }
+
+                    GameObject.Destroy(chestObj);
+                }
+            }
+
+            if (preloadedObjects.TryGetValue("Town", out var townSceneDict))
+            {
+                if (townSceneDict.TryGetValue("_NPCs/Elderbug/Dream Dialogue", out var dreamDialogueObj))
+                {
+                    var npcPlayMakerFSM = PlayMakerUtilities.GetPlaymakerFSMOnObject(dreamDialogueObj, "npc_dream_dialogue");
+
+                    var impactState = PlayMakerUtilities.FindStateOnFSM(PlayMakerUtilities.GetFSMOnPlayMakerComponent(npcPlayMakerFSM), "Impact");
+
+                    var actionData = PlayMakerUtilities.GetActionData(impactState);
+
+                    var fsmObjects = (IList)actionData.GetType().GetField("fsmGameObjectParams", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(actionData);
+
+                    Type fsmObjectType = null;
+                    PropertyInfo valueProperty = null;
+
+                    foreach (var fsmObject in fsmObjects)
+                    {
+                        if (fsmObjectType == null)
+                        {
+                            fsmObjectType = fsmObject.GetType();
+                            valueProperty = fsmObjectType.GetProperty("Value");
+                        }
+
+                        var gm = valueProperty.GetValue(fsmObject) as GameObject;
+                        if (gm != null)
+                        {
+                            if (gm.name == "dream_area_effect")
+                            {
+                                Other_Preloads.dream_area_effectPrefab = gm;
+                                break;
+                            }
+                        }
+                    }
+
+                    GameObject.Destroy(dreamDialogueObj);
+                }
+            }
+
+
 
             /*if (preloadedObjects.TryGetValue("End_Game_Completion", out var endSceneDict) && endSceneDict.TryGetValue("credits object", out var creditsObject))
             {

@@ -187,6 +187,13 @@ namespace WeaverCore
 			PlayMusicPack(pack, pack.delay, pack.snapshotTransitionTime, pack.applySnapshot);
 		}
 
+		public static MusicCue ActiveMusicCue => AudioMixer_I.Instance.ActiveMusicCue;
+
+        public static void PlayMusicCue(MusicCue musicCue, float delayTime = 0f, float transitionTime = 0f, bool applySnapshot = true)
+        {
+            AudioMixer_I.Instance.PlayMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
+        }
+
 		/// <summary>
 		/// Applies a music pack to change what music channels are being played
 		/// </summary>

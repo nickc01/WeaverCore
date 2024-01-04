@@ -21,7 +21,7 @@ namespace WeaverCore.Components.DeathEffects
         [Space]
         [SerializeField]
         [Tooltip("An positional offset applied to the effects when played")]
-        protected Vector3 EffectsOffset;
+        public Vector3 EffectsOffset;
 
         [HideInInspector]
         [SerializeField]
@@ -179,7 +179,7 @@ namespace WeaverCore.Components.DeathEffects
 
         protected void EmitEssenceParticles()
         {
-            UnityEngine.Object.Instantiate<GameObject>(EssenceCollectPrefab, base.transform.position + EffectsOffset, Quaternion.identity);
+            UnityEngine.Object.Instantiate<GameObject>(EssenceCollectPrefab, transform.TransformPoint(EffectsOffset), Quaternion.identity);
         }
     }
 }

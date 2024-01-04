@@ -9,7 +9,7 @@ namespace WeaverCore
     {
         public virtual void Unload()
         {
-            DisableRegistries();
+            DisableRegistries(this);
         }
     }
 }

@@ -13,7 +13,7 @@ public class CameraTarget : MonoBehaviour
 
 	public void SceneInit()
 	{
-		//Debug.LogError("TARGET SCENE INIT");
+		//Error("TARGET SCENE INIT");
 		if (GameManager.instance.IsGameplayScene())
 		{
 			isGameplayScene = true;
@@ -404,12 +404,23 @@ public class CameraTarget : MonoBehaviour
 
 	public void ExitLockZone()
 	{
+
+		if (GameManager.instance == null)
+		{
+			return;
+		}
 		var cameraBounds = GameManager.instance.SceneDimensions;
 
 		if (mode == CameraTarget.TargetMode.FREE)
 		{
 			return;
 		}
+
+		if (HeroController.instance == null)
+		{
+			return;
+		}
+
 		if (HeroController.instance.cState.hazardDeath || HeroController.instance.cState.dead || (HeroController.instance.transitionState != HeroTransitionState.WAITING_TO_TRANSITION && HeroController.instance.transitionState != HeroTransitionState.WAITING_TO_ENTER_LEVEL))
 		{
 			mode = CameraTarget.TargetMode.FREE;
@@ -540,7 +551,7 @@ public class CameraTarget : MonoBehaviour
 		}
 		if (verboseMode)
 		{
-			Debug.LogFormat("CT PTS - xOffset: {0} HeroPos: {1}, {2}", new object[]
+            Debug.LogFormat("CT PTS - xOffset: {0} HeroPos: {1}, {2}", new object[]
 			{
 				xOffset,
 				x2,
@@ -551,7 +562,7 @@ public class CameraTarget : MonoBehaviour
 		{
 			if (verboseMode)
 			{
-				Debug.LogFormat("CT PTS - Follow Hero - CT Pos: {0}", new object[]
+                Debug.LogFormat("CT PTS - Follow Hero - CT Pos: {0}", new object[]
 				{
 					base.transform.position
 				});
@@ -579,7 +590,7 @@ public class CameraTarget : MonoBehaviour
 			base.transform.position = destination;
 			if (verboseMode)
 			{
-				Debug.LogFormat("CT PTS - Lock Zone - CT Pos: {0}", new object[]
+                Debug.LogFormat("CT PTS - Lock Zone - CT Pos: {0}", new object[]
 				{
 					base.transform.position
 				});
@@ -587,7 +598,7 @@ public class CameraTarget : MonoBehaviour
 		}
 		if (verboseMode)
 		{
-			Debug.LogFormat("CT - PTS: HeroPos: {0} Mode: {1} Dest: {2}", new object[]
+            Debug.LogFormat("CT - PTS: HeroPos: {0} Mode: {1} Dest: {2}", new object[]
 			{
 				heroTransform.position,
 				mode,

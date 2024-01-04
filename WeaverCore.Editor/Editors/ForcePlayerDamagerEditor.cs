@@ -2,7 +2,9 @@
 using UnityEditor;
 using WeaverCore.Components;
 
+
 [CustomEditor(typeof(ForcePlayerDamager))]
+[CanEditMultipleObjects]
 public class ForcePlayerDamagerEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -15,6 +17,8 @@ public class ForcePlayerDamagerEditor : Editor
 
         //EditorGUILayout.PropertyField(serializedObject.FindProperty("shadowDashHazard"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("resetOnEnable"));
+
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("immediateDamageOnContact"));
         serializedObject.ApplyModifiedProperties();
     }
 }

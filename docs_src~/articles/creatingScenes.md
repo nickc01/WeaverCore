@@ -241,7 +241,7 @@ Make sure you add this component to the NPC object we inserted:
 The DoConversation() function is where all the magic happens. This is where we control what the NPC is going to say when the player talks to it. There are three main functions we can use to control the flow of the conversation:
 
 1. The [Speak()](xref:WeaverCore.Assets.Components.Conversation.Speak(System.String)) function allows use to say a message
-2. The [PresentYesNoQuestion()](xref:WeaverCore.Assets.Components.Conversation.PresentYesNoQuestion) function presents the player with a yes and no question (with an optional geo cost the player needs to pay)
+2. The [PresentYesNoQuestion()](xref:WeaverCore.Assets.Components.Conversation.PresentYesNoQuestion(System.String)) function presents the player with a yes and no question (with an optional geo cost the player needs to pay)
 3. The [DisplayTitle()](xref:WeaverCore.Assets.Components.Conversation.DisplayTitle(System.String,System.String)) function is used to display a title card in the bottom-left corner of the screen. This is used to display the name of the character we are talking to
 
 Here's an example of the functions in use:

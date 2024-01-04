@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Text;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.Audio;
 using WeaverCore.Attributes;
 using WeaverCore.Implementations;
+using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Implementations
 {
@@ -17,8 +19,22 @@ namespace WeaverCore.Editor.Implementations
 		static List<AudioMixerSnapshot> Snapshots;
 		static List<AudioMixerGroup> Groups;
 
+		public override MusicCue ActiveMusicCue
+		{
+			get
+			{
+				if (EditorMusic.Instance != null)
+				{
+					return EditorMusic.Instance.ActiveMusicCue;
+                }
+				else
+				{
+					return null;
+				}
+			}
+		}
 
-		public override AudioMixerGroup GetGroupForMixer(AudioMixer mixer, string groupName)
+        public override AudioMixerGroup GetGroupForMixer(AudioMixer mixer, string groupName)
 		{
 			LoadAssets();
 			for (int i = 0; i < Groups.Count; i++)
@@ -114,5 +130,10 @@ namespace WeaverCore.Editor.Implementations
 		{
 			EditorMusic.Instance.ApplyAtmosPack(snapshot, transitionTime, enabledSources);
 		}
-	}
+
+        public override void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot)
+        {
+			EditorMusic.Instance.PlayMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
+        }
+    }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace WeaverCore.Assets.Components
 {
-
     /// <summary>
     /// Plays the Boss Death Explosion, including shaking the camera and spawning particles
     /// </summary>

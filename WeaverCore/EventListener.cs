@@ -29,7 +29,7 @@ namespace WeaverCore
                 }
                 catch (Exception e)
                 {
-                    WeaverLog.LogError("Event Listener Error: " + e);
+                    Debug.LogError("Event Listener Error: " + e);
                 }
             }
         }

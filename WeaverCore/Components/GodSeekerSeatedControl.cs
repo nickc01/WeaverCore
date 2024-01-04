@@ -1,18 +1,23 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// This class controls the Godseeker, and makes Godseeker look left or right towards a specified target.
+    /// </summary>
     public class GodSeekerSeatedControl : MonoBehaviour
-	{
+    {
+        /// <summary>
+        /// Gets or sets the target for Godseeker to look towards.
+        /// </summary>
         public Transform Target { get; set; } = null;
 
+        private WeaverAnimationPlayer animator;
+        private SpriteRenderer spriteRenderer;
 
-        WeaverAnimationPlayer animator;
-        SpriteRenderer spriteRenderer;
-
-        float rightX;
-        float leftX;
+        private float rightX;
+        private float leftX;
 
         private void Awake()
         {
@@ -37,13 +42,19 @@ namespace WeaverCore.Components
             StartCoroutine(LookUpRoutine());
         }
 
-        IEnumerator LookUpRoutine()
+        /// <summary>
+        /// Coroutine to make Godseeker look up.
+        /// </summary>
+        private IEnumerator LookUpRoutine()
         {
             yield return new WaitForSeconds(0.25f);
             animator.PlayAnimation("LookUp");
         }
 
-        IEnumerator MainRoutine()
+        /// <summary>
+        /// Main coroutine for controlling Godseeker's behavior.
+        /// </summary>
+        private IEnumerator MainRoutine()
         {
             yield return new WaitUntil(() => Player.Player1 != null);
 
@@ -74,7 +85,10 @@ namespace WeaverCore.Components
             }
         }
 
-        IEnumerator LeftRoutine()
+        /// <summary>
+        /// Coroutine for making Godseeker look left.
+        /// </summary>
+        private IEnumerator LeftRoutine()
         {
             yield return new WaitForSeconds(Random.Range(0.05f, 0.1f));
             animator.PlayAnimation("LookL");
@@ -94,7 +108,10 @@ namespace WeaverCore.Components
             }
         }
 
-        IEnumerator RightRoutine()
+        /// <summary>
+        /// Coroutine for making Godseeker look right.
+        /// </summary>
+        private IEnumerator RightRoutine()
         {
             yield return new WaitForSeconds(Random.Range(0.05f, 0.1f));
             animator.PlayAnimation("LookR");

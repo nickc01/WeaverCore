@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using WeaverCore.Assets;
+using WeaverCore.Attributes;
 using WeaverCore.Enums;
 using WeaverCore.Features;
 using WeaverCore.Implementations;
@@ -13,11 +14,14 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
     /// <summary>
     /// Used to keep track of the health of an enemy
     /// </summary>
     public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable, IOnPool
     {
+        static List<IHitEffects> _hitEffectsCache = new List<IHitEffects>();
+
         /// <summary>
         /// The enum used when determining if a hit on the enemy was valid
         /// </summary>
@@ -45,7 +49,7 @@ namespace WeaverCore.Components
         //A list of milestones that get executed when the health reaches certain points
         private List<(int destHealth, Action action)> HealthMilestones = new List<(int destHealth, Action action)>();
         private new Collider2D collider;
-        private HealthManager_I impl;
+        protected HealthManager_I impl;
 
         [SerializeField]
         [Tooltip("The current health value of the enemy")]
@@ -141,6 +145,7 @@ namespace WeaverCore.Components
         /// <summary>
         /// Called when the entity's health reaches zero
         /// </summary>
+        [field: ExcludeFieldFromPool]
         public event Action<HitInfo> OnDeathEvent;
 
         /// <summary>
@@ -159,6 +164,15 @@ namespace WeaverCore.Components
 
         private AudioClip extraDamageClip;
         private Recoiler recoil;
+
+        /// <summary>
+        /// The recoiler on the enemy. If a recoiler is attached to the object, then the enemy will recoil when hit
+        /// </summary>
+        public Recoiler Recoiler
+        {
+            get => recoil;
+            set => recoil = value;
+        }
 
         [Space]
         [Space]
@@ -328,19 +342,30 @@ namespace WeaverCore.Components
                     }
                     break;
                 case AttackType.Spell:
-                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
+                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.TransformPoint(EffectsOffset + new Vector3(0f, -0.2f, -0.0031f)), Quaternion.identity);
                     break;
                 case AttackType.SharpShadow:
-                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.position + new Vector3(0f, -0.2f, -0.0031f), Quaternion.identity);
+                    Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.TransformPoint(EffectsOffset + new Vector3(0f, -0.2f, -0.0031f)), Quaternion.identity);
                     break;
                 default:
                     break;
             }
 
-            IHitEffects hitEffects = GetComponent<IHitEffects>();
+
+            /*IHitEffects hitEffects = GetComponent<IHitEffects>();
             if (hitEffects != null && hit.AttackType != AttackType.RuinsWater)
             {
-                hitEffects.PlayHitEffect(hit);
+                hitEffects.PlayHitEffect(hit, EffectsOffset);
+            }*/
+
+            GetComponents(_hitEffectsCache);
+
+            for (int i = 0; i < _hitEffectsCache.Count; i++)
+            {
+                if (!(_hitEffectsCache[i] is MonoBehaviour) || (_hitEffectsCache[i] is MonoBehaviour c && c.enabled))
+                {
+                    _hitEffectsCache[i].PlayHitEffect(hit, EffectsOffset);
+                }
             }
         }
 
@@ -409,10 +434,8 @@ namespace WeaverCore.Components
             CardinalDirection cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
             if (DeflectBlows)
             {
-                Debug.Log("ATTACK TYPE = " + hit.AttackType);
                 if (hit.AttackType == AttackType.Nail)
                 {
-                    Debug.Log("DIRECTION = " + cardinalDirection);
                     switch (cardinalDirection)
                     {
                         case CardinalDirection.Up:
@@ -443,7 +466,7 @@ namespace WeaverCore.Components
             }
         }
 
-        private void NormalHit(HitInfo hit)
+        protected virtual void NormalHit(HitInfo hit)
         {
             Player player = hit.GetAttackingPlayer();
             //If acid is ignored
@@ -673,8 +696,11 @@ namespace WeaverCore.Components
         static Type DisableHPBarType = null;
         static Type BossMarkerType = null;
 
-        void IOnPool.OnPool()
+        public virtual void OnPool()
         {
+            OnDeathEvent = null;
+            OnHealthChangeEvent = null;
+
             if (DisableHPBarType == null || BossMarkerType == null)
             {
                 foreach (var comp in GetComponents<MonoBehaviour>())

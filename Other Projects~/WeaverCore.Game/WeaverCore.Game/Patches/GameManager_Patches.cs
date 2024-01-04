@@ -95,7 +95,7 @@ namespace WeaverCore.Game.Patches
 
         private static void GameManager_SetupSceneRefs(On.GameManager.orig_SetupSceneRefs orig, GameManager self, bool refreshTilemapInfo)
 		{
-			Debug.Log("SETTING UP SCENE REFS");
+			//Debug.Log("SETTING UP SCENE REFS");
 			WeaverSceneManager.CurrentSceneManager = null;
 			var gm_sm = typeof(GameManager).GetProperty("sm");
 			bool found = false;
@@ -125,9 +125,25 @@ namespace WeaverCore.Game.Patches
             {
 				orig(self, refreshTilemapInfo);
 			}
+			catch (NullReferenceException)
+			{
+				if (HeroController.instance == null)
+				{
+					Debug.LogError("GameManager.SetupHeroRefs failed. There is no player in the scene");
+
+                    if (GameManager.instance.IsGameplayScene() && refreshTilemapInfo)
+                    {
+                        GameManager.instance.RefreshTilemapInfo(GameManager.instance.sceneName);
+                    }
+                }
+				else
+				{
+					throw;
+				}
+			}
 			catch (Exception e)
             {
-				Debug.Log("SETUP SCENE REFS EXCEPTION");
+				Debug.LogError("SETUP SCENE REFS EXCEPTION");
 				Debug.LogException(e);
                 if (GameManager.instance.IsGameplayScene() && refreshTilemapInfo)
                 {
@@ -141,7 +157,7 @@ namespace WeaverCore.Game.Patches
 				WeaverSceneManager.CurrentSceneManager = foundSceneManager;
 			}
 
-			Debug.Log("Current Scene = " + JsonUtility.ToJson(foundSceneManager,true));
+			//Debug.Log("Current Scene = " + JsonUtility.ToJson(foundSceneManager,true));
 		}
 
 		static T GetField<T>(GameMap instance, string name)

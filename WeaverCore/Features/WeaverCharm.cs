@@ -7,6 +7,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Features
 {
+    /// <summary>
+    /// Used to add custom charms to the game
+    /// </summary>
     [ShowFeature]
     [CreateAssetMenu(fileName = "WeaverCharm", menuName = "WeaverCore/Weaver Charm")]
     public abstract class WeaverCharm : ScriptableObject, IWeaverCharm
@@ -20,14 +23,17 @@ namespace WeaverCore.Features
 
         [SerializeField]
         [Tooltip("The name of a boolean field on the Settings Storage for storing whether or not the charm has been acquired")]
+        [SaveSpecificFieldName(typeof(bool), nameof(settingsStorage))]
         string acquired_settingsField;
 
         [SerializeField]
         [Tooltip("The name of a boolean field on the Settings Storage for storing whether or not the charm has been equipped")]
+        [SaveSpecificFieldName(typeof(bool), nameof(settingsStorage))]
         string equipped_settingsField;
 
         [SerializeField]
         [Tooltip("The name of a boolean field on the Settings Storage for storing whether or not the charm has been newly collected")]
+        [SaveSpecificFieldName(typeof(bool), nameof(settingsStorage))]
         string newlyCollected_settingsField;
 
         [field: SerializeField]

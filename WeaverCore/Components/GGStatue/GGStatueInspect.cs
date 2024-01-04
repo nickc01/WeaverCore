@@ -9,28 +9,36 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components.GGStatue
 {
-
+    /// <summary>
+    /// Represents a GG Statue inspect region.
+    /// </summary>
     public class GGStatueInspect : InspectRegion
     {
         [SerializeField]
-        AudioClip challengeSound;
+        [Tooltip("Sound played when the challenge starts.")]
+        private AudioClip challengeSound;
 
         [SerializeField]
-        float challengeSoundDelay = 0.25f;
+        [Tooltip("Delay before playing the challenge sound.")]
+        private float challengeSoundDelay = 0.25f;
 
         private static GameObject spawnedUI;
 
         [SerializeField]
-        CameraLockArea camLock;
+        [Tooltip("Camera lock area associated with the GG Statue.")]
+        private CameraLockArea camLock;
 
-        bool damaged = false;
+        private bool damaged = false;
 
-        bool transitionEventHooked = false;
+        private bool transitionEventHooked = false;
 
-        bool fullyTransitionedOut = false;
+        private bool fullyTransitionedOut = false;
 
-        EventRegister eventRegister;
+        private EventRegister eventRegister;
 
+        /// <summary>
+        /// Called when the object is awakened.
+        /// </summary>
         protected override void Awake()
         {
             eventRegister = GetComponent<EventRegister>();
@@ -266,148 +274,4 @@ namespace WeaverCore.Components.GGStatue
             }
         }
     }
-
-    /*public class GGStatueInspect : MonoBehaviour
-    {
-        public bool Talking { get; private set; } = false;
-        bool canTalk = true;
-        bool facingRight = false;
-
-        Transform PromptMarker;
-
-        private void Start()
-        {
-            gameObject.layer = LayerMask.NameToLayer("Hero Detector");
-            PromptMarker = transform.Find("Prompt Marker");
-            StartCoroutine(InspectRoutine());
-        }
-
-
-        IEnumerator InspectRoutine()
-        {
-            if (PromptMarker.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
-            {
-                spriteRenderer.enabled = false;
-            }
-
-            var triggerTracker = gameObject.GetComponent<TrackTriggerObjects>();
-
-            if (triggerTracker == null)
-            {
-                triggerTracker = gameObject.AddComponent<TrackTriggerObjects>();
-            }
-
-            yield return new WaitForSeconds(1f);
-
-            while (true)
-            {
-                var prompt = WeaverArrowPrompt.Spawn(gameObject, PromptMarker.position);
-                prompt.SetLabelTextLang("LISTEN");
-                prompt.HideInstant();
-
-                yield return new WaitUntil(() => triggerTracker.InsideCount > 0);
-
-                if (canTalk && HeroController.instance.CanTalk())
-                {
-                    prompt.Show();
-
-                    while (true)
-                    {
-                        if (triggerTracker.InsideCount == 0)
-                        {
-                            break;
-                        }
-                        else if (HeroController.instance.CanInspect() && (PlayerInput.down.WasPressed || PlayerInput.up.WasPressed))
-                        {
-                            Talking = true;
-                            prompt.Hide();
-                            yield return TalkRoutine();
-                            Talking = false;
-                        }
-                        yield return null;
-                    }
-                }
-
-                yield return null;
-            }
-        }
-
-        IEnumerator TalkRoutine()
-        {
-            PlayerData.instance.SetBool("disablePause", true);
-
-            HeroController.instance.RelinquishControl();
-            HeroController.instance.StopAnimationControl();
-
-            var selfX = transform.position.x;
-            var playerX = Player.Player1.transform.position.x;
-
-            float leftProx = selfX - 1.5f;
-            float rightProx = selfX + 1.5f;
-
-            bool forceTurnLeft = false;
-            bool forceTurnRight = false;
-
-            var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
-
-            if (playerX >= selfX && playerX < rightProx)
-            {
-                //MOVE RIGHT
-                Player.Player1.transform.SetScaleX(-1f);
-                HeroController.instance.FaceRight();
-                HeroUtilities.PlayPlayerClip("Walk");
-                heroRB.velocity = new Vector2(6f, 0f);
-                for (float t = 0; t < 1; t += Time.deltaTime)
-                {
-                    if (Player.Player1.transform.position.x >= rightProx)
-                    {
-                        break;
-                    }
-                    yield return null;
-                }
-            }
-            else if (playerX >= leftProx && playerX < selfX)
-            {
-                //MOVE LEFT
-                Player.Player1.transform.SetScaleX(1f);
-                HeroController.instance.FaceLeft();
-                HeroUtilities.PlayPlayerClip("Walk");
-                heroRB.velocity = new Vector2(-6f, 0f);
-                for (float t = 0; t < 1; t += Time.deltaTime)
-                {
-                    if (Player.Player1.transform.position.x <= leftProx)
-                    {
-                        break;
-                    }
-                    yield return null;
-                }
-            }
-
-            var playerScaleX = Player.Player1.transform.localScale.x;
-
-            var playerFacingRight = playerScaleX < 0;
-            var playerOnRight = playerX >= selfX;
-
-            if (forceTurnLeft || (playerFacingRight && playerOnRight))
-            {
-                //TURN HERO LEFT
-                heroRB.velocity = default;
-                HeroController.instance.FaceLeft();
-                Player.Player1.transform.SetScaleX(1f);
-                yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
-            }
-            else if (forceTurnRight || (!playerFacingRight && !playerOnRight))
-            {
-                //TURN HERO RIGHT
-                heroRB.velocity = default;
-                HeroController.instance.FaceRight();
-                Player.Player1.transform.SetScaleX(-1f);
-                yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
-            }
-
-            HeroUtilities.PlayPlayerClip("Idle");
-
-            EventManager.BroadcastEvent("NPC CONVO START",gameObject);
-        }
-    }*/
 }

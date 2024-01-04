@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicStartDelay: 0.5
-  bossMusicPack: {fileID: 11400000, guid: 84c2687713688f94699fbc573c0f58d3, type: 2}
+  bossMusicPack: {fileID: 0}
   remixBossMusicPack: {fileID: 0}
   disableSequenceMusic: 0
   waitForMusicEvent: 0
@@ -3166,7 +3166,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2491868318588401709, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  m_Sprite: {fileID: -2491868318588401709, guid: c337d552bced76848b07dabc6fffc788,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3265,7 +3266,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7481494428759831470, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  m_Sprite: {fileID: -7481494428759831470, guid: 4bfe5e5234b7912448dc64f900b0672e,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

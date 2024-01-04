@@ -108,7 +108,11 @@ namespace WeaverCore.Editor.Compilation
 				var scriptAsset = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
 				var scriptAssembly = scriptAsset.GetScriptAssemblyName().Replace(".dll", "");
 
-				AssemblyInfo.First(asmInfo => asmInfo.AssemblyName == scriptAssembly).ScriptPaths.Add(path);
+				var foundAsm = AssemblyInfo.FirstOrDefault(asmInfo => asmInfo.AssemblyName == scriptAssembly);
+				if (foundAsm != null)
+				{
+					foundAsm.ScriptPaths.Add(path);
+                }
 			}
 			return AssemblyInfo;
 		}

@@ -123,7 +123,7 @@ namespace AssetUsageDetectorNamespace
 			}
 			catch( Exception e )
 			{
-				Debug.LogException( e );
+                Debug.LogException( e );
 			}
 		}
 
@@ -159,7 +159,7 @@ namespace AssetUsageDetectorNamespace
 					catch( Exception e )
 					{
 						assetDependencyCache = null;
-						Debug.LogWarning( "Couldn't load cache (probably cache format has changed in an update), will regenerate cache.\n" + e.ToString() );
+                        Debug.LogWarning( "Couldn't load cache (probably cache format has changed in an update), will regenerate cache.\n" + e.ToString() );
 					}
 				}
 			}
@@ -181,7 +181,7 @@ namespace AssetUsageDetectorNamespace
 							if( i % 30 == 0 && EditorUtility.DisplayCancelableProgressBar( "Please wait...", "Generating cache for the first time (optional)", (float) i / allAssets.Length ) )
 							{
 								EditorUtility.ClearProgressBar();
-								Debug.LogWarning( "Initial cache generation cancelled, cache will be generated on the fly as more and more assets are searched." );
+                                Debug.LogWarning( "Initial cache generation cancelled, cache will be generated on the fly as more and more assets are searched." );
 								break;
 							}
 
@@ -190,15 +190,15 @@ namespace AssetUsageDetectorNamespace
 
 						EditorUtility.ClearProgressBar();
 
-						Debug.Log( "Cache generated in " + ( EditorApplication.timeSinceStartup - startTime ).ToString( "F2" ) + " seconds" );
-						Debug.Log( "You can always reset the cache by deleting " + Path.GetFullPath( CachePath ) );
+                        Debug.Log( "Cache generated in " + ( EditorApplication.timeSinceStartup - startTime ).ToString( "F2" ) + " seconds" );
+                        Debug.Log( "You can always reset the cache by deleting " + Path.GetFullPath( CachePath ) );
 
 						SaveCache();
 					}
 					catch( Exception e )
 					{
 						EditorUtility.ClearProgressBar();
-						Debug.LogException( e );
+                        Debug.LogException( e );
 					}
 				}
 			}

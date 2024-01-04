@@ -9,7 +9,6 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
-
     /// <summary>
     /// Used to shake the camera
     /// </summary>

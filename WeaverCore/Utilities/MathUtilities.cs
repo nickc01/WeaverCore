@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
-	/// <summary>
-	/// Contains some utility functions related to math
-	/// </summary>
-	public static class MathUtilities
+    /// <summary>
+    /// Contains some utility functions related to math
+    /// </summary>
+    public static class MathUtilities
 	{
 		/// <summary>
 		/// Calculates the 2D velocity needed to reach the specified <paramref name="end"/> point.
@@ -32,14 +32,34 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
-		/// Calculates the vertical velocity needed to reach the height of <paramref name="endY"/>
+		/// Calculates the time needed to reach a certain height. Returns NaN if the height can never be reached
 		/// </summary>
-		/// <param name="startY">The starting height</param>
-		/// <param name="endY">The destination height</param>
-		/// <param name="time">The amount of time needed to get from the <paramref name="startY"/> to the <paramref name="endY"/></param>
-		/// <param name="gravityScale">The gravity multiplier</param>
-		/// <returns>Returns the vertical velocity needed to reach the height of <paramref name="endY"/></returns>
-		static float CalculateVerticalVelocity(float startY, float endY, float time, float gravityScale = 1f)
+		/// <param name="start">The start position</param>
+		/// <param name="velocity">The starting velocity</param>
+		/// <param name="targetHeight">The target height to reach</param>
+		/// <param name="gravityScale">The gravity scale of the object</param>
+		/// <returns></returns>
+		public static float CalculateTimeToReachHeight(Vector2 start, Vector2 velocity, float targetHeight, double gravityScale = 1.0)
+		{
+            double gravity = Physics2D.gravity.y * gravityScale;
+
+			if ((velocity.y * velocity.y) - (2f * (float)gravity * ((start.y - targetHeight))) < 0f)
+			{
+				return float.NaN;
+			}
+
+			return (-velocity.y - Mathf.Sqrt((velocity.y * velocity.y) - (2f * (float)gravity * (start.y - targetHeight)))) / (float)gravity;
+        }
+
+        /// <summary>
+        /// Calculates the vertical velocity needed to reach the height of <paramref name="endY"/>
+        /// </summary>
+        /// <param name="startY">The starting height</param>
+        /// <param name="endY">The destination height</param>
+        /// <param name="time">The amount of time needed to get from the <paramref name="startY"/> to the <paramref name="endY"/></param>
+        /// <param name="gravityScale">The gravity multiplier</param>
+        /// <returns>Returns the vertical velocity needed to reach the height of <paramref name="endY"/></returns>
+        static float CalculateVerticalVelocity(float startY, float endY, float time, float gravityScale = 1f)
 		{
 			float a = Physics2D.gravity.y * gravityScale;
 			float newY = endY - startY;
@@ -68,13 +88,23 @@ namespace WeaverCore.Utilities
 			return (timeToPeak, peakValue);
 		}
 
-		/// <summary>
-		/// Converts a set of polar coordinates to cartesian coordinates
-		/// </summary>
-		/// <param name="angleDegrees">The angle of the polar coordinate</param>
-		/// <param name="magnitude">The length of the polar coordinate</param>
-		/// <returns>Returns the set of polar coordinates in cartesian coordinates</returns>
-		public static Vector2 PolarToCartesian(float angleDegrees,float magnitude)
+		public static Vector2 PredictPosition(Vector2 startPos, Vector2 velocity, Vector2 acceleration, float time)
+		{
+			return startPos + (velocity * time) + (0.5f * acceleration * time * time);
+		}
+
+        public static Vector2 PredictPosition(Vector2 startPos, Vector2 velocity, float gravityScale, float time)
+        {
+			return PredictPosition(startPos, velocity, Physics2D.gravity * gravityScale, time);
+        }
+
+        /// <summary>
+        /// Converts a set of polar coordinates to cartesian coordinates
+        /// </summary>
+        /// <param name="angleDegrees">The angle of the polar coordinate</param>
+        /// <param name="magnitude">The length of the polar coordinate</param>
+        /// <returns>Returns the set of polar coordinates in cartesian coordinates</returns>
+        public static Vector2 PolarToCartesian(float angleDegrees,float magnitude)
 		{
 			return new Vector2(Mathf.Cos(Mathf.Deg2Rad * angleDegrees) * magnitude,Mathf.Sin(Mathf.Deg2Rad * angleDegrees) * magnitude);
 		}
@@ -125,9 +155,14 @@ namespace WeaverCore.Utilities
 			return degrees;
         }
 
+		/// <summary>
+		/// Checks if an angle is within a certain range
+		/// </summary>
+		/// <param name="angleDegrees">The angle in degrees</param>
+		/// <param name="range">The range the angle should be in</param>
+		/// <returns>Returns true if the angle is within the range</returns>
 		public static bool AngleIsWithinRange(float angleDegrees, Vector2 range)
         {
-
 			//Clamp to range 0 - 360
 			angleDegrees = (360 + (angleDegrees % 360)) % 360;
 			range.x = (3600000 + range.x) % 360;

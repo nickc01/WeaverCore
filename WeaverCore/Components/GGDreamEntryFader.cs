@@ -1,4 +1,3 @@
-﻿using Microsoft.Win32;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,6 +6,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Contains the fade-in effects that are played when the player enters a Godhome bossfight
+    /// </summary>
     [RequireComponent(typeof(EventRegister), typeof(EventListener))]
     public class GGDreamEntryFader : DreamEntryFader
     {
@@ -29,7 +31,6 @@ namespace WeaverCore.Components
                 exitRoarInterupt = true;
             });
 
-            //WeaverLog.Log("DREAM ENTRY FADER START");
             if (Initialization.Environment == RunningState.Game)
             {
                 StartCoroutine(GGMainRoutine());
@@ -43,10 +44,7 @@ namespace WeaverCore.Components
 
         IEnumerator GGMainRoutine()
         {
-            //WeaverLog.Log("DREAM ENTRY FADER GGMAINROUTINE");
             yield return WaitForHero();
-
-            //WeaverLog.Log("HERO IN POSITION");
 
             if (!string.IsNullOrEmpty(EntryDoor))
             {
@@ -56,32 +54,28 @@ namespace WeaverCore.Components
                 }
             }
 
-            //WeaverLog.Log("DOING DREAM ENTRY");
             HeroController.instance.RelinquishControl();
             HeroController.instance.StopAnimationControl();
             var playerRenderer = HeroController.instance.GetComponent<Renderer>();
-            //var playerRenderer = HeroController.instance.GetComponent<Renderer>();
-            //playerRenderer.enabled = false;
-            //HeroController.instance.MaxHealth();
-            //EventManager.BroadcastEvent("UPDATE BLUE HEALTH", gameObject);
 
+            // Check if in pantheon
             if (BossSequenceController.IsInSequence)
             {
                 if (BossSequenceController.BossIndex < 1)
                 {
-                    //FIRST
+                    // FIRST
                     EventRegister.SendEvent("K HATCHLING END");
                     playerRenderer.enabled = false;
                 }
                 else
                 {
-                    //FINISHED
+                    // FINISHED
                     yield return StartKneeling();
                 }
             }
             else
             {
-                //STATUE
+                // STATUE
                 EventRegister.SendEvent("K HATCHLING END");
                 yield return StartKneeling();
             }
@@ -99,16 +93,15 @@ namespace WeaverCore.Components
 
             if (BossSequenceController.IsInSequence && BossSequenceController.BossIndex < 1)
             {
-                //TRUE
+                // TRUE
                 if (dreamEnterAudio != null)
                 {
                     WeaverAudio.PlayAtPoint(dreamEnterAudio, Player.Player1.transform.position);
                 }
 
-
                 CameraShaker.Instance.Shake(ShakeType.AverageShake);
 
-                cutscene.transform.position = Player.Player1.transform.position;// + new Vector3(0, 0.78226f);
+                cutscene.transform.position = Player.Player1.transform.position;
                 cutscene.transform.localScale = Player.Player1.transform.localScale;
 
                 cutscene.gameObject.SetActive(true);
@@ -125,11 +118,9 @@ namespace WeaverCore.Components
             }
             else
             {
-                //FALSE
+                // FALSE
                 HeroUtilities.PauseCurrentAnimation(false);
                 exitRoarInterupt = false;
-                //yield return HeroUtilities.PlayPlayerClipTillDone("Collect Normal 3");
-                finishedPlayingClip = false;
                 StartCoroutine(PlayPlayerClip("Collect Normal 3"));
 
                 yield return new WaitUntil(() => finishedPlayingClip || exitRoarInterupt);
@@ -143,6 +134,10 @@ namespace WeaverCore.Components
             HeroController.instance.ResetQuakeDamage();
         }
 
+        /// <summary>
+        /// Coroutine to play a specific player clip.
+        /// </summary>
+        /// <param name="playerClip">Name of the player clip to play.</param>
         IEnumerator PlayPlayerClip(string playerClip)
         {
             finishedPlayingClip = false;
@@ -150,6 +145,9 @@ namespace WeaverCore.Components
             finishedPlayingClip = true;
         }
 
+        /// <summary>
+        /// Coroutine to start the kneeling animation.
+        /// </summary>
         IEnumerator StartKneeling()
         {
             HeroUtilities.PlayPlayerClip("Collect Normal 3");

@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using WeaverCore.Assets.Components;
 using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
 
 namespace WeaverCore.Utilities
 {
     /// <summary>
-    /// Misc utility functions for animation related tasks
+    /// Contains utility functions related to Charms
     /// </summary>
     public static class CharmUtilities
     {
@@ -18,8 +19,6 @@ namespace WeaverCore.Utilities
         static Dictionary<IWeaverCharm, int> charmsToID = new Dictionary<IWeaverCharm, int>();
 
         static HashSet<IWeaverCharm> disabledCharms = new HashSet<IWeaverCharm>();
-
-        //static Dictionary<CustomCharm, IWeaverCharm> instantiatedCharms = new Dictionary<CustomCharm, IWeaverCharm>();
 
 #if UNITY_EDITOR
         static int editor_counter = 0;
@@ -83,29 +82,11 @@ namespace WeaverCore.Utilities
 
             addedCustomCharms.Add(ids[0], charm);
             charmsToID.Add(charm, ids[0]);
-            WeaverLog.Log($"Registered Charm {charm.GetType().FullName} - {ids[0]}");
+            Debug.Log($"Registered Charm {charm.GetType().FullName} - {ids[0]}");
 
             return ids[0];
 #endif
         }
-
-        /*public static bool CharmRegistered(CustomCharm charmDef)
-        {
-            if (instantiatedCharms.TryGetValue(charmDef, out var charm))
-            {
-                return CharmRegistered(charm);
-            }
-            return false;
-        }
-
-        public static int GetCustomCharmID(CustomCharm charmDef)
-        {
-            if (instantiatedCharms.TryGetValue(charmDef, out var charm))
-            {
-                return GetCustomCharmID(charm);
-            }
-            return -1;
-        }*/
 
         public static bool CharmRegistered(IWeaverCharm charm)
         {
@@ -119,6 +100,30 @@ namespace WeaverCore.Utilities
                 return id;
             }
             return -1;
+        }
+
+        public static IEnumerable<IWeaverCharm> GetLoadedCharms()
+        {
+            foreach (var pair in addedCustomCharms)
+            {
+                if (!disabledCharms.Contains(pair.Value))
+                {
+                    yield return pair.Value;
+                }
+            }
+        }
+        
+        public static int GetLoadedCharmCount()
+        {
+            int count = 0;
+            foreach (var pair in addedCustomCharms)
+            {
+                if (!disabledCharms.Contains(pair.Value))
+                {
+                    count++;
+                }
+            }
+            return count;
         }
 
         [OnFeatureLoad(priority: int.MinValue)]
@@ -142,35 +147,12 @@ namespace WeaverCore.Utilities
                     WeaverLog.LogException(e);
                 }
             }
-
-            /*if (instantiatedCharms.TryGetValue(charmDef,out var charm))
-            {
-                disabledCharms.Remove(charm);
-            }
-            else
-            {
-                try
-                {
-                    var instance = (IWeaverCharm)Activator.CreateInstance(charmDef.CharmType);
-                    instantiatedCharms.Add(charmDef, instance);
-                    RegisterCharm(instance, charmDef.CharmSprite);
-                }
-                catch (Exception e)
-                {
-                    WeaverLog.LogError($"Error: Failed to instantiate charm \"{charmDef.CharmType.FullName}\". Make sure it has a default constructor");
-                    WeaverLog.LogException(e);
-                }
-            }*/
         }
 
         [OnFeatureUnload(priority: int.MinValue)]
         static void OnCharmUnload(IWeaverCharm charm)
         {
             disabledCharms.Add(charm);
-            /*if (instantiatedCharms.TryGetValue(charmDef, out var charm))
-            {
-                disabledCharms.Add(charm);
-            }*/
         }
 
         [OnRuntimeInit]
@@ -298,14 +280,8 @@ namespace WeaverCore.Utilities
         {
             IWeaverCharm charm;
 
-            if (key.Contains("CHARM"))
-            {
-                WeaverLog.Log("KEY = " + key);
-            }
-
             if (TryParseCharm(key, "CHARM_NAME_", out _, out charm))
             {
-                //WeaverLog.Log("CHARM NAME FOUND = " + charm.GetType().FullName);
                 if (CharmDisabled(charm))
                 {
                     return $"DISABLED - {charm.Name}";
@@ -323,6 +299,38 @@ namespace WeaverCore.Utilities
             }
 
             return orig;
+        }
+
+        public static bool GiveCharmToPlayer(IWeaverCharm charm, bool displayCollectMessage = true)
+        {
+            return GiveCharmToPlayer(GetCustomCharmID(charm), displayCollectMessage);
+        }
+
+        public static bool GiveCharmToPlayer(int charmID, bool displayCollectMessage = true)
+        {
+            bool alreadyCollected = false;
+            if (PlayerData.instance.GetBool($"gotCharm_{charmID}") == true)
+            {
+                alreadyCollected = true;
+            }
+            else
+            {
+                GameManager.instance.IncrementPlayerDataInt("charmsOwned");
+            }
+
+            PlayerData.instance.SetBool($"gotCharm_{charmID}", true);
+            GameManager.instance.StoryRecord_acquired($"gotCharm_{charmID}");
+
+            if (!GameManager.instance.GetPlayerDataBool("hasCharm"))
+            {
+                PlayerData.instance.SetBool("hasCharm", true);
+            }
+
+            if (displayCollectMessage)
+            {
+                ItemGetMessage.SpawnCharm(charmID);
+            }
+            return alreadyCollected;
         }
     }
 

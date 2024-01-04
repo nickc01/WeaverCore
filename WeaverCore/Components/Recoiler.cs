@@ -16,6 +16,61 @@ namespace WeaverCore.Components
 	/// </summary>
 	public class Recoiler : Recoil
 	{
+		public class RecoilOverride : IComparable<RecoilOverride>, IDisposable
+		{
+			public readonly Recoiler Recoiler;
+
+			int _priority;
+
+			public int Priority
+			{
+				get => _priority;
+				set
+				{
+					if (_priority != value)
+					{
+						_priority = value;
+						Recoiler.RefreshRecoilSpeed();
+                    }
+				}
+
+            }
+
+			float _recoilSpeed;
+
+			public float RecoilSpeed
+			{
+				get => _recoilSpeed;
+				set
+				{
+					if (_recoilSpeed != value)
+					{
+						_recoilSpeed = value;
+						Recoiler.RefreshRecoilSpeed();
+					}
+				}
+			}
+
+            public RecoilOverride(Recoiler recoiler, int priority, float recoilSpeed)
+            {
+                Recoiler = recoiler;
+                _priority = priority;
+                _recoilSpeed = recoilSpeed;
+            }
+
+            public int CompareTo(RecoilOverride other)
+            {
+				return other.Priority.CompareTo(Priority);
+            }
+
+            public void Dispose()
+            {
+				Recoiler.RemoveRecoilOverride(this);
+            }
+        }
+
+		SortedSet<RecoilOverride> recoilOverrides = new SortedSet<RecoilOverride>();
+
 		float? _origRecoilSpeed = null;
 		public float OriginalRecoilSpeed
 		{
@@ -98,7 +153,7 @@ namespace WeaverCore.Components
 
 		static Func<Recoil, Vector2> recoilDirectionDel;
 
-		static Func<Recoil, float> recoilMagnitudeDel;
+		static Func<Recoil, float> recoilTotalSpeedDel;
 
 
 		public float GetRecoilSpeed()
@@ -111,7 +166,41 @@ namespace WeaverCore.Components
 			return recoilSpeedDel.Invoke(this);
 		}
 
+		public RecoilOverride AddRecoilOverride(float recoilSpeed, int priority = 0)
+		{
+			var instance = new RecoilOverride(this, priority, recoilSpeed);
+			recoilOverrides.Add(instance);
+			RefreshRecoilSpeed();
+			return instance;
+        }
 
+		public bool RemoveRecoilOverride(RecoilOverride recoilOverride)
+		{
+			if (recoilOverrides.Remove(recoilOverride))
+			{
+                RefreshRecoilSpeed();
+				return true;
+            }
+			return false;
+        }
+
+		public void ClearRecoilOverrides()
+		{
+			recoilOverrides.Clear();
+			RefreshRecoilSpeed();
+		}
+
+		private void RefreshRecoilSpeed()
+		{
+			if (recoilOverrides.Count > 0)
+			{
+				SetRecoilSpeed(recoilOverrides.First().RecoilSpeed);
+			}
+			else
+			{
+				SetRecoilSpeed(OriginalRecoilSpeed);
+			}
+		}
 
 		public Vector2 GetRecoilDirection()
         {
@@ -124,12 +213,13 @@ namespace WeaverCore.Components
 
 		public float GetRecoilMagnitude()
 		{
-			if (recoilMagnitudeDel == null)
+			if (recoilTotalSpeedDel == null)
 			{
-				recoilMagnitudeDel = ReflectionUtilities.CreateFieldGetter<Recoil, float>(typeof(Recoiler).BaseType.GetField("recoilSpeed", BindingFlags.NonPublic | BindingFlags.Instance));
+				recoilTotalSpeedDel = ReflectionUtilities.CreateFieldGetter<Recoil, float>(typeof(Recoiler).BaseType.GetField("recoilSpeed", BindingFlags.NonPublic | BindingFlags.Instance));
 			}
 
-			return recoilSpeedDel.Invoke(this) / GetRecoilSpeed();
+			//Divide the actual speed by the base speed to get the magnitude
+			return recoilTotalSpeedDel.Invoke(this) / GetRecoilSpeed();
 		}
 
 		public Vector2 GetCurrentRecoilAmount()

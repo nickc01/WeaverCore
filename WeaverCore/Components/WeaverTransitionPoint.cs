@@ -65,6 +65,10 @@ unknown -> Don't use")]
 		[Tooltip("If set to true, the door will be functional and display text above it when the player is nearby")]
 		bool enableDoorControl = true;
 
+		/*[SerializeField]
+		[Tooltip("If set to true, a WeaverCompassUpdater component will be added, which causes the map compass to update it's position when the player exits this transition point")]
+		bool updateCompassOnExit = true;*/
+
 		public bool EnableDoorControl
 		{
 			get => enableDoorControl;
@@ -86,7 +90,8 @@ unknown -> Don't use")]
 		{
 			patcher.Patch(typeof(TransitionPoint).GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance), null, typeof(WeaverTransitionPoint).GetMethod(nameof(Start_Detour), BindingFlags.NonPublic | BindingFlags.Static));
 			patcher.Patch(typeof(TransitionPoint).GetMethod("GetGatePosition", BindingFlags.Public | BindingFlags.Instance), typeof(WeaverTransitionPoint).GetMethod(nameof(Weaver_GetGatePosition), BindingFlags.NonPublic | BindingFlags.Static), null);
-		}
+            patcher.Patch(typeof(TransitionPoint).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance), null, typeof(WeaverTransitionPoint).GetMethod(nameof(Awake_Postfix), BindingFlags.NonPublic | BindingFlags.Static));
+        }
 
 		static void Start_Detour(TransitionPoint __instance)
 		{
@@ -95,6 +100,17 @@ unknown -> Don't use")]
 				wtp.Weaver_Start();
 			}
 		}
+
+		static void Awake_Postfix(TransitionPoint __instance)
+		{
+            if (__instance is WeaverTransitionPoint wtp)
+            {
+				/*if (wtp.updateCompassOnExit && wtp.GetComponent<WeaverCompassUpdater>() == null)
+				{
+					wtp.gameObject.AddComponent<WeaverCompassUpdater>();
+				}*/
+            }
+        }
 
 		static bool Weaver_GetGatePosition(TransitionPoint __instance, ref GatePosition __result)
 		{

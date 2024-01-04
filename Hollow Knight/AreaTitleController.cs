@@ -155,7 +155,7 @@ public class AreaTitleController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No FSM attached to " + base.gameObject.name + " to get data from!");
+            Error("No FSM attached to " + base.gameObject.name + " to get data from!");
         }*/
         if (waitForHeroInPosition)
         {
@@ -246,7 +246,7 @@ public class AreaTitleController : MonoBehaviour
         }
         else
         {
-            //Debug.LogWarning("No area with identifier \"" + areaEvent + "\" found in area list. Creating default SubArea.");
+            //Warning("No area with identifier \"" + areaEvent + "\" found in area list. Creating default SubArea.");
             area = new Area(areaEvent, 0, subArea: true, "");
         }
         if (doFinish)

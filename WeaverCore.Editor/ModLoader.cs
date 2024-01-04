@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
@@ -20,17 +22,17 @@ namespace WeaverCore.Editor
             {
                 try
                 {
-                    List<WeaverMod> weaverMods = new List<WeaverMod>();
+                    List<IMod> mods = new List<IMod>();
                     foreach (var type in assembly.GetTypes())
                     {
-                        if (typeof(WeaverMod).IsAssignableFrom(type) && !type.IsAbstract && !type.ContainsGenericParameters)
+                        if (typeof(IMod).IsAssignableFrom(type) && !type.IsAbstract && !type.ContainsGenericParameters)
                         {
-                            weaverMods.Add((WeaverMod)Activator.CreateInstance(type));
+                            mods.Add((IMod)Activator.CreateInstance(type));
                         }
                     }
-                    foreach (var mod in weaverMods.OrderBy(m => m.LoadPriority()))
+                    foreach (var mod in mods.OrderBy(m => m.LoadPriority()))
                     {
-                        mod.Initialize();
+                        mod.Initialize(new Dictionary<string, Dictionary<string, UnityEngine.GameObject>>());
                         var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>().ToList();
 
                         foreach (var method in methods)
@@ -63,6 +65,9 @@ namespace WeaverCore.Editor
                     WeaverLog.Log("Error Loading Mod [" + assembly.GetName().Name + " : " + e);
                 }
             }
+
+            //ModHooks.OnFinishedLoadingMods();
+            typeof(ModHooks).GetMethod("OnFinishedLoadingMods", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, null);
         }
     }
 }

@@ -39,6 +39,11 @@ namespace WeaverCore.Components
 		bool forceOnce = false;
 
 		/// <summary>
+		/// If set to true, then the animation will play at the same speed even if the game is paused or the player gets stunned
+		/// </summary>
+		public bool UnscaledTimeMode { get; set; } = false;
+
+		/// <summary>
 		/// The current frame index that is playing
 		/// </summary>
 		public int PlayingFrame
@@ -129,6 +134,11 @@ namespace WeaverCore.Components
 		/// </summary>
 		public Guid PlayingGUID { get; private set; }
 
+		/// <summary>
+		/// The clip that is played when the animator starts (assuming <see cref="autoPlay"/> is set to true)
+		/// </summary>
+		public string AutoPlayClip => autoPlayClip;
+
 		protected virtual void OnEnable()
 		{
 			if (autoPlay && AnimationData.HasClip(autoPlayClip))
@@ -182,37 +192,49 @@ namespace WeaverCore.Components
 		{
 			if (currentFrame != -1)
 			{
-				timer += Time.deltaTime * PlaybackSpeed;
-				while (currentFrame != -1 && timer >= frameTime)
+				if (UnscaledTimeMode)
 				{
-					timer -= frameTime;
-					if (forceOnce)
-					{
-						currentFrame = AnimationData.GoToNextFrame(PlayingClip, currentFrame, WeaverAnimationData.WrapMode.Once);
-					}
-					else
-					{
-						currentFrame = AnimationData.GoToNextFrame(PlayingClip, currentFrame);
-					}
-					if (currentFrame == -1)
-					{
-						PlayingGUID = default(Guid);
-						string originalClip = PlayingClip;
-						PlayingClip = null;
-						if (onAnimationDone != null)
-						{
-							onAnimationDone(originalClip);
-							onAnimationDone = null;
-						}
-					}
-					else
-					{
-						SpriteRenderer.sprite = AnimationData.GetFrameFromClip(PlayingClip, currentFrame);
-						OnPlayingFrame(currentFrame);
-					}
-				}
-			}
+                    timer += Time.unscaledDeltaTime * PlaybackSpeed;
+                }
+				else
+				{
+                    timer += Time.deltaTime * PlaybackSpeed;
+                }
+				UpdatePlayingAnimationState();
+            }
 		}
+
+		void UpdatePlayingAnimationState()
+		{
+            while (currentFrame != -1 && timer >= frameTime)
+            {
+                timer -= frameTime;
+                if (forceOnce)
+                {
+                    currentFrame = AnimationData.GoToNextFrame(PlayingClip, currentFrame, WeaverAnimationData.WrapMode.Once);
+                }
+                else
+                {
+                    currentFrame = AnimationData.GoToNextFrame(PlayingClip, currentFrame);
+                }
+                if (currentFrame == -1)
+                {
+                    PlayingGUID = default(Guid);
+                    string originalClip = PlayingClip;
+                    PlayingClip = null;
+                    if (onAnimationDone != null)
+                    {
+                        onAnimationDone(originalClip);
+                        onAnimationDone = null;
+                    }
+                }
+                else
+                {
+                    SpriteRenderer.sprite = AnimationData.GetFrameFromClip(PlayingClip, currentFrame);
+                    OnPlayingFrame(currentFrame);
+                }
+            }
+        }
 
 		void OnAnimationDataUpdate()
 		{
@@ -233,6 +255,29 @@ namespace WeaverCore.Components
 		}
 
 		/// <summary>
+		/// Immediately skips the current frame
+		/// </summary>
+		public void SkipFrame()
+		{
+			SkipFrames(1);
+		}
+
+		/// <summary>
+		/// Immediately skips the specified amount of frames
+		/// </summary>
+		/// <param name="frames">The amount of frames to skip. Must be greater than zero in order to do anything</param>
+		public void SkipFrames(int frames)
+		{
+			if (frames <= 0)
+			{
+				return;
+			}
+
+			timer = frameTime * frames;
+            UpdatePlayingAnimationState();
+        }
+
+		/// <summary>
 		/// Plays an animation clip with the specified name
 		/// </summary>
 		/// <param name="clipName">The name of the clip to be played</param>
@@ -240,7 +285,6 @@ namespace WeaverCore.Components
 		/// <exception cref="Exception">Throws if the clip doesn't exist in <see cref="AnimationData"/></exception>
 		public void PlayAnimation(string clipName, bool forceOnce = false)
 		{
-			//Debug.Log($"PLAYING ANIMATION {clipName} on object {gameObject.name}");
 			this.forceOnce = forceOnce;
 			if (!HasAnimationClip(clipName))
 			{

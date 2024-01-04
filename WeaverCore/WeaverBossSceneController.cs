@@ -10,7 +10,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-
+    /// <summary>
+    /// Used for boss scenes in WeaverCore
+    /// </summary>
     public class WeaverBossSceneController : BossSceneController
     {
         static MethodInfo ReportHealthMethod;
@@ -137,11 +139,19 @@ namespace WeaverCore.Assets.Components
             return true;
         }
 
+        /// <summary>
+        /// Adds a boss/enemy to keep track of. When all bosses are killed, the scene will end
+        /// </summary>
+        /// <param name="bossHealth">The health component of the boss/enemy</param>
         public static void AddBoss(EntityHealth bossHealth)
         {
             AddBoss((Component)bossHealth);
         }
 
+        /// <summary>
+        /// Adds a boss/enemy to keep track of. When all bosses are killed, the scene will end
+        /// </summary>
+        /// <param name="bossHealth">The GameObject of the boss/enemy</param>
         public static void AddBoss(GameObject bossObject)
         {
             if (bossObject.TryGetComponent<EntityHealth>(out var entityHealth))
@@ -158,6 +168,10 @@ namespace WeaverCore.Assets.Components
             }
         }
 
+        /// <summary>
+        /// Adds a boss/enemy to keep track of. When all bosses are killed, the scene will end
+        /// </summary>
+        /// <param name="bossHealth">The health component of the boss/enemy</param>
         public static void AddBoss(Component component)
         {
             if (Instance != null)

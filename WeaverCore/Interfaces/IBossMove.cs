@@ -5,7 +5,6 @@ using System.Text;
 
 namespace WeaverCore.Interfaces
 {
-
 	/// <summary>
 	/// Used for implementing moves for a boss fight
 	/// </summary>

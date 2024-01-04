@@ -7,20 +7,11 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
 using WeaverCore.Attributes;
-using WeaverCore.Components;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Implementations
 {
-    public class G_SpriteFlasher_I : SpriteFlasher_I
-    {
-        public override void OnFlasherInit(SpriteFlasher flasher)
-        {
-			flasher.gameObject.AddComponent<SpriteFlashProxy>();
-        }
-    }
-
     public class G_AudioMixer_I : AudioMixer_I
 	{
 		static AudioMixer[] Mixers;
@@ -187,7 +178,9 @@ namespace WeaverCore.Game.Implementations
 		static FieldInfo cueSnapshotSetter = null;
 		static FieldInfo cueChannelEnabledSetter = null;
 
-		public override void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
+		public override MusicCue ActiveMusicCue => GameManager.instance.AudioManager.CurrentMusicCue;
+
+        public override void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
 		{
 			if (currentCue != null)
 			{
@@ -214,5 +207,18 @@ namespace WeaverCore.Game.Implementations
 
 			GameManager.instance.AudioManager.ApplyAtmosCue(currentCue, transitionTime);
 		}
-	}
+
+        public override void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot)
+        {
+            GameManager.instance.AudioManager.ApplyMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
+            if (applySnapshot)
+            {
+				var snapshot = musicCue.Snapshot;
+				if (snapshot != null)
+				{
+                    snapshot.TransitionTo(transitionTime);
+                }
+            }
+        }
+    }
 }

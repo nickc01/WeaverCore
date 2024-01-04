@@ -6,39 +6,49 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Used for playing laser animations and other effects on a Laser.
+    /// </summary>
     public class LaserEmitter : MonoBehaviour
     {
         [NonSerialized]
         Laser laser;
 
         [SerializeField]
+        [Tooltip("Prefab for the impact effect when the laser hits something.")]
         GameObject impactEffectPrefab;
 
         [SerializeField]
+        [Tooltip("Color of the impact effect.")]
         Color impactColor = Color.white;
 
         [SerializeField]
-        Vector2 scaleMinMax = new Vector2(1f,1.25f);
+        [Tooltip("Minimum and maximum scale for the impact effect.")]
+        Vector2 scaleMinMax = new Vector2(1f, 1.25f);
 
         [SerializeField]
+        [Tooltip("Minimum threshold for impact effect visibility.")]
         float minimumImpactAThreshold = 0.2f;
 
         bool displayImpacts = false;
 
-
         [SerializeField]
+        [Tooltip("Enable random sprite flipping.")]
         bool randomSpriteFlip = true;
 
         [SerializeField]
-        Vector2 animSpeedMinMax = new Vector2(0.75f,1.25f);
+        [Tooltip("Minimum and maximum animation speed for impact effects.")]
+        Vector2 animSpeedMinMax = new Vector2(0.75f, 1.25f);
 
         List<GameObject> spawnedImpacts = new List<GameObject>();
         List<SpawnedImpactData> spawnedImpactData = new List<SpawnedImpactData>();
 
         [SerializeField]
+        [Tooltip("Spread value during laser charge-up.")]
         float chargeUpSpread = 5f;
 
         [SerializeField]
+        [Tooltip("Width value during laser charge-up.")]
         float chargeUpWidth = 1f;
 
         [Header("Animations")]
@@ -46,49 +56,44 @@ namespace WeaverCore.Components
         WeaverAnimationData animationData;
 
         [SerializeField]
+        [Tooltip("Animation name for laser charge-up.")]
         string chargeUpAnimationSTRING;
 
         [SerializeField]
+        [Tooltip("Animation name for laser firing loop.")]
         string fireLoopAnimationSTRING;
 
         [SerializeField]
+        [Tooltip("Animation name for laser end.")]
         string endAnimationSTRING;
-        /*WeaverAnimationData animationData;
-
-
-        [Header("Animations")]
-        [SerializeField]
-        WeaverAnimationData animationData;*/
-
-        /*[SerializeField]
-        List<Texture> chargeUpAnimation;
-        [SerializeField]
-        float chargeUpAnimationFPS = 20;
-
-        [SerializeField]
-        List<Texture> fireLoopAnimation;
-        [SerializeField]
-        float fireLoopAnimationFPS = 20;
-
-        [SerializeField]
-        List<Texture> endAnimation;
-        [SerializeField]
-        float endAnimationFPS = 20;*/
 
         [field: Header("Timings")]
         [field: SerializeField]
+        [field: Tooltip("Duration for laser charge-up.")]
         public float ChargeUpDuration { get; set; } = 0.75f;
 
         [field: SerializeField]
+        [field: Tooltip("Duration for laser firing loop.")]
         public float FireDuration { get; set; } = 3f;
 
+        /// <summary>
+        /// Duration of the laser ending animation
+        /// </summary>
         public float EndDuration => animationData.GetClipDuration(endAnimationSTRING);
 
-
+        /// <summary>
+        /// Is the laser currently being fired?
+        /// </summary>
         public bool FiringLaser { get; private set; } = false;
 
+        /// <summary>
+        /// The laser component used for rendering the laser sprite
+        /// </summary>
         public Laser Laser => laser ??= GetComponentInChildren<Laser>(true);
 
+        /// <summary>
+        /// Gets the duration of the charge up animation
+        /// </summary>
         public float MinChargeUpDuration => animationData.GetClipDuration(chargeUpAnimationSTRING);
 
         float originalSpread;
@@ -105,23 +110,15 @@ namespace WeaverCore.Components
         {
             if (enabled)
             {
-                Laser.MainCollider.enabled = false;
+                if (Laser.MainCollider != null)
+                {
+                    Laser.MainCollider.enabled = false;
+                }
                 Laser.MainRenderer.enabled = false;
 
                 originalSpread = Laser.Spread;
                 originalWidth = Laser.StartingWidth;
                 laser.gameObject.SetActive(false);
-
-                //StartCoroutine(TestRoutine());
-            }
-        }
-
-        IEnumerator TestRoutine()
-        {
-            while (true)
-            {
-                yield return new WaitForSeconds(0.5f);
-                yield return FireLaserRoutine();
             }
         }
 
@@ -174,17 +171,36 @@ namespace WeaverCore.Components
             }
         }
 
+        /// <summary>
+        /// Fires the laser
+        /// </summary>
         public void FireLaser()
         {
             StartCoroutine(FireLaserRoutine());
         }
 
+        /// <summary>
+        /// Fires the charge up animation of the laser only
+        /// </summary>
         public void FireChargeUpOnly()
         {
             StartCoroutine(FireChargeUpOnlyRoutine());
         }
 
+        /// <summary>
+        /// Fires the charge up animation of the laser only
+        /// </summary>
         public IEnumerator FireChargeUpOnlyRoutine()
+        {
+            yield return PlayChargeUpInRoutine(ChargeUpDuration);
+            yield return PlayChargeUpOutRoutine();
+        }
+
+        /// <summary>
+        /// Fades into the charge up animation
+        /// </summary>
+        /// <param name="playDuration">The duration of the charge-up animation</param>
+        public IEnumerator PlayChargeUpInRoutine(float playDuration)
         {
             if (FiringLaser)
             {
@@ -194,27 +210,34 @@ namespace WeaverCore.Components
             FiringLaser = true;
             laser.Spread = chargeUpSpread;
             laser.StartingWidth = chargeUpWidth;
-            if (ChargeUpDuration > 0)
+            if (playDuration > 0)
             {
-                yield return PlayAnimationLoop(chargeUpAnimationSTRING, ChargeUpDuration);
+                yield return PlayAnimationLoop(chargeUpAnimationSTRING, playDuration);
             }
-            /*laser.MainCollider.enabled = true;
-            displayImpacts = true;
-            laser.Spread = originalSpread;
-            laser.StartingWidth = originalWidth;
-            yield return PlayAnimationLoop(fireLoopAnimation, fireLoopAnimationFPS, FireDuration, 1);*/
+        }
 
-            yield return PlayAnimation(endAnimationSTRING,2);
+        /// <summary>
+        /// Fades out the charge up animation
+        /// </summary>
+        public IEnumerator PlayChargeUpOutRoutine()
+        {
+            yield return PlayAnimation(endAnimationSTRING, 2);
             laser.MainRenderer.enabled = false;
             FiringLaser = false;
             laser.gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Fires the laser with a quick charge-up animation
+        /// </summary>
         public void FireLaserQuick()
         {
             StartCoroutine(FireLaserQuickRoutine());
         }
 
+        /// <summary>
+        /// Fires the laser with a quick charge-up animation
+        /// </summary>
         public IEnumerator FireLaserQuickRoutine()
         {
             if (FiringLaser)
@@ -230,13 +253,19 @@ namespace WeaverCore.Components
                 yield return PlayAnimation(chargeUpAnimationSTRING,0);
             }
 
-            laser.MainCollider.enabled = true;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = true;
+            }
             displayImpacts = true;
             laser.Spread = originalSpread;
             laser.StartingWidth = originalWidth;
             yield return PlayAnimationLoop(fireLoopAnimationSTRING, FireDuration);
 
-            laser.MainCollider.enabled = false;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = false;
+            }
             displayImpacts = false;
             ClearImpacts();
 
@@ -276,7 +305,10 @@ namespace WeaverCore.Components
             {
                 StopCoroutine(partialAnimationRoutine);
             }
-            laser.MainCollider.enabled = true;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = true;
+            }
             displayImpacts = true;
             laser.Spread = originalSpread;
             laser.StartingWidth = originalWidth;
@@ -295,7 +327,10 @@ namespace WeaverCore.Components
             {
                 StopCoroutine(partialAnimationRoutine);
             }
-            laser.MainCollider.enabled = false;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = false;
+            }
             displayImpacts = false;
             ClearImpacts();
 
@@ -313,6 +348,9 @@ namespace WeaverCore.Components
             return GetInitialClipDuration(endAnimationSTRING);
         }
 
+        /// <summary>
+        /// Fires the laser
+        /// </summary>
         public IEnumerator FireLaserRoutine()
         {
             if (FiringLaser)
@@ -328,13 +366,19 @@ namespace WeaverCore.Components
                 yield return PlayAnimationLoop(chargeUpAnimationSTRING, ChargeUpDuration);
             }
 
-            laser.MainCollider.enabled = true;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = true;
+            }
             displayImpacts = true;
             laser.Spread = originalSpread;
             laser.StartingWidth = originalWidth;
             yield return PlayAnimationLoop(fireLoopAnimationSTRING, FireDuration);
 
-            laser.MainCollider.enabled = false;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = false;
+            }
             displayImpacts = false;
             ClearImpacts();
 
@@ -351,6 +395,10 @@ namespace WeaverCore.Components
             laser.gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Stops firing the laser after a period of time
+        /// </summary>
+        /// <param name="time">The delay before the laser is stopped</param>
         public void StopLaserAfter(float time)
         {
             IEnumerator Routine(float t)
@@ -361,6 +409,9 @@ namespace WeaverCore.Components
             StartCoroutine(Routine(time));
         }
 
+        /// <summary>
+        /// Stops firing the laser
+        /// </summary>
         public void StopLaser()
         {
             if (!FiringLaser)
@@ -379,7 +430,10 @@ namespace WeaverCore.Components
             FiringLaser = false;
             displayImpacts = false;
             ClearImpacts();
-            laser.MainCollider.enabled = false;
+            if (laser.MainCollider != null)
+            {
+                laser.MainCollider.enabled = false;
+            }
             if (partialAnimationRoutine != null)
             {
                 StopCoroutine(partialAnimationRoutine);
@@ -392,7 +446,10 @@ namespace WeaverCore.Components
         {
             for (int i = spawnedImpacts.Count - 1; i >= 0; i--)
             {
-                Pooling.Destroy(spawnedImpacts[i]);
+                if (spawnedImpacts[i] != null)
+                {
+                    Pooling.Destroy(spawnedImpacts[i]);
+                }
             }
             spawnedImpacts.Clear();
             spawnedImpactData.Clear();
@@ -410,11 +467,8 @@ namespace WeaverCore.Components
                 Awake();
             }
 
-            //laser.transform.rotation = Quaternion.Slerp(laser.transform.rotation,Quaternion.Euler(0f,0f, MathUtilties.CartesianToPolar(Player.Player1.transform.position - laser.transform.position).x),2.5f * Time.deltaTime);
-
             if (displayImpacts)
             {
-                //Debug.Log("DISPLAYING IMPACTS");
                 int spawnedImpactCounter = 0;
                 for (int i = 0; i < laser.ColliderContactPoints.Count - 1; i++)
                 {
@@ -423,8 +477,9 @@ namespace WeaverCore.Components
 
                     var midPoint = Vector3.Lerp(end, start, 0.5f);
 
-                    var normal = Quaternion.Euler(0f, 0f, -90f) * (end - start);
-                    var distance = normal.magnitude;
+                    var calculatedNormal = Quaternion.Euler(0f, 0f, -90f) * (end - start);
+                    var normal = laser.ColliderContactNormals[i];
+                    var distance = Mathf.Min(calculatedNormal.magnitude, normal.magnitude);
 
                     normal.Normalize();
 
@@ -435,7 +490,6 @@ namespace WeaverCore.Components
 
                     if (dotProduct >= minimumImpactAThreshold)
                     {
-                        //Debug.Log("IMPACT BEING DISPLAYED");
                         if (spawnedImpactCounter >= spawnedImpacts.Count)
                         {
                             var impactEffect = Pooling.Instantiate(impactEffectPrefab);

@@ -11,9 +11,10 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Components
 {
-    /// <summary>
-    /// This component allows an action to be done when the player dreamnails an object
-    /// </summary>
+	/// <summary>
+	/// This component allows an action to be done when the player dreamnails an object
+	/// </summary>
+	[Obsolete("This is an old component that should no longer be used. Use DreamnailableObject instead")]
     public class DreamNailable : EnemyDreamnailReaction
 	{
 		[SerializeField]

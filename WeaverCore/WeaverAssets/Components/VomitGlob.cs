@@ -1,13 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using WeaverCore.Attributes;
 using WeaverCore.Components;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
-
+    /// <summary>
+    /// WeaverCore's implementation of a Nosk Vomit Glob
+    /// </summary>
     public class VomitGlob : MonoBehaviour, IOnPool
     {
         static VomitGlob prefab;
@@ -48,6 +53,20 @@ namespace WeaverCore.Assets.Components
         AudioClip landSound;
 
         [SerializeField]
+        List<GameObject> enableOnLand;
+
+        [SerializeField]
+        List<GameObject> disableOnLand;
+
+        [SerializeField]
+        [ExcludeFieldFromPool]
+        public UnityEvent onDisappear;
+
+        [SerializeField]
+        [ExcludeFieldFromPool]
+        public UnityEvent onLand;
+
+        [SerializeField]
         float shrinkTime = 0.25f;
 
         public bool Grounded { get; private set; } = false;
@@ -55,6 +74,10 @@ namespace WeaverCore.Assets.Components
         public bool PlaySounds { get; set; } = true;
 
         PlayerDamager damager;
+
+        [NonSerialized]
+        [ExcludeFieldFromPool]
+        SpriteRenderer halo;
 
         int oldDamage = 0;
 
@@ -86,6 +109,10 @@ namespace WeaverCore.Assets.Components
         Coroutine lifeTimeRoutine = null;
         Coroutine scaleCoroutine = null;
 
+        [NonSerialized]
+        [ExcludeFieldFromPool]
+        Color oldHaloColor;
+
         IEnumerator MaxLifetimeRoutine(float time)
         {
             yield return new WaitForSeconds(time);
@@ -98,6 +125,15 @@ namespace WeaverCore.Assets.Components
             {
                 damager = GetComponent<PlayerDamager>();
             }
+
+            if (halo == null)
+            {
+                halo = transform.Find("Halo").GetComponent<SpriteRenderer>();
+                oldHaloColor = halo.color;
+            }
+
+            halo.color = oldHaloColor;
+
             if (!initialized)
             {
                 Init();
@@ -153,6 +189,24 @@ namespace WeaverCore.Assets.Components
             {
                 WeaverAudio.PlayAtPoint(landSound, transform.position);
             }
+
+            foreach (var obj in enableOnLand)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(true);
+                }
+            }
+
+            foreach (var obj in disableOnLand)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(false);
+                }
+            }
+
+            onLand.Invoke();
             /*if (finish)
             {
                 MainCollider.enabled = false;
@@ -207,8 +261,20 @@ namespace WeaverCore.Assets.Components
             StartCoroutine(Wait(time));
         }
 
+        IEnumerator HaloFadeRoutine(float time, Color from, Color to)
+        {
+            for (float t = 0; t < time; t += Time.deltaTime)
+            {
+                halo.color = Color.Lerp(from, to, t / time);
+                yield return null;
+            }
+            halo.color = to;
+        }
+
         IEnumerator EndRoutine()
         {
+            onDisappear.Invoke();
+
             if (scaleCoroutine != null)
             {
                 StopCoroutine(scaleCoroutine);
@@ -221,6 +287,8 @@ namespace WeaverCore.Assets.Components
 
             Vector3 oldScale = transform.localScale;
             Vector3 newScale = new Vector3(0.1f,0.1f);
+
+            StartCoroutine(HaloFadeRoutine(shrinkTime, oldHaloColor, oldHaloColor.With(a: 0f)));
 
             for (float t = 0; t < shrinkTime; t += Time.deltaTime)
             {
@@ -278,7 +346,34 @@ namespace WeaverCore.Assets.Components
             scaleCoroutine = StartCoroutine(ScaleRoutine(transform.localScale.x, newScale, curve, time));
         }
 
+        /// <summary>
+        /// Spawns a <see cref="VomitGlob"/> at the specified position with the given velocity, gravity scale, and sound settings.
+        /// </summary>
+        /// <param name="position">The position where the <see cref="VomitGlob"/> should be spawned.</param>
+        /// <param name="velocity">The initial velocity of the <see cref="VomitGlob"/>.</param>
+        /// <param name="gravityScale">The gravity scale applied to the <see cref="VomitGlob"/> (default is 0.7f).</param>
+        /// <param name="playSounds">Flag indicating whether to play sounds for the spawned <see cref="VomitGlob"/> (default is true).</param>
+        /// <returns>The spawned <see cref="VomitGlob"/> instance.</returns>
         public static VomitGlob Spawn(Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
+        {
+            if (prefab == null)
+            {
+                prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Vomit Glob").GetComponent<VomitGlob>();
+            }
+
+            return Spawn(prefab, position, velocity, gravityScale, playSounds);
+        }
+
+        /// <summary>
+        /// Spawns a <see cref="VomitGlob"/> using the specified prefab at the given position with the provided velocity, gravity scale, and sound settings.
+        /// </summary>
+        /// <param name="prefab">The <see cref="VomitGlob"/> prefab to be used for spawning.</param>
+        /// <param name="position">The position where the <see cref="VomitGlob"/> should be spawned.</param>
+        /// <param name="velocity">The initial velocity of the <see cref="VomitGlob"/>.</param>
+        /// <param name="gravityScale">The gravity scale applied to the <see cref="VomitGlob"/> (default is 0.7f).</param>
+        /// <param name="playSounds">Flag indicating whether to play sounds for the spawned <see cref="VomitGlob"/> (default is true).</param>
+        /// <returns>The spawned <see cref="VomitGlob"/> instance.</returns>
+        public static VomitGlob Spawn(VomitGlob prefab, Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
         {
             if (prefab == null)
             {
@@ -298,8 +393,10 @@ namespace WeaverCore.Assets.Components
             return instance;
         }
 
+
         public void OnPool()
         {
+            halo.color = oldHaloColor;
             MainRenderer.enabled = true;
             initialized = false;
             Grounded = false;

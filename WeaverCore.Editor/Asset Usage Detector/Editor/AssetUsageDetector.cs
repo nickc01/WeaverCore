@@ -317,7 +317,7 @@ namespace AssetUsageDetectorNamespace
 					{
 						if( !openScenes.Contains( path ) )
 						{
-							Debug.Log( "Can't search unloaded scenes while in play mode, skipped " + path );
+                            Debug.Log( "Can't search unloaded scenes while in play mode, skipped " + path );
 							return true;
 						}
 
@@ -540,8 +540,8 @@ namespace AssetUsageDetectorNamespace
 
 				InitializeSearchResultNodes( searchResult );
 
-				// Log some c00l stuff to console
-				Debug.Log( "Searched " + searchedObjectsCount + " objects in " + ( EditorApplication.timeSinceStartup - searchStartTime ).ToString( "F2" ) + " seconds" );
+                // Log some c00l stuff to console
+                Debug.Log( "Searched " + searchedObjectsCount + " objects in " + ( EditorApplication.timeSinceStartup - searchStartTime ).ToString( "F2" ) + " seconds" );
 
 				return new SearchResult( true, searchResult, initialSceneSetup, this, searchParameters );
 			}

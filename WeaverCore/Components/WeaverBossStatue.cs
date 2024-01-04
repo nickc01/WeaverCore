@@ -10,7 +10,9 @@ using WeaverCore.Settings;
 
 namespace WeaverCore.Components
 {
-
+    /// <summary>
+    /// WeaverCore's implementation of a Godhome boss statue
+    /// </summary>
     public class WeaverBossStatue : BossStatue, ISerializationCallbackReceiver
     {
         [SerializeField]
@@ -19,10 +21,12 @@ namespace WeaverCore.Components
 
         [SerializeField]
         [Tooltip("The name of the field within the SaveSpecificSettings object that contains the completion state of the statue")]
+        [SaveSpecificFieldName(typeof(Completion), nameof(settings))]
         string normalStatueStateField;
 
         [SerializeField]
         [Tooltip("The name of the field within the SaveSpecificSettings object that contains the completion state of the statue (dream version)")]
+        [SaveSpecificFieldName(typeof(Completion), nameof(settings))]
         string dreamStatueStateField;
 
         [SerializeField]
@@ -67,10 +71,6 @@ namespace WeaverCore.Components
         [Tooltip("If specified, will override the description of the dream boss that is normally retrieved via boss name key and sheet")]
         string dreamDescOverride;
 
-
-        //[NonSerialized]
-        //bool hooked = false;
-
         static Dictionary<string, bool> playerDataHooks = new Dictionary<string, bool>();
 
 
@@ -78,7 +78,6 @@ namespace WeaverCore.Components
 
         static bool Weaver_Awake_Prefix(BossStatue __instance)
         {
-            //WeaverLog.Log("BOSS STATUE PREFIX");
             if (__instance is WeaverBossStatue wbs)
             {
                 if (!playerDataHooks.ContainsKey(wbs.HookKey))
@@ -86,15 +85,7 @@ namespace WeaverCore.Components
                     playerDataHooks.Add(wbs.HookKey, true);
                     AddGetterHook(wbs.settings, wbs.normalStatueStateField, wbs.dreamStatueStateField);
                     AddSetterHook(wbs.settings, wbs.normalStatueStateField, wbs.dreamStatueStateField);
-                    //ModHooks.GetPlayerVariableHook += wbs.ModHooks_GetPlayerVariableHook;
-                    //ModHooks.SetPlayerVariableHook += wbs.ModHooks_SetPlayerVariableHook;
                 }
-                //WeaverLog.Log("PREFIX WBS");
-                /*if (!wbs.hooked)
-                {
-                    wbs.hooked = true;
-                    
-                }*/
 
                 wbs.bossDetails = new BossUIDetails
                 {
@@ -135,9 +126,6 @@ namespace WeaverCore.Components
                         dreamLever.dreamBurstEffectOffPrefab = GG_Internal.dreamBurstEffectOffPrefab;
                     }
                 }
-
-                //WeaverLog.Log("BOSS DETAILS = " + JsonUtility.ToJson(wbs.bossDetails, true));
-                //WeaverLog.Log("DREAM BOSS DETAILS = " + JsonUtility.ToJson(wbs.dreamBossDetails, true));
 
                 if (GG_Internal.AudioPlayerPrefab != null)
                 {
@@ -223,7 +211,6 @@ namespace WeaverCore.Components
                     {
                         if (settings.HasField<Completion>(normalField))
                         {
-                            //WeaverLog.Log("GET SETTINGS = " + JsonUtility.ToJson(settings.GetFieldValue<Completion>(normalField), true));
                             return settings.GetFieldValue<Completion>(normalField);
                         }
                     }
@@ -249,32 +236,20 @@ namespace WeaverCore.Components
 
             ModHooks.SetPlayerVariableHook += (type, name, value) =>
             {
-                /*WeaverLog.Log("SET PLAYER VARIABLE WORKING");
-                bool print = name.Contains("___WEAVER_BOSS_STATUE___");
-                if (print)
-                {
-                    WeaverLog.Log("Name = " + name);
-                    WeaverLog.Log("Type = " + type.FullName);
-                    WeaverLog.Log("Value = " + JsonUtility.ToJson((Completion)value, true));
-                }*/
                 if (type == typeof(Completion))
                 {
                     if (!string.IsNullOrEmpty(normalField) && name == settings.name + "___WEAVER_BOSS_STATUE___" + normalField)
                     {
                         if (settings.HasField<Completion>(normalField))
                         {
-                            //return settings.GetFieldValue<Completion>(normalStatueStateField);
                             settings.SetFieldValue(normalField, (Completion)value);
-                            //WeaverLog.Log("NEW NORMAL VALUE = " + JsonUtility.ToJson((Completion)value, true));
                         }
                     }
                     else if (!string.IsNullOrEmpty(dreamField) && name == settings.name + "___WEAVER_BOSS_STATUE___" + dreamField)
                     {
                         if (settings.HasField<Completion>(dreamField))
                         {
-                            //return settings.GetFieldValue<Completion>(dreamStatueStateField);
                             settings.SetFieldValue(dreamField, (Completion)value);
-                            //WeaverLog.Log("NEW DREAM VALUE = " + JsonUtility.ToJson((Completion)value, true));
                         }
                     }
                 }
@@ -283,67 +258,9 @@ namespace WeaverCore.Components
             };
         }
 
-        /*private static object ModHooks_GetPlayerVariableHook1()
-        {
-            throw new NotImplementedException();
-        }
-
-        private object ModHooks_SetPlayerVariableHook(Type type, string name, object value)
-        {
-            if (type == typeof(Completion))
-            {
-                if (name == settings.name + "___WEAVER_BOSS_STATUE___" + normalStatueStateField)
-                {
-                    if (settings.HasField<Completion>(normalStatueStateField))
-                    {
-                        //return settings.GetFieldValue<Completion>(normalStatueStateField);
-                        settings.SetFieldValue(normalStatueStateField, (Completion)value);
-                        //WeaverLog.Log("NEW NORMAL VALUE = " + JsonUtility.ToJson((Completion)value,true));
-                    }
-                }
-                else if (name == settings.name + "___WEAVER_BOSS_STATUE___" + dreamStatueStateField)
-                {
-                    if (settings.HasField<Completion>(dreamStatueStateField))
-                    {
-                        //return settings.GetFieldValue<Completion>(dreamStatueStateField);
-                        settings.SetFieldValue(dreamStatueStateField, (Completion)value);
-                        //WeaverLog.Log("NEW DREAM VALUE = " + JsonUtility.ToJson((Completion)value, true));
-                    }
-                }
-            }
-
-            return value;
-        }
-
-        private object ModHooks_GetPlayerVariableHook(Type type, string name, object value)
-        {
-            if (type == typeof(Completion))
-            {
-                if (name == settings.name + "___WEAVER_BOSS_STATUE___" + normalStatueStateField)
-                {
-                    if (settings.HasField<Completion>(normalStatueStateField))
-                    {
-                        //WeaverLog.Log("GET SETTINGS = " + JsonUtility.ToJson(settings.GetFieldValue<Completion>(normalStatueStateField), true));
-                        return settings.GetFieldValue<Completion>(normalStatueStateField);
-                    }
-                }
-                else if (name == settings.name + "___WEAVER_BOSS_STATUE___" + dreamStatueStateField)
-                {
-                    if (settings.HasField<Completion>(dreamStatueStateField))
-                    {
-                        return settings.GetFieldValue<Completion>(dreamStatueStateField);
-                    }
-                }
-            }
-
-            return value;
-        }*/
-
         [OnHarmonyPatch]
         static void OnPatch(HarmonyPatcher patcher)
         {
-            //WeaverLog.Log("RUNNING WEAVERBOSSSTATUE PATCH");
-
             var bossStatueType = typeof(BossStatue);
 
             var awakeMethod = bossStatueType.GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -353,36 +270,6 @@ namespace WeaverCore.Components
 
             patcher.Patch(awakeMethod, awake_prefix, awake_postfix);
         }
-
-        /*private void OnEnable()
-        {
-            if (!hooked)
-            {
-                hooked = true;
-                ModHooks.GetPlayerVariableHook += ModHooks_GetPlayerVariableHook;
-                ModHooks.SetPlayerVariableHook += ModHooks_SetPlayerVariableHook;
-            }
-        }
-
-        private void OnDisable()
-        {
-            if (hooked)
-            {
-                hooked = false;
-                ModHooks.GetPlayerVariableHook -= ModHooks_GetPlayerVariableHook;
-                ModHooks.SetPlayerVariableHook -= ModHooks_SetPlayerVariableHook;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (hooked)
-            {
-                hooked = false;
-                ModHooks.GetPlayerVariableHook -= ModHooks_GetPlayerVariableHook;
-                ModHooks.SetPlayerVariableHook -= ModHooks_SetPlayerVariableHook;
-            }
-        }*/
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {

@@ -139,13 +139,7 @@ namespace WeaverCore.Assets.Components
 
         void Enter()
         {
-            //Debug.LogError("BEGIN ENTER");
             OnEnter?.Invoke(overHero ? "Exit" : "Enter");
-            /*var doorWay = GetComponent<WeaverTransitionPoint>();
-            if (doorWay != null)
-            {
-                yield return doorWay.DoTransition(overHero ? "Exit" : "Enter");
-            }*/
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

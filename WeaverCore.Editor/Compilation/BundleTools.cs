@@ -1,11 +1,13 @@
 //#define REWRITE_REGISTRIES
-#define MULTI_THREADED_EMBEDDING
+//#define MULTI_THREADED_EMBEDDING
 using AssetsTools.NET;
 using AssetsTools.NET.Extra;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,6 +18,7 @@ using UnityEditor;
 using UnityEditor.Build.Content;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using WeaverBuildTools.Commands;
 using WeaverBuildTools.Enums;
@@ -35,9 +38,9 @@ namespace WeaverCore.Editor.Compilation
 		/// Used to keep track if this is the first time the user has built a mod
 		/// </summary>
 		[Serializable]
-		class FirstEverBuild
+		public class FirstEverBuild
         {
-			public bool FirstEver = true;
+			public bool FirstBuild = true;
         }
 
 		/// <summary>
@@ -272,7 +275,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <param name="whenReady">The function to call when done</param>
 		static void PrepareForAssetBundling(List<string> ExcludedAssemblies, MethodInfo whenReady)
 		{
-			Debug.Log("Preparing Assets for Bundling");
+            Debug.Log("Preparing Assets for Bundling");
 #if REWRITE_REGISTRIES
 			foreach (var registry in RegistryChecker.LoadAllRegistries())
 			{
@@ -330,7 +333,29 @@ namespace WeaverCore.Editor.Compilation
 				PersistentData.StoreData(Data);
 				PersistentData.SaveData();
 
-				ReflectionUtilities.ExecuteMethodsWithAttribute<BeforeBuildAttribute>();
+				var modNameParam = new object[] { BuildScreen.BuildSettings.ModName };
+
+				foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<BeforeBuildAttribute>())
+				{
+                    try
+                    {
+                        var parameters = method.method.GetParameters();
+
+                        if (parameters.Length == 0)
+                        {
+                            method.method.Invoke(null, null);
+                        }
+                        else if (parameters.Length == 1 && parameters[0].ParameterType == typeof(string))
+                        {
+                            method.method.Invoke(null, modNameParam);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError($"Failed to run method BeforeBuild method {method.method.DeclaringType.FullName}:{method.method.Name}");
+                        Debug.LogException(e);
+                    }
+                }
 
 				if (!assetsChanged && whenReady != null)
 				{
@@ -379,7 +404,7 @@ namespace WeaverCore.Editor.Compilation
 
 			foreach (var bundleInput in buildInput)
 			{
-				Debug.Log("Found Asset Bundle -> " + bundleInput.assetBundleName);
+                Debug.Log("Found Asset Bundle -> " + bundleInput.assetBundleName);
 			}
 
 			Assembly scriptBuildAssembly = null;
@@ -431,7 +456,12 @@ namespace WeaverCore.Editor.Compilation
 				case "Exception":
 					throw new BundleException("An exception occured when creating an asset bundle");
 				case "Canceled":
-					throw new BundleException("The asset bundle build was cancelled");
+                    PersistentData.StoreData(new FirstEverBuild
+                    {
+                        FirstBuild = false
+                    });
+					PersistentData.SaveData();
+                    throw new BundleException("The asset bundle build was cancelled");
 				case "UnsavedChanges":
 					throw new BundleException("There are unsaved changes, be sure to save them and try again");
 				case "MissingRequiredObjects":
@@ -449,7 +479,7 @@ namespace WeaverCore.Editor.Compilation
 			var firstTime = true;
             if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
             {
-				firstTime = firstBuildData.FirstEver;
+				firstTime = firstBuildData.FirstBuild;
             }
 			UnboundCoroutine.Start(BundleRoutine());
 			IEnumerator BundleRoutine()
@@ -457,7 +487,7 @@ namespace WeaverCore.Editor.Compilation
 				yield return new WaitForSeconds(1f);
 				try
 				{
-					Debug.Log("Beginning Bundle Process");
+                    Debug.Log("Beginning Bundle Process");
 #if !MULTI_THREADED_EMBEDDING
 					var builtAssetBundles = new List<BuiltAssetBundle>();
 #else
@@ -516,7 +546,7 @@ namespace WeaverCore.Editor.Compilation
 						{
 							if (bundleFile.Extension == "" && !bundleFile.Name.Contains("BundleBuilds"))
 							{
-								Debug.Log("Finished Building Bundle = " + bundleFile.Name);
+								("Finished Building Bundle = " + bundleFile.Name);
 								builtBundles.Add(new BuiltAssetBundle
 								{
 									File = bundleFile,
@@ -541,7 +571,7 @@ namespace WeaverCore.Editor.Compilation
 							{
 								tasksSuccessful = false;
 								Debug.LogError("Error occured when embedding asset bundles");
-								Debug.LogException(e);
+								Exception(e);
 							}
 						}));
 #endif
@@ -567,10 +597,14 @@ namespace WeaverCore.Editor.Compilation
 				}
 				catch (Exception e)
 				{
+                    if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
+                    {
+                        firstTime = firstBuildData.FirstBuild;
+                    }
                     if (!firstTime)
                     {
 						Debug.LogError("Error creating Asset Bundles");
-						Debug.LogException(e);
+                        Debug.LogException(e);
 					}
 					else
                     {
@@ -597,7 +631,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <param name="builtBundles">The asset bundles that have been built</param>
 		static void EmbedAssetBundles(List<FileInfo> assemblies, IEnumerable<BuiltAssetBundle> builtBundles)
 		{
-			Debug.Log("Embedding Asset Bundles");
+            Debug.Log("Embedding Asset Bundles");
 			var assemblyReplacements = new Dictionary<string, string>
 			{
 				{"Assembly-CSharp", Data.ModName },
@@ -605,8 +639,21 @@ namespace WeaverCore.Editor.Compilation
 				{"HollowKnight.FirstPass", "Assembly-CSharp-firstpass" }
 			};
 
-			var bundlePairs = GetBundleToAssemblyPairs(assemblyReplacements);
-			foreach (var bundle in builtBundles)
+			BuildPipelineCustomizer customizer;
+
+			if (BuildPipelineCustomizer.TryGetCurrentCustomizer(out customizer))
+			{
+				customizer.ChangeAssemblyNames(assemblyReplacements);
+			}
+
+			var bundlePairs = GetBundleToAssemblyPairs(assemblyReplacements, out var assemblyNames);
+
+            if (BuildPipelineCustomizer.TryGetCurrentCustomizer(out customizer))
+            {
+                customizer.ChangeBundleAssemblyPairings(bundlePairs, assemblyNames);
+            }
+
+            foreach (var bundle in builtBundles.Distinct())
 			{
 				if (bundlePairs.ContainsKey(bundle.File.Name))
 				{
@@ -616,30 +663,38 @@ namespace WeaverCore.Editor.Compilation
 
 					var asmFile = assemblies.FirstOrDefault(a => a.Name == asmDllName);
 
-					if (asmFile != null)
+					try
 					{
-						var processedBundleLocation = PostProcessBundle(bundle, assemblyReplacements);
-						lock (embedLock)
+						if (asmFile != null)
 						{
-							EmbedResourceCMD.EmbedResource(asmFile.FullName, processedBundleLocation, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
-						}
-
-						var sceneBundleName = bundle.File.Name.Replace("_bundle", "_scenes_bundle");
-						//Look for Scene Bundle if there is one
-						var sceneBundle = new BuiltAssetBundle
-						{
-							File = new FileInfo(bundle.File.Directory.AddSlash() + sceneBundleName),
-							Target = bundle.Target
-						};
-
-						if (sceneBundle.File.Exists)
-						{
-							var processedSceneBundleLocation = PostProcessBundle(sceneBundle, assemblyReplacements);
+							var processedBundleLocation = PostProcessBundle(bundle, assemblyReplacements);
 							lock (embedLock)
 							{
-								EmbedResourceCMD.EmbedResource(asmFile.FullName, processedSceneBundleLocation, sceneBundle.File.Name + PlatformUtilities.GetBuildTargetExtension(sceneBundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
+								EmbedResourceCMD.EmbedResource(asmFile.FullName, processedBundleLocation, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
+							}
+
+							var sceneBundleName = bundle.File.Name.Replace("_bundle", "_scenes_bundle");
+							//Look for Scene Bundle if there is one
+							var sceneBundle = new BuiltAssetBundle
+							{
+								File = new FileInfo(bundle.File.Directory.AddSlash() + sceneBundleName),
+								Target = bundle.Target
+							};
+
+							if (sceneBundle.File.Exists)
+							{
+								var processedSceneBundleLocation = PostProcessBundle(sceneBundle, assemblyReplacements);
+								lock (embedLock)
+								{
+									EmbedResourceCMD.EmbedResource(asmFile.FullName, processedSceneBundleLocation, sceneBundle.File.Name + PlatformUtilities.GetBuildTargetExtension(sceneBundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
+								}
 							}
 						}
+					}
+					catch (Exception)
+					{
+						EditorUtility.ClearProgressBar();
+						throw;
 					}
 				}
 			}
@@ -663,11 +718,13 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		/// <param name="assemblyReplacements">A list of overrides. Used to pair up an asset bundle with a different assembly</param>
 		/// <returns></returns>
-		static Dictionary<string, AssemblyName> GetBundleToAssemblyPairs(Dictionary<string, string> assemblyReplacements)
+		static Dictionary<string, AssemblyName> GetBundleToAssemblyPairs(Dictionary<string, string> assemblyReplacements, out List<AssemblyName> names)
 		{
 			Dictionary<string, AssemblyName> bundleToAssemblyPairs = new Dictionary<string, AssemblyName>();
 
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+			names = new List<AssemblyName>();
 
 			foreach (var registry in Data.Registries)
 			{
@@ -685,7 +742,9 @@ namespace WeaverCore.Editor.Compilation
 					}
 
 					bundleToAssemblyPairs.Add(registry.AssetBundleName, asmName);
-				}
+
+					names.Add(asmName);
+                }
 			}
 
 			return bundleToAssemblyPairs;
@@ -750,9 +809,32 @@ namespace WeaverCore.Editor.Compilation
 				PersistentData.StoreData(Data);
 				PersistentData.SaveData();
 
-				ReflectionUtilities.ExecuteMethodsWithAttribute<AfterBuildAttribute>();
+                //ReflectionUtilities.ExecuteMethodsWithAttribute<AfterBuildAttribute>();
+                var modNameParam = new object[] { BuildScreen.BuildSettings.ModName };
 
-				if (!assetsChanged && whenFinished != null)
+                foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<AfterBuildAttribute>())
+                {
+					try
+					{
+						var parameters = method.method.GetParameters();
+
+						if (parameters.Length == 0)
+						{
+							method.method.Invoke(null, null);
+						}
+						else if (parameters.Length == 1 && parameters[0].ParameterType == typeof(string))
+						{
+							method.method.Invoke(null, modNameParam);
+						}
+					}
+					catch (Exception e)
+					{
+						Debug.LogError($"Failed to run AfterBuild method {method.method.DeclaringType.FullName}:{method.method.Name}");
+                        Debug.LogException(e);
+					}
+                }
+
+                if (!assetsChanged && whenFinished != null)
 				{
 					whenFinished.Invoke(null, null);
 				}
@@ -772,11 +854,11 @@ namespace WeaverCore.Editor.Compilation
 			var firstTime = true;
 			if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
 			{
-				firstTime = firstBuildData.FirstEver;
+				firstTime = firstBuildData.FirstBuild;
 			}
 			PersistentData.StoreData(new FirstEverBuild
 			{
-				FirstEver = false
+				FirstBuild = false
 			});
 			PersistentData.SaveData();
 			if (!Data.BundlingSuccessful)
@@ -801,7 +883,7 @@ namespace WeaverCore.Editor.Compilation
 				return;
 			}
 
-			Debug.Log("<b>Asset Bundling Complete</b>");
+            Debug.Log("<b>Asset Bundling Complete</b>");
 			foreach (var scene in Data.ClosedScenes)
 			{
 				EditorSceneManager.OpenScene(scene.Path, OpenSceneMode.Additive);
@@ -822,178 +904,289 @@ namespace WeaverCore.Editor.Compilation
 		/// <returns>Returns the path to the post-processed asset bundle</returns>
 		static string PostProcessBundle(BuiltAssetBundle bundle, Dictionary<string, string> assemblyReplacements)
 		{
-			Debug.Log($"Post Processing Bundle -> {bundle.File}");
+            Debug.Log($"Post Processing Bundle -> {bundle.File}");
 			var am = new AssetsManager();
 			am.LoadClassPackage(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}classdata.tpk");
 
 			var bun = am.LoadBundleFile(bundle.File.FullName);
 
+			//am.LoadBundleFile()
+
 			List<BundleReplacer> bundleReplacers = new List<BundleReplacer>();
 
-			for (int bunIndex = 0; bunIndex < bun.file.bundleInf6.dirInf.GetLength(0); bunIndex++)
-			{
-				List<AssetsReplacer> assetReplacers = new List<AssetsReplacer>();
-				var assetsFileName = bun.file.bundleInf6.dirInf[bunIndex].name; //name of the first entry in the bundle
-				if (assetsFileName.EndsWith(".resS") || assetsFileName.EndsWith(".resource"))
-				{
+			//
+			//Parallel.For(0, bun.file.bundleInf6.dirInf.GetLength(0), bunIndex =>
+			var bunLength = bun.file.bundleInf6.dirInf.GetLength(0);
+            for (int bunIndex = 0; bunIndex < bunLength; bunIndex++)
+            {
+                ConcurrentQueue<AssetsReplacer> assetReplacers = new ConcurrentQueue<AssetsReplacer>();
+                var assetsFileName = bun.file.bundleInf6.dirInf[bunIndex].name; //name of the first entry in the bundle
+
+                EditorUtility.DisplayProgressBar("Processing Bundles", $"Processing {assetsFileName}", bunIndex / (float)(bunLength - 1));
+
+                if (assetsFileName.EndsWith(".resS") || assetsFileName.EndsWith(".resource"))
+                {
 					continue;
-				}
-				//load the first entry in the bundle (hopefully the one we want)
-				var assetsFileData = BundleHelper.LoadAssetDataFromBundle(bun.file, bunIndex);
+                }
+                //load the first entry in the bundle (hopefully the one we want)
+                var assetsFileData = BundleHelper.LoadAssetDataFromBundle(bun.file, bunIndex);
+				//assetsFileData.ReadBytes();
+                //I have a new update coming, but in the current release, assetsmanager
+                //will only load from file, not from the AssetsFile class. so we just
+                //put it into memory and load from that...
+                var assetsFileInst = am.LoadAssetsFile(new MemoryStream(assetsFileData), "dummypath" + bunIndex, false);
+                var assetsFileTable = assetsFileInst.table;
 
-				//I have a new update coming, but in the current release, assetsmanager
-				//will only load from file, not from the AssetsFile class. so we just
-				//put it into memory and load from that...
-				var assetsFileInst = am.LoadAssetsFile(new MemoryStream(assetsFileData), "dummypath" + bunIndex, false);
-				var assetsFileTable = assetsFileInst.table;
+                //load cldb from classdata.tpk
+                am.LoadClassDatabaseFromPackage(assetsFileInst.file.typeTree.unityVersion);
 
-				//load cldb from classdata.tpk
-				am.LoadClassDatabaseFromPackage(assetsFileInst.file.typeTree.unityVersion);
+				var getTypeInstanceLock = new object();
 
-
-				foreach (var info in assetsFileTable.assetFileInfo)
+				AssetTypeInstance GetTypeInstanceLocked(AssetsFile file, AssetFileInfoEx info)
 				{
-					//If object is a MonoScript, change the script's "m_AssemblyName" from "Assembly-CSharp" to name of mod assembly
-					if (info.curFileType == 0x73)
+					lock (getTypeInstanceLock)
 					{
-						//MonoDeserializer.GetMonoBaseField
-						var monoScriptInst = am.GetTypeInstance(assetsFileInst.file, info).GetBaseField();
-						var m_AssemblyNameValue = monoScriptInst.Get("m_AssemblyName").GetValue();
-						foreach (var testAsm in assemblyReplacements)
-						{
-							var assemblyName = m_AssemblyNameValue.AsString();
-							if (assemblyName.Contains(testAsm.Key))
-							{
-								var newAsmName = assemblyName.Replace(testAsm.Key, testAsm.Value);
-								//change m_AssemblyName field
-								m_AssemblyNameValue.Set(newAsmName);
-								//rewrite the asset and add it to the pending list of changes
-								assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, 0xffff, monoScriptInst.WriteToByteArray()));
-								break;
-							}
-						}
-					}
-					//If the object is a MonoBehaviour
+                        return am.GetTypeInstance(file, info);
+                    }
+                }
+
+				//foreach (var info in assetsFileTable.assetFileInfo)
+				Parallel.ForEach(assetsFileTable.assetFileInfo, info =>
+                {
+                    //If object is a MonoScript, change the script's "m_AssemblyName" from "Assembly-CSharp" to name of mod assembly
+                    if (info.curFileType == 0x73)
+                    {
+                        //MonoDeserializer.GetMonoBaseField
+
+                        var monoScriptInst = GetTypeInstanceLocked(assetsFileInst.file, info).GetBaseField();
+                        var m_AssemblyNameValue = monoScriptInst.Get("m_AssemblyName").GetValue();
+                        foreach (var testAsm in assemblyReplacements)
+                        {
+                            var assemblyName = m_AssemblyNameValue.AsString();
+                            if (assemblyName.Contains(testAsm.Key))
+                            {
+                                var newAsmName = assemblyName.Replace(testAsm.Key, testAsm.Value);
+                                //change m_AssemblyName field
+                                m_AssemblyNameValue.Set(newAsmName);
+                                //rewrite the asset and add it to the pending list of changes
+                                assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, 0xffff, monoScriptInst.WriteToByteArray()));
+                                break;
+                            }
+                        }
+                    }
+                    //If the object is a MonoBehaviour
 #if !REWRITE_REGISTRIES
-					else if (info.curFileType == 0x72)
-					{
-						AssetTypeValueField monoBehaviourInst = null;
-						try
-						{
-                            monoBehaviourInst = am.GetTypeInstance(assetsFileInst, info).GetBaseField();
-						}
-						catch (Exception e)
-						{
-							Debug.LogError("An exception occured when reading a MonoBehaviour, skipping");
-							foreach (var field in info.GetType().GetFields())
-							{
-								Debug.LogError($"{field.Name} = {field.GetValue(info)}");
-							}
-							Debug.LogException(e);
-							continue;
-						}
+                    else if (info.curFileType == 0x72)
+                    {
+                        AssetTypeValueField monoBehaviourInst = null;
+                        try
+                        {
+                            monoBehaviourInst = GetTypeInstanceLocked(assetsFileInst.file, info).GetBaseField();
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.LogError("An exception occured when reading a MonoBehaviour, skipping");
+                            foreach (var field in info.GetType().GetFields())
+                            {
+                                Debug.LogError($"{field.Name} = {field.GetValue(info)}");
+                            }
+                            Debug.LogException(e);
+							return;
+                        }
 
-						var monoBehaviourName = monoBehaviourInst.Get("m_Name").GetValue().AsString();
+                        var monoBehaviourName = monoBehaviourInst.Get("m_Name").GetValue().AsString();
 
-						var replacementPair = FontAssetContainer.sourceDestPairs.FirstOrDefault(f => f.Item2 == monoBehaviourName);
+                        var replacementPair = FontAssetContainer.sourceDestPairs.FirstOrDefault(f => f.Item2 == monoBehaviourName);
 
                         if (replacementPair != default)
-						{
-							void ClearArray(string arrayName)
-							{
-								var arrayField = monoBehaviourInst.Get(arrayName);
+                        {
+                            void ClearArray(string arrayName)
+                            {
+                                var arrayField = monoBehaviourInst.Get(arrayName);
 
-								if (!arrayField.IsDummy())
-								{
-									var arrayPreVal = arrayField.Get("Array");
+                                if (!arrayField.IsDummy())
+                                {
+                                    var arrayPreVal = arrayField.Get("Array");
 
-									var children = arrayPreVal.GetChildrenList();
+                                    var children = arrayPreVal.GetChildrenList();
 
-									Array.Resize(ref children, 0);
+                                    Array.Resize(ref children, 0);
 
-									arrayPreVal.SetChildrenList(children);
-								}
+                                    arrayPreVal.SetChildrenList(children);
+                                }
                             }
 
-							ClearArray("m_glyphInfoList");
-							ClearArray("TMP_Glyph_id");
-							ClearArray("TMP_Glyph_x");
-							ClearArray("TMP_Glyph_y");
-							ClearArray("TMP_Glyph_width");
-							ClearArray("TMP_Glyph_height");
-							ClearArray("TMP_Glyph_xOffset");
-							ClearArray("TMP_Glyph_yOffset");
-							ClearArray("TMP_Glyph_xAdvance");
-							ClearArray("TMP_Glyph_scale");
+                            ClearArray("m_glyphInfoList");
+                            ClearArray("TMP_Glyph_id");
+                            ClearArray("TMP_Glyph_x");
+                            ClearArray("TMP_Glyph_y");
+                            ClearArray("TMP_Glyph_width");
+                            ClearArray("TMP_Glyph_height");
+                            ClearArray("TMP_Glyph_xOffset");
+                            ClearArray("TMP_Glyph_yOffset");
+                            ClearArray("TMP_Glyph_xAdvance");
+                            ClearArray("TMP_Glyph_scale");
 
-                            assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+                            assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
                         }
-						else
-						{
-                            var assemblyField = monoBehaviourInst.Get(str => str.StartsWith("__") && str.Contains("AssemblyName"));
+                        else
+                        {
+                            var reservedObjectGUIDsField = monoBehaviourInst.Get("reservedObjectGUIDs");
 
-                            if (!assemblyField.IsDummy())
-                            {
+							//If IsDummy() is false, then this is a FieldUpdater
+							if (!reservedObjectGUIDsField.IsDummy())
+							{
+                                var modName = BuildScreen.BuildSettings.ModName;
+
                                 bool modified = false;
-                                var modAsmNameVal = assemblyField.GetValue();
-                                foreach (var replacement in assemblyReplacements)
+
+								var componentTypeNamesField = monoBehaviourInst.Get("componentTypeNames").Get("Array");
+
+								var componentTypenamesValue = componentTypeNamesField.GetValue();
+
+								var componentTypenamesArray = componentTypenamesValue.AsArray();
+
+                                for (int i = 0; i < componentTypenamesArray.size; i++)
                                 {
-                                    if (modAsmNameVal.AsString() == replacement.Key)
+									var valueAtIndex = componentTypeNamesField[i].GetValue();
+
+									var split = valueAtIndex.AsString().Split(':');
+                                    bool changed = false;
+                                    if (split[0] == "Assembly-CSharp")
                                     {
-                                        modAsmNameVal.Set(replacement.Value);
-                                        Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
-                                        modified = true;
-                                        break;
+                                        changed = true;
+                                        split[0] = modName;
                                     }
+                                    else if (split[0] == "HollowKnight")
+                                    {
+                                        changed = true;
+                                        split[0] = "Assembly-CSharp";
+                                    }
+
+                                    if (changed)
+                                    {
+										valueAtIndex.Set($"{split[0]}:{split[1]}");
+										modified = true;
+                                        //serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
+                                        //fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
+                                    }
+
+                                    /*var asmValue = featureAsms[i].GetValue();
+                                    foreach (var replacement in assemblyReplacements)
+                                    {
+                                        if (asmValue.AsString() == replacement.Key)
+                                        {
+                                            asmValue.Set(replacement.Value);
+                                            ($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
+                                            modified = true;
+                                            break;
+                                        }
+                                    }*/
                                 }
 
-                                var featuresField = monoBehaviourInst.Get("featureAssemblyNames");
-
-                                if (!featuresField.IsDummy())
+                                if (modified)
                                 {
-                                    var featureAsms = monoBehaviourInst.Get("featureAssemblyNames").Get("Array");
-                                    var featureAsmVals = featureAsms.GetValue();
-                                    var array = featureAsmVals.AsArray();
-                                    for (int i = 0; i < array.size; i++)
+                                    assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+                                }
+                                /*
+								 for (int i = 0; i < fieldUpdater.componentTypeNames.Count; i++)
+									{
+										//var split = fieldUpdater.componentTypeNames[i].Split(':');
+										var split = serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue.Split(':');
+
+										bool changed = false;
+
+										if (split[0] == "Assembly-CSharp")
+										{
+											changed = true;
+											split[0] = modName;
+											("Changing Assembly-CSharp to " + modName);
+										}
+
+										if (split[0] == "HollowKnight")
+										{
+											changed = true;
+											split[0] = "Assembly-CSharp";
+											("Changing HollowKnight to Assembly-CSharp");
+										}
+
+										if (changed)
+										{
+											updated = true;
+											serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
+											//fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
+										}
+									}
+								 */
+
+                            }
+                            else
+							{
+                                var assemblyField = monoBehaviourInst.Get(str => str.StartsWith("__") && str.Contains("AssemblyName"));
+
+                                if (!assemblyField.IsDummy())
+                                {
+                                    bool modified = false;
+                                    var modAsmNameVal = assemblyField.GetValue();
+                                    foreach (var replacement in assemblyReplacements)
                                     {
-                                        var asmValue = featureAsms[i].GetValue();
-                                        foreach (var replacement in assemblyReplacements)
+                                        if (modAsmNameVal.AsString() == replacement.Key)
                                         {
-                                            if (asmValue.AsString() == replacement.Key)
+                                            modAsmNameVal.Set(replacement.Value);
+                                            Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
+                                            modified = true;
+                                            break;
+                                        }
+                                    }
+
+                                    var featuresField = monoBehaviourInst.Get("featureAssemblyNames");
+
+                                    if (!featuresField.IsDummy())
+                                    {
+                                        var featureAsms = monoBehaviourInst.Get("featureAssemblyNames").Get("Array");
+                                        var featureAsmVals = featureAsms.GetValue();
+                                        var array = featureAsmVals.AsArray();
+                                        for (int i = 0; i < array.size; i++)
+                                        {
+                                            var asmValue = featureAsms[i].GetValue();
+                                            foreach (var replacement in assemblyReplacements)
                                             {
-                                                asmValue.Set(replacement.Value);
-                                                Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
-                                                modified = true;
-                                                break;
+                                                if (asmValue.AsString() == replacement.Key)
+                                                {
+                                                    asmValue.Set(replacement.Value);
+                                                    Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
+                                                    modified = true;
+                                                    break;
+                                                }
                                             }
                                         }
                                     }
-                                }
-                                if (modified)
-                                {
-                                    assetReplacers.Add(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+                                    if (modified)
+                                    {
+                                        assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+                                    }
                                 }
                             }
                         }
 
-						//If this MonoBehaviour has a field called "__modAssemblyName", then it's a Registry object
-						//If MonoBehaviour is a registry, replace the "__modAssemblyName" variable from "Assembly-CSharp"
-						//__modAssemblyName
-					}
-					//If the object is a Texture2D
-					else if (info.curFileType == 28)
-					{
+                        //If this MonoBehaviour has a field called "__modAssemblyName", then it's a Registry object
+                        //If MonoBehaviour is a registry, replace the "__modAssemblyName" variable from "Assembly-CSharp"
+                        //__modAssemblyName
+                    }
+                    //If the object is a Texture2D
+                    else if (info.curFileType == 28)
+                    {
                         try
                         {
-                            var texture2DInst = am.GetTypeInstance(assetsFileInst, info).GetBaseField();
+                            var texture2DInst = GetTypeInstanceLocked(assetsFileInst.file, info).GetBaseField();
 
-							var textureName = texture2DInst.Get("m_Name").GetValue().AsString();
+                            var textureName = texture2DInst.Get("m_Name").GetValue().AsString();
 
                             if (FontAssetContainer.RemovedTextures.Contains(textureName))
-							{
-								//WeaverLog.Log("REMOVING Texture = " + textureName);
-								assetReplacers.Add(new AssetsRemover(0, info.index, (int)info.curFileType, 0xffff));
-							}
+                            {
+                                //("REMOVING Texture = " + textureName);
+                                assetReplacers.Enqueue(new AssetsRemover(0, info.index, (int)info.curFileType, 0xffff));
+                            }
                         }
                         catch (Exception e)
                         {
@@ -1003,47 +1196,60 @@ namespace WeaverCore.Editor.Compilation
                                 Debug.LogError($"{field.Name} = {field.GetValue(info)}");
                             }
                             Debug.LogException(e);
-                            continue;
+							return;
                         }
                     }
 #endif
-				}
+                });
 
+                //rewrite the assets file back to memory
+                byte[] modifiedAssetsFileBytes;
+                using (MemoryStream ms = new MemoryStream())
+                using (AssetsFileWriter aw = new AssetsFileWriter(ms))
+                {
+                    aw.bigEndian = false;
+                    assetsFileInst.file.Write(aw, 0, assetReplacers.ToList(), 0);
+                    modifiedAssetsFileBytes = ms.ToArray();
+                }
 
-				//rewrite the assets file back to memory
-				byte[] modifiedAssetsFileBytes;
-				using (MemoryStream ms = new MemoryStream())
+                //adding the assets file to the pending list of changes for the bundle
+                bundleReplacers.Add(new BundleReplacerFromMemory(assetsFileName, assetsFileName, true, modifiedAssetsFileBytes, modifiedAssetsFileBytes.Length));
+            };
+
+            EditorUtility.DisplayProgressBar("Writing Modifications", "", 0);
+
+            //byte[] modifiedBundleBytes;
+            using (HugeMemoryStream ms = new HugeMemoryStream())
+			{
 				using (AssetsFileWriter aw = new AssetsFileWriter(ms))
 				{
-					aw.bigEndian = false;
-					assetsFileInst.file.Write(aw, 0, assetReplacers, 0);
-					modifiedAssetsFileBytes = ms.ToArray();
+					int replacerCount = bundleReplacers.Count;
+					bun.file.Write(aw, bundleReplacers, replacerIndex =>
+					{
+                        EditorUtility.DisplayProgressBar("Writing Modifications", $"Writing {bundleReplacers[Mathf.Clamp(replacerIndex,0,replacerCount)].GetEntryName()}", replacerIndex / (float)replacerCount);
+                    });
+					//modifiedBundleBytes = ms.ToArray();
 				}
 
-				//adding the assets file to the pending list of changes for the bundle
-				bundleReplacers.Add(new BundleReplacerFromMemory(assetsFileName, assetsFileName, true, modifiedAssetsFileBytes, modifiedAssetsFileBytes.Length));
-			}
-			byte[] modifiedBundleBytes;
-			using (MemoryStream ms = new MemoryStream())
-			using (AssetsFileWriter aw = new AssetsFileWriter(ms))
-			{
-				bun.file.Write(aw, bundleReplacers);
-				modifiedBundleBytes = ms.ToArray();
+				ms.Position = 0;
+				//using (HugeMemoryStream mbms = new HugeMemoryStream())
+				//{
+					using (AssetsFileReader ar = new AssetsFileReader(ms))
+					{
+						AssetBundleFile modifiedBundle = new AssetBundleFile();
+						modifiedBundle.Read(ar);
+
+						//recompress the bundle and write it (this is optional of course)
+						using (FileStream packStream = File.OpenWrite(bundle.File.FullName + ".edit"))
+						using (AssetsFileWriter aw = new AssetsFileWriter(packStream))
+						{
+							bun.file.Pack(modifiedBundle.reader, aw, BuildScreen.BuildSettings.CompressionType);
+						}
+					}
+				//}
 			}
 
-			using (MemoryStream mbms = new MemoryStream(modifiedBundleBytes))
-			using (AssetsFileReader ar = new AssetsFileReader(mbms))
-			{
-				AssetBundleFile modifiedBundle = new AssetBundleFile();
-				modifiedBundle.Read(ar);
-
-				//recompress the bundle and write it (this is optional of course)
-				using (FileStream ms = File.OpenWrite(bundle.File.FullName + ".edit"))
-				using (AssetsFileWriter aw = new AssetsFileWriter(ms))
-				{
-					bun.file.Pack(modifiedBundle.reader, aw, BuildScreen.BuildSettings.CompressionType);
-				}
-			}
+			EditorUtility.ClearProgressBar();
 
 			return bundle.File.FullName + ".edit";
 		}

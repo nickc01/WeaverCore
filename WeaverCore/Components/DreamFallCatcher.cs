@@ -4,8 +4,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
-
     /// <summary>
     /// When the player touches an object with this component attached, and they are in a dream scene, the player will get transported to the scene there were previously
     /// </summary>

@@ -21,7 +21,7 @@ namespace WeaverCore.Assets.Components
 
 		void OnEnable()
 		{
-			transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, UnityEngine.Random.Range(0f, 360f));
+			transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, UnityEngine.Random.Range(randomRotationMin, randomRotationMax));
 		}
 	}
 }

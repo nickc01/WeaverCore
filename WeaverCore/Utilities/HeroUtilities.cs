@@ -11,6 +11,8 @@ namespace WeaverCore.Utilities
 	/// </summary>
 	public static class HeroUtilities
     {
+		static AudioClip cutsceneBeginSound = null;
+
 		static Component heroAnimator = null;
 		static Type heroAnimatorType;
 		static PropertyInfo CurrentClipP;
@@ -80,6 +82,55 @@ namespace WeaverCore.Utilities
                 heroAnimator.ReflectCallMethod("Resume");
             }
 		}
+
+		/// <summary>
+		/// Begins an in-game cutscene that freezes the player
+		/// </summary>
+		/// <param name="playSound">If true, a cutscene sound effect is played</param>
+		public static void BeginInGameCutscene(bool playSound = true)
+		{
+			EventManager.SendEventToGameObject("FSM CANCEL", Player.Player1.gameObject);
+
+			var hudCanvas = CameraUtilities.GetHudCanvas();
+
+			if (hudCanvas != null)
+			{
+				EventManager.SendEventToGameObject("OUT", hudCanvas, null);
+			}
+
+			HeroController.instance.RelinquishControl();
+			HeroController.instance.StartAnimationControl();
+			PlayerData.instance.SetBool("disablePause", true);
+			HeroController.instance.GetComponent<Rigidbody2D>().velocity = default;
+			HeroController.instance.AffectedByGravity(true);
+
+			if (playSound)
+			{
+                if (cutsceneBeginSound == null)
+                {
+                    cutsceneBeginSound = WeaverAssets.LoadWeaverAsset<AudioClip>("dream_ghost_appear");
+                }
+
+				WeaverAudio.PlayAtPoint(cutsceneBeginSound, Player.Player1.transform.position);
+            }
+        }
+
+		/// <summary>
+		/// Ends an in-game cutscene and unfreezes the player
+		/// </summary>
+		public static void EndInGameCutscene()
+		{
+			HeroController.instance.RegainControl();
+			HeroController.instance.StartAnimationControl();
+
+            var hudCanvas = CameraUtilities.GetHudCanvas();
+
+            if (hudCanvas != null)
+            {
+                EventManager.SendEventToGameObject("IN", hudCanvas, null);
+            }
+            PlayerData.instance.SetBool("disablePause", false);
+        }
 	}
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Features;
 using WeaverCore.Implementations;
 
 namespace WeaverCore
@@ -52,11 +53,55 @@ namespace WeaverCore
 			return HunterJournal.impl.HasEntryFor(name);
 		}
 
-		/// <summary>
-		/// Displays an icon at the bottom-right of the screen indicating the hunter's journal was updated
-		/// </summary>
-		/// <param name="displayText">Should the text "Journal Updated" also be displayed?</param>
-		public static void DisplayJournalUpdate(bool displayText = false)
+
+
+
+
+
+        /// <summary>
+        /// Has the player killed this enemy at least once?
+        /// </summary>
+        /// <param name="entry">The entry of the enemy in the hunter's journal</param>
+        /// <returns>Returns whether this player has killed the enemy before</returns>
+        public static bool HasKilled(HunterJournalEntry entry)
+        {
+            return HunterJournal.impl.HasKilled(entry.EntryName);
+        }
+
+        /// <summary>
+        /// How many kills are left to fully unlock the enemy?
+        /// </summary>
+        /// <param name="name">The entry of the enemy in the hunter's journal</param>
+        /// <returns>Returns how many kills are left to fully unlock the enemy</returns>
+        public static int KillsLeft(HunterJournalEntry entry)
+        {
+            return HunterJournal.impl.KillsLeft(entry.EntryName);
+        }
+
+        /// <summary>
+        /// Records a kill for the enemy
+        /// </summary>
+        /// <param name="name">The entry of the enemy in the hunter's journal</param>
+        public static void RecordKillFor(HunterJournalEntry entry)
+        {
+            HunterJournal.impl.RecordKillFor(entry.EntryName);
+        }
+
+        /// <summary>
+        /// Does the enemy entry exist in the hunter's journal?
+        /// </summary>
+        /// <param name="name">The entry of the enemy in the hunter's journal</param>
+        /// <returns>Returns whether the enemy entry exists in the hunter's journal</returns>
+        public static bool HasEntryFor(HunterJournalEntry entry)
+        {
+            return HunterJournal.impl.HasEntryFor(entry.EntryName);
+        }
+
+        /// <summary>
+        /// Displays an icon at the bottom-right of the screen indicating the hunter's journal was updated
+        /// </summary>
+        /// <param name="displayText">Should the text "Journal Updated" also be displayed?</param>
+        public static void DisplayJournalUpdate(bool displayText = false)
 		{
 			HunterJournal.impl.DisplayJournalUpdate(displayText);
 		}

@@ -210,7 +210,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (verboseMode)
 			{
-				Debug.LogFormat("LockZone Activated: {0} at startLockedTimer {1} ({2}s)", new object[]
+                Debug.LogFormat("LockZone Activated: {0} at startLockedTimer {1} ({2}s)", new object[]
 				{
 					lockArea.name,
 					startLockedTimer,
@@ -306,7 +306,7 @@ public class CameraController : MonoBehaviour
 		}
 		else if (verboseMode)
 		{
-			Debug.Log("LockZone was not the current lock when removed.");
+            Debug.Log("LockZone was not the current lock when removed.");
 		}
 	}
 
@@ -513,7 +513,7 @@ public class CameraController : MonoBehaviour
 		Vector3 newPosition = this.KeepWithinSceneBounds(camTarget.transform.position);
 		if (verboseMode)
 		{
-			Debug.LogFormat("CC - STR: NewPosition: {0} TargetDelta: ({1}, {2}) CT-XOffset: {3} HeroPos: {4} CT-Pos: {5}", new object[]
+            Debug.LogFormat("CC - STR: NewPosition: {0} TargetDelta: ({1}, {2}) CT-XOffset: {3} HeroPos: {4} CT-Pos: {5}", new object[]
 			{
 				newPosition,
 				targetDeltaX,
@@ -527,7 +527,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (verboseMode)
 			{
-				Debug.Log("====> TEST 1a - ForceDirect Positioning Mode");
+                Debug.Log("====> TEST 1a - ForceDirect Positioning Mode");
 			}
 			//transform.SetPosition2D(newPosition);
 			transform.position = new Vector3(newPosition.x,newPosition.y,transform.position.z);
@@ -536,7 +536,7 @@ public class CameraController : MonoBehaviour
 		{
 			if (verboseMode)
 			{
-				Debug.Log("====> TEST 1b - Normal Positioning Mode");
+                Debug.Log("====> TEST 1b - Normal Positioning Mode");
 			}
 			bool flag = IsAtHorizontalSceneBounds(newPosition, out bool flag2);
 			bool flag3 = false;
@@ -548,7 +548,7 @@ public class CameraController : MonoBehaviour
 			{
 				if (verboseMode)
 				{
-					Debug.Log("====> TEST 3 - Lock Zone Active");
+                    Debug.Log("====> TEST 3 - Lock Zone Active");
 				}
 				PositionToHeroFacing(newPosition, true);
 				Vector2 boundedPos = KeepWithinLockBounds(transform.position);
@@ -559,7 +559,7 @@ public class CameraController : MonoBehaviour
 			{
 				if (verboseMode)
 				{
-					Debug.Log("====> TEST 4 - No Lock Zone");
+                    Debug.Log("====> TEST 4 - No Lock Zone");
 				}
 				PositionToHeroFacing(newPosition, false);
 			}
@@ -567,13 +567,13 @@ public class CameraController : MonoBehaviour
 			{
 				if (verboseMode)
 				{
-					Debug.Log("====> TEST 2 - At Horizontal Scene Bounds");
+                    Debug.Log("====> TEST 2 - At Horizontal Scene Bounds");
 				}
 				if ((flag2 && !hero_ctrl.cState.facingRight) || (!flag2 && hero_ctrl.cState.facingRight))
 				{
 					if (verboseMode)
 					{
-						Debug.Log("====> TEST 2a - Hero Facing Bounds");
+                        Debug.Log("====> TEST 2a - Hero Facing Bounds");
 					}
 					transform.SetPosition2D(newPosition);
 				}
@@ -581,13 +581,13 @@ public class CameraController : MonoBehaviour
 				{
 					if (verboseMode)
 					{
-						Debug.Log("====> TEST 2b - Hero Facing Inwards");
+                        Debug.Log("====> TEST 2b - Hero Facing Inwards");
 					}
 					if (IsTouchingSides(targetDeltaX))
 					{
 						if (verboseMode)
 						{
-							Debug.Log("Xoffset still touching sides");
+                            Debug.Log("Xoffset still touching sides");
 						}
 						transform.SetPosition2D(newPosition);
 					}
@@ -595,7 +595,7 @@ public class CameraController : MonoBehaviour
 					{
 						if (verboseMode)
 						{
-							Debug.LogFormat("Not Touching Sides with Xoffset CT: {0} Hero: {1}", new object[]
+                            Debug.LogFormat("Not Touching Sides with Xoffset CT: {0} Hero: {1}", new object[]
 							{
 								camTarget.transform.position,
 								hero_ctrl.transform.position
@@ -640,7 +640,7 @@ public class CameraController : MonoBehaviour
 		}
 		if (verboseMode)
 		{
-			Debug.LogFormat("CC - PositionToHero FIN: - TargetDelta: ({0}, {1}) Destination: {2} CT-XOffset: {3} NewPosition: {4} CamTargetPos: {5} HeroPos: {6}", new object[]
+            Debug.LogFormat("CC - PositionToHero FIN: - TargetDelta: ({0}, {1}) Destination: {2} CT-XOffset: {3} NewPosition: {4} CamTargetPos: {5} HeroPos: {6}", new object[]
 			{
 				targetDeltaX,
 				targetDeltaY,
@@ -710,7 +710,7 @@ public class CameraController : MonoBehaviour
 	{
 		if (verboseMode)
 		{
-			Debug.Log("Removing cam locks. (" + lockZoneList.Count.ToString() + " total)");
+            Debug.Log("Removing cam locks. (" + lockZoneList.Count.ToString() + " total)");
 		}
 		while (lockZoneList.Count > 0)
 		{

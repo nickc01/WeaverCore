@@ -20,6 +20,9 @@ namespace WeaverCore.Interfaces
         /// <returns>Returns a new value to set the health to</returns>
         int OnHealthChange(int oldHealth, int newHealth);
 
+        /// <summary>
+        /// Used for sorting <see cref="IHealthModifier"/> lists based on their <see cref="Priority"/>
+        /// </summary>
         public class Sorter : IComparer<IHealthModifier>
         {
             Comparer<int> numComparer = Comparer<int>.Default;

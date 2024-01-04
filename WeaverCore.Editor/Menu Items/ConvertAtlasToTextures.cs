@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
+using WeaverCore;
 using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
 
@@ -68,7 +70,57 @@ public class AtlasToTexturesConverter : EditorWindow
 		finally
 		{
 			RenderTexture.active = oldRT;
+        }
+    }
+
+    static float sign(Vector2 p1, Vector2 p2, Vector2 p3)
+    {
+        return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+    }
+
+    static bool PointInTriangle(Vector2 pt, Vector2 v1, Vector2 v2, Vector2 v3)
+    {
+        float d1, d2, d3;
+        bool has_neg, has_pos;
+        d1 = sign(pt, v1, v2);
+        d2 = sign(pt, v2, v3);
+        d3 = sign(pt, v3, v1);
+
+        has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+        has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+        return !(has_neg && has_pos);
+    }
+
+    static bool PixelWithinMesh(Vector2[] verticies, ushort[] triangles, Vector2 point)
+	{
+		for (int i = 0; i < triangles.Length; i += 3)
+		{
+			if (PointInTriangle(point,verticies[triangles[i]], verticies[triangles[i + 1]], verticies[triangles[i + 2]]))
+			{
+				return true;
+			}
 		}
+		return false;
+	}
+
+    Vector2 ConvertToVertexCoords(Vector2 pixel, Sprite sprite)
+    {
+		var rect = sprite.rect;
+
+
+		var xPercent = Mathf.InverseLerp(rect.xMin, rect.xMax, pixel.x);
+		var yPercent = Mathf.InverseLerp(rect.yMin, rect.yMax, pixel.y);
+
+		var bounds = sprite.bounds;
+
+		return new Vector2(Mathf.Lerp(bounds.min.x,bounds.max.x,xPercent), Mathf.Lerp(bounds.min.y,bounds.max.y,yPercent));
+    }
+
+
+    Vector2 ConvertToSpriteCoords(Vector2 vertex, Sprite sprite)
+	{
+		return vertex;
 	}
 
 
@@ -96,6 +148,9 @@ public class AtlasToTexturesConverter : EditorWindow
 				AssetDatabase.StartAssetEditing();
 				foreach (var sprite in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(texture)).OfType<Sprite>())
 				{
+					var verticies = sprite.vertices;
+					var triangles = sprite.triangles;
+
 					Texture2D dumpTexture = new Texture2D(Mathf.RoundToInt(sprite.rect.width), Mathf.RoundToInt(sprite.rect.height), TextureFormat.RGBA32, false);
 					Vector2Int BottomLeftCorner = new Vector2Int(Mathf.RoundToInt(sprite.rect.x), Mathf.RoundToInt(sprite.rect.y));
 
@@ -103,8 +158,15 @@ public class AtlasToTexturesConverter : EditorWindow
 					{
 						for (int y = Mathf.RoundToInt(sprite.rect.y); y < BottomLeftCorner.y + Mathf.RoundToInt(sprite.rect.height); y++)
 						{
-							dumpTexture.SetPixel(x - BottomLeftCorner.x, y - BottomLeftCorner.y, texture.GetPixel(x, y));
-						}
+                            if (PixelWithinMesh(verticies,triangles, ConvertToVertexCoords(new Vector2(x,y), sprite)))
+							{
+                                dumpTexture.SetPixel(x - BottomLeftCorner.x, y - BottomLeftCorner.y, texture.GetPixel(x, y));
+                            }
+							else
+							{
+								dumpTexture.SetPixel(x - BottomLeftCorner.x, y - BottomLeftCorner.y, default);
+							}
+                        }
 					}
 					dumpTexture.Apply();
 

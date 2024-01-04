@@ -2,20 +2,21 @@
 using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Implementations;
+using WeaverCore.Internal;
 
 namespace WeaverCore.Game.Implementations
 {
     public class G_HunterJournal_I : HunterJournal_I
     {
-        [OnInit(0)]
+        /*[OnInit(0)]
         private static void Init()
         {
             updateMessageInstance = typeof(EnemyDeathEffects).GetField("journalUpdateMessageSpawned", BindingFlags.Static | BindingFlags.NonPublic);
             On.EnemyDeathEffects.PreInstantiate += EnemyDeathEffects_PreInstantiate;
             getPrefabField = typeof(EnemyDeathEffects).GetField("journalUpdateMessagePrefab", BindingFlags.Instance | BindingFlags.NonPublic);
-        }
+        }*/
 
-        private static void EnemyDeathEffects_PreInstantiate(On.EnemyDeathEffects.orig_PreInstantiate orig, EnemyDeathEffects self)
+        /*private static void EnemyDeathEffects_PreInstantiate(On.EnemyDeathEffects.orig_PreInstantiate orig, EnemyDeathEffects self)
         {
             orig(self);
             GameObject gameObject = (GameObject)getPrefabField.GetValue(self);
@@ -24,17 +25,21 @@ namespace WeaverCore.Game.Implementations
             {
                 JournalUpdatePrefab = gameObject;
             }
-        }
+        }*/
 
         private static GameObject SpawnJournalUpdate()
         {
-            GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(JournalUpdatePrefab);
+            GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(Other_Preloads.JournalUpdateMessagePrefab);
             gameObject.SetActive(false);
             return gameObject;
         }
 
         public override void DisplayJournalUpdate(bool displayText)
         {
+            if (updateMessageInstance == null)
+            {
+                updateMessageInstance = typeof(EnemyDeathEffects).GetField("journalUpdateMessageSpawned", BindingFlags.Static | BindingFlags.NonPublic);
+            }
             GameObject gameObject = (GameObject)updateMessageInstance.GetValue(null);
             bool flag = gameObject == null;
             if (flag)
@@ -80,53 +85,47 @@ namespace WeaverCore.Game.Implementations
         public override void RecordKillFor(string name)
         {
             PlayerData playerData = GameManager.instance.playerData;
-            string boolName = "killed" + name;
-            string intName = "kills" + name;
-            string boolName2 = "newData" + name;
-            bool flag = false;
-            bool flag2 = !playerData.GetBool(boolName);
-            if (flag2)
+            string hasBeenKilledConvo = "killed" + name;
+            string killCountConvo = "kills" + name;
+            string isNewEntryConvo = "newData" + name;
+            //bool flag = false;
+            bool isNewKill = !playerData.GetBool(hasBeenKilledConvo);
+            if (isNewKill)
             {
-                flag = true;
-                playerData.SetBool(boolName, true);
-                playerData.SetBool(boolName2, true);
+                //flag = true;
+                playerData.SetBool(hasBeenKilledConvo, true);
+                playerData.SetBool(isNewEntryConvo, true);
             }
-            bool flag3 = false;
-            int num = playerData.GetInt(intName);
-            bool flag4 = num > 0;
-            if (flag4)
+            bool entryCompleted = false;
+            int killsLeft = playerData.GetInt(killCountConvo);
+            if (killsLeft > 0)
             {
-                num--;
-                playerData.SetInt(intName, num);
-                bool flag5 = num <= 0;
-                if (flag5)
+                killsLeft--;
+                playerData.SetInt(killCountConvo, killsLeft);
+                if (killsLeft <= 0)
                 {
-                    flag3 = true;
+                    entryCompleted = true;
                 }
             }
-            bool @bool = playerData.GetBool("hasJournal");
-            if (@bool)
+            if (playerData.GetBool("hasJournal"))
             {
-                bool flag6 = false;
-                bool flag7 = flag3;
-                if (flag7)
+                bool displayJournalUpdateMessage = false;
+                if (entryCompleted)
                 {
-                    flag6 = true;
+                    displayJournalUpdateMessage = true;
                     playerData.SetInt("journalEntriesCompleted", playerData.GetInt("journalEntriesCompleted") + 1);
                 }
                 else
                 {
-                    bool flag8 = flag;
-                    if (flag8)
+                    if (isNewKill)
                     {
-                        flag6 = true;
+                        displayJournalUpdateMessage = true;
                         playerData.SetInt("journalNotesCompleted", playerData.GetInt("journalNotesCompleted") + 1);
                     }
                 }
-                bool flag9 = flag6;
-                if (flag9)
+                if (displayJournalUpdateMessage)
                 {
-                    DisplayJournalUpdate(flag3);
+                    DisplayJournalUpdate(entryCompleted);
                 }
             }
         }
@@ -138,10 +137,10 @@ namespace WeaverCore.Game.Implementations
             return typeof(PlayerData).GetField(name2, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) != null;
         }
 
-        private static GameObject JournalUpdatePrefab;
+        //private static GameObject JournalUpdatePrefab;
 
         private static FieldInfo updateMessageInstance;
 
-        private static FieldInfo getPrefabField;
+        //private static FieldInfo getPrefabField;
     }
 }

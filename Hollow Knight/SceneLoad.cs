@@ -165,10 +165,8 @@ public class SceneLoad
 				Debug.LogException(exception2);
 			}
 		}
-		Debug.Log("Progress = " + loadOperation.progress);
 		loadOperation.allowSceneActivation = true;
 		yield return loadOperation;
-		Debug.Log("Progress = " + loadOperation.progress);
 		this.RecordEndTime(SceneLoad.Phases.Activation);
 		if (this.ActivationComplete != null)
 		{

@@ -119,7 +119,118 @@ namespace WeaverBuildTools.Commands
 			}
 		}
 
-		static double GetTime()
+        public static void EmbedResource(string assemblyToEmbedTo, string resourceName, byte[] dataToEmbed, string hash = null, CompressionMethod compression = CompressionMethod.Auto)
+        {
+            if (hash == null)
+            {
+                hash = HashUtilities.GetHash(dataToEmbed);
+            }
+            double previousTime = GetTime();
+            while (GetTime() - previousTime <= 20.0)
+            {
+                try
+                {
+                    using (var resolver = new MainResolver())
+                    {
+                        using (var definition = AssemblyDefinition.ReadAssembly(assemblyToEmbedTo, new ReaderParameters { ReadWrite = true, AssemblyResolver = resolver }))
+                        {
+                            var finding = definition.MainModule.Resources.FirstOrDefault(r => r.Name == resourceName);
+                            if (finding != null)
+                            {
+                                var metaResource = definition.MainModule.Resources.FirstOrDefault(r => r.Name == (resourceName + "_meta"));
+                                if (metaResource != null && metaResource is EmbeddedResource)
+                                {
+                                    var embeddedHash = (EmbeddedResource)metaResource;
+                                    using (var metaStream = embeddedHash.GetResourceStream())
+                                    {
+                                        var meta = ResourceMetaData.FromStream(metaStream);
+                                        if (meta.hash == hash)
+                                        {
+                                            return;
+                                        }
+                                    }
+                                }
+                                definition.MainModule.Resources.Remove(finding);
+                                if (metaResource != null)
+                                {
+                                    definition.MainModule.Resources.Remove(metaResource);
+                                }
+                            }
+                            if (compression == CompressionMethod.Auto || compression == CompressionMethod.UseCompression)
+                            {
+                                using (var compressedStream = new MemoryStream())
+                                {
+                                    using (var compressionStream = new GZipStream(compressedStream, CompressionMode.Compress))
+                                    {
+										//StreamUtilities.CopyTo(streamToEmbed, compressionStream);
+										compressedStream.Write(dataToEmbed,0, dataToEmbed.Length);
+                                        compressedStream.Position = 0;
+
+                                        //Stream smallestStream = compressedStream;
+                                        //bool actuallyCompressed = true;
+                                        if (dataToEmbed.Length < compressedStream.Length && compression == CompressionMethod.Auto)
+                                        {
+                                            var er = new EmbeddedResource(resourceName, ManifestResourceAttributes.Public, dataToEmbed);
+                                            definition.MainModule.Resources.Add(er);
+
+                                            using (var metaStream = new ResourceMetaData(false, hash).ToStream())
+                                            {
+                                                var hashResource = new EmbeddedResource(resourceName + "_meta", ManifestResourceAttributes.Public, metaStream);
+                                                definition.MainModule.Resources.Add(hashResource);
+                                                definition.MainModule.Write();
+                                            }
+                                        }
+										else
+										{
+                                            var er = new EmbeddedResource(resourceName, ManifestResourceAttributes.Public, compressedStream);
+                                            definition.MainModule.Resources.Add(er);
+
+                                            using (var metaStream = new ResourceMetaData(true, hash).ToStream())
+                                            {
+                                                var hashResource = new EmbeddedResource(resourceName + "_meta", ManifestResourceAttributes.Public, metaStream);
+                                                definition.MainModule.Resources.Add(hashResource);
+                                                definition.MainModule.Write();
+                                            }
+                                        }
+
+                                        
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                var er = new EmbeddedResource(resourceName, ManifestResourceAttributes.Public, dataToEmbed);
+                                definition.MainModule.Resources.Add(er);
+                                using (var metaStream = new ResourceMetaData(false, hash).ToStream())
+                                {
+                                    var hashResource = new EmbeddedResource(resourceName + "_meta", ManifestResourceAttributes.Public, metaStream);
+                                    definition.MainModule.Resources.Add(hashResource);
+                                    definition.MainModule.Write();
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+                catch (Exception e)
+                {
+                    if (e.Message.Contains("because it is being used by another process"))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+            if (GetTime() - previousTime > 20.0f)
+            {
+                throw new Exception("Embedding Timeout");
+            }
+        }
+
+        static double GetTime()
 		{
 			return (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) / 1000.0;
 		}

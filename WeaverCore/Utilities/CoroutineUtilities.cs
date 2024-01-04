@@ -64,6 +64,13 @@ namespace WeaverCore.Utilities
 						yield return null;
 					}
 				}
+				else if (instruction is WaitForSecondsRealtime wfsr)
+				{
+					while (wfsr.keepWaiting)
+					{
+						yield return null;
+					}
+				}
 				else if (instruction is AsyncOperation)
 				{
 					var operation = (AsyncOperation)instruction;
@@ -173,5 +180,47 @@ namespace WeaverCore.Utilities
 				}
 			}
 		}
-	}
+
+		/// <summary>
+		/// Runs a function after a specified amount of time
+		/// </summary>
+		/// <param name="time">The time to wait</param>
+		/// <param name="action">The function to run</param>
+		public static IEnumerator RunAfter(float time, Action action)
+		{
+			yield return new WaitForSeconds(time);
+			action();
+		}
+
+        /// <summary>
+        /// Runs a function after a specified amount of time
+        /// </summary>
+        /// <param name="time">The time to wait</param>
+        /// <param name="action">The function to run</param>
+        public static IEnumerator RunAfter(float time, Func<IEnumerator> action)
+        {
+            yield return new WaitForSeconds(time);
+            yield return action();
+        }
+
+		/// <summary>
+		/// Waits until either the predicate returns true or if the time has elapsed
+		/// </summary>
+		/// <param name="time">The time to wait</param>
+		/// <param name="predicate">The predicate to check</param>
+		public static IEnumerator WaitForTimeOrPredicate(float time, Func<bool> predicate)
+		{
+			for (float t = 0; t < time; t += Time.deltaTime)
+			{
+				if (predicate())
+				{
+					yield break;
+				}
+				else
+				{
+					yield return null;
+				}
+			}
+		}
+    }
 }

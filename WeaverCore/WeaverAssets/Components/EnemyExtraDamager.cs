@@ -7,8 +7,14 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+    /// <summary>
+    /// Applies extra damage to an enemy on Trigger (such as Spore damage or Dung damage)
+    /// </summary>
     public class EnemyExtraDamager : MonoBehaviour 
 	{
+        /// <summary>
+        /// The type of damage to deal
+        /// </summary>
         public ExtraDamageTypes damageType;
 
         public const int DEFAULT_RECURSION_DEPTH = 3;
@@ -25,11 +31,22 @@ namespace WeaverCore.Assets.Components
             HitEnemy(obj, damageType, OnExtraDamage);
         }
 
+        /// <summary>
+        /// Called when an enemy was sucessfully hit
+        /// </summary>
+        /// <param name="hitEnemy">The enemy that was hit</param>
         protected virtual void OnExtraDamage(IExtraDamageable hitEnemy)
         {
 
         }
 
+
+        /// <summary>
+        /// Applies extra damage to an enemy (such as Spore damage or Dung damage)
+        /// </summary>
+        /// <param name="obj">The transform of the enemy to hit</param>
+        /// <param name="damageType">The type of damage to deal</param>
+        /// <param name="onHit">Called when the enemy was sucessfully hit</param>
         public static void HitEnemy(Transform obj, ExtraDamageTypes damageType, Action<IExtraDamageable> onHit = null)
         {
             int depth = 0;
@@ -42,24 +59,6 @@ namespace WeaverCore.Assets.Components
 
                     hittable.RecieveExtraDamage(damageType);
                     onHit?.Invoke(hittable);
-
-
-                    /*PlayMakerFSM playMakerFSM = FSMUtility.LocateFSM(enemyList[i], "Extra Damage");
-                    if (playMakerFSM != null)
-                    {
-                        playMakerFSM.SendEvent(damageEvent);
-                    }
-                    enemyList[i].GetComponent<IExtraDamageable>()?.RecieveExtraDamage(extraDamageType);*/
-
-                    /*hittable.Hit(new HitInfo()
-                    {
-                        Attacker = attacker,
-                        Damage = damage,
-                        AttackStrength = 1f,
-                        AttackType = type,
-                        Direction = hitDirection.ToDegrees(),
-                        IgnoreInvincible = false
-                    });*/
                 }
                 obj = obj.parent;
                 depth += DEFAULT_RECURSION_DEPTH;

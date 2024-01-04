@@ -6,10 +6,22 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
-	public static class VectorUtilities
+    /// <summary>
+    /// Contains utility functions related to vectors
+    /// </summary>
+    public static class VectorUtilities
 	{
-		public static Color With(this Color c, float r = float.NaN, float g = float.NaN, float b = float.NaN, float a = float.NaN)
-		{
+        /// <summary>
+        /// Creates a new <see cref="Color"/> based on the input color, with optional modifications to specific color components.
+        /// </summary>
+        /// <param name="c">The input <see cref="Color"/> to start with.</param>
+        /// <param name="r">The new value for the red component. If not specified (or set to <see cref="float.NaN"/>), the red component remains unchanged.</param>
+        /// <param name="g">The new value for the green component. If not specified (or set to <see cref="float.NaN"/>), the green component remains unchanged.</param>
+        /// <param name="b">The new value for the blue component. If not specified (or set to <see cref="float.NaN"/>), the blue component remains unchanged.</param>
+        /// <param name="a">The new value for the alpha (transparency) component. If not specified (or set to <see cref="float.NaN"/>), the alpha component remains unchanged.</param>
+        /// <returns>A new <see cref="Color"/> based on the input color with optional modifications.</returns>
+        public static Color With(this Color c, float r = float.NaN, float g = float.NaN, float b = float.NaN, float a = float.NaN)
+        {
             if (!float.IsNaN(r))
             {
                 c.r = r;
@@ -30,16 +42,16 @@ namespace WeaverCore.Utilities
         }
 
 
-		/// <summary>
-		/// Takes an existing vector, and a returns a new one with some fields modified
-		/// </summary>
-		/// <param name="v">The vector to base the new one from</param>
-		/// <param name="x">The new x-value. If left at NaN, the field will be left unchanged</param>
-		/// <param name="y">The new y-value. If left at NaN, the field will be left unchanged</param>
-		/// <param name="z">The new z-value. If left at NaN, the field will be left unchanged</param>
-		/// <param name="w">The new w-value. If left at NaN, the field will be left unchanged</param>
-		/// <returns>Returns a new vector with the modified fields</returns>
-		public static Vector4 With(this Vector4 v, float x = float.NaN, float y = float.NaN, float z = float.NaN, float w = float.NaN)
+        /// <summary>
+        /// Takes an existing vector, and a returns a new one with some fields modified
+        /// </summary>
+        /// <param name="v">The vector to base the new one from</param>
+        /// <param name="x">The new x-value. If left at NaN, the field will be left unchanged</param>
+        /// <param name="y">The new y-value. If left at NaN, the field will be left unchanged</param>
+        /// <param name="z">The new z-value. If left at NaN, the field will be left unchanged</param>
+        /// <param name="w">The new w-value. If left at NaN, the field will be left unchanged</param>
+        /// <returns>Returns a new vector with the modified fields</returns>
+        public static Vector4 With(this Vector4 v, float x = float.NaN, float y = float.NaN, float z = float.NaN, float w = float.NaN)
 		{
 			if (!float.IsNaN(x))
 			{
@@ -105,13 +117,77 @@ namespace WeaverCore.Utilities
 			return v;
 		}
 
-		/// <summary>
-		/// Converts an angle (in degrees) into a vector pointing in the same direction
-		/// </summary>
-		/// <param name="angle">The angle to convert to a vector</param>
-		/// <param name="magnitude">The magnitude of the final vector</param>
-		/// <returns>The vector that points in the direction of the angle</returns>
-		public static Vector2 DegreesToVector(this float angle, float magnitude = 1f)
+        /// <summary>
+        /// Flips the W component of a <see cref="Vector4"/> while keeping the X, Y, and Z components unchanged.
+        /// </summary>
+        /// <param name="v">The input <see cref="Vector4"/>.</param>
+        /// <returns>A new <see cref="Vector4"/> with the W component flipped.</returns>
+        public static Vector4 FlipW(this Vector4 v) => new Vector4(v.x, v.y, v.z, -v.w);
+
+        /// <summary>
+        /// Flips the Z component of a <see cref="Vector4"/> while keeping the X, Y, and W components unchanged.
+        /// </summary>
+        /// <param name="v">The input <see cref="Vector4"/>.</param>
+        /// <returns>A new <see cref="Vector4"/> with the Z component flipped.</returns>
+        public static Vector4 FlipZ(this Vector4 v) => new Vector4(v.x, v.y, -v.z, v.w);
+
+        /// <summary>
+        /// Flips the Y component of a <see cref="Vector4"/> while keeping the X, Z, and W components unchanged.
+        /// </summary>
+        /// <param name="v">The input <see cref="Vector4"/>.</param>
+        /// <returns>A new <see cref="Vector4"/> with the Y component flipped.</returns>
+        public static Vector4 FlipY(this Vector4 v) => new Vector4(v.x, -v.y, v.z, v.w);
+
+        /// <summary>
+        /// Flips the X component of a <see cref="Vector4"/> while keeping the Y, Z, and W components unchanged.
+        /// </summary>
+        /// <param name="v">The input <see cref="Vector4"/>.</param>
+        /// <returns>A new <see cref="Vector4"/> with the X component flipped.</returns>
+        public static Vector4 FlipX(this Vector4 v) => new Vector4(-v.x, v.y, v.z, v.w);
+
+        /// <summary>
+        /// Flips the Z component of a <see cref="Vector3"/> while keeping the X and Y components unchanged.
+        /// </summary>
+        /// <param name="v">The input <see cref="Vector3"/>.</param>
+        /// <returns>A new <see cref="Vector3"/> with the Z component flipped.</returns>
+        public static Vector3 FlipZ(this Vector3 v) => new Vector3(v.x, v.y, -v.z);
+
+        /// <summary>
+        /// Flips the Y component of a <see cref="Vector3"/> while keeping the X and Z components unchanged.
+        /// </summary>
+        /// <param name="v">The input <see cref="Vector3"/>.</param>
+        /// <returns>A new <see cref="Vector3"/> with the Y component flipped.</returns>
+        public static Vector3 FlipY(this Vector3 v) => new Vector3(v.x, -v.y, v.z);
+
+        /// <summary>
+        /// Flips the X component of a <see cref="Vector3"/> while keeping the Y and Z components unchanged.
+        /// </summary>
+        /// <param name="v">The input <see cref="Vector3"/>.</param>
+        /// <returns>A new <see cref="Vector3"/> with the X component flipped.</returns>
+        public static Vector3 FlipX(this Vector3 v) => new Vector3(-v.x, v.y, v.z);
+
+        /// <summary>
+        /// Flips the Y component of a <see cref="Vector2"/> while keeping the X component unchanged.
+        /// </summary>
+        /// <param name="v">The input <see cref="Vector2"/>.</param>
+        /// <returns>A new <see cref="Vector2"/> with the Y component flipped.</returns>
+        public static Vector2 FlipY(this Vector2 v) => new Vector2(v.x, -v.y);
+
+        /// <summary>
+        /// Flips the X component of a <see cref="Vector2"/> while keeping the Y component unchanged.
+        /// </summary>
+        /// <param name="v">The input <see cref="Vector2"/>.</param>
+        /// <returns>A new <see cref="Vector2"/> with the X component flipped.</returns>
+        public static Vector2 FlipX(this Vector2 v) => new Vector2(-v.x, v.y);
+
+
+        /// <summary>
+        /// Converts an angle (in degrees) into a vector pointing in the same direction
+        /// </summary>
+        /// <param name="angle">The angle to convert to a vector</param>
+        /// <param name="magnitude">The magnitude of the final vector</param>
+        /// <returns>The vector that points in the direction of the angle</returns>
+        public static Vector2 DegreesToVector(this float angle, float magnitude = 1f)
 		{
 			return RadiansToVector(angle * Mathf.Deg2Rad, magnitude);
 		}
@@ -283,5 +359,10 @@ namespace WeaverCore.Utilities
         {
 			return UnityEngine.Random.Range(range.x, range.y);
         }
+
+		public static float ClampInRange(this Vector2 range, float value)
+		{
+			return Mathf.Clamp(value, range.x, range.y);
+		}
 	}
 }

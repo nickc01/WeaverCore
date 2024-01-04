@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Enums;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Components.DeathEffects
 {
@@ -19,6 +20,15 @@ namespace WeaverCore.Components.DeathEffects
 
         [SerializeField]
         protected GameObject whiteWave;
+
+        [SerializeField]
+        protected bool doCorpseParticles = true;
+
+        [SerializeField]
+        protected ParticleSystem corpseParticlesPrefab;
+
+        [SerializeField]
+        protected float corpseParticlesIntensity = 300;
 
         FlingInfo ghost1Fling;
         FlingInfo ghost2Fling;
@@ -59,14 +69,22 @@ namespace WeaverCore.Components.DeathEffects
             {
                 flasher.flashFocusHeal();
             }
-            Pooling.Instantiate(uninfectedDeathPt, transform.position + EffectsOffset, Quaternion.identity);
+            Pooling.Instantiate(uninfectedDeathPt, transform.TransformPoint(EffectsOffset), Quaternion.identity);
 
             ShakeCameraIfVisible(ShakeType.EnemyKillShake);
 
-            Flings.SpawnFlings(ghost1Fling, transform.position + EffectsOffset);
-            Flings.SpawnFlings(ghost2Fling, transform.position + EffectsOffset);
+            Flings.SpawnFlings(ghost1Fling, transform.TransformPoint(EffectsOffset));
+            Flings.SpawnFlings(ghost2Fling, transform.TransformPoint(EffectsOffset));
 
-            Pooling.Instantiate(whiteWave, transform.position + EffectsOffset, Quaternion.identity);
+            Pooling.Instantiate(whiteWave, transform.TransformPoint(EffectsOffset), Quaternion.identity);
+
+            if (doCorpseParticles && corpseParticlesPrefab != null)
+            {
+                var particles = Pooling.Instantiate(corpseParticlesPrefab, transform);
+                particles.transform.SetLocalPosition(EffectsOffset.x,EffectsOffset.y);
+                var emit = particles.emission;
+                emit.rateOverTimeMultiplier = corpseParticlesIntensity;
+            }
         }
     }
 }

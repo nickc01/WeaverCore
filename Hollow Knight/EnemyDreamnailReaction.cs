@@ -43,7 +43,8 @@ public class EnemyDreamnailReaction : MonoBehaviour
 		if (!noSoul)
 		{
 			int amount = (!PlayerData.instance.GetBool("equippedCharm_30")) ? 33 : 66;
-		}
+            HeroController.instance.AddMPCharge(amount);
+        }
 		ShowConvo();
 		if (dreamImpactPrefab != null)
 		{

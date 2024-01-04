@@ -5,6 +5,9 @@ using System.Text;
 
 namespace WeaverCore.Enums
 {
+	/// <summary>
+	/// Determines how music in a <see cref="MusicCue"/> will be synchronized
+	/// </summary>
 	public enum MusicSyncType
 	{
 		Implicit = 0,

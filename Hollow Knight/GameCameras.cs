@@ -53,12 +53,15 @@ public class GameCameras : MonoBehaviour
 		transform.localPosition = default;
 	}
 
-	public void SceneInit()
+    private void Start()
+    {
+        
+    }
+
+    public void SceneInit()
 	{
-        //Debug.LogError("GAME CAMERAS START SCENE A");
         if (this == GameCameras._instance)
 		{
-			//Debug.LogError("BBB");
 			this.StartScene();
 		}
 	}
@@ -94,7 +97,6 @@ public class GameCameras : MonoBehaviour
 
 	private void StartScene()
 	{
-		//Debug.LogError("GAME CAMERAS START SCENE");
 		if (!this.init)
 		{
 			this.SetupGameRefs();
@@ -125,7 +127,6 @@ public class GameCameras : MonoBehaviour
 				this.cameraController.transform.SetPosition2D(14.6f, 8.5f);
 			}
 		}
-		//Debug.LogError("A");
 		this.cameraController.SceneInit();
 		this.cameraTarget.SceneInit();
 		this.sceneColorManager.SceneInit();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GlobalEnums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,8 +69,11 @@ namespace WeaverCore.Features
 		/// </summary>
 		protected virtual void Awake()
 		{
-			var enemyImplType = ImplFinder.GetImplementationType<Enemy_I>();
-			enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
+			if (enemyImpl == null)
+			{
+                var enemyImplType = ImplFinder.GetImplementationType<Enemy_I>();
+                enemyImpl = (Enemy_I)gameObject.AddComponent(enemyImplType);
+            }
 			HealthComponent.OnDeathEvent += OnDeath_Internal;
 		}
 
@@ -218,9 +222,10 @@ namespace WeaverCore.Features
 		/// <returns>Returns an id for stopping it</returns>
 		public uint StartBoundRoutine(IEnumerator routine)
 		{
-			if (BoundRoutines == null)
+			return StartBoundRoutine(routine, null);
+			/*if (BoundRoutines == null)
 			{
-				BoundRoutines = new Dictionary<uint, Coroutine>();
+				BoundRoutines = new Dictionary<uint, (Coroutine coroutine, Action onCancel)>();
 				idList = new HashSet<uint>();
 			}
 			uint currentID = idCounter;
@@ -234,23 +239,52 @@ namespace WeaverCore.Features
 			}
 			idList.Add(currentID);
 			var coroutine = StartCoroutine(DoBoundRoutine(currentID, routine));
-			BoundRoutines.Add(currentID, coroutine);
-			return currentID;
+			BoundRoutines.Add(currentID, (coroutine, onCancel));
+			return currentID;*/
 		}
 
-		/// <summary>
-		/// Runs a new move
-		/// </summary>
-		/// <remarks>Must be used in a coroutine function</remarks>
-		/// <param name="move">The move to run</param>
-		/// <returns>Returns an IEnumerator for use in a coroutine function</returns>
-		public IEnumerator RunMove(IEnemyMove move)
+        /// <summary>
+        /// Starts a bound coroutine. A bound coroutine is a coroutine that will automatically stop when the boss either dies or gets stunned
+        /// </summary>
+        /// <param name="routine">The routine to run</param>
+        /// <param name="onCancel">A function that's called when the routine gets cancelled</param>
+        /// <returns>Returns an id for stopping it</returns>
+        public uint StartBoundRoutine(IEnumerator routine, Action onCancel)
+        {
+            if (BoundRoutines == null)
+            {
+                BoundRoutines = new Dictionary<uint, Coroutine>();
+                idList = new HashSet<uint>();
+            }
+            uint currentID = idCounter;
+            if (idCounter == uint.MaxValue)
+            {
+                idCounter = 1;
+            }
+            else
+            {
+                idCounter++;
+            }
+            idList.Add(currentID);
+            var coroutine = StartCoroutine(DoBoundRoutine(currentID, routine, onCancel));
+            BoundRoutines.Add(currentID, coroutine);
+            return currentID;
+        }
+
+        /// <summary>
+        /// Runs a new move
+        /// </summary>
+        /// <remarks>Must be used in a coroutine function</remarks>
+        /// <param name="move">The move to run</param>
+        /// <returns>Returns an IEnumerator for use in a coroutine function</returns>
+        public IEnumerator RunMove(IEnemyMove move)
 		{
-			return RunMoveUntil(move, () => currentMoveCancelled || move != CurrentMove);
+            //currentMoveCancelled || move != CurrentMove
+            return RunMoveWhile(move, () => true);
 		}
 
 		/// <summary>
-		/// Runs a new move until the predicate returns false or when the move completes
+		/// Runs a new move until the predicate returns true or when the move completes
 		/// </summary>
 		/// <remarks>Must be used in a coroutine function</remarks>
 		/// <param name="move">The move to run</param>
@@ -258,7 +292,8 @@ namespace WeaverCore.Features
 		/// <returns>Returns an IEnumerator for use in a coroutine function</returns>
 		public IEnumerator RunMoveUntil(IEnemyMove move, Func<bool> predicate)
 		{
-			CurrentMove = move;
+			return RunMoveWhile(move, () => !predicate());
+			/*CurrentMove = move;
 			currentMoveCancelled = false;
 			yield return CoroutineUtilities.RunWhile(move.DoMove(), () => !predicate() && !(currentMoveCancelled || move != CurrentMove));
 			PreviousMove = move;
@@ -269,13 +304,46 @@ namespace WeaverCore.Features
 			else if (CurrentMove != null && !currentMoveCancelled)
 			{
 				move.OnCancel();
-			}
+			}*/
 		}
 
-		/// <summary>
-		/// Stops the <see cref="CurrentMove"/>
-		/// </summary>
-		public void CancelCurrentMove()
+        /// <summary>
+        /// Runs a new move until the predicate returns false or when the move completes
+        /// </summary>
+        /// <remarks>Must be used in a coroutine function</remarks>
+        /// <param name="move">The move to run</param>
+        /// <param name="predicate">The predicate used to stop the move when it returns false</param>
+        /// <returns>Returns an IEnumerator for use in a coroutine function</returns>
+        public IEnumerator RunMoveWhile(IEnemyMove move, Func<bool> predicate)
+        {
+
+            CurrentMove = move;
+            currentMoveCancelled = false;
+
+			bool fullyDone = false;
+
+			IEnumerator RunMoveRoutine(IEnemyMove move)
+			{
+				yield return move.DoMove();
+                fullyDone = true;
+            }
+
+            yield return CoroutineUtilities.RunWhile(RunMoveRoutine(move), () => predicate() && !currentMoveCancelled && move == CurrentMove);
+            PreviousMove = move;
+            if (CurrentMove == move)
+            {
+                CurrentMove = null;
+            }
+            if (!fullyDone)
+            {
+                move.OnCancel();
+            }
+        }
+
+        /// <summary>
+        /// Stops the <see cref="CurrentMove"/>
+        /// </summary>
+        public void CancelCurrentMove()
 		{
 			if (CurrentMove != null)
 			{
@@ -335,12 +403,25 @@ namespace WeaverCore.Features
 			idList.Clear();
 		}
 
-		IEnumerator DoBoundRoutine(uint id, IEnumerator routine)
+		IEnumerator DoBoundRoutine(uint id, IEnumerator routine, Action onCancel)
 		{
-			yield return CoroutineUtilities.RunWhile(routine, () => idList.Contains(id));
-			idList.Remove(id);
-			BoundRoutines.Remove(id);
-		}
+            yield return CoroutineUtilities.RunWhile(routine, () => idList.Contains(id));
+
+			if (!idList.Contains(id))
+			{
+                idList.Remove(id);
+                BoundRoutines.Remove(id);
+				if (onCancel != null)
+				{
+                    onCancel();
+                }
+            }
+			else
+			{
+                idList.Remove(id);
+                BoundRoutines.Remove(id);
+            }
+        }
 
 		/// <summary>
 		/// Called when the enemy gets parried
@@ -351,5 +432,5 @@ namespace WeaverCore.Features
 		{
 
 		}
-	}
+    }
 }

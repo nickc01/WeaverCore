@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,6 +16,14 @@ namespace WeaverCore.Settings
     [ShowFeature]
 	public abstract class SaveSpecificSettings : ScriptableObject
 	{
+#if UNITY_EDITOR
+        [field: SerializeField]
+#else
+		[field: NonSerialized]
+#endif
+        [field: Tooltip("If set to false, then this will not get enabled when loading a save file in-game")]
+		public bool Enabled { get; set; } = true;
+
 		static SaveSpecificSettings_I impl = ImplFinder.GetImplementation<SaveSpecificSettings_I>();
 		/// <summary>
 		/// Returns true if a save file is currently loaded
@@ -36,6 +45,30 @@ namespace WeaverCore.Settings
 		static void SaveUnRegistered(SaveSpecificSettings settings)
 		{
 			UnregisterSaveSpecificSettings(settings);
+		}
+
+#if UNITY_EDITOR
+		static bool editor_loaded = false;
+#endif
+
+		static void EditorLoadSaveSettings()
+		{
+#if UNITY_EDITOR
+			if (editor_loaded)
+			{
+				return;
+			}
+			editor_loaded = true;
+            var registryGUIDs = UnityEditor.AssetDatabase.FindAssets("t:Registry");
+
+			foreach (var registry in registryGUIDs.Select(g => UnityEditor.AssetDatabase.LoadAssetAtPath<Registry>(UnityEditor.AssetDatabase.GUIDToAssetPath(g))))
+			{
+				foreach (var settings in registry.GetFeatures<SaveSpecificSettings>())
+				{
+					SaveRegistered(settings);
+				}
+            }
+#endif
 		}
 
 		/// <summary>
@@ -99,7 +132,9 @@ namespace WeaverCore.Settings
 		/// <returns>The save specific settings data. Returns null if it has not been registered</returns>
 		public static T GetSaveSettings<T>() where T : SaveSpecificSettings
 		{
-			return saveData.OfType<T>().FirstOrDefault();
+			EditorLoadSaveSettings();
+
+            return saveData.OfType<T>().FirstOrDefault();
 		}
 
 
@@ -109,7 +144,8 @@ namespace WeaverCore.Settings
 		/// <returns>The save specific settings data. Returns null if it has not been registered</returns>
 		public static SaveSpecificSettings GetSaveSettings(Type type)
 		{
-			return saveData.FirstOrDefault(s => type.IsAssignableFrom(saveData.GetType()));
+            EditorLoadSaveSettings();
+            return saveData.FirstOrDefault(s => type.IsAssignableFrom(saveData.GetType()));
 		}
 
 
@@ -136,12 +172,16 @@ namespace WeaverCore.Settings
 			SaveCurrentlyLoaded = true;
 			CurrentSaveSlot = slot;
 
+
 			WeaverLog.Log("Loading WeaverCore Save data for slot " + CurrentSaveSlot);
 			foreach (var save in saveData)
 			{
 				impl.LoadSettings(save);
 				save.OnSaveLoaded(CurrentSaveSlot);
 			}
+#if UNITY_EDITOR
+			ModHooks.OnSavegameLoad(CurrentSaveSlot);
+#endif
 		}
 
 		public static void SaveAllSettings()
@@ -152,6 +192,9 @@ namespace WeaverCore.Settings
 				save.OnSaveUnloaded(CurrentSaveSlot);
 				impl.SaveSettings(save);
 			}
+#if UNITY_EDITOR
+			ModHooks.OnSavegameSave(CurrentSaveSlot);
+#endif
 		}
 	}
 }

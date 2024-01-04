@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using WeaverCore.Assets.Components;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Editor.Implementations
@@ -20,7 +21,7 @@ namespace WeaverCore.Editor.Implementations
                     WeaverAudio.PlayAtPoint(roarSound, source.transform.position);
                 }
 
-                var emitter = RoarEmitter.Spawn(source.transform.position);
+                var emitter = RoarEmitter.Spawn(spawnPosition);
 
                 emitter.stopAfterTime = duration;
 

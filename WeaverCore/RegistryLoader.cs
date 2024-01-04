@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace WeaverCore
         /// Loads all Registries that are a part of the specified mod
         /// </summary>
         /// <typeparam name="Mod">The mod to load the registries from</typeparam>
-        public static void LoadAllRegistries<Mod>() where Mod : WeaverMod
+        public static void LoadAllRegistries<Mod>() where Mod : IMod
         {
             LoadAllRegistries(typeof(Mod));
         }
@@ -80,6 +81,7 @@ namespace WeaverCore
                     {
                         if (name.EndsWith(extension))
                         {
+                            WeaverLog.Log("Loading embedded bundle stream : " + name);
                             var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
 
                             if (bundle != null)

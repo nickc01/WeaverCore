@@ -1,9 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+    /// <summary>
+    /// Used for creating a region the player can inspect to pick up a dropped item
+    /// </summary>
     public class ItemInspectRegion : InspectRegion
     {
         [SerializeField]

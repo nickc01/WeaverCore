@@ -2,6 +2,7 @@
 using HutongGames.PlayMaker.Actions;
 using System.Collections;
 using UnityEngine;
+using WeaverCore.Assets.Components;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
 
@@ -39,7 +40,7 @@ namespace WeaverCore.Game.Implementations
                     WeaverAudio.PlayAtPoint(roarSound, source.transform.position);
                 }
 
-                var emitter = RoarEmitter.Spawn(source.transform.position);
+                var emitter = RoarEmitter.Spawn(spawnPosition);
 
                 emitter.stopAfterTime = duration;
 

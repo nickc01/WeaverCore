@@ -11,7 +11,7 @@ public class WeaverAnimationDataEditor : Editor
 	bool showClipsDropdown = true;
 
 	Vector2 clipScrollPosition = default(Vector2);
-	float maxClipScrollHeight = 400f;
+	float maxClipScrollHeight = 500f;
 	WeaverAnimationData data;
 
 
@@ -117,6 +117,38 @@ public class WeaverAnimationDataEditor : Editor
 			if (GUILayout.Button("Add Frame"))
 			{
 				newClipFrames.Add(null);
+			}
+			if (GUILayout.Button("Add Selected Sprites"))
+			{
+				foreach (var obj in Selection.objects)
+				{
+					if (obj is Sprite sprite)
+					{
+						newClipFrames.Add(sprite);
+					}
+					else
+					{
+						var assetPath = AssetDatabase.GetAssetPath(obj);
+
+						if (!string.IsNullOrEmpty(assetPath))
+						{
+							var assets = AssetDatabase.LoadAllAssetsAtPath(assetPath);
+
+							foreach (var asset in assets)
+							{
+								if (asset is Sprite spriteAsset)
+								{
+									newClipFrames.Add(spriteAsset);
+								}
+							}
+                        }
+					}
+					//WeaverLog.Log("OBJ = " + obj);
+				}
+			}
+			if (GUILayout.Button("Clear All Frames"))
+			{
+				newClipFrames.Clear();
 			}
 			EditorGUILayout.EndScrollView();
 		}

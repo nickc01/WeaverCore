@@ -39,6 +39,30 @@ namespace WeaverCore.Components
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (!(collision.tag == "Nail Attack") || Time.time < deflectTimer)
+            {
+                return;
+            }
+            if (deflectTimer <= 0f)
+            {
+                deflectTimer = repeatDelay;
+
+				var direction = collision.transform.position - collision.transform.position;
+
+                OnDeflect(new HitInfo
+				{
+					Damage = 1,
+					Direction = Mathf.Atan2(direction.y, direction.x),
+					Attacker = collision.gameObject,
+					AttackStrength = 1f,
+					AttackType = AttackType.Nail,
+					IgnoreInvincible = false
+				});
+            }
+        }
+
         public static void PlayDeflectEffects(Vector3 playerPosition, GameObject deflectedObject, CardinalDirection hitDirection, bool applyRecoil = true)
         {
 

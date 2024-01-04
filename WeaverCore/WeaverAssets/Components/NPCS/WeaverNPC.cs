@@ -184,10 +184,6 @@ namespace WeaverCore.Assets.Components
             while (true)
             {
                 var newPos = HeroController.instance.transform.position;
-                /*if (playerPos != newPos)
-                {
-                    WeaverLog.Log("Player Pos = " + newPos);
-                }*/
                 playerPos = newPos;
                 yield return null;
             }
@@ -215,7 +211,6 @@ namespace WeaverCore.Assets.Components
             }
 
             yield return MovePlayerToPosition(talkPosition);
-
             startingConversation = false;
             Talking = true;
             HeroUtilities.PlayPlayerClip("Idle");
@@ -224,6 +219,7 @@ namespace WeaverCore.Assets.Components
 
             var conversation = GetComponent<Conversation>();
             yield return conversation.StartConversationRoutine();
+            conversation.HideConversationBox();
             yield return EndConvo();
         }
 
@@ -302,6 +298,7 @@ namespace WeaverCore.Assets.Components
                 {
                     break;
                 }
+                heroRB.velocity = new Vector2(6f, 0f);
                 yield return null;
             }
             heroRB.velocity = new Vector2(0f, 0f);
@@ -319,6 +316,7 @@ namespace WeaverCore.Assets.Components
                 {
                     break;
                 }
+                heroRB.velocity = new Vector2(-6f, 0f);
                 yield return null;
             }
             heroRB.velocity = new Vector2(0f, 0f);

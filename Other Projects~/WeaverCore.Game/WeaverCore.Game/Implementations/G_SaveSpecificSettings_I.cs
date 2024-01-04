@@ -33,47 +33,50 @@ namespace WeaverCore.Game.Implementations
 
 		public override void LoadSettings(SaveSpecificSettings settings)
 		{
-            //WeaverLog.Log("LOADING SETTINGS");
-            var modData = GetModData();
-			var settingsType = settings.GetType();
-			var key = settingsType.FullName;
-			if (!defaultState.ContainsKey(settingsType))
+			if (settings.Enabled)
 			{
-				defaultState.Add(settingsType,JsonUtility.ToJson(settings));
-			}
-			if (modData.ContainsKey(key))
-			{
-				var token = modData[key];
-				JsonUtility.FromJsonOverwrite(token.ToString(), settings);
-			}
-			else
-			{
-				JsonUtility.FromJsonOverwrite(defaultState[settingsType],settings);
-			}
+                var modData = GetModData();
+                var settingsType = settings.GetType();
+                var key = settingsType.FullName;
+                if (!defaultState.ContainsKey(settingsType))
+                {
+                    defaultState.Add(settingsType, JsonUtility.ToJson(settings));
+                }
+                if (modData.ContainsKey(key))
+                {
+                    var token = modData[key];
+                    JsonUtility.FromJsonOverwrite(token.ToString(), settings);
+                }
+                else
+                {
+                    JsonUtility.FromJsonOverwrite(defaultState[settingsType], settings);
+                }
+            }
 		}
 
 		public override void SaveSettings(SaveSpecificSettings settings)
 		{
-			var modData = GetModData();
-			var result = JsonUtility.ToJson(settings,true);
-			//WeaverLog.Log("RESULT = " + result);
+			if (settings.Enabled)
+			{
+				var modData = GetModData();
+				//var result = JsonUtility.ToJson(settings, true);
 
-            var token = JToken.Parse(JsonUtility.ToJson(settings));
-			var key = settings.GetType().FullName;
-			if (modData.ContainsKey(key))
-			{
-				modData[key] = token;
-			}
-			else
-			{
-				modData.Add(key, token);
+				var token = JToken.Parse(JsonUtility.ToJson(settings));
+				var key = settings.GetType().FullName;
+				if (modData.ContainsKey(key))
+				{
+					modData[key] = token;
+				}
+				else
+				{
+					modData.Add(key, token);
+				}
 			}
 		}
 
 		[OnInit]
 		static void Init()
 		{
-            //WeaverLog.Log("SAVE INIT");
             ModHooks.BeforeSavegameSaveHook += ModHooks_BeforeSavegameSaveHook;
 			ModHooks.AfterSavegameLoadHook += ModHooks_AfterSavegameLoadHook;
 			On.GameManager.LoadGame += GameManager_LoadGame;

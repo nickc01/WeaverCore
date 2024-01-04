@@ -10,9 +10,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
-	/// <summary>
-	/// A class for accessing and doing things related to the player
-	/// </summary>
+    /// <summary>
+    /// A class for accessing and doing things related to the player
+    /// </summary>
     public class Player : MonoBehaviour
 	{
 		static object[] paramCache = new object[1];
@@ -35,10 +35,16 @@ namespace WeaverCore
 					foreach (var player in _players)
 					{
                         paramCache[0] = player;
-                        //WeaverLog.Log("P_INIT_G");
-                        foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
+                        foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>())
                         {
-                            method.Invoke(null, paramCache);
+							if (method.GetParameters().Length == 1)
+							{
+                                method.Invoke(null, paramCache);
+                            }
+							else
+							{
+                                method.Invoke(null, null);
+                            }
                         }
                     }
                 }
@@ -89,10 +95,12 @@ namespace WeaverCore
 			}
 		}
 
-		/// <summary>
-		/// Gets the player that is nearest to a certain position
-		/// </summary>
-		public static Player NearestPlayer(Vector3 position)
+		public static Player Player1Raw => (Player.Players.Count <= 0) ? null : Player.Players[0];
+
+        /// <summary>
+        /// Gets the player that is nearest to a certain position
+        /// </summary>
+        public static Player NearestPlayer(Vector3 position)
 		{
 			float num = float.PositiveInfinity;
 			Player result = null;
@@ -194,7 +202,7 @@ namespace WeaverCore
 			{
 				paramCache[0] = this;
 				//WeaverLog.Log("P_INIT_A");
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>())
 				{
 					method.Invoke(null, paramCache);
 				}
@@ -207,7 +215,7 @@ namespace WeaverCore
 			{
                 paramCache[0] = this;
                 //WeaverLog.Log("P_INIT_B");
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInit>())
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>())
                 {
                     method.Invoke(null, paramCache);
                 }
@@ -220,7 +228,7 @@ namespace WeaverCore
 			{
                 paramCache[0] = this;
                 //WeaverLog.Log("P_INIT_C");
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninit>())
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>())
                 {
                     method.Invoke(null, paramCache);
                 }
@@ -233,7 +241,7 @@ namespace WeaverCore
 			{
                 paramCache[0] = this;
                 //WeaverLog.Log("P_INIT_D");
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninit>())
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>())
                 {
                     method.Invoke(null, paramCache);
                 }
@@ -347,11 +355,18 @@ namespace WeaverCore
 			Impl.ExitRoarLock();
 		}
 
-		public void EnterCutsceneLock(bool playSound, int darknessLevel = -1)
+		/// <summary>
+		/// Enters a cutscene lock that freezes the player.
+		/// </summary>
+		/// <param name="playSound">Should a cutscene sound be played?</param>
+		public void EnterCutsceneLock(bool playSound)
 		{
 			Impl.EnterCutsceneLock(playSound);
 		}
 
+		/// <summary>
+		/// Exits a cutscene lock and unfreezes the player
+		/// </summary>
 		public void ExitCutsceneLock()
 		{
 			Impl.ExitCutsceneLock();

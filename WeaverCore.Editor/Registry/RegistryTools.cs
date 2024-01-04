@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -33,29 +34,42 @@ namespace WeaverCore.Editor
 
 		static List<Type> modsCached;
 
-		/// <summary>
-		/// Gets all mod types in the project
-		/// </summary>
-		public static List<Type> GetAllMods()
-		{
-			if (modsCached == null)
-			{
-				modsCached = new List<Type>();
-				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-				{
-					foreach (var type in assembly.GetTypes())
-					{
-						if (typeof(WeaverMod).IsAssignableFrom(type) && !type.IsGenericType && !type.IsAbstract)
-						{
-							modsCached.Add(type);
-						}
-					}
-				}
-			}
-			return modsCached;
-		}
+        /// <summary>
+        /// Gets all mod types in the project
+        /// </summary>
+        public static List<Type> GetAllMods()
+        {
+			//modsCached = null;
+            if (modsCached == null)
+            {
+                //WeaverLog.Log("BEGINNING SEARCH FOR MODS");
+                modsCached = new List<Type>();
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    foreach (var type in assembly.GetTypes())
+                    {
+                        //if (typeof(IMod).IsAssignableFrom(type))
+                        //{
+                            //WeaverLog.LogWarning("Maybe found mod = " + type);
 
-		static string[] modNamesCached;
+                            if (typeof(IMod).IsAssignableFrom(type) && !type.IsGenericType && !type.IsAbstract)
+                            {
+                                //WeaverLog.Log("Added mod = " + type);
+                                modsCached.Add(type);
+                            }
+                            //else
+                            //{
+                            //    WeaverLog.LogError("Didn't add following mod = " + type);
+                            //}
+                        //}
+                    }
+                }
+                //WeaverLog.Log("ENDING SEARCH FOR MODS");
+            }
+            return modsCached;
+        }
+
+        static string[] modNamesCached;
 
 		/// <summary>
 		/// Gets the names of all mods in the project

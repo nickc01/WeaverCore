@@ -4,14 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
 	/// <summary>
 	/// A white flash effect that is spawned when an entity is teleported via the <see cref="WeaverCore.Utilities.Teleporter"/> functions
 	/// </summary>
-	public class WhiteFlash : MonoBehaviour
+	public class WhiteFlash : MonoBehaviour, IOnPool
 	{
+		static WhiteFlash _defaultPrefab;
+
+		public static WhiteFlash DefaultPrefab
+		{
+			get
+			{
+				if (_defaultPrefab == null)
+				{
+					_defaultPrefab = WeaverAssets.LoadWeaverAsset<GameObject>("White Flash Default").GetComponent<WhiteFlash>();
+				}
+				return _defaultPrefab;
+			}
+		}
+
 		public float FlashIntensity = 0.5f;
 		public float FadeInTime = 0f;
 		public float StayTime = 0f;
@@ -19,12 +35,20 @@ namespace WeaverCore.Assets.Components
 		public Color FlashColor;
 
 
-		SpriteRenderer sprite;
+        //SpriteRenderer sprite;
+        [NonSerialized]
+        SpriteRenderer _mainRenderer;
+        public SpriteRenderer MainRenderer => _mainRenderer ??= GetComponent<SpriteRenderer>();
+
+        public Color SpriteColor
+		{
+			get => MainRenderer.color;
+			set => MainRenderer.color = value;
+		}
 
 		void Awake()
 		{
-			sprite = GetComponent<SpriteRenderer>();
-			sprite.color = default(Color);
+            MainRenderer.color = default;
 		}
 
 		void Start()
@@ -45,10 +69,10 @@ namespace WeaverCore.Assets.Components
 				{
 					timer = FadeInTime;
 				}
-				sprite.color = Color.Lerp(flashColorAlpha, FlashColor, (timer / FadeInTime) * FlashIntensity);
+                MainRenderer.color = Color.Lerp(flashColorAlpha, FlashColor, (timer / FadeInTime) * FlashIntensity);
 			}
 
-			sprite.color = Color.Lerp(flashColorAlpha, FlashColor, (timer / FadeInTime) * FlashIntensity);
+            MainRenderer.color = Color.Lerp(flashColorAlpha, FlashColor, (timer / FadeInTime) * FlashIntensity);
 
 			if (StayTime > 0f)
 			{
@@ -65,12 +89,37 @@ namespace WeaverCore.Assets.Components
 				{
 					timer = FadeOutTime;
 				}
-				sprite.color = Color.Lerp(flashColorAlpha, FlashColor, (1f - (timer / FadeOutTime)) * FlashIntensity);
+                MainRenderer.color = Color.Lerp(flashColorAlpha, FlashColor, (1f - (timer / FadeOutTime)) * FlashIntensity);
 			}
 
-			sprite.color = flashColorAlpha;
+            MainRenderer.color = flashColorAlpha;
 
 			Destroy(gameObject);
 		}
-	}
+
+		/// <summary>
+		/// Spawns a white flash
+		/// </summary>
+		/// <param name="position">The position to spawn it at</param>
+		/// <param name="prefab">The prefab to spawn. If null, will use the default prefab</param>
+		/// <returns></returns>
+		public static WhiteFlash Spawn(Vector3 position, WhiteFlash prefab = null)
+		{
+			if (prefab == null)
+			{
+				prefab = DefaultPrefab;
+            }
+
+			var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
+
+			instance.transform.localScale = prefab.transform.localScale;
+
+			return instance;
+		}
+
+        public virtual void OnPool()
+        {
+			transform.localScale = Vector3.one;
+        }
+    }
 }

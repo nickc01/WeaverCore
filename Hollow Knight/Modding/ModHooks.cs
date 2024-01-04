@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+
 namespace Modding
 {
 	public class ModHooks
@@ -625,7 +626,437 @@ namespace Modding
             }
         }
 
+        /// <summary>
+        ///     Called whenever blue health is updated
+        /// </summary>
+        internal static int OnBlueHealth()
+        {
+            Logger.LogFine("OnBlueHealth Invoked");
 
+            int result = 0;
+            if (BlueHealthHook == null)
+            {
+                return result;
+            }
+
+            Delegate[] invocationList = BlueHealthHook.GetInvocationList();
+
+            foreach (Func<int> toInvoke in invocationList)
+            {
+                try
+                {
+                    result = toInvoke.Invoke();
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        ///     Called whenever nail strikes something
+        /// </summary>
+        internal static void OnSlashHit(Collider2D otherCollider, GameObject gameObject)
+        {
+            Logger.LogFine("OnSlashHit Invoked");
+
+            if (otherCollider == null)
+            {
+                return;
+            }
+
+            if (SlashHitHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = SlashHitHook.GetInvocationList();
+
+            foreach (SlashHitHandler toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(otherCollider, gameObject);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called after player values for charms have been set
+        /// </summary>
+        /// <remarks>HeroController.CharmUpdate</remarks>
+        internal static void OnCharmUpdate(PlayerData pd, HeroController hc)
+        {
+            Logger.LogFine("OnCharmUpdate Invoked");
+
+            if (CharmUpdateHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = CharmUpdateHook.GetInvocationList();
+
+            foreach (CharmUpdateHandler toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(pd, hc);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called directly after a save has been loaded
+        /// </summary>
+        /// <remarks>GameManager.LoadGame</remarks>
+        public static void OnSavegameLoad(int id)
+        {
+            Logger.LogFine("OnSavegameLoad Invoked");
+
+            if (SavegameLoadHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = SavegameLoadHook.GetInvocationList();
+
+            foreach (Action<int> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(id);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called whenever the hero updates
+        /// </summary>
+        /// <remarks>HeroController.Update</remarks>
+        public static event Action HeroUpdateHook;
+
+        /// <summary>
+        ///     Called whenever the hero updates
+        /// </summary>
+        /// <remarks>HeroController.Update</remarks>
+        public static void OnHeroUpdate()
+        {
+            //Logger.APILogger.LogFine("OnHeroUpdate Invoked");
+
+            if (HeroUpdateHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = HeroUpdateHook.GetInvocationList();
+
+            foreach (Action toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke();
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets if the mod is currently enabled.
+        /// </summary>
+        /// <param name="mod">The togglable mod to check.</param>
+        /// <returns></returns>
+        public static bool ModEnabled(
+            ITogglableMod mod
+        ) => ModEnabled(mod.GetType());
+
+        /// <summary>
+        /// Gets if a mod is currently enabled.
+        /// </summary>
+        /// <param name="name">The name of the mod to check.</param>
+        /// <returns></returns>
+        public static bool ModEnabled(
+            string name
+        ) => GetAllMods(true, false).Any(m => m.GetName() == name);
+
+        /// <summary>
+        /// Gets if a mod is currently enabled.
+        /// </summary>
+        /// <param name="type">The type of the mod to check.</param>
+        /// <returns></returns>
+        public static bool ModEnabled(
+            Type type
+        ) => GetAllMods(true, false).Any(m => type.IsAssignableFrom(m.GetType()));
+
+        internal static void OnFinishedLoadingMods()
+        {
+            if (_finishedLoadingModsHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = _finishedLoadingModsHook.GetInvocationList();
+
+            foreach (Action toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke();
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+
+            finishedLoadingMods = true;
+        }
+
+        private static event Action _finishedLoadingModsHook;
+        static bool finishedLoadingMods = false;
+
+        /// <summary>
+        /// Event invoked when mods have finished loading. If modloading has already finished, subscribers will be invoked immediately.
+        /// </summary>
+        public static event Action FinishedLoadingModsHook
+        {
+            add
+            {
+                _finishedLoadingModsHook += value;
+
+                //if (!ModLoader.LoadState.HasFlag(ModLoader.ModLoadState.Loaded))
+                //return;
+
+                if (!finishedLoadingMods)
+                {
+                    return;
+                }
+
+                try
+                {
+                    value.Invoke();
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+            remove => _finishedLoadingModsHook -= value;
+        }
+
+        /// <summary>
+        ///     Called directly before save has been saved to allow for changes to the data before persisted.
+        /// </summary>
+        /// <remarks>GameManager.SaveGame</remarks>
+        public static event Action<SaveGameData> BeforeSavegameSaveHook;
+
+        /// <summary>
+        ///     Called directly before save has been saved to allow for changes to the data before persisted.
+        /// </summary>
+        /// <remarks>GameManager.SaveGame</remarks>
+        internal static void OnBeforeSaveGameSave(SaveGameData data)
+        {
+            Logger.LogFine("OnBeforeSaveGameSave Invoked");
+
+            if (BeforeSavegameSaveHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = BeforeSavegameSaveHook.GetInvocationList();
+
+            foreach (Action<SaveGameData> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(data);
+                }
+
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called directly after a save has been loaded.  Allows for accessing SaveGame instance.
+        /// </summary>
+        /// <remarks>GameManager.LoadGame</remarks>
+        public static event Action<SaveGameData> AfterSavegameLoadHook;
+
+        /// <summary>
+        ///     Called directly after a save has been loaded.  Allows for accessing SaveGame instance.
+        /// </summary>
+        /// <remarks>GameManager.LoadGame</remarks>
+        internal static void OnAfterSaveGameLoad(SaveGameData data)
+        {
+            Logger.LogFine("OnAfterSaveGameLoad Invoked");
+
+            if (AfterSavegameLoadHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = AfterSavegameLoadHook.GetInvocationList();
+
+            foreach (Action<SaveGameData> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(data);
+                }
+
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called after a game has been cleared from a slot.
+        /// </summary>
+        public static event Action<int> AfterSaveGameClearHook;
+
+        /// <summary>
+        ///     Called after a game has been cleared from a slot.
+        /// </summary>
+        internal static void OnAfterSaveGameClear(int saveSlot)
+        {
+            Logger.LogFine("OnAfterSaveGameClear Invoked");
+
+            if (AfterSaveGameClearHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = AfterSaveGameClearHook.GetInvocationList();
+
+            foreach (Action<int> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(saveSlot);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+
+        /// <summary>
+        ///     Called before a save file is deleted
+        /// </summary>
+        /// <remarks>GameManager.ClearSaveFile</remarks>
+        public static event Action<int> SavegameClearHook;
+
+        /// <summary>
+        ///     Called before a save file is deleted
+        /// </summary>
+        /// <remarks>GameManager.ClearSaveFile</remarks>
+        internal static void OnSavegameClear(int id)
+        {
+            Logger.LogFine("OnSavegameClear Invoked");
+
+            if (SavegameClearHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = SavegameClearHook.GetInvocationList();
+
+            foreach (Action<int> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(id);
+                }
+
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+
+        /// <summary>
+        ///     Called directly after a save has been saved
+        /// </summary>
+        /// <remarks>GameManager.SaveGame</remarks>
+        public static event Action<int> SavegameSaveHook;
+
+        /// <summary>
+        ///     Called directly after a save has been saved
+        /// </summary>
+        /// <remarks>GameManager.SaveGame</remarks>
+        public static void OnSavegameSave(int id)
+        {
+            Logger.LogFine("OnSavegameSave Invoked");
+
+            if (SavegameSaveHook == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = SavegameSaveHook.GetInvocationList();
+
+            foreach (Action<int> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(id);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called directly after a save has been loaded
+        /// </summary>
+        /// <remarks>GameManager.LoadGame</remarks>
+        public static event Action<int> SavegameLoadHook;
+
+        /// <summary>
+        ///     Called after player values for charms have been set
+        /// </summary>
+        /// <see cref="CharmUpdateHandler"/>
+        /// <remarks>HeroController.CharmUpdate</remarks>
+        public static event CharmUpdateHandler CharmUpdateHook;
+
+        /// <summary>
+        ///     Called whenever nail strikes something
+        /// </summary>
+        /// <see cref="SlashHitHandler"/>
+        public static event SlashHitHandler SlashHitHook;
+
+        /// <summary>
+        ///     Called whenever blue health is updated
+        /// </summary>
+        public static event Func<int> BlueHealthHook;
 
         /// <summary>
 		///     Called when a SceneManager calls DrawBlackBorders and creates boarders for a scene. You may use or modify the
@@ -785,7 +1216,8 @@ namespace Modding
         {
             if (loadedModsF == null)
             {
-                foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+                loadedModsF = GetWeaverModType().GetProperty("LoadedMods", BindingFlags.Public | BindingFlags.Static);
+                /*foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     if (asm.GetName().Name == "WeaverCore")
                     {
@@ -796,7 +1228,7 @@ namespace Modding
                             break;
                         }
                     }
-                }
+                }*/
             }
             if (loadedModsF != null)
             {
@@ -807,10 +1239,51 @@ namespace Modding
                 return Enumerable.Empty<IMod>();
             }
         }
+
+        static Assembly _weaverCoreAssembly;
+        static Type _weaverModType;
+
+        static Assembly GetWeaverCoreAssembly()
+        {
+            if (_weaverCoreAssembly == null)
+            {
+                foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    if (asm.GetName().Name == "WeaverCore")
+                    {
+                        _weaverCoreAssembly = asm;
+                        break;
+                    }
+                }
+            }
+
+            return _weaverCoreAssembly;
+        }
+
+        static Type GetWeaverModType()
+        {
+            if (_weaverModType == null)
+            {
+                _weaverModType = GetWeaverCoreAssembly().GetType("WeaverCore.WeaverMod");
+                /*if (weaverModT != null)
+                {
+                    loadedModsF = weaverModT.GetProperty("LoadedMods", BindingFlags.Public | BindingFlags.Static);
+                }*/
+            }
+
+            return _weaverModType;
+        }
     }
 
     namespace Delegates
     {
+        /// <summary>
+        ///     Called after player values for charms have been set
+        /// </summary>
+        /// <param name="data">Current PlayerData</param>
+        /// <param name="controller">Current HeroController</param>
+        public delegate void CharmUpdateHandler(PlayerData data, HeroController controller);
+
         /// <summary>
         ///     Called whenever localization specific strings are requested
         /// </summary>
@@ -939,5 +1412,12 @@ namespace Modding
         /// <param name="hazardType"></param>
         /// <param name="damageAmount"></param>
         public delegate int AfterTakeDamageHandler(int hazardType, int damageAmount);
+
+        /// <summary>
+        ///     Called whenever nail strikes something
+        /// </summary>
+        /// <param name="otherCollider">What the nail is colliding with</param>
+        /// <param name="slash">The NailSlash gameObject</param>
+        public delegate void SlashHitHandler(Collider2D otherCollider, GameObject slash);
     }
 }

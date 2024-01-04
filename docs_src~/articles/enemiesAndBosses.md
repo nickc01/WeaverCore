@@ -387,7 +387,7 @@ public class LungeMove : MonoBehaviour, IEnemyMove
 
 ```
 
-This move makes use of [MathUtilties.CalculateVelocityToReachPoint](xref:WeaverCore.Utilities.MathUtilties.CalculateVelocityToReachPoint(UnityEngine.Vector2,UnityEngine.Vector2,System.Double,System.Double)), which allows us to calculate the initial velocity needed to travel from a start to end pososition in a certain amount of time.
+This move makes use of [MathUtilties.CalculateVelocityToReachPoint](xref:WeaverCore.Utilities.MathUtilities.CalculateVelocityToReachPoint(UnityEngine.Vector2,UnityEngine.Vector2,System.Double,System.Double)), which allows us to calculate the initial velocity needed to travel from a start to end pososition in a certain amount of time.
 
 We also make use of the [GroundDetector](xref:WeaverCore.Components.GroundDetector) component to wait until the enemy is on the ground before finishing the move.
 

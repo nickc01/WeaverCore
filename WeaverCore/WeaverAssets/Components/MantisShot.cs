@@ -6,6 +6,9 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+    /// <summary>
+    /// WeaverCore's implementation of a mantis shot
+    /// </summary>
     public class MantisShot : MonoBehaviour
     {
         static MantisShot prefab;
@@ -64,7 +67,7 @@ namespace WeaverCore.Assets.Components
             while (Time.time < startTime + 4f && !(WithinMarginOfError(RB.velocity.x,0f,0.1f) && WithinMarginOfError(RB.velocity.y,0f,0.1f)))
             {
                 var pos = transform.position;
-                if (RB.velocity.y == 0f || (WithinMarginOfError(pos.x, targetPos.x,2f) && WithinMarginOfError(pos.y,targetPos.y,2f)))
+                if (RB.velocity.y == 0f || (WithinMarginOfError(pos.x, targetPos.x,2f) && WithinMarginOfError(pos.y,targetPos.y,2f)) || (pos.y < targetPos.y - 0.5f && Time.time < startTime + 2f))
                 {
                     yield return ApplyBoomerangForce(xForce);
                     yield break;
@@ -108,7 +111,13 @@ namespace WeaverCore.Assets.Components
             return Mathf.Abs(a - b) <= error;
         }
 
-
+        /// <summary>
+        /// Spawns a mantis shot
+        /// </summary>
+        /// <param name="position">The position to spawn it at</param>
+        /// <param name="velocity">The starting velocity of the mantis shot</param>
+        /// <param name="playLaunchSound">If set to true, will play a sound when it is launched</param>
+        /// <returns></returns>
         public static MantisShot Spawn(Vector3 position, Vector2 velocity, bool playLaunchSound = true)
         {
             if (prefab == null)

@@ -113,10 +113,10 @@ namespace WeaverCore.Game.Implementations
 		{
 			foreach (var bundle in AssetBundle.GetAllLoadedAssetBundles())
 			{
-				WeaverLog.Log("Found Bundle = " + bundle.name);
+				//WeaverLog.Log("Found Bundle = " + bundle.name);
 				if (bundle.name.Contains(bundleName))
 				{
-					WeaverLog.Log("Loading Asset from bundle " + bundle.name);
+					//WeaverLog.Log("Loading Asset from bundle " + bundle.name);
 					return LoadAssetFromBundle<T>(bundle, name);
 				}
 			}

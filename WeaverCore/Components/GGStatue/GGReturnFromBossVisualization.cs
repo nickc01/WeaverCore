@@ -1,15 +1,21 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using WeaverCore.Internal;
 
 namespace WeaverCore.Components.GGStatue
 {
+    /// <summary>
+    /// Handles the visualization when returning from a boss encounter.
+    /// </summary>
     public class GGReturnFromBossVisualization : MonoBehaviour
     {
         [SerializeField]
         GameObject inspect;
 
+        /// <summary>
+        /// Called when the object is awakened.
+        /// </summary>
         private void Awake()
         {
             if (HeroController.instance.isHeroInPosition)
@@ -28,15 +34,17 @@ namespace WeaverCore.Components.GGStatue
             StartCoroutine(VisualizationRoutine());
         }
 
+        /// <summary>
+        /// Coroutine for the visualization routine.
+        /// </summary>
+        /// <returns>An IEnumerator representing the coroutine.</returns>
         IEnumerator VisualizationRoutine()
         {
-            var currentDoor = gameObject.name;
+            var doorEntry = gameObject.name;
 
-           // WeaverLog.Log("CURRENT DOOR NAME = " + currentDoor);
+            var doorEntered = HeroController.instance.GetEntryGateName();
 
-            var entryGate = HeroController.instance.GetEntryGateName();
-            //WeaverLog.Log("ENTRY GATE = " + entryGate);
-            if (currentDoor == entryGate)
+            if (doorEntry == doorEntered)
             {
                 PlayerData.instance.SetString("bossReturnEntryGate", "");
             }
@@ -49,21 +57,20 @@ namespace WeaverCore.Components.GGStatue
 
             HeroController.instance.ClearMPSendEvents();
 
+            EventRegister.SendEvent("K HATCHLING END");
+
             yield return new WaitForSeconds(0.25f);
 
             GameObject transitions = null;
 
             if (GG_Internal.ggBattleTransitions != null)
             {
-                //transitions = GameObject.Find("gg_battle_transitions(Clone)");
-                /*transitions = GameObject.FindObjectsOfType<EventRegister>(true).Select(e => e.gameObject).FirstOrDefault(g => g.name.StartsWith("gg_battle_transitions"));*/
-                //WeaverLog.Log("Found Transition Object = " + transitions);
                 if (transitions == null)
                 {
                     transitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions);
                 }
-                //EventManager.SendEventToGameObject("GG TRANSITION OUT INSTANT", transitions, gameObject);
-                EventRegister.SendEvent("GG TRANSITION OUT INSTANT");
+
+                EventManager.SendEventToGameObject("GG TRANSITION OUT INSTANT", transitions, gameObject);
             }
 
             var hudCamera = GameObject.FindObjectOfType<HUDCamera>()?.gameObject;
@@ -81,160 +88,14 @@ namespace WeaverCore.Components.GGStatue
 
             if (transitions != null)
             {
-                //EventManager.SendEventToGameObject("GG TRANSITION IN STATUE", transitions, gameObject);
-                EventRegister.SendEvent("GG TRANSITION IN STATUE");
+                EventManager.SendEventToGameObject("GG TRANSITION IN STATUE", transitions, gameObject);
             }
 
             yield return new WaitForSeconds(1f);
 
             inspect.SetActive(true);
 
-
             yield break;
         }
     }
-
-    /*public class GGStatueInspect : MonoBehaviour
-    {
-        public bool Talking { get; private set; } = false;
-        bool canTalk = true;
-        bool facingRight = false;
-
-        Transform PromptMarker;
-
-        private void Start()
-        {
-            gameObject.layer = LayerMask.NameToLayer("Hero Detector");
-            PromptMarker = transform.Find("Prompt Marker");
-            StartCoroutine(InspectRoutine());
-        }
-
-
-        IEnumerator InspectRoutine()
-        {
-            if (PromptMarker.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
-            {
-                spriteRenderer.enabled = false;
-            }
-
-            var triggerTracker = gameObject.GetComponent<TrackTriggerObjects>();
-
-            if (triggerTracker == null)
-            {
-                triggerTracker = gameObject.AddComponent<TrackTriggerObjects>();
-            }
-
-            yield return new WaitForSeconds(1f);
-
-            while (true)
-            {
-                var prompt = WeaverArrowPrompt.Spawn(gameObject, PromptMarker.position);
-                prompt.SetLabelTextLang("LISTEN");
-                prompt.HideInstant();
-
-                yield return new WaitUntil(() => triggerTracker.InsideCount > 0);
-
-                if (canTalk && HeroController.instance.CanTalk())
-                {
-                    prompt.Show();
-
-                    while (true)
-                    {
-                        if (triggerTracker.InsideCount == 0)
-                        {
-                            break;
-                        }
-                        else if (HeroController.instance.CanInspect() && (PlayerInput.down.WasPressed || PlayerInput.up.WasPressed))
-                        {
-                            Talking = true;
-                            prompt.Hide();
-                            yield return TalkRoutine();
-                            Talking = false;
-                        }
-                        yield return null;
-                    }
-                }
-
-                yield return null;
-            }
-        }
-
-        IEnumerator TalkRoutine()
-        {
-            PlayerData.instance.SetBool("disablePause", true);
-
-            HeroController.instance.RelinquishControl();
-            HeroController.instance.StopAnimationControl();
-
-            var selfX = transform.position.x;
-            var playerX = Player.Player1.transform.position.x;
-
-            float leftProx = selfX - 1.5f;
-            float rightProx = selfX + 1.5f;
-
-            bool forceTurnLeft = false;
-            bool forceTurnRight = false;
-
-            var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
-
-            if (playerX >= selfX && playerX < rightProx)
-            {
-                //MOVE RIGHT
-                Player.Player1.transform.SetScaleX(-1f);
-                HeroController.instance.FaceRight();
-                HeroUtilities.PlayPlayerClip("Walk");
-                heroRB.velocity = new Vector2(6f, 0f);
-                for (float t = 0; t < 1; t += Time.deltaTime)
-                {
-                    if (Player.Player1.transform.position.x >= rightProx)
-                    {
-                        break;
-                    }
-                    yield return null;
-                }
-            }
-            else if (playerX >= leftProx && playerX < selfX)
-            {
-                //MOVE LEFT
-                Player.Player1.transform.SetScaleX(1f);
-                HeroController.instance.FaceLeft();
-                HeroUtilities.PlayPlayerClip("Walk");
-                heroRB.velocity = new Vector2(-6f, 0f);
-                for (float t = 0; t < 1; t += Time.deltaTime)
-                {
-                    if (Player.Player1.transform.position.x <= leftProx)
-                    {
-                        break;
-                    }
-                    yield return null;
-                }
-            }
-
-            var playerScaleX = Player.Player1.transform.localScale.x;
-
-            var playerFacingRight = playerScaleX < 0;
-            var playerOnRight = playerX >= selfX;
-
-            if (forceTurnLeft || (playerFacingRight && playerOnRight))
-            {
-                //TURN HERO LEFT
-                heroRB.velocity = default;
-                HeroController.instance.FaceLeft();
-                Player.Player1.transform.SetScaleX(1f);
-                yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
-            }
-            else if (forceTurnRight || (!playerFacingRight && !playerOnRight))
-            {
-                //TURN HERO RIGHT
-                heroRB.velocity = default;
-                HeroController.instance.FaceRight();
-                Player.Player1.transform.SetScaleX(-1f);
-                yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
-            }
-
-            HeroUtilities.PlayPlayerClip("Idle");
-
-            EventManager.BroadcastEvent("NPC CONVO START",gameObject);
-        }
-    }*/
 }

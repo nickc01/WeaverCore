@@ -6,6 +6,7 @@ using UnityEngine;
 using WeaverCore.Components;
 
 [CustomEditor(typeof(PlayerDamager))]
+[CanEditMultipleObjects]
 public class PlayerDamagerEditor : Editor
 {
 	public override void OnInspectorGUI()

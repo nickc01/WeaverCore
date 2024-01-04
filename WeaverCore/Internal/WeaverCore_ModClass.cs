@@ -24,7 +24,7 @@ namespace WeaverCore.Internal
 
         public override string GetVersion()
         {
-            return "1.2.0.2";
+            return "2.0.0.0";
         }
 
         public override List<(string, string)> GetPreloadNames()

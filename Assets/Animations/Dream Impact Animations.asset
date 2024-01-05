@@ -15,8 +15,9 @@ MonoBehaviour:
   clipNames:
   - Dream Impact
   - Dream Impact Delay
-  clipFrameStartIndexes: 0000000006000000
-  clipFrameCounts: 0600000007000000
+  - Soul Burst
+  clipFrameStartIndexes: 00000000060000000d000000
+  clipFrameCounts: 060000000700000005000000
   frames:
   - {fileID: -3358173245718663467, guid: 47804b1db344ae246a8ea4bc9fe12ca9, type: 3}
   - {fileID: 4174110953004346247, guid: 47804b1db344ae246a8ea4bc9fe12ca9, type: 3}
@@ -31,8 +32,14 @@ MonoBehaviour:
   - {fileID: -1678625824879814015, guid: 47804b1db344ae246a8ea4bc9fe12ca9, type: 3}
   - {fileID: -4159808004894948548, guid: 47804b1db344ae246a8ea4bc9fe12ca9, type: 3}
   - {fileID: 8036514732027352037, guid: 47804b1db344ae246a8ea4bc9fe12ca9, type: 3}
+  - {fileID: 21300552, guid: 5e26c18c0c910d448b010d40ae6c7022, type: 3}
+  - {fileID: 21300106, guid: 5e26c18c0c910d448b010d40ae6c7022, type: 3}
+  - {fileID: 21300430, guid: 5e26c18c0c910d448b010d40ae6c7022, type: 3}
+  - {fileID: 21300260, guid: 5e26c18c0c910d448b010d40ae6c7022, type: 3}
+  - {fileID: 21300284, guid: 5e26c18c0c910d448b010d40ae6c7022, type: 3}
   clipFPSs:
   - 20
   - 20
-  clipWrapModes: 0000000000000000
-  clipLoopStarts: 0000000000000000
+  - 20
+  clipWrapModes: 000000000000000000000000
+  clipLoopStarts: 000000000000000000000000

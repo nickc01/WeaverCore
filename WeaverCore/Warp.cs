@@ -150,94 +150,116 @@ namespace WeaverCore
 			});
 
 			//DREAM ENTRY EFFECTS
+			//PlayDreamEntryEffects(gateName, options);
+			yield return PlayDreamEntryEffectsRoutine(options, gateName);
+        }
 
-			bool inPosition = false;
+		/// <summary>
+		/// Plays effects when the knight enters a dream scene. This should be called immediately after a call to <see cref="GameManager.BeginSceneTransition(GameManager.SceneLoadInfo)"/> is made
+		/// </summary>
+		/// <param name="entryGateName">The entry gate the knight will spawn at. Specify null if it</param>
+		/// <param name="options">Options used to customize the dream effects</param>
+		public static void PlayDreamEntryEffects(string entryGateName, DreamWarpOptions options = default)
+		{
+			UnboundCoroutine.Start(PlayDreamEntryEffectsRoutine(options, entryGateName));
+        }
+
+		static IEnumerator PlayDreamEntryEffectsRoutine(DreamWarpOptions options, string entryGateName)
+		{
+            if (options == default)
+            {
+                options = DreamWarpDefaults;
+            }
+            bool inPosition = false;
 
             if (!HeroController.instance.isHeroInPosition)
             {
-				HeroController.instance.heroInPosition += Instance_heroInPosition;
+                HeroController.instance.heroInPosition += Instance_heroInPosition;
 
-				void Instance_heroInPosition(bool forceDirect)
-				{
-					inPosition = true;
-					HeroController.instance.heroInPosition -= Instance_heroInPosition;
-				}
+                void Instance_heroInPosition(bool forceDirect)
+                {
+                    inPosition = true;
+                    HeroController.instance.heroInPosition -= Instance_heroInPosition;
+                }
 
-				yield return new WaitUntil(() => inPosition);
-			}
+                yield return new WaitUntil(() => inPosition);
+            }
 
-			yield return null;
+            yield return null;
 
-			HeroController.instance.RelinquishControl();
-			HeroController.instance.StopAnimationControl();
-			HeroController.instance.GetComponent<Renderer>().enabled = false;
-			HeroController.instance.MaxHealth();
-			EventManager.BroadcastEvent("UPDATE BLUE HEALTH",null);
-
-
-			var door = GameObject.FindObjectsOfType<TransitionPoint>().FirstOrDefault(t => t.gameObject.name == gateName);
-
-			if (door == null)
-			{
-				throw new Exception($"Unable to find the TransitionPoint gate of name {gateName} in scene {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}");
-			}
+            HeroController.instance.RelinquishControl();
+            HeroController.instance.StopAnimationControl();
+            HeroController.instance.GetComponent<Renderer>().enabled = false;
+            HeroController.instance.MaxHealth();
+            EventManager.BroadcastEvent("UPDATE BLUE HEALTH", null);
 
 
-			if (door.alwaysEnterRight)
-			{
-				HeroController.instance.FaceRight();
-			}
+            var door = GameObject.FindObjectsOfType<TransitionPoint>().FirstOrDefault(t => t.gameObject.name == entryGateName);
 
-			if (door.alwaysEnterLeft)
-			{
-				HeroController.instance.FaceLeft();
-			}
-
-			GameManager.instance.cameraCtrl.PositionToHero(forceDirect: false);
-			PlayMakerUtilities.SetFsmFloat(blanker, "Blanker Control", "Fade Time", 1f);
-			EventManager.SendEventToGameObject("FADE OUT", blanker);
-			yield return new WaitForSeconds(0.75f);
-
-			if (options.DreamArriveSound != null)
-			{
-				WeaverAudio.PlayAtPoint(options.DreamArriveSound, HeroController.instance.transform.position, channel: Enums.AudioChannel.Sound);
-			}
-
-			CameraShaker.Instance.Shake(Enums.ShakeType.AverageShake);
-
-			var heroPos = HeroController.instance.transform.position;
-			var heroScale = HeroController.instance.transform.localScale.x;
-
-			GameObject effects = null;
-
-			if (options.DreamArriveParticles != null)
-			{
-				effects = GameObject.Instantiate(options.DreamArriveParticles, heroPos, Quaternion.identity);
-				effects.transform.SetScaleX(heroScale);
-			}
-
-			if (effects != null)
-			{
-				var effectsAnim = effects.GetComponent<WeaverAnimationPlayer>();
-				if (effectsAnim != null)
-				{
-					yield return effectsAnim.WaitforClipToFinish();
-				}
-			}
+            if (door == null)
+            {
+                throw new Exception($"Unable to find the TransitionPoint gate of name {entryGateName} in scene {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}");
+            }
 
 
-			HeroController.instance.RegainControl();
-			HeroController.instance.StartAnimationControl();
-			HeroController.instance.GetComponent<Renderer>().enabled = true;
+            if (door.alwaysEnterRight)
+            {
+                HeroController.instance.FaceRight();
+            }
 
-			if (effects != null)
-			{
-				GameObject.Destroy(effects);
-			}
+            if (door.alwaysEnterLeft)
+            {
+                HeroController.instance.FaceLeft();
+            }
 
-			Warping = false;
+            GameManager.instance.cameraCtrl.PositionToHero(forceDirect: false);
+            var blanker = WeaverCanvas.HUDBlankerWhite;
+            if (blanker != null)
+            {
+                PlayMakerUtilities.SetFsmFloat(blanker, "Blanker Control", "Fade Time", 1f);
+                EventManager.SendEventToGameObject("FADE OUT", blanker);
+            }
+            yield return new WaitForSeconds(0.75f);
 
-			yield break;
-		}
+            if (options.DreamArriveSound != null)
+            {
+                WeaverAudio.PlayAtPoint(options.DreamArriveSound, HeroController.instance.transform.position, channel: Enums.AudioChannel.Sound);
+            }
+
+            CameraShaker.Instance.Shake(Enums.ShakeType.AverageShake);
+
+            var heroPos = HeroController.instance.transform.position;
+            var heroScale = HeroController.instance.transform.localScale.x;
+            GameObject effects = null;
+
+            if (options.DreamArriveParticles != null)
+            {
+                effects = GameObject.Instantiate(options.DreamArriveParticles, heroPos, Quaternion.identity);
+                effects.transform.SetScaleX(heroScale);
+            }
+
+            if (effects != null)
+            {
+                var effectsAnim = effects.GetComponent<WeaverAnimationPlayer>();
+                if (effectsAnim != null)
+                {
+                    yield return effectsAnim.WaitforClipToFinish();
+                }
+            }
+
+
+            HeroController.instance.RegainControl();
+            HeroController.instance.StartAnimationControl();
+            HeroController.instance.GetComponent<Renderer>().enabled = true;
+
+            if (effects != null)
+            {
+                GameObject.Destroy(effects);
+            }
+
+            Warping = false;
+
+            yield break;
+        }
 	}
 }

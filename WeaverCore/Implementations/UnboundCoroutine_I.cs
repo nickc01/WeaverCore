@@ -13,5 +13,6 @@ namespace WeaverCore.Implementations
 		public abstract UnboundCoroutine Start(IEnumerator routine);
 		public abstract void Stop(UnboundCoroutine routine);
 		public abstract float DT { get; }
+		public abstract bool IsDone(UnboundCoroutine routine);
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using WeaverCore.Enums;
 using WeaverCore.Interfaces;
 using WeaverCore.Utilities;
 
@@ -33,6 +34,7 @@ namespace WeaverCore.Assets.Components
 		public float StayTime = 0f;
 		public float FadeOutTime = 0f;
 		public Color FlashColor;
+		public OnDoneBehaviour OnDone = OnDoneBehaviour.DestroyOrPool;
 
 
         //SpriteRenderer sprite;
@@ -94,8 +96,8 @@ namespace WeaverCore.Assets.Components
 
             MainRenderer.color = flashColorAlpha;
 
-			Destroy(gameObject);
-		}
+			OnDone.DoneWithObject(this);
+        }
 
 		/// <summary>
 		/// Spawns a white flash

@@ -2559,7 +2559,7 @@ GameObject:
   - component: {fileID: 4828871558422880096}
   - component: {fileID: 4828871558422880098}
   - component: {fileID: 4828871558422880099}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2620,7 +2620,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7481494428759831470, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  m_Sprite: {fileID: -7481494428759831470, guid: 4bfe5e5234b7912448dc64f900b0672e,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2658,7 +2659,8 @@ GameObject:
   - component: {fileID: 4828871558633146718}
   - component: {fileID: 4828871558633146719}
   - component: {fileID: 4828871558633146716}
-  m_Layer: 0
+  - component: {fileID: 2844111609525993082}
+  m_Layer: 9
   m_Name: Dream Arrive Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2721,7 +2723,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2491868318588401709, guid: c337d552bced76848b07dabc6fffc788, type: 3}
+  m_Sprite: {fileID: -2491868318588401709, guid: c337d552bced76848b07dabc6fffc788,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2748,3 +2751,29 @@ MonoBehaviour:
   autoPlay: 1
   OnClipFinish: 1
   autoPlayClip: Warp In
+--- !u!61 &2844111609525993082
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828871558633146717}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.046875, y: -0.3984375}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.45000017, y: 0.6976744}
+    oldSize: {x: 0.9375, y: 2.015625}
+    newSize: {x: 0.9375, y: 2.015625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.9375, y: 2.015625}
+  m_EdgeRadius: 0

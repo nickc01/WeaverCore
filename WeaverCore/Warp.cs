@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using WeaverCore.Assets.Components;
 using WeaverCore.Components;
 using WeaverCore.Utilities;
 
@@ -185,7 +186,14 @@ namespace WeaverCore
                 yield return new WaitUntil(() => inPosition);
             }
 
-            yield return null;
+			yield return new WaitForFixedUpdate();
+
+			var heroRenderer = HeroController.instance.GetComponent<MeshRenderer>();
+
+			var addedReflectors = GameObject.FindObjectsOfType<ObjectReflector>().Where(r => r.ReflectedObjects.Contains(heroRenderer)).ToList();
+
+			//TODO - FINISH REFLECTOR CODE
+
 
             HeroController.instance.RelinquishControl();
             HeroController.instance.StopAnimationControl();
@@ -240,6 +248,14 @@ namespace WeaverCore
 
             if (effects != null)
             {
+				foreach (var effectRenderer in effects.GetComponents<Renderer>())
+				{
+					foreach (var reflector in addedReflectors)
+					{
+						reflector.AddObjectToReflect(effectRenderer);
+					}
+				}
+
                 var effectsAnim = effects.GetComponent<WeaverAnimationPlayer>();
                 if (effectsAnim != null)
                 {
@@ -254,8 +270,20 @@ namespace WeaverCore
 
             if (effects != null)
             {
+                /*foreach (var effectRenderer in effects.GetComponentsInChildren<Renderer>())
+                {
+                    foreach (var reflector in addedReflectors)
+                    {
+                        reflector.RemoveObjectToReflect(effectRenderer);
+                    }
+                }*/
                 GameObject.Destroy(effects);
             }
+
+            /*foreach (var reflector in addedReflectors)
+            {
+                reflector.AddObjectToReflect(heroRenderer);
+            }*/
 
             Warping = false;
 

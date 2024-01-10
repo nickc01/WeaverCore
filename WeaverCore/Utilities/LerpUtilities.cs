@@ -82,5 +82,5 @@ namespace WeaverCore.Utilities
 		{
 			return (v - a) / (b - a);
 		}
-	}
+    }
 }

@@ -44,7 +44,7 @@ namespace WeaverCore
 			Initialize();
 		}
 
-		[UnityEngine.RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+		[UnityEngine.RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
 		static void OnRuntimeInitialize()
 		{
 			Initialize();

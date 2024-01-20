@@ -10,13 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1275586631729223897}
   - component: {fileID: 1275586631729223888}
-  - component: {fileID: 1275586631729223892}
   - component: {fileID: 1275586631729223889}
   - component: {fileID: 1275586631729223893}
   - component: {fileID: 1275586631729223894}
   - component: {fileID: 1275586631729223895}
-  - component: {fileID: 1275586631729223898}
   - component: {fileID: 1275586631729223899}
+  - component: {fileID: 1275586631729223892}
   - component: {fileID: 1275586631729223896}
   m_Layer: 0
   m_Name: tk2dCamera
@@ -63,10 +62,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.35298294
-    width: 1
-    height: 0.2940341
+    x: 0.06095031
+    y: 0
+    width: 0.8780994
+    height: 1
   near clip plane: 10
   far clip plane: 1000
   field of view: 24
@@ -87,18 +86,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1275586631729223892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275586631729223890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b36525cf32b70384d8241cfb8c32be78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1275586631729223889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,9 +331,12 @@ MonoBehaviour:
   selectiveToColor: {r: 1, g: 1, b: 1, a: 1}
   mode: 0
   updateTextures: 1
-  colorCorrectionCurvesShader: {fileID: 4800000, guid: 62bcade1028c24ca1a39760ed84b9487, type: 3}
-  simpleColorCorrectionCurvesShader: {fileID: 4800000, guid: 438ddd58d82c84d9eb1fdc56111702e1, type: 3}
-  colorCorrectionSelectiveShader: {fileID: 4800000, guid: e515e0f94cefc4c0db54b45cba621544, type: 3}
+  colorCorrectionCurvesShader: {fileID: 4800000, guid: 62bcade1028c24ca1a39760ed84b9487,
+    type: 3}
+  simpleColorCorrectionCurvesShader: {fileID: 4800000, guid: 438ddd58d82c84d9eb1fdc56111702e1,
+    type: 3}
+  colorCorrectionSelectiveShader: {fileID: 4800000, guid: e515e0f94cefc4c0db54b45cba621544,
+    type: 3}
 --- !u!114 &1275586631729223895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,18 +502,6 @@ MonoBehaviour:
   AmbientColorB: {r: 1, g: 1, b: 1, a: 1}
   AmbientIntensityB: 1
   HeroLightColorB: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &1275586631729223898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275586631729223890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b36525cf32b70384d8241cfb8c32be78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1275586631729223899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,6 +512,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 664a816074f4bc74db8d26ad8b58a5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1275586631729223892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275586631729223890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36525cf32b70384d8241cfb8c32be78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!81 &1275586631729223896

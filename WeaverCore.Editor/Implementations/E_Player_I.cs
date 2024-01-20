@@ -51,10 +51,13 @@ namespace WeaverCore.Editor.Implementations
             {
                 if (transform.GetChild(i).name == "Slash")
                 {
-                    if (!transform.TryGetComponent<EditorSlashNotifier>(out var slashNotifier))
+                    var slash = transform.GetChild(i).gameObject;
+                    if (!slash.TryGetComponent<EditorSlashNotifier>(out var slashNotifier))
                     {
-                        transform.gameObject.AddComponent<EditorSlashNotifier>();
+                        slash.AddComponent<EditorSlashNotifier>();
                     }
+
+                    slash.tag = "Nail Attack";
                 }
             }
         }

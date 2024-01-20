@@ -1035,6 +1035,42 @@ namespace Modding
         }
 
         /// <summary>
+        ///     Called whenever the player heals
+        /// </summary>
+        /// <remarks>PlayerData.health</remarks>
+        internal static int BeforeAddHealth(int amount)
+        {
+            Debug.Log("BeforeAddHealth Invoked");
+
+            if (BeforeAddHealthHook == null)
+            {
+                return amount;
+            }
+
+            Delegate[] invocationList = BeforeAddHealthHook.GetInvocationList();
+
+            foreach (Func<int, int> toInvoke in invocationList)
+            {
+                try
+                {
+                    amount = toInvoke.Invoke(amount);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError(ex);
+                }
+            }
+
+            return amount;
+        }
+
+        /// <summary>
+        ///     Called whenever the player heals, overrides health added.
+        /// </summary>
+        /// <remarks>PlayerData.health</remarks>
+        public static event Func<int, int> BeforeAddHealthHook;
+
+        /// <summary>
         ///     Called directly after a save has been loaded
         /// </summary>
         /// <remarks>GameManager.LoadGame</remarks>

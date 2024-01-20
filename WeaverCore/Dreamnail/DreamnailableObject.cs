@@ -65,11 +65,18 @@ namespace WeaverCore.Dreamnail
 
             if (flashWhenHit)
             {
-                SpriteFlasher flasher = gameObject.GetComponent<SpriteFlasher>();
+                foreach (var flasher in gameObject.GetComponentsInChildren<SpriteFlasher>())
+                {
+                    if (flasher != null)
+                    {
+                        flasher.flashDreamImpact();
+                    }
+                }
+                /*SpriteFlasher flasher = gameObject.GetComponent<SpriteFlasher>();
                 if (flasher != null)
                 {
                     flasher.flashDreamImpact();
-                }
+                }*/
             }
 
             LastDreamnailHitTime = Time.time;

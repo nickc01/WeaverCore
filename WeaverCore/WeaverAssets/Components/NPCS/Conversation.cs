@@ -60,6 +60,11 @@ namespace WeaverCore.Assets.Components
             StartCoroutine(StartConversationRoutine());
         }
 
+        public void StartConversation(bool makePlayerLookUp, Action onDone = null)
+        {
+            StartCoroutine(StartConversationRoutine(makePlayerLookUp, onDone));
+        }
+
         private void EventReceiver_OnReceivedEvent(string eventName, GameObject source)
         {
             if (eventName == "YES")
@@ -80,7 +85,7 @@ namespace WeaverCore.Assets.Components
         /// Starts a conversation with the player
         /// </summary>
         /// <param name="makePlayerLookUp">Should the player look up when starting the convo?</param>
-        public IEnumerator StartConversationRoutine(bool makePlayerLookUp = true)
+        public IEnumerator StartConversationRoutine(bool makePlayerLookUp = true, Action onDone = null)
         {
             if (eventReceiver == null)
             {
@@ -103,6 +108,7 @@ namespace WeaverCore.Assets.Components
             boxVisible = true;
             yield return new WaitForSeconds(0.3f);
             yield return DoConversation();
+            onDone?.Invoke();
 
         }
 
@@ -138,6 +144,80 @@ namespace WeaverCore.Assets.Components
             }
         }
 
+
+
+        /// <summary>
+        /// Immediately reveals the text in the dialogue box, rather than having to wait for it to type out
+        /// </summary>
+        public void FinishTyping()
+        {
+            var dialogManager = GameObject.Find("DialogueManager");
+            if (dialogManager != null)
+            {
+                var text = dialogManager.transform.Find("Text")?.gameObject;
+                if (text != null)
+                {
+                    var dialogueBox = text.GetComponent("DialogueBox");
+
+                    var textMesh = (TextMeshPro)dialogueBox.ReflectGetField("textMesh", BindingFlags.Instance | BindingFlags.NonPublic);
+
+                    if (textMesh != null)
+                    {
+                        textMesh.maxVisibleCharacters = 99999;
+                    }
+                    /*talking = true;
+                    EventManager.SendEventToGameObject("TALK START", gameObject, gameObject);
+                    StartDialogBoxConversation(, message);
+                    yield return new WaitUntil(() => !talking);
+                    EventManager.SendEventToGameObject("TALK END", gameObject, gameObject);*/
+                }
+                /*else
+                {
+                    yield return new WaitForSeconds(0.5f);
+                }*/
+            }
+        }
+
+        protected IEnumerator SpeakImmediate(string message)
+        {
+            Coroutine speakImmediateCoroutine = null;
+            IEnumerator SpeakImmediateRoutine(Func<bool> finished)
+            {
+                while (!finished())
+                {
+                    FinishTyping();
+                    yield return new WaitForFixedUpdate();
+                }
+                speakImmediateCoroutine = null;
+            }
+
+            ShowConversationBox();
+            var dialogManager = GameObject.Find("DialogueManager");
+            if (dialogManager != null)
+            {
+                var text = dialogManager.transform.Find("Text")?.gameObject;
+                if (text != null)
+                {
+                    talking = true;
+                    EventManager.SendEventToGameObject("TALK START", gameObject, gameObject);
+                    StartDialogBoxConversation(text.GetComponent("DialogueBox"), message);
+                    speakImmediateCoroutine = StartCoroutine(SpeakImmediateRoutine(() => !talking));
+                    yield return new WaitUntil(() => !talking);
+                    EventManager.SendEventToGameObject("TALK END", gameObject, gameObject);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(0.5f);
+                }
+            }
+
+            if (speakImmediateCoroutine != null)
+            {
+                StopCoroutine(speakImmediateCoroutine);
+                speakImmediateCoroutine = null;
+            }
+        }
+
         /// <summary>
         /// Speaks a message to the player
         /// </summary>
@@ -170,7 +250,7 @@ namespace WeaverCore.Assets.Components
         /// <param name="messages">The messages to speak</param>
         protected IEnumerator Speak(IEnumerable<string> messages)
         {
-            string insert = "<page>";
+            /*string insert = "<page>";
             StringBuilder finalMessage = new StringBuilder();
             foreach (var msg in messages)
             {
@@ -178,7 +258,8 @@ namespace WeaverCore.Assets.Components
                 finalMessage.Append(insert);
             }
             finalMessage.Remove(finalMessage.Length - insert.Length, insert.Length);
-            return Speak(finalMessage.ToString());
+            return Speak(finalMessage.ToString());*/
+            return Speak(StringUtilities.Pagify(messages));
         }
 
         /// <summary>

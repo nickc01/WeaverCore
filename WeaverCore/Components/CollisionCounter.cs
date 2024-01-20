@@ -23,7 +23,7 @@ namespace WeaverCore.Components
         /// <summary>
         /// Gets the count of currently collided objects.
         /// </summary>
-        public int CollidedObjectCount => collidedObjects.Count;
+        public int CollidedObjectCount => collidedObjects.Count(c => c != null);
 
         private void OnEnable()
         {
@@ -57,6 +57,14 @@ namespace WeaverCore.Components
             }
         }
 
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if (!collidedObjects.Contains(collision))
+            {
+                collidedObjects.Add(collision);
+            }
+        }
+
         /// <summary>
         /// Called when a 2D collider exits the trigger zone.
         /// </summary>
@@ -74,6 +82,14 @@ namespace WeaverCore.Components
         /// </summary>
         /// <param name="collision">The collision data.</param>
         private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (!collidedObjects.Contains(collision.collider))
+            {
+                collidedObjects.Add(collision.collider);
+            }
+        }
+
+        private void OnCollisionStay2D(Collision2D collision)
         {
             if (!collidedObjects.Contains(collision.collider))
             {
@@ -110,6 +126,8 @@ namespace WeaverCore.Components
         {
             float nearestDistance = float.PositiveInfinity;
             Collider2D nearestTarget = null;
+
+            collidedObjects.RemoveAll(c => c == null);
 
             if (collidedObjects.Count > 0)
             {

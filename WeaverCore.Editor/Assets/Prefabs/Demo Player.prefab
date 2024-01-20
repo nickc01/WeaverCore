@@ -590,8 +590,7 @@ MonoBehaviour:
   footstepsWalkSpa: {fileID: 8300000, guid: 2191900c9699d82419e3e77e6f6c00b3, type: 3}
   footstepsWalkMetal: {fileID: 8300000, guid: f061578cb35ae6f40b67681f22a7b720, type: 3}
   nailArtCharge: {fileID: 8300000, guid: 5a78b00989da9a1499815e42725663a2, type: 3}
-  nailArtChargeComplete: {fileID: 8300000, guid: 6bce161cf61ad3c41a8a6f9f4ab21435,
-    type: 3}
+  nailArtChargeComplete: {fileID: 8300000, guid: 6bce161cf61ad3c41a8a6f9f4ab21435, type: 3}
   blockerImpact: {fileID: 8300000, guid: 62988663ab1b58c43aec2275d9a764f0, type: 3}
   shadowDashClip: {fileID: 8300000, guid: 9f45ed0245a9e02468329739a0c9e192, type: 3}
   sharpShadowClip: {fileID: 8300000, guid: 895854dc533e1f245a19ebf70bdc2d2b, type: 3}
@@ -638,8 +637,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3122784541230283687, guid: c36128c91eaa8bb429609c640b49a7dd,
-    type: 3}
+  m_Sprite: {fileID: -3122784541230283687, guid: c36128c91eaa8bb429609c640b49a7dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -680,8 +678,7 @@ AudioSource:
   m_GameObject: {fileID: 1078360995751100184}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -5134931614383017312, guid: 9097f962ea6466441bfc2d9f1c638a17,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: -5134931614383017312, guid: 9097f962ea6466441bfc2d9f1c638a17, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

@@ -267,7 +267,11 @@ public class HealthManagerProxy : HealthManager
 		if (self is HealthManagerProxy)
 		{
 			var proxy = (HealthManagerProxy)self;
-			proxy.weaverHealth.Hit(Misc.ConvertHitInstance(hitInstance));
+			var hitInfo = Misc.ConvertHitInstance(hitInstance);
+
+			DamageUtilities.ApplyEnemyDamageModifier(proxy.weaverHealth.gameObject, ref hitInfo);
+
+            proxy.weaverHealth.Hit(hitInfo);
 		}
 		else
 		{

@@ -6,6 +6,8 @@ using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.DataTypes;
 using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
+
 namespace WeaverCore.Game.Patches
 {
 	static class HitTaker_Patches
@@ -23,7 +25,9 @@ namespace WeaverCore.Game.Patches
                     {
                         foreach (var hittable in hittables)
                         {
-                            hittable.Hit(info);
+                            var infoCopy = info;
+                            DamageUtilities.ApplyEnemyDamageModifier(transform.gameObject, ref infoCopy);
+                            hittable.Hit(infoCopy);
                         }
                     }
                     transform = transform.parent;

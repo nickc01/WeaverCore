@@ -76,15 +76,20 @@ namespace WeaverCore.Assets.Components
 				{
 					foreach (var hittable in hittables)
 					{
-                        hittable.Hit(new HitInfo()
-                        {
-                            Attacker = attacker,
-                            Damage = damage,
-                            AttackStrength = 1f,
-                            AttackType = type,
-                            Direction = hitDirection.ToDegrees(),
-                            IgnoreInvincible = false
-                        });
+						var hitInfo = new HitInfo()
+						{
+							Attacker = attacker,
+							Damage = damage,
+							AttackStrength = 1f,
+							AttackType = type,
+							Direction = hitDirection.ToDegrees(),
+							IgnoreInvincible = false
+						};
+
+						//TODO - MAKE SURE TO DO THE SAME THING FOR WEAVERCORE.GAME TOO
+						DamageUtilities.ApplyEnemyDamageModifier(obj.gameObject, ref hitInfo);
+
+                        hittable.Hit(hitInfo);
                         hitObjects.Add(hittable);
                     }
                 }

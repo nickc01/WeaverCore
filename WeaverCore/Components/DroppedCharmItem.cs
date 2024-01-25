@@ -3,6 +3,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
     /// <summary>
     /// Represents an item that, when dropped, gives a charm to the player.
     /// </summary>

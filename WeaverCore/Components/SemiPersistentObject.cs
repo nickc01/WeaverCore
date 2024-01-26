@@ -99,7 +99,10 @@ namespace WeaverCore.Components
 
         protected virtual void OnGetState(bool canSpawn)
         {
-            GameObject.Destroy(gameObject);
+            if (!canSpawn)
+            {
+                GameObject.Destroy(gameObject);
+            }
         }
 
         //private void OnEnable()

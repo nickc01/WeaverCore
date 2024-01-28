@@ -608,7 +608,7 @@ namespace WeaverCore.Editor.Compilation
 					}
 					else
                     {
-						DebugUtilities.ClearLog();
+                        EditorDebugUtilities.ClearLog();
                     }
 				}
 				finally
@@ -865,7 +865,7 @@ namespace WeaverCore.Editor.Compilation
 			{
                 if (firstTime)
                 {
-					DebugUtilities.ClearLog();
+                    EditorDebugUtilities.ClearLog();
 					//Try Building Again, since the first ever build seems to have issues.
 					if (BuildScreen.BuildSettings.WeaverCoreOnly)
 					{

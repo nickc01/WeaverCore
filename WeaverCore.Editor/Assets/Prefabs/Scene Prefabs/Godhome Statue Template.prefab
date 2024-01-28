@@ -20795,7 +20795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ee50019d0c16547b74cf1bfcf3a6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateOnAwake: 1
 --- !u!114 &1522682535171704501
 MonoBehaviour:
   m_ObjectHideFlags: 0

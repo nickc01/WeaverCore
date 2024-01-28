@@ -31,7 +31,7 @@ namespace WeaverCore.Editor
 
                 asm.Save();
 
-                DebugUtilities.ClearLog();
+                EditorDebugUtilities.ClearLog();
 
                 finishCheck(DependencyCheckResult.RequiresReload);
 

@@ -1546,6 +1546,8 @@ return fsmBool.Value;
             }
         }
         int @int = playerData.GetInt("MPReserve");
+
+        num = ModHooks.OnSoulGain(num);
         //num = ModHooks.OnSoulGain(num);
         //this.playerData.AddMPCharge(num);
         /*GameCameras.instance.soulOrbFSM.SendEvent("MP GAIN");

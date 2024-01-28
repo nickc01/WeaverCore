@@ -862,6 +862,41 @@ namespace Modding
         }
 
         /// <summary>
+        ///     Called when Hero recovers Soul from hitting enemies
+        /// </summary>
+        /// <returns>The amount of soul to recover</returns>
+        public static event Func<int, int> SoulGainHook;
+
+        /// <summary>
+        ///     Called when Hero recovers Soul from hitting enemies
+        /// </summary>
+        internal static int OnSoulGain(int num)
+        {
+            //Logger.LogFine("OnSoulGain Invoked");
+
+            if (SoulGainHook == null)
+            {
+                return num;
+            }
+
+            Delegate[] invocationList = SoulGainHook.GetInvocationList();
+
+            foreach (Func<int, int> toInvoke in invocationList)
+            {
+                try
+                {
+                    num = toInvoke.Invoke(num);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+
+            return num;
+        }
+
+        /// <summary>
         ///     Called directly before save has been saved to allow for changes to the data before persisted.
         /// </summary>
         /// <remarks>GameManager.SaveGame</remarks>

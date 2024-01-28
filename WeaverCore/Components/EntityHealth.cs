@@ -682,6 +682,26 @@ namespace WeaverCore.Components
                 EnemyHPBars_Interop.MarkAsNonBoss(gameObject);
             }
             StartCoroutine(CheckPersistence());
+
+            WeaverPersistentBoolItem component = GetComponent<WeaverPersistentBoolItem>();
+            if (component == null)
+            {
+                return;
+            }
+            component.OnGetSaveState += delegate (ref bool val)
+            {
+                if (GameManager.instance.GetCurrentMapZone() != "COLOSSEUM")
+                {
+                    val = Health == 0;
+                }
+            };
+            component.OnSetSaveState += delegate (bool val)
+            {
+                if (GameManager.instance.GetCurrentMapZone() != "COLOSSEUM" && val)
+                {
+                    base.gameObject.SetActive(value: false);
+                }
+            };
         }
 
         private IEnumerator CheckPersistence()

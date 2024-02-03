@@ -18,8 +18,8 @@ namespace WeaverCore
 		static object[] paramCache = new object[1];
 
 		HeroController heroCtrl;
-		static ObjectPool NailStrikePool;
-		static ObjectPool SlashImpactPool;
+		//static ObjectPool NailStrikePool;
+		//static ObjectPool SlashImpactPool;
 
 		static List<Player> _players;
 
@@ -159,9 +159,11 @@ namespace WeaverCore
 		/// <param name="hit">The hit on the enemy</param>
 		public virtual void PlayAttackSlash(Vector3 target, HitInfo hit)
 		{
-			Player.NailStrikePool.Instantiate(target, Quaternion.identity);
+			//Player.NailStrikePool.Instantiate(target, Quaternion.identity);
+			Pooling.Instantiate(EffectAssets.NailStrikePrefab, target, Quaternion.identity);
 
-			GameObject gameObject = Player.SlashImpactPool.Instantiate(target, Quaternion.identity);
+			//GameObject gameObject = Player.SlashImpactPool.Instantiate(target, Quaternion.identity);
+			GameObject gameObject = Pooling.Instantiate(EffectAssets.SlashImpactPrefab, target, Quaternion.identity);
 			switch (DirectionUtilities.DegreesToDirection(hit.Direction))
 			{
 				case CardinalDirection.Up:
@@ -186,13 +188,15 @@ namespace WeaverCore
 		private void Awake()
 		{
 			gameObject.tag = "Player";
-			if (Player.NailStrikePool == null)
-			{
-				Player.NailStrikePool = ObjectPool.Create(EffectAssets.NailStrikePrefab);
-				Player.NailStrikePool.FillPool(1);
-				Player.SlashImpactPool = ObjectPool.Create(EffectAssets.SlashImpactPrefab);
-				Player.SlashImpactPool.FillPool(1);
-			}
+			//if (Player.NailStrikePool == null)
+			//{
+				//WeaverLog.Log("NAIL STRIKE PREFAB = " + EffectAssets.NailStrikePrefab);
+				//WeaverLog.Log("SLASH IMPACT PREFAB = " + EffectAssets.SlashImpactPrefab);
+				//Player.NailStrikePool = ObjectPool.Create(EffectAssets.NailStrikePrefab);
+				//Player.NailStrikePool.FillPool(1);
+				//Player.SlashImpactPool = ObjectPool.Create(EffectAssets.SlashImpactPrefab);
+				//Player.SlashImpactPool.FillPool(1);
+			//}
 			heroCtrl = GetComponent<HeroController>();
 		}
 

@@ -75,6 +75,9 @@ namespace WeaverCore
 
 		static Cache<Type, FieldCopierBuilder<Component>.ShallowCopyDelegate> CopierCache = new Cache<Type, FieldCopierBuilder<Component>.ShallowCopyDelegate>();
 
+		public const bool DEBUG = true;
+		public const bool PREFAB_PROXY = false;
+
 		/// <summary>
 		/// Can the pool work with multiple threads?
 		/// </summary>
@@ -189,6 +192,14 @@ namespace WeaverCore
 			}
 		}
 
+		static void DebugPrint(string message)
+		{
+			if (DEBUG)
+			{
+				Debug.Log(message);
+			}
+		}
+
 		void InitPool()
 		{
 			InstanceName = Prefab.gameObject.name + " (Clone)";
@@ -197,11 +208,13 @@ namespace WeaverCore
 
 			if (!MultiThreaded)
 			{
-				LoadPoolData(components);
+				DebugPrint($"{name} Calling LoadPoolData Single-Threaded");
+                LoadPoolData(components);
 			}
 			else
 			{
-				ThreadPool.QueueUserWorkItem(LoadPoolData, components);
+                DebugPrint($"{name} Calling LoadPoolData Multi-Threaded");
+                ThreadPool.QueueUserWorkItem(LoadPoolData, components);
 			}
 		}
 
@@ -210,53 +223,79 @@ namespace WeaverCore
 		/// </summary>
 		public void ClearPool()
 		{
-			PooledObjects.Clear();
+            DebugPrint($"{name} Calling ClearPool");
+            PooledObjects.Clear();
 		}
 
 		/// <summary>
 		/// Creates a new pool for a prefab
 		/// </summary>
 		/// <param name="prefab">The prefab the pool will be instantiating</param>
+		/// <param name="boundToScene">If true, this ObjectPool will be destroyed when the current scene changes</param>
 		/// <returns>Returns a new pool for the prefab</returns>
 		/// <exception cref="Exception">Throws if the prefab is null</exception>
-		public static ObjectPool Create(GameObject prefab)
+		public static ObjectPool Create(GameObject prefab, bool boundToScene = false)
 		{
 			var poolComponent = prefab.GetComponent<PoolableObject>();
 			if (poolComponent == null)
 			{
 				throw new Exception("The gameObject " + prefab.name + " does not have PoolableObject component attached");
 			}
-			return Create(poolComponent);
+			return Create(poolComponent, boundToScene);
 		}
 
-		/// <summary>
-		/// Creates a new pool for a prefab
-		/// </summary>
-		/// <param name="prefab">The prefab the pool will be instantiating</param>
-		/// <returns>Returns a new pool for the prefab</returns>
-		public static ObjectPool Create(PoolableObject prefab)
+        /// <summary>
+        /// Creates a new pool for a prefab
+        /// </summary>
+        /// <param name="prefab">The prefab the pool will be instantiating</param>
+        /// <param name="boundToScene">If true, this ObjectPool will be destroyed when the current scene changes</param>
+        /// <returns>Returns a new pool for the prefab</returns>
+        public static ObjectPool Create(PoolableObject prefab, bool boundToScene = false)
 		{
+			if (prefab == null)
+			{
+				throw new ArgumentNullException(nameof(prefab));
+			}
 			var pool = new GameObject().AddComponent<ObjectPool>();
 			pool.gameObject.name = "Object Pool - " + prefab.name;
 			pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
-			pool.Prefab = prefab;
-			return pool;
+            DebugPrint($"{pool.name} Creating Pool...");
+			if (PREFAB_PROXY)
+			{
+                var sourcePrefabContainer = new GameObject("PREFAB_SOURCE_CONTAINER");
+                sourcePrefabContainer.SetActive(false);
+                sourcePrefabContainer.transform.SetParent(pool.transform);
+                var sourcePrefab = GameObject.Instantiate(prefab, sourcePrefabContainer.transform);
+                pool.Prefab = sourcePrefab;
+            }
+			else
+			{
+				pool.Prefab = prefab;
+			}  
+            DebugPrint($"{pool.name} Created Pool with prefab = " + pool.Prefab);
+
+			if (boundToScene)
+			{
+				GameObject.DontDestroyOnLoad(pool.gameObject);
+			}
+            return pool;
 		}
 
-		/// <summary>
-		/// Creates a new pool for a prefab
-		/// </summary>
-		/// <param name="prefab">The prefab the pool will be instantiating</param>
-		/// <returns>Returns a new pool for the prefab</returns>
-		/// <exception cref="Exception">Throws if the prefab is null</exception>
-		public static ObjectPool Create(Component prefab)
+        /// <summary>
+        /// Creates a new pool for a prefab
+        /// </summary>
+        /// <param name="prefab">The prefab the pool will be instantiating</param>
+        /// <param name="boundToScene">If true, this ObjectPool will be destroyed when the current scene changes</param>
+        /// <returns>Returns a new pool for the prefab</returns>
+        /// <exception cref="Exception">Throws if the prefab is null</exception>
+        public static ObjectPool Create(Component prefab, bool boundToScene = false)
 		{
 			var poolComponent = prefab.GetComponent<PoolableObject>();
 			if (poolComponent == null)
 			{
 				throw new Exception("The gameObject " + prefab.gameObject.name + " does not have PoolableObject component attached");
 			}
-			return Create(poolComponent);
+			return Create(poolComponent, boundToScene);
 		}
 
 
@@ -269,11 +308,14 @@ namespace WeaverCore
 			try
 			{
 				ComponentPath[] components = (ComponentPath[])componentsRaw;
+				//COMPONENTS CAN'T BE NULL HERE
 				for (int i = 0; i < components.GetLength(0); i++)
 				{
 					ComponentPath componentPath = components[i];
+					//COMPONENT MAYBE NULL?
 					Type type = componentPath.Component.GetType();
 
+					//COMPONENTDATA CANT BE NULL
 					if (!ComponentData.ContainsKey(type))
 					{
 						ComponentTypeData cData = new ComponentTypeData();
@@ -469,7 +511,19 @@ namespace WeaverCore
 				throw new Exception("The passed in object did not originate from this pool");
 			}
 
-			if (time > 0)
+			if (DEBUG)
+			{
+                if (time > 0f)
+                {
+                    DebugPrint($"{name} Returning {poolableObject.name} back to pool in {time} seconds");
+                }
+                else
+                {
+                    DebugPrint($"{name} Returning {poolableObject.name} back to pool");
+                }
+            }
+
+            if (time > 0)
 			{
 				StartCoroutine(ReturnToPoolRoutine(poolableObject, time));
 			}
@@ -560,7 +614,7 @@ namespace WeaverCore
 
 		private PoolableObject InstantiateInternal(Vector3 position, Quaternion rotation, Transform parent)
 		{
-			PoolableObject obj = null;
+            PoolableObject obj = null;
 			if (poolAllSet)
 			{
 				while (PooledObjects.Count > 0 && obj == null)
@@ -572,7 +626,10 @@ namespace WeaverCore
 			//If there was a valid object in the queue
 			if (obj != null && poolAllSet)
 			{
-				obj.gameObject.name = InstanceName;
+				WeaverLog.Log("FOUND PRELOADED = ");
+				WeaverLog.Log(obj);
+                DebugPrint($"Spawning Object from pool... {Prefab}");
+                obj.gameObject.name = InstanceName;
 				obj.SourcePool = this;
 				obj.InPool = false;
 				Transform t = obj.transform;
@@ -606,11 +663,13 @@ namespace WeaverCore
 				{
 					AddStartCallerEntry(objComponents, ComponentData);
 				}
-				return obj;
+                DebugPrint($"{name} Spawned Object from pool");
+                return obj;
 			}
 			else
 			{
-				obj = UnityEngine.Object.Instantiate(Prefab, position, rotation, parent);
+                DebugPrint($"{name} Instantiating new object... {Prefab}");
+                obj = UnityEngine.Object.Instantiate(Prefab, position, rotation, parent);
 				obj.SourcePool = this;
 				obj.InPool = false;
 				obj.gameObject.name = InstanceName;
@@ -618,7 +677,8 @@ namespace WeaverCore
 				t.SetParent(parent);
 				t.position = position;
 				t.rotation = rotation;
-				return obj;
+                DebugPrint($"{name} Instantiated new object");
+                return obj;
 			}
 		}
 

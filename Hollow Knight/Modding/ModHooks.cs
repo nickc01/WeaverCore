@@ -1100,6 +1100,42 @@ namespace Modding
         }
 
         /// <summary>
+        ///     Called whenever focus cost is calculated
+        /// </summary>
+        internal static float OnFocusCost()
+        {
+            Logger.LogFine("OnFocusCost Invoked");
+
+            float result = 1f;
+
+            if (FocusCostHook == null)
+            {
+                return result;
+            }
+
+            Delegate[] invocationList = FocusCostHook.GetInvocationList();
+
+            foreach (Func<float> toInvoke in invocationList)
+            {
+                try
+                {
+                    result = toInvoke.Invoke();
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+
+            return result;
+        }
+		
+		/// <summary>
+        ///     Called whenever focus cost is calculated, allows a focus cost multiplier.
+        /// </summary>
+        public static event Func<float> FocusCostHook;
+
+        /// <summary>
         ///     Called whenever the player heals, overrides health added.
         /// </summary>
         /// <remarks>PlayerData.health</remarks>

@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Enums
 {
@@ -55,10 +58,43 @@ namespace WeaverCore.Enums
 			}
 		}
 
-		public static void DoneWithObject(this OnDoneBehaviour behaviour, Component component)
+        public static void DoneWithObject(this OnDoneBehaviour behaviour, GameObject gameObject, float time, Action onDone = null)
+		{
+			IEnumerator Waiter()
+			{
+				for (float t = 0; t < time; t += Time.deltaTime)
+				{
+					if (gameObject == null)
+					{
+                        onDone?.Invoke();
+                        yield break;
+					}
+					if (behaviour == OnDoneBehaviour.Disable && !gameObject.activeSelf)
+					{
+						onDone?.Invoke();
+						yield break;
+					}
+					yield return null;
+				}
+
+                onDone?.Invoke();
+                behaviour.DoneWithObject(gameObject);
+            }
+
+
+			UnboundCoroutine.Start(Waiter());
+		}
+
+
+        public static void DoneWithObject(this OnDoneBehaviour behaviour, Component component)
 		{
 			DoneWithObject(behaviour, component.gameObject);
 		}
-	}
+
+        public static void DoneWithObject(this OnDoneBehaviour behaviour, Component component, float time, Action onDone = null)
+        {
+			DoneWithObject(behaviour, component.gameObject, time, onDone);
+        }
+    }
 
 }

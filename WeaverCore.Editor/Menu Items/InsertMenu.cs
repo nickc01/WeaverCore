@@ -209,6 +209,12 @@ namespace WeaverCore.Editor.Menu_Items
             InsertObject("Shade Gate");
         }
 
+        [MenuItem("WeaverCore/Insert/Soul Totem")]
+        public static void InsertSoulTotem()
+        {
+            InsertObject("Soul Totem");
+        }
+
         //Godhome Statue Template
 
         [MenuItem("WeaverCore/Insert/Godhome Statue Template")]

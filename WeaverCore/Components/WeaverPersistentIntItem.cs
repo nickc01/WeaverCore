@@ -1,8 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-public class PersistentIntItem : MonoBehaviour, ISerializationCallbackReceiver
+public class WeaverPersistentIntItem : MonoBehaviour, ISerializationCallbackReceiver
 {
+    public delegate void IntEvent(int value);
+
+    public delegate void IntRefEvent(ref int value);
+
     [SerializeField]
     [Tooltip("If checked, this object will reset its state under certain circumstances such as hero death.")]
     public bool semiPersistent;
@@ -13,6 +17,10 @@ public class PersistentIntItem : MonoBehaviour, ISerializationCallbackReceiver
     private GameManager gm;
 
     //private PlayMakerFSM myFSM;
+
+    public event IntEvent OnSetSaveState;
+
+    public event IntRefEvent OnGetSaveState;
 
     [SerializeField]
     [HideInInspector]
@@ -62,6 +70,12 @@ public class PersistentIntItem : MonoBehaviour, ISerializationCallbackReceiver
         if (persistentIntData != null)
         {
             this.persistentIntData.value = persistentIntData.value;
+
+            if (OnSetSaveState != null)
+            {
+                OnSetSaveState(persistentIntData.value);
+            }
+
             OnPersistentValueRetrieved(persistentIntData.value);
             /*if (myFSM != null)
             {
@@ -73,11 +87,17 @@ public class PersistentIntItem : MonoBehaviour, ISerializationCallbackReceiver
             }*/
             //LookForMyFSM();
         }
+        else if (this.OnGetSaveState != null)
+        {
+            this.OnGetSaveState(ref this.persistentIntData.value);
+        }
         /*else
         {
             UpdateValueFromFSM();
         }*/
     }
+
+
 
     protected virtual void OnPersistentValueRetrieved(int persistentValue)
     {
@@ -86,12 +106,22 @@ public class PersistentIntItem : MonoBehaviour, ISerializationCallbackReceiver
 
     private void Reset()
     {
+        if (persistentIntData == null)
+        {
+            persistentIntData = new PersistentIntData();
+        }
         persistentIntData.id = Guid.NewGuid().ToString();
+        persistentIntData.value = -1;
     }
 
     private void SaveState()
     {
         SetMyID();
+
+        if (this.OnGetSaveState != null)
+        {
+            this.OnGetSaveState(ref persistentIntData.value);
+        }
         //UpdateValueFromFSM();
         SceneData.instance.SaveMyState(persistentIntData);
     }

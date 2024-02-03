@@ -44,10 +44,7 @@ namespace WeaverCore.Components
         WeaverPersistentIntItem hitCounter;
         //SpriteRenderer mainRenderer;
 
-        [SerializeField]
         int value = -1;
-
-        [SerializeField]
         bool activated = false;
         bool hitReceived = false;
         HitInfo lastHit;

@@ -117,7 +117,7 @@ namespace WeaverCore.Components.HitEffects
 
 				var audio = WeaverAudio.PlayAtPoint(DamageSound, transform.position, channel: AudioChannel.Sound);
 				audio.AudioSource.pitch = UnityEngine.Random.Range(audioPitchMin,audioPitchMax);
-				Pooling.Instantiate(DamageFlash, transform.position + effectsOffset, Quaternion.identity);
+				Pooling.Instantiate(DamageFlash, transform.TransformPoint(effectsOffset), Quaternion.identity);
 
 				if (doFlashEffects)
 				{
@@ -136,28 +136,28 @@ namespace WeaverCore.Components.HitEffects
 					case CardinalDirection.Up:
 						if (doBlood)
 						{
-							Blood.SpawnDirectionalBlood(transform.position + effectsOffset, CardinalDirection.Up);
+							Blood.SpawnDirectionalBlood(transform.TransformPoint(effectsOffset), CardinalDirection.Up);
 						}
 						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(270f, 90f, 270f));
 						break;
 					case CardinalDirection.Down:
 						if (doBlood)
 						{
-							Blood.SpawnDirectionalBlood(transform.position + effectsOffset, CardinalDirection.Down);
+							Blood.SpawnDirectionalBlood(transform.TransformPoint(effectsOffset), CardinalDirection.Down);
 						}
 						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(-72.5f, -180f, -180f));
 						break;
 					case CardinalDirection.Left:
 						if (doBlood)
 						{
-							Blood.SpawnDirectionalBlood(transform.position + effectsOffset, CardinalDirection.Left);
+							Blood.SpawnDirectionalBlood(transform.TransformPoint(effectsOffset), CardinalDirection.Left);
 						}
 						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(180f, 90f, 270f));
 						break;
 					case CardinalDirection.Right:
 						if (doBlood)
 						{
-							Blood.SpawnDirectionalBlood(transform.position + effectsOffset,CardinalDirection.Right);
+							Blood.SpawnDirectionalBlood(transform.TransformPoint(effectsOffset), CardinalDirection.Right);
 						}
 						Pooling.Instantiate(HitPuff, transform.position, Quaternion.Euler(0f, 90f, 270f));
 						break;

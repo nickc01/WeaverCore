@@ -274,7 +274,7 @@ namespace WeaverCore
 			}  
             DebugPrint($"{pool.name} Created Pool with prefab = " + pool.Prefab);
 
-			if (boundToScene)
+			if (!boundToScene)
 			{
 				GameObject.DontDestroyOnLoad(pool.gameObject);
 			}

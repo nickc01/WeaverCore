@@ -86,7 +86,7 @@ namespace WeaverCore.Components.HitEffects
                 {
                     spriteFlash.flashFocusHeal();
                 }
-                GameObject ghostHitObj = Pooling.Instantiate(ghostHitPt, transform.position + effectsOffset, Quaternion.identity);
+                GameObject ghostHitObj = Pooling.Instantiate(ghostHitPt, transform.TransformPoint(effectsOffset), Quaternion.identity);
                 switch (DirectionUtilities.DegreesToDirection(hit.Direction))
                 {
                     case CardinalDirection.Right:

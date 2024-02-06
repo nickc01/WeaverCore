@@ -397,12 +397,18 @@ namespace WeaverCore.Assets.Components
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            PlayerInRange = true;
+            if (collision.name == "HeroBox" || collision.GetComponent<HeroController>() != null)
+            {
+                PlayerInRange = true;
+            }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            PlayerInRange = false;
+            if (collision.name == "HeroBox" || collision.GetComponent<HeroController>() != null)
+            {
+                PlayerInRange = false;
+            }
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Modding;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -18,6 +19,8 @@ namespace WeaverCore
 	/// </summary>
     public static class Initialization
 	{
+		public const bool PERFORMANCE_DEBUGGING = true;
+
 		/// <summary>
 		/// Whether WeaverCore has been initialized or not
 		/// </summary>
@@ -50,6 +53,21 @@ namespace WeaverCore
 			Initialize();
 		}
 #endif
+
+		static Stopwatch startingWatch;
+
+		public static void PerformanceLog(string message)
+		{
+			if (PERFORMANCE_DEBUGGING)
+			{
+				if (startingWatch == null)
+				{
+					startingWatch = new Stopwatch();
+					startingWatch.Start();
+				}
+				WeaverLog.Log($"{startingWatch.ElapsedMilliseconds / 1000f} - {message}");
+			}
+		}
 
 		/// <summary>
 		/// Initializes all the necessary components of WeaverCore

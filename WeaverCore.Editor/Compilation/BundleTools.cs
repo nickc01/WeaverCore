@@ -1067,21 +1067,37 @@ namespace WeaverCore.Editor.Compilation
                                     {
 										valueAtIndex.Set($"{split[0]}:{split[1]}");
 										modified = true;
-                                        //serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
-                                        //fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
+                                    }
+                                }
+
+                                var fieldTypesField = monoBehaviourInst.Get("fieldTypes").Get("Array");
+
+                                var fieldTypesValue = fieldTypesField.GetValue();
+
+                                var fieldTypesArray = fieldTypesValue.AsArray();
+
+                                for (int i = 0; i < fieldTypesArray.size; i++)
+                                {
+                                    var valueAtIndex = fieldTypesField[i].GetValue();
+
+                                    var split = valueAtIndex.AsString().Split(':');
+                                    bool changed = false;
+                                    if (split[0] == "Assembly-CSharp")
+                                    {
+                                        changed = true;
+                                        split[0] = modName;
+                                    }
+                                    else if (split[0] == "HollowKnight")
+                                    {
+                                        changed = true;
+                                        split[0] = "Assembly-CSharp";
                                     }
 
-                                    /*var asmValue = featureAsms[i].GetValue();
-                                    foreach (var replacement in assemblyReplacements)
+                                    if (changed)
                                     {
-                                        if (asmValue.AsString() == replacement.Key)
-                                        {
-                                            asmValue.Set(replacement.Value);
-                                            ($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
-                                            modified = true;
-                                            break;
-                                        }
-                                    }*/
+                                        valueAtIndex.Set($"{split[0]}:{split[1]}");
+                                        modified = true;
+                                    }
                                 }
 
                                 if (modified)

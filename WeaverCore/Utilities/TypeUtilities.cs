@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,15 +31,29 @@ namespace WeaverCore.Utilities
 				return result;
 			}
 
+			string[] subTypes = fullTypeName.Split('+');
+
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
 				if (string.IsNullOrEmpty(assemblyName) || assembly.FullName == assemblyName || assembly.GetName().Name == assemblyName)
 				{
-					var type = assembly.GetType(fullTypeName,false);
+					var type = assembly.GetType(subTypes[0], false);
 					if (type != null)
 					{
-						typeCache.CacheObject((fullTypeName, assemblyName), type);
-						return type;
+						for (int i = 1; i < subTypes.Length; i++)
+						{
+							type = type.GetNestedType(subTypes[i], BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance);
+							if (type == null)
+							{
+								break;
+							}
+						}
+
+						if (type != null)
+						{
+                            typeCache.CacheObject((fullTypeName, assemblyName), type);
+                            return type;
+                        }
 					}
 				}
 			}

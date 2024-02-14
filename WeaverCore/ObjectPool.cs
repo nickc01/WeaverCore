@@ -75,7 +75,7 @@ namespace WeaverCore
 
 		static Cache<Type, FieldCopierBuilder<Component>.ShallowCopyDelegate> CopierCache = new Cache<Type, FieldCopierBuilder<Component>.ShallowCopyDelegate>();
 
-		public const bool DEBUG = true;
+		public const bool DEBUG = false;
 		public const bool PREFAB_PROXY = false;
 
 		/// <summary>

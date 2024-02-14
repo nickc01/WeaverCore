@@ -65,7 +65,8 @@ namespace WeaverCore
 					startingWatch = new Stopwatch();
 					startingWatch.Start();
 				}
-				WeaverLog.Log($"{startingWatch.ElapsedMilliseconds / 1000f} - {message}");
+				//WeaverLog.Log($"{startingWatch.ElapsedMilliseconds / 1000f} - {message}");
+				WeaverLog.Log($"{Time.timeAsDouble} - {message}");
 			}
 		}
 

@@ -13,6 +13,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+
     /// <summary>
     ///  Used for updating many fields at once on GameObjects
     /// </summary>

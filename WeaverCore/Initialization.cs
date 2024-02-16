@@ -65,8 +65,8 @@ namespace WeaverCore
 					startingWatch = new Stopwatch();
 					startingWatch.Start();
 				}
-				//WeaverLog.Log($"{startingWatch.ElapsedMilliseconds / 1000f} - {message}");
-				WeaverLog.Log($"{Time.timeAsDouble} - {message}");
+				WeaverLog.Log($"{startingWatch.ElapsedMilliseconds / 1000f} - {message}");
+				//WeaverLog.Log($"{Time.timeAsDouble} - {message}");
 			}
 		}
 
@@ -77,7 +77,8 @@ namespace WeaverCore
 		{
 			if (!WeaverCoreInitialized)
 			{
-				WeaverCoreInitialized = true;
+				PerformanceLog("Starting WeaverCore");
+                WeaverCoreInitialized = true;
 
 #if !UNITY_EDITOR
 				if (Application.isPlaying)
@@ -87,16 +88,22 @@ namespace WeaverCore
 #endif
 
 #if UNITY_EDITOR
-				LoadAsmIfNotFound("WeaverCore.Editor");
+                PerformanceLog("Loading WeaverCore.Editor");
+                LoadAsmIfNotFound("WeaverCore.Editor");
+                PerformanceLog("Loaded WeaverCore.Editor");
 #else
+				PerformanceLog("Loading WeaverCore.Game");
 				LoadAsmIfNotFound("WeaverCore.Game");
+				PerformanceLog("Loaded WeaverCore.Game");
 #endif
-				ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>();
+                ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>();
 
 				foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
 				{
-					PatchAssembly(asm);
-				}
+                    Initialization.PerformanceLog($"Patching assembly {asm.GetName().Name}");
+                    PatchAssembly(asm);
+                    Initialization.PerformanceLog($"Finished patching assembly {asm.GetName().Name}");
+                }
 			}
 
 			if (!WeaverCoreRuntimeInitialized && Application.isPlaying)
@@ -107,8 +114,10 @@ namespace WeaverCore
 				{
 					ReflectionUtilities.ExecuteMethodsWithAttribute<OnRuntimeInitAttribute>();
 				}
-			}
-		}
+
+                Initialization.PerformanceLog($"WeaverCore fully initialized");
+            }
+        }
 
 		static void ReplaceFonts()
 		{

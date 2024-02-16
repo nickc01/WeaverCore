@@ -8,6 +8,7 @@ using System.Text;
 using UnityEngine;
 using WeaverCore.Implementations;
 using WeaverCore.Internal;
+using static Mono.Security.X509.X520;
 
 namespace WeaverCore
 {
@@ -23,7 +24,7 @@ namespace WeaverCore
         /// </summary>
         /// <typeparam name="Mod">The mod to load the registries from</typeparam>
         public static void LoadAllRegistries<Mod>() where Mod : IMod
-        {
+        {    
             LoadAllRegistries(typeof(Mod));
         }
 
@@ -33,7 +34,9 @@ namespace WeaverCore
         /// <param name="modType">The mod to load the registries from</param>
         public static void LoadAllRegistries(Type modType)
         {
+            Initialization.PerformanceLog($"Loading all Registries in Mod {modType.Name}");
             LoadAllRegistries(modType.Assembly);
+            Initialization.PerformanceLog($"Finished loading all Registries in Mod {modType.Name}");
         }
 
         /// <summary>
@@ -57,7 +60,8 @@ namespace WeaverCore
         public static void LoadEmbeddedRegistries(Assembly assembly)
         {
             var assemblyName = assembly.GetName().Name;
-            WeaverLog.Log("Loading Embedded Registries for [" + assemblyName + "]");
+            //WeaverLog.Log("Loading Embedded Registries for [" + assemblyName + "]");
+            Initialization.PerformanceLog($"Loading Embedding Registries for {assemblyName}");
             string extension = null;
             if (SystemInfo.operatingSystem.Contains("Windows"))
             {
@@ -81,13 +85,16 @@ namespace WeaverCore
                     {
                         if (name.EndsWith(extension))
                         {
-                            WeaverLog.Log("Loading embedded bundle stream : " + name);
+                            //WeaverLog.Log("Loading embedded bundle stream : " + name);
+                            Initialization.PerformanceLog("Loading embedded bundle stream : " + name);
                             var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
 
                             if (bundle != null)
                             {
                                 loadedBundles.Add(bundle);
                             }
+
+                            Initialization.PerformanceLog("Finished Loading embedded bundle stream : " + name);
                         }
                     }
 
@@ -95,7 +102,8 @@ namespace WeaverCore
                     {
                         if (!bundle.isStreamedSceneAssetBundle)
                         {
-                            WeaverLog.Log("Loading bundle for Weaver Mod : " + bundle.name);
+                            //WeaverLog.Log("Loading bundle for Weaver Mod : " + bundle.name);
+                            Initialization.PerformanceLog("Loading bundle for Weaver Mod : " + bundle.name);
                             foreach (var registry in bundle.LoadAllAssets<Registry>())
                             {
                                 if (registry.ModType.Assembly.GetName().Name == assemblyName)
@@ -103,6 +111,8 @@ namespace WeaverCore
                                     registry.EnableRegistry();
                                 }
                             }
+
+                            Initialization.PerformanceLog("Finished Loading bundle for Weaver Mod : " + bundle.name);
                         }
                         else
                         {
@@ -118,6 +128,8 @@ namespace WeaverCore
                     throw;
                 }
             }
+
+            Initialization.PerformanceLog($"Finished Loading Embedding Registries for {assemblyName}");
         }
     }
 }

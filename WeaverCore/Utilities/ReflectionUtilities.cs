@@ -504,7 +504,9 @@ namespace WeaverCore.Utilities
 		/// <param name="throwOnError">Should an exception be thrown if a method fails?</param>
 		public static void ExecuteMethodsWithAttribute<AttriType>(Func<MethodInfo, AttriType, bool> ExecuteIf = null, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, bool throwOnError = false) where AttriType : Attribute
 		{
-			List<ValueTuple<MethodInfo, AttriType>> methods = new List<ValueTuple<MethodInfo, AttriType>>();
+            Initialization.PerformanceLog($"Running methods with Attribute {typeof(AttriType)}");
+
+            List<ValueTuple<MethodInfo, AttriType>> methods = new List<ValueTuple<MethodInfo, AttriType>>();
 
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
@@ -527,8 +529,10 @@ namespace WeaverCore.Utilities
 				{
 					if (ExecuteIf == null || ExecuteIf(method.Item1, method.Item2))
 					{
-						method.Item1.Invoke(null, null);
-					}
+                        Initialization.PerformanceLog($"Running method {method.Item1.DeclaringType.Name}:{method.Item1.Name}");
+                        method.Item1.Invoke(null, null);
+                        Initialization.PerformanceLog($"Done Running method {method.Item1.DeclaringType.Name}:{method.Item1.Name}");
+                    }
 				}
 				catch (Exception e)
 				{
@@ -552,7 +556,9 @@ namespace WeaverCore.Utilities
 					}
 				}
 			}
-		}
+
+            Initialization.PerformanceLog($"Finished running methods with Attribute {typeof(AttriType)}");
+        }
 
         /// <summary>
         /// Finds a loaded assembly by its full name or simple name.

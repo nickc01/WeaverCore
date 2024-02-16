@@ -342,7 +342,7 @@ namespace WeaverCore.Components
         /// Ends the laser. MUST BE CALLED AFTER <see cref="FireLaser_P2"/>. This function is useful if you want to control when the laser's events are triggered
         /// </summary>
         /// <returns>Returns the duration of the animation</returns>
-        public float EndLaser_P3()
+        public float EndLaser_P3(Action onDone = null)
         {
             if (partialAnimationRoutine != null)
             {
@@ -357,11 +357,15 @@ namespace WeaverCore.Components
 
             IEnumerator EndRoutine()
             {
+                var oldSpread = laser.Spread;
+                var oldStartingWidth = laser.StartingWidth;
+
                 yield return PlayAnimation(endAnimationSTRING, onPercentDone: t =>
                 {
-                    laser.Spread = Mathf.Lerp(originalSpread, endSpread, t);
-                    laser.StartingWidth = Mathf.Lerp(originalWidth, endWidth, t);
+                    laser.Spread = Mathf.Lerp(oldSpread, endSpread, t);
+                    laser.StartingWidth = Mathf.Lerp(oldStartingWidth, endWidth, t);
                 });
+                onDone?.Invoke();
                 laser.MainRenderer.enabled = false;
                 FiringLaser = false;
                 laser.gameObject.SetActive(false);

@@ -35,7 +35,7 @@ namespace WeaverCore
 					foreach (var player in _players)
 					{
                         paramCache[0] = player;
-                        foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>())
+                        foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>(Initialization.GetWeaverCoreAssemblies()))
                         {
 							if (method.GetParameters().Length == 1)
 							{
@@ -206,7 +206,7 @@ namespace WeaverCore
 			{
 				paramCache[0] = this;
 				//WeaverLog.Log("P_INIT_A");
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>())
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>(Initialization.GetWeaverCoreAssemblies()))
 				{
 					method.Invoke(null, paramCache);
 				}
@@ -219,7 +219,7 @@ namespace WeaverCore
 			{
                 paramCache[0] = this;
                 //WeaverLog.Log("P_INIT_B");
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>())
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>(Initialization.GetWeaverCoreAssemblies()))
                 {
                     method.Invoke(null, paramCache);
                 }
@@ -232,7 +232,7 @@ namespace WeaverCore
 			{
                 paramCache[0] = this;
                 //WeaverLog.Log("P_INIT_C");
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>())
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>(Initialization.GetWeaverCoreAssemblies()))
                 {
                     method.Invoke(null, paramCache);
                 }
@@ -245,7 +245,7 @@ namespace WeaverCore
 			{
                 paramCache[0] = this;
                 //WeaverLog.Log("P_INIT_D");
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>())
+                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>(Initialization.GetWeaverCoreAssemblies()))
                 {
                     method.Invoke(null, paramCache);
                 }

@@ -70,11 +70,25 @@ namespace WeaverCore
 			}
 		}
 
-		public static bool IsAssemblyExcluded(string assemblyName)
+		public static bool IsAssemblyExcluded(Assembly assembly)
 		{
-			return assemblyName == "mscorlib" || assemblyName.Contains("UnityEditor.") || assemblyName.Contains("UnityEngine.") || assemblyName.Contains("System.") || assemblyName == "System" || assemblyName.Contains("Assembly-CSharp") || assemblyName.Contains("Unity.") || assemblyName == "GalaxyCSharp" || assemblyName == "XGamingRuntime" || assemblyName == "zlib.net" || assemblyName == "ConditionalExpression" || assemblyName == "PlayMaker" || assemblyName == "netstandard" || assemblyName == "Newtonsoft.Json" || assemblyName.Contains("Mono");
+			/*var refAsms = assembly.GetReferencedAssemblies();
 
+			foreach (var asm in refAsms)
+			{
+				UnityEngine.Debug.Log($"REF ASM for {assembly.GetName().Name} = {asm.Name}");
+			}
+
+			return false;*/
+			//WeaverLog.Log("ASM = " + assembly.GetName().Name);
+
+			return !(assembly.GetName().Name == "WeaverCore" || assembly.GetReferencedAssemblies().Any(asm => asm.Name == "WeaverCore"));
         }
+
+		public static IEnumerable<Assembly> GetWeaverCoreAssemblies()
+		{
+			return AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsAssemblyExcluded(a));
+		}
 
 		/// <summary>
 		/// Initializes all the necessary components of WeaverCore
@@ -102,16 +116,13 @@ namespace WeaverCore
 				LoadAsmIfNotFound("WeaverCore.Game");
 				PerformanceLog("Loaded WeaverCore.Game");
 #endif
-                ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>();
+                ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>(GetWeaverCoreAssemblies());
 
-				foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+				foreach (var asm in GetWeaverCoreAssemblies())
 				{
-					if (!IsAssemblyExcluded(asm.GetName().Name))
-					{
-                        Initialization.PerformanceLog($"Patching assembly {asm.GetName().Name}");
-                        PatchAssembly(asm);
-                        Initialization.PerformanceLog($"Finished patching assembly {asm.GetName().Name}");
-                    }
+                    Initialization.PerformanceLog($"Patching assembly {asm.GetName().Name}");
+                    PatchAssembly(asm);
+                    Initialization.PerformanceLog($"Finished patching assembly {asm.GetName().Name}");
                 }
 			}
 
@@ -121,7 +132,7 @@ namespace WeaverCore
 
 				if (Application.isPlaying)
 				{
-					ReflectionUtilities.ExecuteMethodsWithAttribute<OnRuntimeInitAttribute>();
+					ReflectionUtilities.ExecuteMethodsWithAttribute<OnRuntimeInitAttribute>(GetWeaverCoreAssemblies());
 				}
 
                 Initialization.PerformanceLog($"WeaverCore fully initialized");
@@ -277,7 +288,7 @@ namespace WeaverCore
 
             if (imod != null)
             {
-				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>().ToList();
+				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>(GetWeaverCoreAssemblies()).ToList();
 
 				foreach (var method in methods)
 				{
@@ -321,7 +332,7 @@ namespace WeaverCore
 
 			if (imod != null)
 			{
-				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModUnloadAttribute>().ToList();
+				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModUnloadAttribute>(GetWeaverCoreAssemblies()).ToList();
 
 				foreach (var method in methods)
 				{

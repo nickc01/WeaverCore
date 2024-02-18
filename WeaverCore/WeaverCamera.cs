@@ -143,7 +143,7 @@ namespace WeaverCore
 				return;
 			}
 			_instance = this;
-			ReflectionUtilities.ExecuteMethodsWithAttribute<AfterCameraLoadAttribute>();
+			ReflectionUtilities.ExecuteMethodsWithAttribute<AfterCameraLoadAttribute>(Initialization.GetWeaverCoreAssemblies());
 
 			if (featuresToAdd != null)
 			{

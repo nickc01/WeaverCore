@@ -335,7 +335,7 @@ namespace WeaverCore.Editor.Compilation
 
 				var modNameParam = new object[] { BuildScreen.BuildSettings.ModName };
 
-				foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<BeforeBuildAttribute>())
+				foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<BeforeBuildAttribute>(Initialization.GetWeaverCoreAssemblies()))
 				{
                     try
                     {
@@ -812,7 +812,7 @@ namespace WeaverCore.Editor.Compilation
                 //ReflectionUtilities.ExecuteMethodsWithAttribute<AfterBuildAttribute>();
                 var modNameParam = new object[] { BuildScreen.BuildSettings.ModName };
 
-                foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<AfterBuildAttribute>())
+                foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<AfterBuildAttribute>(Initialization.GetWeaverCoreAssemblies()))
                 {
 					try
 					{

@@ -34,10 +34,14 @@ namespace WeaverCore
         /// <param name="modType">The mod to load the registries from</param>
         public static void LoadAllRegistries(Type modType)
         {
-            Initialization.PerformanceLog($"Loading all Registries in Mod {modType.Name}");
-            LoadAllRegistries(modType.Assembly);
-            Initialization.PerformanceLog($"Finished loading all Registries in Mod {modType.Name}");
+            if (!Initialization.IsAssemblyExcluded(modType.Assembly))
+            {
+                Initialization.PerformanceLog($"Loading all Registries in Mod {modType.Name}");
+                LoadAllRegistries(modType.Assembly);
+                Initialization.PerformanceLog($"Finished loading all Registries in Mod {modType.Name}");
+            }
         }
+
 
         /// <summary>
         /// Loads all registries from an assembly

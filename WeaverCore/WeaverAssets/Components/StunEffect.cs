@@ -10,7 +10,9 @@ namespace WeaverCore.Assets.Components
 	/// </summary>
     public class StunEffect : MonoBehaviour
 	{
-		static ObjectPool StunEffectPool;
+		//static ObjectPool StunEffectPool;
+
+		static CachedPrefab<StunEffect> prefab = new CachedPrefab<StunEffect>();
 
 		PoolableObject poolComponent;
 
@@ -59,11 +61,12 @@ namespace WeaverCore.Assets.Components
 
 		static void Spawn_Internal(Vector3 position, AudioClip clip, bool playProvidedAudioClip)
 		{
-			if (StunEffectPool == null)
+			if (prefab.Value == null)
 			{
-				StunEffectPool = ObjectPool.Create(WeaverAssets.LoadWeaverAsset<GameObject>("Stun Effect"));
-			}
-			var instance = StunEffectPool.Instantiate(position, Quaternion.identity).GetComponent<StunEffect>();
+				prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Stun Effect").GetComponent<StunEffect>();
+
+            }
+			var instance = Pooling.Instantiate(prefab.Value, position, Quaternion.identity);
 
 			if (playProvidedAudioClip)
 			{

@@ -15,17 +15,17 @@ namespace WeaverCore.Assets.Components
 	/// </summary>
 	public class WhiteFlash : MonoBehaviour, IOnPool
 	{
-		static WhiteFlash _defaultPrefab;
+		static CachedPrefab<WhiteFlash> _defaultPrefab = new CachedPrefab<WhiteFlash>();
 
 		public static WhiteFlash DefaultPrefab
 		{
 			get
 			{
-				if (_defaultPrefab == null)
+				if (_defaultPrefab.Value == null)
 				{
-					_defaultPrefab = WeaverAssets.LoadWeaverAsset<GameObject>("White Flash Default").GetComponent<WhiteFlash>();
+					_defaultPrefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("White Flash Default").GetComponent<WhiteFlash>();
 				}
-				return _defaultPrefab;
+				return _defaultPrefab.Value;
 			}
 		}
 

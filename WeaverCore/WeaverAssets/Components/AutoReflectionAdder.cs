@@ -11,7 +11,7 @@ namespace WeaverCore.Assets.Components
     [RequireComponent(typeof(BoxCollider2D))]
     public class AutoReflectionAdder : MonoBehaviour
     {
-        static RaycastHit2D[] hitCache = new RaycastHit2D[8];
+        //static RaycastHit2D[] hitCache = new RaycastHit2D[8];
 
         static List<Renderer> validObjects = new List<Renderer>();
         static List<Renderer> invalidObjects = new List<Renderer>();
@@ -52,6 +52,8 @@ namespace WeaverCore.Assets.Components
             Debug.DrawLine(bounds.min, bounds.max, Color.red, 1f);
             var hitTriggersPrevValue = Physics2D.queriesHitTriggers;
             Physics2D.queriesHitTriggers = true;
+
+            var hitCache = HitCache.GetMultiCachedArray(8);
             var hitCount = Physics2D.BoxCastNonAlloc(bounds.center, bounds.size, 0f, Vector2.up, hitCache,9999, collisionLayers);
             Physics2D.queriesHitTriggers = hitTriggersPrevValue;
             if (hitCount > 0)

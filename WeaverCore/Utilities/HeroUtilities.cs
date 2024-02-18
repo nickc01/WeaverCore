@@ -106,12 +106,12 @@ namespace WeaverCore.Utilities
 
 			if (playSound)
 			{
-                if (cutsceneBeginSound == null)
+                /*if (cutsceneBeginSound == null)
                 {
                     cutsceneBeginSound = WeaverAssets.LoadWeaverAsset<AudioClip>("dream_ghost_appear");
-                }
+                }*/
 
-				WeaverAudio.PlayAtPoint(cutsceneBeginSound, Player.Player1.transform.position);
+				WeaverAudio.PlayAtPoint(WeaverAssets.LoadWeaverAsset<AudioClip>("dream_ghost_appear"), Player.Player1.transform.position);
             }
         }
 

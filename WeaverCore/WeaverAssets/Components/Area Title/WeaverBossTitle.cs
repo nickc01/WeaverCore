@@ -14,8 +14,8 @@ namespace WeaverCore.Assets.Components
     [ExecuteInEditMode]
     public class WeaverBossTitle : MonoBehaviour
     {
-        static ObjectPool AreaTitlePool;
-        static GameObject Prefab;
+        //static ObjectPool AreaTitlePool;
+        static CachedPrefab<WeaverBossTitle> Prefab = new CachedPrefab<WeaverBossTitle>();
 
 
         [SerializeField]
@@ -227,7 +227,8 @@ namespace WeaverCore.Assets.Components
         /// </summary>
         public void Delete()
         {
-            AreaTitlePool.ReturnToPool(this);
+            Pooling.Destroy(this);
+            //AreaTitlePool.ReturnToPool(this);
         }
 
         /// <summary>
@@ -247,17 +248,22 @@ namespace WeaverCore.Assets.Components
         /// <returns>Returns the new area title object</returns>
         public static WeaverBossTitle SpawnNoFade(string topText, string bottomText)
         {
-            if (AreaTitlePool == null)
+            /*if (AreaTitlePool == null)
             {
                 Prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Area Title Small");
                 AreaTitlePool = ObjectPool.Create(Prefab);
+            }*/
+
+            if (Prefab.Value == null)
+            {
+                Prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Area Title Small").GetComponent<WeaverBossTitle>();
             }
 
-            var title = AreaTitlePool.Instantiate<WeaverBossTitle>(WeaverCanvas.SceneContent);
+            var title = Pooling.Instantiate(Prefab.Value, WeaverCanvas.SceneContent);
             title.TopText = topText;
             title.BottomText = bottomText;
             title.transform.SetZLocalPosition(0f);
-            var oldRect = Prefab.GetComponent<RectTransform>();
+            var oldRect = Prefab.Value.GetComponent<RectTransform>();
             var newRect = title.GetComponent<RectTransform>();
 
             newRect.sizeDelta = oldRect.sizeDelta;

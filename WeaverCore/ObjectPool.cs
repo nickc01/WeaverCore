@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
@@ -81,7 +82,7 @@ namespace WeaverCore
 		/// <summary>
 		/// Can the pool work with multiple threads?
 		/// </summary>
-		public static readonly bool MultiThreaded = true;
+		public const bool MultiThreaded = true;
 
 		/// <summary>
 		/// Is the pool ready for use?
@@ -132,6 +133,11 @@ namespace WeaverCore
 			}
 		}
 
+		internal void RefreshPrefab(PoolableObject prefab)
+		{
+			_prefab = prefab;
+        }
+
 		/// <summary>
 		/// The name given to each instance in the pool
 		/// </summary>
@@ -173,20 +179,20 @@ namespace WeaverCore
 					for (int i = 0; i < caller.Components.GetLength(0); i++)
 					{
 						ComponentPath componentPath = caller.Components[i];
-						Component component = componentPath.Component;
-						if (component != null)
-						{
-							Type cType = component.GetType();
+						//Component component = componentPath.Component;
+						//if (component != null)
+						//{
+							//Type cType = component.GetType();
 							ComponentTypeData cData;
 
-							if (caller.ComponentData.TryGetValue(cType, out cData))
+							if (caller.ComponentData.TryGetValue(componentPath.ComponentType, out cData))
 							{
-								if (cData.StartFunction != null)
+								if (componentPath.Component != null && cData.StartFunction != null)
 								{
-									cData.StartFunction(component);
+									cData.StartFunction(componentPath.Component);
 								}
 							}
-						}
+						//}
 					}
 				}
 			}
@@ -214,7 +220,8 @@ namespace WeaverCore
 			else
 			{
                 DebugPrint($"{name} Calling LoadPoolData Multi-Threaded");
-                ThreadPool.QueueUserWorkItem(LoadPoolData, components);
+				Task.Run(() => LoadPoolData(components));
+                //ThreadPool.QueueUserWorkItem(LoadPoolData, components);
 			}
 		}
 
@@ -260,7 +267,13 @@ namespace WeaverCore
 			pool.gameObject.name = "Object Pool - " + prefab.name;
 			pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
             DebugPrint($"{pool.name} Creating Pool...");
-			if (PREFAB_PROXY)
+
+            if (!boundToScene)
+            {
+                GameObject.DontDestroyOnLoad(pool.gameObject);
+            }
+
+            if (PREFAB_PROXY)
 			{
                 var sourcePrefabContainer = new GameObject("PREFAB_SOURCE_CONTAINER");
                 sourcePrefabContainer.SetActive(false);
@@ -273,11 +286,6 @@ namespace WeaverCore
 				pool.Prefab = prefab;
 			}  
             DebugPrint($"{pool.name} Created Pool with prefab = " + pool.Prefab);
-
-			if (!boundToScene)
-			{
-				GameObject.DontDestroyOnLoad(pool.gameObject);
-			}
             return pool;
 		}
 
@@ -313,7 +321,7 @@ namespace WeaverCore
 				{
 					ComponentPath componentPath = components[i];
 					//COMPONENT MAYBE NULL?
-					Type type = componentPath.Component.GetType();
+					Type type = componentPath.ComponentType;
 
 					//COMPONENTDATA CANT BE NULL
 					if (!ComponentData.ContainsKey(type))
@@ -402,7 +410,7 @@ namespace WeaverCore
 		{
 			int hierarchyHash = 0;
 			Utilities.HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.SiblingHash);
-			Utilities.HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.Component.GetType().GetHashCode());
+			Utilities.HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.ComponentType.GetHashCode());
 			return hierarchyHash;
 		}
 
@@ -561,7 +569,7 @@ namespace WeaverCore
 			{
 				ComponentPath componentPath = objComponents[i];
 				Component component = componentPath.Component;
-				Type type = component.GetType();
+				Type type = componentPath.ComponentType;
 
 				if (component is IOnPool && component != null)
 				{
@@ -644,10 +652,10 @@ namespace WeaverCore
 				{
 					ComponentPath componentPath = objComponents[i];
 					Component component = componentPath.Component;
-					Type cType = component.GetType();
+					//Type cType = component.GetType();
 
 					ComponentTypeData cData;
-					if (ComponentData.TryGetValue(cType, out cData))
+					if (ComponentData.TryGetValue(componentPath.ComponentType, out cData))
 					{
 						if (cData.AwakeFunction != null)
 						{

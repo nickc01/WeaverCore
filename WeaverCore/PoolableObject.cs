@@ -16,11 +16,13 @@ namespace WeaverCore
         /// <summary>
         /// Is the object currently in a pool?
         /// </summary>
+        [field: NonSerialized]
         public bool InPool { get; internal set; }
 
         /// <summary>
         /// The pool the object was instantiated from
         /// </summary>
+        [field: NonSerialized]
         public ObjectPool SourcePool { get; internal set; }
 
         static List<Component> cacheList = new List<Component>();
@@ -89,22 +91,28 @@ namespace WeaverCore
         /// <returns>Returns a list of all the components on the object's hierarchy</returns>
         internal IEnumerable<ComponentPath> RecursiveGetComponents(Transform t)
         {
+            bool isUsingCache = false;
             try
             {
-                List<Component> currentCache = cacheList;
+                List<Component> currentCache;
                 if (cacheIsCurrentlyUsed)
                 {
                     currentCache = new List<Component>();
                 }
                 else
                 {
+                    currentCache = cacheList;
                     cacheIsCurrentlyUsed = true;
+                    isUsingCache = true;
                 }
                 return RecursiveGetComponents(0, t, currentCache);
             }
             finally
             {
-                cacheIsCurrentlyUsed = false;
+                if (!isUsingCache)
+                {
+                    cacheIsCurrentlyUsed = false;
+                }
             }
         }
 

@@ -70,6 +70,12 @@ namespace WeaverCore
 			}
 		}
 
+		public static bool IsAssemblyExcluded(string assemblyName)
+		{
+			return assemblyName == "mscorlib" || assemblyName.Contains("UnityEditor.") || assemblyName.Contains("UnityEngine.") || assemblyName.Contains("System.") || assemblyName == "System" || assemblyName.Contains("Assembly-CSharp") || assemblyName.Contains("Unity.") || assemblyName == "GalaxyCSharp" || assemblyName == "XGamingRuntime" || assemblyName == "zlib.net" || assemblyName == "ConditionalExpression" || assemblyName == "PlayMaker" || assemblyName == "netstandard" || assemblyName == "Newtonsoft.Json" || assemblyName.Contains("Mono");
+
+        }
+
 		/// <summary>
 		/// Initializes all the necessary components of WeaverCore
 		/// </summary>
@@ -100,9 +106,12 @@ namespace WeaverCore
 
 				foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
 				{
-                    Initialization.PerformanceLog($"Patching assembly {asm.GetName().Name}");
-                    PatchAssembly(asm);
-                    Initialization.PerformanceLog($"Finished patching assembly {asm.GetName().Name}");
+					if (!IsAssemblyExcluded(asm.GetName().Name))
+					{
+                        Initialization.PerformanceLog($"Patching assembly {asm.GetName().Name}");
+                        PatchAssembly(asm);
+                        Initialization.PerformanceLog($"Finished patching assembly {asm.GetName().Name}");
+                    }
                 }
 			}
 

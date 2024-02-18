@@ -313,10 +313,13 @@ namespace WeaverCore.Utilities
 		{
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
-				foreach (var method in GetMethodsWithAttribute<AttriType>(assembly, paramTypes, flags))
+				if (!Initialization.IsAssemblyExcluded(assembly.GetName().Name))
 				{
-					yield return method;
-				}
+                    foreach (var method in GetMethodsWithAttribute<AttriType>(assembly, paramTypes, flags))
+                    {
+                        yield return method;
+                    }
+                }
 			}
 		}
 
@@ -510,7 +513,10 @@ namespace WeaverCore.Utilities
 
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
-				methods.AddRange(GetMethodsWithAttribute<AttriType>(assembly, flags));
+				if (!Initialization.IsAssemblyExcluded(assembly.GetName().Name))
+				{
+                    methods.AddRange(GetMethodsWithAttribute<AttriType>(assembly, flags));
+                }
 			}
 
 			if (methods.Count == 0)

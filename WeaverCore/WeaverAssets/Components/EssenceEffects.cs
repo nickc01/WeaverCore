@@ -100,14 +100,21 @@ namespace WeaverCore.Assets.Components
         /// <param name="position">The position the particles will originate at</param>
         public static EssenceEffects Spawn(Vector3 position)
         {
-            if (EssenceEffects.EffectPool == null)
+            /*if (EssenceEffects.EffectPool == null)
             {
                 EssenceEffects.EffectPool = ObjectPool.Create(WeaverAssets.LoadWeaverAsset<GameObject>("Essence Effects"));
+            }*/
+
+            if (prefab.Value == null)
+            {
+                prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Essence Effects").GetComponent<EssenceEffects>();
             }
-            return EssenceEffects.EffectPool.Instantiate<EssenceEffects>(position, Quaternion.identity);
+
+            return Pooling.Instantiate<EssenceEffects>(prefab.Value, position, Quaternion.identity);
         }
 
-        private static ObjectPool EffectPool;
+        //private static ObjectPool EffectPool;
+        private static CachedPrefab<EssenceEffects> prefab = new CachedPrefab<EssenceEffects>();
 
         private ParticleSystem VanishBurst;
 

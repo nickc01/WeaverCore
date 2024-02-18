@@ -17,7 +17,7 @@ namespace WeaverCore.Components
     /// </summary>
     public class InfectedExplosion : MonoBehaviour, IOnPool
     {
-        static InfectedExplosion defaultPrefab;
+        static CachedPrefab<InfectedExplosion> defaultPrefab = new CachedPrefab<InfectedExplosion>();
 
         [SerializeField]
         [Tooltip("The sound played when the explosion occurs.")]
@@ -134,11 +134,11 @@ namespace WeaverCore.Components
         {
             if (prefab == null)
             {
-                if (defaultPrefab == null)
+                if (defaultPrefab.Value == null)
                 {
-                    defaultPrefab = WeaverAssets.LoadWeaverAsset<GameObject>("Infected Explosion").GetComponent<InfectedExplosion>();
+                    defaultPrefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Infected Explosion").GetComponent<InfectedExplosion>();
                 }
-                prefab = defaultPrefab;
+                prefab = defaultPrefab.Value;
             }
             var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
 

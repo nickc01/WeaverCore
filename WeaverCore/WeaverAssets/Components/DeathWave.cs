@@ -11,7 +11,8 @@ namespace WeaverCore.Assets.Components
 	/// </summary>
     public class DeathWave : MonoBehaviour
 	{
-		static ObjectPool DeathWavePool;
+		//static ObjectPool DeathWavePool;
+		static CachedPrefab<DeathWave> Prefab = new CachedPrefab<DeathWave>();
 
 		[Tooltip("Determines how long the death wave will last. The higher the number, the shorter it will live")]
 		public float Speed = 1f;
@@ -78,11 +79,11 @@ namespace WeaverCore.Assets.Components
 		/// <returns></returns>
 		public static DeathWave Spawn(Vector3 position, float sizeMultiplier)
 		{
-			if (DeathWavePool == null)
+			if (Prefab.Value == null)
 			{
-				DeathWavePool = ObjectPool.Create(WeaverAssets.LoadWeaverAsset<GameObject>("Death Wave Infected"));
-			}
-			var instance = DeathWavePool.Instantiate<DeathWave>(position, Quaternion.identity);
+				Prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Death Wave Infected").GetComponent<DeathWave>();
+            }
+			var instance = Pooling.Instantiate(Prefab.Value, position, Quaternion.identity);
 			instance.SizeMultiplier = sizeMultiplier;
 			instance.TransparencyMultiplier = 1f;
 			instance.UpdateVisuals();

@@ -11,7 +11,7 @@ namespace WeaverCore.Assets.Components
     /// </summary>
     public class MantisShot : MonoBehaviour
     {
-        static MantisShot prefab;
+        static CachedPrefab<MantisShot> prefab = new CachedPrefab<MantisShot>();
 
         BoxCollider2D _mainCollider;
         public BoxCollider2D MainCollider => _mainCollider ??= GetComponent<BoxCollider2D>();
@@ -120,12 +120,12 @@ namespace WeaverCore.Assets.Components
         /// <returns></returns>
         public static MantisShot Spawn(Vector3 position, Vector2 velocity, bool playLaunchSound = true)
         {
-            if (prefab == null)
+            if (prefab.Value == null)
             {
-                prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Mantis Shot").GetComponent<MantisShot>();
+                prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Mantis Shot").GetComponent<MantisShot>();
             }
 
-            var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
+            var instance = Pooling.Instantiate(prefab.Value, position, Quaternion.identity);
             instance.RB.velocity = velocity;
             instance.PlaySound = playLaunchSound;
             instance.Audio.AudioSource.volume = 1f;

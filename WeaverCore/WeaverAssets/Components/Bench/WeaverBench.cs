@@ -94,7 +94,7 @@ namespace WeaverCore.Assets.Components
 
 		string getOffAnimation;
 
-		static GameObject BenchWhiteFlash;
+		static CachedPrefab<GameObject> BenchWhiteFlash = new CachedPrefab<GameObject>();
 
 		/// <summary>
 		/// Is the bench currently active and ready to be sat on?
@@ -128,9 +128,9 @@ namespace WeaverCore.Assets.Components
 
 		private void Awake()
 		{
-			if (BenchWhiteFlash == null)
+			if (BenchWhiteFlash.Value == null)
 			{
-				BenchWhiteFlash = WeaverAssets.LoadWeaverAsset<GameObject>("Bench White Flash");
+				BenchWhiteFlash.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Bench White Flash");
 			}
 			eventManager = GetComponent<EventManager>();
 			benchActive = benchActiveOnStart;
@@ -619,7 +619,7 @@ namespace WeaverCore.Assets.Components
 							sleeping = false;
 							getOffAnimation = "Get Off";
 
-							Pooling.Instantiate(BenchWhiteFlash,transform.position + new Vector3(0f,0f,-0.2f),Quaternion.identity);
+							Pooling.Instantiate(BenchWhiteFlash.Value,transform.position + new Vector3(0f,0f,-0.2f),Quaternion.identity);
 
 							if (BurstAnim != null)
 							{

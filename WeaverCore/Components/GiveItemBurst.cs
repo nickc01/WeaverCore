@@ -8,9 +8,19 @@ namespace WeaverCore.Components
     /// </summary>
     public class GiveItemBurst : MonoBehaviour
     {
-        static GiveItemBurst _defaultPrefab;
+        static CachedPrefab<GiveItemBurst> _defaultPrefab = new CachedPrefab<GiveItemBurst>();
 
-        public static GiveItemBurst DefaultPrefab => _defaultPrefab ??= WeaverAssets.LoadWeaverAsset<GameObject>("Give Item Burst").GetComponent<GiveItemBurst>();
+        public static GiveItemBurst DefaultPrefab
+        {
+            get
+            {
+                if (_defaultPrefab.Value == null)
+                {
+                    _defaultPrefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Give Item Burst").GetComponent<GiveItemBurst>();
+                }
+                return _defaultPrefab.Value;
+            }
+        }
 
         /// <summary>
         /// Spawns a "Give Item Burst" effect at the specified position

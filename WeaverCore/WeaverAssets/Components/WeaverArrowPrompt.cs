@@ -28,16 +28,16 @@ namespace WeaverCore.Assets.Components
 		[Tooltip("Should the prompt automatically be destroyed when it fades out?")]
 		public bool DestroyOnHide = true;
 
-		static WeaverArrowPrompt _defaultPrefab;
+		static CachedPrefab<WeaverArrowPrompt> _defaultPrefab = new CachedPrefab<WeaverArrowPrompt>();
 		public static WeaverArrowPrompt DefaultPrefab
 		{
 			get
 			{
-				if (_defaultPrefab == null)
+				if (_defaultPrefab.Value == null)
 				{
-					_defaultPrefab = WeaverAssets.LoadWeaverAsset<GameObject>("Arrow Prompt").GetComponent<WeaverArrowPrompt>();
+					_defaultPrefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Arrow Prompt").GetComponent<WeaverArrowPrompt>();
 				}
-				return _defaultPrefab;
+				return _defaultPrefab.Value;
 			}
 		}
 

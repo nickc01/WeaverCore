@@ -162,7 +162,7 @@ namespace WeaverCore.Components
         [Tooltip("If set to true, this enemy will receive damage from extra abilities, such as spore damage")]
         private bool receiveExtraDamage = true;
 
-        private AudioClip extraDamageClip;
+        private static CachedPrefab<AudioClip> extraDamageClip = new CachedPrefab<AudioClip>();
         private Recoiler recoil;
 
         /// <summary>
@@ -554,11 +554,11 @@ namespace WeaverCore.Components
                 }
                 if (DoEffectsOnHit)
                 {
-                    if (extraDamageClip == null)
+                    if (extraDamageClip.Value == null)
                     {
-                        extraDamageClip = WeaverAssets.LoadWeaverAsset<AudioClip>("Extra Damage Audio");
+                        extraDamageClip.Value = WeaverAssets.LoadWeaverAsset<AudioClip>("Extra Damage Audio");
                     }
-                    AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(extraDamageClip, base.transform.position, 1f, AudioChannel.Sound);
+                    AudioPlayer weaverAudioPlayer = WeaverAudio.PlayAtPoint(extraDamageClip.Value, base.transform.position, 1f, AudioChannel.Sound);
                     weaverAudioPlayer.AudioSource.pitch = UnityEngine.Random.Range(0.85f, 1.15f);
 
                     foreach (var component in GetComponentsInChildren<SpriteFlasher>())

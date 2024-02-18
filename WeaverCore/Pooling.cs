@@ -108,6 +108,7 @@ namespace WeaverCore
 			{
 				info.Pool = ObjectPool.Create(obj, true);
 			}
+			info.Pool.RefreshPrefab(obj.GetComponent<PoolableObject>());
 			info.Timer = 0f;
 			return info.Pool;
 		}

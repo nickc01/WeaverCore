@@ -12,12 +12,22 @@ namespace WeaverCore.Components
         /// <summary>
         /// The prefab instance of RockParticles.
         /// </summary>
-        static RockParticles _prefab;
+        static CachedPrefab<RockParticles> _prefab = new CachedPrefab<RockParticles>();
 
         /// <summary>
         /// Gets the prefab instance of RockParticles.
         /// </summary>
-        public static RockParticles Prefab => _prefab ??= WeaverAssets.LoadWeaverAsset<GameObject>("Rock Particles").GetComponent<RockParticles>();
+        public static RockParticles Prefab
+        {
+            get
+            {
+                if (_prefab.Value == null)
+                {
+                    _prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Rock Particles").GetComponent<RockParticles>();
+                }
+                return _prefab.Value;
+            }
+        }
 
         [NonSerialized]
         ParticleSystem _particles;
@@ -25,7 +35,17 @@ namespace WeaverCore.Components
         /// <summary>
         /// Gets the ParticleSystem component.
         /// </summary>
-        public ParticleSystem Particles => _particles ??= GetComponent<ParticleSystem>();
+        public ParticleSystem Particles
+        {
+            get
+            {
+                if (_particles == null)
+                {
+                    _particles = GetComponent<ParticleSystem>();
+                }
+                return _particles;
+            }
+        }
 
         /// <summary>
         /// Spawns directional rock particles.

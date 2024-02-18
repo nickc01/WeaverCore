@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace WeaverCore.DataTypes
 {
@@ -9,12 +10,14 @@ namespace WeaverCore.DataTypes
 	{
 		public int SiblingHash;
 		public Component Component;
+		public Type ComponentType;
 		public bool Enabled;
 
 		public ComponentPath(int siblingHash,Component component)
 		{
 			SiblingHash = siblingHash;
 			Component = component;
+			ComponentType = component.GetType();
 			if (component is Behaviour)
 			{
 				Enabled = ((Behaviour)component).enabled;

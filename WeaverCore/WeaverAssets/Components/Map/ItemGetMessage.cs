@@ -12,6 +12,8 @@ namespace WeaverCore.Assets.Components
     /// </summary>
     public class ItemGetMessage : MonoBehaviour
     {
+        static CachedPrefab<ItemGetMessage> prefab = new CachedPrefab<ItemGetMessage>();
+
         [Tooltip("The sprite renderer for the item icon.")]
         [SerializeField]
         private SpriteRenderer _icon;
@@ -272,9 +274,13 @@ namespace WeaverCore.Assets.Components
         /// <returns>The spawned ItemGetMessage instance.</returns>
         public static ItemGetMessage Spawn(Sprite itemSprite, string itemText)
         {
-            var prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Item Get Message");
+            if (prefab.Value == null)
+            {
+                prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Item Get Message").GetComponent<ItemGetMessage>();
+            }
+            //var prefab = ;
 
-            var instance = GameObject.Instantiate(prefab).GetComponent<ItemGetMessage>();
+            var instance = GameObject.Instantiate(prefab.Value).GetComponent<ItemGetMessage>();
             instance.Icon = itemSprite;
             instance.Text = itemText;
             return instance;

@@ -55,6 +55,7 @@ namespace WeaverCore
 		}
 #endif
 
+
 		static Stopwatch startingWatch;
 
 		public static void PerformanceLog(string message)
@@ -73,7 +74,16 @@ namespace WeaverCore
 
 		public static bool IsAssemblyExcluded(Assembly assembly)
 		{
-			return !(assembly.GetName().Name == "WeaverCore" || AssemblyReferenceGetter.GetAssemblyReferencesQuick(assembly).Any(asm => asm == "WeaverCore"));
+			var assemblyName = assembly.GetName().Name;
+
+			return assembly.IsDynamic || !(assemblyName == "WeaverCore"
+#if UNITY_EDITOR
+				|| assemblyName == "WeaverCore.Editor" || assemblyName == "Assembly-CSharp"
+#else
+				|| assemblyName == "WeaverCore.Game" || assembly.GetManifestResourceNames().Any(n => n.Contains("_bundle.bundle."))
+#endif
+                );
+			//return !(assembly.GetName().Name == "WeaverCore" || AssemblyReferenceGetter.GetAssemblyReferencesQuick(assembly).Any(asm => asm == "WeaverCore"));
         }
 
 		public static IEnumerable<Assembly> GetWeaverCoreAssemblies()

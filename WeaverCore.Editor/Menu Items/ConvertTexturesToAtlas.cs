@@ -7,61 +7,9 @@ using System.Linq;
 using System.IO;
 using WeaverCore.Editor.Utilities;
 using UnityEditorInternal;
+using WeaverCore;
 
-/*public class RemoveAllObjectsFromAsset : EditorWindow
-{
-	[MenuItem("WeaverCore/Tools/Remove All Objects From Asset")]
-	public static void Convert()
-	{
-		Display();
-	}
 
-	UnityEngine.Object obj;
-	bool closed = false;
-
-	public static RemoveAllObjectsFromAsset Display()
-	{
-		var window = GetWindow<RemoveAllObjectsFromAsset>();
-		window.titleContent = new GUIContent("Remove All Objects From Asset");
-		window.Show();
-
-		return window;
-	}
-
-    private void OnGUI()
-    {
-		obj = EditorGUILayout.ObjectField(new GUIContent("Asset", "The asset to remove all embedded objects from"), obj, typeof(UnityEngine.Object), true);
-
-		if (GUILayout.Button("Remove Objects"))
-		{
-			closed = true;
-			Close();
-			RemoveObjects();
-			//UnboundCoroutine.Start(Convert(spriteList, destroyOriginalTextures, outputAtlasName, cropTextures));
-		}
-
-		EditorGUILayout.EndScrollView();
-	}
-
-	void RemoveObjects()
-    {
-        if (obj != null)
-        {
-			var path = AssetDatabase.GetAssetPath(obj);
-			var internalObjects = AssetDatabase.LoadAllAssetsAtPath(path);
-
-			var assetUniquePath = AssetDatabase.GenerateUniqueAssetPath(path);
-
-			foreach (var internalObject in internalObjects)
-            {
-                if (internalObject != obj)
-                {
-					AssetDatabase.Remove
-                }
-            }
-        }
-    }
-}*/
 /// <summary>
 /// Used for converting multiple textures, into a single texture consisting of multiple sprites
 /// </summary>

@@ -118,6 +118,11 @@ namespace WeaverCore.Editor.Compilation
 			builder.buildTargetGroup = TargetGroup;
 			builder.excludeReferences = VerifyPaths(ExcludedReferences);
 			builder.flags = Flags;
+			builder.compilerOptions = new ScriptCompilerOptions
+			{
+				AllowUnsafeCode = true,
+				CodeOptimization = CodeOptimization.Release
+			};
 			Action<string, CompilerMessage[]> buildCompleteAction = null;
 			var outputInfo = new OutputDetails();
 			outputInfo.OutputPath = outputPath;

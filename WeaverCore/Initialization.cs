@@ -10,6 +10,7 @@ using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Attributes;
 using WeaverCore.Enums;
+using WeaverCore.Internal;
 using WeaverCore.Utilities;
 
 namespace WeaverCore
@@ -72,17 +73,7 @@ namespace WeaverCore
 
 		public static bool IsAssemblyExcluded(Assembly assembly)
 		{
-			/*var refAsms = assembly.GetReferencedAssemblies();
-
-			foreach (var asm in refAsms)
-			{
-				UnityEngine.Debug.Log($"REF ASM for {assembly.GetName().Name} = {asm.Name}");
-			}
-
-			return false;*/
-			//WeaverLog.Log("ASM = " + assembly.GetName().Name);
-
-			return !(assembly.GetName().Name == "WeaverCore" || assembly.GetReferencedAssemblies().Any(asm => asm.Name == "WeaverCore"));
+			return !(assembly.GetName().Name == "WeaverCore" || AssemblyReferenceGetter.GetAssemblyReferencesQuick(assembly).Any(asm => asm == "WeaverCore"));
         }
 
 		public static IEnumerable<Assembly> GetWeaverCoreAssemblies()

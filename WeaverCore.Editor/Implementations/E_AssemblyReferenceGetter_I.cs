@@ -1,0 +1,137 @@
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Text;
+using WeaverCore.Attributes;
+using WeaverCore.Internal;
+using WeaverCore.Utilities;
+
+namespace WeaverCore.Editor.Implementations
+{
+    unsafe class E_AssemblyReferenceGetter_I : AssemblyReferenceGetter.Impl
+    {
+        static Func<Assembly, IntPtr> InternalGetReferencedAssemblies;
+
+        static bool initialized = false;
+
+        static Type monoAssemblyType;
+        static Type RuntimeGPtrArrayHandleType;
+        static Type safeGPtrArrayHandleType;
+        static Type runtimeMarshalType;
+
+        static PropertyInfo LengthGetter;
+        static PropertyInfo PtrIndexer;
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct MonoAssemblyName
+        {
+            public IntPtr name;
+            public IntPtr culture;
+            public IntPtr hash_value;
+            public IntPtr public_key;
+            public byte public_key_token1;
+            public byte public_key_token2;
+            public byte public_key_token3;
+            public byte public_key_token4;
+            public byte public_key_token5;
+            public byte public_key_token6;
+            public byte public_key_token7;
+            public byte public_key_token8;
+            public byte public_key_token9;
+            public byte public_key_token10;
+            public byte public_key_token11;
+            public byte public_key_token12;
+            public byte public_key_token13;
+            public byte public_key_token14;
+            public byte public_key_token15;
+            public byte public_key_token16;
+            public byte public_key_token17;
+            public uint hash_alg;
+            public uint hash_len;
+            public uint flags;
+            public ushort major;
+            public ushort minor;
+            public ushort build;
+            public ushort revision;
+            public ushort arch;
+        }
+
+        static void Init()
+        {
+            if (!initialized)
+            {
+                initialized = true;
+                InternalGetReferencedAssemblies = ReflectionUtilities.MethodToDelegate<Func<Assembly, IntPtr>>(typeof(Assembly).GetMethod("InternalGetReferencedAssemblies", BindingFlags.NonPublic | BindingFlags.Static));
+
+                monoAssemblyType = typeof(Assembly).Assembly.GetType();
+
+                safeGPtrArrayHandleType = monoAssemblyType.Assembly.GetType("Mono.SafeGPtrArrayHandle");
+
+                LengthGetter = safeGPtrArrayHandleType.GetProperty("Length", BindingFlags.NonPublic | BindingFlags.Instance);
+
+                foreach (var prop in safeGPtrArrayHandleType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic))
+                {
+                    if (prop.GetIndexParameters().Length > 0)
+                    {
+                        PtrIndexer = prop;
+                        break;
+                    }
+                }
+            }
+        }
+
+        internal unsafe static string PtrToUtf8String(IntPtr ptr)
+        {
+            if (ptr == IntPtr.Zero)
+            {
+                return string.Empty;
+            }
+            byte* ptr2 = (byte*)((void*)ptr);
+            int num = 0;
+            try
+            {
+                while (*(ptr2++) != 0)
+                {
+                    num++;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                throw new ArgumentOutOfRangeException("ptr", "Value does not refer to a valid string.");
+            }
+            return new string((sbyte*)((void*)ptr), 0, num, Encoding.UTF8);
+        }
+
+        static string[] GetAssemblyReferencesQuickInternal(Assembly assembly)
+        {
+            Init();
+            assembly.GetReferencedAssemblies();
+            var handle = Activator.CreateInstance(safeGPtrArrayHandleType, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.CreateInstance, null, new object[] { InternalGetReferencedAssemblies(assembly) }, null, null);
+            using ((IDisposable)handle)
+            {
+                var length = (int)LengthGetter.GetValue(handle);
+
+                string[] assemblyNames = new string[length];
+
+                var indexContainer = new object[] { 0 };
+
+                for (int i = 0; i < length; i++)
+                {
+                    indexContainer[0] = i;
+                    var ptr = (IntPtr)PtrIndexer.GetValue(handle, indexContainer);
+                    MonoAssemblyName* native = (MonoAssemblyName*)(void*)(ptr);
+
+                    assemblyNames[i] = PtrToUtf8String(native->name);
+                }
+                return assemblyNames;
+            }
+        }
+
+        public override string[] GetAssemblyReferencesQuick(Assembly assembly)
+        {
+            return GetAssemblyReferencesQuickInternal(assembly);
+        }
+    }
+}

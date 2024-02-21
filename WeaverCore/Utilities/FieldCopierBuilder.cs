@@ -143,6 +143,7 @@ namespace WeaverCore.Utilities
 				{
 					for (int i = 0; i < fieldsToCopy.Count; i++)
 					{
+						//WeaverLog.Log($"Setting {fieldsToCopy[i].DeclaringType.Name}:{fieldsToCopy[i]} from {fieldsToCopy[i].GetValue(dest)} to {fieldsToCopy[i].GetValue(source)}");
 						fieldsToCopy[i].SetValue(dest, fieldsToCopy[i].GetValue(source));
 					}
 				};

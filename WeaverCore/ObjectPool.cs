@@ -265,7 +265,7 @@ namespace WeaverCore
 			}
 			var pool = new GameObject().AddComponent<ObjectPool>();
 			pool.gameObject.name = "Object Pool - " + prefab.name;
-			pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
+            pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
             DebugPrint($"{pool.name} Creating Pool...");
 
             if (!boundToScene)
@@ -315,6 +315,10 @@ namespace WeaverCore
 		{
 			try
 			{
+				if (!MultiThreaded)
+				{
+					WeaverLog.Log($"LOADING POOL DATA FOR {Prefab.name}");
+				}
 				ComponentPath[] components = (ComponentPath[])componentsRaw;
 				//COMPONENTS CAN'T BE NULL HERE
 				for (int i = 0; i < components.GetLength(0); i++)
@@ -349,8 +353,17 @@ namespace WeaverCore
 
 							while (currentType != null && currentType != typeof(Component))
 							{
-								cData.Copiers.Add(CreateFieldCopier(currentType));
-								currentType = currentType.BaseType;
+                                if (!MultiThreaded)
+                                {
+                                    WeaverLog.Log($"Starting field copier for {currentType.Name}");
+                                }
+                                cData.Copiers.Add(CreateFieldCopier(currentType));
+
+                                if (!MultiThreaded)
+                                {
+                                    WeaverLog.Log($"Finished field copier for {currentType.Name}");
+                                }
+                                currentType = currentType.BaseType;
 							}
 						}
 						ComponentData.Add(type, cData);
@@ -891,24 +904,33 @@ namespace WeaverCore
 
 			FieldCopierBuilder<Component> copier = new FieldCopierBuilder<Component>(componentType);
 
-			foreach (FieldInfo field in componentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-			{
-				if (!field.IsDefined(typeof(ExcludeFieldFromPoolAttribute), false) && !field.IsInitOnly && !field.IsLiteral)
-				{
-					if (field.FieldType.IsValueType || field.FieldType.IsEnum)
-					{
-						copier.AddField(field);
-					}
-					else if (field.FieldType.IsClass && (field.IsPublic || field.IsDefined(typeof(SerializeField), true)))
-					{
-						if (!typeof(Component).IsAssignableFrom(field.FieldType) && !typeof(GameObject).IsAssignableFrom(field.FieldType))
-						{
-							copier.AddField(field);
-						}
-					}
-				}
-			}
-			var finalFunc = copier.Finish();
+            foreach (FieldInfo field in componentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                if (!field.IsDefined(typeof(ExcludeFieldFromPoolAttribute), false) && !field.IsInitOnly && !field.IsLiteral)
+                {
+                    if (field.FieldType.IsValueType || field.FieldType.IsEnum)
+                    {
+                        if (!MultiThreaded)
+                        {
+                            WeaverLog.Log($"Adding Field {field.Name}");
+                        }
+                        copier.AddField(field);
+                    }
+                    else if (field.FieldType.IsClass && (field.IsPublic || field.IsDefined(typeof(SerializeField), true)))
+                    {
+                        if (!typeof(Component).IsAssignableFrom(field.FieldType) && !typeof(GameObject).IsAssignableFrom(field.FieldType))
+                        {
+                            if (!MultiThreaded)
+                            {
+                                WeaverLog.Log($"Adding Field {field.Name}");
+                            }
+                            copier.AddField(field);
+                        }
+                    }
+                }
+            }
+
+            var finalFunc = copier.Finish();
 			CopierCache.CacheObject(componentType, finalFunc);
 			return finalFunc;
 		}

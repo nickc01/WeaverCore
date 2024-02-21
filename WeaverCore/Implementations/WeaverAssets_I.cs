@@ -17,5 +17,6 @@ namespace WeaverCore.Implementations
 
 		public abstract IEnumerable<T> LoadAssets<T>(string assetName) where T : UnityEngine.Object;
 		public abstract IEnumerable<T> LoadAssetsFromBundle<T>(string bundleName, string assetName) where T : UnityEngine.Object;
+		public abstract IEnumerable<T> LoadAssetsOfType<T>(string bundleName) where T : UnityEngine.Object;
 	}
 }

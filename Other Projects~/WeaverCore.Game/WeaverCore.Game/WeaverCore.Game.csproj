@@ -428,7 +428,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\G_AssemblyReferenceGetter_I.cs" />
     <Compile Include="Implementations\G_AudioMixer_I.cs" />
     <Compile Include="Implementations\G_DreamnailUtilities_I.cs" />
     <Compile Include="Implementations\G_GeoCounter_I.cs" />

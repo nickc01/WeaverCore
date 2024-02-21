@@ -179,5 +179,31 @@ namespace WeaverCore.Game.Implementations
 				}
 			}
 		}
+
+        public override IEnumerable<T> LoadAssetsOfType<T>(string bundleName)
+        {
+            foreach (var bundle in AssetBundle.GetAllLoadedAssetBundles())
+            {
+                if (bundle.name.Contains(bundleName))
+                {
+					return bundle.LoadAllAssets<T>();
+                    /*var assetNames = bundle.GetAllAssetNames();
+                    foreach (var foundAssetName in assetNames)
+                    {
+                        if (foundAssetName.Contains(assetName))
+                        {
+                            var asset = bundle.LoadAsset<T>(foundAssetName);
+                            if (asset != null)
+                            {
+                                yield return asset;
+                            }
+                        }
+                    }
+                    yield break;*/
+                }
+            }
+
+			return Enumerable.Empty<T>();
+        }
     }
 }

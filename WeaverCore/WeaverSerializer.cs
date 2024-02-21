@@ -117,6 +117,7 @@ namespace WeaverCore
                 {
                     finalResult.Append(", ");
                 }
+                index++;
             }
 
             finalResult.Append("], Data: ");
@@ -142,6 +143,8 @@ namespace WeaverCore
 
         public static object Deserialize(Type objType, string data, List<UnityEngine.Object> objReferences)
         {
+            WeaverLog.Log("DESERIALIZING = " + data);
+
             Dictionary<string, UnityEngine.Object> objectReferenceTable = new Dictionary<string, UnityEngine.Object>();
 
             if (!data.StartsWith("IDs"))
@@ -154,6 +157,8 @@ namespace WeaverCore
                 int bracketStart = data.IndexOf('[');
                 int bracketEnd = data.IndexOf(']');
 
+                WeaverLog.Log("Bracket Start = " + bracketStart);
+                WeaverLog.Log("Bracket End = " + bracketEnd);
                 //StringBuilder currentReading = new StringBuilder();
 
                 int referenceCounter = 0;
@@ -169,7 +174,12 @@ namespace WeaverCore
                         nextComma = bracketEnd;
                     }
 
-                    objectReferenceTable.Add(data.Substring(startIndex, startIndex - nextComma), objReferences[referenceCounter]);
+                    WeaverLog.Log("Start Index = " + startIndex);
+                    WeaverLog.Log("Next Comma = " + nextComma);
+                    WeaverLog.Log("Length = " + (startIndex - nextComma));
+
+                    objectReferenceTable.Add(data.Substring(startIndex, nextComma - startIndex), objReferences[referenceCounter]);
+
                     referenceCounter++;
 
                     startIndex = nextComma + 2;

@@ -81,7 +81,7 @@ namespace WeaverCore
 		/// <returns>Returns an instance to the blood particle system creating the effects</returns>
 		public static Blood SpawnBlood(Vector3 position, BloodSpawnInfo spawnInfo)
 		{
-			if (bloodPrefab == null)
+			if (bloodPrefab.Value == null)
 			{
 				bloodPrefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Blood Particles");
 			}

@@ -41,20 +41,12 @@ namespace WeaverCore
             set
             {
                 _value = value;
-                if (_value != null)
-                {
-                    WeaverLog.Log("ADDING TO CACHE " + _value.name);
-                }
                 CachedPrefab_Common.loadedPrefabs.Add(this);
             }
         }
 
         public void Clear()
         {
-            if (_value != null)
-            {
-                WeaverLog.Log("REMOVING FROM CACHE " + _value.name);
-            }
             _value = default;
         }
     }

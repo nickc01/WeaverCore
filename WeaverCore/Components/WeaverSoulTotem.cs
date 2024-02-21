@@ -57,12 +57,10 @@ namespace WeaverCore.Components
             {
                 hitCounter.OnGetSaveState += delegate (ref int initialSavedValue)
                 {
-                    WeaverLog.Log("GET SAVE STATE = " + value);
                     initialSavedValue = value;
                 };
                 hitCounter.OnSetSaveState += delegate (int retrievedVal)
                 {
-                    WeaverLog.Log("RETRIEVED VALUE = " + retrievedVal);
                     value = retrievedVal;
                     if (value == 0)
                     {

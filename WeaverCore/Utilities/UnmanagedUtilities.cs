@@ -1,14 +1,57 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System;
+using WeaverCore.Interfaces;
+using System.Reflection;
+using WeaverCore.Attributes;
 using System.Text;
-using WeaverCore.Internal;
-using WeaverCore.Utilities;
+using System.IO;
 
-namespace WeaverCore.Game.Implementations
+namespace WeaverCore.Utilities
 {
-    unsafe class G_AssemblyReferenceGetter_I : AssemblyReferenceGetter.Impl
+    public static unsafe class UnmanagedUtilities
     {
+        public sealed class UnmanagedStreamWrapper : IDisposable
+        {
+            public readonly Stream SourceStream;
+            public readonly IntPtr DataPtr;
+            public readonly long DataLength;
+
+            public UnmanagedStreamWrapper(Stream source) : this(source, out var _, out var _) { }
+
+            public UnmanagedStreamWrapper(Stream source, out IntPtr dataPtr, out long dataLength)
+            {
+                SourceStream = source;
+
+                if (source is UnmanagedMemoryStream ums)
+                {
+                    DataPtr = (IntPtr)ums.PositionPointer;
+                    DataLength = ums.Length;
+                }
+                else
+                {
+                    DataPtr = Marshal.AllocHGlobal((int)source.Length);
+                    DataLength = source.Length;
+
+                    using (var ustream = new UnmanagedMemoryStream((byte*)DataPtr, DataLength,DataLength, FileAccess.ReadWrite))
+                    {
+                        source.CopyTo(ustream);
+                    }
+                }
+
+                dataPtr = DataPtr;
+                dataLength = DataLength;
+            }
+
+            public void Dispose()
+            {
+                if (!(SourceStream is UnmanagedMemoryStream))
+                {
+                    Marshal.FreeHGlobal(DataPtr);
+                }
+            }
+        }
+
         static Func<Assembly, IntPtr> InternalGetReferencedAssemblies;
 
         static bool initialized = false;
@@ -101,7 +144,7 @@ namespace WeaverCore.Game.Implementations
             return new string((sbyte*)((void*)ptr), 0, num, Encoding.UTF8);
         }
 
-        static string[] GetAssemblyReferencesQuickInternal(Assembly assembly)
+        public static string[] GetAssemblyReferencesQuick(Assembly assembly)
         {
             Init();
             assembly.GetReferencedAssemblies();
@@ -124,11 +167,6 @@ namespace WeaverCore.Game.Implementations
                 }
                 return assemblyNames;
             }
-        }
-
-        public override string[] GetAssemblyReferencesQuick(Assembly assembly)
-        {
-            return GetAssemblyReferencesQuickInternal(assembly);
         }
     }
 }

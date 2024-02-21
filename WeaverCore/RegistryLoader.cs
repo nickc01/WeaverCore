@@ -19,6 +19,8 @@ namespace WeaverCore
     {
         static HashSet<Assembly> LoadedAssemblies = new HashSet<Assembly>();
 
+        static Dictionary<Assembly, List<AssetBundle>> loadedBundles = new Dictionary<Assembly, List<AssetBundle>>();
+
         /// <summary>
         /// Loads all Registries that are a part of the specified mod
         /// </summary>
@@ -57,12 +59,26 @@ namespace WeaverCore
             }
         }
 
-        /// <summary>
-        /// Loads any registries that are embedded inside of the assembly as an embedded resource asset bundle
-        /// </summary>
-        /// <param name="assembly">The assembly to load from</param>
-        public static void LoadEmbeddedRegistries(Assembly assembly)
+        public static bool AreBundlesLoaded<T>() => AreBundlesLoaded(typeof(T));
+
+        public static bool AreBundlesLoaded(Type modType) => AreBundlesLoaded(modType.Assembly);
+
+        public static bool AreBundlesLoaded(Assembly assembly)
         {
+            return loadedBundles.ContainsKey(assembly);
+        }
+
+        public static IEnumerable<AssetBundle> LoadBundlesOnly<T>() where T : IMod => LoadBundlesOnly(typeof(T));
+
+        public static IEnumerable<AssetBundle> LoadBundlesOnly(Type modType) => LoadBundlesOnly(modType.Assembly);
+
+        public static IEnumerable<AssetBundle> LoadBundlesOnly(Assembly assembly)
+        {
+            if (loadedBundles.TryGetValue(assembly, out var results))
+            {
+                return results;
+            }
+
             var assemblyName = assembly.GetName().Name;
             //WeaverLog.Log("Loading Embedded Registries for [" + assemblyName + "]");
             Initialization.PerformanceLog($"Loading Embedding Registries for {assemblyName}");
@@ -81,6 +97,113 @@ namespace WeaverCore
             }
 
             try
+            {
+                if (assembly != typeof(WeaverMod).Assembly)
+                {
+                    results = new List<AssetBundle>();
+                    foreach (var name in assembly.GetManifestResourceNames())
+                    {
+                        if (name.EndsWith(extension))
+                        {
+                            //WeaverLog.Log("Loading embedded bundle stream : " + name);
+                            Initialization.PerformanceLog("Loading embedded bundle stream : " + name);
+                            var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
+
+                            if (bundle != null)
+                            {
+                                results.Add(bundle);
+                            }
+
+                            Initialization.PerformanceLog("Finished Loading embedded bundle stream : " + name);
+                        }
+                    }
+
+                    /*foreach (var bundle in loadedBundles)
+                    {
+                        if (!bundle.isStreamedSceneAssetBundle)
+                        {
+                            //WeaverLog.Log("Loading bundle for Weaver Mod : " + bundle.name);
+                            Initialization.PerformanceLog("Loading bundle for Weaver Mod : " + bundle.name);
+                            foreach (var registry in bundle.LoadAllAssets<Registry>())
+                            {
+                                if (registry.ModType.Assembly.GetName().Name == assemblyName)
+                                {
+                                    registry.EnableRegistry();
+                                }
+                            }
+
+                            Initialization.PerformanceLog("Finished Loading bundle for Weaver Mod : " + bundle.name);
+                        }
+                        else
+                        {
+                            WeaverLog.Log("Loading scene bundle for Weaver Mod : " + bundle.name);
+                        }
+                    }*/
+
+                    loadedBundles.Add(assembly, results);
+
+                    return results;
+                }
+            }
+            catch (NotSupportedException error)
+            {
+                if (!error.Message.Contains("not supported in a dynamic module"))
+                {
+                    throw;
+                }
+            }
+
+            return new List<AssetBundle>();
+        }
+
+        /// <summary>
+        /// Loads any registries that are embedded inside of the assembly as an embedded resource asset bundle
+        /// </summary>
+        /// <param name="assembly">The assembly to load from</param>
+        public static void LoadEmbeddedRegistries(Assembly assembly)
+        {
+            var assemblyName = assembly.GetName().Name;
+
+            foreach (var bundle in LoadBundlesOnly(assembly))
+            {
+                if (!bundle.isStreamedSceneAssetBundle)
+                {
+                    Initialization.PerformanceLog("Loading bundle for Weaver Mod : " + bundle.name);
+                    foreach (var registry in bundle.LoadAllAssets<Registry>())
+                    {
+                        if (registry.ModType.Assembly.GetName().Name == assemblyName)
+                        {
+                            registry.EnableRegistry();
+                        }
+                    }
+
+                    Initialization.PerformanceLog("Finished Loading bundle for Weaver Mod : " + bundle.name);
+                }
+                else
+                {
+                    WeaverLog.Log("Loading scene bundle for Weaver Mod : " + bundle.name);
+                }
+            }
+
+
+            /*var assemblyName = assembly.GetName().Name;
+            //WeaverLog.Log("Loading Embedded Registries for [" + assemblyName + "]");
+            Initialization.PerformanceLog($"Loading Embedding Registries for {assemblyName}");
+            string extension = null;
+            if (SystemInfo.operatingSystem.Contains("Windows"))
+            {
+                extension = ".bundle.win";
+            }
+            else if (SystemInfo.operatingSystem.Contains("Mac"))
+            {
+                extension = ".bundle.mac";
+            }
+            else if (SystemInfo.operatingSystem.Contains("Linux"))
+            {
+                extension = ".bundle.unix";
+            }*/
+
+            /*try
             {
                 if (assembly != typeof(WeaverMod).Assembly)
                 {
@@ -131,7 +254,7 @@ namespace WeaverCore
                 {
                     throw;
                 }
-            }
+            }*/
 
             Initialization.PerformanceLog($"Finished Loading Embedding Registries for {assemblyName}");
         }

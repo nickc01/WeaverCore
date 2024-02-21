@@ -24,10 +24,10 @@ namespace WeaverCore.Editor
                 throw new Exception("Unable to find assembly \"WeaverCore.Editor\". Your WeaverCore files may not be in a valid state");
             }
 
-            if (asm.Definition.includePlatforms.Count > 0)
+            if (asm.Definition.IncludePlatforms.Count > 0)
             {
-                asm.Definition.excludePlatforms = new List<string>();
-                asm.Definition.includePlatforms = new List<string>();
+                asm.Definition.ExcludePlatforms = new List<AssemblyDefinitionFile.Platform>();
+                asm.Definition.IncludePlatforms = new List<AssemblyDefinitionFile.Platform>();
 
                 asm.Save();
 

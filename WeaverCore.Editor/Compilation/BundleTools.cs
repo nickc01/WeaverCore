@@ -101,12 +101,12 @@ namespace WeaverCore.Editor.Compilation
 			/// <summary>
 			/// The original list of included platforms for the asmdef
 			/// </summary>
-			public List<string> OriginalIncludedPlatforms;
+			public List<AssemblyDefinitionFile.Platform> OriginalIncludedPlatforms;
 
 			/// <summary>
 			/// The original list of excluded platforms for the asmdef
 			/// </summary>
-			public List<string> OriginalExcludedPlatforms;
+			public List<AssemblyDefinitionFile.Platform> OriginalExcludedPlatforms;
 		}
 
 		static BundleBuildData _data = null;
@@ -303,21 +303,21 @@ namespace WeaverCore.Editor.Compilation
 				AssetDatabase.StartAssetEditing();
 				foreach (var asm in Data.PreBuildInfo.Where(i => ExcludedAssemblies.Contains(i.AssemblyName)))
 				{
-					if (asm.Definition.includePlatforms.Count == 1 && asm.Definition.includePlatforms[0] == "Editor")
+					if (asm.Definition.IncludePlatforms.Count == 1 && asm.Definition.IncludePlatforms[0] == AssemblyDefinitionFile.Platform.Editor)
 					{
 						continue;
 					}
 					Data.ExcludedAssemblies.Add(new ExcludedAssembly()
 					{
 						AssemblyName = asm.AssemblyName,
-						OriginalExcludedPlatforms = asm.Definition.excludePlatforms,
-						OriginalIncludedPlatforms = asm.Definition.includePlatforms
+						OriginalExcludedPlatforms = asm.Definition.ExcludePlatforms,
+						OriginalIncludedPlatforms = asm.Definition.IncludePlatforms
 					});
-					asm.Definition.excludePlatforms = new List<string>();
-					asm.Definition.includePlatforms = new List<string>
+					asm.Definition.ExcludePlatforms = new List<AssemblyDefinitionFile.Platform>();
+					asm.Definition.IncludePlatforms = new List<AssemblyDefinitionFile.Platform>
 					{
-						"Editor"
-					};
+                        AssemblyDefinitionFile.Platform.Editor
+                    };
 					asm.Save();
 					AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer | ImportAssetOptions.ForceSynchronousImport);
 					assetsChanged = true;
@@ -790,8 +790,8 @@ namespace WeaverCore.Editor.Compilation
 						var asmDef = Data.PreBuildInfo.FirstOrDefault(a => a.AssemblyName == exclusion.AssemblyName);
 						if (asmDef != null)
 						{
-							asmDef.Definition.includePlatforms = exclusion.OriginalIncludedPlatforms;
-							asmDef.Definition.excludePlatforms = exclusion.OriginalExcludedPlatforms;
+							asmDef.Definition.IncludePlatforms = exclusion.OriginalIncludedPlatforms;
+							asmDef.Definition.ExcludePlatforms = exclusion.OriginalExcludedPlatforms;
 							asmDef.Save();
 							assetsChanged = true;
 							AssetDatabase.ImportAsset(asmDef.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer | ImportAssetOptions.ForceSynchronousImport);

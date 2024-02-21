@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using WeaverCore;
 
 public class RemoveEmbeddedObjects : EditorWindow
 {

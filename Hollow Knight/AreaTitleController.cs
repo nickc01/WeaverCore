@@ -207,7 +207,6 @@ public class AreaTitleController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("DISPLAYING TITLE CONTROLLER");
         if (!played && collision.tag == "Player")
         {
             Play();

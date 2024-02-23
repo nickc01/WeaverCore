@@ -427,22 +427,24 @@ namespace WeaverCore.Utilities
 			{
 				if (float.IsPositiveInfinity(jitterFPS) || float.IsNaN(jitterFPS) || float.IsNegativeInfinity(jitterFPS))
 				{
-					yield return null;
+                    transform.position = new Vector3(startPosition.x + Random.Range(-amount.x, amount.x), startPosition.y + Random.Range(-amount.y, amount.y), startPosition.z + Random.Range(-amount.z, amount.z));
+                    yield return null;
 				}
 				else
 				{
 					timer += Time.deltaTime;
 					if (timer >= (1f / jitterFPS))
 					{
-						timer -= (1f / jitterFPS);
-					}
+                        transform.position = new Vector3(startPosition.x + Random.Range(-amount.x, amount.x), startPosition.y + Random.Range(-amount.y, amount.y), startPosition.z + Random.Range(-amount.z, amount.z));
+                        timer -= (1f / jitterFPS);
+                        yield return null;
+                    }
 					else
 					{
 						yield return null;
 						continue;
 					}
 				}
-				transform.position = new Vector3(startPosition.x + Random.Range(-amount.x, amount.x), startPosition.y + Random.Range(-amount.y, amount.y), startPosition.z + Random.Range(-amount.z, amount.z));
 			}
 		}
 

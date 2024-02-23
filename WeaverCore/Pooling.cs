@@ -42,7 +42,8 @@ namespace WeaverCore
 			{
 				while (true)
 				{
-					yield return null;
+					//yield return null;
+					yield return new WaitForSeconds(0.5f);
 
 					foreach (var poolPair in pools)
 					{
@@ -74,17 +75,25 @@ namespace WeaverCore
 
 		static ObjectPool GetPool(GameObject obj)
 		{
+			if (obj == null)
+			{
+				throw new ArgumentNullException(nameof(obj));
+			}
+
+			if (pools.TryGetValue(obj, out var existingPool) && (existingPool == null || existingPool.Pool == null))
+			{
+				pools.Remove(obj);
+			}
+
 			if (!pools.ContainsKey(obj))
 			{
-
-				var pool = ObjectPool.Create(obj);
+				var pool = ObjectPool.Create(obj, true);
 
 				pools.Add(obj, new PoolInfo
 				{
 					Pool = pool,
 					Timer = 0f
 				});
-
 			}
 
 			if (PoolTimerObject == null)
@@ -97,8 +106,9 @@ namespace WeaverCore
 			var info = pools[obj];
 			if (info.Pool == null || info.Pool.gameObject == null)
 			{
-				info.Pool = ObjectPool.Create(obj);
+				info.Pool = ObjectPool.Create(obj, true);
 			}
+			info.Pool.RefreshPrefab(obj.GetComponent<PoolableObject>());
 			info.Timer = 0f;
 			return info.Pool;
 		}
@@ -320,9 +330,9 @@ namespace WeaverCore
 		/// </summary>
 		/// <param name="prefab">The prefab to create a new pool for</param>
 		/// <returns>The new pool for the prefab</returns>
-		public static ObjectPool CreatePool(GameObject prefab)
+		public static ObjectPool CreatePool(GameObject prefab, bool boundToScene = false)
 		{
-			return ObjectPool.Create(prefab);
+			return ObjectPool.Create(prefab, boundToScene);
 		}
 
 		/// <summary>
@@ -330,9 +340,9 @@ namespace WeaverCore
 		/// </summary>
 		/// <param name="prefab">The prefab to create a new pool for</param>
 		/// <returns>The new pool for the prefab</returns>
-		public static ObjectPool CreatePool(PoolableObject prefab)
+		public static ObjectPool CreatePool(PoolableObject prefab, bool boundToScene = false)
 		{
-			return ObjectPool.Create(prefab);
+			return ObjectPool.Create(prefab, boundToScene);
 		}
 
 		/// <summary>
@@ -341,9 +351,9 @@ namespace WeaverCore
 		/// <typeparam name="T">The type of component on the prefab</typeparam>
 		/// <param name="prefab">The prefab to create a new pool for</param>
 		/// <returns>The new pool for the prefab</returns>
-		public static ObjectPool CreatePool<T>(T prefab) where T : Component
+		public static ObjectPool CreatePool<T>(T prefab, bool boundToScene) where T : Component
 		{
-			return ObjectPool.Create(prefab);
+			return ObjectPool.Create(prefab, boundToScene);
 		}
 	}
 }

@@ -50,7 +50,7 @@ namespace WeaverCore.Editor
 			{
 				if (package.name == "com.unity.textmeshpro")
 				{
-					DebugUtilities.ClearLog();
+                    EditorDebugUtilities.ClearLog();
 					Debug.Log("Removing Text Mesh Pro package, since WeaverCore provides a version that is compatible with Hollow Knight");
 					//makingChanges = true;
 					PackageClient.Remove(package.name);
@@ -66,7 +66,7 @@ namespace WeaverCore.Editor
 					//If it isn't the latest compatible version
 					if (package.version != buildPipelineVersion)
 					{
-						DebugUtilities.ClearLog();
+                        EditorDebugUtilities.ClearLog();
 						Debug.Log($"Updating the Scriptable Build Pipeline from [{package.version}] -> [{buildPipelineVersion}]");
 						PackageClient.Remove(package.name);
 						//makingChanges = true;
@@ -86,7 +86,7 @@ namespace WeaverCore.Editor
 
 			if (!latestVersionInstalled)
 			{
-				DebugUtilities.ClearLog();
+                EditorDebugUtilities.ClearLog();
 				PackageClient.Add("com.unity.scriptablebuildpipeline@" + buildPipelineVersion);
 
 				Finish(DependencyCheckResult.RequiresReload);

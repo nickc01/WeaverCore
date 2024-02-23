@@ -296,6 +296,7 @@ public class PlayerData
 
     public void AddHealth(int amount)
     {
+        amount = ModHooks.BeforeAddHealth(amount);
         if (GetInt("health") + amount >= GetInt("maxHealth"))
         {
             SetIntSwappedArgs(GetInt("maxHealth"), "health");

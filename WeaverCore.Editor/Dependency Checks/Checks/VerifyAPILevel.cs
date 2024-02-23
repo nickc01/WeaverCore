@@ -14,7 +14,7 @@ namespace WeaverCore.Editor
         {
             if (PlayerSettings.GetApiCompatibilityLevel(BuildTargetGroup.Standalone) != ApiCompatibilityLevel.NET_4_6)
             {
-                DebugUtilities.ClearLog();
+                EditorDebugUtilities.ClearLog();
                 Debug.Log("Updating Project API Level from .Net Standard 2.0 to .Net 4.6");
                 PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
                 finishCheck(DependencyCheckResult.RequiresReload);

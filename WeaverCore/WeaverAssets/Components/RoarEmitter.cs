@@ -21,7 +21,7 @@ namespace WeaverCore.Assets.Components
 		[Tooltip("How long should the roar effect last by default")]
 		public float stopAfterTime = 12f;
 
-		static GameObject Prefab;
+		static CachedPrefab<RoarEmitter> Prefab = new CachedPrefab<RoarEmitter>();
 
 		void Awake()
 		{
@@ -162,12 +162,12 @@ namespace WeaverCore.Assets.Components
 		/// <returns>Returns an instance to the roar effect</returns>
 		public static RoarEmitter Spawn(Vector3 position)
 		{
-			if (Prefab == null)
+			if (Prefab.Value == null)
 			{
-				Prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Roar Wave");
+				Prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Roar Wave").GetComponent<RoarEmitter>();
 			}
 
-			var instance = GameObject.Instantiate(Prefab, position + Prefab.transform.localPosition, Quaternion.identity).GetComponent<RoarEmitter>();
+			var instance = GameObject.Instantiate(Prefab.Value, position + Prefab.Value.transform.localPosition, Quaternion.identity);
 
 			instance.stopAfterTime = 0f;
 

@@ -30,7 +30,7 @@ namespace WeaverCore
 			//Debug.Log("RUNTIME INIT CAMERA");
 			Vector3 position = default;
 			var mainCam = GameObject.FindObjectOfType<Camera>();
-			if (mainCam != null)
+			if (mainCam != null && mainCam.GetComponent<WeaverCamera>() == null)
 			{
 				position = mainCam.transform.position;
 				Destroy(mainCam.gameObject);
@@ -143,7 +143,7 @@ namespace WeaverCore
 				return;
 			}
 			_instance = this;
-			ReflectionUtilities.ExecuteMethodsWithAttribute<AfterCameraLoadAttribute>();
+			ReflectionUtilities.ExecuteMethodsWithAttribute<AfterCameraLoadAttribute>(Initialization.GetWeaverCoreAssemblies());
 
 			if (featuresToAdd != null)
 			{
@@ -154,5 +154,5 @@ namespace WeaverCore
 				featuresToAdd = null;
 			}
 		}
-	}
+    }
 }

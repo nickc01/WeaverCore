@@ -272,22 +272,34 @@ namespace WeaverCore.Utilities
 			return typeof(InstanceType).GetMethod(methodName, flags);
 		}
 
-		/// <summary>
-		/// Finds all methods that have a certain attribute type applied to them
-		/// </summary>
-		/// <typeparam name="AttriType">The type attribute to look for</typeparam>
-		/// <param name="flags">The binding flags to determine what kind of methods to find</param>
-		/// <returns>Returns all methods with the specified attribute type applied to them</returns>
-		public static IEnumerable<(MethodInfo method, AttriType attribute)> GetMethodsWithAttribute<AttriType>(BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where AttriType : Attribute
-		{
-			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-			{
-				foreach (var method in GetMethodsWithAttribute<AttriType>(assembly, flags))
-				{
-					yield return method;
-				}
-			}
-		}
+        /// <summary>
+        /// Finds all methods that have a certain attribute type applied to them
+        /// </summary>
+        /// <typeparam name="AttriType">The type attribute to look for</typeparam>
+        /// <param name="flags">The binding flags to determine what kind of methods to find</param>
+        /// <returns>Returns all methods with the specified attribute type applied to them</returns>
+        public static IEnumerable<(MethodInfo method, AttriType attribute)> GetMethodsWithAttribute<AttriType>(BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where AttriType : Attribute
+        {
+			return GetMethodsWithAttribute<AttriType>(AppDomain.CurrentDomain.GetAssemblies(), flags);
+        }
+
+        /// <summary>
+        /// Finds all methods that have a certain attribute type applied to them
+        /// </summary>
+        /// <typeparam name="AttriType">The type attribute to look for</typeparam>
+		/// <param name="assemblies">The assemblies to check</param>
+        /// <param name="flags">The binding flags to determine what kind of methods to find</param>
+        /// <returns>Returns all methods with the specified attribute type applied to them</returns>
+        public static IEnumerable<(MethodInfo method, AttriType attribute)> GetMethodsWithAttribute<AttriType>(IEnumerable<Assembly> assemblies, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where AttriType : Attribute
+        {
+            foreach (var assembly in assemblies)
+            {
+                foreach (var method in GetMethodsWithAttribute<AttriType>(assembly, flags))
+                {
+                    yield return method;
+                }
+            }
+        }
 
 		/// <summary>
 		/// Finds all methods in an assembly that have a certain attribute type applied to them
@@ -313,10 +325,13 @@ namespace WeaverCore.Utilities
 		{
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
-				foreach (var method in GetMethodsWithAttribute<AttriType>(assembly, paramTypes, flags))
+				if (!Initialization.IsAssemblyExcluded(assembly))
 				{
-					yield return method;
-				}
+                    foreach (var method in GetMethodsWithAttribute<AttriType>(assembly, paramTypes, flags))
+                    {
+                        yield return method;
+                    }
+                }
 			}
 		}
 
@@ -495,64 +510,87 @@ namespace WeaverCore.Utilities
 			}
 		}
 
-		/// <summary>
-		/// Finds all methods that have a certain attribute type applied to them, and executes them
-		/// </summary>
-		/// <typeparam name="AttriType">The type attribute to look for</typeparam>
-		/// <param name="ExecuteIf">If a delegate is specified here, then only the methods that satify this delegate will be executed</param>
-		/// <param name="flags">The binding flags to determine what kind of methods to find</param>
-		/// <param name="throwOnError">Should an exception be thrown if a method fails?</param>
-		public static void ExecuteMethodsWithAttribute<AttriType>(Func<MethodInfo, AttriType, bool> ExecuteIf = null, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, bool throwOnError = false) where AttriType : Attribute
+        /// <summary>
+        /// Finds all methods that have a certain attribute type applied to them, and executes them
+        /// </summary>
+        /// <typeparam name="AttriType">The type attribute to look for</typeparam>
+		/// <param name="assemblies">The assemblies to check</param>
+        /// <param name="ExecuteIf">If a delegate is specified here, then only the methods that satify this delegate will be executed</param>
+        /// <param name="flags">The binding flags to determine what kind of methods to find</param>
+        /// <param name="throwOnError">Should an exception be thrown if a method fails?</param>
+        public static void ExecuteMethodsWithAttribute<AttriType>(IEnumerable<Assembly> assemblies, Func<MethodInfo, AttriType, bool> ExecuteIf = null, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, bool throwOnError = false) where AttriType : Attribute
 		{
-			List<ValueTuple<MethodInfo, AttriType>> methods = new List<ValueTuple<MethodInfo, AttriType>>();
+            Initialization.PerformanceLog($"Running methods with Attribute {typeof(AttriType)}");
 
-			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-			{
-				methods.AddRange(GetMethodsWithAttribute<AttriType>(assembly, flags));
-			}
+            List<ValueTuple<MethodInfo, AttriType>> methods = new List<ValueTuple<MethodInfo, AttriType>>();
 
-			if (methods.Count == 0)
-			{
-				return;
-			}
-			if (typeof(PriorityAttribute).IsAssignableFrom(typeof(AttriType)))
-			{
-				methods.Sort(new PriorityAttribute.MethodSorter<AttriType>());
-			}
-			while (methods.Count > 0)
-			{
-				var method = methods[0];
-				methods.RemoveAt(0);
-				try
-				{
-					if (ExecuteIf == null || ExecuteIf(method.Item1, method.Item2))
-					{
-						method.Item1.Invoke(null, null);
-					}
-				}
-				catch (Exception e)
-				{
-					if (throwOnError)
-					{
-						throw;
-					}
-					else
-					{
-						//WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name + "\n" + e);
-						try
-						{
-							WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
-							UnityEngine.Debug.LogException(e);
-						}
-						catch (Exception)
-						{
-							Debug.LogWarning("Error running unknown method");
-							Debug.LogException(e);
-						}
-					}
-				}
-			}
-		}
+            foreach (var assembly in assemblies)
+            {
+                methods.AddRange(GetMethodsWithAttribute<AttriType>(assembly, flags));
+                /*if (!Initialization.IsAssemblyExcluded(assembly))
+                {
+                    
+                }*/
+            }
+
+            if (methods.Count == 0)
+            {
+                return;
+            }
+            if (typeof(PriorityAttribute).IsAssignableFrom(typeof(AttriType)))
+            {
+                methods.Sort(new PriorityAttribute.MethodSorter<AttriType>());
+            }
+            while (methods.Count > 0)
+            {
+                var method = methods[0];
+                methods.RemoveAt(0);
+                try
+                {
+                    if (ExecuteIf == null || ExecuteIf(method.Item1, method.Item2))
+                    {
+                        Initialization.PerformanceLog($"Running method {method.Item1.DeclaringType.Name}:{method.Item1.Name}");
+                        method.Item1.Invoke(null, null);
+                        Initialization.PerformanceLog($"Done Running method {method.Item1.DeclaringType.Name}:{method.Item1.Name}");
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (throwOnError)
+                    {
+                        throw;
+                    }
+                    else
+                    {
+                        //WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name + "\n" + e);
+                        try
+                        {
+                            WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
+                            UnityEngine.Debug.LogException(e);
+                        }
+                        catch (Exception)
+                        {
+                            Debug.LogWarning("Error running unknown method");
+                            Debug.LogException(e);
+                        }
+                    }
+                }
+            }
+
+            Initialization.PerformanceLog($"Finished running methods with Attribute {typeof(AttriType)}");
+        }
+
+        /// <summary>
+        /// Finds all methods that have a certain attribute type applied to them, and executes them
+        /// </summary>
+        /// <typeparam name="AttriType">The type attribute to look for</typeparam>
+        /// <param name="ExecuteIf">If a delegate is specified here, then only the methods that satify this delegate will be executed</param>
+        /// <param name="flags">The binding flags to determine what kind of methods to find</param>
+        /// <param name="throwOnError">Should an exception be thrown if a method fails?</param>
+        public static void ExecuteMethodsWithAttribute<AttriType>(Func<MethodInfo, AttriType, bool> ExecuteIf = null, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, bool throwOnError = false) where AttriType : Attribute
+		{
+            ExecuteMethodsWithAttribute(AppDomain.CurrentDomain.GetAssemblies(), ExecuteIf, flags, throwOnError);
+        }
 
         /// <summary>
         /// Finds a loaded assembly by its full name or simple name.

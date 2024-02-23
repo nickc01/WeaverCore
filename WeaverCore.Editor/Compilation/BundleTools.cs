@@ -101,12 +101,12 @@ namespace WeaverCore.Editor.Compilation
 			/// <summary>
 			/// The original list of included platforms for the asmdef
 			/// </summary>
-			public List<string> OriginalIncludedPlatforms;
+			public List<AssemblyDefinitionFile.Platform> OriginalIncludedPlatforms;
 
 			/// <summary>
 			/// The original list of excluded platforms for the asmdef
 			/// </summary>
-			public List<string> OriginalExcludedPlatforms;
+			public List<AssemblyDefinitionFile.Platform> OriginalExcludedPlatforms;
 		}
 
 		static BundleBuildData _data = null;
@@ -303,21 +303,21 @@ namespace WeaverCore.Editor.Compilation
 				AssetDatabase.StartAssetEditing();
 				foreach (var asm in Data.PreBuildInfo.Where(i => ExcludedAssemblies.Contains(i.AssemblyName)))
 				{
-					if (asm.Definition.includePlatforms.Count == 1 && asm.Definition.includePlatforms[0] == "Editor")
+					if (asm.Definition.IncludePlatforms.Count == 1 && asm.Definition.IncludePlatforms[0] == AssemblyDefinitionFile.Platform.Editor)
 					{
 						continue;
 					}
 					Data.ExcludedAssemblies.Add(new ExcludedAssembly()
 					{
 						AssemblyName = asm.AssemblyName,
-						OriginalExcludedPlatforms = asm.Definition.excludePlatforms,
-						OriginalIncludedPlatforms = asm.Definition.includePlatforms
+						OriginalExcludedPlatforms = asm.Definition.ExcludePlatforms,
+						OriginalIncludedPlatforms = asm.Definition.IncludePlatforms
 					});
-					asm.Definition.excludePlatforms = new List<string>();
-					asm.Definition.includePlatforms = new List<string>
+					asm.Definition.ExcludePlatforms = new List<AssemblyDefinitionFile.Platform>();
+					asm.Definition.IncludePlatforms = new List<AssemblyDefinitionFile.Platform>
 					{
-						"Editor"
-					};
+                        AssemblyDefinitionFile.Platform.Editor
+                    };
 					asm.Save();
 					AssetDatabase.ImportAsset(asm.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer | ImportAssetOptions.ForceSynchronousImport);
 					assetsChanged = true;
@@ -335,7 +335,7 @@ namespace WeaverCore.Editor.Compilation
 
 				var modNameParam = new object[] { BuildScreen.BuildSettings.ModName };
 
-				foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<BeforeBuildAttribute>())
+				foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<BeforeBuildAttribute>(Initialization.GetWeaverCoreAssemblies()))
 				{
                     try
                     {
@@ -608,7 +608,7 @@ namespace WeaverCore.Editor.Compilation
 					}
 					else
                     {
-						DebugUtilities.ClearLog();
+                        EditorDebugUtilities.ClearLog();
                     }
 				}
 				finally
@@ -790,8 +790,8 @@ namespace WeaverCore.Editor.Compilation
 						var asmDef = Data.PreBuildInfo.FirstOrDefault(a => a.AssemblyName == exclusion.AssemblyName);
 						if (asmDef != null)
 						{
-							asmDef.Definition.includePlatforms = exclusion.OriginalIncludedPlatforms;
-							asmDef.Definition.excludePlatforms = exclusion.OriginalExcludedPlatforms;
+							asmDef.Definition.IncludePlatforms = exclusion.OriginalIncludedPlatforms;
+							asmDef.Definition.ExcludePlatforms = exclusion.OriginalExcludedPlatforms;
 							asmDef.Save();
 							assetsChanged = true;
 							AssetDatabase.ImportAsset(asmDef.AssemblyDefinitionPath, ImportAssetOptions.DontDownloadFromCacheServer | ImportAssetOptions.ForceSynchronousImport);
@@ -812,7 +812,7 @@ namespace WeaverCore.Editor.Compilation
                 //ReflectionUtilities.ExecuteMethodsWithAttribute<AfterBuildAttribute>();
                 var modNameParam = new object[] { BuildScreen.BuildSettings.ModName };
 
-                foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<AfterBuildAttribute>())
+                foreach (var method in ReflectionUtilities.GetMethodsWithAttribute<AfterBuildAttribute>(Initialization.GetWeaverCoreAssemblies()))
                 {
 					try
 					{
@@ -865,7 +865,7 @@ namespace WeaverCore.Editor.Compilation
 			{
                 if (firstTime)
                 {
-					DebugUtilities.ClearLog();
+                    EditorDebugUtilities.ClearLog();
 					//Try Building Again, since the first ever build seems to have issues.
 					if (BuildScreen.BuildSettings.WeaverCoreOnly)
 					{
@@ -1067,21 +1067,37 @@ namespace WeaverCore.Editor.Compilation
                                     {
 										valueAtIndex.Set($"{split[0]}:{split[1]}");
 										modified = true;
-                                        //serializedObject.FindProperty(nameof(componentTypeNames)).GetArrayElementAtIndex(i).stringValue = $"{split[0]}:{split[1]}";
-                                        //fieldUpdater.componentTypeNames[i] = $"{split[0]}:{split[1]}";
+                                    }
+                                }
+
+                                var fieldTypesField = monoBehaviourInst.Get("fieldTypes").Get("Array");
+
+                                var fieldTypesValue = fieldTypesField.GetValue();
+
+                                var fieldTypesArray = fieldTypesValue.AsArray();
+
+                                for (int i = 0; i < fieldTypesArray.size; i++)
+                                {
+                                    var valueAtIndex = fieldTypesField[i].GetValue();
+
+                                    var split = valueAtIndex.AsString().Split(':');
+                                    bool changed = false;
+                                    if (split[0] == "Assembly-CSharp")
+                                    {
+                                        changed = true;
+                                        split[0] = modName;
+                                    }
+                                    else if (split[0] == "HollowKnight")
+                                    {
+                                        changed = true;
+                                        split[0] = "Assembly-CSharp";
                                     }
 
-                                    /*var asmValue = featureAsms[i].GetValue();
-                                    foreach (var replacement in assemblyReplacements)
+                                    if (changed)
                                     {
-                                        if (asmValue.AsString() == replacement.Key)
-                                        {
-                                            asmValue.Set(replacement.Value);
-                                            ($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
-                                            modified = true;
-                                            break;
-                                        }
-                                    }*/
+                                        valueAtIndex.Set($"{split[0]}:{split[1]}");
+                                        modified = true;
+                                    }
                                 }
 
                                 if (modified)

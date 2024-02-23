@@ -5,7 +5,7 @@ namespace WeaverCore.Editor.Utilities
 	/// <summary>
 	/// Contains some debug utility functions
 	/// </summary>
-	public static class DebugUtilities
+	public static class EditorDebugUtilities
 	{
 		static MethodInfo clearMethod = null;
 

@@ -44,6 +44,8 @@ namespace WeaverCore.Utilities
 			Stop(this);
 		}
 
+		public bool IsDone => impl.IsDone(this);
+
 		/// <summary>
 		/// Used for accessing Time.deltaTime. This also works when not in play mode
 		/// </summary>

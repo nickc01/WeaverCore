@@ -96,5 +96,24 @@ namespace WeaverCore.Editor.Implementations
 				}
 			}
 		}
+
+        public override IEnumerable<T> LoadAssetsOfType<T>(string bundleName)
+        {
+            var ids = AssetDatabase.FindAssets($"t:{typeof(T).FullName}");
+
+            for (int i = 0; i < ids.GetLength(0); i++)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(ids[i]);
+                var importer = AssetImporter.GetAtPath(path);
+                if (importer.assetBundleName.Contains(bundleName))
+                {
+                    var asset = AssetDatabase.LoadAssetAtPath<T>(path);
+                    if (asset != null)
+                    {
+                        yield return asset;
+                    }
+                }
+            }
+        }
     }
 }

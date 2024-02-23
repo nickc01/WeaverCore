@@ -862,6 +862,41 @@ namespace Modding
         }
 
         /// <summary>
+        ///     Called when Hero recovers Soul from hitting enemies
+        /// </summary>
+        /// <returns>The amount of soul to recover</returns>
+        public static event Func<int, int> SoulGainHook;
+
+        /// <summary>
+        ///     Called when Hero recovers Soul from hitting enemies
+        /// </summary>
+        internal static int OnSoulGain(int num)
+        {
+            //Logger.LogFine("OnSoulGain Invoked");
+
+            if (SoulGainHook == null)
+            {
+                return num;
+            }
+
+            Delegate[] invocationList = SoulGainHook.GetInvocationList();
+
+            foreach (Func<int, int> toInvoke in invocationList)
+            {
+                try
+                {
+                    num = toInvoke.Invoke(num);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+
+            return num;
+        }
+
+        /// <summary>
         ///     Called directly before save has been saved to allow for changes to the data before persisted.
         /// </summary>
         /// <remarks>GameManager.SaveGame</remarks>
@@ -1033,6 +1068,78 @@ namespace Modding
                 }
             }
         }
+
+        /// <summary>
+        ///     Called whenever the player heals
+        /// </summary>
+        /// <remarks>PlayerData.health</remarks>
+        internal static int BeforeAddHealth(int amount)
+        {
+            Debug.Log("BeforeAddHealth Invoked");
+
+            if (BeforeAddHealthHook == null)
+            {
+                return amount;
+            }
+
+            Delegate[] invocationList = BeforeAddHealthHook.GetInvocationList();
+
+            foreach (Func<int, int> toInvoke in invocationList)
+            {
+                try
+                {
+                    amount = toInvoke.Invoke(amount);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError(ex);
+                }
+            }
+
+            return amount;
+        }
+
+        /// <summary>
+        ///     Called whenever focus cost is calculated
+        /// </summary>
+        internal static float OnFocusCost()
+        {
+            Logger.LogFine("OnFocusCost Invoked");
+
+            float result = 1f;
+
+            if (FocusCostHook == null)
+            {
+                return result;
+            }
+
+            Delegate[] invocationList = FocusCostHook.GetInvocationList();
+
+            foreach (Func<float> toInvoke in invocationList)
+            {
+                try
+                {
+                    result = toInvoke.Invoke();
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex);
+                }
+            }
+
+            return result;
+        }
+		
+		/// <summary>
+        ///     Called whenever focus cost is calculated, allows a focus cost multiplier.
+        /// </summary>
+        public static event Func<float> FocusCostHook;
+
+        /// <summary>
+        ///     Called whenever the player heals, overrides health added.
+        /// </summary>
+        /// <remarks>PlayerData.health</remarks>
+        public static event Func<int, int> BeforeAddHealthHook;
 
         /// <summary>
         ///     Called directly after a save has been loaded

@@ -42,6 +42,12 @@ namespace WeaverCore
 		/// <returns>Returns a new audio player for playing the audio clip</returns>
 		public static AudioPlayer Create(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
 		{
+#if UNITY_EDITOR
+			if (baseObject == null)
+			{
+                baseObject = WeaverAssets.LoadWeaverAsset<GameObject>("Weaver Audio Player Prefab").GetComponent<AudioPlayer>();
+            }
+#endif
 			var audioObject = Pooling.Instantiate(baseObject, position, Quaternion.identity);
 			var audioSource = audioObject.AudioSource;
 			audioObject.Channel = channel;

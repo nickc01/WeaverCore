@@ -58,7 +58,7 @@ namespace WeaverCore.Editor
             }
             if (!silent)
             {
-                DebugUtilities.ClearLog();
+                EditorDebugUtilities.ClearLog();
 
                 Debug.Log("WeaverCore is Fully Setup!");
 
@@ -160,7 +160,7 @@ namespace WeaverCore.Editor
                         case DependencyCheck.DependencyCheckResult.RequiresReload:
                             if (!silent)
                             {
-                                DebugUtilities.ClearLog();
+                                EditorDebugUtilities.ClearLog();
                             }
                             PersistentData.StoreData(new DependencyCheck_Data
                             {

@@ -12,28 +12,56 @@ namespace WeaverCore.Components
     /// </summary>
     public class Shockwave : MonoBehaviour, IOnPool
     {
+
+        private static CachedPrefab<Shockwave> shockwaveSmall = new CachedPrefab<Shockwave>();
         /// <summary>
         /// The default prefab for a small shockwave
         /// </summary>
-        public static Shockwave ShockwaveSmall => shockwaveSmall ??= WeaverAssets.LoadWeaverAsset<GameObject>("Shockwave Wave Small").GetComponent<Shockwave>();
+        public static Shockwave ShockwaveSmall
+        {
+            get
+            {
+                if (shockwaveSmall.Value == null)
+                {
+                    shockwaveSmall.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Shockwave Wave Small").GetComponent<Shockwave>();
+                }
+                return shockwaveSmall.Value;
+            }
+        }
 
-        private static Shockwave shockwaveSmall;
-
+        private static CachedPrefab<Shockwave> shockwaveShort = new CachedPrefab<Shockwave>();
         /// <summary>
         /// The default prefab for a short shockwave
         /// </summary>
-        public static Shockwave ShockwaveShort => shockwaveShort ??= WeaverAssets.LoadWeaverAsset<GameObject>("Shockwave Wave Short").GetComponent<Shockwave>();
+        public static Shockwave ShockwaveShort
+        {
+            get
+            {
+                if (shockwaveShort.Value == null)
+                {
+                    shockwaveShort.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Shockwave Wave Short").GetComponent<Shockwave>();
+                }
+                return shockwaveShort.Value;
+            }
+        }
 
-        private static Shockwave shockwaveShort;
-
+        private static Shockwave shockwaveZ;
         /// <summary>
         /// The default prefab for a large shockwave
         /// </summary>
-        public static Shockwave ShockwaveZ => shockwaveZ ??= WeaverAssets.LoadWeaverAsset<GameObject>("Shockwave Wave Z").GetComponent<Shockwave>();
+        public static Shockwave ShockwaveZ
+        {
+            get
+            {
+                if (shockwaveZ == null)
+                {
+                    shockwaveZ = WeaverAssets.LoadWeaverAsset<GameObject>("Shockwave Wave Z").GetComponent<Shockwave>();
+                }
+                return shockwaveZ;
+            }
+        }
 
-        private static Shockwave shockwaveZ;
-
-        private static RaycastHit2D[] hitCache = new RaycastHit2D[1];
+        //private static RaycastHit2D[] hitCache = new RaycastHit2D[1];
 
         private enum CollisionType
         {
@@ -131,6 +159,8 @@ namespace WeaverCore.Components
             {
                 speed += incrementer;
                 rb.velocity = rb.velocity.With(x: speed);
+
+                var hitCache = HitCache.GetSingleCachedArray();
 
                 if (Physics2D.RaycastNonAlloc((Vector2)transform.position + raycastFrom, Vector2.left, hitCache, 2f, 8) > 0)
                 {

@@ -14,7 +14,9 @@ namespace WeaverCore.Components.HitEffects
     /// </summary>
     public class HitEffectsNormal : MonoBehaviour, IHitEffects
 	{
-		static ObjectPool UninfectedHitPool;
+		//static ObjectPool UninfectedHitPool;
+
+
 
 		[SerializeField]
 		[Tooltip("Should the sprite flash upon hit?")]
@@ -39,10 +41,10 @@ namespace WeaverCore.Components.HitEffects
 		void Start()
 		{
 			NormalFlings = Flings.CreateNormalFlings();
-			if (UninfectedHitPool == null)
+			/*if (UninfectedHitPool == null)
 			{
 				UninfectedHitPool = ObjectPool.Create(Assets.EffectAssets.UninfectedHitPrefab);
-			}
+			}*/
 
 			flashers = GetComponentsInChildren<SpriteFlasher>();
 		}

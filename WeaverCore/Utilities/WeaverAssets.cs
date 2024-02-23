@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using UnityEngine;
 using WeaverCore.Enums;
@@ -32,7 +33,8 @@ namespace WeaverCore.Utilities
 				Impl.Initialize();
 			}
 
-			return Impl.LoadAsset<T>(name);
+            RegistryLoader.LoadBundlesOnly(typeof(WeaverMod));
+            return Impl.LoadAsset<T>(name);
 		}
 
 		/// <summary>
@@ -49,7 +51,8 @@ namespace WeaverCore.Utilities
 				Impl.Initialize();
 			}
 
-			return Impl.LoadAssets<T>(name);
+            RegistryLoader.LoadBundlesOnly(typeof(WeaverMod));
+            return Impl.LoadAssets<T>(name);
 		}
 
 		/// <summary>
@@ -69,7 +72,12 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the loaded asset, or null of the asset wasn't found</returns>
 		public static T LoadAssetFromBundle<T>(string bundleName, string name) where T : UnityEngine.Object
 		{
-			return Impl.LoadAssetFromBundle<T>(bundleName, name);
+            if (Impl == null)
+            {
+                Impl = ImplFinder.GetImplementation<WeaverAssets_I>();
+                Impl.Initialize();
+            }
+            return Impl.LoadAssetFromBundle<T>(bundleName, name);
 		}
 
 		/// <summary>
@@ -81,7 +89,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the loaded asset, or null of the asset wasn't found</returns>
 		public static T LoadAssetFromBundle<T>(Type modType, string name) where T : UnityEngine.Object
 		{
-			var bundleName = $"{modType.Name.ToLower()}_bundle";
+            if (Impl == null)
+            {
+                Impl = ImplFinder.GetImplementation<WeaverAssets_I>();
+                Impl.Initialize();
+            }
+            RegistryLoader.LoadBundlesOnly(modType);
+            var bundleName = $"{modType.Name.ToLower()}_bundle";
 			return Impl.LoadAssetFromBundle<T>(bundleName, name);
         }
 
@@ -108,7 +122,12 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the loaded assets</returns>
 		public static IEnumerable<T> LoadAssetsFromBundle<T>(string bundleName, string name) where T : UnityEngine.Object
 		{
-			return Impl.LoadAssetsFromBundle<T>(bundleName, name);
+            if (Impl == null)
+            {
+                Impl = ImplFinder.GetImplementation<WeaverAssets_I>();
+                Impl.Initialize();
+            }
+            return Impl.LoadAssetsFromBundle<T>(bundleName, name);
 		}
 
 		/// <summary>
@@ -120,7 +139,14 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the loaded assets</returns>
 		public static IEnumerable<T> LoadAssetsFromBundle<T>(Type modType, string name) where T : UnityEngine.Object
 		{
-			var bundleName = $"{modType.Name.ToLower()}_bundle";
+            if (Impl == null)
+            {
+                Impl = ImplFinder.GetImplementation<WeaverAssets_I>();
+                Impl.Initialize();
+            }
+
+            RegistryLoader.LoadBundlesOnly(modType);
+            var bundleName = $"{modType.Name.ToLower()}_bundle";
 			return Impl.LoadAssetsFromBundle<T>(bundleName, name);
 		}
 
@@ -135,5 +161,28 @@ namespace WeaverCore.Utilities
 		{
 			return LoadAssetsFromBundle<T>(typeof(ModType), name);
 		}
-	}
+
+		public static IEnumerable<T> LoadAssetsOfType<T, ModType>() where T : UnityEngine.Object
+		{
+			return LoadAssetsOfType<T>(typeof(ModType));
+		}
+
+        public static IEnumerable<T> LoadAssetsOfType<T>(Type modType) where T : UnityEngine.Object
+        {
+			RegistryLoader.LoadBundlesOnly(modType);
+            var bundleName = $"{modType.Name.ToLower()}_bundle";
+			return LoadAssetsOfType<T>(bundleName);
+        }
+
+        public static IEnumerable<T> LoadAssetsOfType<T>(string bundleName) where T : UnityEngine.Object
+        {
+            if (Impl == null)
+            {
+                Impl = ImplFinder.GetImplementation<WeaverAssets_I>();
+                Impl.Initialize();
+            }
+
+            return Impl.LoadAssetsOfType<T>(bundleName);
+        }
+    }
 }

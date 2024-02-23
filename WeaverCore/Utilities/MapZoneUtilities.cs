@@ -117,7 +117,6 @@ namespace WeaverCore.Utilities
         {
             if (sheetTitle == "Map Zones")
             {
-                WeaverLog.Log("MAP ZONE KEY = " + key);
                 foreach (var zone in GetCustomMapZones())
                 {
                     if (zone.GetInternalName() == key)

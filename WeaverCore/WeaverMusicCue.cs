@@ -70,6 +70,22 @@ namespace WeaverCore
 #if UNITY_EDITOR
             //cueData = "";
 
+            if (channelInfosGetter(this) == null)
+            {
+                var newInfo = new MusicChannelInfo[6];
+
+                for (int i = 0; i < newInfo.Length; i++)
+                {
+                    newInfo[i] = new MusicChannelInfo();
+                }
+
+                channelInfosSetter(this, newInfo);
+            }
+
+            if (alternativesGetter(this) == null)
+            {
+                alternativesSetter(this, new Alternative[0]);
+            }
 
             if (channelInfos_clip == null)
             {
@@ -171,23 +187,62 @@ namespace WeaverCore
 
         private void Reset()
         {
-            channelInfosSetter(this,new MusicChannelInfo[6]);
+            var newInfo = new MusicChannelInfo[6];
+
+            for (int i = 0; i < newInfo.Length; i++)
+            {
+                newInfo[i] = new MusicChannelInfo();
+            }
+
+            channelInfosSetter(this, newInfo);
+
+            if (alternativesGetter(this) == null)
+            {
+                alternativesSetter(this, new Alternative[0]);
+            }
         }
 
         [OnInit]
         static void Init()
         {
-            channelInfosGetter = ReflectionUtilities.CreateFieldGetter<MusicCue, MusicChannelInfo[]>("channelInfos");
-            alternativesGetter = ReflectionUtilities.CreateFieldGetter<MusicCue, Alternative[]>("alternatives");
+            if (channelInfosGetter == null)
+            {
+                channelInfosGetter = ReflectionUtilities.CreateFieldGetter<MusicCue, MusicChannelInfo[]>("channelInfos");
+            }
+            if (alternativesGetter == null)
+            {
+                alternativesGetter = ReflectionUtilities.CreateFieldGetter<MusicCue, Alternative[]>("alternatives");
+            }
 
-            channelInfosSetter = ReflectionUtilities.CreateFieldSetter<MusicCue, MusicChannelInfo[]>("channelInfos");
-            alternativesSetter = ReflectionUtilities.CreateFieldSetter<MusicCue, Alternative[]>("alternatives");
+            if (channelInfosSetter == null)
+            {
+                channelInfosSetter = ReflectionUtilities.CreateFieldSetter<MusicCue, MusicChannelInfo[]>("channelInfos");
+            }
 
-            syncGetter = ReflectionUtilities.CreateFieldGetter<MusicChannelInfo, MusicChannelSync>("sync");
-            syncSetter = ReflectionUtilities.CreateFieldSetter<MusicChannelInfo, MusicChannelSync>("sync");
+            if (alternativesSetter == null)
+            {
+                alternativesSetter = ReflectionUtilities.CreateFieldSetter<MusicCue, Alternative[]>("alternatives");
+            }
 
-            clipGetter = ReflectionUtilities.CreateFieldGetter<MusicChannelInfo, AudioClip>("clip");
-            clipSetter = ReflectionUtilities.CreateFieldSetter<MusicChannelInfo, AudioClip>("clip");
+            if (syncGetter == null)
+            {
+                syncGetter = ReflectionUtilities.CreateFieldGetter<MusicChannelInfo, MusicChannelSync>("sync");
+            }
+
+            if (syncSetter == null)
+            {
+                syncSetter = ReflectionUtilities.CreateFieldSetter<MusicChannelInfo, MusicChannelSync>("sync");
+            }
+
+            if (clipGetter == null)
+            {
+                clipGetter = ReflectionUtilities.CreateFieldGetter<MusicChannelInfo, AudioClip>("clip");
+            }
+
+            if (clipSetter == null)
+            {
+                clipSetter = ReflectionUtilities.CreateFieldSetter<MusicChannelInfo, AudioClip>("clip");
+            }
         }
 
         [OnHarmonyPatch]

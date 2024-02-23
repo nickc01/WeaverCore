@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
@@ -75,10 +76,13 @@ namespace WeaverCore
 
 		static Cache<Type, FieldCopierBuilder<Component>.ShallowCopyDelegate> CopierCache = new Cache<Type, FieldCopierBuilder<Component>.ShallowCopyDelegate>();
 
+		public const bool DEBUG = false;
+		public const bool PREFAB_PROXY = false;
+
 		/// <summary>
 		/// Can the pool work with multiple threads?
 		/// </summary>
-		public static readonly bool MultiThreaded = true;
+		public const bool MultiThreaded = true;
 
 		/// <summary>
 		/// Is the pool ready for use?
@@ -129,6 +133,11 @@ namespace WeaverCore
 			}
 		}
 
+		internal void RefreshPrefab(PoolableObject prefab)
+		{
+			_prefab = prefab;
+        }
+
 		/// <summary>
 		/// The name given to each instance in the pool
 		/// </summary>
@@ -170,22 +179,30 @@ namespace WeaverCore
 					for (int i = 0; i < caller.Components.GetLength(0); i++)
 					{
 						ComponentPath componentPath = caller.Components[i];
-						Component component = componentPath.Component;
-						if (component != null)
-						{
-							Type cType = component.GetType();
+						//Component component = componentPath.Component;
+						//if (component != null)
+						//{
+							//Type cType = component.GetType();
 							ComponentTypeData cData;
 
-							if (caller.ComponentData.TryGetValue(cType, out cData))
+							if (caller.ComponentData.TryGetValue(componentPath.ComponentType, out cData))
 							{
-								if (cData.StartFunction != null)
+								if (componentPath.Component != null && cData.StartFunction != null)
 								{
-									cData.StartFunction(component);
+									cData.StartFunction(componentPath.Component);
 								}
 							}
-						}
+						//}
 					}
 				}
+			}
+		}
+
+		static void DebugPrint(string message)
+		{
+			if (DEBUG)
+			{
+				Debug.Log(message);
 			}
 		}
 
@@ -197,11 +214,14 @@ namespace WeaverCore
 
 			if (!MultiThreaded)
 			{
-				LoadPoolData(components);
+				DebugPrint($"{name} Calling LoadPoolData Single-Threaded");
+                LoadPoolData(components);
 			}
 			else
 			{
-				ThreadPool.QueueUserWorkItem(LoadPoolData, components);
+                DebugPrint($"{name} Calling LoadPoolData Multi-Threaded");
+				Task.Run(() => LoadPoolData(components));
+                //ThreadPool.QueueUserWorkItem(LoadPoolData, components);
 			}
 		}
 
@@ -210,53 +230,80 @@ namespace WeaverCore
 		/// </summary>
 		public void ClearPool()
 		{
-			PooledObjects.Clear();
+            DebugPrint($"{name} Calling ClearPool");
+            PooledObjects.Clear();
 		}
 
 		/// <summary>
 		/// Creates a new pool for a prefab
 		/// </summary>
 		/// <param name="prefab">The prefab the pool will be instantiating</param>
+		/// <param name="boundToScene">If true, this ObjectPool will be destroyed when the current scene changes</param>
 		/// <returns>Returns a new pool for the prefab</returns>
 		/// <exception cref="Exception">Throws if the prefab is null</exception>
-		public static ObjectPool Create(GameObject prefab)
+		public static ObjectPool Create(GameObject prefab, bool boundToScene = false)
 		{
 			var poolComponent = prefab.GetComponent<PoolableObject>();
 			if (poolComponent == null)
 			{
 				throw new Exception("The gameObject " + prefab.name + " does not have PoolableObject component attached");
 			}
-			return Create(poolComponent);
+			return Create(poolComponent, boundToScene);
 		}
 
-		/// <summary>
-		/// Creates a new pool for a prefab
-		/// </summary>
-		/// <param name="prefab">The prefab the pool will be instantiating</param>
-		/// <returns>Returns a new pool for the prefab</returns>
-		public static ObjectPool Create(PoolableObject prefab)
+        /// <summary>
+        /// Creates a new pool for a prefab
+        /// </summary>
+        /// <param name="prefab">The prefab the pool will be instantiating</param>
+        /// <param name="boundToScene">If true, this ObjectPool will be destroyed when the current scene changes</param>
+        /// <returns>Returns a new pool for the prefab</returns>
+        public static ObjectPool Create(PoolableObject prefab, bool boundToScene = false)
 		{
+			if (prefab == null)
+			{
+				throw new ArgumentNullException(nameof(prefab));
+			}
 			var pool = new GameObject().AddComponent<ObjectPool>();
 			pool.gameObject.name = "Object Pool - " + prefab.name;
-			pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
-			pool.Prefab = prefab;
-			return pool;
+            pool.gameObject.hideFlags = HideFlags.HideInHierarchy;
+            DebugPrint($"{pool.name} Creating Pool...");
+
+            if (!boundToScene)
+            {
+                GameObject.DontDestroyOnLoad(pool.gameObject);
+            }
+
+            if (PREFAB_PROXY)
+			{
+                var sourcePrefabContainer = new GameObject("PREFAB_SOURCE_CONTAINER");
+                sourcePrefabContainer.SetActive(false);
+                sourcePrefabContainer.transform.SetParent(pool.transform);
+                var sourcePrefab = GameObject.Instantiate(prefab, sourcePrefabContainer.transform);
+                pool.Prefab = sourcePrefab;
+            }
+			else
+			{
+				pool.Prefab = prefab;
+			}  
+            DebugPrint($"{pool.name} Created Pool with prefab = " + pool.Prefab);
+            return pool;
 		}
 
-		/// <summary>
-		/// Creates a new pool for a prefab
-		/// </summary>
-		/// <param name="prefab">The prefab the pool will be instantiating</param>
-		/// <returns>Returns a new pool for the prefab</returns>
-		/// <exception cref="Exception">Throws if the prefab is null</exception>
-		public static ObjectPool Create(Component prefab)
+        /// <summary>
+        /// Creates a new pool for a prefab
+        /// </summary>
+        /// <param name="prefab">The prefab the pool will be instantiating</param>
+        /// <param name="boundToScene">If true, this ObjectPool will be destroyed when the current scene changes</param>
+        /// <returns>Returns a new pool for the prefab</returns>
+        /// <exception cref="Exception">Throws if the prefab is null</exception>
+        public static ObjectPool Create(Component prefab, bool boundToScene = false)
 		{
 			var poolComponent = prefab.GetComponent<PoolableObject>();
 			if (poolComponent == null)
 			{
 				throw new Exception("The gameObject " + prefab.gameObject.name + " does not have PoolableObject component attached");
 			}
-			return Create(poolComponent);
+			return Create(poolComponent, boundToScene);
 		}
 
 
@@ -268,12 +315,19 @@ namespace WeaverCore
 		{
 			try
 			{
+				if (!MultiThreaded)
+				{
+					WeaverLog.Log($"LOADING POOL DATA FOR {Prefab.name}");
+				}
 				ComponentPath[] components = (ComponentPath[])componentsRaw;
+				//COMPONENTS CAN'T BE NULL HERE
 				for (int i = 0; i < components.GetLength(0); i++)
 				{
 					ComponentPath componentPath = components[i];
-					Type type = componentPath.Component.GetType();
+					//COMPONENT MAYBE NULL?
+					Type type = componentPath.ComponentType;
 
+					//COMPONENTDATA CANT BE NULL
 					if (!ComponentData.ContainsKey(type))
 					{
 						ComponentTypeData cData = new ComponentTypeData();
@@ -299,8 +353,17 @@ namespace WeaverCore
 
 							while (currentType != null && currentType != typeof(Component))
 							{
-								cData.Copiers.Add(CreateFieldCopier(currentType));
-								currentType = currentType.BaseType;
+                                if (!MultiThreaded)
+                                {
+                                    WeaverLog.Log($"Starting field copier for {currentType.Name}");
+                                }
+                                cData.Copiers.Add(CreateFieldCopier(currentType));
+
+                                if (!MultiThreaded)
+                                {
+                                    WeaverLog.Log($"Finished field copier for {currentType.Name}");
+                                }
+                                currentType = currentType.BaseType;
 							}
 						}
 						ComponentData.Add(type, cData);
@@ -360,7 +423,7 @@ namespace WeaverCore
 		{
 			int hierarchyHash = 0;
 			Utilities.HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.SiblingHash);
-			Utilities.HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.Component.GetType().GetHashCode());
+			Utilities.HashUtilities.AdditiveHash(ref hierarchyHash, componentPath.ComponentType.GetHashCode());
 			return hierarchyHash;
 		}
 
@@ -469,7 +532,19 @@ namespace WeaverCore
 				throw new Exception("The passed in object did not originate from this pool");
 			}
 
-			if (time > 0)
+			if (DEBUG)
+			{
+                if (time > 0f)
+                {
+                    DebugPrint($"{name} Returning {poolableObject.name} back to pool in {time} seconds");
+                }
+                else
+                {
+                    DebugPrint($"{name} Returning {poolableObject.name} back to pool");
+                }
+            }
+
+            if (time > 0)
 			{
 				StartCoroutine(ReturnToPoolRoutine(poolableObject, time));
 			}
@@ -507,7 +582,7 @@ namespace WeaverCore
 			{
 				ComponentPath componentPath = objComponents[i];
 				Component component = componentPath.Component;
-				Type type = component.GetType();
+				Type type = componentPath.ComponentType;
 
 				if (component is IOnPool && component != null)
 				{
@@ -560,7 +635,7 @@ namespace WeaverCore
 
 		private PoolableObject InstantiateInternal(Vector3 position, Quaternion rotation, Transform parent)
 		{
-			PoolableObject obj = null;
+            PoolableObject obj = null;
 			if (poolAllSet)
 			{
 				while (PooledObjects.Count > 0 && obj == null)
@@ -572,7 +647,9 @@ namespace WeaverCore
 			//If there was a valid object in the queue
 			if (obj != null && poolAllSet)
 			{
-				obj.gameObject.name = InstanceName;
+				//WeaverLog.Log(obj);
+                DebugPrint($"Spawning Object from pool... {Prefab}");
+                obj.gameObject.name = InstanceName;
 				obj.SourcePool = this;
 				obj.InPool = false;
 				Transform t = obj.transform;
@@ -587,10 +664,10 @@ namespace WeaverCore
 				{
 					ComponentPath componentPath = objComponents[i];
 					Component component = componentPath.Component;
-					Type cType = component.GetType();
+					//Type cType = component.GetType();
 
 					ComponentTypeData cData;
-					if (ComponentData.TryGetValue(cType, out cData))
+					if (ComponentData.TryGetValue(componentPath.ComponentType, out cData))
 					{
 						if (cData.AwakeFunction != null)
 						{
@@ -606,11 +683,13 @@ namespace WeaverCore
 				{
 					AddStartCallerEntry(objComponents, ComponentData);
 				}
-				return obj;
+                DebugPrint($"{name} Spawned Object from pool");
+                return obj;
 			}
 			else
 			{
-				obj = UnityEngine.Object.Instantiate(Prefab, position, rotation, parent);
+                DebugPrint($"{name} Instantiating new object... {Prefab}");
+                obj = UnityEngine.Object.Instantiate(Prefab, position, rotation, parent);
 				obj.SourcePool = this;
 				obj.InPool = false;
 				obj.gameObject.name = InstanceName;
@@ -618,7 +697,8 @@ namespace WeaverCore
 				t.SetParent(parent);
 				t.position = position;
 				t.rotation = rotation;
-				return obj;
+                DebugPrint($"{name} Instantiated new object");
+                return obj;
 			}
 		}
 
@@ -823,24 +903,33 @@ namespace WeaverCore
 
 			FieldCopierBuilder<Component> copier = new FieldCopierBuilder<Component>(componentType);
 
-			foreach (FieldInfo field in componentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-			{
-				if (!field.IsDefined(typeof(ExcludeFieldFromPoolAttribute), false) && !field.IsInitOnly && !field.IsLiteral)
-				{
-					if (field.FieldType.IsValueType || field.FieldType.IsEnum)
-					{
-						copier.AddField(field);
-					}
-					else if (field.FieldType.IsClass && (field.IsPublic || field.IsDefined(typeof(SerializeField), true)))
-					{
-						if (!typeof(Component).IsAssignableFrom(field.FieldType) && !typeof(GameObject).IsAssignableFrom(field.FieldType))
-						{
-							copier.AddField(field);
-						}
-					}
-				}
-			}
-			var finalFunc = copier.Finish();
+            foreach (FieldInfo field in componentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                if (!field.IsDefined(typeof(ExcludeFieldFromPoolAttribute), false) && !field.IsInitOnly && !field.IsLiteral)
+                {
+                    if (field.FieldType.IsValueType || field.FieldType.IsEnum)
+                    {
+                        if (!MultiThreaded)
+                        {
+                            WeaverLog.Log($"Adding Field {field.Name}");
+                        }
+                        copier.AddField(field);
+                    }
+                    else if (field.FieldType.IsClass && (field.IsPublic || field.IsDefined(typeof(SerializeField), true)))
+                    {
+                        if (!typeof(Component).IsAssignableFrom(field.FieldType) && !typeof(GameObject).IsAssignableFrom(field.FieldType))
+                        {
+                            if (!MultiThreaded)
+                            {
+                                WeaverLog.Log($"Adding Field {field.Name}");
+                            }
+                            copier.AddField(field);
+                        }
+                    }
+                }
+            }
+
+            var finalFunc = copier.Finish();
 			CopierCache.CacheObject(componentType, finalFunc);
 			return finalFunc;
 		}

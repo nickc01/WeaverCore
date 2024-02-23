@@ -12,6 +12,8 @@ namespace WeaverCore.Assets.Components
     /// </summary>
     public class ItemGetMessage : MonoBehaviour
     {
+        static CachedPrefab<ItemGetMessage> prefab = new CachedPrefab<ItemGetMessage>();
+
         [Tooltip("The sprite renderer for the item icon.")]
         [SerializeField]
         private SpriteRenderer _icon;
@@ -53,6 +55,8 @@ namespace WeaverCore.Assets.Components
             }
         }
 
+        RectTransform _textTransform;
+
         /// <summary>
         /// Gets or sets the text of the item message.
         /// </summary>
@@ -62,6 +66,13 @@ namespace WeaverCore.Assets.Components
             set
             {
                 _text.text = value;
+
+                if (_textTransform == null)
+                {
+                    _textTransform = _text.GetComponent<RectTransform>();
+                }
+
+                _textTransform.pivot = _textTransform.pivot.With(x: 0f);
 
                 var width = Mathf.Clamp(_text.preferredWidth, 6f, float.PositiveInfinity);
 
@@ -86,6 +97,12 @@ namespace WeaverCore.Assets.Components
                 StopAllCoroutines();
                 Destroy(gameObject);
             });
+
+            if (_textTransform == null)
+            {
+                _textTransform = _text.GetComponent<RectTransform>();
+            }
+            _textTransform.pivot = _textTransform.pivot.With(x: 0f);
 
             HideInstant();
         }
@@ -257,9 +274,13 @@ namespace WeaverCore.Assets.Components
         /// <returns>The spawned ItemGetMessage instance.</returns>
         public static ItemGetMessage Spawn(Sprite itemSprite, string itemText)
         {
-            var prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Item Get Message");
+            if (prefab.Value == null)
+            {
+                prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Item Get Message").GetComponent<ItemGetMessage>();
+            }
+            //var prefab = ;
 
-            var instance = GameObject.Instantiate(prefab).GetComponent<ItemGetMessage>();
+            var instance = GameObject.Instantiate(prefab.Value).GetComponent<ItemGetMessage>();
             instance.Icon = itemSprite;
             instance.Text = itemText;
             return instance;

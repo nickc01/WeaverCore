@@ -14,7 +14,7 @@ namespace WeaverCore
     /// </summary>
     public class Blood : MonoBehaviour
 	{
-		static GameObject bloodPrefab;
+		static CachedPrefab<GameObject> bloodPrefab = new CachedPrefab<GameObject>();
 
 		public const float SpeedMultiplier = 1.2f;
 		public const float AmountMultiplier = 1.3f;
@@ -81,12 +81,12 @@ namespace WeaverCore
 		/// <returns>Returns an instance to the blood particle system creating the effects</returns>
 		public static Blood SpawnBlood(Vector3 position, BloodSpawnInfo spawnInfo)
 		{
-			if (bloodPrefab == null)
+			if (bloodPrefab.Value == null)
 			{
-				bloodPrefab = WeaverAssets.LoadWeaverAsset<GameObject>("Blood Particles");
+				bloodPrefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Blood Particles");
 			}
 
-			var instance = Pooling.Instantiate(bloodPrefab, position, Quaternion.identity);
+			var instance = Pooling.Instantiate(bloodPrefab.Value, position, Quaternion.identity);
 			var particleSystem = instance.GetComponent<ParticleSystem>();
 			particleSystem.Stop();
 			particleSystem.emission.SetBursts(new ParticleSystem.Burst[]

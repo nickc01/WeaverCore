@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,8 @@ namespace WeaverCore.Components
 		float flashIntensity;
 
 		Coroutine currentFlashRoutine;
+
+		[NonSerialized]
 		bool ranOnce = false;
 
 		public Material CustomFlasherMaterial;
@@ -69,6 +72,8 @@ namespace WeaverCore.Components
 
 		new SpriteRenderer renderer;
 
+		public SpriteRenderer Renderer => renderer;
+
 		void Start()
 		{
 			if (impl == null)
@@ -90,9 +95,9 @@ namespace WeaverCore.Components
 				}
 				if (previousMaterial == null)
 				{
-					previousMaterial = renderer.material;
+					previousMaterial = renderer.sharedMaterial;
 				}
-				renderer.material = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
+				renderer.sharedMaterial = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
 
 				impl.OnFlasherInit(this);
 			}
@@ -105,8 +110,8 @@ namespace WeaverCore.Components
 			{
 				previousMaterial = renderer.material;
 			}
-			renderer.material = flasherMaterial;
-		}
+            renderer.sharedMaterial = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
+        }
 
 		void OnDisable()
 		{
@@ -230,8 +235,14 @@ namespace WeaverCore.Components
 			}
 		}
 
+        private void OnValidate()
+        {
+            Start();
+            UpdateBlock();
+        }
 
-		public void FlashNormalHit() => flashFocusHeal();
+
+        public void FlashNormalHit() => flashFocusHeal();
 		public void FlashingSuperDash() => DoFlash(0.1f, 0.1f, 0.7f, new Color(1f, 1f, 1f), 0.01f);
 		public void FlashingGhostWounded() => DoFlash(0.5f, 0.5f, 0.7f, new Color(1f, 1f, 1f), 0.01f);
 		public void FlashingWhiteStay() => DoFlash(0.01f, 0.01f, 0.6f, new Color(1f, 1f, 1f), 999f);

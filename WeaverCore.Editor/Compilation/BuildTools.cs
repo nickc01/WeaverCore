@@ -15,7 +15,6 @@ using WeaverCore.Utilities;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 
-using PackageClient = UnityEditor.PackageManager.Client;
 using System.Threading.Tasks;
 
 namespace WeaverCore.Editor.Compilation
@@ -62,9 +61,15 @@ namespace WeaverCore.Editor.Compilation
 			/// <inheritdoc/>
 			public bool Completed { get; set; }
 
-			/// <inheritdoc/>
-			object IAsyncBuildTask.Result { get { return Result; } set { Result = (T)value; } }
-		}
+            /// <inheritdoc/>
+            public IAsyncBuildTask<T> PreviousTask { get; set; }
+
+            /// <inheritdoc/>
+            object IAsyncBuildTask.Result { get { return Result; } set { Result = (T)value; } }
+
+            /// <inheritdoc/>
+            IAsyncBuildTask IAsyncBuildTask.PreviousTask { get { return PreviousTask; } set { PreviousTask = (IAsyncBuildTask<T>)value; } }
+        }
 
 		/// <summary>
 		/// Contains all the parameters needed to build a mod assembly
@@ -328,7 +333,9 @@ namespace WeaverCore.Editor.Compilation
 
 			var weaverCoreTask = BuildPartialWeaverCore(WeaverCoreBuildLocation);
 
-			yield return new WaitUntil(() => weaverCoreTask.Completed);
+			task.PreviousTask = weaverCoreTask;
+
+            yield return new WaitUntil(() => weaverCoreTask.Completed);
 
 			if (!weaverCoreTask.Result.Success)
 			{
@@ -381,8 +388,81 @@ namespace WeaverCore.Editor.Compilation
 		/// <param name="outputPath">The output location of the mod assembly</param>
 		public static void BuildMod(FileInfo outputPath)
 		{
-			UnboundCoroutine.Start(BuildModRoutine(outputPath, null));
+			UnboundCoroutine.Start(BuildModRoutine(outputPath, null, buildTask =>
+			{
+				return BuildMiscAssemblies(buildTask, outputPath.Directory);
+            }));
 		}
+
+		static IEnumerator BuildMiscAssemblies(IAsyncBuildTask<BuildOutput> buildTask, DirectoryInfo outputDirectory)
+		{
+            var supportedPlatforms = new List<AssemblyDefinitionFile.Platform>
+            {
+                AssemblyDefinitionFile.Platform.WindowsStandalone64,
+                AssemblyDefinitionFile.Platform.macOSStandalone,
+                AssemblyDefinitionFile.Platform.LinuxStandalone64
+            };
+
+            List<string> excludedAsmDefs = new List<string>
+            {
+                "HollowKnight.asmdef",
+                "HollowKnight.FirstPass.asmdef",
+                "WeaverCore.asmdef",
+                "WeaverCore.Editor.asmdef"
+            };
+
+
+            var asmDefsToBuild = new List<KeyValuePair<string, AssemblyDefinitionFile>>();
+
+            foreach (var asmdef in AssemblyDefinitionFile.GetAllDefinitionsInFolder("Assets").Where(a => a.Value.AnyPlatformsSupported(supportedPlatforms)))
+            {
+                if (!excludedAsmDefs.Any(asmdef.Key.Contains))
+                {
+					//asmDefsToBuild.Add(asmdef);
+					yield return BuildAssemblyDefinition(asmdef.Key, asmdef.Value, outputDirectory, buildTask);
+                }
+            }
+
+            yield break;
+		}
+
+
+		static IEnumerator BuildAssemblyDefinition(string path, AssemblyDefinitionFile definition, DirectoryInfo outputDir, IAsyncBuildTask<BuildOutput> lastBuildTask)
+		{
+			var task = new BuildTask<BuildOutput>();
+
+			var outputPath = new FileInfo(outputDir.CreateSubdirectory(definition.name).AddSlash() + $"{definition.name}.dll");
+
+			//var asmDefFolder = new FileInfo(path).Directory;
+
+            var parameters = new BuildParameters
+            {
+                BuildPath = outputPath,
+                Scripts = ScriptFinder.FindAssemblyScripts(definition.name),
+                Defines = new List<string>
+                {
+                    "GAME_BUILD"
+                },
+                ExcludedReferences = new List<string>
+                {
+                    "Library/ScriptAssemblies/HollowKnight.dll",
+                    "Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
+                    "Library/ScriptAssemblies/JUNK.dll",
+                    "Library/ScriptAssemblies/WeaverCore.dll",
+                    "Library/ScriptAssemblies/Assembly-CSharp.dll"
+                }
+            };
+
+            foreach (var outputFile in lastBuildTask.PreviousTask.Result.OutputFiles)
+            {
+                parameters.AssemblyReferences.Add(outputFile.FullName);
+            }
+
+            yield return BuildAssembly(parameters, BuildPresetType.Game, task);
+
+            yield break;
+		}
+		//public IEnumerable<AssemblyDefinitionFile>
 
 		/// <summary>
 		/// Builds the "WeaverCore.dll" assembly
@@ -458,7 +538,7 @@ namespace WeaverCore.Editor.Compilation
             }
         }
 
-        static IEnumerator BuildModRoutine(FileInfo outputPath, BuildTask<BuildOutput> task)
+		static IEnumerator BuildModRoutine(FileInfo outputPath, BuildTask<BuildOutput> task, Func<IAsyncBuildTask<BuildOutput>, IEnumerator> extraCodeToRun = null)
 		{
 			if (task == null)
 			{
@@ -486,6 +566,11 @@ namespace WeaverCore.Editor.Compilation
 			{
                 BundleTools.BuildAndEmbedAssetBundles(modBuildLocation, new FileInfo(weaverCoreOutputLocation), typeof(BuildTools).GetMethod(nameof(OnBuildFinish)));
             };
+
+			if (extraCodeToRun != null)
+			{
+				yield return extraCodeToRun(task);
+            }
 
 			GameBuildSettings.LoadBuildSettings();
 

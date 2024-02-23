@@ -364,5 +364,26 @@ namespace WeaverCore.Utilities
 		{
 			return Mathf.Clamp(value, range.x, range.y);
 		}
-	}
+
+
+        public static int RandomInRange(this Vector2Int range)
+        {
+            return UnityEngine.Random.Range(range.x, range.y + 1);
+        }
+
+        public static int ClampInRange(this Vector2Int range, int value)
+        {
+			if (value < range.x)
+			{
+				value = range.x;
+			}
+
+			if (value > range.y)
+			{
+				value = range.y;
+			}
+
+			return value;
+        }
+    }
 }

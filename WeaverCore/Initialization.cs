@@ -1,6 +1,7 @@
 ﻿using Modding;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -9,6 +10,7 @@ using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Attributes;
 using WeaverCore.Enums;
+using WeaverCore.Internal;
 using WeaverCore.Utilities;
 
 namespace WeaverCore
@@ -18,6 +20,8 @@ namespace WeaverCore
 	/// </summary>
     public static class Initialization
 	{
+		public const bool PERFORMANCE_DEBUGGING = false;
+
 		/// <summary>
 		/// Whether WeaverCore has been initialized or not
 		/// </summary>
@@ -51,6 +55,42 @@ namespace WeaverCore
 		}
 #endif
 
+
+		static Stopwatch startingWatch;
+
+		public static void PerformanceLog(string message)
+		{
+			if (PERFORMANCE_DEBUGGING)
+			{
+				if (startingWatch == null)
+				{
+					startingWatch = new Stopwatch();
+					startingWatch.Start();
+				}
+				WeaverLog.Log($"{startingWatch.ElapsedMilliseconds / 1000f} - {message}");
+				//WeaverLog.Log($"{Time.timeAsDouble} - {message}");
+			}
+		}
+
+		public static bool IsAssemblyExcluded(Assembly assembly)
+		{
+			var assemblyName = assembly.GetName().Name;
+
+			return assembly.IsDynamic || !(assemblyName == "WeaverCore"
+#if UNITY_EDITOR
+				|| assemblyName == "WeaverCore.Editor" || assemblyName == "Assembly-CSharp"
+#else
+				|| assemblyName == "WeaverCore.Game" || assembly.GetManifestResourceNames().Any(n => n.Contains("_bundle.bundle."))
+#endif
+                );
+			//return !(assembly.GetName().Name == "WeaverCore" || AssemblyReferenceGetter.GetAssemblyReferencesQuick(assembly).Any(asm => asm == "WeaverCore"));
+        }
+
+		public static IEnumerable<Assembly> GetWeaverCoreAssemblies()
+		{
+			return AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsAssemblyExcluded(a));
+		}
+
 		/// <summary>
 		/// Initializes all the necessary components of WeaverCore
 		/// </summary>
@@ -58,7 +98,8 @@ namespace WeaverCore
 		{
 			if (!WeaverCoreInitialized)
 			{
-				WeaverCoreInitialized = true;
+				PerformanceLog("Starting WeaverCore");
+                WeaverCoreInitialized = true;
 
 #if !UNITY_EDITOR
 				if (Application.isPlaying)
@@ -68,16 +109,22 @@ namespace WeaverCore
 #endif
 
 #if UNITY_EDITOR
-				LoadAsmIfNotFound("WeaverCore.Editor");
+                PerformanceLog("Loading WeaverCore.Editor");
+                LoadAsmIfNotFound("WeaverCore.Editor");
+                PerformanceLog("Loaded WeaverCore.Editor");
 #else
+				PerformanceLog("Loading WeaverCore.Game");
 				LoadAsmIfNotFound("WeaverCore.Game");
+				PerformanceLog("Loaded WeaverCore.Game");
 #endif
-				ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>();
+                ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>(GetWeaverCoreAssemblies());
 
-				foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+				foreach (var asm in GetWeaverCoreAssemblies())
 				{
-					PatchAssembly(asm);
-				}
+                    Initialization.PerformanceLog($"Patching assembly {asm.GetName().Name}");
+                    PatchAssembly(asm);
+                    Initialization.PerformanceLog($"Finished patching assembly {asm.GetName().Name}");
+                }
 			}
 
 			if (!WeaverCoreRuntimeInitialized && Application.isPlaying)
@@ -86,10 +133,12 @@ namespace WeaverCore
 
 				if (Application.isPlaying)
 				{
-					ReflectionUtilities.ExecuteMethodsWithAttribute<OnRuntimeInitAttribute>();
+					ReflectionUtilities.ExecuteMethodsWithAttribute<OnRuntimeInitAttribute>(GetWeaverCoreAssemblies());
 				}
-			}
-		}
+
+                Initialization.PerformanceLog($"WeaverCore fully initialized");
+            }
+        }
 
 		static void ReplaceFonts()
 		{
@@ -240,7 +289,7 @@ namespace WeaverCore
 
             if (imod != null)
             {
-				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>().ToList();
+				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>(GetWeaverCoreAssemblies()).ToList();
 
 				foreach (var method in methods)
 				{
@@ -284,7 +333,7 @@ namespace WeaverCore
 
 			if (imod != null)
 			{
-				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModUnloadAttribute>().ToList();
+				var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModUnloadAttribute>(GetWeaverCoreAssemblies()).ToList();
 
 				foreach (var method in methods)
 				{

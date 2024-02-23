@@ -63,6 +63,11 @@ namespace WeaverCore.Components
             {
                 EnableKnightDamageInterrupt = false;
                 yield return DreamWarpRoutine();
+                StopAllCoroutines();
+                while (true)
+                {
+                    yield return null;
+                }
             }
             else
             {

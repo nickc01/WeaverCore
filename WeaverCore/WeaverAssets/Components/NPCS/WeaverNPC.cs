@@ -5,6 +5,7 @@ using UnityEngine;
 using WeaverCore.Components;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
+using static Mono.Security.X509.X509Stores;
 
 namespace WeaverCore.Assets.Components
 {
@@ -60,6 +61,10 @@ namespace WeaverCore.Assets.Components
         [Tooltip("Should the NPC be looking towards the player when in range?")]
         bool facePlayerWhenInRange = true;
 
+        [SerializeField]
+        [Tooltip("If set to true, the GameObject's layer will be set to the \"Hero Detector\" layer upon Awake")]
+        bool updateLayer = true;
+
         /// <summary>
         /// Is the player able to talk to this NPC?
         /// </summary>
@@ -90,9 +95,16 @@ namespace WeaverCore.Assets.Components
 
         private void Start()
         {
-            gameObject.layer = LayerMask.NameToLayer("Hero Detector");
+            if (updateLayer)
+            {
+                gameObject.layer = LayerMask.NameToLayer("Hero Detector");
+            }
             eventManager = GetComponent<EventManager>();
-            prompt = GetComponentInChildren<WeaverArrowPrompt>();
+            if (eventManager == null)
+            {
+                eventManager = gameObject.AddComponent<EventManager>();
+            }
+            prompt = GetComponentInChildren<WeaverArrowPrompt>(true);
             prompt.HideInstant();
             canTalk = true;
             Ranges = transform.Find("Ranges")?.gameObject;
@@ -148,7 +160,15 @@ namespace WeaverCore.Assets.Components
         {
             while (true)
             {
-                yield return new WaitUntil(() => PlayerInRange);
+                while (!PlayerInRange)
+                {
+                    if (facePlayerWhenInRange)
+                    {
+                        FacePlayer(transform.position + new Vector3(-9999f, 0f));
+                    }
+                    yield return null;
+                }
+                //yield return new WaitUntil(() => PlayerInRange);
                 if (canTalk)
                 {
                     prompt.Show();
@@ -218,6 +238,10 @@ namespace WeaverCore.Assets.Components
             EventManager.BroadcastEvent("NPC CONVO START", gameObject);
 
             var conversation = GetComponent<Conversation>();
+            if (conversation == null)
+            {
+                throw new Exception($"Error: No Conversation Component is attached to object {gameObject.name}. One is needed in order to talk to the WeaverNPC");
+            }
             yield return conversation.StartConversationRoutine();
             conversation.HideConversationBox();
             yield return EndConvo();
@@ -373,12 +397,18 @@ namespace WeaverCore.Assets.Components
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            PlayerInRange = true;
+            if (collision.name == "HeroBox" || collision.GetComponent<HeroController>() != null)
+            {
+                PlayerInRange = true;
+            }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            PlayerInRange = false;
+            if (collision.name == "HeroBox" || collision.GetComponent<HeroController>() != null)
+            {
+                PlayerInRange = false;
+            }
         }
 
 
@@ -408,6 +438,18 @@ namespace WeaverCore.Assets.Components
             }
         }
 
+        float GetClipDuration(WeaverAnimationData.Clip clip)
+        {
+            if (clip.WrapMode == WeaverAnimationData.WrapMode.LoopSection)
+            {
+                return clip.LoopStart * (1f / clip.FPS);
+    }
+            else
+            {
+                return clip.Duration;
+            }
+        }
+
         IEnumerator PlayTurnAnimation(bool turnRight)
         {
             if (TryGetComponent<WeaverAnimationPlayer>(out var anim))
@@ -418,7 +460,12 @@ namespace WeaverCore.Assets.Components
                     if (anim.AnimationData.TryGetClip("Turn Right", out clip) || anim.AnimationData.TryGetClip("Face Right", out clip))
                     {
                         playingTurnAnimation = true;
-                        yield return anim.PlayAnimationTillDone(clip.Name,true);
+                        float duration = GetClipDuration(clip);
+                        //var duration = clip.Duration;
+                        anim.PlayAnimation(clip.Name);
+                        currentlyFacingRight = true;
+                        yield return new WaitForSeconds(duration);
+                        //yield return anim.PlayAnimationTillDone(clip.Name,true);
                         playingTurnAnimation = false;
                     }
                 }
@@ -427,7 +474,11 @@ namespace WeaverCore.Assets.Components
                     if (anim.AnimationData.TryGetClip("Turn Left", out clip) || anim.AnimationData.TryGetClip("Face Left", out clip))
                     {
                         playingTurnAnimation = true;
-                        yield return anim.PlayAnimationTillDone(clip.Name, true);
+                        float duration = GetClipDuration(clip);
+                        currentlyFacingRight = false;
+                        anim.PlayAnimation(clip.Name);
+                        yield return new WaitForSeconds(duration);
+                        //yield return anim.PlayAnimationTillDone(clip.Name, true);
                         playingTurnAnimation = false;
                     }
                 }

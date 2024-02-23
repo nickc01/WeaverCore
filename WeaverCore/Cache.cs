@@ -5,7 +5,6 @@ using System.Text;
 
 namespace WeaverCore
 {
-
     /// <summary>
     /// A cache that stores objects in a dictonary structure. When an object gets destroyed or garbage collected, the cache object automatically removes it
     /// </summary>

@@ -6,7 +6,8 @@ using WeaverCore.Components;
 
 namespace WeaverCore.Editor.Implementations
 {
-	class E_HealthManager_I : WeaverCore.Implementations.HealthManager_I
+
+    class E_HealthManager_I : WeaverCore.Implementations.HealthManager_I
     {
 
         public override void OnInvincibleHit(HitInfo info)

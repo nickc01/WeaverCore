@@ -15,7 +15,7 @@ namespace WeaverCore.Assets.Components
     /// </summary>
     public class VomitGlob : MonoBehaviour, IOnPool
     {
-        static VomitGlob prefab;
+        static CachedPrefab<VomitGlob> Prefab = new CachedPrefab<VomitGlob>();
 
         [SerializeField]
         Vector2 randomZRange = new Vector2(0.0041f,0.00499f);
@@ -356,12 +356,12 @@ namespace WeaverCore.Assets.Components
         /// <returns>The spawned <see cref="VomitGlob"/> instance.</returns>
         public static VomitGlob Spawn(Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
         {
-            if (prefab == null)
+            if (Prefab.Value == null)
             {
-                prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Vomit Glob").GetComponent<VomitGlob>();
+                Prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Vomit Glob").GetComponent<VomitGlob>();
             }
 
-            return Spawn(prefab, position, velocity, gravityScale, playSounds);
+            return Spawn(Prefab.Value, position, velocity, gravityScale, playSounds);
         }
 
         /// <summary>
@@ -375,9 +375,14 @@ namespace WeaverCore.Assets.Components
         /// <returns>The spawned <see cref="VomitGlob"/> instance.</returns>
         public static VomitGlob Spawn(VomitGlob prefab, Vector3 position, Vector2 velocity, float gravityScale = 0.7f, bool playSounds = true)
         {
+            if (Prefab.Value == null)
+            {
+                Prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Vomit Glob").GetComponent<VomitGlob>();
+            }
+
             if (prefab == null)
             {
-                prefab = WeaverAssets.LoadWeaverAsset<GameObject>("Vomit Glob").GetComponent<VomitGlob>();
+                prefab = Prefab.Value;
             }
 
             var instance = Pooling.Instantiate(prefab);

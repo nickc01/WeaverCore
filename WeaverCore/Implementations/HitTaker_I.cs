@@ -22,15 +22,19 @@ namespace WeaverCore.Implementations
 				IHittable hittable = target.GetComponent<IHittable>();
 				if (hittable != null)
 				{
-                    if (hittable.Hit(new HitInfo()
-					{
-						Attacker = attacker,
-						Damage = damage,
-						AttackStrength = 1f,
-						AttackType = type,
-						Direction = hitDirection.ToDegrees(),
-						IgnoreInvincible = false
-					}))
+                    var hitInfo = new HitInfo()
+                    {
+                        Attacker = attacker,
+                        Damage = damage,
+                        AttackStrength = 1f,
+                        AttackType = type,
+                        Direction = hitDirection.ToDegrees(),
+                        IgnoreInvincible = false
+                    };
+
+                    DamageUtilities.ApplyEnemyDamageModifier(target.gameObject, ref hitInfo);
+
+                    if (hittable.Hit(hitInfo))
                     {
 						damageDealt = true;
 					}

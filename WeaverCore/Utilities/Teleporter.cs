@@ -39,9 +39,13 @@ namespace WeaverCore.Utilities
 
 
 
-        static ObjectPool WhiteFlashPool;
-		static ObjectPool GlowPool;
-		static ObjectPool TeleLinePool;
+		//static ObjectPool WhiteFlashPool;
+		//static ObjectPool GlowPool;
+		//static ObjectPool TeleLinePool;
+
+		static CachedPrefab<WhiteFlash> whiteFlashPrefab = new CachedPrefab<WhiteFlash>();
+		static CachedPrefab<SpriteRenderer> glowPrefab = new CachedPrefab<SpriteRenderer>();
+		static CachedPrefab<GameObject> teleLinePrefab = new CachedPrefab<GameObject>();
 
 
 		const float WARP_TIME = 20f / 60f;
@@ -310,11 +314,15 @@ namespace WeaverCore.Utilities
 
 		static WhiteFlash SpawnWhiteFlash(Color color, Vector3 originalPosition)
 		{
-			if (WhiteFlashPool == null)
+			if (whiteFlashPrefab.Value == null)
+			{
+				whiteFlashPrefab.Value = EffectAssets.WhiteFlashPrefab.GetComponent<WhiteFlash>();
+            }
+			/*if (WhiteFlashPool == null)
 			{
 				WhiteFlashPool = ObjectPool.Create(EffectAssets.WhiteFlashPrefab);
-			}
-			var whiteFlash = WhiteFlashPool.Instantiate<WhiteFlash>(originalPosition, Quaternion.identity);
+			}*/
+			var whiteFlash = Pooling.Instantiate(whiteFlashPrefab.Value, originalPosition, Quaternion.identity);
 			whiteFlash.FadeInTime = 0f;
 			whiteFlash.FlashColor = Color.Lerp(color, Color.white, 0.5f);
 			whiteFlash.transform.localScale = Vector3.one * 2f;
@@ -324,22 +332,31 @@ namespace WeaverCore.Utilities
 
 		static SpriteRenderer SpawnTeleportGlow(Vector3 spawnPoint, Color color)
 		{
-			if (GlowPool == null)
+			if (glowPrefab.Value == null)
+			{
+				glowPrefab.Value = EffectAssets.TeleportGlowPrefab.GetComponent<SpriteRenderer>();
+            }
+
+			/*if (GlowPool == null)
 			{
 				GlowPool = ObjectPool.Create(EffectAssets.TeleportGlowPrefab);
-			}
-			var sprite = GlowPool.Instantiate<SpriteRenderer>(new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - 0.1f), Quaternion.identity);
+			}*/
+			var sprite = Pooling.Instantiate(glowPrefab.Value, new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - 0.1f), Quaternion.identity);
 			sprite.color = Color.Lerp(color, Color.white, 0.5f);
 			return sprite;
 		}
 
 		static ParticleSystem SpawnTeleportLine(Vector3 originalPosition, Vector3 destination, Color color)
 		{
-			if (TeleLinePool == null)
+			if (teleLinePrefab.Value == null)
+			{
+				teleLinePrefab.Value = EffectAssets.TeleLinePrefab;
+            }
+			/*if (TeleLinePool == null)
 			{
 				TeleLinePool = ObjectPool.Create(EffectAssets.TeleLinePrefab);
-			}
-			var teleLine = TeleLinePool.Instantiate(Vector3.Lerp(originalPosition, destination, 0.5f), Quaternion.identity);
+			}*/
+			var teleLine = Pooling.Instantiate(teleLinePrefab.Value, Vector3.Lerp(originalPosition, destination, 0.5f), Quaternion.identity);
 			LookAt(teleLine, destination);
 			teleLine.transform.localScale = new Vector3(Vector3.Distance(originalPosition, destination), teleLine.transform.localScale.y, teleLine.transform.localScale.z);
 

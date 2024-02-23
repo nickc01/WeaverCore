@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore.Components;
 using WeaverCore.Enums;
@@ -22,13 +23,19 @@ namespace WeaverCore.Assets.Components
         protected virtual void OnTriggerEnter2D(Collider2D collider)
         {
             var obj = collider.transform;
-            HitEnemy(obj, damageType, OnExtraDamage);
+            if (HitEnemy(obj, damageType, OnExtraDamage).Count == 0)
+            {
+                OnDamageBackup(obj);
+            }
         }
 
         protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
             var obj = collision.collider.transform;
-            HitEnemy(obj, damageType, OnExtraDamage);
+            if (HitEnemy(obj, damageType, OnExtraDamage).Count == 0)
+            {
+                OnDamageBackup(obj);
+            }
         }
 
         /// <summary>
@@ -40,6 +47,14 @@ namespace WeaverCore.Assets.Components
 
         }
 
+        /// <summary>
+        /// If a hit enemy doesn't have an IExtraDamagable component, this is used as a backup
+        /// </summary>
+        protected virtual void OnDamageBackup(Transform obj)
+        {
+
+        }
+
 
         /// <summary>
         /// Applies extra damage to an enemy (such as Spore damage or Dung damage)
@@ -47,8 +62,9 @@ namespace WeaverCore.Assets.Components
         /// <param name="obj">The transform of the enemy to hit</param>
         /// <param name="damageType">The type of damage to deal</param>
         /// <param name="onHit">Called when the enemy was sucessfully hit</param>
-        public static void HitEnemy(Transform obj, ExtraDamageTypes damageType, Action<IExtraDamageable> onHit = null)
+        public static List<IExtraDamageable> HitEnemy(Transform obj, ExtraDamageTypes damageType, Action<IExtraDamageable> onHit = null)
         {
+            List<IExtraDamageable> hitEnemies = new List<IExtraDamageable>();
             int depth = 0;
 
             while (obj != null)
@@ -56,7 +72,7 @@ namespace WeaverCore.Assets.Components
                 IExtraDamageable hittable = obj.GetComponent<IExtraDamageable>();
                 if (hittable != null)
                 {
-
+                    hitEnemies.Add(hittable);
                     hittable.RecieveExtraDamage(damageType);
                     onHit?.Invoke(hittable);
                 }
@@ -67,6 +83,8 @@ namespace WeaverCore.Assets.Components
                     break;
                 }
             }
+
+            return hitEnemies;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditorInternal;
@@ -14,12 +15,98 @@ namespace WeaverCore.Editor.Compilation
 	[Serializable]
 	public class AssemblyDefinitionFile
 	{
+		public enum Platform
+        {
+			Android,
+			CloudRendering,
+			Editor,
+			GameCoreScarlett,
+			GameCoreXboxOne,
+			iOS,
+			LinuxStandalone64,
+			Lumin,
+			macOSStandalone,
+			PS4,
+			Stadia,
+			Switch,
+			tvOS,
+			WSA,
+			WebGL,
+			WindowsStandalone32,
+			WindowsStandalone64,
+			XboxOne
+		}
+
 		public string name;
 		public string rootNamespace = "";
 		public List<string> references;
-		public List<string> includePlatforms;
-		public List<string> excludePlatforms;
-		public bool allowUnsafeCode = false;
+
+		[SerializeField]
+		List<string> includePlatforms;
+
+		[SerializeField]
+		List<string> excludePlatforms;
+
+		[NonSerialized]
+		List<Platform> _includePlatforms;
+
+        [NonSerialized]
+        List<Platform> _excludePlatforms;
+
+        public List<Platform> IncludePlatforms
+		{
+			get => _includePlatforms ??= (includePlatforms ??= new List<string>()).Select(platform => (Platform)Enum.Parse(typeof(Platform), platform)).ToList();
+			set
+			{
+				_includePlatforms = value;
+				if (includePlatforms == null)
+				{
+					includePlatforms = new List<string>();
+				}
+				else
+				{
+					includePlatforms.Clear();
+				}
+				includePlatforms.AddRange(value.Select(p => p.ToString()));
+			}
+		}
+
+        public List<Platform> ExcludePlatforms
+        {
+            get => _excludePlatforms ??= (excludePlatforms ??= new List<string>()).Select(platform => (Platform)Enum.Parse(typeof(Platform), platform)).ToList();
+            set
+            {
+                _excludePlatforms = value;
+                if (excludePlatforms == null)
+                {
+                    excludePlatforms = new List<string>();
+                }
+                else
+                {
+                    excludePlatforms.Clear();
+                }
+                excludePlatforms.AddRange(value.Select(p => p.ToString()));
+            }
+        }
+
+		public bool IsPlatformSupported(Platform platform)
+		{
+			if (IncludePlatforms.Count > 0)
+			{
+				return IncludePlatforms.Contains(platform);
+			}
+			else
+			{
+				return !ExcludePlatforms.Contains(platform);
+			}
+		}
+
+		public bool AnyPlatformsSupported(IEnumerable<Platform> platforms)
+		{
+			return platforms.Any(IsPlatformSupported);
+		}
+
+        public bool allowUnsafeCode = false;
 		public bool overrideReferences = false;
 		public bool autoReferenced = true;
 		public List<string> defineConstraints;

@@ -16,7 +16,9 @@ namespace WeaverCore.Editor.Compilation
 		/// The result of the task
 		/// </summary>
 		new T Result { get; set; }
-	}
+
+		new IAsyncBuildTask<T> PreviousTask { get; set; }
+    }
 
 	/// <summary>
 	/// An asychronous build task
@@ -32,5 +34,7 @@ namespace WeaverCore.Editor.Compilation
 		/// The result of the task
 		/// </summary>
 		object Result { get; set; }
-	}
+
+        IAsyncBuildTask PreviousTask { get; set; }
+    }
 }

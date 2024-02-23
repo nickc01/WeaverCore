@@ -196,10 +196,23 @@ namespace WeaverCore.Editor.Menu_Items
         {
             InsertObject("Chest");
         }
+
         [MenuItem("WeaverCore/Insert/Geo Rock")]
         public static void InsertGeoRock()
         {
             InsertObject("Geo Rock");
+        }
+
+        [MenuItem("WeaverCore/Insert/Shade Gate")]
+        public static void InsertShadeGate()
+        {
+            InsertObject("Shade Gate");
+        }
+
+        [MenuItem("WeaverCore/Insert/Soul Totem")]
+        public static void InsertSoulTotem()
+        {
+            InsertObject("Soul Totem");
         }
 
         //Godhome Statue Template

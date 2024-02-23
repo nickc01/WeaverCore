@@ -20,7 +20,7 @@ public static class GameCameras_Patches
     {
         try
         {
-            ReflectionUtilities.ExecuteMethodsWithAttribute<AfterGameCameraStartLoadAttribute>();
+            ReflectionUtilities.ExecuteMethodsWithAttribute<AfterGameCameraStartLoadAttribute>(Initialization.GetWeaverCoreAssemblies());
         }
         catch (Exception e)
         {

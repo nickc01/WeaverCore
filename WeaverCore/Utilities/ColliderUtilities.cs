@@ -7,6 +7,35 @@ namespace WeaverCore.Utilities
     /// </summary>
     public static class ColliderUtilities
     {
+        public static Bounds GetBoundsSafe(this BoxCollider2D collider2D)
+        {
+            var halfSize = collider2D.size / 2f;
+            var min = (Vector2)collider2D.transform.TransformPoint(collider2D.offset - halfSize);
+            var max = (Vector2)collider2D.transform.TransformPoint(collider2D.offset + halfSize);
+
+            if (max.x < min.x)
+            {
+                var temp = max.x;
+                max.x = min.x;
+                min.x = temp;
+            }
+
+            if (max.y < min.y)
+            {
+                var temp = max.y;
+                max.y = min.y;
+                min.y = temp;
+            }
+
+            return new Bounds
+            {
+                min = min,
+                max = max
+            };
+
+            //return new Bounds((Vector2)collider2D.transform.TransformPoint(collider2D.offset), (Vector2)collider2D.size);
+        }
+
         /// <summary>
         /// Gets the world space boundaries of a polygon collider
         /// </summary>

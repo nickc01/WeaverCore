@@ -3,10 +3,12 @@
     "references": [
         "WeaverCore",
         "HollowKnight",
-        "WeaverBuildTools"
+        "WeaverBuildTools",
+        "HollowKnight.FirstPass"
     ],
     "includePlatforms": [
         "Editor"
     ],
-    "excludePlatforms": []
+    "excludePlatforms": [],
+	"allowUnsafeCode": true
 }

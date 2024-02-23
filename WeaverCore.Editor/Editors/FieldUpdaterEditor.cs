@@ -217,7 +217,14 @@ public class FieldUpdaterEditor : Editor
         }
         else
         {
-            oldValue = FieldUpdater.UpdatedField.RawGetJsonValue(field.FieldValueJson, field.MemberType).ValueRaw;
+            if (typeof(Enum).IsAssignableFrom(field.MemberType))
+            {
+                oldValue = Enum.Parse(field.MemberType, field.FieldValueJson);
+            }
+            else
+            {
+                oldValue = FieldUpdater.UpdatedField.RawGetJsonValue(field.FieldValueJson, field.MemberType).ValueRaw;
+            }
         }
 
         //var oldValue = FieldUpdater.UpdatedField.RawGetValue(field.FieldValueJson, field.MemberType);
@@ -233,7 +240,14 @@ public class FieldUpdaterEditor : Editor
             }
             else
             {
-                field.FieldValueJson = JsonUtility.ToJson(FieldUpdater.UpdatedField.RawCreateJsonContainer(newValue, field.MemberType));
+                if (typeof(Enum).IsAssignableFrom(field.MemberType))
+                {
+                    field.FieldValueJson = newValue.ToString();
+                }
+                else
+                {
+                    field.FieldValueJson = JsonUtility.ToJson(FieldUpdater.UpdatedField.RawCreateJsonContainer(newValue, field.MemberType));
+                }
             }
             //
             updateState = UpdateState.Update;
@@ -407,7 +421,14 @@ public class FieldUpdaterEditor : Editor
                 }
                 else
                 {
-                    valueContainer = JsonUtility.ToJson(FieldUpdater.UpdatedField.RawCreateJsonContainer(newMemberValue, selectedMemberType));
+                    if (typeof(Enum).IsAssignableFrom(selectedMemberType))
+                    {
+                        valueContainer = newMemberValue.ToString();
+                    }
+                    else
+                    {
+                        valueContainer = JsonUtility.ToJson(FieldUpdater.UpdatedField.RawCreateJsonContainer(newMemberValue, selectedMemberType));
+                    }
                 }
 
 

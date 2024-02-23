@@ -39,7 +39,15 @@ namespace WeaverCore.Game.Implementations
 
 		public override UnboundCoroutine Start(IEnumerator routine)
 		{
-			return new GameRoutine() { routine = RoutineObject.Instance.StartCoroutine(routine) };
+			var gameRoutine = new GameRoutine();
+			IEnumerator Routine()
+			{
+				yield return routine;
+				gameRoutine.Done = true;
+			}
+
+			gameRoutine.routine = RoutineObject.Instance.StartCoroutine(Routine());
+			return gameRoutine;
 		}
 
 		public override void Stop(UnboundCoroutine routine)
@@ -47,13 +55,24 @@ namespace WeaverCore.Game.Implementations
 			var gameRoutine = routine as GameRoutine;
 			if (gameRoutine != null)
 			{
+				gameRoutine.Done = true;
 				RoutineObject.Instance.StopCoroutine(gameRoutine.routine);
 			}
 		}
 
-		public class GameRoutine : UnboundCoroutine
+        public override bool IsDone(UnboundCoroutine routine)
+        {
+			if (routine is GameRoutine gr)
+			{
+				return gr.IsDone;
+			}
+			return true;
+        }
+
+        public class GameRoutine : UnboundCoroutine
 		{
 			public Coroutine routine;
+			public bool Done = false;
 		}
 
 	}

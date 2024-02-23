@@ -13,6 +13,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
+
     /// <summary>
     ///  Used for updating many fields at once on GameObjects
     /// </summary>
@@ -451,7 +452,14 @@ namespace WeaverCore
             }
             else
             {
-                return FieldUpdater.UpdatedField.RawGetJsonValue(field.FieldValueJson, field.MemberType).ValueRaw;
+                if (typeof(Enum).IsAssignableFrom(field.MemberType))
+                {
+                    return Enum.Parse(field.MemberType, field.FieldValueJson);
+                }
+                else
+                {
+                    return FieldUpdater.UpdatedField.RawGetJsonValue(field.FieldValueJson, field.MemberType).ValueRaw;
+                }
             }
         }
 
@@ -464,29 +472,47 @@ namespace WeaverCore
         {
             foreach (var field in Fields)
             {
-                if (obj.TryGetComponent(field.ComponentType, out var component))
+                try
                 {
-                    var member = field.Member;
-
-                    if (member != null)
+                    if (obj.TryGetComponent(field.ComponentType, out var component))
                     {
-                        if (member is FieldInfo fieldInfo)
+                        var member = field.Member;
+
+                        try
                         {
-                            fieldInfo.SetValue(component, field.GetSourceValue());
+                            if (member != null)
+                            {
+                                WeaverLog.Log($"Setting Field {member.Name} of {field.ComponentType.Name}");
+                                if (member is FieldInfo fieldInfo)
+                                {
+                                    fieldInfo.SetValue(component, field.GetSourceValue());
+                                }
+                                else if (member is PropertyInfo propertyInfo)
+                                {
+                                    propertyInfo.SetValue(component, field.GetSourceValue());
+                                }
+                            }
+                            else if (throwOnError)
+                            {
+                                throw new Exception($"Could not find {field.FieldName.Split(':')[0].ToLower()} \"{field.FieldName.Split(':')[1]}\" on component {field.ComponentType.FullName}");
+                            }
                         }
-                        else if (member is PropertyInfo propertyInfo)
+                        catch (Exception e)
                         {
-                            propertyInfo.SetValue(component, field.GetSourceValue());
+                            WeaverLog.Log($"Failed Setting Field {member.Name} of {field.ComponentType.Name}");
+                            WeaverLog.LogException(e);
+                            throw;
                         }
                     }
                     else if (throwOnError)
                     {
-                        throw new Exception($"Could not find {field.FieldName.Split(':')[0].ToLower()} \"{field.FieldName.Split(':')[1]}\" on component {field.ComponentType.FullName}");
+                        throw new Exception($"Could not find component {field.ComponentType.FullName} on object {obj.name} in order to modify the {field.FieldName.Split(':')[0].ToLower()} \"{field.FieldName.Split(':')[1]}\"");
                     }
                 }
-                else if (throwOnError)
+                catch (Exception e)
                 {
-                    throw new Exception($"Could not find component {field.ComponentType.FullName} on object {obj.name} in order to modify the {field.FieldName.Split(':')[0].ToLower()} \"{field.FieldName.Split(':')[1]}\"");
+                    WeaverLog.LogException(e);
+                    throw;
                 }
             }
         }

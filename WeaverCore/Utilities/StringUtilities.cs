@@ -67,7 +67,6 @@ namespace WeaverCore.Utilities
 			}
 
 			builder.Length -= page.Length;
-			WeaverLog.Log("BUILDER = " + builder.ToString());
 			return builder.ToString();
         }
 

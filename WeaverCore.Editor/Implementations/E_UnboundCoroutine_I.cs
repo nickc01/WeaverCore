@@ -162,7 +162,12 @@ namespace WeaverCore.Editor.Implementations
 			}
 		}
 
-		public class EditorCoroutine : UnboundCoroutine
+        public override bool IsDone(UnboundCoroutine routine)
+        {
+			return coroutines.Contains(routine as EditorCoroutine);
+        }
+
+        public class EditorCoroutine : UnboundCoroutine
 		{
 			public IEnumerator MainRoutine;
 			public GUID ID;

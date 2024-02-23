@@ -24,7 +24,6 @@ namespace WeaverCore.Game.Patches
             {
                 dreamnailablesCache.Clear();
                 gm.GetComponents(dreamnailablesCache);
-
                 if (dreamnailablesCache.Count > 0)
                 {
                     foreach (var dreamnailable in dreamnailablesCache)

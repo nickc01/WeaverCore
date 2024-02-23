@@ -155,6 +155,7 @@ namespace WeaverCore
             }
         }
 
+
         /// <summary>
         /// Finds all attributes that inherit from <typeparamref name="AttrType"/>, and executes them
         /// </summary>
@@ -162,7 +163,7 @@ namespace WeaverCore
         /// <param name="parameter"></param>
         static void ExecuteAttribute<AttrType>(object parameter) where AttrType : PriorityAttribute
         {
-            var methods = ReflectionUtilities.GetMethodsWithAttribute<AttrType>().ToList();
+            var methods = ReflectionUtilities.GetMethodsWithAttribute<AttrType>(Initialization.GetWeaverCoreAssemblies()).ToList();
 
             methods.Sort(new PriorityAttribute.MethodSorter<AttrType>());
 

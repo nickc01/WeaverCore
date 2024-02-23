@@ -51,6 +51,18 @@ namespace WeaverCore.Components
         [Tooltip("Width value during laser charge-up.")]
         float chargeUpWidth = 1f;
 
+        [SerializeField]
+        [Tooltip("The spread value when the laser ends")]
+        float endSpread = 0.5f;
+
+        [SerializeField]
+        [Tooltip("The width value when the laser ends")]
+        float endWidth = 0.5f;
+
+        [SerializeField]
+        [Tooltip("THe curve used to interpolate to the end spread and end width")]
+        AnimationCurve endCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
         [Header("Animations")]
         [SerializeField]
         WeaverAnimationData animationData;
@@ -156,7 +168,7 @@ namespace WeaverCore.Components
 
         }
 
-        IEnumerator PlayAnimation(string animationName, int startingFrame = 0)
+        IEnumerator PlayAnimation(string animationName, int startingFrame = 0, Action<float> onPercentDone = null)
         {
             var clip = animationData.GetClip(animationName);
             laser.MainRenderer.enabled = true;
@@ -167,6 +179,7 @@ namespace WeaverCore.Components
             for (int i = startingFrame; i < clip.Frames.Count; i++)
             {
                 laser.Sprite = clip.Frames[i];
+                onPercentDone?.Invoke((i - startingFrame) / (float)(clip.Frames.Count - 1 - startingFrame));
                 yield return new WaitForSeconds(secondsPerFrame);
             }
         }
@@ -221,7 +234,11 @@ namespace WeaverCore.Components
         /// </summary>
         public IEnumerator PlayChargeUpOutRoutine()
         {
-            yield return PlayAnimation(endAnimationSTRING, 2);
+            yield return PlayAnimation(endAnimationSTRING, 2, onPercentDone: t =>
+            {
+                laser.Spread = Mathf.Lerp(originalSpread, endSpread, t);
+                laser.StartingWidth = Mathf.Lerp(originalWidth, endWidth, t);
+            });
             laser.MainRenderer.enabled = false;
             FiringLaser = false;
             laser.gameObject.SetActive(false);
@@ -269,7 +286,11 @@ namespace WeaverCore.Components
             displayImpacts = false;
             ClearImpacts();
 
-            yield return PlayAnimation(endAnimationSTRING);
+            yield return PlayAnimation(endAnimationSTRING, onPercentDone: t =>
+            {
+                laser.Spread = Mathf.Lerp(originalSpread, endSpread, t);
+                laser.StartingWidth = Mathf.Lerp(originalWidth, endWidth, t);
+            });
             laser.MainRenderer.enabled = false;
             FiringLaser = false;
             laser.gameObject.SetActive(false);
@@ -321,7 +342,7 @@ namespace WeaverCore.Components
         /// Ends the laser. MUST BE CALLED AFTER <see cref="FireLaser_P2"/>. This function is useful if you want to control when the laser's events are triggered
         /// </summary>
         /// <returns>Returns the duration of the animation</returns>
-        public float EndLaser_P3()
+        public float EndLaser_P3(Action onDone = null)
         {
             if (partialAnimationRoutine != null)
             {
@@ -336,7 +357,15 @@ namespace WeaverCore.Components
 
             IEnumerator EndRoutine()
             {
-                yield return PlayAnimation(endAnimationSTRING);
+                var oldSpread = laser.Spread;
+                var oldStartingWidth = laser.StartingWidth;
+
+                yield return PlayAnimation(endAnimationSTRING, onPercentDone: t =>
+                {
+                    laser.Spread = Mathf.Lerp(oldSpread, endSpread, t);
+                    laser.StartingWidth = Mathf.Lerp(oldStartingWidth, endWidth, t);
+                });
+                onDone?.Invoke();
                 laser.MainRenderer.enabled = false;
                 FiringLaser = false;
                 laser.gameObject.SetActive(false);
@@ -382,7 +411,11 @@ namespace WeaverCore.Components
             displayImpacts = false;
             ClearImpacts();
 
-            yield return PlayAnimation(endAnimationSTRING);
+            yield return PlayAnimation(endAnimationSTRING, onPercentDone: t =>
+            {
+                laser.Spread = Mathf.Lerp(originalSpread, endSpread, t);
+                laser.StartingWidth = Mathf.Lerp(originalWidth, endWidth, t);
+            });
             laser.MainRenderer.enabled = false;
             FiringLaser = false;
             laser.gameObject.SetActive(false);
@@ -390,7 +423,11 @@ namespace WeaverCore.Components
 
         IEnumerator InterruptRoutine()
         {
-            yield return PlayAnimation(endAnimationSTRING);
+            yield return PlayAnimation(endAnimationSTRING, onPercentDone: t =>
+            {
+                laser.Spread = Mathf.Lerp(originalSpread, endSpread, t);
+                laser.StartingWidth = Mathf.Lerp(originalWidth, endWidth, t);
+            });
             laser.MainRenderer.enabled = false;
             laser.gameObject.SetActive(false);
         }

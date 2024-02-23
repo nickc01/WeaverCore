@@ -70,13 +70,13 @@ namespace WeaverCore.Utilities
                 assembly = typeof(ResourceUtilities).Assembly;
             }
 
-            if (!HasResource(resourcePath))
+            if (!HasResource(resourcePath, assembly))
             {
                 return null;
             }
 
             bool compressed = false;
-            if (HasResource(resourcePath + "_meta"))
+            if (HasResource(resourcePath + "_meta", assembly))
             {
                 using (var metaStream = assembly.GetManifestResourceStream(resourcePath + "_meta"))
                 {
@@ -100,6 +100,67 @@ namespace WeaverCore.Utilities
                     }
                 }
                 return finalStream;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a stream of data from the resource path in the assembly
+        /// </summary>
+        /// <param name="resourcePath">The path of the resource to load</param>
+        /// <param name="outputStream">The stream to write the data to</param>
+        /// <param name="assembly">The assembly to load from</param>
+        /// <returns>Returns a stream containing the data of the resource</returns>
+        public static bool Retrieve(string resourcePath, Stream outputStream, Assembly assembly = null)
+        {
+            if (outputStream is null)
+            {
+                throw new ArgumentNullException(nameof(outputStream));
+            }
+
+            if (assembly == null)
+            {
+                assembly = typeof(ResourceUtilities).Assembly;
+            }
+
+            if (!HasResource(resourcePath, assembly))
+            {
+                return false;
+            }
+
+            bool compressed = false;
+            if (HasResource(resourcePath + "_meta", assembly))
+            {
+                using (var metaStream = assembly.GetManifestResourceStream(resourcePath + "_meta"))
+                {
+                    int compressedByte = metaStream.ReadByte();
+                    compressed = compressedByte == 1;
+                }
+            }
+
+            if (!compressed)
+            {
+                //outputStream = assembly.GetManifestResourceStream(resourcePath);
+
+                using (var sourceStream = assembly.GetManifestResourceStream(resourcePath))
+                {
+                    sourceStream.CopyTo(outputStream);
+                }
+                return true;
+            }
+            else
+            {
+                //MemoryStream finalStream = new MemoryStream();
+                using (Stream compressedStream = assembly.GetManifestResourceStream(resourcePath))
+                {
+                    using (var decompressionStream = new GZipStream(compressedStream, CompressionMode.Decompress))
+                    {
+                        StreamUtilities.CopyTo(decompressionStream, outputStream);
+                    }
+                }
+
+
+                return true;
+                //return finalStream;
             }
         }
     }

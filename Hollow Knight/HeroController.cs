@@ -963,7 +963,7 @@ return fsmBool.Value;
     public void StartMPDrain(float time)
     {
         orig_StartMPDrain(time);
-        //this.focusMP_amount *= ModHooks.OnFocusCost();
+        focusMP_amount *= ModHooks.OnFocusCost();
     }
 
     public void StopMPDrain()
@@ -1546,6 +1546,8 @@ return fsmBool.Value;
             }
         }
         int @int = playerData.GetInt("MPReserve");
+
+        num = ModHooks.OnSoulGain(num);
         //num = ModHooks.OnSoulGain(num);
         //this.playerData.AddMPCharge(num);
         /*GameCameras.instance.soulOrbFSM.SendEvent("MP GAIN");

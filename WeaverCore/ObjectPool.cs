@@ -647,7 +647,7 @@ namespace WeaverCore
 			//If there was a valid object in the queue
 			if (obj != null && poolAllSet)
 			{
-				WeaverLog.Log(obj);
+				//WeaverLog.Log(obj);
                 DebugPrint($"Spawning Object from pool... {Prefab}");
                 obj.gameObject.name = InstanceName;
 				obj.SourcePool = this;

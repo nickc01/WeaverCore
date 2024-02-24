@@ -84,7 +84,7 @@ namespace WeaverCore.Editor
 					foreach (var guid in prefabGUIDs)
 					{
 						var path = AssetDatabase.GUIDToAssetPath(guid);
-						if (path.Contains("WeaverCore.Editor\\") || path.Contains("WeaverCore.Editor/"))
+						if (path.Contains("WeaverCore.Editor\\") || path.Contains("WeaverCore.Editor/") && path.EndsWith(".prefab"))
 						{
 							var obj = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(path), default(Vector3), Quaternion.identity);
 							DontDestroyOnLoad(obj);

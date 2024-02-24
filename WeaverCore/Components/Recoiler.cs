@@ -11,10 +11,11 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	/// <summary>
-	/// When attached to an enemy object, this component will cause the enemy to recoil from an attack
-	/// </summary>
-	public class Recoiler : Recoil
+
+    /// <summary>
+    /// When attached to an enemy object, this component will cause the enemy to recoil from an attack
+    /// </summary>
+    public class Recoiler : Recoil
 	{
 		public class RecoilOverride : IComparable<RecoilOverride>, IDisposable
 		{

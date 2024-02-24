@@ -14,7 +14,7 @@ namespace WeaverCore.Internal
 
         static UnboundCoroutine profileRoutine;
 
-        [SettingField(EnabledType.AlwaysVisible, "Open Debug Tools")]
+        [SettingField(EnabledType.AlwaysVisible)]
         public void OpenDebugTools()
         {
             SettingsScreen.Instance.Hide();

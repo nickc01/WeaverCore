@@ -128,10 +128,6 @@ namespace WeaverCore.Assets.Components
 
 		private void Awake()
 		{
-			if (BenchWhiteFlash.Value == null)
-			{
-				BenchWhiteFlash.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Bench White Flash");
-			}
 			eventManager = GetComponent<EventManager>();
 			benchActive = benchActiveOnStart;
 			Respawn();
@@ -619,7 +615,11 @@ namespace WeaverCore.Assets.Components
 							sleeping = false;
 							getOffAnimation = "Get Off";
 
-							Pooling.Instantiate(BenchWhiteFlash.Value,transform.position + new Vector3(0f,0f,-0.2f),Quaternion.identity);
+                            if (BenchWhiteFlash.Value == null)
+                            {
+                                BenchWhiteFlash.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Bench White Flash");
+                            }
+                            Pooling.Instantiate(BenchWhiteFlash.Value,transform.position + new Vector3(0f,0f,-0.2f),Quaternion.identity);
 
 							if (BurstAnim != null)
 							{

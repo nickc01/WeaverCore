@@ -18,6 +18,7 @@ namespace WeaverCore.Editor.Implementations
         FadeGroup fadeGroup;
 
         bool visible = false;
+        bool changing = false;
 
         //InventoryPanel loadedPanel;
 
@@ -80,6 +81,34 @@ namespace WeaverCore.Editor.Implementations
             return null;
         }*/
 
+        IEnumerator ChangeElementRoutine(InventoryElement from, InventoryElement to)
+        {
+            try
+            {
+                yield return MainPanel.OnChangeElement(from, to);
+
+                highlightedElement = to;
+
+                if (from != null)
+                {
+                    from.OnUnHighlight();
+                }
+                else
+                {
+                    cursor.Begin(MainPanel, to);
+                    cursor.Show();
+                }
+
+                highlightedElement.OnHighlight();
+
+                cursor.MoveTo(highlightedElement);
+            }
+            finally
+            {
+                changing = false;
+            }
+        }
+
         public override void HighlightElement(InventoryElement element)
         {
             if (highlightedElement == element)
@@ -87,22 +116,10 @@ namespace WeaverCore.Editor.Implementations
                 return;
             }
 
-            var prevHighlightedElement = highlightedElement;
-            highlightedElement = element;
+            changing = true;
 
-            if (prevHighlightedElement != null)
-            {
-                prevHighlightedElement.OnUnHighlight();
-            }
-            else
-            {
-                cursor.Begin(MainPanel, element);
-                cursor.Show();
-            }
-
-            highlightedElement.OnHighlight();
-
-            cursor.MoveTo(highlightedElement);
+            StartCoroutine(ChangeElementRoutine(HighlightedElement, element));
+            //var prevHighlightedElement = highlightedElement;
             //cursor.MoveToPosition(GetCursorPosForElement(highlightedElement), GetCursorBoundsForElement(highlightedElement), GetCursorOffsetForElement(highlightedElement));
         }
 
@@ -250,7 +267,7 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnDownEvent()
         {
-            if (visible && cursor.CanMove())
+            if (visible && cursor.CanMove() && !changing)
             {
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Down));
             }
@@ -258,7 +275,7 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnUpEvent()
         {
-            if (visible && cursor.CanMove())
+            if (visible && cursor.CanMove() && !changing)
             {
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Up));
             }
@@ -266,7 +283,7 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnRightEvent()
         {
-            if (visible && cursor.CanMove())
+            if (visible && cursor.CanMove() && !changing)
             {
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Right));
             }
@@ -274,7 +291,7 @@ namespace WeaverCore.Editor.Implementations
 
         private void InputManager_OnLeftEvent()
         {
-            if (visible && cursor.CanMove())
+            if (visible && cursor.CanMove() && !changing)
             {
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Left));
             }

@@ -55,6 +55,11 @@ namespace WeaverCore.Features
         public LeftArrowElement LeftArrow { get; private set; }
         public RightArrowElement RightArrow { get; private set; }
 
+        [NonSerialized]
+        InventoryGridGrouper _grouper;
+
+        public InventoryGridGrouper Grouper => _grouper ??= GetComponentInChildren<InventoryGridGrouper>();
+
         [field: SerializeField]
         [field: Tooltip("A custom cursor to use when this panel becomes active. Leave empty for default cursor")]
         public WeaverCore.Inventory.Cursor CustomCursor { get; private set; }
@@ -124,6 +129,11 @@ namespace WeaverCore.Features
         protected virtual void OnSetup()
         {
 
+        }
+
+        public virtual IEnumerator OnChangeElement(InventoryElement from, InventoryElement to)
+        {
+            yield break;
         }
 
         void OnCreate(GameObject inventoryPage)

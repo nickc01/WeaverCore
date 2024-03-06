@@ -111,6 +111,18 @@ namespace WeaverCore.Components
         float originalSpread;
         float originalWidth;
 
+        public float DefaultSpread
+        {
+            get => originalSpread;
+            set => originalSpread = value;
+        }
+
+        public float DefaultWidth
+        {
+            get => originalWidth;
+            set => originalWidth = value;
+        }
+
         Coroutine partialAnimationRoutine;
 
         struct SpawnedImpactData

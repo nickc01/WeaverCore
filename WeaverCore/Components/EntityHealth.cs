@@ -303,7 +303,7 @@ namespace WeaverCore.Components
         /// </summary>
         /// <param name="hit">The hit to check for</param>
         /// <returns>Returns whether this hit is valid</returns>
-        public HitResult IsValidHit(HitInfo hit)
+        public virtual HitResult IsValidHit(HitInfo hit)
         {
             bool validHit = !((Health <= 0 && !HasModifier<InfiniteHealthModifier>()) || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
             if (!validHit)

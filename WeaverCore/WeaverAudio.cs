@@ -76,21 +76,44 @@ namespace WeaverCore
 			if (clip != null)
 			{
 				audioObject.AudioSource.Play();
-				audioObject.Delete(clip.length);
+				audioObject.Delete(() => !audioObject.AudioSource.isPlaying);
+				//audioObject.Delete(clip.length);
 			}
 
 			return audioObject;
 		}
 
-		/// <summary>
-		/// Plays a clip forever untill it's manually destroyed
-		/// </summary>
-		/// <param name="clip">The clip to play</param>
-		/// <param name="position">The position to play at</param>
-		/// <param name="volume">How loud the player will be</param>
-		/// <param name="channel">What audio channel the player will be playing under</param>
-		/// <returns>The player that is playing the audio</returns>
-		public static AudioPlayer PlayAtPointLooped(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
+        /// <summary>
+        /// Plays a clip at the specified point. Automatically deletes itself when the clip is done playing. For more control, refer to <see cref="Create(AudioClip, Vector3, float, AudioChannel)"/>
+        /// </summary>
+        /// <param name="clip">The clip to play</param>
+        /// <param name="position">The position to play at</param>
+        /// <param name="volume">How loud the player will be</param>
+        /// <param name="channel">What audio channel the player will be playing under</param>
+        /// <returns>The player that is playing the audio</returns>
+        public static AudioPlayer PlayAtPointDelayed(float delay, AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
+        {
+            var audioObject = Create(clip, position, volume, channel);
+            if (clip != null)
+            {
+				audioObject.AudioSource.PlayDelayed(delay);
+				var time = Time.time;
+                audioObject.Delete(() => Time.time >= time + delay && !audioObject.AudioSource.isPlaying);
+                //audioObject.Delete(delay + clip.length);
+            }
+
+            return audioObject;
+        }
+
+        /// <summary>
+        /// Plays a clip forever untill it's manually destroyed
+        /// </summary>
+        /// <param name="clip">The clip to play</param>
+        /// <param name="position">The position to play at</param>
+        /// <param name="volume">How loud the player will be</param>
+        /// <param name="channel">What audio channel the player will be playing under</param>
+        /// <returns>The player that is playing the audio</returns>
+        public static AudioPlayer PlayAtPointLooped(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
 		{
 			var audioObject = Create(clip, position, volume, channel);
 			audioObject.AudioSource.loop = true;

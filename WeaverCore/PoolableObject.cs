@@ -147,6 +147,35 @@ namespace WeaverCore
             UnboundCoroutine.Start(ReturnToPoolRoutine(this, 0f));
         }
 
+        static IEnumerator ReturnToPoolRoutine(PoolableObject obj, Func<bool> isDone)
+        {
+            while (true)
+            {
+                yield return null;
+
+                if (obj == null || obj.gameObject == null || obj.InPool)
+                {
+                    yield break;
+                }
+
+                if (!isDone())
+                {
+                    continue;
+                }
+
+                if (obj.SourcePool != null)
+                {
+                    obj.SourcePool.ReturnToPool(obj);
+                }
+                else
+                {
+                    Destroy(obj.gameObject);
+                }
+
+                break;
+            }
+        }
+
         static IEnumerator ReturnToPoolRoutine(PoolableObject obj, float time)
         {
             yield return null;
@@ -189,6 +218,14 @@ namespace WeaverCore
             UnboundCoroutine.Start(ReturnToPoolRoutine(this, time));
         }
 
+        /// <summary>
+        /// Returns the object to the pool only when isDone returns true
+        /// </summary>
+        /// <param name="time">The delegate that, when it returns true, will cause the object to get deleted</param>
+        public void ReturnToPool(Func<bool> isDone)
+        {
+            UnboundCoroutine.Start(ReturnToPoolRoutine(this, isDone));
+        }
 
     }
 }

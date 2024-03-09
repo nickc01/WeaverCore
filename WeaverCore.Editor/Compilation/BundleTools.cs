@@ -706,12 +706,23 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		static void EmbedWeaverCoreResources()
 		{
-			var weaverGameLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}WeaverCore.Game.dll");
-			var harmonyLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}0Harmony.dll");
 
-			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, weaverGameLocation.FullName, "WeaverCore.Game", compression: CompressionMethod.NoCompression);
+			var sep = Path.DirectorySeparatorChar;
+
+			var weaverGameLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{sep}WeaverCore.Game{sep}WeaverCore.Game{sep}bin{sep}WeaverCore.Game.dll");
+			var harmonyLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{sep}0Harmony.dll");
+
+			var ktxUnityWindows = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}ktx_unity.dll");
+			var ktxUnityMac = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}ktx_unity.bundle{sep}Contents{sep}MacOS{sep}ktx_unity");
+			var ktxUnityLinux = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}libktx_unity.so");
+
+            EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, weaverGameLocation.FullName, "WeaverCore.Game", compression: CompressionMethod.NoCompression);
 			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, harmonyLocation.FullName, "0Harmony", compression: CompressionMethod.NoCompression);
-		}
+
+			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityWindows.FullName, "ktx_unity.windows", compression: CompressionMethod.NoCompression);
+			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityMac.FullName, "ktx_unity.mac", compression: CompressionMethod.NoCompression);
+			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityLinux.FullName, "ktx_unity.linux", compression: CompressionMethod.NoCompression);
+        }
 
 		/// <summary>
 		/// Pairs up each asset bundle with the assemblies they are to be embedded into
@@ -729,9 +740,7 @@ namespace WeaverCore.Editor.Compilation
 			foreach (var registry in Data.Registries)
 			{
 				var originalModName = registry.AssemblyName;
-
 				var assembly = assemblies.FirstOrDefault(a => a.GetName().Name == originalModName);
-
 				if (assembly != null)
 				{
 					var asmName = assembly.GetName();

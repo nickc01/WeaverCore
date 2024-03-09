@@ -146,6 +146,11 @@ namespace WeaverCore.Features
             instance.Setup();
         }
 
+        protected virtual void OnDestroy()
+        {
+            instances.Remove(GetType());
+        }
+
         void Setup()
         {
             LeftArrow = transform.Find("Arrow Left").GetComponent<LeftArrowElement>();
@@ -183,7 +188,6 @@ namespace WeaverCore.Features
 
             var navigatorType = ImplFinder.GetImplementationType<InventoryNavigator_I>();
             Navigator = (InventoryNavigator_I)gameObject.AddComponent(navigatorType);
-
             OnSetup();
 
             Navigator.InitPanel(this);

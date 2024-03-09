@@ -9,6 +9,53 @@ using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
+    public class ResourceMetaData
+    {
+        public bool compressed;
+        public string hash;
+
+        public ResourceMetaData(bool Compressed, string Hash)
+        {
+            compressed = Compressed;
+            hash = Hash;
+        }
+
+        public MemoryStream ToStream()
+        {
+            var stream = new MemoryStream();
+            if (compressed)
+            {
+                stream.WriteByte(1);
+            }
+            else
+            {
+                stream.WriteByte(0);
+            }
+            foreach (var character in hash)
+            {
+                stream.WriteByte((byte)character);
+            }
+            stream.Position = 0;
+            return stream;
+        }
+
+        public static ResourceMetaData FromStream(Stream stream)
+        {
+            long oldPosition = stream.Position;
+            stream.Position = 0;
+            int compressed = stream.ReadByte();
+
+            ResourceMetaData meta = new ResourceMetaData(compressed == 1, "");
+
+            for (int i = 0; i < stream.Length - 1; i++)
+            {
+                meta.hash += (char)stream.ReadByte();
+            }
+            stream.Position = oldPosition;
+            return meta;
+        }
+    }
+
     /// <summary>
     /// Used for loading resources from an assembly, and other related actions
     /// </summary>
@@ -161,6 +208,24 @@ namespace WeaverCore.Utilities
 
                 return true;
                 //return finalStream;
+            }
+        }
+
+        public static ResourceMetaData GetMetadataForResource(string resourcePath, Assembly assembly = null)
+        {
+            if (assembly == null)
+            {
+                assembly = typeof(ResourceUtilities).Assembly;
+            }
+
+            if (!HasResource($"{resourcePath}_meta", assembly))
+            {
+                return null;
+            }
+
+            using (Stream compressedStream = assembly.GetManifestResourceStream(resourcePath))
+            {
+                return ResourceMetaData.FromStream(compressedStream);
             }
         }
     }

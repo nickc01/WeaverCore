@@ -3,6 +3,7 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Patches
 {
+
     static class Test_Patches
     {
         /*[OnHarmonyPatch]

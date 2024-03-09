@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using WeaverCore.Utilities;
-using static UnityEngine.UI.ScrollRect;
 
 namespace WeaverCore.Inventory
 {
@@ -111,8 +110,8 @@ namespace WeaverCore.Inventory
             }
 
             movementDestination = destination;
-            WeaverLog.Log("START POS = " + transform.localPosition);
-            WeaverLog.Log("END POS = " + destination);
+            //WeaverLog.Log("START POS = " + transform.localPosition);
+            //WeaverLog.Log("END POS = " + destination);
             movementRoutine = StartCoroutine(MovementRoutine(transform.localPosition, destination, time));
         }
 

@@ -12,13 +12,23 @@ namespace WeaverCore.Assets.Components
         [Tooltip("The delay before the music starts")]
         float musicStartDelay = 2.5f;
 
-        [SerializeField]
+        /*[SerializeField]
+        [HideInInspector]
         [Tooltip("The music to be played when the boss starts")]
         MusicPack bossMusicPack;
 
         [SerializeField]
+        [HideInInspector]
         [Tooltip("A special music pack to be played when on attuned or radiant difficulty. Leave empty to use the regular boss music")]
-        MusicPack remixBossMusicPack;
+        MusicPack remixBossMusicPack;*/
+
+        [SerializeField]
+        [Tooltip("The music to be played when the boss starts")]
+        MusicCue bossMusicCue;
+
+        [SerializeField]
+        [Tooltip("A special music pack to be played when on attuned or radiant difficulty. Leave empty to use the regular boss music")]
+        MusicCue remixBossMusicCue;
 
         [Header("Pantheon Only")]
         [SerializeField]
@@ -31,7 +41,7 @@ namespace WeaverCore.Assets.Components
 
         [SerializeField]
         [Tooltip("The music pack to be played when in a pantheon. Only used if disableSequenceMusic is false")]
-        MusicPack pantheonSequenceMusic;
+        MusicCue pantheonSequenceMusic;
 
         [SerializeField]
         AudioClip transitionSound;
@@ -77,7 +87,7 @@ namespace WeaverCore.Assets.Components
                     }
                     yield return new WaitForSeconds(0.5f);
 
-                    Music.PlayMusicPack(pantheonSequenceMusic, 0.1f, 0.1f);
+                    Music.PlayMusicCue(pantheonSequenceMusic, 0.1f, 0.1f);
 
                     yield return new WaitForSeconds(0.1f);
 
@@ -90,13 +100,19 @@ namespace WeaverCore.Assets.Components
             {
                 yield return new WaitForSeconds(musicStartDelay);
 
-                if (BossSceneController.Instance != null && BossSceneController.Instance.BossLevel >= 2 && remixBossMusicPack != null)
+                if (BossSceneController.Instance != null && BossSceneController.Instance.BossLevel >= 2 && remixBossMusicCue != null)
                 {
-                    Music.PlayMusicPack(remixBossMusicPack);
+                    if (remixBossMusicCue != null)
+                    {
+                        Music.PlayMusicCue(remixBossMusicCue);
+                    }
                 }
                 else
                 {
-                    Music.PlayMusicPack(bossMusicPack);
+                    if (bossMusicCue != null)
+                    {
+                        Music.PlayMusicCue(bossMusicCue);
+                    }
                 }
                 Music.ApplyMusicSnapshot(Music.SnapshotType.Normal, 0f, 0f);
             }

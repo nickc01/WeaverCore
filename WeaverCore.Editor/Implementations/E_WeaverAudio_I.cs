@@ -68,7 +68,13 @@ namespace WeaverCore.Editor.Implementations
 		}
 
 		static AudioMixerGroup _sounds;
-		public override AudioMixerGroup Sounds
+
+        public override event Action<float> OnMasterVolumeUpdate;
+        public override event Action<float> OnMusicVolumeUpdate;
+        public override event Action<float> OnSoundVolumeUpdate;
+        public override event Action<bool> OnPauseStateUpdate;
+
+        public override AudioMixerGroup Sounds
 		{
 			get
 			{
@@ -80,8 +86,13 @@ namespace WeaverCore.Editor.Implementations
 			}
 		}
 
+		public override float MasterVolume => 1f;
 
-		public override AudioMixerGroup GetMixerForChannel(AudioChannel channel)
+        public override float MusicVolume => 1f;
+
+        public override float SoundsVolume => 1f;
+
+        public override AudioMixerGroup GetMixerForChannel(AudioChannel channel)
 		{
             switch (channel)
             {

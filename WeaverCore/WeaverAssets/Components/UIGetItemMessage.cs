@@ -331,10 +331,12 @@ namespace WeaverCore.Assets.Components
             if (buttonIcon == null)
             {
                 instance.Button.gameObject.SetActive(false);
+                instance.PressTextRenderer.gameObject.SetActive(false);
             }
             else
             {
                 instance.Button.gameObject.SetActive(true);
+                instance.PressTextRenderer.gameObject.SetActive(true);
                 instance.ButtonIconAction = buttonIcon.Value;
             }
 

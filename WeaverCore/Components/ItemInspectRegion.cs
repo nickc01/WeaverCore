@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore.Utilities;
 
@@ -16,6 +18,11 @@ namespace WeaverCore.Components
         [SerializeField]
         [Tooltip("If set to true, the knight will warp out of the dream scene when the item is fully inspected")]
         bool dreamExit;
+
+        /// <summary>
+        /// An event that is called whenan item is collected
+        /// </summary>
+        public event Func<IEnumerator> OnCollectEvent;
 
         protected override void Awake()
         {
@@ -57,9 +64,48 @@ namespace WeaverCore.Components
                 WeaverAudio.PlayAtPoint(itemPickupSound, transform.position);
             }
 
+
+            HashSet<Guid> runningRoutines = new HashSet<Guid>();
+
+            void RunRoutine(IEnumerator routine)
+            {
+
+                var id = Guid.NewGuid();
+
+                runningRoutines.Add(id);
+                IEnumerator Runner(IEnumerator routine)
+                {
+                    try
+                    {
+                        yield return routine;
+                    }
+                    finally
+                    {
+                        runningRoutines.Remove(id);
+                    }
+                }
+
+                StartCoroutine(Runner(routine));
+            }
+
+            if (OnCollectEvent != null)
+            {
+                foreach (var d in OnCollectEvent.GetInvocationList())
+                {
+                    var routine = ((Func<IEnumerator>)d).Invoke();
+
+                    if (routine != null)
+                    {
+                        RunRoutine(routine);
+                    }
+                }
+            }
+
             yield return new WaitForSeconds(1f);
 
-            if (dreamExit)
+            yield return new WaitUntil(() => runningRoutines.Count == 0);
+
+            if (dreamExit && Initialization.Environment == Enums.RunningState.Game)
             {
                 EnableKnightDamageInterrupt = false;
                 yield return DreamWarpRoutine();

@@ -173,5 +173,33 @@ namespace WeaverCore
 		{
 			return Impl.GetMixerForChannel(channel);
 		}
-	}
+
+		public static float MasterVolume => Impl.MasterVolume;
+		public static float MusicVolume => Impl.MusicVolume;
+		public static float SoundVolume => Impl.SoundsVolume;
+
+		public static event Action<float> OnMasterVolumeUpdate
+		{
+			add => Impl.OnMasterVolumeUpdate += value;
+			remove => Impl.OnMasterVolumeUpdate -= value;
+		}
+
+		public static event Action<float> OnMusicVolumeUpdate
+        {
+            add => Impl.OnMusicVolumeUpdate += value;
+            remove => Impl.OnMusicVolumeUpdate -= value;
+        }
+
+        public static event Action<float> OnSoundVolumeUpdate
+        {
+            add => Impl.OnSoundVolumeUpdate += value;
+            remove => Impl.OnSoundVolumeUpdate -= value;
+        }
+
+		public static event Action<bool> OnPauseStateUpdate
+		{
+            add => Impl.OnPauseStateUpdate += value;
+            remove => Impl.OnPauseStateUpdate -= value;
+        }
+    }
 }

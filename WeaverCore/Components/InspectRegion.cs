@@ -1,5 +1,7 @@
 using Modding;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using WeaverCore.Assets.Components;
@@ -63,6 +65,11 @@ namespace WeaverCore.Components
         /// Event triggered when the region is inspected.
         /// </summary>
         public UnityEvent OnInspect;
+
+        /*/// <summary>
+        /// Event triggered when the region is inspected. Subscribers return a Ienumerator routine. And the inspector will not continue until the Ienumerator finishes
+        /// </summary>
+        public event Func<IEnumerator> OnInspectWaitEvent;*/
 
         /// <summary>
         /// Event triggered after the Knight takes damage.
@@ -136,8 +143,7 @@ namespace WeaverCore.Components
         IEnumerator MainRoutine()
         {
             yield return new WaitUntil(() => Inspectable);
-
-            prompt.transform.position = promptMarker.transform.position;
+            prompt.transform.position = promptMarker.position;
 
             while (true)
             {
@@ -155,24 +161,42 @@ namespace WeaverCore.Components
                     EventManager.BroadcastEvent(enterRangeEvent, gameObject);
                 }
 
-                prompt.Show();
+                Coroutine setTargetRoutine = StartCoroutine(SetToPosition(prompt.transform, promptMarker));
 
-                while (true)
+                try
                 {
-                    if (HeroController.instance.CanInspect() && (PlayerInput.down.WasPressed || PlayerInput.up.WasPressed))
+                    prompt.Show();
+
+                    while (true)
                     {
-                        PlayerInspecting = true;
-                        yield return InspectRoutine();
-                        PlayerInspecting = false;
-                        break;
+                        if (HeroController.instance.CanInspect() && (PlayerInput.down.WasPressed || PlayerInput.up.WasPressed))
+                        {
+                            PlayerInspecting = true;
+                            yield return InspectRoutine();
+                            PlayerInspecting = false;
+                            break;
+                        }
+                        else if (!PlayerInRange || !Inspectable)
+                        {
+                            break;
+                        }
+                        yield return null;
                     }
-                    else if (!PlayerInRange || !Inspectable)
-                    {
-                        break;
-                    }
-                    yield return null;
+                }
+                finally
+                {
+                    StopCoroutine(setTargetRoutine);
                 }
 
+            }
+        }
+
+        IEnumerator SetToPosition(Transform obj, Transform target)
+        {
+            while (true)
+            {
+                obj.transform.position = target.transform.position;
+                yield return null;
             }
         }
 
@@ -256,7 +280,45 @@ namespace WeaverCore.Components
                 HeroUtilities.PlayPlayerClip("LookUp");
             }
 
-            yield return OnInspectRoutine();
+            HashSet<Guid> runningRoutines = new HashSet<Guid>();
+
+            void RunRoutine(IEnumerator routine)
+            {
+
+                var id = Guid.NewGuid();
+
+                runningRoutines.Add(id);
+                IEnumerator Runner(IEnumerator routine)
+                {
+                    try
+                    {
+                        yield return routine;
+                    }
+                    finally
+                    {
+                        runningRoutines.Remove(id);
+                    }
+                }
+
+                StartCoroutine(Runner(routine));
+            }
+
+            RunRoutine(OnInspectRoutine());
+
+            /*if (OnInspectWaitEvent != null)
+            {
+                foreach (var d in OnInspectWaitEvent.GetInvocationList())
+                {
+                    var routine = ((Func<IEnumerator>)d).Invoke();
+
+                    if (routine != null)
+                    {
+                        RunRoutine(routine);
+                    }
+                }
+            }*/
+
+            yield return new WaitUntil(() => runningRoutines.Count == 0);
 
             HeroController.instance.RegainControl();
             PlayerData.instance.SetBool("disablePause", false);

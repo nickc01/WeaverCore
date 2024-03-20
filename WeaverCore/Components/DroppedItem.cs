@@ -8,6 +8,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
     /// <summary>
     /// Base class for any items dropped on the floor that the player can collect
     /// </summary>

@@ -385,5 +385,10 @@ namespace WeaverCore.Utilities
 
 			return value;
         }
+
+		public static Vector3 Multiply(Vector3 a, Vector3 b)
+		{
+			return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
+		}
     }
 }

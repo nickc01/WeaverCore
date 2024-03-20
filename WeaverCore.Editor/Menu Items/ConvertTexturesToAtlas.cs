@@ -9,7 +9,6 @@ using WeaverCore.Editor.Utilities;
 using UnityEditorInternal;
 using WeaverCore;
 
-
 /// <summary>
 /// Used for converting multiple textures, into a single texture consisting of multiple sprites
 /// </summary>

@@ -1351,6 +1351,7 @@ public class GameManager : MonoBehaviour
         {
             if (hazardRespawningHero)
             {
+                Debug.Log("FindEntryPoint() Respawn Loc = " + playerData.GetVector3("hazardRespawnLocation"));
                 return new Vector2?(playerData.GetVector3("hazardRespawnLocation"));
             }
             if (entryGateName == "dreamGate")

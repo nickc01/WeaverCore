@@ -6,6 +6,7 @@
 		[PerRendererData] _Color("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 		[PerRendererData]_SpriteCoords("Sprite Coords", Vector) = (0,0,1,1)
+		[PerRendererData]_Sharpness("Sharpness", int) = 1
 	}
 
 		SubShader
@@ -70,6 +71,7 @@
 				sampler2D _MainTex;
 				sampler2D _AlphaTex;
 				float _AlphaSplitEnabled;
+				int _Sharpness;
 
 
 				fixed4 SampleSpriteTexture(float2 uv)
@@ -85,7 +87,15 @@
 				}
 
 				float2 Double(float2 value) {
-					return value * value;
+					//return value * value;
+					float2 result = value;
+					for (int i = 0; i < _Sharpness; i++) 
+					{
+						result *= value;
+					}	
+
+					return result;
+					//return pow(value, 2 * _Sharpness);
 				}
 
 				fixed4 frag(v2f IN) : SV_Target

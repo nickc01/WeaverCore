@@ -2256,6 +2256,7 @@ return fsmBool.Value;
         enteringVertically = false;
         airDashed = false;
         doubleJumped = false;
+        Debug.Log("HazardRespawn() Respawn Loc = " + playerData.hazardRespawnLocation);
         transform.SetPosition2D(FindGroundPoint(playerData.hazardRespawnLocation, true));
         gameObject.layer = 9;
         renderer.enabled = true;

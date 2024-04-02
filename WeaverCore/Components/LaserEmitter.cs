@@ -134,11 +134,15 @@ namespace WeaverCore.Components
         {
             if (enabled)
             {
-                if (Laser.MainCollider != null)
+                if (Laser.TryGetComponent<PolygonCollider2D>(out var collider))
                 {
-                    Laser.MainCollider.enabled = false;
+                    collider.enabled = false;
                 }
-                Laser.MainRenderer.enabled = false;
+                if (Laser.TryGetComponent<MeshRenderer>(out var renderer))
+                {
+                    renderer.enabled = false;
+                }
+                //Laser.MainRenderer.enabled = false;
 
                 originalSpread = Laser.Spread;
                 originalWidth = Laser.StartingWidth;

@@ -138,16 +138,23 @@ namespace WeaverCore.Game.Implementations
 
 			var vignette = GameObject.FindGameObjectWithTag("Vignette");
 
-			previousDarknessLevel = PlayMakerUtilities.GetFsmInt(vignette, "Darkness Control", "Darkness Level");
-
-			if (previousDarknessLevel != darknessLevel)
+			if (vignette != null && vignette.activeSelf)
 			{
-                PlayMakerUtilities.SetFsmInt(vignette, "Darkness Control", "Darkness Level", darknessLevel);
+                previousDarknessLevel = PlayMakerUtilities.GetFsmInt(vignette, "Darkness Control", "Darkness Level");
 
-                HeroController.instance.SetDarkness(darknessLevel);
+                if (previousDarknessLevel != darknessLevel)
+                {
+                    PlayMakerUtilities.SetFsmInt(vignette, "Darkness Control", "Darkness Level", darknessLevel);
 
-                EventManager.SendEventToGameObject("SCENE RESET", vignette);
+                    HeroController.instance.SetDarkness(darknessLevel);
+
+                    EventManager.SendEventToGameObject("SCENE RESET", vignette);
+                }
             }
+			else
+			{
+				previousDarknessLevel = int.MinValue;
+			}
 
 			EventManager.SendEventToGameObject("FSM CANCEL", HeroController.instance.gameObject);
 
@@ -185,6 +192,8 @@ namespace WeaverCore.Game.Implementations
                 throw new Exception("The player is already out of a cutscene lock");
             }
 
+			inCutsceneLock = false;
+
             if (HudCanvas == null)
             {
                 HudCanvas = GameObject.Find("Hud Canvas");
@@ -199,15 +208,18 @@ namespace WeaverCore.Game.Implementations
 
             var vignette = GameObject.FindGameObjectWithTag("Vignette");
 
-            var currentDarknessLevel = PlayMakerUtilities.GetFsmInt(vignette, "Darkness Control", "Darkness Level");
+			if (vignette != null && vignette.activeSelf && previousDarknessLevel != int.MinValue)
+			{
+                var currentDarknessLevel = PlayMakerUtilities.GetFsmInt(vignette, "Darkness Control", "Darkness Level");
 
-            if (previousDarknessLevel != currentDarknessLevel)
-            {
-                PlayMakerUtilities.SetFsmInt(vignette, "Darkness Control", "Darkness Level", previousDarknessLevel);
+                if (previousDarknessLevel != currentDarknessLevel)
+                {
+                    PlayMakerUtilities.SetFsmInt(vignette, "Darkness Control", "Darkness Level", previousDarknessLevel);
 
-                HeroController.instance.SetDarkness(previousDarknessLevel);
+                    HeroController.instance.SetDarkness(previousDarknessLevel);
 
-                EventManager.SendEventToGameObject("SCENE RESET", vignette);
+                    EventManager.SendEventToGameObject("SCENE RESET", vignette);
+                }
             }
         }
     }

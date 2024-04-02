@@ -161,7 +161,7 @@ namespace WeaverCore.Components
                     EventManager.BroadcastEvent(enterRangeEvent, gameObject);
                 }
 
-                Coroutine setTargetRoutine = StartCoroutine(SetToPosition(prompt.transform, promptMarker));
+                Coroutine setTargetRoutine = StartCoroutine(SetToPosition());
 
                 try
                 {
@@ -191,11 +191,15 @@ namespace WeaverCore.Components
             }
         }
 
-        IEnumerator SetToPosition(Transform obj, Transform target)
+        IEnumerator SetToPosition()
         {
             while (true)
             {
-                obj.transform.position = target.transform.position;
+                if (prompt != null && promptMarker != null)
+                {
+                    prompt.transform.position = promptMarker.transform.position;
+                }
+                //obj.transform.position = target.transform.position;
                 yield return null;
             }
         }

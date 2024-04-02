@@ -518,24 +518,24 @@ namespace WeaverCore
         }
 
         [SerializeField]
-        List<string> componentTypeNames = new List<string>();
+        System.Collections.Generic.List<string> componentTypeNames = new System.Collections.Generic.List<string>();
 
         [SerializeField]
-        List<string> fieldNames = new List<string>();
+        System.Collections.Generic.List<string> fieldNames = new System.Collections.Generic.List<string>();
 
         [SerializeField]
-        List<string> fieldTypes = new List<string>();
+        System.Collections.Generic.List<string> fieldTypes = new System.Collections.Generic.List<string>();
 
         [SerializeField]
-        List<string> fieldValueContainers = new List<string>();
+        System.Collections.Generic.List<string> fieldValueContainers = new System.Collections.Generic.List<string>();
 
         UpdatedFieldListView _listView;
         public UpdatedFieldListView Fields => _listView ??= new UpdatedFieldListView(this);
 
         [SerializeField]
-        List<string> reservedObjectGUIDs = new List<string>();
+        System.Collections.Generic.List<string> reservedObjectGUIDs = new System.Collections.Generic.List<string>();
 
         [SerializeField]
-        List<UnityEngine.Object> reservedObjects = new List<UnityEngine.Object>();
+        System.Collections.Generic.List<UnityEngine.Object> reservedObjects = new System.Collections.Generic.List<UnityEngine.Object>();
     }
 }

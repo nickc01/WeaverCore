@@ -20,9 +20,9 @@ namespace WeaverCore.Editor
 		/// <summary>
 		/// Gets all registries in the project
 		/// </summary>
-		public static List<Registry> GetAllRegistries()
+		public static System.Collections.Generic.List<Registry> GetAllRegistries()
 		{
-			List<Registry> registries = new List<Registry>();
+            System.Collections.Generic.List<Registry> registries = new System.Collections.Generic.List<Registry>();
 			var guids = AssetDatabase.FindAssets($"t:{nameof(Registry)}");
 			foreach (var guid in guids)
 			{
@@ -32,18 +32,18 @@ namespace WeaverCore.Editor
 			return registries;
 		}
 
-		static List<Type> modsCached;
+		static System.Collections.Generic.List<Type> modsCached;
 
         /// <summary>
         /// Gets all mod types in the project
         /// </summary>
-        public static List<Type> GetAllMods()
+        public static System.Collections.Generic.List<Type> GetAllMods()
         {
 			//modsCached = null;
             if (modsCached == null)
             {
                 //WeaverLog.Log("BEGINNING SEARCH FOR MODS");
-                modsCached = new List<Type>();
+                modsCached = new System.Collections.Generic.List<Type>();
                 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     foreach (var type in assembly.GetTypes())
@@ -96,16 +96,16 @@ namespace WeaverCore.Editor
 			return modNamesCached;
 		}
 
-		static List<Type> featuresCached;
+		static System.Collections.Generic.List<Type> featuresCached;
 
 		/// <summary>
 		/// Gets all feature types that can be added to a registry
 		/// </summary>
-		public static List<Type> GetAllFeatures()
+		public static System.Collections.Generic.List<Type> GetAllFeatures()
 		{
 			if (featuresCached == null)
 			{
-				featuresCached = new List<Type>();
+                featuresCached = new System.Collections.Generic.List<Type>();
 				foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 				{
 					foreach (var type in assembly.GetTypes())

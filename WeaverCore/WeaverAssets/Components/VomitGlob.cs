@@ -53,10 +53,10 @@ namespace WeaverCore.Assets.Components
         AudioClip landSound;
 
         [SerializeField]
-        List<GameObject> enableOnLand;
+        System.Collections.Generic.List<GameObject> enableOnLand;
 
         [SerializeField]
-        List<GameObject> disableOnLand;
+        System.Collections.Generic.List<GameObject> disableOnLand;
 
         [SerializeField]
         [ExcludeFieldFromPool]

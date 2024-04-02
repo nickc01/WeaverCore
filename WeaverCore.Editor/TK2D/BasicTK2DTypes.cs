@@ -19,18 +19,18 @@ namespace WeaverCore.Editor.TK2D
 		public class CollectionTextures
 		{
 			public tk2dSpriteCollectionData collection;
-			public List<string> TextureNames;
+			public System.Collections.Generic.List<string> TextureNames;
 		}
 
 		public tk2dSpriteAnimation animation;
-		public List<CollectionTextures> collectionTextures;
+		public System.Collections.Generic.List<CollectionTextures> collectionTextures;
 	}
 
 	[Serializable]
 	public class SpriteMapImport
 	{
 		public tk2dSpriteCollectionData collection;
-		public List<string> TextureNames;
+		public System.Collections.Generic.List<string> TextureNames;
 	}
 
 	[Serializable]

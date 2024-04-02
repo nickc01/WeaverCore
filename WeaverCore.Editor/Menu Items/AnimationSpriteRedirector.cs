@@ -12,7 +12,7 @@ namespace WeaverCore.Editor.Menu_Items
         WeaverAnimationData animData;
         //Texture2D textureToRedirectTo;
 
-        public List<Texture2D> textureList;
+        public System.Collections.Generic.List<Texture2D> textureList;
         ReorderableList textures = null;
         SerializedObject serializedObject;
         Vector2 scrollPosition;
@@ -30,7 +30,7 @@ namespace WeaverCore.Editor.Menu_Items
         private void OnEnable()
         {
             serializedObject = new SerializedObject(this);
-            textureList = new List<Texture2D>();
+            textureList = new System.Collections.Generic.List<Texture2D>();
             textures = new ReorderableList(serializedObject, serializedObject.FindProperty(nameof(textureList)), false, true, true, true);
 
             textures.drawHeaderCallback = (rect) => EditorGUI.LabelField(rect, "Textures");

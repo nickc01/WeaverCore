@@ -125,7 +125,7 @@ namespace WeaverCore.Components
         /// <summary>
         /// Returns the texture contact points of the laser beam.
         /// </summary>
-        public List<Vector2> TextureContactPoints
+        public System.Collections.Generic.List<Vector2> TextureContactPoints
         {
             get
             {
@@ -137,7 +137,7 @@ namespace WeaverCore.Components
         /// <summary>
         /// Returns the collider contact points of the laser beam.
         /// </summary>
-        public List<Vector2> ColliderContactPoints
+        public System.Collections.Generic.List<Vector2> ColliderContactPoints
         {
             get
             {
@@ -149,7 +149,7 @@ namespace WeaverCore.Components
         /// <summary>
         /// Returns the collider contact normals of the laser beam.
         /// </summary>
-        public List<Vector2> ColliderContactNormals
+        public System.Collections.Generic.List<Vector2> ColliderContactNormals
         {
             get
             {
@@ -231,22 +231,22 @@ namespace WeaverCore.Components
         Vector2 bottomEdgeEnd;
 
         [NonSerialized]
-        List<Vector2> contactPoints = new List<Vector2>();
+        System.Collections.Generic.List<Vector2> contactPoints = new System.Collections.Generic.List<Vector2>();
 
         [NonSerialized]
-        List<Vector2> colliderContactPoints = new List<Vector2>();
+        System.Collections.Generic.List<Vector2> colliderContactPoints = new System.Collections.Generic.List<Vector2>();
 
         [NonSerialized]
-        List<Vector2> collisionContactNormals = new List<Vector2>();
+        System.Collections.Generic.List<Vector2> collisionContactNormals = new System.Collections.Generic.List<Vector2>();
 
         [NonSerialized]
-        List<Vector2> polygonPoints;
+        System.Collections.Generic.List<Vector2> polygonPoints;
         [NonSerialized]
-        List<Vector3> verticies;
+        System.Collections.Generic.List<Vector3> verticies;
         [NonSerialized]
-        List<int> indicies;
+        System.Collections.Generic.List<int> indicies;
         [NonSerialized]
-        List<Vector2> uvs;
+        System.Collections.Generic.List<Vector2> uvs;
 
         RaycastHit2D[] terrainHit = new RaycastHit2D[1];
 
@@ -277,10 +277,10 @@ namespace WeaverCore.Components
             filter = GetComponent<MeshFilter>();
             mainRenderer = GetComponent<MeshRenderer>();
             mainCollider = GetComponent<PolygonCollider2D>();
-            polygonPoints = new List<Vector2>();
-            verticies = new List<Vector3>();
-            indicies = new List<int>();
-            uvs = new List<Vector2>();
+            polygonPoints = new System.Collections.Generic.List<Vector2>();
+            verticies = new System.Collections.Generic.List<Vector3>();
+            indicies = new System.Collections.Generic.List<int>();
+            uvs = new System.Collections.Generic.List<Vector2>();
 
             if (mainRenderer.sharedMaterial == null)
             {

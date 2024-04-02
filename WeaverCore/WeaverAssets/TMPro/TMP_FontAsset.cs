@@ -86,42 +86,42 @@ namespace WeaverCore.Assets.TMPro
 
 
 		[SerializeField]
-		
-		List<int> TMP_Glyph_id;
+
+        System.Collections.Generic.List<int> TMP_Glyph_id;
 		[SerializeField]
-		
-		List<float> TMP_Glyph_x;
+
+        System.Collections.Generic.List<float> TMP_Glyph_x;
 		[SerializeField]
-		
-		List<float> TMP_Glyph_y;
+
+        System.Collections.Generic.List<float> TMP_Glyph_y;
 		[SerializeField]
-		
-		List<float> TMP_Glyph_width;
+
+        System.Collections.Generic.List<float> TMP_Glyph_width;
 		[SerializeField]
-		
-		List<float> TMP_Glyph_height;
+
+        System.Collections.Generic.List<float> TMP_Glyph_height;
 		[SerializeField]
-		
-		List<float> TMP_Glyph_xOffset;
+
+        System.Collections.Generic.List<float> TMP_Glyph_xOffset;
 		[SerializeField]
-		
-		List<float> TMP_Glyph_yOffset;
+
+        System.Collections.Generic.List<float> TMP_Glyph_yOffset;
 		[SerializeField]
-		
-		List<float> TMP_Glyph_xAdvance;
+
+        System.Collections.Generic.List<float> TMP_Glyph_xAdvance;
 		[SerializeField]
-		
-		List<float> TMP_Glyph_scale;
+
+        System.Collections.Generic.List<float> TMP_Glyph_scale;
 
 		[SerializeField]
-		
-		List<int> KerningTable_AscII_Left;
+
+        System.Collections.Generic.List<int> KerningTable_AscII_Left;
 		[SerializeField]
-		
-		List<int> KerningTable_AscII_Right;
+
+        System.Collections.Generic.List<int> KerningTable_AscII_Right;
 		[SerializeField]
-		
-		List<float> KerningTable_XadvanceOffset;
+
+        System.Collections.Generic.List<float> KerningTable_XadvanceOffset;
 
 
 		[SerializeField]
@@ -159,9 +159,9 @@ namespace WeaverCore.Assets.TMPro
 
 
 		[SerializeField]
-		List<global::TMPro.TMP_FontAsset> TMP_FontWeights_regularTypeface;
+        System.Collections.Generic.List<global::TMPro.TMP_FontAsset> TMP_FontWeights_regularTypeface;
 		[SerializeField]
-		List<global::TMPro.TMP_FontAsset> TMP_FontWeights_italicTypeface;
+        System.Collections.Generic.List<global::TMPro.TMP_FontAsset> TMP_FontWeights_italicTypeface;
 
 		[SerializeField]
 		string editorAtlasTextureName;
@@ -386,7 +386,7 @@ namespace WeaverCore.Assets.TMPro
 
 			type.GetField("m_fontInfo", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(this,fontInfo);
 
-			List<TMP_Glyph> glyphs = new List<TMP_Glyph>();
+            System.Collections.Generic.List<TMP_Glyph> glyphs = new System.Collections.Generic.List<TMP_Glyph>();
 
 			for (int i = 0; i < TMP_Glyph_height.Count; i++)
 			{
@@ -482,17 +482,17 @@ namespace WeaverCore.Assets.TMPro
             this.FaceInfo_Underline = fontInfo.Underline;
             this.FaceInfo_UnderlineThickness = fontInfo.UnderlineThickness;
 
-            var glyphList = (List<TMP_Glyph>)type.GetField("m_glyphInfoList", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
+            var glyphList = (System.Collections.Generic.List<TMP_Glyph>)type.GetField("m_glyphInfoList", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
 
-            this.TMP_Glyph_height = new List<float>();
-            this.TMP_Glyph_id = new List<int>();
-            this.TMP_Glyph_scale = new List<float>();
-            this.TMP_Glyph_width = new List<float>();
-            this.TMP_Glyph_x = new List<float>();
-            this.TMP_Glyph_xAdvance = new List<float>();
-            this.TMP_Glyph_xOffset = new List<float>();
-            this.TMP_Glyph_y = new List<float>();
-            this.TMP_Glyph_yOffset = new List<float>();
+            this.TMP_Glyph_height = new System.Collections.Generic.List<float>();
+            this.TMP_Glyph_id = new System.Collections.Generic.List<int>();
+            this.TMP_Glyph_scale = new System.Collections.Generic.List<float>();
+            this.TMP_Glyph_width = new System.Collections.Generic.List<float>();
+            this.TMP_Glyph_x = new System.Collections.Generic.List<float>();
+            this.TMP_Glyph_xAdvance = new System.Collections.Generic.List<float>();
+            this.TMP_Glyph_xOffset = new System.Collections.Generic.List<float>();
+            this.TMP_Glyph_y = new System.Collections.Generic.List<float>();
+            this.TMP_Glyph_yOffset = new System.Collections.Generic.List<float>();
 
             for (int i = 0; i < glyphList.Count; i++)
             {
@@ -509,9 +509,9 @@ namespace WeaverCore.Assets.TMPro
 
             var kerningTable = (KerningTable)type.GetField("m_kerningInfo", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
             //TODO TODO TODO
-            this.KerningTable_AscII_Left = new List<int>();
-            this.KerningTable_AscII_Right = new List<int>();
-            this.KerningTable_XadvanceOffset = new List<float>();
+            this.KerningTable_AscII_Left = new System.Collections.Generic.List<int>();
+            this.KerningTable_AscII_Right = new System.Collections.Generic.List<int>();
+            this.KerningTable_XadvanceOffset = new System.Collections.Generic.List<float>();
 
 
             for (int i = 0; i < kerningTable.kerningPairs.Count; i++)
@@ -546,8 +546,8 @@ namespace WeaverCore.Assets.TMPro
 
             var fontWeights = (TMP_FontWeights[])type.GetField("fontWeights", BindingFlags.Public | BindingFlags.Instance).GetValue(this);
 
-            this.TMP_FontWeights_italicTypeface = new List<global::TMPro.TMP_FontAsset>();
-            this.TMP_FontWeights_regularTypeface = new List<global::TMPro.TMP_FontAsset>();
+            this.TMP_FontWeights_italicTypeface = new System.Collections.Generic.List<global::TMPro.TMP_FontAsset>();
+            this.TMP_FontWeights_regularTypeface = new System.Collections.Generic.List<global::TMPro.TMP_FontAsset>();
 
             for (int i = 0; i < fontWeights.GetLength(0); i++)
             {

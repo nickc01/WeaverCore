@@ -22,7 +22,7 @@ namespace RuntimeInspectorNamespace
 		private const string POOL_OBJECT_NAME = "RuntimeInspectorPool";
 
 		public delegate object InspectedObjectChangingDelegate( object previousInspectedObject, object newInspectedObject );
-		public delegate void ComponentFilterDelegate( GameObject gameObject, List<Component> components );
+		public delegate void ComponentFilterDelegate( GameObject gameObject, System.Collections.Generic.List<Component> components );
 
 #pragma warning disable 0649
 		[SerializeField]
@@ -196,12 +196,12 @@ namespace RuntimeInspectorNamespace
 
 		private readonly Dictionary<Type, InspectorField[]> typeToDrawers = new Dictionary<Type, InspectorField[]>( 89 );
 		private readonly Dictionary<Type, InspectorField[]> typeToReferenceDrawers = new Dictionary<Type, InspectorField[]>( 89 );
-		private readonly List<InspectorField> eligibleDrawers = new List<InspectorField>( 4 );
+		private readonly System.Collections.Generic.List<InspectorField> eligibleDrawers = new System.Collections.Generic.List<InspectorField>( 4 );
 
-		private static readonly Dictionary<Type, List<InspectorField>> drawersPool = new Dictionary<Type, List<InspectorField>>();
+		private static readonly Dictionary<Type, System.Collections.Generic.List<InspectorField>> drawersPool = new Dictionary<Type, System.Collections.Generic.List<InspectorField>>();
 
-		private readonly List<VariableSet> hiddenVariables = new List<VariableSet>( 32 );
-		private readonly List<VariableSet> exposedVariables = new List<VariableSet>( 32 );
+		private readonly System.Collections.Generic.List<VariableSet> hiddenVariables = new System.Collections.Generic.List<VariableSet>( 32 );
+		private readonly System.Collections.Generic.List<VariableSet> exposedVariables = new System.Collections.Generic.List<VariableSet>( 32 );
 
 		private InspectorField currentDrawer = null;
 		private bool inspectLock = false;
@@ -547,7 +547,7 @@ namespace RuntimeInspectorNamespace
 
 		private InspectorField InstantiateDrawer( InspectorField drawer, Transform drawerParent )
 		{
-			List<InspectorField> drawerPool;
+            System.Collections.Generic.List<InspectorField> drawerPool;
 			if( drawersPool.TryGetValue( drawer.GetType(), out drawerPool ) )
 			{
 				for( int i = drawerPool.Count - 1; i >= 0; i-- )
@@ -600,10 +600,10 @@ namespace RuntimeInspectorNamespace
 
 		internal void PoolDrawer( InspectorField drawer )
 		{
-			List<InspectorField> drawerPool;
+            System.Collections.Generic.List<InspectorField> drawerPool;
 			if( !drawersPool.TryGetValue( drawer.GetType(), out drawerPool ) )
 			{
-				drawerPool = new List<InspectorField>( poolCapacity );
+				drawerPool = new System.Collections.Generic.List<InspectorField>(poolCapacity);
 				drawersPool[drawer.GetType()] = drawerPool;
 			}
 
@@ -641,14 +641,14 @@ namespace RuntimeInspectorNamespace
 			if( allVariables == null )
 				return new ExposedVariablesEnumerator( null, null, null, VariableVisibility.None, VariableVisibility.None );
 
-			List<VariableSet> hiddenVariablesForType = null;
-			List<VariableSet> exposedVariablesForType = null;
+            System.Collections.Generic.List<VariableSet> hiddenVariablesForType = null;
+            System.Collections.Generic.List<VariableSet> exposedVariablesForType = null;
 			for( int i = 0; i < hiddenVariables.Count; i++ )
 			{
 				if( hiddenVariables[i].type.IsAssignableFrom( type ) )
 				{
 					if( hiddenVariablesForType == null )
-						hiddenVariablesForType = new List<VariableSet>() { hiddenVariables[i] };
+						hiddenVariablesForType = new System.Collections.Generic.List<VariableSet>() { hiddenVariables[i] };
 					else
 						hiddenVariablesForType.Add( hiddenVariables[i] );
 				}
@@ -659,7 +659,7 @@ namespace RuntimeInspectorNamespace
 				if( exposedVariables[i].type.IsAssignableFrom( type ) )
 				{
 					if( exposedVariablesForType == null )
-						exposedVariablesForType = new List<VariableSet>() { exposedVariables[i] };
+						exposedVariablesForType = new System.Collections.Generic.List<VariableSet>() { exposedVariables[i] };
 					else
 						exposedVariablesForType.Add( exposedVariables[i] );
 				}

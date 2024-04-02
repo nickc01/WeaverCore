@@ -72,7 +72,7 @@ public class CameraController : MonoBehaviour
 	internal Rect GetCameraBounds()
 	{
 		var sceneDims = GameManager.instance.SceneDimensions;
-		return new Rect(sceneDims.xMin + 14.6f, sceneDims.yMin + 8.3f, sceneDims.width - 14.6f, sceneDims.height - 8.3f);
+		return new Rect(sceneDims.xMin + 14.6f, sceneDims.yMin + 8.3f, sceneDims.width - 14.6f - 14.6f, sceneDims.height - 8.3f - 8.3f);
 	}
 
 	public void ApplyEffectConfiguration(bool isGameplayLevel, bool isBloomForced)

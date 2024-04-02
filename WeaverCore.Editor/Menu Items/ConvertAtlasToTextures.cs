@@ -135,7 +135,7 @@ public class AtlasToTexturesConverter : EditorWindow
 
 		destFolder = "Assets/" + PathUtilities.ConvertToAssetPath(destFolder);
 
-		List<string> CreatedFilePaths = new List<string>();
+        System.Collections.Generic.List<string> CreatedFilePaths = new System.Collections.Generic.List<string>();
 
 		try
 		{

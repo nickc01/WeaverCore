@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityStandardAssets.ImageEffects;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class GameCameras : MonoBehaviour
 {
@@ -36,7 +39,7 @@ public class GameCameras : MonoBehaviour
 		}
 	}
 
-	private void Awake()
+    private void Awake()
 	{
 		if (GameCameras._instance == null)
 		{
@@ -84,7 +87,29 @@ public class GameCameras : MonoBehaviour
 		{
 			Debug.LogError("CameraTarget not set in inspector.");
 		}
-		if (this.sceneColorManager != null)
+
+#if UNITY_EDITOR
+        if (sceneParticlesPrefab == null)
+        {
+            sceneParticlesPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(AssetDatabase.FindAssets("t:GameObject Knight Particles_follow")[0])).GetComponent<SceneParticlesController>();
+        }
+#endif
+
+        if (sceneParticlesPrefab != null)
+        {
+            sceneParticles = UnityEngine.Object.Instantiate(sceneParticlesPrefab);
+            sceneParticles.name = "SceneParticlesController";
+
+			var camera = GameObject.FindObjectOfType<CameraController>() ?? CameraController.EditorInstance;
+
+            sceneParticles.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, 0f);
+            sceneParticles.transform.SetParent(camera.transform);
+        }
+        else
+        {
+            Debug.LogError("Scene Particles Prefab not set in inspector.");
+        }
+        if (this.sceneColorManager != null)
 		{
 			this.sceneColorManager.GameInit();
 		}
@@ -130,6 +155,7 @@ public class GameCameras : MonoBehaviour
 		this.cameraController.SceneInit();
 		this.cameraTarget.SceneInit();
 		this.sceneColorManager.SceneInit();
+		this.sceneParticles.SceneInit();
 	}
 
 	public void DisableImageEffects()
@@ -137,7 +163,12 @@ public class GameCameras : MonoBehaviour
 
 	}
 
-	[Header("Controllers")]
+    private void OnDestroy()
+    {
+        UnityEngine.Object.DestroyImmediate(sceneParticles);
+    }
+
+    [Header("Controllers")]
 	public CameraController cameraController;
 
 	public CameraTarget cameraTarget;
@@ -154,5 +185,9 @@ public class GameCameras : MonoBehaviour
 
 	public SceneColorManager sceneColorManager;
 
-	private bool init;
+    public SceneParticlesController sceneParticlesPrefab;
+
+    private bool init;
+
+    public SceneParticlesController sceneParticles { get; private set; }
 }

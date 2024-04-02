@@ -11,11 +11,11 @@ namespace WeaverCore.Components
     {
         [SerializeField]
         [Tooltip("The surface water objects of the acid. These will get disabled if the player doesn't have isma's tear. These must be disabled in that case, or else glitchy behaviour occurs")]
-        List<WeaverSurfaceWater> surfaceWater;
+        System.Collections.Generic.List<WeaverSurfaceWater> surfaceWater;
 
         [SerializeField]
         [Tooltip("The colliders that will damage the player upon contact. Any boxes added to this list will get disabled when isma's tear is equipped")]
-        List<Collider2D> acidDamageBoxes;
+        System.Collections.Generic.List<Collider2D> acidDamageBoxes;
 
         private void Awake()
         {

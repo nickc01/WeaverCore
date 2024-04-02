@@ -28,7 +28,7 @@ namespace WeaverCore.Editor.Compilation
 		[Serializable]
 		class DataStorage
 		{
-			public List<DataKey> Objects = new List<DataKey>();
+			public System.Collections.Generic.List<DataKey> Objects = new System.Collections.Generic.List<DataKey>();
 		}
 
 		[Serializable]

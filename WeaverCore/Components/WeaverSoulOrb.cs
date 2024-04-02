@@ -13,7 +13,7 @@ namespace WeaverCore.Components
     public class WeaverSoulOrb : SoulOrb
     {
         [SerializeField]
-        List<AudioClip> soulPickupSounds = new List<AudioClip>();
+        System.Collections.Generic.List<AudioClip> soulPickupSounds = new System.Collections.Generic.List<AudioClip>();
 
         [SerializeField]
         OnDoneBehaviour onDone = OnDoneBehaviour.DestroyOrPool;

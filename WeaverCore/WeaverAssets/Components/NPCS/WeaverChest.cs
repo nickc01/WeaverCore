@@ -40,7 +40,7 @@ namespace WeaverCore.Assets.Components
 
         [Header("Effects")]
         [SerializeField]
-        List<AudioClip> chestOpenSounds = new List<AudioClip>();
+        System.Collections.Generic.List<AudioClip> chestOpenSounds = new System.Collections.Generic.List<AudioClip>();
 
         public UnityEvent OnChestOpen;
 

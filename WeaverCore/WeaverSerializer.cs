@@ -94,7 +94,7 @@ namespace WeaverCore
             jsonOutput = JsonConvert.SerializeObject(obj, settings);
         }
 
-        public static void Serialize(object obj, out string jsonOutput, out List<UnityEngine.Object> objReferences)
+        public static void Serialize(object obj, out string jsonOutput, out System.Collections.Generic.List<UnityEngine.Object> objReferences)
         {
             Dictionary<string, UnityEngine.Object> objIDs;
             Serialize(obj, out var result, out objIDs);
@@ -106,7 +106,7 @@ namespace WeaverCore
             int index = 0;
             int count = objIDs.Count;
 
-            objReferences = new List<UnityEngine.Object>();
+            objReferences = new System.Collections.Generic.List<UnityEngine.Object>();
 
             foreach (var pair in objIDs)
             {
@@ -141,7 +141,7 @@ namespace WeaverCore
         public static T Deserialize<T>(string json, IDictionary<string, UnityEngine.Object> objectReferences) => (T)Deserialize(typeof(T), json, objectReferences);
 
 
-        public static object Deserialize(Type objType, string data, List<UnityEngine.Object> objReferences)
+        public static object Deserialize(Type objType, string data, System.Collections.Generic.List<UnityEngine.Object> objReferences)
         {
             WeaverLog.Log("DESERIALIZING = " + data);
 
@@ -205,6 +205,6 @@ namespace WeaverCore
             return Deserialize(objType, data, objectReferenceTable);
         }
 
-        public static T Deserialize<T>(string data, List<UnityEngine.Object> objReferences) => (T)Deserialize(typeof(T), data, objReferences);
+        public static T Deserialize<T>(string data, System.Collections.Generic.List<UnityEngine.Object> objReferences) => (T)Deserialize(typeof(T), data, objReferences);
     }
 }

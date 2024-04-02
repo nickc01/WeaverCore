@@ -51,19 +51,19 @@ namespace WeaverCore
 
         [SerializeField]
         [HideInInspector]
-        List<AudioClip> channelInfos_clip;
+        System.Collections.Generic.List<AudioClip> channelInfos_clip;
 
         [SerializeField]
         [HideInInspector]
-        List<MusicChannelSync> channelInfos_sync;
+        System.Collections.Generic.List<MusicChannelSync> channelInfos_sync;
 
         [SerializeField]
         [HideInInspector]
-        List<string> alternatives_PlayerDataBoolKey;
+        System.Collections.Generic.List<string> alternatives_PlayerDataBoolKey;
 
         [SerializeField]
         [HideInInspector]
-        List<MusicCue> alternatives_Cue;
+        System.Collections.Generic.List<MusicCue> alternatives_Cue;
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
@@ -89,22 +89,22 @@ namespace WeaverCore
 
             if (channelInfos_clip == null)
             {
-                channelInfos_clip = new List<AudioClip>();
+                channelInfos_clip = new System.Collections.Generic.List<AudioClip>();
             }
 
             if (channelInfos_sync == null)
             {
-                channelInfos_sync = new List<MusicChannelSync>();
+                channelInfos_sync = new System.Collections.Generic.List<MusicChannelSync>();
             }
 
             if (alternatives_PlayerDataBoolKey == null)
             {
-                alternatives_PlayerDataBoolKey = new List<string>();
+                alternatives_PlayerDataBoolKey = new System.Collections.Generic.List<string>();
             }
 
             if (alternatives_Cue == null)
             {
-                alternatives_Cue = new List<MusicCue>();
+                alternatives_Cue = new System.Collections.Generic.List<MusicCue>();
             }
 
             channelInfos_clip.Clear();

@@ -190,5 +190,26 @@ namespace WeaverCore.Utilities
         {
             return ((byte*)ptr)[index];
         }
+
+        public static unsafe ref T IndexPtr<T>(IntPtr ptr, int index) where T : unmanaged
+        {
+            return ref ((T*)ptr)[index];
+        }
+
+        public static unsafe IntPtr GetNativeArrayPtr<T>(NativeArray<T> val) where T : struct
+        {
+            return (IntPtr)NativeArrayUnsafeUtility.GetUnsafeBufferPointerWithoutChecks(val);
+        }
+
+        public static unsafe T GetValueInRawArray<T>(IntPtr ptr, int byteIndex) where T : unmanaged
+        {
+            return *(T*)((byte*)ptr)[byteIndex];
+        }
+
+        public static unsafe void SetValueInRawArray<T>(IntPtr ptr, int byteIndex, T value) where T : unmanaged
+        {
+            *(T*)(((byte*)ptr)[byteIndex]) = value;
+            //return *(T*)((byte*)ptr)[byteIndex];
+        }
     }
 }

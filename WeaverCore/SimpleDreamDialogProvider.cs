@@ -13,7 +13,7 @@ namespace WeaverCore
         string convoTitle;
 
         [SerializeField]
-        List<string> dreamnailDialogs = new List<string>();
+        System.Collections.Generic.List<string> dreamnailDialogs = new System.Collections.Generic.List<string>();
 
         private void OnEnable()
         {

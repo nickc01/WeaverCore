@@ -31,7 +31,7 @@ namespace WeaverCore.Editor
 		[Space]
 		[Header("Atmos")]
 		[SerializeField]
-		List<AudioSource> atmosSources;
+        System.Collections.Generic.List<AudioSource> atmosSources;
 
 		static EditorMusic _instance;
 
@@ -39,22 +39,22 @@ namespace WeaverCore.Editor
 		Coroutine ApplySnapshotRoutine;
 		Coroutine ApplyAtmosRoutine;
 
-		List<AudioSource> _sources;
-		List<AudioSource> Sources
+        System.Collections.Generic.List<AudioSource> _sources;
+        System.Collections.Generic.List<AudioSource> Sources
 		{
 			get
 			{
 				if (_sources == null)
 				{
-					_sources = new List<AudioSource>
+                    _sources = new System.Collections.Generic.List<AudioSource>
 					{
-						Main,
-						MainAlt,
-						Action,
-						Sub,
-						Tension,
-						Extra
-					};
+                        Main,
+                        MainAlt,
+                        Action,
+                        Sub,
+                        Tension,
+                        Extra
+                    };
 				}
 				return _sources;
 			}

@@ -148,7 +148,7 @@ namespace WeaverCore.Utilities
 
 		private static IEnumerator TeleportRoutine(GameObject entity, Vector3 Destination, float teleInTime, float teleOutTime, Color teleportColor, bool flashSprite, bool playEffects, float audioPitch, IEnumerable<SpriteRenderer> sprites, IEnumerable<SpriteFlasher> flashers)
 		{
-			List<float> prevSpriteAlphas = new List<float>();
+            System.Collections.Generic.List<float> prevSpriteAlphas = new System.Collections.Generic.List<float>();
             foreach (var sprite in sprites)
             {
 				prevSpriteAlphas.Add(sprite.color.a);

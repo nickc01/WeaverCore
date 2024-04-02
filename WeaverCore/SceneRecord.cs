@@ -48,19 +48,19 @@ namespace WeaverCore
 #if UNITY_EDITOR
 		[SerializeField]
 		[Tooltip("A list of scenes to add to the game")]
-		List<UnityEditor.SceneAsset> sceneAdditions = new List<SceneAsset>();
+        System.Collections.Generic.List<SceneAsset> sceneAdditions = new System.Collections.Generic.List<SceneAsset>();
 
 		[SerializeField]
 		[Tooltip("A list of scenes to replace in the game")]
-		List<SceneReplacement> sceneReplacements = new List<SceneReplacement>();
+        System.Collections.Generic.List<SceneReplacement> sceneReplacements = new System.Collections.Generic.List<SceneReplacement>();
 
 		[SerializeField]
 		[Tooltip("A list of scenes to combine with in game")]
-		List<SceneUnion> sceneUnions = new List<SceneUnion>();
+        System.Collections.Generic.List<SceneUnion> sceneUnions = new System.Collections.Generic.List<SceneUnion>();
 
 		[SerializeField]
 		[Tooltip("A list of all the gates that are being changed to point to new destinations")]
-		List<GateRedirect> transitionRedirects = new List<GateRedirect>();
+        System.Collections.Generic.List<GateRedirect> transitionRedirects = new System.Collections.Generic.List<GateRedirect>();
 #endif
 
 		/// <summary>
@@ -82,36 +82,36 @@ namespace WeaverCore
 		[Space(40f)]
 		[HideInInspector]
 		[SerializeField]
-		List<string> sceneAdditionPaths = new List<string>();
+        System.Collections.Generic.List<string> sceneAdditionPaths = new System.Collections.Generic.List<string>();
 
 
 		[HideInInspector]
 		[SerializeField]
-		List<string> sceneToReplacePaths = new List<string>();
+        System.Collections.Generic.List<string> sceneToReplacePaths = new System.Collections.Generic.List<string>();
 		[HideInInspector]
 		[SerializeField]
-		List<string> sceneReplacementPaths = new List<string>();
+        System.Collections.Generic.List<string> sceneReplacementPaths = new System.Collections.Generic.List<string>();
 
 		[HideInInspector]
 		[SerializeField]
-		List<string> sceneToUnionizePaths = new List<string>();
+        System.Collections.Generic.List<string> sceneToUnionizePaths = new System.Collections.Generic.List<string>();
 		[HideInInspector]
 		[SerializeField]
-		List<string> sceneUnionPaths = new List<string>();
+        System.Collections.Generic.List<string> sceneUnionPaths = new System.Collections.Generic.List<string>();
 
 
 		[HideInInspector]
 		[SerializeField]
-		List<string> transitionRedirects_containingScenes = new List<string>();
+        System.Collections.Generic.List<string> transitionRedirects_containingScenes = new System.Collections.Generic.List<string>();
 		[HideInInspector]
 		[SerializeField]
-		List<string> transitionRedirects_gatesToRedirect = new List<string>();
+        System.Collections.Generic.List<string> transitionRedirects_gatesToRedirect = new System.Collections.Generic.List<string>();
 		[HideInInspector]
 		[SerializeField]
-		List<string> transitionRedirects_newDestinationScenes = new List<string>();
+        System.Collections.Generic.List<string> transitionRedirects_newDestinationScenes = new System.Collections.Generic.List<string>();
 		[HideInInspector]
 		[SerializeField]
-		List<string> transitionRedirects_newDestinationGateNames = new List<string>();
+        System.Collections.Generic.List<string> transitionRedirects_newDestinationGateNames = new System.Collections.Generic.List<string>();
 
 
 		/// <summary>

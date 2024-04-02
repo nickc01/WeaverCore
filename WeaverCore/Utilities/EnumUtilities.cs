@@ -30,7 +30,7 @@ namespace WeaverCore.Utilities
 
 			var values = Enum.GetValues(typeof(EnumType));
 
-			List<EnumType> enumValues = new List<EnumType>();
+            System.Collections.Generic.List<EnumType> enumValues = new System.Collections.Generic.List<EnumType>();
 
 			foreach (var val in values)
 			{

@@ -12,7 +12,7 @@ namespace WeaverCore.Dreamnail
     {
         [SerializeField]
         [Tooltip("A list of all the possible messages that could be displayed when dreamnailed")]
-        List<string> possibleMessages = new List<string>();
+        System.Collections.Generic.List<string> possibleMessages = new System.Collections.Generic.List<string>();
 
         EventManager eventManager;
 

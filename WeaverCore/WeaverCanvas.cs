@@ -142,7 +142,7 @@ namespace WeaverCore
 			StartCoroutine(Initializer());
 		}
 
-		static List<CanvasExtension> featuresToAdd;
+		static System.Collections.Generic.List<CanvasExtension> featuresToAdd;
 
 		[OnFeatureLoad]
 		static void OnFeatureLoad(CanvasExtension feature)
@@ -151,7 +151,7 @@ namespace WeaverCore
 			{
 				if (featuresToAdd == null)
 				{
-					featuresToAdd = new List<CanvasExtension>();
+                    featuresToAdd = new System.Collections.Generic.List<CanvasExtension>();
 				}
 				featuresToAdd.Add(feature);
 			}

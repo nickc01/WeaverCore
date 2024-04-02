@@ -20,7 +20,7 @@ namespace WeaverCore.Components
     /// </summary>
     public class EntityHealth : MonoBehaviour, IHittable, IExtraDamageable, IOnPool
     {
-        static List<IHitEffects> _hitEffectsCache = new List<IHitEffects>();
+        static System.Collections.Generic.List<IHitEffects> _hitEffectsCache = new System.Collections.Generic.List<IHitEffects>();
 
         /// <summary>
         /// The enum used when determining if a hit on the enemy was valid
@@ -47,7 +47,7 @@ namespace WeaverCore.Components
         public delegate void HealthChangeDelegate(int previousHealth, int newHealth);
 
         //A list of milestones that get executed when the health reaches certain points
-        private List<(int destHealth, Action action)> HealthMilestones = new List<(int destHealth, Action action)>();
+        private System.Collections.Generic.List<(int destHealth, Action action)> HealthMilestones = new System.Collections.Generic.List<(int destHealth, Action action)>();
         private new Collider2D collider;
         protected HealthManager_I impl;
 

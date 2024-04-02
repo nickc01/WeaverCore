@@ -8,7 +8,7 @@ using WeaverCore.Components;
 [CustomEditor(typeof(DreamNailable))]
 public class DreamNailableEditor : ExclusionEditor
 {
-	public override IEnumerable<string> PropertiesToExclude() => new List<string>
+	public override IEnumerable<string> PropertiesToExclude() => new System.Collections.Generic.List<string>
 	{
 		"dreamImpactPrefab",
 		"convoAmount",

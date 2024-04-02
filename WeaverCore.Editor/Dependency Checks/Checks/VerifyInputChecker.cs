@@ -14,7 +14,7 @@ namespace WeaverCore.Editor
     [Serializable]
     class InputList
     {
-        public List<InputField> Inputs = new List<InputField>();
+        public System.Collections.Generic.List<InputField> Inputs = new System.Collections.Generic.List<InputField>();
     }
 
     [Serializable]
@@ -106,9 +106,9 @@ namespace WeaverCore.Editor
             finishCheck(DependencyCheckResult.Complete);
         }
 
-        static List<InputField> GetCurrentInputFields(SerializedProperty axesProperties)
+        static System.Collections.Generic.List<InputField> GetCurrentInputFields(SerializedProperty axesProperties)
         {
-            List<InputField> fields = new List<InputField>();
+            System.Collections.Generic.List<InputField> fields = new System.Collections.Generic.List<InputField>();
 
             for (int i = 0; i < axesProperties.arraySize; i++)
             {

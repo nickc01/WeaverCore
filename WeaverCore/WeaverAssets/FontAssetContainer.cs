@@ -11,7 +11,7 @@ namespace WeaverCore.Assets
 	[CreateAssetMenu(fileName = "Font Asset Container", menuName = "Font Asset Container")]
     public class FontAssetContainer : ScriptableObject
 	{
-		public static List<(string, string)> sourceDestPairs = new List<(string, string)>()
+		public static System.Collections.Generic.List<(string, string)> sourceDestPairs = new System.Collections.Generic.List<(string, string)>()
 		{
 			/*("trajan_bold_tmpro", "Trajan Pro Regular SDF Thin Outline"),
 			("trajan_bold_tmpro", "Trajan Pro Regular SDF Thick Outline"),*/
@@ -26,7 +26,7 @@ namespace WeaverCore.Assets
 			("korean_body", "Korean SDF")
         };
 
-		public static List<string> RemovedTextures = new List<string>()
+		public static System.Collections.Generic.List<string> RemovedTextures = new System.Collections.Generic.List<string>()
 		{
 			"chinese_body Atlas R Channeled",
             "chinese_body_bold Atlas R Channeled",
@@ -40,7 +40,7 @@ namespace WeaverCore.Assets
         };
 
 
-		public List<TMP_FontAsset> WeaverCoreFonts;
+		public System.Collections.Generic.List<TMP_FontAsset> WeaverCoreFonts;
 
 		public static HashSet<TMP_FontAsset> InGameFonts;
 

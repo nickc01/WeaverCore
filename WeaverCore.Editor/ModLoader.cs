@@ -22,7 +22,7 @@ namespace WeaverCore.Editor
             {
                 try
                 {
-                    List<IMod> mods = new List<IMod>();
+                    System.Collections.Generic.List<IMod> mods = new System.Collections.Generic.List<IMod>();
                     foreach (var type in assembly.GetTypes())
                     {
                         if (typeof(IMod).IsAssignableFrom(type) && !type.IsAbstract && !type.ContainsGenericParameters)

@@ -76,9 +76,9 @@ namespace WeaverCore.Editor
         }
 
 
-        static List<DependencyCheck> GetDependencyChecks()
+        static System.Collections.Generic.List<DependencyCheck> GetDependencyChecks()
         {
-            List<DependencyCheck> checks = new List<DependencyCheck>();
+            System.Collections.Generic.List<DependencyCheck> checks = new System.Collections.Generic.List<DependencyCheck>();
             var types = typeof(DependencyChecker).Assembly.GetTypes().Where(t => !t.IsAbstract && !t.ContainsGenericParameters && typeof(DependencyCheck).IsAssignableFrom(t));
             foreach (var type in types)
             {
@@ -126,7 +126,7 @@ namespace WeaverCore.Editor
             CheckDependencies(persistentData.Silent, checks, persistentData.LastLeftOff);
         }
 
-        static void CheckDependencies(bool silent, List<DependencyCheck> checks, int startIndex)
+        static void CheckDependencies(bool silent, System.Collections.Generic.List<DependencyCheck> checks, int startIndex)
         {
             if (checkingDependencies)
             {

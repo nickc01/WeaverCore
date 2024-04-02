@@ -18,8 +18,8 @@ namespace WeaverCore.Editor.Utilities
 			public bool Compressed;
 		}
 
-		public readonly List<PreviousState> PreviousStates;
-		public readonly List<Texture2D> Textures;
+		public readonly System.Collections.Generic.List<PreviousState> PreviousStates;
+		public readonly System.Collections.Generic.List<Texture2D> Textures;
 		public bool TexturesReadable
 		{
 			get
@@ -28,7 +28,7 @@ namespace WeaverCore.Editor.Utilities
 			}
 		}
 
-		public ReadableTextureContext(List<Texture2D> textures)
+		public ReadableTextureContext(System.Collections.Generic.List<Texture2D> textures)
 		{
 			PreviousStates = MakeTexturesReadable(textures);
 			Textures = textures;
@@ -57,11 +57,11 @@ namespace WeaverCore.Editor.Utilities
 		/// </summary>
 		/// <param name="textures">The textures to make readable</param>
 		/// <returns>Returns a list the size of the textures list. This list stores whether the textures where readable or not previously. This is useful to revert the textures back to their previous state</returns>
-		public static List<PreviousState> MakeTexturesReadable(List<Texture2D> textures)
+		public static System.Collections.Generic.List<PreviousState> MakeTexturesReadable(System.Collections.Generic.List<Texture2D> textures)
 		{
 			try
 			{
-				List<PreviousState> previousStates = new List<PreviousState>();
+                System.Collections.Generic.List<PreviousState> previousStates = new System.Collections.Generic.List<PreviousState>();
 				AssetDatabase.StartAssetEditing();
 				foreach (var texture in textures)
 				{
@@ -108,7 +108,7 @@ namespace WeaverCore.Editor.Utilities
 		/// </summary>
 		/// <param name="textures">The textures to revert</param>
 		/// <param name="previousStates">A list of the previosu states of the textures</param>
-		public static void RevertTextureReadability(List<Texture2D> textures, List<PreviousState> previousStates)
+		public static void RevertTextureReadability(System.Collections.Generic.List<Texture2D> textures, System.Collections.Generic.List<PreviousState> previousStates)
 		{
 			try
 			{

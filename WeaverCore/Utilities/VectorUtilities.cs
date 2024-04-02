@@ -385,5 +385,20 @@ namespace WeaverCore.Utilities
 
 			return value;
         }
+
+		public static Vector3 Multiply(Vector3 a, Vector3 b)
+		{
+			return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
+		}
+
+		public static System.Numerics.Vector3 ToV3(this Vector3 v)
+		{
+			return new System.Numerics.Vector3(v.x, v.y, v.z);
+		}
+
+        public static Vector3 ToVector3(this System.Numerics.Vector3 v)
+        {
+            return new Vector3(v.X, v.Y, v.Z);
+        }
     }
 }

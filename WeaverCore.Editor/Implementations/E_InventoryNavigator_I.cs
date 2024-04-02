@@ -159,7 +159,7 @@ namespace WeaverCore.Editor.Implementations
                 MainFadeGroup.texts = new TextMeshPro[0];
             }
 
-            List<SpriteRenderer> existingSprites = MainFadeGroup.spriteRenderers.ToList();
+            System.Collections.Generic.List<SpriteRenderer> existingSprites = MainFadeGroup.spriteRenderers.ToList();
             existingSprites.AddRange(gameObject.GetComponentsInChildren<SpriteRenderer>());
             MainFadeGroup.spriteRenderers = existingSprites.ToArray();
 

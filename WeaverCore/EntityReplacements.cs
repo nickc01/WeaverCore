@@ -91,7 +91,7 @@ namespace WeaverCore
         /// <param name="nameToReplace">The name of the object to be replaced</param>
         public static void RemoveAllReplacements(string nameToReplace)
         {
-            List<uint> idsToRemove = new List<uint>();
+            System.Collections.Generic.List<uint> idsToRemove = new System.Collections.Generic.List<uint>();
 
             foreach (var replacement in replacements)
             {
@@ -115,7 +115,7 @@ namespace WeaverCore
         /// <returns>Returns true if the replacement has been removed</returns>
         public static bool RemoveReplacement(string nameToReplace, GameObject replacement)
         {
-            List<uint> idsToRemove = new List<uint>();
+            System.Collections.Generic.List<uint> idsToRemove = new System.Collections.Generic.List<uint>();
 
             foreach (var pair in replacements)
             {
@@ -160,9 +160,9 @@ namespace WeaverCore
         /// <param name="newObjects">The new replacement objects that have been created</param>
         /// <param name="destroyOriginal">Should the original object be destroyed if it was successfully replaced?</param>
         /// <returns>Has the object been replaced?</returns>
-        public static bool ReplaceObject(GameObject objectToReplace, out List<GameObject> newObjects, bool destroyOriginal = true)
+        public static bool ReplaceObject(GameObject objectToReplace, out System.Collections.Generic.List<GameObject> newObjects, bool destroyOriginal = true)
         {
-            newObjects = new List<GameObject>();
+            newObjects = new System.Collections.Generic.List<GameObject>();
             foreach (var pair in replacements)
             {
                 if ((pair.Value.objectName == null || objectToReplace.name == pair.Value.objectName) && pair.Value.condition(objectToReplace))

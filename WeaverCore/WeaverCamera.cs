@@ -97,7 +97,7 @@ namespace WeaverCore
             }
         }
 
-		static List<CameraExtension> featuresToAdd;
+		static System.Collections.Generic.List<CameraExtension> featuresToAdd;
 
 		[OnFeatureLoad]
 		static void OnFeatureLoad(CameraExtension feature)
@@ -106,7 +106,7 @@ namespace WeaverCore
 			{
 				if (featuresToAdd == null)
 				{
-					featuresToAdd = new List<CameraExtension>();
+                    featuresToAdd = new System.Collections.Generic.List<CameraExtension>();
 				}
 				featuresToAdd.Add(feature);
 			}

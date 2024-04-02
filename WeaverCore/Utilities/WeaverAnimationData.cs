@@ -26,7 +26,7 @@ namespace WeaverCore.Utilities
 			/// <summary>
 			/// The sprites to be played
 			/// </summary>
-			public List<Sprite> Frames;
+			public System.Collections.Generic.List<Sprite> Frames;
 
 			/// <summary>
 			/// How many frames per second should the animation be playing at
@@ -48,7 +48,7 @@ namespace WeaverCore.Utilities
 				Name = name;
 				if (frames == null)
 				{
-					Frames = new List<Sprite>();
+                    Frames = new System.Collections.Generic.List<Sprite>();
 				}
 				else
 				{
@@ -67,7 +67,7 @@ namespace WeaverCore.Utilities
 			{
 				if (Frames == null)
 				{
-					Frames = new List<Sprite>();
+                    Frames = new System.Collections.Generic.List<Sprite>();
 				}
 				if (frames != null)
 				{
@@ -83,7 +83,7 @@ namespace WeaverCore.Utilities
 			{
 				if (Frames == null)
 				{
-					Frames = new List<Sprite>();
+                    Frames = new System.Collections.Generic.List<Sprite>();
 				}
 				Frames.Add(sprite);
 			}
@@ -132,25 +132,25 @@ namespace WeaverCore.Utilities
 
 
 		[SerializeField]
-		List<string> clipNames = new List<string>();
+        System.Collections.Generic.List<string> clipNames = new System.Collections.Generic.List<string>();
 
 		[SerializeField]
-		List<int> clipFrameStartIndexes = new List<int>();
+        System.Collections.Generic.List<int> clipFrameStartIndexes = new System.Collections.Generic.List<int>();
 
 		[SerializeField]
-		List<int> clipFrameCounts = new List<int>();
+        System.Collections.Generic.List<int> clipFrameCounts = new System.Collections.Generic.List<int>();
 
 		[SerializeField]
-		List<Sprite> frames = new List<Sprite>();
+        System.Collections.Generic.List<Sprite> frames = new System.Collections.Generic.List<Sprite>();
 
 		[SerializeField]
-		List<float> clipFPSs = new List<float>();
+        System.Collections.Generic.List<float> clipFPSs = new System.Collections.Generic.List<float>();
 
 		[SerializeField]
-		List<WrapMode> clipWrapModes = new List<WrapMode>();
+        System.Collections.Generic.List<WrapMode> clipWrapModes = new System.Collections.Generic.List<WrapMode>();
 
 		[SerializeField]
-		List<int> clipLoopStarts = new List<int>();
+        System.Collections.Generic.List<int> clipLoopStarts = new System.Collections.Generic.List<int>();
 
 		/// <summary>
 		/// Adds a clip

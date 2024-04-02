@@ -22,7 +22,7 @@ namespace WeaverCore
 	public static class ImplFinder
     {
         static Dictionary<Type, Type> Cache = new Dictionary<Type, Type>();
-        static List<Type> FoundImplementations;
+        static System.Collections.Generic.List<Type> FoundImplementations;
         static Assembly ImplAssembly;
 
         static Assembly LoadAsmIfNotFound(string assemblyName)
@@ -45,7 +45,7 @@ namespace WeaverCore
 #else
                 ImplAssembly = LoadAsmIfNotFound("WeaverCore.Game");
 #endif
-                FoundImplementations = new List<Type>();
+                FoundImplementations = new System.Collections.Generic.List<Type>();
 
                 try
                 {

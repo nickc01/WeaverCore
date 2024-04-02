@@ -60,7 +60,7 @@ namespace WeaverCore.Settings
 		public static SettingsScreen Instance { get; private set; }
 		static SettingsScreen prefab;
 
-		static List<GlobalSettings> _panels = new List<GlobalSettings>();
+		static System.Collections.Generic.List<GlobalSettings> _panels = new System.Collections.Generic.List<GlobalSettings>();
 
 		/// <summary>
 		/// A list of all the currently registered panels
@@ -119,7 +119,7 @@ namespace WeaverCore.Settings
 		[Header("Prefabs")]
 		[SerializeField]
 		[Tooltip("A list of all the possible UI elements")]
-		List<UIElement> SettingsElementPrefabs;
+        System.Collections.Generic.List<UIElement> SettingsElementPrefabs;
 		[SerializeField]
 		[Tooltip("The prefab that will represent the tabs at the top of the settings screen")]
 		Tab TabPrefab;
@@ -149,9 +149,9 @@ namespace WeaverCore.Settings
 		TextMeshProUGUI SettingTitleText;
 
 		string defaultDescriptionText;
-		List<Tab> tabs = new List<Tab>();
+        System.Collections.Generic.List<Tab> tabs = new System.Collections.Generic.List<Tab>();
 		Tab selectedTab = null;
-		List<UIElement> currentElements = new List<UIElement>();
+        System.Collections.Generic.List<UIElement> currentElements = new System.Collections.Generic.List<UIElement>();
 
 
 		[AfterCameraLoad]
@@ -392,7 +392,7 @@ namespace WeaverCore.Settings
 		/// </summary>
 		void CreateElements(GlobalSettings panel)
 		{
-			var members = new List<MemberInfo>();
+			var members = new System.Collections.Generic.List<MemberInfo>();
 			var panelType = panel.GetType();
 
 			members.AddRange(panelType.GetMembers(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance));

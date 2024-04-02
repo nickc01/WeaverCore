@@ -45,6 +45,10 @@ namespace WeaverCore.Components
         [Tooltip("Determines whether the large title should always be shown.")]
         bool alwaysShowLargeTitle = false;
 
+        [SerializeField]
+        [Tooltip("If true, only shows the large title. The small title doesn't get displayed")]
+        bool onlyShowLargeTitle = false;
+
         /// <summary>
         /// The save specific settings that store whether or not this area has been visited before.
         /// </summary>
@@ -118,7 +122,10 @@ namespace WeaverCore.Components
                 }
                 else
                 {
-                    wtc.StartCoroutine((IEnumerator)typeof(AreaTitleController).GetMethod("UnvisitPause", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(__instance, new object[] { true }));
+                    if (!wtc.onlyShowLargeTitle)
+                    {
+                        wtc.StartCoroutine((IEnumerator)typeof(AreaTitleController).GetMethod("UnvisitPause", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(__instance, new object[] { true }));
+                    }
                 }
 
                 return false;

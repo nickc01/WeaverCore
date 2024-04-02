@@ -15,7 +15,7 @@ namespace WeaverCore
 	[CreateAssetMenu(fileName = "Registry", menuName = "WeaverCore/Registry", order = 1)]
     public class Registry : ScriptableObject
 	{
-        static List<Registry> allRegistries = new List<Registry>();
+        static System.Collections.Generic.List<Registry> allRegistries = new System.Collections.Generic.List<Registry>();
 
         public static IEnumerable<Registry> AllRegistries => allRegistries;
 
@@ -30,13 +30,13 @@ namespace WeaverCore
         string __modAssemblyName = "";
 
         [SerializeField]
-        List<UnityEngine.Object> features;
+        System.Collections.Generic.List<UnityEngine.Object> features;
 
         [SerializeField]
-        List<string> featureTypeNames;
+        System.Collections.Generic.List<string> featureTypeNames;
 
         [SerializeField]
-        List<string> featureAssemblyNames;
+        System.Collections.Generic.List<string> featureAssemblyNames;
 
         [NonSerialized]
         Type _modeTypeCached = null;

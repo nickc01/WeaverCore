@@ -20,7 +20,7 @@ public class TexturesToAtlasConverter : EditorWindow
 		Display();
 	}
 
-	public List<Texture2D> textureList;
+	public System.Collections.Generic.List<Texture2D> textureList;
 	ReorderableList textures = null;
 	bool destroyOriginalTextures = false;
 	string outputAtlasName = "NEW_ATLAS";
@@ -257,7 +257,7 @@ public class TexturesToAtlasConverter : EditorWindow
         }
     }
 
-	static IEnumerator Convert(List<Texture2D> textures, bool destroyOriginalTextures, string outputAtlasName, bool cropTextures)
+	static IEnumerator Convert(System.Collections.Generic.List<Texture2D> textures, bool destroyOriginalTextures, string outputAtlasName, bool cropTextures)
 	{
 		if (textures.Count == 0)
 		{
@@ -273,7 +273,7 @@ public class TexturesToAtlasConverter : EditorWindow
 		Vector2 atlasSize = default;
 
 		float averagePPU = 0;
-		List<Vector2> pivots = new List<Vector2>();
+        System.Collections.Generic.List<Vector2> pivots = new System.Collections.Generic.List<Vector2>();
 		bool editing = false;
 		try
 		{
@@ -289,7 +289,7 @@ public class TexturesToAtlasConverter : EditorWindow
 			}
 			averagePPU /= textures.Count;
 
-			List<Texture2D> resizedTextures = new List<Texture2D>();
+            System.Collections.Generic.List<Texture2D> resizedTextures = new System.Collections.Generic.List<Texture2D>();
 			using (var context = new ReadableTextureContext(textures))
 			{
                 //AssetDatabase.StartAssetEditing();

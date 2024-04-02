@@ -46,7 +46,7 @@ namespace WeaverCore
 		}
 
 		static bool hookAdded = false;
-		static List<DebugCanvasExtension> featuresToAdd;
+		static System.Collections.Generic.List<DebugCanvasExtension> featuresToAdd;
 
 		[AfterCameraLoad(int.MinValue)]
 		static void Init()
@@ -90,7 +90,7 @@ namespace WeaverCore
 			{
 				if (featuresToAdd == null)
 				{
-					featuresToAdd = new List<DebugCanvasExtension>();
+                    featuresToAdd = new System.Collections.Generic.List<DebugCanvasExtension>();
 				}
 				featuresToAdd.Add(feature);
 			}

@@ -26,8 +26,8 @@ namespace WeaverCore.Editor
 
             if (asm.Definition.IncludePlatforms.Count > 0)
             {
-                asm.Definition.ExcludePlatforms = new List<AssemblyDefinitionFile.Platform>();
-                asm.Definition.IncludePlatforms = new List<AssemblyDefinitionFile.Platform>();
+                asm.Definition.ExcludePlatforms = new System.Collections.Generic.List<AssemblyDefinitionFile.Platform>();
+                asm.Definition.IncludePlatforms = new System.Collections.Generic.List<AssemblyDefinitionFile.Platform>();
 
                 asm.Save();
 

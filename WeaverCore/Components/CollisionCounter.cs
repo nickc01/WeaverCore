@@ -13,7 +13,7 @@ namespace WeaverCore.Components
     public class CollisionCounter : MonoBehaviour, IOnPool
     {
         [NonSerialized]
-        List<Collider2D> collidedObjects = new List<Collider2D>();
+        System.Collections.Generic.List<Collider2D> collidedObjects = new System.Collections.Generic.List<Collider2D>();
 
         /// <summary>
         /// Gets the collection of colliders that the object has collided with.

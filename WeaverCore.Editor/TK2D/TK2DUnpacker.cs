@@ -20,7 +20,7 @@ namespace WeaverCore.Editor
 		/// <summary>
 		/// A list of recently unpacked sprites
 		/// </summary>
-		public static List<Sprite> UnpackedSprites = new List<Sprite>();
+		public static System.Collections.Generic.List<Sprite> UnpackedSprites = new System.Collections.Generic.List<Sprite>();
 
 		/// <summary>
 		/// Should all sprites be flipped during import?
@@ -30,7 +30,7 @@ namespace WeaverCore.Editor
 		/// <summary>
 		/// A list of valid image extensions
 		/// </summary>
-		public static readonly List<string> ImageExtensions = new List<string>
+		public static readonly System.Collections.Generic.List<string> ImageExtensions = new System.Collections.Generic.List<string>
 		{
 			".png",
 			".jpg",
@@ -62,13 +62,13 @@ namespace WeaverCore.Editor
 			var info = new FileInfo(path);
 			var directory = info.Directory.AddSlash();
 
-			Dictionary<string, List<Texture2D>> importedTextures = new Dictionary<string, List<Texture2D>>();
+            Dictionary<string, System.Collections.Generic.List<Texture2D>> importedTextures = new Dictionary<string, System.Collections.Generic.List<Texture2D>>();
 
 			bool foundAllTextures = true;
 
 			foreach (var collection in import.collectionTextures)
 			{
-				var texList = new List<Texture2D>();
+				var texList = new System.Collections.Generic.List<Texture2D>();
 				foreach (var name in collection.TextureNames)
 				{
 					if (texList.Any(t => t.name == name))
@@ -104,13 +104,13 @@ namespace WeaverCore.Editor
 			UnboundCoroutine.Start(UnpackTK2DAnimationAsync(info.Name, import, importedTextures));
 		}
 
-		static IEnumerator UnpackTK2DAnimationAsync(string name, AnimationMapImport import, Dictionary<string, List<Texture2D>> importedTextures)
+		static IEnumerator UnpackTK2DAnimationAsync(string name, AnimationMapImport import, Dictionary<string, System.Collections.Generic.List<Texture2D>> importedTextures)
 		{
 			var fileName = name.Split('.')[0];
-			var totalUnpackedSprites = new List<Sprite>();
+			var totalUnpackedSprites = new System.Collections.Generic.List<Sprite>();
 
-			List<DirectoryInfo> directories = new List<DirectoryInfo>();
-			Dictionary<string, List<Sprite>> ExtractedSprites = new Dictionary<string, List<Sprite>>();
+            System.Collections.Generic.List<DirectoryInfo> directories = new System.Collections.Generic.List<DirectoryInfo>();
+            Dictionary<string, System.Collections.Generic.List<Sprite>> ExtractedSprites = new Dictionary<string, System.Collections.Generic.List<Sprite>>();
 			foreach (var texCollection in import.collectionTextures)
 			{
 				var dir = new DirectoryInfo($"Assets\\{fileName} Animations\\{texCollection.collection.spriteCollectionName} Unpacked");
@@ -122,7 +122,7 @@ namespace WeaverCore.Editor
 				}, importedTextures[texCollection.collection.spriteCollectionName], dir);
 				ExtractedSprites.Add(texCollection.collection.spriteCollectionName, UnpackedSprites);
 				totalUnpackedSprites.AddRange(UnpackedSprites);
-				UnpackedSprites = new List<Sprite>();
+                UnpackedSprites = new System.Collections.Generic.List<Sprite>();
 			}
 
 			UnpackedSprites = totalUnpackedSprites;
@@ -205,7 +205,7 @@ namespace WeaverCore.Editor
 			var info = new FileInfo(path);
 			var directory = info.Directory.AddSlash();
 
-			List<Texture2D> importedTextures = new List<Texture2D>();
+            System.Collections.Generic.List<Texture2D> importedTextures = new System.Collections.Generic.List<Texture2D>();
 
 			bool foundAllTextures = true;
 
@@ -374,7 +374,7 @@ namespace WeaverCore.Editor
 		/// <param name="spriteMap">The spritemap itself</param>
 		/// <param name="importedTextures">A list of imported textures to extract the sprites from</param>
 		/// <param name="outputDir">The output directory to put the sprites in</param>
-		static IEnumerator UnpackSprites(string name, SpriteMapImport spriteMap, List<Texture2D> importedTextures, DirectoryInfo outputDir)
+		static IEnumerator UnpackSprites(string name, SpriteMapImport spriteMap, System.Collections.Generic.List<Texture2D> importedTextures, DirectoryInfo outputDir)
 		{
 			outputDir.Create();
 			var relativeDir = PathUtilities.ConvertToProjectPath(outputDir.FullName);
@@ -388,8 +388,8 @@ namespace WeaverCore.Editor
 			}
 
 			EditorUtility.DisplayProgressBar("Unpacking Sprites", "", 0f);
-			List<string> spritePaths = new List<string>();
-			List<Texture2D> spriteTextures = new List<Texture2D>();
+            System.Collections.Generic.List<string> spritePaths = new System.Collections.Generic.List<string>();
+            System.Collections.Generic.List<Texture2D> spriteTextures = new System.Collections.Generic.List<Texture2D>();
 			try
 			{
 				AssetDatabase.StartAssetEditing();
@@ -441,7 +441,7 @@ namespace WeaverCore.Editor
 		/// <param name="spriteTextures">A list of textures extracted from the spritemap</param>
 		/// <param name="outputDir">The output location where all the extracted sprites are located</param>
 		/// <returns></returns>
-		static IEnumerator PostUnpackSprites(string name, SpriteMapImport spriteMap, List<Texture2D> importedTextures, List<string> spritePaths, List<Texture2D> spriteTextures, DirectoryInfo outputDir)
+		static IEnumerator PostUnpackSprites(string name, SpriteMapImport spriteMap, System.Collections.Generic.List<Texture2D> importedTextures, System.Collections.Generic.List<string> spritePaths, System.Collections.Generic.List<Texture2D> spriteTextures, DirectoryInfo outputDir)
 		{
 			var relativeDir = PathUtilities.ConvertToProjectPath(outputDir.FullName);
 			yield return null;

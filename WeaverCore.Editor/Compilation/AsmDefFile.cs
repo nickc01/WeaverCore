@@ -39,21 +39,21 @@ namespace WeaverCore.Editor.Compilation
 
 		public string name;
 		public string rootNamespace = "";
-		public List<string> references;
+		public System.Collections.Generic.List<string> references;
 
 		[SerializeField]
-		List<string> includePlatforms;
+        System.Collections.Generic.List<string> includePlatforms;
 
 		[SerializeField]
-		List<string> excludePlatforms;
+        System.Collections.Generic.List<string> excludePlatforms;
 
 		[NonSerialized]
-		List<Platform> _includePlatforms;
+        System.Collections.Generic.List<Platform> _includePlatforms;
 
         [NonSerialized]
-        List<Platform> _excludePlatforms;
+        System.Collections.Generic.List<Platform> _excludePlatforms;
 
-        public List<Platform> IncludePlatforms
+        public System.Collections.Generic.List<Platform> IncludePlatforms
 		{
 			get => _includePlatforms ??= (includePlatforms ??= new List<string>()).Select(platform => (Platform)Enum.Parse(typeof(Platform), platform)).ToList();
 			set
@@ -61,7 +61,7 @@ namespace WeaverCore.Editor.Compilation
 				_includePlatforms = value;
 				if (includePlatforms == null)
 				{
-					includePlatforms = new List<string>();
+                    includePlatforms = new System.Collections.Generic.List<string>();
 				}
 				else
 				{
@@ -71,7 +71,7 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
-        public List<Platform> ExcludePlatforms
+        public System.Collections.Generic.List<Platform> ExcludePlatforms
         {
             get => _excludePlatforms ??= (excludePlatforms ??= new List<string>()).Select(platform => (Platform)Enum.Parse(typeof(Platform), platform)).ToList();
             set
@@ -79,7 +79,7 @@ namespace WeaverCore.Editor.Compilation
                 _excludePlatforms = value;
                 if (excludePlatforms == null)
                 {
-                    excludePlatforms = new List<string>();
+                    excludePlatforms = new System.Collections.Generic.List<string>();
                 }
                 else
                 {
@@ -109,11 +109,11 @@ namespace WeaverCore.Editor.Compilation
         public bool allowUnsafeCode = false;
 		public bool overrideReferences = false;
 		public bool autoReferenced = true;
-		public List<string> defineConstraints;
+		public System.Collections.Generic.List<string> defineConstraints;
 		public bool noEngineReferences = false;
 
 		[SerializeField]
-		List<string> precompiledReferences;
+        System.Collections.Generic.List<string> precompiledReferences;
 
 		public static AssemblyDefinitionFile Load(string path)
 		{

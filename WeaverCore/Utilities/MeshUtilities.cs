@@ -6,8 +6,8 @@ namespace WeaverCore.Utilities
 {
     public static class MeshUtilities
     {
-        static List<Vector3> vertexCache = new List<Vector3>();
-        static List<Vector3> normalCache = new List<Vector3>();
+        static System.Collections.Generic.List<Vector3> vertexCache = new System.Collections.Generic.List<Vector3>();
+        static System.Collections.Generic.List<Vector3> normalCache = new System.Collections.Generic.List<Vector3>();
 
         public static Mesh CreateMeshFromSprite(Sprite sprite)
         {

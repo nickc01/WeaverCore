@@ -54,17 +54,17 @@ namespace WeaverCore.Editor.Compilation
 		/// <summary>
 		/// A list of script paths to include in the DLL build
 		/// </summary>
-		public List<string> Scripts { get; set; }
+		public System.Collections.Generic.List<string> Scripts { get; set; }
 
 		/// <summary>
 		/// A list of #define's to be included in the DLL build
 		/// </summary>
-		public List<string> Defines { get; set; }
+		public System.Collections.Generic.List<string> Defines { get; set; }
 
 		/// <summary>
 		/// A list of assembly reference paths to include in the build process
 		/// </summary>
-		public List<string> References { get; set; }
+		public System.Collections.Generic.List<string> References { get; set; }
 
 		/// <summary>
 		/// The target build platform of the build
@@ -79,7 +79,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <summary>
 		/// A list of excluded assembly reference paths
 		/// </summary>
-		public List<string> ExcludedReferences { get; set; }
+		public System.Collections.Generic.List<string> ExcludedReferences { get; set; }
 
 		/// <summary>
 		/// Some other compiler build flags
@@ -92,10 +92,10 @@ namespace WeaverCore.Editor.Compilation
 		public AssemblyCompiler()
 		{
 			Building = false;
-			Scripts = new List<string>();
-			Defines = new List<string>();
-			References = new List<string>();
-			ExcludedReferences = new List<string>();
+            Scripts = new System.Collections.Generic.List<string>();
+            Defines = new System.Collections.Generic.List<string>();
+            References = new System.Collections.Generic.List<string>();
+            ExcludedReferences = new System.Collections.Generic.List<string>();
 			Target = BuildTarget.StandaloneWindows;
 			TargetGroup = BuildTargetGroup.Standalone;
 			Flags = AssemblyBuilderFlags.None;
@@ -197,7 +197,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <summary>
 		/// Verifies all the input paths to make sure they work with the assembly compiler
 		/// </summary>
-		static string[] VerifyPaths(List<string> paths)
+		static string[] VerifyPaths(System.Collections.Generic.List<string> paths)
 		{
 			string[] output = new string[paths.Count  * 2];
 			int i = 0;

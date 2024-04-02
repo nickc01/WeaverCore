@@ -21,15 +21,15 @@ namespace WeaverCore
 		//static ObjectPool NailStrikePool;
 		//static ObjectPool SlashImpactPool;
 
-		static List<Player> _players;
+		static System.Collections.Generic.List<Player> _players;
 
-		static List<Player> Players
+		static System.Collections.Generic.List<Player> Players
         {
             get
             {
                 if (_players == null)
                 {
-					_players = new List<Player>();
+                    _players = new System.Collections.Generic.List<Player>();
 					_players.AddRange(GameObject.FindObjectsOfType<Player>());
 
 					foreach (var player in _players)

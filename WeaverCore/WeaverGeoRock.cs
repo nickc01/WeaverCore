@@ -64,16 +64,16 @@ namespace WeaverCore
         [Space]
         [Header("Sounds and Effects")]
         [SerializeField]
-        protected List<AudioClip> hitSounds = new List<AudioClip>();
+        protected System.Collections.Generic.List<AudioClip> hitSounds = new System.Collections.Generic.List<AudioClip>();
 
         [SerializeField]
-        List<GameObject> hitDustPrefabs = new List<GameObject>();
+        System.Collections.Generic.List<GameObject> hitDustPrefabs = new System.Collections.Generic.List<GameObject>();
 
         [SerializeField]
-        protected List<AudioClip> finalBreakSounds = new List<AudioClip>();
+        protected System.Collections.Generic.List<AudioClip> finalBreakSounds = new System.Collections.Generic.List<AudioClip>();
 
         [SerializeField]
-        protected List<GameObject> finalHitDustPrefabs = new List<GameObject>();
+        protected System.Collections.Generic.List<GameObject> finalHitDustPrefabs = new System.Collections.Generic.List<GameObject>();
 
 
         [Space]
@@ -374,7 +374,7 @@ namespace WeaverCore
 #endif
         }
 
-        protected List<WeaverGeo> SpawnGeo(int amount)
+        protected System.Collections.Generic.List<WeaverGeo> SpawnGeo(int amount)
         {
             return WeaverGeo.FlingGeoPrefab(new FlingUtils.Config
             {

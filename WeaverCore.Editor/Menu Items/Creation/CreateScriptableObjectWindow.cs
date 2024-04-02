@@ -13,7 +13,7 @@ namespace WeaverCore.Editor
 	public class CreateScriptableObjectWindow : EditorWindow
 	{
 		int index = 0;
-		List<Type> SettingsTypes = new List<Type>();
+        System.Collections.Generic.List<Type> SettingsTypes = new System.Collections.Generic.List<Type>();
 		string[] settingsNames;
 
 		Type typeToCreate;
@@ -52,7 +52,7 @@ namespace WeaverCore.Editor
 
 		void GetValidTypes()
 		{
-			List<string> names = new List<string>();
+            System.Collections.Generic.List<string> names = new System.Collections.Generic.List<string>();
 			SettingsTypes.Clear();
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{

@@ -25,9 +25,9 @@ namespace WeaverCore
         [field: NonSerialized]
         public ObjectPool SourcePool { get; internal set; }
 
-        static List<Component> cacheList = new List<Component>();
+        //static System.Collections.Generic.List<Component> cacheList = new System.Collections.Generic.List<Component>();
         static Type ComponentType = typeof(Component);
-        static bool cacheIsCurrentlyUsed = false;
+        //static bool cacheIsCurrentlyUsed = false;
 
         [NonSerialized]
         Transform _transform;
@@ -91,29 +91,29 @@ namespace WeaverCore
         /// <returns>Returns a list of all the components on the object's hierarchy</returns>
         internal IEnumerable<ComponentPath> RecursiveGetComponents(Transform t)
         {
-            bool isUsingCache = false;
-            try
-            {
-                List<Component> currentCache;
-                if (cacheIsCurrentlyUsed)
+            //bool isUsingCache = false;
+            //try
+            //{
+                System.Collections.Generic.List<Component> list = new System.Collections.Generic.List<Component>();
+                /*if (cacheIsCurrentlyUsed)
                 {
-                    currentCache = new List<Component>();
+                    currentCache = 
                 }
                 else
                 {
                     currentCache = cacheList;
                     cacheIsCurrentlyUsed = true;
                     isUsingCache = true;
-                }
-                return RecursiveGetComponents(0, t, currentCache);
-            }
+                }*/
+                return RecursiveGetComponents(0, t, list);
+            /*}
             finally
             {
                 if (!isUsingCache)
                 {
                     cacheIsCurrentlyUsed = false;
                 }
-            }
+            }*/
         }
 
         /// <summary>
@@ -123,12 +123,17 @@ namespace WeaverCore
         /// <param name="t">The transform to traverse</param>
         /// <param name="reusableList">A reusable list to help cache the result</param>
         /// <returns></returns>
-        IEnumerable<ComponentPath> RecursiveGetComponents(int SiblingHash, Transform t, List<Component> reusableList)
+        IEnumerable<ComponentPath> RecursiveGetComponents(int SiblingHash, Transform t, System.Collections.Generic.List<Component> reusableList)
         {
+            reusableList.Clear();
             t.GetComponents(ComponentType, reusableList);
             for (int i = 0; i < reusableList.Count; i++)
             {
-                yield return new ComponentPath(SiblingHash, reusableList[i]);
+                WeaverLog.Log("GETTING COMPONENT = " + reusableList[i]);
+                if (reusableList[i] != null)
+                {
+                    yield return new ComponentPath(SiblingHash, reusableList[i]);
+                }
             }
             for (int i = 0; i < t.childCount; i++)
             {

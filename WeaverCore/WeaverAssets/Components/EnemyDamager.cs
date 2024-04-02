@@ -63,9 +63,9 @@ namespace WeaverCore.Assets.Components
         /// <param name="type">The type of attack.</param>
         /// <param name="hitDirection">The cardinal direction of the attack.</param>
         /// <returns>A list of IHittable objects that were successfully hit.</returns>
-        public static List<IHittable> HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
+        public static System.Collections.Generic.List<IHittable> HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
         {
-            List<IHittable> hitObjects = new List<IHittable>();
+            System.Collections.Generic.List<IHittable> hitObjects = new System.Collections.Generic.List<IHittable>();
 
             int depth = 0;
 

@@ -30,7 +30,7 @@ namespace WeaverCore.Editor
 		/// <param name="textures">The textures to pack</param>
 		/// <param name="padding">The amount of padding between sprites in the final texture</param>
 		/// <param name="deleteOld">Should the original texture be deleted when done?</param>
-		public static IEnumerator PackTextures(FileInfo path, List<Texture2D> textures, int padding = 0, bool deleteOld = false)
+		public static IEnumerator PackTextures(FileInfo path, System.Collections.Generic.List<Texture2D> textures, int padding = 0, bool deleteOld = false)
 		{
 			var atlas = new Texture2D(2, 2,TextureFormat.ARGB32,false);
 			atlas.name = path.GetFileName();
@@ -61,7 +61,7 @@ namespace WeaverCore.Editor
 				float averagePPU = 0;
 				int amountWithinAverage = 0;
 				float averageMarginPPU = 64;
-				List<Vector2> pivots = new List<Vector2>();
+                System.Collections.Generic.List<Vector2> pivots = new System.Collections.Generic.List<Vector2>();
 				foreach (var tex in textures)
 				{
 					if (tex == null)
@@ -97,7 +97,7 @@ namespace WeaverCore.Editor
 					settings.spritePixelsPerUnit = averagePPU;
 				}
 
-				List<SpriteMetaData> sheet = new List<SpriteMetaData>();
+                System.Collections.Generic.List<SpriteMetaData> sheet = new System.Collections.Generic.List<SpriteMetaData>();
 
 				int uvIndex = -1;
 				for (int i = 0; i < textures.Count; i++)

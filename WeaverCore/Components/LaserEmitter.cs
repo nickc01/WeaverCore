@@ -40,8 +40,8 @@ namespace WeaverCore.Components
         [Tooltip("Minimum and maximum animation speed for impact effects.")]
         Vector2 animSpeedMinMax = new Vector2(0.75f, 1.25f);
 
-        List<GameObject> spawnedImpacts = new List<GameObject>();
-        List<SpawnedImpactData> spawnedImpactData = new List<SpawnedImpactData>();
+        System.Collections.Generic.List<GameObject> spawnedImpacts = new System.Collections.Generic.List<GameObject>();
+        System.Collections.Generic.List<SpawnedImpactData> spawnedImpactData = new System.Collections.Generic.List<SpawnedImpactData>();
 
         [SerializeField]
         [Tooltip("Spread value during laser charge-up.")]

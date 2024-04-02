@@ -347,7 +347,7 @@ namespace WeaverCore
 								}
 							}
 
-							cData.Copiers = new List<FieldCopierBuilder<Component>.ShallowCopyDelegate>();
+							cData.Copiers = new System.Collections.Generic.List<FieldCopierBuilder<Component>.ShallowCopyDelegate>();
 
 							var currentType = type;
 

@@ -37,7 +37,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <summary>
 		/// A list of all the script file paths that are a part of the assembly
 		/// </summary>
-		public List<string> ScriptPaths;
+		public System.Collections.Generic.List<string> ScriptPaths;
 
 		/// <summary>
 		/// Loads information about an assembly based on the <see cref="AssemblyDefinitionPath"/>
@@ -61,44 +61,44 @@ namespace WeaverCore.Editor.Compilation
 	/// </summary>
 	public static class ScriptFinder
 	{
-		static List<AssemblyInformation> infoCache;
+		static System.Collections.Generic.List<AssemblyInformation> infoCache;
 
 		/// <summary>
 		/// Gets all information about all scripts in the project
 		/// </summary>
-		public static List<AssemblyInformation> GetProjectScriptInfo()
+		public static System.Collections.Generic.List<AssemblyInformation> GetProjectScriptInfo()
 		{
-			List<AssemblyInformation> AssemblyInfo = new List<AssemblyInformation>();
-			AssemblyInfo = new List<AssemblyInformation>();
+            System.Collections.Generic.List<AssemblyInformation> AssemblyInfo = new System.Collections.Generic.List<AssemblyInformation>();
+			AssemblyInfo = new System.Collections.Generic.List<AssemblyInformation>();
 
 			foreach (var pair in AssemblyDefinitionFile.GetAllDefinitionsInFolder("Assets"))
 			{
 				AssemblyInfo.Add(new AssemblyInformation
-				{
+                {
 					AssemblyName = pair.Value.name,
 					AssemblyDefinitionPath = pair.Key,
 					AssemblyGUID = AssetDatabase.AssetPathToGUID(pair.Key).ToString(),
 					Definition = pair.Value,
-					ScriptPaths = new List<string>()
+					ScriptPaths = new System.Collections.Generic.List<string>()
 				});
 			}
 
 			AssemblyInfo.Add(new AssemblyInformation
-			{
+            {
 				Definition = null,
 				AssemblyDefinitionPath = "",
 				AssemblyGUID = "",
 				AssemblyName = "Assembly-CSharp",
-				ScriptPaths = new List<string>()
+				ScriptPaths = new System.Collections.Generic.List<string>()
 			});
 
 			AssemblyInfo.Add(new AssemblyInformation
-			{
+            {
 				Definition = null,
 				AssemblyDefinitionPath = "",
 				AssemblyGUID = "",
 				AssemblyName = "Assembly-CSharp-Editor",
-				ScriptPaths = new List<string>()
+				ScriptPaths = new System.Collections.Generic.List<string>()
 			});
 
 			var scriptIDs = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets" });
@@ -120,7 +120,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <summary>
 		/// Returns a list of all the scripts that are a part of the specified assembly. Returns null if the assembly name is not valid or if the assembly is precompiled
 		/// </summary>
-		public static List<string> FindAssemblyScripts(string assemblyName, List<AssemblyInformation> asmInfo = null)
+		public static System.Collections.Generic.List<string> FindAssemblyScripts(string assemblyName, System.Collections.Generic.List<AssemblyInformation> asmInfo = null)
 		{
 			if (asmInfo == null)
 			{
@@ -144,7 +144,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <summary>
 		/// Returns a list of all the scripts that are a part of the specified assembly. Returns null if the assembly name is not valid or if the assembly is precompiled
 		/// </summary>
-		public static List<string> FindAssemblyScripts(Assembly assembly, List<AssemblyInformation> asmInfo = null)
+		public static System.Collections.Generic.List<string> FindAssemblyScripts(Assembly assembly, System.Collections.Generic.List<AssemblyInformation> asmInfo = null)
 		{
 			return FindAssemblyScripts(assembly.GetName().Name, asmInfo);
 		}

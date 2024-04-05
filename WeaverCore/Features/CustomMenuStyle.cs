@@ -73,6 +73,11 @@ namespace WeaverCore.Features
 #if UNITY_EDITOR
             return;
 #endif
+            if (sfCoreAssembly != null)
+            {
+                return;
+            }
+
             sfCoreAssembly = ReflectionUtilities.FindLoadedAssembly("SFCore");
             if (sfCoreAssembly != null)
             {
@@ -189,6 +194,7 @@ namespace WeaverCore.Features
         [OnFeatureLoad]
         static void OnFeatureLoad(CustomMenuStyle customMenu)
         {
+            OnRuntimeInit();
             if (!loadedMenus.Contains(customMenu))
             {
                 loadedMenus.Add(customMenu);

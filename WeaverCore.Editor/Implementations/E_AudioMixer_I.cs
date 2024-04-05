@@ -10,7 +10,6 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Implementations
 {
-
     public class E_AudioMixer_I : AudioMixer_I
 	{
 		static bool assetsLoaded = false;

@@ -129,7 +129,6 @@ namespace WeaverCore
             t.GetComponents(ComponentType, reusableList);
             for (int i = 0; i < reusableList.Count; i++)
             {
-                WeaverLog.Log("GETTING COMPONENT = " + reusableList[i]);
                 if (reusableList[i] != null)
                 {
                     yield return new ComponentPath(SiblingHash, reusableList[i]);

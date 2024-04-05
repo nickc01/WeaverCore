@@ -486,7 +486,8 @@ namespace WeaverCore.Settings
 			{
 				var element = SettingsScreen.Instance.AddHeading(this, headerText,null, fontSize);
 				element.UpdateDisplayValue();
-				return element;			}
+				return element;
+			}
 			return null;
 		}
 

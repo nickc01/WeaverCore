@@ -21,6 +21,11 @@ namespace WeaverCore.Components
         public IEnumerable<Collider2D> CollidedObjects => collidedObjects;
 
         /// <summary>
+        /// Used to filter which collisions should be added to the list
+        /// </summary>
+        public event Predicate<Collider2D> CollisionPredicates;
+
+        /// <summary>
         /// Gets the count of currently collided objects.
         /// </summary>
         public int CollidedObjectCount => collidedObjects.Count(c => c != null);
@@ -51,7 +56,7 @@ namespace WeaverCore.Components
         /// <param name="collision">The collider that entered the trigger zone.</param>
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collidedObjects.Contains(collision))
+            if (CheckPredicates(collision) && !collidedObjects.Contains(collision))
             {
                 collidedObjects.Add(collision);
             }
@@ -59,7 +64,7 @@ namespace WeaverCore.Components
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (!collidedObjects.Contains(collision))
+            if (CheckPredicates(collision) && !collidedObjects.Contains(collision))
             {
                 collidedObjects.Add(collision);
             }
@@ -83,7 +88,7 @@ namespace WeaverCore.Components
         /// <param name="collision">The collision data.</param>
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collidedObjects.Contains(collision.collider))
+            if (CheckPredicates(collision.collider) && !collidedObjects.Contains(collision.collider))
             {
                 collidedObjects.Add(collision.collider);
             }
@@ -91,7 +96,7 @@ namespace WeaverCore.Components
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (!collidedObjects.Contains(collision.collider))
+            if (CheckPredicates(collision.collider) && !collidedObjects.Contains(collision.collider))
             {
                 collidedObjects.Add(collision.collider);
             }
@@ -155,6 +160,31 @@ namespace WeaverCore.Components
             }
 
             return nearestTarget;
+        }
+
+        bool CheckPredicates(Collider2D collider)
+        {
+            if (CollisionPredicates != null)
+            {
+                var parameters = new object[] { collider };
+                foreach (var del in CollisionPredicates.GetInvocationList())
+                {
+                    if (del == null)
+                    {
+                        if (!(bool)del.DynamicInvoke(parameters))
+                        {
+                            return false;
+                        }
+                    }
+                    /*var castedDel = (Predicate<Collider2D>)del;
+                    if (!castedDel.Invoke(collider))
+                    {
+                        return false;
+                    }*/
+                }
+            }
+
+            return true;
         }
     }
 }

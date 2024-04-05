@@ -2,6 +2,7 @@
 
 namespace WeaverCore.Attributes
 {
+
     /// <summary>
     /// Called before the mod build process begins. Can be attached to a static method
     /// </summary>

@@ -7,7 +7,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Implementations
 {
-	public class G_Player_I : Player_I
+    public class G_Player_I : Player_I
 	{
 		static bool inCutsceneLock = false;
 		static int previousDarknessLevel = 0;

@@ -1,10 +1,8 @@
 fileFormatVersion: 2
 guid: 59695c2805eb53c4289015373057928b
-timeCreated: 1686677895
-licenseType: Free
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: weavercore_modclass_bundle
+  assetBundleVariant: 

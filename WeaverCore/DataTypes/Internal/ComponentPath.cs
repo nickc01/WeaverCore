@@ -17,6 +17,7 @@ namespace WeaverCore.DataTypes
 		{
 			SiblingHash = siblingHash;
 			Component = component;
+
 			ComponentType = component.GetType();
 			if (component is Behaviour)
 			{

@@ -9,6 +9,50 @@ namespace WeaverCore.Elevator
 
     public class Elevator : MonoBehaviour
     {
+        public struct ElevatorInfo
+        {
+            public float Speed;
+            public bool DoBob;
+            public float BeginDelay;
+            public float EndDelay;
+            public bool DoActivateSound;
+            public bool DoLoopSound;
+            public bool DoFinishSound;
+
+            public ElevatorInfo(ElevatorInfo source)
+            {
+                Speed = source.Speed;
+                DoBob = source.DoBob;
+                BeginDelay = source.BeginDelay;
+                EndDelay = source.EndDelay;
+                DoActivateSound = source.DoActivateSound;
+                DoLoopSound = source.DoLoopSound;
+                DoFinishSound = source.DoFinishSound;
+            }
+
+            public ElevatorInfo(Elevator instance)
+            {
+                Speed = instance.Speed;
+                DoBob = instance.DoBob;
+                BeginDelay = instance.BeginDelay;
+                EndDelay = instance.EndDelay;
+                DoActivateSound = instance.LiftActivateSound != null;
+                DoLoopSound = instance.LiftLoopSound != null;
+                DoFinishSound = instance.LiftFinishSound != null;
+            }
+
+            public ElevatorInfo(float speed, bool doBob, float beginDelay, float endDelay, bool doLiftSound, bool doLoopSound, bool doFinishSound)
+            {
+                Speed = speed;
+                DoBob = doBob;
+                BeginDelay = beginDelay;
+                EndDelay = endDelay;
+                DoActivateSound = doLiftSound;
+                DoLoopSound = doLoopSound;
+                DoFinishSound = doFinishSound;
+            }
+        }
+
         static int playerLayerID = -1;
 
         Coroutine movementRoutine;
@@ -27,6 +71,10 @@ namespace WeaverCore.Elevator
         [field: SerializeField]
         [field: Tooltip("If the player is above The Default Top Position of the elevator, the elevator will automatically move to the top. If the player is below the Default Top Position, the elevator will automatically move to the bottom")]
         public bool AutoMove { get; protected set; } = true;
+
+        [field: SerializeField]
+        [field: Tooltip("If true, the elevator will automatically move when the player touches it")]
+        public bool MoveOnContact { get; protected set; } = true;
 
         [field: Tooltip("Does the elevator do a little bob motion when it's about to move?")]
         public bool DoBob { get; set; } = true;
@@ -58,6 +106,10 @@ namespace WeaverCore.Elevator
         [field: SerializeField]
         public Vector2 LiftFinishSoundPitchRange = new Vector2(0.9f, 1.1f);
 
+        [field: SerializeField]
+        [field: Tooltip("Used to control the volume of the sounds depending on how close the player is. The x serves as the distance where the sounds are loudest, and the y serves as the distance where the sounds are mute")]
+        public Vector2 AudioRange = new Vector2(7.5f, 25f);
+
         /// <summary>
         /// If Moving == true, then this contains the destination the elevator is current moving to
         /// </summary>
@@ -75,6 +127,8 @@ namespace WeaverCore.Elevator
             LiftFinishSound = WeaverAssets.LoadWeaverAsset<AudioClip>("lift_arrive");
         }
 
+        public ElevatorInfo GetDefaultInfo() => new ElevatorInfo(this);
+
         protected virtual void OnValidate()
         {
 
@@ -84,6 +138,11 @@ namespace WeaverCore.Elevator
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(DefaultBottomPosition, DefaultTopPosition);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, AudioRange.x);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, AudioRange.y);
         }
 
         protected virtual void Awake()
@@ -130,7 +189,7 @@ namespace WeaverCore.Elevator
 
         protected virtual void OnPlayerTouch()
         {
-            if (Moving)
+            if (Moving || !MoveOnContact)
             {
                 return;
             }
@@ -179,44 +238,42 @@ namespace WeaverCore.Elevator
             }
         }
 
-        protected virtual float GetCogRotationIntensity(Vector3 source, Vector3 destination)
-        {
-            if (destination.y >= source.y)
-            {
-                return 1f;
-            }
-            else
-            {
-                return -1;
-            }
-        }
-
         public void CallElevatorUp()
         {
-            CallElevatorToPosition(DefaultTopPosition, BeginDelay, DoBob);
+            CallElevatorToPosition(DefaultTopPosition, GetDefaultInfo());
         }
 
-        public void CallElevatorUp(float delay, bool doBob)
+        public void CallElevatorUp(ElevatorInfo info)
         {
-            CallElevatorToPosition(DefaultTopPosition, delay, doBob);
+            CallElevatorToPosition(DefaultTopPosition, info);
         }
 
         public void CallElevatorDown()
         {
-            CallElevatorToPosition(DefaultBottomPosition, BeginDelay, DoBob);
+            CallElevatorToPosition(DefaultBottomPosition, GetDefaultInfo());
         }
 
-        public void CallElevatorDown(float delay, bool doBob)
+        public void CallElevatorDown(ElevatorInfo info)
         {
-            CallElevatorToPosition(DefaultBottomPosition, delay, doBob);
+            CallElevatorToPosition(DefaultBottomPosition, info);
+        }
+
+        public void CallElevatorToOpposite()
+        {
+            CallElevatorToOpposite(GetDefaultInfo());
+        }
+
+        public void CallElevatorToOpposite(ElevatorInfo info)
+        {
+            CallElevatorToPosition(GetOppositeDestination(), info);
         }
 
         public void CallElevatorToPosition(Vector3 destination)
         {
-            CallElevatorToPosition(destination, BeginDelay, DoBob);
+            CallElevatorToPosition(destination, GetDefaultInfo());
         }
 
-        public void CallElevatorToPosition(Vector3 destination, float delay, bool doBob)
+        public void CallElevatorToPosition(Vector3 destination, ElevatorInfo info)
         {
             if (Moving && MovingDestination == destination)
             {
@@ -233,13 +290,14 @@ namespace WeaverCore.Elevator
                 if (loopSoundInstance != null)
                 {
                     loopSoundInstance.StopPlaying();
+                    loopSoundInstance.Delete();
                     loopSoundInstance = null;
                 }
                 StopCoroutine(movementRoutine);
             }
 
             StopAllCoroutines();
-            movementRoutine = StartCoroutine(ElevatorMovementRoutine(delay, doBob));
+            movementRoutine = StartCoroutine(ElevatorMovementRoutine(info));
         }
 
         protected IEnumerator BobRoutine(Vector3 direction)
@@ -262,29 +320,31 @@ namespace WeaverCore.Elevator
             yield break;
         }
 
-        protected virtual IEnumerator ElevatorMovementRoutine(float delay, bool doBob)
+        protected virtual IEnumerator ElevatorMovementRoutine(ElevatorInfo info)
         {
-            if (LiftActivateSound != null)
+            if (info.DoActivateSound && LiftActivateSound != null)
             {
                 var instance = WeaverAudio.PlayAtPoint(LiftActivateSound, transform.position);
                 instance.AudioSource.pitch = LiftActivateSoundPitchRange.RandomInRange();
+                WeaverAudio.AddVolumeDistanceControl(instance, AudioRange);
             }
 
             var movementDirection = (MovingDestination - transform.position).normalized;
 
-            if (doBob)
+            if (info.DoBob)
             {
                 yield return BobRoutine(-movementDirection);
             }
 
-            if (delay > 0f)
+            if (info.BeginDelay > 0f)
             {
-                yield return new WaitForSeconds(delay);
+                yield return new WaitForSeconds(info.BeginDelay);
             }
 
-            if (LiftLoopSound != null)
+            if (info.DoLoopSound && LiftLoopSound != null)
             {
                 loopSoundInstance = WeaverAudio.PlayAtPointLooped(LiftLoopSound, transform.position);
+                WeaverAudio.AddVolumeDistanceControl(loopSoundInstance, AudioRange);
             }
 
             EventManager.BroadcastEvent("MOVING UP", gameObject);
@@ -299,11 +359,11 @@ namespace WeaverCore.Elevator
             while (true)
             {
                 var direction = (MovingDestination - transform.position).normalized;
-                transform.position += direction * Speed * Time.deltaTime;
+                transform.position += direction * info.Speed * Time.deltaTime;
 
                 for (int i = 0; i < rotatables.Length; i++)
                 {
-                    rotatables[i].Rotate(this, movementDirection, Speed);
+                    rotatables[i].Rotate(this, movementDirection, info.Speed);
                 }
 
                 if (Vector3.Distance(start, transform.position) >= originalLengthToEnd)
@@ -312,32 +372,35 @@ namespace WeaverCore.Elevator
                     break;
                 }
 
+                loopSoundInstance.transform.position = transform.position;
+
                 yield return null;
             }
 
             if (loopSoundInstance != null)
             {
                 loopSoundInstance.StopPlaying();
+                loopSoundInstance.Delete();
                 loopSoundInstance = null;
             }
 
-            if (LiftFinishSound != null)
+            if (info.DoFinishSound && LiftFinishSound != null)
             {
                 var instance = WeaverAudio.PlayAtPoint(LiftFinishSound, transform.position);
                 instance.AudioSource.pitch = LiftFinishSoundPitchRange.RandomInRange();
+                WeaverAudio.AddVolumeDistanceControl(instance, AudioRange);
             }
 
             EventManager.BroadcastEvent("STOP MOVING", gameObject);
             OnMovementEnd();
 
-            if (doBob)
+            if (info.DoBob)
             {
                 yield return BobRoutine(movementDirection);
             }
-
-            if (EndDelay > 0f)
+            if (info.EndDelay > 0f)
             {
-                yield return new WaitForSeconds(EndDelay);
+                yield return new WaitForSeconds(info.EndDelay);
             }
 
             yield return 

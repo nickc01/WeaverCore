@@ -22,9 +22,12 @@ public static class ObjectBounce_Patches
         public float timerValue;
     }
 
+    static Patch_State prevPatchState;
 
-    static bool Collision_Prefix(ObjectBounce __instance, ref Patch_State __state)
+
+    static bool Collision_Prefix(ObjectBounce __instance)
     {
+        prevPatchState = null;
         var instanceRB = rb(__instance);
         if (!instanceRB || instanceRB.isKinematic || !bouncing(__instance) || !(speed(__instance) > __instance.speedThreshold))
         {
@@ -49,9 +52,9 @@ public static class ObjectBounce_Patches
                 if (animator == null)
                 {
                     //tk2dAnimator will be skipped
-                    __state = new Patch_State();
-                    __state.persistTimer = true;
-                    __state.timerValue = __instance.animPause;
+                    prevPatchState = new Patch_State();
+                    prevPatchState.persistTimer = true;
+                    prevPatchState.timerValue = __instance.animPause;
                     setAnimTimer(__instance, float.PositiveInfinity);
                 }
             }
@@ -60,12 +63,13 @@ public static class ObjectBounce_Patches
         return true;
     }
 
-    static void Collision_Postfix(ObjectBounce __instance, ref Patch_State __state)
+    static void Collision_Postfix(ObjectBounce __instance)
     {
-        if (__state != null && __state.persistTimer)
+        if (prevPatchState != null && prevPatchState.persistTimer)
         {
-            setAnimTimer(__instance, __state.timerValue);
+            setAnimTimer(__instance, prevPatchState.timerValue);
         }
+        prevPatchState = null;
     }
 
     [OnHarmonyPatch]

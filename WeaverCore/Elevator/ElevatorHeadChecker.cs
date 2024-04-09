@@ -19,7 +19,11 @@ namespace WeaverCore.Elevator
                     throw new Exception("The head checker couldn't find an elevator in any parent object!");
                 }
 
-                elevator.CallElevatorToPosition(elevator.GetOppositeDestination(), 0f, false);
+                elevator.CallElevatorToOpposite(new Elevator.ElevatorInfo(elevator.GetDefaultInfo())
+                {
+                    DoBob = false,
+                    BeginDelay = -1f
+                });
             }
         }
     }

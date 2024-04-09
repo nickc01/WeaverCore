@@ -8,6 +8,8 @@ using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Enums;
 using WeaverCore.Attributes;
+using WeaverCore.Components;
+using System.Collections;
 
 namespace WeaverCore
 {
@@ -172,6 +174,51 @@ namespace WeaverCore
 		public static AudioMixerGroup GetMixerForChannel(AudioChannel channel)
 		{
 			return Impl.GetMixerForChannel(channel);
+		}
+
+        public static void AddVolumeDistanceControl(AudioPlayer audio, Vector2 volumeRange)
+		{
+			AddVolumeDistanceControl(audio, Player.Player1.transform, volumeRange);
+		}
+
+
+        public static void AddVolumeDistanceControl(AudioPlayer audio, Transform target, Vector2 volumeRange)
+		{
+
+			if (volumeRange.x > volumeRange.y)
+			{
+				var temp = volumeRange.x;
+                volumeRange.x = volumeRange.y;
+                volumeRange.y = temp;
+			}
+
+			if (audio != null && !audio.IsInPool && audio.AudioSource != null && audio.isActiveAndEnabled)
+			{
+                var distance = Vector2.Distance(target.position, audio.AudioSource.transform.position);
+
+                audio.AudioSource.volume = 1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance);
+
+                UnboundCoroutine.Start(DistanceVolumeControlRoutine(audio, target, volumeRange));
+			}
+		}
+
+		static IEnumerator DistanceVolumeControlRoutine(AudioPlayer audio, Transform target, Vector2 volumeRange)
+		{
+			while (true)
+			{
+				if (audio == null || !audio.isActiveAndEnabled || audio.IsInPool || audio.AudioSource == null)
+				{
+					break;
+				}
+
+				var distance = Vector2.Distance(target.position, audio.AudioSource.transform.position);
+
+				audio.AudioSource.volume = 1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance);
+
+				yield return null;
+			}
+
+			WeaverLog.Log("DISTANCE STUFF DONE");
 		}
 
 		public static float MasterVolume => Impl.MasterVolume;

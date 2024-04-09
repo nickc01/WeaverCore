@@ -26,6 +26,18 @@ namespace WeaverCore
 		[SerializeField]
 		private AudioSource audioSource;
 
+		public bool IsInPool
+		{
+			get
+			{
+				if (poolComponent == null)
+				{
+					return false;
+				}
+				return poolComponent.InPool;
+			}
+		}
+
 		/// <summary>
 		/// The audio source that is playing the sound
 		/// </summary>

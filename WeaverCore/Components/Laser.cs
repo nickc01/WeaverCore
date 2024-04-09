@@ -25,7 +25,7 @@ namespace WeaverCore.Components
         /// </summary>
         [field: SerializeField]
         [field: Tooltip("The angle in degrees the laser should spread out")]
-        [field: Range(0.5f, 85f)]
+        [field: Range(0.1f, 85f)]
         public float Spread { get; set; } = 5f;
 
         /// <summary>
@@ -368,7 +368,7 @@ namespace WeaverCore.Components
             colliderContactPoints.Clear();
             collisionContactNormals.Clear();
 
-            Spread = Mathf.Clamp(Spread, 0.5f, 85f);
+            Spread = Mathf.Clamp(Spread, 0.1f, 85f);
             var halfWidth = StartingWidth / 2f;
 
             var startLocation = new Vector3(0f, halfWidth);

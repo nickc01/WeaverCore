@@ -6,7 +6,7 @@ using System;
 
 public static class TESTING_PATCHES
 {
-    const bool ENABLED = true;
+    const bool ENABLED = false;
 
 
     [OnHarmonyPatch(-10)]
@@ -46,22 +46,4 @@ public static class TESTING_PATCHES
         WeaverLog.Log($"DESTROYING OBJ {obj} in {t} seconds");
         return true;
     }*/
-
-    static bool TransformPositionSetter_Prefix(Transform __instance, Vector3 value)
-    {
-        if (__instance.name == "Amoh" || __instance.name == "Tele Sprite")
-        {
-            WeaverLog.Log($"Setting {__instance.name} Transform.position = " + value + "\n" + new System.Diagnostics.StackTrace());
-        }
-        return true;
-    }
-
-    static bool TransformLocalPositionSetter_Prefix(Transform __instance, Vector3 value)
-    {
-        if (__instance.name == "Amoh" || __instance.name == "Tele Sprite")
-        {
-            WeaverLog.Log($"Setting {__instance.name} Transform.localPosition = " + value + "\n" + new System.Diagnostics.StackTrace());
-        }
-        return true;
-    }
 }

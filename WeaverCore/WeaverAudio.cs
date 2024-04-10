@@ -218,7 +218,7 @@ namespace WeaverCore
 				yield return null;
 			}
 
-			WeaverLog.Log("DISTANCE STUFF DONE");
+			//WeaverLog.Log("DISTANCE STUFF DONE");
 		}
 
 		public static float MasterVolume => Impl.MasterVolume;

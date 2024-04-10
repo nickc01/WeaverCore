@@ -29,12 +29,12 @@ namespace WeaverCore.Features
 
         static bool SceneInitPrefix(SceneParticlesController __instance)
         {
-            WeaverLog.Log("LOADING SCENE INIT");
+            //WeaverLog.Log("LOADING SCENE INIT");
             foreach (var registry in GetAllRegistries())
             {
                 foreach (var custom in registry.GetFeatures<CustomMapZoneParticles>())
                 {
-                    WeaverLog.Log("FOUND CUSTOM = " + custom.MapZone);
+                    //WeaverLog.Log("FOUND CUSTOM = " + custom.MapZone);
                     if (custom.ParticlesPrefab != null)
                     {
                         var particleIndex = FindIndexIn(__instance.sceneParticles, v => v.mapZone == custom.MapZone);

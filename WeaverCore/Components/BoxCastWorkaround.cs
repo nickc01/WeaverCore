@@ -114,21 +114,21 @@ namespace WeaverCore.Components
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-			WeaverLog.Log("RAW HIT = " + collision.gameObject);
+			//WeaverLog.Log("RAW HIT = " + collision.gameObject);
 			if ((objectMask.value & (1 << collision.gameObject.layer)) != 0 && hitColliders.Add(collision))
 			{
 				OnColliderAdded?.Invoke(collision);
-                WeaverLog.Log($"TRIGGERED {collision} of layer {collision.gameObject.layer}");
+                //WeaverLog.Log($"TRIGGERED {collision} of layer {collision.gameObject.layer}");
             }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            WeaverLog.Log("RAW UNHIT = " + collision.gameObject);
+            //WeaverLog.Log("RAW UNHIT = " + collision.gameObject);
             if (hitColliders.Remove(collision))
 			{
 				OnColliderRemoved?.Invoke(collision);
-                WeaverLog.Log($"NOT TRIGGERED {collision} of layer {collision.gameObject.layer}");
+                //WeaverLog.Log($"NOT TRIGGERED {collision} of layer {collision.gameObject.layer}");
             }
         }
 

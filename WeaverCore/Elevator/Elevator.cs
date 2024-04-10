@@ -410,7 +410,7 @@ namespace WeaverCore.Elevator
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            WeaverLog.Log("OnCollisionEnter2D");
+            //WeaverLog.Log("OnCollisionEnter2D");
             if (!Ready)
             {
                 return;
@@ -422,7 +422,7 @@ namespace WeaverCore.Elevator
 
             if (collision.gameObject.layer == playerLayerID)
             {
-                WeaverLog.Log("ON PLAYER TOUCH");
+                //WeaverLog.Log("ON PLAYER TOUCH");
                 OnPlayerTouch();
             }
         }

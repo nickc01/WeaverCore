@@ -33,15 +33,15 @@ namespace WeaverCore.Features
         public SupportedLanguages Language => language;
 
         [SerializeField]
-        List<Entry> entries = new List<Entry>();
+        System.Collections.Generic.List<Entry> entries = new System.Collections.Generic.List<Entry>();
 
         [SerializeField]
         [HideInInspector]
-        List<string> _entry_Keys = new List<string>();
+        System.Collections.Generic.List<string> _entry_Keys = new System.Collections.Generic.List<string>();
 
         [SerializeField]
         [HideInInspector]
-        List<string> _entry_Values = new List<string>();
+        System.Collections.Generic.List<string> _entry_Values = new System.Collections.Generic.List<string>();
 
         /// <summary>
         /// Gets a language string based on a key

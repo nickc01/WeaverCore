@@ -95,21 +95,34 @@ namespace WeaverCore.Assets.Components
 
         private void Start()
         {
+            //WeaverLog.Log("BENCH = " + gameObject);
+            //WeaverLog.Log("BENCH START A");
             if (updateLayer)
             {
+                //WeaverLog.Log("BENCH START B");
                 gameObject.layer = LayerMask.NameToLayer("Hero Detector");
             }
+            //WeaverLog.Log("BENCH START C");
             eventManager = GetComponent<EventManager>();
+            //WeaverLog.Log("BENCH START D");
             if (eventManager == null)
             {
+                //WeaverLog.Log("BENCH START E");
                 eventManager = gameObject.AddComponent<EventManager>();
             }
+            //WeaverLog.Log("BENCH START F");
             prompt = GetComponentInChildren<WeaverArrowPrompt>(true);
+            //WeaverLog.Log("BENCH START G");
             prompt.HideInstant();
+            //WeaverLog.Log("BENCH START H");
             canTalk = true;
+            //WeaverLog.Log("BENCH START I");
             Ranges = transform.Find("Ranges")?.gameObject;
+            //WeaverLog.Log("BENCH START J");
             eventManager.OnReceivedEvent += OnEventReceived;
+            //WeaverLog.Log("BENCH START K");
             mainRoutine = StartCoroutine(InitRoutine());
+            //sWeaverLog.Log("BENCH START L");
         }
 
         private void OnEventReceived(string eventName, GameObject source)

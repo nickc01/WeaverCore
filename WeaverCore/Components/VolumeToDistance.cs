@@ -31,8 +31,15 @@ namespace WeaverCore.Components
 			var distance = Vector3.Distance(transform.position, Target.position);
 
 			var amount = Mathf.InverseLerp(DistanceMinMax.x, DistanceMinMax.y, distance);
-
 			source.volume = Mathf.Lerp(VolumeMinMax.y,VolumeMinMax.x,amount);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, DistanceMinMax.y);
+            Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
+            Gizmos.DrawSphere(transform.position, DistanceMinMax.x);
         }
     }
 }

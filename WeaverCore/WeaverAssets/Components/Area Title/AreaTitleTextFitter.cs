@@ -30,7 +30,7 @@ namespace WeaverCore.Assets.Components
 
         RectTransform rect;
 
-        List<TextMeshProUGUI> textObjects = new List<TextMeshProUGUI>();
+        System.Collections.Generic.List<TextMeshProUGUI> textObjects = new System.Collections.Generic.List<TextMeshProUGUI>();
 
         void Start()
         {

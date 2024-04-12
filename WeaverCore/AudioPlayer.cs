@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
 
 namespace WeaverCore
 {
@@ -22,6 +25,18 @@ namespace WeaverCore
 		[HideInInspector]
 		[SerializeField]
 		private AudioSource audioSource;
+
+		public bool IsInPool
+		{
+			get
+			{
+				if (poolComponent == null)
+				{
+					return false;
+				}
+				return poolComponent.InPool;
+			}
+		}
 
 		/// <summary>
 		/// The audio source that is playing the sound
@@ -103,6 +118,41 @@ namespace WeaverCore
 			}
 		}
 
+		public void Delete(Func<bool> isDone)
+		{
+            var SourcePool = GetComponent<PoolableObject>();
+            if (SourcePool == null)
+            {
+				UnboundCoroutine.Start(DeleteRoutine(gameObject, isDone));
+            }
+            else
+            {
+                SourcePool.ReturnToPool(isDone);
+            }
+        }
+
+		static IEnumerator DeleteRoutine(UnityEngine.Object obj, Func<bool> isDone)
+		{
+			while (true)
+			{
+				if (obj == null || (obj is Component c && c.gameObject == null))
+				{
+					yield break;
+				}
+
+				if (isDone())
+				{
+					break;
+				}
+				else
+				{
+					yield return null;
+				}
+			}
+
+			Destroy(obj);
+		}
+
 		/// <summary>
 		/// Plays the Audio Source after a set delay
 		/// </summary>
@@ -129,7 +179,8 @@ namespace WeaverCore
 				}
 				else
 				{
-					Delete(Clip.length);
+
+					//Delete(Clip.length);
 				}
 			}
 		}

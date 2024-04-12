@@ -21,7 +21,7 @@ namespace WeaverCore.Assets.Components
 			ModHooks.DrawBlackBordersHook += ModHooks_DrawBlackBordersHook;
 		}
 
-		private static void ModHooks_DrawBlackBordersHook(List<GameObject> obj)
+		private static void ModHooks_DrawBlackBordersHook(System.Collections.Generic.List<GameObject> obj)
 		{
 			if (GameManager.instance.sm is WeaverSceneManager wsm)
 			{

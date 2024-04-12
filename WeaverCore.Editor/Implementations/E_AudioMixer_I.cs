@@ -10,14 +10,13 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Editor.Implementations
 {
-
     public class E_AudioMixer_I : AudioMixer_I
 	{
 		static bool assetsLoaded = false;
 
-		static List<AudioMixer> Mixers;
-		static List<AudioMixerSnapshot> Snapshots;
-		static List<AudioMixerGroup> Groups;
+		static System.Collections.Generic.List<AudioMixer> Mixers;
+		static System.Collections.Generic.List<AudioMixerSnapshot> Snapshots;
+		static System.Collections.Generic.List<AudioMixerGroup> Groups;
 
 		public override MusicCue ActiveMusicCue
 		{
@@ -85,9 +84,9 @@ namespace WeaverCore.Editor.Implementations
 
 			var mixers = AssetDatabase.FindAssets("t:AudioMixer");
 
-			Mixers = new List<AudioMixer>();
-			Snapshots = new List<AudioMixerSnapshot>();
-			Groups = new List<AudioMixerGroup>();
+            Mixers = new System.Collections.Generic.List<AudioMixer>();
+            Snapshots = new System.Collections.Generic.List<AudioMixerSnapshot>();
+            Groups = new System.Collections.Generic.List<AudioMixerGroup>();
 
 			foreach (var guid in mixers)
 			{

@@ -345,7 +345,7 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns all methods with the specified attribute type applied to them</returns>
 		public static IEnumerable<ValueTuple<MethodInfo, AttriType>> GetMethodsWithAttribute<AttriType>(Assembly assembly, Type[] paramTypes, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static) where AttriType : Attribute
 		{
-			List<ValueTuple<MethodInfo, AttriType>> methodsWithAttributes = new List<(MethodInfo, AttriType)>();
+            System.Collections.Generic.List<ValueTuple<MethodInfo, AttriType>> methodsWithAttributes = new System.Collections.Generic.List<(MethodInfo, AttriType)>();
 
             if (assembly == null)
 			{
@@ -462,7 +462,7 @@ namespace WeaverCore.Utilities
 		/// <param name="throwOnError">Should an exception be thrown if a method fails?</param>
 		public static void ExecuteMethodsWithAttribute<AttriType>(Assembly assembly, Func<MethodInfo, AttriType, bool> ExecuteIf = null, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, bool throwOnError = false) where AttriType : Attribute
 		{
-			List<ValueTuple<MethodInfo, AttriType>> methods = new List<ValueTuple<MethodInfo, AttriType>>();
+            System.Collections.Generic.List<ValueTuple<MethodInfo, AttriType>> methods = new System.Collections.Generic.List<ValueTuple<MethodInfo, AttriType>>();
 
 			methods.AddRange(GetMethodsWithAttribute<AttriType>(assembly, flags));
 
@@ -522,7 +522,7 @@ namespace WeaverCore.Utilities
 		{
             Initialization.PerformanceLog($"Running methods with Attribute {typeof(AttriType)}");
 
-            List<ValueTuple<MethodInfo, AttriType>> methods = new List<ValueTuple<MethodInfo, AttriType>>();
+            System.Collections.Generic.List<ValueTuple<MethodInfo, AttriType>> methods = new System.Collections.Generic.List<ValueTuple<MethodInfo, AttriType>>();
 
             foreach (var assembly in assemblies)
             {

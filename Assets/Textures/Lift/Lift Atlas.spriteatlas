@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lift Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 21300000, guid: b7f72b683dfc0e3479d56d0313e0e404, type: 2}
+    - {fileID: 21300000, guid: 6fd7890777eb3534fbe45445a6644d13, type: 2}
+    - {fileID: 21300000, guid: 92dd116a4f15dd64bbf16e45dc90851f, type: 2}
+    totalSpriteSurfaceArea: 120571
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 6fd7890777eb3534fbe45445a6644d13, type: 2}
+  - {fileID: 21300000, guid: b7f72b683dfc0e3479d56d0313e0e404, type: 2}
+  - {fileID: 21300000, guid: 92dd116a4f15dd64bbf16e45dc90851f, type: 2}
+  m_PackedSpriteNamesToIndex:
+  - central_elev_cog
+  - tramway_0023_Color-Balance-1-copy-9
+  - central_elev
+  m_RenderDataMap: {}
+  m_Tag: Lift Atlas
+  m_IsVariant: 0

@@ -62,9 +62,9 @@ namespace WeaverCore.Assets.Components
         /// <param name="obj">The transform of the enemy to hit</param>
         /// <param name="damageType">The type of damage to deal</param>
         /// <param name="onHit">Called when the enemy was sucessfully hit</param>
-        public static List<IExtraDamageable> HitEnemy(Transform obj, ExtraDamageTypes damageType, Action<IExtraDamageable> onHit = null)
+        public static System.Collections.Generic.List<IExtraDamageable> HitEnemy(Transform obj, ExtraDamageTypes damageType, Action<IExtraDamageable> onHit = null)
         {
-            List<IExtraDamageable> hitEnemies = new List<IExtraDamageable>();
+            System.Collections.Generic.List<IExtraDamageable> hitEnemies = new System.Collections.Generic.List<IExtraDamageable>();
             int depth = 0;
 
             while (obj != null)

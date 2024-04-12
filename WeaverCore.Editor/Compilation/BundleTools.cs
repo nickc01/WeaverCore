@@ -101,12 +101,12 @@ namespace WeaverCore.Editor.Compilation
 			/// <summary>
 			/// The original list of included platforms for the asmdef
 			/// </summary>
-			public List<AssemblyDefinitionFile.Platform> OriginalIncludedPlatforms;
+			public System.Collections.Generic.List<AssemblyDefinitionFile.Platform> OriginalIncludedPlatforms;
 
 			/// <summary>
 			/// The original list of excluded platforms for the asmdef
 			/// </summary>
-			public List<AssemblyDefinitionFile.Platform> OriginalExcludedPlatforms;
+			public System.Collections.Generic.List<AssemblyDefinitionFile.Platform> OriginalExcludedPlatforms;
 		}
 
 		static BundleBuildData _data = null;
@@ -165,12 +165,12 @@ namespace WeaverCore.Editor.Compilation
 			/// <summary>
 			/// Stores a list of all the project's assembly information before the build process begins
 			/// </summary>
-			public List<AssemblyInformation> PreBuildInfo;
+			public System.Collections.Generic.List<AssemblyInformation> PreBuildInfo;
 
 			/// <summary>
 			/// A list of all the asmdefs being excluded from the build process
 			/// </summary>
-			public List<ExcludedAssembly> ExcludedAssemblies;
+			public System.Collections.Generic.List<ExcludedAssembly> ExcludedAssemblies;
 
 			/// <summary>
 			/// Has the asset bundling been successful?
@@ -190,12 +190,12 @@ namespace WeaverCore.Editor.Compilation
 			/// <summary>
 			/// Stores a list of all the registry information before the build process begins
 			/// </summary>
-			public List<RegistryInfo> Registries;
+			public System.Collections.Generic.List<RegistryInfo> Registries;
 
 			/// <summary>
 			/// Stores a list of all the scenes that have been closed down.
 			/// </summary>
-			public List<SceneData> ClosedScenes;
+			public System.Collections.Generic.List<SceneData> ClosedScenes;
 		}
 
 		/// <summary>
@@ -206,14 +206,14 @@ namespace WeaverCore.Editor.Compilation
 		/// <param name="OnComplete">The method to call when the process is done</param>
 		public static void BuildAndEmbedAssetBundles(FileInfo modDll, FileInfo weaverCoreDLL, MethodInfo OnComplete)
 		{
-			Data = new BundleBuildData
-			{
+            Data = new BundleBuildData
+            {
 				ModDLL = modDll == null ? "" : modDll.FullName,
 				ModName = modDll == null ? "" : modDll.Name.Replace(".dll", ""),
 				WeaverCoreOnly = modDll == null,
 				WeaverCoreDLL = weaverCoreDLL.FullName,
 				PreBuildInfo = ScriptFinder.GetProjectScriptInfo(),
-				ExcludedAssemblies = new List<ExcludedAssembly>(),
+				ExcludedAssemblies = new System.Collections.Generic.List<ExcludedAssembly>(),
 				OnComplete = new SerializedMethod(OnComplete),
 				BundlingSuccessful = false
 			};
@@ -221,7 +221,7 @@ namespace WeaverCore.Editor.Compilation
 
 			UnboundCoroutine.Start(UnloadScenes(() =>
 			{
-				PrepareForAssetBundling(new List<string> { "WeaverCore.Editor" }, typeof(BundleTools).GetMethod(nameof(BeginBundleProcess), BindingFlags.Static | BindingFlags.NonPublic));
+                PrepareForAssetBundling(new System.Collections.Generic.List<string> { "WeaverCore.Editor" }, typeof(BundleTools).GetMethod(nameof(BeginBundleProcess), BindingFlags.Static | BindingFlags.NonPublic));
 			}));
 
 			
@@ -237,8 +237,8 @@ namespace WeaverCore.Editor.Compilation
 
 			yield return null;
 
-			List<Scene> scenes = new List<Scene>();
-			Data.ClosedScenes = new List<SceneData>();
+            System.Collections.Generic.List<Scene> scenes = new System.Collections.Generic.List<Scene>();
+            Data.ClosedScenes = new System.Collections.Generic.List<SceneData>();
 
 			var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
 			for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
@@ -273,7 +273,7 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		/// <param name="ExcludedAssemblies">The asmdefs to exclude</param>
 		/// <param name="whenReady">The function to call when done</param>
-		static void PrepareForAssetBundling(List<string> ExcludedAssemblies, MethodInfo whenReady)
+		static void PrepareForAssetBundling(System.Collections.Generic.List<string> ExcludedAssemblies, MethodInfo whenReady)
 		{
             Debug.Log("Preparing Assets for Bundling");
 #if REWRITE_REGISTRIES
@@ -283,7 +283,7 @@ namespace WeaverCore.Editor.Compilation
 				registry.ApplyChanges();
 			}
 #endif
-			Data.Registries = new List<RegistryInfo>();
+            Data.Registries = new System.Collections.Generic.List<RegistryInfo>();
 			var registryIDs = AssetDatabase.FindAssets($"t:{nameof(Registry)}");
 			foreach (var id in registryIDs)
 			{
@@ -313,8 +313,8 @@ namespace WeaverCore.Editor.Compilation
 						OriginalExcludedPlatforms = asm.Definition.ExcludePlatforms,
 						OriginalIncludedPlatforms = asm.Definition.IncludePlatforms
 					});
-					asm.Definition.ExcludePlatforms = new List<AssemblyDefinitionFile.Platform>();
-					asm.Definition.IncludePlatforms = new List<AssemblyDefinitionFile.Platform>
+					asm.Definition.ExcludePlatforms = new System.Collections.Generic.List<AssemblyDefinitionFile.Platform>();
+					asm.Definition.IncludePlatforms = new System.Collections.Generic.List<AssemblyDefinitionFile.Platform>
 					{
                         AssemblyDefinitionFile.Platform.Editor
                     };
@@ -471,10 +471,10 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
-		/// <summary>
-		/// Starts building the asset bundles. This is called after <see cref="PrepareForAssetBundling(List{string}, MethodInfo)"/> is called
-		/// </summary>
-		static void BeginBundleProcess()
+        /// <summary>
+        /// Starts building the asset bundles. This is called after <see cref="PrepareForAssetBundling(System.Collections.Generic.List{string}, MethodInfo)"/> is called
+        /// </summary>
+        static void BeginBundleProcess()
 		{
 			var firstTime = true;
             if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
@@ -489,11 +489,11 @@ namespace WeaverCore.Editor.Compilation
 				{
                     Debug.Log("Beginning Bundle Process");
 #if !MULTI_THREADED_EMBEDDING
-					var builtAssetBundles = new List<BuiltAssetBundle>();
+					var builtAssetBundles = new System.Collections.Generic.List<BuiltAssetBundle>();
 #else
 					List<Task> embeddingTasks = new List<Task>();
 #endif
-					var assemblies = new List<FileInfo>
+					var assemblies = new System.Collections.Generic.List<FileInfo>
 					{
 						new FileInfo(Data.WeaverCoreDLL)
 					};
@@ -629,7 +629,7 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		/// <param name="assemblies">The file paths of the mod assemblies to put the asset bundles into</param>
 		/// <param name="builtBundles">The asset bundles that have been built</param>
-		static void EmbedAssetBundles(List<FileInfo> assemblies, IEnumerable<BuiltAssetBundle> builtBundles)
+		static void EmbedAssetBundles(System.Collections.Generic.List<FileInfo> assemblies, IEnumerable<BuiltAssetBundle> builtBundles)
 		{
             Debug.Log("Embedding Asset Bundles");
 			var assemblyReplacements = new Dictionary<string, string>
@@ -706,32 +706,41 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		static void EmbedWeaverCoreResources()
 		{
-			var weaverGameLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}WeaverCore.Game{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}WeaverCore.Game.dll");
-			var harmonyLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}0Harmony.dll");
 
-			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, weaverGameLocation.FullName, "WeaverCore.Game", compression: CompressionMethod.NoCompression);
+			var sep = Path.DirectorySeparatorChar;
+
+			var weaverGameLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{sep}WeaverCore.Game{sep}WeaverCore.Game{sep}bin{sep}WeaverCore.Game.dll");
+			var harmonyLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{sep}0Harmony.dll");
+
+			var ktxUnityWindows = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}ktx_unity.dll");
+			var ktxUnityMac = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}ktx_unity.bundle{sep}Contents{sep}MacOS{sep}ktx_unity");
+			var ktxUnityLinux = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}libktx_unity.so");
+
+            EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, weaverGameLocation.FullName, "WeaverCore.Game", compression: CompressionMethod.NoCompression);
 			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, harmonyLocation.FullName, "0Harmony", compression: CompressionMethod.NoCompression);
-		}
+
+			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityWindows.FullName, "ktx_unity.windows", compression: CompressionMethod.NoCompression);
+			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityMac.FullName, "ktx_unity.mac", compression: CompressionMethod.NoCompression);
+			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityLinux.FullName, "ktx_unity.linux", compression: CompressionMethod.NoCompression);
+        }
 
 		/// <summary>
 		/// Pairs up each asset bundle with the assemblies they are to be embedded into
 		/// </summary>
 		/// <param name="assemblyReplacements">A list of overrides. Used to pair up an asset bundle with a different assembly</param>
 		/// <returns></returns>
-		static Dictionary<string, AssemblyName> GetBundleToAssemblyPairs(Dictionary<string, string> assemblyReplacements, out List<AssemblyName> names)
+		static Dictionary<string, AssemblyName> GetBundleToAssemblyPairs(Dictionary<string, string> assemblyReplacements, out System.Collections.Generic.List<AssemblyName> names)
 		{
 			Dictionary<string, AssemblyName> bundleToAssemblyPairs = new Dictionary<string, AssemblyName>();
 
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-			names = new List<AssemblyName>();
+			names = new System.Collections.Generic.List<AssemblyName>();
 
 			foreach (var registry in Data.Registries)
 			{
 				var originalModName = registry.AssemblyName;
-
 				var assembly = assemblies.FirstOrDefault(a => a.GetName().Name == originalModName);
-
 				if (assembly != null)
 				{
 					var asmName = assembly.GetName();
@@ -766,11 +775,11 @@ namespace WeaverCore.Editor.Compilation
 			return "";
 		}
 
-		/// <summary>
-		/// Called when asset bundling is done. This is used for clean up and to undo what <see cref="PrepareForAssetBundling(List{string}, MethodInfo)"/> has done
-		/// </summary>
-		/// <param name="whenFinished">The function to call when this is done</param>
-		static void DoneWithAssetBundling(MethodInfo whenFinished)
+        /// <summary>
+        /// Called when asset bundling is done. This is used for clean up and to undo what <see cref="PrepareForAssetBundling(System.Collections.Generic.List{string}, MethodInfo)"/> has done
+        /// </summary>
+        /// <param name="whenFinished">The function to call when this is done</param>
+        static void DoneWithAssetBundling(MethodInfo whenFinished)
 		{
 #if REWRITE_REGISTRIES
 			foreach (var registry in RegistryChecker.LoadAllRegistries())
@@ -910,9 +919,9 @@ namespace WeaverCore.Editor.Compilation
 
 			var bun = am.LoadBundleFile(bundle.File.FullName);
 
-			//am.LoadBundleFile()
+            //am.LoadBundleFile()
 
-			List<BundleReplacer> bundleReplacers = new List<BundleReplacer>();
+            System.Collections.Generic.List<BundleReplacer> bundleReplacers = new System.Collections.Generic.List<BundleReplacer>();
 
 			//
 			//Parallel.For(0, bun.file.bundleInf6.dirInf.GetLength(0), bunIndex =>

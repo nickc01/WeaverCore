@@ -105,22 +105,22 @@ namespace WeaverCore.Editor.Compilation
 			/// <summary>
 			/// A list of script paths that are included in the build
 			/// </summary>
-			public List<string> Scripts = new List<string>();
+			public System.Collections.Generic.List<string> Scripts = new System.Collections.Generic.List<string>();
 
 			/// <summary>
 			/// A list of assembly reference paths that are to be included in the build process
 			/// </summary>
-			public List<string> AssemblyReferences = new List<string>();
+			public System.Collections.Generic.List<string> AssemblyReferences = new System.Collections.Generic.List<string>();
 
 			/// <summary>
 			/// A list of assembly reference paths to be excluded from the build process
 			/// </summary>
-			public List<string> ExcludedReferences = new List<string>();
+			public System.Collections.Generic.List<string> ExcludedReferences = new System.Collections.Generic.List<string>();
 
 			/// <summary>
 			/// A list of #defines to include in the build process
 			/// </summary>
-			public List<string> Defines = new List<string>();
+			public System.Collections.Generic.List<string> Defines = new System.Collections.Generic.List<string>();
 
 			/// <summary>
 			/// The target platform the mod is being built against
@@ -139,7 +139,7 @@ namespace WeaverCore.Editor.Compilation
 		public class BuildOutput
 		{
 			public bool Success;
-			public List<FileInfo> OutputFiles = new List<FileInfo>();
+			public System.Collections.Generic.List<FileInfo> OutputFiles = new System.Collections.Generic.List<FileInfo>();
 		}
 
 		/// <summary>
@@ -172,14 +172,14 @@ namespace WeaverCore.Editor.Compilation
 				yield break;
 			}
 			yield return BuildAssembly(new BuildParameters
-			{
+            {
 				BuildPath = outputPath,
 				AssemblyReferences = hkBuildTask.Result.OutputFiles.Select(f => f.FullName).ToList(),
-				Defines = new List<string>
+				Defines = new System.Collections.Generic.List<string>
 				{
 					"GAME_BUILD"
 				},
-				ExcludedReferences = new List<string>
+				ExcludedReferences = new System.Collections.Generic.List<string>
 				{
 					"Library/ScriptAssemblies/WeaverCore.dll",
 					"Library/ScriptAssemblies/HollowKnight.dll",
@@ -192,7 +192,7 @@ namespace WeaverCore.Editor.Compilation
 					"Library/ScriptAssemblies/JUNK.dll"
 				},
 				Scripts = ScriptFinder.FindAssemblyScripts("WeaverCore")
-			}, BuildPresetType.Game,task);
+			}, BuildPresetType.Game, task);
 		}
 
 		/// <summary>
@@ -219,14 +219,14 @@ namespace WeaverCore.Editor.Compilation
 			var firstPassLocation = new FileInfo(outputPath.Directory.AddSlash() + "Assembly-CSharp-firstpass.dll");
 
 			yield return BuildAssembly(new BuildParameters
-			{
+            {
 				BuildPath = firstPassLocation,
 				Scripts = ScriptFinder.FindAssemblyScripts("HollowKnight.FirstPass"),
-				Defines = new List<string>
+				Defines = new System.Collections.Generic.List<string>
 				{
 					"GAME_BUILD"
 				},
-				ExcludedReferences = new List<string>
+				ExcludedReferences = new System.Collections.Generic.List<string>
 				{
 					"Library/ScriptAssemblies/HollowKnight.dll",
 					"Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
@@ -242,20 +242,20 @@ namespace WeaverCore.Editor.Compilation
 			}
 
 			yield return BuildAssembly(new BuildParameters
-			{
+            {
 				BuildPath = outputPath,
 				Scripts = ScriptFinder.FindAssemblyScripts("HollowKnight"),
-				Defines = new List<string>
+				Defines = new System.Collections.Generic.List<string>
 				{
 					"GAME_BUILD"
 				},
-				ExcludedReferences = new List<string>
+				ExcludedReferences = new System.Collections.Generic.List<string>
 				{
 					"Library/ScriptAssemblies/HollowKnight.dll",
 					"Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
 					"Library/ScriptAssemblies/JUNK.dll"
 				},
-				AssemblyReferences = new List<string>
+				AssemblyReferences = new System.Collections.Generic.List<string>
 				{
 					firstPassLocation.FullName
 				}
@@ -349,14 +349,14 @@ namespace WeaverCore.Editor.Compilation
 			}
 
 			var parameters = new BuildParameters
-			{
+            {
 				BuildPath = outputPath,
 				Scripts = ScriptFinder.FindAssemblyScripts("Assembly-CSharp"),
-				Defines = new List<string>
+				Defines = new System.Collections.Generic.List<string>
 				{
 					"GAME_BUILD"
 				},
-				ExcludedReferences = new List<string>
+				ExcludedReferences = new System.Collections.Generic.List<string>
 				{
 					"Library/ScriptAssemblies/HollowKnight.dll",
 					"Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
@@ -396,14 +396,14 @@ namespace WeaverCore.Editor.Compilation
 
 		static IEnumerator BuildMiscAssemblies(IAsyncBuildTask<BuildOutput> buildTask, DirectoryInfo outputDirectory)
 		{
-            var supportedPlatforms = new List<AssemblyDefinitionFile.Platform>
+            var supportedPlatforms = new System.Collections.Generic.List<AssemblyDefinitionFile.Platform>
             {
                 AssemblyDefinitionFile.Platform.WindowsStandalone64,
                 AssemblyDefinitionFile.Platform.macOSStandalone,
                 AssemblyDefinitionFile.Platform.LinuxStandalone64
             };
 
-            List<string> excludedAsmDefs = new List<string>
+            System.Collections.Generic.List<string> excludedAsmDefs = new System.Collections.Generic.List<string>
             {
                 "HollowKnight.asmdef",
                 "HollowKnight.FirstPass.asmdef",
@@ -412,7 +412,7 @@ namespace WeaverCore.Editor.Compilation
             };
 
 
-            var asmDefsToBuild = new List<KeyValuePair<string, AssemblyDefinitionFile>>();
+            var asmDefsToBuild = new System.Collections.Generic.List<KeyValuePair<string, AssemblyDefinitionFile>>();
 
             foreach (var asmdef in AssemblyDefinitionFile.GetAllDefinitionsInFolder("Assets").Where(a => a.Value.AnyPlatformsSupported(supportedPlatforms)))
             {
@@ -439,11 +439,11 @@ namespace WeaverCore.Editor.Compilation
             {
                 BuildPath = outputPath,
                 Scripts = ScriptFinder.FindAssemblyScripts(definition.name),
-                Defines = new List<string>
+                Defines = new System.Collections.Generic.List<string>
                 {
                     "GAME_BUILD"
                 },
-                ExcludedReferences = new List<string>
+                ExcludedReferences = new System.Collections.Generic.List<string>
                 {
                     "Library/ScriptAssemblies/HollowKnight.dll",
                     "Library/ScriptAssemblies/HollowKnight.FirstPass.dll",
@@ -680,8 +680,8 @@ namespace WeaverCore.Editor.Compilation
 
 					}
 					reader.ReadToFollowing("ItemGroup");
-					List<XmlReference> References = new List<XmlReference>();
-					List<string> Scripts = new List<string>();
+                    System.Collections.Generic.List<XmlReference> References = new System.Collections.Generic.List<XmlReference>();
+                    System.Collections.Generic.List<string> Scripts = new System.Collections.Generic.List<string>();
 					while (reader.Read())
 					{
 						if (reader.Name == "Reference")
@@ -735,7 +735,7 @@ namespace WeaverCore.Editor.Compilation
                     Debug.Log("Managed Folder Location = " + managedFolder);
 
 
-                    List<DirectoryInfo> AssemblySearchDirectories = new List<DirectoryInfo>
+                    System.Collections.Generic.List<DirectoryInfo> AssemblySearchDirectories = new System.Collections.Generic.List<DirectoryInfo>
 					{
 						new DirectoryInfo(managedFolder),
 						new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory
@@ -746,7 +746,7 @@ namespace WeaverCore.Editor.Compilation
                         Debug.Log("Assembly Search Directory = " + path);
 					}
 
-					List<string> AssemblyReferences = new List<string>();
+                    System.Collections.Generic.List<string> AssemblyReferences = new System.Collections.Generic.List<string>();
 
 
 
@@ -782,7 +782,7 @@ namespace WeaverCore.Editor.Compilation
 
 					var scriptAssemblies = new DirectoryInfo($"Library{Path.DirectorySeparatorChar}ScriptAssemblies").GetFiles("*.dll");
 
-					List<string> exclusions = new List<string>();
+                    System.Collections.Generic.List<string> exclusions = new System.Collections.Generic.List<string>();
 					foreach (var sa in scriptAssemblies)
 					{
 						exclusions.Add(PathUtilities.ConvertToProjectPath(sa.FullName));
@@ -803,10 +803,10 @@ namespace WeaverCore.Editor.Compilation
 					}
 
 					yield return BuildAssembly(new BuildParameters
-					{
+                    {
 						BuildPath = outputPath,
 						Scripts = Scripts,
-						Defines = new List<string>
+						Defines = new System.Collections.Generic.List<string>
 					{
 						"GAME_BUILD"
 					},

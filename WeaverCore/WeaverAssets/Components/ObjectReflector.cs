@@ -34,7 +34,7 @@ namespace WeaverCore.Assets.Components
         float reflectorWidth = 5f;
 
         [SerializeField]
-        List<Renderer> reflectedRenderers = new List<Renderer>();
+        System.Collections.Generic.List<Renderer> reflectedRenderers = new System.Collections.Generic.List<Renderer>();
 
         [NonSerialized]
         HashSet<Renderer> _objectsToReflect = new HashSet<Renderer>();
@@ -46,7 +46,7 @@ namespace WeaverCore.Assets.Components
         MaterialPropertyBlock materialCopier;
 
         [NonSerialized]
-        List<KeyValuePair<Renderer, ReflectionInfo>> renderersToRemove = new List<KeyValuePair<Renderer, ReflectionInfo>>();
+        System.Collections.Generic.List<KeyValuePair<Renderer, ReflectionInfo>> renderersToRemove = new System.Collections.Generic.List<KeyValuePair<Renderer, ReflectionInfo>>();
 
         [NonSerialized]
         Mesh _quadCache;
@@ -78,8 +78,8 @@ namespace WeaverCore.Assets.Components
             AddObjectToReflect(Player.Player1.gameObject);
         }
 
-        static List<Vector3> vertexCache = new List<Vector3>();
-        static List<Vector3> normalCache = new List<Vector3>();
+        static System.Collections.Generic.List<Vector3> vertexCache = new System.Collections.Generic.List<Vector3>();
+        static System.Collections.Generic.List<Vector3> normalCache = new System.Collections.Generic.List<Vector3>();
         static bool colorIDSet = false;
         static int colorID = 0;
 

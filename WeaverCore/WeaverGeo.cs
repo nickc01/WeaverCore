@@ -142,15 +142,15 @@ namespace WeaverCore
 
         [HideInInspector]
         [SerializeField]
-        List<string> size_idleAnim = new List<string>();
+        System.Collections.Generic.List<string> size_idleAnim = new System.Collections.Generic.List<string>();
 
         [HideInInspector]
         [SerializeField]
-        List<string> size_airAnim = new List<string>();
+        System.Collections.Generic.List<string> size_airAnim = new System.Collections.Generic.List<string>();
 
         [HideInInspector]
         [SerializeField]
-        List<int> size_value = new List<int>();
+        System.Collections.Generic.List<int> size_value = new System.Collections.Generic.List<int>();
 
         WeaverAnimationPlayer _weaver_anim;
         WeaverAnimationPlayer Weaver_Anim => _weaver_anim ??= GetComponent<WeaverAnimationPlayer>();
@@ -356,7 +356,7 @@ namespace WeaverCore
         /// <param name="amount"> the amount of large geo to spawn</param>
         /// <param name="spawnPos">The position to spawn them at</param>
         /// <returns>Returns the spawned geo</returns>
-        public static List<WeaverGeo> FlingLarge(int amount, Vector3 spawnPos)
+        public static System.Collections.Generic.List<WeaverGeo> FlingLarge(int amount, Vector3 spawnPos)
         {
             return FlingGeoPrefab(new FlingUtils.Config
             {
@@ -379,7 +379,7 @@ namespace WeaverCore
         /// <param name="amount">The amount of medium geo to spawn</param>
         /// <param name="spawnPos">The position to spawn them at</param>
         /// <returns>Returns the spawned geo</returns>
-        public static List<WeaverGeo> FlingMedium(int amount, Vector3 spawnPos)
+        public static System.Collections.Generic.List<WeaverGeo> FlingMedium(int amount, Vector3 spawnPos)
         {
             return FlingGeoPrefab(new FlingUtils.Config
             {
@@ -402,7 +402,7 @@ namespace WeaverCore
         /// <param name="amount">The amount of small geo to spawn</param>
         /// <param name="spawnPos">The position to spawn them at</param>
         /// <returns>Returns the spawned geo</returns>
-        public static List<WeaverGeo> FlingSmall(int amount, Vector3 spawnPos)
+        public static System.Collections.Generic.List<WeaverGeo> FlingSmall(int amount, Vector3 spawnPos)
         {
             return FlingGeoPrefab(new FlingUtils.Config
             {
@@ -424,7 +424,7 @@ namespace WeaverCore
         /// <param name="flingInfo">Rhe parameters used to control how the geo gets flung</param>
         /// <param name="spawnPos"> Where the geo will spawn</param>
         /// <returns>Returns a list of the spawned geo</returns>
-        public static List<WeaverGeo> FlingGeoPrefab(FlingUtils.Config flingInfo, Vector3 spawnPos)
+        public static System.Collections.Generic.List<WeaverGeo> FlingGeoPrefab(FlingUtils.Config flingInfo, Vector3 spawnPos)
         {
             return FlingUtilities.SpawnPooledAndFling(flingInfo, null, spawnPos).Select(g => g.GetComponent<WeaverGeo>()).ToList();
         }
@@ -437,9 +437,9 @@ namespace WeaverCore
         /// <param name="largeAmount"> The amount of large geo to spawn</param>
         /// <param name="spawnPos">Where the geo is going to spawn at</param>
         /// <returns>Returns a list of all the spawned geo</returns>
-        public static List<WeaverGeo> FlingGeo(int smallAmount, int mediumAmount, int largeAmount, Vector3 spawnPos)
+        public static System.Collections.Generic.List<WeaverGeo> FlingGeo(int smallAmount, int mediumAmount, int largeAmount, Vector3 spawnPos)
         {
-            var total = new List<WeaverGeo>();
+            var total = new System.Collections.Generic.List<WeaverGeo>();
             total.AddRange(FlingSmall(smallAmount, spawnPos));
             total.AddRange(FlingMedium(mediumAmount, spawnPos));
             total.AddRange(FlingLarge(largeAmount, spawnPos));

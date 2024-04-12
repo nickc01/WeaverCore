@@ -23,7 +23,7 @@ namespace WeaverCore.Utilities
         static int[] _mapZoneIndexes = null;
         static string[] _mapZoneNames = null;
 
-        static List<CustomMapZone> customMapZonesCached = null;
+        static System.Collections.Generic.List<CustomMapZone> customMapZonesCached = null;
 
         static IEnumerable<CustomMapZone> GetCustomMapZonesInternal()
         {
@@ -41,14 +41,19 @@ namespace WeaverCore.Utilities
         /// Gets a list of all the custom map zones
         /// </summary>
         /// <returns>Returns a list of all the custom map zones</returns>
-        public static List<CustomMapZone> GetCustomMapZones()
+        public static System.Collections.Generic.List<CustomMapZone> GetCustomMapZones()
         {
             if (cacheDirty || customMapZonesCached == null)
             {
-                customMapZonesCached = new List<CustomMapZone>(GetCustomMapZonesInternal());
+                customMapZonesCached = new System.Collections.Generic.List<CustomMapZone>(GetCustomMapZonesInternal());
                 cacheDirty = false;
             }
             return customMapZonesCached;
+        }
+
+        public static bool IsCustomMapZone(MapZone mapZone)
+        {
+            return GetCustomMapZones().Any(m => m.MapZone == mapZone);
         }
 
         [OnRegistryLoad]
@@ -72,8 +77,8 @@ namespace WeaverCore.Utilities
         {
             if (_mapZoneIndexes == null)
             {
-                var mapZoneIndexList = new List<int>();
-                var mapZoneNameList = new List<string>();
+                var mapZoneIndexList = new System.Collections.Generic.List<int>();
+                var mapZoneNameList = new System.Collections.Generic.List<string>();
 
                 foreach (var val in Enum.GetValues(typeof(MapZone)))
                 {

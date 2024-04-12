@@ -15,7 +15,7 @@ namespace WeaverCore.Components
     {
         [SerializeField]
         [Tooltip("List of audio clips to play when bug is collected.")]
-        List<AudioClip> collectSounds;
+        System.Collections.Generic.List<AudioClip> collectSounds;
 
         float chooser = 0;
 

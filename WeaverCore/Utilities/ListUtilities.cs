@@ -13,7 +13,7 @@ namespace WeaverCore.Utilities
 	{
 		static class GenericGlobals<T>
 		{
-			public static Func<List<T>, T[]> internalArrayGetter;
+			public static Func<System.Collections.Generic.List<T>, T[]> internalArrayGetter;
 		}
 		/// <summary>
 		/// Adds an item to the list if it's not already in it
@@ -22,7 +22,7 @@ namespace WeaverCore.Utilities
 		/// <param name="list">The list to add to</param>
 		/// <param name="item">The item to add</param>
 		/// <returns>Whether it was able to add the item to the list or not</returns>
-		public static bool AddIfNotContained<T>(this List<T> list, T item)
+		public static bool AddIfNotContained<T>(this System.Collections.Generic.List<T> list, T item)
 		{
 			if (!list.Contains(item))
 			{
@@ -38,7 +38,7 @@ namespace WeaverCore.Utilities
 		/// <typeparam name="T">The type of items in the list</typeparam>
 		/// <param name="list">The list to select from</param>
 		/// <returns>A random element from the list</returns>
-		public static T GetRandomElement<T>(this List<T> list)
+		public static T GetRandomElement<T>(this System.Collections.Generic.List<T> list)
 		{
 			if (list.Count == 0)
 			{
@@ -47,7 +47,7 @@ namespace WeaverCore.Utilities
 			return list[UnityEngine.Random.Range(0,list.Count)];
 		}
 
-		public static T GetRandomElement<T>(this List<T> list, int startIndex, int endIndex)
+		public static T GetRandomElement<T>(this System.Collections.Generic.List<T> list, int startIndex, int endIndex)
 		{
 			if (startIndex < 0 || startIndex > list.Count)
 			{
@@ -66,10 +66,18 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		/// <typeparam name="T">The type of elements in the list</typeparam>
 		/// <param name="list">The list to randomize</param>
-		public static void RandomizeList<T>(this List<T> list)
+		public static void RandomizeList<T>(this System.Collections.Generic.List<T> list)
 		{
-			list.Sort(Randomizer<T>.Instance);
-		}
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
 
         class SortByComparer<T> : IComparer<T>
         {
@@ -87,7 +95,7 @@ namespace WeaverCore.Utilities
             }
         }
 
-        public static void SortBy<T>(this List<T> list, Func<T,int> getter)
+        public static void SortBy<T>(this System.Collections.Generic.List<T> list, Func<T,int> getter)
 		{
 			list.Sort(new SortByComparer<T>(getter));
 		}

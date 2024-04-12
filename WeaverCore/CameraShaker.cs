@@ -29,8 +29,14 @@ namespace WeaverCore
 
 		void Awake()
 		{
-			Instance = this;
-			impl = (Shaker_I)gameObject.AddComponent(ImplFinder.GetImplementationType<Shaker_I>());
+			if (Instance == null)
+			{
+                Instance = this;
+                if (gameObject.TryGetComponent(out impl) == false)
+                {
+                    impl = (Shaker_I)gameObject.AddComponent(ImplFinder.GetImplementationType<Shaker_I>());
+                }
+            }
 		}
 
 		/// <summary>

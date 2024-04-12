@@ -13,34 +13,30 @@ namespace WeaverCore.Assets.Components
     {
         //static RaycastHit2D[] hitCache = new RaycastHit2D[8];
 
-        static List<Renderer> validObjects = new List<Renderer>();
-        static List<Renderer> invalidObjects = new List<Renderer>();
+        //static System.Collections.Generic.List<Renderer> validObjects = new System.Collections.Generic.List<Renderer>();
+        //static System.Collections.Generic.List<Renderer> invalidObjects = new System.Collections.Generic.List<Renderer>();
 
         [SerializeField]
         ObjectReflector reflector;
 
         [SerializeField]
-        [Tooltip("The gameobject layers to include in reflection")]
-        LayerMask collisionLayers;
-
-        [SerializeField]
         [Tooltip("The names of all objects to exclude from reflection")]
-        List<string> excludedObjects = new List<string>();
+        System.Collections.Generic.List<string> excludedObjects = new System.Collections.Generic.List<string>();
 
         [SerializeField]
         [Tooltip("A list of tags to exclude from reflection")]
-        List<string> excludedTags = new List<string>();
+        System.Collections.Generic.List<string> excludedTags = new System.Collections.Generic.List<string>();
 
-        BoxCollider2D _collider;
+        //BoxCollider2D _collider;
         //HashSet<GameObject> addedObjects = new HashSet<GameObject>();
 
-        private void Awake()
+        /*Zprivate void Awake()
         {
             _collider = GetComponent<BoxCollider2D>();
             _collider.enabled = false;
-        }
+        }*/
 
-        private void FixedUpdate()
+        /*private void FixedUpdate()
         {
             DoRaycast();
         }
@@ -97,6 +93,22 @@ namespace WeaverCore.Assets.Components
                     DoRaycast();
                 }
             }
+        }*/
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (reflector != null)
+            {
+                if (!excludedObjects.Contains(collision.gameObject.name) && !excludedTags.Contains(collision.gameObject.tag))
+                {
+                    reflector.AddObjectToReflect(collision.gameObject);
+                }
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            reflector.RemoveObjectToReflect(collision.gameObject);
         }
     }
 }

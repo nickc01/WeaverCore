@@ -2,7 +2,7 @@
 
 namespace GlobalEnums
 {
-	public enum HeroTransitionState
+    public enum HeroTransitionState
 	{
 		WAITING_TO_TRANSITION,
 		EXITING_SCENE,

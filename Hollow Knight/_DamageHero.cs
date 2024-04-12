@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class DamageHero : MonoBehaviour
 {
 	private void OnEnable()

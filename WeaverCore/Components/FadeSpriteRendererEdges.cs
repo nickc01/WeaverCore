@@ -4,6 +4,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
     [RequireComponent(typeof(SpriteRenderer))]
 	public class FadeSpriteRendererEdges : MonoBehaviour
 	{

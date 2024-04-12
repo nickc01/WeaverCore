@@ -4,6 +4,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Assets.Components
 {
+
     public class ShadeGatePushEffect : MonoBehaviour
     {
         [SerializeField]

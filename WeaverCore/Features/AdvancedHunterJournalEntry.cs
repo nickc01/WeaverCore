@@ -4,6 +4,8 @@ using WeaverCore.Settings;
 
 namespace WeaverCore.Features
 {
+
+
     /// <summary>
     /// A more advanced hunter's journal entry that uses translation keys
     /// </summary>

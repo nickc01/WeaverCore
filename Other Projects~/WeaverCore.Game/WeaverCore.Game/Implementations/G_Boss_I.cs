@@ -35,7 +35,7 @@ namespace WeaverCore.Game.Implementations
             {
                 get
                 {
-                    return BossSceneController.Instance != null;
+                    return BossSequenceController.IsInSequence;
                 }
             }
 

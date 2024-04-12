@@ -15,7 +15,7 @@ namespace WeaverCore.Editor.Implementations
 {
 	public class E_UnboundCoroutine_I : UnboundCoroutine_I
 	{
-		static List<EditorCoroutine> coroutines = new List<EditorCoroutine>();
+		static System.Collections.Generic.List<EditorCoroutine> coroutines = new System.Collections.Generic.List<EditorCoroutine>();
 
 		static double previousTime = -1.0;
 		static double currentTime = -1.0;

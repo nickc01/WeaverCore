@@ -129,7 +129,7 @@ namespace WeaverCore.Utilities
         [OnFeatureLoad(priority: int.MinValue)]
         static void OnCharmLoad(IWeaverCharm charm)
         {
-            WeaverLog.Log($"LOADING CHARM {charm.GetType()}");
+            //sWeaverLog.Log($"LOADING CHARM {charm.GetType()}");
 
             if (disabledCharms.Contains(charm))
             {

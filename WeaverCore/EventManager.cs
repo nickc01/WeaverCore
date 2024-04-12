@@ -62,7 +62,7 @@ namespace WeaverCore
         /// </summary>
         public static event EventTriggeredDelegate OnEventTriggered;
 
-        List<(string eventName, Action<string, GameObject> source)> eventSpecificHooks = new List<(string eventName, Action<string, GameObject> source)>();
+        System.Collections.Generic.List<(string eventName, Action<string, GameObject> source)> eventSpecificHooks = new System.Collections.Generic.List<(string eventName, Action<string, GameObject> source)>();
 
         /// <summary>
         /// Executes an action whenever an event with the specified <paramref name="name"/> is received

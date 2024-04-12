@@ -28,7 +28,7 @@ namespace WeaverCore.Inventory
         [SerializeField]
         AudioClip uiChangeSelectionClip;
 
-        List<ColorFader> faders = new List<ColorFader>();
+        System.Collections.Generic.List<ColorFader> faders = new System.Collections.Generic.List<ColorFader>();
 
         [SerializeField]
         float uiChangeSelectionVolume = 0.75f;

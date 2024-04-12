@@ -659,7 +659,7 @@ namespace WeaverCore.Assets.Components
 								PlayerData.instance.SetInt("respawnType", 1);
 								PlayerData.instance.SetBool("respawnFacingRight", facingRight);
 								GameManager.instance.SetCurrentMapZoneAsRespawn();
-								WeaverLog.Log("SETTING RESPAWN POINT!!!");
+								//WeaverLog.Log("SETTING RESPAWN POINT!!!");
 							}
 
 							yield return new WaitForSeconds(0.1f);

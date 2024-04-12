@@ -25,11 +25,11 @@ namespace WeaverCore.Assets.Components
 		[SerializeField]
 		TMP_Dropdown snapshotDropdown;
 
-		//Mixer groups that audio sources can be isolated to
-		List<AudioMixerGroup> MixerGroups;
+        //Mixer groups that audio sources can be isolated to
+        System.Collections.Generic.List<AudioMixerGroup> MixerGroups;
 
-		//Snapshots that can affect one or multiple different mixer groups
-		List<AudioMixerSnapshot> Snapshots;
+        //Snapshots that can affect one or multiple different mixer groups
+        System.Collections.Generic.List<AudioMixerSnapshot> Snapshots;
 
 		void Start()
 		{
@@ -46,14 +46,14 @@ namespace WeaverCore.Assets.Components
 		}
 
 
-		static List<TMP_Dropdown.OptionData> ToOptions<T>(List<T> values)
+		static System.Collections.Generic.List<TMP_Dropdown.OptionData> ToOptions<T>(System.Collections.Generic.List<T> values)
 		{
 			return ToOptions(values, v => v.ToString());
 		}
 
-		static List<TMP_Dropdown.OptionData> ToOptions<T>(List<T> values, Func<T,string> predicate)
+		static System.Collections.Generic.List<TMP_Dropdown.OptionData> ToOptions<T>(System.Collections.Generic.List<T> values, Func<T,string> predicate)
 		{
-			List<TMP_Dropdown.OptionData> Options = new List<TMP_Dropdown.OptionData>();
+            System.Collections.Generic.List<TMP_Dropdown.OptionData> Options = new System.Collections.Generic.List<TMP_Dropdown.OptionData>();
 
 			for (int i = 0; i < values.Count; i++)
 			{

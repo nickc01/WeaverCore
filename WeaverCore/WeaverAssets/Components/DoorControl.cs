@@ -28,6 +28,9 @@ namespace WeaverCore.Assets.Components
 
         WeaverArrowPrompt prompt;
 
+        [field: SerializeField]
+        public bool PromptAtZeroZ { get; private set; } = true;
+
         bool started = false;
 
         public UnityEvent<string> OnEnter = new UnityEvent<string>();
@@ -92,6 +95,10 @@ namespace WeaverCore.Assets.Components
                 yield return new WaitUntil(() => PlayerInRange);
 
                 prompt = WeaverArrowPrompt.Spawn(gameObject, promptMarker.transform.position);
+                if (!PromptAtZeroZ)
+                {
+                    prompt.transform.SetPositionZ(transform.position.z);
+                }
                 if (PromptLabel.StartsWith("LANGKEY:"))
                 {
                     prompt.SetLabelTextLang(PromptLabel.Substring(8));

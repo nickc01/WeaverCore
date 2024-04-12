@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: dream_catcher_01
+  m_Controller: {fileID: 9100000, guid: 35d0fafcd790be14bb4ac4c7a529f639, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a9ebe080caa02e249b6fb7b938cdbbd7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9834bd0ffc106604c870cf50c444a5f7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b51decd73174e3543a616172f8e4ee32, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bd98dd6eee4ec17449a82e5787785c15, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: eabf94e697f348740b80c18301327ac9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9e4265f0c8c99354e9842fd5625ccd68, type: 2}

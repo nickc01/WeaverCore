@@ -104,7 +104,7 @@ namespace WeaverCore.Editor.Compilation
         /// <summary>
         /// Used to modify which asset bundles get injected into which assemblies.
         /// </summary>
-        public virtual void ChangeBundleAssemblyPairings(Dictionary<string, AssemblyName> bundleToAssemblyPairings, List<AssemblyName> assemblyNames)
+        public virtual void ChangeBundleAssemblyPairings(Dictionary<string, AssemblyName> bundleToAssemblyPairings, System.Collections.Generic.List<AssemblyName> assemblyNames)
         {
 
         }

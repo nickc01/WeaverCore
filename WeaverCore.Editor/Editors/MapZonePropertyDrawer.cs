@@ -17,8 +17,8 @@ public class MapZonePropertyDrawer : PropertyDrawer
     {
         if (_mapZoneIndexes == null)
         {
-            var mapZoneIndexList = new List<int>();
-            var mapZoneNameList = new List<string>();
+            var mapZoneIndexList = new System.Collections.Generic.List<int>();
+            var mapZoneNameList = new System.Collections.Generic.List<string>();
 
             foreach (var val in Enum.GetValues(typeof(MapZone)))
             {

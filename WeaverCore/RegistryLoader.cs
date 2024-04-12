@@ -19,7 +19,7 @@ namespace WeaverCore
     {
         static HashSet<Assembly> LoadedAssemblies = new HashSet<Assembly>();
 
-        static Dictionary<Assembly, List<AssetBundle>> loadedBundles = new Dictionary<Assembly, List<AssetBundle>>();
+        static Dictionary<Assembly, System.Collections.Generic.List<AssetBundle>> loadedBundles = new Dictionary<Assembly, System.Collections.Generic.List<AssetBundle>>();
 
         /// <summary>
         /// Loads all Registries that are a part of the specified mod
@@ -100,7 +100,7 @@ namespace WeaverCore
             {
                 if (assembly != typeof(WeaverMod).Assembly)
                 {
-                    results = new List<AssetBundle>();
+                    results = new System.Collections.Generic.List<AssetBundle>();
                     foreach (var name in assembly.GetManifestResourceNames())
                     {
                         if (name.EndsWith(extension))
@@ -153,7 +153,7 @@ namespace WeaverCore
                 }
             }
 
-            return new List<AssetBundle>();
+            return new System.Collections.Generic.List<AssetBundle>();
         }
 
         /// <summary>

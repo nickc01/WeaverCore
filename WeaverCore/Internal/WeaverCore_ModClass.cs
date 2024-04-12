@@ -24,12 +24,12 @@ namespace WeaverCore.Internal
 
         public override string GetVersion()
         {
-            return "2.1.0.1";
+            return "2.2.0.0";
         }
 
-        public override List<(string, string)> GetPreloadNames()
+        public override System.Collections.Generic.List<(string, string)> GetPreloadNames()
         {
-            return new List<(string, string)>
+            return new System.Collections.Generic.List<(string, string)>
             {
                 ("GG_Workshop", "GG_Statue_Mage_Knight"),/*,
                 ("End_Game_Completion", "credits object")*/

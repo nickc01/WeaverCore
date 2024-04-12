@@ -18,9 +18,9 @@ public class FieldUpdaterEditor : Editor
         Remove
     };
 
-    static List<Type> _allTypes;
+    static System.Collections.Generic.List<Type> _allTypes;
 
-    static List<Type> AllTypes => _allTypes ??= AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).Where(t => typeof(Component).IsAssignableFrom(t) && !t.ContainsGenericParameters).ToList();
+    static System.Collections.Generic.List<Type> AllTypes => _allTypes ??= AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).Where(t => typeof(Component).IsAssignableFrom(t) && !t.ContainsGenericParameters).ToList();
 
     Vector2 typeSelectScrollPos = default;
     float typeSelectMaxScrollSize = 200f;
@@ -30,7 +30,7 @@ public class FieldUpdaterEditor : Editor
 
     string typeString = "";
     Type selectedType;
-    List<MemberInfo> members;
+    System.Collections.Generic.List<MemberInfo> members;
 
     string memberString = "";
     MemberInfo selectedMember;
@@ -47,7 +47,7 @@ public class FieldUpdaterEditor : Editor
 
     int CheckReservedObjects()
     {
-        List<string> validGUIDs = new List<string>();
+        System.Collections.Generic.List<string> validGUIDs = new System.Collections.Generic.List<string>();
         foreach (var field in GetAll())
         {
             if (field.FieldValueJson.StartsWith("GUID"))
@@ -288,7 +288,7 @@ public class FieldUpdaterEditor : Editor
                 {
                     typeString = type.FullName;
                     selectedType = type;
-                    members = new List<MemberInfo>();
+                    members = new System.Collections.Generic.List<MemberInfo>();
                     HashSet<string> addedFields = new HashSet<string>();
 
                     var currentType = selectedType;
@@ -602,7 +602,7 @@ public class FieldUpdaterEditor : Editor
         }
     }
 
-    static List<Type> displayableTypes = new List<Type>
+    static System.Collections.Generic.List<Type> displayableTypes = new System.Collections.Generic.List<Type>
     {
         typeof(bool),
         typeof(Bounds),

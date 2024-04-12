@@ -92,7 +92,7 @@ namespace WeaverCore.Components
         private CollisionType hitType;
 
         [NonSerialized]
-        private List<ParticleSystem> particles = new List<ParticleSystem>();
+        private System.Collections.Generic.List<ParticleSystem> particles = new System.Collections.Generic.List<ParticleSystem>();
 
         [NonSerialized]
         private float speed = 1f;

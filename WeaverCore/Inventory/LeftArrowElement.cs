@@ -10,7 +10,7 @@ namespace WeaverCore.Inventory
     {
         [SerializeField]
         [Tooltip("The element to go to when on a right input")]
-        InventoryElement OnRight;
+        public InventoryElement OnRight;
 
         //public UnityEvent OnMovePaneL;
 

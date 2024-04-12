@@ -11,7 +11,7 @@ namespace WeaverCore.Assets.Components
     /// </summary>
     public class MantisShot : MonoBehaviour
     {
-        static CachedPrefab<MantisShot> prefab = new CachedPrefab<MantisShot>();
+        static CachedPrefab<MantisShot> cachedPrefab = new CachedPrefab<MantisShot>();
 
         BoxCollider2D _mainCollider;
         public BoxCollider2D MainCollider => _mainCollider ??= GetComponent<BoxCollider2D>();
@@ -118,14 +118,19 @@ namespace WeaverCore.Assets.Components
         /// <param name="velocity">The starting velocity of the mantis shot</param>
         /// <param name="playLaunchSound">If set to true, will play a sound when it is launched</param>
         /// <returns></returns>
-        public static MantisShot Spawn(Vector3 position, Vector2 velocity, bool playLaunchSound = true)
+        public static MantisShot Spawn(Vector3 position, Vector2 velocity, bool playLaunchSound = true, MantisShot prefab = null)
         {
-            if (prefab.Value == null)
+            if (cachedPrefab.Value == null)
             {
-                prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Mantis Shot").GetComponent<MantisShot>();
+                cachedPrefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Mantis Shot").GetComponent<MantisShot>();
             }
 
-            var instance = Pooling.Instantiate(prefab.Value, position, Quaternion.identity);
+            if (prefab == null)
+            {
+                prefab = MantisShot.cachedPrefab.Value;
+            }
+
+            var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
             instance.RB.velocity = velocity;
             instance.PlaySound = playLaunchSound;
             instance.Audio.AudioSource.volume = 1f;

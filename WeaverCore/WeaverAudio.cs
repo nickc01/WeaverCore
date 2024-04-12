@@ -8,6 +8,8 @@ using WeaverCore.Utilities;
 using WeaverCore.Implementations;
 using WeaverCore.Enums;
 using WeaverCore.Attributes;
+using WeaverCore.Components;
+using System.Collections;
 
 namespace WeaverCore
 {
@@ -76,21 +78,44 @@ namespace WeaverCore
 			if (clip != null)
 			{
 				audioObject.AudioSource.Play();
-				audioObject.Delete(clip.length);
+				audioObject.Delete(() => !audioObject.AudioSource.isPlaying);
+				//audioObject.Delete(clip.length);
 			}
 
 			return audioObject;
 		}
 
-		/// <summary>
-		/// Plays a clip forever untill it's manually destroyed
-		/// </summary>
-		/// <param name="clip">The clip to play</param>
-		/// <param name="position">The position to play at</param>
-		/// <param name="volume">How loud the player will be</param>
-		/// <param name="channel">What audio channel the player will be playing under</param>
-		/// <returns>The player that is playing the audio</returns>
-		public static AudioPlayer PlayAtPointLooped(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
+        /// <summary>
+        /// Plays a clip at the specified point. Automatically deletes itself when the clip is done playing. For more control, refer to <see cref="Create(AudioClip, Vector3, float, AudioChannel)"/>
+        /// </summary>
+        /// <param name="clip">The clip to play</param>
+        /// <param name="position">The position to play at</param>
+        /// <param name="volume">How loud the player will be</param>
+        /// <param name="channel">What audio channel the player will be playing under</param>
+        /// <returns>The player that is playing the audio</returns>
+        public static AudioPlayer PlayAtPointDelayed(float delay, AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
+        {
+            var audioObject = Create(clip, position, volume, channel);
+            if (clip != null)
+            {
+				audioObject.AudioSource.PlayDelayed(delay);
+				var time = Time.time;
+                audioObject.Delete(() => Time.time >= time + delay && !audioObject.AudioSource.isPlaying);
+                //audioObject.Delete(delay + clip.length);
+            }
+
+            return audioObject;
+        }
+
+        /// <summary>
+        /// Plays a clip forever untill it's manually destroyed
+        /// </summary>
+        /// <param name="clip">The clip to play</param>
+        /// <param name="position">The position to play at</param>
+        /// <param name="volume">How loud the player will be</param>
+        /// <param name="channel">What audio channel the player will be playing under</param>
+        /// <returns>The player that is playing the audio</returns>
+        public static AudioPlayer PlayAtPointLooped(AudioClip clip, Vector3 position, float volume = 1.0f, AudioChannel channel = AudioChannel.Sound)
 		{
 			var audioObject = Create(clip, position, volume, channel);
 			audioObject.AudioSource.loop = true;
@@ -150,5 +175,78 @@ namespace WeaverCore
 		{
 			return Impl.GetMixerForChannel(channel);
 		}
-	}
+
+        public static void AddVolumeDistanceControl(AudioPlayer audio, Vector2 volumeRange)
+		{
+			AddVolumeDistanceControl(audio, Player.Player1.transform, volumeRange);
+		}
+
+
+        public static void AddVolumeDistanceControl(AudioPlayer audio, Transform target, Vector2 volumeRange)
+		{
+
+			if (volumeRange.x > volumeRange.y)
+			{
+				var temp = volumeRange.x;
+                volumeRange.x = volumeRange.y;
+                volumeRange.y = temp;
+			}
+
+			if (audio != null && !audio.IsInPool && audio.AudioSource != null && audio.isActiveAndEnabled)
+			{
+                var distance = Vector2.Distance(target.position, audio.AudioSource.transform.position);
+
+                audio.AudioSource.volume = 1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance);
+
+                UnboundCoroutine.Start(DistanceVolumeControlRoutine(audio, target, volumeRange));
+			}
+		}
+
+		static IEnumerator DistanceVolumeControlRoutine(AudioPlayer audio, Transform target, Vector2 volumeRange)
+		{
+			while (true)
+			{
+				if (audio == null || !audio.isActiveAndEnabled || audio.IsInPool || audio.AudioSource == null)
+				{
+					break;
+				}
+
+				var distance = Vector2.Distance(target.position, audio.AudioSource.transform.position);
+
+				audio.AudioSource.volume = 1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance);
+
+				yield return null;
+			}
+
+			//WeaverLog.Log("DISTANCE STUFF DONE");
+		}
+
+		public static float MasterVolume => Impl.MasterVolume;
+		public static float MusicVolume => Impl.MusicVolume;
+		public static float SoundVolume => Impl.SoundsVolume;
+
+		public static event Action<float> OnMasterVolumeUpdate
+		{
+			add => Impl.OnMasterVolumeUpdate += value;
+			remove => Impl.OnMasterVolumeUpdate -= value;
+		}
+
+		public static event Action<float> OnMusicVolumeUpdate
+        {
+            add => Impl.OnMusicVolumeUpdate += value;
+            remove => Impl.OnMusicVolumeUpdate -= value;
+        }
+
+        public static event Action<float> OnSoundVolumeUpdate
+        {
+            add => Impl.OnSoundVolumeUpdate += value;
+            remove => Impl.OnSoundVolumeUpdate -= value;
+        }
+
+		public static event Action<bool> OnPauseStateUpdate
+		{
+            add => Impl.OnPauseStateUpdate += value;
+            remove => Impl.OnPauseStateUpdate -= value;
+        }
+    }
 }

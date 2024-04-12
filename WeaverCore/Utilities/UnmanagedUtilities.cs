@@ -6,6 +6,8 @@ using System.Reflection;
 using WeaverCore.Attributes;
 using System.Text;
 using System.IO;
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.Collections;
 
 namespace WeaverCore.Utilities
 {
@@ -167,6 +169,47 @@ namespace WeaverCore.Utilities
                 }
                 return assemblyNames;
             }
+        }
+
+        public static unsafe IntPtr Malloc(long size, int alignment, Allocator allocator)
+        {
+            return (IntPtr)UnsafeUtility.Malloc(size, alignment, allocator);
+        }
+
+        public static unsafe IntPtr Malloc<T>(long size, Allocator allocator) where T : struct
+        {
+            return Malloc(size, UnsafeUtility.AlignOf<T>(), allocator);
+        }
+
+        public static unsafe void Free(IntPtr ptr, Allocator allocator)
+        {
+            UnsafeUtility.Free((void*)ptr, allocator);
+        }
+
+        public static unsafe byte IndexPtr(IntPtr ptr, int index)
+        {
+            return ((byte*)ptr)[index];
+        }
+
+        public static unsafe ref T IndexPtr<T>(IntPtr ptr, int index) where T : unmanaged
+        {
+            return ref ((T*)ptr)[index];
+        }
+
+        public static unsafe IntPtr GetNativeArrayPtr<T>(NativeArray<T> val) where T : struct
+        {
+            return (IntPtr)NativeArrayUnsafeUtility.GetUnsafeBufferPointerWithoutChecks(val);
+        }
+
+        public static unsafe T GetValueInRawArray<T>(IntPtr ptr, int byteIndex) where T : unmanaged
+        {
+            return *(T*)((byte*)ptr)[byteIndex];
+        }
+
+        public static unsafe void SetValueInRawArray<T>(IntPtr ptr, int byteIndex, T value) where T : unmanaged
+        {
+            *(T*)(((byte*)ptr)[byteIndex]) = value;
+            //return *(T*)((byte*)ptr)[byteIndex];
         }
     }
 }

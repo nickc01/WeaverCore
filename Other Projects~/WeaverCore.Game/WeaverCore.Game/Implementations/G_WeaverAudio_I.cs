@@ -26,15 +26,79 @@ namespace WeaverCore.Game.Implementations
 		public override AudioMixerGroup Master => _master;
 
 		static AudioMixerGroup _sounds;
-		public override AudioMixerGroup Sounds => _sounds;
 
-		[OnInit]
+		public static event Action<float> Internal_OnMasterVolumeUpdate;
+		public static event Action<float> Internal_OnMusicVolumeUpdate;
+		public static event Action<float> Internal_OnSoundVolumeUpdate;
+		public static event Action<bool> Internal_OnPauseStateUpdate;
+
+        public override event Action<float> OnMasterVolumeUpdate
+		{
+			add => Internal_OnMasterVolumeUpdate += value;
+			remove => Internal_OnMasterVolumeUpdate -= value;
+		}
+
+        public override event Action<float> OnMusicVolumeUpdate
+        {
+            add => Internal_OnMusicVolumeUpdate += value;
+            remove => Internal_OnMusicVolumeUpdate -= value;
+        }
+
+        public override event Action<float> OnSoundVolumeUpdate
+        {
+            add => Internal_OnSoundVolumeUpdate += value;
+            remove => Internal_OnSoundVolumeUpdate -= value;
+        }
+
+        public override event Action<bool> OnPauseStateUpdate
+        {
+            add => Internal_OnPauseStateUpdate += value;
+            remove => Internal_OnPauseStateUpdate -= value;
+        }
+
+        public override AudioMixerGroup Sounds => _sounds;
+
+		public override float MasterVolume => GameManager.instance.gameSettings.masterVolume / 10f;
+
+        public override float MusicVolume => GameManager.instance.gameSettings.musicVolume / 10f;
+
+        public override float SoundsVolume => GameManager.instance.gameSettings.soundVolume / 10f;
+
+        [OnInit]
 		static void Init()
 		{
 			UnboundCoroutine.Start(ScanForMixers());
+            On.MenuAudioSlider.SetMasterLevel += MenuAudioSlider_SetMasterLevel;
+            On.MenuAudioSlider.SetMusicLevel += MenuAudioSlider_SetMusicLevel;
+            On.MenuAudioSlider.SetSoundLevel += MenuAudioSlider_SetSoundLevel;
+            On.GameManager.SetState += GameManager_SetState;
 		}
 
-		static IEnumerator ScanForMixers()
+        private static void GameManager_SetState(On.GameManager.orig_SetState orig, GameManager self, GlobalEnums.GameState newState)
+        {
+			orig(self, newState);
+			Internal_OnPauseStateUpdate?.Invoke(newState == GlobalEnums.GameState.PAUSED);
+        }
+
+        private static void MenuAudioSlider_SetSoundLevel(On.MenuAudioSlider.orig_SetSoundLevel orig, MenuAudioSlider self, float soundLevel)
+        {
+            orig(self, soundLevel);
+            Internal_OnSoundVolumeUpdate?.Invoke(soundLevel / 10f);
+        }
+
+        private static void MenuAudioSlider_SetMusicLevel(On.MenuAudioSlider.orig_SetMusicLevel orig, MenuAudioSlider self, float musicLevel)
+        {
+            orig(self, musicLevel);
+            Internal_OnMusicVolumeUpdate?.Invoke(musicLevel / 10f);
+        }
+
+        private static void MenuAudioSlider_SetMasterLevel(On.MenuAudioSlider.orig_SetMasterLevel orig, MenuAudioSlider self, float masterLevel)
+        {
+			orig(self, masterLevel);
+            Internal_OnMasterVolumeUpdate?.Invoke(masterLevel / 10f);
+        }
+
+        static IEnumerator ScanForMixers()
 		{
 			yield return null;
 			foreach (var audioSource in GameObject.FindObjectsOfType<AudioSource>())

@@ -45,6 +45,7 @@ namespace WeaverCore.Game.Implementations
         InventoryElement elementTargetOverride = null;
 
         bool firstStartup = false;
+        bool changing = false;
 
         public override Vector3 GetCursorPosition()
         {
@@ -419,7 +420,7 @@ namespace WeaverCore.Game.Implementations
         private void InputManager_OnDownEvent()
         {
             //WeaverLog.Log("D CURRENT STATE = " + uiFSM.ActiveStateName);
-            if (uiFSM.ActiveStateName == mainInputState.Name)
+            if (uiFSM.ActiveStateName == mainInputState.Name && !changing)
             {
                 //WeaverLog.Log("D FINDING ELEMENT");
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Down));
@@ -429,7 +430,7 @@ namespace WeaverCore.Game.Implementations
         private void InputManager_OnUpEvent()
         {
             //WeaverLog.Log("U CURRENT STATE = " + uiFSM.ActiveStateName);
-            if (uiFSM.ActiveStateName == mainInputState.Name)
+            if (uiFSM.ActiveStateName == mainInputState.Name && !changing)
             {
                 //WeaverLog.Log("U FINDING ELEMENT");
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Up));
@@ -439,7 +440,7 @@ namespace WeaverCore.Game.Implementations
         private void InputManager_OnRightEvent()
         {
             //WeaverLog.Log("R CURRENT STATE = " + uiFSM.ActiveStateName);
-            if (uiFSM.ActiveStateName == mainInputState.Name)
+            if (uiFSM.ActiveStateName == mainInputState.Name && !changing)
             {
                 // WeaverLog.Log("R FINDING ELEMENT");
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Right));
@@ -449,7 +450,7 @@ namespace WeaverCore.Game.Implementations
         private void InputManager_OnLeftEvent()
         {
             // WeaverLog.Log("L CURRENT STATE = " + uiFSM.ActiveStateName);
-            if (uiFSM.ActiveStateName == mainInputState.Name)
+            if (uiFSM.ActiveStateName == mainInputState.Name && !changing)
             {
                 //WeaverLog.Log("L FINDING ELEMENT");
                 HighlightElement(FindNextElement(highlightedElement, InventoryElement.MoveDirection.Left));
@@ -664,6 +665,37 @@ namespace WeaverCore.Game.Implementations
             }
         }
 
+        IEnumerator ChangeElementRoutine(InventoryElement from, InventoryElement to)
+        {
+            try
+            {
+                yield return MainPanel.OnChangeElement(from, to);
+
+                if (uiFSM.ActiveStateName != mainInputState.Name)
+                {
+                    elementTargetOverride = to;
+                    inventoryFSM.SetState(mainInputState.Name);
+                    yield break;
+                }
+
+                var prevHighlightedElement = highlightedElement;
+                highlightedElement = to;
+
+                if (prevHighlightedElement != null)
+                {
+                    prevHighlightedElement.OnUnHighlight();
+                }
+
+                highlightedElement.OnHighlight();
+
+                cursor.MoveTo(highlightedElement);
+            }
+            finally
+            {
+                changing = false;
+            }
+        }
+
         public override void HighlightElement(InventoryElement element)
         {
             //WeaverLog.Log("TRYING TO HIGHLIGHT ELEMENT = " + element);
@@ -673,83 +705,29 @@ namespace WeaverCore.Game.Implementations
                 return;
             }
 
+            changing = true;
 
-            /*if (element == null)
-            {
-                WeaverLog.Log("TRYING TO HIGHLIGHT ELEMENT = " + "null");
-            }
-            else
-            {
-                WeaverLog.Log("TRYING TO HIGHLIGHT ELEMENT = " + element.name);
-            }*/
+            StartCoroutine(ChangeElementRoutine(HighlightedElement, element));
 
-            //WeaverLog.Log("H CURRENT STATE = " + inventoryFSM.ActiveStateName);
-            //WeaverLog.Log("MAIN INPUT STATE = " + mainInputState.Name);
 
-            if (uiFSM.ActiveStateName != mainInputState.Name)
+            /*if (uiFSM.ActiveStateName != mainInputState.Name)
             {
                 elementTargetOverride = element;
                 inventoryFSM.SetState(mainInputState.Name);
                 return;
             }
 
-            /*if (element is LeftArrowElement)
+            var prevHighlightedElement = highlightedElement;
+            highlightedElement = element;
+
+            if (prevHighlightedElement != null)
             {
-                var prevHighlightedElement = highlightedElement;
-                highlightedElement = element;
-
-                if (prevHighlightedElement != null)
-                {
-                    prevHighlightedElement.OnUnHighlight();
-                }
-
-                highlightedElement.OnHighlight();
-
-                //uiFSM.SetState(lArrowState.Name);
-                //uiFSM.SendEvent("GOTO LEFT ARROW");
-                uiFSM.Fsm.DelayedEvent(FsmEvent.GetFsmEvent("GOTO LEFT ARROW"), 1f / 60f);
-                //StartCoroutine(SendEventAfterDelay(uiFSM, "GOTO LEFT ARROW"));
-                //cursorFSM.GetGameObjectVariable("Item").Value = actualLeftArrow;
-                //cursorFSM.SendEvent("UPDATE CURSOR");
+                prevHighlightedElement.OnUnHighlight();
             }
-            else if (element is RightArrowElement)
-            {
-                var prevHighlightedElement = highlightedElement;
-                highlightedElement = element;
 
-                if (prevHighlightedElement != null)
-                {
-                    prevHighlightedElement.OnUnHighlight();
-                }
+            highlightedElement.OnHighlight();
 
-                highlightedElement.OnHighlight();
-
-                //uiFSM.SetState(rArrowState.Name);
-                //uiFSM.SendEvent("GOTO RIGHT ARROW");
-                uiFSM.Fsm.DelayedEvent(FsmEvent.GetFsmEvent("GOTO RIGHT ARROW"), 1f / 60f);
-                //StartCoroutine(SendEventAfterDelay(uiFSM, "GOTO RIGHT ARROW"));
-                //cursorFSM.GetGameObjectVariable("Item").Value = actualRightArrow;
-                //cursorFSM.SendEvent("UPDATE CURSOR");
-            }
-            else*/
-            {
-                var prevHighlightedElement = highlightedElement;
-                highlightedElement = element;
-
-                if (prevHighlightedElement != null)
-                {
-                    prevHighlightedElement.OnUnHighlight();
-                }
-
-                highlightedElement.OnHighlight();
-
-                //WeaverLog.Log("MOVING CURSOR TO = " + highlightedElement);
-
-                cursor.MoveTo(highlightedElement);
-
-                //cursorUpdaterFSM.GetGameObjectVariable("Item").Value = highlightedElement.gameObject;
-                //cursorUpdaterFSM.SendEvent("UPDATE CURSOR");
-            }
+            cursor.MoveTo(highlightedElement);*/
         }
 
         public override void SetStartupElement(InventoryElement element)

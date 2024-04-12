@@ -4,13 +4,14 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-	/// <summary>
-	/// Represents a simple enemy projectile. By default, this script handles:
-	/// 1. Spawning the projectile at a random scale between <see cref="scaleMin"/> and <see cref="scaleMax"/>
-	/// 2. Squashing and stretching the sprite depending on how it's moving through the air
-	/// 3. Handling collision with both the player and the environment
-	/// </summary>
-	[RequireComponent(typeof(Rigidbody2D))]
+
+    /// <summary>
+    /// Represents a simple enemy projectile. By default, this script handles:
+    /// 1. Spawning the projectile at a random scale between <see cref="scaleMin"/> and <see cref="scaleMax"/>
+    /// 2. Squashing and stretching the sprite depending on how it's moving through the air
+    /// 3. Handling collision with both the player and the environment
+    /// </summary>
+    [RequireComponent(typeof(Rigidbody2D))]
 	public abstract class EnemyProjectile : MonoBehaviour, IOnPool
 	{
 		[SerializeField]

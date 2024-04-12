@@ -245,7 +245,7 @@ namespace WeaverCore.Editor
 		}
 
 		//Attempts to find the index of a mod in the mods list. Returns -1 if not found
-		static int GetIndexOfMod(List<Type> mods, string modTypeName, string modAssemblyName)
+		static int GetIndexOfMod(System.Collections.Generic.List<Type> mods, string modTypeName, string modAssemblyName)
 		{
 			if (string.IsNullOrEmpty(modTypeName))
 			{

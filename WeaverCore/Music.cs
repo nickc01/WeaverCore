@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
+using UnityEngine;
 using UnityEngine.Audio;
 using WeaverCore.Implementations;
 
@@ -14,6 +15,52 @@ namespace WeaverCore
 	/// </summary>
 	public static class Music
 	{
+		public struct SnapshotVolumeLevels
+		{
+			public float Master;
+			public float Main;
+			public float MainAlt;
+			public float Action;
+			public float Sub;
+			public float Tension;
+			public float Extra;
+
+            public SnapshotVolumeLevels(float master, float main, float mainAlt, float action, float sub, float tension, float extra)
+            {
+                Master = master;
+                Main = main;
+                MainAlt = mainAlt;
+                Action = action;
+                Sub = sub;
+                Tension = tension;
+                Extra = extra;
+            }
+
+			public static SnapshotVolumeLevels Lerp(SnapshotVolumeLevels from, SnapshotVolumeLevels to, float t)
+			{
+				return new SnapshotVolumeLevels(
+					Mathf.Lerp(from.Master, to.Master, t),
+                    Mathf.Lerp(from.Main, to.Main, t),
+                    Mathf.Lerp(from.MainAlt, to.MainAlt, t),
+                    Mathf.Lerp(from.Action, to.Action, t),
+                    Mathf.Lerp(from.Sub, to.Sub, t),
+                    Mathf.Lerp(from.Tension, to.Tension, t),
+                    Mathf.Lerp(from.Extra, to.Extra, t));
+			}
+
+			public static SnapshotVolumeLevels operator *(SnapshotVolumeLevels from, float mult)
+			{
+				return new SnapshotVolumeLevels(
+					from.Master * mult,
+					from.Main * mult,
+					from.MainAlt * mult,
+					from.Action * mult,
+					from.Sub * mult,
+					from.Tension * mult,
+					from.Extra * mult);
+			}
+        }
+
 		public enum SnapshotType
 		{
 			Normal,
@@ -48,6 +95,126 @@ namespace WeaverCore
 			Sub,
 			Tension,
 			Extra
+		}
+
+		public static bool GetTypeForSnapshot(AudioMixerSnapshot snapshot, out SnapshotType type)
+		{
+			if (snapshot == NormalSnapshot) { type = SnapshotType.Normal; return true; }
+
+			if (snapshot == NormalAltSnapshot) { type = SnapshotType.NormalAlt; return true; }
+
+			if (snapshot == NormalSoftSnapshot) { type = SnapshotType.NormalSoft; return true; }
+
+			if (snapshot == NormalSofterSnapshot) { type = SnapshotType.NormalSofter; return true; }
+
+			if (snapshot == NormalFlangeSnapshot) { type = SnapshotType.NormalFlange; return true; }
+
+			if (snapshot == NormalFlangierSnapshot) { type = SnapshotType.NormalFlangier; return true; }
+
+			if (snapshot == ActionSnapshot) { type = SnapshotType.Action; return true; }
+
+			if (snapshot == ActionAndSubSnapshot) { type = SnapshotType.ActionAndSub; return true; }
+
+			if (snapshot == SubAreaSnapshot) { type = SnapshotType.SubArea; return true; }
+
+			if (snapshot == SilentSnapshot) { type = SnapshotType.Silent; return true; }
+
+			if (snapshot == SilentFlangeSnapshot) { type = SnapshotType.SilentFlange; return true; }
+
+			if (snapshot == OffSnapshot) { type = SnapshotType.Off; return true; }
+
+			if (snapshot == TensionOnlySnapshot) { type = SnapshotType.TensionOnly; return true; }
+
+			if (snapshot == NormalGramaphoneSnapshot) { type = SnapshotType.NormalGramaphone; return true; }
+
+			if (snapshot == ActionOnlySnapshot) { type = SnapshotType.ActionOnly; return true; }
+
+			if (snapshot == MainOnlySnapshot) { type = SnapshotType.MainOnly; return true; }
+
+			if (snapshot == HKDecline2Snapshot) { type = SnapshotType.HKDecline2; return true; }
+
+			if (snapshot == HKDecline3Snapshot) { type = SnapshotType.HKDecline3; return true; }
+
+			if (snapshot == HKDecline4Snapshot) { type = SnapshotType.HKDecline4; return true; }
+
+			if (snapshot == HKDecline5Snapshot) { type = SnapshotType.HKDecline5; return true; }
+
+			if (snapshot == HKDecline6Snapshot) { type = SnapshotType.HKDecline6; return true; }
+
+			type = SnapshotType.Normal;
+			return false;
+		}
+
+		public static SnapshotVolumeLevels GetLevelsForSnapshot(SnapshotType type)
+		{
+			switch (type)
+			{
+				case SnapshotType.Normal:
+					return new SnapshotVolumeLevels(1f, 1f, 0f, 0f, 1f, 0f, 0f);
+
+				case SnapshotType.NormalAlt:
+					return new SnapshotVolumeLevels(1f, 0f, 1f, 0f, 1f, 0f, 0f);
+
+				case SnapshotType.NormalSoft:
+					return new SnapshotVolumeLevels(1f, 0.6f, 0f, 0f, 0.6f, 0f, 0f);
+
+				case SnapshotType.NormalSofter:
+					return new SnapshotVolumeLevels(1f, 0.3f, 0f, 0f, 0.3f, 0f, 0f);
+
+				case SnapshotType.NormalFlange:
+					return new SnapshotVolumeLevels(1f, 1f, 0f, 0f, 1f, 0f, 0f);
+
+				case SnapshotType.NormalFlangier:
+					return new SnapshotVolumeLevels(1f, 1f, 0f, 0f, 1f, 0f, 0f);
+
+				case SnapshotType.Action:
+					return new SnapshotVolumeLevels(1f, 1f, 0f, 1.1f, 1f, 0f, 0f);
+
+				case SnapshotType.ActionAndSub:
+					return new SnapshotVolumeLevels(1f, 0f, 0f, 1.1f, 1f, 0f, 0f);
+
+				case SnapshotType.SubArea:
+					return new SnapshotVolumeLevels(1f, 0f, 0f, 0f, 1f, 0f, 0f);
+
+				case SnapshotType.Silent:
+					return new SnapshotVolumeLevels(1f, 0f, 0f, 0f, 0f, 0f, 0f);
+
+				case SnapshotType.SilentFlange:
+					return new SnapshotVolumeLevels(1f, 0f, 0f, 0f, 0f, 0f, 0f);
+
+				case SnapshotType.Off:
+					return new SnapshotVolumeLevels(0f, 0f, 0f, 0f, 0f, 0f, 0f);
+
+				case SnapshotType.TensionOnly:
+					return new SnapshotVolumeLevels(1f, 0f, 0f, 0f, 0f, 1f, 0f);
+
+				case SnapshotType.NormalGramaphone:
+					return new SnapshotVolumeLevels(1f, 1f, 0f, 0f, 1f, 0f, 0f);
+
+				case SnapshotType.ActionOnly:
+					return new SnapshotVolumeLevels(1f, 0f, 0f, 1f, 0f, 0f, 0f);
+
+				case SnapshotType.MainOnly:
+					return new SnapshotVolumeLevels(1f, 1f, 0f, 0f, 0f, 0f, 0f);
+
+				case SnapshotType.HKDecline2:
+					return new SnapshotVolumeLevels(1f, 1f, 0f, 1f, 0f, 0f, 0f);
+
+				case SnapshotType.HKDecline3:
+					return new SnapshotVolumeLevels(1f, 1f, 0f, 1f, 1f, 0f, 0f);
+
+				case SnapshotType.HKDecline4:
+					return new SnapshotVolumeLevels(1f, 1f, 0f, 1f, 1f, 1f, 0f);
+
+				case SnapshotType.HKDecline5:
+					return new SnapshotVolumeLevels(1f, 1f, 1f, 1f, 1f, 1f, 0f);
+
+				case SnapshotType.HKDecline6:
+					return new SnapshotVolumeLevels(1f, 1f, 1f, 1f, 1f, 1f, 1f);
+
+				default:
+					return default;
+			}
 		}
 
 		public static AudioMixerSnapshot GetSnapshot(SnapshotType type)
@@ -122,7 +289,18 @@ namespace WeaverCore
 			}
 		}
 
-		public static AudioMixerGroup GetGroup(GroupType type)
+		public static bool GetLevelsForSnapshot(AudioMixerSnapshot snapshot, out SnapshotVolumeLevels levels)
+		{
+			if (GetTypeForSnapshot(snapshot, out var type))
+			{
+				levels = GetLevelsForSnapshot(type);
+				return true;
+			}
+			levels = default;
+			return false;
+		}
+
+        public static AudioMixerGroup GetGroup(GroupType type)
 		{
 			switch (type)
 			{
@@ -203,7 +381,7 @@ namespace WeaverCore
 		/// <param name="applySnapshot">Should the snapshots in the music pack also be applied?</param>
 		public static void PlayMusicPack(MusicPack pack, float delayTime, float snapshotTransitionTime, bool applySnapshot = true)
 		{
-			AudioMixer_I.Instance.PlayMusicPack(pack, delayTime, snapshotTransitionTime, applySnapshot);
+            AudioMixer_I.Instance.PlayMusicPack(pack, delayTime, snapshotTransitionTime, applySnapshot);
 		}
 
 		/// <summary>

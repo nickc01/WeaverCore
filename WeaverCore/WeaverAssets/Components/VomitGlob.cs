@@ -53,10 +53,10 @@ namespace WeaverCore.Assets.Components
         AudioClip landSound;
 
         [SerializeField]
-        List<GameObject> enableOnLand;
+        System.Collections.Generic.List<GameObject> enableOnLand;
 
         [SerializeField]
-        List<GameObject> disableOnLand;
+        System.Collections.Generic.List<GameObject> disableOnLand;
 
         [SerializeField]
         [ExcludeFieldFromPool]
@@ -190,6 +190,8 @@ namespace WeaverCore.Assets.Components
                 WeaverAudio.PlayAtPoint(landSound, transform.position);
             }
 
+            transform.SetParent(collision.transform);
+
             foreach (var obj in enableOnLand)
             {
                 if (obj != null)
@@ -285,14 +287,20 @@ namespace WeaverCore.Assets.Components
             //damager.damageDealt = 0;
             puddleCollider.enabled = false;
 
+            var oldParent = transform.parent;
+            transform.SetParent(null, true);
+
             Vector3 oldScale = transform.localScale;
+            transform.SetParent(oldParent);
             Vector3 newScale = new Vector3(0.1f,0.1f);
 
             StartCoroutine(HaloFadeRoutine(shrinkTime, oldHaloColor, oldHaloColor.With(a: 0f)));
 
             for (float t = 0; t < shrinkTime; t += Time.deltaTime)
             {
+                transform.SetParent(null, true);
                 transform.SetLocalScaleXY(Vector2.Lerp(oldScale, newScale, t / shrinkTime));
+                transform.SetParent(oldParent);
                 yield return null;
             }
 
@@ -303,6 +311,7 @@ namespace WeaverCore.Assets.Components
 
             yield return new WaitForSeconds(1f);
 
+            transform.SetParent(null);
             Pooling.Destroy(this);
         }
 
@@ -401,6 +410,7 @@ namespace WeaverCore.Assets.Components
 
         public void OnPool()
         {
+            transform.SetParent(null);
             halo.color = oldHaloColor;
             MainRenderer.enabled = true;
             initialized = false;

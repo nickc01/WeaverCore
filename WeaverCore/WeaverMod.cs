@@ -20,7 +20,7 @@ namespace WeaverCore
     public abstract class WeaverMod : Mod
     {
 #if UNITY_EDITOR
-        static List<IMod> _loadedMods = new List<IMod>();
+        static System.Collections.Generic.List<IMod> _loadedMods = new System.Collections.Generic.List<IMod>();
 #else
         static Type modLoaderType;
         static FieldInfo loadedMods;

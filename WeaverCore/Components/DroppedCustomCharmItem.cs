@@ -12,7 +12,7 @@ namespace WeaverCore.Components
     {
         [SerializeField]
         [Tooltip("The charm to give to the player when collecting this item")]
-        WeaverCharm charm;
+        protected WeaverCharm charm;
 
         protected override void OnGiveItem()
         {

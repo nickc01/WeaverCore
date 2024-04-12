@@ -99,7 +99,7 @@ namespace WeaverCore
 			if (!WeaverCoreInitialized)
 			{
 				PerformanceLog("Starting WeaverCore");
-                WeaverCoreInitialized = true;
+				WeaverCoreInitialized = true;
 
 #if !UNITY_EDITOR
 				if (Application.isPlaying)
@@ -109,22 +109,45 @@ namespace WeaverCore
 #endif
 
 #if UNITY_EDITOR
-                PerformanceLog("Loading WeaverCore.Editor");
-                LoadAsmIfNotFound("WeaverCore.Editor");
-                PerformanceLog("Loaded WeaverCore.Editor");
+				PerformanceLog("Loading WeaverCore.Editor");
+				LoadAsmIfNotFound("WeaverCore.Editor");
+				PerformanceLog("Loaded WeaverCore.Editor");
 #else
 				PerformanceLog("Loading WeaverCore.Game");
 				LoadAsmIfNotFound("WeaverCore.Game");
 				PerformanceLog("Loaded WeaverCore.Game");
 #endif
-                ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>(GetWeaverCoreAssemblies());
+				ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>(GetWeaverCoreAssemblies());
 
 				foreach (var asm in GetWeaverCoreAssemblies())
 				{
-                    Initialization.PerformanceLog($"Patching assembly {asm.GetName().Name}");
-                    PatchAssembly(asm);
-                    Initialization.PerformanceLog($"Finished patching assembly {asm.GetName().Name}");
-                }
+					Initialization.PerformanceLog($"Patching assembly {asm.GetName().Name}");
+					PatchAssembly(asm);
+					Initialization.PerformanceLog($"Finished patching assembly {asm.GetName().Name}");
+				}
+
+				var weaverCoreAsms = GetWeaverCoreAssemblies().ToList();
+
+				var args = new object[]{ null };
+
+				foreach (var asm in weaverCoreAsms)
+				{
+					foreach (var initPair in ReflectionUtilities.GetMethodsWithAttribute<OnWeaverCoreAssemblyFoundAttribute>(asm))
+					{
+						try
+						{
+							foreach (var item in weaverCoreAsms)
+							{
+								args[0] = item;
+								initPair.Item1.Invoke(null, args);
+							}
+						}
+						catch (Exception e)
+						{
+							WeaverLog.LogError("Patch Error: " + e);
+						}
+					}
+				}
 			}
 
 			if (!WeaverCoreRuntimeInitialized && Application.isPlaying)

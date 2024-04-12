@@ -14,7 +14,7 @@ namespace WeaverCore.Settings.Elements
 	{
 		Dropdown dropdown;
 
-		List<KeyValuePair<string, object>> EnumData = new List<KeyValuePair<string, object>>();
+        System.Collections.Generic.List<KeyValuePair<string, object>> EnumData = new System.Collections.Generic.List<KeyValuePair<string, object>>();
 
 		void Awake()
 		{
@@ -42,7 +42,7 @@ namespace WeaverCore.Settings.Elements
 
 			EnumData.Clear();
 
-			List<string> OptionNames = new List<string>();
+            System.Collections.Generic.List<string> OptionNames = new System.Collections.Generic.List<string>();
 
 			foreach (var val in Enum.GetValues(type))
 			{

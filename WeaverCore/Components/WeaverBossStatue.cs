@@ -53,6 +53,9 @@ namespace WeaverCore.Components
         [SerializeField]
         string dreamBossDescSheet;
 
+        [SerializeField]
+        bool autoUnlockInGodseekerMode = true;
+
         [Space]
         [Header("Overrides")]
         [SerializeField]
@@ -75,6 +78,8 @@ namespace WeaverCore.Components
 
 
         string HookKey => settings?.name + "_WEAVER_SETTINGS_" + statueStatePD + "_SPACE_" + dreamStatueStatePD;
+
+
 
         static bool Weaver_Awake_Prefix(BossStatue __instance)
         {
@@ -132,6 +137,23 @@ namespace WeaverCore.Components
                     foreach (var glow in wbs.GetComponentsInChildren<GlowResponse>(true))
                     {
                         glow.audioPlayerPrefab = GG_Internal.AudioPlayerPrefab;
+                    }
+                }
+
+                if (PlayerData.instance.GetBool("bossRushMode") && wbs.autoUnlockInGodseekerMode)
+                {
+                    if (!string.IsNullOrEmpty(wbs.normalStatueStateField) && !wbs.StatueState.isUnlocked)
+                    {
+                        var state = wbs.StatueState;
+                        state.isUnlocked = true;
+                        wbs.StatueState = state;
+                    }
+
+                    if (!string.IsNullOrEmpty(wbs.dreamStatueStateField) && !wbs.DreamStatueState.isUnlocked)
+                    {
+                        var state = wbs.DreamStatueState;
+                        state.isUnlocked = true;
+                        wbs.DreamStatueState = state;
                     }
                 }
             }

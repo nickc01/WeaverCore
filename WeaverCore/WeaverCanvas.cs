@@ -17,6 +17,9 @@ namespace WeaverCore
 	/// </summary>
 	public class WeaverCanvas : MonoBehaviour
 	{
+		[SerializeField]
+		bool dontInitInGame = false;
+
 		static GameObject _hudBlanker;
 		static GameObject _hudBlankerWhite;
 
@@ -63,10 +66,36 @@ namespace WeaverCore
 				}
 				else
 				{
+					var instance = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+
 					var uiCanvas = GameObject.FindGameObjectWithTag("UIManager").transform.Find("UICanvas");
-					GameObject.Instantiate(prefab.transform.Find("CONTENT GOES HERE"), uiCanvas).name = "CONTENT GOES HERE";
-					GameObject.Instantiate(prefab.transform.Find("SCENE CONTENT GOES HERE"), uiCanvas).name = "SCENE CONTENT GOES HERE";
-					uiCanvas.gameObject.AddComponent<WeaverCanvas>();
+
+					var contentA = instance.transform.Find("CONTENT GOES HERE");
+					var contentB = instance.transform.Find("SCENE CONTENT GOES HERE");
+
+					var contentAPos = contentA.localPosition;
+					var contentAScale = contentA.localScale;
+					var contentARot = contentA.localRotation;
+
+                    var contentBPos = contentB.localPosition;
+                    var contentBScale = contentB.localScale;
+                    var contentBRot = contentB.localRotation;
+
+					contentA.SetParent(uiCanvas, false);
+					contentA.localPosition = contentAPos;
+					contentA.localScale = contentAScale;
+					contentA.localRotation = contentARot;
+
+                    contentB.SetParent(uiCanvas, false);
+                    contentB.localPosition = contentBPos;
+                    contentB.localScale = contentBScale;
+                    contentB.localRotation = contentBRot;
+
+                    //GameObject.Instantiate(prefab.transform.Find("CONTENT GOES HERE"), uiCanvas).name = "CONTENT GOES HERE";
+                    //GameObject.Instantiate(prefab.transform.Find("SCENE CONTENT GOES HERE"), uiCanvas).name = "SCENE CONTENT GOES HERE";
+                    uiCanvas.gameObject.AddComponent<WeaverCanvas>();
+
+					GameObject.Destroy(instance);
 				}
 			}
 		}
@@ -102,6 +131,10 @@ namespace WeaverCore
 
 		void Awake()
 		{
+			if (Initialization.Environment == Enums.RunningState.Game && dontInitInGame)
+			{
+				return;
+			}
 			Instance = this;
 			if (!hookAdded)
 			{

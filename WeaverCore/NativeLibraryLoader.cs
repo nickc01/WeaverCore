@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System;
 using System.IO;
+using static UnityEngine.Networking.UnityWebRequest;
 
 namespace WeaverCore
 {
@@ -35,13 +36,27 @@ namespace WeaverCore
         [DllImport("libdl", ExactSpelling = true)]
         public static extern int dlclose(IntPtr handle);
 
-        [DllImport("libdl")]
+        [DllImport("libdl", ExactSpelling = true)]
         public static extern string dlerror();
+
+        [DllImport("libdl.so.2", ExactSpelling = true, EntryPoint = "dlopen")]
+        public static extern IntPtr dlopenV2(string filename, int flags);
+
+        [DllImport("libdl.so.2", ExactSpelling = true, EntryPoint = "dlsym")]
+        public static extern IntPtr dlsymV2(IntPtr handle, string symbol);
+
+        [DllImport("libdl.so.2", ExactSpelling = true, EntryPoint = "dlclose")]
+        public static extern int dlcloseV2(IntPtr handle);
+
+        [DllImport("libdl.so.2", ExactSpelling = true, EntryPoint = "dlerror")]
+        public static extern string dlerrorV2();
         #endregion
 
 
         static bool osSet = false;
         static OS os;
+
+        static int linuxLoadMode = -1;
 
         public static OS GetCurrentOS()
         {
@@ -95,11 +110,45 @@ namespace WeaverCore
 
                     break;
                 default:
-                    result = dlopen(dllToLoad, 0x002);
-                    if (result == default)
+                    if (linuxLoadMode == 1)
                     {
-                        throw new Exception($"Failed to load so {dllToLoad} {dlerror()}");
+                        result = dlopen(dllToLoad, 0x002);
+                        if (result == default)
+                        {
+                            throw new Exception($"Failed to load so {dllToLoad} {dlerror()}");
+                        }
+
                     }
+                    else if (linuxLoadMode == 2)
+                    {
+                        result = dlopenV2(dllToLoad, 0x002);
+                        if (result == default)
+                        {
+                            throw new Exception($"Failed to load so {dllToLoad} {dlerror()}");
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            result = dlopen(dllToLoad, 0x002);
+                            linuxLoadMode = 1;
+                            if (result == default)
+                            {
+                                throw new Exception($"Failed to load so {dllToLoad} {dlerror()}");
+                            }
+                        }
+                        catch (DllNotFoundException)
+                        {
+                            result = dlopenV2(dllToLoad, 0x002);
+                            linuxLoadMode = 2;
+                            if (result == default)
+                            {
+                                throw new Exception($"Failed to load so {dllToLoad} {dlerror()}");
+                            }
+                        }
+                    }
+
                     break;
             }
 
@@ -113,7 +162,30 @@ namespace WeaverCore
                 case OS.Windows:
                     return GetProcAddress(handle, symbol);
                 default:
-                    return dlsym(handle, symbol);
+                    if (linuxLoadMode == 1)
+                    {
+                        return dlsym(handle, symbol);
+                    }
+                    else if (linuxLoadMode == 2)
+                    {
+                        return dlsymV2(handle, symbol);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var result = dlsym(handle, symbol);
+                            linuxLoadMode = 1;
+                            return result;
+                        }
+                        catch (DllNotFoundException)
+                        {
+                            var result = dlsymV2(handle, symbol);
+                            linuxLoadMode = 2;
+                            return result;
+                        }
+                    }
+                    //return dlsym(handle, symbol);
             }
         }
 
@@ -124,7 +196,30 @@ namespace WeaverCore
                 case OS.Windows:
                     return FreeLibrary(handle);
                 default:
-                    return dlclose(handle) == 0;
+                    if (linuxLoadMode == 1)
+                    {
+                        return dlclose(handle) == 0;
+                    }
+                    else if (linuxLoadMode == 2)
+                    {
+                        return dlcloseV2(handle) == 0;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var result = dlclose(handle) == 0;
+                            linuxLoadMode = 1;
+                            return result;
+                        }
+                        catch (DllNotFoundException)
+                        {
+                            var result = dlcloseV2(handle) == 0;
+                            linuxLoadMode = 2;
+                            return result;
+                        }
+                    }
+                    //return dlclose(handle) == 0;
             }
         }
     }

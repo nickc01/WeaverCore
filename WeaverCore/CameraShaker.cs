@@ -14,30 +14,47 @@ namespace WeaverCore
     /// </summary>
     public class CameraShaker : MonoBehaviour
 	{
-		[AfterCameraLoad(int.MinValue)]
+		/*[AfterCameraLoad(int.MinValue)]
 		static void Init()
 		{
 			if (WeaverCamera.Instance.transform.parent.GetComponent<CameraShaker>() == null)
 			{
 				WeaverCamera.Instance.transform.parent.gameObject.AddComponent<CameraShaker>();
 			}
-		}
+		}*/
 
-		public static CameraShaker Instance { get; private set; }
+		static CameraShaker _instance;
+		public static CameraShaker Instance
+		{
+			get
+			{
+				if (_instance == null)
+				{
+					_instance = WeaverCamera.Instance.transform.parent.GetComponent<CameraShaker>();
+					if (_instance == null)
+					{
+                        _instance = WeaverCamera.Instance.transform.parent.gameObject.AddComponent<CameraShaker>();
+                    }
+				}
+
+				return _instance;
+			}
+		}
 
 		Shaker_I impl;
 
 		void Awake()
 		{
-			if (Instance == null)
+			if (_instance == null)
 			{
-                Instance = this;
-                if (gameObject.TryGetComponent(out impl) == false)
-                {
-                    impl = (Shaker_I)gameObject.AddComponent(ImplFinder.GetImplementationType<Shaker_I>());
-                }
+                _instance = this;
             }
-		}
+
+            if (!gameObject.TryGetComponent(out impl))
+            {
+                impl = (Shaker_I)gameObject.AddComponent(ImplFinder.GetImplementationType<Shaker_I>());
+            }
+        }
 
 		/// <summary>
 		/// Shakes the camera

@@ -8,6 +8,16 @@ public static class TESTING_PATCHES
 {
     const bool ENABLED = false;
 
+    /*static bool InstantiatePrefix(UnityEngine.Object data)
+    {
+        //WeaverLog.Log($"INSTANTIATE PREFIX RUN, data = {data}, type = {data?.GetType().Name}");
+        if (data is ParticleSystem ps && ps.name.Contains("Acid Control"))
+        {
+            WeaverLog.Log("Instantiating object = " + ps);
+            WeaverLog.Log(new System.Diagnostics.StackTrace());
+        }
+        return true;
+    }*/
 
     [OnHarmonyPatch(-10)]
     static void OnInit(HarmonyPatcher patcher)
@@ -16,6 +26,22 @@ public static class TESTING_PATCHES
         {
             return;
         }
+
+        //WeaverLog.Log("DOING TESTING PATCHES");
+
+        /*{
+            var orig = typeof(UnityEngine.Object).GetMethod("Internal_InstantiateSingle_Injected", BindingFlags.NonPublic | BindingFlags.Static);
+            var prefix = typeof(TESTING_PATCHES).GetMethod("InstantiatePrefix", BindingFlags.NonPublic | BindingFlags.Static);
+
+            patcher.Patch(orig, prefix, null);
+        }
+
+        {
+            var orig = typeof(UnityEngine.Object).GetMethod("Internal_InstantiateSingleWithParent_Injected", BindingFlags.NonPublic | BindingFlags.Static);
+            var prefix = typeof(TESTING_PATCHES).GetMethod("InstantiatePrefix", BindingFlags.NonPublic | BindingFlags.Static);
+
+            patcher.Patch(orig, prefix, null);
+        }*/
         /*{
             var orig = typeof(Transform).GetProperty(nameof(Transform.position), BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public).GetSetMethod();
 

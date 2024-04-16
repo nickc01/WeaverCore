@@ -531,7 +531,8 @@ namespace WeaverCore.Editor.Compilation
 #if !MULTI_THREADED_EMBEDDING
 						foreach (var bundleFile in targetFolder.GetFiles())
 						{
-							if (bundleFile.Extension == "" && !bundleFile.Name.Contains("BundleBuilds"))
+                            //UnityEngine.Debug.Log("BUILT BUNDLE FILE = " + bundleFile);
+                            if (bundleFile.Extension == "" && !bundleFile.Name.Contains("BundleBuilds"))
 							{
 								builtAssetBundles.Add(new BuiltAssetBundle
 								{
@@ -655,6 +656,7 @@ namespace WeaverCore.Editor.Compilation
 
             foreach (var bundle in builtBundles.Distinct())
 			{
+				//Debug.Log("LOOKING AT BUNDLE = " + bundle.File.Name);
 				if (bundlePairs.ContainsKey(bundle.File.Name))
 				{
 					var asmName = bundlePairs[bundle.File.Name];
@@ -691,8 +693,9 @@ namespace WeaverCore.Editor.Compilation
 							}
 						}
 					}
-					catch (Exception)
+					catch (Exception e)
 					{
+						Debug.LogException(e);
 						EditorUtility.ClearProgressBar();
 						throw;
 					}
@@ -719,9 +722,9 @@ namespace WeaverCore.Editor.Compilation
             EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, weaverGameLocation.FullName, "WeaverCore.Game", compression: CompressionMethod.NoCompression);
 			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, harmonyLocation.FullName, "0Harmony", compression: CompressionMethod.NoCompression);
 
-			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityWindows.FullName, "ktx_unity.windows", compression: CompressionMethod.NoCompression);
-			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityMac.FullName, "ktx_unity.mac", compression: CompressionMethod.NoCompression);
-			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityLinux.FullName, "ktx_unity.linux", compression: CompressionMethod.NoCompression);
+			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityWindows.FullName, "ktx_unity.windows.dll", compression: CompressionMethod.NoCompression);
+			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityMac.FullName, "ktx_unity.mac.dylib", compression: CompressionMethod.NoCompression);
+			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityLinux.FullName, "ktx_unity.linux.so", compression: CompressionMethod.NoCompression);
         }
 
 		/// <summary>
@@ -739,8 +742,11 @@ namespace WeaverCore.Editor.Compilation
 
 			foreach (var registry in Data.Registries)
 			{
+				//Debug.Log("FOUND REGISTRY = " + registry);
 				var originalModName = registry.AssemblyName;
-				var assembly = assemblies.FirstOrDefault(a => a.GetName().Name == originalModName);
+                //Debug.Log("Registry Original Mod Name = " + originalModName);
+                var assembly = assemblies.FirstOrDefault(a => a.GetName().Name == originalModName);
+				//Debug.Log("Registry Assembly = " + assembly?.GetName()?.Name);
 				if (assembly != null)
 				{
 					var asmName = assembly.GetName();
@@ -750,7 +756,8 @@ namespace WeaverCore.Editor.Compilation
 						asmName.Name = replacement;
 					}
 
-					bundleToAssemblyPairs.Add(registry.AssetBundleName, asmName);
+                    //Debug.Log($"Adding Pair Key = {registry.AssetBundleName} Value = {asmName}");
+                    bundleToAssemblyPairs.Add(registry.AssetBundleName, asmName);
 
 					names.Add(asmName);
                 }

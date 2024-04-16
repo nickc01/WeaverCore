@@ -16,9 +16,15 @@ namespace WeaverCore.Game.Patches
 
         private static System.Collections.IEnumerator AcidCorpseSplash_CorpseSplash(On.AcidCorpseSplash.orig_CorpseSplash orig, AcidCorpseSplash self, UnityEngine.GameObject corpseObject)
         {
-            yield return orig(self, corpseObject);
+            var iter = orig(self, corpseObject);
 
-            if (corpseObject != null && corpseObject.GetComponent<tk2dSprite>() == null && corpseObject.TryGetComponent<SpriteRenderer>(out var sRenderer))
+            while (iter.MoveNext())
+            {
+                yield return iter.Current;
+            }
+            //yield return orig(self, corpseObject);
+
+            if (corpseObject != null && corpseObject.GetComponent<Corpse>() != null && corpseObject.GetComponent<tk2dSprite>() == null && corpseObject.TryGetComponent<SpriteRenderer>(out var sRenderer))
             {
                 Vector3 position = corpseObject.transform.position;
                 if ((bool)self.corpseDetector)

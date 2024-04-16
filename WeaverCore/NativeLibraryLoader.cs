@@ -1,7 +1,13 @@
 ﻿using System.Runtime.InteropServices;
 using System;
 using System.IO;
-using static UnityEngine.Networking.UnityWebRequest;
+using UnityEngine;
+using System.Collections.Generic;
+using WeaverCore.Utilities;
+using System.Reflection;
+using System.IO.Pipes;
+using pdj.tiny7z.Archive;
+using System.Linq;
 
 namespace WeaverCore
 {
@@ -50,6 +56,7 @@ namespace WeaverCore
 
         [DllImport("libdl.so.2", ExactSpelling = true, EntryPoint = "dlerror")]
         public static extern string dlerrorV2();
+
         #endregion
 
 
@@ -63,7 +70,24 @@ namespace WeaverCore
             if (!osSet)
             {
                 osSet = true;
-                string windir = Environment.GetEnvironmentVariable("windir");
+
+                if (SystemInfo.operatingSystem.ToLower().Contains("windows"))
+                {
+                    os = OS.Windows;
+                    //extension = ".bundle.win";
+                }
+                else if (SystemInfo.operatingSystem.ToLower().Contains("mac") || SystemInfo.operatingSystem.ToLower().Contains("apple"))
+                {
+                    os = OS.Mac;
+                    //extension = ".bundle.mac";
+                }
+                else// if (SystemInfo.operatingSystem.ToLower().Contains("Linux"))
+                {
+                    os = OS.Linux;
+                    //extension = ".bundle.unix";
+                }
+
+                /*string windir = Environment.GetEnvironmentVariable("windir");
                 if (!string.IsNullOrEmpty(windir) && windir.Contains(@"\") && Directory.Exists(windir))
                 {
                     os = OS.Windows;
@@ -89,7 +113,7 @@ namespace WeaverCore
                 else
                 {
                     throw new Exception();
-                }
+                }*/
             }
 
             return os;
@@ -97,6 +121,8 @@ namespace WeaverCore
 
         public static IntPtr Load(string dllToLoad)
         {
+            UnityEngine.Debug.Log("Attempting to load DLL = " + dllToLoad);
+            UnityEngine.Debug.Log("Current OS = " + GetCurrentOS());
             IntPtr result;
             switch (GetCurrentOS())
             {
@@ -152,11 +178,14 @@ namespace WeaverCore
                     break;
             }
 
+            UnityEngine.Debug.Log($"Loaded DLL {dllToLoad} with Handle = {result}");
+
             return result;
         }
 
         public static IntPtr GetSymbol(IntPtr handle, string symbol)
         {
+            UnityEngine.Debug.Log($"Loaded symbol {symbol} from handle = {handle}");
             switch (GetCurrentOS())
             {
                 case OS.Windows:
@@ -220,6 +249,174 @@ namespace WeaverCore
                         }
                     }
                     //return dlclose(handle) == 0;
+            }
+        }
+
+        public static string ExportDLL(string resourceName, Assembly assemblyToLoadFrom)
+        {
+            return ExportDLL(resourceName, assemblyToLoadFrom, NativeLibraryLoader.GetCurrentOS());
+        }
+
+        public static string ExportDLL(string resourceName, Assembly assemblyToLoadFrom, OS os)
+        {
+            try
+            {
+                UnityEngine.Debug.Log("Beginning Export of resource = " + resourceName);
+                UnityEngine.Debug.Log("OS = " + os);
+                Debug.Log("Assembly To Load From = " + assemblyToLoadFrom.GetName().Name);
+                string fileName = resourceName;
+                List<string> exts = new List<string>();
+                switch (os)
+                {
+                    case NativeLibraryLoader.OS.Windows:
+                        resourceName = resourceName + ".windows";
+                        exts.Add(".dll");
+                        break;
+                    case NativeLibraryLoader.OS.Mac:
+                        resourceName = resourceName + ".mac";
+                        exts.Add(".dylib");
+                        exts.Add(".bundle.7z");
+                        break;
+                    case NativeLibraryLoader.OS.Linux:
+                        resourceName = resourceName + ".linux";
+                        exts.Add(".so");
+                        break;
+                    default:
+                        break;
+                }
+
+                foreach (var ext in exts)
+                {
+                    Debug.Log("Searching for resource name = " + resourceName + ext);
+                    if (!ResourceUtilities.HasResource(resourceName + ext, assemblyToLoadFrom))
+                    {
+                        Debug.Log("Not found. Continuing");
+                        continue;
+                    }
+
+                    Debug.Log($"{resourceName + ext} found!");
+
+                    if (ext == ".bundle.7z")
+                    {
+                        Debug.Log("bundle.7z found");
+                        var tempDirectory = new DirectoryInfo(System.IO.Path.GetTempPath()).CreateSubdirectory(resourceName);
+                        Debug.Log("Temp Dir = " + tempDirectory.FullName);
+                        if (Directory.Exists(tempDirectory.FullName))
+                        {
+                            Debug.Log("Deleting and rebuilding temp dir");
+                            tempDirectory.Delete(true);
+                            tempDirectory.Create();
+                        }
+
+                        using (var zipStream = ResourceUtilities.Retrieve(resourceName + ext, assemblyToLoadFrom))
+                        {
+                            //pdj.tiny7z.Archive.SevenZipArchive test = new pdj.tiny7z.Archive.SevenZipArchive()
+                            using (var sevenZipStream = new SevenZipArchive(zipStream, FileAccess.Read))
+                            {
+                                using (var extractor = sevenZipStream.Extractor())
+                                {
+                                    extractor.ExtractArchive(tempDirectory.FullName);
+                                }
+                            }
+                        }
+
+                        Debug.Log("Extracted Bundle Contents To Directory = " + tempDirectory.FullName);
+
+                        var subDir = tempDirectory.EnumerateDirectories().FirstOrDefault();
+                        tempDirectory = subDir;
+                        /*foreach (var folder in )
+                        {
+                            Debug.Log("SUB DIR = " + folder.Name);
+
+                            if (folder.Name == resourceName + ext)
+                            {
+                                Debug.Log("Found Final Bundle Dir = " + folder.FullName);
+                                tempDirectory = folder;
+                            }
+                        }*/
+
+                        foreach (var folder in tempDirectory.EnumerateDirectories())
+                        {
+                            Debug.Log("Folder in Final = " + folder.Name);
+                        }
+
+                        foreach (var file in tempDirectory.EnumerateFiles())
+                        {
+                            Debug.Log("File in Final = " + file.Name);
+                        }
+
+                        return tempDirectory.FullName;
+                    }
+                    else
+                    {
+                        Debug.Log("bundle.7z not found");
+                        var tempDirectory = PathUtilities.AddSlash(new DirectoryInfo(System.IO.Path.GetTempPath()).FullName);
+                        Debug.Log("Temp Dir = " + tempDirectory);
+                        var fileDest = tempDirectory + fileName + ext;
+                        Debug.Log("File dest = " + fileDest);
+                        if (File.Exists(fileDest))
+                        {
+                            UnityEngine.Debug.Log("Deleting already existing file = " + fileDest);
+                            File.Delete(fileDest);
+                        }
+
+                        using (var fileStream = File.Create(fileDest))
+                        {
+                            if (!ResourceUtilities.Retrieve(resourceName + ext, fileStream, assemblyToLoadFrom))
+                            {
+                                UnityEngine.Debug.LogError("Error: Failed to retrieve resource and export it to file");
+                                return null;
+                            }
+                        }
+
+                        UnityEngine.Debug.Log("Finished Exporting = " + fileDest);
+
+                        return fileDest;
+                    }
+
+                    /*UnityEngine.Debug.Log("Beginning Exporting Resource = " + resourceName + ext);
+
+                    var tempDirectory = PathUtilities.AddSlash(new DirectoryInfo(System.IO.Path.GetTempPath()).FullName);
+
+                    UnityEngine.Debug.Log("Temp Dir = " + tempDirectory);
+
+                    var fileDest = tempDirectory + fileName + ext;
+
+                    UnityEngine.Debug.Log("Export File Dest = " + fileDest);
+
+                    if (ext != ".bundle.zip" && File.Exists(fileDest))
+                    {
+                        UnityEngine.Debug.Log("Deleting already existing file = " + fileDest);
+                        File.Delete(fileDest);
+                    }
+
+                    if (ext == ".bundle.zip" && Directory.Exists(fileDest))
+                    {
+
+                    }*/
+
+                    /*using (var fileStream = File.Create(fileDest))
+                    {
+                        if (!ResourceUtilities.Retrieve(resourceName + ext, fileStream, assemblyToLoadFrom))
+                        {
+                            UnityEngine.Debug.LogError("Error: Failed to retrieve resource and export it to file");
+                            return null;
+                        }
+                    }
+
+                    UnityEngine.Debug.Log("Finished Exporting = " + fileDest);
+
+                    return fileDest;*/
+                }
+
+                UnityEngine.Debug.Log("1: Some Error occured. Returning null");
+                return null;
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+                UnityEngine.Debug.Log("2: Some Error occured. Returning null");
+                return null;
             }
         }
     }

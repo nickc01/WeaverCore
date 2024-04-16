@@ -61,13 +61,13 @@ namespace KtxUnity
 #if UNITY_EDITOR
             ktx_unity = GetModuleHandleA("ktx_unity");
 #else
-        string ktxUnityDest = ExportDLL("ktx_unity");
+        string ktxUnityDest = NativeLibraryLoader.ExportDLL("ktx_unity", typeof(WeaverCore.WeaverAudio).Assembly);
 
         ktx_unity = NativeLibraryLoader.Load(ktxUnityDest);
 #endif
         }
 
-        static string ExportDLL(string resourceName)
+        /*static string ExportDLL(string resourceName)
         {
             string fileName = resourceName;
             string ext = "";
@@ -107,6 +107,6 @@ namespace KtxUnity
             }
 
             return fileDest;
-        }
+        }*/
     }
 } 

@@ -14,6 +14,7 @@ namespace WeaverBuildTools.Commands
 	{
 		public static void EmbedResource(string assemblyToEmbedTo, string fileToEmbed,string resourceName, string hash = null,CompressionMethod compression = CompressionMethod.Auto)
 		{
+			UnityEngine.Debug.Log($"Embedding {fileToEmbed} into {assemblyToEmbedTo} as {resourceName}");
 			using (var additionStream = File.OpenRead(fileToEmbed))
 			{
 				EmbedResource(assemblyToEmbedTo, resourceName, additionStream, HashUtilities.GetHash(additionStream), compression);

@@ -1005,6 +1005,32 @@ namespace WeaverCore.Editor.Compilation
 
                         var monoBehaviourName = monoBehaviourInst.Get("m_Name").GetValue().AsString();
 
+						void ProcessUnityEvents(AssetTypeValueField parent)
+						{
+                            for (int i = 0; i < parent.childrenCount; i++)
+							{
+								var child = parent.children[i];
+								if (child.GetName().Contains("Persistent"))
+								{
+                                    WeaverLog.Log("CHILD NAME = " + child.GetName());
+                                }
+								if (child.GetName() == "m_PersistentCalls")
+								{
+                                    //WeaverLog.Log("CHILD NAME = " + child.GetName());
+                                    WeaverLog.Log("FOUND PERSISTENT CALLS");
+								}
+							}
+
+							void Process()
+							{
+
+							}
+
+
+						}
+
+						ProcessUnityEvents(monoBehaviourInst);
+
                         var replacementPair = FontAssetContainer.sourceDestPairs.FirstOrDefault(f => f.Item2 == monoBehaviourName);
 
                         if (replacementPair != default)

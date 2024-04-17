@@ -995,6 +995,7 @@ namespace WeaverCore.Editor.Compilation
                     else if (info.curFileType == 0x72)
                     {
                         AssetTypeValueField monoBehaviourInst = null;
+						bool modified = false;
                         try
                         {
                             monoBehaviourInst = GetTypeInstanceLocked(assetsFileInst.file, info).GetBaseField();
@@ -1011,32 +1012,138 @@ namespace WeaverCore.Editor.Compilation
                         }
 
                         var monoBehaviourName = monoBehaviourInst.Get("m_Name").GetValue().AsString();
+                        var modName = BuildScreen.BuildSettings.ModName;
 
-						void ProcessUnityEvents(AssetTypeValueField parent)
+                        void ProcessUnityEvent(AssetTypeValueField unityEvent)
+						{
+							var calls = unityEvent.Get("m_Calls");
+
+							var arrayField = calls.Get("Array");
+							var arrayValue = arrayField.GetValue().AsArray();
+
+                            for (int i = 0; i < arrayValue.size; i++)
+                            {
+								//var valueAtIndex = arrayField[i].GetValue();
+								var indexField = arrayField[i];
+
+								var targetAssemblyField = indexField.Get("m_TargetAssemblyTypeName");
+
+								var targetAssemblyValue = targetAssemblyField.GetValue();
+
+
+								if (string.IsNullOrEmpty(targetAssemblyValue.AsString()))
+								{
+									continue;
+								}
+                                var split = targetAssemblyValue.AsString().Split(',');
+
+								if (split.Length < 2)
+								{
+									continue;
+								}
+
+								var typeName = split[0].Trim();
+								var assemblyName = split[1].Trim();
+
+                                bool changed = false;
+                                if (assemblyName == "Assembly-CSharp")
+                                {
+                                    changed = true;
+                                    assemblyName = modName;
+                                }
+                                else if (assemblyName == "HollowKnight")
+                                {
+                                    changed = true;
+                                    assemblyName = "Assembly-CSharp";
+                                }
+
+                                if (changed)
+                                {
+                                    //valueAtIndex.Set($"{split[0]}:{split[1]}");
+                                    targetAssemblyValue.Set($"{typeName}, {assemblyName}");
+                                    modified = true;
+                                }
+
+								changed = false;
+                                var argumentsField = indexField.Get("m_Arguments");
+
+								var objectArgumentAssemblyField = argumentsField.Get("m_ObjectArgumentAssemblyTypeName");
+								var objectArgumentAssemblyValue = objectArgumentAssemblyField.GetValue();
+
+								split = objectArgumentAssemblyValue.AsString().Split(',');
+
+                                typeName = split[0].Trim();
+                                assemblyName = split[1].Trim();
+
+                                if (assemblyName == "Assembly-CSharp")
+                                {
+                                    changed = true;
+                                    assemblyName = modName;
+                                }
+                                else if (assemblyName == "HollowKnight")
+                                {
+                                    changed = true;
+                                    assemblyName = "Assembly-CSharp";
+                                }
+
+                                if (changed)
+                                {
+                                    //valueAtIndex.Set($"{split[0]}:{split[1]}");
+                                    objectArgumentAssemblyValue.Set($"{typeName}, {assemblyName}");
+                                    modified = true;
+                                }
+
+                                /*var split = valueAtIndex.AsString().Split(':');
+                                bool changed = false;
+                                if (split[0] == "Assembly-CSharp")
+                                {
+                                    changed = true;
+                                    split[0] = modName;
+                                }
+                                else if (split[0] == "HollowKnight")
+                                {
+                                    changed = true;
+                                    split[0] = "Assembly-CSharp";
+                                }
+
+                                if (changed)
+                                {
+                                    valueAtIndex.Set($"{split[0]}:{split[1]}");
+                                    modified = true;
+                                }*/
+
+                                //modified = true;
+                            }
+                        }
+
+                        static bool IsUnityEvent(AssetTypeValueField field)
+                        {
+                            var children = field.children;
+
+                            return field != null &&
+                            field.GetName() == "m_PersistentCalls" &&
+                            field.childrenCount == 1 &&
+                            field.children.First().GetName() == "m_Calls";
+                        }
+
+                        void SearchForUnityEvents(AssetTypeValueField parent)
 						{
                             for (int i = 0; i < parent.childrenCount; i++)
 							{
 								var child = parent.children[i];
-								if (child.GetName().Contains("Persistent"))
+
+								if (IsUnityEvent(child))
 								{
-                                    WeaverLog.Log("CHILD NAME = " + child.GetName());
+									ProcessUnityEvent(child);
                                 }
-								if (child.GetName() == "m_PersistentCalls")
+								else
 								{
-                                    //WeaverLog.Log("CHILD NAME = " + child.GetName());
-                                    WeaverLog.Log("FOUND PERSISTENT CALLS");
-								}
+                                    SearchForUnityEvents(child);
+                                }
 							}
-
-							void Process()
-							{
-
-							}
-
-
 						}
 
-						ProcessUnityEvents(monoBehaviourInst);
+						SearchForUnityEvents(monoBehaviourInst);
 
                         var replacementPair = FontAssetContainer.sourceDestPairs.FirstOrDefault(f => f.Item2 == monoBehaviourName);
 
@@ -1069,7 +1176,8 @@ namespace WeaverCore.Editor.Compilation
                             ClearArray("TMP_Glyph_xAdvance");
                             ClearArray("TMP_Glyph_scale");
 
-                            assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+							modified = true;
+                            /*assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));*/
                         }
                         else
                         {
@@ -1078,9 +1186,9 @@ namespace WeaverCore.Editor.Compilation
 							//If IsDummy() is false, then this is a FieldUpdater
 							if (!reservedObjectGUIDsField.IsDummy())
 							{
-                                var modName = BuildScreen.BuildSettings.ModName;
+                                //var modName = BuildScreen.BuildSettings.ModName;
 
-                                bool modified = false;
+                                //bool modified = false;
 
 								var componentTypeNamesField = monoBehaviourInst.Get("componentTypeNames").Get("Array");
 
@@ -1142,10 +1250,10 @@ namespace WeaverCore.Editor.Compilation
                                     }
                                 }
 
-                                if (modified)
+                                /*if (modified)
                                 {
                                     assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
-                                }
+                                }*/
                                 /*
 								 for (int i = 0; i < fieldUpdater.componentTypeNames.Count; i++)
 									{
@@ -1184,7 +1292,7 @@ namespace WeaverCore.Editor.Compilation
 
                                 if (!assemblyField.IsDummy())
                                 {
-                                    bool modified = false;
+                                    //bool modified = false;
                                     var modAsmNameVal = assemblyField.GetValue();
                                     foreach (var replacement in assemblyReplacements)
                                     {
@@ -1219,14 +1327,19 @@ namespace WeaverCore.Editor.Compilation
                                             }
                                         }
                                     }
-                                    if (modified)
+
+                                    /*if (modified)
                                     {
                                         assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
-                                    }
+                                    }*/
                                 }
                             }
                         }
 
+						if (modified)
+						{
+                            assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+                        }
                         //If this MonoBehaviour has a field called "__modAssemblyName", then it's a Registry object
                         //If MonoBehaviour is a registry, replace the "__modAssemblyName" variable from "Assembly-CSharp"
                         //__modAssemblyName

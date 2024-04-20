@@ -83,18 +83,25 @@ namespace WeaverCore
             //WeaverLog.Log("Loading Embedded Registries for [" + assemblyName + "]");
             Initialization.PerformanceLog($"Loading Embedding Registries for {assemblyName}");
             string extension = null;
-            if (SystemInfo.operatingSystem.Contains("Windows"))
+
+#if !UNITY_EDITOR
+            Debug.Log("Retrieved Operating System = " + SystemInfo.operatingSystem);
+#endif
+
+            if (SystemInfo.operatingSystem.ToLower().Contains("windows"))
             {
                 extension = ".bundle.win";
             }
-            else if (SystemInfo.operatingSystem.Contains("Mac"))
+            else if (SystemInfo.operatingSystem.ToLower().Contains("mac") || SystemInfo.operatingSystem.ToLower().Contains("apple"))
             {
                 extension = ".bundle.mac";
             }
-            else if (SystemInfo.operatingSystem.Contains("Linux"))
+            else// if (SystemInfo.operatingSystem.ToLower().Contains("Linux"))
             {
                 extension = ".bundle.unix";
             }
+
+            //Debug.Log("EXTENSION = " + extension);
 
             try
             {

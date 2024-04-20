@@ -566,7 +566,7 @@ namespace WeaverCore.Utilities
                         try
                         {
                             WeaverLog.LogError("Error running function [" + method.Item1.DeclaringType.FullName + ":" + method.Item1.Name);
-                            UnityEngine.Debug.LogException(e);
+                            WeaverLog.LogException(e);
                         }
                         catch (Exception)
                         {

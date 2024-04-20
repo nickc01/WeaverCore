@@ -1,4 +1,5 @@
-﻿using WeaverCore.Attributes;
+﻿using System;
+using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Patches
 {
@@ -13,11 +14,25 @@ namespace WeaverCore.Game.Patches
 
         private static void ObjectPool_Recycle_GameObject(On.ObjectPool.orig_Recycle_GameObject orig, UnityEngine.GameObject obj)
         {
-            if (obj.TryGetComponent<PoolableObject>(out var poolableObject))
+            bool hasPoolable = false;
+            try
             {
-				poolableObject.ReturnToPool();
+                if (obj != null && obj.TryGetComponent<PoolableObject>(out var poolableObject))
+                {
+                    hasPoolable = true;
+                    poolableObject.ReturnToPool();
+                }
             }
-            else
+            catch (NullReferenceException)
+            {
+
+            }
+            catch (Exception e)
+            {
+                WeaverLog.LogException(e);
+            }
+
+            if (!hasPoolable)
             {
                 orig(obj);
             }

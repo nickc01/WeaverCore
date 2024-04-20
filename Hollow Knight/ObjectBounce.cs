@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Obsolete("This component is known to crash when used in-game. Please use WeaverCore.Components.WeaverBouncable instead")]
 public class ObjectBounce : MonoBehaviour
 {
     public delegate void BounceEvent();
@@ -113,15 +115,15 @@ public class ObjectBounce : MonoBehaviour
         }
 
         Vector3 normalized = Vector3.Reflect(velocity.normalized, inNormal).normalized;
-        rb.velocity = new Vector2(normalized.x, normalized.y) * (speed * (bounceFactor * Random.Range(0.8f, 1.2f)));
+        rb.velocity = new Vector2(normalized.x, normalized.y) * (speed * (bounceFactor * UnityEngine.Random.Range(0.8f, 1.2f)));
         if (playSound)
         {
-            chooser = Random.Range(1, 100);
-            int num = Random.Range(0, clips.Length - 1);
+            chooser = UnityEngine.Random.Range(1, 100);
+            int num = UnityEngine.Random.Range(0, clips.Length - 1);
             AudioClip clip = clips[num];
             if (chooser <= chanceToPlay)
             {
-                float pitch = Random.Range(pitchMin, pitchMax);
+                float pitch = UnityEngine.Random.Range(pitchMin, pitchMax);
                 audio.pitch = pitch;
                 audio.PlayOneShot(clip);
             }

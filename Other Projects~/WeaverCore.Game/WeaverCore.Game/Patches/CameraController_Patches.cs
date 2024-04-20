@@ -415,6 +415,29 @@ namespace WeaverCore.Game.Patches
 
 				var bounds = GetCameraLimits(self);
 
+				if (!(lockArea is WeaverCameraLock))
+				{
+                    if (lockArea.cameraXMin < 0)
+                    {
+                        lockArea.cameraXMin = bounds.xMin;
+                    }
+
+                    if (lockArea.cameraXMax < 0)
+                    {
+                        lockArea.cameraXMax = bounds.xMax;
+                    }
+
+                    if (lockArea.cameraYMin < 0)
+                    {
+                        lockArea.cameraYMin = bounds.yMin;
+                    }
+
+                    if (lockArea.cameraYMax < 0)
+                    {
+                        lockArea.cameraYMax = bounds.yMax;
+                    }
+                }
+
 				if (lockArea.cameraXMin < bounds.xMin)
 				{
 					self.xLockMin = bounds.xMin;

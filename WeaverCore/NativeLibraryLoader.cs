@@ -22,8 +22,11 @@ namespace WeaverCore
 
 
         #region WINDOWS_FUNCTIONS
-        [DllImport("kernel32", EntryPoint = "LoadLibraryA", SetLastError = true)]
-        static extern IntPtr LoadLibraryA(string dllToLoad);
+        [DllImport("kernel32", EntryPoint = "LoadLibraryW", SetLastError = true, CharSet = CharSet.Unicode)]
+        static extern IntPtr LoadLibraryW(string dllToLoad);
+
+        //[DllImport("kernel32", EntryPoint = "LoadLibraryA", SetLastError = true, CharSet = CharSet.Ansi)]
+        //static extern IntPtr LoadLibraryA(string dllToLoad);
 
         [DllImport("kernel32")]
         static extern IntPtr GetProcAddress(IntPtr hModule, string procedureName);
@@ -127,7 +130,7 @@ namespace WeaverCore
             switch (GetCurrentOS())
             {
                 case OS.Windows:
-                    result = LoadLibraryA(dllToLoad);
+                    result = LoadLibraryW(dllToLoad);
 
                     if (result == default)
                     {

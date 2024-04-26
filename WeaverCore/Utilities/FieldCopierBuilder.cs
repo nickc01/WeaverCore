@@ -1,4 +1,6 @@
-﻿#define USE_EMIT_SYSTEM
+﻿#if NET_4_6
+#define USE_EMIT_SYSTEM
+#endif
 
 using System;
 using System.Collections.Generic;

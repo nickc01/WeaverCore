@@ -176,14 +176,18 @@ namespace WeaverCore
 			return Impl.GetMixerForChannel(channel);
 		}
 
-        public static void AddVolumeDistanceControl(AudioPlayer audio, Vector2 volumeRange)
+        public static void AddVolumeDistanceControl(AudioPlayer audio, Vector2 volumeRange, float baseVolume = -1)
 		{
-			AddVolumeDistanceControl(audio, Player.Player1.transform, volumeRange);
+			AddVolumeDistanceControl(audio, Player.Player1.transform, volumeRange, baseVolume);
 		}
 
 
-        public static void AddVolumeDistanceControl(AudioPlayer audio, Transform target, Vector2 volumeRange)
+        public static void AddVolumeDistanceControl(AudioPlayer audio, Transform target, Vector2 volumeRange, float baseVolume = -1)
 		{
+			if (baseVolume < 0)
+			{
+				baseVolume = audio.AudioSource.volume;
+			}
 
 			if (volumeRange.x > volumeRange.y)
 			{
@@ -196,13 +200,13 @@ namespace WeaverCore
 			{
                 var distance = Vector2.Distance(target.position, audio.AudioSource.transform.position);
 
-                audio.AudioSource.volume = 1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance);
+				audio.AudioSource.volume = (1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance)) * baseVolume;
 
-                UnboundCoroutine.Start(DistanceVolumeControlRoutine(audio, target, volumeRange));
+                UnboundCoroutine.Start(DistanceVolumeControlRoutine(audio, target, volumeRange, baseVolume));
 			}
 		}
 
-		static IEnumerator DistanceVolumeControlRoutine(AudioPlayer audio, Transform target, Vector2 volumeRange)
+		static IEnumerator DistanceVolumeControlRoutine(AudioPlayer audio, Transform target, Vector2 volumeRange, float baseVolume)
 		{
 			while (true)
 			{
@@ -213,7 +217,7 @@ namespace WeaverCore
 
 				var distance = Vector2.Distance(target.position, audio.AudioSource.transform.position);
 
-				audio.AudioSource.volume = 1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance);
+				audio.AudioSource.volume = (1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance)) * baseVolume;
 
 				yield return null;
 			}

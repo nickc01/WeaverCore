@@ -8,10 +8,10 @@ using Random = UnityEngine.Random;
 
 namespace WeaverCore.Utilities
 {
-	/// <summary>
-	/// Contains many utility functions related to transforms
-	/// </summary>
-	public static class TransformUtilities
+    /// <summary>
+    /// Contains many utility functions related to transforms
+    /// </summary>
+    public static class TransformUtilities
 	{
 		/// <summary>
 		/// Gets the x position of a transform

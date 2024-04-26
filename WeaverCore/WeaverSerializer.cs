@@ -178,7 +178,9 @@ namespace WeaverCore
                     //WeaverLog.Log("Next Comma = " + nextComma);
                     //WeaverLog.Log("Length = " + (startIndex - nextComma));
 
-                    objectReferenceTable.Add(data.Substring(startIndex, nextComma - startIndex), objReferences[referenceCounter]);
+                    //WeaverLog.Log("FOUND ID = " + data.Substring(startIndex, nextComma - startIndex));
+
+                    objectReferenceTable.Add(data.Substring(startIndex, nextComma - startIndex).TrimEnd(']'), objReferences[referenceCounter]);
 
                     referenceCounter++;
 

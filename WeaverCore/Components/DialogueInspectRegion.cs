@@ -6,6 +6,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
     /// <summary>
     /// Represents a region the player can inspect that triggers dialogue.
     /// </summary>

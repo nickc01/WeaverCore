@@ -5,9 +5,13 @@ public class HeroPlatformStick : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject gameObject = collision.gameObject;
-        if (gameObject.layer == 9)
+        if (gameObject.layer == 9 || gameObject.GetComponent<HeroController>() != null)
         {
             HeroController component = gameObject.GetComponent<HeroController>();
+            if (component.cState.transitioning)
+            {
+                return;
+            }
             if (component != null)
             {
                 component.SetHeroParent(transform);
@@ -27,7 +31,7 @@ public class HeroPlatformStick : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         GameObject gameObject = collision.gameObject;
-        if (gameObject.layer == 9)
+        if (gameObject.layer == 9 || gameObject.GetComponent<HeroController>() != null)
         {
             HeroController component = gameObject.GetComponent<HeroController>();
             if (component != null)

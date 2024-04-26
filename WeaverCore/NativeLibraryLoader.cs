@@ -13,6 +13,9 @@ namespace WeaverCore
 {
     public unsafe static class NativeLibraryLoader
 	{
+        const int RTLD_NOW = 0x00002;
+        const int RTLD_NOLOAD = 0x00004;
+
         public enum OS
         {
             Windows,
@@ -22,25 +25,31 @@ namespace WeaverCore
 
 
         #region WINDOWS_FUNCTIONS
-        [DllImport("kernel32", EntryPoint = "LoadLibraryA", SetLastError = true)]
-        static extern IntPtr LoadLibraryA(string dllToLoad);
+        [DllImport("kernel32", EntryPoint = "LoadLibraryW", SetLastError = true, CharSet = CharSet.Unicode)]
+        static extern IntPtr LoadLibraryW(string dllToLoad);
+
+        //[DllImport("kernel32", EntryPoint = "LoadLibraryA", SetLastError = true, CharSet = CharSet.Ansi)]
+        //static extern IntPtr LoadLibraryA(string dllToLoad);
 
         [DllImport("kernel32")]
         static extern IntPtr GetProcAddress(IntPtr hModule, string procedureName);
 
         [DllImport("kernel32")]
         static extern bool FreeLibrary(IntPtr hModule);
+
+        [DllImport("kernel32", SetLastError = true, CharSet = CharSet.Unicode)]
+        static extern IntPtr GetModuleHandleW(string moduleName);
         #endregion
 
         #region LINUX_MAC_FUNCTIONS
         [DllImport("libdl", ExactSpelling = true)]
-        public static extern IntPtr dlopen(string filename, int flags);
+        static extern IntPtr dlopen(string filename, int flags);
 
         [DllImport("libdl", ExactSpelling = true)]
-        public static extern IntPtr dlsym(IntPtr handle, string symbol);
+        static extern IntPtr dlsym(IntPtr handle, string symbol);
 
         [DllImport("libdl", ExactSpelling = true)]
-        public static extern int dlclose(IntPtr handle);
+        static extern int dlclose(IntPtr handle);
 
         [DllImport("libdl", ExactSpelling = true)]
         public static extern string dlerror();
@@ -127,7 +136,7 @@ namespace WeaverCore
             switch (GetCurrentOS())
             {
                 case OS.Windows:
-                    result = LoadLibraryA(dllToLoad);
+                    result = LoadLibraryW(dllToLoad);
 
                     if (result == default)
                     {
@@ -138,7 +147,7 @@ namespace WeaverCore
                 default:
                     if (linuxLoadMode == 1)
                     {
-                        result = dlopen(dllToLoad, 0x002);
+                        result = dlopen(dllToLoad, RTLD_NOW);
                         if (result == default)
                         {
                             throw new Exception($"Failed to load so {dllToLoad} {dlerror()}");
@@ -147,7 +156,7 @@ namespace WeaverCore
                     }
                     else if (linuxLoadMode == 2)
                     {
-                        result = dlopenV2(dllToLoad, 0x002);
+                        result = dlopenV2(dllToLoad, RTLD_NOW);
                         if (result == default)
                         {
                             throw new Exception($"Failed to load so {dllToLoad} {dlerror()}");
@@ -157,7 +166,7 @@ namespace WeaverCore
                     {
                         try
                         {
-                            result = dlopen(dllToLoad, 0x002);
+                            result = dlopen(dllToLoad, RTLD_NOW);
                             linuxLoadMode = 1;
                             if (result == default)
                             {
@@ -166,7 +175,7 @@ namespace WeaverCore
                         }
                         catch (DllNotFoundException)
                         {
-                            result = dlopenV2(dllToLoad, 0x002);
+                            result = dlopenV2(dllToLoad, RTLD_NOW);
                             linuxLoadMode = 2;
                             if (result == default)
                             {
@@ -417,6 +426,39 @@ namespace WeaverCore
                 Debug.LogException(e);
                 UnityEngine.Debug.Log("2: Some Error occured. Returning null");
                 return null;
+            }
+        }
+
+        public static IntPtr GetLoadedHandle(string dll){
+            switch(GetCurrentOS())
+            {
+                case OS.Windows:
+                    return GetModuleHandleW(dll.Replace('/', '\\'));
+                default:
+                    if (linuxLoadMode == 1)
+                    {
+                        return dlopen(dll, RTLD_NOLOAD);
+                    }
+                    else if (linuxLoadMode == 2)
+                    {
+                        return dlopenV2(dll, RTLD_NOLOAD);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var result = dlopen(dll, RTLD_NOLOAD);
+                            linuxLoadMode = 1;
+                            return result;
+                        }
+                        catch (DllNotFoundException)
+                        {
+                            var result = dlopenV2(dll, RTLD_NOLOAD);
+                            linuxLoadMode = 2;
+                            return result;
+                        }
+                    }
+                    break;
             }
         }
     }

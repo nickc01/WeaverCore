@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.MPE;
 using UnityEngine;
@@ -97,7 +98,55 @@ namespace WeaverCore.Editor
 			}
 		}
 
-		[OnRuntimeInit(int.MaxValue)]
+        private void Awake()
+        {
+			AudioSource GetSource(string childName, Transform parent = null)
+			{
+				if (parent == null)
+				{
+					parent = transform;
+				}
+
+				return parent.Find(childName).GetComponent<AudioSource>();
+			}
+
+			if (Action == null)
+			{
+				Action = GetSource(nameof(Action));
+			}
+
+			if (Extra == null)
+			{
+				Extra = GetSource(nameof(Extra));
+			}
+
+            if (Main == null)
+            {
+                Main = GetSource(nameof(Main));
+            }
+
+            if (MainAlt == null)
+            {
+                MainAlt = GetSource("Main Alt");
+            }
+
+            if (Sub == null)
+            {
+                Sub = GetSource(nameof(Sub));
+            }
+
+            if (Tension == null)
+            {
+                Tension = GetSource(nameof(Tension));
+            }
+
+			if (atmosSources.Count == 0)
+			{
+				atmosSources = transform.Find("Atmos").GetComponentsInChildren<AudioSource>().ToList();
+			}
+        }
+
+        [OnRuntimeInit(int.MaxValue)]
 		static void OnGameStart()
 		{
 			UnboundCoroutine.Start(WaitAFrame());

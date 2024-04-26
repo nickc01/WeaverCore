@@ -28,7 +28,7 @@ namespace WeaverCore.Editor
             var assetDir = new DirectoryInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"WeaverCore.Editor{Path.DirectorySeparatorChar}Data");
             if (assetDir.Exists)
             {
-                var dataFile = new FileInfo(assetDir.FullName + "\\layerData.json");
+                var dataFile = new FileInfo(assetDir.FullName + Path.DirectorySeparatorChar + "layerData.json");
                 if (dataFile.Exists)
                 {
                     return JsonUtility.FromJson<LayerData>(File.ReadAllText(dataFile.FullName));

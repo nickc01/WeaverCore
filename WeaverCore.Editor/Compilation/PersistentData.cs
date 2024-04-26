@@ -55,7 +55,7 @@ namespace WeaverCore.Editor.Compilation
 		/// <summary>
 		/// The file path where persistent data is stored
 		/// </summary>
-		public static string PersistentDataPath = BuildTools.WeaverCoreFolder.AddSlash() + "Hidden~\\PersistentData.dat";
+		public static string PersistentDataPath = BuildTools.WeaverCoreFolder.AddSlash() + "Hidden~" + Path.DirectorySeparatorChar + "PersistentData.dat";
 
 		static DataStorage Storage;
 
@@ -64,7 +64,13 @@ namespace WeaverCore.Editor.Compilation
 			AutoSave = true;
 			if (File.Exists(PersistentDataPath))
 			{
-				Storage = JsonUtility.FromJson<DataStorage>(File.ReadAllText(PersistentDataPath));
+				using (var file = File.OpenRead(PersistentDataPath)) {
+					using(var reader = new StreamReader(file)){
+						Storage = JsonUtility.FromJson<DataStorage>(reader.ReadToEnd());
+					}
+					file.Close();
+				}
+				
 				if (Storage == null)
 				{
 					Storage = new DataStorage();
@@ -239,12 +245,43 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		public static void SaveData()
 		{
+			//UnityEngine.Debug.Log("SAVE DATA A");
 			var directory = new FileInfo(PersistentDataPath).Directory;
+			//UnityEngine.Debug.Log("SAVE DATA B = " + directory.FullName);
 			if (!directory.Exists)
 			{
+				//UnityEngine.Debug.Log("SAVE DATA C");
 				directory.Create();
 			}
-			File.WriteAllText(PersistentDataPath, JsonUtility.ToJson(Storage,true));
+			//UnityEngine.Debug.Log("SAVE DATA D = " + JsonUtility.ToJson(Storage, true));
+			//File.WriteAllText(PersistentDataPath, JsonUtility.ToJson(Storage,true));
+
+			if (false){
+				//UnityEngine.Debug.Log("DOING LINUX SAVE CODE");
+
+				IntPtr fd = default;
+				try
+				{
+					fd = RawFileUtilities.OpenFile(PersistentDataPath);
+					UnityEngine.Debug.Log("FD = " + fd);
+					RawFileUtilities.WriteToFile(fd, JsonUtility.ToJson(Storage, true));
+				}
+				finally
+				{
+					
+					if (fd != default) {
+						RawFileUtilities.CloseFile(fd);
+					}
+				}
+			}
+			else
+			{
+				using (var file = File.CreateText(PersistentDataPath)) {
+					file.Write(JsonUtility.ToJson(Storage, true));
+					file.Close();
+				}
+			}
+			//UnityEngine.Debug.Log("SAVE DATA E");
 		}
 	}
 }

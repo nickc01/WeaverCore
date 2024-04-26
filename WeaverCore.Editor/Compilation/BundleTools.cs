@@ -713,7 +713,7 @@ namespace WeaverCore.Editor.Compilation
 			var sep = Path.DirectorySeparatorChar;
 
 			var weaverGameLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{sep}WeaverCore.Game{sep}WeaverCore.Game{sep}bin{sep}WeaverCore.Game.dll");
-			var harmonyLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{sep}0Harmony.dll");
+			var harmonyLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{sep}in-game~{sep}0Harmony.dll");
 
 			var ktxUnityWindows = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}ktx_unity.dll");
 			var ktxUnityMac = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}ktx_unity.bundle{sep}Contents{sep}MacOS{sep}ktx_unity");

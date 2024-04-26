@@ -24,8 +24,11 @@ namespace KtxUnity
 {
     public static class KTXNativeManager
     {
-        [DllImport("kernel32.dll")]
+        /*[DllImport("kernel32.dll")]
         static extern IntPtr GetModuleHandleA(string moduleName);
+
+        [DllImport("libdl", ExactSpelling = true)]
+        static extern IntPtr dlopen(string filename, int flags);*/
 
         static IntPtr ktx_unity;
         public static IntPtr Ktx_unity
@@ -59,7 +62,7 @@ namespace KtxUnity
         static void LoadKTXUnity()
         {
 #if UNITY_EDITOR
-            ktx_unity = GetModuleHandleA("ktx_unity");
+            ktx_unity = NativeLibraryLoader.GetLoadedHandle("ktx_unity");
 #else
         string ktxUnityDest = NativeLibraryLoader.ExportDLL("ktx_unity", typeof(WeaverCore.WeaverAudio).Assembly);
 

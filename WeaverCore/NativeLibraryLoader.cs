@@ -130,8 +130,8 @@ namespace WeaverCore
 
         public static IntPtr Load(string dllToLoad)
         {
-            UnityEngine.Debug.Log("Attempting to load DLL = " + dllToLoad);
-            UnityEngine.Debug.Log("Current OS = " + GetCurrentOS());
+            //UnityEngine.Debug.Log("Attempting to load DLL = " + dllToLoad);
+            //UnityEngine.Debug.Log("Current OS = " + GetCurrentOS());
             IntPtr result;
             switch (GetCurrentOS())
             {
@@ -187,14 +187,14 @@ namespace WeaverCore
                     break;
             }
 
-            UnityEngine.Debug.Log($"Loaded DLL {dllToLoad} with Handle = {result}");
+            //UnityEngine.Debug.Log($"Loaded DLL {dllToLoad} with Handle = {result}");
 
             return result;
         }
 
         public static IntPtr GetSymbol(IntPtr handle, string symbol)
         {
-            UnityEngine.Debug.Log($"Loaded symbol {symbol} from handle = {handle}");
+            //UnityEngine.Debug.Log($"Loaded symbol {symbol} from handle = {handle}");
             switch (GetCurrentOS())
             {
                 case OS.Windows:
@@ -270,9 +270,9 @@ namespace WeaverCore
         {
             try
             {
-                UnityEngine.Debug.Log("Beginning Export of resource = " + resourceName);
-                UnityEngine.Debug.Log("OS = " + os);
-                Debug.Log("Assembly To Load From = " + assemblyToLoadFrom.GetName().Name);
+                //UnityEngine.Debug.Log("Beginning Export of resource = " + resourceName);
+                //UnityEngine.Debug.Log("OS = " + os);
+                //Debug.Log("Assembly To Load From = " + assemblyToLoadFrom.GetName().Name);
                 string fileName = resourceName;
                 List<string> exts = new List<string>();
                 switch (os)
@@ -296,23 +296,23 @@ namespace WeaverCore
 
                 foreach (var ext in exts)
                 {
-                    Debug.Log("Searching for resource name = " + resourceName + ext);
+                    //Debug.Log("Searching for resource name = " + resourceName + ext);
                     if (!ResourceUtilities.HasResource(resourceName + ext, assemblyToLoadFrom))
                     {
-                        Debug.Log("Not found. Continuing");
+                        //Debug.Log("Not found. Continuing");
                         continue;
                     }
 
-                    Debug.Log($"{resourceName + ext} found!");
+                    //Debug.Log($"{resourceName + ext} found!");
 
                     if (ext == ".bundle.7z")
                     {
-                        Debug.Log("bundle.7z found");
+                        //Debug.Log("bundle.7z found");
                         var tempDirectory = new DirectoryInfo(System.IO.Path.GetTempPath()).CreateSubdirectory(resourceName);
-                        Debug.Log("Temp Dir = " + tempDirectory.FullName);
+                        //Debug.Log("Temp Dir = " + tempDirectory.FullName);
                         if (Directory.Exists(tempDirectory.FullName))
                         {
-                            Debug.Log("Deleting and rebuilding temp dir");
+                            //Debug.Log("Deleting and rebuilding temp dir");
                             tempDirectory.Delete(true);
                             tempDirectory.Create();
                         }
@@ -329,7 +329,7 @@ namespace WeaverCore
                             }
                         }
 
-                        Debug.Log("Extracted Bundle Contents To Directory = " + tempDirectory.FullName);
+                        //Debug.Log("Extracted Bundle Contents To Directory = " + tempDirectory.FullName);
 
                         var subDir = tempDirectory.EnumerateDirectories().FirstOrDefault();
                         tempDirectory = subDir;
@@ -344,7 +344,7 @@ namespace WeaverCore
                             }
                         }*/
 
-                        foreach (var folder in tempDirectory.EnumerateDirectories())
+                        /*foreach (var folder in tempDirectory.EnumerateDirectories())
                         {
                             Debug.Log("Folder in Final = " + folder.Name);
                         }
@@ -352,17 +352,17 @@ namespace WeaverCore
                         foreach (var file in tempDirectory.EnumerateFiles())
                         {
                             Debug.Log("File in Final = " + file.Name);
-                        }
+                        }*/
 
                         return tempDirectory.FullName;
                     }
                     else
                     {
-                        Debug.Log("bundle.7z not found");
+                        //Debug.Log("bundle.7z not found");
                         var tempDirectory = PathUtilities.AddSlash(new DirectoryInfo(System.IO.Path.GetTempPath()).FullName);
-                        Debug.Log("Temp Dir = " + tempDirectory);
+                        //Debug.Log("Temp Dir = " + tempDirectory);
                         var fileDest = tempDirectory + fileName + ext;
-                        Debug.Log("File dest = " + fileDest);
+                        //Debug.Log("File dest = " + fileDest);
                         if (File.Exists(fileDest))
                         {
                             UnityEngine.Debug.Log("Deleting already existing file = " + fileDest);

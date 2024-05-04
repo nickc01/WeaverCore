@@ -48,6 +48,19 @@ namespace WeaverCore
                     Mathf.Lerp(from.Extra, to.Extra, t));
 			}
 
+			public SnapshotVolumeLevels ApplyCurve(AnimationCurve curve)
+			{
+				return new SnapshotVolumeLevels(
+					curve.Evaluate(Master),
+                    curve.Evaluate(Main),
+                    curve.Evaluate(MainAlt),
+                    curve.Evaluate(Action),
+                    curve.Evaluate(Sub),
+                    curve.Evaluate(Tension),
+                    curve.Evaluate(Extra)
+				);
+			}
+
 			public static SnapshotVolumeLevels operator *(SnapshotVolumeLevels from, float mult)
 			{
 				return new SnapshotVolumeLevels(

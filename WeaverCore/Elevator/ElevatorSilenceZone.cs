@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 
 namespace WeaverCore.Elevator
 {
@@ -14,6 +14,7 @@ namespace WeaverCore.Elevator
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            WeaverLog.Log("HIT OBJ = " + collision.gameObject);
             if (collision.gameObject.TryGetComponent<Elevator>(out var elevator))
             {
                 elevator.SilentMode = true;
@@ -22,6 +23,25 @@ namespace WeaverCore.Elevator
 
         private void OnCollisionExit2D(Collision2D collision)
         {
+            WeaverLog.Log("UNHIT OBJ = " + collision.gameObject);
+            if (collision.gameObject.TryGetComponent<Elevator>(out var elevator))
+            {
+                elevator.SilentMode = false;
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            WeaverLog.Log("HIT OBJ = " + collision.gameObject);
+            if (collision.gameObject.TryGetComponent<Elevator>(out var elevator))
+            {
+                elevator.SilentMode = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            WeaverLog.Log("UNHIT OBJ = " + collision.gameObject);
             if (collision.gameObject.TryGetComponent<Elevator>(out var elevator))
             {
                 elevator.SilentMode = false;

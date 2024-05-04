@@ -281,7 +281,6 @@ namespace WeaverCore.Assets.Components
 
 				HeroUtilities.PlayPlayerClip("Sit Fall Asleep");
 
-				//WeaverLog.Log("Sit Fall Asleep");
 				EventManager.BroadcastEvent("UPDATE BLUE HEALTH", gameObject);
 				EventManager.BroadcastEvent("HERO REVIVED", gameObject);
 
@@ -289,11 +288,7 @@ namespace WeaverCore.Assets.Components
 				playerRB.isKinematic = true;
 				playerRB.velocity = default;
 
-				//WeaverLog.Log("Before Wait");
-
 				yield return new WaitForSeconds(1.2f);
-
-				//WeaverLog.Log("After Wait");
 
 				getOffAnimation = "Get Off";
 				playerRB.isKinematic = false;
@@ -336,7 +331,6 @@ namespace WeaverCore.Assets.Components
 
 		IEnumerator RestingRoutine()
 		{
-			//WeaverLog.Log("RESTING");
 			PlayerData.instance.SetBool("atBench",true);
 
 			while (true)
@@ -345,14 +339,12 @@ namespace WeaverCore.Assets.Components
 				{
 					if (PlayerInput.jump.WasPressed || PlayerInput.attack.WasPressed || PlayerInput.up.WasPressed || PlayerInput.down.WasPressed)
 					{
-						//WeaverLog.Log("GETTING UP_A");
 						faceHeroRight = facingRight;
 						StartCoroutine(GetUpRoutine());
 						yield break;
 					}
 					if (PlayerInput.left.WasPressed)
 					{
-						//WeaverLog.Log("GETTING UP_B");
 						faceHeroRight = false;
 						StartCoroutine(GetUpRoutine());
 						yield break;
@@ -553,6 +545,8 @@ namespace WeaverCore.Assets.Components
 							sitVector.x = selfX;
 							sitVector += benchSitOffset;
 
+							// WeaverLog.Log("Player POs = " + Player.Player1.transform.position);
+							// WeaverLog.Log("Sit Vector = " + sitVector);
 							var oldPos = HeroController.instance.transform.position;
 							var newPos = sitVector;
 

@@ -181,6 +181,19 @@ namespace WeaverCore
 			AddVolumeDistanceControl(audio, Player.Player1.transform, volumeRange, baseVolume);
 		}
 
+		public static void AddVolumeDistanceControl(IEnumerable<AudioPlayer> audios, Vector2 volumeRange)
+		{
+			if (audios == null)
+			{
+				return;
+			}
+			foreach (var audio in audios)
+			{
+				AddVolumeDistanceControl(audio, volumeRange);
+			}
+			//AddVolumeDistanceControl(audio, Player.Player1.transform, volumeRange, baseVolume);
+		}
+
 
         public static void AddVolumeDistanceControl(AudioPlayer audio, Transform target, Vector2 volumeRange, float baseVolume = -1)
 		{
@@ -251,6 +264,52 @@ namespace WeaverCore
 		{
             add => Impl.OnPauseStateUpdate += value;
             remove => Impl.OnPauseStateUpdate -= value;
+        }
+
+		public static List<AudioPlayer> PlayAudioGroup(bool play, Transform transform, IEnumerable<AudioClip> clips, Vector2 pitchRange, float volume) 
+        {
+            if (!play)
+            {
+                return null;
+            }
+            List<AudioPlayer> instances = new List<AudioPlayer>();
+            foreach (var clip in clips)
+            {
+                var instance = WeaverAudio.PlayAtPoint(clip, transform.position, volume);
+                instance.AudioSource.pitch = pitchRange.RandomInRange();
+                instances.Add(instance);
+            }
+
+            return instances;
+        }
+
+        public static List<AudioPlayer> PlayAudioGroupLooped(bool play, Transform transform, IEnumerable<AudioClip> clips, Vector2 pitchRange, float volume) 
+        {
+            if (!play)
+            {
+                return null;
+            }
+            List<AudioPlayer> instances = new List<AudioPlayer>();
+            foreach (var clip in clips)
+            {
+                var instance = WeaverAudio.PlayAtPointLooped(clip, transform.position, volume);
+                instance.AudioSource.pitch = pitchRange.RandomInRange();
+                instances.Add(instance);
+            }
+
+            return instances;
+        }
+
+		public static void StopAudioGroup(ref List<AudioPlayer> players)
+        {
+            if (players != null)
+            {
+                foreach (var instance in players)
+                {
+                    instance.Delete();
+                }
+                players = null;
+            }
         }
     }
 }

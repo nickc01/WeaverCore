@@ -174,5 +174,12 @@ namespace WeaverCore.Utilities
             }
 			return range.x <= angleDegrees && angleDegrees <= range.y;
 		}
+
+		public static void Swap<T>(ref T a, ref T b)
+		{
+			var temp = a;
+			a = b;
+			b = temp;
+		}
 	}
 }

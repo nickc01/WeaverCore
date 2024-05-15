@@ -179,8 +179,7 @@ namespace WeaverCore
 				}
 				else
 				{
-
-					//Delete(Clip.length);
+					Delete(delay + (Clip.length / audioSource.pitch));
 				}
 			}
 		}

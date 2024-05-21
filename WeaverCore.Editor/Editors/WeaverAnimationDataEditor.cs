@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
+using WeaverCore;
 using WeaverCore.Utilities;
 
 [CustomEditor(typeof(WeaverAnimationData))]
@@ -13,8 +15,6 @@ public class WeaverAnimationDataEditor : Editor
 	Vector2 clipScrollPosition = default(Vector2);
 	float maxClipScrollHeight = 500f;
 	WeaverAnimationData data;
-
-
 
 	string newClipName;
 	List<Sprite> newClipFrames;
@@ -28,11 +28,31 @@ public class WeaverAnimationDataEditor : Editor
 
 	float spriteFieldHeight = 0f;
 
+	UnityEngine.Object storedClip;
+
 	void Awake()
 	{
 		data = target as WeaverAnimationData;
 		newClipFrames = new List<Sprite>();
 	}
+
+	static List<Sprite> GetSpritesFromClip(AnimationClip clip)
+	{
+		var sprites = new List<Sprite> ();
+		if(clip != null)
+		{
+			foreach(var binding in AnimationUtility.GetObjectReferenceCurveBindings(clip))
+			{
+				var keyframes = AnimationUtility.GetObjectReferenceCurve (clip, binding);
+				foreach(var frame in keyframes)
+				{
+					sprites.Add((Sprite) frame.value);
+				}
+			}
+		}
+		return sprites;
+	}
+
 
 	public override void OnInspectorGUI()
 	{
@@ -150,6 +170,54 @@ public class WeaverAnimationDataEditor : Editor
 			{
 				newClipFrames.Clear();
 			}
+
+			EditorGUILayout.Space();
+
+			storedClip = EditorGUILayout.ObjectField(new GUIContent("Clip or Controller to grab from:"),storedClip, typeof(UnityEngine.Object),false) as UnityEngine.Object;
+
+			if (storedClip != null)
+			{
+				{
+					if (storedClip is AnimationClip clip)
+					{
+						if (GUILayout.Button("Extract from Anim Clip"))
+						{
+							newClipFPS = clip.frameRate;
+							newClipFrames.Clear();
+							newClipFrames.AddRange(GetSpritesFromClip(clip));
+							newClipLoopStart = 0;
+							newClipName = clip.name;
+							newClipWrapMode = WeaverAnimationData.WrapMode.Once;
+						}
+					}
+				}
+
+				{
+					if (storedClip is AnimatorController controller)
+					{
+						if (GUILayout.Button("Add from Anim Controller"))
+						{
+							foreach (var clip in controller.animationClips)
+							{
+								newClipFPS = clip.frameRate;
+								newClipFrames.Clear();
+								newClipFrames.AddRange(GetSpritesFromClip(clip));
+								newClipLoopStart = 0;
+								newClipName = clip.name;
+								newClipWrapMode = WeaverAnimationData.WrapMode.Once;
+
+								var addedclip = new WeaverAnimationData.Clip(newClipName, newClipFPS, newClipWrapMode, newClipFrames, newClipLoopStart);
+								if (HasClip(newClipName))
+								{
+									RemoveClip(newClipName);
+								}
+								AddClip(addedclip);
+							}
+						}
+					}
+				}
+			}
+
 			EditorGUILayout.EndScrollView();
 		}
 

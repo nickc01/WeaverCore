@@ -8,17 +8,17 @@ using Random = UnityEngine.Random;
 
 namespace WeaverCore.Utilities
 {
-	/// <summary>
-	/// Contains many utility functions related to transforms
-	/// </summary>
-	public static class TransformUtilities
+    /// <summary>
+    /// Contains many utility functions related to transforms
+    /// </summary>
+    public static class TransformUtilities
 	{
 		/// <summary>
 		/// Gets the x position of a transform
 		/// </summary>
 		public static float GetXPosition(this Transform transform)
 		{
-			return transform.localPosition.x;
+			return transform.position.x;
 		}
 
 		/// <summary>
@@ -26,7 +26,7 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		public static float SetXPosition(this Transform transform, float newX)
 		{
-			transform.localPosition = transform.localPosition.With(x: newX);
+			transform.position = transform.position.With(x: newX);
 			return newX;
 		}
 
@@ -35,7 +35,7 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		public static float GetYPosition(this Transform transform)
 		{
-			return transform.localPosition.y;
+			return transform.position.y;
 		}
 
 		/// <summary>
@@ -43,7 +43,7 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		public static float SetYPosition(this Transform transform, float newY)
 		{
-			transform.localPosition = transform.localPosition.With(y: newY);
+			transform.position = transform.position.With(y: newY);
 			return newY;
 		}
 
@@ -52,7 +52,7 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		public static float GetZPosition(this Transform transform)
 		{
-			return transform.localPosition.z;
+			return transform.position.z;
 		}
 
 		/// <summary>
@@ -60,7 +60,7 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		public static float SetZPosition(this Transform transform, float newZ)
 		{
-			transform.localPosition = transform.localPosition.With(z: newZ);
+			transform.position = transform.position.With(z: newZ);
 			return newZ;
 		}
 

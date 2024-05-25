@@ -34,12 +34,12 @@ namespace WeaverCore.Components
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if ((largeCollisionMask & (1 << collision.gameObject.layer)) != 0)
+            if (!collision.gameObject.name.Contains("TRIGGER WORKAROUND") && (largeCollisionMask & (1 << collision.gameObject.layer)) != 0)
             {
                 CorpseCollision(collision.gameObject, true);
             }
 
-            if ((smallCollisionMask & (1 << collision.gameObject.layer)) != 0)
+            if (!collision.gameObject.name.Contains("TRIGGER WORKAROUND") && (smallCollisionMask & (1 << collision.gameObject.layer)) != 0)
             {
                 CorpseCollision(collision.gameObject, false);
             }
@@ -47,12 +47,12 @@ namespace WeaverCore.Components
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if ((largeCollisionMask & (1 << collision.gameObject.layer)) != 0)
+            if (!collision.gameObject.name.Contains("TRIGGER WORKAROUND") && (largeCollisionMask & (1 << collision.gameObject.layer)) != 0)
             {
                 CorpseCollision(collision.gameObject, true);
             }
 
-            if ((smallCollisionMask & (1 << collision.gameObject.layer)) != 0)
+            if (!collision.gameObject.name.Contains("TRIGGER WORKAROUND") && (smallCollisionMask & (1 << collision.gameObject.layer)) != 0)
             {
                 CorpseCollision(collision.gameObject, false);
             }

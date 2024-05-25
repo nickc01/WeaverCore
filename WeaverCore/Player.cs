@@ -15,7 +15,14 @@ namespace WeaverCore
     /// </summary>
     public class Player : MonoBehaviour
 	{
-		static object[] paramCache = new object[1];
+#if UNITY_EDITOR
+		public const float HEIGHT_FROM_FLOOR = 5.196801f - 4.596909f;
+#else
+		public const float HEIGHT_FROM_FLOOR = 6.005033f - 4.596909f;
+#endif
+
+
+        static object[] paramCache = new object[1];
 
 		HeroController heroCtrl;
 		//static ObjectPool NailStrikePool;
@@ -422,6 +429,30 @@ namespace WeaverCore
 		public void ExitCutsceneLock()
 		{
 			Impl.ExitCutsceneLock();
+		}
+
+		public float GetHeightFromFloor(Transform relativeTo = null)
+		{
+			var collider = GetComponent<Collider2D>();
+
+			var bounds = collider.bounds;
+
+			float height;
+
+			if (relativeTo != null)
+			{
+				height = relativeTo.InverseTransformPoint(transform.position).y - relativeTo.InverseTransformPoint(bounds.min).y;
+			}
+			else
+			{
+				height = transform.position.y - bounds.min.y;
+            }
+
+			//var height = transform.position - bounds.min;
+
+			WeaverLog.Log("Height = " + height);
+
+			return height;
 		}
 	}
 }

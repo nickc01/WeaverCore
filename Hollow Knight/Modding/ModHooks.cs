@@ -1129,8 +1129,78 @@ namespace Modding
 
             return result;
         }
-		
-		/// <summary>
+
+        /// <summary>
+        ///     Called right before a scene gets loaded, can change which scene gets loaded
+        /// </summary>
+        /// <remarks>N/A</remarks>
+        internal static string BeforeSceneLoad(string sceneName)
+        {
+            //Debug.Log("BeforeSceneLoad Invoked");
+
+            if (BeforeSceneLoadHook == null)
+            {
+                return sceneName;
+            }
+
+            Delegate[] invocationList = BeforeSceneLoadHook.GetInvocationList();
+
+            foreach (Func<string, string> toInvoke in invocationList)
+            {
+                try
+                {
+                    sceneName = toInvoke.Invoke(sceneName);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError(ex);
+                }
+            }
+
+            return sceneName;
+        }
+
+        /// <summary>
+        ///     Called after a new Scene has been loaded
+        /// </summary>
+        /// <remarks>N/A</remarks>
+        internal static void OnSceneChanged(string targetScene)
+        {
+            Debug.Log("OnSceneChanged Invoked");
+
+            if (SceneChanged == null)
+            {
+                return;
+            }
+
+            Delegate[] invocationList = SceneChanged.GetInvocationList();
+
+            foreach (Action<string> toInvoke in invocationList)
+            {
+                try
+                {
+                    toInvoke.Invoke(targetScene);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Called after a new Scene has been loaded
+        /// </summary>
+        /// <remarks>N/A</remarks>
+        public static event Action<string> SceneChanged;
+
+        /// <summary>
+        ///     Called right before a scene gets loaded, can change which scene gets loaded
+        /// </summary>
+        /// <remarks>N/A</remarks>
+        public static event Func<string, string> BeforeSceneLoadHook;
+
+        /// <summary>
         ///     Called whenever focus cost is calculated, allows a focus cost multiplier.
         /// </summary>
         public static event Func<float> FocusCostHook;

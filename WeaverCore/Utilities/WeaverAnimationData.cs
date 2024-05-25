@@ -369,6 +369,11 @@ namespace WeaverCore.Utilities
 			int loopStartFrame = clipLoopStarts[clipIndex] + startingFrame;
 			WrapMode wrapMode = GetClipWrapModeRaw(clipIndex);
 
+			if (frameIndex < 0)
+			{
+				frameIndex = frameCount - 1;
+			}
+
 			if (wrapMode == WrapMode.PingPong)
 			{
 				if (frameIndex >= 0 && frameIndex < frameCount)

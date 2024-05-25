@@ -107,6 +107,12 @@ namespace WeaverCore.Editor
         /// </summary>
         public static void CheckDependencies()
         {
+            
+            //TEMPORARY WORKAROUND
+            /*if (NativeLibraryLoader.GetCurrentOS() == NativeLibraryLoader.OS.Linux)
+            {
+                return;
+            }*/
             if (EditorApplication.isPlaying)
             {
                 return;

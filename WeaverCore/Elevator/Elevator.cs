@@ -1,17 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using WeaverCore.Components;
 using WeaverCore.Utilities;
 
 namespace WeaverCore.Elevator
 {
-
     public class Elevator : MonoBehaviour
     {
+        public const float INITIAL_DELAY_TIME = 0.25f;
+
+        [Serializable]
         public struct ElevatorInfo
         {
-            public float Speed;
+            [NonSerialized]
+            public Func<float> GetSpeed;
             public bool DoBob;
             public float BeginDelay;
             public float EndDelay;
@@ -21,7 +27,7 @@ namespace WeaverCore.Elevator
 
             public ElevatorInfo(ElevatorInfo source)
             {
-                Speed = source.Speed;
+                GetSpeed = source.GetSpeed;
                 DoBob = source.DoBob;
                 BeginDelay = source.BeginDelay;
                 EndDelay = source.EndDelay;
@@ -32,7 +38,7 @@ namespace WeaverCore.Elevator
 
             public ElevatorInfo(Elevator instance)
             {
-                Speed = instance.Speed;
+                GetSpeed = () => instance.Speed;
                 DoBob = instance.DoBob;
                 BeginDelay = instance.BeginDelay;
                 EndDelay = instance.EndDelay;
@@ -41,9 +47,9 @@ namespace WeaverCore.Elevator
                 DoFinishSound = instance.LiftFinishSound != null;
             }
 
-            public ElevatorInfo(float speed, bool doBob, float beginDelay, float endDelay, bool doLiftSound, bool doLoopSound, bool doFinishSound)
+            public ElevatorInfo(Func<float> getSpeed, bool doBob, float beginDelay, float endDelay, bool doLiftSound, bool doLoopSound, bool doFinishSound)
             {
-                Speed = speed;
+                GetSpeed = getSpeed;
                 DoBob = doBob;
                 BeginDelay = beginDelay;
                 EndDelay = endDelay;
@@ -56,6 +62,7 @@ namespace WeaverCore.Elevator
         static int playerLayerID = -1;
 
         Coroutine movementRoutine;
+        Coroutine playerLockRoutine;
 
         [field: SerializeField]
         public float Speed { get; set; } = 5f;
@@ -70,11 +77,11 @@ namespace WeaverCore.Elevator
 
         [field: SerializeField]
         [field: Tooltip("If the player is above The Default Top Position of the elevator, the elevator will automatically move to the top. If the player is below the Default Top Position, the elevator will automatically move to the bottom")]
-        public bool AutoMove { get; protected set; } = true;
+        public bool AutoMove { get; set; } = true;
 
         [field: SerializeField]
         [field: Tooltip("If true, the elevator will automatically move when the player touches it")]
-        public bool MoveOnContact { get; protected set; } = true;
+        public bool MoveOnContact { get; set; } = true;
 
         [field: Tooltip("Does the elevator do a little bob motion when it's about to move?")]
         public bool DoBob { get; set; } = true;
@@ -115,7 +122,19 @@ namespace WeaverCore.Elevator
         /// </summary>
         public Vector3 MovingDestination { get; private set; }
 
+        public Vector3 MovingVelocity { get; private set; }
+
+        public UnityEvent<Vector3> OnMove;
+
         AudioPlayer loopSoundInstance;
+
+        /// <summary>
+        /// If set to true, then bobs, the Activate Sound, and the Finish Sound will be disabled
+        /// </summary>
+        public bool SilentMode { get; set; } = false;
+
+        [NonSerialized]
+        float startTime = -1;
 
         protected virtual void Reset()
         {
@@ -147,6 +166,7 @@ namespace WeaverCore.Elevator
 
         protected virtual void Awake()
         {
+            WeaverLog.Log("ELE AWAKE");
             if (HeroController.instance.isHeroInPosition)
             {
                 InPosition();
@@ -167,14 +187,27 @@ namespace WeaverCore.Elevator
 
         protected virtual void InPosition()
         {
-            transform.position = GetStartPosition();
+            if (startTime < 0)
+            {
+                startTime = Time.time;
+            }
+            if (!Moving)
+            {
+                transform.position = GetStartPosition();
+            }
+
             Ready = true;
             //cogs = GetComponentsInChildren<ElevatorRotatable>();
         }
 
         private void Update()
         {
-            if (AutoMove && !Moving && Ready)
+            if (startTime < 0)
+            {
+                startTime = Time.time;
+            }
+
+            if (AutoMove && !Moving && Ready && Time.time >= startTime + INITIAL_DELAY_TIME)
             {
                 if (Player.Player1.transform.position.y >= DefaultTopPosition.y)
                 {
@@ -194,7 +227,27 @@ namespace WeaverCore.Elevator
                 return;
             }
 
-            CallElevatorToPosition(GetOppositeDestination());
+            if (startTime < 0)
+            {
+                startTime = Time.time;
+            }
+
+            if (Time.time >= startTime + INITIAL_DELAY_TIME)
+            {
+                CallElevatorToPosition(GetOppositeDestination());
+            }
+            else
+            {
+                if (!Moving)
+                {
+                    CallElevatorToOpposite(new ElevatorInfo(GetDefaultInfo())
+                    {
+                        DoBob = false,
+                        DoActivateSound = false,
+                        BeginDelay = 0
+                    });
+                }
+            }
         }
 
         protected virtual void OnPlayerUntouch()
@@ -285,6 +338,7 @@ namespace WeaverCore.Elevator
             }
 
             MovingDestination = destination;
+            MovingVelocity = default;
             if (movementRoutine != null)
             {
                 if (loopSoundInstance != null)
@@ -293,10 +347,15 @@ namespace WeaverCore.Elevator
                     loopSoundInstance.Delete();
                     loopSoundInstance = null;
                 }
+                WeaverLog.Log("STOPPING MOVEMENT");
                 StopCoroutine(movementRoutine);
+                movementRoutine = null;
             }
 
             StopAllCoroutines();
+
+            OnMove?.Invoke(destination);
+            WeaverLog.Log("STARTING MOVEMENT");
             movementRoutine = StartCoroutine(ElevatorMovementRoutine(info));
         }
 
@@ -322,7 +381,7 @@ namespace WeaverCore.Elevator
 
         protected virtual IEnumerator ElevatorMovementRoutine(ElevatorInfo info)
         {
-            if (info.DoActivateSound && LiftActivateSound != null)
+            if (!SilentMode && info.DoActivateSound && LiftActivateSound != null)
             {
                 var instance = WeaverAudio.PlayAtPoint(LiftActivateSound, transform.position);
                 instance.AudioSource.pitch = LiftActivateSoundPitchRange.RandomInRange();
@@ -331,7 +390,7 @@ namespace WeaverCore.Elevator
 
             var movementDirection = (MovingDestination - transform.position).normalized;
 
-            if (info.DoBob)
+            if (info.DoBob && !SilentMode)
             {
                 yield return BobRoutine(-movementDirection);
             }
@@ -359,11 +418,12 @@ namespace WeaverCore.Elevator
             while (true)
             {
                 var direction = (MovingDestination - transform.position).normalized;
-                transform.position += direction * info.Speed * Time.deltaTime;
+                MovingVelocity = direction * (info.GetSpeed?.Invoke() ?? Speed);
+                transform.position += MovingVelocity * Time.deltaTime;
 
                 for (int i = 0; i < rotatables.Length; i++)
                 {
-                    rotatables[i].Rotate(this, movementDirection, info.Speed);
+                    rotatables[i].Rotate(this, movementDirection, info.GetSpeed?.Invoke() ?? Speed);
                 }
 
                 if (Vector3.Distance(start, transform.position) >= originalLengthToEnd)
@@ -384,7 +444,7 @@ namespace WeaverCore.Elevator
                 loopSoundInstance = null;
             }
 
-            if (info.DoFinishSound && LiftFinishSound != null)
+            if (!SilentMode && info.DoFinishSound && LiftFinishSound != null)
             {
                 var instance = WeaverAudio.PlayAtPoint(LiftFinishSound, transform.position);
                 instance.AudioSource.pitch = LiftFinishSoundPitchRange.RandomInRange();
@@ -394,7 +454,7 @@ namespace WeaverCore.Elevator
             EventManager.BroadcastEvent("STOP MOVING", gameObject);
             OnMovementEnd();
 
-            if (info.DoBob)
+            if (!SilentMode && info.DoBob)
             {
                 yield return BobRoutine(movementDirection);
             }
@@ -403,8 +463,7 @@ namespace WeaverCore.Elevator
                 yield return new WaitForSeconds(info.EndDelay);
             }
 
-            yield return 
-
+            MovingVelocity = default;
             movementRoutine = null;
         }
 
@@ -442,6 +501,190 @@ namespace WeaverCore.Elevator
             if (collision.gameObject.layer == playerLayerID)
             {
                 OnPlayerUntouch();
+            }
+        }
+
+        /// <summary>
+        /// Locks the player to a certain range on the elevator. Useful for cross-scene transport
+        /// </summary>
+        /// <param name="horizontalRange">Locks the player to only a certain horizontal range relative to the elevator</param>
+        /// <param name="duration">How long the lock should last</param>
+        /// <param name="stickToElevator">Should the player stick to the elevator when the lock is complete?</param>
+        /// <param name="stopPrematurely">Should the lock stop prematurely when the elevator stops moving?</param>
+        public void LockPlayerToRange(Vector2 horizontalRange, float duration, bool stickToElevator = true, bool stopPrematurely = true)
+        {
+            var extraOffset = 0f;
+
+#if !UNITY_EDITOR
+            extraOffset = -0.3f;
+#endif
+
+
+            //LockPlayerToRange(horizontalRange, duration, new Vector2(2.470994f + Player.HEIGHT_FROM_FLOOR - 0.2665272f + extraOffset, 2.470994f + Player.HEIGHT_FROM_FLOOR - 0.2665272f + extraOffset), stickWhenDone, stopPrematurely);
+            LockPlayerToRange(horizontalRange, duration, new Vector2(2.470994f + Player.Player1.GetHeightFromFloor(transform), 2.470994f + Player.Player1.GetHeightFromFloor(transform)), stickToElevator, stopPrematurely);
+        }
+
+        /// <summary>
+        /// Locks the player to a certain range on the elevator. Useful for cross-scene transport
+        /// </summary>
+        /// <param name="horizontalRange">Locks the player to only a certain horizontal range relative to the elevator</param>
+        /// <param name="floorAndCeiling">Locks the player to only a certain vertical range relative to the elevator</param>
+        /// <param name="duration">How long the lock should last</param>
+        /// <param name="stickToElevator">Should the player stick to the elevator when the lock is complete?</param>
+        /// <param name="stopPrematurely">Should the lock stop prematurely when the elevator stops moving?</param>
+        public void LockPlayerToRange(Vector2 horizontalRange, float duration, Vector2 floorAndCeiling, bool stickToElevator = true, bool stopPrematurely = true)
+        {
+            StopPlayerLock();
+            playerLockRoutine = StartCoroutine(LockPlayerToRangeRoutine(horizontalRange, floorAndCeiling, duration, stickToElevator, stopPrematurely));
+        }
+
+        IEnumerator LockPlayerToRangeRoutine(Vector2 horizontalRange, Vector2 floorAndCeiling, float duration, bool stickToElevator, bool stopPrematurely)
+        {
+            void PositionPlayer()
+            {
+                var leftWorld = transform.TransformPoint(new Vector2(horizontalRange.x, floorAndCeiling.x));
+                var rightWorld = transform.TransformPoint(new Vector2(horizontalRange.y, floorAndCeiling.y));
+
+                var pPos = Player.Player1.transform.position;
+
+                if (pPos.x < leftWorld.x)
+                {
+                    pPos.x = leftWorld.x;
+                }
+
+                if (pPos.x > rightWorld.x)
+                {
+                    pPos.x = rightWorld.x;
+                }
+
+                if (pPos.y < leftWorld.y)
+                {
+                    pPos.y = leftWorld.y;
+                }
+
+                if (pPos.y > rightWorld.y)
+                {
+                    pPos.y = rightWorld.y;
+                }
+
+                Player.Player1.transform.position = pPos;
+            }
+
+            if (stickToElevator)
+            {
+                var sticker = GetComponentInChildren<WeaverHeroPlatformStick>();
+                if (sticker != null)
+                {
+                    sticker.enabled = false;
+                    sticker.ForceStickPlayer();
+                    PositionPlayer();
+                }
+            }
+            for (float t = 0; t < duration; t += Time.deltaTime)
+            {
+                if (stopPrematurely && !Moving)
+                {
+                    break;
+                }
+
+                PositionPlayer();
+
+                yield return null;
+            }
+
+            if (stickToElevator)
+            {
+                var sticker = GetComponentInChildren<WeaverHeroPlatformStick>();
+                if (sticker != null)
+                {
+                    sticker.enabled = false;
+                    var playerRB = Player.Player1.GetComponent<Rigidbody2D>();
+                    sticker.ForceUnStickPlayer();
+                    yield return null;
+                    sticker.ForceStickPlayer();
+                    playerRB.velocity = playerRB.velocity.With(y: 0f) + (Vector2)MovingVelocity;
+                    HeroController.instance.SetBackOnGround();
+                    PositionPlayer();
+                    sticker.enabled = true;
+
+                    for (float t = 0; t < 1f; t += Time.deltaTime)
+                    {
+                        if (stopPrematurely && !Moving)
+                        {
+                            break;
+                        }
+
+                        var leftWorld = transform.TransformPoint(new Vector2(horizontalRange.x, floorAndCeiling.x));
+                        var rightWorld = transform.TransformPoint(new Vector2(horizontalRange.y, floorAndCeiling.y));
+
+                        if (Player.Player1.transform.position.y >= leftWorld.y - 0.1f && Player.Player1.transform.position.y <= rightWorld.y + 0.1f)
+                        {
+                            playerRB.interpolation = RigidbodyInterpolation2D.None;
+                        }
+                        else
+                        {
+                            playerRB.interpolation = RigidbodyInterpolation2D.Interpolate;
+                            break;
+                        }
+
+                        yield return null;
+                    }
+
+                    /*for (float t = 0; t < 0.1f; t += Time.deltaTime)
+                    {
+                        if (playerRB != null)
+                        {
+                            playerRB.interpolation = RigidbodyInterpolation2D.None;
+                        }
+                        yield return null;
+                    }*/
+
+                    /*for (float t = 0; t < 1f; t += Time.deltaTime)
+                    {
+                        sticker.ForceStickPlayer();
+                        yield return null;
+                    }*/
+
+                    /*{
+                        var leftWorld = transform.TransformPoint(new Vector2(horizontalRange.x, floorAndCeiling.x));
+                        var rightWorld = transform.TransformPoint(new Vector2(horizontalRange.y, floorAndCeiling.y));
+
+                        var pPos = Player.Player1.transform.position;
+
+                        if (pPos.x < leftWorld.x)
+                        {
+                            pPos.x = leftWorld.x;
+                        }
+
+                        if (pPos.x > rightWorld.x)
+                        {
+                            pPos.x = rightWorld.x;
+                        }
+
+                        if (pPos.y < leftWorld.y)
+                        {
+                            pPos.y = leftWorld.y;
+                        }
+
+                        if (pPos.y > rightWorld.y)
+                        {
+                            pPos.y = rightWorld.y;
+                        }
+
+                        Player.Player1.transform.position = pPos;
+                    }*/
+                }
+            }
+
+            playerLockRoutine = null;
+        }
+
+        public void StopPlayerLock()
+        {
+            if (playerLockRoutine != null)
+            {
+                StopCoroutine(playerLockRoutine);
+                playerLockRoutine = null;
             }
         }
 

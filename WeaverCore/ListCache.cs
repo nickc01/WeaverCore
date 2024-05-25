@@ -1,5 +1,6 @@
 ﻿namespace WeaverCore
 {
+
     public static class ListCache<T>
 	{
 		static T[] cachedArray;

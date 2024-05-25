@@ -752,13 +752,25 @@ namespace WeaverCore.Editor.Compilation
 
 					foreach (var xmlRef in References)
 					{
-						if (xmlRef.AssemblyName == "System")
+						if (xmlRef.AssemblyName == "System" || xmlRef.AssemblyName == "GalaxyCSharp")
 						{
 							continue;
 						}
-						if (xmlRef.HintPath != null && xmlRef.HintPath.Exists)
+						
+						// && xmlRef.HintPath.Exists
+						if (xmlRef.HintPath != null)
 						{
-							AssemblyReferences.Add(xmlRef.HintPath.FullName);
+							var path = xmlRef.HintPath.FullName;
+							
+							if (NativeLibraryLoader.GetCurrentOS() != NativeLibraryLoader.OS.Windows) {
+								path = path.Replace('\\', '/');	
+							}
+
+							WeaverLog.Log($"HINT PATH FOR {xmlRef.AssemblyName} = {path}");
+
+							if (File.Exists(path)) {
+								AssemblyReferences.Add(path);
+							}
 						}
 						else
 						{
@@ -889,38 +901,58 @@ namespace WeaverCore.Editor.Compilation
                 {
                     Debug.Log("<b>Starting Game</b>");
 
-
-					var exeDir = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
-
-					var exes = exeDir.EnumerateFileSystemInfos("*.exe", SearchOption.TopDirectoryOnly);
-
-					foreach (var hkEXE in exes)
+					if (NativeLibraryLoader.GetCurrentOS() == NativeLibraryLoader.OS.Windows)
 					{
-						if (hkEXE.Name.ToLower().Contains("hollow") && hkEXE.Name.ToLower().Contains("knight"))
-						{
-                            if (hkEXE.FullName.Contains("steamapps"))
-                            {
-                                var steamDirectory = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
-                                while (steamDirectory.Name != "Steam")
-                                {
-                                    steamDirectory = steamDirectory.Parent;
-                                    if (steamDirectory == null)
-                                    {
-                                        break;
-                                    }
-                                }
-                                if (steamDirectory != null)
-                                {
-                                    System.Diagnostics.Process.Start(steamDirectory.FullName + "\\steam.exe", "steam://rungameid/367520");
-                                    return;
-                                }
-                            }
-                            System.Diagnostics.Process.Start(hkEXE.FullName);
-							return;
-                        }
-					}
+						var exeDir = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
 
-                    //var hkEXE = new FileInfo(GameBuildSettings.Settings.HollowKnightLocation + "\\hollow_knight.exe");
+						var exes = exeDir.EnumerateFileSystemInfos("*.exe", SearchOption.TopDirectoryOnly);
+
+						foreach (var hkEXE in exes)
+						{
+							if (hkEXE.Name.ToLower().Contains("hollow") && hkEXE.Name.ToLower().Contains("knight"))
+							{
+								if (hkEXE.FullName.Contains("steamapps"))
+								{
+									var steamDirectory = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
+									while (steamDirectory.Name != "Steam")
+									{
+										steamDirectory = steamDirectory.Parent;
+										if (steamDirectory == null)
+										{
+											break;
+										}
+									}
+									if (steamDirectory != null)
+									{
+										System.Diagnostics.Process.Start(steamDirectory.FullName + "\\steam.exe", "steam://rungameid/367520");
+										return;
+									}
+								}
+								System.Diagnostics.Process.Start(hkEXE.FullName);
+								return;
+							}
+						}
+					}
+					else {
+						var parent = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
+
+						while (parent != null) {
+							if (parent.Name == "Steam")
+							{
+								var steamExe = parent.EnumerateFileSystemInfos("*.sh", SearchOption.TopDirectoryOnly).FirstOrDefault(e => e.Name == "steam.sh");
+
+								if (steamExe != null) {
+									System.Diagnostics.Process.Start(steamExe.FullName, "steam://rungameid/367520");
+								}
+
+								return;
+							}
+							else 
+							{
+								parent = parent.Parent;
+							}
+						}
+					}
                 }
 
                 DependencyChecker.CheckDependencies();

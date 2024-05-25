@@ -13,8 +13,6 @@ public static class PaleCourt_Patches
 
         if (paleCourtAsm != null)
         {
-            WeaverLog.Log("FOUND PALE COURT");
-
             var fiveKnightsType = paleCourtAsm.GetType("FiveKnights.FiveKnights");
 
             var orig = fiveKnightsType.GetMethod("LoadPaleCourtMenuMusic", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -25,8 +23,17 @@ public static class PaleCourt_Patches
         }
     }
 
-    static bool Prefix(MusicCue musicCue)
+    static bool Prefix(object orig, object self, MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot)
     {
-        return !(musicCue is WeaverMusicCue);
+        if (musicCue is WeaverMusicCue)
+        {
+            var func = (Delegate)orig;
+            func.DynamicInvoke(self, musicCue, delayTime, transitionTime, applySnapshot);
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

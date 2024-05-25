@@ -5,7 +5,7 @@ namespace WeaverCore.Elevator
     public class ElevatorRotatable : MonoBehaviour
     {
         [field: SerializeField]
-        public float RotationIntensity { get; protected set; } = 500f;
+        public float RotationIntensity { get; set; } = 500f;
 
         /// <summary>
         /// Used to rotate an object while the elevator is moving. Called every frame the elevator is moving

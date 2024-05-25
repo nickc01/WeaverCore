@@ -249,7 +249,7 @@ public class GameManager : MonoBehaviour
 
     public void BeginSceneTransition(GameManager.SceneLoadInfo info)
     {
-        //info.SceneName = ModHooks.BeforeSceneLoad(info.SceneName);
+        info.SceneName = ModHooks.BeforeSceneLoad(info.SceneName);
         orig_BeginSceneTransition(info);
     }
 
@@ -1231,15 +1231,15 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string destScene)
     {
-        //destScene = ModHooks.BeforeSceneLoad(destScene);
+        destScene = ModHooks.BeforeSceneLoad(destScene);
         orig_LoadScene(destScene);
-        //ModHooks.OnSceneChanged(destScene);
+        ModHooks.OnSceneChanged(destScene);
     }
 
     public IEnumerator LoadSceneAdditive(string destScene)
     {
         Debug.Log("Loading " + destScene);
-        //destScene = ModHooks.BeforeSceneLoad(destScene);
+        destScene = ModHooks.BeforeSceneLoad(destScene);
         tilemapDirty = true;
         startedOnThisScene = false;
         nextSceneName = destScene;
@@ -1257,7 +1257,7 @@ public class GameManager : MonoBehaviour
         asyncOperation.allowSceneActivation = true;
         yield return asyncOperation;
         yield return UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(exitingScene);
-        //ModHooks.OnSceneChanged(destScene);
+        ModHooks.OnSceneChanged(destScene);
         RefreshTilemapInfo(destScene);
         if (IsUnloadAssetsRequired(exitingScene, destScene))
         {
@@ -2443,9 +2443,9 @@ public class GameManager : MonoBehaviour
 
     public void ClearSaveFile(int saveSlot, Action<bool> callback)
     {
-        /*ModHooks.OnSavegameClear(saveSlot);
-		this.orig_ClearSaveFile(saveSlot, callback);
-		ModHooks.OnAfterSaveGameClear(saveSlot);*/
+        ModHooks.OnSavegameClear(saveSlot);
+		//this.orig_ClearSaveFile(saveSlot, callback);
+		ModHooks.OnAfterSaveGameClear(saveSlot);
     }
 
     /*public void GetSaveStatsForSlot(int saveSlot, Action<SaveStats> callback)

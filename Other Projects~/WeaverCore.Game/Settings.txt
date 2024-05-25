@@ -1,5 +1,5 @@
 [Hollow Knight Location]
-C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight
+/home/nick/.local/share/Steam/steamapps/common/Hollow Knight
 
 [Unity Editor Location]
-C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Unity\Editor\Data\Managed\UnityEngine
+/home/nick/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine

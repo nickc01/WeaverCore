@@ -28,10 +28,11 @@ namespace WeaverCore.Components
 
         private void LateUpdate()
         {
-			var distance = Vector3.Distance(transform.position, Target.position);
+            source.volume = CalculateVolumeAtPoint(Target.position);
+			/*var distance = Vector3.Distance(transform.position, Target.position);
 
 			var amount = Mathf.InverseLerp(DistanceMinMax.x, DistanceMinMax.y, distance);
-			source.volume = Mathf.Lerp(VolumeMinMax.y,VolumeMinMax.x,amount);
+			source.volume = Mathf.Lerp(VolumeMinMax.y,VolumeMinMax.x,amount);*/
         }
 
         private void OnDrawGizmosSelected()
@@ -40,6 +41,24 @@ namespace WeaverCore.Components
             Gizmos.DrawWireSphere(transform.position, DistanceMinMax.y);
             Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
             Gizmos.DrawSphere(transform.position, DistanceMinMax.x);
+        }
+
+        public float CalculateVolumeMultiplierAtPoint(Vector3 position) 
+        {
+            var distance = Vector3.Distance(transform.position, position);
+
+			var amount = Mathf.InverseLerp(DistanceMinMax.x, DistanceMinMax.y, distance);
+
+            return 1 - amount;
+			//return Mathf.Lerp(VolumeMinMax.y,VolumeMinMax.x,amount);
+        }
+
+        public float CalculateVolumeAtPoint(Vector3 position) 
+        {
+            var distance = Vector3.Distance(transform.position, position);
+
+			var amount = Mathf.InverseLerp(DistanceMinMax.x, DistanceMinMax.y, distance);
+			return Mathf.Lerp(VolumeMinMax.y,VolumeMinMax.x,amount);
         }
     }
 }

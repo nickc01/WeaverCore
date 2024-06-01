@@ -40,6 +40,10 @@ public class SpatterOrange : MonoBehaviour
 
     //static MethodInfo poolReturnMethod;
 
+    private void Awake() {
+        //Debug.Log("STARTING POSITION = " + transform.position);
+    }
+
     private void Start()
     {
         scaleModifier = UnityEngine.Random.Range(scaleModifierMin, scaleModifierMax);
@@ -167,7 +171,7 @@ public class SpatterOrange : MonoBehaviour
         Impact();
     }
 
-    private void OnTriggerEnter2D()
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y, 0f);
         base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.65f, base.transform.position.z);

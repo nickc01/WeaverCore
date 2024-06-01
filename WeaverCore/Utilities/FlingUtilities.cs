@@ -49,6 +49,7 @@ namespace WeaverCore.Utilities
             for (int i = 0; i < num; i++)
             {
                 Vector3 position = vector + new Vector3(UnityEngine.Random.Range(0f - config.OriginVariationX, config.OriginVariationX), UnityEngine.Random.Range(0f - config.OriginVariationY, config.OriginVariationY), 0f);
+                Debug.DrawRay(vector, Vector3.up, Color.blue, 10f);
                 GameObject gameObject = Pooling.Instantiate(config.Prefab, position, Quaternion.identity);
                 Rigidbody2D component = gameObject.GetComponent<Rigidbody2D>();
                 if (component != null)

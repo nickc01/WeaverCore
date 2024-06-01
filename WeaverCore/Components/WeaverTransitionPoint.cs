@@ -86,6 +86,15 @@ unknown -> Don't use")]
 			}
 		}
 
+		public float EntryDelay {
+			get {
+				return entryDelay;
+			}
+			set {
+				entryDelay = value;
+			}
+		}
+
 		[OnHarmonyPatch]
 		static void Init(HarmonyPatcher patcher)
 		{

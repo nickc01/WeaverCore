@@ -3,6 +3,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
     public class ConstantlyRotate : MonoBehaviour
     {
         [SerializeField]

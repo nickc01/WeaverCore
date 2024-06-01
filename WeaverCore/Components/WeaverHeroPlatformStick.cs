@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
+using Modding;
+using System;
 
 namespace WeaverCore.Components
 {
-    using Modding;
-    using System;
-    using System.ComponentModel;
-    using UnityEngine;
-
     public class WeaverHeroPlatformStick : MonoBehaviour
     {
         [NonSerialized]

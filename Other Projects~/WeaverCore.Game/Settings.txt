@@ -1,5 +1,5 @@
 [Hollow Knight Location]
-/home/nick/.local/share/Steam/steamapps/common/Hollow Knight
+/mnt/ExtraStorage/SteamLibrary/steamapps/common/Hollow Knight
 
 [Unity Editor Location]
 /home/nick/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine

@@ -7832,8 +7832,9 @@ GameObject:
   - component: {fileID: 6967662706201474543}
   - component: {fileID: 6967662706201474542}
   - component: {fileID: 6967662706201474537}
-  - component: {fileID: 6967662706201474541}
   - component: {fileID: 6967662706201474540}
+  - component: {fileID: 3442477472774755533}
+  - component: {fileID: 6073860416070480171}
   m_Layer: 18
   m_Name: Cocoon Cap
   m_TagString: Untagged
@@ -7958,29 +7959,6 @@ PolygonCollider2D:
       - {x: -1.3335342, y: -0.7151375}
       - {x: -0.015981436, y: -0.43269062}
       - {x: 1.3643417, y: -0.59749603}
---- !u!114 &6967662706201474541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6967662706201474539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b1a768e91fc3c4d8d834f9a844c469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceFactor: 0.4
-  speedThreshold: 1
-  playSound: 0
-  clips: []
-  chanceToPlay: 100
-  pitchMin: 1
-  pitchMax: 1
-  playAnimationOnBounce: 0
-  animationName: 
-  animPause: 0.5
-  sendFSMEvent: 0
 --- !u!114 &6967662706201474540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7994,6 +7972,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinFactor: -7.5
+--- !u!114 &3442477472774755533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6967662706201474539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ebf4ce6e2f51e742b7618d6a179947b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceFactor: 0.4
+  speedThreshold: 1
+  playSound: 0
+  clips: []
+  chanceToPlay: 100
+  pitchMin: 1
+  pitchMax: 1
+  playAnimationOnBounce: 0
+  animationName: 
+  animPause: 0.5
+  sendFSMEvent: 0
+--- !u!114 &6073860416070480171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6967662706201474539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026217512c52efdeab5e85c713995db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  increaseDragDelay: 1
+  increaseDragRate: 10
+  maxDrag: 100
+  resetDragOnDisable: 1
+  resetValue: 0
 --- !u!1 &6967662706206796565
 GameObject:
   m_ObjectHideFlags: 0

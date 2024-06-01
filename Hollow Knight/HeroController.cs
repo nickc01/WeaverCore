@@ -4502,6 +4502,7 @@ return fsmBool.Value;
         RaycastHit2D raycastHit2D = Physics2D.Raycast(startPoint, Vector2.down, num, 256);
         if (raycastHit2D.collider == null)
         {
+            Debug.DrawRay(startPoint, Vector2.down, Color.red, 5f);
             Debug.LogErrorFormat("FindGroundPoint: Could not find ground point below {0}, check reference position is not too high (more than {1} tiles).", new object[]
             {
                 startPoint.ToString(),

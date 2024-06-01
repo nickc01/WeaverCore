@@ -84,14 +84,20 @@ namespace WeaverCore.Components
 
         private void Awake()
         {
-            transform.parent = Player.Player1.transform;
+            transform.SetParent(Player.Player1.transform);
             transform.localPosition = new Vector3(0f,-0.5f,0.01f);
             StartCoroutine(MainRoutine());
         }
 
         IEnumerator MainRoutine()
         {
+            yield return null;
+
+            transform.SetParent(Player.Player1.transform);
+            transform.localPosition = new Vector3(0f,-0.5f,0.01f);
+
             yield return new WaitForSeconds(0.04f);
+
             if (enableFirstBurst)
             {
                 FlingUtilities.SpawnRandomObjectsPooled(spatterParticlePrefab, transform.position, firstBurstSpawnAmountRange, firstBurstSpeedRange, firstBurstAngleRange, firstBurstOriginVariation);
@@ -115,6 +121,7 @@ namespace WeaverCore.Components
             }
 
             StopAllCoroutines();
+            transform.SetParent(null);
             onDone.DoneWithObject(this);
         }
     }

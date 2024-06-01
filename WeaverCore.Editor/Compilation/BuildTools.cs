@@ -936,20 +936,29 @@ namespace WeaverCore.Editor.Compilation
 					else {
 						var parent = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
 
-						while (parent != null) {
-							if (parent.Name == "Steam")
-							{
-								var steamExe = parent.EnumerateFileSystemInfos("*.sh", SearchOption.TopDirectoryOnly).FirstOrDefault(e => e.Name == "steam.sh");
+						var hkExecutable = parent.GetFiles("hollow_knight.x86_64").FirstOrDefault();
 
-								if (steamExe != null) {
-									System.Diagnostics.Process.Start(steamExe.FullName, "steam://rungameid/367520");
+						if (hkExecutable != null)
+						{
+							System.Diagnostics.Process.Start(hkExecutable.FullName);
+						}
+						else
+						{
+							while (parent != null) {
+								if (parent.Name == "Steam")
+								{
+									var steamExe = parent.EnumerateFileSystemInfos("*.sh", SearchOption.TopDirectoryOnly).FirstOrDefault(e => e.Name == "steam.sh");
+
+									if (steamExe != null) {
+										System.Diagnostics.Process.Start(steamExe.FullName, "steam://rungameid/367520");
+									}
+
+									return;
 								}
-
-								return;
-							}
-							else 
-							{
-								parent = parent.Parent;
+								else 
+								{
+									parent = parent.Parent;
+								}
 							}
 						}
 					}

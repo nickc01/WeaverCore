@@ -104,12 +104,14 @@ namespace WeaverCore.Editor.Implementations
 
         public override void EnterCutsceneLock(bool playSound, int darknessLevel = -1)
         {
-            
+            HeroController.instance.RelinquishControl();
+			HeroController.instance.StartAnimationControl();
         }
 
         public override void ExitCutsceneLock()
         {
-            
+            HeroController.instance.RegainControl();
+			HeroController.instance.StartAnimationControl();
         }
     }
 }

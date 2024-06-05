@@ -9,7 +9,7 @@ namespace WeaverCore.Game.Implementations
 {
     public class G_Player_I : Player_I
 	{
-		static bool inCutsceneLock = false;
+		//static bool inCutsceneLock = false;
 		static int previousDarknessLevel = 0;
 
 		static GameObject HudCanvas = null;
@@ -130,11 +130,11 @@ namespace WeaverCore.Game.Implementations
 
         public override void EnterCutsceneLock(bool playSound, int darknessLevel = -1)
         {
-            if (inCutsceneLock)
+            /*if (inCutsceneLock)
 			{
 				throw new Exception("The player is already in a cutscene lock");
-			}
-			inCutsceneLock = true;
+			}*/
+			//inCutsceneLock = true;
 
 			var vignette = GameObject.FindGameObjectWithTag("Vignette");
 
@@ -187,12 +187,13 @@ namespace WeaverCore.Game.Implementations
 
         public override void ExitCutsceneLock()
         {
-            if (!inCutsceneLock)
+            /*if (!inCutsceneLock)
             {
                 throw new Exception("The player is already out of a cutscene lock");
-            }
+            }*/
+			
 
-			inCutsceneLock = false;
+			//inCutsceneLock = false;
 
             if (HudCanvas == null)
             {

@@ -215,6 +215,18 @@ namespace WeaverCore.Editor.Menu_Items
             InsertObject("Soul Totem");
         }
 
+		[MenuItem("WeaverCore/Insert/Cinematic Player")]
+        public static void InsertCinematicPlayer()
+        {
+            InsertObject("Weaver Cinematic Player");
+        }
+
+        [MenuItem("WeaverCore/Insert/In-Game Cinematic Player")]
+        public static void InsertInGameCinematicPlayer()
+        {
+            InsertObject("Weaver In-Game Cinematic Player");
+        }
+
         //Godhome Statue Template
 
         [MenuItem("WeaverCore/Insert/Godhome Statue Template")]

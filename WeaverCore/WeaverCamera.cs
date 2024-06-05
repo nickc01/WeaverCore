@@ -154,5 +154,45 @@ namespace WeaverCore
 				featuresToAdd = null;
 			}
 		}
+
+		public static void FadeWhiteIn(float time)
+		{
+			var blanker = WeaverCanvas.HUDBlankerWhite;
+			if (blanker != null)
+			{
+				PlayMakerUtilities.SetFsmFloat(blanker, "Blanker Control", "Fade Time", time);
+				EventManager.SendEventToGameObject("FADE IN",blanker);
+			}
+		}
+
+		public static void FadeWhiteOut(float time)
+		{
+			var blanker = WeaverCanvas.HUDBlankerWhite;
+            if (blanker != null)
+            {
+                PlayMakerUtilities.SetFsmFloat(blanker, "Blanker Control", "Fade Time", time);
+                EventManager.SendEventToGameObject("FADE OUT", blanker);
+            }
+		}
+
+		public static void FadeBlackIn(float time)
+		{
+			var blanker = WeaverCanvas.HUDBlanker;
+			if (blanker != null)
+			{
+				PlayMakerUtilities.SetFsmFloat(blanker, "Blanker Control", "Fade Time", time);
+				EventManager.SendEventToGameObject("FADE IN",blanker);
+			}
+		}
+
+		public static void FadeBlackOut(float time)
+		{
+			var blanker = WeaverCanvas.HUDBlanker;
+            if (blanker != null)
+            {
+                PlayMakerUtilities.SetFsmFloat(blanker, "Blanker Control", "Fade Time", time);
+                EventManager.SendEventToGameObject("FADE OUT", blanker);
+            }
+		}
     }
 }

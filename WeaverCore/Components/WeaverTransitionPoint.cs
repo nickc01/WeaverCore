@@ -11,7 +11,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
     /// <summary>
     /// An area in the game the player can transition to/from a scene
     /// </summary>

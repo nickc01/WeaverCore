@@ -63,9 +63,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.053719014
+    y: 0.11188328
     width: 1
-    height: 0.892562
+    height: 0.77623343
   near clip plane: 10
   far clip plane: 1000
   field of view: 24
@@ -636,7 +636,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275586632183709963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -38.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1275586632601410448}
@@ -769,6 +769,7 @@ MonoBehaviour:
   cameraParent: {fileID: 1275586633818145460}
   colorCorrectionCurves: {fileID: 1275586631729223894}
   sceneColorManager: {fileID: 1275586631729223895}
+  sceneParticlesPrefab: {fileID: 0}
 --- !u!114 &1275586632601410453
 MonoBehaviour:
   m_ObjectHideFlags: 0

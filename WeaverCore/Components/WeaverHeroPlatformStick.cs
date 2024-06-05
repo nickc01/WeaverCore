@@ -6,6 +6,10 @@ namespace WeaverCore.Components
 {
     public class WeaverHeroPlatformStick : MonoBehaviour
     {
+        [SerializeField]
+        [Tooltip("If this field is set, then any collisions on this object will be forwarded to the proxy object. This is useful if you need to fix scaling issues")]
+        WeaverHeroPlatformStick proxy;
+
         [NonSerialized]
         bool hooked = false;
 
@@ -18,6 +22,7 @@ namespace WeaverCore.Components
 
         private string ModHooks_BeforeSceneLoadHook(string scene)
         {
+            //Disable the platform stick when a new scene is being load3ed
             enabled = false;
             return scene;
         }
@@ -52,19 +57,31 @@ namespace WeaverCore.Components
         [NonSerialized]
         Rigidbody2D playerRB;
 
+        static Vector3 NormalizeScale(Vector3 scale)
+        {
+            return new Vector3(scale.x / Mathf.Abs(scale.x), scale.y / Mathf.Abs(scale.y), scale.z / Mathf.Abs(scale.z));
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (proxy != null)
+            {
+                proxy.OnCollisionEnter2D(collision);
+                return;
+            }
             GameObject gameObject = collision.gameObject;
+            WeaverLog.Log("HIT OBJ = " + gameObject);
             if (enabled && (gameObject.layer == 9 || gameObject.GetComponent<HeroController>() != null))
             {
-                WeaverLog.Log("Enabled = " + enabled);
-                WeaverLog.Log(this);
-                WeaverLog.Log("HERO PLATFORM STICK START");
                 HeroController component = gameObject.GetComponent<HeroController>();
-                if (component.cState.transitioning)
+                if (component != null && component.cState.transitioning)
                 {
                     return;
                 }
+                
+                gameObject.transform.SetParent(null);
+                gameObject.transform.localScale = NormalizeScale(gameObject.transform.localScale);
+
                 if (component != null)
                 {
                     component.SetHeroParent(transform);
@@ -80,10 +97,16 @@ namespace WeaverCore.Components
                 }
             }
         }
-
+        
         private void OnCollisionExit2D(Collision2D collision)
         {
+            if (proxy != null)
+            {
+                proxy.OnCollisionExit2D(collision);
+                return;
+            }
             GameObject gameObject = collision.gameObject;
+            WeaverLog.Log("NO HIT OBJ = " + gameObject);
             if (enabled && (gameObject.layer == 9 || gameObject.GetComponent<HeroController>() != null))
             {
                 HeroController component = gameObject.GetComponent<HeroController>();
@@ -95,6 +118,7 @@ namespace WeaverCore.Components
                 {
                     gameObject.transform.SetParent(null);
                 }
+                gameObject.transform.localScale = NormalizeScale(gameObject.transform.localScale);
                 Rigidbody2D component2 = gameObject.GetComponent<Rigidbody2D>();
                 if (component2 != null)
                 {
@@ -105,6 +129,11 @@ namespace WeaverCore.Components
 
         private void OnCollisionStay2D(Collision2D collision)
         {
+            if (proxy != null)
+            {
+                proxy.OnCollisionExit2D(collision);
+                return;
+            }
             GameObject gameObject = collision.gameObject;
             if (enabled && (gameObject.layer == 9 || gameObject == HeroController.instance.gameObject))
             {
@@ -117,6 +146,11 @@ namespace WeaverCore.Components
 
         public void ForceStickPlayer()
         {
+            if (proxy != null)
+            {
+                proxy.ForceStickPlayer();
+                return;
+            }
             var component = HeroController.instance;
             /*if (component.cState.transitioning)
             {
@@ -139,6 +173,11 @@ namespace WeaverCore.Components
 
         public void ForceUnStickPlayer()
         {
+            if (proxy != null)
+            {
+                proxy.ForceUnStickPlayer();
+                return;
+            }
             var component = HeroController.instance;
             if (component != null)
             {

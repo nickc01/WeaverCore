@@ -2,7 +2,7 @@
 
 namespace GlobalEnums
 {
-	public enum AttackDirection
+    public enum AttackDirection
 	{
 		normal,
 		upward,

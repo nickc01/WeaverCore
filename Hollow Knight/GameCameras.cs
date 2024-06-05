@@ -163,6 +163,12 @@ public class GameCameras : MonoBehaviour
 
 	}
 
+	public void EnableImageEffects(bool isGameplayLevel, bool isBloomForced)
+	{
+		mainCamera.GetComponent<ColorCorrectionCurves>().enabled = true;
+		cameraController.ApplyEffectConfiguration(isGameplayLevel, isBloomForced);
+	}
+
     private void OnDestroy()
     {
         UnityEngine.Object.DestroyImmediate(sceneParticles);

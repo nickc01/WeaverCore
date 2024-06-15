@@ -2744,18 +2744,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78124fafa3525b241873eda99e730923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptPrefab: {fileID: 2108503044856503622, guid: 052528e37bb95334f8c7dd0a916daab4, type: 3}
-  <StandBackUp>k__BackingField: 1
+  promptPrefab: {fileID: 2108503044856503622, guid: 052528e37bb95334f8c7dd0a916daab4,
+    type: 3}
   <Inspectable>k__BackingField: 1
   exitRangeEvent: 
   enterRangeEvent: 
   moveToOffset: 0.25
+  heroLooksUp: 0
   <EnableKnightDamageInterrupt>k__BackingField: 1
   OnInspect:
     m_PersistentCalls:
       m_Calls: []
   itemPickupSound: {fileID: 8300000, guid: 9e2ba72c35015a848aac024e4b33d11d, type: 3}
-  dreamExit: 1
+  dreamExit: 0
 --- !u!1 &2206780115879592103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,7 +2774,7 @@ GameObject:
   - component: {fileID: 2206780115879592096}
   - component: {fileID: 2206780115879592097}
   m_Layer: 18
-  m_Name: Item
+  m_Name: Custom Charm Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2896,7 +2897,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2206780115879592103}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 651e14a63d0b5bb41b017366df65460a, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -3044,10 +3045,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6745d5f8d3ca44b89c1b235e44a1e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsStorage: {fileID: 0}
-  settingsField: 
+  <SettingsStorage>k__BackingField: {fileID: 0}
+  <SettingsField>k__BackingField: 
   <ItemActive>k__BackingField: 1
   <FlingOnStart>k__BackingField: 1
-  flingSpeedMinMax: {x: 20, y: 20}
-  flingAngleMinMax: {x: 82, y: 86}
+  FlingSpeedMinMax: {x: 20, y: 20}
+  FlingAngleMinMax: {x: 82, y: 86}
   charm: {fileID: 0}

@@ -26,6 +26,10 @@ namespace WeaverCore.Elevator
             //foreach (var crossScene in GameObject.FindObjectsOfType<ElevatorCrossSceneController>())
             foreach (var crossScene in ComponentUtilities.GetComponentsInChildrenList<ElevatorCrossSceneController>(enterGate.gameObject.scene.GetRootGameObjects()))
             {
+                if (!crossScene.IsEnabled)
+                {
+                    continue;
+                }
                 for (int i = 0; i < crossScene.crossSceneEntries.Count; i++)
                 {
                     var entry = crossScene.crossSceneEntries[i];
@@ -117,6 +121,9 @@ namespace WeaverCore.Elevator
         }
 
         [SerializeField]
+        bool isEnabled = true;
+
+        [SerializeField]
         [HideInInspector]
         string infoJson;
 
@@ -126,6 +133,12 @@ namespace WeaverCore.Elevator
 
         [SerializeField]
         List<CrossSceneEntry> crossSceneEntries = new List<CrossSceneEntry>();
+
+        public bool IsEnabled
+        {
+            get => isEnabled;
+            set => isEnabled = value;
+        }
 
         //[SerializeField]
         //List<CrossSceneEntry> resultSceneEntries = new List<CrossSceneEntry>();

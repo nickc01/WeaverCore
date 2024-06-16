@@ -940,6 +940,8 @@ namespace WeaverCore.Editor.Compilation
 
 						if (hkExecutable != null)
 						{
+							//Stop any existing Hollow Knight instance if any
+							System.Diagnostics.Process.Start("killall", hkExecutable.Name);
 							System.Diagnostics.Process.Start(hkExecutable.FullName);
 						}
 						else

@@ -16,6 +16,9 @@ namespace WeaverCore.Components
         [field: SerializeField]
         public float repeatDelay { get; private set; } = 0.25f;
 
+		[field: SerializeField]
+		public bool ApplyCameraShake {get; private set;} = true;
+
 
         public bool Hit(HitInfo hit)
         {
@@ -63,7 +66,7 @@ namespace WeaverCore.Components
             }
         }
 
-        public static void PlayDeflectEffects(Vector3 playerPosition, GameObject deflectedObject, CardinalDirection hitDirection, bool applyRecoil = true)
+        public static void PlayDeflectEffects(Vector3 playerPosition, GameObject deflectedObject, CardinalDirection hitDirection, bool applyRecoil = true, bool applyCameraShake = true)
         {
 
 			CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
@@ -132,7 +135,7 @@ namespace WeaverCore.Components
 
         protected virtual void OnDeflect(HitInfo hit)
         {
-            PlayDeflectEffects(Player.Player1.transform.position, gameObject, DirectionUtilities.DegreesToDirection(hit.Direction));
+            PlayDeflectEffects(Player.Player1.transform.position, gameObject, DirectionUtilities.DegreesToDirection(hit.Direction), applyCameraShake: ApplyCameraShake);
         }
     }
 }

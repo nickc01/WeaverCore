@@ -64,8 +64,15 @@ namespace WeaverCore.Elevator
         Coroutine movementRoutine;
         Coroutine playerLockRoutine;
 
+        [SerializeField]
+        float lockOffset = 2.470994f;
+
         [field: SerializeField]
         public float Speed { get; set; } = 5f;
+
+        [field: SerializeField]
+        [field: Tooltip("Determines how precise the the position of the elevator should be. Having this too low could cause the elevator to constantly move in a loop")]
+        public float PositionPrecision { get; set; } = 0.05f;
 
         [field: SerializeField]
         [field: Tooltip("The default position of the elevator when it's at the top")]
@@ -166,7 +173,7 @@ namespace WeaverCore.Elevator
 
         protected virtual void Awake()
         {
-            WeaverLog.Log("ELE AWAKE");
+            //WeaverLog.Log("ELE AWAKE");
             if (HeroController.instance.isHeroInPosition)
             {
                 InPosition();
@@ -328,11 +335,11 @@ namespace WeaverCore.Elevator
 
         public void CallElevatorToPosition(Vector3 destination, ElevatorInfo info)
         {
-            if (Moving && MovingDestination == destination)
+            if (Moving && Vector3.Distance(MovingDestination, destination) <= PositionPrecision)
             {
                 return;
             }
-            else if (!Moving && transform.position == destination)
+            else if (!Moving && Vector3.Distance(transform.position, destination) <= PositionPrecision)
             {
                 return;
             }
@@ -521,7 +528,7 @@ namespace WeaverCore.Elevator
 
 
             //LockPlayerToRange(horizontalRange, duration, new Vector2(2.470994f + Player.HEIGHT_FROM_FLOOR - 0.2665272f + extraOffset, 2.470994f + Player.HEIGHT_FROM_FLOOR - 0.2665272f + extraOffset), stickWhenDone, stopPrematurely);
-            LockPlayerToRange(horizontalRange, duration, new Vector2(2.470994f + Player.Player1.GetHeightFromFloor(transform), 2.470994f + Player.Player1.GetHeightFromFloor(transform)), stickToElevator, stopPrematurely);
+            LockPlayerToRange(horizontalRange, duration, new Vector2(lockOffset + Player.Player1.GetHeightFromFloor(transform), lockOffset + Player.Player1.GetHeightFromFloor(transform)), stickToElevator, stopPrematurely);
         }
 
         /// <summary>

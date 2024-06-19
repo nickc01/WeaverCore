@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace WeaverCore.Utilities
 {
-	/// <summary>
-	/// Contains utility functions related to types
-	/// </summary>
-	public static class TypeUtilities
+
+    /// <summary>
+    /// Contains utility functions related to types
+    /// </summary>
+    public static class TypeUtilities
 	{
 		static Cache<(string tName, string aName), Type> typeCache = new Cache<(string tName, string aName), Type>();
 

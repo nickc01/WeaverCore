@@ -57,7 +57,7 @@ namespace WeaverCore.Features
                 }
                 else
                 {
-                    throw new Exception($"The settings field {StringUtilities.Prettify(nameof(acquired_settingsField))} doesn't point to a valid field");
+                    throw new Exception($"The settings field {nameof(acquired_settingsField)} doesn't point to a valid field. Tried to access field: {acquired_settingsField}");
                 }
             }
 
@@ -69,7 +69,7 @@ namespace WeaverCore.Features
                 }
                 else
                 {
-                    throw new Exception($"The settings field {StringUtilities.Prettify(nameof(acquired_settingsField))} doesn't point to a valid field");
+                    throw new Exception($"The settings field {nameof(acquired_settingsField)} doesn't point to a valid field. Tried to access field: {acquired_settingsField}");
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace WeaverCore.Features
                 }
                 else
                 {
-                    throw new Exception($"The settings field {StringUtilities.Prettify(nameof(equipped_settingsField))} doesn't point to a valid field");
+                    throw new Exception($"The settings field {nameof(equipped_settingsField)} doesn't point to a valid field. Tried to access field: {equipped_settingsField}");
                 }
             }
 
@@ -95,7 +95,7 @@ namespace WeaverCore.Features
                 }
                 else
                 {
-                    throw new Exception($"The settings field {StringUtilities.Prettify(nameof(equipped_settingsField))} doesn't point to a valid field");
+                    throw new Exception($"The settings field {nameof(equipped_settingsField)} doesn't point to a valid field. Tried to access field: {equipped_settingsField}");
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace WeaverCore.Features
                 }
                 else
                 {
-                    throw new Exception($"The settings field {StringUtilities.Prettify(nameof(newlyCollected_settingsField))} doesn't point to a valid field");
+                    throw new Exception($"The settings field {nameof(newlyCollected_settingsField)} doesn't point to a valid field. Tried to access field: {newlyCollected_settingsField}");
                 }
             }
 
@@ -121,7 +121,7 @@ namespace WeaverCore.Features
                 }
                 else
                 {
-                    throw new Exception($"The settings field {StringUtilities.Prettify(nameof(newlyCollected_settingsField))} doesn't point to a valid field");
+                    throw new Exception($"The settings field {nameof(newlyCollected_settingsField)} doesn't point to a valid field. Tried to access field: {newlyCollected_settingsField}");
                 }
             }
         }

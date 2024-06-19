@@ -62,7 +62,19 @@ namespace WeaverCore.Components
 
         IEnumerator DroppedItemRoutine()
         {
+            if (SettingsStorage != null)
+            {
+                //WeaverLog.Log("OLD SETTINGS DUMP = " + JsonUtility.ToJson(SettingsStorage, true));
+                var result = SaveSpecificSettings.GetSaveSettings(SettingsStorage.GetType());
+                if (result != null)
+                {
+                    SettingsStorage = result;
+                    //WeaverLog.Log("NEW SETTINGS DUMP = " + JsonUtility.ToJson(result, true));
+                }
+            }
             transform.rotation = Quaternion.identity;
+
+            //WeaverLog.Log("CAN SPAWN = " + CanSpawn());
 
             if (!CanSpawn())
             {
@@ -156,6 +168,9 @@ namespace WeaverCore.Components
             {
                 if (SettingsStorage.HasField<bool>(SettingsField))
                 {
+                    var result = SettingsStorage.GetFieldValue<bool>(SettingsField);
+                    //WeaverLog.Log($"{SettingsField} = {result}");
+                    //WeaverLog.Log("CAN SPAWN RESULT = " + !result);
                     return !SettingsStorage.GetFieldValue<bool>(SettingsField);
                 }
                 else

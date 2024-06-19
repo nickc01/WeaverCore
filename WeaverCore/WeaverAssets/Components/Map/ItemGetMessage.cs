@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,6 +40,9 @@ namespace WeaverCore.Assets.Components
         [Tooltip("Total time the message is displayed.")]
         [SerializeField]
         private float showTime = 4.25f;
+
+        [NonSerialized]
+        List<RendererUtilities.IColorable> colorables;
 
         /// <summary>
         /// Gets or sets the icon of the item.
@@ -89,8 +95,10 @@ namespace WeaverCore.Assets.Components
 
         private void Awake()
         {
+            colorables = RendererUtilities.GetObjectColorables(gameObject.GetComponentsInChildren<Component>().Where(c => c is SpriteRenderer || c is TextMeshPro)).ToList();
+
             _icon.transform.localScale = Vector3.one;
-            EventManager.BroadcastEvent("DESTROY JOURNAL MSG", gameObject);
+            //EventManager.BroadcastEvent("DESTROY JOURNAL MSG", gameObject);
             listener = GetComponent<EventListener>();
             listener.ListenForEvent("DESTROY JOURNAL MSG", (source, destination) =>
             {
@@ -141,11 +149,12 @@ namespace WeaverCore.Assets.Components
                 StopCoroutine(fadeRoutine);
             }
 
-            var graphics = GetComponentsInChildren<Graphic>();
+            //var graphics = GetComponentsInChildren<Graphic>();
+            //var colorables = RendererUtilities.GetObjectColorableInChildren(gameObject).ToArray(); //GetComponentsInChildren<Graphic>();
 
-            foreach (var graphic in graphics)
+            foreach (var colorable in colorables)
             {
-                graphic.color = graphic.color.With(a: 1f);
+                colorable.color = colorable.color.With(a: 1f);
             }
         }
 
@@ -159,11 +168,12 @@ namespace WeaverCore.Assets.Components
                 StopCoroutine(fadeRoutine);
             }
 
-            var graphics = GetComponentsInChildren<Graphic>();
+            //var graphics = GetComponentsInChildren<Graphic>();
+            //var colorables = RendererUtilities.GetObjectColorableInChildren(gameObject).ToArray();
 
-            foreach (var graphic in graphics)
+            foreach (var colorable in colorables)
             {
-                graphic.color = graphic.color.With(a: 0f);
+                colorable.color = colorable.color.With(a: 0f);
             }
         }
 
@@ -197,14 +207,16 @@ namespace WeaverCore.Assets.Components
         /// <returns></returns>
         private IEnumerator ShowRoutine()
         {
-            var graphics = GetComponentsInChildren<Graphic>();
+            //var graphics = GetComponentsInChildren<Graphic>();
+            //var colorables = RendererUtilities.GetObjectColorableInChildren(gameObject).ToArray();
 
             for (float t = 0; t < upTime; t += Time.deltaTime)
             {
-                foreach (var graphic in graphics)
+                foreach (var colorable in colorables)
                 {
-                    graphic.color = graphic.color.With(a: Mathf.Lerp(0f, 1f, t / upTime));
+                    colorable.color = colorable.color.With(a: Mathf.Lerp(0f, 1f, t / upTime));
                 }
+                //WeaverLog.Log("A:SETTING ALPHA TO = " + Mathf.Lerp(0f, 1f, t / upTime));
                 yield return null;
             }
         }
@@ -215,14 +227,15 @@ namespace WeaverCore.Assets.Components
         /// <returns></returns>
         private IEnumerator HideRoutine()
         {
-            var graphics = GetComponentsInChildren<Graphic>();
-
+            //var graphics = GetComponentsInChildren<Graphic>();
+            //var colorables = RendererUtilities.GetObjectColorableInChildren(gameObject).ToArray();
             for (float t = 0; t < downTime; t += Time.deltaTime)
             {
-                foreach (var graphic in graphics)
+                foreach (var colorable in colorables)
                 {
-                    graphic.color = graphic.color.With(a: Mathf.Lerp(1f, 0f, t / downTime));
+                    colorable.color = colorable.color.With(a: Mathf.Lerp(1f, 0f, t / downTime));
                 }
+                //WeaverLog.Log("B:SETTING ALPHA TO = " + Mathf.Lerp(1f, 0f, t / downTime));
                 yield return null;
             }
             yield break;
@@ -283,6 +296,7 @@ namespace WeaverCore.Assets.Components
             var instance = GameObject.Instantiate(prefab.Value).GetComponent<ItemGetMessage>();
             instance.Icon = itemSprite;
             instance.Text = itemText;
+            instance.HideInstant();
             return instance;
         }
     }

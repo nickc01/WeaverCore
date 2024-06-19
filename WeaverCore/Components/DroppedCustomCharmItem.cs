@@ -16,6 +16,7 @@ namespace WeaverCore.Components
 
         protected override void OnGiveItem()
         {
+            //WeaverLog.Log("CHARM = " + charm);
             if (charm == null)
             {
                 throw new System.Exception("No charm has been specified");

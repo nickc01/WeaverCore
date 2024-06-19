@@ -303,11 +303,13 @@ namespace WeaverCore.Utilities
 
         public static bool GiveCharmToPlayer(IWeaverCharm charm, bool displayCollectMessage = true)
         {
+            //WeaverLog.Log($"GIVING CHARM {charm} to player");
             return GiveCharmToPlayer(GetCustomCharmID(charm), displayCollectMessage);
         }
 
         public static bool GiveCharmToPlayer(int charmID, bool displayCollectMessage = true)
         {
+            //WeaverLog.Log($"GIVING CHARM ID {charmID} to player");
             bool alreadyCollected = false;
             if (PlayerData.instance.GetBool($"gotCharm_{charmID}") == true)
             {
@@ -317,6 +319,10 @@ namespace WeaverCore.Utilities
             {
                 GameManager.instance.IncrementPlayerDataInt("charmsOwned");
             }
+
+            //WeaverLog.Log("ALREADY COLLECTED = " + alreadyCollected);
+
+            //WeaverLog.Log("HAS CHARM = " + GameManager.instance.GetPlayerDataBool($"gotCharm_{charmID}"));
 
             PlayerData.instance.SetBool($"gotCharm_{charmID}", true);
             GameManager.instance.StoryRecord_acquired($"gotCharm_{charmID}");
@@ -328,8 +334,13 @@ namespace WeaverCore.Utilities
 
             if (displayCollectMessage)
             {
+                //WeaverLog.Log("SPAWNING COLLECT MESSAGE");
                 ItemGetMessage.SpawnCharm(charmID);
             }
+            //else
+            //{
+                //WeaverLog.Log("NOT SPAWNING COLLECT MESSAGE");
+            //}
             return alreadyCollected;
         }
     }

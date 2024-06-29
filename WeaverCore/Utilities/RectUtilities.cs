@@ -19,6 +19,17 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
+		/// Clamps a point within a rect
+		/// </summary>
+		/// <param name="rect">The rect to clamp the point within</param>
+		/// <param name="point">The point to clamp</param>
+		/// <returns>Returns the point clamped within the rect</returns>
+		public static Vector3 ClampWithin(this Rect rect, Vector3 point)
+		{
+			return new Vector3(Mathf.Clamp(point.x, rect.xMin, rect.xMax), Mathf.Clamp(point.y, rect.yMin, rect.yMax), point.z);
+		}
+
+		/// <summary>
 		/// Gets a random point within a rect
 		/// </summary>
 		/// <param name="rect">The rect to get a random point within</param>

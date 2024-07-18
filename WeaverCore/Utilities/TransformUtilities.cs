@@ -547,5 +547,29 @@ namespace WeaverCore.Utilities
 
 			return hash;
 		}
+
+		public static IEnumerable<Transform> RecursivelyFindChildren(Transform t, string name) 
+		{
+			for (int i = 0; i < t.childCount; i++)
+			{
+				var child = t.GetChild(i);
+				if (child.gameObject.name == name)
+				{
+					yield return child;
+				}
+
+				var childrenEnumerator = RecursivelyFindChildren(child, name).GetEnumerator();
+
+				while (childrenEnumerator.MoveNext())
+				{
+					yield return childrenEnumerator.Current;
+				}
+			}
+		}
+
+		public static Transform RecursivelyFindChild(Transform t, string name) 
+		{
+			return RecursivelyFindChildren(t, name).FirstOrDefault();
+		}
 	}
 }

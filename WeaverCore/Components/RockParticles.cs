@@ -57,9 +57,9 @@ namespace WeaverCore.Components
         /// <param name="particleSize">The size of the particles.</param>
         /// <param name="playImmediately">Whether to play the particles immediately.</param>
         /// <returns>The instance of RockParticles.</returns>
-        public static RockParticles SpawnDirectional(Vector3 position, Quaternion rotation, float intensity = 100, float duration = 0.1f, float particleSize = 1f, bool playImmediately = true)
+        public static RockParticles SpawnDirectional(Vector3 position, Quaternion rotation, float intensity = 100, float duration = 0.1f, float particleSize = 1f, bool playImmediately = true, RockParticles prefab = null)
         {
-            return Spawn(position, rotation, 0f, intensity, duration, particleSize, playImmediately);
+            return Spawn(position, rotation, 0f, intensity, duration, particleSize, playImmediately, prefab);
         }
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace WeaverCore.Components
         /// <param name="particleSize">The size of the particles.</param>
         /// <param name="playImmediately">Whether to play the particles immediately.</param>
         /// <returns>The instance of RockParticles.</returns>
-        public static RockParticles SpawnNonDirectional(Vector3 position, float intensity = 100, float duration = 0.1f, float particleSize = 1f, bool playImmediately = true)
+        public static RockParticles SpawnNonDirectional(Vector3 position, float intensity = 100, float duration = 0.1f, float particleSize = 1f, bool playImmediately = true, RockParticles prefab = null)
         {
-            return Spawn(position, Quaternion.identity, 1f, intensity, duration, particleSize, playImmediately);
+            return Spawn(position, Quaternion.identity, 1f, intensity, duration, particleSize, playImmediately, prefab);
         }
 
         /// <summary>
@@ -87,9 +87,13 @@ namespace WeaverCore.Components
         /// <param name="particleSize">The size of the particles.</param>
         /// <param name="playImmediately">Whether to play the particles immediately.</param>
         /// <returns>The instance of RockParticles.</returns>
-        public static RockParticles Spawn(Vector3 position, Quaternion rotation, float directionRandomness, float intensity = 100, float duration = 0.1f, float particleSize = 1f, bool playImmediately = true)
+        public static RockParticles Spawn(Vector3 position, Quaternion rotation, float directionRandomness, float intensity = 100, float duration = 0.1f, float particleSize = 1f, bool playImmediately = true, RockParticles prefab = null)
         {
-            var instance = Pooling.Instantiate(Prefab, position, rotation);
+            if (prefab == null)
+            {
+                prefab = Prefab;
+            }
+            var instance = Pooling.Instantiate(prefab, position, rotation);
 
             var emit = instance.Particles.emission;
             var main = instance.Particles.main;

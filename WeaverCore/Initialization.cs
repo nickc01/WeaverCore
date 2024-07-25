@@ -41,6 +41,8 @@ namespace WeaverCore
 		public const RunningState Environment = RunningState.Game;
 #endif
 
+		public static Assembly ImplementationAssembly { get; private set; }
+
 #if UNITY_EDITOR
 		[UnityEditor.InitializeOnLoadMethod]
 		static void OnEditorInitialize() //This is only called when the editor initializes
@@ -110,11 +112,11 @@ namespace WeaverCore
 
 #if UNITY_EDITOR
 				PerformanceLog("Loading WeaverCore.Editor");
-				LoadAsmIfNotFound("WeaverCore.Editor");
+				ImplementationAssembly = LoadAsmIfNotFound("WeaverCore.Editor");
 				PerformanceLog("Loaded WeaverCore.Editor");
 #else
 				PerformanceLog("Loading WeaverCore.Game");
-				LoadAsmIfNotFound("WeaverCore.Game");
+				ImplementationAssembly = LoadAsmIfNotFound("WeaverCore.Game");
 				PerformanceLog("Loaded WeaverCore.Game");
 #endif
 				ReflectionUtilities.ExecuteMethodsWithAttribute<OnInitAttribute>(GetWeaverCoreAssemblies());

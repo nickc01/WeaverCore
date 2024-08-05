@@ -30,6 +30,43 @@ namespace WeaverCore.Utilities
 		}
 
 		/// <summary>
+		/// Clamps a rect within a rect
+		/// </summary>
+		/// <param name="rect">The rect to clamp the point within</param>
+		/// <param name="rectToClamp">The rect to clamp</param>
+		/// <returns>Returns the rect clamped within the rect</returns>
+		public static Rect ClampWithin(this Rect rect, Rect rectToClamp)
+		{
+			var min = rectToClamp.min;
+			var max = rectToClamp.max;
+
+			if (min.x < rect.min.x)
+			{
+				min.x = rect.min.x;
+			}
+
+			if (min.y < rect.min.y)
+			{
+				min.y = rect.min.y;
+			}
+
+			if (max.x > rect.max.x)
+			{
+				max.x = rect.max.x;
+			}
+
+			if (max.y > rect.max.y)
+			{
+				max.y = rect.max.y;
+			}
+
+			return new Rect{
+				min = min,
+				max = max
+			};
+		}
+
+		/// <summary>
 		/// Gets a random point within a rect
 		/// </summary>
 		/// <param name="rect">The rect to get a random point within</param>

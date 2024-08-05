@@ -8,9 +8,9 @@ using WeaverCore.Attributes;
 
 namespace WeaverCore.Editor.Patches
 {
-	/// <summary>
-	/// Overrides the AddComponent function so that WeaverCore variants of TextMeshPro and TextMeshProUGUI are added instead of the regular ones
-	/// </summary>
+    /// <summary>
+    /// Overrides the AddComponent function so that WeaverCore variants of TextMeshPro and TextMeshProUGUI are added instead of the regular ones
+    /// </summary>
     static class TMPROAddComponentPatches
 	{
 		static Dictionary<Type, Type> TypeReplacements = new Dictionary<Type, Type>();

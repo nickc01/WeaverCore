@@ -9,12 +9,18 @@ namespace WeaverCore.Utilities
 
         public static int TerrainMask => terrainMask == -1 ? terrainMask = LayerMask.GetMask("Terrain") : terrainMask;
 
-        public static bool SimpleCastTo(Vector2 origin, Vector2 dest, out RaycastHit2D result, float distance = -1, int layerMask = -1)
+        public static bool SimpleCastTo(Vector2 origin, Vector2 dest, out RaycastHit2D result, float distance = float.NaN, int layerMask = -1)
         {
-            if (distance < 0)
+            if (float.IsNaN(distance))
             {
                 distance = (dest - origin).magnitude;
             }
+
+            if (distance < 0f)
+            {
+                distance = (dest - origin).magnitude - distance;
+            }
+
             return SimpleCast(origin, (dest - origin).normalized, out result, distance, layerMask);
         }
 

@@ -61,18 +61,18 @@ public static class TESTING_PATCHES
             patcher.Patch(orig, prefix, null);
         }*/
 
-        /*{
+        {
             var orig = typeof(UnityEngine.Object).GetMethod(nameof(UnityEngine.Object.Destroy), BindingFlags.Static | BindingFlags.Public,null, new Type[] { typeof(UnityEngine.Object), typeof(float) }, null);
 
             var prefix = typeof(TESTING_PATCHES).GetMethod(nameof(Destroy_Prefix), BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Public);
 
             patcher.Patch(orig, prefix, null);
-        }*/
+        }
     }
 
-    /*static bool Destroy_Prefix(UnityEngine.Object obj, float t)
+    static bool Destroy_Prefix(UnityEngine.Object obj, float t)
     {
         WeaverLog.Log($"DESTROYING OBJ {obj} in {t} seconds");
         return true;
-    }*/
+    }
 }

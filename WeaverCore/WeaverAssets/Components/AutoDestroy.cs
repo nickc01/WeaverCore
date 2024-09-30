@@ -23,6 +23,9 @@ namespace WeaverCore.Assets.Components
         [SerializeField]
         private bool destroyAfterTime;
 
+        [SerializeField]
+        private bool destroyOnParticlesDone = true;
+
         [Tooltip("Used only if Destroy After Time is set to true")]
         [SerializeField]
         private float lifeTime;
@@ -70,7 +73,10 @@ namespace WeaverCore.Assets.Components
 
         private void OnParticleSystemStopped()
         {
-            Destroy();
+            if (destroyOnParticlesDone)
+            {
+                Destroy();
+            }
         }
     }
 }

@@ -280,5 +280,24 @@ namespace WeaverCore.Components
 			}
 		}
 #endif
+
+
+
+		public static Rect GetCurrentSceneRect()
+		{
+			var wsm = GameObject.FindObjectOfType<WeaverSceneManager>();
+			if (wsm != null)
+			{
+				return wsm.SceneDimensions;
+			}
+			else
+			{
+				return new Rect
+				{
+					min = Vector2.zero,
+					max = new Vector2(GameManager.instance.GetSceneWidth(), GameManager.instance.GetSceneHeight())
+				};
+			}
+		}
 	}
 }

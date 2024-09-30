@@ -51,6 +51,26 @@ namespace WeaverCore.Utilities
 			return (-velocity.y - Mathf.Sqrt((velocity.y * velocity.y) - (2f * (float)gravity * (start.y - targetHeight)))) / (float)gravity;
         }
 
+		public static float CalculateGravity(float startY, float velocityY, float targetHeight, float time)
+		{
+            //double gravity = Physics2D.gravity.y * gravityScale;
+
+			/*if ((velocityY * velocityY) - (2f * (float)gravity * ((startY - targetHeight))) < 0f)
+			{
+				return float.NaN;
+			}*/
+
+			//var g = (-velocityY - Mathf.Sqrt((velocityY * velocityY) - (2f * (float)gravity * (startY - targetHeight)))) / (float)gravity;
+
+			//targetHeight = startY + (velocityY * time) + (0.5f * gravity * (time * time));
+
+			//targetHeight - startY - (velocityY * time) = 0.5f * gravity * (time * time);
+
+			//(targetHeight - startY - (velocityY * time)) / 0.5f = gravity * (time * time);
+
+			return (2 * (targetHeight - startY - (velocityY * time))) / (time * time);
+        }
+
         /// <summary>
         /// Calculates the vertical velocity needed to reach the height of <paramref name="endY"/>
         /// </summary>

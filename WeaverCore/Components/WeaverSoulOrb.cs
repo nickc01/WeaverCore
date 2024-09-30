@@ -18,15 +18,29 @@ namespace WeaverCore.Components
         [SerializeField]
         OnDoneBehaviour onDone = OnDoneBehaviour.DestroyOrPool;
 
+        static Func<SoulOrb, Transform> targetGetter;
+        static Action<SoulOrb, Transform> targetSetter;
+
+        public Transform Target
+        {
+            get => targetGetter(this);
+            set => targetSetter(this, value);
+        }
+
         [OnHarmonyPatch]
         static void HarmonyPatch(HarmonyPatcher patcher)
         {
+            targetGetter = ReflectionUtilities.CreateFieldGetter<SoulOrb, Transform>(typeof(SoulOrb).GetField("target", BindingFlags.NonPublic | BindingFlags.Instance));
+            targetSetter = ReflectionUtilities.CreateFieldSetter<SoulOrb, Transform>(typeof(SoulOrb).GetField("target", BindingFlags.NonPublic | BindingFlags.Instance));
+
             {
                 var orig = typeof(SoulOrb).GetMethod("Zoom", BindingFlags.NonPublic | BindingFlags.Instance);
                 var prefix = typeof(WeaverSoulOrb).GetMethod(nameof(ZoomPrefix), BindingFlags.Static | BindingFlags.NonPublic);
                 patcher.Patch(orig, prefix, null);
             }
         }
+
+
 
         static bool ZoomPrefix(SoulOrb __instance)
         {

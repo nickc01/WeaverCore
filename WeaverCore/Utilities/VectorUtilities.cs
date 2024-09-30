@@ -386,6 +386,11 @@ namespace WeaverCore.Utilities
 			return value;
         }
 
+		public static bool IsWithinRange(this Vector2 range, float v)
+		{
+			return v >= range.x && v <= range.y;
+		}
+
 		public static Vector3 Multiply(Vector3 a, Vector3 b)
 		{
 			return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);

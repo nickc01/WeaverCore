@@ -56,6 +56,10 @@ public class WeaverAnimationDataEditor : Editor
 
 	public override void OnInspectorGUI()
 	{
+		if (newClipFrames == null)
+		{
+			newClipFrames = new List<Sprite>();
+		}
 		EditorGUI.BeginChangeCheck();
 
 		showClipsDropdown = EditorGUILayout.Foldout(showClipsDropdown, "Clips");

@@ -107,7 +107,7 @@ namespace WeaverCore.Components
         private void Awake()
         {
             anim = GetComponent<WeaverAnimationPlayer>();
-            audioPlayerPrefab = GG_Internal.AudioPlayerPrefab;
+            audioPlayerPrefab = GG_Preloads.AudioPlayerPrefab;
         }
 
         private void OnEnable()

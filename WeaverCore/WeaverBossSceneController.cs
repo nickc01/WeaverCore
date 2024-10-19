@@ -100,7 +100,7 @@ namespace WeaverCore.Assets.Components
         {
             if (__instance is WeaverBossSceneController wbsc)
             {
-                wbsc.transitionPrefab = GG_Internal.ggBattleTransitions;
+                wbsc.transitionPrefab = GG_Preloads.ggBattleTransitions;
 
                 if (Initialization.Environment == Enums.RunningState.Game)
                 {

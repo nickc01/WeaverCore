@@ -78,6 +78,16 @@ namespace WeaverCore.Editor.Compilation
 			}
 		}
 
+		public SerializedMethod(SerializedMethod method)
+		{
+			_assemblyName = method._assemblyName;
+			_typeName = method._typeName;
+			_methodName = method._methodName;
+			_isPublic = method._isPublic;
+			_isStatic = method._isStatic;
+			methodCache = null;
+		}
+
 		public SerializedMethod(MethodInfo method)
 		{
 			if (method == null)

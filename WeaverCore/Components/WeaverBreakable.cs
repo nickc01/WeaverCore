@@ -10,6 +10,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
+
     /// <summary>
     /// WeaverCore's implementation of breakable objects. Used for implementing grass and breakable props
     /// </summary>
@@ -131,7 +132,7 @@ namespace WeaverCore.Components
                 Volume = breakAudioEvent_Volume
             });
 
-            audioSourcePrefabSetter(this, GG_Internal.AudioPlayerPrefab);
+            audioSourcePrefabSetter(this, GG_Preloads.AudioPlayerPrefab);
 #endif
 
         }

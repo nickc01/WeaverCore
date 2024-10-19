@@ -43044,6 +43044,7 @@ MonoBehaviour:
   dreamBossNameSheet: 
   dreamBossDescKey: 
   dreamBossDescSheet: 
+  autoUnlockInGodseekerMode: 1
   nameOverride: 
   descOverride: 
   dreamNameOverride: 

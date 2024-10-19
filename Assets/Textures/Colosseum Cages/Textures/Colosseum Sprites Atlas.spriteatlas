@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Colosseum Sprites Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 21300000, guid: be8587432161ba74bb9396efe5ec7f24, type: 2}
+    - {fileID: 21300000, guid: 1d145444cf379c24ca481799d21a0bc4, type: 2}
+    - {fileID: 21300000, guid: e18fdacb7c27bfc4aae395eaf8853ff0, type: 2}
+    - {fileID: 21300000, guid: e556a12709be9bf40ba759b6d55d0011, type: 2}
+    - {fileID: 21300000, guid: 4d87f54b0469a644fb724a9683b5bbd8, type: 2}
+    - {fileID: 21300000, guid: be418921dedbdf24bb1e2811256d8732, type: 2}
+    - {fileID: 21300000, guid: c2f95bb61c0e7634c83b105b324b32bc, type: 2}
+    - {fileID: 21300000, guid: 6ec920be1b99db34eb519130d0e4b0f0, type: 2}
+    - {fileID: 21300000, guid: 9ef07ab942de8194e981596cbb72e86c, type: 2}
+    - {fileID: 21300000, guid: 913e0dcd03c677d40816e6d18544f948, type: 2}
+    - {fileID: 21300000, guid: ee10e74a5961bc74ca64f8a97956da87, type: 2}
+    - {fileID: 21300000, guid: a4fd2fe643858c64aa9ff285c6a25106, type: 2}
+    - {fileID: 21300000, guid: 1174fa5900a6eca40a52cd714109f2a8, type: 2}
+    - {fileID: 21300000, guid: ebb88bed1b996454b84917055f4e2577, type: 2}
+    - {fileID: 21300000, guid: 772a1863de4af464b8e37820708e757c, type: 2}
+    - {fileID: 21300000, guid: 929293daaefb6b94592abf3a25bc4773, type: 2}
+    - {fileID: 21300000, guid: 07462983c8a5e444394249fe6d3beac2, type: 2}
+    - {fileID: 21300000, guid: 510ac609cf79c3b44a4b5f795cdf00fc, type: 2}
+    - {fileID: 21300000, guid: 811e640adb74b6d4b9840f09745f0255, type: 2}
+    - {fileID: 21300000, guid: e179d1b184a2e32479ee75d8ead7edb9, type: 2}
+    totalSpriteSurfaceArea: 1219623
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: be418921dedbdf24bb1e2811256d8732, type: 2}
+  - {fileID: 21300000, guid: e179d1b184a2e32479ee75d8ead7edb9, type: 2}
+  - {fileID: 21300000, guid: be8587432161ba74bb9396efe5ec7f24, type: 2}
+  - {fileID: 21300000, guid: 772a1863de4af464b8e37820708e757c, type: 2}
+  - {fileID: 21300000, guid: 07462983c8a5e444394249fe6d3beac2, type: 2}
+  - {fileID: 21300000, guid: a4fd2fe643858c64aa9ff285c6a25106, type: 2}
+  - {fileID: 21300000, guid: 510ac609cf79c3b44a4b5f795cdf00fc, type: 2}
+  - {fileID: 21300000, guid: 1174fa5900a6eca40a52cd714109f2a8, type: 2}
+  - {fileID: 21300000, guid: 9ef07ab942de8194e981596cbb72e86c, type: 2}
+  - {fileID: 21300000, guid: 811e640adb74b6d4b9840f09745f0255, type: 2}
+  - {fileID: 21300000, guid: ee10e74a5961bc74ca64f8a97956da87, type: 2}
+  - {fileID: 21300000, guid: 929293daaefb6b94592abf3a25bc4773, type: 2}
+  - {fileID: 21300000, guid: e18fdacb7c27bfc4aae395eaf8853ff0, type: 2}
+  - {fileID: 21300000, guid: 1d145444cf379c24ca481799d21a0bc4, type: 2}
+  - {fileID: 21300000, guid: c2f95bb61c0e7634c83b105b324b32bc, type: 2}
+  - {fileID: 21300000, guid: e556a12709be9bf40ba759b6d55d0011, type: 2}
+  - {fileID: 21300000, guid: 4d87f54b0469a644fb724a9683b5bbd8, type: 2}
+  - {fileID: 21300000, guid: 913e0dcd03c677d40816e6d18544f948, type: 2}
+  - {fileID: 21300000, guid: ebb88bed1b996454b84917055f4e2577, type: 2}
+  - {fileID: 21300000, guid: 6ec920be1b99db34eb519130d0e4b0f0, type: 2}
+  m_PackedSpriteNamesToIndex:
+  - col_lifts_door0001
+  - small_lift0005
+  - small_lift0006
+  - small_lift0000
+  - small_lift0002
+  - col_lifts_door0007
+  - small_lift0003
+  - col_lifts_door0008
+  - col_lifts_door0004
+  - small_lift0004
+  - col_lifts_door0006
+  - small_lift0001
+  - col_entrance_additions_0007_Layer-4
+  - col_entrance_additions_0004_Layer-1
+  - col_lifts_door0002
+  - col_entrance_additions_0008_Layer-5
+  - col_lifts_door0000
+  - col_lifts_door0005
+  - colosseum_main_bits_0024_c12
+  - col_lifts_door0003
+  m_RenderDataMap: {}
+  m_Tag: Colosseum Sprites Atlas
+  m_IsVariant: 0

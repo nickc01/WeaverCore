@@ -32,6 +32,7 @@ namespace WeaverCore.Editor
                     }
                     foreach (var mod in mods.OrderBy(m => m.LoadPriority()))
                     {
+                        mod.GetPreloadNames();
                         mod.Initialize(new Dictionary<string, Dictionary<string, UnityEngine.GameObject>>());
                         var methods = ReflectionUtilities.GetMethodsWithAttribute<AfterModLoadAttribute>(Initialization.GetWeaverCoreAssemblies()).ToList();
 

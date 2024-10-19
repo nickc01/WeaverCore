@@ -43,5 +43,14 @@ namespace WeaverCore.Utilities
 
             return null;
         }
+
+        public static int GetSmallGeo(GameObject obj) => impl.GetSmallGeo(obj);
+        public static int SetSmallGeo(GameObject obj, int geo) => impl.SetSmallGeo(obj, geo);
+
+        public static int GetMediumGeo(GameObject obj) => impl.GetMediumGeo(obj);
+        public static int SetMediumGeo(GameObject obj, int geo) => impl.SetMediumGeo(obj, geo);
+
+        public static int GetLargeGeo(GameObject obj) => impl.GetLargeGeo(obj);
+        public static int SetLargeGeo(GameObject obj, int geo) => impl.SetLargeGeo(obj, geo);
     }
 }

@@ -118,7 +118,7 @@ namespace WeaverCore.Components
             if (__instance is WeaverScuttlerControl wsc)
             {
                 __instance.journalUpdateMsgPrefab = Other_Preloads.JournalUpdateMessagePrefab;
-                __instance.audioSourcePrefab = GG_Internal.AudioPlayerPrefab;
+                __instance.audioSourcePrefab = GG_Preloads.AudioPlayerPrefab;
                 __instance.screenFlash = Other_Preloads.HealthCocoonFlashPrefab;
             }
 

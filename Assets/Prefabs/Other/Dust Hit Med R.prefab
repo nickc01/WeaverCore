@@ -2357,6 +2357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyBehaviour: 3
   destroyAfterTime: 0
+  destroyOnParticlesDone: 1
   lifeTime: 0
 --- !u!114 &-816112240479528810
 MonoBehaviour:

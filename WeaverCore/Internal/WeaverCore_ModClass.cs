@@ -45,7 +45,7 @@ namespace WeaverCore.Internal
         {
             if (preloadedObjects.TryGetValue("GG_Workshop", out var ggSceneDict) && ggSceneDict.TryGetValue("GG_Statue_Mage_Knight", out var mageKnightStatue))
             {
-                GG_Internal.SetMageKnightStatue(mageKnightStatue);
+                GG_Preloads.SetMageKnightStatue(mageKnightStatue);
             }
 
             if (preloadedObjects.TryGetValue("Tutorial_01", out var tutorialSceneDict))

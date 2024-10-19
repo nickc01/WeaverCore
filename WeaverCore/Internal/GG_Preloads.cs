@@ -7,8 +7,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Internal
 {
-
-    internal static class GG_Internal
+    internal static class GG_Preloads
     {
         internal static GameObject mageKnightStatue;
 

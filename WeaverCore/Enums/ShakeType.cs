@@ -10,6 +10,7 @@ namespace WeaverCore.Enums
 	/// </summary>
 	public enum ShakeType
 	{
+		None,
 		HugeShake,
 		SuperDashShake,
 		BigShake,

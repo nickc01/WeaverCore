@@ -110,33 +110,33 @@ namespace WeaverCore.Components
 
                 if (Initialization.Environment == Enums.RunningState.Game)
                 {
-                    wbs.statueDownSound = GG_Internal.statueDownSound;
-                    wbs.statueUpSound = GG_Internal.statueUpSound;
+                    wbs.statueDownSound = GG_Preloads.statueDownSound;
+                    wbs.statueUpSound = GG_Preloads.statueUpSound;
 
                     var lever = wbs.GetComponentInChildren<BossStatueLever>(true);
 
                     if (lever != null)
                     {
-                        lever.audioPlayerPrefab = GG_Internal.AudioPlayerPrefab;
-                        lever.switchSound = GG_Internal.BossLeverSwitchSound;
-                        lever.strikeNailPrefab = GG_Internal.StrikeNailR;
+                        lever.audioPlayerPrefab = GG_Preloads.AudioPlayerPrefab;
+                        lever.switchSound = GG_Preloads.BossLeverSwitchSound;
+                        lever.strikeNailPrefab = GG_Preloads.StrikeNailR;
                     }
 
                     var dreamLever = wbs.GetComponentInChildren<BossStatueDreamToggle>(true);
 
                     if (dreamLever != null)
                     {
-                        dreamLever.dreamImpactPrefab = GG_Internal.dreamImpactPrefab;
-                        dreamLever.dreamBurstEffectPrefab = GG_Internal.dreamBurstEffectPrefab;
-                        dreamLever.dreamBurstEffectOffPrefab = GG_Internal.dreamBurstEffectOffPrefab;
+                        dreamLever.dreamImpactPrefab = GG_Preloads.dreamImpactPrefab;
+                        dreamLever.dreamBurstEffectPrefab = GG_Preloads.dreamBurstEffectPrefab;
+                        dreamLever.dreamBurstEffectOffPrefab = GG_Preloads.dreamBurstEffectOffPrefab;
                     }
                 }
 
-                if (GG_Internal.AudioPlayerPrefab != null)
+                if (GG_Preloads.AudioPlayerPrefab != null)
                 {
                     foreach (var glow in wbs.GetComponentsInChildren<GlowResponse>(true))
                     {
-                        glow.audioPlayerPrefab = GG_Internal.AudioPlayerPrefab;
+                        glow.audioPlayerPrefab = GG_Preloads.AudioPlayerPrefab;
                     }
                 }
 
@@ -171,48 +171,48 @@ namespace WeaverCore.Components
                 }
                 if (Initialization.Environment == Enums.RunningState.Game)
                 {
-                    if (GG_Internal.attuned_award_prefab == null)
+                    if (GG_Preloads.attuned_award_prefab == null)
                     {
                         throw new System.Exception("Could not find attuned reward prefab");
                     }
 
-                    if (GG_Internal.AudioPlayerPrefab == null)
+                    if (GG_Preloads.AudioPlayerPrefab == null)
                     {
                         throw new System.Exception("Could not find audio player prefab");
                     }
                 }
-                if (GG_Internal.attuned_award_prefab != null)
+                if (GG_Preloads.attuned_award_prefab != null)
                 {
                     foreach (var plaque in wbs.GetComponentsInChildren<BossStatueTrophyPlaque>())
                     {
                         plaque.tierCompleteEffectPrefabs = new GameObject[]
                         {
-                            GG_Internal.attuned_award_prefab,
-                            GG_Internal.ascended_award_prefab,
-                            GG_Internal.radiant_award_prefab
+                            GG_Preloads.attuned_award_prefab,
+                            GG_Preloads.ascended_award_prefab,
+                            GG_Preloads.radiant_award_prefab
                         };
                     }
                 }
 
-                if (GG_Internal.AudioPlayerPrefab != null)
+                if (GG_Preloads.AudioPlayerPrefab != null)
                 {
-                    wbs.audioSourcePrefab = GG_Internal.AudioPlayerPrefab;
+                    wbs.audioSourcePrefab = GG_Preloads.AudioPlayerPrefab;
 
-                    if (GG_Internal.StrikeNailR != null)
+                    if (GG_Preloads.StrikeNailR != null)
                     {
                         foreach (var lever in wbs.GetComponentsInChildren<BossStatueLever>(true))
                         {
-                            lever.audioPlayerPrefab = GG_Internal.AudioPlayerPrefab;
-                            lever.strikeNailPrefab = GG_Internal.StrikeNailR;
+                            lever.audioPlayerPrefab = GG_Preloads.AudioPlayerPrefab;
+                            lever.strikeNailPrefab = GG_Preloads.StrikeNailR;
                         }
                     }
                 }
 
-                if (GG_Internal.statueAnimators != null)
+                if (GG_Preloads.statueAnimators != null)
                 {
                     foreach (var animator in wbs.GetComponentsInChildren<Animator>(true))
                     {
-                        animator.runtimeAnimatorController = GG_Internal.statueAnimators.FirstOrDefault(r => r.name == animator.runtimeAnimatorController.name);
+                        animator.runtimeAnimatorController = GG_Preloads.statueAnimators.FirstOrDefault(r => r.name == animator.runtimeAnimatorController.name);
                     }
                 }
             }

@@ -63,11 +63,11 @@ namespace WeaverCore.Components.GGStatue
 
             GameObject transitions = null;
 
-            if (GG_Internal.ggBattleTransitions != null)
+            if (GG_Preloads.ggBattleTransitions != null)
             {
                 if (transitions == null)
                 {
-                    transitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions);
+                    transitions = GameObject.Instantiate(GG_Preloads.ggBattleTransitions);
                 }
 
                 EventManager.SendEventToGameObject("GG TRANSITION OUT INSTANT", transitions, gameObject);

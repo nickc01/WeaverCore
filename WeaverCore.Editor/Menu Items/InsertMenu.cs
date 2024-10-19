@@ -241,6 +241,25 @@ namespace WeaverCore.Editor.Menu_Items
             InsertObject("Boss Scene Controller", default, default);
         }
 
+        [MenuItem("WeaverCore/Insert/Colosseum Cage Small")]
+        public static void InsertColosseumCageSmall()
+        {
+            InsertObject("Colosseum Cage Small");
+        }
+
+        [MenuItem("WeaverCore/Insert/Colosseum Cage Large")]
+        public static void InsertColosseumCageLarge()
+        {
+            InsertObject("Colosseum Cage Large");
+        }
+
+        [MenuItem("WeaverCore/Insert/Breakable Wall")]
+        public static void InsertBreakableWall()
+        {
+            InsertObject("Breakable Wall");
+        }
+
+
         [MenuItem("WeaverCore/Insert/Weaver Canvas")]
 		public static void InsertWeaverCanvas()
 		{

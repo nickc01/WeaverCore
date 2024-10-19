@@ -93,7 +93,7 @@ namespace WeaverCore.Components.GGStatue
             HeroUtilities.PlayPlayerClip("LookUp");
             camLock.gameObject.SetActive(true);
 
-            var prefab = GG_Internal.bossUIPrefab;
+            var prefab = GG_Preloads.bossUIPrefab;
 
             if (prefab == null)
             {
@@ -186,9 +186,9 @@ namespace WeaverCore.Components.GGStatue
 
                 PlayerData.instance.SetString("dreamReturnScene", "GG_Workshop");
 
-                if (GG_Internal.dreamAreaEffect != null)
+                if (GG_Preloads.dreamAreaEffect != null)
                 {
-                    GameObject.Instantiate(GG_Internal.dreamAreaEffect, Vector3.zero, Quaternion.identity);
+                    GameObject.Instantiate(GG_Preloads.dreamAreaEffect, Vector3.zero, Quaternion.identity);
                 }
 
                 foreach (Transform item in transform)
@@ -200,16 +200,16 @@ namespace WeaverCore.Components.GGStatue
 
                 EventManager.BroadcastEvent("CONVO CANCEL", gameObject);
 
-                if (GG_Internal.ggBattleTransitions != null)
+                if (GG_Preloads.ggBattleTransitions != null)
                 {
                     var battleTransitions = GameObject.Find("gg_battle_transitions(Clone)");
 
                     if (battleTransitions == null)
                     {
-                        battleTransitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions, Vector3.zero, Quaternion.identity);
+                        battleTransitions = GameObject.Instantiate(GG_Preloads.ggBattleTransitions, Vector3.zero, Quaternion.identity);
                     }
 
-                    //var battleTransitions = GameObject.Instantiate(GG_Internal.ggBattleTransitions, Vector3.zero, Quaternion.identity);
+                    //var battleTransitions = GameObject.Instantiate(GG_Preloads.ggBattleTransitions, Vector3.zero, Quaternion.identity);
 
                     EventRegister.SendEvent("GG TRANSITION OUT");
                     /*EventManager.SendEventToGameObject("GG TRANSITION OUT", battleTransitions, gameObject);*/

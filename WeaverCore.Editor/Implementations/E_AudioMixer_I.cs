@@ -132,6 +132,7 @@ namespace WeaverCore.Editor.Implementations
 
         public override void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot)
         {
+			WeaverLog.Log("EDITOR INSTANCE = " + EditorMusic.Instance);
 			EditorMusic.Instance.PlayMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
         }
     }

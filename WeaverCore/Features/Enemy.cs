@@ -267,6 +267,8 @@ namespace WeaverCore.Features
             }
             idList.Add(currentID);
             var coroutine = StartCoroutine(DoBoundRoutine(currentID, routine, onCancel));
+			//WeaverLog.Log("ADDING ROUTINE = " + currentID);
+			//WeaverLog.Log("NEXT ID = " + idCounter);
             BoundRoutines.Add(currentID, coroutine);
             return currentID;
         }

@@ -1,0 +1,7 @@
+@@ -25,55 +25,97 @@
+ s%0a%7b%0a
+-%09Main,%0a%09MainAlt,%0a%09Action,%0a%09Sub,%0a%09Tension,%0a%09
++    Main = 0,%0a    MainAlt = 1,%0a    Action = 2,%0a    Sub = 3,%0a    Tension = 4,%0a    
+ Extra
++ = 5
+ %0a%7d%0a

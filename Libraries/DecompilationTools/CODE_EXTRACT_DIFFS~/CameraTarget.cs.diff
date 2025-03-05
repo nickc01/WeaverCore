@@ -1,0 +1,524 @@
+@@ -88,1517 +88,26 @@
+ lic 
+-enum TargetMode%0a%09%7b%0a%09%09FOLLOW_HERO,%0a%09%09LOCK_ZONE,%0a%09%09BOSS,%0a%09%09FREE%0a%09%7d%0a%0a%09private bool verboseMode;%0a%0a%09%5bHideInInspector%5d%0a%09public GameManager gm;%0a%0a%09%5bHideInInspector%5d%0a%09public HeroController hero_ctrl;%0a%0a%09private Transform heroTransform;%0a%0a%09public CameraController cameraCtrl;%0a%0a%09public TargetMode mode;%0a%0a%09public Vector3 destination;%0a%0a%09private Vector3 velocityX;%0a%0a%09private Vector3 velocityY;%0a%0a%09public float xOffset;%0a%0a%09public float dashOffset;%0a%0a%09public float fallOffset;%0a%0a%09public float fallOffset_multiplier;%0a%0a%09public float xLockMin;%0a%0a%09public float xLockMax;%0a%0a%09public float yLockMin;%0a%0a%09public float yLockMax;%0a%0a%09public bool enteredLeft;%0a%0a%09public bool enteredRight;%0a%0a%09public bool enteredTop;%0a%0a%09public bool enteredBot;%0a%0a%09public bool exitedLeft;%0a%0a%09public bool exitedRight;%0a%0a%09public bool exitedTop;%0a%0a%09public bool exitedBot;%0a%0a%09public bool superDashing;%0a%0a%09public bool quaking;%0a%0a%09public float slowTime = 0.5f;%0a%0a%09public float dampTimeNormal;%0a%0a%09public float dampTimeSlow;%0a%0a%09public float xLookAhead;%0a%0a%09public float dashLookAhead;%0a%0a%09public float superDashLookAhead;%0a%0a%09private Vector3 heroPrevPosition;%0a%0a%09private float dampTime;%0a%0a%09private float dampTimeX;%0a%0a%09private float dampTimeY;%0a%0a%09private float slowTimer;%0a%0a%09private float snapDistance = 0.15f;%0a%0a%09public float fallCatcher;%0a%0a%09public bool stickToHeroX;%0a%0a%09public bool stickToHeroY;%0a%0a%09public bool enteredFromLockZone;%0a%0a%09private float prevTarget_y;%0a%0a%09private float prevCam_y;%0a%0a%09public bool fallStick;%0a%0a%09private bool isGameplayScene;%0a%0a%09public void GameInit()%0a%09%7b%0a%09%09gm = GameManager.instance;
++void GameInit()%0a%09%7b
+ %0a%09%09i
+@@ -247,36 +247,44 @@
+ %7b%0a%09%09
+-if (gm == null)%0a%09%09%7b%0a%09%09%09gm = 
++//Error(%22TARGET SCENE INIT%22);%0a%09%09if (
+ Game
+@@ -303,22 +303,8 @@
+ ance
+-;%0a%09%09%7d%0a%09%09if (gm
+ .IsG
+@@ -357,21 +357,25 @@
+ %0a%09%09%09hero
+-_ctrl
++Transform
+  = HeroC
+@@ -396,38 +396,8 @@
+ ance
+-;%0a%09%09%09heroTransform = hero_ctrl
+ .tra
+@@ -406,32 +406,45 @@
+ form;%0a%09%09%09mode = 
++CameraTarget.
+ TargetMode.FOLLO
+@@ -524,24 +524,101 @@
+ 0f;%0a
+-%09%09%09xLockMin = 0f
++%0a%09%09%09var cameraBounds = GameManager.instance.SceneDimensions;%0a%0a%09%09%09xLockMin = cameraBounds.xMin
+ ;%0a%09%09
+@@ -631,35 +631,35 @@
+ Max = camera
+-Ctrl.xLimit
++Bounds.xMax
+ ;%0a%09%09%09yLockMi
+@@ -658,26 +658,41 @@
+ %09yLockMin = 
+-0f
++cameraBounds.yMin
+ ;%0a%09%09%09yLockMa
+@@ -705,39 +705,39 @@
+ mera
+-Ctrl.yLimit;%0a%09%09%7d%0a%09%09else%0a%09%09%7b
++Bounds.yMax;%0a%0a%09%09%09return;%0a%09%09%7d
+ %0a%09%09
+-%09
+ isGa
+@@ -759,24 +759,36 @@
+ alse;%0a%09%09
+-%09
+ mode = 
++CameraTarget.
+ TargetMo
+@@ -797,20 +797,16 @@
+ .FREE;%0a%09
+-%09%7d%0a%09
+ %7d%0a%0a%09publ
+@@ -831,25 +831,39 @@
+ %7b%0a%09%09if (
+-hero_ctrl
++HeroController.instance
+  == null
+@@ -890,32 +890,45 @@
+ )%0a%09%09%7b%0a%09%09%09mode = 
++CameraTarget.
+ TargetMode.FREE;
+@@ -934,29 +934,27 @@
+ ;%0a%09%09
+-%7d%0a%09%09else%0a%09%09%7b%0a%09
++%09return;%0a%09%09%7d%0a
+ %09%09if (
+-!
+ isGa
+@@ -972,27 +972,9 @@
+ )%0a%09%09
+-%09%7b%0a%09%09%09%09return;%0a%09%09%09%7d
++%7b
+ %0a%09%09%09
+@@ -1176,17 +1176,32 @@
+ n.y;%0a%09%09%09
+-_
++Vector3 position
+  = heroT
+@@ -1226,32 +1226,45 @@
+ %0a%09%09%09if (mode == 
++CameraTarget.
+ TargetMode.FOLLO
+@@ -2588,32 +2588,45 @@
+ %0a%09%09%09if (mode == 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -4680,24 +4680,8 @@
+ %09%09%09%09
+-%09num2 = y;%0a%09%09%09%09%09
+ %7d%0a%09%09
+@@ -4692,33 +4692,47 @@
+ %09%09%09%7d%0a%09%09%09if (
+-hero_ctrl
++HeroController.instance
+  != null)%0a%09%09
+@@ -4738,33 +4738,47 @@
+ %09%09%7b%0a%09%09%09%09if (
+-hero_ctrl
++HeroController.instance
+ .cState.faci
+@@ -4904,21 +4904,17 @@
+ ffset %3e 
+-0f - 
++-
+ xLookAhe
+@@ -4976,37 +4976,33 @@
+ %09%09if (xOffset %3c 
+-0f - 
++-
+ xLookAhead)%0a%09%09%09%09
+@@ -5010,37 +5010,33 @@
+ %0a%09%09%09%09%09xOffset = 
+-0f - 
++-
+ xLookAhead;%0a%09%09%09%09
+@@ -5114,32 +5114,45 @@
+ %09%09%09%09if (mode == 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -5184,33 +5184,47 @@
+ xLockMin && 
+-hero_ctrl
++HeroController.instance
+ .cState.faci
+@@ -5298,33 +5298,47 @@
+ LockMax && !
+-hero_ctrl
++HeroController.instance
+ .cState.faci
+@@ -5568,37 +5568,33 @@
+ %09%09if (xOffset %3c 
+-0f - 
++-
+ xLookAhead)%0a%09%09%09%09
+@@ -5602,37 +5602,33 @@
+ %0a%09%09%09%09%09xOffset = 
+-0f - 
++-
+ xLookAhead;%0a%09%09%09%09
+@@ -5702,33 +5702,47 @@
+ %09%09%7d%0a%09%09%09%09if (
+-hero_ctrl
++HeroController.instance
+ .cState.dash
+@@ -5749,25 +5749,39 @@
+ ing && (
+-hero_ctrl
++HeroController.instance
+ .current
+@@ -5800,25 +5800,39 @@
+ %3e 5f %7c%7c 
+-hero_ctrl
++HeroController.instance
+ .current
+@@ -5862,33 +5862,47 @@
+ %09%7b%0a%09%09%09%09%09if (
+-hero_ctrl
++HeroController.instance
+ .cState.faci
+@@ -5994,21 +5994,17 @@
+ ffset = 
+-0f - 
++-
+ dashLook
+@@ -6026,32 +6026,45 @@
+ %09%09%09%09if (mode == 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -6365,33 +6365,47 @@
+ %09%7b%0a%09%09%09%09%09if (
+-hero_ctrl
++HeroController.instance
+ .cState.faci
+@@ -6502,21 +6502,17 @@
+ ffset = 
+-0f - 
++-
+ superDas
+@@ -6539,32 +6539,45 @@
+ %09%09%09%09if (mode == 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -6938,33 +6938,47 @@
+ %09%09%09%7d%0a%09%09%09if (
+-hero_ctrl
++HeroController.instance
+  != null && 
+@@ -6974,33 +6974,47 @@
+ != null && !
+-hero_ctrl
++HeroController.instance
+ .cState.fall
+@@ -7080,32 +7080,45 @@
+ %0a%09%09%09if (mode == 
++CameraTarget.
+ TargetMode.FOLLO
+@@ -7127,32 +7127,45 @@
+ HERO %7c%7c mode == 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -7179,33 +7179,47 @@
+ %09%09%7b%0a%09%09%09%09if (
+-hero_ctrl
++HeroController.instance
+ .cState.fall
+@@ -7282,33 +7282,47 @@
+ llStick && !
+-hero_ctrl
++HeroController.instance
+ .cState.tran
+@@ -7389,32 +7389,45 @@
+ kMin %7c%7c mode != 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -7552,32 +7552,45 @@
+ %09%09%09%09if (mode == 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -7703,32 +7703,97 @@
+ n);%0a%09%09%09%09%09%7d%0a%09%09%09%09%09
++var sceneDimensions = GameManager.instance.SceneDimensions;%0a%09%09%09%09%09
+ if (cameraCtrl.t
+@@ -7806,36 +7806,52 @@
+ rm.position.y %3c 
+-8.3f
++sceneDimensions.yMin
+ )%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09c
+@@ -7875,36 +7875,52 @@
+ rm.SetPositionY(
+-8.3f
++sceneDimensions.yMin
+ );%0a%09%09%09%09%09%7d%0a%09%09%09%09%09i
+@@ -8342,16 +8342,29 @@
+ mode != 
++CameraTarget.
+ TargetMo
+@@ -8588,32 +8588,45 @@
+ %09%09%09%09if (mode == 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -8739,32 +8739,97 @@
+ n);%0a%09%09%09%09%09%7d%0a%09%09%09%09%09
++var sceneDimensions = GameManager.instance.SceneDimensions;%0a%09%09%09%09%09
+ if (cameraCtrl.t
+@@ -8850,20 +8850,36 @@
+ ion.y %3c 
+-8.3f
++sceneDimensions.yMin
+ )%0a%09%09%09%09%09%7b
+@@ -8919,20 +8919,36 @@
+ sitionY(
+-8.3f
++sceneDimensions.yMin
+ );%0a%09%09%09%09%09
+@@ -9026,32 +9026,45 @@
+ %09%09%09%09if (mode == 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -9320,32 +9320,92 @@
+ LockMax_var)%0a%09%7b%0a
++%09%09var cameraBounds = GameManager.instance.SceneDimensions;%0a%0a
+ %09%09xLockMin = xLo
+@@ -9497,32 +9497,45 @@
+ x_var;%0a%09%09mode = 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -9616,25 +9616,40 @@
+ sition.y;%0a%09%09
+-_
++Vector3 position
+  = base.tran
+@@ -9744,17 +9744,33 @@
+ on.y;%0a%09%09
+-_
++Vector3 position2
+  = heroT
+@@ -9815,37 +9815,49 @@
+  %7c%7c xLockMin != 
+-14.6f
++cameraBounds.xMin
+ ) && (!enteredRi
+@@ -9877,35 +9877,35 @@
+ ax != camera
+-Ctrl.xLimit
++Bounds.xMax
+ ))%0a%09%09%7b%0a%09%09%09da
+@@ -9958,36 +9958,49 @@
+  %7c%7c yLockMin != 
+-8.3f
++cameraBounds.yMin
+ ) && (!enteredTo
+@@ -10018,35 +10018,35 @@
+ ax != camera
+-Ctrl.yLimit
++Bounds.yMax
+ ))%0a%09%09%7b%0a%09%09%09da
+@@ -10307,38 +10307,37 @@
+ Y = true;%0a%09%09
+-%7d%0a%09%09else%0a%09%09%7b%0a%09
++%09return;%0a%09%09%7d%0a
+ %09%09stickToHer
+@@ -10349,20 +10349,16 @@
+ false;%0a%09
+-%09%7d%0a%09
+ %7d%0a%0a%09publ
+@@ -10578,32 +10578,45 @@
+ x_var;%0a%09%09mode = 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -11074,24 +11074,140 @@
+ ckZone()%0a%09%7b%0a
++%0a%09%09if (GameManager.instance == null)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09var cameraBounds = GameManager.instance.SceneDimensions;%0a%0a
+ %09%09if (mode =
+@@ -11200,32 +11200,45 @@
+ %0a%0a%09%09if (mode == 
++CameraTarget.
+ TargetMode.FREE)
+@@ -11257,31 +11257,105 @@
+ rn;%0a%09%09%7d%0a
++%0a
+ %09%09if (
+-hero_ctrl
++HeroController.instance == null)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%0a%09%09if (HeroController.instance
+ .cState.
+@@ -11369,25 +11369,39 @@
+ eath %7c%7c 
+-hero_ctrl
++HeroController.instance
+ .cState.
+@@ -11409,25 +11409,39 @@
+ ead %7c%7c (
+-hero_ctrl
++HeroController.instance
+ .transit
+@@ -11456,22 +11456,76 @@
+  != 
+-0
++HeroTransitionState.WAITING_TO_TRANSITION
+  && 
+-hero_ctrl
++HeroController.instance
+ .tra
+@@ -11591,32 +11591,45 @@
+ )%0a%09%09%7b%0a%09%09%09mode = 
++CameraTarget.
+ TargetMode.FREE;
+@@ -11646,32 +11646,45 @@
+ e%0a%09%09%7b%0a%09%09%09mode = 
++CameraTarget.
+ TargetMode.FOLLO
+@@ -11733,13 +11733,25 @@
+  != 
+-14.6f
++cameraBounds.xMin
+ ) &&
+@@ -11786,27 +11786,27 @@
+ = camera
+-Ctrl.xLimit
++Bounds.xMax
+ ))%0a%09%09%7b%0a%09
+@@ -11874,12 +11874,25 @@
+  != 
+-8.3f
++cameraBounds.yMin
+ ) &&
+@@ -11925,27 +11925,27 @@
+ = camera
+-Ctrl.yLimit
++Bounds.yMax
+ ))%0a%09%09%7b%0a%09
+@@ -12078,26 +12078,41 @@
+ %09xLockMin = 
+-0f
++cameraBounds.xMin
+ ;%0a%09%09xLockMax
+@@ -12124,19 +12124,19 @@
+ mera
+-Ctrl.xLimit
++Bounds.xMax
+ ;%0a%09%09
+@@ -12146,18 +12146,33 @@
+ ckMin = 
+-0f
++cameraBounds.yMin
+ ;%0a%09%09yLoc
+@@ -12188,27 +12188,27 @@
+ mera
+-Ctrl.yLimit
++Bounds.yMax
+ ;%0a%09%09if (
+ hero
+@@ -12203,25 +12203,39 @@
+ ;%0a%09%09if (
+-hero_ctrl
++HeroController.instance
+  != null
+@@ -12650,32 +12650,30 @@
+ rue;%0a%09%09%09
+-%7d%0a%09%09%09else
++%09return;
+ %0a%09%09%09
+-%7b%0a%09
++%7d%0a
+ %09%09%09stick
+@@ -12687,29 +12687,24 @@
+  = false;%0a%09%09
+-%09%7d%0a%09%09
+ %7d%0a%09%7d%0a%0a%09priva
+@@ -13005,33 +13005,39 @@
+ = 0.007f;%0a%09%09
+-%7d%0a%09%09else 
++%09return;%0a%09%09%7d%0a%09%09
+ if (dampTime
+@@ -13271,16 +13271,29 @@
+ %09mode = 
++CameraTarget.
+ TargetMo
+@@ -13380,17 +13380,32 @@
+ on.x;%0a%09%09
+-_
++Vector3 position
+  = base.
+@@ -13603,25 +13603,39 @@
+ ;%0a%09%09if (
+-hero_ctrl
++HeroController.instance
+ .cState.
+@@ -13711,32 +13711,45 @@
+ %7d%0a%09%09if (mode == 
++CameraTarget.
+ TargetMode.LOCK_
+@@ -13782,25 +13782,39 @@
+ kMin && 
+-hero_ctrl
++HeroController.instance
+ .cState.
+@@ -13892,17 +13892,31 @@
+ && !
+-hero_ctrl
++HeroController.instance
+ .cSt
+@@ -14127,21 +14127,17 @@
+ ffset %3c 
+-0f - 
++-
+ xLookAhe
+@@ -14161,13 +14161,9 @@
+ t = 
+-0f - 
++-
+ xLoo
+@@ -14250,35 +14250,44 @@
+ erboseMode)%0a%09%09%7b%0a
+-%09%09%09
++            
+ Debug.LogFormat(
+@@ -14333,22 +14333,57 @@
+ %7d%22, 
+-xOffset, x2, y
++new object%5b%5d%0a%09%09%09%7b%0a%09%09%09%09xOffset,%0a%09%09%09%09x2,%0a%09%09%09%09y%0a%09%09%09%7d
+ );%0a%09
+@@ -14391,32 +14391,45 @@
+ %7d%0a%09%09if (mode == 
++CameraTarget.
+ TargetMode.FOLLO
+@@ -14457,36 +14457,48 @@
+ rboseMode)%0a%09%09%09%7b%0a
+-%09%09%09%09
++                
+ Debug.LogFormat(
+@@ -14527,32 +14527,56 @@
+ - CT Pos: %7b0%7d%22, 
++new object%5b%5d%0a%09%09%09%09%7b%0a%09%09%09%09%09
+ base.transform.p
+@@ -14574,32 +14574,38 @@
+ ansform.position
++%0a%09%09%09%09%7d
+ );%0a%09%09%09%7d%0a%09%09%09base.
+@@ -14695,16 +14695,29 @@
+ mode == 
++CameraTarget.
+ TargetMo
+@@ -15093,20 +15093,32 @@
+ e)%0a%09%09%09%7b%0a
+-%09%09%09%09
++                
+ Debug.Lo
+@@ -15161,16 +15161,40 @@
+ : %7b0%7d%22, 
++new object%5b%5d%0a%09%09%09%09%7b%0a%09%09%09%09%09
+ base.tra
+@@ -15204,24 +15204,30 @@
+ orm.position
++%0a%09%09%09%09%7d
+ );%0a%09%09%09%7d%0a%09%09%7d%0a
+@@ -15249,19 +15249,28 @@
+ de)%0a%09%09%7b%0a
+-%09%09%09
++            
+ Debug.Lo
+@@ -15323,16 +15323,38 @@
+ : %7b2%7d%22, 
++new object%5b%5d%0a%09%09%09%7b%0a%09%09%09%09
+ heroTran
+@@ -15372,15 +15372,23 @@
+ ion,
+- mode, 
++%0a%09%09%09%09mode,%0a%09%09%09%09
+ dest
+@@ -15386,32 +15386,37 @@
+ %0a%09%09%09%09destination
++%0a%09%09%09%7d
+ );%0a%09%09%7d%0a%09%09heroPre
+@@ -15453,11 +15453,1488 @@
+ tion;%0a%09%7d
++%0a%0a%09private readonly bool verboseMode;%0a%0a%09private Transform heroTransform;%0a%0a%09public CameraController cameraCtrl;%0a%0a%09public CameraTarget.TargetMode mode = TargetMode.FOLLOW_HERO;%0a%0a%09public Vector3 destination;%0a%0a%09private Vector3 velocityX;%0a%0a%09private Vector3 velocityY;%0a%0a%09public float xOffset;%0a%0a%09public float dashOffset;%0a%0a%09public float fallOffset;%0a%0a%09public float fallOffset_multiplier = 5f;%0a%0a%09public float xLockMin;%0a%0a%09public float xLockMax;%0a%0a%09public float yLockMin;%0a%0a%09public float yLockMax;%0a%0a%09public bool enteredLeft;%0a%0a%09public bool enteredRight;%0a%0a%09public bool enteredTop;%0a%0a%09public bool enteredBot;%0a%0a%09public bool exitedLeft;%0a%0a%09public bool exitedRight;%0a%0a%09public bool exitedTop;%0a%0a%09public bool exitedBot;%0a%0a%09public bool superDashing;%0a%0a%09public bool quaking;%0a%0a%09public float slowTime = 0.5f;%0a%0a%09public float dampTimeNormal = 0.075f;%0a%0a%09public float dampTimeSlow = 0.5f;%0a%0a%09public float xLookAhead = 1f;%0a%0a%09public float dashLookAhead = 1.5f;%0a%0a%09public float superDashLookAhead = 6f;%0a%0a%09private Vector3 heroPrevPosition;%0a%0a%09private readonly float dampTime;%0a%0a%09private float dampTimeX;%0a%0a%09private float dampTimeY;%0a%0a%09private float slowTimer;%0a%0a%09private readonly float snapDistance;%0a%0a%09public float fallCatcher;%0a%0a%09public bool stickToHeroX;%0a%0a%09public bool stickToHeroY;%0a%0a%09public bool enteredFromLockZone;%0a%0a%09private readonly float prevTarget_y;%0a%0a%09private readonly float prevCam_y;%0a%0a%09public bool fallStick;%0a%0a%09private bool isGameplayScene;%0a%0a%09public enum TargetMode%0a%09%7b%0a%09%09FOLLOW_HERO,%0a%09%09LOCK_ZONE,%0a%09%09BOSS,%0a%09%09FREE%0a%09%7d
+ %0a%7d%0a

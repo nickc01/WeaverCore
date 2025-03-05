@@ -1,0 +1,648 @@
+@@ -49,16 +49,31 @@
+ nguage;%0a
++using Modding;%0a
+ using Un
+@@ -153,17 +153,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public d
+@@ -192,17 +192,20 @@
+ ent();%0a%0a
+-%09
++    
+ public d
+@@ -240,17 +240,20 @@
+ ent();%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -259,17 +259,20 @@
+ izable%5d%0a
+-%09
++    
+ public c
+@@ -290,21 +290,30 @@
+ Display%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public I
+@@ -329,26 +329,32 @@
+ leteImage;%0a%0a
+-%09%09
++        
+ public Image
+@@ -372,18 +372,24 @@
+ Image;%0a%0a
+-%09%09
++        
+ public M
+@@ -411,18 +411,24 @@
+ utton;%0a%0a
+-%09%09
++        
+ public f
+@@ -448,26 +448,32 @@
+ lpha = 1f;%0a%0a
+-%09%09
++        
+ public float
+@@ -496,18 +496,24 @@
+  0.5f;%0a%0a
+-%09%09
++        
+ public v
+@@ -601,23 +601,38 @@
+ OnDown)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ button.i
+@@ -655,19 +655,28 @@
+ Active;%0a
+-%09%09%09
++            
+ Navigati
+@@ -706,27 +706,36 @@
+ navigation;%0a
+-%09%09%09
++            
+ navigation.s
+@@ -765,19 +765,28 @@
+ button;%0a
+-%09%09%09
++            
+ navigati
+@@ -824,19 +824,28 @@
+ button;%0a
+-%09%09%09
++            
+ button.n
+@@ -868,19 +868,28 @@
+ gation;%0a
+-%09%09%09
++            
+ CanvasGr
+@@ -940,19 +940,28 @@
+ oup%3e();%0a
+-%09%09%09
++            
+ if ((boo
+@@ -973,25 +973,46 @@
+ ponent)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ componen
+@@ -1068,20 +1068,41 @@
+ a);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++            %7d%0a        %7d%0a%0a        
+ publ
+@@ -1135,23 +1135,38 @@
+ mplete)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if ((boo
+@@ -1182,25 +1182,46 @@
+ eImage)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ complete
+@@ -1260,24 +1260,42 @@
+ plete);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ if ((boo
+@@ -1313,25 +1313,46 @@
+ eImage)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ incomple
+@@ -1398,22 +1398,43 @@
+ e);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -1461,17 +1461,20 @@
+ tatue;%0a%0a
+-%09
++    
+ public T
+@@ -1488,25 +1488,28 @@
+ sNameText;%0a%0a
+-%09
++    
+ public Text 
+@@ -1530,17 +1530,20 @@
+ t;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09pub
+@@ -1538,17 +1538,20 @@
+ %5bSpace%5d%0a
+-%09
++    
+ public M
+@@ -1576,25 +1576,28 @@
+ tSelected;%0a%0a
+-%09
++    
+ public strin
+@@ -1638,17 +1638,20 @@
+ lose%22;%0a%0a
+-%09
++    
+ public B
+@@ -1669,33 +1669,36 @@
+ y tier1Button;%0a%0a
+-%09
++    
+ public ButtonDis
+@@ -1712,25 +1712,28 @@
+ er2Button;%0a%0a
+-%09
++    
+ public Butto
+@@ -1755,17 +1755,20 @@
+ utton;%0a%0a
+-%09
++    
+ public G
+@@ -1797,17 +1797,20 @@
+ ffect;%0a%0a
+-%09
++    
+ public f
+@@ -1846,17 +1846,20 @@
+  0.5f;%0a%0a
+-%09
++    
+ private 
+@@ -1895,17 +1895,20 @@
+  = -1;%0a%0a
+-%09
++    
+ private 
+@@ -1923,17 +1923,20 @@
+ anvas;%0a%0a
+-%09
++    
+ private 
+@@ -1955,17 +1955,20 @@
+ mator;%0a%0a
+-%09
++    
+ private 
+@@ -1987,17 +1987,20 @@
+ group;%0a%0a
+-%09
++    
+ private 
+@@ -2014,17 +2014,20 @@
+ arted;%0a%0a
+-%09
++    
+ public e
+@@ -2052,17 +2052,20 @@
+ ancel;%0a%0a
+-%09
++    
+ public e
+@@ -2106,17 +2106,20 @@
+ ected;%0a%0a
+-%09
++    
+ private 
+@@ -2131,21 +2131,30 @@
+ Awake()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ canvas =
+@@ -2178,18 +2178,24 @@
+ vas%3e();%0a
+-%09%09
++        
+ animator
+@@ -2223,18 +2223,24 @@
+ tor%3e();%0a
+-%09%09
++        
+ group = 
+@@ -2268,18 +2268,24 @@
+ oup%3e();%0a
+-%09%09
++        
+ if ((boo
+@@ -2297,42 +2297,69 @@
+ up)%0a
+-%09%09%7b%0a%09%09%09group.alpha = 0f;%0a%09%09%7d%0a%09%7d%0a%0a%09
++        %7b%0a            group.alpha = 0f;%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -2375,21 +2375,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if ((boo
+@@ -2477,23 +2477,38 @@
+ Camera)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ canvas.w
+@@ -2552,25 +2552,37 @@
+ Camera;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public v
+@@ -2704,21 +2704,30 @@
+ ionKey)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ this.bos
+@@ -2744,26 +2744,32 @@
+ bossStatue;%0a
+-%09%09
++        
+ if ((bool)bo
+@@ -2784,35 +2784,102 @@
+ xt)%0a
+-%09%09%7b%0a%09%09%09bossNameText.text = 
++        %7b%0a%0a            bossNameText.text = ModHooks.LanguageGet(bossNameKey, bossNameSheet);//
+ glob
+@@ -2929,30 +2929,42 @@
+ NameSheet);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if ((bool)de
+@@ -2978,23 +2978,38 @@
+ onText)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ descript
+@@ -3023,16 +3023,73 @@
+ .text = 
++ModHooks.LanguageGet(descriptionKey, descriptionSheet);//
+ global::
+@@ -3145,22 +3145,34 @@
+ Sheet);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (!bos
+@@ -3191,23 +3191,38 @@
+ oTiers)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ BossStat
+@@ -3335,19 +3335,28 @@
+ State);%0a
+-%09%09%09
++            
+ tier1But
+@@ -3396,19 +3396,28 @@
+ Tier1);%0a
+-%09%09%09
++            
+ tier2But
+@@ -3457,19 +3457,28 @@
+ Tier2);%0a
+-%09%09%09
++            
+ tier3But
+@@ -3518,19 +3518,28 @@
+ Tier3);%0a
+-%09%09%09
++            
+ tier1But
+@@ -3639,27 +3639,36 @@
+ er2Button);%0a
+-%09%09%09
++            
+ tier2Button.
+@@ -3768,19 +3768,28 @@
+ utton);%0a
+-%09%09%09
++            
+ tier3But
+@@ -3862,19 +3862,28 @@
+ utton);%0a
+-%09%09%09
++            
+ if ((boo
+@@ -3963,25 +3963,46 @@
+ Unlock)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ StartCor
+@@ -4029,24 +4029,42 @@
+ ect());%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ StartCor
+@@ -4091,34 +4091,61 @@
+ ted());%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7d%0a        else%0a        %7b%0a            
+ LoadBoss
+@@ -4168,25 +4168,37 @@
+ false);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ private 
+@@ -4228,21 +4228,30 @@
+ ffect()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ BossStat
+@@ -4359,18 +4359,24 @@
+ State);%0a
+-%09%09
++        
+ yield re
+@@ -4424,18 +4424,24 @@
+ Delay);%0a
+-%09%09
++        
+ tier3Unl
+@@ -4474,18 +4474,24 @@
+  true);%0a
+-%09%09
++        
+ state.se
+@@ -4512,18 +4512,24 @@
+ = true;%0a
+-%09%09
++        
+ if (boss
+@@ -4554,23 +4554,38 @@
+ ersion)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ bossStat
+@@ -4617,26 +4617,53 @@
+ te;%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7d%0a        else%0a        %7b%0a            
+ boss
+@@ -4690,25 +4690,37 @@
+  state;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ private 
+@@ -4750,21 +4750,30 @@
+ ected()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ MenuSele
+@@ -4803,18 +4803,24 @@
+ lected;%0a
+-%09%09
++        
+ if (last
+@@ -4840,23 +4840,38 @@
+ n %3e= 0)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ switch (
+@@ -4894,28 +4894,66 @@
+ on)%0a
+-%09%09%09%7b%0a%09%09%09case 0:%0a%09%09%09%09
++            %7b%0a                case 0:%0a                    
+ if (
+@@ -5017,375 +5017,670 @@
+ le)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09select = tier1Button.button;%0a%09%09%09%09%7d%0a%09%09%09%09break;%0a%09%09%09case 1:%0a%09%09%09%09if ((bool)tier2Button.button && tier2Button.button.interactable)%0a%09%09%09%09%7b%0a%09%09%09%09%09select = tier2Button.button;%0a%09%09%09%09%7d%0a%09%09%09%09break;%0a%09%09%09case 2:%0a%09%09%09%09if ((bool)tier3Button.button && tier3Button.button.interactable)%0a%09%09%09%09%7b%0a%09%09%09%09%09select = tier3Button.button;%0a%09%09%09%09%7d%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if ((bool)select)%0a%09%09%7b%0a%09%09%09
++                    %7b%0a                        select = tier1Button.button;%0a                    %7d%0a                    break;%0a                case 1:%0a                    if ((bool)tier2Button.button && tier2Button.button.interactable)%0a                    %7b%0a                        select = tier2Button.button;%0a                    %7d%0a                    break;%0a                case 2:%0a                    if ((bool)tier3Button.button && tier3Button.button.interactable)%0a                    %7b%0a                        select = tier3Button.button;%0a                    %7d%0a                    break;%0a            %7d%0a        %7d%0a        if ((bool)select)%0a        %7b%0a            
+ sele
+@@ -5699,19 +5699,28 @@
+ lect();%0a
+-%09%09%09
++            
+ yield re
+@@ -5730,19 +5730,28 @@
+ n null;%0a
+-%09%09%09
++            
+ select.D
+@@ -5777,19 +5777,28 @@
+ = true;%0a
+-%09%09%09
++            
+ select.S
+@@ -5806,19 +5806,30 @@
+ lect();%0a
+-%09%09%09
++            //
+ InputHan
+@@ -5854,33 +5854,45 @@
+ tUIInput();%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public void 
+@@ -5898,21 +5898,30 @@
+  Hide()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ Hide(doA
+@@ -5924,37 +5924,43 @@
+ (doAnim: true);%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public void Hide
+@@ -5977,134 +5977,206 @@
+ im)%0a
+-%09%7b%0a%09%09if (doAnim)%0a%09%09%7b%0a%09%09%09StartCoroutine(HideAnim());%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (this.OnCancel != null)%0a%09%09%7b%0a%09%09%09this.OnCancel();%0a%09%09%7d%0a%09%09
++    %7b%0a        if (doAnim)%0a        %7b%0a            StartCoroutine(HideAnim());%0a            return;%0a        %7d%0a        if (this.OnCancel != null)%0a        %7b%0a            this.OnCancel();%0a        %7d%0a        
+ base
+@@ -6212,21 +6212,27 @@
+ false);%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -6254,21 +6254,30 @@
+ eAnim()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if ((boo
+@@ -6288,23 +6288,38 @@
+ imator)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ animator
+@@ -6341,19 +6341,28 @@
+ eName);%0a
+-%09%09%09
++            
+ Animator
+@@ -6438,19 +6438,28 @@
+ nfo(0);%0a
+-%09%09%09
++            
+ yield re
+@@ -6523,22 +6523,34 @@
+ ength);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if ((boo
+@@ -6570,23 +6570,38 @@
+ Effect)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ tier3Unl
+@@ -6635,22 +6635,34 @@
+ false);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (this
+@@ -6684,38 +6684,70 @@
+ ll)%0a
+-%09%09%7b%0a%09%09%09this.OnCancel();%0a%09%09%7d%0a%09%09
++        %7b%0a            this.OnCancel();%0a        %7d%0a        base.
+ game
+@@ -6774,29 +6774,35 @@
+ ue: false);%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public void 
+@@ -6821,21 +6821,30 @@
+  level)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ LoadBoss
+@@ -6870,21 +6870,27 @@
+  true);%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public v
+@@ -6930,21 +6930,30 @@
+ deAnim)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ BossScen
+@@ -7049,18 +7049,24 @@
+ Scene);%0a
+-%09%09
++        
+ string t
+@@ -7092,18 +7092,24 @@
+ neName;%0a
+-%09%09
++        
+ switch (
+@@ -7119,174 +7119,300 @@
+ el)%0a
+-%09%09%7b%0a%09%09case 0:%0a%09%09%09text = bossScene.Tier1Scene;%0a%09%09%09break;%0a%09%09case 1:%0a%09%09%09text = bossScene.Tier2Scene;%0a%09%09%09break;%0a%09%09case 2:%0a%09%09%09text = bossScene.Tier3Scene;%0a%09%09%09break;%0a%09%09%7d%0a%09%09
++        %7b%0a            case 0:%0a                text = bossScene.Tier1Scene;%0a                break;%0a            case 1:%0a                text = bossScene.Tier2Scene;%0a                break;%0a            case 2:%0a                text = bossScene.Tier3Scene;%0a                break;%0a        %7d%0a        
+ if (
+@@ -7456,23 +7456,38 @@
+ (text))%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Hide(doH
+@@ -7496,19 +7496,28 @@
+ eAnim);%0a
+-%09%09%09
++            
+ Debug.Lo
+@@ -7594,25 +7594,46 @@
+ %22);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++            return;%0a        %7d%0a        
+ Stat
+@@ -7682,18 +7682,24 @@
+  text);%0a
+-%09%09
++        
+ BossStat
+@@ -7740,18 +7740,24 @@
+ Scene);%0a
+-%09%09
++        
+ this.OnC
+@@ -7770,18 +7770,24 @@
+ = null;%0a
+-%09%09
++        
+ Hide(doH
+@@ -7796,18 +7796,24 @@
+ eAnim);%0a
+-%09%09
++        
+ GameMana
+@@ -7836,37 +7836,38 @@
+ yerData.
+-SetStringSwappedArgs(
++bossReturnEntryGate = 
+ bossStat
+@@ -7893,36 +7893,18 @@
+ name
+-, %22bossReturnEntryGate%22);%0a%09%09
++;%0a        
+ Boss
+@@ -7940,16 +7940,17 @@
+ delegate
++ 
+ (BossSce
+@@ -7968,23 +7968,74 @@
+ r self)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            //(%22BOSS SCENE SETUP%22);%0a            
+ self.Bos
+@@ -8050,19 +8050,28 @@
+  level;%0a
+-%09%09%09
++            
+ self.Dre
+@@ -8102,19 +8102,28 @@
+ ETURN%22;%0a
+-%09%09%09
++            
+ self.OnB
+@@ -8144,25 +8144,92 @@
+ elegate%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                //(%22BOSS SCENE BOSSES DEAD%22);%0a                
+ string f
+@@ -8330,20 +8330,32 @@
+ atePD);%0a
+-%09%09%09%09
++                
+ BossStat
+@@ -8471,256 +8471,466 @@
+ e);%0a
+-%09%09%09%09switch (level)%0a%09%09%09%09%7b%0a%09%09%09%09case 0:%0a%09%09%09%09%09playerDataVariable.completedTier1 = true;%0a%09%09%09%09%09break;%0a%09%09%09%09case 1:%0a%09%09%09%09%09playerDataVariable.completedTier2 = true;%0a%09%09%09%09%09break;%0a%09%09%09%09case 2:%0a%09%09%09%09%09playerDataVariable.completedTier3 = true;%0a%09%09%09%09%09break;%0a%09%09%09%09%7d%0a%09%09%09%09
++                switch (level)%0a                %7b%0a                    case 0:%0a                        playerDataVariable.completedTier1 = true;%0a                        break;%0a                    case 1:%0a                        playerDataVariable.completedTier2 = true;%0a                        break;%0a                    case 2:%0a                        playerDataVariable.completedTier3 = true;%0a                        break;%0a                %7d%0a                
+ Game
+@@ -9000,20 +9000,32 @@
+ iable);%0a
+-%09%09%09%09
++                
+ GameMana
+@@ -9052,28 +9052,41 @@
+ ata.
+-SetStringSwappedArgs
++currentBossStatueCompletionKey = 
+ (bos
+@@ -9173,222 +9173,284 @@
+ tePD
+-, %22currentBossStatueCompletionKey%22);%0a%09%09%09%09GameManager.instance.playerData.SetIntSwappedArgs(level, %22bossStatueTargetLevel%22);%0a%09%09%09%7d;%0a%09%09%09self.OnBossSceneComplete += delegate%0a%09%09%09%7b%0a%09%09%09%09self.DoDreamReturn();%0a%09%09%09%7d;%0a%09%09%7d;%0a%09%09
++);%0a                GameManager.instance.playerData.bossStatueTargetLevel = level;%0a            %7d;%0a            self.OnBossSceneComplete += delegate%0a            %7b%0a                //(%22BOSS SCENE COMPLETED%22);%0a                self.DoDreamReturn();%0a            %7d;%0a        %7d;%0a        
+ if (
+@@ -9483,15 +9483,30 @@
+ ll)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ this
+@@ -9529,17 +9529,29 @@
+ ();%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ publ
+@@ -9592,13 +9592,22 @@
+ ex)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ last
+@@ -9634,9 +9634,12 @@
+ ex;%0a
+-%09
++    
+ %7d%0a%7d%0a

@@ -1,0 +1,103 @@
+@@ -62,17 +62,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ private 
+@@ -113,37 +113,46 @@
+ on2D collision)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ GameObject gameO
+@@ -173,34 +173,40 @@
+ ion.gameObject;%0a
+-%09%09
++        
+ if (gameObject.l
+@@ -218,122 +218,320 @@
+ == 9
+-)%0a%09%09%7b%0a%09%09%09HeroController component = gameObject.GetComponent%3cHeroController%3e();%0a%09%09%09if (component != null)%0a%09%09%09%7b%0a%09%09%09%09
++ %7c%7c gameObject.GetComponent%3cHeroController%3e() != null)%0a        %7b%0a            HeroController component = gameObject.GetComponent%3cHeroController%3e();%0a            if (component.cState.transitioning)%0a            %7b%0a                return;%0a            %7d%0a            if (component != null)%0a            %7b%0a                
+ comp
+@@ -546,29 +546,24 @@
+ tHeroParent(
+-base.
+ transform);%0a
+@@ -562,38 +562,77 @@
+ sform);%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
++            %7d%0a            else%0a            %7b%0a                
+ gameObje
+@@ -658,13 +658,8 @@
+ ent(
+-base.
+ tran
+@@ -666,24 +666,42 @@
+ sform);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ Rigidbod
+@@ -749,35 +749,44 @@
+ Rigidbody2D%3e();%0a
+-%09%09%09
++            
+ if (component2 !
+@@ -789,33 +789,54 @@
+ t2 != null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ component2.i
+@@ -885,22 +885,43 @@
+ ne;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -970,21 +970,30 @@
+ lision)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ GameObje
+@@ -1030,18 +1030,24 @@
+ Object;%0a
+-%09%09
++        
+ if (game
+@@ -1067,17 +1067,85 @@
+ == 9
+-)%0a%09%09%7b%0a%09%09%09
++ %7c%7c gameObject.GetComponent%3cHeroController%3e() != null)%0a        %7b%0a            
+ Hero
+@@ -1206,27 +1206,36 @@
+ troller%3e();%0a
+-%09%09%09
++            
+ if (componen
+@@ -1241,33 +1241,54 @@
+ nt != null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ component.Se
+@@ -1310,30 +1310,69 @@
+ l);%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
++            %7d%0a            else%0a            %7b%0a                
+ game
+@@ -1409,16 +1409,34 @@
+ l);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ Rigi
+@@ -1496,19 +1496,28 @@
+ y2D%3e();%0a
+-%09%09%09
++            
+ if (comp
+@@ -1536,17 +1536,38 @@
+ ll)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ comp
+@@ -1631,18 +1631,36 @@
+ te;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09
++            %7d%0a        %7d%0a    
+ %7d%0a%7d%0a

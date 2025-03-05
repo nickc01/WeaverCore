@@ -1,0 +1,5 @@
+@@ -17,73 +17,433 @@
+ e;%0a%0a
+-public class RestBenchTilt : MonoBehaviour%0a%7b%0a%09public float tilt;%0a
++/// %3csummary%3e%0a/// Used to apply a tilt to a bench so when the player sits on it, the player will be sitting on the bench in a tilted position%0a/// %3c/summary%3e%0apublic class RestBenchTilt : MonoBehaviour%0a%7b%0a%09%5bTooltip(%22The amount of tilt to be applied to the player when they sit on the bench%22)%5d%0a%09public float tilt;%0a%0a%09/// %3csummary%3e%0a%09/// Gets the amount of tilt to be applied to the player when they sit on the bench%0a%09/// %3c/summary%3e
+ %0a%09pu

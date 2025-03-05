@@ -1,0 +1,345 @@
+@@ -67,17 +67,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public S
+@@ -109,25 +109,28 @@
+ Renderers;%0a%0a
+-%09
++    
+ public TextM
+@@ -142,25 +142,30 @@
+ o%5b%5d texts;%0a%0a
+-%09
++    //
+ public InvAn
+@@ -193,17 +193,20 @@
+ ators;%0a%0a
+-%09
++    
+ public f
+@@ -222,33 +222,36 @@
+ InTime = 0.2f;%0a%0a
+-%09
++    
+ public float fad
+@@ -260,33 +260,36 @@
+ utTime = 0.2f;%0a%0a
+-%09
++    
+ public float fad
+@@ -306,25 +306,28 @@
+ st = 0.2f;%0a%0a
+-%09
++    
+ public float
+@@ -344,17 +344,20 @@
+  = 1f;%0a%0a
+-%09
++    
+ public f
+@@ -365,33 +365,36 @@
+ oat downAlpha;%0a%0a
+-%09
++    
+ public bool acti
+@@ -405,17 +405,20 @@
+ Texts;%0a%0a
+-%09
++    
+ private 
+@@ -425,25 +425,28 @@
+ int state;%0a%0a
+-%09
++    
+ private floa
+@@ -451,25 +451,28 @@
+ oat timer;%0a%0a
+-%09
++    
+ private Colo
+@@ -489,17 +489,20 @@
+ olour;%0a%0a
+-%09
++    
+ private 
+@@ -547,25 +547,28 @@
+ , 1f, 0f);%0a%0a
+-%09
++    
+ private Colo
+@@ -612,17 +612,20 @@
+ , 1f);%0a%0a
+-%09
++    
+ private 
+@@ -645,17 +645,20 @@
+ Alpha;%0a%0a
+-%09
++    
+ public b
+@@ -688,17 +688,20 @@
+ nable;%0a%0a
+-%09
++    
+ private 
+@@ -712,29 +712,38 @@
+  OnEnable()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (disableR
+@@ -764,44 +764,71 @@
+ le)%0a
+-%09%09%7b%0a%09%09%09DisableRenderers();%0a%09%09%7d%0a%09%7d%0a%0a%09
++        %7b%0a            DisableRenderers();%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -845,21 +845,30 @@
+ pdate()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (stat
+@@ -875,37 +875,64 @@
+ e == 0)%0a
+-%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++        %7b%0a            return;%0a        %7d%0a        
+ float t 
+@@ -937,18 +937,24 @@
+ t = 0f;%0a
+-%09%09
++        
+ if (stat
+@@ -961,23 +961,38 @@
+ e == 1)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ timer +=
+@@ -1000,35 +1000,44 @@
+ Time.deltaTime;%0a
+-%09%09%09
++            
+ if (timer %3e fade
+@@ -1048,481 +1048,802 @@
+ me)%0a
+-%09%09%09%7b%0a%09%09%09%09timer = fadeInTime;%0a%09%09%09%09state = 0;%0a%09%09%09%09for (int i = 0; i %3c spriteRenderers.Length; i++)%0a%09%09%09%09%7b%0a%09%09%09%09%09if (spriteRenderers%5bi%5d != null)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09Color color = spriteRenderers%5bi%5d.color;%0a%09%09%09%09%09%09color.a = fullAlpha;%0a%09%09%09%09%09%09spriteRenderers%5bi%5d.color = color;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09for (int j = 0; j %3c texts.Length; j++)%0a%09%09%09%09%7b%0a%09%09%09%09%09if (texts%5bj%5d != null)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09Color color2 = texts%5bj%5d.color;%0a%09%09%09%09%09%09color2.a = fullAlpha;%0a%09%09%09%09%09%09texts%5bj%5d.color = color2;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09
++            %7b%0a                timer = fadeInTime;%0a                state = 0;%0a                for (int i = 0; i %3c spriteRenderers.Length; i++)%0a                %7b%0a                    if (spriteRenderers%5bi%5d != null)%0a                    %7b%0a                        Color color = spriteRenderers%5bi%5d.color;%0a                        color.a = fullAlpha;%0a                        spriteRenderers%5bi%5d.color = color;%0a                    %7d%0a                %7d%0a                for (int j = 0; j %3c texts.Length; j++)%0a                %7b%0a                    if (texts%5bj%5d != null)%0a                    %7b%0a                        Color color2 = texts%5bj%5d.color;%0a                        color2.a = fullAlpha;%0a                        texts%5bj%5d.color = color2;%0a                    %7d%0a                %7d%0a            %7d%0a            
+ t = 
+@@ -1862,22 +1862,34 @@
+ InTime;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ else if 
+@@ -1901,23 +1901,38 @@
+ e == 2)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ timer -=
+@@ -1948,19 +1948,28 @@
+ taTime;%0a
+-%09%09%09
++            
+ if (time
+@@ -1980,644 +1980,1145 @@
+ 0f)%0a
+-%09%09%09%7b%0a%09%09%09%09timer = 0f;%0a%09%09%09%09state = 0;%0a%09%09%09%09if (downAlpha %3e 0f)%0a%09%09%09%09%7b%0a%09%09%09%09%09for (int k = 0; k %3c spriteRenderers.Length; k++)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09if (spriteRenderers%5bk%5d != null)%0a%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09%09Color color3 = spriteRenderers%5bk%5d.color;%0a%09%09%09%09%09%09%09color3.a = downAlpha;%0a%09%09%09%09%09%09%09spriteRenderers%5bk%5d.color = color3;%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%7d%0a%09%09%09%09%09for (int l = 0; l %3c texts.Length; l++)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09if (texts%5bl%5d != null)%0a%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09%09Color color4 = texts%5bl%5d.color;%0a%09%09%09%09%09%09%09color4.a = downAlpha;%0a%09%09%09%09%09%09%09texts%5bl%5d.color = color4;%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09else%0a%09%09%09%09%7b%0a%09%09%09%09%09DisableRenderers();%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09t = timer / fadeOutTime;%0a%09%09%7d%0a%09%09if (state == 0)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++            %7b%0a                timer = 0f;%0a                state = 0;%0a                if (downAlpha %3e 0f)%0a                %7b%0a                    for (int k = 0; k %3c spriteRenderers.Length; k++)%0a                    %7b%0a                        if (spriteRenderers%5bk%5d != null)%0a                        %7b%0a                            Color color3 = spriteRenderers%5bk%5d.color;%0a                            color3.a = downAlpha;%0a                            spriteRenderers%5bk%5d.color = color3;%0a                        %7d%0a                    %7d%0a                    for (int l = 0; l %3c texts.Length; l++)%0a                    %7b%0a                        if (texts%5bl%5d != null)%0a                        %7b%0a                            Color color4 = texts%5bl%5d.color;%0a                            color4.a = downAlpha;%0a                            texts%5bl%5d.color = color4;%0a                        %7d%0a                    %7d%0a                %7d%0a                else%0a                %7b%0a                    DisableRenderers();%0a                %7d%0a            %7d%0a            t = timer / fadeOutTime;%0a        %7d%0a        if (state == 0)%0a        %7b%0a            return;%0a        %7d%0a        
+ curr
+@@ -3165,18 +3165,24 @@
+ ha, t);%0a
+-%09%09
++        
+ for (int
+@@ -3218,31 +3218,46 @@
+ ength; m++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (spriteRe
+@@ -3272,33 +3272,54 @@
+ m%5d != null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ Color color5
+@@ -3343,28 +3343,40 @@
+ s%5bm%5d.color;%0a
+-%09%09%09%09
++                
+ color5.a = c
+@@ -3388,20 +3388,32 @@
+ tAlpha;%0a
+-%09%09%09%09
++                
+ spriteRe
+@@ -3439,27 +3439,48 @@
+ color5;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ for (int
+@@ -3514,46 +3514,82 @@
+ ++)%0a
+-%09%09%7b%0a%09%09%09if (texts%5bn%5d != null)%0a%09%09%09%7b%0a%09%09%09%09
++        %7b%0a            if (texts%5bn%5d != null)%0a            %7b%0a                
+ Colo
+@@ -3611,28 +3611,40 @@
+ s%5bn%5d.color;%0a
+-%09%09%09%09
++                
+ color6.a = c
+@@ -3656,20 +3656,32 @@
+ tAlpha;%0a
+-%09%09%09%09
++                
+ texts%5bn%5d
+@@ -3697,30 +3697,51 @@
+ color6;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a    %7d%0a%0a    
+ public v
+@@ -3753,21 +3753,30 @@
+ adeUp()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ timer = 
+@@ -3779,18 +3779,24 @@
+ r = 0f;%0a
+-%09%09
++        
+ state = 
+@@ -3798,18 +3798,24 @@
+ te = 1;%0a
+-%09%09
++        
+ for (int
+@@ -3847,39 +3847,54 @@
+ rs.Length; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (spriteRender
+@@ -3905,33 +3905,54 @@
+ i%5d != null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ Color color 
+@@ -3979,38 +3979,62 @@
+ .color;%0a
+-%09%09%09%09color.a = 0f;%0a%09%09%09%09
++                color.a = 0f;%0a                
+ spriteRe
+@@ -4059,20 +4059,32 @@
+  color;%0a
+-%09%09%09%09
++                
+ spriteRe
+@@ -4110,27 +4110,48 @@
+ = true;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ for (int
+@@ -4185,100 +4185,160 @@
+ ++)%0a
+-%09%09%7b%0a%09%09%09if (texts%5bj%5d != null)%0a%09%09%09%7b%0a%09%09%09%09Color color2 = texts%5bj%5d.color;%0a%09%09%09%09color2.a = 0f;%0a%09%09%09%09
++        %7b%0a            if (texts%5bj%5d != null)%0a            %7b%0a                Color color2 = texts%5bj%5d.color;%0a                color2.a = 0f;%0a                
+ text
+@@ -4358,20 +4358,32 @@
+ color2;%0a
+-%09%09%09%09
++                
+ texts%5bj%5d
+@@ -4459,27 +4459,50 @@
+  true);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        /*
+ for (int
+@@ -4532,31 +4532,46 @@
+ ength; k++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (animator
+@@ -4588,57 +4588,101 @@
+ ll)%0a
+-%09%09%09%7b%0a%09%09%09%09animators%5bk%5d.AnimateUp();%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7b%0a                animators%5bk%5d.AnimateUp();%0a            %7d%0a        %7d*/%0a    %7d%0a%0a    
+ publ
+@@ -4700,21 +4700,30 @@
+ eDown()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ timer = 
+@@ -4735,18 +4735,24 @@
+ utTime;%0a
+-%09%09
++        
+ state = 
+@@ -4746,34 +4746,42 @@
+      state = 2;%0a
+-%09%09
++        /*
+ for (int i = 0; 
+@@ -4799,39 +4799,54 @@
+ rs.Length; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (animators%5bi%5d
+@@ -4859,59 +4859,103 @@
+ ll)%0a
+-%09%09%09%7b%0a%09%09%09%09animators%5bi%5d.AnimateDown();%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7b%0a                animators%5bi%5d.AnimateDown();%0a            %7d%0a        %7d*/%0a    %7d%0a%0a    
+ publ
+@@ -4977,21 +4977,30 @@
+ nFast()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ timer = 
+@@ -5016,18 +5016,24 @@
+ meFast;%0a
+-%09%09
++        
+ state = 
+@@ -5035,18 +5035,26 @@
+ te = 2;%0a
+-%09%09
++        /*
+ for (int
+@@ -5084,31 +5084,46 @@
+ ength; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (animator
+@@ -5140,59 +5140,103 @@
+ ll)%0a
+-%09%09%09%7b%0a%09%09%09%09animators%5bi%5d.AnimateDown();%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7b%0a                animators%5bi%5d.AnimateDown();%0a            %7d%0a        %7d*/%0a    %7d%0a%0a    
+ priv
+@@ -5263,21 +5263,30 @@
+ erers()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ for (int
+@@ -5322,31 +5322,46 @@
+ ength; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (spriteRe
+@@ -5380,25 +5380,46 @@
+ = null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ spriteRe
+@@ -5450,19 +5450,40 @@
+ se;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ for 
+@@ -5521,98 +5521,158 @@
+ ++)%0a
+-%09%09%7b%0a%09%09%09if (texts%5bj%5d != null)%0a%09%09%09%7b%0a%09%09%09%09Color color = texts%5bj%5d.color;%0a%09%09%09%09color.a = 0f;%0a%09%09%09%09
++        %7b%0a            if (texts%5bj%5d != null)%0a            %7b%0a                Color color = texts%5bj%5d.color;%0a                color.a = 0f;%0a                
+ text
+@@ -5695,12 +5695,24 @@
+ or;%0a
+-%09%09%09%09
++                
+ text
+@@ -5797,18 +5797,36 @@
+ e);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09
++            %7d%0a        %7d%0a    
+ %7d%0a%7d%0a

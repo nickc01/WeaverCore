@@ -1,0 +1,34 @@
+@@ -1,8 +1,23 @@
++using System;%0a%0a
+ namespac
+@@ -29,19 +29,20 @@
+ balEnums
+-;%0a%0a
++%0a%7b%0a%09
+ public e
+@@ -60,19 +60,21 @@
+ adeType%0a
++%09
+ %7b%0a%09
++%09
+ LEVEL_TR
+@@ -84,16 +84,17 @@
+ ITION,%0a%09
++%09
+ HERO_DEA
+@@ -98,16 +98,17 @@
+ DEATH,%0a%09
++%09
+ HERO_HAZ
+@@ -119,16 +119,17 @@
+ DEATH,%0a%09
++%09
+ JUST_FAD
+@@ -132,16 +132,17 @@
+ _FADE,%0a%09
++%09
+ START_FA
+@@ -144,10 +144,13 @@
+ RT_FADE%0a
++%09%7d%0a
+ %7d%0a

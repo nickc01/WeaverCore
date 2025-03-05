@@ -1,0 +1,232 @@
+@@ -250,16 +250,20 @@
+ ON_START
++ = 0
+ ,%0a%09%09MANU
+@@ -272,16 +272,20 @@
+ _TRIGGER
++ = 1
+ %0a%09%7d%0a%0a%09pu
+@@ -313,32 +313,36 @@
+ %0a%09%7b%0a%09%09NORMAL
++ = 0
+ ,%0a%09%09SLOW
+ ,%0a%09%09NONE%0a%09%7d%0a
+@@ -325,32 +325,36 @@
+  = 0,%0a%09%09SLOW
++ = 1
+ ,%0a%09%09NONE
+ %0a%09%7d%0a%0a%09public
+@@ -333,32 +333,36 @@
+ SLOW = 1,%0a%09%09NONE
++ = 2
+ %0a%09%7d%0a%0a%09public enu
+@@ -387,24 +387,28 @@
+ %09%09NORMAL
++ = 0
+ ,%0a%09%09SLOW
+ ,%0a%09%09NONE
+@@ -399,24 +399,28 @@
+ ,%0a%09%09SLOW
++ = 1
+ ,%0a%09%09NONE
+ %0a%09%7d%0a%0a%09pu
+@@ -411,16 +411,20 @@
+ ,%0a%09%09NONE
++ = 2
+ %0a%09%7d%0a%0a%09pu
+@@ -463,16 +463,20 @@
+ Cutscene
++ = 0
+ ,%0a%09%09Stag
+@@ -481,16 +481,20 @@
+ agTravel
++ = 1
+ ,%0a%09%09InGa
+@@ -500,16 +500,20 @@
+ ameVideo
++ = 2
+ ,%0a%09%09Open
+@@ -523,16 +523,20 @@
+ Prologue
++ = 3
+ ,%0a%09%09Endi
+@@ -538,16 +538,20 @@
+ %09EndingA
++ = 4
+ ,%0a%09%09Endi
+@@ -553,16 +553,20 @@
+ %09EndingB
++ = 5
+ ,%0a%09%09Endi
+@@ -568,16 +568,20 @@
+ %09EndingC
++ = 6
+ ,%0a%09%09Endi
+@@ -584,16 +584,20 @@
+ EndingGG
++ = 7
+ %0a%09%7d%0a%0a%09%5bS
+@@ -2062,24 +2062,26 @@
+ nager gm;%0a%0a%09
++//
+ private UIMa
+@@ -2113,24 +2113,26 @@
+ rData pd;%0a%0a%09
++//
+ private Play
+@@ -2223,32 +2223,51 @@
+ erializeField%5d%0a%09
++%5bHideInInspector%5d%0a%09
+ private AudioMix
+@@ -2300,32 +2300,51 @@
+ erializeField%5d%0a%09
++%5bHideInInspector%5d%0a%09
+ private AudioMix
+@@ -2771,16 +2771,18 @@
+ ance;%0a%09%09
++//
+ ui = UIM
+@@ -2824,24 +2824,26 @@
+ instance;%0a%09%09
++/*
+ if (startSki
+@@ -2973,24 +2973,26 @@
+ ipMode);%0a%09%09%7d
++*/
+ %0a%09%09if (playT
+@@ -4275,27 +4275,100 @@
+ NORMAL)%0a%09%09%7b%0a
++            WeaverTypeHelpers.BroadcastEvent(%22JUST FADE%22, gameObject);%0a
+ %09%09%09
++//
+ PlayMakerFSM
+@@ -4493,19 +4493,93 @@
+ OW)%0a%09%09%7b%0a
++            WeaverTypeHelpers.BroadcastEvent(%22START FADE%22, gameObject);%0a
+ %09%09%09
++//
+ PlayMake
+@@ -5000,16 +5000,18 @@
+ ()%0a%09%7b%0a%09%09
++//
+ gm.input
+@@ -5078,24 +5078,94 @@
+ tVideo()%0a%09%7b%0a
++        var camera = GameObject.FindObjectOfType%3cCameraController%3e();%0a
+ %09%09if (master
+@@ -6166,32 +6166,33 @@
+ yBeforeFadeIn);%0a
++%0a
+ %09%09%09if (fadeInSpe
+@@ -6212,36 +6212,138 @@
+ peed.SLOW)%0a%09%09%09%7b%0a
++                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN SLOWLY%22, camera.gameObject);%0a
+ %09%09%09%09
++//
+ GameCameras.inst
+@@ -6445,36 +6445,131 @@
+ ed.NORMAL)%0a%09%09%09%7b%0a
++                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN%22, camera.gameObject);%0a
+ %09%09%09%09
++//
+ GameCameras.inst
+@@ -7313,36 +7313,138 @@
+ peed.SLOW)%0a%09%09%09%7b%0a
++                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN SLOWLY%22, camera.gameObject);%0a
+ %09%09%09%09
++//
+ GameCameras.inst
+@@ -7546,36 +7546,131 @@
+ ed.NORMAL)%0a%09%09%09%7b%0a
++                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN%22, camera.gameObject);%0a
+ %09%09%09%09
++//
+ GameCameras.inst
+@@ -7766,46 +7766,48 @@
+ ));%0a
+-%09%09%09pd.SetBoolSwappedArgs(value: true, 
++            PlayerData.instance.SetBool(
+ %22dis
+@@ -7816,16 +7816,22 @@
+ lePause%22
++, true
+ );%0a%09%09%7d%0a%09
+@@ -8483,28 +8483,130 @@
+ .SLOW)%0a%09%09%09%7b%0a
++                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN SLOWLY%22, camera.gameObject);%0a
+ %09%09%09%09
++//
+ GameCameras.
+@@ -8720,20 +8720,115 @@
+ L)%0a%09%09%09%7b%0a
++                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN%22, camera.gameObject);%0a
+ %09%09%09%09
++//
+ GameCame
+@@ -8926,16 +8926,86 @@
+ eo()%0a%09%7b%0a
++        var camera = GameObject.FindObjectOfType%3cCameraController%3e();%0a
+ %09%09GameCa
+@@ -9154,32 +9154,34 @@
+ utscene)%0a%09%09%7b%0a%09%09%09
++//
+ GameCameras.inst
+@@ -9215,35 +9215,122 @@
+ t(%22JUST FADE%22);%0a
++            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a
+ %09%09%09
++//
+ ui.SetState(UISt
+@@ -9462,32 +9462,34 @@
+ rologue)%0a%09%09%7b%0a%09%09%09
++//
+ GameCameras.inst
+@@ -9523,35 +9523,122 @@
+ t(%22JUST FADE%22);%0a
++            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a
+ %09%09%09
++//
+ ui.SetState(UISt
+@@ -9820,32 +9820,34 @@
+ EndingC)%0a%09%09%7b%0a%09%09%09
++//
+ GameCameras.inst
+@@ -9881,35 +9881,122 @@
+ t(%22JUST FADE%22);%0a
++            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a
+ %09%09%09
++//
+ ui.SetState(UISt
+@@ -10119,24 +10119,26 @@
+ vel)%0a%09%09%7b%0a%09%09%09
++//
+ ui.SetState(
+@@ -10296,32 +10296,34 @@
+ ndingGG)%0a%09%09%7b%0a%09%09%09
++//
+ GameCameras.inst
+@@ -10365,19 +10365,106 @@
+ FADE%22);%0a
++            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a
+ %09%09%09
++//
+ ui.SetSt
+@@ -10521,12 +10521,9 @@
+ if (
+-gm.p
++P
+ laye
+@@ -10528,16 +10528,25 @@
+ yerData.
++instance.
+ GetBool(
+@@ -10752,18 +10752,91 @@
+ deo.%22);%0a
+-%09%09
++        WeaverTypeHelpers.BroadcastEvent(%22CINEMATIC END%22, gameObject);%0a%09%09//
+ PlayMake
+@@ -11453,51 +11453,204 @@
+ %0a%09%7b%0a
+-%09%09yield return new WaitForSeconds(2.6f);%0a%09%09
++        var camera = GameObject.FindObjectOfType%3cCameraController%3e();%0a%09%09yield return new WaitForSeconds(2.6f);%0a        WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a%09%09//
+ Game

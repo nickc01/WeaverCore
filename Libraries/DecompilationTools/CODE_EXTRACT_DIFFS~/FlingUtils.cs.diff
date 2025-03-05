@@ -1,0 +1,325 @@
+@@ -60,17 +60,20 @@
+ Utils%0a%7b%0a
+-%09
++    
+ %5bSeriali
+@@ -79,17 +79,20 @@
+ izable%5d%0a
+-%09
++    
+ public s
+@@ -100,29 +100,38 @@
+ ruct Config%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public GameO
+@@ -145,18 +145,24 @@
+ refab;%0a%0a
+-%09%09
++        
+ public f
+@@ -169,34 +169,40 @@
+ loat SpeedMin;%0a%0a
+-%09%09
++        
+ public float Spe
+@@ -201,34 +201,40 @@
+ loat SpeedMax;%0a%0a
+-%09%09
++        
+ public float Ang
+@@ -233,34 +233,40 @@
+ loat AngleMin;%0a%0a
+-%09%09
++        
+ public float Ang
+@@ -265,34 +265,40 @@
+ loat AngleMax;%0a%0a
+-%09%09
++        
+ public float Ori
+@@ -305,34 +305,40 @@
+ ginVariationX;%0a%0a
+-%09%09
++        
+ public float Ori
+@@ -353,18 +353,24 @@
+ tionY;%0a%0a
+-%09%09
++        
+ public i
+@@ -376,34 +376,40 @@
+ int AmountMin;%0a%0a
+-%09%09
++        
+ public int Amoun
+@@ -410,29 +410,35 @@
+  AmountMax;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public struc
+@@ -450,29 +450,38 @@
+ ldrenConfig%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public GameO
+@@ -491,26 +491,32 @@
+ ct Parent;%0a%0a
+-%09%09
++        
+ public int A
+@@ -522,26 +522,32 @@
+ AmountMin;%0a%0a
+-%09%09
++        
+ public int A
+@@ -553,26 +553,32 @@
+ AmountMax;%0a%0a
+-%09%09
++        
+ public float
+@@ -581,34 +581,40 @@
+ loat SpeedMin;%0a%0a
+-%09%09
++        
+ public float Spe
+@@ -613,34 +613,40 @@
+ loat SpeedMax;%0a%0a
+-%09%09
++        
+ public float Ang
+@@ -645,34 +645,40 @@
+ loat AngleMin;%0a%0a
+-%09%09
++        
+ public float Ang
+@@ -681,26 +681,32 @@
+  AngleMax;%0a%0a
+-%09%09
++        
+ public float
+@@ -725,18 +725,24 @@
+ tionX;%0a%0a
+-%09%09
++        
+ public f
+@@ -764,21 +764,27 @@
+ ationY;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public s
+@@ -800,21 +800,30 @@
+ fConfig%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public G
+@@ -841,18 +841,24 @@
+ bject;%0a%0a
+-%09%09
++        
+ public f
+@@ -869,26 +869,32 @@
+  SpeedMin;%0a%0a
+-%09%09
++        
+ public float
+@@ -905,18 +905,24 @@
+ edMax;%0a%0a
+-%09%09
++        
+ public f
+@@ -937,18 +937,24 @@
+ leMin;%0a%0a
+-%09%09
++        
+ public f
+@@ -968,21 +968,202 @@
+ gleMax;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    /*static GameObject DefaultSpawnFunction(GameObject prefab, Vector3 position)%0a    %7b%0a        return GameObject.Instantiate(prefab, position, Quaternion.identity);%0a    %7d*/%0a%0a    
+ public s
+@@ -1248,37 +1248,46 @@
+ positionOffset)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (config.Prefa
+@@ -1301,34 +1301,176 @@
+ ll)%0a
+-%09%09%7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
++        %7b%0a            return null;%0a        %7d%0a%0a        /*if (spawnPrefabFunc == null)%0a        %7b%0a            spawnPrefabFunc = DefaultSpawnFunction;%0a        %7d*/%0a%0a        
+ int 
+@@ -1541,18 +1541,24 @@
+ x + 1);%0a
+-%09%09
++        
+ Vector3 
+@@ -1651,18 +1651,24 @@
+ ffset);%0a
+-%09%09
++        
+ GameObje
+@@ -1701,18 +1701,24 @@
+ t%5bnum%5d;%0a
+-%09%09
++        
+ for (int
+@@ -1739,23 +1739,38 @@
+ m; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Vector3 
+@@ -1968,19 +1968,30 @@
+ ), 0f);%0a
+-%09%09%09
++            //
+ GameObje
+@@ -2037,19 +2037,214 @@
+ ition);%0a
+-%09%09%09
++            GameObject gameObject = GameObject.Instantiate(config.Prefab, position, Quaternion.identity);%0a            //GameObject gameObject = spawnPrefabFunc(config.Prefab, position);%0a            
+ Rigidbod
+@@ -2291,35 +2291,44 @@
+ Rigidbody2D%3e();%0a
+-%09%09%09
++            
+ if (component !=
+@@ -2330,33 +2330,54 @@
+ nt != null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ float num2 =
+@@ -2429,36 +2429,48 @@
+ nfig.SpeedMax);%0a
+-%09%09%09%09
++                
+ float num3 = Uni
+@@ -2518,36 +2518,48 @@
+ nfig.AngleMax);%0a
+-%09%09%09%09
++                
+ component.veloci
+@@ -2669,24 +2669,42 @@
+ * num2;%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ array%5bi%5d
+@@ -2718,22 +2718,34 @@
+ Object;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ return a
+@@ -2750,21 +2750,27 @@
+  array;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public s
+@@ -2859,29 +2859,38 @@
+ tionOffset)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (config.P
+@@ -2908,29 +2908,56 @@
+ ll)%0a
+-%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++        %7b%0a            return;%0a        %7d%0a        
+ Vect
+@@ -3054,18 +3054,24 @@
+ ffset);%0a
+-%09%09
++        
+ int num 
+@@ -3198,18 +3198,24 @@
+ Count);%0a
+-%09%09
++        
+ for (int
+@@ -3236,23 +3236,38 @@
+ m; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Transfor
+@@ -3313,19 +3313,28 @@
+ ild(i);%0a
+-%09%09%09
++            
+ child.ga
+@@ -3366,19 +3366,28 @@
+  true);%0a
+-%09%09%09
++            
+ _ = vect
+@@ -3570,19 +3570,28 @@
+ ), 0f);%0a
+-%09%09%09
++            
+ Rigidbod
+@@ -3633,35 +3633,44 @@
+ Rigidbody2D%3e();%0a
+-%09%09%09
++            
+ if (component !=
+@@ -3672,33 +3672,54 @@
+ nt != null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ float num2 =
+@@ -3771,36 +3771,48 @@
+ nfig.SpeedMax);%0a
+-%09%09%09%09
++                
+ float num3 = Uni
+@@ -3860,36 +3860,48 @@
+ nfig.AngleMax);%0a
+-%09%09%09%09
++                
+ component.veloci
+@@ -4015,22 +4015,43 @@
+ m2;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -4142,21 +4142,30 @@
+ Offset)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (!(co
+@@ -4186,23 +4186,38 @@
+  null))%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (spaw
+@@ -4232,25 +4232,46 @@
+ = null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ spawnPoi
+@@ -4309,16 +4309,34 @@
+ t);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ Rigi
+@@ -4398,19 +4398,28 @@
+ y2D%3e();%0a
+-%09%09%09
++            
+ if (comp
+@@ -4437,17 +4437,38 @@
+ ll)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ floa
+@@ -4535,20 +4535,32 @@
+ edMax);%0a
+-%09%09%09%09
++                
+ float nu
+@@ -4628,12 +4628,24 @@
+ x);%0a
+-%09%09%09%09
++                
+ comp
+@@ -4770,18 +4770,36 @@
+ um;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09
++            %7d%0a        %7d%0a    
+ %7d%0a%7d%0a

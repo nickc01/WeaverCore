@@ -1,0 +1,14 @@
+@@ -257,149 +257,239 @@
+ e;%0a%09
+-%09if (playerData == null
++%7d%0a%0a%09private void Reset(
+ )%0a%09
+-%09
+ %7b%0a%09%09
+-%09Debug.LogError(base.name + %22- Player Data reference is null, please check this is being set correctly.%22);%0a%09%09%7d
++var collider = gameObject.GetComponent%3cCollider2D%3e();%0a%09%09if (collider == null)%0a%09%09%7b%0a%09%09%09collider = gameObject.AddComponent%3cBoxCollider2D%3e();%0a%09%09%7d%0a%09%09collider.isTrigger = true;%0a%0a%09%09transform.SetPositionZ(0f);
+ %0a%09%7d%0a
+@@ -748,16 +748,47 @@
+ yer == 9
++ && PlayerData.instance != null
+ )%0a%09%09%7b%0a%09%09

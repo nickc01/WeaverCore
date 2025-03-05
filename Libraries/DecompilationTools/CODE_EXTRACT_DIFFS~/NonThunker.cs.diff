@@ -1,0 +1,17 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -26,16 +26,16 @@
+ Engine;%0a
+-
+ %0apublic 
+@@ -73,37 +73,8 @@
+ r%0a%7b%0a
+-%09public bool active = true;%0a%0a
+ %09pub
+@@ -136,9 +136,38 @@
+ ve;%0a
+-
+ %09%7d
++%0a%0a%09public bool active = true;
+ %0a%7d%0a

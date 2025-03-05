@@ -1,0 +1,205 @@
+@@ -61,17 +61,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public b
+@@ -91,17 +91,20 @@
+ arent;%0a%0a
+-%09
++    
+ public b
+@@ -118,33 +118,36 @@
+ atGrandParent;%0a%0a
+-%09
++    
+ private float pa
+@@ -151,33 +151,36 @@
+  parentXScale;%0a%0a
+-%09
++    
+ private float se
+@@ -190,17 +190,20 @@
+ Scale;%0a%0a
+-%09
++    
+ private 
+@@ -224,17 +224,20 @@
+ ector;%0a%0a
+-%09
++    
+ private 
+@@ -254,17 +254,20 @@
+ ented;%0a%0a
+-%09
++    
+ private 
+@@ -286,17 +286,20 @@
+ arent;%0a%0a
+-%09
++    
+ private 
+@@ -311,21 +311,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (gran
+@@ -342,32 +342,42 @@
+ Parent)%0a
+-%09%09%7b%0a%09%09%09if (base.
++        %7b%0a            if (
+ transfor
+@@ -388,37 +388,32 @@
+ rent != null && 
+-base.
+ transform.parent
+@@ -425,33 +425,54 @@
+ nt != null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ parent = bas
+@@ -460,37 +460,32 @@
+        parent = 
+-base.
+ transform.parent
+@@ -521,35 +521,56 @@
+ gameObject;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ else if (gre
+@@ -588,24 +588,34 @@
+ nt)%0a
+-%09%09%7b%0a%09%09%09if (base.
++        %7b%0a            if (
+ tran
+@@ -630,37 +630,32 @@
+ rent != null && 
+-base.
+ transform.parent
+@@ -673,21 +673,16 @@
+ null && 
+-base.
+ transfor
+@@ -713,25 +713,46 @@
+ = null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ parent =
+@@ -744,37 +744,32 @@
+        parent = 
+-base.
+ transform.parent
+@@ -837,27 +837,48 @@
+ Object;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ else if 
+@@ -878,21 +878,16 @@
+ lse if (
+-base.
+ transfor
+@@ -904,23 +904,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ parent =
+@@ -935,21 +935,16 @@
+ arent = 
+-base.
+ transfor
+@@ -968,17 +968,29 @@
+ ct;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ priv
+@@ -1007,21 +1007,30 @@
+ pdate()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (pare
+@@ -1056,23 +1056,38 @@
+ rented)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ parentXS
+@@ -1124,19 +1124,28 @@
+ cale.x;%0a
+-%09%09%09
++            
+ selfXSca
+@@ -1141,37 +1141,32 @@
+    selfXScale = 
+-base.
+ transform.localS
+@@ -1169,27 +1169,36 @@
+ calScale.x;%0a
+-%09%09%09
++            
+ if ((parentX
+@@ -1271,25 +1271,46 @@
+  %3c 0f))%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ scaleVec
+@@ -1314,37 +1314,32 @@
+ Vector.Set(0f - 
+-base.
+ transform.localS
+@@ -1338,37 +1338,32 @@
+ m.localScale.x, 
+-base.
+ transform.localS
+@@ -1362,37 +1362,32 @@
+ m.localScale.y, 
+-base.
+ transform.localS
+@@ -1391,33 +1391,40 @@
+ alScale.z);%0a
+-%09%09%09%09base.
++                
+ transform.lo
+@@ -1451,31 +1451,67 @@
+ or;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++            %7d%0a        %7d%0a        else%0a        %7b%0a            
+ unpa
+@@ -1525,19 +1525,28 @@
+ = true;%0a
+-%09%09%09
++            
+ selfXSca
+@@ -1550,21 +1550,16 @@
+ Scale = 
+-base.
+ transfor
+@@ -1574,19 +1574,28 @@
+ cale.x;%0a
+-%09%09%09
++            
+ if (self
+@@ -1611,17 +1611,38 @@
+ 0f)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ scal
+@@ -1658,21 +1658,16 @@
+ et(0f - 
+-base.
+ transfor
+@@ -1682,21 +1682,16 @@
+ cale.x, 
+-base.
+ transfor
+@@ -1706,21 +1706,16 @@
+ cale.y, 
+-base.
+ transfor
+@@ -1735,17 +1735,24 @@
+ z);%0a
+-%09%09%09%09base.
++                
+ tran
+@@ -1787,18 +1787,36 @@
+ or;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09
++            %7d%0a        %7d%0a    
+ %7d%0a%7d%0a

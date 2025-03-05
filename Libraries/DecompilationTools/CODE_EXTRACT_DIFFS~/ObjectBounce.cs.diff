@@ -1,0 +1,350 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -27,16 +27,139 @@
+ ngine;%0a%0a
++%5bObsolete(%22This component is known to crash when used in-game. Please use WeaverCore.Components.WeaverBouncable instead%22)%5d%0a
+ public c
+@@ -194,17 +194,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public d
+@@ -235,17 +235,20 @@
+ ent();%0a%0a
+-%09
++    
+ public f
+@@ -263,25 +263,28 @@
+ nceFactor;%0a%0a
+-%09
++    
+ public float
+@@ -298,33 +298,36 @@
+ hreshold = 1f;%0a%0a
+-%09
++    
+ public bool play
+@@ -334,17 +334,20 @@
+ Sound;%0a%0a
+-%09
++    
+ public A
+@@ -365,17 +365,20 @@
+ clips;%0a%0a
+-%09
++    
+ public i
+@@ -401,17 +401,20 @@
+ = 100;%0a%0a
+-%09
++    
+ public f
+@@ -430,25 +430,28 @@
+ hMin = 1f;%0a%0a
+-%09
++    
+ public float
+@@ -463,25 +463,28 @@
+ hMax = 1f;%0a%0a
+-%09
++    
+ public bool 
+@@ -503,25 +503,28 @@
+ nOnBounce;%0a%0a
+-%09
++    
+ public strin
+@@ -541,17 +541,20 @@
+ nName;%0a%0a
+-%09
++    
+ public f
+@@ -577,17 +577,20 @@
+  0.5f;%0a%0a
+-%09
++    
+ public b
+@@ -608,17 +608,20 @@
+ Event;%0a%0a
+-%09
++    
+ private 
+@@ -634,17 +634,20 @@
+ speed;%0a%0a
+-%09
++    
+ private 
+@@ -660,25 +660,30 @@
+ animTimer;%0a%0a
+-%09
++    //
+ private tk2d
+@@ -704,25 +704,30 @@
+  animator;%0a%0a
+-%09
++    //
+ private Play
+@@ -741,17 +741,20 @@
+ M fsm;%0a%0a
+-%09
++    
+ private 
+@@ -772,17 +772,20 @@
+ ocity;%0a%0a
+-%09
++    
+ private 
+@@ -802,17 +802,20 @@
+ stPos;%0a%0a
+-%09
++    
+ private 
+@@ -831,25 +831,28 @@
+ 2D rb;%0a%0a
+-%09
++    
+ private 
+ AudioSou
+@@ -843,16 +843,20 @@
+ private 
++new 
+ AudioSou
+@@ -867,17 +867,20 @@
+ audio;%0a%0a
+-%09
++    
+ private 
+@@ -893,17 +893,20 @@
+ ooser;%0a%0a
+-%09
++    
+ private 
+@@ -924,25 +924,28 @@
+ ng = true;%0a%0a
+-%09
++    
+ private int 
+@@ -958,17 +958,20 @@
+ unter;%0a%0a
+-%09
++    
+ public e
+@@ -998,17 +998,20 @@
+ ounce;%0a%0a
+-%09
++    
+ private 
+@@ -1023,21 +1023,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ rb = Get
+@@ -1071,18 +1071,24 @@
+ y2D%3e();%0a
+-%09%09
++        
+ audio = 
+@@ -1116,18 +1116,26 @@
+ rce%3e();%0a
+-%09%09
++        //
+ animator
+@@ -1173,18 +1173,26 @@
+ tor%3e();%0a
+-%09%09
++        /*
+ if (send
+@@ -1201,23 +1201,38 @@
+ MEvent)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ fsm = Ge
+@@ -1259,25 +1259,39 @@
+ FSM%3e();%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d*/%0a    %7d%0a%0a    
+ private 
+@@ -1313,65 +1313,110 @@
+ e()%0a
+-%09%7b%0a%09%09if (bouncing)%0a%09%09%7b%0a%09%09%09if (stepCounter %3e= 3)%0a%09%09%09%7b%0a%09%09%09%09
++    %7b%0a        if (bouncing)%0a        %7b%0a            if (stepCounter %3e= 3)%0a            %7b%0a                
+ Vect
+@@ -1495,20 +1495,32 @@
+ ion.y);%0a
+-%09%09%09%09
++                
+ velocity
+@@ -1540,20 +1540,32 @@
+ astPos;%0a
+-%09%09%09%09
++                
+ lastPos 
+@@ -1574,20 +1574,32 @@
+ vector;%0a
+-%09%09%09%09
++                
+ speed = 
+@@ -1633,20 +1633,32 @@
+  : 0f);%0a
+-%09%09%09%09
++                
+ stepCoun
+@@ -1670,59 +1670,119 @@
+  0;%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09stepCounter++;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a            else%0a            %7b%0a                stepCounter++;%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -1799,21 +1799,30 @@
+ pdate()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (anim
+@@ -1829,31 +1829,46 @@
+ Timer %3e 0f)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ animTimer -=
+@@ -1884,25 +1884,37 @@
+ taTime;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ private 
+@@ -1954,21 +1954,30 @@
+ 2D col)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (!rb 
+@@ -2041,79 +2041,637 @@
+ d))%0a
+-%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09Vector3 inNormal = col.GetSafeContact().Normal;%0a%09%09
++        %7b%0a            return;%0a        %7d%0a        //Vector3 inNormal = col.GetSafeContact().Normal;%0a        //Vector3 inNormal = col.GetContacts().%0a%0a        Vector3 inNormal;%0a%0a        if (col.contactCount %3e= 1)%0a        %7b%0a            var contactPoint = col.GetContact(0);%0a            inNormal = contactPoint.normal;%0a        %7d%0a        else%0a        %7b%0a            Vector2 sourceOrigin = col.collider.transform.TransformPoint(col.collider.offset);%0a            Vector2 otherOrigin = col.otherCollider.transform.TransformPoint(col.otherCollider.offset);%0a%0a            inNormal = (otherOrigin - sourceOrigin).normalized;%0a        %7d%0a%0a        
+ Vect
+@@ -2746,18 +2746,24 @@
+ alized;%0a
+-%09%09
++        
+ rb.veloc
+@@ -2835,16 +2835,28 @@
+ actor * 
++UnityEngine.
+ Random.R
+@@ -2875,18 +2875,24 @@
+ .2f)));%0a
+-%09%09
++        
+ if (play
+@@ -2902,60 +2902,108 @@
+ nd)%0a
+-%09%09%7b%0a%09%09%09chooser = Random.Range(1, 100);%0a%09%09%09int num = 
++        %7b%0a            chooser = UnityEngine.Random.Range(1, 100);%0a            int num = UnityEngine.
+ Rand
+@@ -3033,19 +3033,28 @@
+ h - 1);%0a
+-%09%09%09
++            
+ AudioCli
+@@ -3074,19 +3074,28 @@
+ s%5bnum%5d;%0a
+-%09%09%09
++            
+ if (choo
+@@ -3119,17 +3119,38 @@
+ ay)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ floa
+@@ -3159,16 +3159,28 @@
+ pitch = 
++UnityEngine.
+ Random.R
+@@ -3205,20 +3205,32 @@
+ chMax);%0a
+-%09%09%09%09
++                
+ audio.pi
+@@ -3246,12 +3246,24 @@
+ ch;%0a
+-%09%09%09%09
++                
+ audi
+@@ -3287,19 +3287,42 @@
+ p);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        /*
+ if (
+@@ -3363,23 +3363,38 @@
+  %3c= 0f)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ animator
+@@ -3415,19 +3415,28 @@
+ nName);%0a
+-%09%09%09
++            
+ animator
+@@ -3454,19 +3454,28 @@
+ ame(0);%0a
+-%09%09%09
++            
+ animTime
+@@ -3489,22 +3489,34 @@
+ mPause;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (send
+@@ -3538,23 +3538,38 @@
+ ol)fsm)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ fsm.Send
+@@ -3589,14 +3589,28 @@
+ %22);%0a
+-%09%09%7d%0a%09%09
++        %7d*/%0a        
+ if (
+@@ -3636,41 +3636,68 @@
+ ll)%0a
+-%09%09%7b%0a%09%09%09this.OnBounce();%0a%09%09%7d%0a%09%7d%0a%0a%09
++        %7b%0a            this.OnBounce();%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -3709,37 +3709,46 @@
+ id StopBounce()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ bouncing = false
+@@ -3749,21 +3749,27 @@
+  false;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public v
+@@ -3786,21 +3786,30 @@
+ ounce()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ bouncing
+@@ -3813,29 +3813,35 @@
+ ing = true;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public void 
+@@ -3869,21 +3869,30 @@
+  value)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ bounceFa
+@@ -3909,13 +3909,19 @@
+ ue;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ publ
+@@ -3961,13 +3961,22 @@
+ et)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ play
+@@ -4004,9 +4004,12 @@
+ et;%0a
+-%09
++    
+ %7d%0a%7d%0a

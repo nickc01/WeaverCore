@@ -1,0 +1,963 @@
+@@ -178,17 +178,20 @@
+ r%0a%7b%0a
+-%09
++    
+ %5bFlags%5d%0a
+ %09pub
+@@ -186,17 +186,20 @@
+ %5bFlags%5d%0a
+-%09
++    
+ public e
+@@ -224,45 +224,70 @@
+ ngs%0a
+-%09%7b%0a%09%09None = 0,%0a%09%09
++    %7b%0a        None = 0x0,%0a        
+ Nail = 
++0x
+ 1,%0a
+-%09%09
++        
+ Shell = 
+ 2,%0a%09
+@@ -286,13 +286,21 @@
+ l = 
++0x
+ 2,%0a
+-%09%09
++        
+ Char
+@@ -308,27 +308,43 @@
+ s = 
++0x
+ 4,%0a
+-%09%09Soul = 8%0a%09%7d%0a%0a%09
++        Soul = 0x8%0a    %7d%0a%0a    
+ %5bSer
+@@ -354,17 +354,20 @@
+ izable%5d%0a
+-%09
++    
+ public c
+@@ -388,21 +388,30 @@
+ nceData%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public C
+@@ -434,26 +434,32 @@
+  bindings;%0a%0a
+-%09%09
++        
+ public float
+@@ -467,18 +467,24 @@
+ timer;%0a%0a
+-%09%09
++        
+ public b
+@@ -499,26 +499,32 @@
+ htDamaged;%0a%0a
+-%09%09
++        
+ public strin
+@@ -538,18 +538,24 @@
+ rData;%0a%0a
+-%09%09
++        
+ public B
+@@ -602,18 +602,24 @@
+ etion;%0a%0a
+-%09%09
++        
+ public i
+@@ -648,18 +648,24 @@
+ harms;%0a%0a
+-%09%09
++        
+ public b
+@@ -685,18 +685,24 @@
+ armed;%0a%0a
+-%09%09
++        
+ public s
+@@ -725,21 +725,27 @@
+ ceName;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -782,17 +782,20 @@
+ tData;%0a%0a
+-%09
++    
+ private 
+@@ -832,17 +832,20 @@
+ uence;%0a%0a
+-%09
++    
+ private 
+@@ -859,33 +859,36 @@
+ int bossIndex;%0a%0a
+-%09
++    
+ public static bo
+@@ -904,995 +904,1427 @@
+ ail%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (currentData != null)%0a%09%09%09%7b%0a%09%09%09%09return (currentData.bindings & ChallengeBindings.Nail) == ChallengeBindings.Nail;%0a%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09public static bool BoundShell%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (currentData != null)%0a%09%09%09%7b%0a%09%09%09%09return (currentData.bindings & ChallengeBindings.Shell) == ChallengeBindings.Shell;%0a%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09public static bool BoundCharms%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (currentData != null)%0a%09%09%09%7b%0a%09%09%09%09return (currentData.bindings & ChallengeBindings.Charms) == ChallengeBindings.Charms;%0a%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09public static bool BoundSoul%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (currentData != null)%0a%09%09%09%7b%0a%09%09%09%09return (currentData.bindings & ChallengeBindings.Soul) == ChallengeBindings.Soul;%0a%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09public static bool KnightDamaged%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (currentData == null)%0a%09%09%09%7b%0a%09%09%09%09return false;%0a%09%09%09%7d%0a%09%09%09return currentData.knightDamaged;%0a%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09if (currentData != null)%0a%09%09%09%7b%0a%09%09%09%09currentData.knightDamaged = value;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++    %7b%0a        get%0a        %7b%0a            if (currentData != null)%0a            %7b%0a                return (currentData.bindings & ChallengeBindings.Nail) == ChallengeBindings.Nail;%0a            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    public static bool BoundShell%0a    %7b%0a        get%0a        %7b%0a            if (currentData != null)%0a            %7b%0a                return (currentData.bindings & ChallengeBindings.Shell) == ChallengeBindings.Shell;%0a            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    public static bool BoundCharms%0a    %7b%0a        get%0a        %7b%0a            if (currentData != null)%0a            %7b%0a                return (currentData.bindings & ChallengeBindings.Charms) == ChallengeBindings.Charms;%0a            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    public static bool BoundSoul%0a    %7b%0a        get%0a        %7b%0a            if (currentData != null)%0a            %7b%0a                return (currentData.bindings & ChallengeBindings.Soul) == ChallengeBindings.Soul;%0a            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    public static bool KnightDamaged%0a    %7b%0a        get%0a        %7b%0a            if (currentData == null)%0a            %7b%0a                return false;%0a            %7d%0a            return currentData.knightDamaged;%0a        %7d%0a        set%0a        %7b%0a            if (currentData != null)%0a            %7b%0a                currentData.knightDamaged = value;%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -2416,17 +2416,20 @@
+ etion;%0a%0a
+-%09
++    
+ public s
+@@ -2450,195 +2450,327 @@
+ mer%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (currentData == null)%0a%09%09%09%7b%0a%09%09%09%09return 0f;%0a%09%09%09%7d%0a%09%09%09return currentData.timer;%0a%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09if (currentData != null)%0a%09%09%09%7b%0a%09%09%09%09currentData.timer = value;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++    %7b%0a        get%0a        %7b%0a            if (currentData == null)%0a            %7b%0a                return 0f;%0a            %7d%0a            return currentData.timer;%0a        %7d%0a        set%0a        %7b%0a            if (currentData != null)%0a            %7b%0a                currentData.timer = value;%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -2820,17 +2820,20 @@
+ set; %7d%0a%0a
+-%09
++    
+ public s
+@@ -2860,121 +2860,196 @@
+ nce%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (currentData != null)%0a%09%09%09%7b%0a%09%09%09%09return currentSequence != null;%0a%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09
++    %7b%0a        get%0a        %7b%0a            if (currentData != null)%0a            %7b%0a                return currentSequence != null;%0a            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -3123,17 +3123,20 @@
+ t - 1;%0a%0a
+-%09
++    
+ public s
+@@ -3170,17 +3170,20 @@
+ Index;%0a%0a
+-%09
++    
+ public s
+@@ -3206,73 +3206,136 @@
+ unt%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (!currentSequence)%0a%09%09%09%7b%0a%09%09%09%09return 0;%0a%09%09%09%7d%0a%09%09%09
++    %7b%0a        get%0a        %7b%0a            if (!currentSequence)%0a            %7b%0a                return 0;%0a            %7d%0a            
+ retu
+@@ -3360,25 +3360,37 @@
+ .Count;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public s
+@@ -3419,32 +3419,56 @@
+ kGGMode%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09
++    %7b%0a        get%0a        %7b%0a            
+ if (Game
+@@ -3532,34 +3532,67 @@
+  0)%0a
+-%09%09%09%7b%0a%09%09%09%09int num = 0;%0a%09%09%09%09
++            %7b%0a                int num = 0;%0a                
+ Fiel
+@@ -3640,20 +3640,32 @@
+ elds();%0a
+-%09%09%09%09
++                
+ foreach 
+@@ -3696,27 +3696,54 @@
+ fields)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ if (fiel
+@@ -3898,142 +3898,268 @@
+ ed)%0a
+-%09%09%09%09%09%7b%0a%09%09%09%09%09%09num++;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09return num %3e= 3;%0a%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09public static int BoundMaxHealth%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09
++                    %7b%0a                        num++;%0a                    %7d%0a                %7d%0a                return num %3e= 3;%0a            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    public static int BoundMaxHealth%0a    %7b%0a        get%0a        %7b%0a            
+ int 
+@@ -4198,25 +4198,16 @@
+ yerData.
+-GetBool(%22
+ equipped
+@@ -4214,18 +4214,16 @@
+ Charm_23
+-%22)
+  && !Gam
+@@ -4251,25 +4251,16 @@
+ yerData.
+-GetBool(%22
+ brokenCh
+@@ -4265,18 +4265,16 @@
+ Charm_23
+-%22)
+ ) ? 2 : 
+@@ -4277,19 +4277,28 @@
+ 2 : 0);%0a
+-%09%09%09
++            
+ return c
+@@ -4329,25 +4329,37 @@
+  + num;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public s
+@@ -4388,32 +4388,62 @@
+ age%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09int @int
++    %7b%0a        get%0a        %7b%0a            int nailDamage
+  = G
+@@ -4477,16 +4477,8 @@
+ ata.
+-GetInt(%22
+ nail
+@@ -4487,23 +4487,36 @@
+ mage
+-%22);%0a%09%09%09if (@int
++;%0a            if (nailDamage
+  %3c= 
+@@ -4543,25 +4543,46 @@
+ Damage)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ return M
+@@ -4608,12 +4608,18 @@
+ oat)
+-@int
++nailDamage
+  * c
+@@ -4661,24 +4661,42 @@
+ ntage);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ return c
+@@ -4722,25 +4722,37 @@
+ Damage;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public s
+@@ -4783,24 +4783,48 @@
+ oad%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09
++    %7b%0a        get%0a        %7b%0a            
+ if (
+@@ -4901,25 +4901,46 @@
+ x %3e= 0)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ return c
+@@ -5000,39 +5000,69 @@
+ ad;%0a
+-%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -5084,21 +5084,30 @@
+ Reset()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ currentD
+@@ -5118,18 +5118,24 @@
+ = null;%0a
+-%09%09
++        
+ currentS
+@@ -5150,18 +5150,24 @@
+ = null;%0a
+-%09%09
++        
+ bossInde
+@@ -5173,21 +5173,27 @@
+ ex = 0;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public s
+@@ -5290,21 +5290,30 @@
+ erData)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ currentS
+@@ -5332,18 +5332,24 @@
+ quence;%0a
+-%09%09
++        
+ StaticVa
+@@ -5402,18 +5402,24 @@
+ rData);%0a
+-%09%09
++        
+ bossInde
+@@ -5425,18 +5425,24 @@
+ ex = 0;%0a
+-%09%09
++        
+ currentD
+@@ -5472,54 +5472,87 @@
+ ata%0a
+-%09%09%7b%0a%09%09%09bindings = bindings,%0a%09%09%09timer = 0f,%0a%09%09%09
++        %7b%0a            bindings = bindings,%0a            timer = 0f,%0a            
+ play
+@@ -5572,19 +5572,28 @@
+ erData,%0a
+-%09%09%09
++            
+ bossSequ
+@@ -5625,19 +5625,28 @@
+ e.name,%0a
+-%09%09%09
++            
+ previous
+@@ -5742,23 +5742,35 @@
+ erData)%0a
+-%09%09%7d;%0a%09%09
++        %7d;%0a        
+ WasCompl
+@@ -5783,18 +5783,24 @@
+  false;%0a
+-%09%09
++        
+ GameMana
+@@ -5827,56 +5827,8 @@
+ ata.
+-SetVariableSwappedArgs%3cBossSequenceData%3e(null, %22
+ curr
+@@ -5842,22 +5842,33 @@
+ Sequence
+-%22);%0a%09%09
++ = null;%0a        
+ SetupBos
+@@ -5873,29 +5873,35 @@
+ ossScene();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public stati
+@@ -5947,21 +5947,30 @@
+ caller)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (curr
+@@ -5990,23 +5990,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ LoadCurr
+@@ -6041,25 +6041,37 @@
+ aller);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ private 
+@@ -6124,21 +6124,30 @@
+ caller)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ currentD
+@@ -6188,39 +6188,8 @@
+ ata.
+-GetVariable%3cBossSequenceData%3e(%22
+ curr
+@@ -6203,22 +6203,26 @@
+ Sequence
+-%22);%0a%09%09
++;%0a        
+ if (curr
+@@ -6292,23 +6292,38 @@
+ eName))%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Debug.Lo
+@@ -6386,33 +6386,54 @@
+ one!%22);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++            return;%0a        %7d%0a        
+ currentS
+@@ -6522,18 +6522,24 @@
+ Name));%0a
+-%09%09
++        
+ if ((boo
+@@ -6557,23 +6557,38 @@
+ quence)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ string n
+@@ -6645,19 +6645,28 @@
+ e.name;%0a
+-%09%09%09
++            
+ bossInde
+@@ -6673,19 +6673,28 @@
+ x = -1;%0a
+-%09%09%09
++            
+ for (int
+@@ -6733,25 +6733,46 @@
+ t; i++)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ if (curr
+@@ -6810,88 +6810,181 @@
+ me)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09bossIndex = i;%0a%09%09%09%09%09break;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09if (bossIndex %3c 0)%0a%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    bossIndex = i;%0a                    break;%0a                %7d%0a            %7d%0a            if (bossIndex %3c 0)%0a            %7b%0a                
+ Debu
+@@ -7075,24 +7075,42 @@
+ ame%7d%22);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ SetupBos
+@@ -7119,19 +7119,28 @@
+ cene();%0a
+-%09%09%09
++            
+ caller.S
+@@ -7181,26 +7181,53 @@
+ ));%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7d%0a        else%0a        %7b%0a            
+ Debu
+@@ -7283,25 +7283,37 @@
+ ame!%22);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public s
+@@ -7335,29 +7335,38 @@
+ yBindings()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (BoundNai
+@@ -7368,23 +7368,38 @@
+ ndNail)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ EventReg
+@@ -7438,38 +7438,67 @@
+ %22);%0a
+-%09%09%7d%0a%09%09if (BoundCharms)%0a%09%09%7b%0a%09%09%09
++        %7d%0a        /*if (BoundCharms)%0a        %7b%0a            
+ curr
+@@ -7566,32 +7566,8 @@
+ ata.
+-GetVariable%3cList%3cint%3e%3e(%22
+ equi
+@@ -7576,18 +7576,16 @@
+ edCharms
+-%22)
+ .ToArray
+@@ -7584,27 +7584,36 @@
+ .ToArray();%0a
+-%09%09%09
++            
+ GameManager.
+@@ -7636,32 +7636,8 @@
+ ata.
+-GetVariable%3cList%3cint%3e%3e(%22
+ equi
+@@ -7646,18 +7646,16 @@
+ edCharms
+-%22)
+ .Clear()
+@@ -7656,19 +7656,28 @@
+ lear();%0a
+-%09%09%09
++            
+ currentD
+@@ -7733,17 +7733,8 @@
+ ata.
+-GetBool(%22
+ over
+@@ -7740,23 +7740,30 @@
+ rcharmed
+-%22);%0a%09%09%09
++;%0a            
+ GameMana
+@@ -7790,60 +7790,41 @@
+ ata.
+-SetBoolSwappedArgs(value: false, %22overcharmed%22);%0a%09%09%09
++overcharmed = false;%0a            
+ SetC
+@@ -7852,19 +7852,28 @@
+ false);%0a
+-%09%09%09
++            
+ EventReg
+@@ -7910,22 +7910,36 @@
+ ARMS%22);%0a
+-%09%09%7d%0a%09%09
++        %7d*/%0a        
+ HeroCont
+@@ -7969,18 +7969,26 @@
+ date();%0a
+-%09%09
++        //
+ PlayMake
+@@ -8029,18 +8029,24 @@
+ HECK%22);%0a
+-%09%09
++        
+ EventReg
+@@ -8080,26 +8080,34 @@
+ E HEALTH%22);%0a
+-%09%09
++        //
+ PlayMakerFSM
+@@ -8129,26 +8129,32 @@
+ (%22HUD IN%22);%0a
+-%09%09
++        
+ if (BoundSou
+@@ -8156,23 +8156,38 @@
+ ndSoul)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ EventReg
+@@ -8222,22 +8222,34 @@
+  ORB%22);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ GameMana
+@@ -8283,18 +8283,26 @@
+ arMP();%0a
+-%09%09
++        //
+ GameMana
+@@ -8344,26 +8344,34 @@
+ %22MP LOSE%22);%0a
+-%09%09
++        //
+ GameManager.
+@@ -8420,26 +8420,34 @@
+ RVE DOWN%22);%0a
+-%09%09
++        //
+ PlayMakerFSM
+@@ -8488,21 +8488,27 @@
+ HECK%22);%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public s
+@@ -8536,21 +8536,30 @@
+ dings()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if ((boo
+@@ -8619,41 +8619,79 @@
+ ce)%0a
+-%09%09%7b%0a%09%09%09if (BoundCharms)%0a%09%09%09%7b%0a%09%09%09%09
++        %7b%0a            /*if (BoundCharms)%0a            %7b%0a                
+ Game
+@@ -8718,39 +8718,33 @@
+ yerData.
+-SetVariableSwappedArgs(
++equippedCharms = 
+ new List
+@@ -8788,33 +8788,26 @@
+ rms)
+-, %22equippedCharms%22);%0a%09%09%09%09
++;%0a                
+ SetC
+@@ -8834,20 +8834,32 @@
+  true);%0a
+-%09%09%09%09
++                
+ GameMana
+@@ -8886,27 +8886,22 @@
+ ata.
+-SetBoolSwappedArgs(
++overcharmed = 
+ curr
+@@ -8926,34 +8926,38 @@
+ rmed
+-, %22overcharmed%22);%0a%09%09%09%7d%0a%09%09%09
++;%0a            %7d*/%0a            
+ Hero
+@@ -8991,19 +8991,28 @@
+ date();%0a
+-%09%09%09
++            
+ if (curr
+@@ -9028,25 +9028,46 @@
+ = null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ currentD
+@@ -9105,24 +9105,42 @@
+ s.None;%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ GameMana
+@@ -9174,19 +9174,28 @@
+ arMP();%0a
+-%09%09%09
++            
+ GameMana
+@@ -9231,19 +9231,28 @@
+ alth();%0a
+-%09%09%09
++            
+ EventReg
+@@ -9286,27 +9286,36 @@
+ E HEALTH%22);%0a
+-%09%09%09
++            
+ EventRegiste
+@@ -9342,27 +9342,38 @@
+ UND NAIL%22);%0a
+-%09%09%09
++            //
+ PlayMakerFSM
+@@ -9406,27 +9406,36 @@
+ IP CHECK%22);%0a
+-%09%09%09
++            
+ EventRegiste
+@@ -9468,19 +9468,30 @@
+ ARMS%22);%0a
+-%09%09%09
++            //
+ GameMana
+@@ -9537,19 +9537,28 @@
+ LOSE%22);%0a
+-%09%09%09
++            
+ EventReg
+@@ -9591,27 +9591,38 @@
+ SSEL ORB%22);%0a
+-%09%09%09
++            //
+ PlayMakerFSM
+@@ -9663,19 +9663,30 @@
+ HECK%22);%0a
+-%09%09%09
++            //
+ PlayMake
+@@ -9716,25 +9716,37 @@
+ D IN%22);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ private 
+@@ -9786,21 +9786,30 @@
+ splay()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ while (!
+@@ -9869,23 +9869,38 @@
+ rarchy)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ yield re
+@@ -9910,22 +9910,34 @@
+ n null;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ ApplyBin
+@@ -9945,21 +9945,27 @@
+ ings();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -9993,21 +9993,30 @@
+ Scene()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ BossScen
+@@ -10065,18 +10065,24 @@
+ = null;%0a
+-%09%09
++        
+ setupEve
+@@ -10094,16 +10094,17 @@
+ delegate
++ 
+ (BossSce
+@@ -10122,23 +10122,38 @@
+ r self)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ self.Dre
+@@ -10182,19 +10182,28 @@
+  EXIT%22;%0a
+-%09%09%09
++            
+ if ((boo
+@@ -10226,25 +10226,46 @@
+ tPoint)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ if (curr
+@@ -10337,51 +10337,102 @@
+ me)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09IncrementBossIndex();%0a%09%09%09%09%7d%0a%09%09%09%09
++                %7b%0a                    IncrementBossIndex();%0a                %7d%0a                
+ if (
+@@ -10467,27 +10467,54 @@
+ .Count)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ Debug.Lo
+@@ -10596,34 +10596,85 @@
+ %22);%0a
+-%09%09%09%09%7d%0a%09%09%09%09else%0a%09%09%09%09%7b%0a%09%09%09%09%09
++                %7d%0a                else%0a                %7b%0a                    
+ stri
+@@ -10725,21 +10725,36 @@
+ Index);%0a
+-%09%09%09%09%09
++                    
+ string e
+@@ -10784,21 +10784,36 @@
+ Enter%22;%0a
+-%09%09%09%09%09
++                    
+ self.cus
+@@ -10848,21 +10848,36 @@
+ ceneAt;%0a
+-%09%09%09%09%09
++                    
+ self.cus
+@@ -10918,18 +10918,42 @@
+ nt;%0a
+-%09%09%09%09%7d%0a%09%09%09%09
++                %7d%0a                
+ Boss
+@@ -10997,198 +10997,336 @@
+ nt;%0a
+-%09%09%09%7d%0a%09%09%09if (bossIndex == 0)%0a%09%09%09%7b%0a%09%09%09%09self.ApplyBindings();%0a%09%09%09%7d%0a%09%09%09if (0 == 0)%0a%09%09%09%7b%0a%09%09%09%09self.OnBossSceneComplete += delegate%0a%09%09%09%09%7b%0a%09%09%09%09%09FinishBossScene(self, setupEvent);%0a%09%09%09%09%7d;%0a%09%09%09%7d%0a%09%09%7d;%0a%09%09
++            %7d%0a            if (bossIndex == 0)%0a            %7b%0a                self.ApplyBindings();%0a            %7d%0a            if (0 == 0)%0a            %7b%0a                self.OnBossSceneComplete += delegate%0a                %7b%0a                    FinishBossScene(self, setupEvent);%0a                %7d;%0a            %7d%0a        %7d;%0a        
+ Boss
+@@ -11358,37 +11358,43 @@
+ t = setupEvent;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private static v
+@@ -11418,21 +11418,30 @@
+ Index()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ bossInde
+@@ -11445,18 +11445,24 @@
+ ndex++;%0a
+-%09%09
++        
+ if (boss
+@@ -11531,23 +11531,38 @@
+ Index))%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Incremen
+@@ -11579,17 +11579,29 @@
+ ();%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ priv
+@@ -11709,21 +11709,30 @@
+ pEvent)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ Incremen
+@@ -11745,18 +11745,24 @@
+ ndex();%0a
+-%09%09
++        
+ if (boss
+@@ -11793,23 +11793,38 @@
+ .Count)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ FinishLa
+@@ -11846,25 +11846,46 @@
+ f);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++            return;%0a        %7d%0a        
+ Debu
+@@ -11922,18 +11922,24 @@
+ e...%22);%0a
+-%09%09
++        
+ GameMana
+@@ -11966,70 +11966,87 @@
+ ata.
+-SetVariableSwappedArgs(currentData, %22currentBossSequence%22);%0a%09%09
++currentBossSequence = currentData;%0a        //TODO - MAY BE IMPORTANT%0a        /*
+ Play
+@@ -12146,18 +12146,24 @@
+ cene%22);%0a
+-%09%09
++        
+ if ((boo
+@@ -12178,23 +12178,38 @@
+ kerFSM)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ playMake
+@@ -12299,19 +12299,28 @@
+ Index);%0a
+-%09%09%09
++            
+ playMake
+@@ -12392,19 +12392,28 @@
+ Enter%22;%0a
+-%09%09%09
++            
+ playMake
+@@ -12444,22 +12444,36 @@
+ TURN%22);%0a
+-%09%09%7d%0a%09%09
++        %7d*/%0a        
+ BossScen
+@@ -12509,21 +12509,27 @@
+ pEvent;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -12586,21 +12586,30 @@
+ r self)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ WasCompl
+@@ -12617,26 +12617,32 @@
+ ted = true;%0a
+-%09%09
++        
+ if (!string.
+@@ -12688,23 +12688,38 @@
+ ntKey))%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ GameMana
+@@ -12781,22 +12781,34 @@
+ ntKey);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ BossSequ
+@@ -12880,18 +12880,24 @@
+ letion;%0a
+-%09%09
++        
+ previous
+@@ -12925,18 +12925,24 @@
+ = true;%0a
+-%09%09
++        
+ if (Boun
+@@ -12948,23 +12948,38 @@
+ ndNail)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ previous
+@@ -13011,172 +13011,253 @@
+ ue;%0a
+-%09%09%7d%0a%09%09if (BoundShell)%0a%09%09%7b%0a%09%09%09previousCompletion.boundShell = true;%0a%09%09%7d%0a%09%09if (BoundCharms)%0a%09%09%7b%0a%09%09%09previousCompletion.boundCharms = true;%0a%09%09%7d%0a%09%09if (BoundSoul)%0a%09%09%7b%0a%09%09%09
++        %7d%0a        if (BoundShell)%0a        %7b%0a            previousCompletion.boundShell = true;%0a        %7d%0a        if (BoundCharms)%0a        %7b%0a            previousCompletion.boundCharms = true;%0a        %7d%0a        if (BoundSoul)%0a        %7b%0a            
+ prev
+@@ -13285,30 +13285,42 @@
+ oul = true;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (BoundNai
+@@ -13364,23 +13364,38 @@
+ ndSoul)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ previous
+@@ -13425,22 +13425,34 @@
+ = true;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (!Kni
+@@ -13463,23 +13463,38 @@
+ amaged)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ previous
+@@ -13519,22 +13519,34 @@
+ = true;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ GameMana
+@@ -13625,18 +13625,24 @@
+ etion);%0a
+-%09%09
++        
+ HeroCont
+@@ -13670,18 +13670,24 @@
+ alth();%0a
+-%09%09
++        
+ string v
+@@ -13712,18 +13712,24 @@
+ uence%22;%0a
+-%09%09
++        
+ if (!str
+@@ -13779,23 +13779,38 @@
+ Scene))%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (stri
+@@ -13954,25 +13954,46 @@
+ rData))%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ value = 
+@@ -14028,16 +14028,34 @@
+ ne;%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ if (
+@@ -14119,25 +14119,46 @@
+ rData))%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ GameMana
+@@ -14248,19 +14248,40 @@
+ e);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ Stat
+@@ -14326,18 +14326,24 @@
+ value);%0a
+-%09%09
++        
+ self.DoD
+@@ -14356,21 +14356,27 @@
+ turn();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public s
+@@ -14425,21 +14425,30 @@
+ quence)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ return c
+@@ -14475,21 +14475,27 @@
+ quence;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -14557,21 +14557,30 @@
+ values)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ variable
+@@ -14626,13 +14626,19 @@
+ ));%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ priv
+@@ -14683,21 +14683,30 @@
+  value)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (curr
+@@ -14722,23 +14722,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ int%5b%5d pr
+@@ -14811,19 +14811,28 @@
+ Charms;%0a
+-%09%09%09
++            
+ foreach 
+@@ -14871,17 +14871,38 @@
+ ms)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ Game
+@@ -14972,18 +14972,36 @@
+ e);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09
++            %7d%0a        %7d%0a    
+ %7d%0a%7d%0a

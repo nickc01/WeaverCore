@@ -1,0 +1,63 @@
+@@ -1,12 +1,26 @@
++using System;%0a
+ using System
+@@ -473,22 +473,16 @@
+ if (
+-(bool)
+ self && 
+ (boo
+@@ -481,14 +481,8 @@
+  && 
+-(bool)
+ sour
+@@ -507,16 +507,28 @@
+ pitch = 
++UnityEngine.
+ Random.R
+@@ -1148,22 +1148,21 @@
+ %7d%0a%09%09
+-%7d%0a%09%09else%0a%09%09%7b%0a%09
++%09return;%0a%09%09%7d%0a
+ %09%09se
+@@ -1182,20 +1182,16 @@
+ value;%0a%09
+-%09%7d%0a%09
+ %7d%0a%0a%09publ
+@@ -1311,70 +1311,8 @@
+ %7b%0a%09%09
+-AnimatorControllerParameter%5b%5d parameters = self.parameters;%0a%09%09
+ fore
+@@ -1375,16 +1375,21 @@
+ eter in 
++self.
+ paramete
+@@ -1452,32 +1452,49 @@
+ Name
+- &&
++)%0a%09%09%09%7b%0a%09%09%09%09if
+  (
+-!
+ type
+-.HasValue %7c%7c a
++ != null)%0a%09%09%09%09%7b%0a%09%09%09%09%09A
+ nima
+@@ -1519,552 +1519,337 @@
+ eter
+-.t
++T
+ ype
+- ==
+  type
+-))%0a%09%09%09%7b%0a%09%09%09%09return true;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09return false;%0a%09%7d%0a%0a%09public static IEnumerator PlayAnimWait(this tk2dSpriteAnimator self, string anim)%0a%09%7b%0a%09%09tk2dSpriteAnimationClip clipByName = self.GetClipByName(anim);%0a%09%09self.Play(clipByName);%0a%09%09yield return new WaitForSeconds(clipByName.Duration);%0a%09%09yield return new WaitForEndOfFrame();%0a%09%7d%0a%0a%09public static float PlayAnimGetTime(this tk2dSpriteAnimator self, string anim)%0a%09%7b%0a%09%09tk2dSpriteAnimationClip clipByName = self.GetClipByName(anim);%0a%09%09self.Play(clipByName);%0a%09%09return clipByName.Duration
++2 = animatorControllerParameter.type;%0a%09%09%09%09%09AnimatorControllerParameterType? animatorControllerParameterType = type;%0a%09%09%09%09%09if (!(type2 == animatorControllerParameterType.GetValueOrDefault() & animatorControllerParameterType != null))%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09goto IL_43;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09return true;%0a%09%09%09%7d%0a%09%09IL_43:;%0a%09%09%7d%0a%09%09return false
+ ;%0a%09%7d
+@@ -4586,20 +4586,17 @@
+ (string 
+-text
++b
+  in othe
+@@ -4623,12 +4623,9 @@
+  == 
+-text
++b
+ )%0a%09%09

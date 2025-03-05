@@ -1,0 +1,305 @@
+@@ -101,17 +101,20 @@
+ eData%0a%7b%0a
+-%09
++    
+ %5bSeriali
+@@ -114,33 +114,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ public List%3cGeoR
+@@ -158,25 +158,28 @@
+  geoRocks;%0a%0a
+-%09
++    
+ %5bSerializeFi
+@@ -175,33 +175,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ public List%3cPers
+@@ -241,17 +241,20 @@
+ Items;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -262,17 +262,20 @@
+ eField%5d%0a
+-%09
++    
+ public L
+@@ -318,17 +318,20 @@
+ Items;%0a%0a
+-%09
++    
+ private 
+@@ -359,17 +359,20 @@
+ tance;%0a%0a
+-%09
++    
+ public s
+@@ -400,156 +400,258 @@
+ nce%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (_instance == null)%0a%09%09%09%7b%0a%09%09%09%09_instance = new SceneData();%0a%09%09%09%7d%0a%09%09%09return _instance;%0a%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09_instance = value;%0a%09%09%7d%0a%09%7d%0a%0a%09
++    %7b%0a        get%0a        %7b%0a            if (_instance == null)%0a            %7b%0a                _instance = new SceneData();%0a            %7d%0a            return _instance;%0a        %7d%0a        set%0a        %7b%0a            _instance = value;%0a        %7d%0a    %7d%0a%0a    
+ prot
+@@ -668,21 +668,30 @@
+ eData()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ SetupNew
+@@ -695,37 +695,43 @@
+ NewSceneData();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public void Rese
+@@ -734,21 +734,30 @@
+ Reset()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ SetupNew
+@@ -769,21 +769,27 @@
+ Data();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public v
+@@ -825,29 +825,38 @@
+ eoRockData)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ int num = Fi
+@@ -881,26 +881,32 @@
+ oRockData);%0a
+-%09%09
++        
+ if (num == -
+@@ -908,23 +908,38 @@
+  == -1)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ geoRocks
+@@ -957,34 +957,61 @@
+ kData);%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7d%0a        else%0a        %7b%0a            
+ geoRocks
+@@ -1027,33 +1027,45 @@
+ eoRockData;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public void 
+@@ -1107,37 +1107,46 @@
+ istentBoolData)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ int num = FindPe
+@@ -1181,34 +1181,40 @@
+ stentBoolData);%0a
+-%09%09
++        
+ if (num == -1)%0a%09
+@@ -1204,39 +1204,54 @@
+  if (num == -1)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ persistentBoolIt
+@@ -1279,34 +1279,61 @@
+ lData);%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7d%0a        else%0a        %7b%0a            
+ persiste
+@@ -1367,33 +1367,45 @@
+ ntBoolData;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public void 
+@@ -1445,37 +1445,46 @@
+ sistentIntData)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ int num = FindPe
+@@ -1517,34 +1517,40 @@
+ istentIntData);%0a
+-%09%09
++        
+ if (num == -1)%0a%09
+@@ -1548,23 +1548,38 @@
+  == -1)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ persiste
+@@ -1617,26 +1617,53 @@
+ a);%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7d%0a        else%0a        %7b%0a            
+ pers
+@@ -1703,25 +1703,37 @@
+ ntData;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public v
+@@ -1763,21 +1763,30 @@
+ Items()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ for (int
+@@ -1825,31 +1825,46 @@
+ Count; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (persiste
+@@ -1890,33 +1890,54 @@
+ Persistent)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ persistentBo
+@@ -1966,27 +1966,48 @@
+  false;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ for (int
+@@ -2045,31 +2045,46 @@
+ Count; j++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (persiste
+@@ -2113,25 +2113,46 @@
+ istent)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ persiste
+@@ -2181,22 +2181,43 @@
+ -1;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -2260,21 +2260,30 @@
+ ta grd)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ int num 
+@@ -2308,18 +2308,24 @@
+ t(grd);%0a
+-%09%09
++        
+ if (num 
+@@ -2335,34 +2335,61 @@
+ -1)%0a
+-%09%09%7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
++        %7b%0a            return null;%0a        %7d%0a        
+ retu
+@@ -2398,37 +2398,43 @@
+  geoRocks%5bnum%5d;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public Persisten
+@@ -2490,29 +2490,38 @@
+ ntBoolData)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ int num = Fi
+@@ -2564,26 +2564,32 @@
+ tBoolData);%0a
+-%09%09
++        
+ if (num == -
+@@ -2595,34 +2595,61 @@
+ -1)%0a
+-%09%09%7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
++        %7b%0a            return null;%0a        %7d%0a        
+ retu
+@@ -2677,21 +2677,27 @@
+ s%5bnum%5d;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public P
+@@ -2762,21 +2762,30 @@
+ ntData)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ int num 
+@@ -2834,18 +2834,24 @@
+ tData);%0a
+-%09%09
++        
+ if (num 
+@@ -2861,34 +2861,61 @@
+ -1)%0a
+-%09%09%7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
++        %7b%0a            return null;%0a        %7d%0a        
+ retu
+@@ -2942,21 +2942,27 @@
+ s%5bnum%5d;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -2986,21 +2986,30 @@
+ eData()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ geoRocks
+@@ -3028,34 +3028,40 @@
+ GeoRockData%3e();%0a
+-%09%09
++        
+ persistentBoolIt
+@@ -3098,18 +3098,24 @@
+ ata%3e();%0a
+-%09%09
++        
+ persiste
+@@ -3158,21 +3158,27 @@
+ ata%3e();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -3216,21 +3216,30 @@
+ ta grd)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ for (int
+@@ -3263,39 +3263,54 @@
+ cks.Count; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (string.Compa
+@@ -3406,54 +3406,102 @@
+ id)%0a
+-%09%09%09%7b%0a%09%09%09%09return i;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09return -1;%0a%09%7d%0a%0a%09
++            %7b%0a                return i;%0a            %7d%0a        %7d%0a        return -1;%0a    %7d%0a%0a    
+ priv
+@@ -3561,21 +3561,30 @@
+ ta pbd)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ for (int
+@@ -3619,39 +3619,54 @@
+ ems.Count; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (string.Compa
+@@ -3784,54 +3784,102 @@
+ id)%0a
+-%09%09%09%7b%0a%09%09%09%09return i;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09return -1;%0a%09%7d%0a%0a%09
++            %7b%0a                return i;%0a            %7d%0a        %7d%0a        return -1;%0a    %7d%0a%0a    
+ priv
+@@ -3937,21 +3937,30 @@
+ ta pid)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ for (int
+@@ -4002,23 +4002,38 @@
+ t; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (stri
+@@ -4157,38 +4157,80 @@
+ id)%0a
+-%09%09%09%7b%0a%09%09%09%09return i;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7b%0a                return i;%0a            %7d%0a        %7d%0a        
+ retu
+@@ -4240,9 +4240,12 @@
+ -1;%0a
+-%09
++    
+ %7d%0a%7d%0a

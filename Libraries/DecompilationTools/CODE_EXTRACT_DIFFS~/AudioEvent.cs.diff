@@ -1,0 +1,93 @@
+@@ -7,16 +7,41 @@
+ System;%0a
++using System.Reflection;%0a
+ using Un
+@@ -52,16 +52,17 @@
+ ngine;%0a%0a
++%0a
+ %5bSeriali
+@@ -95,17 +95,107 @@
+ Event%0a%7b%0a
+-%09
++    static MethodInfo playAtPointMethod;%0a    static PropertyInfo audioSourceProperty;%0a%0a    
+ public A
+@@ -210,17 +210,20 @@
+  Clip;%0a%0a
+-%09
++    
+ public f
+@@ -238,17 +238,20 @@
+ chMin;%0a%0a
+-%09
++    
+ public f
+@@ -266,17 +266,20 @@
+ chMax;%0a%0a
+-%09
++    
+ public f
+@@ -292,17 +292,20 @@
+ olume;%0a%0a
+-%09
++    
+ public v
+@@ -316,21 +316,30 @@
+ Reset()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ PitchMin
+@@ -348,18 +348,24 @@
+  0.75f;%0a
+-%09%09
++        
+ PitchMax
+@@ -374,18 +374,24 @@
+  1.25f;%0a
+-%09%09
++        
+ Volume =
+@@ -395,21 +395,27 @@
+ e = 1f;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public f
+@@ -433,21 +433,30 @@
+ Pitch()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (Math
+@@ -496,38 +496,65 @@
+ x))%0a
+-%09%09%7b%0a%09%09%09return PitchMax;%0a%09%09%7d%0a%09%09
++        %7b%0a            return PitchMax;%0a        %7d%0a        
+ retu
+@@ -606,13 +606,19 @@
+ x);%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ publ
+@@ -683,21 +683,30 @@
+ sition)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (!(Cl
+@@ -749,91 +749,835 @@
+ lon)
+- && !(prefab == null))%0a%09%09%7b%0a%09%09%09AudioSource audioSource = prefab.Spawn(position);%0a%09%09%09
++)%0a        %7b%0a#if UNITY_EDITOR%0a            if (playAtPointMethod == null)%0a            %7b%0a                playAtPointMethod = WeaverTypeHelpers.GetWeaverMethod(%22WeaverCore.WeaverAudio%22, %22PlayAtPoint%22);%0a%0a            %7d%0a%0a            Debug.Log(%22SOUND = %22 + Clip.name);%0a%0a            var instance = playAtPointMethod.Invoke(null, new object%5b%5d %7bClip, position, Volume, 2%7d);%0a%0a            if (audioSourceProperty == null)%0a            %7b%0a                audioSourceProperty = instance.GetType().GetProperty(%22AudioSource%22);%0a            %7d%0a%0a            var audioSource = (AudioSource)audioSourceProperty.GetValue(instance);%0a%0a            audioSource.pitch = SelectPitch();%0a#else%0a            if (prefab != null)%0a            %7b%0a                AudioSource audioSource = GameObject.Instantiate(prefab, position, Quaternion.identity);%0a                
+ audi
+@@ -1601,19 +1601,32 @@
+ Volume;%0a
+-%09%09%09
++                
+ audioSou
+@@ -1656,11 +1656,24 @@
+ ();%0a
+-%09%09%09
++                
+ audi
+@@ -1703,13 +1703,43 @@
+ p);%0a
+-%09%09%7d%0a%09
++            %7d%0a#endif%0a        %7d%0a    
+ %7d%0a%7d%0a

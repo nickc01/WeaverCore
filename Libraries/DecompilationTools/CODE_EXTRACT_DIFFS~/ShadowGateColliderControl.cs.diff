@@ -1,0 +1,80 @@
+@@ -70,17 +70,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public C
+@@ -106,25 +106,28 @@
+ eCollider;%0a%0a
+-%09
++    
+ private bool
+@@ -138,17 +138,20 @@
+ ocked;%0a%0a
+-%09
++    
+ private 
+@@ -180,17 +180,20 @@
+ ister;%0a%0a
+-%09
++    
+ private 
+@@ -205,21 +205,30 @@
+ Awake()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ eventReg
+@@ -262,29 +262,35 @@
+ egister%3e();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private void
+@@ -298,21 +298,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if ((boo
+@@ -329,39 +329,54 @@
+ )eventRegister)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ eventRegister.On
+@@ -403,28 +403,46 @@
+ up;%0a
+-%09%09%7d%0a%09%09Setup();%0a%09%7d%0a%0a%09
++        %7d%0a        Setup();%0a    %7d%0a%0a    
+ priv
+@@ -462,21 +462,30 @@
+ stroy()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if ((boo
+@@ -501,23 +501,38 @@
+ gister)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ eventReg
+@@ -567,191 +567,251 @@
+ up;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09private void Setup()%0a%09%7b%0a%09%09if (GameManager.instance.playerData.GetBool(%22hasShadowDash%22))%0a%09%09%7b%0a%09%09%09unlocked = true;%0a%09%09%7d%0a%09%7d%0a%0a%09private void FixedUpdate()%0a%09%7b%0a%09%09if (unlocked)%0a%09%09%7b%0a%09%09%09
++        %7d%0a    %7d%0a%0a    private void Setup()%0a    %7b%0a        if (PlayerData.instance.GetBool(%22hasShadowDash%22))%0a        %7b%0a            unlocked = true;%0a        %7d%0a    %7d%0a%0a    private void FixedUpdate()%0a    %7b%0a        if (unlocked)%0a        %7b%0a            
+ if (
+@@ -873,33 +873,54 @@
+ er.enabled)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ disableColli
+@@ -944,16 +944,34 @@
+ se;%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ if (
+@@ -1043,17 +1043,38 @@
+ ed)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ disa
+@@ -1105,18 +1105,36 @@
+ ue;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09
++            %7d%0a        %7d%0a    
+ %7d%0a%7d%0a

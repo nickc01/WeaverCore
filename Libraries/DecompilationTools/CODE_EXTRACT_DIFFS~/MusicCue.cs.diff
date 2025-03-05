@@ -1,0 +1,184 @@
+@@ -52,16 +52,19 @@
+ Audio;%0a%0a
++%0a//
+ %5bCreateA
+@@ -191,17 +191,20 @@
+ bject%0a%7b%0a
+-%09
++    
+ %5bSeriali
+@@ -206,25 +206,28 @@
+ rializable%5d%0a
+-%09
++    
+ public class
+@@ -244,21 +244,30 @@
+ nelInfo%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ %5bSeriali
+@@ -267,34 +267,40 @@
+ SerializeField%5d%0a
+-%09%09
++        
+ private AudioCli
+@@ -308,18 +308,24 @@
+  clip;%0a%0a
+-%09%09
++        
+ %5bSeriali
+@@ -333,18 +333,24 @@
+ eField%5d%0a
+-%09%09
++        
+ private 
+@@ -373,18 +373,24 @@
+  sync;%0a%0a
+-%09%09
++        
+ public A
+@@ -413,18 +413,24 @@
+  clip;%0a%0a
+-%09%09
++        
+ public b
+@@ -461,18 +461,24 @@
+  null;%0a%0a
+-%09%09
++        
+ public b
+@@ -500,212 +500,371 @@
+ red%0a
+-%09%09%7b%0a%09%09%09get%0a%09%09%09%7b%0a%09%09%09%09if (sync == MusicChannelSync.Implicit)%0a%09%09%09%09%7b%0a%09%09%09%09%09return clip != null;%0a%09%09%09%09%7d%0a%09%09%09%09if (sync == MusicChannelSync.ExplicitOn)%0a%09%09%09%09%7b%0a%09%09%09%09%09return true;%0a%09%09%09%09%7d%0a%09%09%09%09return false;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++        %7b%0a            get%0a            %7b%0a                if (sync == MusicChannelSync.Implicit)%0a                %7b%0a                    return clip != null;%0a                %7d%0a                if (sync == MusicChannelSync.ExplicitOn)%0a                %7b%0a                    return true;%0a                %7d%0a                return false;%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+ %5bSer
+@@ -874,17 +874,20 @@
+ izable%5d%0a
+-%09
++    
+ public s
+@@ -904,21 +904,30 @@
+ rnative%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public s
+@@ -952,18 +952,24 @@
+ olKey;%0a%0a
+-%09%09
++        
+ public M
+@@ -981,21 +981,27 @@
+ ue Cue;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ %5bSeriali
+@@ -1001,33 +1001,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private string o
+@@ -1053,17 +1053,20 @@
+ tName;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -1066,33 +1066,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private int orig
+@@ -1117,17 +1117,20 @@
+ umber;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -1130,33 +1130,58 @@
+ SerializeField%5d%0a
+-%09
++    %5bHideInInspector%5d%0a    
+ private AudioMix
+@@ -1202,17 +1202,20 @@
+ pshot;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -1227,48 +1227,12 @@
+ ld%5d%0a
+-%09%5bArrayForEnum(typeof(MusicChannels))%5d%0a%09
++    
+ priv
+@@ -1269,17 +1269,20 @@
+ Infos;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -1290,17 +1290,20 @@
+ eField%5d%0a
+-%09
++    
+ private 
+@@ -1331,17 +1331,20 @@
+ tives;%0a%0a
+-%09
++    
+ public s
+@@ -1400,17 +1400,20 @@
+ tName;%0a%0a
+-%09
++    
+ public i
+@@ -1470,17 +1470,20 @@
+ umber;%0a%0a
+-%09
++    
+ public A
+@@ -1523,17 +1523,20 @@
+ pshot;%0a%0a
+-%09
++    
+ public M
+@@ -1589,21 +1589,30 @@
+ hannel)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (chan
+@@ -1680,34 +1680,61 @@
+ th)%0a
+-%09%09%7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
++        %7b%0a            return null;%0a        %7d%0a        
+ retu
+@@ -1768,13 +1768,19 @@
+ l%5d;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ publ
+@@ -1834,21 +1834,30 @@
+ erData)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (alte
+@@ -1874,23 +1874,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ for (int
+@@ -1942,25 +1942,46 @@
+ h; i++)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ Alternat
+@@ -2015,20 +2015,32 @@
+ ves%5bi%5d;%0a
+-%09%09%09%09
++                
+ if (play
+@@ -2090,175 +2090,313 @@
+ y))%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09MusicCue cue = alternative.Cue;%0a%09%09%09%09%09if (!(cue != null))%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09return null;%0a%09%09%09%09%09%7d%0a%09%09%09%09%09return cue.ResolveAlternatives(playerData);%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++                %7b%0a                    MusicCue cue = alternative.Cue;%0a                    if (!(cue != null))%0a                    %7b%0a                        return null;%0a                    %7d%0a                    return cue.ResolveAlternatives(playerData);%0a                %7d%0a            %7d%0a        %7d%0a        
+ retu
+@@ -2408,9 +2408,12 @@
+ is;%0a
+-%09
++    
+ %7d%0a%7d%0a

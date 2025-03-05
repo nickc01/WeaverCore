@@ -1,0 +1,49 @@
+@@ -5,16 +5,28 @@
+ g System
++.Collections
+ ;%0ausing 
+@@ -27,36 +27,24 @@
+ using System
+-.Collections
+ ;%0ausing Syst
+@@ -108,430 +108,125 @@
+ ding
+-;%0a%0a/// %3cinheritdoc /%3e%0a/// %3csummary%3e%0a///     Base interface for Mods%0a/// %3c/summary%3e%0apublic interface IMod : ILogger%0a%7b%0a%09/// %3csummary%3e%0a%09///     Get's the Mod's Name%0a%09/// %3c/summary%3e%0a%09/// %3creturns%3e%3c/returns%3e%0a%09string GetName();%0a%0a%09/// %3csummary%3e%0a%09///     Returns the objects to preload in order for the mod to work.%0a%09/// %3c/summary%3e%0a%09/// %3creturns%3eA List of tuples containing scene name, object name%3c/returns%3e%0a%09List%3c(
++%0a%7b%0a    public interface IMod : ILogger%0a    %7b%0a        string GetName();%0a%0a        List%3cSystem.ValueTuple%3c
+ string,
+- 
+ string
+-)
++%3e
+ %3e Ge
+@@ -239,25 +239,32 @@
+ adNames();%0a%0a
+-%09
++        
+ /// %3csummary
+@@ -261,25 +261,32 @@
+ / %3csummary%3e%0a
+-%09
++        
+ /// A list o
+@@ -370,17 +370,24 @@
+  scenes%0a
+-%09
++        
+ /// %3c/su
+@@ -385,33 +385,40 @@
+  /// %3c/summary%3e%0a
+-%09
++        
+ /// %3creturns%3eLis
+@@ -488,17 +488,24 @@
+ eturns%3e%0a
+-%09
++        
+ (string,
+@@ -552,758 +552,191 @@
+ );%0a%0a
+-%09/// %3csummary%3e%0a%09///     Called after preloading of all mods.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22preloadedObjects%22%3eThe preloaded objects relevant to this %3csee cref=%22T:Modding.Mod%22 /%3e%3c/param%3e%0a%09void Initialize(Dictionary%3cstring, Dictionary%3cstring, GameObject%3e%3e preloadedObjects);%0a%0a%09/// %3csummary%3e%0a%09///     Returns version of Mod%0a%09/// %3c/summary%3e%0a%09/// %3creturns%3eMod Version%3c/returns%3e%0a%09string GetVersion();%0a%0a%09/// %3csummary%3e%0a%09///     Controls when this mod should load compared to other mods.  Defaults to ordered by name.%0a%09/// %3c/summary%3e%0a%09/// %3creturns%3e%3c/returns%3e%0a%09int LoadPriority();%0a%0a%09/// %3csummary%3e%0a%09///     Returns the text that should be displayed on the mod menu button, if there is one.%0a%09/// %3c/summary%3e%0a%09/// %3creturns%3e%3c/returns%3e%0a%09string GetMenuButtonText();%0a
++        void Initialize(Dictionary%3cstring, Dictionary%3cstring, GameObject%3e%3e preloadedObjects);%0a%0a        string GetVersion();%0a%0a        bool IsCurrent();%0a%0a        int LoadPriority();%0a    
+ %7d%0a
++%7d

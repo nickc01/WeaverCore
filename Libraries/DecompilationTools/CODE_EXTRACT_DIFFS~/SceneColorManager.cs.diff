@@ -1,0 +1,30 @@
+@@ -2003,32 +2003,37 @@
+ markerActive
+- %7b 
++%0a%09%7b%0a%09%09
+ get;
+- 
++%0a%09%09
+ private set;
+@@ -2024,33 +2024,34 @@
+ ;%0a%09%09private set;
+- 
++%0a%09
+ %7d%0a%0a%09public bool 
+@@ -2071,16 +2071,21 @@
+ tive
+- %7b 
++%0a%09%7b%0a%09%09
+ get;
+- 
++%0a%09%09
+ priv
+@@ -2092,17 +2092,18 @@
+ ate set;
+- 
++%0a%09
+ %7d%0a%0a%09publ
+@@ -8817,88 +8817,8 @@
+ %7d%0a%09%09
+-%09hero.heroLight.color = Color.Lerp(HeroLightColorA, HeroLightColorB, Factor);%0a%09%09
+ %7d%0a%09%7d

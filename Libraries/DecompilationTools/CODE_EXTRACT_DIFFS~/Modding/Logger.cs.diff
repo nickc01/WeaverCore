@@ -1,0 +1,231 @@
+@@ -24,38 +24,27 @@
+ tem.
+-Globalization;%0ausing System.IO
++Collections.Generic
+ ;%0aus
+@@ -83,37 +83,8 @@
+ xt;%0a
+-using JetBrains.Annotations;%0a
+ usin
+@@ -120,91 +120,12 @@
+ ding
+-;%0a%0a/// %3csummary%3e%0a///     Shared logger for mods to use.%0a/// %3c/summary%3e%0a%5bPublicAPI%5d%0a
++%0a%7b%0a%09
+ publ
+@@ -151,26 +151,27 @@
+ ger%0a
++%09
+ %7b%0a%09
+-private
++%09public
+  static 
+ read
+@@ -170,478 +170,145 @@
+ tic 
+-readonly object Locker = new object();%0a%0a%09private static StreamWriter Writer;%0a%0a%09private static LogLevel _logLevel;%0a%0a%09private static bool _shortLoggingLevel;%0a%0a%09private static bool _includeTimestamps;%0a%0a%09private static string OldLogDir = Path.Combine(Application.persistentDataPath, %22Old ModLogs%22);%0a%0a%09internal static readonly SimpleLogger APILogger = new SimpleLogger(%22API%22);%0a%0a%09internal static void InitializeFileStream()%0a%09%7b%0a%09%09Debug.Log(%22Creating Mod Logger%22);%0a%09%09_logLevel =
++void Log(string message, LogLevel level)%0a%09%09%7b%0a%09%09%09switch (level)%0a%09%09%09%7b%0a%09%09%09%09case LogLevel.Fine:%0a%09%09%09%09%09Debug.Log(message);%0a%09%09%09%09%09break;%0a%09%09%09%09case
+  Log
+@@ -322,2382 +322,229 @@
+ ebug
+-;%0a%09%09Directory.CreateDirectory(OldLogDir);%0a%09%09string path = Path.Combine(Application.persistentDataPath, %22ModLog.txt%22);%0a%09%09BackupLog(path, OldLogDir);%0a%09%09FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);%0a%09%09lock (Locker)%0a%09%09%7b%0a%09%09%09Writer = new StreamWriter(stream, Encoding.UTF8)%0a%09%09%09%7b%0a%09%09%09%09AutoFlush = true%0a%09%09%09%7d;%0a%09%09%7d%0a%09%09File.SetCreationTimeUtc(path, DateTime.UtcNow);%0a%09%7d%0a%0a%09private static void BackupLog(string path, string dir)%0a%09%7b%0a%09%09if (File.Exists(path))%0a%09%09%7b%0a%09%09%09string text = File.GetCreationTimeUtc(path).ToString(%22MM dd yyyy (HH mm ss)%22, CultureInfo.InvariantCulture);%0a%09%09%09File.Move(path, Path.Combine(dir, %22ModLog %22 + text + %22.txt%22));%0a%09%09%7d%0a%09%7d%0a%0a%09internal static void ClearOldModlogs()%0a%09%7b%0a%09%09string path = Path.Combine(Application.persistentDataPath, %22Old ModLogs%22);%0a%09%09APILogger.Log($%22Deleting modlogs older than %7bModHooks.GlobalSettings.ModlogMaxAge%7d days ago%22);%0a%09%09DateTime limit = DateTime.UtcNow.AddDays(-ModHooks.GlobalSettings.ModlogMaxAge);%0a%09%09foreach (string item in from f in Directory.GetFiles(path)%0a%09%09%09where File.GetCreationTimeUtc(f) %3c limit%0a%09%09%09select f)%0a%09%09%7b%0a%09%09%09File.Delete(item);%0a%09%09%7d%0a%09%7d%0a%0a%09internal static void SetLogLevel(LogLevel level)%0a%09%7b%0a%09%09_logLevel = level;%0a%09%7d%0a%0a%09internal static void SetUseShortLogLevel(bool value)%0a%09%7b%0a%09%09_shortLoggingLevel = value;%0a%09%7d%0a%0a%09internal static void SetIncludeTimestampt(bool value)%0a%09%7b%0a%09%09_includeTimestamps = value;%0a%09%7d%0a%0a%09/// %3csummary%3e%0a%09///     Checks to ensure that the logger level is currently high enough for this message, if it is, write it.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09/// %3cparam name=%22level%22%3eLevel of Log%3c/param%3e%0a%09public static void Log(string 
++:%0a%09%09%09%09%09Debug.Log(message);%0a%09%09%09%09%09break;%0a%09%09%09%09case LogLevel.Info:%0a%09%09%09%09%09Debug.Log(message);%0a%09%09%09%09%09break;%0a%09%09%09%09case LogLevel.Warn:%0a%09%09%09%09%09Debug.LogWarning(
+ message
+-, LogLevel level)%0a%09%7b%0a%09%09if (_logLevel %3c= level)%0a%09%09%7b%0a%09%09%09string text = %22%5b%22 + DateTime.Now.ToUniversalTime().ToString(%22HH:mm:ss%22) + %22%5d:%22;%0a%09%09%09string text2 = (_shortLoggingLevel ? (%22%5b%22 + LogLevelExt.ToShortString(level).ToUpper() + %22%5d:%22) : (%22%5b%22 + level.ToString().ToUpper() + %22%5d:%22));%0a%09%09%09WriteToFile(ExpandLines(_includeTimestamps ? (text + text2) : text2, message), level);%0a%09%09%7d%0a%09%7d%0a%0a%09/// %3csummary%3e%0a%09/// Returns a copy of %3cparamref name=%22message%22 /%3e with the string %3cparamref name=%22prefixText%22 /%3e prepended to each line.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22prefixText%22%3eThe prefix text.%3c/param%3e%0a%09/// %3cparam name=%22message%22%3eThe message.%3c/param%3e%0a%09private static string ExpandLines(string prefixText, string 
++);%0a%09%09%09%09%09break;%0a%09%09%09%09case LogLevel.Error:%0a%09%09%09%09%09Debug.LogError(
+ message)
+ %0a%09%7b%0a
+@@ -543,443 +543,33 @@
+ age)
++;
+ %0a%09
+-%7b%0a%09%09string%5b%5d value = message.Split(new string%5b2%5d %7b %22%5cr%5cn%22, %22%5cn%22 %7d, StringSplitOptions.None);%0a%09%09return prefixText + string.Join(Environment.NewLine + prefixText, value) + Environment.NewLine;%0a%09%7d%0a%0a%09/// %3csummary%3e%0a%09///     Checks to ensure that the logger level is currently high enough for this message, if it is, write it.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09/// %3cparam name=%22level%22%3eLevel of Log%3c/param%3e%0a
++%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09
+ %09pub
+@@ -621,20 +621,22 @@
+ level)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(mess
+@@ -664,178 +664,13 @@
+ );%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Finest/Lowest level of logging.  Usually reserved for developmental testing.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09pub
+@@ -688,20 +688,16 @@
+ void Log
+-Fine
+ (string 
+@@ -698,36 +698,38 @@
+ tring message)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(message, Log
+@@ -738,186 +738,21 @@
+ vel.
+-Fine
++Info
+ );%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Finest/Lowest level of logging.  Usually reserved for developmental testing.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09pub
+@@ -770,20 +770,16 @@
+ void Log
+-Fine
+ (object 
+@@ -780,36 +780,38 @@
+ bject message)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(message.ToSt
+@@ -805,27 +805,16 @@
+ (message
+-.ToString()
+ , LogLev
+@@ -820,168 +820,21 @@
+ vel.
+-Fine
++Info
+ );%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Log at the debug level.  Usually reserved for diagnostics.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09pub
+@@ -867,36 +867,38 @@
+ tring message)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(message, Log
+@@ -916,160 +916,13 @@
+ );%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Log at the debug level.  Usually reserved for diagnostics.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09pub
+@@ -955,36 +955,38 @@
+ bject message)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(message, Log
+@@ -1004,124 +1004,13 @@
+ );%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Log at the info level.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09pub
+@@ -1020,32 +1020,37 @@
+  static void Log
++Error
+ (string message)
+@@ -1043,36 +1043,38 @@
+ tring message)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(message, Log
+@@ -1083,132 +1083,22 @@
+ vel.
+-Info
++Error
+ );%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Log at the info level.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09pub
+@@ -1108,32 +1108,37 @@
+  static void Log
++Error
+ (object message)
+@@ -1131,36 +1131,38 @@
+ bject message)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(message, Log
+@@ -1171,135 +1171,22 @@
+ vel.
+-Info
++Error
+ );%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Log at the warning level.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09pub
+@@ -1204,20 +1204,20 @@
+ void Log
+-Warn
++Fine
+ (string 
+@@ -1218,36 +1218,38 @@
+ tring message)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(message, Log
+@@ -1258,135 +1258,21 @@
+ vel.
+-Warn
++Fine
+ );%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Log at the warning level.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09pub
+@@ -1290,20 +1290,20 @@
+ void Log
+-Warn
++Fine
+ (object 
+@@ -1304,36 +1304,38 @@
+ bject message)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(message, Log
+@@ -1344,133 +1344,21 @@
+ vel.
+-Warn);%0a%09%7d%0a%0a%09/// %3csummary%3e%0a%09///     Log at the error level.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
++Fine);%0a%09%09%7d%0a%0a%09
+ %09pub
+@@ -1368,37 +1368,36 @@
+  static void Log
+-Error
++Warn
+ (string message)
+@@ -1390,36 +1390,38 @@
+ tring message)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(message, Log
+@@ -1430,134 +1430,21 @@
+ vel.
+-Error
++Warn
+ );%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Log at the error level.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09pub
+@@ -1454,37 +1454,36 @@
+  static void Log
+-Error
++Warn
+ (object message)
+@@ -1484,20 +1484,22 @@
+ ssage)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ Log(mess
+@@ -1516,347 +1516,12 @@
+ vel.
+-Error);%0a%09%7d%0a%0a%09/// %3csummary%3e%0a%09///     Locks file to write, writes to file, releases lock.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22text%22%3eText to write%3c/param%3e%0a%09/// %3cparam name=%22level%22%3eLevel of Log%3c/param%3e%0a%09private static void WriteToFile(string text, LogLevel level)%0a%09%7b%0a%09%09lock (Locker)%0a%09%09%7b%0a%09%09%09ModHooks.LogConsole(text, level);%0a%09%09%09Writer?.Write(text
++Warn
+ );%0a%09

@@ -1,0 +1,267 @@
+@@ -87,17 +87,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public T
+@@ -133,25 +133,28 @@
+ ector;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09public 
+@@ -141,25 +141,28 @@
+     %5bSpace%5d%0a
+-%09
++    
+ public GameO
+@@ -182,25 +182,28 @@
+ ashPrefab;%0a%0a
+-%09
++    
+ public GameO
+@@ -218,33 +218,36 @@
+ idSteamPrefab;%0a%0a
+-%09
++    
+ public ParticleS
+@@ -267,25 +267,28 @@
+ oudPrefab;%0a%0a
+-%09
++    
+ public Parti
+@@ -318,17 +318,20 @@
+ b;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09pub
+@@ -326,17 +326,42 @@
+ %5bSpace%5d%0a
+-%09
++    %5bHideInInspector%5d%0a    
+ public A
+@@ -390,17 +390,20 @@
+ Pefab;%0a%0a
+-%09
++    
+ public A
+@@ -426,17 +426,20 @@
+ Sound;%0a%0a
+-%09
++    
+ private 
+@@ -451,21 +451,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if ((boo
+@@ -491,23 +491,38 @@
+ tector)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ corpseDe
+@@ -556,16 +556,17 @@
+ delegate
++ 
+ (Collide
+@@ -593,25 +593,46 @@
+ sender)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ StartCor
+@@ -673,23 +673,44 @@
+ ));%0a
+-%09%09%09%7d;%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d;%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -763,21 +763,32 @@
+ Object)%0a
+-%09%7b%0a%09%09
++    %7b%0a        /*
+ Corpse c
+@@ -835,18 +835,24 @@
+ pse%3e();%0a
+-%09%09
++        
+ if (!com
+@@ -863,54 +863,287 @@
+ nt)%0a
+-%09%09%7b%0a%09%09%09yield break;%0a%09%09%7d%0a%09%09component.Acid();%0a%09%09
++        %7b%0a            yield break;%0a        %7d%0a        component.Acid();*/%0a%0a        var corpseComponent = corpseObject.GetComponent(%22Corpse%22);%0a%0a        if (corpseComponent == null)%0a        %7b%0a            yield break;%0a        %7d%0a%0a        corpseComponent.SendMessage(%22Acid%22);%0a%0a        
+ Rigi
+@@ -1199,18 +1199,24 @@
+ y2D%3e();%0a
+-%09%09
++        
+ splashSo
+@@ -1291,18 +1291,24 @@
+ ition);%0a
+-%09%09
++        
+ Vector3 
+@@ -1351,18 +1351,24 @@
+ sition;%0a
+-%09%09
++        
+ if ((boo
+@@ -1385,23 +1385,38 @@
+ tector)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ BoxColli
+@@ -1476,27 +1476,36 @@
+ lider2D%3e();%0a
+-%09%09%09
++            
+ if ((bool)co
+@@ -1514,25 +1514,46 @@
+ onent2)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ position
+@@ -1582,27 +1582,48 @@
+ .max.y;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ if ((boo
+@@ -1634,39 +1634,54 @@
+ idSplashPrefab)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Object.Instantia
+@@ -1778,22 +1778,34 @@
+ ation);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if ((boo
+@@ -1823,23 +1823,38 @@
+ Prefab)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Object.I
+@@ -1928,22 +1928,34 @@
+ ation);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ Particle
+@@ -1972,34 +1972,40 @@
+ dBubble = null;%0a
+-%09%09
++        
+ if ((bool)bubClo
+@@ -2010,31 +2010,46 @@
+ loudPrefab)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ acidBubble =
+@@ -2122,35 +2122,44 @@
+ form.rotation);%0a
+-%09%09%09
++            
+ if ((bool)acidBu
+@@ -2168,47 +2168,89 @@
+ le)%0a
+-%09%09%09%7b%0a%09%09%09%09acidBubble.Play();%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7b%0a                acidBubble.Play();%0a            %7d%0a        %7d%0a        
+ Part
+@@ -2278,18 +2278,24 @@
+ = null;%0a
+-%09%09
++        
+ if ((boo
+@@ -2314,23 +2314,38 @@
+ Prefab)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ acidSpor
+@@ -2433,19 +2433,28 @@
+ ation);%0a
+-%09%09%09
++            
+ if ((boo
+@@ -2470,46 +2470,88 @@
+ re)%0a
+-%09%09%09%7b%0a%09%09%09%09acidSpore.Play();%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7b%0a                acidSpore.Play();%0a            %7d%0a        %7d%0a        
+ for 
+@@ -2560,24 +2560,25 @@
+ loat elapsed
++2
+  = 0f; elaps
+@@ -2575,24 +2575,25 @@
+  0f; elapsed
++2
+  %3c= 0.5f; el
+@@ -2589,32 +2589,33 @@
+ %3c= 0.5f; elapsed
++2
+  += Time.fixedDe
+@@ -2627,139 +2627,220 @@
+ me)%0a
+-%09%09%7b%0a%09%09%09if ((bool)body)%0a%09%09%09%7b%0a%09%09%09%09body.velocity *= 0.1f;%0a%09%09%09%7d%0a%09%09%09yield return new WaitForFixedUpdate();%0a%09%09%7d%0a%09%09if ((bool)body)%0a%09%09%7b%0a%09%09%09
++        %7b%0a            if ((bool)body)%0a            %7b%0a                body.velocity *= 0.1f;%0a            %7d%0a            yield return new WaitForFixedUpdate();%0a        %7d%0a        if ((bool)body)%0a        %7b%0a            
+ body
+@@ -2860,22 +2860,34 @@
+ = true;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if ((boo
+@@ -2902,23 +2902,108 @@
+ Object)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            var rend = corpseObject.GetComponent%3cSpriteRenderer%3e();%0a            //
+ tk2dSpri
+@@ -3053,19 +3053,28 @@
+ ite%3e();%0a
+-%09%09%09
++            
+ if ((boo
+@@ -3081,25 +3081,46 @@
+ l)rend)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ float el
+@@ -3128,19 +3128,32 @@
+ psed
++2
+  = 0f;%0a
+-%09%09%09%09
++                
+ for 
+@@ -3181,16 +3181,17 @@
+  elapsed
++2
+  %3c= fade
+@@ -3203,16 +3203,17 @@
+  elapsed
++2
+  += Time
+@@ -3228,19 +3228,46 @@
+ me)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ rend
+@@ -3319,16 +3319,17 @@
+  elapsed
++2
+  / fadeT
+@@ -3338,78 +3338,141 @@
+ e);%0a
+-%09%09%09%09%09yield return null;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if ((bool)acidBubble)%0a%09%09%7b%0a%09%09%09
++                    yield return null;%0a                %7d%0a            %7d%0a        %7d%0a        if ((bool)acidBubble)%0a        %7b%0a            
+ acid
+@@ -3490,14 +3490,26 @@
+ ();%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (
+@@ -3529,15 +3529,30 @@
+ re)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ acid
+@@ -3569,13 +3569,22 @@
+ ();%0a
+-%09%09%7d%0a%09
++        %7d%0a    
+ %7d%0a%7d%0a

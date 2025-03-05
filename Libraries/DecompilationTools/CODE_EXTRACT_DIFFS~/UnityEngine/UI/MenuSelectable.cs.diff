@@ -1,0 +1,409 @@
+@@ -144,19 +144,23 @@
+ ngine.UI
+-;%0a%0a
++%0a%7b%0a    
+ public c
+@@ -284,19 +284,30 @@
+ Handler%0a
+-%7b%0a%09
++    %7b%0a        
+ public d
+@@ -358,17 +358,24 @@
+ self);%0a%0a
+-%09
++        
+ %5bHeader(
+@@ -384,25 +384,32 @@
+ n Cancel%22)%5d%0a
+-%09
++        
+ public Cance
+@@ -431,17 +431,24 @@
+ ction;%0a%0a
+-%09
++        
+ %5bHeader(
+@@ -454,25 +454,32 @@
+ (%22Fleurs%22)%5d%0a
+-%09
++        
+ public Anima
+@@ -495,17 +495,24 @@
+ ursor;%0a%0a
+-%09
++        
+ public A
+@@ -533,17 +533,24 @@
+ ursor;%0a%0a
+-%09
++        
+ %5bHeader(
+@@ -559,25 +559,32 @@
+ ighlight%22)%5d%0a
+-%09
++        
+ public Anima
+@@ -601,25 +601,32 @@
+ Highlight;%0a%0a
+-%09
++        
+ public bool 
+@@ -650,17 +650,24 @@
+  true;%0a%0a
+-%09
++        
+ %5bHeader(
+@@ -687,17 +687,24 @@
+ Text%22)%5d%0a
+-%09
++        
+ public A
+@@ -725,25 +725,34 @@
+ ptionText;%0a%0a
+-%09
++        //
+ protected Me
+@@ -785,17 +785,24 @@
+ layer;%0a%0a
+-%09
++        
+ protecte
+@@ -835,17 +835,24 @@
+ bject;%0a%0a
+-%09
++        
+ protecte
+@@ -880,17 +880,24 @@
+ Sound;%0a%0a
+-%09
++        
+ protecte
+@@ -919,25 +919,34 @@
+ WasForced;%0a%0a
+-%09
++        //
+ private Menu
+@@ -969,17 +969,24 @@
+ tList;%0a%0a
+-%09
++        
+ public b
+@@ -1013,172 +1013,214 @@
+ und%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09return dontPlaySelectSound;%0a%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09dontPlaySelectSound = value;%0a%09%09%7d%0a%09%7d%0a%0a%09public Action%3cMenuSelectable%3e customCancelAction %7b get; set; %7d%0a%0a%09
++        %7b%0a            get%0a            %7b%0a                return dontPlaySelectSound;%0a            %7d%0a            set%0a            %7b%0a                dontPlaySelectSound = value;%0a            %7d%0a        %7d%0a%0a        
+ publ
+@@ -1257,17 +1257,24 @@
+ ected;%0a%0a
+-%09
++        
+ private 
+@@ -1290,21 +1290,38 @@
+ Awake()%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ base.tra
+@@ -1347,18 +1347,28 @@
+ n.None;%0a
+-%09%09
++            
+ if (base
+@@ -1413,23 +1413,46 @@
+ plicit)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ Navigati
+@@ -1488,19 +1488,32 @@
+ ation);%0a
+-%09%09%09
++                
+ navigati
+@@ -1548,19 +1548,32 @@
+ plicit;%0a
+-%09%09%09
++                
+ base.nav
+@@ -1594,25 +1594,49 @@
+ gation;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a%0a        
+ private 
+@@ -1652,21 +1652,38 @@
+ Start()%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ HookUpAu
+@@ -1691,29 +1691,43 @@
+ ioPlayer();%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ public new v
+@@ -1760,29 +1760,46 @@
+  eventData)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ if (!base.in
+@@ -1814,125 +1814,234 @@
+ le)%0a
+-%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (this.OnSelected != null)%0a%09%09%7b%0a%09%09%09this.OnSelected(this);%0a%09%09%7d%0a%09%09if (leftCursor != null)%0a%09%09%7b%0a%09%09%09
++            %7b%0a                return;%0a            %7d%0a            if (this.OnSelected != null)%0a            %7b%0a                this.OnSelected(this);%0a            %7d%0a            if (leftCursor != null)%0a            %7b%0a                
+ left
+@@ -2069,19 +2069,32 @@
+ hide%22);%0a
+-%09%09%09
++                
+ leftCurs
+@@ -2120,46 +2120,89 @@
+ %22);%0a
+-%09%09%7d%0a%09%09if (rightCursor != null)%0a%09%09%7b%0a%09%09%09
++            %7d%0a            if (rightCursor != null)%0a            %7b%0a                
+ righ
+@@ -2231,19 +2231,32 @@
+ hide%22);%0a
+-%09%09%09
++                
+ rightCur
+@@ -2275,30 +2275,50 @@
+ er(%22show%22);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ if (selectHi
+@@ -2334,23 +2334,46 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ selectHi
+@@ -2402,19 +2402,32 @@
+ hide%22);%0a
+-%09%09%09
++                
+ selectHi
+@@ -2450,30 +2450,50 @@
+ er(%22show%22);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ if (descript
+@@ -2509,23 +2509,46 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ descript
+@@ -2577,19 +2577,32 @@
+ hide%22);%0a
+-%09%09%09
++                
+ descript
+@@ -2633,272 +2633,473 @@
+ %22);%0a
+-%09%09%7d%0a%09%09if (!DontPlaySelectSound)%0a%09%09%7b%0a%09%09%09try%0a%09%09%09%7b%0a%09%09%09%09uiAudioPlayer.PlaySelect();%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09catch (Exception ex)%0a%09%09%09%7b%0a%09%09%09%09Debug.LogError(base.name + %22 doesn't have a select sound specified. %22 + ex);%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09dontPlaySelectSound = false;%0a%09%7d%0a%0a%09
++            %7d%0a            if (!DontPlaySelectSound)%0a            %7b%0a                try%0a                %7b%0a                    //uiAudioPlayer.PlaySelect();%0a                %7d%0a                catch (Exception ex)%0a                %7b%0a                    Debug.LogError(base.name + %22 doesn't have a select sound specified. %22 + ex);%0a                %7d%0a            %7d%0a            else%0a            %7b%0a                dontPlaySelectSound = false;%0a            %7d%0a        %7d%0a%0a        
+ publ
+@@ -3146,21 +3146,38 @@
+ ntData)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ StartCor
+@@ -3204,21 +3204,35 @@
+ ect());%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ public v
+@@ -3255,2349 +3255,243 @@
+ t()%0a
+-%09%7b%0a%09%09if (EventSystem.current.currentSelectedGameObject != null)%0a%09%09%7b%0a%09%09%09deselectWasForced = true;%0a%09%09%09EventSystem.current.SetSelectedGameObject(null);%0a%09%09%7d%0a%09%7d%0a%0a%09public void OnCancel(BaseEventData eventData)%0a%09%7b%0a%09%09if (cancelAction == CancelAction.GoToExtrasMenu && customCancelAction != null)%0a%09%09%7b%0a%09%09%09ForceDeselect();%0a%09%09%09customCancelAction(this);%0a%09%09%09PlayCancelSound();%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09orig_OnCancel(eventData);%0a%09%09%7d%0a%09%7d%0a%0a%09private IEnumerator ValidateDeselect()%0a%09%7b%0a%09%09prevSelectedObject = EventSystem.current.currentSelectedGameObject;%0a%09%09yield return new WaitForEndOfFrame();%0a%09%09if (EventSystem.current.currentSelectedGameObject != null)%0a%09%09%7b%0a%09%09%09if (leftCursor != null)%0a%09%09%09%7b%0a%09%09%09%09leftCursor.ResetTrigger(%22show%22);%0a%09%09%09%09leftCursor.SetTrigger(%22hide%22);%0a%09%09%09%7d%0a%09%09%09if (rightCursor != null)%0a%09%09%09%7b%0a%09%09%09%09rightCursor.ResetTrigger(%22show%22);%0a%09%09%09%09rightCursor.SetTrigger(%22hide%22);%0a%09%09%09%7d%0a%09%09%09if (selectHighlight != null)%0a%09%09%09%7b%0a%09%09%09%09selectHighlight.ResetTrigger(%22show%22);%0a%09%09%09%09selectHighlight.SetTrigger(%22hide%22);%0a%09%09%09%7d%0a%09%09%09if (descriptionText != null)%0a%09%09%09%7b%0a%09%09%09%09descriptionText.ResetTrigger(%22show%22);%0a%09%09%09%09descriptionText.SetTrigger(%22hide%22);%0a%09%09%09%7d%0a%09%09%09deselectWasForced = false;%0a%09%09%7d%0a%09%09else if (deselectWasForced)%0a%09%09%7b%0a%09%09%09if (leftCursor != null)%0a%09%09%09%7b%0a%09%09%09%09leftCursor.ResetTrigger(%22show%22);%0a%09%09%09%09leftCursor.SetTrigger(%22hide%22);%0a%09%09%09%7d%0a%09%09%09if (rightCursor != null)%0a%09%09%09%7b%0a%09%09%09%09rightCursor.ResetTrigger(%22show%22);%0a%09%09%09%09rightCursor.SetTrigger(%22hide%22);%0a%09%09%09%7d%0a%09%09%09if (selectHighlight != null)%0a%09%09%09%7b%0a%09%09%09%09selectHighlight.ResetTrigger(%22show%22);%0a%09%09%09%09selectHighlight.SetTrigger(%22hide%22);%0a%09%09%09%7d%0a%09%09%09if (descriptionText != null)%0a%09%09%09%7b%0a%09%09%09%09descriptionText.ResetTrigger(%22show%22);%0a%09%09%09%09descriptionText.SetTrigger(%22hide%22);%0a%09%09%09%7d%0a%09%09%09deselectWasForced = false;%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09deselectWasForced = false;%0a%09%09%09dontPlaySelectSound = true;%0a%09%09%09EventSystem.current.SetSelectedGameObject(prevSelectedObject);%0a%09%09%7d%0a%09%7d%0a%0a%09protected void HookUpAudioPlayer()%0a%09%7b%0a%09%09if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == %22Pre_Menu_Intro%22)%0a%09%09%7b%0a%09%09%09uiAudioPlayer = Object.FindObjectOfType%3cMenuAudioController%3e();%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09uiAudioPlayer = UIManager.instance.uiAudioPlayer;%0a%09%09%7d%0a%09%7d%0a%0a%09protected void PlaySubmitSound()%0a%09%7b%0a%09%09if (playSubmitSound)%0a%09%09%7b%0a%09%09%09uiAudioPlayer.PlaySubmit();%0a%09%09%7d%0a%09%7d%0a%0a%09protected void PlayCancelSound()%0a%09%7b%0a%09%09uiAudioPlayer.PlayCancel();%0a%09%7d%0a%0a%09protected void PlaySelectSound()%0a%09%7b%0a%09%09uiAudioPlayer.PlaySelect();%0a%09%7d%0a%0a%09
++        %7b%0a            if (EventSystem.current.currentSelectedGameObject != null)%0a            %7b%0a                deselectWasForced = true;%0a                EventSystem.current.SetSelectedGameObject(null);%0a            %7d%0a        %7d%0a%0a        
+ publ
+@@ -3502,13 +3502,8 @@
+ oid 
+-orig_
+ OnCa
+@@ -3532,21 +3532,38 @@
+ ntData)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ if (canc
+@@ -3581,218 +3581,376 @@
+  0)%0a
+-%09%09%7b%0a%09%09%09ForceDeselect();%0a%09%09%7d%0a%09%09if (!parentList)%0a%09%09%7b%0a%09%09%09parentList = GetComponentInParent%3cMenuButtonList%3e();%0a%09%09%7d%0a%09%09if ((bool)parentList)%0a%09%09%7b%0a%09%09%09parentList.ClearLastSelected();%0a%09%09%7d%0a%09%09if (cancelAction != 0)%0a%09%09%7b%0a%09%09%09
++            %7b%0a                ForceDeselect();%0a            %7d%0a            /*if (!parentList)%0a            %7b%0a                parentList = GetComponentInParent%3cMenuButtonList%3e();%0a            %7d%0a            if ((bool)parentList)%0a            %7b%0a                parentList.ClearLastSelected();%0a            %7d*/%0a            /*if (cancelAction != 0)%0a            %7b%0a                
+ if (
+@@ -3988,33 +3988,62 @@
+ ToMainMenu)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -4063,32 +4063,58 @@
+ MainMenu();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -4152,33 +4152,62 @@
+ ptionsMenu)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -4230,32 +4230,58 @@
+ ionsMenu();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -4317,33 +4317,62 @@
+ oVideoMenu)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -4393,32 +4393,58 @@
+ ideoMenu();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -4480,33 +4480,62 @@
+ oPauseMenu)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -4556,32 +4556,58 @@
+ auseMenu();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -4646,33 +4646,62 @@
+ ptionsMenu)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -4725,32 +4725,58 @@
+ ionsMenu();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -4817,25 +4817,54 @@
+ Prompt)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManage
+@@ -4894,32 +4894,58 @@
+ mePrompt();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -4983,33 +4983,62 @@
+ rofileMenu)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -5061,32 +5061,58 @@
+ fileMenu();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -5153,33 +5153,62 @@
+ rollerMenu)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -5234,32 +5234,58 @@
+ llerMenu();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -5333,33 +5333,62 @@
+ adSettings)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -5423,32 +5423,58 @@
+ Settings();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -5515,33 +5515,62 @@
+ ioSettings)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -5598,32 +5598,58 @@
+ Settings();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -5690,33 +5690,62 @@
+ eoSettings)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -5773,32 +5773,58 @@
+ Settings();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -5864,33 +5864,62 @@
+ meSettings)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -5946,32 +5946,58 @@
+ Settings();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -6041,33 +6041,62 @@
+ rdSettings)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManager.in
+@@ -6127,32 +6127,58 @@
+ Settings();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -6228,25 +6228,54 @@
+ ttings)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManage
+@@ -6312,32 +6312,58 @@
+ Settings();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -6404,25 +6404,54 @@
+ asMenu)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ if ((boo
+@@ -6487,19 +6487,54 @@
+ ce)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                    %7b%0a                        
+ Cont
+@@ -6580,18 +6580,50 @@
+ ();%0a
+-%09%09%09%09%7d%0a%09%09%09%09
++                    %7d%0a                    
+ UIMa
+@@ -6653,32 +6653,58 @@
+ trasMenu();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -6753,25 +6753,54 @@
+ chUser)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManage
+@@ -6826,32 +6826,58 @@
+ gageMenu();%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ else if (can
+@@ -6923,25 +6923,54 @@
+ leMenu)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ UIManage
+@@ -7009,160 +7009,3228 @@
+ ();%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09Debug.LogError(%22CancelAction not implemented for this control%22);%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if (cancelAction != 0)%0a%09%09%7b%0a%09%09%09PlayCancelSound();%0a%09%09%7d%0a%09
++                %7d%0a                else%0a                %7b%0a                    Debug.LogError(%22CancelAction not implemented for this control%22);%0a                %7d%0a            %7d*/%0a            if (cancelAction != 0)%0a            %7b%0a                PlayCancelSound();%0a            %7d%0a        %7d%0a%0a        private IEnumerator ValidateDeselect()%0a        %7b%0a            prevSelectedObject = EventSystem.current.currentSelectedGameObject;%0a            yield return new WaitForEndOfFrame();%0a            if (EventSystem.current.currentSelectedGameObject != null)%0a            %7b%0a                if (leftCursor != null)%0a                %7b%0a                    leftCursor.ResetTrigger(%22show%22);%0a                    leftCursor.SetTrigger(%22hide%22);%0a                %7d%0a                if (rightCursor != null)%0a                %7b%0a                    rightCursor.ResetTrigger(%22show%22);%0a                    rightCursor.SetTrigger(%22hide%22);%0a                %7d%0a                if (selectHighlight != null)%0a                %7b%0a                    selectHighlight.ResetTrigger(%22show%22);%0a                    selectHighlight.SetTrigger(%22hide%22);%0a                %7d%0a                if (descriptionText != null)%0a                %7b%0a                    descriptionText.ResetTrigger(%22show%22);%0a                    descriptionText.SetTrigger(%22hide%22);%0a                %7d%0a                deselectWasForced = false;%0a            %7d%0a            else if (deselectWasForced)%0a            %7b%0a                if (leftCursor != null)%0a                %7b%0a                    leftCursor.ResetTrigger(%22show%22);%0a                    leftCursor.SetTrigger(%22hide%22);%0a                %7d%0a                if (rightCursor != null)%0a                %7b%0a                    rightCursor.ResetTrigger(%22show%22);%0a                    rightCursor.SetTrigger(%22hide%22);%0a                %7d%0a                if (selectHighlight != null)%0a                %7b%0a                    selectHighlight.ResetTrigger(%22show%22);%0a                    selectHighlight.SetTrigger(%22hide%22);%0a                %7d%0a                if (descriptionText != null)%0a                %7b%0a                    descriptionText.ResetTrigger(%22show%22);%0a                    descriptionText.SetTrigger(%22hide%22);%0a                %7d%0a                deselectWasForced = false;%0a            %7d%0a            else%0a            %7b%0a                deselectWasForced = false;%0a                dontPlaySelectSound = true;%0a                EventSystem.current.SetSelectedGameObject(prevSelectedObject);%0a            %7d%0a        %7d%0a%0a        protected void HookUpAudioPlayer()%0a        %7b%0a            /*if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == %22Pre_Menu_Intro%22)%0a            %7b%0a                uiAudioPlayer = Object.FindObjectOfType%3cMenuAudioController%3e();%0a            %7d%0a            else%0a            %7b%0a                uiAudioPlayer = UIManager.instance.uiAudioPlayer;%0a            %7d*/%0a        %7d%0a%0a        protected void PlaySubmitSound()%0a        %7b%0a            if (playSubmitSound)%0a            %7b%0a                //uiAudioPlayer.PlaySubmit();%0a            %7d%0a        %7d%0a%0a        protected void PlayCancelSound()%0a        %7b%0a            //uiAudioPlayer.PlayCancel();%0a        %7d%0a%0a        protected void PlaySelectSound()%0a        %7b%0a            //uiAudioPlayer.PlaySelect();%0a        %7d%0a    
+ %7d%0a%7d%0a

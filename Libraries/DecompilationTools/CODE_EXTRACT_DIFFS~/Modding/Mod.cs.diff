@@ -1,0 +1,276 @@
+@@ -71,25 +71,8 @@
+ ic;%0a
+-using System.IO;%0a
+ usin
+@@ -103,910 +103,111 @@
+ tem.
+-Reflection;%0ausing JetBrains.Annotations;%0ausing Language;%0ausing Modding.Patches;%0ausing MonoMod.Utils;%0ausing Newtonsoft.Json;%0ausing Newtonsoft.Json.Linq;%0ausing UnityEngine;%0ausing UnityEngine.SceneManagement;%0a%0anamespace Modding;%0a%0a/// %3cinheritdoc cref=%22T:Modding.Loggable%22 /%3e%0a/// %3cinheritdoc cref=%22T:Modding.IMod%22 /%3e%0a/// %3csummary%3e%0a///     Base mod class.%0a/// %3c/summary%3e%0a%5bPublicAPI%5d%0apublic abstract class Mod : Loggable, IMod, ILogger%0a%7b%0a%09private readonly string _globalSettingsPath;%0a%0a%09private readonly Type globalSettingsType;%0a%0a%09private readonly FastReflectionDelegate onLoadGlobalSettings;%0a%0a%09private readonly FastReflectionDelegate onSaveGlobalSettings;%0a%0a%09private readonly Type saveSettingsType;%0a%0a%09private readonly FastReflectionDelegate onLoadSaveSettings;%0a%0a%09private readonly FastReflectionDelegate onSaveSaveSettings;%0a%0a%09/// %3csummary%3e%0a%09///     The Mods Name%0a%09/// %3c/summary%3e%0a%09public readonly string Name;%0a%0a
++Text;%0ausing UnityEngine;%0a%0anamespace Modding%0a%7b%0a%09public abstract class Mod : Loggable, IMod, ILogger%0a%09%7b%0a%09
+ %09///
+@@ -215,32 +215,33 @@
+ %3cinheritdoc /%3e%0a%09
++%09
+ /// %3csummary%3e%0a%09/
+@@ -231,32 +231,33 @@
+ %09/// %3csummary%3e%0a%09
++%09
+ ///     Construc
+@@ -301,32 +301,33 @@
+ sets the name.%0a%09
++%09
+ /// %3c/summary%3e%0a%09
+@@ -318,32 +318,33 @@
+ /// %3c/summary%3e%0a%09
++%09
+ protected Mod(st
+@@ -362,20 +362,22 @@
+  null)%0a%09
++%09
+ %7b%0a%09%09
++%09
+ if (stri
+@@ -406,1255 +406,49 @@
+ )%0a%09%09
+-%7b%0a%09%09%09name = GetType().Name;%0a%09%09%7d%0a%09%09Type type = GetType().GetInterfaces().FirstOrDefault((Type x) =%3e x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IGlobalSettings%3c%3e));%0a%09%09if ((object)type != null)%0a%09%09%7b%0a%09%09%09globalSettingsType = type.GetGenericArguments()%5b0%5d;%0a%09%09%09MethodInfo%5b%5d methods = type.GetMethods();%0a%09%09%09foreach (MethodInfo methodInfo in methods)%0a%09%09%09%7b%0a%09%09%09%09string name2 = methodInfo.Name;%0a%09%09%09%09if (!(name2 == %22OnLoadGlobal%22))%0a%09%09%09%09%7b%0a%09%09%09%09%09if (name2 == %22OnSaveGlobal%22)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09onSaveGlobalSettings = methodInfo.GetFastDelegate();%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09else%0a%09%09%09%09%7b%0a%09%09%09%09%09onLoadGlobalSettings = methodInfo.GetFastDelegate();%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09Type type2 = GetType().GetInterfaces().FirstOrDefault((Type x) =%3e x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ILocalSettings%3c%3e));%0a%09%09if ((object)type2 != null)%0a%09%09%7b%0a%09%09%09saveSettingsType = type2.GetGenericArguments()%5b0%5d;%0a%09%09%09MethodInfo%5b%5d methods = type2.GetMethods();%0a%09%09%09foreach (MethodInfo methodInfo2 in methods)%0a%09%09%09%7b%0a%09%09%09%09string name2 = methodInfo2.Name;%0a%09%09%09%09if (!(name2 == %22OnLoadLocal%22))%0a%09%09%09%09%7b%0a%09%09%09%09%09if (name2 == %22OnSaveLocal%22)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09onSaveSaveSettings = methodInfo2.GetFastDelegate();%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09else%0a%09%09%09%09%7b%0a%09%09%09%09%09onLoadSaveSettings = methodInfo2.GetFastDelegate();%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a
++%09%7b%0a%09%09%09%09name = this.GetType().Name;%0a%09%09%09%7d%0a%09
+ %09%09Na
+@@ -460,16 +460,17 @@
+ name;%0a%09%09
++%09
+ Log(%22Ini
+@@ -488,512 +488,12 @@
+ ;%0a%09%09
+-if (_globalSettingsPath == null)%0a%09%09%7b%0a%09%09%09_globalSettingsPath = GetGlobalSettingsPath();%0a%09%09%7d%0a%09%09LoadGlobalSettings();%0a%09%09HookSaveMethods();%0a%09%7d%0a%0a%09private string GetGlobalSettingsPath()%0a%09%7b%0a%09%09string path = GetType().Name + %22.GlobalSettings.json%22;%0a%09%09string text = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), path);%0a%09%09if (File.Exists(text))%0a%09%09%7b%0a%09%09%09Log(%22Overriding Global Settings path with Mod directory%22);%0a%09%09%09return text;%0a%09%09%7d%0a%09%09return Path.Combine(Application.persistentDataPath, path);%0a%09
+ %7d%0a%0a
++%09
+ %09///
+@@ -501,32 +501,33 @@
+ %3cinheritdoc /%3e%0a%09
++%09
+ /// %3csummary%3e%0a%09/
+@@ -517,32 +517,33 @@
+ %09/// %3csummary%3e%0a%09
++%09
+ ///     Get's th
+@@ -556,16 +556,17 @@
+ s Name%0a%09
++%09
+ /// %3c/su
+@@ -565,32 +565,33 @@
+ /// %3c/summary%3e%0a%09
++%09
+ /// %3creturns%3e%3c/r
+@@ -595,24 +595,25 @@
+ %3c/returns%3e%0a%09
++%09
+ public strin
+@@ -629,29 +629,38 @@
+ ()%0a%09
++%09
+ %7b%0a%09%09
++%09
+ return 
++this.
+ Name;%0a%09
++%09
+ %7d%0a%0a
++%09
+ %09///
+@@ -668,32 +668,33 @@
+ %3cinheritdoc /%3e%0a%09
++%09
+ /// %3csummary%3e%0a%09/
+@@ -684,32 +684,33 @@
+ %09/// %3csummary%3e%0a%09
++%09
+ ///     Returns 
+@@ -763,16 +763,17 @@
+  work.%0a%09
++%09
+ /// %3c/su
+@@ -772,32 +772,33 @@
+ /// %3c/summary%3e%0a%09
++%09
+ /// %3creturns%3eA L
+@@ -849,32 +849,33 @@
+ name%3c/returns%3e%0a%09
++%09
+ public virtual L
+@@ -878,17 +878,27 @@
+ al List%3c
+-(
++ValueTuple%3c
+ string, 
+@@ -903,17 +903,17 @@
+ , string
+-)
++%3e
+ %3e GetPre
+@@ -921,28 +921,30 @@
+ oadNames()%0a%09
++%09
+ %7b%0a%09%09
++%09
+ return null;
+@@ -945,19 +945,21 @@
+  null;%0a%09
++%09
+ %7d%0a%0a
++%09
+ %09/// %3csu
+@@ -962,24 +962,25 @@
+  %3csummary%3e%0a%09
++%09
+ /// A list o
+@@ -1065,16 +1065,17 @@
+ scenes%0a%09
++%09
+ /// %3c/su
+@@ -1074,32 +1074,33 @@
+ /// %3c/summary%3e%0a%09
++%09
+ /// %3creturns%3eLis
+@@ -1163,32 +1163,33 @@
+ ons.%3c/returns%3e%0a%09
++%09
+ public virtual (
+@@ -1236,28 +1236,19 @@
+ eHooks()
+-%0a%09%7b%0a%09%09return
++ =%3e
+  Array.E
+@@ -1280,29 +1280,34 @@
+ rator%3e)%3e();%0a
+-%09%7d%0a%0a%09
++%0a%0a        
+ /// %3cinherit
+@@ -1305,33 +1305,40 @@
+  %3cinheritdoc /%3e%0a
+-%09
++        
+ /// %3csummary%3e%0a%09/
+@@ -1327,33 +1327,40 @@
+   /// %3csummary%3e%0a
+-%09
++        
+ ///     Called a
+@@ -1380,33 +1380,40 @@
+ ng of all mods.%0a
+-%09
++        
+ /// %3c/summary%3e%0a%09
+@@ -1407,25 +1407,32 @@
+  %3c/summary%3e%0a
+-%09
++        
+ /// %3cparam n
+@@ -1530,17 +1530,24 @@
+ /param%3e%0a
+-%09
++        
+ public v
+@@ -1639,20 +1639,27 @@
+ jects)%0a%09
++%09
+ %7b%0a%09%09
++%09this.
+ Initiali
+@@ -1665,19 +1665,21 @@
+ ize();%0a%09
++%09
+ %7d%0a%0a
++%09
+ %09/// %3cin
+@@ -1691,16 +1691,17 @@
+ doc /%3e%0a%09
++%09
+ /// %3csum
+@@ -1699,32 +1699,33 @@
+ %09/// %3csummary%3e%0a%09
++%09
+ ///     Returns 
+@@ -1740,16 +1740,17 @@
+ of Mod%0a%09
++%09
+ /// %3c/su
+@@ -1749,32 +1749,33 @@
+ /// %3c/summary%3e%0a%09
++%09
+ /// %3creturns%3eMod
+@@ -1786,32 +1786,33 @@
+ sion%3c/returns%3e%0a%09
++%09
+ public virtual s
+@@ -1827,28 +1827,30 @@
+ tVersion()%0a%09
++%09
+ %7b%0a%09%09
++%09
+ return %22UNKN
+@@ -1860,219 +1860,34 @@
+ %22;%0a%09
++%09
+ %7d%0a%0a%09
+-/// %3csummary%3e%0a%09///     Controls when this mod should load compared to other mods.  Defaults to ordered by name.%0a%09/// %3c/summary%3e%0a%09/// %3creturns%3e%3c/returns%3e%0a%09public virtual int LoadPriority()%0a%09%7b%0a%09%09return 1;%0a%09%7d%0a%0a
++%09/// %3cinheritdoc /%3e%0a%09
+ %09///
+@@ -1898,24 +1898,25 @@
+ mmary%3e%0a%09
++%09
+ ///     
+ Called a
+@@ -1911,342 +1911,124 @@
+     
+-Called after preloading of all mods.%0a%09/// %3c/summary%3e%0a%09public virtual void Initialize()%0a%09%7b%0a%09%7d%0a%0a%09/// %3csummary%3e%0a%09///     If this mod defines a menu via the %3csee cref=%22T:Modding.IMenuMod%22 /%3e or %3csee cref=%22T:Modding.ICustomMenuMod%22 /%3e interfaces, override this method to %0a%09///     change the text of the button to jump to this mod's menu.%0a
++Denotes if the running version is the current version.  Set this with %3csee cref=%22T:Modding.GithubVersionHelper%22 /%3e%0a%09
+ %09///
+@@ -2036,24 +2036,25 @@
+ %3c/summary%3e%0a%09
++%09
+ /// %3creturns
+@@ -2058,1423 +2058,234 @@
+ rns%3e
+-%3c/returns%3e%0a%09public virtual string GetMenuButtonText()%0a%09%7b%0a%09%09return GetName() + %22 %22 + global::Language.Language.Get(%22MAIN_OPTIONS%22, %22MainMenu%22);%0a%09%7d%0a%0a%09private void HookSaveMethods()%0a%09%7b%0a%09%09ModHooks.ApplicationQuitHook += SaveGlobalSettings;%0a%09%09ModHooks.SaveLocalSettings += SaveLocalSettings;%0a%09%09ModHooks.LoadLocalSettings += LoadLocalSettings;%0a%09%09UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SceneChanged;%0a%09%7d%0a%0a%09private void SceneChanged(Scene arg0, Scene arg1)%0a%09%7b%0a%09%09if (!(arg1.name != %22Menu_Title%22))%0a%09%09%7b%0a%09%09%09Type type = saveSettingsType;%0a%09%09%09if ((object)type != null
++If the version is current or not.%3c/returns%3e%0a%09%09public virtual bool IsCurrent(
+ )%0a%09%09
+-%09
+ %7b%0a%09%09%09
+-%09
+-onLoadSaveSettings(this, Activator.CreateInstance(type))
++return true
+ ;%0a%09%09
+-%09
+ %7d%0a
+-%09%09%7d%0a%09%7d%0a%0a%09private void LoadGlobalSettings()%0a%09%7b%0a%09%09try%0a%09%09%7b%0a%09%09%09Type type = globalSettingsType;%0a%09%09%09if ((object)type == null %7c%7c !File.Exists(_globalSettingsPath))%0a%09%09%09%7b%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09Log(%22Loading Global Settings%22);%0a%09%09%09if (TryLoadGlobalSettings(_globalSettingsPath, type))%0a%09%09%09%7b%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09LogError(%22Null global settings passed to %22 + GetName());%0a%09%09%09string text = _globalSettingsPath + %22.bak%22;%0a%09%09%09if (File.Exists(text))%0a%09%09%09%7b%0a%09%09%09%09if (TryLoadGlobalSettings(text, type))%0a%09%09%09%09%7b%0a%09%09%09%09%09Log(%22Successfully loaded global settings from backup%22);%0a%09%09%09%09%09File.Delete(_globalSettingsPath);%0a%09%09%09%09%09File.Copy(text, _globalSettingsPath);%0a%09%09%09%09%7d%0a%09%09%09%09LogError(%22Failed to load global settings from backup%22);%0a%09%09%09%7d%0a%09%09%7d%0a%09%09catch (Exception message)%0a%09%09%7b%0a%09%09%09LogError(message);%0a%09%09%7d%0a%09%7d%0a%0a
++%0a%09%09/// %3csummary%3e%0a%09%09///     Controls when this mod should load compared to other mods.  Defaults to ordered by name.%0a%09
+ %09/// %3c
++/
+ summ
+@@ -2294,690 +2294,67 @@
+ y%3e%0a%09
++%09
+ /// 
+-Try to load the global settings from the given path. Returns true if the global settings were successfully loaded.%0a%09/// %3c/summary%3e%0a%09private bool TryLoadGlobalSettings(string path, Type saveType)%0a%09%7b%0a%09%09using FileStream stream = File.OpenRead(_globalSettingsPath);%0a%09%09using StreamReader streamReader = new StreamReader(stream);%0a%09%09object obj = JsonConvert.DeserializeObject(streamReader.ReadToEnd(), saveType, new JsonSerializerSettings%0a%09%09%7b%0a%09%09%09ContractResolver = ShouldSerializeContractResolver.Instance,%0a%09%09%09TypeNameHandling = TypeNameHandling.Auto,%0a%09%09%09ObjectCreationHandling = ObjectCreationHandling.Replace,%0a%09%09%09Converters = JsonConverterTypes.ConverterTypes%0a%09%09%7d);%0a%09%09if (obj == null
++%3creturns%3e%3c/returns%3e%0a%09%09public virtual int LoadPriority(
+ )%0a%09%09
+@@ -2369,73 +2369,17 @@
+ urn 
+-false
++1
+ ;%0a%09%09%7d%0a
+-%09%09onLoadGlobalSettings(this, obj);%0a%09%09return true;%0a%09%7d%0a
+ %0a
++%09
+ %09///
+@@ -2394,2139 +2394,202 @@
+ y%3e%0a%09
++%09
+ /// 
+-Save global settings to saves folder.%0a%09/// %3c/summary%3e%0a%09protected void SaveGlobalSettings()%0a%09%7b%0a%09%09try%0a%09%09%7b%0a%09%09%09if ((object)globalSettingsType == null)%0a%09%09%09%7b%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09Log(%22Saving Global Settings%22);%0a%09%09%09object obj = onSaveGlobalSettings(this);%0a%09%09%09if (obj == null)%0a%09%09%09%7b%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09if (File.Exists(_globalSettingsPath + %22.bak%22))%0a%09%09%09%7b%0a%09%09%09%09File.Delete(_globalSettingsPath + %22.bak%22);%0a%09%09%09%7d%0a%09%09%09if (File.Exists(_globalSettingsPath))%0a%09%09%09%7b%0a%09%09%09%09File.Move(_globalSettingsPath, _globalSettingsPath + %22.bak%22);%0a%09%09%09%7d%0a%09%09%09using FileStream stream = File.Create(_globalSettingsPath);%0a%09%09%09using StreamWriter streamWriter = new StreamWriter(stream);%0a%09%09%09streamWriter.Write(JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings%0a%09%09%09%7b%0a%09%09%09%09ContractResolver = ShouldSerializeContractResolver.Instance,%0a%09%09%09%09TypeNameHandling = TypeNameHandling.Auto,%0a%09%09%09%09Converters = JsonConverterTypes.ConverterTypes%0a%09%09%09%7d));%0a%09%09%7d%0a%09%09catch (Exception message)%0a%09%09%7b%0a%09%09%09LogError(message);%0a%09%09%7d%0a%09%7d%0a%0a%09private void LoadLocalSettings(ModSavegameData data)%0a%09%7b%0a%09%09try%0a%09%09%7b%0a%09%09%09Type type = saveSettingsType;%0a%09%09%09if ((object)type != null && data.modData.TryGetValue(GetName(), out var value))%0a%09%09%09%7b%0a%09%09%09%09onLoadSaveSettings(this, value.ToObject(type, JsonSerializer.Create(new JsonSerializerSettings%0a%09%09%09%09%7b%0a%09%09%09%09%09ContractResolver = ShouldSerializeContractResolver.Instance,%0a%09%09%09%09%09TypeNameHandling = TypeNameHandling.Auto,%0a%09%09%09%09%09ObjectCreationHandling = ObjectCreationHandling.Replace,%0a%09%09%09%09%09Converters = JsonConverterTypes.ConverterTypes%0a%09%09%09%09%7d)));%0a%09%09%09%7d%0a%09%09%7d%0a%09%09catch (Exception message)%0a%09%09%7b%0a%09%09%09LogError(message);%0a%09%09%7d%0a%09%7d%0a%0a%09private void SaveLocalSettings(ModSavegameData data)%0a%09%7b%0a%09%09t
++    Called after preloading of all mods.%0a%09%09/// %3c/summary%3e%0a%09%09public virtual void Initialize()%0a%09%09%7b%0a%09%09%7d%0a%0a%09%09/// %3csummary%3e%0a%09%09///     The Mods Name%0a%09%09/// %3c/summa
+ ry
++%3e
+ %0a%09%09
+-%7b%0a%09%09%09if ((object)saveSettingsType != null)%0a%09%09%09%7b%0a%09%09%09%09object obj = onSaveSaveSettings(this);%0a%09%09%09%09if (obj != null)%0a%09%09%09%09%7b%0a%09%09%09%09%09data.modData%5bGetName()%5d = JToken.FromObject(obj, JsonSerializer.Create(new JsonSerializerSettings%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09ContractResolver = ShouldSerializeContractResolver.Instance,%0a%09%09%09%09%09%09TypeNameHandling = TypeNameHandling.Auto,%0a%09%09%09%09%09%09Converters = JsonConverterTypes.ConverterTypes%0a%09%09%09%09%09%7d));%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09catch (Exception message)%0a%09%09%7b%0a%09%09%09LogError(message);%0a%09%09%7d
++public readonly string Name;
+ %0a%09%7d%0a

@@ -1,0 +1,786 @@
+@@ -1,28 +1,47 @@
++using GlobalEnums;%0a
+ using System.Collections;%0aus
+@@ -72,35 +72,16 @@
+ eneric;%0a
+-using GlobalEnums;%0a
+ using Un
+@@ -95,43 +95,8 @@
+ ne;%0a
+-using UnityEngine.SceneManagement;%0a
+ usin
+@@ -185,1706 +185,165 @@
+ %0a%7b%0a%09
+-public enum CameraMode%0a%09%7b%0a%09%09FROZEN,%0a%09%09FOLLOWING,%0a%09%09LOCKED,%0a%09%09PANNING,%0a%09%09FADEOUT,%0a%09%09FADEIN,%0a%09%09PREVIOUS%0a%09%7d%0a%0a%09private bool verboseMode;%0a%0a%09public CameraMode mode;%0a%0a%09private CameraMode prevMode;%0a%0a%09public bool atSceneBounds;%0a%0a%09public bool atHorizontalSceneBounds;%0a%0a%09private bool isGameplayScene;%0a%0a%09private bool teleporting;%0a%0a%09public Vector3 lastFramePosition;%0a%0a%09public Vector2 lastLockPosition;%0a%0a%09private Coroutine fadeInFailSafeCo;%0a%0a%09%5bHeader(%22Inspector Variables%22)%5d%0a%09public float dampTime;%0a%0a%09public float dampTimeX;%0a%0a%09public float dampTimeY;%0a%0a%09public float dampTimeFalling;%0a%0a%09public float heroBotYLimit;%0a%0a%09private float panTime;%0a%0a%09private float currentPanTime;%0a%0a%09private Vector3 velocity;%0a%0a%09private Vector3 velocityX;%0a%0a%09private Vector3 velocityY;%0a%0a%09public float fallOffset;%0a%0a%09public float fallOffset_multiplier;%0a%0a%09public Vector3 destination;%0a%0a%09public float maxVelocity;%0a%0a%09public float maxVelocityFalling;%0a%0a%09private float maxVelocityCurrent;%0a%0a%09private float horizontalOffset;%0a%0a%09public float lookOffset;%0a%0a%09private float startLockedTimer;%0a%0a%09private float targetDeltaX;%0a%0a%09private float targetDeltaY;%0a%0a%09%5bHideInInspector%5d%0a%09public Vector2 panToTarget;%0a%0a%09public float sceneWidth;%0a%0a%09public float sceneHeight;%0a%0a%09public float xLimit;%0a%0a%09public float yLimit;%0a%0a%09private CameraLockArea currentLockArea;%0a%0a%09private Vector3 panStartPos;%0a%0a%09private Vector3 panEndPos;%0a%0a%09public Camera cam;%0a%0a%09private HeroController hero_ctrl;%0a%0a%09private GameManager gm;%0a%0a%09public tk2dTileMap tilemap;%0a%0a%09public CameraTarget camTarget;%0a%0a%09private PlayMakerFSM fadeFSM;%0a%0a%09private Transform cameraParent;%0a%0a%09public List%3cCameraLockArea%3e lockZoneList;%0a%0a%09public float xLockMin;%0a%0a%09public float xLockMax;%0a%0a%09public float yLockMin;%0a%0a%09public float yLockMax;
++internal static CameraController EditorInstance %7b get; private set; %7d%0a%0a%09private void Awake()%0a%09%7b%0a%09%09cam = GetComponent%3cCamera%3e();%0a%09%09EditorInstance = this;%0a%0a%0a%09%7d
+ %0a%0a%09p
+@@ -373,43 +373,19 @@
+ %7b%0a%09%09
+-g
++ca
+ m = 
+-GameManager.instance;%0a%09%09cam = 
++base.
+ GetC
+@@ -460,214 +460,116 @@
+ ;%0a%09%09
+-fadeFSM = FSMUtility.LocateFSM(base.gameObject, %22CameraFade%22);%0a%09%09ApplyEffectConfiguration(isGameplayLevel: false, isBloomForced: false);%0a%09%09gm.UnloadingLevel += OnLevelUnload;%0a%09%7d%0a%0a%09public void SceneInit()%0a%09%7b
++ApplyEffectConfiguration(false, false);%0a%09%7d%0a%0a%09public void SceneInit()%0a%09%7b%0a%09%09sceneWidth = 0;%0a%09%09sceneHeight = 0;
+ %0a%09%09s
+@@ -655,18 +655,36 @@
+ ;%0a%09%09if (
+-gm
++GameManager.instance
+ .IsGamep
+@@ -936,49 +936,142 @@
+ n = 
+-0f;%0a%09%09%09xLockMax = xLimit;%0a%09%09%09yLockMin = 0
++GameManager.instance.SceneDimensions.xMin + 14.6f;%0a%09%09%09xLockMax = xLimit;%0a%09%09%09yLockMin = GameManager.instance.SceneDimensions.yMin + 8.3
+ f;%0a%09
+@@ -1205,18 +1205,36 @@
+ pZone = 
+-gm
++GameManager.instance
+ .GetCurr
+@@ -1402,20 +1402,20 @@
+ %09string 
+-text
++name
+  = Unity
+@@ -1480,20 +1480,20 @@
+ %0a%09%09%09if (
+-text
++name
+  != null
+@@ -1500,12 +1500,12 @@
+  && 
+-text
++name
+ .Sta
+@@ -1618,18 +1618,36 @@
+ %0a%09%09%09if (
+-gm
++GameManager.instance
+ .IsMenuS
+@@ -1763,229 +1763,344 @@
+ %7d%0a%0a%09
+-public void ApplyEffectConfiguration(bool isGameplayLevel, bool isBloomForced)%0a%09%7b%0a%09%09bool flag = Platform.Current.GraphicsTier %3e Platform.GraphicsTiers.Low;%0a%09%09GetComponent%3cFastNoise%3e().enabled = isGameplayLevel && flag;%0a%09%09
++internal Rect GetCameraBounds()%0a%09%7b%0a%09%09var sceneDims = GameManager.instance.SceneDimensions;%0a%09%09return new Rect(sceneDims.xMin + 14.6f, sceneDims.yMin + 8.3f, sceneDims.width - 14.6f - 14.6f, sceneDims.height - 8.3f - 8.3f);%0a%09%7d%0a%0a%09public void ApplyEffectConfiguration(bool isGameplayLevel, bool isBloomForced)%0a%09%7b%0a%09%09bool flag = true;%0a%09%09base.
+ GetC
+@@ -2132,24 +2132,25 @@
+ ).enabled = 
++(
+ flag %7c%7c isBl
+@@ -2162,63 +2162,18 @@
+ rced
++)
+ ;%0a%09%09
+-GetComponent%3cBrightnessEffect%3e().enabled = flag;%0a%09%09
++base.
+ GetC
+@@ -2254,24 +2254,71 @@
+ date()%0a%09%7b%0a%09%09
++if (cameraParent == null)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
+ float x = ba
+@@ -2529,17 +2529,50 @@
+ mode != 
+-0
++CameraController.CameraMode.FROZEN
+ )%0a%09%09%7b%0a%09%09
+@@ -3188,32 +3188,49 @@
+ %0a%09%09%09if (mode == 
++CameraController.
+ CameraMode.LOCKE
+@@ -4080,32 +4080,49 @@
+ %0a%09%09%09if (mode == 
++CameraController.
+ CameraMode.FOLLO
+@@ -4133,24 +4133,41 @@
+  %7c%7c mode == 
++CameraController.
+ CameraMode.L
+@@ -4765,26 +4765,82 @@
+ %0a%09%09%09
+-if (x + x2 %3c 14.6f
++var bounds = GetCameraBounds();%0a%0a%09%09%09if (transform.position.x %3c bounds.xMin
+ )%0a%09%09
+@@ -4874,21 +4874,27 @@
+ sitionX(
+-14.6f
++bounds.xMin
+ );%0a%09%09%09%7d%0a
+@@ -4892,37 +4892,32 @@
+ n);%0a%09%09%09%7d%0a%09%09%09if (
+-base.
+ transform.positi
+@@ -4925,21 +4925,21 @@
+ n.x 
+-+ x2 %3e xLimit
++%3e bounds.xMax
+ )%0a%09%09
+@@ -4973,22 +4973,27 @@
+ sitionX(
+-xLimit
++bounds.xMax
+ );%0a%09%09%09%7d%0a
+@@ -4991,37 +4991,32 @@
+ x);%0a%09%09%09%7d%0a%09%09%09if (
+-base.
+ transform.positi
+@@ -5024,19 +5024,21 @@
+ n.y 
+-+ y2 %3c 8.3f
++%3c bounds.yMin
+ )%0a%09%09
+@@ -5072,20 +5072,27 @@
+ sitionY(
+-8.3f
++bounds.yMin
+ );%0a%09%09%09%7d%0a
+@@ -5094,29 +5094,24 @@
+ %09%09%09%7d%0a%09%09%09if (
+-base.
+ transform.po
+@@ -5123,21 +5123,21 @@
+ n.y 
+-+ y2 %3e yLimit
++%3e bounds.yMax
+ )%0a%09%09
+@@ -5171,22 +5171,27 @@
+ sitionY(
+-yLimit
++bounds.yMax
+ );%0a%09%09%09%7d%0a
+@@ -5454,32 +5454,49 @@
+ e)%0a%09%7b%0a%09%09SetMode(
++CameraController.
+ CameraMode.FROZE
+@@ -5630,556 +5630,75 @@
+ mera
+-Mode.FROZEN);%0a%09%09switch (type)%0a%09%09%7b%0a%09%09case CameraFadeType.LEVEL_TRANSITION:%0a%09%09%09fadeFSM.Fsm.Event(%22FADE OUT%22);%0a%09%09%09break;%0a%09%09case CameraFadeType.HERO_DEATH:%0a%09%09%09fadeFSM.Fsm.Event(%22RESPAWN FADE%22);%0a%09%09%09break;%0a%09%09case CameraFadeType.HERO_HAZARD_DEATH:%0a%09%09%09fadeFSM.Fsm.Event(%22HAZARD FADE%22);%0a%09%09%09break;%0a%09%09case CameraFadeType.JUST_FADE:%0a%09%09%09fadeFSM.Fsm.Event(%22JUST FADE%22);%0a%09%09%09break;%0a%09%09case CameraFadeType.START_FADE:%0a%09%09%09fadeFSM.Fsm.Event(%22START FADE%22);%0a%09%09%09break;%0a%09%09%7d%0a%09%7d%0a%0a%09public void FadeSceneIn()%0a%09%7b%0a%09%09GameCameras.instance.cameraFadeFSM.Fsm.Event(%22FADE SCENE IN%22);
++Controller.CameraMode.FROZEN);%0a%09%7d%0a%0a%09public void FadeSceneIn()%0a%09%7b%0a%09%09
+ %0a%09%7d%0a
+@@ -5752,24 +5752,25 @@
+ a)%0a%09%7b%0a%09%09if (
++!
+ lockZoneList
+@@ -5797,30 +5797,16 @@
+ %0a%09%09%7b%0a%09%09%09
+-return;%0a%09%09%7d%0a%09%09
+ if (verb
+@@ -5808,37 +5808,51 @@
+ (verboseMode)%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ Debug.LogFormat(
+@@ -5909,16 +5909,40 @@
+ %7b2%7ds)%22, 
++new object%5b%5d%0a%09%09%09%09%7b%0a%09%09%09%09%09
+ lockArea
+@@ -5947,17 +5947,22 @@
+ ea.name,
+- 
++%0a%09%09%09%09%09
+ startLoc
+@@ -5970,17 +5970,22 @@
+ edTimer,
+- 
++%0a%09%09%09%09%09
+ Time.tim
+@@ -5999,25 +5999,33 @@
+ evelLoad
++%0a%09%09%09%09%7d
+ );%0a%09%09
++%09
+ %7d%0a%09%09
++%09
+ lockZone
+@@ -6046,21 +6046,20 @@
+ rea);%0a%09%09
++%09
+ if 
+-(!
+ (current
+@@ -6078,14 +6078,12 @@
+ null
+-) %7c%7c !
++ && 
+ curr
+@@ -6106,19 +6106,20 @@
+ riority 
+-%7c%7c 
++&& !
+ lockArea
+@@ -6134,21 +6134,39 @@
+ rity)%0a%09%09
++%09
+ %7b%0a%09%09%09
++%09return;%0a%09%09%09%7d%0a%09%09%09
+ currentL
+@@ -6206,21 +6206,74 @@
+ mera
+-Mode.LOCKED);
++Controller.CameraMode.LOCKED);%0a%09%09%09var bounds = GetCameraBounds();%0a
+ %0a%09%09%09
+@@ -6294,26 +6294,35 @@
+ ameraXMin %3c 
+-0f
++bounds.xMin
+ )%0a%09%09%09%7b%0a%09%09%09%09x
+@@ -6331,21 +6331,27 @@
+ ckMin = 
+-14.6f
++bounds.xMin
+ ;%0a%09%09%09%7d%0a%09
+@@ -6426,28 +6426,37 @@
+ .cameraXMax 
+-%3c 0f
++%3e bounds.xMax
+ )%0a%09%09%09%7b%0a%09%09%09%09x
+@@ -6461,30 +6461,35 @@
+ %09xLockMax = 
+-xLimit
++bounds.xMax
+ ;%0a%09%09%09%7d%0a%09%09%09el
+@@ -6566,18 +6566,27 @@
+ aYMin %3c 
+-0f
++bounds.yMin
+ )%0a%09%09%09%7b%0a%09
+@@ -6599,20 +6599,27 @@
+ ckMin = 
+-8.3f
++bounds.yMin
+ ;%0a%09%09%09%7d%0a%09
+@@ -6698,20 +6698,29 @@
+ eraYMax 
+-%3c 0f
++%3e bounds.yMax
+ )%0a%09%09%09%7b%0a%09
+@@ -7192,32 +7192,30 @@
+ ion;%0a%09%09%09
+-%7d%0a%09%09%09else
++%09return;
+ %0a%09%09%09
+-%7b%0a%09
++%7d%0a
+ %09%09%09camTa
+@@ -7272,29 +7272,24 @@
+ LockMax);%0a%09%09
+-%09%7d%0a%09%09
+ %7d%0a%09%7d%0a%0a%09publi
+@@ -8131,18 +8131,36 @@
+ dead && 
+-gm
++GameManager.instance
+ .gameSta
+@@ -8199,32 +8199,49 @@
+ %09%09%7b%0a%09%09%09%09SetMode(
++CameraController.
+ CameraMode.FOLLO
+@@ -8246,24 +8246,36 @@
+ LOWING);%0a%09%09%09
++%09return;%0a%09%09%09
+ %7d%0a%09%09%7d%0a%09%09else
+@@ -8288,35 +8288,44 @@
+ erboseMode)%0a%09%09%7b%0a
+-%09%09%09
++            
+ Debug.Log(%22LockZ
+@@ -8888,32 +8888,49 @@
+ ic void SetMode(
++CameraController.
+ CameraMode newMo
+@@ -8977,24 +8977,41 @@
+ (newMode == 
++CameraController.
+ CameraMode.P
+@@ -9170,16 +9170,51 @@
+ est)%0a%09%7b%0a
++%09%09var bounds = GetCameraBounds();%0a%0a
+ %09%09Vector
+@@ -9292,29 +9292,35 @@
+ (result.x %3c 
+-14.6f
++bounds.xMin
+ )%0a%09%09%7b%0a%09%09%09res
+@@ -9337,21 +9337,27 @@
+ Vector3(
+-14.6f
++bounds.xMin
+ , result
+@@ -9421,30 +9421,35 @@
+ (result.x %3e 
+-xLimit
++bounds.xMax
+ )%0a%09%09%7b%0a%09%09%09res
+@@ -9466,22 +9466,27 @@
+ Vector3(
+-xLimit
++bounds.xMax
+ , result
+@@ -9550,28 +9550,35 @@
+ (result.y %3c 
+-8.3f
++bounds.yMin
+ )%0a%09%09%7b%0a%09%09%09res
+@@ -9605,20 +9605,27 @@
+ sult.x, 
+-8.3f
++bounds.yMin
+ , result
+@@ -9662,30 +9662,35 @@
+ (result.y %3e 
+-yLimit
++bounds.yMax
+ )%0a%09%09%7b%0a%09%09%09res
+@@ -9717,22 +9717,27 @@
+ sult.x, 
+-yLimit
++bounds.yMax
+ , result
+@@ -9899,24 +9899,59 @@
+ getDest)%0a%09%7b%0a
++%09%09var bounds = GetCameraBounds();%0a%0a
+ %09%09bool flag 
+@@ -9980,21 +9980,27 @@
+ est.x %3c 
+-14.6f
++bounds.xMin
+ )%0a%09%09%7b%0a%09%09
+@@ -10025,21 +10025,27 @@
+ Vector2(
+-14.6f
++bounds.xMin
+ , target
+@@ -10094,22 +10094,27 @@
+ est.x %3e 
+-xLimit
++bounds.xMax
+ )%0a%09%09%7b%0a%09%09
+@@ -10139,22 +10139,27 @@
+ Vector2(
+-xLimit
++bounds.xMax
+ , target
+@@ -10208,20 +10208,27 @@
+ est.y %3c 
+-8.3f
++bounds.yMin
+ )%0a%09%09%7b%0a%09%09
+@@ -10267,20 +10267,27 @@
+ Dest.x, 
+-8.3f
++bounds.yMin
+ );%0a%09%09%09fl
+@@ -10322,22 +10322,27 @@
+ est.y %3e 
+-yLimit
++bounds.yMax
+ )%0a%09%09%7b%0a%09%09
+@@ -10381,22 +10381,27 @@
+ Dest.x, 
+-yLimit
++bounds.yMax
+ );%0a%09%09%09fl
+@@ -10513,24 +10513,59 @@
+ getDest)%0a%09%7b%0a
++%09%09var bounds = GetCameraBounds();%0a%0a
+ %09%09bool resul
+@@ -10589,37 +10589,43 @@
+ targetDest.x %3c= 
+-14.6f
++bounds.xMin
+ )%0a%09%09%7b%0a%09%09%09result 
+@@ -10650,38 +10650,43 @@
+ targetDest.x %3e= 
+-xLimit
++bounds.xMax
+ )%0a%09%09%7b%0a%09%09%09result 
+@@ -10719,20 +10719,27 @@
+ st.y %3c= 
+-8.3f
++bounds.yMin
+ )%0a%09%09%7b%0a%09%09
+@@ -10780,22 +10780,27 @@
+ st.y %3e= 
+-yLimit
++bounds.yMax
+ )%0a%09%09%7b%0a%09%09
+@@ -10918,24 +10918,59 @@
+ eftSide)%0a%09%7b%0a
++%09%09var bounds = GetCameraBounds();%0a%0a
+ %09%09bool resul
+@@ -11018,29 +11018,35 @@
+ etDest.x %3c= 
+-14.6f
++bounds.xMin
+ )%0a%09%09%7b%0a%09%09%09res
+@@ -11099,30 +11099,35 @@
+ etDest.x %3e= 
+-xLimit
++bounds.xMax
+ )%0a%09%09%7b%0a%09%09%09res
+@@ -11222,24 +11222,59 @@
+ float x)%0a%09%7b%0a
++%09%09var bounds = GetCameraBounds();%0a%0a
+ %09%09bool resul
+@@ -11295,21 +11295,27 @@
+ f (x %3c= 
+-14.6f
++bounds.xMin
+ )%0a%09%09%7b%0a%09%09
+@@ -11345,22 +11345,27 @@
+ f (x %3e= 
+-xLimit
++bounds.xMax
+ )%0a%09%09%7b%0a%09%09
+@@ -11769,30 +11769,69 @@
+ %7b%0a%09%09
+-tilemap = gm.tilemap
++var sceneDimensions = GameManager.instance.SceneDimensions
+ ;%0a
++%0a
+ %09%09sc
+@@ -11841,23 +11841,31 @@
+ Width = 
+-tilemap
++sceneDimensions
+ .width;%0a
+@@ -11884,15 +11884,23 @@
+ t = 
+-tilemap
++sceneDimensions
+ .hei
+@@ -11920,21 +11920,31 @@
+  = scene
+-Width
++Dimensions.xMax
+  - 14.6f
+@@ -11961,22 +11961,31 @@
+  = scene
+-Height
++Dimensions.yMax
+  - 8.3f;
+@@ -12040,16 +12040,21 @@
+ t)%0a%09%7b%0a%09%09
++base.
+ StartCor
+@@ -12283,16 +12283,33 @@
+ ta();%0a%09%09
++CameraController.
+ CameraMo
+@@ -12334,32 +12334,49 @@
+ mode;%0a%09%09SetMode(
++CameraController.
+ CameraMode.FROZE
+@@ -12421,24 +12421,29 @@
+ wPosition = 
++this.
+ KeepWithinSc
+@@ -12498,35 +12498,44 @@
+ erboseMode)%0a%09%09%7b%0a
+-%09%09%09
++            
+ Debug.LogFormat(
+@@ -12629,16 +12629,38 @@
+ : %7b5%7d%22, 
++new object%5b%5d%0a%09%09%09%7b%0a%09%09%09%09
+ newPosit
+@@ -12663,17 +12663,21 @@
+ osition,
+- 
++%0a%09%09%09%09
+ targetDe
+@@ -12673,33 +12673,37 @@
+ %09%09%09targetDeltaX,
+- 
++%0a%09%09%09%09
+ targetDeltaY, ca
+@@ -12699,17 +12699,21 @@
+ tDeltaY,
+- 
++%0a%09%09%09%09
+ camTarge
+@@ -12722,17 +12722,21 @@
+ xOffset,
+- 
++%0a%09%09%09%09
+ hero_ctr
+@@ -12748,33 +12748,37 @@
+ nsform.position,
+- 
++%0a%09%09%09%09
+ camTarget.transf
+@@ -12781,32 +12781,37 @@
+ ansform.position
++%0a%09%09%09%7d
+ );%0a%09%09%7d%0a%09%09if (for
+@@ -12841,36 +12841,48 @@
+ rboseMode)%0a%09%09%09%7b%0a
+-%09%09%09%09
++                
+ Debug.Log(%22====%3e
+@@ -12932,16 +12932,18 @@
+ %09%09%09%7d%0a%09%09%09
++//
+ transfor
+@@ -12970,24 +12970,111 @@
+ osition);%0a%09%09
++%09transform.position = new Vector3(newPosition.x,newPosition.y,transform.position.z);%0a%09%09
+ %7d%0a%09%09else%0a%09%09%7b
+@@ -13099,20 +13099,32 @@
+ e)%0a%09%09%09%7b%0a
+-%09%09%09%09
++                
+ Debug.Lo
+@@ -13186,29 +13186,12 @@
+ ool 
+-leftSide;%0a%09%09%09bool num
++flag
+  = I
+@@ -13232,24 +13232,26 @@
+ on, out 
+-leftSide
++bool flag2
+ );%0a%09%09%09bo
+@@ -13249,32 +13249,33 @@
+ 2);%0a%09%09%09bool flag
++3
+  = false;%0a%09%09%09if 
+@@ -13309,24 +13309,25 @@
+ %09%09%7b%0a%09%09%09%09flag
++3
+  = true;%0a%09%09%09
+@@ -13339,16 +13339,17 @@
+ if (flag
++3
+ )%0a%09%09%09%7b%0a%09
+@@ -13366,37 +13366,52 @@
+ boseMode)%0a%09%09%09%09%7b%0a
+-%09%09%09%09%09
++                    
+ Debug.Log(%22====%3e
+@@ -13488,31 +13488,88 @@
+ on, 
+-useXOffset: true
++true);%0a%09%09%09%09Vector2 boundedPos = KeepWithinLockBounds(transform.position
+ );%0a%09%09%09%09
++//
+ tran
+@@ -13630,24 +13630,112 @@
+ ition));%0a%09%09%09
++%09transform.position = new Vector3(boundedPos.x, boundedPos.y, transform.position.z);%0a%09%09%09
+ %7d%0a%09%09%09else%0a%09%09
+@@ -13756,37 +13756,52 @@
+ boseMode)%0a%09%09%09%09%7b%0a
+-%09%09%09%09%09
++                    
+ Debug.Log(%22====%3e
+@@ -13873,20 +13873,8 @@
+ ion,
+- useXOffset:
+  fal
+@@ -13890,19 +13890,20 @@
+ %0a%09%09%09if (
+-num
++flag
+ )%0a%09%09%09%7b%0a%09
+@@ -13928,21 +13928,36 @@
+ )%0a%09%09%09%09%7b%0a
+-%09%09%09%09%09
++                    
+ Debug.Lo
+@@ -14019,24 +14019,21 @@
+ %09%09%09if ((
+-leftSide
++flag2
+  && !her
+@@ -14064,24 +14064,21 @@
+ t) %7c%7c (!
+-leftSide
++flag2
+  && hero
+@@ -14131,38 +14131,56 @@
+ oseMode)%0a%09%09%09%09%09%7b%0a
+-%09%09%09%09%09%09
++                        
+ Debug.Log(%22====%3e
+@@ -14312,22 +14312,40 @@
+ %0a%09%09%09%09%09%7b%0a
+-%09%09%09%09%09%09
++                        
+ Debug.Lo
+@@ -14463,39 +14463,60 @@
+ seMode)%0a%09%09%09%09%09%09%7b%0a
+-%09%09%09%09%09%09%09
++                            
+ Debug.Log(%22Xoffs
+@@ -14649,23 +14649,44 @@
+ %09%09%09%09%09%09%7b%0a
+-%09%09%09%09%09%09%09
++                            
+ Debug.Lo
+@@ -14746,16 +14746,46 @@
+ : %7b1%7d%22, 
++new object%5b%5d%0a%09%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09%09%09
+ camTarge
+@@ -14797,33 +14797,41 @@
+ nsform.position,
+- 
++%0a%09%09%09%09%09%09%09%09
+ hero_ctrl.transf
+@@ -14838,24 +14838,33 @@
+ orm.position
++%0a%09%09%09%09%09%09%09%7d
+ );%0a%09%09%09%09%09%09%7d%0a%09
+@@ -15301,72 +15301,8 @@
+ ;%0a%09%09
+-GameCameras.instance.cameraFadeFSM.Fsm.Event(%22LEVEL LOADED%22);%0a%09%09
+ tele
+@@ -15324,14 +15324,10 @@
+ ;%0a%09%09
+-switch
++if
+  (pr
+@@ -15340,21 +15340,29 @@
+ Mode
+-)%0a%09%09%7b%0a%09%09case 
++ == CameraController.
+ Came
+@@ -15374,17 +15374,21 @@
+ e.FROZEN
+-:
++)%0a%09%09%7b
+ %0a%09%09%09SetM
+@@ -15383,32 +15383,49 @@
+ %0a%09%09%7b%0a%09%09%09SetMode(
++CameraController.
+ CameraMode.FOLLO
+@@ -15437,23 +15437,54 @@
+ ;%0a%09%09
+-%09break;%0a%09%09case 
++%7d%0a%09%09else if (previousMode == CameraController.
+ Came
+@@ -15496,17 +15496,21 @@
+ e.LOCKED
+-:
++)%0a%09%09%7b
+ %0a%09%09%09if (
+@@ -15592,24 +15592,41 @@
+ %09%09%09%09SetMode(
++CameraController.
+ CameraMode.F
+@@ -15647,26 +15647,20 @@
+ %7d%0a%09%09
+-%09break;%0a%09%09default:
++%7d%0a%09%09else%0a%09%09%7b
+ %0a%09%09%09
+@@ -15688,18 +15688,8 @@
+ ;%0a%09%09
+-%09break;%0a%09%09
+ %7d%0a%09%09
+@@ -15701,35 +15701,44 @@
+ erboseMode)%0a%09%09%7b%0a
+-%09%09%09
++            
+ Debug.LogFormat(
+@@ -15872,16 +15872,38 @@
+ : %7b6%7d%22, 
++new object%5b%5d%0a%09%09%09%7b%0a%09%09%09%09
+ targetDe
+@@ -15899,33 +15899,37 @@
+ %09%09%09targetDeltaX,
+- 
++%0a%09%09%09%09
+ targetDeltaY, de
+@@ -15925,17 +15925,21 @@
+ tDeltaY,
+- 
++%0a%09%09%09%09
+ destinat
+@@ -15938,25 +15938,29 @@
+ destination,
+- 
++%0a%09%09%09%09
+ camTarget.xO
+@@ -15957,33 +15957,37 @@
+ mTarget.xOffset,
+- 
++%0a%09%09%09%09
+ newPosition, cam
+@@ -15982,17 +15982,21 @@
+ osition,
+- 
++%0a%09%09%09%09
+ camTarge
+@@ -16016,17 +16016,21 @@
+ osition,
+- 
++%0a%09%09%09%09
+ hero_ctr
+@@ -16049,24 +16049,29 @@
+ position
++%0a%09%09%09%7d
+ );%0a%09%09%7d%0a%09
+ %7d%0a%0a%09priv
+@@ -16054,32 +16054,47 @@
+ ion%0a%09%09%09%7d);%0a%09%09%7d%0a%09
++%09yield break;%0a%09
+ %7d%0a%0a%09private void
+@@ -16260,38 +16260,37 @@
+ ition.y);%0a%09%09
+-%7d%0a%09%09else%0a%09%09%7b%0a%09
++%09return;%0a%09%09%7d%0a
+ %09%09base.trans
+@@ -16371,36 +16371,32 @@
+ m.position.y);%0a%09
+-%09%7d%0a%09
+ %7d%0a%0a%09private void
+@@ -16561,33 +16561,39 @@
+ ition.y);%0a%09%09
+-%7d%0a%09%09else 
++%09return;%0a%09%09%7d%0a%09%09
+ if (hero_ctr
+@@ -16688,30 +16688,29 @@
+ n.y);%0a%09%09
+-%7d%0a%09%09else%0a%09%09%7b%0a%09
++%09return;%0a%09%09%7d%0a
+ %09%09base.t
+@@ -16765,28 +16765,24 @@
+ sition.y);%0a%09
+-%09%7d%0a%09
+ %7d%0a%0a%09private 
+@@ -17202,249 +17202,20 @@
+ ;%0a%09%09
+-if (fadeFSM.ActiveStateName != %22Normal%22 && fadeFSM.ActiveStateName != %22FadingOut%22)%0a%09%09%7b%0a%09%09%09Debug.LogFormat(%22Failsafe fade in activated. State: %7b0%7d Scene: %7b1%7d%22, fadeFSM.ActiveStateName, gm.sceneName);%0a%09%09%09fadeFSM.Fsm.Event(%22FADE SCENE IN%22);%0a%09%09%7d
++yield break;
+ %0a%09%7d%0a
+@@ -17286,16 +17286,21 @@
+ %0a%09%09%7b%0a%09%09%09
++base.
+ StopCoro
+@@ -17380,35 +17380,44 @@
+ erboseMode)%0a%09%09%7b%0a
+-%09%09%09
++            
+ Debug.Log(%22Remov
+@@ -17454,16 +17454,27 @@
+ st.Count
++.ToString()
+  + %22 tot
+@@ -17601,29 +17601,65 @@
+ if (
+-gm != null)%0a%09%09%7b%0a%09%09%09gm
++GameManager.instance != null)%0a%09%09%7b%0a%09%09%09GameManager.instance
+ .Unl
+@@ -17673,16 +17673,21 @@
+ evel -= 
++this.
+ OnLevelU
+@@ -17699,11 +17699,1805 @@
+ ;%0a%09%09%7d%0a%09%7d
++%0a%0a%09private readonly bool verboseMode;%0a%09public CameraController.CameraMode mode = CameraMode.FROZEN;%0a%09private CameraController.CameraMode prevMode;%0a%09public bool atSceneBounds = true;%0a%09public bool atHorizontalSceneBounds = false;%0a%09private bool isGameplayScene;%0a%09private bool teleporting;%0a%09public Vector3 lastFramePosition;%0a%09public Vector2 lastLockPosition;%0a%09private readonly Coroutine fadeInFailSafeCo;%0a%09%5bHeader(%22Inspector Variables%22)%5d%0a%09public float dampTime = 0.15f;%0a%09public float dampTimeX = 0.15f;%0a%09public float dampTimeY = 0.15f;%0a%09public float dampTimeFalling = 0.15f;%0a%09public float heroBotYLimit = 0f;%0a%09private readonly float panTime;%0a%09private readonly float currentPanTime;%0a%09private Vector3 velocity;%0a%09private Vector3 velocityX;%0a%09private Vector3 velocityY;%0a%09public float fallOffset;%0a%09public float fallOffset_multiplier;%0a%09public Vector3 destination;%0a%09public float maxVelocity = 30f;%0a%09public float maxVelocityFalling = 25f;%0a%09private float maxVelocityCurrent;%0a%09private readonly float horizontalOffset;%0a%09public float lookOffset;%0a%09private float startLockedTimer;%0a%09private float targetDeltaX;%0a%09private float targetDeltaY;%0a%09%5bHideInInspector%5d%0a%09public Vector2 panToTarget;%0a%09public float sceneWidth = 250f;%0a%09public float sceneHeight = 250f;%0a%09public float xLimit = 235.548f;%0a%09public float yLimit = 241.9f;%0a%09private CameraLockArea currentLockArea;%0a%09private Vector3 panStartPos;%0a%09private Vector3 panEndPos;%0a%09public Camera cam;%0a%09private HeroController hero_ctrl;%0a%09public CameraTarget camTarget;%0a%09private Transform cameraParent;%0a%09public List%3cCameraLockArea%3e lockZoneList;%0a%09public float xLockMin = 30f;%0a%09public float xLockMax = 9999f;%0a%09public float yLockMin = 14.11f;%0a%09public float yLockMax = 9999f;%0a%0a%09public enum CameraMode%0a%09%7b%0a%09%09FROZEN,%0a%09%09FOLLOWING,%0a%09%09LOCKED,%0a%09%09PANNING,%0a%09%09FADEOUT,%0a%09%09FADEIN,%0a%09%09PREVIOUS%0a%09%7d
+ %0a%7d%0a

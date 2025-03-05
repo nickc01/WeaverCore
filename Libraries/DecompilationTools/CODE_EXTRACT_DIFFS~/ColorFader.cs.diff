@@ -1,0 +1,290 @@
+@@ -50,16 +50,38 @@
+ yEngine;
++%0ausing UnityEngine.UI;
+ %0a%0apublic
+@@ -116,17 +116,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public d
+@@ -161,25 +161,28 @@
+ (bool up);%0a%0a
+-%09
++    
+ public Color
+@@ -219,25 +219,28 @@
+ , 1f, 0f);%0a%0a
+-%09
++    
+ public float
+@@ -258,17 +258,20 @@
+  0.5f;%0a%0a
+-%09
++    
+ public C
+@@ -314,17 +314,20 @@
+ , 1f);%0a%0a
+-%09
++    
+ public f
+@@ -341,17 +341,20 @@
+ Delay;%0a%0a
+-%09
++    
+ public f
+@@ -374,17 +374,20 @@
+  0.4f;%0a%0a
+-%09
++    
+ private 
+@@ -408,17 +408,20 @@
+ olour;%0a%0a
+-%09
++    
+ public b
+@@ -446,25 +446,28 @@
+ ur = true;%0a%0a
+-%09
++    
+ private Spri
+@@ -486,33 +486,36 @@
+ priteRenderer;%0a%0a
+-%09
++    
+ private TextMesh
+@@ -533,25 +533,28 @@
+ derer;%0a%0a
+-%09
++    
+ private 
+ tk2dSpri
+@@ -545,26 +545,23 @@
+ private 
+-tk2dSprite
++Graphic
+  tk2dSpr
+@@ -566,17 +566,20 @@
+ prite;%0a%0a
+-%09
++    
+ private 
+@@ -591,17 +591,20 @@
+ setup;%0a%0a
+-%09
++    
+ private 
+@@ -627,17 +627,20 @@
+ utine;%0a%0a
+-%09
++    
+ public e
+@@ -669,17 +669,20 @@
+ deEnd;%0a%0a
+-%09
++    
+ private 
+@@ -690,734 +690,144 @@
+ oid 
+-Reset()%0a%09%7b%0a%09%09PlayMakerFSM%5b%5d components = GetComponents%3cPlayMakerFSM%3e();%0a%09%09foreach (PlayMakerFSM playMakerFSM in components)%0a%09%09%7b%0a%09%09%09if ((playMakerFSM.FsmTemplate ? playMakerFSM.FsmTemplate.name : playMakerFSM.FsmName) == %22color_fader%22)%0a%09%09%09%7b%0a%09%09%09%09downColour = playMakerFSM.FsmVariables.GetFsmColor(%22Down Colour%22).Value;%0a%09%09%09%09downTime = playMakerFSM.FsmVariables.GetFsmFloat(%22Down Time%22).Value;%0a%09%09%09%09upColour = playMakerFSM.FsmVariables.GetFsmColor(%22Up Colour%22).Value;%0a%09%09%09%09upDelay = playMakerFSM.FsmVariables.GetFsmFloat(%22Up Delay%22).Value;%0a%09%09%09%09upTime = playMakerFSM.FsmVariables.GetFsmFloat(%22Up Time%22).Value;%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09private void Start()%0a%09%7b%0a%09%09Setup();%0a%09%7d%0a%0a%09private void Setup()%0a%09%7b%0a%09%09if (setup)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++Start()%0a    %7b%0a        Setup();%0a    %7d%0a%0a    private void Setup()%0a    %7b%0a        if (setup)%0a        %7b%0a            return;%0a        %7d%0a        
+ setu
+@@ -836,18 +836,24 @@
+ = true;%0a
+-%09%09
++        
+ if (!spr
+@@ -857,39 +857,54 @@
+ spriteRenderer)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ spriteRenderer =
+@@ -932,30 +932,42 @@
+ enderer%3e();%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if ((bool)sp
+@@ -972,39 +972,54 @@
+ spriteRenderer)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ initialColour = 
+@@ -1075,19 +1075,28 @@
+ white);%0a
+-%09%09%09
++            
+ spriteRe
+@@ -1142,51 +1142,87 @@
+ ur;%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09if (!textRenderer)%0a%09%09%7b%0a%09%09%09
++            return;%0a        %7d%0a        if (!textRenderer)%0a        %7b%0a            
+ text
+@@ -1257,30 +1257,42 @@
+ MeshPro%3e();%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if ((bool)te
+@@ -1303,23 +1303,38 @@
+ nderer)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ initialC
+@@ -1396,19 +1396,28 @@
+ white);%0a
+-%09%09%09
++            
+ textRend
+@@ -1461,125 +1461,185 @@
+ ur;%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09if (!tk2dSprite)%0a%09%09%7b%0a%09%09%09tk2dSprite = GetComponent%3ctk2dSprite%3e();%0a%09%09%7d%0a%09%09if ((bool)tk2dSprite)%0a%09%09%7b%0a%09%09%09
++            return;%0a        %7d%0a        if (!tk2dSprite)%0a        %7b%0a            tk2dSprite = GetComponent%3cGraphic%3e();%0a        %7d%0a        if ((bool)tk2dSprite)%0a        %7b%0a            
+ init
+@@ -1703,19 +1703,28 @@
+ white);%0a
+-%09%09%09
++            
+ tk2dSpri
+@@ -1762,25 +1762,37 @@
+ Colour;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public v
+@@ -1809,21 +1809,30 @@
+ ool up)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ Setup();
+@@ -1832,18 +1832,24 @@
+ etup();%0a
+-%09%09
++        
+ if (fade
+@@ -1865,23 +1865,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ StopCoro
+@@ -1919,29 +1919,56 @@
+ e);%0a
+-%09%09%7d%0a%09%09if (up)%0a%09%09%7b%0a%09%09%09
++        %7d%0a        if (up)%0a        %7b%0a            
+ fade
+@@ -2030,26 +2030,53 @@
+ ));%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7d%0a        else%0a        %7b%0a            
+ fade
+@@ -2137,17 +2137,29 @@
+ ));%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ priv
+@@ -2214,21 +2214,30 @@
+  delay)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (!spr
+@@ -2241,39 +2241,54 @@
+ spriteRenderer)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ spriteRenderer =
+@@ -2320,22 +2320,34 @@
+ rer%3e();%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ Color fr
+@@ -2478,18 +2478,24 @@
+ ite)));%0a
+-%09%09
++        
+ if (dela
+@@ -2502,23 +2502,38 @@
+ y %3e 0f)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ yield re
+@@ -2566,22 +2566,34 @@
+ Delay);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ for (flo
+@@ -2652,23 +2652,38 @@
+ taTime)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Color co
+@@ -2742,19 +2742,28 @@
+ Colour;%0a
+-%09%09%09
++            
+ if ((boo
+@@ -2780,25 +2780,46 @@
+ nderer)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ spriteRe
+@@ -2836,32 +2836,50 @@
+ or = color;%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ else if ((bo
+@@ -2895,25 +2895,46 @@
+ nderer)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ textRend
+@@ -2953,24 +2953,42 @@
+  color;%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ else if 
+@@ -3010,51 +3010,90 @@
+ te)%0a
+-%09%09%09%7b%0a%09%09%09%09tk2dSprite.color = color;%0a%09%09%09%7d%0a%09%09%09
++            %7b%0a                tk2dSprite.color = color;%0a            %7d%0a            
+ yiel
+@@ -3107,22 +3107,34 @@
+ n null;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if ((boo
+@@ -3151,23 +3151,38 @@
+ nderer)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ spriteRe
+@@ -3208,38 +3208,50 @@
+  initialColour;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ else if ((bool)t
+@@ -3263,23 +3263,38 @@
+ nderer)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ textRend
+@@ -3326,22 +3326,34 @@
+ Colour;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ else if 
+@@ -3371,23 +3371,38 @@
+ Sprite)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ tk2dSpri
+@@ -3436,14 +3436,26 @@
+ ur;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (
+@@ -3482,15 +3482,30 @@
+ ll)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ this
+@@ -3536,13 +3536,22 @@
+ r);%0a
+-%09%09%7d%0a%09
++        %7d%0a    
+ %7d%0a%7d%0a

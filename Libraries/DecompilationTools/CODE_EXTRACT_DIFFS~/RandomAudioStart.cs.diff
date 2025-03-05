@@ -1,0 +1,60 @@
+@@ -61,17 +61,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public A
+@@ -98,17 +98,20 @@
+ ource;%0a%0a
+-%09
++    
+ public f
+@@ -125,17 +125,20 @@
+ meMin;%0a%0a
+-%09
++    
+ public f
+@@ -157,17 +157,20 @@
+  = 1f;%0a%0a
+-%09
++    
+ private 
+@@ -182,17 +182,20 @@
+  time;%0a%0a
+-%09
++    
+ private 
+@@ -208,17 +208,20 @@
+ timer;%0a%0a
+-%09
++    
+ private 
+@@ -235,17 +235,20 @@
+ arted;%0a%0a
+-%09
++    
+ private 
+@@ -260,21 +260,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ time = R
+@@ -313,18 +313,24 @@
+ meMax);%0a
+-%09%09
++        
+ if (audi
+@@ -346,23 +346,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ audioSou
+@@ -415,17 +415,29 @@
+ ();%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ priv
+@@ -458,159 +458,273 @@
+ e()%0a
+-%09%7b%0a%09%09if (!started)%0a%09%09%7b%0a%09%09%09if (timer %3e= time)%0a%09%09%09%7b%0a%09%09%09%09audioSource.Play();%0a%09%09%09%09started = true;%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09timer += Time.deltaTime;%0a%09%09%09%7d%0a%09%09%7d%0a%09
++    %7b%0a        if (!started)%0a        %7b%0a            if (timer %3e= time)%0a            %7b%0a                audioSource.Play();%0a                started = true;%0a            %7d%0a            else%0a            %7b%0a                timer += Time.deltaTime;%0a            %7d%0a        %7d%0a    
+ %7d%0a%7d%0a

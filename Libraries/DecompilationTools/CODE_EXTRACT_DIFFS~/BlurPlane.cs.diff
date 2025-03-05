@@ -1,0 +1,56 @@
+@@ -231,99 +231,103 @@
+ ate 
+-static List%3cBlurPlane%3e blurPlanes;%0a%0a%09public Material OriginalMaterial %7b get; private set; %7d
++Material originalMaterial;%0a%0a%09private static List%3cBlurPlane%3e blurPlanes = new List%3cBlurPlane%3e();
+ %0a%0a%09p
+@@ -732,157 +732,8 @@
+ %09%7d%0a%0a
+-%09%5bRuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)%5d%0a%09private static void Init()%0a%09%7b%0a%09%09blurPlanes = new List%3cBlurPlane%3e();%0a%09%7d%0a%0a
+ %09pro
+@@ -804,17 +804,17 @@
+ r%3e();%0a%09%09
+-O
++o
+ riginalM
+@@ -852,24 +852,86 @@
+ terial;%0a%09%7d%0a%0a
++%09private void Reset()%0a%09%7b%0a%09%09transform.SetPositionZ(6.62f);%0a%09%7d%0a%0a
+ %09protected v
+@@ -1135,32 +1135,36 @@
+ ert(i, this);%0a%09%09
++if (
+ BlurPlane.BlurPl
+@@ -1170,35 +1170,75 @@
+ lanesChanged
+-?.Invoke();
++ != null)%0a%09%09%7b%0a%09%09%09BlurPlane.BlurPlanesChanged();%0a%09%09%7d
+ %0a%09%7d%0a%0a%09protec
+@@ -1290,16 +1290,20 @@
+ his);%0a%09%09
++if (
+ BlurPlan
+@@ -1325,19 +1325,59 @@
+ nged
+-?.Invoke();
++ != null)%0a%09%09%7b%0a%09%09%09BlurPlane.BlurPlanesChanged();%0a%09%09%7d
+ %0a%09%7d%0a
+@@ -1518,24 +1518,53 @@
+ erial)%0a%09%7b%0a%09%09
++if (material == null)%0a%09%09%7b%0a%09%09%09
+ meshRenderer
+@@ -1585,38 +1585,63 @@
+ l = 
+-((material == null) ? Original
++originalMaterial;%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09meshRenderer.shared
+ Mate
+@@ -1645,17 +1645,17 @@
+ aterial 
+-:
++=
+  materia
+@@ -1655,16 +1655,19 @@
+ material
+-)
+ ;
++%0a%09%09%7d
+ %0a%09%7d%0a%7d%0a

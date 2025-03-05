@@ -1,0 +1,105 @@
+@@ -58,17 +58,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public s
+@@ -101,17 +101,20 @@
+ tance;%0a%0a
+-%09
++    
+ public S
+@@ -130,25 +130,28 @@
+ priteList;%0a%0a
+-%09
++    
+ public Sprit
+@@ -171,17 +171,20 @@
+ Heart;%0a%0a
+-%09
++    
+ public S
+@@ -208,17 +208,20 @@
+ Greed;%0a%0a
+-%09
++    
+ public S
+@@ -248,17 +248,20 @@
+ ength;%0a%0a
+-%09
++    
+ public S
+@@ -285,17 +285,20 @@
+ evel1;%0a%0a
+-%09
++    
+ public S
+@@ -322,17 +322,20 @@
+ evel2;%0a%0a
+-%09
++    
+ public S
+@@ -359,17 +359,20 @@
+ evel3;%0a%0a
+-%09
++    
+ public S
+@@ -396,17 +396,20 @@
+ evel4;%0a%0a
+-%09
++    
+ public S
+@@ -426,17 +426,20 @@
+ Charm;%0a%0a
+-%09
++    
+ private 
+@@ -462,17 +462,20 @@
+ rData;%0a%0a
+-%09
++    
+ private 
+@@ -487,21 +487,30 @@
+ Awake()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ Instance
+@@ -518,21 +518,27 @@
+ = this;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -550,21 +550,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ playerDa
+@@ -602,13 +602,19 @@
+ ce;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ publ
+@@ -641,21 +641,30 @@
+ int id)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ playerDa
+@@ -689,18 +689,24 @@
+ stance;%0a
+-%09%09
++        
+ switch (
+@@ -713,26 +713,55 @@
+ id)%0a
+-%09%09%7b%0a%09%09case 23:%0a%09%09%09
++        %7b%0a            case 23:%0a                
+ if (
+@@ -813,758 +813,1279 @@
+ %22))%0a
+-%09%09%09%7b%0a%09%09%09%09return unbreakableHeart;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09case 24:%0a%09%09%09if (playerData.GetBool(%22fragileGreed_unbreakable%22))%0a%09%09%09%7b%0a%09%09%09%09return unbreakableGreed;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09case 25:%0a%09%09%09if (playerData.GetBool(%22fragileStrength_unbreakable%22))%0a%09%09%09%7b%0a%09%09%09%09return unbreakableStrength;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09case 40:%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 1)%0a%09%09%09%7b%0a%09%09%09%09return grimmchildLevel1;%0a%09%09%09%7d%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 2)%0a%09%09%09%7b%0a%09%09%09%09return grimmchildLevel2;%0a%09%09%09%7d%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 3)%0a%09%09%09%7b%0a%09%09%09%09return grimmchildLevel3;%0a%09%09%09%7d%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 4)%0a%09%09%09%7b%0a%09%09%09%09return grimmchildLevel4;%0a%09%09%09%7d%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 5)%0a%09%09%09%7b%0a%09%09%09%09return nymmCharm;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09%7d%0a%09%09
++                %7b%0a                    return unbreakableHeart;%0a                %7d%0a                break;%0a            case 24:%0a                if (playerData.GetBool(%22fragileGreed_unbreakable%22))%0a                %7b%0a                    return unbreakableGreed;%0a                %7d%0a                break;%0a            case 25:%0a                if (playerData.GetBool(%22fragileStrength_unbreakable%22))%0a                %7b%0a                    return unbreakableStrength;%0a                %7d%0a                break;%0a            case 40:%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 1)%0a                %7b%0a                    return grimmchildLevel1;%0a                %7d%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 2)%0a                %7b%0a                    return grimmchildLevel2;%0a                %7d%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 3)%0a                %7b%0a                    return grimmchildLevel3;%0a                %7d%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 4)%0a                %7b%0a                    return grimmchildLevel4;%0a                %7d%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 5)%0a                %7b%0a                    return nymmCharm;%0a                %7d%0a                break;%0a        %7d%0a        
+ retu
+@@ -2107,9 +2107,12 @@
+ d%5d;%0a
+-%09
++    
+ %7d%0a%7d%0a

@@ -1,0 +1,76 @@
+@@ -75,233 +75,8 @@
+ r%0a%7b%0a
+-%09public static bool inactive;%0a%0a%09private HeroController heroCtrl;%0a%0a%09private GameObject damagingObject;%0a%0a%09private bool isHitBuffered;%0a%0a%09private int damageDealt;%0a%0a%09private int hazardType;%0a%0a%09private CollisionSide collisionSide;%0a%0a
+ %09pri
+@@ -197,32 +197,40 @@
+ ider)%0a%09%7b%0a%09%09if (!
++HeroBox.
+ inactive)%0a%09%09%7b%0a%09%09
+@@ -335,16 +335,24 @@
+ %0a%09%09if (!
++HeroBox.
+ inactive
+@@ -463,661 +463,218 @@
+ %7b%0a%09%09
+-if (FSMUtility.ContainsFSM(otherCollider.gameObject, %22damages_hero%22))%0a%09%09%7b%0a%09%09%09PlayMakerFSM fsm = FSMUtility.LocateFSM(otherCollider.gameObject, %22damages_hero%22);%0a%09%09%09int @int = FSMUtility.GetInt(fsm, %22damageDealt%22);%0a%09%09%09int int2 = FSMUtility.GetInt(fsm, %22hazardType%22
++DamageHero component = otherCollider.gameObject.GetComponent%3cDamageHero%3e(
+ );%0a%09%09
+-%09
+ if (
+-otherCollider.transform.position.x %3e base.transform.position.x)%0a%09%09%09%7b%0a%09%09%09%09heroCtrl.TakeDamage(otherCollider.gameObject, CollisionSide.right, @int, int2);%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09heroCtrl.TakeDamage(otherCollider.gameObject, CollisionSide.left, @int, int2);%0a%09%09%09%7d%0a%09%09%09return;%0a%09%09%7d%0a%09%09DamageHero component = otherCollider.gameObject.GetComponent%3cDamageHero%3e();%0a%09%09if (component != null && (!
++component != null && component.damageDealt %3e 0 && (!heroCtrl.cState.shadowDashing %7c%7c !component.shadowDashHazard))%0a%09%09%7b%0a%09%09%09/*if (
+ hero
+@@ -691,36 +691,35 @@
+ e.shadowDashing 
+-%7c%7c !
++&& 
+ component.shadow
+@@ -729,25 +729,44 @@
+ hHazard)
+-)
+ %0a
++%09
+ %09%09%7b%0a%09%09%09
++%09return;%0a%09%09%09%7d*/%0a%09%09%09
+ damageDe
+@@ -903,10 +903,8 @@
+ = ((
+-!(
+ dama
+@@ -963,17 +963,16 @@
+ ition.x)
+-)
+  ? Colli
+@@ -984,11 +984,12 @@
+ ide.
+-lef
++righ
+ t : 
+@@ -1002,20 +1002,19 @@
+ ionSide.
+-righ
++lef
+ t);%0a%09%09%09i
+@@ -1017,16 +1017,24 @@
+ %09%09%09if (!
++HeroBox.
+ IsHitTyp
+@@ -1092,24 +1092,22 @@
+ %0a%09%09%09
+-%7d%0a%09%09%09else
++%09return;
+ %0a%09%09%09
+-%7b%0a%09
++%7d%0a
+ %09%09%09i
+@@ -1133,14 +1133,19 @@
+ ;%0a%09%09
+-%09
+ %7d%0a%09%09
+-%7d
++return;
+ %0a%09%7d%0a
+@@ -1461,11 +1461,236 @@
+ alse;%0a%09%7d
++%0a%0a%09public static bool inactive;%0a%0a%09private HeroController heroCtrl;%0a%0a%09private GameObject damagingObject;%0a%0a%09private bool isHitBuffered;%0a%0a%09private int damageDealt;%0a%0a%09private int hazardType;%0a%0a%09private CollisionSide collisionSide;
+ %0a%7d%0a

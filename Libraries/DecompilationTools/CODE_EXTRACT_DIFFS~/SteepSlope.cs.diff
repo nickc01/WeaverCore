@@ -1,0 +1,53 @@
+@@ -59,149 +59,8 @@
+ r%0a%7b%0a
+-%09public bool slideLeft;%0a%0a%09public bool slideRight;%0a%0a%09private HeroController hc;%0a%0a%09private void Start()%0a%09%7b%0a%09%09hc = HeroController.instance;%0a%09%7d%0a%0a
+ %09pri
+@@ -126,19 +126,26 @@
+ eObject 
+-obj
++gameObject
+  = colli
+@@ -187,19 +187,26 @@
+ onent = 
+-obj
++gameObject
+ .GetComp
+@@ -301,11 +301,18 @@
+ if (
+-obj
++gameObject
+ .Com
+@@ -337,18 +337,39 @@
+ %0a%09%09%7b%0a%09%09%09
+-hc
++HeroController.instance
+ .ResetHa
+@@ -389,18 +389,39 @@
+ r();%0a%09%09%09
+-hc
++HeroController.instance
+ .CancelS
+@@ -571,34 +571,55 @@
+ eLeft)%0a%09%09%09%7b%0a%09%09%09%09
+-hc
++HeroController.instance
+ .cState.slidingL
+@@ -655,34 +655,55 @@
+ Right)%0a%09%09%09%7b%0a%09%09%09%09
+-hc
++HeroController.instance
+ .cState.slidingR
+@@ -858,34 +858,55 @@
+ eLeft)%0a%09%09%09%7b%0a%09%09%09%09
+-hc
++HeroController.instance
+ .cState.slidingL
+@@ -955,10 +955,31 @@
+ %09%09%09%09
+-hc
++HeroController.instance
+ .cSt
+@@ -1015,11 +1015,61 @@
+ %7d%0a%09%09%7d%0a%09%7d
++%0a%0a%09public bool slideLeft;%0a%09public bool slideRight;
+ %0a%7d%0a

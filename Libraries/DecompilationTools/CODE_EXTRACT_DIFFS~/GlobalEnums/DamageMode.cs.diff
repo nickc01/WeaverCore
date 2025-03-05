@@ -1,0 +1,26 @@
+@@ -1,8 +1,23 @@
++using System;%0a%0a
+ namespac
+@@ -29,19 +29,20 @@
+ balEnums
+-;%0a%0a
++%0a%7b%0a%09
+ public e
+@@ -56,19 +56,21 @@
+ ageMode%0a
++%09
+ %7b%0a%09
++%09
+ FULL_DAM
+@@ -75,16 +75,17 @@
+ AMAGE,%0a%09
++%09
+ HAZARD_O
+@@ -90,16 +90,17 @@
+ _ONLY,%0a%09
++%09
+ NO_DAMAG
+@@ -101,10 +101,13 @@
+ _DAMAGE%0a
++%09%7d%0a
+ %7d%0a

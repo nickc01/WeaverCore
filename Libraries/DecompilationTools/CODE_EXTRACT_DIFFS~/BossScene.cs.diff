@@ -1,0 +1,404 @@
+@@ -65,94 +65,8 @@
+ e;%0a%0a
+-%5bCreateAssetMenu(fileName = %22New Boss Scene%22, menuName = %22Hollow Knight/Boss Scene%22)%5d%0a
+ publ
+@@ -105,17 +105,20 @@
+ bject%0a%7b%0a
+-%09
++    
+ %5bSeriali
+@@ -124,17 +124,20 @@
+ izable%5d%0a
+-%09
++    
+ public c
+@@ -150,21 +150,30 @@
+ ossTest%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ %5bSeriali
+@@ -171,34 +171,40 @@
+  %5bSerializable%5d%0a
+-%09%09
++        
+ public struct Bo
+@@ -206,31 +206,46 @@
+ ct BoolTest%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ public strin
+@@ -263,19 +263,28 @@
+ aBool;%0a%0a
+-%09%09%09
++            
+ public b
+@@ -294,23 +294,35 @@
+  value;%0a
+-%09%09%7d%0a%0a%09%09
++        %7d%0a%0a        
+ %5bSeriali
+@@ -328,18 +328,24 @@
+ izable%5d%0a
+-%09%09
++        
+ public s
+@@ -358,23 +358,38 @@
+ IntTest%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ public e
+@@ -407,74 +407,149 @@
+ son%0a
+-%09%09%09%7b%0a%09%09%09%09Equal,%0a%09%09%09%09NotEqual,%0a%09%09%09%09MoreThan,%0a%09%09%09%09LessThan%0a%09%09%09%7d%0a%0a%09%09%09
++            %7b%0a                Equal,%0a                NotEqual,%0a                MoreThan,%0a                LessThan%0a            %7d%0a%0a            
+ publ
+@@ -574,19 +574,28 @@
+ taInt;%0a%0a
+-%09%09%09
++            
+ public i
+@@ -605,19 +605,28 @@
+ value;%0a%0a
+-%09%09%09
++            
+ public C
+@@ -647,23 +647,35 @@
+ arison;%0a
+-%09%09%7d%0a%0a%09%09
++        %7d%0a%0a        
+ public e
+@@ -697,76 +697,58 @@
+ est%0a
+-%09%09%7b%0a%09%09%09GGUnlock%0a%09%09%7d%0a%0a%09%09public PersistentBoolData persistentBool;%0a%0a%09%09
++        %7b%0a            GGUnlock%0a        %7d%0a%0a        
+ publ
+@@ -769,26 +769,32 @@
+ boolTests;%0a%0a
+-%09%09
++        
+ public IntTe
+@@ -809,18 +809,24 @@
+ Tests;%0a%0a
+-%09%09
++        
+ public S
+@@ -854,18 +854,24 @@
+ dData;%0a%0a
+-%09%09
++        
+ public b
+@@ -887,23 +887,65 @@
+ ocked()%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            //return true;%0a            
+ bool fla
+@@ -954,19 +954,30 @@
+ = true;%0a
+-%09%09%09
++            /*
+ if (!str
+@@ -1065,25 +1065,46 @@
+ eName))%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ Persiste
+@@ -1183,20 +1183,32 @@
+ tBool);%0a
+-%09%09%09%09
++                
+ if (pers
+@@ -1268,66 +1268,146 @@
+ ed)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09flag = false;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09if (flag)%0a%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    flag = false;%0a                %7d%0a            %7d*/%0a            if (flag)%0a            %7b%0a                
+ Bool
+@@ -1428,28 +1428,40 @@
+  boolTests;%0a
+-%09%09%09%09
++                
+ for (int i =
+@@ -1487,27 +1487,54 @@
+ h; i++)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ BoolTest
+@@ -1555,21 +1555,36 @@
+ ray%5bi%5d;%0a
+-%09%09%09%09%09
++                    
+ if (Game
+@@ -1666,88 +1666,205 @@
+ ue)%0a
+-%09%09%09%09%09%7b%0a%09%09%09%09%09%09flag = false;%0a%09%09%09%09%09%09break;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09if (flag)%0a%09%09%09%7b%0a%09%09%09%09
++                    %7b%0a                        flag = false;%0a                        break;%0a                    %7d%0a                %7d%0a            %7d%0a            if (flag)%0a            %7b%0a                
+ IntT
+@@ -1888,20 +1888,32 @@
+ tTests;%0a
+-%09%09%09%09
++                
+ for (int
+@@ -1944,27 +1944,54 @@
+ h; i++)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ IntTest 
+@@ -2011,21 +2011,36 @@
+ ay2%5bi%5d;%0a
+-%09%09%09%09%09
++                    
+ int play
+@@ -2113,21 +2113,36 @@
+ taInt);%0a
+-%09%09%09%09%09
++                    
+ if (play
+@@ -2164,187 +2164,350 @@
+ 99)%0a
+-%09%09%09%09%09%7b%0a%09%09%09%09%09%09bool flag2 = false;%0a%09%09%09%09%09%09switch (intTest.comparison)%0a%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09case IntTest.Comparison.Equal:%0a%09%09%09%09%09%09%09flag2 = playerDataInt == intTest.value;%0a%09%09%09%09%09%09%09break;%0a%09%09%09%09%09%09
++                    %7b%0a                        bool flag2 = false;%0a                        switch (intTest.comparison)%0a                        %7b%0a                            case IntTest.Comparison.Equal:%0a                                flag2 = playerDataInt == intTest.value;%0a                                break;%0a                            
+ case
+@@ -2536,23 +2536,48 @@
+ tEqual:%0a
+-%09%09%09%09%09%09%09
++                                
+ flag2 = 
+@@ -2608,36 +2608,83 @@
+ .value;%0a
+-%09%09%09%09%09%09%09break;%0a%09%09%09%09%09%09
++                                break;%0a                            
+ case Int
+@@ -2705,31 +2705,56 @@
+ n.LessThan:%0a
+-%09%09%09%09%09%09%09
++                                
+ flag2 = play
+@@ -2780,36 +2780,83 @@
+ .value;%0a
+-%09%09%09%09%09%09%09break;%0a%09%09%09%09%09%09
++                                break;%0a                            
+ case Int
+@@ -2881,23 +2881,48 @@
+ reThan:%0a
+-%09%09%09%09%09%09%09
++                                
+ flag2 = 
+@@ -2956,120 +2956,304 @@
+ ue;%0a
+-%09%09%09%09%09%09%09break;%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%09if (!flag2)%0a%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09%09flag = false;%0a%09%09%09%09%09%09%09break;%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09
++                                break;%0a                        %7d%0a                        if (!flag2)%0a                        %7b%0a                            flag = false;%0a                            break;%0a                        %7d%0a                    %7d%0a                %7d%0a            %7d%0a            
+ if (
+@@ -3280,25 +3280,46 @@
+ = null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ SharedDa
+@@ -3348,20 +3348,32 @@
+ edData;%0a
+-%09%09%09%09
++                
+ for (int
+@@ -3404,27 +3404,54 @@
+ h; i++)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ if (arra
+@@ -3555,78 +3555,168 @@
+  1)%0a
+-%09%09%09%09%09%7b%0a%09%09%09%09%09%09flag = false;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09return flag;%0a%09%09%7d%0a%09%7d%0a%0a%09
++                    %7b%0a                        flag = false;%0a                    %7d%0a                %7d%0a            %7d%0a            return flag;%0a        %7d%0a    %7d%0a%0a    
+ %5bToo
+@@ -3751,25 +3751,28 @@
+ to load.%22)%5d%0a
+-%09
++    
+ public strin
+@@ -3785,17 +3785,20 @@
+ eName;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -3955,25 +3955,28 @@
+ by name)%22)%5d%0a
+-%09
++    
+ public BossT
+@@ -3993,17 +3993,20 @@
+ Tests;%0a%0a
+-%09
++    
+ %5bHeader(
+@@ -4019,25 +4019,28 @@
+ nce Only%22)%5d%0a
+-%09
++    
+ public BossS
+@@ -4055,17 +4055,20 @@
+ eBoss;%0a%0a
+-%09
++    
+ public b
+@@ -4088,17 +4088,20 @@
+ eBoss;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -4101,33 +4101,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private Sprite d
+@@ -4142,17 +4142,20 @@
+ yIcon;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -4280,25 +4280,28 @@
+ nlocked.%22)%5d%0a
+-%09
++    
+ public bool 
+@@ -4311,17 +4311,20 @@
+ idden;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -4324,33 +4324,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private bool for
+@@ -4368,17 +4368,20 @@
+ nload;%0a%0a
+-%09
++    
+ %5bHeader(
+@@ -4401,17 +4401,20 @@
+ Only%22)%5d%0a
+-%09
++    
+ public b
+@@ -4433,17 +4433,20 @@
+ nlock;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -4446,33 +4446,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private BossScen
+@@ -4481,33 +4481,36 @@
+ ne tier1Scene;%0a%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -4502,33 +4502,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private BossScen
+@@ -4545,17 +4545,20 @@
+ Scene;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -4566,17 +4566,20 @@
+ eField%5d%0a
+-%09
++    
+ private 
+@@ -4601,17 +4601,20 @@
+ Scene;%0a%0a
+-%09
++    
+ public S
+@@ -4648,17 +4648,20 @@
+ yIcon;%0a%0a
+-%09
++    
+ public b
+@@ -4703,17 +4703,20 @@
+ nload;%0a%0a
+-%09
++    
+ public s
+@@ -4736,76 +4736,139 @@
+ ene%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (!tier1Scene)%0a%09%09%09%7b%0a%09%09%09%09return sceneName;%0a%09%09%09%7d%0a%09%09%09
++    %7b%0a        get%0a        %7b%0a            if (!tier1Scene)%0a            %7b%0a                return sceneName;%0a            %7d%0a            
+ retu
+@@ -4888,33 +4888,45 @@
+ .sceneName;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public strin
+@@ -4942,76 +4942,139 @@
+ ene%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (!tier2Scene)%0a%09%09%09%7b%0a%09%09%09%09return sceneName;%0a%09%09%09%7d%0a%09%09%09
++    %7b%0a        get%0a        %7b%0a            if (!tier2Scene)%0a            %7b%0a                return sceneName;%0a            %7d%0a            
+ retu
+@@ -5094,33 +5094,45 @@
+ .sceneName;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public strin
+@@ -5148,76 +5148,139 @@
+ ene%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (!tier3Scene)%0a%09%09%09%7b%0a%09%09%09%09return sceneName;%0a%09%09%09%7d%0a%09%09%09
++    %7b%0a        get%0a        %7b%0a            if (!tier3Scene)%0a            %7b%0a                return sceneName;%0a            %7d%0a            
+ retu
+@@ -5308,17 +5308,29 @@
+ me;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ publ
+@@ -5373,29 +5373,38 @@
+ rce source)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (source =
+@@ -5489,34 +5489,61 @@
+ e))%0a
+-%09%09%7b%0a%09%09%09return true;%0a%09%09%7d%0a%09%09
++        %7b%0a            return true;%0a        %7d%0a        
+ retu
+@@ -5573,13 +5573,19 @@
+ e);%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ publ
+@@ -5640,17 +5640,66 @@
+ ce)%0a
+-%09%7b%0a%09%09if (
++    %7b%0a        //return true;%0a        var unlockedScenes = 
+ Game
+@@ -5777,56 +5777,137 @@
+ es%22)
+-.Contains(base.name))%0a%09%09%7b%0a%09%09%09return true;%0a%09%09%7d%0a%09%09
++;%0a        if (unlockedScenes != null && unlockedScenes.Contains(base.name))%0a        %7b%0a            return true;%0a        %7d%0a        
+ if (
+@@ -5950,23 +5950,38 @@
+ h != 0)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ BossTest
+@@ -6002,19 +6002,28 @@
+ sTests;%0a
+-%09%09%09
++            
+ for (int
+@@ -6057,85 +6057,166 @@
+ ++)%0a
+-%09%09%09%7b%0a%09%09%09%09if (array%5bi%5d.IsUnlocked())%0a%09%09%09%09%7b%0a%09%09%09%09%09return true;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7b%0a                if (array%5bi%5d.IsUnlocked())%0a                %7b%0a                    return true;%0a                %7d%0a            %7d%0a        %7d%0a        
+ else
+@@ -6281,34 +6281,61 @@
+ ue)%0a
+-%09%09%7b%0a%09%09%09return true;%0a%09%09%7d%0a%09%09
++        %7b%0a            return true;%0a        %7d%0a        
+ retu
+@@ -6348,9 +6348,12 @@
+ se;%0a
+-%09
++    
+ %7d%0a%7d%0a

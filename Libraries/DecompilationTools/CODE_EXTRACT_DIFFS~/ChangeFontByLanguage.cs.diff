@@ -1,0 +1,123 @@
+@@ -1,12 +1,14 @@
++//
+ using Langua
+@@ -96,16 +96,17 @@
+ viour%0a%7b%0a
++%0a
+ %09public 
+@@ -448,24 +448,25 @@
+ ng)%0a%09%09%09%7b%0a%09%09%09
++%09
+ case %22JA%22:%0a%09
+@@ -464,24 +464,25 @@
+ e %22JA%22:%0a%09%09%09%09
++%09
+ if (!fontSiz
+@@ -491,39 +491,41 @@
+ A.HasValue)%0a%09%09%09%09
++%09
+ %7b%0a%09%09%09%09%09
++%09
+ return defaultSc
+@@ -525,38 +525,40 @@
+ faultScale;%0a%09%09%09%09
++%09
+ %7d%0a%09%09%09%09
++%09
+ return fontSizeJ
+@@ -565,24 +565,25 @@
+ A.Value;%0a%09%09%09
++%09
+ case %22RU%22:%0a%09
+@@ -581,24 +581,25 @@
+ e %22RU%22:%0a%09%09%09%09
++%09
+ if (!fontSiz
+@@ -608,39 +608,41 @@
+ U.HasValue)%0a%09%09%09%09
++%09
+ %7b%0a%09%09%09%09%09
++%09
+ return defaultSc
+@@ -642,38 +642,40 @@
+ faultScale;%0a%09%09%09%09
++%09
+ %7d%0a%09%09%09%09
++%09
+ return fontSizeR
+@@ -682,24 +682,25 @@
+ U.Value;%0a%09%09%09
++%09
+ case %22ZH%22:%0a%09
+@@ -698,24 +698,25 @@
+ e %22ZH%22:%0a%09%09%09%09
++%09
+ if (!fontSiz
+@@ -725,39 +725,41 @@
+ H.HasValue)%0a%09%09%09%09
++%09
+ %7b%0a%09%09%09%09%09
++%09
+ return defaultSc
+@@ -759,38 +759,40 @@
+ faultScale;%0a%09%09%09%09
++%09
+ %7d%0a%09%09%09%09
++%09
+ return fontSizeZ
+@@ -803,16 +803,17 @@
+ lue;%0a%09%09%09
++%09
+ case %22KO
+@@ -815,24 +815,25 @@
+ e %22KO%22:%0a%09%09%09%09
++%09
+ if (!fontSiz
+@@ -850,23 +850,25 @@
+ ue)%0a%09%09%09%09
++%09
+ %7b%0a%09%09%09%09%09
++%09
+ return d
+@@ -884,22 +884,24 @@
+ le;%0a%09%09%09%09
++%09
+ %7d%0a%09%09%09%09
++%09
+ return f
+@@ -920,16 +920,17 @@
+ lue;%0a%09%09%09
++%09
+ default:
+@@ -930,24 +930,25 @@
+ efault:%0a%09%09%09%09
++%09
+ return defau
+@@ -2422,574 +2422,8 @@
+ %7d%0a%09%09
+-switch (global::Language.Language.CurrentLanguage().ToString())%0a%09%09%7b%0a%09%09case %22JA%22:%0a%09%09%09tmpro.fontSize = GetFontScale(%22JA%22);%0a%09%09%09tmpro.font = ((fontJA != null) ? fontJA : defaultFont);%0a%09%09%09return;%0a%09%09case %22RU%22:%0a%09%09%09tmpro.fontSize = GetFontScale(%22RU%22);%0a%09%09%09tmpro.font = ((fontRU != null) ? fontRU : defaultFont);%0a%09%09%09return;%0a%09%09case %22ZH%22:%0a%09%09%09tmpro.fontSize = GetFontScale(%22ZH%22);%0a%09%09%09tmpro.font = ((fontZH != null) ? fontZH : defaultFont);%0a%09%09%09return;%0a%09%09case %22KO%22:%0a%09%09%09tmpro.fontSize = GetFontScale(%22KO%22);%0a%09%09%09tmpro.font = ((fontKO != null) ? fontKO : defaultFont);%0a%09%09%09return;%0a%09%09%7d%0a%09%09
+ tmpr
+@@ -2678,33 +2678,32 @@
+  startFontSize),
+- 
+ %0a%09%09%09FontScaleLan
+@@ -2771,33 +2771,32 @@
+  startFontSize),
+- 
+ %0a%09%09%09FontScaleLan
+@@ -2856,33 +2856,32 @@
+  startFontSize),
+- 
+ %0a%09%09%09FontScaleLan
+@@ -2955,25 +2955,24 @@
+ rtFontSize),
+- 
+ %0a%09%09%09FontScal
+@@ -3056,17 +3056,16 @@
+ ntSize),
+- 
+ %0a%09%09%09_ =%3e
+@@ -3079,17 +3079,16 @@
+ ontSize,
+- 
+ %0a%09%09%7d;%0a%09%7d

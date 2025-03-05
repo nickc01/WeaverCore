@@ -1,0 +1,745 @@
+@@ -1,20 +1,41 @@
++using MonoMod.Utils;%0a
+ using System;%0ausing 
+@@ -174,17 +174,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ %5bSeriali
+@@ -189,25 +189,28 @@
+ rializable%5d%0a
+-%09
++    
+ public class
+@@ -220,21 +220,30 @@
+ nuStyle%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ %5bSeriali
+@@ -249,18 +249,24 @@
+ izable%5d%0a
+-%09%09
++        
+ public c
+@@ -283,23 +283,38 @@
+ aCurves%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ %5bRange(0
+@@ -321,19 +321,28 @@
+ f, 5f)%5d%0a
+-%09%09%09
++            
+ public f
+@@ -364,19 +364,28 @@
+  = 1f;%0a%0a
+-%09%09%09
++            
+ public A
+@@ -468,35 +468,44 @@
+ rame(1f, 1f));%0a%0a
+-%09%09%09
++            
+ public Animation
+@@ -590,19 +590,28 @@
+  1f));%0a%0a
+-%09%09%09
++            
+ public A
+@@ -702,23 +702,35 @@
+ , 1f));%0a
+-%09%09%7d%0a%0a%09%09
++        %7d%0a%0a        
+ public b
+@@ -750,18 +750,24 @@
+  true;%0a%0a
+-%09%09
++        
+ public s
+@@ -801,26 +801,32 @@
+ ed Style%22;%0a%0a
+-%09%09
++        
+ public GameO
+@@ -841,26 +841,32 @@
+ yleObject;%0a%0a
+-%09%09
++        
+ public Camer
+@@ -897,18 +897,24 @@
+ ction;%0a%0a
+-%09%09
++        
+ %5bFormerl
+@@ -940,18 +940,24 @@
+ shot%22)%5d%0a
+-%09%09
++        
+ public A
+@@ -990,18 +990,24 @@
+ pshot;%0a%0a
+-%09%09
++        
+ public i
+@@ -1027,18 +1027,24 @@
+  = -1;%0a%0a
+-%09%09
++        
+ public s
+@@ -1066,18 +1066,24 @@
+  = %22%22;%0a%0a
+-%09%09
++        
+ public s
+@@ -1108,18 +1108,24 @@
+ tKeys;%0a%0a
+-%09%09
++        
+ %5bHideInI
+@@ -1134,18 +1134,24 @@
+ pector%5d%0a
+-%09%09
++        
+ public f
+@@ -1179,18 +1179,24 @@
+ lumes;%0a%0a
+-%09%09
++        
+ public b
+@@ -1215,304 +1215,110 @@
+ ble%0a
+-%09%09%7b%0a%09%09%09get%0a%09%09%09%7b%0a%09%09%09%09if (unlockKey == %22%22 %7c%7c ((bool)GameManager.instance && GameManager.instance.gameConfig.unlockAllMenuStyles))%0a%09%09%09%09%7b%0a%09%09%09%09%09return enabled;%0a%09%09%09%09%7d%0a%09%09%09%09if (enabled)%0a%09%09%09%09%7b%0a%09%09%09%09%09return Platform.Current.EncryptedSharedData.GetInt(unlockKey, 0) == 1;%0a%09%09%09%09%7d%0a%09%09%09%09return false;%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++        %7b%0a            get%0a            %7b%0a                return true;%0a            %7d%0a        %7d%0a%0a        
+ publ
+@@ -1371,23 +1371,38 @@
+ ources)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (init
+@@ -1461,25 +1461,46 @@
+ h == 0)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ initialA
+@@ -1540,20 +1540,32 @@
+ ength%5d;%0a
+-%09%09%09%09
++                
+ for (int
+@@ -1609,27 +1609,54 @@
+ h; i++)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ initialA
+@@ -1691,36 +1691,69 @@
+ volume;%0a
+-%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++                %7d%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+ %5bSeriali
+@@ -1751,33 +1751,36 @@
+  %5bSerializable%5d%0a
+-%09
++    
+ public struct St
+@@ -1791,21 +1791,30 @@
+ ettings%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public i
+@@ -1829,18 +1829,24 @@
+ Index;%0a%0a
+-%09%09
++        
+ public s
+@@ -1870,21 +1870,27 @@
+ ersion;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ %5bSeriali
+@@ -1896,17 +1896,20 @@
+ izable%5d%0a
+-%09
++    
+ public s
+@@ -1936,21 +1936,30 @@
+ latform%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public R
+@@ -1984,18 +1984,24 @@
+ tform;%0a%0a
+-%09%09
++        
+ public S
+@@ -2023,21 +2023,27 @@
+ ttings;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -2060,29 +2060,58 @@
+ ype%0a
+-%09%7b%0a%09%09Up,%0a%09%09Down%0a%09%7d%0a%0a%09
++    %7b%0a        Up = 0,%0a        Down = 1%0a    %7d%0a%0a    
+ publ
+@@ -2138,25 +2138,28 @@
+  Instance;%0a%0a
+-%09
++    
+ public MenuS
+@@ -2170,33 +2170,36 @@
+ %5b%5d styles;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09public Styl
+@@ -2178,33 +2178,36 @@
+ s;%0a%0a    %5bSpace%5d%0a
+-%09
++    
+ public StyleSett
+@@ -2226,17 +2226,20 @@
+ fault;%0a%0a
+-%09
++    
+ public S
+@@ -2278,17 +2278,20 @@
+ forms;%0a%0a
+-%09
++    
+ private 
+@@ -2326,17 +2326,20 @@
+ s;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09pub
+@@ -2334,17 +2334,20 @@
+ %5bSpace%5d%0a
+-%09
++    
+ public S
+@@ -2369,25 +2369,28 @@
+ lackSolid;%0a%0a
+-%09
++    
+ public float
+@@ -2409,17 +2409,20 @@
+ 0.25f;%0a%0a
+-%09
++    
+ private 
+@@ -2445,17 +2445,22 @@
+ utine;%0a%0a
+-%09
++    //
+ public M
+@@ -2481,17 +2481,20 @@
+ title;%0a%0a
+-%09
++    
+ private 
+@@ -2511,17 +2511,20 @@
+ ribed;%0a%0a
+-%09
++    
+ public i
+@@ -2571,17 +2571,20 @@
+ Index;%0a%0a
+-%09
++    
+ private 
+@@ -2596,21 +2596,30 @@
+ Awake()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ Instance
+@@ -2627,21 +2627,27 @@
+ = this;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -2659,21 +2659,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ currentS
+@@ -2705,18 +2705,24 @@
+ efault;%0a
+-%09%09
++        
+ StyleSet
+@@ -2770,18 +2770,24 @@
+ tforms;%0a
+-%09%09
++        
+ for (int
+@@ -2826,23 +2826,38 @@
+ h; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ StyleSet
+@@ -2913,19 +2913,28 @@
+ rms%5bi%5d;%0a
+-%09%09%09
++            
+ if (Appl
+@@ -2985,25 +2985,46 @@
+ atform)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ currentS
+@@ -3069,317 +3069,246 @@
+ gs;%0a
+-%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09LoadStyle(force: true, fade: false);%0a%09%09if (Platform.Current.AreAchievementsFetched)%0a%09%09%7b%0a%09%09%09UnlockFromAchievements();%0a%09%09%09return;%0a%09%09%7d%0a%09%09Platform.AchievementsFetched += UnlockFromAchievements;%0a%09%09subscribed = true;%0a%09%7d%0a%0a%09public void LoadStyle(bool force, bool fade)%0a%09%7b%0a%09%09bool flag = false;%0a%09%09
++                break;%0a            %7d%0a        %7d%0a        LoadStyle(force: true, fade: false);%0a        UnlockFromAchievements();%0a    %7d%0a%0a    public void LoadStyle(bool force, bool fade)%0a    %7b%0a        bool setAsCurrentStyle = false;%0a        /*
+ if (
+@@ -3462,23 +3462,38 @@
+ ersion)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ int @int
+@@ -3581,19 +3581,28 @@
+ Index);%0a
+-%09%09%09
++            
+ if (curr
+@@ -3633,25 +3633,46 @@
+ = @int)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ currentS
+@@ -3702,36 +3702,82 @@
+ nt;%0a
+-%09%09%09%09flag = true;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++                setAsCurrentStyle = true;%0a            %7d%0a        %7d%0a        
+ stri
+@@ -3806,18 +3806,24 @@
+ Style%22;%0a
+-%09%09
++        
+ if (Plat
+@@ -3859,23 +3859,38 @@
+ y(key))%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ string @
+@@ -3946,19 +3946,28 @@
+ y, %22%22);%0a
+-%09%09%09
++            
+ Platform
+@@ -4002,19 +4002,28 @@
+ y(key);%0a
+-%09%09%09
++            
+ for (int
+@@ -4054,25 +4054,46 @@
+ h; i++)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ if (styl
+@@ -4149,204 +4149,403 @@
+ le)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09int num = i;%0a%09%09%09%09%09if (currentSettings.styleIndex != num)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09currentSettings.styleIndex = num;%0a%09%09%09%09%09%09flag = true;%0a%09%09%09%09%09%7d%0a%09%09%09%09%09break;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if (flag %7c%7c force)%0a%09%09%7b%0a%09%09%09
++                %7b%0a                    int num = i;%0a                    if (currentSettings.styleIndex != num)%0a                    %7b%0a                        currentSettings.styleIndex = num;%0a                        setAsCurrentStyle = true;%0a                    %7d%0a                    break;%0a                %7d%0a            %7d%0a        %7d*/%0a        if (setAsCurrentStyle %7c%7c force)%0a        %7b%0a            
+ SetS
+@@ -4584,25 +4584,37 @@
+  fade);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ private 
+@@ -4634,36 +4634,62 @@
+ y()%0a
+-%09%7b%0a%09%09if (subscribed)%0a%09%09%7b%0a%09%09%09
++    %7b%0a        /*if (subscribed)%0a        %7b%0a            
+ Plat
+@@ -4740,25 +4740,39 @@
+ ements;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d*/%0a    %7d%0a%0a    
+ public v
+@@ -4824,21 +4824,30 @@
+ = true)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (inde
+@@ -4879,23 +4879,38 @@
+ Length)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Debug.Lo
+@@ -4971,25 +4971,46 @@
+ %22);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++            return;%0a        %7d%0a        
+ if (
+@@ -5030,23 +5030,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ StopCoro
+@@ -5080,22 +5080,34 @@
+ utine);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ fadeRout
+@@ -5182,18 +5182,24 @@
+ ndex));%0a
+-%09%09
++        
+ currentS
+@@ -5230,27 +5230,50 @@
+ ex;%0a
+-%09%09if (save)%0a%09%09%7b%0a%09%09%09
++        /*if (save)%0a        %7b%0a            
+ Plat
+@@ -5357,19 +5357,28 @@
+ rsion);%0a
+-%09%09%09
++            
+ Platform
+@@ -5455,19 +5455,28 @@
+ Index);%0a
+-%09%09%09
++            
+ Platform
+@@ -5503,19 +5503,28 @@
+ Save();%0a
+-%09%09%09
++            
+ Platform
+@@ -5560,25 +5560,39 @@
+ Save();%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d*/%0a    %7d%0a%0a    
+ private 
+@@ -5651,21 +5651,30 @@
+ dIndex)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ yield re
+@@ -5684,18 +5684,24 @@
+ n null;%0a
+-%09%09
++        
+ if ((boo
+@@ -5731,23 +5731,40 @@
+ apshot)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            //
+ GameMana
+@@ -5871,22 +5871,34 @@
+  : 0f);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ AudioSou
+@@ -5991,26 +5991,32 @@
+ oSource%3e();%0a
+-%09%09
++        
+ styles%5boldIn
+@@ -6058,34 +6058,40 @@
+ ntsInChildren);%0a
+-%09%09
++        
+ yield return Sta
+@@ -6162,18 +6162,24 @@
+ dren));%0a
+-%09%09
++        
+ UpdateTi
+@@ -6185,18 +6185,24 @@
+ itle();%0a
+-%09%09
++        
+ for (int
+@@ -6233,23 +6233,38 @@
+ h; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ styles%5bi
+@@ -6300,22 +6300,34 @@
+  == i);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ GameCame
+@@ -6363,18 +6363,24 @@
+ stance;%0a
+-%09%09
++        
+ if ((boo
+@@ -6431,23 +6431,38 @@
+ Curves)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ MenuStyl
+@@ -6533,27 +6533,36 @@
+ Correction;%0a
+-%09%09%09
++            
+ instance.col
+@@ -6627,19 +6627,28 @@
+ ration;%0a
+-%09%09%09
++            
+ instance
+@@ -6709,35 +6709,44 @@
+ ion.redChannel;%0a
+-%09%09%09
++            
+ instance.colorCo
+@@ -6811,19 +6811,28 @@
+ hannel;%0a
+-%09%09%09
++            
+ instance
+@@ -6903,22 +6903,34 @@
+ hannel;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ componen
+@@ -7010,18 +7010,24 @@
+ rce%3e();%0a
+-%09%09
++        
+ styles%5bi
+@@ -7078,18 +7078,24 @@
+ ldren);%0a
+-%09%09
++        
+ yield re
+@@ -7169,18 +7169,24 @@
+ dren));%0a
+-%09%09
++        
+ fadeRout
+@@ -7197,21 +7197,27 @@
+ = null;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -7307,21 +7307,30 @@
+ ources)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ float to
+@@ -7376,18 +7376,24 @@
+ 1 : 0);%0a
+-%09%09
++        
+ if (!bla
+@@ -7405,34 +7405,61 @@
+ id)%0a
+-%09%09%7b%0a%09%09%09yield break;%0a%09%09%7d%0a%09%09
++        %7b%0a            yield break;%0a        %7d%0a        
+ Colo
+@@ -7486,18 +7486,24 @@
+ .color;%0a
+-%09%09
++        
+ float st
+@@ -7522,18 +7522,24 @@
+ olor.a;%0a
+-%09%09
++        
+ if (fade
+@@ -7540,23 +7540,38 @@
+  (fade)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ for (flo
+@@ -7634,25 +7634,46 @@
+ taTime)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ float t 
+@@ -7694,20 +7694,32 @@
+ deTime;%0a
+-%09%09%09%09
++                
+ color.a 
+@@ -7756,20 +7756,32 @@
+ ha, t);%0a
+-%09%09%09%09
++                
+ blackSol
+@@ -7798,20 +7798,32 @@
+  color;%0a
+-%09%09%09%09
++                
+ for (int
+@@ -7860,27 +7860,54 @@
+ h; i++)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ float nu
+@@ -7953,21 +7953,36 @@
+ mes%5bi%5d;%0a
+-%09%09%09%09%09
++                    
+ if (fade
+@@ -8004,29 +8004,62 @@
+ e.Down)%0a
+-%09%09%09%09%09%7b%0a%09%09%09%09%09%09
++                    %7b%0a                        
+ audioSou
+@@ -8103,131 +8103,251 @@
+ t);%0a
+-%09%09%09%09%09%7d%0a%09%09%09%09%09else%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09audioSources%5bi%5d.volume = Mathf.Lerp(0f, num, t);%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09yield return null;%0a%09%09%09%7d%0a%09%09%09
++                    %7d%0a                    else%0a                    %7b%0a                        audioSources%5bi%5d.volume = Mathf.Lerp(0f, num, t);%0a                    %7d%0a                %7d%0a                yield return null;%0a            %7d%0a            
+ for 
+@@ -8388,25 +8388,46 @@
+ h; j++)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ float vo
+@@ -8476,20 +8476,32 @@
+ mes%5bj%5d;%0a
+-%09%09%09%09
++                
+ if (fade
+@@ -8527,124 +8527,235 @@
+ wn)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09audioSources%5bj%5d.volume = 0f;%0a%09%09%09%09%7d%0a%09%09%09%09else%0a%09%09%09%09%7b%0a%09%09%09%09%09audioSources%5bj%5d.volume = volume;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++                %7b%0a                    audioSources%5bj%5d.volume = 0f;%0a                %7d%0a                else%0a                %7b%0a                    audioSources%5bj%5d.volume = volume;%0a                %7d%0a            %7d%0a        %7d%0a        
+ colo
+@@ -8769,18 +8769,24 @@
+ oAlpha;%0a
+-%09%09
++        
+ blackSol
+@@ -8803,21 +8803,27 @@
+  color;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public v
+@@ -8838,21 +8838,30 @@
+ Audio()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ AudioSou
+@@ -8976,18 +8976,24 @@
+ rce%3e();%0a
+-%09%09
++        
+ StartCor
+@@ -9036,21 +9036,27 @@
+ dren));%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -9108,21 +9108,30 @@
+ ources)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ AudioSou
+@@ -9143,18 +9143,24 @@
+  array;%0a
+-%09%09
++        
+ for (flo
+@@ -9224,23 +9224,38 @@
+ taTime)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ array = 
+@@ -9268,19 +9268,28 @@
+ ources;%0a
+-%09%09%09
++            
+ for (int
+@@ -9319,25 +9319,46 @@
+ h; i++)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ array%5bi%5d
+@@ -9407,24 +9407,42 @@
+ eTime);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ yield re
+@@ -9452,22 +9452,34 @@
+ n null;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ array = 
+@@ -9492,18 +9492,24 @@
+ ources;%0a
+-%09%09
++        
+ for (int
+@@ -9539,23 +9539,38 @@
+ h; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ array%5bi%5d
+@@ -9583,25 +9583,37 @@
+ e = 0f;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public v
+@@ -9641,21 +9641,30 @@
+ ments()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ MenuStyl
+@@ -9683,18 +9683,24 @@
+ styles;%0a
+-%09%09
++        
+ foreach 
+@@ -9730,23 +9730,38 @@
+  array)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (menu
+@@ -9824,35 +9824,74 @@
+  0)%0a
+-%09%09%09%7b%0a%09%09%09%09continue;%0a%09%09%09%7d%0a%09%09%09
++            %7b%0a                continue;%0a            %7d%0a            
+ stri
+@@ -9940,19 +9940,28 @@
+ ntKeys;%0a
+-%09%09%09
++            
+ foreach 
+@@ -9993,25 +9993,48 @@
+ ntKeys)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                /*
+ if (Plat
+@@ -10077,29 +10077,68 @@
+ ext)
+- == true)%0a%09%09%09%09%7b%0a%09%09%09%09%09
++.GetValueOrDefault())%0a                %7b%0a                    
+ menu
+@@ -10159,21 +10159,36 @@
+ = true;%0a
+-%09%09%09%09%09
++                    
+ Platform
+@@ -10248,21 +10248,36 @@
+ ey, 1);%0a
+-%09%09%09%09%09
++                    
+ Debug.Lo
+@@ -10363,40 +10363,90 @@
+ t);%0a
+-%09%09%09%09%09break;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++                    break;%0a                %7d*/%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -10467,21 +10467,32 @@
+ Title()%0a
+-%09%7b%0a%09%09
++    %7b%0a        /*
+ if ((boo
+@@ -10504,15 +10504,30 @@
+ le)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ titl
+@@ -10575,13 +10575,24 @@
+ x);%0a
+-%09%09%7d%0a%09
++        %7d*/%0a    
+ %7d%0a%7d%0a

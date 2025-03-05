@@ -1,0 +1,85 @@
+@@ -162,16 +162,68 @@
+ Plane;%0a%0a
++%09%5bSerializeField%5d%0a%09private int renderTextureWidth;%0a%0a
+ %09%5bSerial
+@@ -707,182 +707,131 @@
+ %0a%0a%09p
+-rivate static readonly int _vibrancyProp = Shader.PropertyToID(%22_Vibrancy%22);%0a%0a%09private static readonly int _blurPlaneVibranceProp = Shader.PropertyToID(%22_BlurPlaneVibrance%22);
++ublic int RenderTextureWidth%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09return renderTextureWidth;%0a%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09renderTextureWidth = value;%0a%09%09%7d%0a%09%7d
+ %0a%0a%09p
+@@ -1199,29 +1199,16 @@
+ meras = 
+-GetComponent%3c
+ GameCame
+@@ -1210,19 +1210,25 @@
+ eCameras
+-%3e()
++.instance
+ ;%0a%09%09scen
+@@ -1253,38 +1253,18 @@
+ ras.
+-tk2dCam.GetComponent%3c
++main
+ Camera
+-%3e()
+ ;%0a%09%09
+@@ -1576,24 +1576,73 @@
+ eCamera);%0a%09%09
++backgroundCamera.rect = new Rect(0, 0, 1, 1); %0a%09%09
+ backgroundCa
+@@ -1777,60 +1777,8 @@
+ ;%0a%09%09
+-backgroundCamera.rect = new Rect(0f, 0f, 1f, 1f);%0a%09%09
+ ligh
+@@ -1902,524 +1902,22 @@
+ ;%0a%09%09
+-blitMaterialInstance = new Material(blitMaterial);%0a%09%09blitMaterialInstance.EnableKeyword(%22BLUR_PLANE%22);%0a%09%09OnCameraAspectChanged(ForceCameraAspect.CurrentViewportAspect);%0a%09%09ForceCameraAspect.ViewportAspectChanged += OnCameraAspectChanged;%0a%09%09OnBlurPlanesChanged();%0a%09%09BlurPlane.BlurPlanesChanged += OnBlurPlanesChanged;%0a%09%7d%0a%0a%09private void OnCameraAspectChanged(float aspect)%0a%09%7b%0a%09%09if (aspect %3c= Mathf.Epsilon)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09int num = Mathf.RoundToInt((float)renderTextureHeight * aspect);%0a%09%09if (num %3e 0)%0a%09%09%7b%0a%09%09%09if (
++RenderTexture 
+ rend
+@@ -1930,42 +1930,15 @@
+ ure 
+-!
+ = n
+-ull)%0a%09%09%09%7b%0a%09%09%09%09Object.Destroy(r
++ew R
+ ende
+@@ -1949,19 +1949,9 @@
+ ture
+-);%0a%09%09%09%7d%0a%09%09%09
++(
+ rend
+@@ -1963,32 +1963,13 @@
+ ture
+- = new RenderTexture(num
++Width
+ , re
+@@ -2019,25 +2019,24 @@
+ Default);%0a%09%09
+-%09
+ backgroundCa
+@@ -2069,24 +2069,76 @@
+ rTexture;%0a%09%09
++blitMaterialInstance = new Material(blitMaterial);%0a%09
+ %09blitMateria
+@@ -2182,87 +2182,61 @@
+ ;%0a%09%09
+-%7d%0a%09%7d%0a%0a%09protected void OnDisable()%0a%09%7b%0a%09%09ForceCameraAspect.ViewportAspect
++OnBlurPlanesChanged();%0a%09%09BlurPlane.BlurPlanes
+ Changed 
+ -= O
+@@ -2235,33 +2235,66 @@
+ ged 
+--
+++
+ = On
+-CameraAspectChanged;
++BlurPlanesChanged;%0a%09%7d%0a%0a%09protected void OnDisable()%0a%09%7b
+ %0a%09%09B
+@@ -2799,22 +2799,16 @@
+ .Destroy
+-Object
+ (backgro
+@@ -3118,144 +3118,8 @@
+ ;%0a%09%09
+-%09float @float = blurPlane.OriginalMaterial.GetFloat(_vibrancyProp);%0a%09%09%09blitMaterialInstance.SetFloat(_blurPlaneVibranceProp, @float);%0a%09%09
+ %7d%0a%09%09

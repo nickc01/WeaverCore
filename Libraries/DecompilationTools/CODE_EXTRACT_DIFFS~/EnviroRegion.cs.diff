@@ -1,0 +1,88 @@
+@@ -57,17 +57,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public i
+@@ -90,17 +90,20 @@
+ tType;%0a%0a
+-%09
++    
+ private 
+@@ -119,17 +119,20 @@
+ er gm;%0a%0a
+-%09
++    
+ private 
+@@ -147,17 +147,20 @@
+ ta pd;%0a%0a
+-%09
++    
+ private 
+@@ -185,17 +185,20 @@
+ oCtrl;%0a%0a
+-%09
++    
+ private 
+@@ -210,21 +210,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ gm = Gam
+@@ -251,18 +251,24 @@
+ stance;%0a
+-%09%09
++        
+ pd = Pla
+@@ -285,18 +285,24 @@
+ stance;%0a
+-%09%09
++        
+ heroCtrl
+@@ -329,21 +329,27 @@
+ stance;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -376,34 +376,33 @@
+ D()%0a
+-%09%7b%0a%09%09pd.SetIntSwappedArgs(
++    %7b%0a        pd.SetInt(%22
+ envi
+@@ -412,19 +412,19 @@
+ mentType
++%22
+ , 
+-%22
+ environm
+@@ -422,38 +422,43 @@
+  environmentType
+-%22
+ );%0a
+-%09%09
++        
+ heroCtrl.checkEn
+@@ -474,13 +474,19 @@
+ ();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ priv
+@@ -516,38 +516,26 @@
+ D()%0a
+-%09%7b%0a%09%09pd.SetIntSwappedArgs(pd.G
++    %7b%0a        pd.S
+ etIn
+@@ -556,19 +556,21 @@
+ Type
+-Default%22), 
++%22, pd.GetInt(
+ %22env
+@@ -585,14 +585,28 @@
+ Type
+-%22);%0a%09%09
++Default%22));%0a        
+ hero
+@@ -634,9 +634,12 @@
+ ();%0a
+-%09
++    
+ %7d%0a%7d%0a

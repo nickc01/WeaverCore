@@ -1,0 +1,783 @@
+@@ -41,25 +41,8 @@
+ ms;%0a
+-using InControl;%0a
+ usin
+@@ -89,17 +89,20 @@
+ tants%0a%7b%0a
+-%09
++    
+ public c
+@@ -138,20 +138,23 @@
+ .5.7
+-8
++5
+ .118
+-33
++27
+ %22;%0a%0a
+-%09
++    
+ publ
+@@ -185,33 +185,36 @@
+ IMESCALE = 1f;%0a%0a
+-%09
++    
+ public const flo
+@@ -232,33 +232,36 @@
+ ESCALE = 0.5f;%0a%0a
+-%09
++    
+ public const flo
+@@ -279,33 +279,36 @@
+ IMESCALE = 0f;%0a%0a
+-%09
++    
+ public const flo
+@@ -328,25 +328,28 @@
+  = 0.165f;%0a%0a
+-%09
++    
+ public const
+@@ -381,33 +381,36 @@
+ RATE = 1E-05f;%0a%0a
+-%09
++    
+ public const flo
+@@ -435,33 +435,36 @@
+ N_WAIT = 0.5f;%0a%0a
+-%09
++    
+ public const flo
+@@ -493,25 +493,28 @@
+ Y = 0.79f;%0a%0a
+-%09
++    
+ public const
+@@ -551,25 +551,28 @@
+  = 0.225f;%0a%0a
+-%09
++    
+ public const
+@@ -600,25 +600,28 @@
+ S = 0.16f;%0a%0a
+-%09
++    
+ public const
+@@ -644,33 +644,36 @@
+ HEIGHT = 0.2f;%0a%0a
+-%09
++    
+ public const flo
+@@ -695,33 +695,36 @@
+ SNAP_V = 0.5f;%0a%0a
+-%09
++    
+ public const flo
+@@ -746,33 +746,36 @@
+ SNAP_H = 0.3f;%0a%0a
+-%09
++    
+ public const flo
+@@ -799,25 +799,28 @@
+ AP = 0.9f;%0a%0a
+-%09
++    
+ public const
+@@ -849,25 +849,28 @@
+ L = 0.15f;%0a%0a
+-%09
++    
+ public const
+@@ -899,25 +899,28 @@
+ U = 0.95f;%0a%0a
+-%09
++    
+ public const
+@@ -947,25 +947,28 @@
+  = -38.1f;%0a%0a
+-%09
++    
+ public const
+@@ -988,33 +988,36 @@
+ UND_X = 14.6f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1036,25 +1036,28 @@
+ _Y = 8.3f;%0a%0a
+-%09
++    
+ public const
+@@ -1084,33 +1084,36 @@
+ T_AMOUNT = 1f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1138,25 +1138,28 @@
+ TY = -20f;%0a%0a
+-%09
++    
+ public const
+@@ -1185,25 +1185,28 @@
+ SET = -4f;%0a%0a
+-%09
++    
+ public const
+@@ -1231,25 +1231,28 @@
+ FSET = 6f;%0a%0a
+-%09
++    
+ public const
+@@ -1282,33 +1282,36 @@
+ _TIMER = 0.5f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1340,33 +1340,36 @@
+ FROZEN = 0.5f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1384,33 +1384,36 @@
+ ENU_X = 14.6f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1427,33 +1427,36 @@
+ MENU_Y = 8.5f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1470,33 +1470,36 @@
+ CIN_X = 14.6f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1512,33 +1512,36 @@
+ _CIN_Y = 8.5f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1559,25 +1559,28 @@
+ X = 14.6f;%0a%0a
+-%09
++    
+ public const
+@@ -1601,25 +1601,28 @@
+ _Y = 8.5f;%0a%0a
+-%09
++    
+ public const
+@@ -1654,25 +1654,28 @@
+ UT = 0.6f;%0a%0a
+-%09
++    
+ public const
+@@ -1706,33 +1706,36 @@
+ T_FADE = 0.5f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1767,25 +1767,28 @@
+ DE = 2.3f;%0a%0a
+-%09
++    
+ public const
+@@ -1823,25 +1823,28 @@
+ H = 6.62f;%0a%0a
+-%09
++    
+ public const
+@@ -1874,33 +1874,36 @@
+ RATION = 0.7f;%0a%0a
+-%09
++    
+ public const flo
+@@ -1932,25 +1932,28 @@
+ TY = 0.7f;%0a%0a
+-%09
++    
+ public const
+@@ -1974,33 +1974,36 @@
+ W_DEPTH = 10f;%0a%0a
+-%09
++    
+ public const flo
+@@ -2026,25 +2026,28 @@
+ H = 1000f;%0a%0a
+-%09
++    
+ public const
+@@ -2072,25 +2072,28 @@
+  = 1E-05f;%0a%0a
+-%09
++    
+ public const
+@@ -2119,33 +2119,36 @@
+ E = 8.710664f;%0a%0a
+-%09
++    
+ public const flo
+@@ -2172,30 +2172,34 @@
+ T = 1.777777
+-8
++79
+ f;%0a%0a
+-%09
++    
+ public const
+@@ -2231,25 +2231,28 @@
+ IT = 0.5f;%0a%0a
+-%09
++    
+ public const
+@@ -2296,25 +2296,28 @@
+ illShake%22;%0a%0a
+-%09
++    
+ public const
+@@ -2348,25 +2348,28 @@
+ MIT = 60f;%0a%0a
+-%09
++    
+ public const
+@@ -2398,33 +2398,36 @@
+ ICKNESS = 20f;%0a%0a
+-%09
++    
+ public const str
+@@ -2454,25 +2454,28 @@
+ nu_Title%22;%0a%0a
+-%09
++    
+ public const
+@@ -2509,33 +2509,36 @@
+ %22Tutorial_01%22;%0a%0a
+-%09
++    
+ public const str
+@@ -2571,33 +2571,36 @@
+ ing_Sequence%22;%0a%0a
+-%09
++    
+ public const str
+@@ -2644,25 +2644,28 @@
+ Prologue%22;%0a%0a
+-%09
++    
+ public const
+@@ -2702,33 +2702,36 @@
+ tro_Cutscene%22;%0a%0a
+-%09
++    
+ public const str
+@@ -2773,25 +2773,28 @@
+ g_travel%22;%0a%0a
+-%09
++    
+ public const
+@@ -2831,25 +2831,28 @@
+ rmaDeath%22;%0a%0a
+-%09
++    
+ public const
+@@ -2897,25 +2897,28 @@
+ h_Unlock%22;%0a%0a
+-%09
++    
+ public const
+@@ -2969,25 +2969,28 @@
+ Mushroom%22;%0a%0a
+-%09
++    
+ public const
+@@ -3037,25 +3037,28 @@
+ Ending_A%22;%0a%0a
+-%09
++    
+ public const
+@@ -3105,25 +3105,28 @@
+ Ending_B%22;%0a%0a
+-%09
++    
+ public const
+@@ -3173,25 +3173,28 @@
+ Ending_C%22;%0a%0a
+-%09
++    
+ public const
+@@ -3241,25 +3241,28 @@
+ Ending_D%22;%0a%0a
+-%09
++    
+ public const
+@@ -3309,25 +3309,28 @@
+ Ending_E%22;%0a%0a
+-%09
++    
+ public const
+@@ -3359,33 +3359,36 @@
+ %22End_Credits%22;%0a%0a
+-%09
++    
+ public const str
+@@ -3419,25 +3419,28 @@
+ _Credits%22;%0a%0a
+-%09
++    
+ public const
+@@ -3482,25 +3482,28 @@
+ _Screens%22;%0a%0a
+-%09
++    
+ public const
+@@ -3539,25 +3539,28 @@
+ orial_01%22;%0a%0a
+-%09
++    
+ public const
+@@ -3607,25 +3607,28 @@
+ oss_Door%22;%0a%0a
+-%09
++    
+ public const
+@@ -3680,25 +3680,28 @@
+ mpletion%22;%0a%0a
+-%09
++    
+ public const
+@@ -3745,25 +3745,28 @@
+ Sequence%22;%0a%0a
+-%09
++    
+ public const
+@@ -3814,25 +3814,28 @@
+ Cutscene%22;%0a%0a
+-%09
++    
+ public const
+@@ -3889,25 +3889,28 @@
+ Entrance%22;%0a%0a
+-%09
++    
+ public const
+@@ -3948,25 +3948,28 @@
+ aterways%22;%0a%0a
+-%09
++    
+ public const
+@@ -4012,25 +4012,28 @@
+ E SAVING%22;%0a%0a
+-%09
++    
+ public const
+@@ -4073,25 +4073,28 @@
+ ME SAVED%22;%0a%0a
+-%09
++    
+ public const
+@@ -4114,25 +4114,28 @@
+  = 0.004f;%0a%0a
+-%09
++    
+ public const
+@@ -4158,33 +4158,36 @@
+ ATH_WAIT = 0f;%0a%0a
+-%09
++    
+ public const flo
+@@ -4215,25 +4215,28 @@
+ IT = 0.8f;%0a%0a
+-%09
++    
+ public const
+@@ -4271,25 +4271,28 @@
+ IT = 0.1f;%0a%0a
+-%09
++    
+ public const
+@@ -4321,25 +4321,28 @@
+ T = 0.33f;%0a%0a
+-%09
++    
+ public const
+@@ -4374,25 +4374,28 @@
+ = -1E-06f;%0a%0a
+-%09
++    
+ public const
+@@ -4419,33 +4419,36 @@
+ 9 = 1.777778f;%0a%0a
+-%09
++    
+ public const flo
+@@ -4473,25 +4473,28 @@
+ 1.777778f;%0a%0a
+-%09
++    
+ public const
+@@ -4527,25 +4527,28 @@
+ EOUT = 5f;%0a%0a
+-%09
++    
+ public const
+@@ -4589,25 +4589,28 @@
+ WN = 0.3f;%0a%0a
+-%09
++    
+ public const
+@@ -4638,25 +4638,28 @@
+ SE = 0.2f;%0a%0a
+-%09
++    
+ public const
+@@ -4705,33 +4705,36 @@
+ rmadeathMode%22;%0a%0a
+-%09
++    
+ public const str
+@@ -4776,25 +4776,28 @@
+ RushMode%22;%0a%0a
+-%09
++    
+ public const
+@@ -4859,17 +4859,20 @@
+ es.EN;%0a%0a
+-%09
++    
+ public c
+@@ -4900,33 +4900,36 @@
+ ERCREDITS = 0;%0a%0a
+-%09
++    
+ public const int
+@@ -4952,25 +4952,28 @@
+ OPUPS = 0;%0a%0a
+-%09
++    
+ public const
+@@ -4999,33 +4999,36 @@
+ EINPUT = true;%0a%0a
+-%09
++    
+ public const flo
+@@ -5050,33 +5050,36 @@
+ TER_VOL = 10f;%0a%0a
+-%09
++    
+ public const flo
+@@ -5100,33 +5100,36 @@
+ SIC_VOL = 10f;%0a%0a
+-%09
++    
+ public const flo
+@@ -5154,25 +5154,28 @@
+ VOL = 10f;%0a%0a
+-%09
++    
+ public const
+@@ -5198,25 +5198,28 @@
+ SX = 1920;%0a%0a
+-%09
++    
+ public const
+@@ -5242,25 +5242,28 @@
+ SY = 1080;%0a%0a
+-%09
++    
+ public const
+@@ -5287,25 +5287,28 @@
+ RESH = 60;%0a%0a
+-%09
++    
+ public const
+@@ -5334,25 +5334,28 @@
+ CREEN = 2;%0a%0a
+-%09
++    
+ public const
+@@ -5376,25 +5376,28 @@
+ VSYNC = 0;%0a%0a
+-%09
++    
+ public const
+@@ -5428,25 +5428,28 @@
+ CAP = 400;%0a%0a
+-%09
++    
+ public const
+@@ -5489,17 +5489,20 @@
+  true;%0a%0a
+-%09
++    
+ public c
+@@ -5536,332 +5536,63 @@
+ 0;%0a%0a
+-%09public const int DEFAULT_VIDEO_PARTICLES = 1;%0a%0a%09public const ShaderQualities DEFAULT_VIDEO_SHADER_QUALITY = ShaderQualities.Medium;%0a%0a%09public const ShaderQualities NEW_PLAYER_DEFAULT_VIDEO_SHADER_QUALITY = ShaderQualities.Medium;%0a%0a%09public const ShaderQualities EXISTING_PLAYER_VIDEO_SHADER_QUALITY = ShaderQualities.High;%0a%0a%09
++    public const int DEFAULT_VIDEO_PARTICLES = 1;%0a%0a    
+ publ
+@@ -5623,25 +5623,28 @@
+ NCAM = 1f;%0a%0a
+-%09
++    
+ public const
+@@ -5681,2351 +5681,106 @@
+ f;%0a%0a
+-%09public const float MM_OS_DEFAULT = 0f;%0a%0a%09public const float DEFAULT_BRIGHTNESS = 20f;%0a%0a%09public const GamepadType MM_INPUTTYPE = GamepadType.NONE;%0a%0a%09public const ControllerProfile MM_INPUTPROFILE = ControllerProfile.Default;%0a%0a%09public const Key DEFAULT_KEY_JUMP = Key.Z;%0a%0a%09public const Key DEFAULT_KEY_ATTACK = Key.X;%0a%0a%09public const Key DEFAULT_KEY_DASH = Key.C;%0a%0a%09public const Key DEFAULT_KEY_CAST = Key.A;%0a%0a%09public const Key DEFAULT_KEY_SUPERDASH = Key.S;%0a%0a%09public const Key DEFAULT_KEY_DREAMNAIL = Key.D;%0a%0a%09public const Key DEFAULT_KEY_QUICKMAP = Key.Tab;%0a%0a%09public const Key DEFAULT_KEY_QUICKCAST = Key.F;%0a%0a%09public const Key DEFAULT_KEY_INVENTORY = Key.I;%0a%0a%09public const Key DEFAULT_KEY_UP = Key.UpArrow;%0a%0a%09public const Key DEFAULT_KEY_DOWN = Key.DownArrow;%0a%0a%09public const Key DEFAULT_KEY_LEFT = Key.LeftArrow;%0a%0a%09public const Key DEFAULT_KEY_RIGHT = Key.RightArrow;%0a%0a%09public const InputControlType BUTTON_DEFAULT_JUMP = InputControlType.Action1;%0a%0a%09public const InputControlType BUTTON_DEFAULT_ATTACK = InputControlType.Action3;%0a%0a%09public const InputControlType BUTTON_DEFAULT_CAST = InputControlType.Action2;%0a%0a%09public const InputControlType BUTTON_DEFAULT_DASH = InputControlType.RightTrigger;%0a%0a%09public const InputControlType BUTTON_DEFAULT_SUPERDASH = InputControlType.LeftTrigger;%0a%0a%09public const InputControlType BUTTON_DEFAULT_DREAMNAIL = InputControlType.Action4;%0a%0a%09public const InputControlType BUTTON_DEFAULT_QUICKMAP = InputControlType.LeftBumper;%0a%0a%09public const InputControlType BUTTON_DEFAULT_QUICKCAST = InputControlType.RightBumper;%0a%0a%09public const InputControlType BUTTON_DEFAULT_INVENTORY = InputControlType.Back;%0a%0a%09public const InputControlType BUTTON_DEFAULT_PS4_INVENTORY = InputControlType.TouchPadButton;%0a%0a%09public const InputControlType BUTTON_DEFAULT_PS4_PAUSE = InputControlType.Options;%0a%0a%09public const InputControlType BUTTON_DEFAULT_XBONE_INVENTORY = InputControlType.View;%0a%0a%09public const InputControlType BUTTON_DEFAULT_XBONE_PAUSE = InputControlType.Menu;%0a%0a%09public const InputControlType BUTTON_DEFAULT_PS3_WIN_INVENTORY = InputControlType.Select;%0a%0a%09public const InputControlType BUTTON_DEFAULT_SWITCH_INVENTORY = InputControlType.Select;%0a%0a%09public const InputControlType BUTTON_DEFAULT_SWITCH_PAUSE = InputControlType.Start;%0a%0a%09public const InputControlType BUTTON_DEFAULT_UNKNOWN_INVENTORY = InputControlType.Select;%0a%0a%09
++    public const float MM_OS_DEFAULT = 0f;%0a%0a    public const float DEFAULT_BRIGHTNESS = 20f;%0a%0a    
+ publ
+@@ -5826,25 +5826,28 @@
+ GameLang%22;%0a%0a
+-%09
++    
+ public const
+@@ -5887,25 +5887,28 @@
+ eBackers%22;%0a%0a
+-%09
++    
+ public const
+@@ -5952,25 +5952,28 @@
+ vePopups%22;%0a%0a
+-%09
++    
+ public const
+@@ -6013,25 +6013,28 @@
+ bleMuted%22;%0a%0a
+-%09
++    
+ public const
+@@ -6068,25 +6068,28 @@
+ %22VidResX%22;%0a%0a
+-%09
++    
+ public const
+@@ -6123,25 +6123,28 @@
+ %22VidResY%22;%0a%0a
+-%09
++    
+ public const
+@@ -6187,25 +6187,28 @@
+ sRefresh%22;%0a%0a
+-%09
++    
+ public const
+@@ -6254,25 +6254,28 @@
+ llscreen%22;%0a%0a
+-%09
++    
+ public const
+@@ -6311,25 +6311,28 @@
+ VidVSync%22;%0a%0a
+-%09
++    
+ public const
+@@ -6372,25 +6372,28 @@
+ dDisplay%22;%0a%0a
+-%09
++    
+ public const
+@@ -6425,25 +6425,28 @@
+  %22VidTFR%22;%0a%0a
+-%09
++    
+ public const
+@@ -6482,25 +6482,28 @@
+ = %22VidFC%22;%0a%0a
+-%09
++    
+ public const
+@@ -6547,25 +6547,28 @@
+ articles%22;%0a%0a
+-%09
++    
+ public const
+@@ -6618,25 +6618,28 @@
+ rQuality%22;%0a%0a
+-%09
++    
+ public const
+@@ -6670,33 +6670,36 @@
+  %22VidOSValue%22;%0a%0a
+-%09
++    
+ public const str
+@@ -6726,25 +6726,28 @@
+ VidOSSet%22;%0a%0a
+-%09
++    
+ public const
+@@ -6790,25 +6790,28 @@
+ ghtValue%22;%0a%0a
+-%09
++    
+ public const
+@@ -6850,25 +6850,28 @@
+ rightSet%22;%0a%0a
+-%09
++    
+ public const
+@@ -6908,33 +6908,36 @@
+ MasterVolume%22;%0a%0a
+-%09
++    
+ public const str
+@@ -6968,33 +6968,36 @@
+ %22MusicVolume%22;%0a%0a
+-%09
++    
+ public const str
+@@ -7032,25 +7032,28 @@
+ ndVolume%22;%0a%0a
+-%09
++    
+ public const
+@@ -7085,25 +7085,28 @@
+ %22KeyJump%22;%0a%0a
+-%09
++    
+ public const
+@@ -7142,25 +7142,28 @@
+ eyAttack%22;%0a%0a
+-%09
++    
+ public const
+@@ -7191,33 +7191,36 @@
+ H = %22KeyDash%22;%0a%0a
+-%09
++    
+ public const str
+@@ -7244,33 +7244,36 @@
+ T = %22KeyCast%22;%0a%0a
+-%09
++    
+ public const str
+@@ -7309,25 +7309,28 @@
+ ySupDash%22;%0a%0a
+-%09
++    
+ public const
+@@ -7372,25 +7372,28 @@
+ reamnail%22;%0a%0a
+-%09
++    
+ public const
+@@ -7433,25 +7433,28 @@
+ QuickMap%22;%0a%0a
+-%09
++    
+ public const
+@@ -7496,25 +7496,28 @@
+ uickCast%22;%0a%0a
+-%09
++    
+ public const
+@@ -7559,25 +7559,28 @@
+ nventory%22;%0a%0a
+-%09
++    
+ public const
+@@ -7608,25 +7608,28 @@
+ = %22KeyUp%22;%0a%0a
+-%09
++    
+ public const
+@@ -7661,25 +7661,28 @@
+ %22KeyDown%22;%0a%0a
+-%09
++    
+ public const
+@@ -7714,25 +7714,28 @@
+ %22KeyLeft%22;%0a%0a
+-%09
++    
+ public const
+@@ -7769,25 +7769,28 @@
+ KeyRight%22;%0a%0a
+-%09
++    
+ public const
+@@ -7834,25 +7834,28 @@
+ ntroller%22;%0a%0a
+-%09
++    
+ public const
+@@ -7891,25 +7891,28 @@
+ eLangSet%22;%0a%0a
+-%09
++    
+ public const
+@@ -7952,25 +7952,28 @@
+ iveInput%22;%0a%0a
+-%09
++    
+ public const
+@@ -8010,25 +8010,28 @@
+ resetall%22;%0a%0a
+-%09
++    
+ public const
+@@ -8068,25 +8068,28 @@
+ resetres%22;%0a%0a
+-%09
++    
+ public const
+@@ -8128,25 +8128,28 @@
+ orcelang%22;%0a%0a
+-%09
++    
+ public const
+@@ -8189,25 +8189,28 @@
+ lowdebug%22;%0a%0a
+-%09
++    
+ public const
+@@ -8257,17 +8257,20 @@
+ nput%22;%0a%0a
+-%09
++    
+ public s
+@@ -8318,21 +8318,30 @@
+ leName)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ FieldInf
+@@ -8425,18 +8425,24 @@
+ ublic);%0a
+-%09%09
++        
+ foreach 
+@@ -8473,23 +8473,38 @@
+ fields)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (fiel
+@@ -8531,25 +8531,46 @@
+ leName)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ if (fiel
+@@ -8603,19 +8603,46 @@
+ T))%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ retu
+@@ -8684,18 +8684,42 @@
+ ();%0a
+-%09%09%09%09%7d%0a%09%09%09%09
++                %7d%0a                
+ Debu
+@@ -8846,19 +8846,40 @@
+ %22);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ Debu
+@@ -8947,10 +8947,16 @@
+ e);%0a
+-%09%09
++        
+ retu
+@@ -8974,9 +8974,12 @@
+ T);%0a
+-%09
++    
+ %7d%0a%7d%0a

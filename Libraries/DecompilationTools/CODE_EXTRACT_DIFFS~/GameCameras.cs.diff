@@ -1,0 +1,277 @@
+@@ -1,25 +1,122 @@
+ using 
+-UnityEngine
++System;%0ausing System.Collections.Generic;%0ausing System.Linq;%0ausing System.Text;%0ausing System.Threading.Tasks
+ ;%0ausing 
+@@ -126,19 +126,16 @@
+ tyEngine
+-.UI
+ ;%0ausing 
+@@ -167,16 +167,59 @@
+ Effects;
++%0a#if UNITY_EDITOR%0ausing UnityEditor;%0a#endif
+ %0a%0apublic
+@@ -260,1146 +260,471 @@
+ %0a%7b%0a%09
+-%5bHeader(%22Cameras%22)%5d%0a%09public Camera hudCamera;%0a%0a%09public Camera mainCamera;%0a%0a%09%5bHeader(%22Controllers%22)%5d%0a%09public CameraController cameraController;%0a%0a%09public CameraTarget cameraTarget;%0a%0a%09public ForceCameraAspect forceCameraAspect;%0a%0a%09%5bHeader(%22FSMs%22)%5d%0a%09public PlayMakerFSM cameraFadeFSM;%0a%0a%09public PlayMakerFSM cameraShakeFSM;%0a%0a%09public PlayMakerFSM soulOrbFSM;%0a%0a%09public PlayMakerFSM soulVesselFSM;%0a%0a%09public PlayMakerFSM openStagFSM;%0a%0a%09%5bHeader(%22Camera Effects%22)%5d%0a%09public ColorCorrectionCurves colorCorrectionCurves;%0a%0a%09public SceneColorManager sceneColorManager;%0a%0a%09public BrightnessEffect brightnessEffect;%0a%0a%09public SceneParticlesController sceneParticlesPrefab;%0a%0a%09%5bHeader(%22Other%22)%5d%0a%09public tk2dCamera tk2dCam;%0a%0a%09public GameObject hudCanvas;%0a%0a%09public Transform cameraParent;%0a%0a%09public GeoCounter geoCounter;%0a%0a%09private GameManager gm;%0a%0a%09private GameSettings gs;%0a%0a%09private CanvasScaler canvasScaler;%0a%0a%09private bool init;%0a%0a%09private static GameCameras _instance;%0a%0a%09public SceneParticlesController sceneParticles %7b get; private set; %7d%0a%0a%09public static Game
++private static GameCameras _instance;%0a%09public static GameCameras instance%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (GameCameras._instance == null)%0a%09%09%09%7b%0a%09%09%09%09GameCameras._instance = UnityEngine.Object.FindObjectOfType%3cGameCameras%3e();%0a%09%09%09%09if (GameCameras._instance == null)%0a%09%09%09%09%7b%0a%09%09%09%09%09var instanceProp = WeaverTypeHelpers.GetWeaverProperty(%22WeaverCore.Weaver
+ Camera
+-s i
++%22, %22I
+ nstance
+-%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (_instance == 
++%22);%0a%09%09%09%09%09var cam = (Component)instanceProp.GetValue(
+ null)
++;
+ %0a%09%09%09
+-%7b%0a%09%09%09%09_instance = Object.FindObjectOfType
++%09%09GameCameras._instance = cam.GetComponentInParent
+ %3cGam
+@@ -740,20 +740,33 @@
+ ();%0a%09%09%09%09
++%09
+ if (
++GameCameras.
+ _instanc
+@@ -780,23 +780,25 @@
+ ll)%0a%09%09%09%09
++%09
+ %7b%0a%09%09%09%09%09
++%09
+ Debug.Lo
+@@ -878,30 +878,90 @@
+ %09%09%09%09
+-%7d%0a%09%09%09%09else%0a%09%09%09%09%7b%0a%09%09%09%09%09
++%09%09return null;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09if (Application.isPlaying)%0a%09%09%09%09%7b%0a%09%09%09%09%09UnityEngine.
+ Obje
+@@ -973,32 +973,44 @@
+ ntDestroyOnLoad(
++GameCameras.
+ _instance.gameOb
+@@ -1029,32 +1029,44 @@
+ %0a%09%09%09%7d%0a%09%09%09return 
++GameCameras.
+ _instance;%0a%09%09%7d%0a%09
+@@ -1060,33 +1060,36 @@
+ stance;%0a%09%09%7d%0a%09%7d%0a%0a
+-%09
++    
+ private void Awa
+@@ -1094,32 +1094,44 @@
+ wake()%0a%09%7b%0a%09%09if (
++GameCameras.
+ _instance == nul
+@@ -1132,32 +1132,44 @@
+ == null)%0a%09%09%7b%0a%09%09%09
++GameCameras.
+ _instance = this
+@@ -1169,24 +1169,36 @@
+  = this;%0a%09%09%09
++UnityEngine.
+ Object.DontD
+@@ -1223,29 +1223,47 @@
+ ;%0a%09%09
+-%7d%0a%09%09else if (this != 
++%09return;%0a%09%09%7d%0a%09%09if (this != GameCameras.
+ _ins
+@@ -1272,24 +1272,36 @@
+ nce)%0a%09%09%7b%0a%09%09%09
++UnityEngine.
+ Object.Destr
+@@ -1336,111 +1336,179 @@
+ ;%0a%09%09
+-%7d%0a%09%7d%0a%0a%09private void Start()%0a%09%7b%0a%09%09gs.LoadOverscanSettings();%0a%09%09SetOverscan(gs.overScanAdjustment);%0a%09%7d%0a%0a%09
++%09return;%0a%09%09%7d%0a%09%09cameraController.transform.position += transform.localPosition;%0a%09%09transform.localPosition = default;%0a%09%7d%0a%0a    private void Start()%0a    %7b%0a        %0a    %7d%0a%0a    
+ publ
+@@ -1526,26 +1526,32 @@
+ neInit()%0a%09%7b%0a
+-%09%09
++        
+ if (this == 
+@@ -1550,16 +1550,28 @@
+ this == 
++GameCameras.
+ _instanc
+@@ -1580,16 +1580,21 @@
+ %0a%09%09%7b%0a%09%09%09
++this.
+ StartSce
+@@ -1625,212 +1625,38 @@
+ oid 
+-OnDestroy()%0a%09%7b%0a%09%09Object.DestroyImmediate(sceneParticles);%0a%09%7d%0a%0a%09private void SetupGameRefs()%0a%09%7b%0a%09%09gm = GameManager.instance;%0a%09%09gs = gm.gameSettings;%0a%09%09canvasScaler = UIManager.instance.canvasScaler;%0a%09%09if (
++SetupGameRefs()%0a%09%7b%0a%09%09if (this.
+ came
+@@ -1676,32 +1676,37 @@
+ != null)%0a%09%09%7b%0a%09%09%09
++this.
+ cameraController
+@@ -1800,24 +1800,29 @@
+ ;%0a%09%09%7d%0a%09%09if (
++this.
+ cameraTarget
+@@ -1834,24 +1834,29 @@
+ ull)%0a%09%09%7b%0a%09%09%09
++this.
+ cameraTarget
+@@ -1936,34 +1936,347 @@
+ spector.%22);%0a%09%09%7d%0a
+-%09%09
++%0a#if UNITY_EDITOR%0a        if (sceneParticlesPrefab == null)%0a        %7b%0a            sceneParticlesPrefab = AssetDatabase.LoadAssetAtPath%3cGameObject%3e(AssetDatabase.GUIDToAssetPath(AssetDatabase.FindAssets(%22t:GameObject Knight Particles_follow%22)%5b0%5d)).GetComponent%3cSceneParticlesController%3e();%0a        %7d%0a#endif%0a%0a        
+ if (sceneParticl
+@@ -2289,31 +2289,46 @@
+ ab != null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ sceneParticl
+@@ -2332,16 +2332,28 @@
+ icles = 
++UnityEngine.
+ Object.I
+@@ -2386,19 +2386,28 @@
+ refab);%0a
+-%09%09%09
++            
+ scenePar
+@@ -2448,19 +2448,130 @@
+ oller%22;%0a
++%0a
+ %09%09%09
++var camera = GameObject.FindObjectOfType%3cCameraController%3e() ?? CameraController.EditorInstance;%0a%0a            
+ scenePar
+@@ -2610,23 +2610,22 @@
+ Vector3(
+-tk2dCam
++camera
+ .transfo
+@@ -2639,23 +2639,22 @@
+ tion.x, 
+-tk2dCam
++camera
+ .transfo
+@@ -2673,19 +2673,28 @@
+ y, 0f);%0a
+-%09%09%09
++            
+ scenePar
+@@ -2724,15 +2724,14 @@
+ ent(
+-tk2dCam
++camera
+ .tra
+@@ -2739,34 +2739,61 @@
+ sform);%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7d%0a        else%0a        %7b%0a            
+ Debug.Lo
+@@ -2848,26 +2848,43 @@
+ tor.%22);%0a
+-%09%09%7d%0a%09%09if (
++        %7d%0a        if (this.
+ sceneCol
+@@ -2909,16 +2909,21 @@
+ %0a%09%09%7b%0a%09%09%09
++this.
+ sceneCol
+@@ -3027,16 +3027,21 @@
+ ;%0a%09%09%7d%0a%09%09
++this.
+ init = t
+@@ -3078,32 +3078,37 @@
+ ene()%0a%09%7b%0a%09%09if (!
++this.
+ init)%0a%09%09%7b%0a%09%09%09Set
+@@ -3096,32 +3096,37 @@
+ is.init)%0a%09%09%7b%0a%09%09%09
++this.
+ SetupGameRefs();
+@@ -3136,18 +3136,36 @@
+ %7d%0a%09%09if (
+-gm
++GameManager.instance
+ .IsGamep
+@@ -3178,18 +3178,36 @@
+ ne() %7c%7c 
+-gm
++GameManager.instance
+ .ShouldK
+@@ -3239,39 +3239,39 @@
+ %0a%09%09%09
+-MoveMenuToHUDCamera();%0a%09%09%09if (!
++if (hudCamera != null && !this.
+ hudC
+@@ -3308,16 +3308,21 @@
+ %09%09%7b%0a%09%09%09%09
++this.
+ hudCamer
+@@ -3344,23 +3344,16 @@
+ tActive(
+-value: 
+ true);%0a%09
+@@ -3366,58 +3366,32 @@
+ %7d%0a%09%09
+-else%0a%09%09%7b%0a%09%09%09DisableHUDCamIfAllowed();%0a%09%09%7d%0a%09%09if (gm
++if (GameManager.instance
+ .IsM
+@@ -3401,32 +3401,37 @@
+ Scene())%0a%09%09%7b%0a%09%09%09
++this.
+ cameraController
+@@ -3484,18 +3484,36 @@
+ lse if (
+-gm
++GameManager.instance
+ .IsCinem
+@@ -3528,24 +3528,29 @@
+ e())%0a%09%09%7b%0a%09%09%09
++this.
+ cameraContro
+@@ -3603,26 +3603,44 @@
+ %0a%09%09else if (
+-gm
++GameManager.instance
+ .IsNonGamepl
+@@ -3661,18 +3661,36 @@
+ %0a%09%09%09if (
+-gm
++GameManager.instance
+ .IsBossD
+@@ -3702,32 +3702,37 @@
+ ene())%0a%09%09%09%7b%0a%09%09%09%09
++this.
+ cameraController
+@@ -3787,144 +3787,8 @@
+ else
+- if (InGameCutsceneInfo.IsInCutscene)%0a%09%09%09%7b%0a%09%09%09%09cameraController.transform.SetPosition2D(InGameCutsceneInfo.CameraPosition);%0a%09%09%09%7d%0a%09%09%09else
+ %0a%09%09%09
+@@ -3793,16 +3793,21 @@
+ %09%09%7b%0a%09%09%09%09
++this.
+ cameraCo
+@@ -3860,24 +3860,29 @@
+ %0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++this.
+ cameraContro
+@@ -3897,24 +3897,29 @@
+ neInit();%0a%09%09
++this.
+ cameraTarget
+@@ -3930,24 +3930,29 @@
+ neInit();%0a%09%09
++this.
+ sceneColorMa
+@@ -3976,1010 +3976,83 @@
+ ;%0a%09%09
+-sceneParticles.SceneInit();%0a%09%7d%0a%0a%09public void MoveMenuToHUDCamera()%0a%09%7b%0a%09%09int cullingMask = mainCamera.cullingMask;%0a%09%09int cullingMask2 = hudCamera.cullingMask;%0a%09%09UIManager.instance.UICanvas.worldCamera = hudCamera;%0a%09%09UIManager.instance.UICanvas.renderMode = RenderMode.ScreenSpaceCamera;%0a%09%09mainCamera.cullingMask = cullingMask %5e 0x8000000;%0a%09%09hudCamera.cullingMask = cullingMask2 %7c 0x8000000;%0a%09%7d%0a%0a%09public void DisableHUDCamIfAllowed()%0a%09%7b%0a%09%09if (gm.IsNonGameplayScene() && !gm.IsStagTravelScene() && !gm.IsBossDoorScene() && !gm.ShouldKeepHUDCameraActive())%0a%09%09%7b%0a%09%09%09hudCamera.gameObject.SetActive(value: false);%0a%09%09%7d%0a%09%7d%0a%0a%09public void StopCameraShake()%0a%09%7b%0a%09%09cameraShakeFSM.Fsm.Event(%22CANCEL SHAKE%22);%0a%09%7d%0a%0a%09public void ResumeCameraShake()%0a%09%7b%0a%09%09cameraShakeFSM.Fsm.Event(%22RESUME SHAKE%22);%0a%09%7d%0a%0a%09public void DisableImageEffects()%0a%09%7b%0a%09%09mainCamera.GetComponent%3cFastNoise%3e().enabled = false;%0a%09%09mainCamera.GetComponent%3cBloomOptimized%3e().enabled = false;%0a%09%09mainCamera.GetComponent%3cColorCorrectionCurves%3e().enabled = false;
++this.sceneParticles.SceneInit();%0a%09%7d%0a%0a%09public void DisableImageEffects()%0a%09%7b%0a
+ %0a%09%7d%0a
+@@ -4281,1092 +4281,609 @@
+ %09%7d%0a%0a
+-%09public void SetOverscan(float value)%0a%09%7b%0a%09%09if (!init)%0a%09%09%7b%0a%09%09%09SetupGameRefs();%0a%09%09%7d%0a%09%09Invoke(%22TestParentForPosition%22, 0.33f * Time.timeSca
++    private void OnDestroy()%0a    %7b%0a        UnityEngine.Object.DestroyImmediate(scenePartic
+ le
++s
+ );%0a
+-%09%09float num = (float)Screen.width / (float)Screen.height;%0a%09%09if (canvasScaler == null)%0a%09%09%7b%0a%09%09%09canvasScaler = UIManager.instance.canvasScaler;%0a%09%09%7d%0a%09%09canvasScaler.referenceResolution = new Vector2(1920f * (1f - value) + -220f * value, 1080f * (1f - value) + 1f / num * (-220f * value));%0a%09%09forceCameraAspect.SetOverscanViewport(value);%0a%09%09gs.overScanAdjustment = value;%0a%09%7d%0a%0a%09public void TestParentForPosition()%0a%09%7b%0a%09%09if (cameraParent.transform.localPosition.z != 0f)%0a%09%09%7b%0a%09%09%09cameraParent.transform.localPosition = new Vector3(cameraParent.transform.localPosition.x, cameraParent.transform.localPosition.y, 0f);%0a%09%09%7d%0a%09%7d%0a%0a%09public static GameCameras orig_get_instance()%0a%09%7b%0a%09%09if (_instance == null)%0a%09%09%7b%0a%09%09%09_instance = Object.FindObjectOfType%3cGameCameras%3e();%0a%09%09%09if (_instance == null)%0a%09%09%09%7b%0a%09%09%09%09Debug.LogError(%22Couldn't find GameCameras, make sure one exists in the scene.%22);%0a%09%09%09%7d%0a%09%09%09Object.DontDestroyOnLoad(_instance.gameObject);%0a%09%09%7d%0a%09%09return _instance;%0a%09
++    %7d%0a%0a    %5bHeader(%22Controllers%22)%5d%0a%09public CameraController cameraController;%0a%0a%09public CameraTarget cameraTarget;%0a%0a%09%5bHeader(%22Cameras%22)%5d%0a%09public Camera hudCamera;%0a%0a%09public Camera mainCamera;%0a%0a%09public Transform cameraParent;%0a%0a%09%5bHeader(%22Camera Effects%22)%5d%0a%09public ColorCorrectionCurves colorCorrectionCurves;%0a%0a%09public SceneColorManager sceneColorManager;%0a%0a    public SceneParticlesController sceneParticlesPrefab;%0a%0a    private bool init;%0a%0a    public SceneParticlesController sceneParticles %7b get; private set; 
+ %7d%0a%7d
+-%0a

@@ -1,0 +1,28 @@
+@@ -25,18 +25,14 @@
+ cute
+-InEditMode
++Always
+ %5d%0apu
+@@ -299,19 +299,15 @@
+ %0a%09%7b%0a
++%0a
+ %09%09if (
+-base.
+ tran
+@@ -330,21 +330,16 @@
+ null && 
+-base.
+ transfor
+@@ -447,21 +447,16 @@
+ Raycast(
+-base.
+ transfor
+@@ -508,11 +508,36 @@
+ ce, 
+-256
++LayerMask.GetMask(%22Terrain%22)
+ ).po
+@@ -617,13 +617,8 @@
+ Ray(
+-base.
+ tran

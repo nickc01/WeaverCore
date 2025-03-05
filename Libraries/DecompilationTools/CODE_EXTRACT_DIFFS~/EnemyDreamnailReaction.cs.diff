@@ -1,0 +1,184 @@
+@@ -3,29 +3,33 @@
+ ing 
+-HutongGames.PlayMaker
++System;%0ausing System.Linq
+ ;%0aus
+@@ -105,583 +105,450 @@
+ %0a%7b%0a%09
+-private enum States%0a%09%7b%0a%09%09Suppressed,%0a%09%09Ready,%0a%09%09CoolingDown%0a%09%7d%0a%0a%09private const int RegularMPGain = 33;%0a%0a%09private const int BoostedMPGain = 66;%0a%0a%09private const float AttackMagnitude = 2f;%0a%0a%09private const float CooldownDuration = 0.2f;%0a%0a%09%5bSerializeField%5d%0a%09private int convoAmount;%0a%0a%09%5bSerializeField%5d%0a%09private string convoTitle;%0a%0a%09%5bSerializeField%5d%0a%09private bool startSuppressed;%0a%0a%09%5bSerializeField%5d%0a%09private bool noSoul;%0a%0a%09%5bSerializeField%5d%0a%09private GameObject dreamImpactPrefab;%0a%0a%09public bool allowUseChildColliders;%0a%0a%09private States state;%0a%0a%09private float cooldownTimeRemaining;
++static Type spriteFlasherType;%0a%0a%09static Type GetFlasherType()%0a    %7b%0a        if (spriteFlasherType == null)%0a        %7b%0a            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())%0a            %7b%0a                if (asm.GetName().Name == %22WeaverCore%22)%0a                %7b%0a%09%09%09%09%09spriteFlasherType = asm.GetType(%22WeaverCore.Components.SpriteFlasher%22);%0a%09%09%09%09%09break;%0a                %7d%0a            %7d%0a        %7d%0a%09%09return spriteFlasherType;%0a    %7d
+ %0a%0a%09p
+@@ -711,23 +711,69 @@
+ ) ? 
+-States.Ready : 
++EnemyDreamnailReaction.States.Ready : EnemyDreamnailReaction.
+ Stat
+@@ -837,27 +837,50 @@
+ %09%09if (state 
+-=
++!
+ = 
++EnemyDreamnailReaction.
+ States.Ready
+@@ -884,24 +884,38 @@
+ ady)%0a%09%09%7b%0a%09%09%09
++return;%0a%09%09%7d%0a%09%09
+ if (!noSoul)
+@@ -917,23 +917,21 @@
+ Soul)%0a%09%09
+-%09
+ %7b%0a%09%09%09
+-%09
+ int amou
+@@ -940,39 +940,28 @@
+  = (
+-GameManager.instance.playerData
++!PlayerData.instance
+ .Get
+@@ -988,25 +988,33 @@
+ 30%22)
++)
+  ? 
+-66 : 33);%0a%09%09%09%09
++33 : 66;%0a            
+ Hero
+@@ -1054,24 +1054,28 @@
+ mount);%0a
+-%09%09%09
++        
+ %7d%0a%09%09
+-%09
+ ShowConv
+@@ -1077,25 +1077,24 @@
+ wConvo();%0a%09%09
+-%09
+ if (dreamImp
+@@ -1114,23 +1114,44 @@
+ null)%0a%09%09
+-%09
+ %7b%0a%09%09%09
+-%09
++GameObject.Instantiate(
+ dreamImp
+@@ -1163,17 +1163,10 @@
+ efab
+-.Spawn().
++, 
+ tran
+@@ -1183,44 +1183,38 @@
+ tion
+- = base.transform.position
++, Quaternion.identity)
+ ;%0a%09%09
+-%09
+ %7d%0a%09%09
+-%09
+ Reco
+@@ -1228,16 +1228,21 @@
+ onent = 
++base.
+ GetCompo
+@@ -1255,25 +1255,24 @@
+ ecoil%3e();%0a%09%09
+-%09
+ if (componen
+@@ -1284,23 +1284,21 @@
+ null)%0a%09%09
+-%09
+ %7b%0a%09%09%09
+-%09
+ bool fla
+@@ -1354,25 +1354,24 @@
+ x %3c= 0f;%0a%09%09%09
+-%09
+ component.Re
+@@ -1414,58 +1414,170 @@
+ ;%0a%09%09
+-%09
+ %7d
++%0a
+ %0a%09%09
+-%09SpriteFlash component2 = base.gameObject.Get
++//var flasherType = typeof(WeaverCore)%0a%0a%09%09Component%5b%5d flashers = GetComponentsInChildren(GetFlasherType());%0a%09%09//Component flasher = GetComponent(%22WeaverCore.
+ Comp
+@@ -1581,17 +1581,18 @@
+ omponent
+-%3c
++s.
+ SpriteFl
+@@ -1598,30 +1598,28 @@
+ lash
+-%3e(
++er%22
+ );%0a%09%09
+-%09
+ if (
+-component2
++flashers
+  != 
+@@ -1630,26 +1630,95 @@
+ )%0a%09%09
+-%09%7b%0a%09%09%09%09component2.
++%7b%0a            foreach (var flasher in flashers)%0a            %7b%0a%09%09%09%09flasher.SendMessage(%22
+ flas
+@@ -1729,17 +1729,17 @@
+ amImpact
+-(
++%22
+ );%0a%09%09%09%7d%0a
+@@ -1740,16 +1740,19 @@
+ %0a%09%09%09%7d%0a%09%09
++%7d%0a%09
+ %09state =
+@@ -1748,24 +1748,47 @@
+ %7d%0a%09%09state = 
++EnemyDreamnailReaction.
+ States.Cooli
+@@ -1797,17 +1797,16 @@
+ Down;%0a%09%09
+-%09
+ cooldown
+@@ -1828,20 +1828,16 @@
+  0.2f;%0a%09
+-%09%7d%0a%09
+ %7d%0a%0a%09publ
+@@ -1867,27 +1867,50 @@
+ %09%09if (state 
+-=
++!
+ = 
++EnemyDreamnailReaction.
+ States.Suppr
+@@ -1923,24 +1923,61 @@
+ %0a%09%09%7b%0a%09%09%09
+-state = 
++return;%0a%09%09%7d%0a%09%09state = EnemyDreamnailReaction.
+ States.R
+@@ -1983,20 +1983,16 @@
+ Ready;%0a%09
+-%09%7d%0a%09
+ %7d%0a%0a%09publ
+@@ -2090,476 +2090,1055 @@
+ %09%7b%0a%09
+-%09PlayMakerFSM playMakerFSM = PlayMakerFSM.FindFsmOnGameObject(FsmVariables.GlobalVariables.GetFsmGameObject(%22
++%7d%0a%0a%09protected void Update()%0a%09%7b%0a%09%09if (state == EnemyDreamnailReaction.States.CoolingDown)%0a%09%09%7b%0a%09%09%09cooldownTimeRemaining -= Time.deltaTime;%0a%09%09%09if (cooldownTimeRemaining %3c= 0f)%0a%09%09%09%7b%0a%09%09%09%09state = 
+ Enemy
+- 
+ Dream
+- Msg%22).Value, %22Display%22);%0a%09%09playMakerFSM.FsmVariables.GetFsmInt(%22Convo Amount%22).Value = convoAmount;%0a%09%09playMakerFSM.FsmVariables.GetFsmS
++nailReaction.States.Ready;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09private const int RegularMPGain = 33;%0a%0a%09private const int BoostedMPGain = 66;%0a%0a%09private const float AttackMagnitude = 2f;%0a%0a%09private const float CooldownDuration = 0.2f;%0a%0a%09%5bSerializeField%5d%0a%09private int convoAmount;%0a%0a%09%5bSerializeField%5d%0a%09private s
+ tring
+-(%22C
++ c
+ onvo
+- 
+ Title
+-%22).Value = convoTitle;%0a%09%09playMakerFSM.SendEvent(%22DISPLAY ENEMY DREAM%22);%0a%09%7d%0a%0a%09protected void Update()%0a%09%7b%0a%09%09if (state == States.CoolingDown)%0a%09%09%7b%0a%09%09%09cooldownTimeRemaining -= Time.deltaTime;%0a%09%09%09if (
++;%0a%0a%09%5bSerializeField%5d%0a%09%5bTooltip(%22If enabled, this component will not react to dream nail hits until MakeReady() is called%22)%5d%0a%09private bool startSuppressed;%0a%0a%09%5bSerializeField%5d%0a%09%5bTooltip(%22If set to true, dreamnailing this object will not give the player any soul%22)%5d%0a%09private bool noSoul;%0a%0a%09%5bSerializeField%5d%0a%09%5bTooltip(%22If this field is not null, then it will spawn the prefab when this object is dreamnailed%22)%5d%0a%09private GameObject dreamImpactPrefab;%0a%0a%09public bool allowUseChildColliders;%0a%0a%09private EnemyDreamnailReaction.States state;%0a%0a%09private float 
+ cool
+@@ -3158,57 +3158,72 @@
+ ning
+- %3c= 0f)%0a%09%09%09%7b%0a%09%09%09%09state = States.Ready;%0a%09%09%09%7d%0a%09%09%7d
++;%0a%0a%09private enum States%0a%09%7b%0a%09%09Suppressed,%0a%09%09Ready,%0a%09%09CoolingDown
+ %0a%09%7d%0a%7d
+-%0a

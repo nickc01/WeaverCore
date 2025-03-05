@@ -1,0 +1,33 @@
+@@ -111,56 +111,8 @@
+ r%0a%7b%0a
+-%09private ShaderQualities appliedShaderQuality;%0a%0a
+ %09pri
+@@ -164,16 +164,59 @@
+ round;%0a%0a
++%09%5bSerializeField%5d%0a%09private int baseWidth;%0a%0a
+ %09%5bSerial
+@@ -251,16 +251,67 @@
+ eight;%0a%0a
++%09%5bSerializeField%5d%0a%09private int largeConsoleWidth;%0a%0a
+ %09%5bSerial
+@@ -387,55 +387,8 @@
+ %7b%0a%09%09
+-appliedShaderQuality = ShaderQualities.High;%0a%09%09
+ ligh
+@@ -450,16 +450,54 @@
+ d%3e();%0a%09%09
++int renderTextureWidth = baseWidth;%0a%09%09
+ int rend
+@@ -570,16 +570,59 @@
+ %0a%09%09%7b%0a%09%09%09
++renderTextureWidth = largeConsoleWidth;%0a%09%09%09
+ renderTe
+@@ -661,16 +661,82 @@
+ ;%0a%09%09%7d%0a%09%09
++lightBlurredBackground.RenderTextureWidth = renderTextureWidth;%0a%09%09
+ lightBlu
+@@ -942,433 +942,46 @@
+ %7d%0a%09%09
+-ShaderQualities shaderQuality = unsafeInstance.gameSettings.shaderQuality;%0a%09%09if (shaderQuality != appliedShaderQuality)%0a%09%09%7b%0a%09%09%09appliedShaderQuality = shaderQuality;%0a%09%09%09if (shaderQuality %3c= ShaderQualities.Medium)%0a%09%09%09%7b%0a%09%09%09%09lightBlurredBackground.PassGroupCount = ((shaderQuality == ShaderQualities.Low) ? 1 : 2);%0a%09%09%09%09lightBlurredBackground.enabled = true;%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09lightBlurredBackground.enabled = false;%0a%09%09%09%7d%0a%09%09%7d
++lightBlurredBackground.enabled = true;
+ %0a%09%7d%0a

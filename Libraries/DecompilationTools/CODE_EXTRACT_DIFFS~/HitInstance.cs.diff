@@ -1,0 +1,95 @@
+@@ -1,12 +1,14 @@
++/*
+ using System
+@@ -72,17 +72,20 @@
+ tance%0a%7b%0a
+-%09
++    
+ public G
+@@ -99,25 +99,28 @@
+ ct Source;%0a%0a
+-%09
++    
+ public Attac
+@@ -135,25 +135,28 @@
+ ttackType;%0a%0a
+-%09
++    
+ public bool 
+@@ -169,25 +169,28 @@
+ Direction;%0a%0a
+-%09
++    
+ public int D
+@@ -202,17 +202,20 @@
+ Dealt;%0a%0a
+-%09
++    
+ public f
+@@ -227,25 +227,28 @@
+ Direction;%0a%0a
+-%09
++    
+ public bool 
+@@ -264,25 +264,28 @@
+ ulnerable;%0a%0a
+-%09
++    
+ public float
+@@ -303,25 +303,28 @@
+ ultiplier;%0a%0a
+-%09
++    
+ public float
+@@ -332,25 +332,28 @@
+ MoveAngle;%0a%0a
+-%09
++    
+ public bool 
+@@ -368,17 +368,20 @@
+ ction;%0a%0a
+-%09
++    
+ public f
+@@ -398,17 +398,20 @@
+ plier;%0a%0a
+-%09
++    
+ public S
+@@ -432,25 +432,28 @@
+ ecialType;%0a%0a
+-%09
++    
+ public bool 
+@@ -468,17 +468,20 @@
+ amage;%0a%0a
+-%09
++    
+ public f
+@@ -522,21 +522,30 @@
+ target)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (Sour
+@@ -597,15 +597,30 @@
+ on)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Vect
+@@ -699,11 +699,20 @@
+ on;%0a
+-%09%09%09
++            
+ retu
+@@ -763,14 +763,26 @@
+ 8f;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ retu
+@@ -799,9 +799,14 @@
+ on;%0a
+-%09
++    
+ %7d%0a%7d
++*/
+ %0a

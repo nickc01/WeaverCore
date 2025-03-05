@@ -1,0 +1,14 @@
+@@ -11,122 +11,94 @@
+ em;%0a
+-%0a%5bSerializable%5d%0apublic class SaveGameData%0a%7b%0a%09public PlayerData playerData;%0a%0a%09public SceneData sceneData
++using System.Collections.Generic;%0ausing System.Linq;%0ausing System.Text
+ ;%0a%0a
+-%09
+ public 
++class 
+ Save
+@@ -109,119 +109,10 @@
+ Data
+-(PlayerData playerData, SceneData sceneData)%0a%09%7b%0a%09%09this.playerData = playerData;%0a%09%09this.sceneData = sceneData;%0a%09%7d
++%0a%7b%0a
+ %0a%7d%0a

@@ -1,0 +1,61 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bAddComp
+@@ -156,16 +156,20 @@
+ rtex%22)%5d%0a
++    
+ public c
+@@ -198,19 +198,30 @@
+ ectBase%0a
+-%7b%0a%09
++    %7b%0a        
+ public V
+@@ -255,20 +255,25 @@
+ (0.4
+-f, 0.4f);%0a%0a%09
++F,0.4F);%0a        
+ publ
+@@ -295,13 +295,18 @@
+ = 50
+-f
+ ;%0a
+-%0a%09
++        
+ publ
+@@ -344,27 +344,78 @@
+ (0.5
+-f
++F
+ , 0.5
+-f);%0a%0a%09private
++F);%0a%09%09%0a        // Called by camera to apply image effect%0a       
+  voi
+@@ -429,16 +429,17 @@
+ derImage
++ 
+ (RenderT
+@@ -484,13 +484,30 @@
+ on)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ Imag
+@@ -535,14 +535,10 @@
+ tion
++ 
+ (
+-base.
+ mate
+@@ -588,13 +588,26 @@
+ adius);%0a
+-%09
++        %7d%0a    
+ %7d%0a%7d%0a

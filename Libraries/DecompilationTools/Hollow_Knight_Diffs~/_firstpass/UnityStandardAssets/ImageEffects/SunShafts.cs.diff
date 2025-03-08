@@ -1,0 +1,579 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -117,16 +117,17 @@
+ omponent
++ 
+ (typeof(
+@@ -136,16 +136,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -157,16 +157,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -198,16 +198,20 @@
+ afts%22)%5d%0a
++    
+ public c
+@@ -243,19 +243,30 @@
+ ctsBase%0a
+-%7b%0a%09
++    %7b%0a        
+ public e
+@@ -293,98 +293,213 @@
+ ion%0a
+-%09%7b%0a%09%09Low,%0a%09%09Normal,%0a%09%09High%0a%09%7d%0a%0a%09public enum ShaftsScreenBlendMode%0a%09%7b%0a%09%09Screen,%0a%09%09Add%0a%09%7d%0a%0a%09
++        %7b%0a            Low = 0,%0a            Normal = 1,%0a            High = 2,%0a        %7d%0a%0a        public enum ShaftsScreenBlendMode%0a        %7b%0a            Screen = 0,%0a            Add = 1,%0a        %7d%0a%0a%0a        
+ publ
+@@ -558,26 +558,32 @@
+ ion.Normal;%0a
+-%0a%09
++        
+ public Shaft
+@@ -614,20 +614,58 @@
+ lendMode
+-;%0a%0a%09
++ = ShaftsScreenBlendMode.Screen;%0a%0a        
+ public T
+@@ -687,18 +687,24 @@
+ nsform;%0a
+-%0a%09
++        
+ public i
+@@ -732,18 +732,24 @@
+ ns = 2;%0a
+-%0a%09
++        
+ public C
+@@ -777,18 +777,24 @@
+ .white;%0a
+-%0a%09
++        
+ public C
+@@ -833,24 +833,22 @@
+ 87f,
+- 
+ 0.74f,
+- 
+ 0.65f);%0a
+ %0a%09pu
+@@ -843,18 +843,24 @@
+ 0.65f);%0a
+-%0a%09
++        
+ public f
+@@ -887,26 +887,32 @@
+ ius = 2.5f;%0a
+-%0a%09
++        
+ public float
+@@ -936,25 +936,32 @@
+ y = 1.15f;%0a%0a
+-%09
++        
+ public float
+@@ -981,17 +981,24 @@
+ 0.75f;%0a%0a
+-%09
++        
+ public b
+@@ -1001,16 +1001,17 @@
+ ic bool 
++ 
+ useDepth
+@@ -1027,17 +1027,24 @@
+  true;%0a%0a
+-%09
++        
+ public S
+@@ -1058,34 +1058,40 @@
+ unShaftsShader;%0a
+-%0a%09
++        
+ private Material
+@@ -1107,25 +1107,32 @@
+ sMaterial;%0a%0a
+-%09
++        
+ public Shade
+@@ -1152,18 +1152,24 @@
+ Shader;%0a
+-%0a%09
++        
+ private 
+@@ -1199,17 +1199,25 @@
+ erial;%0a%0a
+-%09
++%0a        
+ public o
+@@ -1247,16 +1247,26 @@
+ rces
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ Chec
+@@ -1273,16 +1273,17 @@
+ kSupport
++ 
+ (useDept
+@@ -1293,18 +1293,29 @@
+ xture);%0a
+-%09%09
++%0a            
+ sunShaft
+@@ -1354,16 +1354,17 @@
+ Material
++ 
+ (sunShaf
+@@ -1393,18 +1393,28 @@
+ erial);%0a
+-%09%09
++            
+ simpleCl
+@@ -1455,16 +1455,17 @@
+ Material
++ 
+ (simpleC
+@@ -1498,18 +1498,29 @@
+ erial);%0a
+-%09%09
++%0a            
+ if (!isS
+@@ -1529,23 +1529,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -1566,18 +1566,25 @@
+ able
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            
+ retu
+@@ -1603,20 +1603,26 @@
+ ed;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  voi
+@@ -1636,16 +1636,17 @@
+ derImage
++ 
+ (RenderT
+@@ -1690,19 +1690,27 @@
+ ion)
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (
+-!
+ Chec
+@@ -1721,25 +1721,43 @@
+ ources()
+-)%0a%09%09%7b%0a%09%09%09
++==false) %7b%0a                
+ Graphics
+@@ -1753,32 +1753,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -1789,25 +1789,117 @@
+ n);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            // we actually need to check this every frame%0a            
+ if (
+@@ -1915,23 +1915,32 @@
+ exture)%0a
+-%09%09%7b%0a%09%09%09
++                
+ GetCompo
+@@ -2002,29 +2002,50 @@
+ th;%0a
+-%09%09%7d%0a%09%09int num = 4;%0a%09%09
++%0a            int divider = 4;%0a            
+ if (
+@@ -2090,30 +2090,49 @@
+ al)%0a
+-%09%09%7b%0a%09%09%09num = 2;%0a%09%09%7d%0a%09%09
++                divider = 2;%0a            
+ else
+@@ -2180,30 +2180,50 @@
+ gh)%0a
+-%09%09%7b%0a%09%09%09num = 1;%0a%09%09%7d%0a%09%09
++                divider = 1;%0a%0a            
+ Vect
+@@ -2227,21 +2227,16 @@
+ ector3 v
+-ector
+  = Vecto
+@@ -2254,67 +2254,57 @@
+ 5f;%0a
+-%09%09vector = ((!sunTransform) ? new Vector3(0.5f, 0.5f, 0f) :
++            if (sunTransform)%0a                v =
+  Get
+@@ -2343,16 +2343,17 @@
+ ortPoint
++ 
+ (sunTran
+@@ -2371,83 +2371,221 @@
+ ion)
+-);%0a%09%09int width = source.width / num;%0a%09%09int height = source.height / num;%0a%09%09
++;%0a            else%0a                v = new Vector3(0.5f, 0.5f, 0.0f);%0a%0a            int rtW = source.width / divider;%0a            int rtH = source.height / divider;%0a%0a            RenderTexture lrColorB;%0a            
+ Rend
+@@ -2594,25 +2594,29 @@
+ Texture 
+-temporary
++lrDepthBuffer
+  = Rende
+@@ -2636,38 +2636,216 @@
+ emporary
+-(width
++ (rtW, rtH, 0);%0a%0a            // mask out everything except the skybox%0a            // we have 2 methods, one of which requires depth buffer support
+ , 
++t
+ he
+-ight, 0);%0a%09%09
++ other one is just comparing images%0a%0a            
+ sunShaft
+@@ -2855,32 +2855,33 @@
+ terial.SetVector
++ 
+ (%22_BlurRadius4%22,
+@@ -2896,21 +2896,30 @@
+ tor4
++ 
+ (1
++.0
+ f, 1
++.0
+ f, 
++0.
+ 0f, 
++0.
+ 0f) 
+@@ -2938,21 +2938,32 @@
+ urRadius
++ 
+ );%0a
+-%09%09
++            
+ sunShaft
+@@ -2973,32 +2973,33 @@
+ terial.SetVector
++ 
+ (%22_SunPosition%22,
+@@ -3014,35 +3014,21 @@
+ tor4
++ 
+ (v
+-ector.x, vector.y, vector
++.x, v.y, v
+ .z, 
+@@ -3036,26 +3036,36 @@
+ axRadius));%0a
+-%09%09
++            
+ sunShaftsMat
+@@ -3075,24 +3075,25 @@
+ al.SetVector
++ 
+ (%22_SunThresh
+@@ -3113,18 +3113,29 @@
+ shold);%0a
+-%09%09
++%0a            
+ if (!use
+@@ -3151,35 +3151,53 @@
+ ure)
+-%0a%09%09%7b%0a%09%09%09RenderTextureFormat
++ %7b%0a#if UNITY_5_6_OR_NEWER%0a                var
+  for
+@@ -3202,17 +3202,16 @@
+ ormat = 
+-(
+ GetCompo
+@@ -3300,45 +3300,159 @@
+ ault
+-)
+ ;%0a
+-%09%09%09RenderTexture renderTexture = (
++#else%0a                var format = GetComponent%3cCamera%3e().hdr ? RenderTextureFormat.DefaultHDR : RenderTextureFormat.Default;%0a#endif%0a                
+ Rend
+@@ -3464,15 +3464,18 @@
+ ture
+-.active
++ tmpBuffer
+  = R
+@@ -3499,16 +3499,17 @@
+ emporary
++ 
+ (source.
+@@ -3540,22 +3540,84 @@
+  format)
+-)
+ ;%0a
+-%09%09%09
++                RenderTexture.active = tmpBuffer;%0a                
+ GL.Clear
+@@ -3630,21 +3630,10 @@
+ ybox
+-(clearDepth:
+  
++(
+ fals
+@@ -3660,19 +3660,33 @@
+ ra%3e());%0a
+-%09%09%09
++%0a                
+ sunShaft
+@@ -3705,16 +3705,17 @@
+ tTexture
++ 
+ (%22_Skybo
+@@ -3722,27 +3722,36 @@
+ x%22, 
+-renderTexture);%0a%09%09%09
++tmpBuffer);%0a                
+ Grap
+@@ -3751,32 +3751,33 @@
+    Graphics.Blit
++ 
+ (source, tempora
+@@ -3765,33 +3765,37 @@
+ it (source, 
+-temporary
++lrDepthBuffer
+ , sunShaftsM
+@@ -3807,19 +3807,32 @@
+ al, 3);%0a
+-%09%09%09
++                
+ RenderTe
+@@ -3857,43 +3857,71 @@
+ rary
+-(renderTexture);%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++ (tmpBuffer);%0a            %7d%0a            else %7b%0a                
+ Grap
+@@ -3921,32 +3921,33 @@
+    Graphics.Blit
++ 
+ (source, tempora
+@@ -3939,25 +3939,29 @@
+ source, 
+-temporary
++lrDepthBuffer
+ , sunSha
+@@ -3981,60 +3981,206 @@
+ 2);%0a
+-%09%09%7d%0a%09%09DrawBorder(temporary, simpleClearMaterial);%0a%09%09
++            %7d%0a%0a            // paint a small black small border to get rid of clamping problems%0a            DrawBorder (lrDepthBuffer, simpleClearMaterial);%0a%0a            // radial blur:%0a%0a            
+ radi
+@@ -4209,16 +4209,17 @@
+ hf.Clamp
++ 
+ (radialB
+@@ -4244,20 +4244,30 @@
+ 4);%0a
+-%09%09
++%0a            
+ float 
+-num2
++ofs
+  = s
+@@ -4290,25 +4290,38 @@
+ s * 
+-0.0013020834f;%0a%09%09
++(1.0f / 768.0f);%0a%0a            
+ sunS
+@@ -4335,32 +4335,33 @@
+ terial.SetVector
++ 
+ (%22_BlurRadius4%22,
+@@ -4376,33 +4376,46 @@
+ tor4
+-(num2, num2, 
++ (ofs, ofs, 0.
+ 0f, 
++0.
+ 0f));%0a
+-%09%09
++            
+ sunS
+@@ -4433,24 +4433,25 @@
+ al.SetVector
++ 
+ (%22_SunPositi
+@@ -4470,35 +4470,21 @@
+ tor4
++ 
+ (v
+-ector.x, vector.y, vector
++.x, v.y, v
+ .z, 
+@@ -4496,18 +4496,29 @@
+ dius));%0a
+-%09%09
++%0a            
+ for (int
+@@ -4523,15 +4523,19 @@
+ nt i
++t2
+  = 0; i
++t2
+  %3c r
+@@ -4560,130 +4560,280 @@
+ s; i
+-++)%0a%09%09%7b%0a%09%09%09RenderTexture temporary3 = RenderTexture.GetTemporary(width, height, 0);%0a%09%09%09Graphics.Blit(temporary, temporary3
++t2++ ) %7b%0a                // each iteration takes 2 * 6 samples%0a                // we update _BlurRadius each time to cheaply get a very smooth look%0a%0a                lrColorB = RenderTexture.GetTemporary (rtW, rtH, 0);%0a                Graphics.Blit (lrDepthBuffer, lrColorB
+ , su
+@@ -4845,35 +4845,48 @@
+ tsMaterial, 1);%0a
+-%09%09%09
++                
+ RenderTexture.Re
+@@ -4903,28 +4903,45 @@
+ rary
+-(temporary);%0a%09%09%09num2
++ (lrDepthBuffer);%0a                ofs
+  = s
+@@ -4967,44 +4967,62 @@
+  (((
+-float)i
++it2
+  * 2
++.0
+ f + 1
++.0
+ f) * 6
+-f
++.0f)
+ ) / 768
++.0
+ f;%0a
+-%09%09%09
++                
+ sunS
+@@ -5036,32 +5036,33 @@
+ terial.SetVector
++ 
+ (%22_BlurRadius4%22,
+@@ -5077,130 +5077,164 @@
+ tor4
+-(num2, num2, 
++ (ofs, ofs, 0.
+ 0f, 
++0.
+ 0f)
++ 
+ );%0a
+-%09%09%09temporary = RenderTexture.GetTemporary(width, height, 0);%0a%09%09%09Graphics.Blit(temporary3, temporary
++%0a                lrDepthBuffer = RenderTexture.GetTemporary (rtW, rtH, 0);%0a                Graphics.Blit (lrColorB, lrDepthBuffer
+ , su
+@@ -5254,19 +5254,32 @@
+ al, 1);%0a
+-%09%09%09
++                
+ RenderTe
+@@ -5304,29 +5304,40 @@
+ rary
+-(temporary3);%0a%09%09%09num2
++ (lrColorB);%0a                ofs
+  = s
+@@ -5363,44 +5363,62 @@
+  (((
+-float)i
++it2
+  * 2
++.0
+ f + 2
++.0
+ f) * 6
++.0
+ f)
++)
+  / 768
++.0
+ f;%0a
+-%09%09%09
++                
+ sunS
+@@ -5440,16 +5440,17 @@
+ etVector
++ 
+ (%22_BlurR
+@@ -5473,64 +5473,125 @@
+ tor4
+-(num2, num2, 
++ (ofs, ofs, 0.
+ 0f, 
++0.
+ 0f)
++ 
+ );%0a
+-%09%09%7d%0a%09%09if (vector
++            %7d%0a%0a            // put together:%0a%0a            if (v
+ .z %3e= 
++0.
+ 0f)%0a
+-%09%09%7b%0a%09%09%09
++                
+ sunS
+@@ -5605,32 +5605,33 @@
+ terial.SetVector
++ 
+ (%22_SunColor%22, ne
+@@ -5639,16 +5639,17 @@
+  Vector4
++ 
+ (sunColo
+@@ -5715,26 +5715,41 @@
+ y);%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++            else%0a                
+ sunS
+@@ -5771,16 +5771,17 @@
+ etVector
++ 
+ (%22_SunCo
+@@ -5804,15 +5804,44 @@
+ ro);
+-%0a%09%09%7d%0a%09%09
++ // no backprojection !%0a            
+ sunS
+@@ -5864,16 +5864,17 @@
+ tTexture
++ 
+ (%22_Color
+@@ -5886,22 +5886,36 @@
+ r%22, 
+-temporary);%0a%09%09
++lrDepthBuffer);%0a            
+ Grap
+@@ -5923,16 +5923,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -5986,26 +5986,64 @@
+ ode 
+-!= 0
++== ShaftsScreenBlendMode.Screen
+ ) ? 
+-4 : 0);%0a%09%09
++0 : 4);%0a%0a            
+ Rend
+@@ -6072,22 +6072,40 @@
+ rary
+-(temporary);%0a%09
++ (lrDepthBuffer);%0a        %7d%0a    
+ %7d%0a%7d%0a

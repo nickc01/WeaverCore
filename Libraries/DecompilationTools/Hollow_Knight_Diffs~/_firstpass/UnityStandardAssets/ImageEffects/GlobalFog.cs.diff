@@ -1,0 +1,325 @@
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -117,16 +117,17 @@
+ omponent
++ 
+ (typeof(
+@@ -136,16 +136,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -157,16 +157,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -202,16 +202,11 @@
+ %22)%5d%0a
+-internal
++   
+  cla
+@@ -236,19 +236,21 @@
+ ctsBase%0a
++%09
+ %7b%0a%09
++%09
+ %5bTooltip
+@@ -272,33 +272,40 @@
+ e-based fog?%22)%5d%0a
+-%09
++        
+ public bool dist
+@@ -300,16 +300,17 @@
+ ic bool 
++ 
+ distance
+@@ -313,33 +313,162 @@
+ anceFog = true;%0a
+-%0a
++%09%09%5bTooltip(%22Exclude far plane pixels from distance-based fog? (Skybox or clear color)%22)%5d%0a%09%09public bool  excludeFarPixels = true;%0a%09
+ %09%5bTooltip(%22Dista
+@@ -528,24 +528,25 @@
+ checked%22)%5d%0a%09
++%09
+ public bool 
+@@ -545,16 +545,17 @@
+ ic bool 
++ 
+ useRadia
+@@ -563,20 +563,28 @@
+ Distance
++ = false
+ ;
+-%0a
+ %0a%09
++%09
+ %5bTooltip
+@@ -609,24 +609,25 @@
+ ed fog?%22)%5d%0a%09
++%09
+ public bool 
+@@ -626,16 +626,17 @@
+ ic bool 
++ 
+ heightFo
+@@ -645,17 +645,17 @@
+ = true;%0a
+-%0a
++%09
+ %09%5bToolti
+@@ -677,25 +677,32 @@
+ ordinate%22)%5d%0a
+-%09
++        
+ public float
+@@ -712,21 +712,29 @@
+ ight = 1
++.0
+ f;%0a
+-%0a%09
++        
+ %5bRange(0
+@@ -743,16 +743,24 @@
+ 01f,
+- 
+ 10
++.0
+ f)%5d%0a
+-%09
++        
+ publ
+@@ -789,12 +789,14 @@
+  = 2
++.0
+ f;%0a
+-%0a
++%09
+ %09%5bTo
+@@ -850,17 +850,24 @@
+ ount%22)%5d%0a
+-%09
++        
+ public f
+@@ -884,20 +884,34 @@
+ Distance
+-;%0a%0a%09
++ = 0.0f;%0a%0a        
+ public S
+@@ -925,20 +925,33 @@
+ ogShader
+-;%0a%0a%09
++ = null;%0a        
+ private 
+@@ -974,12 +974,27 @@
+ rial
+-;%0a%0a%09
++ = null;%0a%0a%0a        
+ publ
+@@ -1028,49 +1028,62 @@
+ rces
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09CheckSupport(needDepth: true);%0a%09%09
++            CheckSupport (true);%0a%0a            
+ fogM
+@@ -1120,16 +1120,17 @@
+ Material
++ 
+ (fogShad
+@@ -1147,18 +1147,29 @@
+ erial);%0a
+-%09%09
++%0a            
+ if (!isS
+@@ -1178,23 +1178,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -1215,18 +1215,25 @@
+ able
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            
+ retu
+@@ -1248,21 +1248,35 @@
+ ported;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ %5bImageEf
+@@ -1287,24 +1287,23 @@
+ Opaque%5d%0a
+-%09private
++       
+  void On
+@@ -1367,18 +1367,34 @@
+ on)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ if (
+-!
+ Chec
+@@ -1405,16 +1405,25 @@
+ ources()
++ == false
+  %7c%7c (!di
+@@ -1452,15 +1452,38 @@
+ g))%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ Grap
+@@ -1518,1333 +1518,1100 @@
+ n);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09Camera component = GetComponent%3cCamera%3e();%0a%09%09Transform transform = component.transform;%0a%09%09float nearClipPlane = component.nearClipPlane;%0a%09%09float farClipPlane = component.farClipPlane;%0a%09%09float fieldOfView = component.fieldOfView;%0a%09%09float aspect = component.aspect;%0a%09%09Matrix4x4 identity = Matrix4x4.identity;%0a%09%09float num = fieldOfView * 0.5f;%0a%09%09Vector3 vector = transform.right * nearClipPlane * Mathf.Tan(num * ((float)Math.PI / 180f)) * aspect;%0a%09%09Vector3 vector2 = transform.up * nearClipPlane * Mathf.Tan(num * ((float)Math.PI / 180f));%0a%09%09Vector3 vector3 = transform.forward * nearClipPlane - vector + vector2;%0a%09%09float num2 = vector3.magnitude * farClipPlane / nearClipPlane;%0a%09%09vector3.Normalize();%0a%09%09vector3 *= num2;%0a%09%09Vector3 vector4 = transform.forward * nearClipPlane + vector + vector2;%0a%09%09vector4.Normalize();%0a%09%09vector4 *= num2;%0a%09%09Vector3 vector5 = transform.forward * nearClipPlane + vector - vector2;%0a%09%09vector5.Normalize();%0a%09%09vector5 *= num2;%0a%09%09Vector3 vector6 = transform.forward * nearClipPlane - vector - vector2;%0a%09%09vector6.Normalize();%0a%09%09vector6 *= num2;%0a%09%09identity.SetRow(0, vector3);%0a%09%09identity.SetRow(1, vector4);%0a%09%09identity.SetRow(2, vector5);%0a%09%09identity.SetRow(3, vector6);%0a%09%09Vector3 position = transform.position;%0a%09%09float num3 = position.y - height;%0a%09%09float z = ((num3 %3c= 0f)
++                return;%0a            %7d%0a%0a            Camera cam = GetComponent%3cCamera%3e();%0a            Transform camtr = cam.transform;%0a%0a            Vector3%5b%5d frustumCorners = new Vector3%5b4%5d;%0a            cam.CalculateFrustumCorners(new Rect(0, 0, 1, 1), cam.farClipPlane, cam.stereoActiveEye, frustumCorners);%0a            var bottomLeft = camtr.TransformVector(frustumCorners%5b0%5d);%0a            var topLeft = camtr.TransformVector(frustumCorners%5b1%5d);%0a            var topRight = camtr.TransformVector(frustumCorners%5b2%5d);%0a            var bottomRight = camtr.TransformVector(frustumCorners%5b3%5d);%0a%0a            Matrix4x4 frustumCornersArray = Matrix4x4.identity;%0a            frustumCornersArray.SetRow(0, bottomLeft);%0a            frustumCornersArray.SetRow(1, bottomRight);%0a            frustumCornersArray.SetRow(2, topLeft);%0a            frustumCornersArray.SetRow(3, topRight);%0a%0a            var camPos = camtr.position;%0a            float FdotC = camPos.y - height;%0a            float paramK = (FdotC %3c= 0.0f ? 1.0f : 0.0f);%0a            float excludeDepth = (excludeFarPixels
+  ? 1
++.0
+ f : 
++2.
+ 0f);%0a
+-%09%09
++            
+ fogM
+@@ -2653,21 +2653,42 @@
+ S%22, 
+-identity);%0a%09%09
++frustumCornersArray);%0a            
+ fogM
+@@ -2722,21 +2722,29 @@
+ S%22, 
+-position);%0a%09%09
++camPos);%0a            
+ fogM
+@@ -2802,15 +2802,21 @@
+ ht, 
+-num3, z
++FdotC, paramK
+ , he
+@@ -2837,18 +2837,28 @@
+ 0.5f));%0a
+-%09%09
++            
+ fogMater
+@@ -2902,21 +2902,17 @@
+ Vector4(
+-0f - 
++-
+ Mathf.Ma
+@@ -2932,40 +2932,59 @@
+ ce, 
++0.
+ 0f), 
+-0f
++excludeDepth
+ , 0
+-f
+ , 0
+-f
+ ));%0a
+-%09%09FogMode fog
++%0a            var scene
+ Mode
+@@ -3010,27 +3010,37 @@
+ ogMode;%0a
+-%09%09float fog
++            var scene
+ Density 
+@@ -3072,32 +3072,34 @@
+ ty;%0a
+-%09%09float fogStartDistance
++            var sceneStart
+  = R
+@@ -3134,30 +3134,32 @@
+ ce;%0a
+-%09%09float fogEndDistance
++            var sceneEnd
+  = R
+@@ -3192,25 +3192,73 @@
+ ce;%0a
+-%09%09bool flag = fog
++            Vector4 sceneParams;%0a            bool linear = (scene
+ Mode
+@@ -3279,93 +3279,103 @@
+ near
++)
+ ;%0a
+-%09%09float num4 = (flag ? (fogEndDistance - fogStartDistance)
++            float diff = linear ? sceneEnd - sceneStart
+  : 
++0.
+ 0f
+-)
+ ;%0a
+-%09%09float num5
++            float invDiff
+  = 
+-((
+ Math
+@@ -3380,20 +3380,20 @@
+ thf.Abs(
+-num4
++diff
+ ) %3e 0.00
+@@ -3399,232 +3399,366 @@
+ 001f
+-)
+  ? 
+-(
+ 1
++.0
+ f / 
+-num4) : 0f);%0a%09%09Vector4 value = default(Vector4);%0a%09%09value.x = fogDensity * 1.2011224f;%0a%09%09value.y = fogDensity * 1.442695f;%0a%09%09value.z = (flag ? (0f - num5)
++diff : 0.0f;%0a            sceneParams.x = sceneDensity * 1.2011224087f; // density / sqrt(ln(2)), used by Exp2 fog mode%0a            sceneParams.y = sceneDensity * 1.4426950408f; // density / ln(2), used by Exp fog mode%0a            sceneParams.z = linear ? -invDiff
+  : 
++0.
+ 0f
+-)
+ ;%0a
+-%09%09value.w = (flag ? (fogEndDistance * num5) : 0f);%0a%09%09
++            sceneParams.w = linear ? sceneEnd * invDiff : 0.0f;%0a            
+ fogM
+@@ -3798,18 +3798,34 @@
+ s%22, 
+-value);%0a%09%09
++sceneParams);%0a            
+ fogM
+@@ -3876,17 +3876,17 @@
+ r4((
+-float)fog
++int)scene
+ Mode
+@@ -3919,64 +3919,58 @@
+ 0, 0
+-f
+ , 0
+-f
+ ));%0a
+-%09%09int num6 = 0;%0a%09%09CustomGraphicsBlit(passNr:
++%0a            int pass = 0;%0a            if
+  (
+-!
+ dist
+@@ -3981,12 +3981,11 @@
+ Fog 
+-%7c%7c !
++&& 
+ heig
+@@ -3994,642 +3994,272 @@
+ Fog)
+- ? (distanceFog ? 1 : 2) : 0, source: source, dest: destination, fxMaterial: fogMaterial);%0a%09%7d%0a%0a%09private static void CustomGraphicsBlit(RenderTexture source, RenderTexture dest, Material fxMaterial, int passNr)%0a%09%7b%0a%09%09RenderTexture.active = dest;%0a%09%09fxMaterial.SetTexture(%22_MainTex%22, source);%0a%09%09GL.PushMatrix();%0a%09%09GL.LoadOrtho();%0a%09%09fxMaterial.SetPass(
++%0a                pass = 0; // distance + height%0a            else if (distanceFog)%0a                pass = 1; // distance only%0a            else%0a                pass = 2; // height only%0a            Graphics.Blit(source, destination, fogMaterial, 
+ pass
+-Nr
+ );%0a
+-%09%09GL.Begin(7);%0a%09%09GL.MultiTexCoord2(0, 0f, 0f);%0a%09%09GL.Vertex3(0f, 0f, 3f);%0a%09%09GL.MultiTexCoord2(0, 1f, 0f);%0a%09%09GL.Vertex3(1f, 0f, 2f);%0a%09%09GL.MultiTexCoord2(0, 1f, 1f);%0a%09%09GL.Vertex3(1f, 1f, 1f);%0a%09%09GL.MultiTexCoord2(0, 0f, 1f);%0a%09%09GL.Vertex3(0f, 1f, 0f);%0a%09%09GL.End();%0a%09%09GL.PopMatrix();%0a%09
++        %7d%0a    
+ %7d%0a%7d%0a

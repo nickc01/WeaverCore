@@ -1,0 +1,566 @@
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -117,16 +117,17 @@
+ omponent
++ 
+ (typeof(
+@@ -136,16 +136,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -217,16 +217,20 @@
+ sion%22)%5d%0a
++    
+ public c
+@@ -278,19 +278,30 @@
+ haviour%0a
+-%7b%0a%09
++    %7b%0a        
+ public e
+@@ -321,39 +321,126 @@
+ es%0a%09
++%09
+ %7b%0a
+-%09%09Low,%0a%09%09Medium,%0a%09%09High%0a%09%7d%0a%0a%09
++            Low = 0,%0a            Medium = 1,%0a            High = 2,%0a        %7d%0a%0a        %5bRange(0.05f, 1.0f)%5d%0a        
+ publ
+@@ -465,18 +465,24 @@
+ = 0.4f;%0a
+-%0a%09
++        
+ public S
+@@ -528,18 +528,52 @@
+ Medium;%0a
+-%0a%09
++        %5bRange(0.5f, 4.0f)%5d%0a        
+ public f
+@@ -610,68 +610,157 @@
+ 5f;%0a
+-%0a%09public int m_Blur = 2;%0a%0a%09public int m_Downsampling = 2;%0a%0a%09
++        %5bRange(0, 4)%5d%0a        public int m_Blur = 2;%0a        %5bRange(1,6)%5d%0a        public int m_Downsampling = 2;%0a        %5bRange(0.2f, 2.0f)%5d%0a        
+ publ
+@@ -794,21 +794,61 @@
+ tion = 1
++.0
+ f;%0a
+-%0a%09
++        %5bRange(0.00001f, 0.5f)%5d%0a        
+ public f
+@@ -869,17 +869,24 @@
+ 0.01f;%0a%0a
+-%09
++        
+ public S
+@@ -905,18 +905,24 @@
+ Shader;%0a
+-%0a%09
++        
+ private 
+@@ -947,17 +947,24 @@
+ erial;%0a%0a
+-%09
++        
+ public T
+@@ -990,17 +990,24 @@
+ xture;%0a%0a
+-%09
++        
+ private 
+@@ -1025,17 +1025,24 @@
+ orted;%0a%0a
+-%09
++        
+ private 
+@@ -1071,16 +1071,17 @@
+ Material
++ 
+ (Shader 
+@@ -1092,58 +1092,96 @@
+ er)%0a
+-%09%7b%0a%09%09if (!shader)%0a%09%09%7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09return
++        %7b%0a            if (!shader)%0a                return null;%0a            Material m =
+  new
+@@ -1193,16 +1193,17 @@
+ rial
++ 
+ (shader)
+ %0a%09%09%7b
+@@ -1198,24 +1198,32 @@
+ (shader)
+-%0a%09%09%7b%0a%09%09%09
++;%0a            m.
+ hideFlag
+@@ -1255,19 +1255,50 @@
+ Save
+-%0a%09%09%7d;%0a%09%7d%0a%0a%09
++;%0a            return m;%0a        %7d%0a        
+ priv
+@@ -1328,16 +1328,17 @@
+ Material
++ 
+ (Materia
+@@ -1348,54 +1348,69 @@
+ at)%0a
+-%09%7b%0a%09%09if ((bool)mat)%0a%09%09%7b%0a%09%09%09UnityEngine.Object.
++        %7b%0a            if (mat)%0a            %7b%0a                
+ Dest
+@@ -1425,69 +1425,117 @@
+ iate
++ 
+ (mat);%0a
+-%09%09%09mat = null;%0a%09%09%7d%0a%09%7d%0a%0a%09private void OnDisable()%0a%09%7b%0a%09%09
++                mat = null;%0a            %7d%0a        %7d%0a%0a%0a        void OnDisable()%0a        %7b%0a            
+ Dest
+@@ -1541,24 +1541,25 @@
+ troyMaterial
++ 
+ (m_SSAOMater
+@@ -1568,39 +1568,62 @@
+ l);%0a
+-%09%7d%0a%0a%09private void Start()%0a%09%7b%0a%09%09
++        %7d%0a%0a        void Start()%0a        %7b%0a            
+ if (
+@@ -1697,16 +1697,17 @@
+ reFormat
++ 
+ (RenderT
+@@ -1727,23 +1727,46 @@
+ Depth))%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ m_Suppor
+@@ -1774,32 +1774,40 @@
+ ed = false;%0a
+-%09%09%09base.
++                
+ enabled = fa
+@@ -1811,33 +1811,67 @@
+  false;%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            
+ CreateMa
+@@ -1877,22 +1877,33 @@
+ aterials
++ 
+ ();%0a
+-%09%09
++            
+ if (!m_S
+@@ -1948,23 +1948,46 @@
+ t != 5)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ m_Suppor
+@@ -1999,24 +1999,32 @@
+  false;%0a
+-%09%09%09base.
++                
+ enabled 
+@@ -2032,34 +2032,112 @@
+  false;%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++                return;%0a            %7d%0a%0a            //CreateRandomTable (26, 0.2f);%0a%0a            
+ m_Suppor
+@@ -2152,24 +2152,26 @@
+ ue;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  voi
+@@ -2180,24 +2180,34 @@
+ OnEnable
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ GetCompo
+@@ -2272,21 +2272,35 @@
+ ormals;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ private 
+@@ -2323,16 +2323,34 @@
+ ials
++ 
+ ()%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ if (
+@@ -2394,23 +2394,46 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ m_SSAOMa
+@@ -2455,16 +2455,17 @@
+ Material
++ 
+ (m_SSAOS
+@@ -2472,19 +2472,32 @@
+ hader);%0a
+-%09%09%09
++                
+ m_SSAOMa
+@@ -2513,16 +2513,17 @@
+ tTexture
++ 
+ (%22_Rando
+@@ -2555,17 +2555,41 @@
+ e);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a%0a        
+ %5bIma
+@@ -2608,16 +2608,15 @@
+ ue%5d%0a
+-%09private
++       
+  voi
+@@ -2630,16 +2630,17 @@
+ derImage
++ 
+ (RenderT
+@@ -2681,21 +2681,38 @@
+ nation)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ if (!m_S
+@@ -2753,55 +2753,94 @@
+ ted)
+-%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++ %7b%0a                enabled = false;%0a                return;%0a            %7d%0a            
+ Crea
+@@ -2854,14 +2854,26 @@
+ ials
++ 
+ ();%0a
+-%09%09
++%0a            
+ m_Do
+@@ -2896,16 +2896,17 @@
+ hf.Clamp
++ 
+ (m_Downs
+@@ -2921,18 +2921,28 @@
+  1, 6);%0a
+-%09%09
++            
+ m_Radius
+@@ -2955,16 +2955,17 @@
+ hf.Clamp
++ 
+ (m_Radiu
+@@ -2975,22 +2975,34 @@
+ 0.05f, 1
++.0
+ f);%0a
+-%09%09
++            
+ m_MinZ =
+@@ -3013,16 +3013,17 @@
+ hf.Clamp
++ 
+ (m_MinZ,
+@@ -3027,13 +3027,15 @@
+ nZ, 
+-1E-05
++0.00001
+ f, 0
+@@ -3036,26 +3036,36 @@
+ 01f, 0.5f);%0a
+-%09%09
++            
+ m_OcclusionI
+@@ -3078,32 +3078,33 @@
+ ty = Mathf.Clamp
++ 
+ (m_OcclusionInte
+@@ -3117,22 +3117,34 @@
+  0.5f, 4
++.0
+ f);%0a
+-%09%09
++            
+ m_Occlus
+@@ -3171,16 +3171,17 @@
+ hf.Clamp
++ 
+ (m_Occlu
+@@ -3208,14 +3208,26 @@
+ f, 2
++.0
+ f);%0a
+-%09%09
++            
+ m_Bl
+@@ -3242,16 +3242,17 @@
+ hf.Clamp
++ 
+ (m_Blur,
+@@ -3263,25 +3263,77 @@
+ 4);%0a
+-%09%09RenderTexture r
++%0a            // Render SSAO term into a smaller texture%0a            R
+ ende
+@@ -3341,16 +3341,21 @@
+ Texture 
++rtAO 
+ = Render
+@@ -3366,32 +3366,33 @@
+ ure.GetTemporary
++ 
+ (source.width / 
+@@ -3447,27 +3447,30 @@
+ 0);%0a
+-%09%09float fieldOfView
++            float fovY
+  = G
+@@ -3508,28 +3508,29 @@
+ ew;%0a
+-%09%09float farClipPlane
++            float far
+  = G
+@@ -3569,19 +3569,27 @@
+ ne;%0a
+-%09%09
++            
+ float 
+-num
++y
+  = M
+@@ -3600,73 +3600,58 @@
+ .Tan
++ 
+ (f
+-ieldOfView * ((float)Math.PI / 180f) * 0.5f) * farClipPlane;%0a%09%09
++ovY * Mathf.Deg2Rad * 0.5f) * far;%0a            
+ floa
+@@ -3656,19 +3656,17 @@
+ oat x = 
+-num
++y
+  * GetCo
+@@ -3691,18 +3691,28 @@
+ aspect;%0a
+-%09%09
++            
+ m_SSAOMa
+@@ -3727,16 +3727,17 @@
+ etVector
++ 
+ (%22_FarCo
+@@ -3761,201 +3761,295 @@
+ 3(x,
+- num, farClipPlane));%0a%09%09int num2;%0a%09%09int num3;%0a%09%09if ((bool)m_RandomTexture)%0a%09%09%7b%0a%09%09%09num2 = m_RandomTexture.width;%0a%09%09%09num3 = m_RandomTexture.height;%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09num2 = 1;%0a%09%09%09num3 = 1;%0a%09%09%7d%0a%09%09
++y,far));%0a            int noiseWidth, noiseHeight;%0a            if (m_RandomTexture) %7b%0a                noiseWidth = m_RandomTexture.width;%0a                noiseHeight = m_RandomTexture.height;%0a            %7d else %7b%0a                noiseWidth = 1; noiseHeight = 1;%0a            %7d%0a            
+ m_SS
+@@ -4068,16 +4068,17 @@
+ etVector
++ 
+ (%22_Noise
+@@ -4096,16 +4096,17 @@
+  Vector3
++ 
+ ((float)
+@@ -4110,93 +4110,86 @@
+ at)r
+-enderTexture.width / (float)num2, (float)renderTexture.height / (float)num3
++tAO.width / noiseWidth, (float)rtAO.height / noiseHeight
+ , 
++0.
+ 0f));%0a
+-%09%09
++            
+ m_SS
+@@ -4208,16 +4208,17 @@
+ etVector
++ 
+ (%22_Param
+@@ -4237,54 +4237,269 @@
+ or4(
+-m_Radius, m_MinZ, 1f / m_OcclusionAttenuation,
++%0a                                                     m_Radius,%0a                                                     m_MinZ,%0a                                                     1.0f / m_OcclusionAttenuation,%0a                                                    
+  m_O
+@@ -4523,19 +4523,32 @@
+ ));%0a
+-%09%09bool num4
++%0a            bool doBlur
+  = m
+@@ -4558,18 +4558,28 @@
+ ur %3e 0;%0a
+-%09%09
++            
+ Graphics
+@@ -4583,21 +4583,24 @@
+ ics.Blit
+-(num4
++ (doBlur
+  ? null 
+@@ -4610,28 +4610,19 @@
+ ource, r
+-enderTexture
++tAO
+ , m_SSAO
+@@ -4656,27 +4656,105 @@
+ t);%0a
+-%09%09if (num4)%0a%09%09%7b%0a%09%09%09
++%0a            if (doBlur)%0a            %7b%0a                // Blur SSAO horizontally%0a                
+ Rend
+@@ -4763,25 +4763,23 @@
+ Texture 
+-temporary
++rtBlurX
+  = Rende
+@@ -4791,32 +4791,33 @@
+ ure.GetTemporary
++ 
+ (source.width, s
+@@ -4826,35 +4826,48 @@
+ rce.height, 0);%0a
+-%09%09%09
++                
+ m_SSAOMaterial.S
+@@ -4866,32 +4866,33 @@
+ terial.SetVector
++ 
+ (%22_TexelOffsetSc
+@@ -4888,32 +4888,74 @@
+ xelOffsetScale%22,
++%0a                                         
+  new Vector4((fl
+@@ -4950,16 +4950,17 @@
+  Vector4
++ 
+ ((float)
+@@ -4964,31 +4964,24 @@
+ at)m_Blur / 
+-(float)
+ source.width
+@@ -4987,24 +4987,32 @@
+ h, 0
+-f, 0f, 0f));%0a%09%09%09
++,0,0));%0a                
+ m_SS
+@@ -5024,32 +5024,33 @@
+ erial.SetTexture
++ 
+ (%22_SSAO%22, render
+@@ -5044,34 +5044,38 @@
+ SSAO%22, r
+-enderTexture);%0a%09%09%09
++tAO);%0a                
+ Graphics
+@@ -5083,24 +5083,23 @@
+ Blit
++ 
+ (null, 
+-temporary
++rtBlurX
+ , m_
+@@ -5108,35 +5108,48 @@
+ AOMaterial, 3);%0a
+-%09%09%09
++                
+ RenderTexture.Re
+@@ -5166,28 +5166,110 @@
+ rary
++ 
+ (r
+-enderTexture);%0a%09%09%09
++tAO); // original rtAO not needed anymore%0a%0a                // Blur SSAO vertically%0a                
+ Rend
+@@ -5278,26 +5278,23 @@
+ Texture 
+-temporary2
++rtBlurY
+  = Rende
+@@ -5314,16 +5314,17 @@
+ emporary
++ 
+ (source.
+@@ -5349,19 +5349,32 @@
+ ht, 0);%0a
+-%09%09%09
++                
+ m_SSAOMa
+@@ -5389,16 +5389,17 @@
+ etVector
++ 
+ (%22_Texel
+@@ -5407,24 +5407,66 @@
+ ffsetScale%22,
++%0a                                         
+  new Vector4
+@@ -5469,11 +5469,11 @@
+ tor4
++ 
+ (0
+-f
+ , (f
+@@ -5487,18 +5487,9 @@
+ Blur
+- / (float)
++/
+ sour
+@@ -5504,20 +5504,30 @@
+ t, 0
+-f, 0f));%0a%09%09%09
++,0));%0a                
+ m_SS
+@@ -5539,32 +5539,33 @@
+ erial.SetTexture
++ 
+ (%22_SSAO%22, tempor
+@@ -5558,31 +5558,42 @@
+ _SSAO%22, 
+-temporary);%0a%09%09%09
++rtBlurX);%0a                
+ Graphics
+@@ -5589,32 +5589,33 @@
+    Graphics.Blit
++ 
+ (source, tempora
+@@ -5607,26 +5607,23 @@
+ source, 
+-temporary2
++rtBlurY
+ , m_SSAO
+@@ -5636,19 +5636,32 @@
+ al, 3);%0a
+-%09%09%09
++                
+ RenderTe
+@@ -5686,58 +5686,190 @@
+ rary
+-(temporary);%0a%09%09%09renderTexture = temporary2;%0a%09%09%7d%0a%09%09
++ (rtBlurX); // blurX RT not needed anymore%0a%0a                rtAO = rtBlurY; // AO is the blurred one now%0a            %7d%0a%0a            // Modulate scene rendering with SSAO%0a            
+ m_SS
+@@ -5889,16 +5889,17 @@
+ tTexture
++ 
+ (%22_SSAO%22
+@@ -5905,25 +5905,26 @@
+ %22, r
+-enderTexture);%0a%09%09
++tAO);%0a            
+ Grap
+@@ -5932,16 +5932,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -5975,18 +5975,29 @@
+ al, 4);%0a
+-%09%09
++%0a            
+ RenderTe
+@@ -6022,26 +6022,1260 @@
+ rary
++ 
+ (r
+-enderTexture);%0a%09
++tAO);%0a        %7d%0a%0a        /*%0a%09%09private void CreateRandomTable (int count, float minLength)%0a%09%09%7b%0a%09%09%09Random.seed = 1337;%0a%09%09%09Vector3%5b%5d samples = new Vector3%5bcount%5d;%0a%09%09%09// initial samples%0a%09%09%09for (int i = 0; i %3c count; ++i)%0a%09%09%09%09samples%5bi%5d = Random.onUnitSphere;%0a%09%09%09// energy minimization: push samples away from others%0a%09%09%09int iterations = 100;%0a%09%09%09while (iterations-- %3e 0) %7b%0a%09%09%09%09for (int i = 0; i %3c count; ++i) %7b%0a%09%09%09%09%09Vector3 vec = samples%5bi%5d;%0a%09%09%09%09%09Vector3 res = Vector3.zero;%0a%09%09%09%09%09// minimize with other samples%0a%09%09%09%09%09for (int j = 0; j %3c count; ++j) %7b%0a%09%09%09%09%09%09Vector3 force = vec - samples%5bj%5d;%0a%09%09%09%09%09%09float fac = Vector3.Dot (force, force);%0a%09%09%09%09%09%09if (fac %3e 0.00001f)%0a%09%09%09%09%09%09%09res += force * (1.0f / fac);%0a%09%09%09%09%09%7d%0a%09%09%09%09%09samples%5bi%5d = (samples%5bi%5d + res * 0.5f).normalized;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09// now scale samples between minLength and 1.0%0a%09%09%09for (int i = 0; i %3c count; ++i) %7b%0a%09%09%09%09samples%5bi%5d = samples%5bi%5d * Random.Range (minLength, 1.0f);%0a%09%09%09%7d%0a%0a%09%09%09string table = string.Format (%22#define SAMPLE_COUNT %7b0%7d%5cn%22, count);%0a%09%09%09table += %22const float3 RAND_SAMPLES%5bSAMPLE_COUNT%5d = %7b%5cn%22;%0a%09%09%09for (int i = 0; i %3c count; ++i) %7b%0a%09%09%09%09Vector3 v = samples%5bi%5d;%0a%09%09%09%09table += string.Format(%22%5ctfloat3(%7b0%7d,%7b1%7d,%7b2%7d),%5cn%22, v.x, v.y, v.z);%0a%09%09%09%7d%0a%09%09%09table += %22%7d;%5cn%22;%0a%09%09%09Debug.Log (table);%0a%09%09%7d%0a%09%09*/%0a    
+ %7d%0a%7d%0a

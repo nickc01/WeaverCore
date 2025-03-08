@@ -1,0 +1,1536 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -117,16 +117,17 @@
+ omponent
++ 
+ (typeof(
+@@ -136,16 +136,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -157,16 +157,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -201,18 +201,23 @@
+ n Blur%22)
++ 
+ %5d%0a
++    
+ public c
+@@ -260,179 +260,667 @@
+ ase%0a
+-%7b%0a%09public enum MotionBlurFilter%0a%09%7b%0a%09%09CameraMotion,%0a%09%09LocalBlur,%0a%09%09Reconstruction,%0a%09%09ReconstructionDX11,%0a%09%09ReconstructionDisc%0a%09%7d%0a%0a%09private static float MAX_RADIUS = 10f;%0a%0a%09
++    %7b%0a        // make sure to match this to MAX_RADIUS in shader ('k' in paper)%0a        static float MAX_RADIUS = 10.0f;%0a%0a        public enum MotionBlurFilter %7b%0a            CameraMotion = 0,%09%09%09// global screen blur based on cam motion%0a            LocalBlur = 1,%09%09%09%09// cheap blur, no dilation or scattering%0a            Reconstruction = 2,%09%09%09// advanced filter (simulates scattering) as in plausible motion blur paper%0a            ReconstructionDX11 = 3,%09%09// advanced filter (simulates scattering) as in plausible motion blur paper%0a            ReconstructionDisc = 4,%09%09// advanced filter using scaled poisson disc sampling%0a        %7d%0a%0a        // settings%0a        
+ publ
+@@ -985,18 +985,24 @@
+ uction;%0a
+-%0a%09
++        
+ public b
+@@ -1009,64 +1009,188 @@
+ ool 
++ 
+ preview
+-;%0a%0a%09public Vector3 previewScale = Vector3.one;%0a%0a%09
++ = false;%09%09%09%09// show how blur would look like in action ...%0a        public Vector3 previewScale = Vector3.one;%09// ... given this movement vector%0a%0a        // params%0a        
+ publ
+@@ -1211,20 +1211,33 @@
+ entScale
+-;%0a%0a%09
++ = 0.0f;%0a        
+ public f
+@@ -1258,21 +1258,29 @@
+ cale = 1
++.0
+ f;%0a
+-%0a%09
++        
+ public f
+@@ -1303,48 +1303,122 @@
+  = 8
+-f;%0a%0a%09public float minVelocity = 0.1f;%0a%0a%09
++.0f;%09// maximum velocity in pixels%0a        public float minVelocity = 0.1f;%09// minimum velocity in pixels%0a        
+ publ
+@@ -1449,19 +1449,50 @@
+  0.375f;
+-%0a%0a%09
++%09// global velocity scale%0a        
+ public f
+@@ -1523,48 +1523,171 @@
+ 05f;
+-%0a%0a%09public int velocityDownsample = 1;%0a%0a%09
++%09// for z overlap check softness (reconstruction filter only)%0a        public int velocityDownsample = 1;%09// low resolution velocity buffer? (optimization)%0a        
+ publ
+@@ -1718,18 +1718,24 @@
+ rs = 0;%0a
+-%0a%09
++        
+ private 
+@@ -1751,20 +1751,55 @@
+ t tmpCam
+-;%0a%0a%09
++ = null;%0a%0a        // resources%0a        
+ public S
+@@ -1808,26 +1808,32 @@
+ der shader;%0a
+-%0a%09
++        
+ public Shade
+@@ -1856,18 +1856,24 @@
+ Shader;%0a
+-%0a%09
++        
+ public S
+@@ -1897,17 +1897,24 @@
+ Clear;%0a%0a
+-%09
++        
+ private 
+@@ -1940,20 +1940,33 @@
+ Material
+-;%0a%0a%09
++ = null;%0a        
+ private 
+@@ -1996,20 +1996,34 @@
+ Material
+-;%0a%0a%09
++ = null;%0a%0a        
+ public T
+@@ -2043,20 +2043,33 @@
+ eTexture
+-;%0a%0a%09
++ = null;%0a        
+ public f
+@@ -2090,17 +2090,52 @@
+ 0.05f;%0a%0a
+-%09
++        // (internal) debug%0a        
+ public b
+@@ -2138,16 +2138,17 @@
+ ic bool 
++ 
+ showVelo
+@@ -2151,20 +2151,34 @@
+ Velocity
+-;%0a%0a%09
++ = false;%0a        
+ public f
+@@ -2203,20 +2203,98 @@
+ cale = 1
++.0
+ f;%0a%0a
++        // camera transforms%0a        private Matrix4x4 currentViewProjMat;%0a%09
+ %09private
+@@ -2299,32 +2299,34 @@
+ te Matrix4x4
++%5b%5d
+  current
+ ViewProjMat;
+@@ -2305,32 +2305,38 @@
+ rix4x4%5b%5d current
++Stereo
+ ViewProjMat;%0a%0a%09p
+@@ -2324,33 +2324,70 @@
+ reoViewProjMat;%0a
+-%0a
++%09%09private Matrix4x4 prevViewProjMat;%0a%09
+ %09private Matrix4
+@@ -2380,37 +2380,45 @@
+ rivate Matrix4x4
++%5b%5d
+  prev
++Stereo
+ ViewProjMat;%0a%0a%09p
+@@ -2414,17 +2414,17 @@
+ rojMat;%0a
+-%0a
++%09
+ %09private
+@@ -2444,18 +2444,24 @@
+ eCount;%0a
+-%0a%09
++        
+ private 
+@@ -2465,16 +2465,17 @@
+ te bool 
++ 
+ wasActiv
+@@ -2477,18 +2477,106 @@
+ Active;%0a
+-%0a%09
++        // shortcuts to calculate global blur direction when using 'CameraMotion'%0a        
+ private 
+@@ -2619,18 +2619,24 @@
+ orward;%0a
+-%0a%09
++        
+ private 
+@@ -2669,18 +2669,24 @@
+ or3.up;%0a
+-%0a%09
++        
+ private 
+@@ -2722,18 +2722,24 @@
+ 3.zero;%0a
+-%0a%09
++        
+ private 
+@@ -2755,17 +2755,25 @@
+ amera;%0a%0a
+-%09
++%0a        
+ private 
+@@ -2800,22 +2800,23 @@
+ ojection
++ 
+ ()
++ %7b
+ %0a%09
+-%7b%0a
+ %09%09Matrix
+@@ -2819,35 +2819,23 @@
+ trix4x4 
+-worldToCameraMatrix
++viewMat
+  = _came
+@@ -2862,39 +2862,37 @@
+ ix;%0a
+-%09%09Matrix4x4 gPUProjectionMatrix
++            Matrix4x4 projMat
+  = G
+@@ -2907,32 +2907,33 @@
+ ProjectionMatrix
++ 
+ (_camera.project
+@@ -2947,47 +2947,425 @@
+ ix, 
+-renderIntoTexture: true);%0a%09%09currentView
++true);%0a            currentViewProjMat = projMat * viewMat;%0a%0a%09%09%09if(_camera.stereoEnabled)%0a%09%09%09%7b%0a%09%09%09%09for (int eye = 0; eye %3c 2; ++eye)%0a%09%09%09%09%7b%0a%09%09%09%09%09Matrix4x4 stereoViewMat = _camera.GetStereoViewMatrix(eye == 0 ? Camera.StereoscopicEye.Left : Camera.StereoscopicEye.Right);%0a%09%09%09%09%09Matrix4x4 stereoProjMat = _camera.GetStereoProjectionMatrix(eye == 0 ? Camera.StereoscopicEye.Left : Camera.StereoscopicEye.Right);%0a%09%09%09%09%09stereo
+ Proj
+@@ -3362,33 +3362,39 @@
+ stereoProjMat = 
+-g
++GL.GetG
+ PUProjectionMatr
+@@ -3399,44 +3399,129 @@
+ trix
+- * worldToCameraMatrix;%0a%09%7d%0a%0a%09private
++(stereoProjMat, true);%0a%09%09%09%09%09currentStereoViewProjMat%5beye%5d = stereoProjMat * stereoViewMat;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a        %7d%0a%0a%0a       
+  new
+@@ -3531,24 +3531,34 @@
+ id Start
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ CheckRes
+@@ -3563,22 +3563,34 @@
+ esources
++ 
+ ();%0a
+-%09%09
++%0a            
+ if (_cam
+@@ -3594,39 +3594,48 @@
+ camera == null)%0a
+-%09%09%7b%0a%09%09%09
++                
+ _camera = GetCom
+@@ -3648,30 +3648,37 @@
+ %3cCamera%3e();%0a
+-%09%09%7d%0a%09%09
++%0a            
+ wasActive = 
+@@ -3669,37 +3669,32 @@
+     wasActive = 
+-base.
+ gameObject.activ
+@@ -3705,24 +3705,118 @@
+ ierarchy;%0a%09%09
++%09currentStereoViewProjMat = new Matrix4x4%5b2%5d;%0a%09%09%09prevStereoViewProjMat = new Matrix4x4%5b2%5d;%0a%09%09%09
+ CalculateVie
+@@ -3830,22 +3830,33 @@
+ tion
++ 
+ ();%0a
+-%09%09
++            
+ Remember
+ ();%0a
+@@ -3851,22 +3851,33 @@
+ Remember
++ 
+ ();%0a
+-%09%09
++            
+ wasActiv
+@@ -3886,29 +3886,98 @@
+ = false;
+-%0a%09%7d%0a%0a%09private
++ // hack to fake position/rotation update and prevent bad blurs%0a        %7d%0a%0a       
+  void On
+@@ -3978,32 +3978,43 @@
+ oid OnEnable
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a%0a            
+ if (_camera 
+@@ -4022,23 +4022,32 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++                
+ _camera 
+@@ -4072,22 +4072,29 @@
+ era%3e();%0a
+-%09%09%7d%0a%09%09
++%0a            
+ _camera.
+@@ -4137,28 +4137,34 @@
+ .Depth;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void On
+@@ -4170,24 +4170,34 @@
+ nDisable
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (null
+@@ -4215,39 +4215,43 @@
+ lurMaterial)
+-%0a%09%09%7b%0a%09%09%09Object.
++ %7b%0a                
+ DestroyImmed
+@@ -4254,16 +4254,17 @@
+ mmediate
++ 
+ (motionB
+@@ -4277,19 +4277,32 @@
+ erial);%0a
+-%09%09%09
++                
+ motionBl
+@@ -4312,38 +4312,58 @@
+ aterial = null;%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ if (null != dx11
+@@ -4381,31 +4381,35 @@
+ aterial)
+-%0a%09%09%7b%0a%09%09%09Object.
++ %7b%0a                
+ DestroyI
+@@ -4416,16 +4416,17 @@
+ mmediate
++ 
+ (dx11Mot
+@@ -4443,19 +4443,32 @@
+ erial);%0a
+-%09%09%09
++                
+ dx11Moti
+@@ -4494,48 +4494,72 @@
+ ll;%0a
+-%09%09%7d%0a%09%09if (null != tmpCam)%0a%09%09%7b%0a%09%09%09Object.
++            %7d%0a            if (null != tmpCam) %7b%0a                
+ Dest
+@@ -4570,16 +4570,17 @@
+ mmediate
++ 
+ (tmpCam)
+@@ -4585,35 +4585,73 @@
+ m);%0a
+-%09%09%09tmpCam = null;%0a%09%09%7d%0a%09%7d%0a%0a%09
++                tmpCam = null;%0a            %7d%0a        %7d%0a%0a%0a        
+ publ
+@@ -4685,64 +4685,87 @@
+ rces
++ 
+ ()
+-%0a%09%7b%0a%09%09CheckSupport(needDepth: true, needHdr: true);%0a%09%09
++ %7b%0a            CheckSupport (true, true); // depth & hdr needed%0a            
+ moti
+@@ -4809,16 +4809,17 @@
+ Material
++ 
+ (shader,
+@@ -4840,18 +4840,29 @@
+ erial);%0a
+-%09%09
++%0a            
+ if (supp
+@@ -4922,24 +4922,35 @@
+ ionDX11)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ dx11Moti
+@@ -4994,16 +4994,17 @@
+ Material
++ 
+ (dx11Mot
+@@ -5043,22 +5043,43 @@
+ erial);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a%0a            
+ if (!isS
+@@ -5088,23 +5088,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -5121,26 +5121,34 @@
+ oDisable
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++%0a            
+ return i
+@@ -5159,28 +5159,34 @@
+ ported;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void On
+@@ -5196,16 +5196,17 @@
+ derImage
++ 
+ (RenderT
+@@ -5250,19 +5250,36 @@
+ ion)
+-%0a%09%7b%0a%09%09if (!
++ %7b%0a            if (false == 
+ Chec
+@@ -5292,19 +5292,31 @@
+ rces
++ 
+ ())
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ Grap
+@@ -5316,32 +5316,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -5352,25 +5352,59 @@
+ n);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            
+ if (
+@@ -5448,23 +5448,32 @@
+ Motion)%0a
+-%09%09%7b%0a%09%09%09
++                
+ StartFra
+@@ -5478,48 +5478,116 @@
+ rame
++ 
+ ();%0a
+-%09%09%7d%0a%09%09RenderTextureFormat f
++%0a            // use if possible new RG format ... fallback to half otherwise%0a            var rtF
+ ormat
+- 
+ = 
+-(
+ Syst
+@@ -5620,16 +5620,17 @@
+ reFormat
++ 
+ (RenderT
+@@ -5709,21 +5709,64 @@
+ ARGBHalf
+-)
+ ;%0a
+-%09%09
++%0a            // get temp textures%0a            
+ RenderTe
+@@ -5771,25 +5771,25 @@
+ Texture 
+-temporary
++velBuffer
+  = Rende
+@@ -5809,16 +5809,17 @@
+ emporary
++ 
+ (divRoun
+@@ -5813,32 +5813,33 @@
+ rary (divRoundUp
++ 
+ (source.width, v
+@@ -5868,16 +5868,17 @@
+ vRoundUp
++ 
+ (source.
+@@ -5909,25 +5909,27 @@
+ le), 0, 
+-f
++rtF
+ ormat);%0a
+ %09%09int nu
+@@ -5924,41 +5924,83 @@
+ t);%0a
+-%09%09int num = 1;%0a%09%09int num2 = 1;%0a%09%09
++            int tileWidth = 1;%0a            int tileHeight = 1;%0a            
+ maxV
+@@ -6022,10 +6022,13 @@
+ .Max
++ 
+ (2
++.0
+ f, m
+@@ -6044,47 +6044,211 @@
+ y);%0a
+-%09%09float num3 = maxVelocity;%0a%09%09bool flag
++%0a            float _maxVelocity = maxVelocity; // calculate 'k'%0a            // note: 's' is hardcoded in shaders except for DX11 path%0a%0a            // auto DX11 fallback!%0a            bool fallbackFromDX11
+  = f
+@@ -6331,18 +6331,29 @@
+ = null;%0a
+-%09%09
++%0a            
+ if (filt
+@@ -6398,19 +6398,31 @@
+ ion %7c%7c f
+-lag
++allbackFromDX11
+  %7c%7c filt
+@@ -6467,24 +6467,35 @@
+ ionDisc)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ maxVeloc
+@@ -6509,16 +6509,17 @@
+ athf.Min
++ 
+ (maxVelo
+@@ -6537,22 +6537,41 @@
+ ADIUS);%0a
+-%09%09%09num
++                tileWidth
+  = divRo
+@@ -6571,34 +6571,35 @@
+ = divRoundUp
+-(temporary
++ (velBuffer
+ .width, (int
+@@ -6591,32 +6591,33 @@
+ fer.width, (int)
++ 
+ maxVelocity);%0a%09%09
+@@ -6606,39 +6606,58 @@
+ ) maxVelocity);%0a
+-%09%09%09num2
++                tileHeight
+  = divRoundUp(te
+@@ -6649,34 +6649,35 @@
+ = divRoundUp
+-(temporary
++ (velBuffer
+ .height, (in
+@@ -6670,32 +6670,33 @@
+ er.height, (int)
++ 
+ maxVelocity);%0a%09%09
+@@ -6697,62 +6697,124 @@
+ y);%0a
+-%09%09%09num3 = temporary.width / num;%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09num
++                _maxVelocity = velBuffer.width/tileWidth;%0a            %7d%0a            else %7b%0a                tileWidth
+  = d
+@@ -6822,26 +6822,27 @@
+ vRoundUp
+-(temporary
++ (velBuffer
+ .width, 
+@@ -6842,24 +6842,25 @@
+ width, (int)
++ 
+ maxVelocity)
+@@ -6865,15 +6865,34 @@
+ y);%0a
+-%09%09%09num2
++                tileHeight
+  = d
+@@ -6900,26 +6900,27 @@
+ vRoundUp
+-(temporary
++ (velBuffer
+ .height,
+@@ -6925,16 +6925,17 @@
+ t, (int)
++ 
+ maxVeloc
+@@ -6944,47 +6944,93 @@
+ y);%0a
+-%09%09%09num3 = temporary.width / num;%0a%09%09%7d%0a%09%09
++                _maxVelocity = velBuffer.width/tileWidth;%0a            %7d%0a%0a            
+ Rend
+@@ -7040,25 +7040,23 @@
+ exture t
+-emporary2
++ileMax 
+  = Rende
+@@ -7080,32 +7080,47 @@
+ rary
+-(num, num2
++ (tileWidth, tileHeight
+ , 0, 
+-f
++rtF
+ ormat);%0a
+ %09%09Re
+@@ -7115,18 +7115,28 @@
+ ormat);%0a
+-%09%09
++            
+ RenderTe
+@@ -7141,26 +7141,29 @@
+ Texture 
+-temporary3
++neighbourMax 
+  = Rende
+@@ -7187,32 +7187,47 @@
+ rary
+-(num, num2
++ (tileWidth, tileHeight
+ , 0, 
+-f
++rtF
+ ormat);%0a
+ %09%09te
+@@ -7222,27 +7222,37 @@
+ ormat);%0a
+-%09%09temporary
++            velBuffer
+ .filterM
+@@ -7275,28 +7275,35 @@
+ .Point;%0a
+-%09%09temporary2
++            tileMax
+ .filterM
+@@ -7326,28 +7326,40 @@
+ .Point;%0a
+-%09%09temporary3
++            neighbourMax
+ .filterM
+@@ -7382,28 +7382,32 @@
+ .Point;%0a
+-%09%09if ((bool)
++            if (
+ noiseTex
+@@ -7411,24 +7411,17 @@
+ Texture)
+-%0a%09%09%7b%0a%09%09%09
++ 
+ noiseTex
+@@ -7456,22 +7456,28 @@
+ .Point;%0a
+-%09%09%7d%0a%09%09
++            
+ source.w
+@@ -7509,27 +7509,37 @@
+ .Clamp;%0a
+-%09%09temporary
++            velBuffer
+ .wrapMod
+@@ -7569,20 +7569,32 @@
+ mp;%0a
+-%09%09temporary3
++            neighbourMax
+ .wra
+@@ -7628,20 +7628,27 @@
+ mp;%0a
+-%09%09temporary2
++            tileMax
+ .wra
+@@ -7678,18 +7678,72 @@
+ .Clamp;%0a
+-%09%09
++%0a            // calc correct viewprj matrix%0a            
+ Calculat
+@@ -7761,23 +7761,62 @@
+ tion
++ 
+ ();%0a
+-%09%09if (base.
++%0a            // just started up?%0a            if (
+ game
+@@ -7858,24 +7858,35 @@
+ ive)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ Remember
+ ();%0a
+@@ -7881,26 +7881,47 @@
+ Remember
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ wasActiv
+@@ -7924,21 +7924,16 @@
+ ctive = 
+-base.
+ gameObje
+@@ -7958,28 +7958,65 @@
+ hy;%0a
+-%09%09Matrix4x4 matrix4x
++%0a            // matrices%0a            Matrix4x4 invViewPrj
+  = M
+@@ -8031,16 +8031,17 @@
+ .Inverse
++ 
+ (current
+@@ -8046,34 +8046,44 @@
+ ntViewProjMat);%0a
+-%09%09
++            
+ motionBlurMateri
+@@ -8094,16 +8094,17 @@
+ etMatrix
++ 
+ (%22_InvVi
+@@ -8112,29 +8112,118 @@
+ wProj%22, 
+-m
++invViewPrj);%0a            motionBlurM
+ at
++e
+ ri
+-x4x);%0a%09%09
++al.SetMatrix (%22_PrevViewProj%22, prevViewProjMat);%0a            
+ motionBl
+@@ -8234,35 +8234,38 @@
+ terial.SetMatrix
++ 
+ (%22_
++To
+ PrevViewProj%22, p
+@@ -8252,32 +8252,40 @@
+ %22_ToPrevViewProj
++Combined
+ %22, prevViewProjM
+@@ -8286,19 +8286,343 @@
+ wProjMat
+-);%0a
++ * invViewPrj);%0a%09%09%09if(_camera.stereoEnabled)%0a%09%09%09%7b%0a%09%09%09%09Matrix4x4%5b%5d invStereoViewPrj = new Matrix4x4%5b2%5d;%0a%09%09%09%09invStereoViewPrj%5b0%5d = Matrix4x4.Inverse(currentStereoViewProjMat%5b0%5d);%0a%09%09%09%09invStereoViewPrj%5b1%5d = Matrix4x4.Inverse(currentStereoViewProjMat%5b1%5d);%0a%0a%09%09%09%09Matrix4x4 combined = prevStereoViewProjMat%5b0%5d * invStereoViewPrj%5b0%5d;%0a%09%09
+ %09%09motion
+@@ -8638,32 +8638,38 @@
+ ial.SetMatrix(%22_
++Stereo
+ ToPrevViewProjCo
+@@ -8666,39 +8666,124 @@
+ ViewProjCombined
++0%22, combined);%0a%09%09%09%09motionBlurMaterial.SetMatrix(%22_StereoToPrevViewProjCombined1
+ %22, prev
++Stereo
+ ViewProjMat * ma
+@@ -8777,32 +8777,62 @@
+ wProjMat
+- * matrix4x);%0a%09%09
++%5b1%5d * invStereoViewPrj%5b1%5d);%0a%09%09%09%7d%0a%0a            
+ motionBl
+@@ -8846,24 +8846,25 @@
+ ial.SetFloat
++ 
+ (%22_MaxVeloci
+@@ -8868,25 +8868,43 @@
+ ocity%22, 
+-num3);%0a%09%09
++_maxVelocity);%0a            
+ motionBl
+@@ -8914,32 +8914,33 @@
+ aterial.SetFloat
++ 
+ (%22_MaxRadiusOrKI
+@@ -8948,25 +8948,43 @@
+ Paper%22, 
+-num3);%0a%09%09
++_maxVelocity);%0a            
+ motionBl
+@@ -8994,32 +8994,33 @@
+ aterial.SetFloat
++ 
+ (%22_MinVelocity%22,
+@@ -9030,26 +9030,36 @@
+ nVelocity);%0a
+-%09%09
++            
+ motionBlurMa
+@@ -9065,32 +9065,33 @@
+ aterial.SetFloat
++ 
+ (%22_VelocityScale
+@@ -9105,26 +9105,36 @@
+ cityScale);%0a
+-%09%09
++            
+ motionBlurMa
+@@ -9140,32 +9140,33 @@
+ aterial.SetFloat
++ 
+ (%22_Jitter%22, jitt
+@@ -9170,18 +9170,61 @@
+ itter);%0a
+-%09%09
++%0a            // texture samplers%0a            
+ motionBl
+@@ -9236,32 +9236,33 @@
+ erial.SetTexture
++ 
+ (%22_NoiseTex%22, no
+@@ -9274,18 +9274,28 @@
+ xture);%0a
+-%09%09
++            
+ motionBl
+@@ -9307,32 +9307,33 @@
+ erial.SetTexture
++ 
+ (%22_VelTex%22, temp
+@@ -9328,30 +9328,40 @@
+ elTex%22, 
+-temporary);%0a%09%09
++velBuffer);%0a            
+ motionBl
+@@ -9373,32 +9373,33 @@
+ erial.SetTexture
++ 
+ (%22_NeighbourMaxT
+@@ -9403,31 +9403,43 @@
+ axTex%22, 
+-temporary3);%0a%09%09
++neighbourMax);%0a            
+ motionBl
+@@ -9459,16 +9459,17 @@
+ tTexture
++ 
+ (%22_TileT
+@@ -9483,71 +9483,160 @@
+ %22, t
+-emporary2);%0a%09%09if (preview)%0a%09%09%7b%0a%09%09%09Matrix4x4 worldToCameraMatrix
++ileMax);%0a%0a            if (preview) %7b%0a                // generate an artificial 'previous' matrix to simulate blur look%0a                Matrix4x4 viewMat
+  = _
+@@ -9663,19 +9663,32 @@
+ Matrix;%0a
+-%09%09%09
++                
+ Matrix4x
+@@ -9689,24 +9689,22 @@
+ trix4x4 
+-identity
++offset
+  = Matri
+@@ -9722,19 +9722,30 @@
+ ty;%0a
+-%09%09%09identity
++                offset
+ .Set
+@@ -9810,41 +9810,68 @@
+ ne);
+-%0a%09%09%09Matrix4x4 gPUProjectionMatrix
++ // using only translation%0a                Matrix4x4 projMat
+  = G
+@@ -9894,16 +9894,17 @@
+ onMatrix
++ 
+ (_camera
+@@ -9926,112 +9926,93 @@
+ ix, 
+-renderIntoTexture: true);%0a%09%09%09prevViewProjMat = gPUProjectionMatrix * identity * worldToCameraMatrix;%0a%09%09%09
++true);%0a                prevViewProjMat = projMat * offset * viewMat;%0a                
+ moti
+@@ -10035,16 +10035,17 @@
+ etMatrix
++ 
+ (%22_PrevV
+@@ -10072,19 +10072,32 @@
+ ojMat);%0a
+-%09%09%09
++                
+ motionBl
+@@ -10116,16 +10116,17 @@
+ etMatrix
++ 
+ (%22_ToPre
+@@ -10167,25 +10167,48 @@
+ t * 
+-matrix4x);%0a%09%09%7d%0a%09%09
++invViewPrj);%0a            %7d%0a%0a            
+ if (
+@@ -10256,57 +10256,198 @@
+ on)%0a
+-%09%09%7b%0a%09%09%09Vector4 zero = Vector4.zero;%0a%09%09%09float num4
++            %7b%0a                // build blur vector to be used in shader to create a global blur direction%0a                Vector4 blurVector = Vector4.zero;%0a%0a                float lookUpDown
+  = V
+@@ -10448,38 +10448,34 @@
+ wn = Vector3.Dot
++ 
+ (
+-base.
+ transform.up, Ve
+@@ -10489,22 +10489,46 @@
+ p);%0a
+-%09%09%09Vector3 rhs
++                Vector3 distanceVector
+  = p
+@@ -10542,16 +10542,9 @@
+ ePos
+- - base.
++-
+ tran
+@@ -10563,74 +10563,170 @@
+ on;%0a
+-%09%09%09float magnitude = rhs.magnitude;%0a%09%09%09float num5
++%0a                float distMag = distanceVector.magnitude;%0a%0a                float farHeur
+  = 1
++.0
+ f;%0a
+-%09%09%09num5
++%0a                // pitch (vertical)%0a                farHeur
+  = 
++(
+ Vect
+@@ -10726,38 +10726,34 @@
+ = (Vector3.Angle
++ 
+ (
+-base.
+ transform.up, pr
+@@ -10780,35 +10780,29 @@
+ .fieldOfView
++)
+  * (
+-(float)
+ source.width
+@@ -10816,19 +10816,39 @@
+ f);%0a
+-%09%09%09zero
++                blurVector
+ .x =
++ 
+  rot
+@@ -10860,32 +10860,172 @@
+ Scale * 
+-num5;%0a%09%09%09num5
++farHeur;//Mathf.Clamp01((1.0ff-Vector3.Dot(transform.up, prevFrameUp)));%0a%0a                // yaw #1 (horizontal, faded by pitch)%0a                farHeur
+  = 
++(
+ Vector3.
+@@ -11021,38 +11021,34 @@
+ = (Vector3.Angle
++ 
+ (
+-base.
+ transform.forwar
+@@ -11085,35 +11085,29 @@
+ .fieldOfView
++)
+  * (
+-(float)
+ source.width
+@@ -11121,59 +11121,243 @@
+ f);%0a
+-%09%09%09zero.y = rotationScale * num4 * num5;%0a%09%09%09num5
++                blurVector.y = rotationScale * lookUpDown * farHeur;//Mathf.Clamp01((1.0ff-Vector3.Dot(transform.forward, prevFrameForward)));%0a%0a                // yaw #2 (when looking down, faded by 1-pitch)%0a                farHeur
+  = 
++(
+ Vect
+@@ -11365,22 +11365,18 @@
+ r3.Angle
++ 
+ (
+-base.
+ transfor
+@@ -11425,27 +11425,21 @@
+ ldOfView
++)
+  * (
+-(float)
+ source.w
+@@ -11457,136 +11457,327 @@
+ f);%0a
+-%09%09%09zero.z = rotationScale * (1f - num4) * num5;%0a%09%09%09if (magnitude %3e Mathf.Epsilon && movementScale %3e Mathf.Epsilon)%0a%09%09%09%7b%0a%09%09%09%09zero
++                blurVector.z = rotationScale * (1.0f- lookUpDown) * farHeur;//Mathf.Clamp01((1.0ff-Vector3.Dot(transform.forward, prevFrameForward)));%0a%0a                if (distMag %3e Mathf.Epsilon && movementScale %3e Mathf.Epsilon) %7b%0a                    // forward (probably most important)%0a                    blurVector
+ .w =
+@@ -11785,32 +11785,33 @@
+ movementScale * 
++(
+ Vector3.Dot(base
+@@ -11797,38 +11797,34 @@
+ e * (Vector3.Dot
++ 
+ (
+-base.
+ transform.forwar
+@@ -11826,31 +11826,37 @@
+ orward, 
+-rhs) * ((float)
++distanceVector) ) * (
+ source.w
+@@ -11869,24 +11869,101 @@
+  0.5f);%0a
+-%09%09%09%09zero
++                    // jump (maybe scale down further)%0a                    blurVector
+ .x += mo
+@@ -11968,32 +11968,33 @@
+ movementScale * 
++(
+ Vector3.Dot(base
+@@ -11980,38 +11980,34 @@
+ e * (Vector3.Dot
++ 
+ (
+-base.
+ transform.up, rh
+@@ -12004,31 +12004,37 @@
+ orm.up, 
+-rhs) * ((float)
++distanceVector) ) * (
+ source.w
+@@ -12051,16 +12051,95 @@
+ f);%0a
+-%09%09%09%09zero
++                    // strafe (maybe scale down further)%0a                    blurVector
+ .y +
+@@ -12156,16 +12156,17 @@
+ Scale * 
++(
+ Vector3.
+@@ -12172,14 +12172,10 @@
+ .Dot
++ 
+ (
+-base.
+ tran
+@@ -12191,23 +12191,29 @@
+ ht, 
+-rhs) * ((float)
++distanceVector) ) * (
+ sour
+@@ -12234,38 +12234,99 @@
+ f);%0a
+-%09%09%09%7d%0a%09%09%09if (preview)%0a%09%09%09%7b%0a%09%09%09%09
++                %7d%0a%0a                if (preview) // crude approximation%0a                    
+ moti
+@@ -12341,32 +12341,33 @@
+ terial.SetVector
++ 
+ (%22_BlurDirection
+@@ -12386,16 +12386,17 @@
+  Vector4
++ 
+ (preview
+@@ -12420,16 +12420,18 @@
+ cale.x, 
++0.
+ 0f, prev
+@@ -12473,38 +12473,57 @@
+ fView);%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
++                else%0a                    
+ motionBl
+@@ -12542,16 +12542,17 @@
+ etVector
++ 
+ (%22_BlurD
+@@ -12572,38 +12572,114 @@
+ d%22, 
+-zero);%0a%09%09%09%7d%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++blurVector);%0a            %7d%0a            else %7b%0a                // generate velocity buffer%0a                
+ Grap
+@@ -12679,32 +12679,33 @@
+    Graphics.Blit
++ 
+ (source, tempora
+@@ -12697,25 +12697,25 @@
+ source, 
+-temporary
++velBuffer
+ , motion
+@@ -12736,33 +12736,191 @@
+ 0);%0a
+-%09%09%09Camera c
++%0a                // patch up velocity buffer:%0a%0a                // exclude certain layers (e.g. skinned objects as we cant really support that atm)%0a%0a                C
+ amera 
++cam 
+ = null;%0a
+ %09%09%09i
+@@ -12915,19 +12915,32 @@
+ = null;%0a
+-%09%09%09
++                
+ if (excl
+@@ -12960,32 +12960,66 @@
+ ue != 0)
+-%0a%09%09%09%7b%0a%09%09%09%09camera
++// %7c%7c dynamicLayers.value)%0a                    cam
+  = GetTm
+@@ -13026,36 +13026,37 @@
+ pCam
++ 
+ ();%0a
+-%09%09%09%7d%0a%09%09%09if ((bool)camera
++%0a                if (cam
+  && 
+@@ -13087,14 +13087,8 @@
+  && 
+-(bool)
+ repl
+@@ -13136,62 +13136,85 @@
+ ted)
+-%0a%09%09%09%7b%0a%09%09%09%09camera.targetTexture = temporary;%0a%09%09%09%09camera
++ %7b%0a                    cam.targetTexture = velBuffer;%0a                    cam
+ .cul
+@@ -13243,18 +13243,31 @@
+ rs;%0a
+-%09%09%09%09camera
++                    cam
+ .Ren
+@@ -13279,16 +13279,17 @@
+ thShader
++ 
+ (replace
+@@ -13304,27 +13304,61 @@
+ r, %22%22);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++                %7d%0a            %7d%0a%0a            
+ if (!pre
+@@ -13399,24 +13399,106 @@
+ meCount)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                // remember current transformation data for next frame%0a                
+ prevFram
+@@ -13527,19 +13527,32 @@
+ nt;%0a
+-%09%09%09
++                
+ Remember
+ ();%0a
+@@ -13551,18 +13551,40 @@
+ mber
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            %7d%0a%0a            
+ sour
+@@ -13624,35 +13624,302 @@
+ ar;%0a
+-%09%09if (showVelocity)%0a%09%09%7b%0a%09%09%09
++%0a            // debug vel buffer:%0a            if (showVelocity) %7b%0a                // generate tile max and neighbour max%0a                //Graphics.Blit (velBuffer, tileMax, motionBlurMaterial, 2);%0a                //Graphics.Blit (tileMax, neighbourMax, motionBlurMaterial, 3);%0a                
+ moti
+@@ -13941,16 +13941,17 @@
+ SetFloat
++ 
+ (%22_Displ
+@@ -13988,19 +13988,32 @@
+ Scale);%0a
+-%09%09%09
++                
+ Graphics
+@@ -14017,26 +14017,27 @@
+ ics.Blit
+-(temporary
++ (velBuffer
+ , destin
+@@ -14067,26 +14067,64 @@
+ al, 1);%0a
+-%09%09%7d%0a%09%09else
++            %7d%0a            else %7b%0a               
+  if (fil
+@@ -14175,28 +14175,124 @@
+ 11 && !f
+-lag)%0a%09%09%7b%0a%09%09%09
++allbackFromDX11) %7b%0a                    // need to reset some parameters for dx11 shader%0a                    
+ dx11Moti
+@@ -14310,24 +14310,25 @@
+ ial.SetFloat
++ 
+ (%22_MinVeloci
+@@ -14342,27 +14342,44 @@
+ nVelocity);%0a
+-%09%09%09
++                    
+ dx11MotionBl
+@@ -14397,16 +14397,17 @@
+ SetFloat
++ 
+ (%22_Veloc
+@@ -14429,27 +14429,44 @@
+ cityScale);%0a
+-%09%09%09
++                    
+ dx11MotionBl
+@@ -14484,16 +14484,17 @@
+ SetFloat
++ 
+ (%22_Jitte
+@@ -14506,19 +14506,77 @@
+ itter);%0a
+-%09%09%09
++%0a                    // texture samplers%0a                    
+ dx11Moti
+@@ -14596,24 +14596,25 @@
+ l.SetTexture
++ 
+ (%22_NoiseTex%22
+@@ -14630,19 +14630,36 @@
+ xture);%0a
+-%09%09%09
++                    
+ dx11Moti
+@@ -14683,16 +14683,17 @@
+ tTexture
++ 
+ (%22_VelTe
+@@ -14700,23 +14700,40 @@
+ x%22, 
+-temporary);%0a%09%09%09
++velBuffer);%0a                    
+ dx11
+@@ -14761,16 +14761,17 @@
+ tTexture
++ 
+ (%22_Neigh
+@@ -14787,24 +14787,44 @@
+ x%22, 
+-temporary3);%0a%09%09%09
++neighbourMax);%0a%0a                    
+ dx11
+@@ -14842,32 +14842,33 @@
+ aterial.SetFloat
++ 
+ (%22_SoftZDistance
+@@ -14904,22 +14904,40 @@
+ istance)
++ 
+ );%0a
+-%09%09%09
++                    
+ dx11Moti
+@@ -14959,16 +14959,17 @@
+ SetFloat
++ 
+ (%22_MaxRa
+@@ -14989,53 +14989,136 @@
+ r%22, 
+-num3);%0a%09%09%09Graphics.Blit(temporary, temporary2
++_maxVelocity);%0a%0a                    // generate tile max and neighbour max%0a                    Graphics.Blit (velBuffer, tileMax
+ , dx
+@@ -15143,19 +15143,36 @@
+ al, 0);%0a
+-%09%09%09
++                    
+ Graphics
+@@ -15176,39 +15176,39 @@
+ ics.Blit
++ 
+ (t
+-emporary2, temporary3
++ileMax, neighbourMax
+ , dx11Mo
+@@ -15229,19 +15229,71 @@
+ al, 1);%0a
+-%09%09%09
++%0a                    // final blur%0a                    
+ Graphics
+@@ -15289,32 +15289,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -15348,22 +15348,50 @@
+ al, 2);%0a
+-%09%09%7d%0a%09%09
++                %7d%0a                
+ else if 
+@@ -15445,20 +15445,113 @@
+ %7c%7c f
+-lag)%0a%09%09%7b%0a%09%09%09
++allbackFromDX11) %7b%0a                    // 'reconstructing' properly integrated color%0a                    
+ moti
+@@ -15565,32 +15565,33 @@
+ aterial.SetFloat
++ 
+ (%22_SoftZDistance
+@@ -15631,49 +15631,125 @@
+ nce)
++ 
+ );%0a
+-%09%09%09Graphics.Blit(temporary, temporary2
++%0a                    // generate tile max and neighbour max%0a                    Graphics.Blit (velBuffer, tileMax
+ , mo
+@@ -15762,35 +15762,52 @@
+ urMaterial, 2);%0a
+-%09%09%09
++                    
+ Graphics.Blit(te
+@@ -15803,39 +15803,39 @@
+ ics.Blit
++ 
+ (t
+-emporary2, temporary3
++ileMax, neighbourMax
+ , motion
+@@ -15844,35 +15844,87 @@
+ urMaterial, 3);%0a
+-%09%09%09
++%0a                    // final blur%0a                    
+ Graphics.Blit(so
+@@ -15912,32 +15912,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -15967,22 +15967,50 @@
+ al, 4);%0a
+-%09%09%7d%0a%09%09
++                %7d%0a                
+ else if 
+@@ -16054,24 +16054,91 @@
+ aMotion)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                    // orange box style motion blur%0a                    
+ Graphics
+@@ -16134,32 +16134,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -16189,22 +16189,50 @@
+ al, 6);%0a
+-%09%09%7d%0a%09%09
++                %7d%0a                
+ else if 
+@@ -16282,24 +16282,208 @@
+ ionDisc)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                    // dof style motion blur defocuing and ellipse around the princical blur direction%0a                    // 'reconstructing' properly integrated color%0a                    
+ motionBl
+@@ -16501,16 +16501,17 @@
+ SetFloat
++ 
+ (%22_SoftZ
+@@ -16559,49 +16559,125 @@
+ nce)
++ 
+ );%0a
+-%09%09%09Graphics.Blit(temporary, temporary2
++%0a                    // generate tile max and neighbour max%0a                    Graphics.Blit (velBuffer, tileMax
+ , mo
+@@ -16698,19 +16698,36 @@
+ al, 2);%0a
+-%09%09%09
++                    
+ Graphics
+@@ -16735,31 +16735,31 @@
+ Blit
++ 
+ (t
+-emporary2, temporary3
++ileMax, neighbourMax
+ , mo
+@@ -16780,19 +16780,37 @@
+ al, 3);%0a
+-%09%09%09
++%0a                    
+ Graphics
+@@ -16806,32 +16806,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -16865,26 +16865,155 @@
+ 7);%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++                %7d%0a                else %7b%0a                    // simple & fast blur (low quality): just blurring along velocity%0a                    
+ Grap
+@@ -17021,16 +17021,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -17068,22 +17068,84 @@
+ al, 5);%0a
+-%09%09%7d%0a%09%09
++                %7d%0a            %7d%0a%0a            // cleanup%0a            
+ RenderTe
+@@ -17170,23 +17170,34 @@
+ rary
+-(temporary);%0a%09%09
++ (velBuffer);%0a            
+ Rend
+@@ -17226,24 +17226,32 @@
+ rary
++ 
+ (t
+-emporary2);%0a%09%09
++ileMax);%0a            
+ Rend
+@@ -17280,34 +17280,43 @@
+ rary
+-(temporary3);%0a%09%7d%0a%0a%09private
++ (neighbourMax);%0a        %7d%0a%0a       
+  voi
+@@ -17325,24 +17325,34 @@
+ Remember
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ prevView
+@@ -17379,24 +17379,25 @@
+ wProjMat;%0a%09%09
++%09
+ prevFrameFor
+@@ -17403,21 +17403,16 @@
+ rward = 
+-base.
+ transfor
+@@ -17422,18 +17422,28 @@
+ orward;%0a
+-%09%09
++            
+ prevFram
+@@ -17448,21 +17448,16 @@
+ ameUp = 
+-base.
+ transfor
+@@ -17462,18 +17462,28 @@
+ orm.up;%0a
+-%09%09
++            
+ prevFram
+@@ -17489,21 +17489,16 @@
+ mePos = 
+-base.
+ transfor
+@@ -17510,27 +17510,146 @@
+ ition;%0a%09
+-%7d%0a%0a%09private
++%09%09prevStereoViewProjMat%5b0%5d = currentStereoViewProjMat%5b0%5d;%0a%09%09%09prevStereoViewProjMat%5b1%5d = currentStereoViewProjMat%5b1%5d; %0a%09%09%7d%0a%0a       
+  Camera 
+@@ -17657,24 +17657,34 @@
+ etTmpCam
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (tmpC
+@@ -17698,27 +17698,38 @@
+ ull)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ string 
+-text
++name
+  = %22
+@@ -17769,19 +17769,32 @@
+ mpCam%22;%0a
+-%09%09%09
++                
+ GameObje
+@@ -17797,25 +17797,17 @@
+ Object g
+-ameObject
++o
+  = GameO
+@@ -17820,52 +17820,96 @@
+ Find
+-(text);%0a%09%09%09if (null == gameObject)%0a%09%09%09%7b%0a%09%09%09%09
++ (name);%0a                if (null == go) // couldn't find, recreate%0a                    
+ tmpC
+@@ -17931,21 +17931,22 @@
+ ject
+-(text
++ (name
+ , typeof
+ (Cam
+@@ -17937,24 +17937,25 @@
+ name, typeof
++ 
+ (Camera));%0a%09
+@@ -17957,62 +17957,89 @@
+ ));%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09tmpCam = gameObject;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++                else%0a                    tmpCam = go;%0a            %7d%0a%0a            
+ tmpC
+@@ -18073,18 +18073,28 @@
+ ntSave;%0a
+-%09%09
++            
+ tmpCam.t
+@@ -18137,26 +18137,36 @@
+ m.position;%0a
+-%09%09
++            
+ tmpCam.trans
+@@ -18209,18 +18209,28 @@
+ tation;%0a
+-%09%09
++            
+ tmpCam.t
+@@ -18281,18 +18281,28 @@
+ lScale;%0a
+-%09%09
++            
+ tmpCam.G
+@@ -18342,18 +18342,29 @@
+ amera);%0a
+-%09%09
++%0a            
+ tmpCam.G
+@@ -18402,18 +18402,28 @@
+  false;%0a
+-%09%09
++            
+ tmpCam.G
+@@ -18486,18 +18486,28 @@
+ e.None;%0a
+-%09%09
++            
+ tmpCam.G
+@@ -18567,18 +18567,29 @@
+ othing;%0a
+-%09%09
++%0a            
+ return t
+@@ -18618,28 +18618,34 @@
+ era%3e();%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void St
+@@ -18656,16 +18656,167 @@
+ rame
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            // take only x%25 of positional changes into account (camera motion)%0a            // TODO: possibly do the same for rotational part%0a            
+ prev
+@@ -18858,13 +18858,8 @@
+ os, 
+-base.
+ tran
+@@ -18886,20 +18886,26 @@
+ f);%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  sta
+@@ -18922,16 +18922,17 @@
+ vRoundUp
++ 
+ (int x, 
+@@ -18938,21 +18938,38 @@
+  int d)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ return (
+@@ -18984,13 +18984,26 @@
+ 1) / d;%0a
+-%09
++        %7d%0a    
+ %7d%0a%7d%0a

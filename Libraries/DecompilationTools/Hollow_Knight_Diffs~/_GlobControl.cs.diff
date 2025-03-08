@@ -1,0 +1,331 @@
+@@ -1,12 +1,14 @@
++/*
+ using System
+@@ -123,17 +123,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public R
+@@ -146,33 +146,36 @@
+ erer rend;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09public floa
+@@ -158,25 +158,28 @@
+     %5bSpace%5d%0a
+-%09
++    
+ public float
+@@ -197,17 +197,20 @@
+  0.6f;%0a%0a
+-%09
++    
+ public f
+@@ -232,25 +232,28 @@
+  1.6f;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09public 
+@@ -240,25 +240,28 @@
+     %5bSpace%5d%0a
+-%09
++    
+ public strin
+@@ -283,25 +283,28 @@
+ lob Land%22;%0a%0a
+-%09
++    
+ public strin
+@@ -334,17 +334,20 @@
+ bble%22;%0a%0a
+-%09
++    
+ public s
+@@ -379,25 +379,28 @@
+ reak%22;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09public 
+@@ -387,25 +387,50 @@
+     %5bSpace%5d%0a
+-%09
++    %5bHideInInspector%5d%0a    
+ public Audio
+@@ -456,17 +456,20 @@
+ refab;%0a%0a
+-%09
++    
+ public A
+@@ -491,17 +491,20 @@
+ Sound;%0a%0a
+-%09
++    
+ public C
+@@ -561,25 +561,28 @@
+ 188f);%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09public 
+@@ -569,25 +569,28 @@
+     %5bSpace%5d%0a
+-%09
++    
+ public GameO
+@@ -612,17 +612,20 @@
+ d;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09pub
+@@ -620,17 +620,20 @@
+ %5bSpace%5d%0a
+-%09
++    
+ public C
+@@ -659,17 +659,20 @@
+ lider;%0a%0a
+-%09
++    
+ private 
+@@ -685,17 +685,20 @@
+ anded;%0a%0a
+-%09
++    
+ private 
+@@ -711,17 +711,22 @@
+ roken;%0a%0a
+-%09
++    //
+ private 
+@@ -751,17 +751,20 @@
+  anim;%0a%0a
+-%09
++    
+ private 
+@@ -776,21 +776,32 @@
+ Awake()%0a
+-%09%7b%0a%09%09
++    %7b%0a        //
+ anim = G
+@@ -835,21 +835,27 @@
+ tor%3e();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -870,21 +870,30 @@
+ nable()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ float nu
+@@ -930,18 +930,24 @@
+ Scale);%0a
+-%09%09
++        
+ base.tra
+@@ -993,18 +993,24 @@
+ m, 1f);%0a
+-%09%09
++        
+ if ((boo
+@@ -1015,39 +1015,54 @@
+ ool)splatChild)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ splatChild.SetAc
+@@ -1081,22 +1081,34 @@
+ false);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ landed =
+@@ -1115,18 +1115,24 @@
+  false;%0a
+-%09%09
++        
+ broken =
+@@ -1139,21 +1139,27 @@
+  false;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -1171,21 +1171,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ Collisio
+@@ -1250,26 +1250,32 @@
+ erEvent%3e();%0a
+-%09%09
++        
+ if ((bool)co
+@@ -1283,23 +1283,38 @@
+ lision)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ collisio
+@@ -1352,24 +1352,25 @@
+  += delegate
++ 
+ (CollisionEn
+@@ -1420,385 +1420,747 @@
+ ol)%0a
+-%09%09%09%7b%0a%09%09%09%09if (!landed)%0a%09%09%09%09%7b%0a%09%09%09%09%09if (direction == CollisionEnterEvent.Direction.Bottom)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09landed = true;%0a%09%09%09%09%09%09collision.doCollisionStay = false;%0a%09%09%09%09%09%09if (CheckForGround())%0a%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09%09anim.Play(landAnim);%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%09else%0a%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09%09StartCoroutine(Break());%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%7d%0a%09%09%09%09%09else%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09collision.doCollisionStay = true;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d;%0a%09%09%7d%0a%09%09
++            %7b%0a                if (!landed)%0a                %7b%0a                    if (direction == CollisionEnterEvent.Direction.Bottom)%0a                    %7b%0a                        landed = true;%0a                        collision.doCollisionStay = false;%0a                        if (CheckForGround())%0a                        %7b%0a                            //anim.Play(landAnim);%0a                        %7d%0a                        else%0a                        %7b%0a                            StartCoroutine(Break());%0a                        %7d%0a                    %7d%0a                    else%0a                    %7b%0a                        collision.doCollisionStay = true;%0a                    %7d%0a                %7d%0a            %7d;%0a        %7d%0a        
+ Trig
+@@ -2240,18 +2240,24 @@
+ ent%3e();%0a
+-%09%09
++        
+ if (!com
+@@ -2278,29 +2278,56 @@
+ en)%0a
+-%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++        %7b%0a            return;%0a        %7d%0a        
+ comp
+@@ -2370,16 +2370,17 @@
+ delegate
++ 
+ (Collide
+@@ -2407,23 +2407,38 @@
+ sender)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (land
+@@ -2486,55 +2486,99 @@
+ 11)%0a
+-%09%09%09%7b%0a%09%09%09%09anim.Play(wobbleAnim);%0a%09%09%09%7d%0a%09%09%7d;%0a%09%7d%0a%0a%09
++            %7b%0a                //anim.Play(wobbleAnim);%0a            %7d%0a        %7d;%0a    %7d%0a%0a    
+ priv
+@@ -2619,21 +2619,30 @@
+ 2D col)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (land
+@@ -2656,23 +2656,38 @@
+ broken)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if (col.
+@@ -2712,127 +2712,210 @@
+ k%22)%0a
+-%09%09%09%7b%0a%09%09%09%09StartCoroutine(Break());%0a%09%09%09%7d%0a%09%09%09else if (col.tag == %22HeroBox%22)%0a%09%09%09%7b%0a%09%09%09%09anim.Play(wobbleAnim);%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7b%0a                StartCoroutine(Break());%0a            %7d%0a            else if (col.tag == %22HeroBox%22)%0a            %7b%0a                //anim.Play(wobbleAnim);%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -2938,21 +2938,30 @@
+ Break()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ broken =
+@@ -2967,18 +2967,26 @@
+ = true;%0a
+-%09%09
++        //
+ breakSou
+@@ -3027,16 +3027,21 @@
+ Prefab, 
++base.
+ transfor
+@@ -3053,18 +3053,212 @@
+ ition);%0a
+-%09%09
++%0a%0a        var playMethod = WeaverTypeHelpers.GetWeaverMethod(%22WeaverCore.WeaverAudio%22, %22PlayAtPoint%22);%0a%0a        playMethod.Invoke(null, new object%5b%5d %7b breakSound, transform.position%7d);%0a%0a        //
+ GlobalPr
+@@ -3290,16 +3290,21 @@
+ wnBlood(
++base.
+ transfor
+@@ -3362,18 +3362,24 @@
+ rride);%0a
+-%09%09
++        
+ if ((boo
+@@ -3392,23 +3392,38 @@
+ tChild)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ splatChi
+@@ -3449,22 +3449,36 @@
+  true);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        //
+ yield re
+@@ -3512,18 +3512,24 @@
+ kAnim);%0a
+-%09%09
++        
+ if ((boo
+@@ -3540,46 +3540,94 @@
+ nd)%0a
+-%09%09%7b%0a%09%09%09rend.enabled = false;%0a%09%09%7d%0a%09%7d%0a%0a%09
++        %7b%0a            rend.enabled = false;%0a        %7d%0a        yield break;%0a    %7d%0a%0a    
+ priv
+@@ -3652,21 +3652,30 @@
+ round()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (!gro
+@@ -3691,34 +3691,61 @@
+ er)%0a
+-%09%09%7b%0a%09%09%09return true;%0a%09%09%7d%0a%09%09
++        %7b%0a            return true;%0a        %7d%0a        
+ Vect
+@@ -3784,18 +3784,24 @@
+ ds.min;%0a
+-%09%09
++        
+ Vector2 
+@@ -3837,18 +3837,24 @@
+ ds.max;%0a
+-%09%09
++        
+ float nu
+@@ -3875,26 +3875,32 @@
+ - origin.y;%0a
+-%09%09
++        
+ origin.y = o
+@@ -3909,18 +3909,24 @@
+ gin2.y;%0a
+-%09%09
++        
+ origin.x
+@@ -3935,18 +3935,24 @@
+ = 0.1f;%0a
+-%09%09
++        
+ origin2.
+@@ -3962,18 +3962,24 @@
+ = 0.1f;%0a
+-%09%09
++        
+ RaycastH
+@@ -4057,18 +4057,24 @@
+ , 256);%0a
+-%09%09
++        
+ RaycastH
+@@ -4154,18 +4154,24 @@
+ , 256);%0a
+-%09%09
++        
+ if (rayc
+@@ -4201,15 +4201,30 @@
+ ll)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ retu
+@@ -4262,14 +4262,26 @@
+ ll;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ retu
+@@ -4294,9 +4294,14 @@
+ se;%0a
+-%09
++    
+ %7d%0a%7d
++*/
+ %0a

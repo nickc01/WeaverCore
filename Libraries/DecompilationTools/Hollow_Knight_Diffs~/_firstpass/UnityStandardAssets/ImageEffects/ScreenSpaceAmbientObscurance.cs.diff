@@ -1,0 +1,431 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -73,12 +73,17 @@
+ ects
+-;%0a%0a%5b
++%0a%7b%0a    %5b 
+ Exec
+@@ -97,16 +97,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -118,16 +118,17 @@
+ omponent
++ 
+ (typeof(
+@@ -137,16 +137,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -158,16 +158,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -224,16 +224,11 @@
+ %22)%5d%0a
+-internal
++   
+  cla
+@@ -280,29 +280,41 @@
+ Base
+-%0a%7b%0a%09
++ %7b%0a        
+ %5bRange
++ 
+ (0
+-f, 3f)%5d%0a%09
++,3)%5d%0a        
+ publ
+@@ -344,29 +344,41 @@
+ 5f;%0a
+-%0a%09
++        
+ %5bRange
++ 
+ (0.1f,
+- 3f)%5d%0a%09
++3)%5d%0a        
+ publ
+@@ -405,27 +405,38 @@
+ 2f;%0a
+-%0a%09
++        
+ %5bRange
++ 
+ (0
+-f, 3f)%5d%0a%09
++,3)%5d%0a        
+ publ
+@@ -466,27 +466,38 @@
+  1;%0a
+-%0a%09
++        
+ %5bRange
++ 
+ (0
+-f, 5f)%5d%0a%09
++,5)%5d%0a        
+ publ
+@@ -537,27 +537,38 @@
+ 5f;%0a
+-%0a%09
++        
+ %5bRange
++ 
+ (0
+-f, 1f)%5d%0a%09
++,1)%5d%0a        
+ publ
+@@ -584,20 +584,31 @@
+ wnsample
+-;%0a%0a%09
++ = 0;%0a%0a        
+ public T
+@@ -620,20 +620,33 @@
+ e2D rand
+-;%0a%0a%09
++ = null;%0a        
+ public S
+@@ -659,20 +659,33 @@
+ aoShader
+-;%0a%0a%09
++= null;%0a%0a        
+ private 
+@@ -707,12 +707,26 @@
+ rial
+-;%0a%0a%09
++ = null;%0a%0a        
+ publ
+@@ -760,49 +760,60 @@
+ rces
++ 
+ ()
+-%0a%09%7b%0a%09%09CheckSupport(needDepth: true);%0a%09%09
++ %7b%0a            CheckSupport (true);%0a%0a            
+ aoMa
+@@ -849,16 +849,17 @@
+ Material
++ 
+ (aoShade
+@@ -874,18 +874,29 @@
+ erial);%0a
+-%09%09
++%0a            
+ if (!isS
+@@ -905,23 +905,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -942,18 +942,25 @@
+ able
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            
+ retu
+@@ -979,20 +979,26 @@
+ ed;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  voi
+@@ -1012,52 +1012,58 @@
+ able
++ 
+ ()
+-%0a%09%7b%0a%09%09if ((bool)aoMaterial)%0a%09%09%7b%0a%09%09%09Object.
++ %7b%0a            if (aoMaterial)%0a                
+ Dest
+@@ -1074,16 +1074,17 @@
+ mmediate
++ 
+ (aoMater
+@@ -1089,22 +1089,28 @@
+ erial);%0a
+-%09%09%7d%0a%09%09
++            
+ aoMateri
+@@ -1124,13 +1124,27 @@
+ ll;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ %5bIma
+@@ -1163,16 +1163,15 @@
+ ue%5d%0a
+-%09private
++       
+  voi
+@@ -1185,16 +1185,17 @@
+ derImage
++ 
+ (RenderT
+@@ -1239,19 +1239,27 @@
+ ion)
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (
+-!
+ Chec
+@@ -1272,19 +1272,40 @@
+ rces
++ 
+ ()
+-)%0a%09%09%7b%0a%09%09%09
++ == false) %7b%0a                
+ Grap
+@@ -1305,32 +1305,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -1341,332 +1341,987 @@
+ n);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09Matrix4x4 projectionMatrix = GetComponent%3cCamera%3e().projectionMatrix;%0a%09%09Matrix4x4 inverse = projectionMatrix.inverse;%0a%09%09Vector4 value = new Vector4
++                return;%0a            %7d%0a%09%09%09Camera camera = GetComponent%3cCamera%3e();%0a%0a            Matrix4x4 P = camera.projectionMatrix;%0a            var invP= P.inverse;%0a            Vector4 projInfo = new Vector4%0a                (
+ (-2
++.0
+ f / 
+-((float)Screen.width * projectionMatrix%5b0%5d), -2f / ((float)Screen.height * projectionMatrix%5b5%5d), (1f - projectionMatrix%5b2%5d) / projectionMatrix%5b0%5d, (1f + 
++P%5b0,0%5d),%0a                 (-2.0f / P%5b1,1%5d),%0a                 ((1.0f - P%5b0,2%5d) / P%5b0,0%5d),%0a                 ((1.0f + P%5b1,2%5d) / P%5b1,1%5d));%0a%0a%09%09%09if (camera.stereoEnabled)%0a%09%09%09%7b%0a%09%09%09%09Matrix4x4 P0 = camera.GetStereoProjectionMatrix(Camera.StereoscopicEye.Left);%0a%09%09%09%09Matrix4x4 P1 = camera.GetStereoProjectionMatrix(Camera.StereoscopicEye.Right);%0a%0a%09%09%09%09Vector4 projInfo0 = new Vector4%0a%09%09%09%09%09((-2.0f / (P0%5b0, 0%5d)),%0a%09%09%09%09%09 (-2.0f / (P0%5b1, 1%5d)),%0a%09%09%09%09%09 ((1.0f - P0%5b0, 2%5d) / P0%5b0, 0%5d),%0a%09%09%09%09%09 ((1.0f + P0%5b1, 2%5d) / P0%5b1, 1%5d));%0a%0a%09%09%09%09Vector4 projInfo1 = new Vector4%0a%09%09%09%09%09((-2.0f / (P1%5b0, 0%5d)),%0a%09%09%09%09%09 (-2.0f / (P1%5b1, 1%5d)),%0a%09%09%09%09%09 ((1.0f - P1%5b0, 2%5d) / P1%5b0, 0%5d),%0a%09%09%09%09%09 ((1.0f + P1%5b1, 2%5d) / P1%5b1, 1%5d));%0a%0a%09%09%09%09aoMaterial.SetVector(%22_ProjInfoLeft%22, projInfo0); // used for un
+ proj
+@@ -2330,43 +2330,96 @@
+ tion
++%0a%09%09%09%09ao
+ Mat
++e
+ ri
+-x%5b6%5d) / projectionMatrix%5b5%5d);%0a
++al.SetVector(%22_ProjInfoRight%22, projInfo1); // used for unprojection%0a%09%09%09%7d%0a%0a%09
+ %09%09ao
+@@ -2428,32 +2428,33 @@
+ terial.SetVector
++ 
+ (%22_ProjInfo%22, va
+@@ -2455,18 +2455,56 @@
+ o%22, 
+-value);%0a%09%09
++projInfo); // used for unprojection%0a            
+ aoMa
+@@ -2519,16 +2519,17 @@
+ etMatrix
++ 
+ (%22_Proje
+@@ -2546,17 +2546,51 @@
+  inv
+-erse);%0a%09%09
++P); // only used for reference%0a            
+ aoMa
+@@ -2606,16 +2606,17 @@
+ tTexture
++ 
+ (%22_Rand%22
+@@ -2623,19 +2623,55 @@
+ , rand);
+-%0a%09%09
++ // not needed for DX11 :)%0a            
+ aoMateri
+@@ -2673,32 +2673,33 @@
+ aterial.SetFloat
++ 
+ (%22_Radius%22, radi
+@@ -2695,34 +2695,44 @@
+ dius%22, radius);%0a
+-%09%09
++            
+ aoMaterial.SetFl
+@@ -2734,16 +2734,17 @@
+ SetFloat
++ 
+ (%22_Radiu
+@@ -2758,11 +2758,9 @@
+ dius
+- * 
++*
+ radi
+@@ -2764,18 +2764,28 @@
+ adius);%0a
+-%09%09
++            
+ aoMateri
+@@ -2795,16 +2795,17 @@
+ SetFloat
++ 
+ (%22_Inten
+@@ -2823,18 +2823,28 @@
+ nsity);%0a
+-%09%09
++            
+ aoMateri
+@@ -2854,16 +2854,17 @@
+ SetFloat
++ 
+ (%22_BlurF
+@@ -2904,48 +2904,64 @@
+ e);%0a
+-%09%09int width = source.width;%0a%09%09int height
++%0a            int rtW = source.width;%0a            int rtH
+  = s
+@@ -2974,18 +2974,29 @@
+ height;%0a
+-%09%09
++%0a            
+ RenderTe
+@@ -3001,29 +3001,22 @@
+ Texture 
+-renderTexture
++tmpRt 
+  = Rende
+@@ -3040,18 +3040,15 @@
+ rary
+-(width 
++ (rtW
+ %3e%3e
+- 
+ down
+@@ -3059,18 +3059,13 @@
+ le, 
+-height 
++rtH
+ %3e%3e
+- 
+ down
+@@ -3069,26 +3069,71 @@
+ ownsample);%0a
+-%09%09
++            RenderTexture tmpRt2;%0a%0a            
+ Graphics.Bli
+@@ -3125,32 +3125,33 @@
+    Graphics.Blit
++ 
+ (source, renderT
+@@ -3143,29 +3143,21 @@
+ source, 
+-renderTexture
++tmpRt
+ , aoMate
+@@ -3166,18 +3166,29 @@
+ al, 0);%0a
+-%09%09
++%0a            
+ if (down
+@@ -3202,39 +3202,33 @@
+ %3e 0)
+-%0a%09%09%7b%0a%09%09%09RenderTexture
++ %7b%0a               
+  t
+-e
+ mp
+-orary
++Rt2
+  = R
+@@ -3252,36 +3252,45 @@
+ emporary
+-(width, height);%0a%09%09%09
++ (rtW, rtH);%0a                
+ Graphics
+@@ -3299,32 +3299,21 @@
+ lit(
+-renderTexture
++tmpRt
+ , t
+-e
+ mp
+-orary
++Rt2
+ , ao
+@@ -3326,19 +3326,32 @@
+ al, 4);%0a
+-%09%09%09
++                
+ RenderTe
+@@ -3376,61 +3376,222 @@
+ rary
+-(renderTexture);%0a%09%09%09renderTexture = temporary;%0a%09%09%7d%0a%09%09
++ (tmpRt);%0a                tmpRt = tmpRt2;%0a%0a                // @NOTE: it's probably worth a shot to blur in low resolution%0a                //  instead with a bilat-upsample afterwards ...%0a            %7d%0a%0a            
+ for 
+@@ -3630,16 +3630,27 @@
+ i++)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ aoMa
+@@ -3692,43 +3692,42 @@
+ r2(1
+-f, 0f));%0a%09%09%09RenderTexture
++.0f,0.0f));%0a               
+  t
+-e
+ mp
+-orary
++Rt2
+  = R
+@@ -3755,66 +3755,65 @@
+ rary
+-(width, height);%0a%09%09%09Graphics.Blit(renderTexture
++ (rtW, rtH);%0a                Graphics.Blit (tmpRt
+ , t
+-e
+ mp
+-orary
++Rt2
+ , ao
+@@ -3818,35 +3818,48 @@
+ aoMaterial, 1);%0a
+-%09%09%09
++                
+ RenderTexture.Re
+@@ -3876,28 +3876,35 @@
+ rary
+-(renderTexture);%0a%09%09%09
++ (tmpRt);%0a%0a                
+ aoMa
+@@ -3946,82 +3946,99 @@
+ r2(0
+-f, 1f));%0a%09%09%09renderTexture = RenderTexture.GetTemporary(width, height);%0a%09%09%09
++.0f,1.0f));%0a                tmpRt = RenderTexture.GetTemporary (rtW, rtH);%0a                
+ Grap
+@@ -4050,33 +4050,23 @@
+ Blit
++ 
+ (t
+-e
+ mp
+-orary, renderTexture
++Rt2, tmpRt
+ , ao
+@@ -4079,19 +4079,32 @@
+ al, 1);%0a
+-%09%09%09
++                
+ RenderTe
+@@ -4129,27 +4129,46 @@
+ rary
++ 
+ (t
+-e
+ mp
+-orary);%0a%09%09%7d%0a%09%09
++Rt2);%0a            %7d%0a%0a            
+ aoMa
+@@ -4184,16 +4184,17 @@
+ tTexture
++ 
+ (%22_AOTex
+@@ -4200,26 +4200,28 @@
+ x%22, 
+-renderTexture);%0a%09%09
++tmpRt);%0a            
+ Grap
+@@ -4229,16 +4229,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -4268,18 +4268,29 @@
+ al, 2);%0a
+-%09%09
++%0a            
+ RenderTe
+@@ -4315,26 +4315,32 @@
+ rary
+-(renderTexture);%0a%09
++ (tmpRt);%0a        %7d%0a    
+ %7d%0a%7d%0a

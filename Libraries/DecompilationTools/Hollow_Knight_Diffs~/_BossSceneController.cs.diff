@@ -1,0 +1,591 @@
+@@ -157,17 +157,20 @@
+ viour%0a%7b%0a
+-%09
++    
+ public d
+@@ -229,17 +229,20 @@
+ self);%0a%0a
+-%09
++    
+ public s
+@@ -265,21 +265,30 @@
+ Details%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public i
+@@ -299,18 +299,24 @@
+ aseHP;%0a%0a
+-%09%09
++        
+ public i
+@@ -330,21 +330,27 @@
+ stedHP;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public s
+@@ -382,25 +382,28 @@
+  Instance;%0a%0a
+-%09
++    
+ public stati
+@@ -432,25 +432,28 @@
+ etupEvent;%0a%0a
+-%09
++    
+ public Trans
+@@ -469,17 +469,42 @@
+ Spawn;%0a%0a
+-%09
++    %5bHideInInspector%5d%0a    
+ public G
+@@ -532,17 +532,20 @@
+ refab;%0a%0a
+-%09
++    
+ public E
+@@ -574,25 +574,28 @@
+ tionEvent;%0a%0a
+-%09
++    
+ public bool 
+@@ -610,33 +610,36 @@
+ tionIn = true;%0a%0a
+-%09
++    
+ public float tra
+@@ -654,25 +654,28 @@
+ nHoldTime;%0a%0a
+-%09
++    
+ public bool 
+@@ -695,25 +695,28 @@
+ ut = true;%0a%0a
+-%09
++    
+ public float
+@@ -736,25 +736,28 @@
+ tHoldTime;%0a%0a
+-%09
++    
+ private bool
+@@ -774,25 +774,28 @@
+ ioningOut;%0a%0a
+-%09
++    
+ private bool
+@@ -822,17 +822,22 @@
+ e;%0a%0a
+-%09
++    /*
+ %5bSpace%5d%0a
+ %09%5bTo
+@@ -832,17 +832,20 @@
+ %5bSpace%5d%0a
+-%09
++    
+ %5bTooltip
+@@ -984,17 +984,20 @@
+ ent.%22)%5d%0a
+-%09
++    
+ public H
+@@ -1018,19 +1018,24 @@
+  bosses;
+-%0a%0a%09
++*/%0a%0a    
+ private 
+@@ -1051,17 +1051,20 @@
+ sLeft;%0a%0a
+-%09
++    
+ public f
+@@ -1094,17 +1094,20 @@
+  = 5f;%0a%0a
+-%09
++    
+ private 
+@@ -1122,17 +1122,20 @@
+ Level;%0a%0a
+-%09
++    
+ private 
+@@ -1148,25 +1148,28 @@
+ ndedScene;%0a%0a
+-%09
++    
+ private bool
+@@ -1195,17 +1195,20 @@
+ ribed;%0a%0a
+-%09
++    
+ private 
+@@ -1242,25 +1242,28 @@
+ oy = true;%0a%0a
+-%09
++    
+ public Trans
+@@ -1291,17 +1291,20 @@
+ Point;%0a%0a
+-%09
++    
+ private 
+@@ -1330,17 +1330,20 @@
+  true;%0a%0a
+-%09
++    
+ public s
+@@ -1387,17 +1387,20 @@
+  null;%0a%0a
+-%09
++    
+ public b
+@@ -1440,25 +1440,28 @@
+ ate set; %7d%0a%0a
+-%09
++    
+ public stati
+@@ -1487,80 +1487,143 @@
+ ing%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (!(Instance != null))%0a%09%09%09%7b%0a%09%09%09%09return false;%0a%09%09%09%7d%0a%09%09%09
++    %7b%0a        get%0a        %7b%0a            if (!(Instance != null))%0a            %7b%0a                return false;%0a            %7d%0a            
+ retu
+@@ -1654,25 +1654,37 @@
+ ingOut;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ public b
+@@ -1705,195 +1705,321 @@
+ ion%0a
+-%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09return canTransition;%0a%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09canTransition = value;%0a%09%09%7d%0a%09%7d%0a%0a%09public int BossLevel%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09return bossLevel;%0a%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09bossLevel = value;%0a%09%09%7d%0a%09%7d%0a%0a%09
++    %7b%0a        get%0a        %7b%0a            return canTransition;%0a        %7d%0a        set%0a        %7b%0a            canTransition = value;%0a        %7d%0a    %7d%0a%0a    public int BossLevel%0a    %7b%0a        get%0a        %7b%0a            return bossLevel;%0a        %7d%0a        set%0a        %7b%0a            bossLevel = value;%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -2056,25 +2056,30 @@
+ et; set; %7d%0a%0a
+-%09
++    //
+ public Dicti
+@@ -2158,17 +2158,20 @@
+ set; %7d%0a%0a
+-%09
++    
+ public e
+@@ -2197,17 +2197,20 @@
+ sDead;%0a%0a
+-%09
++    
+ public e
+@@ -2243,17 +2243,20 @@
+ plete;%0a%0a
+-%09
++    
+ private 
+@@ -2268,21 +2268,30 @@
+ Awake()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ Instance
+@@ -2299,18 +2299,26 @@
+ = this;%0a
+-%09%09
++        //
+ BossHeal
+@@ -2380,18 +2380,24 @@
+ ils%3e();%0a
+-%09%09
++        
+ if (Setu
+@@ -2412,23 +2412,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ BossSequ
+@@ -2482,19 +2482,28 @@
+ (this);%0a
+-%09%09%09
++            
+ doTransi
+@@ -2516,22 +2516,34 @@
+  false;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (Setu
+@@ -2558,23 +2558,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ SetupEve
+@@ -2624,19 +2624,28 @@
+ pEvent;%0a
+-%09%09%09
++            
+ SetupEve
+@@ -2655,19 +2655,28 @@
+ = null;%0a
+-%09%09%09
++            
+ setupEve
+@@ -2689,26 +2689,47 @@
+ s);%0a
+-%09%09%09Setup();%0a%09%09%7d%0a%09%09
++            Setup();%0a        %7d%0a        
+ if (
+@@ -2751,23 +2751,38 @@
+ tPoint)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ customEx
+@@ -2820,25 +2820,46 @@
+ elegate%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ restoreB
+@@ -2888,23 +2888,44 @@
+ se;%0a
+-%09%09%09%7d;%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d;%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -2945,21 +2945,30 @@
+ stroy()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (rest
+@@ -2989,23 +2989,38 @@
+ estroy)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ RestoreB
+@@ -3030,22 +3030,34 @@
+ ings();%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (Inst
+@@ -3074,41 +3074,68 @@
+ is)%0a
+-%09%09%7b%0a%09%09%09Instance = null;%0a%09%09%7d%0a%09%7d%0a%0a%09
++        %7b%0a            Instance = null;%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -3158,21 +3158,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if ((boo
+@@ -3264,23 +3264,38 @@
+ _GLORY)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Debug.Lo
+@@ -3392,309 +3392,462 @@
+ %22);%0a
+-%09%09%7d%0a%09%09if (doTransition)%0a%09%09%7b%0a%09%09%09if ((bool)transitionPrefab)%0a%09%09%09%7b%0a%09%09%09%09UnityEngine.Object.Instantiate(transitionPrefab);%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09Debug.LogError(%22Boss Scene Controller has no transition prefab assigned!%22, this);%0a%09%09%09%7d%0a%09%09%09if (doTransitionIn)%0a%09%09%09%7b%0a%09%09%09%09if (transitionInHoldTime %3e 0f)%0a%09%09%09%09%7b%0a%09%09%09%09%09
++        %7d%0a        if (doTransition)%0a        %7b%0a            if ((bool)transitionPrefab)%0a            %7b%0a                UnityEngine.Object.Instantiate(transitionPrefab);%0a            %7d%0a            else%0a            %7b%0a                Debug.LogError(%22Boss Scene Controller has no transition prefab assigned!%22, this);%0a            %7d%0a            if (doTransitionIn)%0a            %7b%0a                if (transitionInHoldTime %3e 0f)%0a                %7b%0a                    
+ Even
+@@ -3896,21 +3896,36 @@
+ TANT%22);%0a
+-%09%09%09%09%09
++                    
+ yield re
+@@ -3971,26 +3971,50 @@
+ dTime);%0a
+-%09%09%09%09%7d%0a%09%09%09%09
++                %7d%0a                
+ EventReg
+@@ -4050,27 +4050,48 @@
+ N IN%22);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ HasTrans
+@@ -4100,37 +4100,43 @@
+ ionedIn = true;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private void Upd
+@@ -4141,21 +4141,30 @@
+ pdate()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ float ti
+@@ -4199,18 +4199,24 @@
+ .Timer;%0a
+-%09%09
++        
+ GameMana
+@@ -4258,18 +4258,24 @@
+ timer);%0a
+-%09%09
++        
+ BossSequ
+@@ -4304,21 +4304,27 @@
+  timer;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -4336,21 +4336,32 @@
+ Setup()%0a
+-%09%7b%0a%09%09
++    %7b%0a        /*
+ for (int
+@@ -4396,160 +4396,285 @@
+ ++)%0a
+-%09%09%7b%0a%09%09%09if ((bool)bosses%5bi%5d)%0a%09%09%09%7b%0a%09%09%09%09bossesLeft++;%0a%09%09%09%09bosses%5bi%5d.OnDeath += delegate%0a%09%09%09%09%7b%0a%09%09%09%09%09bossesLeft--;%0a%09%09%09%09%09CheckBossesDead();%0a%09%09%09%09%7d;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++        %7b%0a            if ((bool)bosses%5bi%5d)%0a            %7b%0a                bossesLeft++;%0a                bosses%5bi%5d.OnDeath += delegate%0a                %7b%0a                    bossesLeft--;%0a                    CheckBossesDead();%0a                %7d;%0a            %7d%0a        %7d*/%0a        
+ if (
+@@ -4745,23 +4745,38 @@
+ stance)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ HeroCont
+@@ -4826,19 +4826,28 @@
+ amaged;%0a
+-%09%09%09
++            
+ knightDa
+@@ -4870,25 +4870,37 @@
+ = true;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ private 
+@@ -4923,21 +4923,30 @@
+ maged()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ BossSequ
+@@ -4982,21 +4982,27 @@
+ = true;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -5024,21 +5024,30 @@
+ sDead()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (boss
+@@ -5063,40 +5063,67 @@
+  0)%0a
+-%09%09%7b%0a%09%09%09EndBossScene();%0a%09%09%7d%0a%09%7d%0a%0a%09
++        %7b%0a            EndBossScene();%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -5145,21 +5145,30 @@
+ Scene()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (!end
+@@ -5176,23 +5176,38 @@
+ dScene)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ endedSce
+@@ -5217,19 +5217,28 @@
+ = true;%0a
+-%09%09%09
++            
+ if (knig
+@@ -5258,25 +5258,46 @@
+ cribed)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ HeroCont
+@@ -5347,24 +5347,42 @@
+ amaged;%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ if (this
+@@ -5408,46 +5408,85 @@
+ ll)%0a
+-%09%09%09%7b%0a%09%09%09%09this.OnBossesDead();%0a%09%09%09%7d%0a%09%09%09
++            %7b%0a                this.OnBossesDead();%0a            %7d%0a            
+ Star
+@@ -5516,25 +5516,37 @@
+ yed());%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ private 
+@@ -5575,21 +5575,30 @@
+ layed()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ yield re
+@@ -5642,18 +5642,24 @@
+ tTime);%0a
+-%09%09
++        
+ bool wai
+@@ -5681,26 +5681,32 @@
+ on = false;%0a
+-%09%09
++        
+ if (doTransi
+@@ -5714,23 +5714,38 @@
+ ionOut)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ if ((boo
+@@ -5766,25 +5766,46 @@
+ nEvent)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ isTransi
+@@ -5823,20 +5823,32 @@
+ = true;%0a
+-%09%09%09%09
++                
+ waitingF
+@@ -5868,20 +5868,32 @@
+ = true;%0a
+-%09%09%09%09
++                
+ endTrans
+@@ -5935,78 +5935,156 @@
+ ate%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09waitingForTransition = false;%0a%09%09%09%09%7d;%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    waitingForTransition = false;%0a                %7d;%0a            %7d%0a            else%0a            %7b%0a                
+ Debu
+@@ -6164,24 +6164,42 @@
+  this);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ if (Boss
+@@ -6231,25 +6231,46 @@
+ quence)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ if (Boss
+@@ -6305,27 +6305,54 @@
+ sScene)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ EventReg
+@@ -6395,108 +6395,210 @@
+ %22);%0a
+-%09%09%09%09%7d%0a%09%09%09%09else%0a%09%09%09%09%7b%0a%09%09%09%09%09EventRegister.SendEvent(%22GG TRANSITION OUT%22);%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
++                %7d%0a                else%0a                %7b%0a                    EventRegister.SendEvent(%22GG TRANSITION OUT%22);%0a                %7d%0a            %7d%0a            else%0a            %7b%0a                
+ Even
+@@ -6646,27 +6646,48 @@
+ ATUE%22);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ yield re
+@@ -6734,18 +6734,24 @@
+ dTime);%0a
+-%09%09
++        
+ while (w
+@@ -6931,23 +6931,38 @@
+ sition)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ yield re
+@@ -6972,22 +6972,34 @@
+ n null;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (!Her
+@@ -7081,23 +7081,38 @@
+ ioning)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ Debug.Lo
+@@ -7134,19 +7134,28 @@
+ nded%22);%0a
+-%09%09%09
++            
+ restoreB
+@@ -7180,19 +7180,28 @@
+  false;%0a
+-%09%09%09
++            
+ if (this
+@@ -7234,59 +7234,101 @@
+ ll)%0a
+-%09%09%09%7b%0a%09%09%09%09this.OnBossSceneComplete();%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7b%0a                this.OnBossSceneComplete();%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+ publ
+@@ -7351,21 +7351,41 @@
+ eturn()%0a
+-%09%7b%0a%09%09
++    %7b%0a        %0a        /*
+ PlayMake
+@@ -7471,18 +7471,24 @@
+ turn%22);%0a
+-%09%09
++        
+ if ((boo
+@@ -7503,23 +7503,38 @@
+ kerFSM)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ playMake
+@@ -7571,17 +7571,31 @@
+ t);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d*/%0a    %7d%0a%0a    
+ publ
+@@ -7610,37 +7610,46 @@
+ ApplyBindings()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ BossSequenceCont
+@@ -7668,29 +7668,35 @@
+ Bindings();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ public void 
+@@ -7713,21 +7713,30 @@
+ dings()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ BossSequ
+@@ -7773,13 +7773,21 @@
+ ();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    /*
+ publ
+@@ -7894,21 +7894,30 @@
+  false)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (!Ins
+@@ -7927,29 +7927,56 @@
+ ce)%0a
+-%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++        %7b%0a            return;%0a        %7d%0a        
+ bool
+@@ -7990,18 +7990,24 @@
+  false;%0a
+-%09%09
++        
+ if (forc
+@@ -8016,46 +8016,88 @@
+ dd)%0a
+-%09%09%7b%0a%09%09%09flag = true;%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7b%0a            flag = true;%0a        %7d%0a        else%0a        %7b%0a            
+ Heal
+@@ -8133,19 +8133,28 @@
+ bosses;%0a
+-%09%09%09
++            
+ for (int
+@@ -8184,25 +8184,46 @@
+ h; i++)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ if (arra
+@@ -8249,78 +8249,168 @@
+ er)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09flag = true;%0a%09%09%09%09%09break;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if (flag)%0a%09%09%7b%0a%09%09%09
++                %7b%0a                    flag = true;%0a                    break;%0a                %7d%0a            %7d%0a        %7d%0a        if (flag)%0a        %7b%0a            
+ Inst
+@@ -8474,17 +8474,38 @@
+ ils%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ base
+@@ -8521,12 +8521,24 @@
+ HP,%0a
+-%09%09%09%09
++                
+ adju
+@@ -8561,19 +8561,39 @@
+ dHP%0a
+-%09%09%09%7d;%0a%09%09%7d%0a%09%7d
++            %7d;%0a        %7d%0a    %7d*/
+ %0a%7d%0a

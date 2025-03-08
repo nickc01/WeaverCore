@@ -1,0 +1,100 @@
+@@ -190,67 +190,8 @@
+ );%0a%0a
+-%09private GameManager gm;%0a%0a%09private PlayerData playerData;%0a%0a
+ %09pri
+@@ -267,448 +267,1252 @@
+ )%5d%0a%09
+-public bool isADoor;%0a%0a%09public bool dontWalkOutOfDoor;%0a%0a%09%5bHeader(%22Gate Entry%22)%5d%0a%09%5bTooltip(%22The wait time before entering from this gate (not the target gate).%22)%5d%0a%09public float entryDelay;%0a%0a%09public bool alwaysEnterRight;%0a%0a%09public bool alwaysEnterLeft;%0a%0a%09%5bHeader(%22Force Hard Land (Top Gates Only)%22)%5d%0a%09%5bSpace(5f)%5d%0a%09public bool hardLandOnExit;%0a%0a%09%5bHeader(%22Destination Scene%22)%5d%0a%09%5bSpace(5f)%5d%0a%09public string targetScene;%0a%0a%09public string entryPoint;%0a
++%5bTooltip(%22If set to true, the player will not automatically use the TransitionPoint when colliding with it%22)%5d%0a%09public bool isADoor;%0a%0a%09//Not sure what this does%0a%09%5bHideInInspector%5d%0a%09public bool dontWalkOutOfDoor;%0a%0a%09%5bHeader(%22Gate Entry%22)%5d%0a%09%5bTooltip(%22The wait time before entering from this gate (not the target gate).%22)%5d%0a%09public float entryDelay;%0a%0a%09%5bTooltip(%22Should the player always face right when entering the scene from this transition point?%22)%5d%0a%09public bool alwaysEnterRight;%0a%0a%09%5bTooltip(%22Should the player always face left when entering the scene from this transition point?%22)%5d%0a%09public bool alwaysEnterLeft;%0a%0a%09%5bHeader(%22Force Hard Land (Top Gates Only)%22)%5d%0a%09%5bSpace(5f)%5d%0a%09%5bTooltip(%22Should the player land with a loud thud when entering the scene? Only works if the gate type is set to %5c%22top%5c%22%22)%5d%0a%09public bool hardLandOnExit;%0a%0a%09%5bHeader(%22Destination Scene%22)%5d%0a%09%5bSpace(5f)%5d%0a%09%5bTooltip(%22The destination scene the player will be transported to when touching this transition point%22)%5d%0a%09public string targetScene;%0a%0a%09%5bTooltip(%22The name of the TransitionPoint the player will be placed at when traveling to the destination scene%22)%5d%0a%09public string entryPoint;%0a%0a%09%5bTooltip(%22A positional offset applied to the player when they travel to the destination scene%22)%5d
+ %0a%09pu
+@@ -1542,26 +1542,8 @@
+ t;%0a%0a
+-%09%5bSerializeField%5d%0a
+ %09pri
+@@ -1583,44 +1583,8 @@
+ s;%0a%0a
+-%09public PlayMakerFSM customFadeFSM;%0a
+ %0a%09%5bH
+@@ -1626,133 +1626,309 @@
+ )%5d%0a%09
+-public bool nonHazardGate;%0a%0a%09public HazardRespawnMarker respawnMarker;%0a%0a%09%5bHeader(%22Set Audio Snapshots%22)%5d%0a%09%5bSpace(5f)%5d%0a%09public
++%5bTooltip(%22When the player travels to the destination scene, should the TransitionPoint NOT also be used as a hazard respawn point?%22)%5d%0a%09public bool nonHazardGate;%0a%0a%09%5bTooltip(%22The respawn marker that is used when %5c%22nonHazardGate%5c%22 is set to true%22)%5d%0a%09public HazardRespawnMarker respawnMarker;%0a%0a%09protected
+  Aud
+@@ -1953,37 +1953,40 @@
+ mosSnapshot;%0a%0a%09p
+-ublic
++rotected
+  AudioMixerSnaps
+@@ -2000,37 +2000,40 @@
+ iroSnapshot;%0a%0a%09p
+-ublic
++rotected
+  AudioMixerSnaps
+@@ -2054,21 +2054,24 @@
+ hot;%0a%0a%09p
+-ublic
++rotected
+  AudioMi
+@@ -2244,24 +2244,214 @@
+ lization;%0a%0a%09
++%5bTooltip(%22If set to true, the default fade-in-from-black transition does not play, allowing for custom transitions. This should be checked if the player is dream warping into this scene%22)%5d%0a%09
+ public bool 
+@@ -2464,23 +2464,16 @@
+ Fade;%0a%0a%09
+-public 
+ bool for
+@@ -3038,73 +3038,8 @@
+ %7b%0a%09%09
+-gm = GameManager.instance;%0a%09%09playerData = PlayerData.instance;%0a%09%09
+ if (
+@@ -3143,18 +3143,36 @@
+  in %22 + 
+-gm
++GameManager.instance
+ .sceneNa
+@@ -3348,18 +3348,36 @@
+ != 9 %7c%7c 
+-gm
++GameManager.instance
+ .gameSta
+@@ -3510,83 +3510,8 @@
+ %0a%09%09%09
+-if ((bool)customFadeFSM)%0a%09%09%09%7b%0a%09%09%09%09customFadeFSM.SendEvent(%22FADE%22);%0a%09%09%09%7d%0a%09%09%09
+ if (
+@@ -3961,18 +3961,36 @@
+ %09%09%09%7d%0a%09%09%09
+-gm
++GameManager.instance
+ .BeginSc
+@@ -4225,60 +4225,8 @@
+ %09%09%09%09
+-PreventCameraFadeOut = (customFadeFSM != null),%0a%09%09%09%09
+ Visu
+@@ -4398,10 +4398,28 @@
+ ror(
+-gm
++GameManager.instance
+ .sce
+@@ -4687,16 +4687,96 @@
+ %0a%09%09%7b%0a%09%09%09
++var collider = GetComponent%3cBoxCollider2D%3e();%0a%09%09%09if (collider != null)%0a%09%09%09%7b%0a%09%09%09%09
+ Vector3 
+@@ -4790,26 +4790,8 @@
+ n = 
+-(Vector3)(Vector2)
+ base
+@@ -4832,37 +4832,16 @@
+ 0f, 
+-GetComponent%3cBoxC
++c
+ ollider
+-2D%3e()
+ .bou
+@@ -4871,79 +4871,377 @@
+ f);%0a
+-%09%09%09GizmoUtility.DrawText(GUI.skin, targetScene, position, myGreen, 10);
++#if UNITY_EDITOR%0a%09%09%09%09UnityEditor.Handles.color = myGreen;%0a%09%09%09%09UnityEditor.Handles.Label(position, targetScene);%0a#endif%0a%09%09%09%09var scale = transform.localScale;%0a%09%09%09%09Gizmos.color = myGreen;%0a%09%09%09%09Gizmos.DrawCube(transform.position + new Vector3(collider.offset.x * scale.x, collider.offset.y * scale.y), new Vector3(collider.size.x * scale.x, collider.size.y * scale.y));%0a%09%09%09%7d
+ %0a%09%09%7d
+@@ -5901,9 +5901,8 @@
+ ne;%0a%09%7d%0a%7d
+-%0a

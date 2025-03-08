@@ -1,0 +1,71 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bAddComp
+@@ -164,16 +164,20 @@
+ cale%22)%5d%0a
++    
+ public c
+@@ -212,12 +212,19 @@
+ Base
+-%0a%7b%0a%09
++ %7b%0a        
+ publ
+@@ -234,16 +234,17 @@
+ Texture 
++ 
+ textureR
+@@ -249,17 +249,52 @@
+ eRamp;%0a%0a
+-%09
++        %5bRange(-1.0f,1.0f)%5d%0a        
+ public f
+@@ -298,16 +298,19 @@
+ c float 
++   
+ rampOffs
+@@ -318,16 +318,65 @@
+ t;%0a%0a
+-%09private
++        // Called by camera to apply image effect%0a       
+  voi
+@@ -390,16 +390,17 @@
+ derImage
++ 
+ (RenderT
+@@ -444,19 +444,23 @@
+ ion)
+-%0a%09%7b%0a%09%09base.
++ %7b%0a            
+ mate
+@@ -505,15 +505,20 @@
+ p);%0a
+-%09%09base.
++            
+ mate
+@@ -563,10 +563,20 @@
+ t);%0a
+-%09%09
++            
+ Grap
+@@ -584,16 +584,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -611,13 +611,8 @@
+ on, 
+-base.
+ mate
+@@ -622,9 +622,22 @@
+ l);%0a
+-%09
++        %7d%0a    
+ %7d%0a%7d%0a

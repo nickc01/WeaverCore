@@ -1,0 +1,419 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -117,16 +117,17 @@
+ omponent
++ 
+ (typeof(
+@@ -136,16 +136,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -157,16 +157,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -210,16 +210,20 @@
+ zed)%22)%5d%0a
++    
+ public c
+@@ -260,19 +260,31 @@
+ ctsBase%0a
+-%7b%0a%09
++    %7b%0a%0a        
+ public e
+@@ -303,29 +303,73 @@
+ on%0a%09
++%09
+ %7b%0a
+-%09%09Low,%0a%09%09High%0a%09%7d%0a%0a%09
++            Low = 0,%0a            High = 1,%0a        %7d%0a%0a        
+ publ
+@@ -390,40 +390,86 @@
+ pe%0a%09
++%09
+ %7b%0a
+-%09%09Standard,%0a%09%09Sgx%0a%09%7d%0a%0a%09
++            Standard = 0,%0a            Sgx = 1,%0a        %7d%0a%0a        
+ %5bRange(
++0.
+ 0f, 
+@@ -471,25 +471,32 @@
+ .0f, 1.5f)%5d%0a
+-%09
++        
+ public float
+@@ -515,25 +515,33 @@
+  0.25f;%0a
+-%0a%09
++        
+ %5bRange(
++0.
+ 0f, 2.5f
+@@ -539,25 +539,32 @@
+ .0f, 2.5f)%5d%0a
+-%09
++        
+ public float
+@@ -584,17 +584,24 @@
+ 0.75f;%0a%0a
+-%09
++        
+ %5bRange(0
+@@ -609,25 +609,32 @@
+ 25f, 5.5f)%5d%0a
+-%09
++        
+ public float
+@@ -650,20 +650,21 @@
+  = 1
++.0
+ f;%0a%0a
+-%09private
++       
+  Res
+@@ -685,20 +685,43 @@
+ tion
+-;%0a%0a%09
++ = Resolution.Low;%0a        
+ %5bRange(1
+ f, 4
+@@ -720,17 +720,22 @@
+ ge(1
+-f
+ , 4
+-f
+ )%5d%0a
+-%09
++        
+ publ
+@@ -762,17 +762,24 @@
+ s = 1;%0a%0a
+-%09
++        
+ public B
+@@ -794,20 +794,46 @@
+ blurType
+-;%0a%0a%09
++= BlurType.Standard;%0a%0a        
+ public S
+@@ -853,20 +853,33 @@
+ omShader
+-;%0a%0a%09
++ = null;%0a        
+ private 
+@@ -908,12 +908,27 @@
+ rial
+-;%0a%0a%09
++ = null;%0a%0a%0a        
+ publ
+@@ -962,50 +962,63 @@
+ rces
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09CheckSupport(needDepth: false);%0a%09%09
++            CheckSupport (false);%0a%0a            
+ fast
+@@ -1061,16 +1061,17 @@
+ Material
++ 
+ (fastBlo
+@@ -1100,18 +1100,29 @@
+ erial);%0a
+-%09%09
++%0a            
+ if (!isS
+@@ -1131,23 +1131,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -1168,18 +1168,25 @@
+ able
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            
+ retu
+@@ -1201,28 +1201,34 @@
+ ported;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void On
+@@ -1238,26 +1238,32 @@
+ able
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09if ((bool)
++            if (
+ fast
+@@ -1281,22 +1281,24 @@
+ al)%0a
+-%09%09%7b%0a%09%09%09Object.
++                
+ Dest
+@@ -1309,16 +1309,17 @@
+ mmediate
++ 
+ (fastBlo
+@@ -1335,24 +1335,26 @@
+ l);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  voi
+@@ -1368,16 +1368,17 @@
+ derImage
++ 
+ (RenderT
+@@ -1424,17 +1424,27 @@
+ n)%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ if (
+-!
+ Chec
+@@ -1455,25 +1455,48 @@
+ ources()
++ == false
+ )%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ Graphics
+@@ -1492,32 +1492,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -1528,37 +1528,73 @@
+ n);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09int num
++                return;%0a            %7d%0a%0a            int divider
+  = 
+-((
+ reso
+@@ -1621,17 +1621,16 @@
+ .Low
+-)
+  ? 4 : 2
+ );%0a%09
+@@ -1629,28 +1629,39 @@
+  : 2
+-)
+ ;%0a
+-%09%09float num2
++            float widthMod
+  = 
+-((
+ reso
+@@ -1684,17 +1684,16 @@
+ tion.Low
+-)
+  ? 0.5f 
+@@ -1699,14 +1699,26 @@
+  : 1
+-f);%0a%09%09
++.0f;%0a%0a            
+ fast
+@@ -1732,32 +1732,33 @@
+ terial.SetVector
++ 
+ (%22_Parameter%22, n
+@@ -1759,32 +1759,33 @@
+ er%22, new Vector4
++ 
+ (blurSize * num2
+@@ -1784,14 +1784,20 @@
+ e * 
+-num2, 
++widthMod, 0.
+ 0f, 
+@@ -1820,18 +1820,28 @@
+ sity));%0a
+-%09%09
++            
+ source.f
+@@ -1877,80 +1877,135 @@
+ ar;%0a
+-%09%09int width = source.width / num;%0a%09%09int height = source.height / num;%0a%09%09
++%0a            var rtW= source.width/divider;%0a            var rtH= source.height/divider;%0a%0a            // downsample%0a            
+ Rend
+@@ -2015,28 +2015,17 @@
+ exture r
+-enderTexture
++t
+  = Rende
+@@ -2041,38 +2041,34 @@
+ GetTemporary
+-(width, height
++ (rtW, rtH
+ , 0, source.
+@@ -2076,31 +2076,30 @@
+ ormat);%0a
+-%09%09renderTexture
++            rt
+ .filterM
+@@ -2125,18 +2125,28 @@
+ linear;%0a
+-%09%09
++            
+ Graphics
+@@ -2142,32 +2142,33 @@
+    Graphics.Blit
++ 
+ (source, renderT
+@@ -2161,28 +2161,17 @@
+ ource, r
+-enderTexture
++t
+ , fastBl
+@@ -2191,23 +2191,35 @@
+ 1);%0a
+-%09%09int num3 = ((
++%0a            var passOffs= 
+ blur
+@@ -2227,30 +2227,54 @@
+ ype 
+-!= 0) ? 2 : 0);%0a%09%09
++== BlurType.Standard ? 0 : 2;%0a%0a            
+ for
+- 
+ (int
+@@ -2312,13 +2312,27 @@
+ )%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ fast
+@@ -2354,16 +2354,17 @@
+ etVector
++ 
+ (%22_Param
+@@ -2381,16 +2381,17 @@
+  Vector4
++ 
+ (blurSiz
+@@ -2398,30 +2398,31 @@
+ e * 
+-num2 + (float)i * 1f, 
++widthMod + (i*1.0f), 0.
+ 0f, 
+@@ -2445,19 +2445,66 @@
+ sity));%0a
+-%09%09%09
++%0a                // vertical blur%0a                
+ RenderTe
+@@ -2509,25 +2509,19 @@
+ Texture 
+-temporary
++rt2
+  = Rende
+@@ -2537,38 +2537,34 @@
+ GetTemporary
+-(width, height
++ (rtW, rtH
+ , 0, source.
+@@ -2568,36 +2568,43 @@
+ ce.format);%0a
+-%09%09%09temporary
++                rt2
+ .filterMode 
+@@ -2618,35 +2618,48 @@
+ rMode.Bilinear;%0a
+-%09%09%09
++                
+ Graphics.Blit(re
+@@ -2659,33 +2659,17 @@
+ Blit
++ 
+ (r
+-enderTexture, temporary
++t, rt2
+ , fa
+@@ -2689,26 +2689,43 @@
+ al, 2 + 
+-num3);%0a%09%09%09
++passOffs);%0a                
+ RenderTe
+@@ -2750,67 +2750,96 @@
+ rary
++ 
+ (r
+-enderTexture);%0a%09%09%09renderTexture = temporary;%0a%09%09%09temporary
++t);%0a                rt = rt2;%0a%0a                // horizontal blur%0a                rt2
+  = R
+@@ -2867,22 +2867,18 @@
+ rary
+-(width, height
++ (rtW, rtH
+ , 0,
+@@ -2898,20 +2898,27 @@
+ t);%0a
+-%09%09%09temporary
++                rt2
+ .fil
+@@ -2948,19 +2948,32 @@
+ linear;%0a
+-%09%09%09
++                
+ Graphics
+@@ -2981,33 +2981,17 @@
+ Blit
++ 
+ (r
+-enderTexture, temporary
++t, rt2
+ , fa
+@@ -3015,18 +3015,35 @@
+ 3 + 
+-num3);%0a%09%09%09
++passOffs);%0a                
+ Rend
+@@ -3072,61 +3072,68 @@
+ rary
++ 
+ (r
+-enderTexture);%0a%09%09%09renderTexture = temporary;%0a%09%09%7d%0a%09%09
++t);%0a                rt = rt2;%0a            %7d%0a%0a            
+ fast
+@@ -3156,16 +3156,17 @@
+ tTexture
++ 
+ (%22_Bloom
+@@ -3173,25 +3173,25 @@
+ %22, r
+-enderTexture);%0a%09%09
++t);%0a%0a            
+ Grap
+@@ -3199,16 +3199,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -3245,18 +3245,29 @@
+ al, 0);%0a
+-%09%09
++%0a            
+ RenderTe
+@@ -3292,26 +3292,29 @@
+ rary
++ 
+ (r
+-enderTexture);%0a%09
++t);%0a        %7d%0a    
+ %7d%0a%7d%0a

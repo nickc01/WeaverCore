@@ -1,0 +1,45 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bRequire
+@@ -100,16 +100,17 @@
+ t(typeof
++ 
+ (Camera)
+@@ -112,16 +112,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -139,16 +139,20 @@
+ nu(%22%22)%5d%0a
++    
+ public c
+@@ -192,246 +192,193 @@
+ our%0a
+-%7b%0a%09public Shader shader;%0a%0a%09private Material m_Material;%0a%0a%09protected Material material%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (m_Material == null)%0a%09%09%09%7b%0a%09%09%09%09m_Material = new Material(
++    %7b%0a        /// Provides a shader property that is set in the inspector%0a        /// and a material instantiated from the shader%0a        public Shader 
+ shader
+-)
+ ;%0a
+-%09%09%09%09m_Material.hideFlags = HideFlags.HideAndDontSave;%0a%09%09%09%7d%0a%09%09%09return
++%0a        private Material
+  m_M
+@@ -386,25 +386,26 @@
+ terial;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++%0a%0a        
+ protecte
+@@ -431,241 +431,859 @@
+ t()%0a
+-%09%7b%0a%09%09if (!SystemInfo.supportsImageEffects)%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%09else if (!shader %7c%7c !shader.isSupported)%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%7d%0a%0a%09protected virtual void OnDisable()%0a%09%7b%0a%09%09if ((bool)m_Material)%0a%09%09%7b%0a%09%09%09Object.
++        %7b%0a            // Disable if we don't support image effects%0a            if (!SystemInfo.supportsImageEffects)%0a            %7b%0a                enabled = false;%0a                return;%0a            %7d%0a%0a            // Disable the image effect if the shader can't%0a            // run on the users graphics card%0a            if (!shader %7c%7c !shader.isSupported)%0a                enabled = false;%0a        %7d%0a%0a%0a        protected Material material%0a        %7b%0a            get%0a            %7b%0a                if (m_Material == null)%0a                %7b%0a                    m_Material = new Material(shader);%0a                    m_Material.hideFlags = HideFlags.HideAndDontSave;%0a                %7d%0a                return m_Material;%0a            %7d%0a        %7d%0a%0a%0a        protected virtual void OnDisable()%0a        %7b%0a            if (m_Material)%0a            %7b%0a                
+ Dest
+@@ -1312,13 +1312,36 @@
+ l);%0a
+-%09%09%7d%0a%09
++            %7d%0a        %7d%0a    
+ %7d%0a%7d%0a

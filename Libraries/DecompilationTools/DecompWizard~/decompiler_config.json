@@ -1,0 +1,29 @@
+{
+  "SteamConfigPaths": [
+    "~/.steam/steam/config/libraryfolders.vdf",
+    "~/.steam/steam/steamapps/libraryfolders.vdf",
+    "~/Library/Application Support/Steam/config/libraryfolders.vdf",
+    "C:\\Program Files (x86)\\Steam\\config\\libraryfolders.vdf",
+    "C:\\Program Files\\Steam\\config\\libraryfolders.vdf"
+  ],
+  "PossibleGamePaths": [
+    "C:\\Program Files\\Steam\\steamapps\\common\\Hollow Knight",
+    "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hollow Knight",
+    "C:\\Program Files\\GOG Galaxy\\Games\\Hollow Knight",
+    "C:\\Program Files (x86)\\GOG Galaxy\\Games\\Hollow Knight",
+    "~/.local/share/Steam/steamapps/common/Hollow Knight",
+    "~/.steam/steam/steamapps/common/Hollow Knight",
+    "~/Library/Application Support/Steam/steamapps/common/Hollow Knight"
+  ],
+  "DiffsFolder": "../Hollow_Knight_Diffs~",
+  "DiffHashesFolder": "../Hollow_Knight_Diff_Hashes~",
+  "FinalsFolder": "../../../Hollow Knight",
+  "FinalHashesFolder": "../Hollow_Knight_Hashes~",
+  "BaseFilesFolder": "../Hollow_Knight_Extracted_Code_Files~",
+  "NonCodeRegexes": [
+    "Editor\\/ImageEffects",
+    "TextMesh Pro\\/TextMesh Pro\\/Plugins",
+    "Internal\\/"
+  ],
+  "GlobalDiffIdPath": "../GlobalDiffID~.txt"
+}

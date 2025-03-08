@@ -1,0 +1,888 @@
+@@ -1,12 +1,60 @@
++using System;%0ausing System.Collections.Generic;%0a
+ using UnityE
+@@ -103,19 +103,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -130,16 +130,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -151,16 +151,17 @@
+ omponent
++ 
+ (typeof(
+@@ -170,16 +170,20 @@
+ mera))%5d%0a
++    
+ public c
+@@ -219,19 +219,27 @@
+ haviour%0a
++%09
+ %7b%0a
+-%09
++        
+ protecte
+@@ -241,24 +241,25 @@
+ tected bool 
++ 
+ supportHDRTe
+@@ -265,34 +265,40 @@
+ extures = true;%0a
+-%0a%09
++        
+ protected bool s
+@@ -296,16 +296,17 @@
+ ed bool 
++ 
+ supportD
+@@ -308,20 +308,34 @@
+ portDX11
+-;%0a%0a%09
++ = false;%0a        
+ protecte
+@@ -341,16 +341,17 @@
+ ed bool 
++ 
+ isSuppor
+@@ -363,17 +363,98 @@
+  true;%0a%0a
+-%09
++        private List%3cMaterial%3e createdMaterials = new List%3cMaterial%3e ();%0a%0a        
+ protecte
+@@ -484,33 +484,35 @@
+ ndCreateMaterial
+-(
++ ( 
+ Shader s, Materi
+@@ -517,36 +517,47 @@
+ rial m2Create)%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ if (!s)%0a%09%09%7b%0a%09%09%09D
+@@ -542,37 +542,51 @@
+       if (!s)%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ Debug.Log(%22Missi
+@@ -614,21 +614,30 @@
+ ring
++ 
+ ());%0a
+-%09%09%09base.
++                
+ enab
+@@ -649,38 +649,72 @@
+  false;%0a
+-%09%09%09return null;%0a%09%09%7d%0a%09%09
++                return null;%0a            %7d%0a%0a            
+ if (s.is
+@@ -726,22 +726,16 @@
+ rted && 
+-(bool)
+ m2Create
+@@ -760,23 +760,32 @@
+ r == s)%0a
+-%09%09%7b%0a%09%09%09
++                
+ return m
+@@ -785,38 +785,45 @@
+ eturn m2Create;%0a
+-%09%09%7d%0a%09%09
++%0a            
+ if (!s.isSupport
+@@ -820,37 +820,51 @@
+ .isSupported)%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ NotSupported();%0a
+@@ -859,23 +859,37 @@
+ upported
++ 
+ ();%0a
+-%09%09%09
++                
+ Debug.Lo
+@@ -926,35 +926,33 @@
+  + %22 on effect %22
+- + 
+++
+ ToString() + %22 i
+@@ -937,35 +937,33 @@
+ ect %22+ToString()
+- + 
+++
+ %22 is not support
+@@ -986,38 +986,72 @@
+ orm!%22);%0a
+-%09%09%09return null;%0a%09%09%7d%0a%09%09
++                return null;%0a            %7d%0a%0a            
+ m2Create
+@@ -1057,39 +1057,95 @@
+ e = new Material
++ 
+ (s);%0a
+-%09%09
++            createdMaterials.Add (m2Create);%0a            
+ m2Create.hideFla
+@@ -1173,37 +1173,21 @@
+ ve;%0a
+-%09%09if ((bool)m2Create)%0a%09%09%7b%0a%09%09%09
++%0a            
+ retu
+@@ -1203,36 +1203,26 @@
+ te;%0a%09%09%7d%0a
+-%09%09return null;%0a%09%7d%0a%0a%09
++%0a%0a        
+ protecte
+@@ -1246,16 +1246,17 @@
+ Material
++ 
+ (Shader 
+@@ -1278,20 +1278,31 @@
+ reate)%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ if (!s)%0a
+@@ -1303,21 +1303,35 @@
+  (!s)%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ Debug.Lo
+@@ -1323,32 +1323,33 @@
+        Debug.Log
++ 
+ (%22Missing shader
+@@ -1368,45 +1368,74 @@
+ ring
++ 
+ ());%0a
+-%09%09%09return null;%0a%09%09%7d%0a%09%09if ((bool)
++                return null;%0a            %7d%0a%0a            if (
+ m2Cr
+@@ -1434,32 +1434,33 @@
+ if (m2Create && 
++(
+ m2Create.shader 
+@@ -1463,20 +1463,22 @@
+ der == s
++)
+  && 
++(
+ s.isSupp
+@@ -1479,32 +1479,42 @@
+ isSupported)
+-%0a%09%09%7b%0a%09%09%09
++)%0a                
+ return m2Cre
+@@ -1518,22 +1518,29 @@
+ Create;%0a
+-%09%09%7d%0a%09%09
++%0a            
+ if (!s.i
+@@ -1557,32 +1557,67 @@
+ )%0a%09%09
++%09
+ %7b%0a
+-%09%09%09return null;%0a%09%09%7d%0a%09%09
++                return null;%0a            %7d%0a%0a            
+ m2Cr
+@@ -1639,180 +1639,675 @@
+ rial
++ 
+ (s);%0a
+-%09%09m2Create.hideFlags = HideFlags.DontSave;%0a%09%09if ((bool)m2Create)%0a%09%09%7b%0a%09%09%09return m2Create;%0a%09%09%7d%0a%09%09return null;%0a%09%7d%0a%0a%09private void OnEnable()%0a%09%7b%0a%09%09isSupported = true;%0a%09%7d%0a%0a%09
++            createdMaterials.Add (m2Create);%0a            m2Create.hideFlags = HideFlags.DontSave;%0a                %0a            return m2Create;%0a%09%09%7d%0a%0a        void OnEnable ()%0a%09%09%7b%0a            isSupported = true;%0a        %7d%0a%0a        void OnDestroy ()%0a        %7b%0a            RemoveCreatedMaterials ();    %0a        %7d%0a%0a        private void RemoveCreatedMaterials ()%0a        %7b%0a            while (createdMaterials.Count %3e 0)%0a            %7b%0a                Material mat = createdMaterials%5b0%5d;%0a                createdMaterials.RemoveAt (0);%0a#if UNITY_EDITOR%0a                DestroyImmediate (mat);%0a#else%0a                Destroy(mat);%0a#endif%0a            %7d%0a        %7d%0a%0a        
+ prot
+@@ -2325,32 +2325,44 @@
+ CheckSupport
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ return Check
+@@ -2372,33 +2372,38 @@
+ port
+-(needDepth: false);%0a%09%7d%0a%0a%09
++ (false);%0a        %7d%0a%0a%0a        
+ publ
+@@ -2432,24 +2432,36 @@
+ esources
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ Debug.Lo
+@@ -2468,16 +2468,17 @@
+ gWarning
++ 
+ (%22CheckR
+@@ -2538,18 +2538,28 @@
+ ten.%22);%0a
+-%09%09
++            
+ return i
+@@ -2570,21 +2570,36 @@
+ ported;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a%0a        
+ protecte
+@@ -2610,24 +2610,36 @@
+ id Start
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ CheckRes
+@@ -2648,17 +2648,32 @@
+ rces
++ 
+ ();%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ prot
+@@ -2687,32 +2687,33 @@
+ ool CheckSupport
++ 
+ (bool needDepth)
+@@ -2714,20 +2714,31 @@
+ Depth)%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ isSuppor
+@@ -2749,18 +2749,28 @@
+ = true;%0a
+-%09%09
++            
+ supportH
+@@ -2852,18 +2852,28 @@
+ BHalf);%0a
+-%09%09
++            
+ supportD
+@@ -2953,18 +2953,29 @@
+ haders;%0a
+-%09%09
++%0a            
+ if (!Sys
+@@ -3006,55 +3006,31 @@
+ ects
+- %7c%7c !SystemInfo.supportsRenderTextures
+ )%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ NotS
+@@ -3041,35 +3041,70 @@
+ rted
++ 
+ ();%0a
+-%09%09%09return false;%0a%09%09%7d%0a%09%09
++                return false;%0a            %7d%0a%0a            
+ if (
+@@ -3147,32 +3147,33 @@
+ derTextureFormat
++ 
+ (RenderTextureFo
+@@ -3183,29 +3183,43 @@
+ t.Depth))%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ NotSupported
+@@ -3222,57 +3222,101 @@
+ rted
++ 
+ ();%0a
+-%09%09%09return false;%0a%09%09%7d%0a%09%09if (needDepth)%0a%09%09%7b%0a%09%09%09
++                return false;%0a            %7d%0a%0a            if (needDepth)%0a                
+ GetC
+@@ -3382,32 +3382,53 @@
+ th;%0a
+-%09%09%7d%0a%09%09return true;%0a%09%7d%0a%0a%09
++%0a            return true;%0a        %7d%0a%0a        
+ prot
+@@ -3450,16 +3450,17 @@
+ kSupport
++ 
+ (bool ne
+@@ -3467,16 +3467,17 @@
+ edDepth,
++ 
+  bool ne
+@@ -3484,20 +3484,31 @@
+ edHdr)%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ if (!Che
+@@ -3529,23 +3529,32 @@
+ Depth))%0a
+-%09%09%7b%0a%09%09%09
++                
+ return f
+@@ -3559,22 +3559,29 @@
+  false;%0a
+-%09%09%7d%0a%09%09
++%0a            
+ if (need
+@@ -3606,29 +3606,43 @@
+ Textures)%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ NotSupported
+@@ -3645,53 +3645,103 @@
+ rted
++ 
+ ();%0a
+-%09%09%09return false;%0a%09%09%7d%0a%09%09return true;%0a%09%7d%0a%0a%09
++                return false;%0a            %7d%0a%0a            return true;%0a        %7d%0a%0a%0a        
+ publ
+@@ -3759,24 +3759,36 @@
+ 1Support
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ return s
+@@ -3799,21 +3799,36 @@
+ rtDX11;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a%0a        
+ protecte
+@@ -3851,24 +3851,36 @@
+ oDisable
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ Debug.Lo
+@@ -3887,16 +3887,17 @@
+ gWarning
++ 
+ (%22The im
+@@ -3998,20 +3998,96 @@
+ %22);%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a        // deprecated but needed for old effects to survive upgrading%0a       
+  boo
+@@ -4099,16 +4099,17 @@
+ ckShader
++ 
+ (Shader 
+@@ -4112,20 +4112,31 @@
+ der s)%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ Debug.Lo
+@@ -4155,32 +4155,33 @@
+ r %22 + s.ToString
++ 
+ () + %22 on effect
+@@ -4174,33 +4174,32 @@
+  + %22 on effect %22
+- 
+ + ToString() + %22
+@@ -4188,24 +4188,25 @@
+  %22+ ToString
++ 
+ () + %22 is no
+@@ -4379,18 +4379,28 @@
+ age.%22);%0a
+-%09%09
++            
+ if (!s.i
+@@ -4413,21 +4413,35 @@
+ rted)%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ NotSuppo
+@@ -4448,54 +4448,143 @@
+ rted
++ 
+ ();%0a
+-%09%09%09return false;%0a%09%09%7d%0a%09%09return false;%0a%09%7d%0a%0a%09
++                return false;%0a            %7d%0a            else%0a%09%09%09%7b%0a                return false;%0a            %7d%0a        %7d%0a%0a%0a        
+ prot
+@@ -4610,21 +4610,28 @@
+ rted
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09base.
++            
+ enab
+@@ -4643,18 +4643,28 @@
+  false;%0a
+-%09%09
++            
+ isSuppor
+@@ -4680,13 +4680,48 @@
+ se;%0a
+-%09%7d%0a%0a%09
++            return;%0a        %7d%0a%0a%0a        
+ prot
+@@ -4741,16 +4741,17 @@
+ awBorder
++ 
+ (RenderT
+@@ -4787,63 +4787,258 @@
+ l)%0a%09
++%09
+ %7b%0a
+-%09%09RenderTexture.active = dest;%0a%09%09bool flag = true;%0a%09%09
++            float x1;%0a            float x2;%0a            float y1;%0a            float y2;%0a%0a            RenderTexture.active = dest;%0a            bool  invertY = true; // source.texelSize.y %3c 0.0ff;%0a            // Set up the simple Matrix%0a            
+ GL.P
+@@ -5050,18 +5050,28 @@
+ trix();%0a
+-%09%09
++            
+ GL.LoadO
+@@ -5078,18 +5078,29 @@
+ rtho();%0a
+-%09%09
++%0a            
+ for (int
+@@ -5136,23 +5136,46 @@
+ t; i++)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ material
+@@ -5191,31 +5191,44 @@
+ i);%0a
+-%09%09%09
++%0a                
+ float y
+-;%0a%09%09%09
++1_; 
+ float y2
+ ;%0a%09%09
+@@ -5227,205 +5227,432 @@
+ t y2
++_
+ ;%0a
+-%09%09%09if (flag)%0a%09%09%09%7b%0a%09%09%09%09y = 1f;%0a%09%09%09%09
++                if (invertY)%0a                %7b%0a                    y1_ = 1.0f; 
+ y2
++_
+  = 
++0.
+ 0f;%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09y = 0f;%0a%09%09%09%09
++                %7d%0a                else%0a                %7b%0a                    y1_ = 0.0f; 
+ y2
++_
+  = 1
++.0
+ f;%0a
+-%09%09%09%7d%0a%09%09%09float
++                %7d%0a%0a                // left%0a               
+  x
++1
+  = 0
+-f + 1f / ((float)dest.width * 1f);%0a%09%09%09float y3
++.0f;%0a                x2 = 0.0f + 1.0f/(dest.width*1.0f);%0a                y1
+  = 
++0.
+ 0f;%0a
+-%09%09%09float y4
++                y2
+  = 1
++.0
+ f;%0a
+-%09%09%09GL.Begin(7);%0a%09%09%09
++                GL.Begin(GL.QUADS);%0a%0a                
+ GL.T
+@@ -5656,35 +5656,36 @@
+ L.TexCoord2(
++0.
+ 0f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(0
+@@ -5675,38 +5675,38 @@
+ 1_); GL.Vertex3(
+-0f, y3
++x1, y1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -5690,35 +5690,48 @@
+ (x1, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -5724,34 +5724,35 @@
+ .TexCoord2(1
++.0
+ f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(x
+@@ -5743,36 +5743,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-3
++1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -5757,35 +5757,48 @@
+ (x2, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -5791,35 +5791,35 @@
+ .TexCoord2(1
++.0
+ f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(x
+@@ -5810,36 +5810,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-4
++2
+ , 0.1f);%0a%09%09%09GL.T
+@@ -5824,35 +5824,48 @@
+ (x2, y2, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(0f,
+@@ -5857,36 +5857,36 @@
+ L.TexCoord2(
++0.
+ 0f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(0
+@@ -5876,38 +5876,38 @@
+ 2_); GL.Vertex3(
+-0f, y4
++x1, y2
+ , 0.1f);%0a%09%09%09floa
+@@ -5903,96 +5903,184 @@
+ f);%0a
+-%09%09%09float x2
++%0a                // right%0a                x1
+  = 1
++.0
+ f - 1
+-f / ((float)dest.width * 1f);%0a%09%09%09x
++.0f/(dest.width*1.0f);%0a                x2
+  = 1
++.0
+ f;%0a
+-%09%09%09y3
++                y1
+  = 
++0.
+ 0f;%0a
+-%09%09%09y4
++                y2
+  = 1
++.0
+ f;%0a
+-%09%09%09
++%0a                
+ GL.T
+@@ -6084,35 +6084,36 @@
+ L.TexCoord2(
++0.
+ 0f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(x
+@@ -6116,13 +6116,13 @@
+ x3(x
+-2, y3
++1, y1
+ , 0.
+@@ -6118,35 +6118,48 @@
+ (x1, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -6152,34 +6152,35 @@
+ .TexCoord2(1
++.0
+ f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(x
+@@ -6171,36 +6171,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-3
++1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -6185,35 +6185,48 @@
+ (x2, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -6219,35 +6219,35 @@
+ .TexCoord2(1
++.0
+ f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(x
+@@ -6238,36 +6238,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-4
++2
+ , 0.1f);%0a%09%09%09GL.T
+@@ -6252,35 +6252,48 @@
+ (x2, y2, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(0f,
+@@ -6285,36 +6285,36 @@
+ L.TexCoord2(
++0.
+ 0f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(x
+@@ -6317,13 +6317,13 @@
+ x3(x
+-2, y4
++1, y2
+ , 0.
+@@ -6331,79 +6331,183 @@
+ f);%0a
+-%09%09%09x
++%0a                // top%0a                x1 = 0.0f;%0a                x2
+  = 1
++.0
+ f;%0a
+-%09%09%09y3
++                y1
+  = 
++0.
+ 0f;%0a
+-%09%09%09y4
++                y2
+  = 
++0.
+ 0f + 1
+-f / ((float)dest.height * 1f);%0a%09%09%09
++.0f/(dest.height*1.0f);%0a%0a                
+ GL.T
+@@ -6511,35 +6511,36 @@
+ L.TexCoord2(
++0.
+ 0f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(0
+@@ -6530,38 +6530,38 @@
+ 1_); GL.Vertex3(
+-0f, y3
++x1, y1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -6545,35 +6545,48 @@
+ (x1, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -6579,34 +6579,35 @@
+ .TexCoord2(1
++.0
+ f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(x
+@@ -6598,36 +6598,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-3
++1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -6612,35 +6612,48 @@
+ (x2, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -6646,35 +6646,35 @@
+ .TexCoord2(1
++.0
+ f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(x
+@@ -6665,36 +6665,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-4
++2
+ , 0.1f);%0a%09%09%09GL.T
+@@ -6679,35 +6679,48 @@
+ (x2, y2, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(0f,
+@@ -6712,36 +6712,36 @@
+ L.TexCoord2(
++0.
+ 0f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(0
+@@ -6731,38 +6731,38 @@
+ 2_); GL.Vertex3(
+-0f, y4
++x1, y2
+ , 0.1f);%0a%09%09%09x = 
+@@ -6758,79 +6758,186 @@
+ f);%0a
+-%09%09%09x
++%0a                // bottom%0a                x1 = 0.0f;%0a                x2
+  = 1
++.0
+ f;%0a
+-%09%09%09y3
++                y1
+  = 1
++.0
+ f - 1
+-f / ((float)dest.height * 1f);%0a%09%09%09y4
++.0f/(dest.height*1.0f);%0a                y2
+  = 1
++.0
+ f;%0a
+-%09%09%09
++%0a                
+ GL.T
+@@ -6949,19 +6949,20 @@
+ rd2(
++0.
+ 0f, y
+-);%0a%09%09%09
++1_); 
+ GL.V
+@@ -6972,14 +6972,14 @@
+ ex3(
+-0f, y3
++x1, y1
+ , 0.
+@@ -6975,35 +6975,48 @@
+ (x1, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -7017,18 +7017,19 @@
+ d2(1
++.0
+ f, y
+-);%0a%09%09%09
++1_); 
+ GL.V
+@@ -7040,12 +7040,13 @@
+ x3(x
++2
+ , y
+-3
++1
+ , 0.
+@@ -7042,35 +7042,48 @@
+ (x2, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -7080,27 +7080,27 @@
+ Coord2(1
++.0
+ f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Verte
+@@ -7103,20 +7103,21 @@
+ ertex3(x
++2
+ , y
+-4
++2
+ , 0.1f);
+@@ -7117,19 +7117,32 @@
+  0.1f);%0a
+-%09%09%09
++                
+ GL.TexCo
+@@ -7150,20 +7150,20 @@
+ rd2(
++0.
+ 0f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.V
+@@ -7173,14 +7173,14 @@
+ ex3(
+-0f, y4
++x1, y2
+ , 0.
+@@ -7188,27 +7188,62 @@
+ f);%0a
+-%09%09%09GL.End();%0a%09%09%7d%0a%09%09
++%0a                GL.End();%0a            %7d%0a%0a            
+ GL.P
+@@ -7254,13 +7254,26 @@
+ trix();%0a
+-%09
++        %7d%0a    
+ %7d%0a%7d%0a

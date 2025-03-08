@@ -1,0 +1,1170 @@
+@@ -41,16 +41,35 @@
+ eneric;%0a
++using System.Linq;%0a
+ using Un
+@@ -118,16 +118,18 @@
+ ehaviour
++//
+ , IHitRe
+@@ -138,17 +138,20 @@
+ onder%0a%7b%0a
+-%09
++    
+ %5bSeriali
+@@ -157,17 +157,20 @@
+ izable%5d%0a
+-%09
++    
+ public c
+@@ -186,21 +186,30 @@
+ gObject%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ public G
+@@ -240,20 +240,32 @@
+ t;%0a%0a
+-%09%09%5bSpace%5d%0a%09%09
++        %5bSpace%5d%0a        
+ publ
+@@ -278,26 +278,32 @@
+  spawnMin;%0a%0a
+-%09%09
++        
+ public int s
+@@ -308,26 +308,32 @@
+  spawnMax;%0a%0a
+-%09%09
++        
+ public float
+@@ -340,26 +340,32 @@
+  speedMin;%0a%0a
+-%09%09
++        
+ public float
+@@ -372,26 +372,32 @@
+  speedMax;%0a%0a
+-%09%09
++        
+ public float
+@@ -404,26 +404,32 @@
+  angleMin;%0a%0a
+-%09%09
++        
+ public float
+@@ -440,18 +440,24 @@
+ leMax;%0a%0a
+-%09%09
++        
+ public V
+@@ -481,18 +481,24 @@
+ ation;%0a%0a
+-%09%09
++        
+ public F
+@@ -510,23 +510,38 @@
+ bject()%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ spawnMin
+@@ -547,19 +547,28 @@
+ n = 25;%0a
+-%09%09%09
++            
+ spawnMax
+@@ -574,19 +574,28 @@
+ x = 30;%0a
+-%09%09%09
++            
+ speedMin
+@@ -601,19 +601,28 @@
+ n = 9f;%0a
+-%09%09%09
++            
+ speedMax
+@@ -625,27 +625,36 @@
+ dMax = 20f;%0a
+-%09%09%09
++            
+ angleMin = 2
+@@ -657,19 +657,28 @@
+  = 20f;%0a
+-%09%09%09
++            
+ angleMax
+@@ -686,19 +686,28 @@
+ = 160f;%0a
+-%09%09%09
++            
+ originVa
+@@ -745,15 +745,27 @@
+ f);%0a
+-%09%09%7d%0a%0a%09%09
++        %7d%0a%0a        
+ publ
+@@ -798,62 +798,116 @@
+ in)%0a
+-%09%09%7b%0a%09%09%09if (!referenceObject)%0a%09%09%09%7b%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09
++        %7b%0a            if (!referenceObject)%0a            %7b%0a                return;%0a            %7d%0a            
+ int 
+@@ -962,19 +962,28 @@
+ x + 1);%0a
+-%09%09%09
++            
+ for (int
+@@ -1004,25 +1004,48 @@
+ m; i++)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                //
+ GameObje
+@@ -1089,45 +1089,200 @@
+ ();%0a
+-%09%09%09%09if ((bool)gameObject)%0a%09%09%09%09%7b%0a%09%09%09%09%09
++                GameObject gameObject = GameObject.Instantiate(referenceObject, Vector3.zero, Quaternion.identity);%0a                if ((bool)gameObject)%0a                %7b%0a                    
+ game
+@@ -1473,21 +1473,36 @@
+ ), 0f);%0a
+-%09%09%09%09%09
++                    
+ float nu
+@@ -1548,29 +1548,44 @@
+  speedMax);%0a
+-%09%09%09%09%09
++                    
+ float num3 =
+@@ -1631,21 +1631,36 @@
+ leMax);%0a
+-%09%09%09%09%09
++                    
+ float x 
+@@ -1711,21 +1711,36 @@
+ 180f));%0a
+-%09%09%09%09%09
++                    
+ float y 
+@@ -1791,21 +1791,36 @@
+ 180f));%0a
+-%09%09%09%09%09
++                    
+ Vector2 
+@@ -1846,21 +1846,36 @@
+ (x, y);%0a
+-%09%09%09%09%09
++                    
+ Rigidbod
+@@ -1930,21 +1930,36 @@
+ y2D%3e();%0a
+-%09%09%09%09%09
++                    
+ if ((boo
+@@ -1971,29 +1971,62 @@
+ ponent)%0a
+-%09%09%09%09%09%7b%0a%09%09%09%09%09%09
++                    %7b%0a                        
+ componen
+@@ -2069,35 +2069,83 @@
+ e);%0a
+-%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++                    %7d%0a                %7d%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+ priv
+@@ -2170,25 +2170,28 @@
+ yCollider;%0a%0a
+-%09
++    
+ %5bTooltip(%22Re
+@@ -2231,33 +2231,36 @@
+ oyed object.%22)%5d%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -2252,33 +2252,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private Renderer
+@@ -2293,25 +2293,28 @@
+ eRenderer;%0a%0a
+-%09
++    
+ %5bTooltip(%22Li
+@@ -2376,25 +2376,28 @@
+  object.%22)%5d%0a
+-%09
++    
+ %5bSerializeFi
+@@ -2393,33 +2393,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private GameObje
+@@ -2439,17 +2439,20 @@
+ Parts;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -2542,25 +2542,28 @@
+ ruction.%22)%5d%0a
+-%09
++    
+ %5bSerializeFi
+@@ -2559,33 +2559,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private GameObje
+@@ -2599,33 +2599,36 @@
+  remnantParts;%0a%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -2620,33 +2620,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private List%3cGam
+@@ -2671,17 +2671,20 @@
+ Parts;%0a%0a
+-%09
++    
+ %5bSeriali
+@@ -2684,33 +2684,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private float an
+@@ -2731,17 +2731,20 @@
+  -60f;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -2784,33 +2784,36 @@
+ d are inert.%22)%5d%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -2805,33 +2805,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private float in
+@@ -2850,33 +2850,36 @@
+ oundThreshold;%0a%0a
+-%09
++    
+ %5bTooltip(%22Breaka
+@@ -2920,25 +2920,28 @@
+ e inert.%22)%5d%0a
+-%09
++    
+ %5bSerializeFi
+@@ -2937,33 +2937,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private float in
+@@ -2990,17 +2990,20 @@
+ shold;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -3049,25 +3049,28 @@
+  offset.%22)%5d%0a
+-%09
++    
+ %5bSerializeFi
+@@ -3066,33 +3066,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private Vector3 
+@@ -3105,25 +3105,50 @@
+ ectOffset;%0a%0a
+-%09
++    %5bHideInInspector%5d%0a    
+ %5bTooltip(%22Pr
+@@ -3171,25 +3171,28 @@
+ r audio.%22)%5d%0a
+-%09
++    
+ %5bSerializeFi
+@@ -3188,33 +3188,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private AudioSou
+@@ -3232,33 +3232,36 @@
+ oSourcePrefab;%0a%0a
+-%09
++    
+ %5bTooltip(%22Table 
+@@ -3290,33 +3290,36 @@
+  upon break.%22)%5d%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -3311,33 +3311,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private AudioEve
+@@ -3360,17 +3360,22 @@
+ Event;%0a%0a
+-%09
++    //
+ %5bTooltip
+@@ -3416,25 +3416,30 @@
+ n break.%22)%5d%0a
+-%09
++    //
+ %5bSerializeFi
+@@ -3435,33 +3435,38 @@
+ SerializeField%5d%0a
+-%09
++    //
+ private RandomAu
+@@ -3500,17 +3500,20 @@
+ Table;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -3557,33 +3557,36 @@
+ -down angle.%22)%5d%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -3578,33 +3578,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private Transfor
+@@ -3623,33 +3623,36 @@
+ RegularPrefab;%0a%0a
+-%09
++    
+ %5bTooltip(%22Prefab
+@@ -3684,33 +3684,36 @@
+  down angle.%22)%5d%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -3705,33 +3705,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private Transfor
+@@ -3747,33 +3747,36 @@
+ HitDownPrefab;%0a%0a
+-%09
++    
+ %5bTooltip(%22Prefab
+@@ -3808,33 +3808,36 @@
+  down angle.%22)%5d%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -3829,33 +3829,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private float fl
+@@ -3867,25 +3867,28 @@
+ gSpeedMin;%0a%0a
+-%09
++    
+ %5bTooltip(%22Pr
+@@ -3928,25 +3928,28 @@
+ n angle.%22)%5d%0a
+-%09
++    
+ %5bSerializeFi
+@@ -3945,33 +3945,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private float fl
+@@ -3987,17 +3987,20 @@
+ edMax;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -4027,33 +4027,36 @@
+ ab to spawn.%22)%5d%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -4048,33 +4048,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private Transfor
+@@ -4091,33 +4091,36 @@
+ eEffectPrefab;%0a%0a
+-%09
++    
+ %5bTooltip(%22Nail h
+@@ -4134,33 +4134,36 @@
+ ab to spawn.%22)%5d%0a
+-%09
++    
+ %5bSerializeField%5d
+@@ -4155,33 +4155,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private Transfor
+@@ -4199,33 +4199,36 @@
+ tEffectPrefab;%0a%0a
+-%09
++    
+ %5bTooltip(%22Spell 
+@@ -4254,25 +4254,28 @@
+ o spawn.%22)%5d%0a
+-%09
++    
+ %5bSerializeFi
+@@ -4271,33 +4271,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private Transfor
+@@ -4324,17 +4324,20 @@
+ refab;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -4412,25 +4412,28 @@
+ er used?%22)%5d%0a
+-%09
++    
+ %5bSerializeFi
+@@ -4429,33 +4429,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private bool pre
+@@ -4480,17 +4480,20 @@
+ ation;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -4522,25 +4522,28 @@
+ vent to.%22)%5d%0a
+-%09
++    
+ %5bSerializeFi
+@@ -4539,33 +4539,36 @@
+ SerializeField%5d%0a
+-%09
++    
+ private GameObje
+@@ -4589,17 +4589,20 @@
+ iever;%0a%0a
+-%09
++    
+ %5bTooltip
+@@ -4644,17 +4644,20 @@
+ SMs.%22)%5d%0a
+-%09
++    
+ %5bSeriali
+@@ -4665,17 +4665,20 @@
+ eField%5d%0a
+-%09
++    
+ private 
+@@ -4706,17 +4706,20 @@
+ t;%0a%0a
+-%09
++    
+ %5bSpace%5d%0a
+ %09pub
+@@ -4714,17 +4714,20 @@
+ %5bSpace%5d%0a
+-%09
++    
+ public P
+@@ -4783,17 +4783,20 @@
+ icles;%0a%0a
+-%09
++    
+ public F
+@@ -4830,17 +4830,20 @@
+ ister;%0a%0a
+-%09
++    
+ private 
+@@ -4858,17 +4858,20 @@
+ roken;%0a%0a
+-%09
++    
+ protecte
+@@ -4885,21 +4885,594 @@
+ Reset()%0a
+-%09%7b%0a%09%09
++    %7b%0a        wholeRenderer = gameObject.GetComponent%3cRenderer%3e();%0a%0a        debrisParts = gameObject.GetComponentsInChildren%3cParticleSystem%3e(true).Where(p =%3e p.gameObject != gameObject).Select(p =%3e p.gameObject).ToList();%0a%0a        var remnants = new List%3cGameObject%3e();%0a%0a        for (int i = 0; i %3c transform.childCount; i++)%0a        %7b%0a            var child = transform.GetChild(i);%0a            if (child.name.ToLower().Contains(%22base%22))%0a            %7b%0a                remnants.Add(child.gameObject);%0a            %7d%0a        %7d%0a%0a        remnantParts = remnants.ToArray();%0a%0a%0a        
+ inertBac
+@@ -5494,18 +5494,24 @@
+ d = 1f;%0a
+-%09%09
++        
+ inertFor
+@@ -5534,18 +5534,24 @@
+  = -1f;%0a
+-%09%09
++        
+ effectOf
+@@ -5584,18 +5584,24 @@
+ f, 0f);%0a
+-%09%09
++        
+ flingSpe
+@@ -5613,18 +5613,24 @@
+  = 10f;%0a
+-%09%09
++        
+ flingSpe
+@@ -5642,21 +5642,27 @@
+  = 17f;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ protecte
+@@ -5676,21 +5676,30 @@
+ Awake()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ bodyColl
+@@ -5733,18 +5733,26 @@
+ r2D%3e();%0a
+-%09%09
++        /*
+ Persiste
+@@ -5810,18 +5810,24 @@
+ tem%3e();%0a
+-%09%09
++        
+ if (!(co
+@@ -5844,37 +5844,64 @@
+  null))%0a
+-%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++        %7b%0a            return;%0a        %7d%0a        
+ componen
+@@ -5928,16 +5928,17 @@
+ delegate
++ 
+ (ref boo
+@@ -5948,38 +5948,65 @@
+ al)%0a
+-%09%09%7b%0a%09%09%09val = isBroken;%0a%09%09%7d;%0a%09%09
++        %7b%0a            val = isBroken;%0a        %7d;%0a        
+ comp
+@@ -6037,16 +6037,17 @@
+ delegate
++ 
+ (bool va
+@@ -6049,23 +6049,38 @@
+ ol val)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ isBroken
+@@ -6087,19 +6087,28 @@
+  = val;%0a
+-%09%09%09
++            
+ if (isBr
+@@ -6113,25 +6113,46 @@
+ Broken)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ SetStati
+@@ -6187,23 +6187,46 @@
+ e);%0a
+-%09%09%09%7d%0a%09%09%7d;%0a%09%7d%0a%0a%09
++            %7d%0a        %7d;*/%0a    %7d%0a%0a    
+ prot
+@@ -6244,21 +6244,30 @@
+ Start()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ CreateAd
+@@ -6300,18 +6300,24 @@
+ Parts);%0a
+-%09%09
++        
+ float z 
+@@ -6345,18 +6345,24 @@
+ tion.z;%0a
+-%09%09
++        
+ if (z %3e 
+@@ -6419,23 +6419,38 @@
+ eshold)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ BoxColli
+@@ -6494,27 +6494,36 @@
+ lider2D%3e();%0a
+-%09%09%09
++            
+ if (componen
+@@ -6533,25 +6533,46 @@
+ = null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ componen
+@@ -6590,24 +6590,42 @@
+  false;%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
+ UnityEng
+@@ -6650,33 +6650,54 @@
+ (this);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++            return;%0a        %7d%0a        
+ for (int
+@@ -6726,39 +6726,54 @@
+ ts.Length; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ GameObject gameO
+@@ -6789,35 +6789,44 @@
+ emnantParts%5bi%5d;%0a
+-%09%09%09
++            
+ if (gameObject !
+@@ -6858,25 +6858,46 @@
+ veSelf)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ gameObje
+@@ -6924,27 +6924,48 @@
+ false);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ angleOff
+@@ -7012,21 +7012,27 @@
+ ale.x);%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ protecte
+@@ -7108,16 +7108,25 @@
+ ts)%0a
+-%09%7b%0a%09%7d%0a%0a%09
++    %7b%0a    %7d%0a%0a    
+ publ
+@@ -7145,21 +7145,30 @@
+ kSelf()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (!isB
+@@ -7178,130 +7178,2667 @@
+ en)%0a
+-%09%09%7b%0a%09%09%09Break(70f, 110f, 1f);%0a%09%09%7d%0a%09%7d%0a%0a%09public void Hit(HitInstance damageInstance)%0a%09%7b%0a%09%09if (isBroken)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++        %7b%0a            Break(70f, 110f, 1f);%0a        %7d%0a    %7d%0a%0a    protected void ManageHit(float direction, float magnitudeMultiplier, int attackType, GameObject source)%0a    %7b%0a        if (isBroken)%0a        %7b%0a            return;%0a        %7d%0a        float impactAngle = direction;%0a        float num = magnitudeMultiplier;%0a        if (attackType == 2)%0a        %7b%0a            GameObject.Instantiate(spellHitEffectPrefab, base.transform.position, Quaternion.identity).SetPositionZ(0.0031f);%0a            //spellHitEffectPrefab.Spawn(base.transform.position).SetPositionZ(0.0031f);%0a        %7d%0a        else%0a        %7b%0a            if (attackType != 0 && attackType != 1)%0a            %7b%0a                impactAngle = 90f;%0a                num = 1f;%0a            %7d%0a            //strikeEffectPrefab.Spawn(base.transform.position);%0a            GameObject.Instantiate(strikeEffectPrefab, base.transform.position, Quaternion.identity);%0a            Vector3 position = (source.transform.position + base.transform.position) * 0.5f;%0a            SpawnNailHitEffect(nailHitEffectPrefab, position, impactAngle);%0a        %7d%0a        int cardinalDirection = GetCardinalDirection(direction);%0a        Transform transform = dustHitRegularPrefab;%0a        float flingAngleMin;%0a        float flingAngleMax;%0a        Vector3 euler;%0a        switch (cardinalDirection)%0a        %7b%0a            case 2:%0a                angleOffset *= -1f;%0a                flingAngleMin = 120f;%0a                flingAngleMax = 160f;%0a                euler = new Vector3(180f, 90f, 270f);%0a                break;%0a            case 0:%0a                flingAngleMin = 30f;%0a                flingAngleMax = 70f;%0a                euler = new Vector3(0f, 90f, 270f);%0a                break;%0a            case 1:%0a                angleOffset = 0f;%0a                flingAngleMin = 70f;%0a                flingAngleMax = 110f;%0a                num *= 1.5f;%0a                euler = new Vector3(270f, 90f, 270f);%0a                break;%0a            default:%0a                angleOffset = 0f;%0a                flingAngleMin = 160f;%0a                flingAngleMax = 380f;%0a                transform = dustHitDownPrefab;%0a                euler = new Vector3(-72.5f, -180f, -180f);%0a                break;%0a        %7d%0a        if (transform != null)%0a        %7b%0a            //transform.Spawn(base.transform.position + effectOffset, Quaternion.Euler(euler));%0a            GameObject.Instantiate(transform, base.transform.position + effectOffset, Quaternion.Euler(euler));%0a        %7d%0a        Break(flingAngleMin, flingAngleMax, num);%0a    %7d%0a%0a    /*public void Hit(HitInstance damageInstance)%0a    %7b%0a        if (isBroken)%0a        %7b%0a            return;%0a        %7d%0a        
+ floa
+@@ -9879,18 +9879,24 @@
+ ection;%0a
+-%09%09
++        
+ float nu
+@@ -9935,18 +9935,24 @@
+ iplier;%0a
+-%09%09
++        
+ if (dama
+@@ -9995,23 +9995,166 @@
+ .Spell)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            GameObject.Instantiate(spellHitEffectPrefab, base.transform.position, Quaternion.identity).SetPositionZ(0.0031f);%0a            //
+ spellHit
+@@ -10224,26 +10224,53 @@
+ f);%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++        %7d%0a        else%0a        %7b%0a            
+ if (
+@@ -10357,112 +10357,276 @@
+ ic)%0a
+-%09%09%09%7b%0a%09%09%09%09impactAngle = 90f;%0a%09%09%09%09num = 1f;%0a%09%09%09%7d%0a%09%09%09strikeEffectPrefab.Spawn(base.transform.position);%0a%09%09%09
++            %7b%0a                impactAngle = 90f;%0a                num = 1f;%0a            %7d%0a            //strikeEffectPrefab.Spawn(base.transform.position);%0a            GameObject.Instantiate(strikeEffectPrefab, base.transform.position, Quaternion.identity);%0a            
+ Vect
+@@ -10717,19 +10717,28 @@
+ * 0.5f;%0a
+-%09%09%09
++            
+ SpawnNai
+@@ -10793,22 +10793,34 @@
+ Angle);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ int card
+@@ -10831,39 +10831,24 @@
+ Direction = 
+-DirectionUtils.
+ GetCardinalD
+@@ -10883,18 +10883,24 @@
+ ction);%0a
+-%09%09
++        
+ Transfor
+@@ -10935,18 +10935,24 @@
+ Prefab;%0a
+-%09%09
++        
+ float fl
+@@ -10964,18 +10964,24 @@
+ gleMin;%0a
+-%09%09
++        
+ float fl
+@@ -10993,18 +10993,24 @@
+ gleMax;%0a
+-%09%09
++        
+ Vector3 
+@@ -11016,18 +11016,24 @@
+  euler;%0a
+-%09%09
++        
+ switch (
+@@ -11055,25 +11055,54 @@
+ on)%0a
+-%09%09%7b%0a%09%09case 2:%0a%09%09%09
++        %7b%0a            case 2:%0a                
+ angl
+@@ -11117,19 +11117,32 @@
+ *= -1f;%0a
+-%09%09%09
++                
+ flingAng
+@@ -11151,27 +11151,40 @@
+ Min = 120f;%0a
+-%09%09%09
++                
+ flingAngleMa
+@@ -11189,27 +11189,40 @@
+ Max = 160f;%0a
+-%09%09%09
++                
+ euler = new 
+@@ -11251,31 +11251,67 @@
+ f);%0a
+-%09%09%09break;%0a%09%09case 0:%0a%09%09%09
++                break;%0a            case 0:%0a                
+ flin
+@@ -11323,27 +11323,40 @@
+ eMin = 30f;%0a
+-%09%09%09
++                
+ flingAngleMa
+@@ -11364,19 +11364,32 @@
+  = 70f;%0a
+-%09%09%09
++                
+ euler = 
+@@ -11416,39 +11416,75 @@
+  270f);%0a
+-%09%09%09break;%0a%09%09case 1:%0a%09%09%09
++                break;%0a            case 1:%0a                
+ angleOff
+@@ -11485,35 +11485,48 @@
+ gleOffset = 0f;%0a
+-%09%09%09
++                
+ flingAngleMin = 
+@@ -11526,27 +11526,40 @@
+ eMin = 70f;%0a
+-%09%09%09
++                
+ flingAngleMa
+@@ -11572,89 +11572,151 @@
+ 0f;%0a
+-%09%09%09num *= 1.5f;%0a%09%09%09euler = new Vector3(270f, 90f, 270f);%0a%09%09%09break;%0a%09%09default:%0a%09%09%09
++                num *= 1.5f;%0a                euler = new Vector3(270f, 90f, 270f);%0a                break;%0a            default:%0a                
+ angl
+@@ -11725,27 +11725,40 @@
+ ffset = 0f;%0a
+-%09%09%09
++                
+ flingAngleMi
+@@ -11767,19 +11767,32 @@
+ = 160f;%0a
+-%09%09%09
++                
+ flingAng
+@@ -11805,19 +11805,32 @@
+ = 380f;%0a
+-%09%09%09
++                
+ transfor
+@@ -11852,19 +11852,32 @@
+ Prefab;%0a
+-%09%09%09
++                
+ euler = 
+@@ -11915,189 +11915,587 @@
+ f);%0a
+-%09%09%09break;%0a%09%09%7d%0a%09%09if (transform != null)%0a%09%09%7b%0a%09%09%09transform.Spawn(base.transform.position + effectOffset, Quaternion.Euler(euler));%0a%09%09%7d%0a%09%09Break(flingAngleMin, flingAngleMax, num);%0a%09%7d%0a%0a%09
++                break;%0a        %7d%0a        if (transform != null)%0a        %7b%0a            //transform.Spawn(base.transform.position + effectOffset, Quaternion.Euler(euler));%0a            GameObject.Instantiate(transform, base.transform.position + effectOffset, Quaternion.Euler(euler));%0a        %7d%0a        Break(flingAngleMin, flingAngleMax, num);%0a    %7d*/%0a%0a    static int NegSafeMod(int val, int len)%0a    %7b%0a        return (val %25 len + len) %25 len;%0a    %7d%0a%0a    static int GetCardinalDirection(float degrees)%0a    %7b%0a        return NegSafeMod(Mathf.RoundToInt(degrees / 90f), 4);%0a    %7d%0a%0a    
+ priv
+@@ -12602,21 +12602,30 @@
+ tAngle)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (nail
+@@ -12653,34 +12653,61 @@
+ ll)%0a
+-%09%09%7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
++        %7b%0a            return null;%0a        %7d%0a        
+ int 
+@@ -12730,23 +12730,8 @@
+ n = 
+-DirectionUtils.
+ GetC
+@@ -12761,18 +12761,24 @@
+ Angle);%0a
+-%09%09
++        
+ float y 
+@@ -12785,18 +12785,24 @@
+ = 1.5f;%0a
+-%09%09
++        
+ float mi
+@@ -12813,18 +12813,24 @@
+ lusive;%0a
+-%09%09
++        
+ float ma
+@@ -12841,18 +12841,24 @@
+ lusive;%0a
+-%09%09
++        
+ switch (
+@@ -12880,25 +12880,54 @@
+ on)%0a
+-%09%09%7b%0a%09%09case 3:%0a%09%09%09
++        %7b%0a            case 3:%0a                
+ minI
+@@ -12939,27 +12939,40 @@
+ ive = 250f;%0a
+-%09%09%09
++                
+ maxInclusive
+@@ -12984,31 +12984,67 @@
+ 0f;%0a
+-%09%09%09break;%0a%09%09case 1:%0a%09%09%09
++                break;%0a            case 1:%0a                
+ minI
+@@ -13055,27 +13055,40 @@
+ sive = 70f;%0a
+-%09%09%09
++                
+ maxInclusive
+@@ -13100,32 +13100,68 @@
+ 0f;%0a
+-%09%09%09break;%0a%09%09default:%0a%09%09%09
++                break;%0a            default:%0a                
+ minI
+@@ -13177,19 +13177,32 @@
+ = 340f;%0a
+-%09%09%09
++                
+ maxInclu
+@@ -13218,24 +13218,49 @@
+ 0f;%0a
+-%09%09%09break;%0a%09%09%7d%0a%09%09
++                break;%0a        %7d%0a        
+ floa
+@@ -13310,18 +13310,26 @@
+  1.5f);%0a
+-%09%09
++        //
+ Transfor
+@@ -13373,18 +13373,124 @@
+ ition);%0a
+-%09%09
++        Transform obj = GameObject.Instantiate(nailHitEffectPrefab, position, Quaternion.identity);%0a        
+ Vector3 
+@@ -13520,18 +13520,24 @@
+ Angles;%0a
+-%09%09
++        
+ eulerAng
+@@ -13598,18 +13598,24 @@
+ usive);%0a
+-%09%09
++        
+ obj.eule
+@@ -13637,18 +13637,24 @@
+ Angles;%0a
+-%09%09
++        
+ Vector3 
+@@ -13682,18 +13682,24 @@
+ lScale;%0a
+-%09%09
++        
+ localSca
+@@ -13708,18 +13708,24 @@
+ .x = x;%0a
+-%09%09
++        
+ localSca
+@@ -13734,18 +13734,24 @@
+ .y = y;%0a
+-%09%09
++        
+ obj.loca
+@@ -13771,18 +13771,24 @@
+ lScale;%0a
+-%09%09
++        
+ return o
+@@ -13791,21 +13791,27 @@
+ rn obj;%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ private 
+@@ -13853,21 +13853,30 @@
+ broken)%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ if (whol
+@@ -13894,23 +13894,38 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ wholeRen
+@@ -13949,22 +13949,34 @@
+ broken;%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ for (int
+@@ -14007,31 +14007,46 @@
+ ength; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ GameObject g
+@@ -14064,35 +14064,44 @@
+  wholeParts%5bi%5d;%0a
+-%09%09%09
++            
+ if (gameObject =
+@@ -14104,33 +14104,54 @@
+ ct == null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ Debug.LogErr
+@@ -14208,72 +14208,132 @@
+ s);%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09gameObject.SetActive(!broken);%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a            else%0a            %7b%0a                gameObject.SetActive(!broken);%0a            %7d%0a        %7d%0a        
+ for 
+@@ -14370,31 +14370,46 @@
+ ength; j++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ GameObject g
+@@ -14438,19 +14438,28 @@
+ rts%5bj%5d;%0a
+-%09%09%09
++            
+ if (game
+@@ -14471,33 +14471,54 @@
+ t2 == null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ Debug.LogErr
+@@ -14577,109 +14577,205 @@
+ s);%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09gameObject2.SetActive(broken);%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if (hitEventReciever != null)%0a%09%09%7b%0a%09%09%09
++            %7d%0a            else%0a            %7b%0a                gameObject2.SetActive(broken);%0a            %7d%0a        %7d%0a        if (hitEventReciever != null)%0a        %7b%0a            //TODO%0a            //
+ FSMU
+@@ -14825,30 +14825,42 @@
+ er, %22HIT%22);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if ((bool)bo
+@@ -14871,23 +14871,38 @@
+ llider)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ bodyColl
+@@ -14929,17 +14929,29 @@
+ en;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a    %7d%0a%0a    
+ publ
+@@ -15034,48 +15034,84 @@
+ er)%0a
+-%09%7b%0a%09%09if (isBroken)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++    %7b%0a        if (isBroken)%0a        %7b%0a            return;%0a        %7d%0a        
+ SetS
+@@ -15146,18 +15146,24 @@
+  true);%0a
+-%09%09
++        
+ for (int
+@@ -15198,23 +15198,38 @@
+ t; i++)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ GameObje
+@@ -15260,19 +15260,28 @@
+ rts%5bi%5d;%0a
+-%09%09%09
++            
+ if (game
+@@ -15296,25 +15296,46 @@
+ = null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ Debug.Lo
+@@ -15397,30 +15397,60 @@
+ s);%0a
+-%09%09%09%09continue;%0a%09%09%09%7d%0a%09%09%09
++                continue;%0a            %7d%0a            
+ game
+@@ -15480,19 +15480,28 @@
+  true);%0a
+-%09%09%09
++            
+ gameObje
+@@ -15582,19 +15582,28 @@
+ ffset);%0a
+-%09%09%09
++            
+ Rigidbod
+@@ -15658,19 +15658,28 @@
+ y2D%3e();%0a
+-%09%09%09
++            
+ if (comp
+@@ -15693,25 +15693,46 @@
+ = null)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ float nu
+@@ -15791,20 +15791,32 @@
+ leMax);%0a
+-%09%09%09%09
++                
+ Vector2 
+@@ -15921,20 +15921,32 @@
+ 80f)));%0a
+-%09%09%09%09
++                
+ float nu
+@@ -16025,20 +16025,32 @@
+ iplier;%0a
+-%09%09%09%09
++                
+ componen
+@@ -16077,27 +16077,48 @@
+ * num2;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ if (cont
+@@ -16146,23 +16146,38 @@
+ h != 0)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
+ GameObje
+@@ -16260,19 +16260,28 @@
+ icles);%0a
+-%09%09%09
++            
+ if ((boo
+@@ -16295,25 +16295,46 @@
+ bject2)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ if (game
+@@ -16377,27 +16377,54 @@
+ nsform)%0a
+-%09%09%09%09%7b%0a%09%09%09%09%09
++                %7b%0a                    
+ FlingObj
+@@ -16447,21 +16447,36 @@
+ = null;%0a
+-%09%09%09%09%09
++                    
+ FlingObj
+@@ -16510,21 +16510,36 @@
+ gister;%0a
+-%09%09%09%09%09
++                    
+ foreach 
+@@ -16574,29 +16574,62 @@
+  array)%0a
+-%09%09%09%09%09%7b%0a%09%09%09%09%09%09
++                    %7b%0a                        
+ if (flin
+@@ -16673,272 +16673,633 @@
+ t2)%0a
+-%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09%09flingObject = flingObject2;%0a%09%09%09%09%09%09%09break;%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%7d%0a%09%09%09%09%09if (flingObject != null)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09flingObject.Fling(base.transform.position);%0a%09%09%09%09%09%7d%0a%09%09%09%09%09else%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09gameObject2 = gameObject2.Spawn(base.transform.position);%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09
++                        %7b%0a                            flingObject = flingObject2;%0a                            break;%0a                        %7d%0a                    %7d%0a                    if (flingObject != null)%0a                    %7b%0a                        flingObject.Fling(base.transform.position);%0a                    %7d%0a                    else%0a                    %7b%0a                        //gameObject2 = gameObject2.Spawn(base.transform.position);%0a                        gameObject2 = GameObject.Instantiate(gameObject2, transform.position, Quaternion.identity);%0a                    %7d%0a                %7d%0a                
+ game
+@@ -17330,27 +17330,48 @@
+  true);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ breakAud
+@@ -17443,18 +17443,26 @@
+ ition);%0a
+-%09%09
++        //
+ breakAud
+@@ -17542,47 +17542,231 @@
+ n);%0a
+-%09%09if (hitEventReciever != null)%0a%09%09%7b%0a%09%09%09
++%0a        //var selectedSound = %0a%0a        //var playSoundMethod = WeaverTypeHelpers.GetWeaverMethod(%22WeaverCore.WeaverAudio%22, %22PlayAtPoint%22);%0a%0a        if (hitEventReciever != null)%0a        %7b%0a            //TODO%0a            //
+ FSMU
+@@ -17820,22 +17820,34 @@
+ %22HIT%22);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ if (forw
+@@ -17861,23 +17861,59 @@
+ kEvent)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            //TODO%0a            //
+ FSMUtili
+@@ -17964,22 +17964,34 @@
+ REAK%22);%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ GameObje
+@@ -18057,18 +18057,24 @@
+ rent%22);%0a
+-%09%09
++        
+ if (game
+@@ -18090,23 +18090,59 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            //TODO%0a            /*
+ PlayMake
+@@ -18223,19 +18223,28 @@
+ hake%22);%0a
+-%09%09%09
++            
+ if (play
+@@ -18265,17 +18265,38 @@
+ ll)%0a
+-%09%09%09%7b%0a%09%09%09%09
++            %7b%0a                
+ play
+@@ -18337,19 +18337,42 @@
+ %22);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d*/%0a        %7d%0a        
+ body
+@@ -18401,10 +18401,16 @@
+ se;%0a
+-%09%09
++        
+ isBr
+@@ -18426,9 +18426,12 @@
+ ue;%0a
+-%09
++    
+ %7d%0a%7d%0a

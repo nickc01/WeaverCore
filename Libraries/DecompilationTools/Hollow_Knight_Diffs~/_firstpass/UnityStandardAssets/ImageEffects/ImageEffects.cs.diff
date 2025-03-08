@@ -1,0 +1,98 @@
+@@ -69,19 +69,99 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    /// A Utility class for performing various image based rendering tasks.%0a    
+ %5bAddComp
+@@ -175,16 +175,20 @@
+ nu(%22%22)%5d%0a
++    
+ public c
+@@ -205,19 +205,30 @@
+ Effects%0a
+-%7b%0a%09
++    %7b%0a        
+ public s
+@@ -372,49 +372,127 @@
+ us)%0a
+-%09%7b%0a%09%09if (source.texelSize.y %3c 0f)%0a%09%09%7b%0a%09%09%09
++        %7b%0a            bool invertY = source.texelSize.y %3c 0.0f;%0a            if (invertY)%0a            %7b%0a                
+ cent
+@@ -499,16 +499,18 @@
+ er.y = 1
++.0
+ f - cent
+@@ -519,19 +519,32 @@
+ .y;%0a
+-%09%09%09
++                
+ angle = 
+ 0f -
+@@ -543,41 +543,67 @@
+ e = 
+-0f - 
++-
+ angle;%0a
+-%09%09%7d%0a%09%09Matrix4x4 value
++            %7d%0a%0a            Matrix4x4 rotationMatrix
+  = M
+@@ -651,13 +651,11 @@
+ er(0
+-f
+ , 0
+-f
+ , an
+@@ -670,26 +670,37 @@
+ ctor3.one);%0a
+-%09%09
++%0a            
+ material.Set
+@@ -729,18 +729,37 @@
+ x%22, 
+-value);%0a%09%09
++rotationMatrix);%0a            
+ mate
+@@ -844,18 +844,28 @@
+ us.y));%0a
+-%09%09
++            
+ material
+@@ -893,39 +893,38 @@
+ ngle
+- * ((float)Math.PI / 180f));%0a%09%09
++*Mathf.Deg2Rad);%0a%0a            
+ Grap
+@@ -965,21 +965,36 @@
+ erial);%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a%0a        
+ %5bObsolet
+@@ -1030,33 +1030,40 @@
+ est) instead%22)%5d%0a
+-%09
++        
+ public static vo
+@@ -1104,37 +1104,54 @@
+ erTexture dest)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ Graphics.Blit(so
+@@ -1167,13 +1167,28 @@
+ t);%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a%0a        
+ %5bObs
+@@ -1254,17 +1254,24 @@
+ tead%22)%5d%0a
+-%09
++        
+ public s
+@@ -1363,13 +1363,30 @@
+ st)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ Grap
+@@ -1424,9 +1424,22 @@
+ l);%0a
+-%09
++        %7d%0a    
+ %7d%0a%7d%0a

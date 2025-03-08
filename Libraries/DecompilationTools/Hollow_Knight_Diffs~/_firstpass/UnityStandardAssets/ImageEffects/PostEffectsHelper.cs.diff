@@ -1,0 +1,761 @@
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -117,16 +117,17 @@
+ omponent
++ 
+ (typeof(
+@@ -140,16 +140,11 @@
+ ))%5d%0a
+-internal
++   
+  cla
+@@ -184,18 +184,21 @@
+ our%0a
+-%7b%0a%09private
++    %7b%0a       
+  voi
+@@ -212,16 +212,17 @@
+ derImage
++ 
+ (RenderT
+@@ -263,21 +263,38 @@
+ nation)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ Debug.Lo
+@@ -334,28 +334,34 @@
+  ...%22);%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  static 
+@@ -403,20 +403,47 @@
+ mera
+-(float dist,
++ (%0a            float dist ,%0a           
+  Ren
+@@ -471,33 +471,46 @@
+ nderTexture dest
+-,
++ ,%0a           
+  Material materi
+@@ -511,17 +511,30 @@
+ material
+-,
++ ,%0a           
+  Camera 
+@@ -562,109 +562,373 @@
+ trix
++ 
+ )%0a
+-%09%7b%0a%09%09RenderTexture.active = dest;%0a%09%09material.SetTexture(%22_MainTex%22, source);%0a%09%09bool flag = true;%0a%09%09
++        %7b%0a            // Make the destination texture the target for all rendering%0a            RenderTexture.active = dest;%0a            // Assign the source texture to a property from a shader%0a            material.SetTexture(%22_MainTex%22, source);%0a            bool  invertY = true; // source.texelSize.y %3c 0.0f;%0a            // Set up the simple Matrix%0a            
+ GL.P
+@@ -936,26 +936,36 @@
+ shMatrix();%0a
+-%09%09
++            
+ GL.LoadIdent
+@@ -967,26 +967,36 @@
+ Identity();%0a
+-%09%09
++            
+ GL.LoadProje
+@@ -1056,17 +1056,38 @@
+ x);%0a
+-%09%09float f
++%0a            float fovYHalfRad
+  = c
+@@ -1136,44 +1136,50 @@
+ f * 
+-((float)Math.PI / 180f);%0a%09%09float num
++Mathf.Deg2Rad;%0a            float cotangent
+  = M
+@@ -1188,16 +1188,26 @@
+ hf.Cos(f
++ovYHalfRad
+ ) / Math
+@@ -1213,21 +1213,41 @@
+ hf.Sin(f
+-);%0a%09%09
++ovYHalfRad);%0a            
+ float as
+@@ -1247,19 +1247,16 @@
+ loat asp
+-ect
+  = camer
+@@ -1288,266 +1288,384 @@
+ ct;%0a
+-%09%09
++%0a            
+ float 
+-num2
++x1
+  = asp
+-ect / (0f - num);%0a%09%09
++/-cotangent;%0a            
+ float 
+-num3
++x2
+  = asp
+-ect / num;%0a%09%09float num4 = 1f / (0f - num);%0a%09%09float num5 = 1f / num;%0a%09%09float num6 = 1f;%0a%09%09num2 *= dist * num6;%0a%09%09num3 *= dist * num6;%0a%09%09num4 *= dist * num6;%0a%09%09num5 *= dist * num6;%0a%09%09
++/cotangent;%0a            float y1 = 1.0f/-cotangent;%0a            float y2 = 1.0f/cotangent;%0a%0a            float sc = 1.0f; // magic constant (for now)%0a%0a            x1 *= dist * sc;%0a            x2 *= dist * sc;%0a            y1 *= dist * sc;%0a            y2 *= dist * sc;%0a%0a            
+ float z
++1
+  =
+- 0f
+  -
+- 
+ dist;%0a
+-%09%09
++%0a            
+ for 
+@@ -1709,75 +1709,131 @@
+ ++)%0a
+-%09%09%7b%0a%09%09%09material.SetPass(i);%0a%09%09%09GL.Begin(7);%0a%09%09%09
++            %7b%0a                material.SetPass(i);%0a%0a                GL.Begin(GL.QUADS);%0a                
+ float y
+-;%0a%09%09%09
++1_; 
+ float y2
+ ;%0a%09%09
+@@ -1832,104 +1832,237 @@
+ t y2
++_
+ ;%0a
+-%09%09%09if (flag)%0a%09%09%09%7b%0a%09%09%09%09y = 1f;%0a%09%09%09%09
++                if (invertY)%0a                %7b%0a                    y1_ = 1.0f; 
+ y2
++_
+  = 
++0.
+ 0f;%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09y = 0f;%0a%09%09%09%09
++                %7d%0a                else%0a                %7b%0a                    y1_ = 0.0f; 
+ y2
++_
+  = 1
++.0
+ f;%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ GL.T
+@@ -2066,35 +2066,36 @@
+ L.TexCoord2(
++0.
+ 0f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(n
+@@ -2097,27 +2097,37 @@
+ ex3(
+-num2, num4
++x1, y1
+ , z
++1
+ );%0a
+-%09%09%09
++                
+ GL.T
+@@ -2132,34 +2132,35 @@
+ .TexCoord2(1
++.0
+ f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(n
+@@ -2162,27 +2162,37 @@
+ ex3(
+-num3, num4
++x2, y1
+ , z
++1
+ );%0a
+-%09%09%09
++                
+ GL.T
+@@ -2197,35 +2197,35 @@
+ .TexCoord2(1
++.0
+ f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(n
+@@ -2227,27 +2227,37 @@
+ ex3(
+-num3, num5
++x2, y2
+ , z
++1
+ );%0a
+-%09%09%09
++                
+ GL.T
+@@ -2261,36 +2261,36 @@
+ L.TexCoord2(
++0.
+ 0f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(n
+@@ -2292,71 +2292,108 @@
+ ex3(
+-num2, num5
++x1, y2
+ , z
++1
+ );%0a
+-%09%09%09GL.End();%0a%09%09%7d%0a%09%09GL.PopMatrix();%0a%09%7d%0a%0a%09private
++                GL.End();%0a            %7d%0a%0a            GL.PopMatrix();%0a        %7d%0a%0a       
+  sta
+@@ -2411,17 +2411,31 @@
+ awBorder
+-(
++ (%0a            
+ RenderTe
+@@ -2436,33 +2436,46 @@
+ nderTexture dest
+-,
++ ,%0a           
+  Material materi
+@@ -2480,66 +2480,262 @@
+ rial
++ 
+ )%0a%09
++%09
+ %7b%0a
+-%09%09RenderTexture.active = dest;%0a%09%09bool flag = true;%0a%09%09
++            float x1;%0a            float x2;%0a            float y1;%0a            float y2;%0a%0a            RenderTexture.active = dest;%0a            bool  invertY = true; // source.texelSize.y %3c 0.0ff;%0a            // Set up the simple Matrix%0a            
+ GL.P
+@@ -2739,34 +2739,44 @@
+ L.PushMatrix();%0a
+-%09%09
++            
+ GL.LoadOrtho();%0a
+@@ -2767,34 +2767,45 @@
+ GL.LoadOrtho();%0a
+-%09%09
++%0a            
+ for (int i = 0; 
+@@ -2825,39 +2825,62 @@
+ passCount; i++)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ material.SetPass
+@@ -2888,31 +2888,44 @@
+ i);%0a
+-%09%09%09
++%0a                
+ float y
+-;%0a%09%09%09
++1_; 
+ float y2
+ ;%0a%09%09
+@@ -2924,205 +2924,432 @@
+ t y2
++_
+ ;%0a
+-%09%09%09if (flag)%0a%09%09%09%7b%0a%09%09%09%09y = 1f;%0a%09%09%09%09
++                if (invertY)%0a                %7b%0a                    y1_ = 1.0f; 
+ y2
++_
+  = 
++0.
+ 0f;%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09y
++                %7d%0a                else%0a                %7b%0a                    y1_
+  = 
++0.
+ 0f;
+-%0a%09%09%09%09
++ 
+ y2
++_
+  = 1
++.0
+ f;%0a
+-%09%09%09%7d%0a%09%09%09float
++                %7d%0a%0a                // left%0a               
+  x
++1
+  = 0
+-f + 1f / ((float)dest.width * 1f);%0a%09%09%09float y3
++.0f;%0a                x2 = 0.0f + 1.0f/(dest.width*1.0f);%0a                y1
+  = 
++0.
+ 0f;%0a
+-%09%09%09float y4
++                y2
+  = 1
++.0
+ f;%0a
+-%09%09%09GL.Begin(7);%0a%09%09%09
++                GL.Begin(GL.QUADS);%0a%0a                
+ GL.T
+@@ -3353,35 +3353,36 @@
+ L.TexCoord2(
++0.
+ 0f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(0
+@@ -3372,38 +3372,38 @@
+ 1_); GL.Vertex3(
+-0f, y3
++x1, y1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -3387,35 +3387,48 @@
+ (x1, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -3421,34 +3421,35 @@
+ .TexCoord2(1
++.0
+ f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(x
+@@ -3440,36 +3440,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-3
++1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -3454,35 +3454,48 @@
+ (x2, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -3488,35 +3488,35 @@
+ .TexCoord2(1
++.0
+ f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(x
+@@ -3507,36 +3507,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-4
++2
+ , 0.1f);%0a%09%09%09GL.T
+@@ -3521,35 +3521,48 @@
+ (x2, y2, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(0f,
+@@ -3554,36 +3554,36 @@
+ L.TexCoord2(
++0.
+ 0f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(0
+@@ -3573,38 +3573,38 @@
+ 2_); GL.Vertex3(
+-0f, y4
++x1, y2
+ , 0.1f);%0a%09%09%09floa
+@@ -3600,96 +3600,184 @@
+ f);%0a
+-%09%09%09float x2
++%0a                // right%0a                x1
+  = 1
++.0
+ f - 1
+-f / ((float)dest.width * 1f);%0a%09%09%09x
++.0f/(dest.width*1.0f);%0a                x2
+  = 1
++.0
+ f;%0a
+-%09%09%09y3
++                y1
+  = 
++0.
+ 0f;%0a
+-%09%09%09y4
++                y2
+  = 1
++.0
+ f;%0a
+-%09%09%09
++%0a                
+ GL.T
+@@ -3781,35 +3781,36 @@
+ L.TexCoord2(
++0.
+ 0f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(x
+@@ -3813,13 +3813,13 @@
+ x3(x
+-2, y3
++1, y1
+ , 0.
+@@ -3815,35 +3815,48 @@
+ (x1, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -3849,34 +3849,35 @@
+ .TexCoord2(1
++.0
+ f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(x
+@@ -3868,36 +3868,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-3
++1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -3882,35 +3882,48 @@
+ (x2, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -3916,35 +3916,35 @@
+ .TexCoord2(1
++.0
+ f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(x
+@@ -3935,36 +3935,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-4
++2
+ , 0.1f);%0a%09%09%09GL.T
+@@ -3949,35 +3949,48 @@
+ (x2, y2, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(0f,
+@@ -3982,36 +3982,36 @@
+ L.TexCoord2(
++0.
+ 0f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(x
+@@ -4014,13 +4014,13 @@
+ x3(x
+-2, y4
++1, y2
+ , 0.
+@@ -4028,79 +4028,183 @@
+ f);%0a
+-%09%09%09x
++%0a                // top%0a                x1 = 0.0f;%0a                x2
+  = 1
++.0
+ f;%0a
+-%09%09%09y3
++                y1
+  = 
++0.
+ 0f;%0a
+-%09%09%09y4
++                y2
+  = 
++0.
+ 0f + 1
+-f / ((float)dest.height * 1f);%0a%09%09%09
++.0f/(dest.height*1.0f);%0a%0a                
+ GL.T
+@@ -4208,35 +4208,36 @@
+ L.TexCoord2(
++0.
+ 0f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(0
+@@ -4227,38 +4227,38 @@
+ 1_); GL.Vertex3(
+-0f, y3
++x1, y1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -4242,35 +4242,48 @@
+ (x1, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -4276,34 +4276,35 @@
+ .TexCoord2(1
++.0
+ f, y
+-);%0a%09%09%09
++1_); 
+ GL.Vertex3(x
+@@ -4295,36 +4295,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-3
++1
+ , 0.1f);%0a%09%09%09GL.T
+@@ -4309,35 +4309,48 @@
+ (x2, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -4343,35 +4343,35 @@
+ .TexCoord2(1
++.0
+ f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(x
+@@ -4362,36 +4362,37 @@
+ _); GL.Vertex3(x
++2
+ , y
+-4
++2
+ , 0.1f);%0a%09%09%09GL.T
+@@ -4376,35 +4376,48 @@
+ (x2, y2, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(0f,
+@@ -4409,36 +4409,36 @@
+ L.TexCoord2(
++0.
+ 0f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Vertex3(0
+@@ -4428,38 +4428,38 @@
+ 2_); GL.Vertex3(
+-0f, y4
++x1, y2
+ , 0.1f);%0a%09%09%09x = 
+@@ -4455,79 +4455,186 @@
+ f);%0a
+-%09%09%09x
++%0a                // bottom%0a                x1 = 0.0f;%0a                x2
+  = 1
++.0
+ f;%0a
+-%09%09%09y3
++                y1
+  = 1
++.0
+ f - 1
+-f / ((float)dest.height * 1f);%0a%09%09%09y4
++.0f/(dest.height*1.0f);%0a                y2
+  = 1
++.0
+ f;%0a
+-%09%09%09
++%0a                
+ GL.T
+@@ -4646,19 +4646,20 @@
+ rd2(
++0.
+ 0f, y
+-);%0a%09%09%09
++1_); 
+ GL.V
+@@ -4665,22 +4665,22 @@
+ Vertex3(
+-0f, y3
++x1, y1
+ , 0.1f);
+@@ -4672,35 +4672,48 @@
+ (x1, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -4714,18 +4714,19 @@
+ d2(1
++.0
+ f, y
+-);%0a%09%09%09
++1_); 
+ GL.V
+@@ -4733,20 +4733,21 @@
+ ertex3(x
++2
+ , y
+-3
++1
+ , 0.1f);
+@@ -4739,35 +4739,48 @@
+ (x2, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -4777,27 +4777,27 @@
+ Coord2(1
++.0
+ f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.Verte
+@@ -4800,20 +4800,21 @@
+ ertex3(x
++2
+ , y
+-4
++2
+ , 0.1f);
+@@ -4806,35 +4806,48 @@
+ (x2, y2, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(0f,
+@@ -4847,20 +4847,20 @@
+ rd2(
++0.
+ 0f, y2
++_
+ );
+-%0a%09%09%09
++ 
+ GL.V
+@@ -4866,22 +4866,22 @@
+ Vertex3(
+-0f, y4
++x1, y2
+ , 0.1f);
+@@ -4885,55 +4885,96 @@
+ f);%0a
+-%09%09%09GL.End();%0a%09%09%7d%0a%09%09GL.PopMatrix();%0a%09%7d%0a%0a%09private
++%0a                GL.End();%0a            %7d%0a%0a            GL.PopMatrix();%0a        %7d%0a%0a       
+  sta
+@@ -4998,17 +4998,20 @@
+ evelQuad
+-(
++ (  
+ float x1
+@@ -5105,109 +5105,367 @@
+ rial
++ 
+ )%0a%09
++%09
+ %7b%0a
+-%09%09RenderTexture.active = dest;%0a%09%09material.SetTexture(%22_MainTex%22, source);%0a%09%09bool flag = true;%0a%09%09
++            // Make the destination texture the target for all rendering%0a            RenderTexture.active = dest;%0a            // Assign the source texture to a property from a shader%0a            material.SetTexture(%22_MainTex%22, source);%0a            bool  invertY = true; // source.texelSize.y %3c 0.0f;%0a            // Set up the simple Matrix%0a            
+ GL.P
+@@ -5477,18 +5477,28 @@
+ trix();%0a
+-%09%09
++            
+ GL.LoadO
+@@ -5505,18 +5505,29 @@
+ rtho();%0a
+-%09%09
++%0a            
+ for (int
+@@ -5567,174 +5567,360 @@
+ ++)%0a
+-%09%09%7b%0a%09%09%09material.SetPass(i);%0a%09%09%09GL.Begin(7);%0a%09%09%09
++            %7b%0a                material.SetPass(i);%0a%0a                GL.Begin(GL.QUADS);%0a                
+ float y
+-3;%0a%09%09%09
++1_; 
+ float y
+-4;%0a%09%09%09if (flag)%0a%09%09%09%7b%0a%09%09%09%09y3 = 1f;%0a%09%09%09%09y4
++2_;%0a                if (invertY)%0a                %7b%0a                    y1_ = 1.0f; y2_
+  = 
++0.
+ 0f;%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09y3
++                %7d%0a                else%0a                %7b%0a                    y1_
+  = 
++0.
+ 0f;
+-%0a%09%09%09%09y4
++ y2_
+  = 1
++.0
+ f;%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ GL.T
+@@ -5932,20 +5932,20 @@
+ rd2(
++0.
+ 0f, y
+-3);%0a%09%09%09
++1_); 
+ GL.V
+@@ -5958,35 +5958,48 @@
+ (x1, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -6000,19 +6000,19 @@
+ d2(1
++.0
+ f, y
+-3);%0a%09%09%09
++1_); 
+ GL.V
+@@ -6025,35 +6025,48 @@
+ (x2, y1, 0.1f);%0a
+-%09%09%09
++                
+ GL.TexCoord2(1f,
+@@ -6063,27 +6063,27 @@
+ Coord2(1
++.0
+ f, y
+-4);%0a%09%09%09
++2_); 
+ GL.Verte
+@@ -6100,19 +6100,32 @@
+  0.1f);%0a
+-%09%09%09
++                
+ GL.TexCo
+@@ -6133,20 +6133,20 @@
+ rd2(
++0.
+ 0f, y
+-4);%0a%09%09%09
++2_); 
+ GL.V
+@@ -6171,27 +6171,61 @@
+ f);%0a
+-%09%09%09GL.End();%0a%09%09%7d%0a%09%09
++                GL.End();%0a            %7d%0a%0a            
+ GL.P
+@@ -6236,13 +6236,26 @@
+ trix();%0a
+-%09
++        %7d%0a    
+ %7d%0a%7d%0a

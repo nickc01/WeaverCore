@@ -1,0 +1,631 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -124,16 +124,17 @@
+ t(typeof
++ 
+ (Camera)
+@@ -136,16 +136,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -206,16 +206,20 @@
+ ping%22)%5d%0a
++    
+ public c
+@@ -253,19 +253,30 @@
+ ctsBase%0a
+-%7b%0a%09
++    %7b%0a        
+ public e
+@@ -298,53 +298,100 @@
+ ype%0a
+-%09%7b%0a%09%09SimpleReinhard,%0a%09%09UserCurve,%0a%09%09Hable,%0a%09%09
++        %7b%0a            SimpleReinhard,%0a            UserCurve,%0a            Hable,%0a            
+ Phot
+@@ -400,18 +400,28 @@
+ raphic,%0a
+-%09%09
++            
+ Optimize
+@@ -433,18 +433,28 @@
+ Dawson,%0a
+-%09%09
++            
+ Adaptive
+@@ -463,18 +463,28 @@
+ inhard,%0a
+-%09%09
++            
+ Adaptive
+@@ -500,22 +500,38 @@
+ utoWhite
+-%0a%09%7d%0a%0a%09
++,%0a        %7d;%0a%0a        
+ public e
+@@ -554,156 +554,237 @@
+ ize%0a
+-%09%7b%0a%09%09Square16 = 0x10,%0a%09%09Square32 = 0x20,%0a%09%09Square64 = 0x40,%0a%09%09Square128 = 0x80,%0a%09%09Square256 = 0x100,%0a%09%09Square512 = 0x200,%0a%09%09Square1024 = 0x400%0a%09%7d%0a%0a%09
++        %7b%0a            Square16 = 16,%0a            Square32 = 32,%0a            Square64 = 64,%0a            Square128 = 128,%0a            Square256 = 256,%0a            Square512 = 512,%0a            Square1024 = 1024,%0a        %7d;%0a%0a        
+ publ
+@@ -837,18 +837,24 @@
+ raphic;%0a
+-%0a%09
++        
+ public A
+@@ -918,17 +918,51 @@
+ re256;%0a%0a
+-%09
++        // CURVE parameter%0a        
+ public A
+@@ -987,18 +987,24 @@
+ pCurve;%0a
+-%0a%09
++        
+ private 
+@@ -1021,20 +1021,65 @@
+ curveTex
+-;%0a%0a%09
++ = null;%0a%0a        // UNCHARTED parameter%0a        
+ public f
+@@ -1107,25 +1107,62 @@
+ nt = 1.5f;%0a%0a
+-%09
++        // REINHARD parameter%0a        
+ public float
+@@ -1181,18 +1181,24 @@
+ = 0.4f;%0a
+-%0a%09
++        
+ public f
+@@ -1211,21 +1211,29 @@
+ hite = 2
++.0
+ f;%0a
+-%0a%09
++        
+ public f
+@@ -1256,25 +1256,66 @@
+ ed = 1.5f;%0a%0a
+-%09
++        // usual & internal stuff%0a        
+ public Shade
+@@ -1326,20 +1326,33 @@
+ nemapper
+-;%0a%0a%09
++ = null;%0a        
+ public b
+@@ -1388,18 +1388,24 @@
+ = true;%0a
+-%0a%09
++        
+ private 
+@@ -1428,20 +1428,33 @@
+ Material
+-;%0a%0a%09
++ = null;%0a        
+ private 
+@@ -1469,20 +1469,33 @@
+ xture rt
+-;%0a%0a%09
++ = null;%0a        
+ private 
+@@ -1556,17 +1556,25 @@
+ BHalf;%0a%0a
+-%09
++%0a        
+ public o
+@@ -1607,62 +1607,70 @@
+ s()%0a
+-%09%7b%0a%09%09CheckSupport(needDepth: false, needHdr: true);%0a%09%09
++        %7b%0a            CheckSupport(false, true);%0a%0a            
+ tone
+@@ -1742,18 +1742,28 @@
+ erial);%0a
+-%09%09
++            
+ if (!cur
+@@ -1805,23 +1805,46 @@
+ rCurve)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ curveTex
+@@ -1894,43 +1894,38 @@
+ 32, 
+-mipChain: false, linear: true);%0a%09%09%09
++false, true);%0a                
+ curv
+@@ -1963,19 +1963,32 @@
+ linear;%0a
+-%09%09%09
++                
+ curveTex
+@@ -2022,19 +2022,32 @@
+ .Clamp;%0a
+-%09%09%09
++                
+ curveTex
+@@ -2079,22 +2079,43 @@
+ ntSave;%0a
+-%09%09%7d%0a%09%09
++            %7d%0a%0a            
+ if (!isS
+@@ -2124,23 +2124,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -2157,30 +2157,36 @@
+ oDisable();%0a
+-%09%09%7d%0a%09%09
++            
+ return isSup
+@@ -2193,21 +2193,36 @@
+ ported;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a%0a        
+ public f
+@@ -2244,31 +2244,62 @@
+ e()%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ float 
+-num
++range
+  = 1
++.0
+ f;%0a
+-%09%09
++            
+ if (
+@@ -2326,23 +2326,32 @@
+ th %3c 1)%0a
+-%09%09%7b%0a%09%09%09
++                
+ remapCur
+@@ -2392,13 +2392,11 @@
+ me(0
+-f
+ , 0
+-f
+ ), n
+@@ -2412,23 +2412,27 @@
+ me(2
+-f
+ , 1
+-f
+ ));%0a
+-%09%09%7d%0a%09%09
++            
+ if (
+@@ -2451,23 +2451,46 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ if (rema
+@@ -2512,20 +2512,33 @@
+  0)%0a
+-%09%09%09%7b%0a%09%09%09%09num
++                    range
+  = r
+@@ -2576,24 +2576,32 @@
+ %5d.time;%0a
+-%09%09%09%7d%0a%09%09%09
++                
+ for (flo
+@@ -2607,72 +2607,92 @@
+ oat 
+-num2
++i
+  = 
++0.
+ 0f; 
+-num2
++i
+  %3c= 1
++.0
+ f; 
+-num2
++i
+  += 
+-0.003921569f)%0a%09%09%09%7b%0a%09%09%09%09
++1.0f/255.0f)%0a                %7b%0a                    
+ float 
+-num3
++c
+  = r
+@@ -2714,30 +2714,43 @@
+ ate(
+-num2 * 1f * num);%0a%09%09%09%09
++i*1.0f*range);%0a                    
+ curv
+@@ -2764,24 +2764,25 @@
+ tPixel((int)
++ 
+ Mathf.Floor(
+@@ -2785,18 +2785,15 @@
+ oor(
+-num2 * 
++i*
+ 255
++.0
+ f), 
+@@ -2809,223 +2809,347 @@
+ lor(
+-num3, num3, num3));%0a%09%09%09%7d%0a%09%09%09curveTex.Apply();%0a%09%09%7d%0a%09%09return 1f / num;%0a%09%7d%0a%0a%09private void OnDisable()%0a%09%7b%0a%09%09if ((bool)rt)%0a%09%09%7b%0a%09%09%09Object.DestroyImmediate(rt);%0a%09%09%09rt = null;%0a%09%09%7d%0a%09%09if ((bool)tonemapMaterial)%0a%09%09%7b%0a%09%09%09Object.
++c, c, c));%0a                %7d%0a                curveTex.Apply();%0a            %7d%0a            return 1.0f/range;%0a        %7d%0a%0a%0a        private void OnDisable()%0a        %7b%0a            if (rt)%0a            %7b%0a                DestroyImmediate(rt);%0a                rt = null;%0a            %7d%0a            if (tonemapMaterial)%0a            %7b%0a                
+ Dest
+@@ -3179,19 +3179,32 @@
+ erial);%0a
+-%09%09%09
++                
+ tonemapM
+@@ -3223,48 +3223,78 @@
+ ll;%0a
+-%09%09%7d%0a%09%09if ((bool)curveTex)%0a%09%09%7b%0a%09%09%09Object.
++            %7d%0a            if (curveTex)%0a            %7b%0a                
+ Dest
+@@ -3317,19 +3317,32 @@
+ veTex);%0a
+-%09%09%09
++                
+ curveTex
+@@ -3354,17 +3354,42 @@
+ ll;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a%0a%0a        
+ priv
+@@ -3431,54 +3431,108 @@
+ e()%0a
+-%09%7b%0a%09%09if ((bool)rt)%0a%09%09%7b%0a%09%09%09return false;%0a%09%09%7d%0a%09%09
++        %7b%0a            if (rt)%0a            %7b%0a                return false;%0a            %7d%0a            
+ rtFo
+@@ -3538,17 +3538,16 @@
+ ormat = 
+-(
+ SystemIn
+@@ -3664,21 +3664,30 @@
+ ARGBHalf
+-)
+ ;%0a
+-%09%09
++            
+ rt = new
+@@ -3721,18 +3721,28 @@
+ ormat);%0a
+-%09%09
++            
+ rt.hideF
+@@ -3768,18 +3768,28 @@
+ ntSave;%0a
+-%09%09
++            
+ return t
+@@ -3797,13 +3797,108 @@
+ ue;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a%0a        // attribute indicates that the image filter chain will continue in LDR%0a        
+ %5bIma
+@@ -3922,17 +3922,24 @@
+ sToLDR%5d%0a
+-%09
++        
+ private 
+@@ -4010,18 +4010,34 @@
+ on)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ if (
+-!
+ Chec
+@@ -4052,70 +4052,412 @@
+ es()
+-)%0a%09%09%7b%0a%09%09%09Graphics.Blit(source, destination);%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++ == false)%0a            %7b%0a                Graphics.Blit(source, destination);%0a                return;%0a            %7d%0a%0a#if UNITY_EDITOR%0a            validRenderTextureFormat = true;%0a            if (source.format != RenderTextureFormat.ARGBHalf)%0a            %7b%0a                validRenderTextureFormat = false;%0a            %7d%0a#endif%0a%0a            // clamp some values to not go out of a valid range%0a%0a            
+ expo
+@@ -4473,18 +4473,16 @@
+ tment = 
+-((
+ exposure
+@@ -4492,33 +4492,32 @@
+ ustment %3c 0.001f
+-)
+  ? 0.001f : expo
+@@ -4534,68 +4534,171 @@
+ ment
+-)
+ ;%0a
+-%09%09if (type == TonemapperType.UserCurve)%0a%09%09%7b%0a%09%09%09float v
++%0a            // SimpleReinhard tonemappers (local, non adaptive)%0a%0a            if (type == TonemapperType.UserCurve)%0a            %7b%0a                float rangeSc
+ al
+-u
+ e = 
+@@ -4712,19 +4712,32 @@
+ urve();%0a
+-%09%09%09
++                
+ tonemapM
+@@ -4772,19 +4772,37 @@
+ e%22, 
+-v
++rangeSc
+ al
+-u
+ e);%0a
+-%09%09%09
++                
+ tone
+@@ -4845,19 +4845,32 @@
+ veTex);%0a
+-%09%09%09
++                
+ Graphics
+@@ -4917,33 +4917,67 @@
+ al, 4);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            
+ if (type
+@@ -5011,23 +5011,46 @@
+ inhard)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ tonemapM
+@@ -5102,35 +5102,48 @@
+ ureAdjustment);%0a
+-%09%09%09
++                
+ Graphics.Blit(so
+@@ -5182,33 +5182,67 @@
+ al, 6);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            
+ if (type
+@@ -5267,23 +5267,46 @@
+ .Hable)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ tonemapM
+@@ -5358,35 +5358,48 @@
+ ureAdjustment);%0a
+-%09%09%09
++                
+ Graphics.Blit(so
+@@ -5438,33 +5438,67 @@
+ al, 5);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            
+ if (type
+@@ -5530,23 +5530,46 @@
+ raphic)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ tonemapM
+@@ -5621,35 +5621,48 @@
+ ureAdjustment);%0a
+-%09%09%09
++                
+ Graphics.Blit(so
+@@ -5701,33 +5701,67 @@
+ al, 8);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            
+ if (type
+@@ -5800,23 +5800,46 @@
+ Dawson)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ tonemapM
+@@ -5882,19 +5882,17 @@
+ t%22, 0.5f
+- * 
++*
+ exposure
+@@ -5904,19 +5904,32 @@
+ tment);%0a
+-%09%09%09
++                
+ Graphics
+@@ -5980,70 +5980,486 @@
+ 7);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09bool flag = CreateInternalRenderTexture();%0a%09%09
++                return;%0a            %7d%0a%0a            // still here?%0a            // =%3e  adaptive tone mapping:%0a            // builds an average log luminance, tonemaps according to%0a            // middle grey and white values (user controlled)%0a%0a            // AdaptiveReinhardAutoWhite will calculate white value automagically%0a%0a            bool freshlyBrewedInternalRt = CreateInternalRenderTexture(); // this retrieves rtFormat, so should happen before rt allocations%0a%0a            
+ Rend
+@@ -6468,25 +6468,25 @@
+ Texture 
+-temporary
++rtSquared
+  = Rende
+@@ -6508,24 +6508,25 @@
+ porary((int)
++ 
+ adaptiveText
+@@ -6539,16 +6539,17 @@
+ e, (int)
++ 
+ adaptive
+@@ -6575,18 +6575,28 @@
+ ormat);%0a
+-%09%09
++            
+ Graphics
+@@ -6613,37 +6613,55 @@
+ ce, 
+-temporary);%0a%09%09int num
++rtSquared);%0a%0a            int downsample
+  = (int)
+ Math
+@@ -6656,16 +6656,17 @@
+  = (int)
++ 
+ Mathf.Lo
+@@ -6671,339 +6671,445 @@
+ Log(
+-(float)temporary
++rtSquared
+ .width
+- * 1
++*1.0
+ f, 2
+-f
+ );%0a
+-%09%09int num2 = 2;%0a%09%09RenderTexture%5b%5d array = new RenderTexture%5bnum%5d;%0a%09%09for (int i = 0; i %3c num; i++)%0a%09%09%7b%0a%09%09%09array%5bi%5d = RenderTexture.GetTemporary(temporary.width / num2, temporary.width / num2, 0, rtFormat);%0a%09%09%09num2 *= 2;%0a%09%09%7d%0a%09%09RenderTexture source2 = array%5bnum - 1%5d;%0a%09%09Graphics.Blit(temporary, array
++%0a            int div = 2;%0a            var rts = new RenderTexture%5bdownsample%5d;%0a            for (int i = 0; i %3c downsample; i++)%0a            %7b%0a                rts%5bi%5d = RenderTexture.GetTemporary(rtSquared.width/div, rtSquared.width/div, 0, rtFormat);%0a                div *= 2;%0a            %7d%0a%0a            // downsample pyramid%0a%0a            var lumRt = rts%5bdownsample - 1%5d;%0a            Graphics.Blit(rtSquared, rts
+ %5b0%5d,
+@@ -7130,18 +7130,28 @@
+ al, 1);%0a
+-%09%09
++            
+ if (type
+@@ -7196,23 +7196,46 @@
+ oWhite)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ for (int
+@@ -7239,140 +7239,217 @@
+ int 
+-j
++i
+  = 0; 
+-j %3c num
++i %3c downsample
+  - 1; 
+-j
++i
+ ++)%0a
+-%09%09%09%7b%0a%09%09%09%09Graphics.Blit(array%5bj%5d, array%5bj + 1%5d, tonemapMaterial, 9);%0a%09%09%09%09source2 = array%5bj + 1%5d;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++                %7b%0a                    Graphics.Blit(rts%5bi%5d, rts%5bi + 1%5d, tonemapMaterial, 9);%0a                    lumRt = rts%5bi + 1%5d;%0a                %7d%0a            %7d%0a            
+ else
+@@ -7494,23 +7494,46 @@
+ inhard)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ for (int
+@@ -7537,120 +7537,274 @@
+ int 
+-k
++i
+  = 0; 
+-k %3c num
++i %3c downsample
+  - 1; 
+-k
++i
+ ++)%0a
+-%09%09%09%7b%0a%09%09%09%09Graphics.Blit(array%5bk%5d, array%5bk + 1%5d);%0a%09%09%09%09source2 = array%5bk + 1%5d;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++                %7b%0a                    Graphics.Blit(rts%5bi%5d, rts%5bi + 1%5d);%0a                    lumRt = rts%5bi + 1%5d;%0a                %7d%0a            %7d%0a%0a            // we have the needed values, let's apply adaptive tonemapping%0a%0a            
+ adap
+@@ -7815,18 +7815,16 @@
+ Speed = 
+-((
+ adaption
+@@ -7829,33 +7829,32 @@
+ onSpeed %3c 0.001f
+-)
+  ? 0.001f : adap
+@@ -7862,21 +7862,30 @@
+ ionSpeed
+-)
+ ;%0a
+-%09%09
++            
+ tonemapM
+@@ -7935,18 +7935,29 @@
+ Speed);%0a
+-%09%09
++%0a            
+ rt.MarkR
+@@ -7977,72 +7977,405 @@
+ d();
+-%0a%09%09Graphics.Blit(source2, rt, tonemapMaterial, flag ? 3 : 2);%0a%09%09
++ // keeping luminance values between frames, RT restore expected%0a%0a#if UNITY_EDITOR%0a            if (Application.isPlaying && !freshlyBrewedInternalRt)%0a                Graphics.Blit(lumRt, rt, tonemapMaterial, 2);%0a            else%0a                Graphics.Blit(lumRt, rt, tonemapMaterial, 3);%0a#else%0a%09%09%09Graphics.Blit (lumRt, rt, tonemapMaterial, freshlyBrewedInternalRt ? 3 : 2);%0a#endif%0a%0a            
+ midd
+@@ -8383,18 +8383,16 @@
+ eGrey = 
+-((
+ middleGr
+@@ -8402,17 +8402,16 @@
+ %3c 0.001f
+-)
+  ? 0.001
+@@ -8424,21 +8424,30 @@
+ ddleGrey
+-)
+ ;%0a
+-%09%09
++            
+ tonemapM
+@@ -8535,11 +8535,9 @@
+ hite
+- * 
++*
+ whit
+@@ -8541,18 +8541,28 @@
+ hite));%0a
+-%09%09
++            
+ tonemapM
+@@ -8598,18 +8598,28 @@
+ %22, rt);%0a
+-%09%09
++            
+ if (type
+@@ -8655,23 +8655,46 @@
+ inhard)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ Graphics
+@@ -8737,30 +8737,50 @@
+ terial, 0);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ else if (typ
+@@ -8826,23 +8826,46 @@
+ oWhite)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ Graphics
+@@ -8917,26 +8917,69 @@
+ 0);%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++            %7d%0a            else%0a            %7b%0a                
+ Debu
+@@ -9034,19 +9034,32 @@
+ und!%22);%0a
+-%09%09%09
++                
+ Graphics
+@@ -9085,23 +9085,126 @@
+ nation);
+-%0a%09%09%7d%0a%09%09
++ // at least we get the TransformToLDR effect%0a            %7d%0a%0a            // cleanup for adaptive%0a%0a            
+ for (int
+@@ -9208,36 +9208,66 @@
+ int 
+-l
++i
+  = 0; 
+-l %3c num; l
++i %3c downsample; i
+ ++)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ Rend
+@@ -9297,25 +9297,43 @@
+ ary(
+-array%5bl%5d);%0a%09%09%7d%0a%09%09
++rts%5bi%5d);%0a            %7d%0a            
+ Rend
+@@ -9363,21 +9363,34 @@
+ ary(
+-temporary);%0a%09
++rtSquared);%0a        %7d%0a    
+ %7d%0a%7d%0a

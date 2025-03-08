@@ -1,0 +1,285 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bRequire
+@@ -93,16 +93,17 @@
+ omponent
++ 
+ (typeof(
+@@ -112,16 +112,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -133,16 +133,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -187,16 +187,11 @@
+ %22)%5d%0a
+-internal
++   
+  cla
+@@ -224,12 +224,19 @@
+ Base
+-%0a%7b%0a%09
++ %7b%0a        
+ publ
+@@ -261,138 +261,275 @@
+ ode%0a
+-%09%7b%0a%09%09TiltShiftMode,%0a%09%09IrisMode%0a%09%7d%0a%0a%09public enum TiltShiftQuality%0a%09%7b%0a%09%09Preview,%0a%09%09Normal,%0a%09%09High%0a%09%7d%0a%0a%09public TiltShiftMode mode;%0a%0a%09
++        %7b%0a            TiltShiftMode,%0a            IrisMode,%0a        %7d%0a        public enum TiltShiftQuality%0a        %7b%0a            Preview,%0a%09%09%09Low,%0a            Normal,%0a            High,%0a        %7d%0a%0a        public TiltShiftMode mode = TiltShiftMode.TiltShiftMode;%0a        
+ publ
+@@ -588,27 +588,45 @@
+ l;%0a%0a
+-%09
++        
+ %5bRange(
++0.
+ 0f, 15
++.0
+ f)%5d%0a
+-%09
++        
+ publ
+@@ -650,31 +650,51 @@
+  = 1
++.0
+ f;%0a%0a
+-%09
++        
+ %5bRange(
++0.
+ 0f, 25
++.0
+ f)%5d%0a
+-%09
++        
+ publ
+@@ -721,21 +721,30 @@
+  = 5
++.0
+ f;%0a%0a
+-%09
++        
+ %5bRange(0
+ f, 1
+@@ -743,17 +743,22 @@
+ ge(0
+-f
+ , 1
+-f
+ )%5d%0a
+-%09
++        
+ publ
+@@ -774,20 +774,31 @@
+ wnsample
+-;%0a%0a%09
++ = 0;%0a%0a        
+ public S
+@@ -818,20 +818,33 @@
+ ftShader
+-;%0a%0a%09
++ = null;%0a        
+ private 
+@@ -873,12 +873,27 @@
+ rial
+-;%0a%0a%09
++ = null;%0a%0a%0a        
+ publ
+@@ -927,49 +927,61 @@
+ rces
++ 
+ ()
+-%0a%09%7b%0a%09%09CheckSupport(needDepth: true);%0a%09%09
++ %7b%0a            CheckSupport (false);%0a%0a            
+ tilt
+@@ -1024,16 +1024,17 @@
+ Material
++ 
+ (tiltShi
+@@ -1063,18 +1063,29 @@
+ erial);%0a
+-%09%09
++%0a            
+ if (!isS
+@@ -1094,23 +1094,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -1131,18 +1131,25 @@
+ able
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            
+ retu
+@@ -1168,20 +1168,26 @@
+ ed;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  voi
+@@ -1201,16 +1201,17 @@
+ derImage
++ 
+ (RenderT
+@@ -1255,19 +1255,27 @@
+ ion)
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (
+-!
+ Chec
+@@ -1286,25 +1286,45 @@
+ ources()
+-)%0a%09%09%7b%0a%09%09%09
++ == false) %7b%0a                
+ Graphics
+@@ -1320,32 +1320,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -1356,25 +1356,59 @@
+ n);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            
+ tilt
+@@ -1443,17 +1443,16 @@
+ rSize%22, 
+-(
+ maxBlurS
+@@ -1462,13 +1462,16 @@
+  %3c 0
++.0
+ f
+-)
+  ? 
++0.
+ 0f :
+@@ -1485,18 +1485,28 @@
+ rSize);%0a
+-%09%09
++            
+ tiltShif
+@@ -1548,18 +1548,28 @@
+ rArea);%0a
+-%09%09
++            
+ source.f
+@@ -1601,18 +1601,29 @@
+ linear;%0a
+-%09%09
++%0a            
+ RenderTe
+@@ -1629,28 +1629,17 @@
+ exture r
+-enderTexture
++t
+  = desti
+@@ -1650,58 +1650,61 @@
+ on;%0a
+-%09%09if ((float)downsample %3e 0f)%0a%09%09%7b%0a%09%09%09renderTexture
++            if (downsample %3e 0f) %7b%0a                rt
+  = R
+@@ -1728,16 +1728,17 @@
+ emporary
++ 
+ (source.
+@@ -1742,20 +1742,18 @@
+ ce.width
+- 
+ %3e%3e
+- 
+ downsamp
+@@ -1773,12 +1773,10 @@
+ ight
+- 
+ %3e%3e
+- 
+ down
+@@ -1806,24 +1806,26 @@
+ t);%0a
+-%09%09%09renderTexture
++                rt
+ .fil
+@@ -1859,29 +1859,57 @@
+ ar;%0a
+-%09%09%7d%0a%09%09int num
++            %7d%0a%0a            int basePassNr
+  = (int)
+ qual
+@@ -1908,16 +1908,17 @@
+ int)
++ 
+ quality;
+ %0a%09%09n
+@@ -1917,23 +1917,38 @@
+ ity;
+-%0a%09%09num *= 2;%0a%09%09
++ basePassNr *= 2;%0a            
+ Grap
+@@ -1948,32 +1948,33 @@
+    Graphics.Blit
++ 
+ (source, renderT
+@@ -1967,28 +1967,17 @@
+ ource, r
+-enderTexture
++t
+ , tiltSh
+@@ -1989,17 +1989,16 @@
+ terial, 
+-(
+ mode == 
+@@ -2028,32 +2028,54 @@
+ Mode
+-)
+  ? 
+-num : (num
++basePassNr : basePassNr
+  + 1)
+-)
+ ;%0a
+-%09%09
++%0a            
+ if (
+@@ -2089,24 +2089,35 @@
+ ple %3e 0)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ tiltShif
+@@ -2136,16 +2136,17 @@
+ tTexture
++ 
+ (%22_Blurr
+@@ -2155,26 +2155,28 @@
+ %22, r
+-enderTexture);%0a%09%09%09
++t);%0a                
+ Grap
+@@ -2184,16 +2184,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -2230,35 +2230,45 @@
+ al, 
+-6);%0a%09%09%7d%0a%09%09if (renderTexture
++8);%0a            %7d%0a%0a            if (rt
+  != 
+@@ -2284,15 +2284,24 @@
+ on)%0a
+-%09%09%7b%0a%09%09%09
++                
+ Rend
+@@ -2330,30 +2330,29 @@
+ rary
++ 
+ (r
+-enderTexture);%0a%09%09%7d%0a%09
++t);%0a        %7d%0a    
+ %7d%0a%7d%0a

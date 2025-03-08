@@ -1,0 +1,447 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bAddComp
+@@ -117,16 +117,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -192,16 +192,20 @@
+ ure)%22)%5d%0a
++    
+ public c
+@@ -249,19 +249,30 @@
+ ctsBase%0a
+-%7b%0a%09
++    %7b%0a        
+ public S
+@@ -285,18 +285,24 @@
+ shader;%0a
+-%0a%09
++        
+ private 
+@@ -321,17 +321,94 @@
+ erial;%0a%0a
+-%09
++        // serialize this instead of having another 2d texture ref'ed%0a        
+ public T
+@@ -430,20 +430,33 @@
+ ted3DLut
+-;%0a%0a%09
++ = null;%0a        
+ public s
+@@ -483,17 +483,25 @@
+  = %22%22;%0a%0a
+-%09
++%0a        
+ public o
+@@ -531,50 +531,61 @@
+ rces
++ 
+ ()
+-%0a%09%7b%0a%09%09CheckSupport(needDepth: false);%0a%09%09
++ %7b%0a            CheckSupport (false);%0a%0a            
+ mate
+@@ -619,16 +619,17 @@
+ Material
++ 
+ (shader,
+@@ -640,18 +640,29 @@
+ erial);%0a
+-%09%09
++%0a            
+ if (!isS
+@@ -705,23 +705,32 @@
+ xtures)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -738,26 +738,33 @@
+ oDisable
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            
+ return i
+@@ -775,28 +775,34 @@
+ ported;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void On
+@@ -812,50 +812,58 @@
+ able
++ 
+ ()
+-%0a%09%7b%0a%09%09if ((bool)material)%0a%09%09%7b%0a%09%09%09Object.
++ %7b%0a            if (material) %7b%0a                
+ Dest
+@@ -874,16 +874,17 @@
+ mmediate
++ 
+ (materia
+@@ -887,19 +887,32 @@
+ erial);%0a
+-%09%09%09
++                
+ material
+@@ -920,32 +920,48 @@
+ = null;%0a
+-%09%09%7d%0a%09%7d%0a%0a%09private
++            %7d%0a        %7d%0a%0a       
+  void On
+@@ -971,56 +971,62 @@
+ troy
++ 
+ ()
+-%0a%09%7b%0a%09%09if ((bool)converted3DLut)%0a%09%09%7b%0a%09%09%09Object.
++ %7b%0a            if (converted3DLut)%0a                
+ Dest
+@@ -1029,32 +1029,33 @@
+ DestroyImmediate
++ 
+ (converted3DLut)
+@@ -1048,38 +1048,44 @@
+ onverted3DLut);%0a
+-%09%09%7d%0a%09%09
++            
+ converted3DLut =
+@@ -1091,21 +1091,35 @@
+ = null;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ public v
+@@ -1140,30 +1140,40 @@
+ yLut
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ int 
+-nu
++di
+ m = 16;%0a
+ %09%09Co
+@@ -1172,104 +1172,130 @@
+ 16;%0a
+-%09%09Color%5b%5d array = new Color%5bnum * num * num%5d;%0a%09%09float num2
++            var newC = new Color%5bdim*dim*dim%5d;%0a            float oneOverDim
+  = 1
++.0
+ f / (1
++.0
+ f * 
+-(float)nu
++di
+ m - 1
++.0
+ f);%0a
+-%09%09
++%0a            
+ for
+- 
+ (int
+@@ -1310,29 +1310,39 @@
+ i %3c 
+-nu
++di
+ m; i++)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ for
+- 
+ (int
+@@ -1357,31 +1357,43 @@
+ j %3c 
+-nu
++di
+ m; j++)
+-%0a%09%09%09%7b%0a%09%09%09%09
++ %7b%0a                    
+ for
+- 
+ (int
+@@ -1408,204 +1408,261 @@
+ k %3c 
+-nu
++di
+ m; k++)
+-%0a%09%09%09%09%7b%0a%09%09%09%09%09array%5bi + j * num + k * num * num%5d = new Color((float)i * 1f * num2, (float)j * 1f * num2, (float)k * 1f * num2
++ %7b%0a                        newC%5bi + (j*dim) + (k*dim*dim)%5d = new Color((i*1.0f)*oneOverDim, (j*1.0f)*oneOverDim, (k*1.0f)*oneOverDim
+ , 1
++.0
+ f);%0a
+-%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if ((bool)converted3DLut)%0a%09%09%7b%0a%09%09%09Object.
++                    %7d%0a                %7d%0a            %7d%0a%0a            if (converted3DLut)%0a                
+ Dest
+@@ -1665,32 +1665,33 @@
+ DestroyImmediate
++ 
+ (converted3DLut)
+@@ -1692,22 +1692,28 @@
+ 3DLut);%0a
+-%09%09%7d%0a%09%09
++            
+ converte
+@@ -1730,37 +1730,38 @@
+ ew Texture3D
+-(num, num, nu
++ (dim, dim, di
+ m, TextureFo
+@@ -1773,36 +1773,36 @@
+ ARGB32, 
+-mipChain: false);%0a%09%09
++false);%0a            
+ converte
+@@ -1817,27 +1817,37 @@
+ etPixels
+-(array);%0a%09%09
++ (newC);%0a            
+ converte
+@@ -1858,22 +1858,33 @@
+ ut.Apply
++ 
+ ();%0a
+-%09%09
++            
+ basedOnT
+@@ -1896,21 +1896,35 @@
+ x = %22%22;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ public b
+@@ -1942,17 +1942,19 @@
+ mensions
+-(
++ ( 
+ Texture2
+@@ -1961,22 +1961,31 @@
+ D tex2d)
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (!tex
+@@ -1987,24 +1987,17 @@
+ (!tex2d)
+-%0a%09%09%7b%0a%09%09%09
++ 
+ return f
+@@ -2006,122 +2006,196 @@
+ se;%0a
+-%09%09%7d%0a%09%09if (tex2d.height != Mathf.FloorToInt(Mathf.Sqrt(tex2d.width)))%0a%09%09%7b%0a%09%09%09return false;%0a%09%09%7d%0a%09%09return true;%0a%09%7d%0a%0a%09
++            int h = tex2d.height;%0a            if (h != Mathf.FloorToInt(Mathf.Sqrt(tex2d.width))) %7b%0a                return false;%0a            %7d%0a            return true;%0a        %7d%0a%0a        
+ publ
+@@ -2209,17 +2209,19 @@
+  Convert
+-(
++ ( 
+ Texture2
+@@ -2249,48 +2249,231 @@
+ ath)
+-%0a%09%7b%0a%09%09if ((bool)temp2DTex)%0a%09%09%7b%0a%09%09%09
++ %7b%0a%0a            // conversion fun: the given 2D texture needs to be of the format%0a            //  w * h, wheras h is the 'depth' (or 3d dimension 'dim') and w = dim * dim%0a%0a            if (temp2DTex) %7b%0a                
+ int 
+-nu
++di
+ m = 
+@@ -2512,13 +2512,26 @@
+ ht;%0a
+-%09%09%09nu
++                di
+ m = 
+@@ -2548,19 +2548,33 @@
+ height;%0a
+-%09%09%09
++%0a                
+ if (!Val
+@@ -2597,26 +2597,39 @@
+ p2DTex))
+-%0a%09%09%09%7b%0a%09%09%09%09
++ %7b%0a                    
+ Debug.Lo
+@@ -2713,20 +2713,36 @@
+ LUT.%22);%0a
+-%09%09%09%09
++                    
+ basedOnT
+@@ -2758,42 +2758,76 @@
+ %22%22;%0a
+-%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09Color%5b%5d pixels
++                    return;%0a                %7d%0a%0a                var c
+  = t
+@@ -2852,24 +2852,32 @@
+ ();%0a
+-%09%09%09Color%5b%5d array
++                var newC
+  = n
+@@ -2885,22 +2885,17 @@
+ w Color%5b
+-pixels
++c
+ .Length%5d
+@@ -2896,23 +2896,36 @@
+ ength%5d;%0a
+-%09%09%09
++%0a                
+ for
+- 
+ (int i =
+@@ -2936,31 +2936,43 @@
+ i %3c 
+-nu
++di
+ m; i++)
+-%0a%09%09%09%7b%0a%09%09%09%09
++ %7b%0a                    
+ for
+- 
+ (int
+@@ -2987,33 +2987,47 @@
+ j %3c 
+-nu
++di
+ m; j++)
+-%0a%09%09%09%09%7b%0a%09%09%09%09%09
++ %7b%0a                        
+ for
+- 
+ (int
+@@ -3042,201 +3042,274 @@
+ k %3c 
+-nu
++di
+ m; k++)
+-%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09int num2 = num - j - 1;%0a%09%09%09%09%09%09array%5bi + j * num + k * num * num%5d = pixels%5bk * num + i + num2 * num * num%5d;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09if ((bool)converted3DLut)%0a%09%09%09%7b%0a%09%09%09%09Object.
++ %7b%0a                            int j_ = dim-j-1;%0a                            newC%5bi + (j*dim) + (k*dim*dim)%5d = c%5bk*dim+i+j_*dim*dim%5d;%0a                        %7d%0a                    %7d%0a                %7d%0a%0a                if (converted3DLut)%0a                    
+ Dest
+@@ -3320,16 +3320,17 @@
+ mmediate
++ 
+ (convert
+@@ -3343,16 +3343,24 @@
+ t);%0a
+-%09%09%09%7d%0a%09%09%09
++                
+ conv
+@@ -3389,21 +3389,22 @@
+ re3D
+-(num, num, nu
++ (dim, dim, di
+ m, T
+@@ -3428,65 +3428,81 @@
+ 32, 
+-mipChain: false);%0a%09%09%09converted3DLut.SetPixels(array);%0a%09%09%09
++false);%0a                converted3DLut.SetPixels (newC);%0a                
+ conv
+@@ -3521,15 +3521,29 @@
+ pply
++ 
+ ();%0a
+-%09%09%09
++                
+ base
+@@ -3565,26 +3565,113 @@
+ th;%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++            %7d%0a            else %7b%0a                // error, something went terribly wrong%0a                
+ Debu
+@@ -3764,24 +3764,40 @@
+ %22);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09private
++            %7d%0a        %7d%0a%0a       
+  voi
+@@ -3811,16 +3811,17 @@
+ derImage
++ 
+ (RenderT
+@@ -3865,19 +3865,27 @@
+ ion)
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (
+-!
+ Chec
+@@ -3894,18 +3894,28 @@
+ esources
++ 
+ ()
++ == false
+  %7c%7c !Sys
+@@ -3941,24 +3941,35 @@
+ extures)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ Graphics
+@@ -3965,32 +3965,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -4001,25 +4001,59 @@
+ n);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            
+ if (
+@@ -4079,16 +4079,27 @@
+ ull)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ SetI
+@@ -4112,27 +4112,51 @@
+ yLut
++ 
+ ();%0a
+-%09%09%7d%0a%09%09int width
++            %7d%0a%0a            int lutSize
+  = c
+@@ -4176,18 +4176,28 @@
+ .width;%0a
+-%09%09
++            
+ converte
+@@ -4237,18 +4237,28 @@
+ .Clamp;%0a
+-%09%09
++            
+ material
+@@ -4282,52 +4282,52 @@
+ %22, (
+-float)(width - 1) / (1f * (float)width));%0a%09%09
++lutSize - 1) / (1.0f*lutSize));%0a            
+ mate
+@@ -4356,36 +4356,45 @@
+ %22, 1
++.0
+ f / (2
++.0
+ f * 
+-(float)width));%0a%09%09
++lutSize));%0a            
+ mate
+@@ -4442,10 +4442,21 @@
+ t);%0a
+-%09%09
++%0a            
+ Grap
+@@ -4464,16 +4464,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -4497,17 +4497,16 @@
+ terial, 
+-(
+ QualityS
+@@ -4550,17 +4550,16 @@
+ e.Linear
+-)
+  ? 1 : 0
+@@ -4565,9 +4565,22 @@
+ 0);%0a
+-%09
++        %7d%0a    
+ %7d%0a%7d%0a

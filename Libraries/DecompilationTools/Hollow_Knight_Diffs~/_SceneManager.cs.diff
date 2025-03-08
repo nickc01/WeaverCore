@@ -1,0 +1,187 @@
+@@ -3,3056 +3,535 @@
+ ing 
+-System;%0ausing System.Collections.Generic;%0ausing GlobalEnums;%0ausing Modding;%0ausing UnityEngine;%0ausing UnityEngine.Audio;%0ausing UnityEngine.SceneManagement;%0a%0a%5bSerializable%5d%0apublic class SceneManager : MonoBehaviour%0a%7b%0a%09%5bSpace(6f)%5d%0a%09%5bTooltip(%22This denotes the type of this scene, mainly if it is a gameplay scene or not.%22)%5d%0a%09public SceneType sceneType;%0a%0a%09%5bHeader(%22Gameplay Scene Settings%22)%5d%0a%09%5bTooltip(%22The area of the map this scene belongs to.%22)%5d%0a%09%5bSpace(6f)%5d%0a%09public MapZone mapZone;%0a%0a%09%5bTooltip(%22Determines if this area is currently windy.%22)%5d%0a%09public bool isWindy;%0a%0a%09%5bTooltip(%22Determines if this level experiences tremors.%22)%5d%0a%09public bool isTremorZone;%0a%0a%09%5bTooltip(%22Set environment type on scene entry. 0 = Dust, 1 = Grass, 2 = Bone, 3 = Spa, 4 = Metal, 5 = No Effect, 6 = Wet%22)%5d%0a%09public int environmentType;%0a%0a%09public int darknessLevel;%0a%0a%09public bool noLantern;%0a%0a%09%5bHeader(%22Camera Color Correction Curves%22)%5d%0a%09%5bRange(0f, 5f)%5d%0a%09public float saturation;%0a%0a%09public bool ignorePlatformSaturationModifiers;%0a%0a%09public AnimationCurve redChannel;%0a%0a%09public AnimationCurve greenChannel;%0a%0a%09public AnimationCurve blueChannel;%0a%0a%09%5bHeader(%22Ambient Light%22)%5d%0a%09%5bTooltip(%22The default ambient light colour for this scene.%22)%5d%0a%09%5bSpace(6f)%5d%0a%09public Color defaultColor;%0a%0a%09%5bTooltip(%22The intensity of the ambient light in this scene.%22)%5d%0a%09%5bRange(0f, 1f)%5d%0a%09public float defaultIntensity;%0a%0a%09%5bHeader(%22Hero Light%22)%5d%0a%09%5bTooltip(%22Color of the hero's light gradient (not point lights)%22)%5d%0a%09%5bSpace(6f)%5d%0a%09public Color heroLightColor;%0a%0a%09%5bHeader(%22Scene Particles%22)%5d%0a%09public bool noParticles;%0a%0a%09public MapZone overrideParticlesWith;%0a%0a%09%5bHeader(%22Audio Snapshots%22)%5d%0a%09%5bSpace(6f)%5d%0a%09%5bSerializeField%5d%0a%09private AtmosCue atmosCue;%0a%0a%09%5bSerializeField%5d%0a%09private MusicCue musicCue;%0a%0a%09%5bSerializeField%5d%0a%09private MusicCue infectedMusicCue;%0a%0a%09%5bSerializeField%5d%0a%09private AudioMixerSnapshot musicSnapshot;%0a%0a%09%5bSerializeField%5d%0a%09private float musicDelayTime;%0a%0a%09%5bSerializeField%5d%0a%09private float musicTransitionTime;%0a%0a%09public AudioMixerSnapshot atmosSnapshot;%0a%0a%09public AudioMixerSnapshot enviroSnapshot;%0a%0a%09public AudioMixerSnapshot actorSnapshot;%0a%0a%09public AudioMixerSnapshot shadeSnapshot;%0a%0a%09public float transitionTime;%0a%0a%09%5bHeader(%22Scene Bord
++GlobalEnums;%0ausing Modding;%0ausing System;%0ausing System.Collections;%0ausing System.Collections.Generic;%0ausing UnityEngine;%0ausing UnityEngine.Audio;%0a%0a#if UNITY_EDITOR%0a%5bSystem.ComponentModel.Browsable(false)%5d%0a%5bSystem.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Nev
+ er
+-%22
+ )%5d%0a
+-%09%5bSpace(6f)%5d%0a%09public GameObject borderPrefab;%0a%0a%09%5bHeader(%22Mapping%22)%5d%0a%09%5bSpace(6f)%5d%0a%09public bool manualMapTrigger;%0a%0a%09%5bHeader(%22Object Spawns%22)%5d%0a%09%5bSpace(6f)%5d%0a%09public GameObject hollowShadeObject;%0a%0a%09public GameObject dreamgateObject;%0a%0a%09private GameManager gm;%0a%0a%09private GameCameras gc;%0a%0a%09private HeroController heroCtrl;%0a%0a%09private PlayerData pd;%0a%0a%09private float enviroTimer;%0a%0a%09private bool enviroSent;%0a%0a%09private bool heroInfoSent;%0a%0a%09private bool setSaturation;%0a%0a%09private bool isGameplayScene;%0a%0a%09public static float AmbientIntesityMix = 0.5f;%0a%0a%09private const float SwitchConstant = 0.17f;%0a%0a%09private const float SwitchConstantGG = 0.1466f;%0a%0a%09private const float RegularConstant = 0.1466f;%0a%0a%09private bool gameplayScene;%0a%0a%09private void Start()%0a%09%7b%0a%09%09try%0a%09%09%7b%0a%09%09%09orig_Start();%0a%09%09%7d%0a%09%09catch (NullReferenceException) when (!ModLoader.LoadState.HasFlag(ModLoader.ModLoadState.Preloaded))%0a%09%09%7b
++#endif%0a%5bSerializable%5d%0a%5bExecuteAlways%5d%0apublic class SceneManager : MonoBehaviour%0a%7b%0a%09private void Start()%0a%09%7b%0a%09%09if (Application.isPlaying)%0a%09%09%7b%0a%09%09%09orig_Start();%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09SceneManager.SetLighting(defaultColor, defaultIntensity);
+ %0a%09%09%7d
+@@ -676,16 +676,29 @@
+ ensity, 
++SceneManager.
+ AmbientI
+@@ -886,235 +886,534 @@
+ %09%7d%0a%0a
+-%09private void Update()%0a%09%7b%0a%09%09if (gameplayScene && !heroInfoSent && heroCtrl != null && (heroCtrl.heroLight == null %7c%7c heroCtrl.heroLight.material =
++#if UNITY_EDITOR%0a%09public virtual void OnValidate()%0a%09%7b%0a%09%09if (!Application.isPlaying)%0a%09%09%7b%0a%09%09%09var startFunc = WeaverTypeHelpers.GetWeaverMethod(%22WeaverCore.Utilities.UnboundCoroutine%22, %22Start%22);%0a%09%09%09startFunc.Invoke(null, new object%5b%5d %7b FrameWait(gameObject) %7d);%0a%09%09%09SceneManager.SetLighting(defaultColor, defaultIntensity);%0a%09%09%7d%0a%0a%09%09IEnumerator FrameWait(GameObject obj)%0a%09%09%7b%0a%09%09%09yield return null;%0a%09%09%09if (obj !
+ = null)
+-)
+ %0a%09%09
++%09
+ %7b%0a%09%09%09
+-heroCtrl.SetDarkness(darknessLevel);%0a%09%09%09heroInfoSent = true;%0a%09%09%7d%0a
++%09obj.tag = %22SceneManager%22;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a#endif%0a%0a%09private void Update()%0a%09%7b%0a%09%09if (Application.isPlaying)%0a%09%09%7b%0a%09
+ %09%09or
+@@ -1422,24 +1422,28 @@
+ _Update();%0a%09
++%09%7d%0a%09
+ %7d%0a%0a%09public i
+@@ -1707,16 +1707,29 @@
+ %09return 
++SceneManager.
+ AdjustSa
+@@ -1961,61 +1961,179 @@
+ Zone
+-.HasValue && mapZone == MapZone.GODS_GLORY
++ != null)%0a%09%09%09%7b%0a%09%09%09%09MapZone? mapZone2 = mapZone;%0a%09%09%09%09MapZone mapZone3 = MapZone.GODS_GLORY;%0a%09%09%09%09if (mapZone2.GetValueOrDefault() == mapZone3 & mapZone2 != null
+ )%0a%09%09%09
++%09
+ %7b%0a%09%09%09%09
++%09
+ retu
+@@ -2164,24 +2164,30 @@
+ 0.1466f;%0a%09%09%09
++%09%7d%0a%09%09%09
+ %7d%0a%09%09%09return 
+@@ -2265,557 +2265,8 @@
+ %09%7d%0a%0a
+-%09private void PrintDebugInfo()%0a%09%7b%0a%09%09string text = %22SM Setting Curves to %22;%0a%09%09text += %22R: (%22;%0a%09%09Keyframe%5b%5d keys = redChannel.keys;%0a%09%09foreach (Keyframe keyframe in keys)%0a%09%09%7b%0a%09%09%09text = text + keyframe.value + %22, %22;%0a%09%09%7d%0a%09%09text += %22) G: (%22;%0a%09%09keys = greenChannel.keys;%0a%09%09foreach (Keyframe keyframe2 in keys)%0a%09%09%7b%0a%09%09%09text = text + keyframe2.value + %22, %22;%0a%09%09%7d%0a%09%09text += %22 ) B: (%22;%0a%09%09keys = blueChannel.keys;%0a%09%09foreach (Keyframe keyframe3 in keys)%0a%09%09%7b%0a%09%09%09text = text + keyframe3.value + %22, %22;%0a%09%09%7d%0a%09%09text = text + %22) S: %22 + saturation;%0a%09%09Debug.Log(text);%0a%09%7d%0a%0a
+ %09pri
+@@ -2395,32 +2395,44 @@
+ ject.Instantiate
++%3cGameObject%3e
+ (borderPrefab);%0a
+@@ -2450,37 +2450,46 @@
+ t.transform.
+-SetP
++p
+ osition
+-2D
++ = new Vector3
+ (gm.sceneWid
+@@ -2509,32 +2509,65 @@
+ sceneHeight / 2f
++, gameObject.transform.position.z
+ );%0a%09%09gameObject.
+@@ -2690,32 +2690,44 @@
+ ject.Instantiate
++%3cGameObject%3e
+ (borderPrefab);%0a
+@@ -2749,29 +2749,38 @@
+ ansform.
+-SetP
++p
+ osition
+-2D
++ = new Vector3
+ (-10f, g
+@@ -2797,16 +2797,49 @@
+ ght / 2f
++, gameObject.transform.position.z
+ );%0a%09%09gam
+@@ -2970,32 +2970,44 @@
+ ject.Instantiate
++%3cGameObject%3e
+ (borderPrefab);%0a
+@@ -3025,37 +3025,46 @@
+ t.transform.
+-SetP
++p
+ osition
+-2D
++ = new Vector3
+ (gm.sceneWid
+@@ -3092,16 +3092,49 @@
+ ht + 10f
++, gameObject.transform.position.z
+ );%0a%09%09gam
+@@ -3272,16 +3272,28 @@
+ tantiate
++%3cGameObject%3e
+ (borderP
+@@ -3327,21 +3327,30 @@
+ orm.
+-SetP
++p
+ osition
+-2D
++ = new Vector3
+ (gm.
+@@ -3370,16 +3370,49 @@
+ 2f, -10f
++, gameObject.transform.position.z
+ );%0a%09%09gam
+@@ -3547,148 +3547,8 @@
+ );%0a%09
+-%09foreach (GameObject item in list)%0a%09%09%7b%0a%09%09%09UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(item, base.gameObject.scene);%0a%09%09%7d%0a%09
+ %7d%0a%0a%09
+@@ -4516,17 +4516,16 @@
+ %7b%0a%09%09if (
+-!
+ isGamepl
+@@ -4544,22 +4544,8 @@
+ %0a%09%09%09
+-return;%0a%09%09%7d%0a%09%09
+ if (
+@@ -4563,29 +4563,31 @@
+  %3c 0.25f)%0a%09%09
++%09
+ %7b%0a%09%09%09
++%09
+ enviroTimer 
+@@ -4611,293 +4611,12 @@
+ ;%0a%09%09
+-%7d%0a%09%09else if (!enviroSent && heroCtrl != null)%0a%09%09%7b%0a%09%09%09heroCtrl.checkEnvironment();%0a%09%09%09enviroSent = true;%0a%09%09%7d%0a%09%09if (!heroInfoSent && heroCtrl != null)%0a%09%09%7b%0a%09%09%09heroCtrl.heroLight.material.SetColor(%22_Color%22, Color.white);%0a%09%09%09heroCtrl.SetDarkness(darknessLevel);%0a%09%09%09heroInfoSent = true;%0a%09
+ %09%7d%0a
++%09
+ %09%09if
+@@ -4631,29 +4631,31 @@
+ turation)%0a%09%09
++%09
+ %7b%0a%09%09%09
++%09
+ if (AdjustSa
+@@ -4718,22 +4718,24 @@
+ ion)%0a%09%09%09
++%09
+ %7b%0a%09%09%09%09
++%09
+ gc.color
+@@ -4797,21 +4797,23 @@
+ on);%0a%09%09%09
++%09
+ %7d%0a%09%09%09
++%09
+ setSatur
+@@ -4824,24 +4824,29 @@
+ n = true;%0a%09%09
++%09%7d%0a%09%09
+ %7d%0a%09%7d%0a%0a%09priva
+@@ -5580,16 +5580,29 @@
+ nnel;%0a%09%09
++SceneManager.
+ SetLight
+@@ -5786,90 +5786,8 @@
+ %0a%09%09%09
+-if (heroCtrl != null)%0a%09%09%09%7b%0a%09%09%09%09heroCtrl.heroLight.color = heroLightColor;%0a%09%09%09%7d%0a%09%09%09
+ gc.s
+@@ -5974,22 +5974,16 @@
+ ;%0a%09%09if (
+-(bool)
+ GameMana
+@@ -6062,16 +6062,19 @@
+ delegate
++ ()
+ %0a%09%09%09%7b%0a%09%09
+@@ -6264,2260 +6264,2683 @@
+ if (
+-atmosCue != null)%0a%09%09%7b%0a%09%09%09gm.AudioManager.ApplyAtmosCue(atmosCue, transitionTime);%0a%09%09%7d%0a%09%09MusicCue musicCue = this.musicCue;%0a%09%09if (gm.playerData.GetBool(%22crossroadsInfected%22) && infectedMusicCue != null)%0a%09%09%7b%0a%09%09%09musicCue = infectedMusicCue;%0a%09%09%7d%0a%09%09if (musicCue != null)%0a%09%09%7b%0a%09%09%09gm.AudioManager.ApplyMusicCue(musicCue, musicDelayTime, musicTransitionTime, applySnapshot:
++isGameplayScene)%0a%09%09%7b%0a%09%09%09DrawBlackBorders();%0a%09%09%7d%0a%09%7d%0a%0a%09%5bSpace(6f)%5d%0a%09%5bTooltip(%22This denotes the type of this scene, mainly if it is a gameplay scene or not.%22)%5d%0a%09public SceneType sceneType = SceneType.GAMEPLAY;%0a%0a%09%5bHeader(%22Gameplay Scene Settings%22)%5d%0a%09%5bTooltip(%22The area of the map this scene belongs to.%22)%5d%0a%09%5bSpace(6f)%5d%0a%09public MapZone mapZone = MapZone.NONE;%0a%0a%09%5bTooltip(%22Determines if this area is currently windy.%22)%5d%0a%09public bool isWindy = false;%0a%0a%09%5bTooltip(%22Determines if this level experiences tremors.%22)%5d%0a%09public bool isTremorZone =
+  false
+-)
+ ;%0a
+-%09%09%7d%0a%09%09if (musicSnapshot != null)%0a%09%09%7b%0a%09%09%09gm.AudioManager.ApplyMusicSnapshot(musicSnapshot, musicDelayTime, musicTransitionTime);%0a%09%09%7d%0a%09%09if (enviroSnapshot != null)%0a%09%09%7b%0a%09%09%09enviroSnapshot.TransitionTo(transitionTime);%0a%09%09%7d%0a%09%09if (actorSnapshot != null)%0a%09%09%7b%0a%09%09%09actorSnapshot.TransitionTo(transitionTime);%0a%09%09%7d%0a%09%09if (shadeSnapshot != null)%0a%09%09%7b%0a%09%09%09shadeSnapshot.TransitionTo(transitionTime);%0a%09%09%7d%0a%09%09if (sceneType == SceneType.GAMEPLAY)%0a%09%09%7b%0a%09%09%09GameObject gameObject = GameObject.FindGameObjectWithTag(%22Vignette%22);%0a%09%09%09if ((bool)gameObject)%0a%09%09%09%7b%0a%09%09%09%09PlayMakerFSM playMakerFSM = FSMUtility.LocateFSM(gameObject, %22Darkness Control%22);%0a%09%09%09%09if ((bool)playMakerFSM)%0a%09%09%09%09%7b%0a%09%09%09%09%09FSMUtility.SetInt(playMakerFSM, %22Darkness Level%22, darknessLevel);%0a%09%09%09%09%7d%0a%09%09%09%09if (!noLantern)%0a%09%09%09%09%7b%0a%09%09%09%09%09FSMUtility.LocateFSM(gameObject, %22Darkness Control%22).SendEvent(%22RESET%22);%0a%09%09%09%09%7d%0a%09%09%09%09else%0a%09%09%09%09%7b%0a%09%09%09%09%09FSMUtility.LocateFSM(gameObject, %22Darkness Control%22).SendEvent(%22SCENE RESET NO LANTERN%22);%0a%09%09%09%09%09if (heroCtrl != null)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09heroCtrl.wieldingLantern = false;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if (isGameplayScene)%0a%09%09%7b%0a%09%09%09DrawBlackBorders();%0a%09%09%7d%0a%09%09if (pd.GetBool(%22soulLimited%22) && isGameplayScene && pd.GetString(%22shadeScene%22) == base.gameObject.scene.name)%0a%09%09%7b%0a%09%09%09GameObject obj = UnityEngine.Object.Instantiate(hollowShadeObject, new Vector3(pd.GetFloat(%22shadePositionX%22), pd.GetFloat(%22shadePositionY%22), 0.006f), Quaternion.identity);%0a%09%09%09obj.transform.SetParent(base.transform, worldPositionStays: true);%0a%09%09%09obj.transform.SetParent(null);%0a%09%09%7d%0a%09%09if (isGameplayScene && pd.GetString(%22dreamGateScene%22) == base.gameObject.scene.name)%0a%09%09%7b%0a%09%09%09GameObject obj2 = UnityEngine.Object.Instantiate(dreamgateObject, new Vector3(pd.GetFloat(%22dreamGateX%22), pd.GetFloat(%22dreamGateY%22) - 1.429361f, -0.002f), Quaternion.identity);%0a%09%09%09obj2.transform.SetParent(base.transform, worldPositionStays: true);%0a%09%09%09obj2.transform.SetParent(null);%0a%09%09%7d%0a%09%7d%0a%7d
++%0a%09%5bTooltip(%22Set environment type on scene entry. 0 = Dust, 1 = Grass, 2 = Bone, 3 = Spa, 4 = Metal, 5 = No Effect, 6 = Wet%22)%5d%0a%09public int environmentType = 0;%0a%0a%09public int darknessLevel = 0;%0a%0a%09public bool noLantern = false;%0a%0a%09%5bHeader(%22Camera Color Correction Curves%22)%5d%0a%09%5bRange(0f, 5f)%5d%0a%09public float saturation = 0.8f;%0a%0a%09public bool ignorePlatformSaturationModifiers = false;%0a%0a%09public AnimationCurve redChannel = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);%0a%0a%09public AnimationCurve greenChannel = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);%0a%0a%09public AnimationCurve blueChannel = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);%0a%0a%09%5bHeader(%22Ambient Light%22)%5d%0a%09%5bTooltip(%22The default ambient light colour for this scene.%22)%5d%0a%09%5bSpace(6f)%5d%0a%09public Color defaultColor = new Color(0.366634f, 0.5165427f, 0.7264151f, 1f);%0a%0a%09%5bTooltip(%22The intensity of the ambient light in this scene.%22)%5d%0a%09%5bRange(0f, 1f)%5d%0a%09public float defaultIntensity = 0.7f;%0a%0a%09%5bHeader(%22Hero Light%22)%5d%0a%09%5bTooltip(%22Color of the hero's light gradient (not point lights)%22)%5d%0a%09%5bSpace(6f)%5d%0a%09public Color heroLightColor = new Color(1f,1f,1f, 0.6588235f);%0a%0a%09%5bHeader(%22Scene Particles%22)%5d%0a%09public bool noParticles = false;%0a%0a%09public MapZone overrideParticlesWith = MapZone.NONE;%0a%0a%09%5bSerializeField%5d%0a%09private float musicDelayTime = 0f;%0a%0a%09%5bSerializeField%5d%0a%09private float musicTransitionTime = 0f;%0a%0a%09public float transitionTime = 1f;%0a%0a%09%5bHideInInspector%5d%0a%09public GameObject borderPrefab;%0a%0a%09%5bHeader(%22Mapping%22)%5d%0a%09%5bSpace(6f)%5d%0a%09public bool manualMapTrigger = false;%0a%0a%09%5bHideInInspector%5d%0a%09%5bSerializeField%5d%0a%09protected GameObject hollowShadeObject;%0a%0a%09%5bHideInInspector%5d%0a%09%5bSerializeField%5d%0a%09protected GameObject dreamgateObject;%0a%0a%09private GameManager gm;%0a%0a%09private GameCameras gc;%0a%0a%09private HeroController heroCtrl;%0a%0a%09private PlayerData pd;%0a%0a%09private float enviroTimer;%0a%0a%09private bool enviroSent;%0a%0a%09private bool heroInfoSent;%0a%0a%09private bool setSaturation;%0a%0a%09private bool isGameplayScene;%0a%0a%09public static float AmbientIntesityMix = 0.5f;%0a%0a%09private const float SwitchConstant = 0.17f;%0a%0a%09private const float SwitchConstantGG = 0.1466f;%0a%0a%09private const float RegularConstant = 0.1466f;%0a%0a%09private readonly bool gameplayScene;%0a%7d%0a%0a
+ %0a

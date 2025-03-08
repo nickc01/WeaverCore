@@ -1,0 +1,29 @@
+@@ -59,157 +59,8 @@
+ r%0a%7b%0a
+-%09public int damageDealt = 1;%0a%0a%09public int hazardType = 1;%0a%0a%09public bool shadowDashHazard;%0a%0a%09public bool resetOnEnable;%0a%0a%09private int? initialValue;%0a%0a
+ %09pri
+@@ -119,9 +119,8 @@
+ if (
+-!
+ init
+@@ -131,17 +131,16 @@
+ alue
+-.HasValue
++ == null
+ )%0a%09%09
+@@ -181,24 +181,22 @@
+ %0a%09%09%09
+-%7d%0a%09%09%09else
++%09return;
+ %0a%09%09%09
+-%7b%0a%09
++%7d%0a
+ %09%09%09d
+@@ -234,16 +234,161 @@
+ ;%0a%09%09
++%7d%0a
+ %09%7d%0a
+-%09%09%7d%0a%09%7d
++%0a%09public int damageDealt = 1;%0a%0a%09public int hazardType = 1;%0a%0a%09public bool shadowDashHazard;%0a%0a%09public bool resetOnEnable;%0a%0a%09private int? initialValue;
+ %0a%7d%0a
++%0a

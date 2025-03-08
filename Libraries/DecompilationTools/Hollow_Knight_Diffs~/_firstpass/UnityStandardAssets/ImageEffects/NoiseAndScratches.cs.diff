@@ -1,0 +1,435 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -25,16 +25,51 @@
+ yEngine;
++%0ausing Random = UnityEngine.Random;
+ %0a%0anamesp
+@@ -104,19 +104,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -131,16 +131,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -152,16 +152,17 @@
+ omponent
++ 
+ (typeof(
+@@ -171,16 +171,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -237,16 +237,20 @@
+ ches%22)%5d%0a
++    
+ public c
+@@ -288,19 +288,216 @@
+ haviour%0a
+-%7b%0a%09
++    %7b%0a        /// Monochrome noise just adds grain. Non-monochrome noise%0a        /// more resembles VCR as it adds noise in YUV color space,%0a        /// thus introducing magenta/green colors.%0a        
+ public b
+@@ -519,18 +519,24 @@
+ = true;%0a
+-%0a%09
++        
+ private 
+@@ -551,20 +551,125 @@
+ Fallback
+-;%0a%0a%09
++ = false;%0a%0a        // Noise grain takes random intensity from Min to Max.%0a        %5bRange(0.0f,5.0f)%5d%0a        
+ public f
+@@ -695,26 +695,60 @@
+ Min = 0.1f;%0a
+-%0a%09
++        %5bRange(0.0f, 5.0f)%5d%0a        
+ public float
+@@ -771,25 +771,119 @@
+ ax = 0.2f;%0a%0a
+-%09
++        /// The size of the noise grains (1 = one pixel).%0a        %5bRange(0.1f, 50.0f)%5d%0a        
+ public float
+@@ -896,21 +896,118 @@
+ Size = 2
++.0
+ f;%0a%0a
+-%09
++        // Scratches take random intensity from Min to Max.%0a        %5bRange(0.0f, 5.0f)%5d%0a        
+ public f
+@@ -1036,26 +1036,60 @@
+ in = 0.05f;%0a
+-%0a%09
++        %5bRange(0.0f, 5.0f)%5d%0a        
+ public float
+@@ -1115,25 +1115,135 @@
+ x = 0.25f;%0a%0a
+-%09
++        /// Scratches jump to another locations at this times per second.%0a        %5bRange(1.0f, 30.0f)%5d%0a        
+ public float
+@@ -1258,21 +1258,130 @@
+ FPS = 10
++.0
+ f;%0a
+-%0a%09
++        /// While scratches are in the same location, they jitter a bit.%0a        %5bRange(0.0f, 1.0f)%5d%0a        
+ public f
+@@ -1409,17 +1409,24 @@
+ 0.01f;%0a%0a
+-%09
++        
+ public T
+@@ -1442,26 +1442,32 @@
+ ainTexture;%0a
+-%0a%09
++        
+ public Textu
+@@ -1485,18 +1485,24 @@
+ exture;%0a
+-%0a%09
++        
+ public S
+@@ -1503,24 +1503,26 @@
+ blic Shader 
++  
+ shaderRGB;%0a%0a
+@@ -1520,18 +1520,24 @@
+ derRGB;%0a
+-%0a%09
++        
+ public S
+@@ -1542,16 +1542,18 @@
+  Shader 
++  
+ shaderYU
+@@ -1551,26 +1551,32 @@
+  shaderYUV;%0a
+-%0a%09
++        
+ private Mate
+@@ -1595,18 +1595,24 @@
+ ialRGB;%0a
+-%0a%09
++        
+ private 
+@@ -1636,17 +1636,24 @@
+ alYUV;%0a%0a
+-%09
++        
+ private 
+@@ -1673,20 +1673,33 @@
+ TimeLeft
+-;%0a%0a%09
++ = 0.0f;%0a        
+ private 
+@@ -1716,86 +1716,848 @@
+ tchX
+-;%0a%0a%09private float scratchY;%0a%0a%09protected Material material%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09
++, scratchY;%0a%0a        protected void Start ()%0a        %7b%0a            // Disable if we don't support image effects%0a            if (!SystemInfo.supportsImageEffects) %7b%0a                enabled = false;%0a                return;%0a            %7d%0a%0a            if ( shaderRGB == null %7c%7c shaderYUV == null )%0a            %7b%0a                Debug.Log( %22Noise shaders are not set up! Disabling noise effect.%22 );%0a                enabled = false;%0a            %7d%0a            else%0a            %7b%0a                if ( !shaderRGB.isSupported ) // disable effect if RGB shader is not supported%0a                    enabled = false;%0a                else if ( !shaderYUV.isSupported ) // fallback to RGB if YUV is not supported%0a                    rgbFallback = true;%0a            %7d%0a        %7d%0a%0a        protected Material material %7b%0a            get %7b%0a                
+ if (
++ 
+ m_Ma
+@@ -2573,27 +2573,41 @@
+  == null
+-)%0a%09%09%09%7b%0a%09%09%09%09
++ ) %7b%0a                    
+ m_Materi
+@@ -2623,24 +2623,25 @@
+ ew Material(
++ 
+ shaderRGB);%0a
+@@ -2637,23 +2637,40 @@
+ haderRGB
++ 
+ );%0a
+-%09%09%09%09
++                    
+ m_Materi
+@@ -2714,28 +2714,55 @@
+ ntSave;%0a
+-%09%09%09%7d%0a%09%09%09
++                %7d%0a                
+ if (
++ 
+ m_Materi
+@@ -2790,27 +2790,41 @@
+ Fallback
+-)%0a%09%09%09%7b%0a%09%09%09%09
++ ) %7b%0a                    
+ m_Materi
+@@ -2844,16 +2844,17 @@
+ aterial(
++ 
+ shaderYU
+@@ -2858,15 +2858,32 @@
+ rYUV
++ 
+ );%0a
+-%09%09%09%09
++                    
+ m_Ma
+@@ -2935,20 +2935,51 @@
+ ve;%0a
+-%09%09%09%7d%0a%09%09%09if
++                %7d%0a                return
+  (
++!
+ rgbF
+@@ -2986,19 +2986,20 @@
+ allback 
+-%7c%7c 
++&& !
+ monochro
+@@ -3005,472 +3005,75 @@
+ ome)
+-%0a%09%09%09%7b%0a%09%09%09%09return m_MaterialRGB;%0a%09%09%09%7d%0a%09%09%09return m_MaterialYUV;%0a%09%09%7d%0a%09%7d%0a%0a%09protected void Start()%0a%09%7b%0a%09%09if (!SystemInfo.supportsImageEffects)%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%09else if (shaderRGB == null %7c%7c shaderYUV == null)%0a%09%09%7b%0a%09%09%09Debug.Log(%22Noise shaders are not set up! Disabling noise effect.%22);%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%09else if (!shaderRGB.isSupported)%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%09else if (!shaderYUV.isSupported)%0a%09%09%7b%0a%09%09%09rgbFallback = true;%0a%09%09%7d%0a%09%7d%0a%0a%09
++ ? m_MaterialYUV : m_MaterialRGB;%0a            %7d%0a        %7d%0a%0a        
+ prot
+@@ -3098,24 +3098,28 @@
+ le()
+-%0a%09%7b%0a%09%09if ((bool)
++ %7b%0a            if ( 
+ m_Ma
+@@ -3127,32 +3127,35 @@
+ erialRGB
++ 
+ )%0a
+-%09%09%7b%0a%09%09%09Object.
++                
+ DestroyI
+@@ -3155,32 +3155,33 @@
+ estroyImmediate(
++ 
+ m_MaterialRGB);%0a
+@@ -3181,27 +3181,29 @@
+ lRGB
++ 
+ );%0a
+-%09%09%7d%0a%09%09if ((bool)
++            if ( 
+ m_Ma
+@@ -3215,24 +3215,27 @@
+ lYUV
++ 
+ )%0a
+-%09%09%7b%0a%09%09%09Object.
++                
+ Dest
+@@ -3247,16 +3247,17 @@
+ mediate(
++ 
+ m_Materi
+@@ -3265,20 +3265,31 @@
+ lYUV
++ 
+ );%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a%0a        
+ priv
+@@ -3318,21 +3318,38 @@
+ eters()%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ grainInt
+@@ -3364,32 +3364,33 @@
+ n = Mathf.Clamp(
++ 
+ grainIntensityMi
+@@ -3392,27 +3392,42 @@
+ ityMin, 
++0.
+ 0f, 5
+-f);%0a%09%09
++.0f );%0a            
+ grainInt
+@@ -3446,24 +3446,25 @@
+ Mathf.Clamp(
++ 
+ grainIntensi
+@@ -3466,35 +3466,50 @@
+ tensityMax, 
++0.
+ 0f, 5
+-f);%0a%09%09
++.0f );%0a            
+ scratchInten
+@@ -3522,32 +3522,33 @@
+ n = Mathf.Clamp(
++ 
+ scratchIntensity
+@@ -3552,27 +3552,42 @@
+ ityMin, 
++0.
+ 0f, 5
+-f);%0a%09%09
++.0f );%0a            
+ scratchI
+@@ -3608,24 +3608,25 @@
+ Mathf.Clamp(
++ 
+ scratchInten
+@@ -3638,19 +3638,34 @@
+ ax, 
++0.
+ 0f, 5
+-f);%0a%09%09
++.0f );%0a            
+ scra
+@@ -3681,24 +3681,25 @@
+ Mathf.Clamp(
++ 
+ scratchFPS, 
+@@ -3703,19 +3703,28 @@
+ S, 1
+-f
+ , 30
+-f);%0a%09%09
++ );%0a            
+ scra
+@@ -3747,16 +3747,17 @@
+ f.Clamp(
++ 
+ scratchJ
+@@ -3767,19 +3767,34 @@
+ er, 
++0.
+ 0f, 1
+-f);%0a%09%09
++.0f );%0a            
+ grai
+@@ -3813,16 +3813,17 @@
+ f.Clamp(
++ 
+ grainSiz
+@@ -3837,24 +3837,91 @@
+ , 50
++.0
+ f
++ 
+ );%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a        // Called by the camera to apply the image effect%0a       
+  voi
+@@ -3935,16 +3935,17 @@
+ derImage
++ 
+ (RenderT
+@@ -3986,21 +3986,38 @@
+ nation)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ Sanitize
+@@ -4034,14 +4034,26 @@
+ ();%0a
+-%09%09
++%0a            
+ if (
++ 
+ scra
+@@ -4072,18 +4072,44 @@
+ %3c= 0
+-f)%0a%09%09%7b%0a%09%09%09
++.0f )%0a            %7b%0a                
+ scra
+@@ -4138,17 +4138,16 @@
+ alue * 2
+-f
+  / scrat
+@@ -4152,20 +4152,80 @@
+ atchFPS;
+-%0a%09%09%09
++ // we have sanitized it earlier, won't be zero%0a                
+ scratchX
+@@ -4245,11 +4245,24 @@
+ ue;%0a
+-%09%09%09
++                
+ scra
+@@ -4286,14 +4286,34 @@
+ ue;%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ scra
+@@ -4347,55 +4347,62 @@
+ me;%0a
+-%09%09Material material = this.material;%0a%09%09material
++%0a            Material mat = material;%0a%0a            mat
+ .Set
+@@ -4437,26 +4437,31 @@
+ xture);%0a
+-%09%09material
++            mat
+ .SetText
+@@ -4500,23 +4500,42 @@
+ e);%0a
+-%09%09float num
++            float grainScale
+  = 1
++.0
+ f / 
+@@ -4548,261 +4548,643 @@
+ ize;
+-%0a%09%09material.SetVector(%22_GrainOffsetScale%22, new Vector4(Random.value, Random.value, (float)Screen.width / (float)grainTexture.width * num, (float)Screen.height / (float)grainTexture.height * num));%0a%09%09material.SetVector(%22_ScratchOffsetScale%22, new Vector4(
++ // we have sanitized it earlier, won't be zero%0a            mat.SetVector(%22_GrainOffsetScale%22, new Vector4(%0a                                                   Random.value,%0a                                                   Random.value,%0a                                                   (float)Screen.width / (float)grainTexture.width * grainScale,%0a                                                   (float)Screen.height / (float)grainTexture.height * grainScale%0a                                                   ));%0a            mat.SetVector(%22_ScratchOffsetScale%22, new Vector4(%0a                                                     
+ scra
+@@ -5194,35 +5194,33 @@
+ X + Random.value
+- * 
++*
+ scratchJitter, s
+@@ -5217,16 +5217,69 @@
+ hJitter,
++%0a                                                    
+  scratch
+@@ -5294,19 +5294,17 @@
+ om.value
+- * 
++*
+ scratchJ
+@@ -5309,16 +5309,69 @@
+ hJitter,
++%0a                                                    
+  (float)
+@@ -5384,32 +5384,33 @@
+ .width / (float)
++ 
+ scratchTexture.w
+@@ -5414,16 +5414,69 @@
+ e.width,
++%0a                                                    
+  (float)
+@@ -5498,16 +5498,17 @@
+  (float)
++ 
+ scratchT
+@@ -5524,59 +5524,163 @@
+ ight
+-));%0a%09%09material.SetVector(%22_Intensity%22, new Vector4(
++%0a                                                     ));%0a            mat.SetVector(%22_Intensity%22, new Vector4(%0a                                            
+ Rand
+@@ -5726,16 +5726,60 @@
+ ityMax),
++%0a                                           
+  Random.
+@@ -5830,21 +5830,74 @@
+ ax),
++%0a                                           
+  0
+-f
+ , 0
+-f
++ 
+ ));%0a
+-%09%09
++            
+ Grap
+@@ -5905,16 +5905,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -5935,17 +5935,25 @@
+  mat
+-erial);%0a%09
++);%0a        %7d%0a    
+ %7d%0a%7d%0a

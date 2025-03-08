@@ -1,0 +1,414 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,210 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    public enum AAMode%0a    %7b%0a        FXAA2 = 0,%0a        FXAA3Console = 1,%0a        FXAA1PresetA = 2,%0a        FXAA1PresetB = 3,%0a        NFAA = 4,%0a        SSAA = 5,%0a        DLAA = 6,%0a    %7d%0a%0a    
+ %5bExecute
+@@ -283,16 +283,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -311,16 +311,17 @@
+ t(typeof
++ 
+ (Camera)
+@@ -323,16 +323,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -382,16 +382,20 @@
+ sing%22)%5d%0a
++    
+ public c
+@@ -430,19 +430,30 @@
+ ctsBase%0a
+-%7b%0a%09
++    %7b%0a        
+ public A
+@@ -487,17 +487,24 @@
+ nsole;%0a%0a
+-%09
++        
+ public b
+@@ -527,20 +527,34 @@
+ dNormals
+-;%0a%0a%09
++ = false;%0a        
+ public f
+@@ -570,34 +570,40 @@
+ etScale = 0.2f;%0a
+-%0a%09
++        
+ public float blu
+@@ -614,21 +614,30 @@
+ ius = 18
++.0
+ f;%0a%0a
+-%09
++        
+ public f
+@@ -667,18 +667,24 @@
+  0.05f;%0a
+-%0a%09
++        
+ public f
+@@ -710,18 +710,24 @@
+ = 0.2f;%0a
+-%0a%09
++        
+ public f
+@@ -752,13 +752,22 @@
+  = 4
++.0
+ f;%0a%0a
+-%09
++        
+ publ
+@@ -783,20 +783,35 @@
+ laaSharp
+-;%0a%0a%09
++ = false;%0a%0a        
+ public S
+@@ -820,34 +820,40 @@
+ der ssaaShader;%0a
+-%0a%09
++        
+ private Material
+@@ -855,26 +855,32 @@
+ erial ssaa;%0a
+-%0a%09
++        
+ public Shade
+@@ -885,34 +885,40 @@
+ der dlaaShader;%0a
+-%0a%09
++        
+ private Material
+@@ -920,26 +920,32 @@
+ erial dlaa;%0a
+-%0a%09
++        
+ public Shade
+@@ -958,18 +958,24 @@
+ Shader;%0a
+-%0a%09
++        
+ private 
+@@ -989,18 +989,24 @@
+ l nfaa;%0a
+-%0a%09
++        
+ public S
+@@ -1030,18 +1030,24 @@
+ reset2;%0a
+-%0a%09
++        
+ private 
+@@ -1076,18 +1076,24 @@
+ reset2;%0a
+-%0a%09
++        
+ public S
+@@ -1117,18 +1117,24 @@
+ reset3;%0a
+-%0a%09
++        
+ private 
+@@ -1163,18 +1163,24 @@
+ reset3;%0a
+-%0a%09
++        
+ public S
+@@ -1195,26 +1195,32 @@
+ aderFXAAII;%0a
+-%0a%09
++        
+ private Mate
+@@ -1236,26 +1236,32 @@
+ rialFXAAII;%0a
+-%0a%09
++        
+ public Shade
+@@ -1277,18 +1277,24 @@
+ XAAIII;%0a
+-%0a%09
++        
+ private 
+@@ -1320,17 +1320,25 @@
+ AAIII;%0a%0a
+-%09
++%0a        
+ public M
+@@ -1369,89 +1369,175 @@
+ l()%0a
+-%09%7b%0a%09%09Material material = null;%0a%09%09return mode switch%0a%09%09%7b%0a%09%09%09AAMode.FXAA3Consol
++        %7b%0a            Material returnValue = null;%0a%0a            switch (mode)%0a            %7b%0a                case AAMode.FXAA3Console:%0a                    returnValu
+ e =
+-%3e
+  mat
+@@ -1552,29 +1552,105 @@
+ AIII
+-, %0a%09%09%09AAMode.FXAA2
++;%0a                    break;%0a                case AAMode.FXAA2:%0a                    returnValue
+  =
+-%3e
+  mat
+@@ -1664,36 +1664,112 @@
+ AAII
+-, %0a%09%09%09AAMode.FXAA1PresetA
++;%0a                    break;%0a                case AAMode.FXAA1PresetA:%0a                    returnValue
+  =
+-%3e
+  mat
+@@ -1788,36 +1788,112 @@
+ set2
+-, %0a%09%09%09AAMode.FXAA1PresetB
++;%0a                    break;%0a                case AAMode.FXAA1PresetB:%0a                    returnValue
+  =
+-%3e
+  mat
+@@ -1912,188 +1912,593 @@
+ set3
+-, %0a%09%09%09AAMode.NFAA
++;%0a                    break;%0a                case AAMode.NFAA:%0a                    returnValue
+  =
+-%3e
+  nfaa
+-, %0a%09%09%09AAMode.SSAA
++;%0a                    break;%0a                case AAMode.SSAA:%0a                    returnValue
+  =
+-%3e
+  ssaa
+-, %0a%09%09%09AAMode.DLAA
++;%0a                    break;%0a                case AAMode.DLAA:%0a                    returnValue
+  =
+-%3e
+  dlaa
+-, %0a%09%09%09_
++;%0a                    break;%0a                default:%0a                    returnValue
+  =
+-%3e
+  null
+-, %0a%09%09%7d;%0a%09%7d%0a%0a%09public override bool CheckResources()%0a%09%7b%0a%09%09CheckSupport(needDepth: false);%0a%09%09
++;%0a                    break;%0a            %7d%0a%0a            return returnValue;%0a        %7d%0a%0a%0a        public override bool CheckResources()%0a        %7b%0a            CheckSupport(false);%0a%0a            
+ mate
+@@ -2571,18 +2571,28 @@
+ eset2);%0a
+-%09%09
++            
+ material
+@@ -2661,18 +2661,28 @@
+ eset3);%0a
+-%09%09
++            
+ material
+@@ -2736,18 +2736,28 @@
+ XAAII);%0a
+-%09%09
++            
+ material
+@@ -2814,18 +2814,28 @@
+ AAIII);%0a
+-%09%09
++            
+ nfaa = C
+@@ -2867,18 +2867,28 @@
+  nfaa);%0a
+-%09%09
++            
+ ssaa = C
+@@ -2920,18 +2920,28 @@
+  ssaa);%0a
+-%09%09
++            
+ dlaa = C
+@@ -2973,18 +2973,29 @@
+  dlaa);%0a
+-%09%09
++%0a            
+ if (!ssa
+@@ -3019,86 +3019,158 @@
+ ed)%0a
+-%09%09%7b%0a%09%09%09NotSupported();%0a%09%09%09ReportAutoDisable();%0a%09%09%7d%0a%09%09return isSupported;%0a%09%7d%0a%0a%09
++            %7b%0a                NotSupported();%0a                ReportAutoDisable();%0a            %7d%0a%0a            return isSupported;%0a        %7d%0a%0a%0a        
+ publ
+@@ -3244,18 +3244,34 @@
+ on)%0a
+-%09%7b%0a%09%09
++        %7b%0a            
+ if (
+-!
+ Chec
+@@ -3286,63 +3286,246 @@
+ es()
+-)%0a%09%09%7b%0a%09%09%09Graphics.Blit(source, destination);%0a%09%09%7d%0a%09%09else
++ == false)%0a            %7b%0a                Graphics.Blit(source, destination);%0a                return;%0a            %7d%0a%0a%09%09%09// ----------------------------------------------------------------%0a            // FXAA antialiasing modes%0a%0a           
+  if 
+@@ -3552,24 +3552,25 @@
+ 3Console && 
++(
+ materialFXAA
+@@ -3581,24 +3581,48 @@
+ != null)
+-%0a%09%09%7b%0a%09%09%09
++)%0a            %7b%0a                
+ material
+@@ -3678,19 +3678,32 @@
+ ldMin);%0a
+-%09%09%09
++                
+ material
+@@ -3753,19 +3753,32 @@
+ shold);%0a
+-%09%09%09
++                
+ material
+@@ -3824,27 +3824,41 @@
+ Sharpness);%0a
+-%09%09%09
++%0a                
+ Graphics.Bli
+@@ -3894,30 +3894,50 @@
+ alFXAAIII);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ else if (mod
+@@ -3960,24 +3960,25 @@
+ 1PresetB && 
++(
+ materialFXAA
+@@ -3989,32 +3989,56 @@
+ et3 != null)
+-%0a%09%09%7b%0a%09%09%09
++)%0a            %7b%0a                
+ Graphics.Bli
+@@ -4082,22 +4082,42 @@
+ eset3);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ else if 
+@@ -4169,39 +4169,62 @@
+ reset2 != null)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ source.anisoLeve
+@@ -4230,19 +4230,32 @@
+ el = 4;%0a
+-%09%09%09
++                
+ Graphics
+@@ -4303,19 +4303,32 @@
+ eset2);%0a
+-%09%09%09
++                
+ source.a
+@@ -4342,22 +4342,42 @@
+ el = 0;%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ else if 
+@@ -4417,39 +4417,62 @@
+ FXAAII != null)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ Graphics.Blit(so
+@@ -4507,22 +4507,42 @@
+ XAAII);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ else if 
+@@ -4579,23 +4579,155 @@
+ = null)%0a
+-%09%09
++            
+ %7b%0a%09%09%09
++%09// ----------------------------------------------------------------%0a                // SSAA antialiasing%0a                
+ Graphics
+@@ -4760,22 +4760,42 @@
+  ssaa);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ else if 
+@@ -4824,39 +4824,160 @@
+ & dlaa != null)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a%09%09%09%09// ----------------------------------------------------------------%0a%09%09%09%09// DLAA antialiasing%0a%0a                
+ source.anisoLeve
+@@ -4983,19 +4983,32 @@
+ el = 0;%0a
+-%09%09%09
++                
+ RenderTe
+@@ -5013,25 +5013,23 @@
+ Texture 
+-temporary
++interim
+  = Rende
+@@ -5080,19 +5080,32 @@
+ eight);%0a
+-%09%09%09
++                
+ Graphics
+@@ -5118,25 +5118,23 @@
+ source, 
+-temporary
++interim
+ , dlaa, 
+@@ -5137,19 +5137,32 @@
+ aa, 0);%0a
+-%09%09%09
++                
+ Graphics
+@@ -5167,25 +5167,23 @@
+ cs.Blit(
+-temporary
++interim
+ , destin
+@@ -5195,18 +5195,16 @@
+ , dlaa, 
+-(!
+ dlaaShar
+@@ -5208,23 +5208,35 @@
+ harp
+-)
+  ? 
+-1 : 2);%0a%09%09%09
++2 : 1);%0a                
+ Rend
+@@ -5266,26 +5266,44 @@
+ ary(
+-temporary);%0a%09%09%7d%0a%09%09
++interim);%0a            %7d%0a            
+ else
+@@ -5344,23 +5344,168 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                // ----------------------------------------------------------------%0a                // nfaa antialiasing%0a%0a                
+ source.a
+@@ -5519,19 +5519,33 @@
+ el = 0;%0a
+-%09%09%09
++%0a                
+ nfaa.Set
+@@ -5580,19 +5580,32 @@
+ Scale);%0a
+-%09%09%09
++                
+ nfaa.Set
+@@ -5638,19 +5638,33 @@
+ adius);%0a
+-%09%09%09
++%0a                
+ Graphics
+@@ -5731,26 +5731,143 @@
+ 0);%0a
+-%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++            %7d%0a            else%0a            %7b%0a                // none of the AA is supported, fallback to a simple blit%0a                
+ Grap
+@@ -5902,13 +5902,36 @@
+ n);%0a
+-%09%09%7d%0a%09
++            %7d%0a        %7d%0a    
+ %7d%0a%7d%0a

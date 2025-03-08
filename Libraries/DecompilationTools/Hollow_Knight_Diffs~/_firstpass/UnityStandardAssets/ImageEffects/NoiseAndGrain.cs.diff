@@ -1,0 +1,801 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -25,16 +25,51 @@
+ yEngine;
++%0ausing Random = UnityEngine.Random;
+ %0a%0anamesp
+@@ -104,19 +104,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -131,16 +131,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -152,16 +152,17 @@
+ omponent
++ 
+ (typeof(
+@@ -171,16 +171,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -192,16 +192,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -243,16 +243,20 @@
+ mic)%22)%5d%0a
++    
+ public c
+@@ -292,19 +292,28 @@
+ ctsBase%0a
++%09
+ %7b%0a
+-%09
++%0a        
+ public f
+@@ -343,25 +343,32 @@
+ r = 0.25f;%0a%0a
+-%09
++        
+ public float
+@@ -393,18 +393,24 @@
+ = 0.5f;%0a
+-%0a%09
++        
+ public f
+@@ -424,37 +424,45 @@
+ ackIntensity = 1
++.0
+ f;%0a
+-%0a%09
++        
+ public float whi
+@@ -476,21 +476,29 @@
+ sity = 1
++.0
+ f;%0a
+-%0a%09
++        
+ public f
+@@ -515,25 +515,32 @@
+ ey = 0.2f;%0a%0a
+-%09
++        
+ public bool 
+@@ -539,16 +539,17 @@
+ ic bool 
++ 
+ dx11Grai
+@@ -549,20 +549,34 @@
+ x11Grain
+-;%0a%0a%09
++ = false;%0a        
+ public f
+@@ -588,20 +588,33 @@
+ softness
+-;%0a%0a%09
++ = 0.0f;%0a        
+ public b
+@@ -617,16 +617,17 @@
+ ic bool 
++ 
+ monochro
+@@ -628,20 +628,35 @@
+ nochrome
+-;%0a%0a%09
++ = false;%0a%0a        
+ public V
+@@ -693,22 +693,34 @@
+ r3(1
++.0
+ f, 1
++.0
+ f, 1
++.0
+ f);%0a
+-%0a%09
++        
+ publ
+@@ -757,24 +757,36 @@
+ 3(64
++.0
+ f, 64
++.0
+ f, 64
++.0
+ f);%0a
+-%0a%09
++        
+ publ
+@@ -811,29 +811,38 @@
+ eTiling = 64
++.0
+ f;%0a%0a
+-%09
++        
+ public Filte
+@@ -882,17 +882,24 @@
+ inear;%0a%0a
+-%09
++        
+ public T
+@@ -922,17 +922,24 @@
+ xture;%0a%0a
+-%09
++        
+ public S
+@@ -949,34 +949,40 @@
+ er noiseShader;%0a
+-%0a%09
++        
+ private Material
+@@ -995,20 +995,34 @@
+ Material
+-;%0a%0a%09
++ = null;%0a%0a        
+ public S
+@@ -1044,18 +1044,24 @@
+ Shader;%0a
+-%0a%09
++        
+ private 
+@@ -1086,20 +1086,34 @@
+ Material
+-;%0a%0a%09
++ = null;%0a%0a        
+ private 
+@@ -1145,13 +1145,23 @@
+ = 64
++.0
+ f;%0a%0a
+-%09
++%0a        
+ publ
+@@ -1195,50 +1195,63 @@
+ rces
++ 
+ ()%0a%09
++%09
+ %7b%0a
+-%09%09CheckSupport(needDepth: false);%0a%09%09
++            CheckSupport (false);%0a%0a            
+ nois
+@@ -1290,16 +1290,17 @@
+ Material
++ 
+ (noiseSh
+@@ -1321,18 +1321,29 @@
+ erial);%0a
+-%09%09
++%0a            
+ if (dx11
+@@ -1358,37 +1358,150 @@
+  supportDX11)%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++#if UNITY_EDITOR%0a                dx11NoiseShader = Shader.Find(%22Hidden/NoiseAndGrainDX11%22);%0a#endif%0a                
+ dx11NoiseMateria
+@@ -1532,16 +1532,17 @@
+ Material
++ 
+ (dx11Noi
+@@ -1571,22 +1571,43 @@
+ erial);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a%0a            
+ if (!isS
+@@ -1616,23 +1616,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -1653,18 +1653,25 @@
+ able
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            
+ retu
+@@ -1686,28 +1686,34 @@
+ ported;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void On
+@@ -1723,16 +1723,17 @@
+ derImage
++ 
+ (RenderT
+@@ -1779,17 +1779,27 @@
+ n)%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ if (
+-!
+ Chec
+@@ -1814,20 +1814,26 @@
+ es()
++==false
+  %7c%7c 
++(
+ null
+- 
+ ==
+- 
+ nois
+@@ -1841,24 +1841,39 @@
+ Texture)
++)
+ %0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ Graphics
+@@ -1869,32 +1869,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -1905,19 +1905,32 @@
+ n);%0a
+-%09%09%09
++                
+ if (null
+  == 
+@@ -1929,12 +1929,10 @@
+ null
+- 
+ ==
+- 
+ nois
+@@ -1940,26 +1940,39 @@
+ Texture)
+-%0a%09%09%09%7b%0a%09%09%09%09
++ %7b%0a                    
+ Debug.Lo
+@@ -2065,13 +2065,8 @@
+ .%22, 
+-base.
+ tran
+@@ -2073,38 +2073,85 @@
+ sform);%0a
+-%09%09%09%7d%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++                %7d%0a                return;%0a            %7d%0a%0a            
+ softness
+@@ -2175,16 +2175,18 @@
+ ftness, 
++0.
+ 0f, 0.99
+@@ -2189,18 +2189,29 @@
+ 0.99f);%0a
+-%09%09
++%0a            
+ if (dx11
+@@ -2234,21 +2234,135 @@
+ DX11)%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                // We have a fancy, procedural noise pattern in this version, so no texture needed%0a%0a                
+ dx11Nois
+@@ -2416,19 +2416,32 @@
+ Count);%0a
+-%09%09%09
++                
+ dx11Nois
+@@ -2452,32 +2452,33 @@
+ erial.SetTexture
++ 
+ (%22_NoiseTex%22, no
+@@ -2490,19 +2490,32 @@
+ xture);%0a
+-%09%09%09
++                
+ dx11Nois
+@@ -2525,32 +2525,33 @@
+ terial.SetVector
++ 
+ (%22_NoisePerChann
+@@ -2596,19 +2596,32 @@
+ ities);%0a
+-%09%09%09
++                
+ dx11Nois
+@@ -2631,32 +2631,33 @@
+ terial.SetVector
++ 
+ (%22_MidGrey%22, new
+@@ -2671,34 +2671,34 @@
+ 3(midGrey, 1
+-f / (1f - 
++.0f/(1.0f-
+ midGrey), -1
+@@ -2689,36 +2689,36 @@
+ .0f-midGrey), -1
+-f / 
++.0f/
+ midGrey));%0a%09%09%09dx
+@@ -2712,19 +2712,32 @@
+ Grey));%0a
+-%09%09%09
++                
+ dx11Nois
+@@ -2747,32 +2747,33 @@
+ terial.SetVector
++ 
+ (%22_NoiseAmount%22,
+@@ -2859,19 +2859,33 @@
+ plier);%0a
+-%09%09%09
++%0a                
+ if (soft
+@@ -2906,25 +2906,54 @@
+ psilon)%0a
+-%09%09%09%7b%0a%09%09%09%09
++                %7b%0a                    
+ RenderTe
+@@ -2958,25 +2958,18 @@
+ Texture 
++r
+ t
+-emporary
+  = Rende
+@@ -2991,32 +2991,26 @@
+ porary((int)
++ 
+ (
+-(float)
+ source.width
+@@ -3006,36 +3006,36 @@
+ ource.width * (1
+-f - 
++.0f-
+ softness)), (int
+@@ -3031,32 +3031,26 @@
+ ess)), (int)
++ 
+ (
+-(float)
+ source.heigh
+@@ -3047,36 +3047,36 @@
+ urce.height * (1
+-f - 
++.0f-
+ softness)));%0a%09%09%09
+@@ -3072,20 +3072,36 @@
+ ess)));%0a
+-%09%09%09%09
++                    
+ DrawNois
+@@ -3101,32 +3101,33 @@
+ rawNoiseQuadGrid
++ 
+ (source, tempora
+@@ -3119,25 +3119,18 @@
+ source, 
++r
+ t
+-emporary
+ , dx11No
+@@ -3177,20 +3177,36 @@
+ 3 : 2);%0a
+-%09%09%09%09
++                    
+ dx11Nois
+@@ -3243,24 +3243,33 @@
+ x%22, 
+-temporary);%0a%09%09%09%09
++rt);%0a                    
+ Grap
+@@ -3322,20 +3322,36 @@
+ al, 4);%0a
+-%09%09%09%09
++                    
+ RenderTe
+@@ -3377,42 +3377,72 @@
+ ary(
+-temporary);%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
++rt);%0a                %7d%0a                else%0a                    
+ Draw
+@@ -3446,32 +3446,33 @@
+ rawNoiseQuadGrid
++ 
+ (source, destina
+@@ -3502,32 +3502,33 @@
+ , noiseTexture, 
++(
+ monochrome ? 1 :
+@@ -3534,63 +3534,148 @@
+ : 0)
++)
+ ;%0a
+-%09%09%09%7d%0a%09%09%09return;%0a%09%09%7d%0a%09%09if ((bool)noiseTexture)%0a%09%09%7b%0a%09%09%09
++            %7d%0a            else%0a%09%09%09%7b%0a                // normal noise (DX9 style)%0a%0a                if (noiseTexture) %7b%0a                    
+ nois
+@@ -3718,19 +3718,36 @@
+ Repeat;%0a
+-%09%09%09
++                    
+ noiseTex
+@@ -3776,22 +3776,51 @@
+ erMode;%0a
+-%09%09%7d%0a%09%09
++                %7d%0a%0a                
+ noiseMat
+@@ -3827,32 +3827,33 @@
+ erial.SetTexture
++ 
+ (%22_NoiseTex%22, no
+@@ -3865,18 +3865,32 @@
+ xture);%0a
+-%09%09
++                
+ noiseMat
+@@ -3896,32 +3896,33 @@
+ terial.SetVector
++ 
+ (%22_NoisePerChann
+@@ -3967,18 +3967,32 @@
+ ities);%0a
+-%09%09
++                
+ noiseMat
+@@ -3998,32 +3998,33 @@
+ terial.SetVector
++ 
+ (%22_NoiseTilingPe
+@@ -4047,17 +4047,16 @@
+ hrome ? 
+-(
+ Vector3.
+@@ -4077,17 +4077,16 @@
+ meTiling
+-)
+  : tilin
+@@ -4089,18 +4089,32 @@
+ iling);%0a
+-%09%09
++                
+ noiseMat
+@@ -4128,16 +4128,17 @@
+ etVector
++ 
+ (%22_MidGr
+@@ -4168,18 +4168,18 @@
+ y, 1
+-f / (1f - 
++.0f/(1.0f-
+ midG
+@@ -4186,20 +4186,20 @@
+ rey), -1
+-f / 
++.0f/
+ midGrey)
+@@ -4201,18 +4201,32 @@
+ Grey));%0a
+-%09%09
++                
+ noiseMat
+@@ -4240,16 +4240,17 @@
+ etVector
++ 
+ (%22_Noise
+@@ -4344,18 +4344,33 @@
+ plier);%0a
+-%09%09
++%0a                
+ if (soft
+@@ -4391,23 +4391,54 @@
+ psilon)%0a
+-%09%09%7b%0a%09%09%09
++                %7b%0a                    
+ RenderTe
+@@ -4443,25 +4443,18 @@
+ Texture 
++r
+ t
+-emporary
+ 2 = Rend
+@@ -4477,32 +4477,26 @@
+ porary((int)
++ 
+ (
+-(float)
+ source.width
+@@ -4496,28 +4496,28 @@
+ e.width * (1
+-f - 
++.0f-
+ softness)), 
+@@ -4521,24 +4521,18 @@
+ ), (int)
++ 
+ (
+-(float)
+ source.h
+@@ -4545,12 +4545,12 @@
+ * (1
+-f - 
++.0f-
+ soft
+@@ -4558,19 +4558,36 @@
+ ess)));%0a
+-%09%09%09
++                    
+ DrawNois
+@@ -4587,32 +4587,33 @@
+ rawNoiseQuadGrid
++ 
+ (source, tempora
+@@ -4605,25 +4605,18 @@
+ source, 
++r
+ t
+-emporary
+ 2, noise
+@@ -4643,19 +4643,36 @@
+ re, 2);%0a
+-%09%09%09
++                    
+ noiseMat
+@@ -4705,24 +4705,34 @@
+ x%22, 
+-temporary2);%0a%09%09%09
++rt2);%0a                    
+ Grap
+@@ -4781,19 +4781,36 @@
+ al, 1);%0a
+-%09%09%09
++                    
+ RenderTe
+@@ -4836,39 +4836,73 @@
+ ary(
+-temporary2);%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++rt2);%0a                %7d%0a                else%0a                    
+ Draw
+@@ -4914,16 +4914,17 @@
+ QuadGrid
++ 
+ (source,
+@@ -4974,24 +4974,40 @@
+ 0);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09private
++            %7d%0a        %7d%0a%0a       
+  sta
+@@ -5032,16 +5032,17 @@
+ QuadGrid
++ 
+ (RenderT
+@@ -5127,20 +5127,31 @@
+ assNr)%0a%09
++%09
+ %7b%0a
+-%09%09
++            
+ RenderTe
+@@ -5175,74 +5175,95 @@
+ st;%0a
+-%09%09float num = (float)noise.width * 1f;%0a%09%09float num2 = 1f * (float)
++%0a            float noiseSize = (noise.width * 1.0f);%0a            float subDs = (1.0f * 
+ sour
+@@ -5270,16 +5270,17 @@
+ ce.width
++)
+  / TILE_
+@@ -5287,18 +5287,29 @@
+ AMOUNT;%0a
+-%09%09
++%0a            
+ fxMateri
+@@ -5321,16 +5321,17 @@
+ tTexture
++ 
+ (%22_MainT
+@@ -5344,18 +5344,29 @@
+ ource);%0a
+-%09%09
++%0a            
+ GL.PushM
+@@ -5370,22 +5370,33 @@
+ shMatrix
++ 
+ ();%0a
+-%09%09
++            
+ GL.LoadO
+@@ -5403,39 +5403,59 @@
+ rtho
++ 
+ ();%0a
+-%09%09float num3 = 1f * (float)
++%0a            float aspectCorrection = (1.0f * 
+ sour
+@@ -5466,24 +5466,20 @@
+ idth
++)
+  / (1
++.0
+ f * 
+-(float)
+ sour
+@@ -5494,91 +5494,153 @@
+ t);%0a
+-%09%09float num4
++            float stepSizeX
+  = 1
++.0
+ f / 
+-num2;%0a%09%09float num5 = num4 * num3;%0a%09%09float num6 = num / ((float)
++subDs;%0a            float stepSizeY = stepSizeX * aspectCorrection;%0a            float texTile = noiseSize / (
+ nois
+@@ -5650,22 +5650,35 @@
+ idth * 1
++.0
+ f);%0a
+-%09%09
++%0a            
+ fxMateri
+@@ -5687,16 +5687,17 @@
+ .SetPass
++ 
+ (passNr)
+@@ -5702,25 +5702,55 @@
+ r);%0a
+-%09%09GL.Begin(7);%0a%09%09
++%0a            GL.Begin (GL.QUADS);%0a%0a            
+ for 
+@@ -5760,51 +5760,68 @@
+ oat 
+-num7
++x1
+  = 
++0.
+ 0f; 
+-num7
++x1
+  %3c 1
++.0
+ f; 
+-num7 += num4
++x1 += stepSizeX
+ )%0a%09%09
++%09
+ %7b%0a
+-%09%09%09
++                
+ for 
+@@ -5831,63 +5831,87 @@
+ oat 
+-num8
++y1
+  = 
++0.
+ 0f; 
+-num8
++y1
+  %3c 1
++.0
+ f; 
+-num8 += num5
++y1 += stepSizeY
+ )%0a%09%09%09
++%09
+ %7b%0a
+-%09%09%09%09float num9
++                    float tcXStart
+  = R
+@@ -5925,33 +5925,57 @@
+ ange
+-(
++ (0.
+ 0f, 1
++.0
+ f);%0a
+-%09%09%09%09float num10
++                    float tcYStart
+  = R
+@@ -5989,136 +5989,377 @@
+ ange
+-(
++ (0.
+ 0f, 1
++.0
+ f);%0a
+-%09%09%09%09num9 = Mathf.Floor(num9 * num) / num;%0a%09%09%09%09num10 = Mathf.Floor(num10 * num) / num;%0a%09%09%09%09float num11
++%0a                    //Vector3 v3 = Random.insideUnitSphere;%0a                    //Color c = new Color(v3.x, v3.y, v3.z);%0a%0a                    tcXStart = Mathf.Floor(tcXStart*noiseSize) / noiseSize;%0a                    tcYStart = Mathf.Floor(tcYStart*noiseSize) / noiseSize;%0a%0a                    float texTileMod
+  = 1
++.0
+ f / n
+-um;%0a%09%09%09%09
++oiseSize;%0a%0a                    
+ GL.M
+@@ -6375,30 +6375,54 @@
+ ord2
++ 
+ (0, 
+-num9, num10);%0a%09%09%09%09
++tcXStart, tcYStart);%0a                    
+ GL.M
+@@ -6438,59 +6438,130 @@
+ ord2
++ 
+ (1, 
++0.
+ 0f, 
++0.
+ 0f);%0a
+-%09%09%09%09GL.Vertex3(num7, num8, 0.1f);%0a%09%09%09%09
++                    //GL.Color( c );%0a                    GL.Vertex3 (x1, y1, 0.1f);%0a                    
+ GL.M
+@@ -6577,45 +6577,77 @@
+ ord2
++ 
+ (0, 
+-num9 + num6 * num11, num10);%0a%09%09%09%09
++tcXStart + texTile * texTileMod, tcYStart);%0a                    
+ GL.M
+@@ -6663,66 +6663,142 @@
+ ord2
++ 
+ (1, 1
++.0
+ f, 
++0.
+ 0f);%0a
+-%09%09%09%09GL.Vertex3(num7 + num4, num8, 0.1f);%0a%09%09%09%09
++                    //GL.Color( c );%0a                    GL.Vertex3 (x1 + stepSizeX, y1, 0.1f);%0a                    
+ GL.M
+@@ -6814,60 +6814,100 @@
+ ord2
++ 
+ (0, 
+-num9 + num6 * num11, num10 + num6 * num11);%0a%09%09%09%09
++tcXStart + texTile * texTileMod, tcYStart + texTile * texTileMod);%0a                    
+ GL.M
+@@ -6923,73 +6923,154 @@
+ ord2
++ 
+ (1, 1
++.0
+ f, 1
++.0
+ f);%0a
+-%09%09%09%09GL.Vertex3(num7 + num4, num8 + num5, 0.1f);%0a%09%09%09%09
++                    //GL.Color( c );%0a                    GL.Vertex3 (x1 + stepSizeX, y1 + stepSizeY, 0.1f);%0a                    
+ GL.M
+@@ -7086,45 +7086,77 @@
+ ord2
++ 
+ (0, 
+-num9, num10 + num6 * num11);%0a%09%09%09%09
++tcXStart, tcYStart + texTile * texTileMod);%0a                    
+ GL.M
+@@ -7172,85 +7172,190 @@
+ ord2
++ 
+ (1, 
++0.
+ 0f, 1
++.0
+ f);%0a
+-%09%09%09%09GL.Vertex3(num7, num8 + num5, 0.1f);%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++                    //GL.Color( c );%0a                    GL.Vertex3 (x1, y1 + stepSizeY, 0.1f);%0a                %7d%0a            %7d%0a%0a            
+ GL.End
++ 
+ ();%0a
+-%09%09
++            
+ GL.P
+@@ -7366,13 +7366,27 @@
+ trix
++ 
+ ();%0a
+-%09
++        %7d%0a    
+ %7d%0a%7d%0a

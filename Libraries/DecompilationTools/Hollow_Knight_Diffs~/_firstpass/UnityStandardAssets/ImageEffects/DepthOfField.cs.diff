@@ -1,0 +1,1891 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -117,16 +117,17 @@
+ omponent
++ 
+ (typeof(
+@@ -136,16 +136,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -157,16 +157,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -224,18 +224,23 @@
+  DX11)%22)
++ 
+ %5d%0a
++    
+ public c
+@@ -278,120 +278,20 @@
+ Base
+-%0a%7b%0a%09public enum BlurType%0a%09%7b%0a%09%09DiscBlur,%0a%09%09DX11%0a%09%7d%0a%0a%09public enum BlurSampleCount%0a%09%7b%0a%09%09Low,%0a%09%09Medium,%0a%09%09High%0a%09%7d%0a%0a%09
++ %7b%0a%0a        
+ publ
+@@ -298,16 +298,17 @@
+ ic bool 
++ 
+ visualiz
+@@ -313,20 +313,34 @@
+ izeFocus
+-;%0a%0a%09
++ = false;%0a        
+ public f
+@@ -360,21 +360,29 @@
+ gth = 10
++.0
+ f;%0a
+-%0a%09
++        
+ public f
+@@ -401,26 +401,32 @@
+ ze = 0.05f;%0a
+-%0a%09
++        
+ public float
+@@ -441,17 +441,22 @@
+ e = 
+-11
++0
+ .5f;%0a
+-%0a%09
++        
+ publ
+@@ -482,20 +482,33 @@
+ ransform
+-;%0a%0a%09
++ = null;%0a        
+ public f
+@@ -527,21 +527,29 @@
+ Size = 2
++.0
+ f;%0a
+-%0a%09
++        
+ public b
+@@ -552,16 +552,17 @@
+ ic bool 
++ 
+ highReso
+@@ -571,40 +571,287 @@
+ tion
+-;%0a%0a%09public BlurType blurType;%0a%0a%09
++ = false;%0a%0a        public enum BlurType %7b%0a            DiscBlur = 0,%0a            DX11 = 1,%0a        %7d%0a%0a        public enum BlurSampleCount %7b%0a            Low = 0,%0a            Medium = 1,%0a            High = 2,%0a        %7d%0a%0a        public BlurType blurType = BlurType.DiscBlur;%0a        
+ publ
+@@ -910,17 +910,24 @@
+ .High;%0a%0a
+-%09
++        
+ public b
+@@ -930,24 +930,25 @@
+ ic bool 
++ 
+ nearBlur
+ ;%0a%0a%09publ
+@@ -939,20 +939,34 @@
+ nearBlur
+-;%0a%0a%09
++ = false;%0a        
+ public f
+@@ -987,29 +987,38 @@
+ dOverlap = 1
++.0
+ f;%0a%0a
+-%09
++        
+ public Shade
+@@ -1025,34 +1025,40 @@
+ r dofHdrShader;%0a
+-%0a%09
++        
+ private Material
+@@ -1068,28 +1068,42 @@
+ fHdrMaterial
+-;%0a%0a%09
++ = null;%0a%0a        
+ public Shade
+@@ -1121,18 +1121,24 @@
+ Shader;%0a
+-%0a%09
++        
+ private 
+@@ -1166,17 +1166,24 @@
+ erial;%0a%0a
+-%09
++        
+ public f
+@@ -1210,26 +1210,32 @@
+ old = 0.5f;%0a
+-%0a%09
++        
+ public float
+@@ -1265,18 +1265,24 @@
+ .0875f;%0a
+-%0a%09
++        
+ public T
+@@ -1306,20 +1306,33 @@
+ hTexture
+-;%0a%0a%09
++ = null;%0a        
+ public f
+@@ -1359,18 +1359,24 @@
+ = 1.2f;%0a
+-%0a%09
++        
+ public f
+@@ -1404,25 +1404,32 @@
+ ty = 2.5f;%0a%0a
+-%09
++        
+ private floa
+@@ -1450,21 +1450,29 @@
+ e01 = 10
++.0
+ f;%0a
+-%0a%09
++        
+ private 
+@@ -1497,18 +1497,24 @@
+ awArgs;%0a
+-%0a%09
++        
+ private 
+@@ -1537,18 +1537,24 @@
+ Points;%0a
+-%0a%09
++        
+ private 
+@@ -1584,13 +1584,60 @@
+  = 1
++.0
+ f;%0a%0a
+-%09
++        private Camera cachedCamera;%0a%0a        
+ publ
+@@ -1671,49 +1671,92 @@
+ rces
++ 
+ ()
+-%0a%09%7b%0a%09%09CheckSupport(needDepth: true);%0a%09%09
++ %7b%0a            CheckSupport (true); // only requires depth, not HDR%0a%0a            
+ dofH
+@@ -1796,16 +1796,17 @@
+ Material
++ 
+ (dofHdrS
+@@ -1825,26 +1825,36 @@
+ rMaterial);%0a
+-%09%09
++            
+ if (supportD
+@@ -1886,24 +1886,35 @@
+ pe.DX11)
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ dx11boke
+@@ -1991,19 +1991,32 @@
+ erial);%0a
+-%09%09%09
++                
+ CreateCo
+@@ -2029,26 +2029,48 @@
+ esources
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            %7d%0a%0a            
+ if (!isS
+@@ -2079,23 +2079,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -2112,26 +2112,34 @@
+ oDisable
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++%0a            
+ return i
+@@ -2150,28 +2150,34 @@
+ ported;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void On
+@@ -2186,38 +2186,89 @@
+ able
++ 
+ ()
+-%0a%09%7b%0a%09%09GetComponent%3cCamera%3e()
++ %7b%0a            cachedCamera = GetComponent%3cCamera%3e();%0a            cachedCamera
+ .dep
+@@ -2308,28 +2308,34 @@
+ .Depth;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void On
+@@ -2341,24 +2341,34 @@
+ nDisable
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ ReleaseC
+@@ -2386,54 +2386,46 @@
+ rces
++ 
+ ();%0a
+-%09%09if ((bool)dofHdrMaterial)%0a%09%09%7b%0a%09%09%09Object.
++%0a            if (dofHdrMaterial) 
+ Dest
+@@ -2454,22 +2454,28 @@
+ erial);%0a
+-%09%09%7d%0a%09%09
++            
+ dofHdrMa
+@@ -2489,28 +2489,32 @@
+ = null;%0a
+-%09%09if ((bool)
++            if (
+ dx11boke
+@@ -2527,23 +2527,9 @@
+ ial)
+-%0a%09%09%7b%0a%09%09%09Object.
++ 
+ Dest
+@@ -2561,22 +2561,28 @@
+ erial);%0a
+-%09%09%7d%0a%09%09
++            
+ dx11boke
+@@ -2595,36 +2595,42 @@
+ ial = null;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void Releas
+@@ -2642,32 +2642,42 @@
+ uteResources
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (cbDrawAr
+@@ -2683,32 +2683,25 @@
+ rgs != null)
+-%0a%09%09%7b%0a%09%09%09
++ 
+ cbDrawArgs.R
+@@ -2710,22 +2710,28 @@
+ ease();%0a
+-%09%09%7d%0a%09%09
++            
+ cbDrawAr
+@@ -2741,18 +2741,28 @@
+ = null;%0a
+-%09%09
++            
+ if (cbPo
+@@ -2770,32 +2770,25 @@
+ nts != null)
+-%0a%09%09%7b%0a%09%09%09
++ 
+ cbPoints.Rel
+@@ -2795,22 +2795,28 @@
+ ease();%0a
+-%09%09%7d%0a%09%09
++            
+ cbPoints
+@@ -2824,28 +2824,34 @@
+ = null;%0a
+-%09%7d%0a%0a%09private
++        %7d%0a%0a       
+  void Cr
+@@ -2874,16 +2874,26 @@
+ rces
++ 
+ ()
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (
+@@ -2912,23 +2912,46 @@
+ = null)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a                
+ cbDrawAr
+@@ -2972,16 +2972,17 @@
+ teBuffer
++ 
+ (1, 16, 
+@@ -3003,20 +3003,16 @@
+ ype.
+-Draw
+ Indirect
+ );%0a%09
+@@ -3011,118 +3011,247 @@
+ rect
+-);%0a%09%09%09int%5b%5d data = new int%5b4%5d %7b 0, 1, 0, 0 %7d;%0a%09%09%09cbDrawArgs.SetData(data);%0a%09%09%7d%0a%09%09if (cbPoints == null)%0a%09%09%7b%0a%09%09%09
++Arguments);%0a                var args= new int%5b4%5d;%0a                args%5b0%5d = 0; args%5b1%5d = 1; args%5b2%5d = 0; args%5b3%5d = 0;%0a                cbDrawArgs.SetData (args);%0a            %7d%0a            if (cbPoints == null)%0a            %7b%0a                
+ cbPo
+@@ -3278,16 +3278,17 @@
+ ffer
++ 
+ (90000, 
+ 28, 
+@@ -3287,10 +3287,13 @@
+ 00, 
+-28
++12+16
+ , Co
+@@ -3317,32 +3317,48 @@
+ ppend);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09private
++            %7d%0a        %7d%0a%0a       
+  float F
+@@ -3371,17 +3371,19 @@
+ stance01
+-(
++ ( 
+ float wo
+@@ -3394,43 +3394,42 @@
+ ist)
+-%0a%09%7b%0a%09%09return GetComponent%3c
++ %7b%0a            return cached
+ Camera
+-%3e()
+ .Wor
+@@ -3460,33 +3460,21 @@
+ Dist
+- - GetComponent%3c
++-cached
+ Camera
+-%3e()
+ .nea
+@@ -3487,38 +3487,28 @@
+ lane) * 
+-GetComponent%3c
++cached
+ Camera
+-%3e()
+ .transfo
+@@ -3520,38 +3520,28 @@
+ rward + 
+-GetComponent%3c
++cached
+ Camera
+-%3e()
+ .transfo
+@@ -3558,38 +3558,28 @@
+ n).z / (
+-GetComponent%3c
++cached
+ Camera
+-%3e()
+ .farClip
+@@ -3587,33 +3587,21 @@
+ lane
+- - GetComponent%3c
++-cached
+ Camera
+-%3e()
+ .nea
+@@ -3613,21 +3613,35 @@
+ Plane);%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ private 
+@@ -3653,17 +3653,19 @@
+ WriteCoc
+-(
++ ( 
+ RenderTe
+@@ -3692,22 +3692,31 @@
+ gDilate)
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ dofHdrMa
+@@ -3754,18 +3754,29 @@
+  null);%0a
+-%09%09
++%0a            
+ if (near
+@@ -3796,84 +3796,148 @@
+ ate)
+-%0a%09%09%7b%0a%09%09%09int width = fromTo.width / 2;%0a%09%09%09int height = fromTo.height / 2;%0a%09%09%09
++ %7b%0a%0a                int rtW = fromTo.width/2;%0a                int rtH = fromTo.height/2;%0a%0a                // capture fg coc%0a                
+ Rend
+@@ -3942,37 +3942,33 @@
+ nderTexture temp
+-orary
++2
+  = RenderTexture
+@@ -3976,38 +3976,34 @@
+ GetTemporary
+-(width, height
++ (rtW, rtH
+ , 0, fromTo.
+@@ -4003,35 +4003,48 @@
+ fromTo.format);%0a
+-%09%09%09
++                
+ Graphics.Blit(fr
+@@ -4032,32 +4032,33 @@
+    Graphics.Blit
++ 
+ (fromTo, tempora
+@@ -4050,29 +4050,25 @@
+ fromTo, temp
+-orary
++2
+ , dofHdrMate
+@@ -4081,20 +4081,75 @@
+ 4);%0a
+-%09%09%09float num
++%0a                // special blur%0a                float fgAdjustment
+  = i
+@@ -4186,19 +4186,33 @@
+ verlap;%0a
+-%09%09%09
++%0a                
+ dofHdrMa
+@@ -4219,32 +4219,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -4256,32 +4256,69 @@
+ tor4
++ 
+ (
++0.
+ 0f, 
+-num, 0f, num));%0a%09%09%09
++fgAdjustment , 0.0f, fgAdjustment));%0a                
+ Rend
+@@ -4331,22 +4331,17 @@
+ ure temp
+-orary2
++1
+  = Rende
+@@ -4357,38 +4357,34 @@
+ GetTemporary
+-(width, height
++ (rtW, rtH
+ , 0, fromTo.
+@@ -4384,35 +4384,48 @@
+ fromTo.format);%0a
+-%09%09%09
++                
+ Graphics.Blit(te
+@@ -4425,30 +4425,22 @@
+ Blit
++ 
+ (temp
+-orary
++2
+ , temp
+-orary2
++1
+ , do
+@@ -4449,35 +4449,48 @@
+ drMaterial, 2);%0a
+-%09%09%09
++                
+ RenderTexture.Re
+@@ -4508,27 +4508,37 @@
+ ary(temp
+-orary);%0a%09%09%09
++2);%0a%0a                
+ dofHdrMa
+@@ -4545,32 +4545,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -4582,41 +4582,73 @@
+ tor4
+-(num
++ (fgAdjustment
+ , 
++0.
+ 0f, 
++0.
+ 0f, 
+-num));%0a%09%09%09temporary
++fgAdjustment));%0a                temp2
+  = R
+@@ -4676,22 +4676,18 @@
+ rary
+-(width, height
++ (rtW, rtH
+ , 0,
+@@ -4703,19 +4703,32 @@
+ ormat);%0a
+-%09%09%09
++                
+ Graphics
+@@ -4736,30 +4736,22 @@
+ Blit
++ 
+ (temp
+-orary2
++1
+ , temp
+-orary
++2
+ , do
+@@ -4768,19 +4768,32 @@
+ al, 2);%0a
+-%09%09%09
++                
+ RenderTe
+@@ -4823,20 +4823,79 @@
+ temp
+-orary2);%0a%09%09%09
++1);%0a%0a                // %22merge up%22 with background COC%0a                
+ dofH
+@@ -4934,27 +4934,36 @@
+ p%22, temp
+-orary);%0a%09%09%09
++2);%0a                
+ fromTo.M
+@@ -4975,36 +4975,101 @@
+ storeExpected();
+-%0a%09%09%09
++ // only touching alpha channel, RT restore expected%0a                
+ Graphics.Blit(fr
+@@ -5057,32 +5057,33 @@
+    Graphics.Blit
++ 
+ (fromTo, fromTo,
+@@ -5102,17 +5102,31 @@
+ ial,
++ 
+  13);%0a
+-%09%09%09
++                
+ Rend
+@@ -5160,67 +5160,254 @@
+ temp
+-orary);%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09fromTo.MarkRestoreExpected();%0a%09%09%09
++2);%0a            %7d%0a            else %7b%0a                // capture full coc in alpha channel (fromTo is not read, but bound to detect screen flip)%0a%09%09%09%09fromTo.MarkRestoreExpected(); // only touching alpha channel, RT restore expected%0a                
+ Grap
+@@ -5415,16 +5415,17 @@
+ ics.Blit
++ 
+ (fromTo,
+@@ -5452,29 +5452,46 @@
+ ial,
++ 
+  0);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09private
++            %7d%0a        %7d%0a%0a       
+  voi
+@@ -5505,16 +5505,17 @@
+ derImage
++ 
+ (RenderT
+@@ -5559,14 +5559,23 @@
+ ion)
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (
+@@ -5593,19 +5593,31 @@
+ rces
++ 
+ ())
+-%0a%09%09%7b%0a%09%09%09
++ %7b%0a                
+ Grap
+@@ -5617,32 +5617,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -5653,25 +5653,117 @@
+ n);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++                return;%0a            %7d%0a%0a            // clamp & prepare values so they make sense%0a%0a            
+ if (
+@@ -5774,26 +5774,21 @@
+ ture %3c 0
+-f)%0a%09%09%7b%0a%09%09%09
++.0f) 
+ aperture
+@@ -5794,18 +5794,26 @@
+ e = 
++0.
+ 0f;%0a
+-%09%09%7d%0a%09%09
++            
+ if (
+@@ -5831,24 +5831,17 @@
+  %3c 0.1f)
+-%0a%09%09%7b%0a%09%09%09
++ 
+ maxBlurS
+@@ -5852,22 +5852,28 @@
+ = 0.1f;%0a
+-%09%09%7d%0a%09%09
++            
+ focalSiz
+@@ -5903,19 +5903,33 @@
+ ze, 
++0.
+ 0f, 2
++.0
+ f);%0a
+-%09%09
++            
+ inte
+@@ -5971,15 +5971,69 @@
+ ze, 
++0.
+ 0f);%0a
+-%09%09
++%0a            // focal & coc calculations%0a%0a            
+ foca
+@@ -6065,34 +6065,25 @@
+ form
++)
+  ? (
+-GetComponent%3c
++cached
+ Camera
+-%3e()
+ .Wor
+@@ -6099,16 +6099,17 @@
+ ortPoint
++ 
+ (focalTr
+@@ -6129,35 +6129,27 @@
+ ion)
++)
+ .z / 
+-GetComponent%3c
++(cached
+ Camera
+-%3e()
+ .far
+@@ -6176,16 +6176,17 @@
+ stance01
++ 
+ (focalLe
+@@ -6190,21 +6190,30 @@
+ lLength)
+-)
+ ;%0a
+-%09%09
++            
+ dofHdrMa
+@@ -6258,16 +6258,18 @@
+ ector4(1
++.0
+ f, focal
+@@ -6273,16 +6273,32 @@
+ calSize,
++ (1.0f / (1.0f -
+  apertur
+@@ -6302,14 +6302,17 @@
+ ture
+- /
++) -
+  1
++.
+ 0f
++)
+ , fo
+@@ -6328,33 +6328,78 @@
+ ce01));%0a
+-%09%09R
++%0a            // possible r
+ ender
+-T
++ t
+ exture 
+-r
++helpers%0a%0a            R
+ enderTex
+@@ -6403,24 +6403,30 @@
+ Texture 
++rtLow 
+ = null;%0a
+ %09%09Render
+@@ -6409,34 +6409,44 @@
+ e rtLow = null;%0a
+-%09%09
++            
+ RenderTexture re
+@@ -6448,119 +6448,142 @@
+ re r
+-enderTexture2 = null;%0a%09%09RenderTexture renderTexture3 = null;%0a%09%09RenderTexture renderTexture4 = null;%0a%09%09float num
++tLow2 = null;%0a            RenderTexture rtSuperLow1 = null;%0a            RenderTexture rtSuperLow2 = null;%0a            float fgBlurDist
+  = i
+@@ -6620,18 +6620,29 @@
+ verlap;%0a
+-%09%09
++%0a            
+ if (visu
+@@ -6657,23 +6657,160 @@
+ us)%0a
+-%09%09%7b%0a%09%09%09
++            %7b%0a%0a                //%0a                // 2.%0a                // visualize coc%0a                //%0a                //%0a%0a                
+ WriteCoc
+ (sou
+@@ -6797,32 +6797,33 @@
+         WriteCoc
++ 
+ (source, fgDilat
+@@ -6815,36 +6815,39 @@
+ source, 
+-fgDilate: true);%0a%09%09%09
++true);%0a                
+ Graphics
+@@ -6843,32 +6843,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -6899,22 +6899,42 @@
+ 6);%0a
+-%09%09%7d%0a%09%09
++            %7d%0a            
+ else if 
+ (blu
+@@ -6929,16 +6929,17 @@
+ else if 
++(
+ (blurTyp
+@@ -6960,18 +6960,13 @@
+ DX11
++)
+  && 
+-(bool)
+ dx11
+@@ -6984,44 +6984,211 @@
+ al)%0a
+-%09%09%7b%0a%09%09%09if (highResolution)%0a%09%09%09%7b%0a%09%09%09%09
++            %7b%0a%0a                //%0a                // 1.%0a                // optimized dx11 bokeh scatter%0a                //%0a                //%0a%0a%0a                if (highResolution) %7b%0a%0a                    
+ inte
+@@ -7203,18 +7203,16 @@
+ Width = 
+-((
+ internal
+@@ -7227,17 +7227,16 @@
+ h %3c 0.1f
+-)
+  ? 0.1f 
+@@ -7254,26 +7254,48 @@
+ lurWidth
+-)
+ ;%0a
+-%09%09%09%09num
++                    fgBlurDist
+  = inter
+@@ -7328,33 +7328,42 @@
+ verlap;%0a
+-%09%09%09%09renderTexture
++%0a                    rtLow
+  = Rende
+@@ -7375,32 +7375,33 @@
+ ure.GetTemporary
++ 
+ (source.width, s
+@@ -7437,36 +7437,38 @@
+ t);%0a
+-%09%09%09%09RenderTexture temporary 
++%0a                    var dest2
+ = Re
+@@ -7483,32 +7483,33 @@
+ ure.GetTemporary
++ 
+ (source.width, s
+@@ -7541,28 +7541,80 @@
+ ormat);%0a
+-%09%09%09%09
++%0a                    // capture COC%0a                    
+ WriteCoc
+ (source,
+@@ -7597,32 +7597,33 @@
+         WriteCoc
++ 
+ (source, fgDilat
+@@ -7620,43 +7620,112 @@
+ e, f
+-gDilate: false);%0a%09%09%09%09renderTexture3
++alse);%0a%0a                    // blur a bit so we can do a frequency check%0a                    rtSuperLow1
+  = R
+@@ -7754,36 +7754,34 @@
+ ary(source.width
+- 
+ %3e%3e
+- 
+ 1, source.height
+@@ -7772,36 +7772,34 @@
+ 1, source.height
+- 
+ %3e%3e
+- 
+ 1, 0, source.for
+@@ -7804,34 +7804,47 @@
+ ormat);%0a
+-%09%09%09%09renderTexture4
++                    rtSuperLow2
+  = Rende
+@@ -7869,36 +7869,34 @@
+ ary(source.width
+- 
+ %3e%3e
+- 
+ 1, source.height
+@@ -7887,36 +7887,34 @@
+ 1, source.height
+- 
+ %3e%3e
+- 
+ 1, 0, source.for
+@@ -7911,36 +7911,53 @@
+ source.format);%0a
+-%09%09%09%09
++%0a                    
+ Graphics.Blit(so
+@@ -7959,37 +7959,34 @@
+ it(source, r
+-enderTexture3
++tSuperLow1
+ , dofHdrMate
+@@ -7988,36 +7988,52 @@
+ rMaterial, 15);%0a
+-%09%09%09%09
++                    
+ dofHdrMaterial.S
+@@ -8032,32 +8032,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -8061,33 +8061,36 @@
+  new Vector4
+-(
++ (0.
+ 0f, 1.5f
+ , 0f, 1.5f))
+@@ -8069,34 +8069,37 @@
+ tor4 (0.0f, 1.5f
++ 
+ , 
++0.
+ 0f, 1.5f));%0a%09%09%09%09
+@@ -8086,36 +8086,52 @@
+ , 0.0f, 1.5f));%0a
+-%09%09%09%09
++                    
+ Graphics.Blit(re
+@@ -8131,39 +8131,34 @@
+ Blit
++ 
+ (r
+-enderTexture3, renderTexture4
++tSuperLow1, rtSuperLow2
+ , do
+@@ -8168,36 +8168,52 @@
+ rMaterial, 19);%0a
+-%09%09%09%09
++                    
+ dofHdrMaterial.S
+@@ -8212,32 +8212,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -8241,35 +8241,40 @@
+  new Vector4
++ 
+ (1.5f, 
++0.
+ 0f, 
++0.
+ 0f, 1.5f));%0a
+@@ -8265,36 +8265,52 @@
+ , 0.0f, 1.5f));%0a
+-%09%09%09%09
++                    
+ Graphics.Blit(re
+@@ -8310,91 +8310,154 @@
+ Blit
++ 
+ (r
+-enderTexture4, renderTexture3, dofHdrMaterial, 19);%0a%09%09%09%09if (nearBlur)%0a%09%09%09%09%7b%0a%09%09%09%09%09
++tSuperLow2, rtSuperLow1, dofHdrMaterial, 19);%0a%0a                    // capture fg coc%0a                    if (nearBlur)%0a                        
+ Grap
+@@ -8457,32 +8457,33 @@
+    Graphics.Blit
++ 
+ (source, renderT
+@@ -8476,29 +8476,26 @@
+ ource, r
+-enderTexture4
++tSuperLow2
+ , dofHdr
+@@ -8504,34 +8504,45 @@
+ terial, 4);%0a
+-%09%09%09%09%7d%0a%09%09%09%09
++%0a                    
+ dx11bokehMat
+@@ -8549,32 +8549,33 @@
+ erial.SetTexture
++ 
+ (%22_BlurredColor%22
+@@ -8577,36 +8577,49 @@
+ olor%22, r
+-enderTexture3);%0a%09%09%09%09
++tSuperLow1);%0a                    
+ dx11boke
+@@ -8628,32 +8628,33 @@
+ aterial.SetFloat
++ 
+ (%22_SpawnHeuristi
+@@ -8670,36 +8670,52 @@
+ pawnHeuristic);%0a
+-%09%09%09%09
++                    
+ dx11bokehMateria
+@@ -8717,32 +8717,33 @@
+ terial.SetVector
++ 
+ (%22_BokehParams%22,
+@@ -8824,32 +8824,34 @@
+ shold, 0.005f, 4
++.0
+ f), internalBlur
+@@ -8851,36 +8851,52 @@
+ nalBlurWidth));%0a
+-%09%09%09%09
++                    
+ dx11bokehMateria
+@@ -8899,32 +8899,33 @@
+ erial.SetTexture
++ 
+ (%22_FgCocMask%22, n
+@@ -8939,35 +8939,129 @@
+  ? r
+-enderTexture4 : null);%0a%09%09%09%09
++tSuperLow2 : null);%0a%0a                    // collect bokeh candidates and replace with a darker pixel%0a                    
+ Grap
+@@ -9077,32 +9077,33 @@
+ andomWriteTarget
++ 
+ (1, cbPoints);%0a%09
+@@ -9093,36 +9093,52 @@
+  (1, cbPoints);%0a
+-%09%09%09%09
++                    
+ Graphics.Blit(so
+@@ -9126,32 +9126,33 @@
+    Graphics.Blit
++ 
+ (source, renderT
+@@ -9145,28 +9145,20 @@
+ ource, r
+-enderTexture
++tLow
+ , dx11bo
+@@ -9166,36 +9166,52 @@
+ ehMaterial, 0);%0a
+-%09%09%09%09
++                    
+ Graphics.ClearRa
+@@ -9230,41 +9230,139 @@
+ gets
++ 
+ ();%0a
+-%09%09%09%09if (nearBlur)%0a%09%09%09%09%7b%0a%09%09%09%09%09
++%0a                    // fg coc blur happens here (after collect!)%0a                    if (nearBlur) %7b%0a                        
+ dofH
+@@ -9373,32 +9373,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -9410,34 +9410,73 @@
+ tor4
++ 
+ (
++0.
+ 0f, 
+-num
++fgBlurDist 
+ , 
++0.
+ 0f, 
+-num));%0a%09%09%09%09%09
++fgBlurDist));%0a                        
+ Grap
+@@ -9488,66 +9488,80 @@
+ Blit
++ 
+ (r
+-enderTexture4, renderTexture3, dofHdrMaterial, 2);%0a%09%09%09%09%09
++tSuperLow2, rtSuperLow1, dofHdrMaterial, 2);%0a                        
+ dofH
+@@ -9572,32 +9572,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -9609,34 +9609,72 @@
+ tor4
+-(num, 
++ (fgBlurDist, 0.
+ 0f, 
++0.
+ 0f, 
+-num));%0a%09%09%09%09%09
++fgBlurDist));%0a                        
+ Grap
+@@ -9686,66 +9686,133 @@
+ Blit
++ 
+ (r
+-enderTexture3, renderTexture4, dofHdrMaterial, 2);%0a%09%09%09%09%09
++tSuperLow1, rtSuperLow2, dofHdrMaterial, 2);%0a%0a                        // merge fg coc with bg coc%0a                        
+ Grap
+@@ -9824,70 +9824,207 @@
+ Blit
++ 
+ (r
+-enderTexture4, renderTexture, dofHdrMaterial, 3);%0a%09%09%09%09%7d%0a%09%09%09%09
++tSuperLow2, rtLow, dofHdrMaterial, 3);%0a                    %7d%0a%0a                    // NEW: LAY OUT ALPHA on destination target so we get nicer outlines for the high rez version%0a                    
+ Grap
+@@ -10036,60 +10036,134 @@
+ Blit
++ 
+ (r
+-enderTexture, temporary, dofHdrMaterial, 20);%0a%09%09%09%09
++tLow, dest2, dofHdrMaterial, 20);%0a%0a                    // box blur (easier to merge with bokeh buffer)%0a                    
+ dofH
+@@ -10174,32 +10174,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -10199,32 +10199,33 @@
+ ts%22, new Vector4
++ 
+ (internalBlurWid
+@@ -10221,35 +10221,40 @@
+ rnalBlurWidth, 0
+-f
++.0f 
+ , 
++0.
+ 0f, internalBlur
+@@ -10254,36 +10254,52 @@
+ nalBlurWidth));%0a
+-%09%09%09%09
++                    
+ Graphics.Blit(re
+@@ -10295,30 +10295,23 @@
+ ics.Blit
++ 
+ (r
+-enderTexture
++tLow
+ , source
+@@ -10324,36 +10324,52 @@
+ drMaterial, 5);%0a
+-%09%09%09%09
++                    
+ dofHdrMaterial.S
+@@ -10368,32 +10368,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -10393,33 +10393,36 @@
+ ts%22, new Vector4
++ 
+ (
++0.
+ 0f, internalBlur
+@@ -10420,32 +10420,34 @@
+ ernalBlurWidth, 
++0.
+ 0f, internalBlur
+@@ -10447,36 +10447,52 @@
+ nalBlurWidth));%0a
+-%09%09%09%09
++                    
+ Graphics.Blit(so
+@@ -10480,32 +10480,33 @@
+    Graphics.Blit
++ 
+ (source, tempora
+@@ -10498,25 +10498,21 @@
+ source, 
+-temporary
++dest2
+ , dofHdr
+@@ -10530,53 +10530,129 @@
+ 1);%0a
+-%09%09%09%09Graphics.SetRenderTarget(temporary);%0a%09%09%09%09
++%0a                    // apply bokeh candidates%0a                    Graphics.SetRenderTarget (dest2);%0a                    
+ Comp
+@@ -10662,32 +10662,33 @@
+ Buffer.CopyCount
++ 
+ (cbPoints, cbDra
+@@ -10690,36 +10690,52 @@
+ cbDrawArgs, 0);%0a
+-%09%09%09%09
++                    
+ dx11bokehMateria
+@@ -10737,32 +10737,33 @@
+ terial.SetBuffer
++ 
+ (%22pointBuffer%22, 
+@@ -10765,36 +10765,52 @@
+ er%22, cbPoints);%0a
+-%09%09%09%09
++                    
+ dx11bokehMateria
+@@ -10813,32 +10813,33 @@
+ erial.SetTexture
++ 
+ (%22_MainTex%22, dx1
+@@ -10846,36 +10846,52 @@
+ 1BokehTexture);%0a
+-%09%09%09%09
++                    
+ dx11bokehMateria
+@@ -10893,32 +10893,33 @@
+ terial.SetVector
++ 
+ (%22_Screen%22, new 
+@@ -10931,58 +10931,44 @@
+ r3(1
+-f / (1f * (float)source.width), 1f / (1f * (float)
++.0f/(1.0f*source.width), 1.0f/(1.0f*
+ sour
+@@ -10992,36 +10992,52 @@
+ nalBlurWidth));%0a
+-%09%09%09%09
++                    
+ dx11bokehMateria
+@@ -11049,17 +11049,35 @@
+ Pass
++ 
+ (2);%0a
+-%09%09%09%09
++%0a                    
+ Grap
+@@ -11098,32 +11098,33 @@
+ duralIndirectNow
++ 
+ (MeshTopology.Po
+@@ -11139,23 +11139,43 @@
+ DrawArgs
+-);%0a%09%09%09%09
++, 0);%0a%0a                    
+ Graphics
+@@ -11179,26 +11179,23 @@
+ ics.Blit
+-(temporary
++ (dest2
+ , destin
+@@ -11201,21 +11201,98 @@
+ nation);
+-%0a%09%09%09%09
++%09// hackaround for DX11 high resolution flipfun (OPTIMIZEME)%0a%0a                    
+ RenderTe
+@@ -11318,24 +11318,36 @@
+ ary(
+-temporary);%0a%09%09%09%09
++dest2);%0a                    
+ Rend
+@@ -11378,111 +11378,152 @@
+ ry(r
+-enderTexture3);%0a%09%09%09%09RenderTexture.ReleaseTemporary(renderTexture4);%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09renderTexture
++tSuperLow1);%0a                    RenderTexture.ReleaseTemporary(rtSuperLow2);%0a                %7d%0a                else %7b%0a                    rtLow
+  = R
+@@ -11539,32 +11539,33 @@
+ ure.GetTemporary
++ 
+ (source.width %3e%3e
+@@ -11553,36 +11553,34 @@
+ ry (source.width
+- 
+ %3e%3e
+- 
+ 1, source.height
+@@ -11571,36 +11571,34 @@
+ 1, source.height
+- 
+ %3e%3e
+- 
+ 1, 0, source.for
+@@ -11603,33 +11603,41 @@
+ ormat);%0a
+-%09%09%09%09renderTexture
++                    rtLow
+ 2 = Rend
+@@ -11650,32 +11650,33 @@
+ ure.GetTemporary
++ 
+ (source.width %3e%3e
+@@ -11664,36 +11664,34 @@
+ ry (source.width
+- 
+ %3e%3e
+- 
+ 1, source.height
+@@ -11682,36 +11682,34 @@
+ 1, source.height
+- 
+ %3e%3e
+- 
+ 1, 0, source.for
+@@ -11718,15 +11718,39 @@
+ t);%0a
+-%09%09%09%09num
++%0a                    fgBlurDist
+  = i
+@@ -11791,20 +11791,98 @@
+ ap;%0a
+-%09%09%09%09
++%0a                    // capture COC & color in low resolution%0a                    
+ WriteCoc
+ (sou
+@@ -11869,32 +11869,33 @@
+         WriteCoc
++ 
+ (source, fgDilat
+@@ -11892,29 +11892,35 @@
+ e, f
+-gDilate: false);%0a%09%09%09%09
++alse);%0a                    
+ sour
+@@ -11956,20 +11956,36 @@
+ linear;%0a
+-%09%09%09%09
++                    
+ Graphics
+@@ -11981,32 +11981,33 @@
+    Graphics.Blit
++ 
+ (source, renderT
+@@ -11996,36 +11996,28 @@
+ t (source, r
+-enderTexture
++tLow
+ , dofHdrMate
+@@ -12030,26 +12030,105 @@
+ 6);%0a
+-%09%09%09%09renderTexture3
++%0a                    // blur a bit so we can do a frequency check%0a                    rtSuperLow1
+  = R
+@@ -12158,104 +12158,89 @@
+ ry(r
+-enderTexture
++tLow
+ .width
+- 
+ %3e%3e
+- 
+ 1, r
+-enderTexture
++tLow
+ .height
+- 
+ %3e%3e
+- 
+ 1, 0, r
+-enderTexture.format);%0a%09%09%09%09renderTexture4
++tLow.format);%0a                    rtSuperLow2
+  = R
+@@ -12270,133 +12270,111 @@
+ ry(r
+-enderTexture
++tLow
+ .width
+- 
+ %3e%3e
+- 
+ 1, r
+-enderTexture
++tLow
+ .height
+- 
+ %3e%3e
+- 
+ 1, 0, r
+-enderTexture.format);%0a%09%09%09%09Graphics.Blit(renderTexture, renderTexture3
++tLow.format);%0a%0a                    Graphics.Blit(rtLow, rtSuperLow1
+ , do
+@@ -12388,28 +12388,44 @@
+ erial, 15);%0a
+-%09%09%09%09
++                    
+ dofHdrMateri
+@@ -12428,32 +12428,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -12465,17 +12465,20 @@
+ tor4
+-(
++ (0.
+ 0f, 1.5f
+ , 0f
+@@ -12469,26 +12469,29 @@
+  (0.0f, 1.5f
++ 
+ , 
++0.
+ 0f, 1.5f));%0a
+@@ -12482,36 +12482,52 @@
+ , 0.0f, 1.5f));%0a
+-%09%09%09%09
++                    
+ Graphics.Blit(re
+@@ -12527,39 +12527,34 @@
+ Blit
++ 
+ (r
+-enderTexture3, renderTexture4
++tSuperLow1, rtSuperLow2
+ , do
+@@ -12572,20 +12572,36 @@
+ l, 19);%0a
+-%09%09%09%09
++                    
+ dofHdrMa
+@@ -12608,32 +12608,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -12645,19 +12645,24 @@
+ tor4
++ 
+ (1.5f, 
++0.
+ 0f, 
++0.
+ 0f, 
+@@ -12665,28 +12665,44 @@
+ 0f, 1.5f));%0a
+-%09%09%09%09
++                    
+ Graphics.Bli
+@@ -12706,146 +12706,216 @@
+ Blit
++ 
+ (r
+-enderTexture4, renderTexture3, dofHdrMaterial, 19);%0a%09%09%09%09RenderTexture renderTexture5 = null;%0a%09%09%09%09if (nearBlur)%0a%09%09%09%09%7b%0a%09%09%09%09%09renderTexture5
++tSuperLow2, rtSuperLow1, dofHdrMaterial, 19);%0a%0a                    RenderTexture rtLow3 = null;%0a%0a                    if (nearBlur) %7b%0a                        // capture fg coc%0a                        rtLow3
+  = R
+@@ -12931,32 +12931,33 @@
+ ure.GetTemporary
++ 
+ (source.width %3e%3e
+@@ -12945,36 +12945,34 @@
+ ry (source.width
+- 
+ %3e%3e
+- 
+ 1, source.height
+@@ -12963,36 +12963,34 @@
+ 1, source.height
+- 
+ %3e%3e
+- 
+ 1, 0, source.for
+@@ -12995,21 +12995,40 @@
+ ormat);%0a
+-%09%09%09%09%09
++                        
+ Graphics
+@@ -13024,32 +13024,33 @@
+    Graphics.Blit
++ 
+ (source, renderT
+@@ -13039,37 +13039,29 @@
+ t (source, r
+-enderTexture5
++tLow3
+ , dofHdrMate
+@@ -13070,26 +13070,59 @@
+ al, 4);%0a
+-%09%09%09%09%7d%0a%09%09%09%09
++                    %7d%0a%0a                    
+ dx11boke
+@@ -13141,16 +13141,17 @@
+ tTexture
++ 
+ (%22_Blurr
+@@ -13161,36 +13161,49 @@
+ olor%22, r
+-enderTexture3);%0a%09%09%09%09
++tSuperLow1);%0a                    
+ dx11boke
+@@ -13220,16 +13220,17 @@
+ SetFloat
++ 
+ (%22_Spawn
+@@ -13262,20 +13262,36 @@
+ istic);%0a
+-%09%09%09%09
++                    
+ dx11boke
+@@ -13309,16 +13309,17 @@
+ etVector
++ 
+ (%22_Bokeh
+@@ -13416,16 +13416,18 @@
+ .005f, 4
++.0
+ f), inte
+@@ -13435,36 +13435,52 @@
+ nalBlurWidth));%0a
+-%09%09%09%09
++                    
+ dx11bokehMateria
+@@ -13487,24 +13487,25 @@
+ l.SetTexture
++ 
+ (%22_FgCocMask
+@@ -13508,36 +13508,125 @@
+ Mask%22, r
+-enderTexture5);%0a%09%09%09%09
++tLow3);%0a%0a                    // collect bokeh candidates and replace with a darker pixel%0a                    
+ Graphics
+@@ -13646,16 +13646,17 @@
+ teTarget
++ 
+ (1, cbPo
+@@ -13662,20 +13662,36 @@
+ oints);%0a
+-%09%09%09%09
++                    
+ Graphics
+@@ -13699,37 +13699,22 @@
+ Blit
++ 
+ (r
+-enderTexture, renderTexture
++tLow, rtLow
+ 2, d
+@@ -13735,20 +13735,36 @@
+ al, 0);%0a
+-%09%09%09%09
++                    
+ Graphics
+@@ -13791,16 +13791,34 @@
+ gets
++ 
+ ();%0a
+-%09%09%09%09
++%0a                    
+ Rend
+@@ -13849,105 +13849,212 @@
+ ry(r
+-enderTexture3);%0a%09%09%09%09RenderTexture.ReleaseTemporary(renderTexture4);%0a%09%09%09%09if (nearBlur)%0a%09%09%09%09%7b%0a%09%09%09%09%09
++tSuperLow1);%0a                    RenderTexture.ReleaseTemporary(rtSuperLow2);%0a%0a                    // fg coc blur happens here (after collect!)%0a                    if (nearBlur) %7b%0a                        
+ dofH
+@@ -14065,32 +14065,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -14102,34 +14102,73 @@
+ tor4
+-(0f, num
++ (0.0f, fgBlurDist 
+ , 
++0.
+ 0f, 
+-num));%0a%09%09%09%09%09
++fgBlurDist));%0a                        
+ Grap
+@@ -14180,65 +14180,69 @@
+ Blit
++ 
+ (r
+-enderTexture5, renderTexture, dofHdrMaterial, 2);%0a%09%09%09%09%09
++tLow3, rtLow, dofHdrMaterial, 2);%0a                        
+ dofH
+@@ -14253,32 +14253,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -14290,34 +14290,72 @@
+ tor4
+-(num
++ (fgBlurDist
+ , 
++0.
+ 0f, 
++0.
+ 0f, 
+-num));%0a%09%09%09%09%09
++fgBlurDist));%0a                        
+ Grap
+@@ -14367,65 +14367,122 @@
+ Blit
++ 
+ (r
+-enderTexture, renderTexture5, dofHdrMaterial, 2);%0a%09%09%09%09%09
++tLow, rtLow3, dofHdrMaterial, 2);%0a%0a                        // merge fg coc with bg coc%0a                        
+ Grap
+@@ -14494,71 +14494,157 @@
+ Blit
++ 
+ (r
+-enderTexture5, renderTexture2, dofHdrMaterial, 3);%0a%09%09%09%09%7d%0a%09%09%09%09
++tLow3, rtLow2, dofHdrMaterial, 3);%0a                    %7d%0a%0a                    // box blur (easier to merge with bokeh buffer)%0a                    
+ dofH
+@@ -14655,32 +14655,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -14688,16 +14688,17 @@
+  Vector4
++ 
+ (interna
+@@ -14710,19 +14710,24 @@
+ Width, 0
+-f, 
++.0f , 0.
+ 0f, inte
+@@ -14735,36 +14735,52 @@
+ nalBlurWidth));%0a
+-%09%09%09%09
++                    
+ Graphics.Blit(re
+@@ -14780,38 +14780,23 @@
+ Blit
++ 
+ (r
+-enderTexture2, renderTexture
++tLow2, rtLow
+ , do
+@@ -14809,28 +14809,44 @@
+ terial, 5);%0a
+-%09%09%09%09
++                    
+ dofHdrMateri
+@@ -14849,32 +14849,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -14874,33 +14874,36 @@
+ ts%22, new Vector4
+-(
++ (0.
+ 0f, internalBlur
+@@ -14909,16 +14909,18 @@
+ rWidth, 
++0.
+ 0f, inte
+@@ -14928,36 +14928,52 @@
+ nalBlurWidth));%0a
+-%09%09%09%09
++                    
+ Graphics.Blit(re
+@@ -14973,64 +14973,112 @@
+ Blit
++ 
+ (r
+-enderTexture, renderTexture2, dofHdrMaterial, 5);%0a%09%09%09%09
++tLow, rtLow2, dofHdrMaterial, 5);%0a%0a                    // apply bokeh candidates%0a                    
+ Grap
+@@ -15101,30 +15101,39 @@
+ rget
++ 
+ (r
+-enderTexture2);%0a%09%09%09%09
++tLow2);%0a                    
+ Comp
+@@ -15151,16 +15151,17 @@
+ opyCount
++ 
+ (cbPoint
+@@ -15179,20 +15179,36 @@
+ gs, 0);%0a
+-%09%09%09%09
++                    
+ dx11boke
+@@ -15226,16 +15226,17 @@
+ etBuffer
++ 
+ (%22pointB
+@@ -15254,20 +15254,36 @@
+ oints);%0a
+-%09%09%09%09
++                    
+ dx11boke
+@@ -15302,16 +15302,17 @@
+ tTexture
++ 
+ (%22_MainT
+@@ -15335,20 +15335,36 @@
+ xture);%0a
+-%09%09%09%09
++                    
+ dx11boke
+@@ -15382,16 +15382,17 @@
+ etVector
++ 
+ (%22_Scree
+@@ -15412,79 +15412,49 @@
+ r3(1
+-f / (1f * (float)renderTexture2.width), 1f / (1f * (float)renderTexture
++.0f/(1.0f*rtLow2.width), 1.0f/(1.0f*rtLow
+ 2.he
+@@ -15481,20 +15481,36 @@
+ idth));%0a
+-%09%09%09%09
++                    
+ dx11boke
+@@ -15530,17 +15530,34 @@
+ Pass
++ 
+ (1);%0a
+-%09%09%09%09
++                    
+ Grap
+@@ -15586,16 +15586,17 @@
+ irectNow
++ 
+ (MeshTop
+@@ -15619,23 +15619,85 @@
+ DrawArgs
+-);%0a%09%09%09%09
++, 0);%0a%0a                    // upsample & combine%0a                    
+ dofHdrMa
+@@ -15705,32 +15705,33 @@
+ erial.SetTexture
++ 
+ (%22_LowRez%22, rend
+@@ -15727,36 +15727,44 @@
+ wRez%22, r
+-enderTexture2);%0a%09%09%09%09
++tLow2);%0a                    
+ dofHdrMa
+@@ -15772,32 +15772,33 @@
+ erial.SetTexture
++ 
+ (%22_FgOverlap%22, r
+@@ -15797,36 +15797,44 @@
+ rlap%22, r
+-enderTexture5);%0a%09%09%09%09
++tLow3);%0a                    
+ dofHdrMa
+@@ -15841,32 +15841,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, 1f 
+@@ -15867,69 +15867,49 @@
+ s%22, 
+-1f * (float)source.width / (1f * (float)renderTexture
++ ((1.0f*source.width)/(1.0f*rtLow
+ 2.width)
+  * i
+@@ -15904,16 +15904,17 @@
+ 2.width)
++)
+  * inter
+@@ -15942,20 +15942,36 @@
+ 4.one);%0a
+-%09%09%09%09
++                    
+ Graphics
+@@ -15967,32 +15967,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -16022,126 +16022,302 @@
+ 9);%0a
+-%09%09%09%09if ((bool)renderTexture5)%0a%09%09%09%09%7b%0a%09%09%09%09%09RenderTexture.ReleaseTemporary(renderTexture5);%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
++%0a                    if (rtLow3) RenderTexture.ReleaseTemporary(rtLow3);%0a                %7d%0a            %7d%0a            else%0a            %7b%0a%0a                //%0a                // 2.%0a                // poisson disc style blur in low resolution%0a                //%0a                //%0a%0a                
+ sour
+@@ -16353,19 +16353,33 @@
+ linear;%0a
+-%09%09%09
++%0a                
+ if (high
+@@ -16389,26 +16389,17 @@
+ olution)
+-%0a%09%09%09%7b%0a%09%09%09%09
++ 
+ internal
+@@ -16416,27 +16416,38 @@
+ *= 2
++.0
+ f;%0a
+-%09%09%09%7d%0a%09%09%09
++%0a                
+ WriteCoc
+ (sou
+@@ -16442,16 +16442,17 @@
+ WriteCoc
++ 
+ (source,
+@@ -16456,41 +16456,37 @@
+ ce, 
+-fgDilate: true);%0a%09%09%09renderTexture
++true);%0a%0a                rtLow
+  = R
+@@ -16502,32 +16502,33 @@
+ ure.GetTemporary
++ 
+ (source.width %3e%3e
+@@ -16574,24 +16574,29 @@
+ t);%0a
+-%09%09%09renderTexture
++                rtLow
+ 2 = 
+@@ -16613,32 +16613,33 @@
+ ure.GetTemporary
++ 
+ (source.width %3e%3e
+@@ -16685,23 +16685,40 @@
+ t);%0a
+-%09%09%09int p
++%0a                int blurP
+ ass = 
+-(
+ (blu
+@@ -16809,22 +16809,35 @@
+  17 : 11
+-)
+ ;%0a
+-%09%09%09
++%0a                
+ if (high
+@@ -16847,26 +16847,39 @@
+ olution)
+-%0a%09%09%09%7b%0a%09%09%09%09
++ %7b%0a                    
+ dofHdrMa
+@@ -16886,32 +16886,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -16911,33 +16911,36 @@
+ ts%22, new Vector4
++ 
+ (
++0.
+ 0f, internalBlur
+@@ -16967,36 +16967,52 @@
+ nalBlurWidth));%0a
+-%09%09%09%09
++                    
+ Graphics.Blit(so
+@@ -17000,32 +17000,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -17051,37 +17051,80 @@
+ al, 
+-p
++blurP
+ ass);%0a
+-%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
++                %7d%0a                else %7b%0a                    
+ dofH
+@@ -17135,32 +17135,33 @@
+ terial.SetVector
++ 
+ (%22_Offsets%22, new
+@@ -17168,17 +17168,20 @@
+  Vector4
++ 
+ (
++0.
+ 0f, inte
+@@ -17222,20 +17222,65 @@
+ idth));%0a
+-%09%09%09%09
++%0a                    // blur%0a                    
+ Graphics
+@@ -17276,32 +17276,33 @@
+    Graphics.Blit
++ 
+ (source, renderT
+@@ -17295,28 +17295,20 @@
+ ource, r
+-enderTexture
++tLow
+ , dofHdr
+@@ -17321,20 +17321,36 @@
+ al, 6);%0a
+-%09%09%09%09
++                    
+ Graphics
+@@ -17358,37 +17358,22 @@
+ Blit
++ 
+ (r
+-enderTexture, renderTexture
++tLow, rtLow
+ 2, d
+@@ -17391,19 +17391,117 @@
+ al, 
+-p
++blurP
+ ass);%0a
+-%09%09%09%09
++%0a                    // cheaper blur in high resolution, upsample and combine%0a                    
+ dofH
+@@ -17538,28 +17538,36 @@
+ %22, r
+-enderTexture2);%0a%09%09%09%09
++tLow2);%0a                    
+ dofH
+@@ -17609,20 +17609,36 @@
+  null);%0a
+-%09%09%09%09
++                    
+ dofHdrMa
+@@ -17653,16 +17653,17 @@
+ etVector
++ 
+ (%22_Offse
+@@ -17666,16 +17666,17 @@
+ ffsets%22,
++ 
+  Vector4
+@@ -17687,61 +17687,39 @@
+  * (
+-1f * (float)source.width / (1f * (float)renderTexture
++(1.0f*source.width)/(1.0f*rtLow
+ 2.wi
+@@ -17746,20 +17746,36 @@
+ Width);%0a
+-%09%09%09%09
++                    
+ Graphics
+@@ -17771,32 +17771,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -17818,17 +17818,16 @@
+ terial, 
+-(
+ blurSamp
+@@ -17857,17 +17857,16 @@
+ unt.High
+-)
+  ? 18 : 
+@@ -17874,137 +17874,127 @@
+ 2);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09if ((bool)renderTexture)%0a%09%09%7b%0a%09%09%09RenderTexture.ReleaseTemporary(renderTexture);%0a%09%09%7d%0a%09%09if ((bool)renderTexture2)%0a%09%09%7b%0a%09%09%09
++                %7d%0a            %7d%0a%0a            if (rtLow) RenderTexture.ReleaseTemporary(rtLow);%0a            if (rtLow2) 
+ Rend
+@@ -18025,29 +18025,30 @@
+ ry(r
+-enderTexture2);%0a%09%09%7d%0a%09
++tLow2);%0a        %7d%0a    
+ %7d%0a%7d%0a

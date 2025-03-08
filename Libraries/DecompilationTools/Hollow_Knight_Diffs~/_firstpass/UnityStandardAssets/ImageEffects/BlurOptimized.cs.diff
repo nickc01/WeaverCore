@@ -1,0 +1,364 @@
+@@ -1,8 +1,22 @@
++using System;%0a
+ using Un
+@@ -69,19 +69,23 @@
+ eEffects
+-;%0a%0a
++%0a%7b%0a    
+ %5bExecute
+@@ -96,16 +96,20 @@
+ itMode%5d%0a
++    
+ %5bRequire
+@@ -117,16 +117,17 @@
+ omponent
++ 
+ (typeof(
+@@ -136,16 +136,20 @@
+ mera))%5d%0a
++    
+ %5bAddComp
+@@ -157,16 +157,17 @@
+ nentMenu
++ 
+ (%22Image 
+@@ -199,16 +199,20 @@
+ zed)%22)%5d%0a
++    
+ public c
+@@ -252,132 +252,209 @@
+ ase%0a
+-%7b%0a%09public enum BlurType%0a%09%7b%0a%09%09StandardGauss,%0a%09%09SgxGauss%0a%09%7d%0a%0a%09%5bRange(0f, 2f)%5d%0a%09public int downsample = 1;%0a%0a%09
++    %7b%0a%0a        %5bRange(0, 2)%5d%0a        public int downsample = 1;%0a%0a        public enum BlurType %7b%0a            StandardGauss = 0,%0a            SgxGauss = 1,%0a        %7d%0a%0a        
+ %5bRange(
++0.
+ 0f, 10
++.0
+ f)%5d%0a
+-%09
++        
+ publ
+@@ -478,21 +478,30 @@
+  = 3
++.0
+ f;%0a%0a
+-%09
++        
+ %5bRange(1
+ f, 4
+@@ -500,17 +500,22 @@
+ ge(1
+-f
+ , 4
+-f
+ )%5d%0a
+-%09
++        
+ publ
+@@ -542,17 +542,24 @@
+ s = 2;%0a%0a
+-%09
++        
+ public B
+@@ -574,20 +574,51 @@
+ blurType
+-;%0a%0a%09
++= BlurType.StandardGauss;%0a%0a        
+ public S
+@@ -633,20 +633,33 @@
+ urShader
+-;%0a%0a%09
++ = null;%0a        
+ private 
+@@ -683,12 +683,27 @@
+ rial
+-;%0a%0a%09
++ = null;%0a%0a%0a        
+ publ
+@@ -737,50 +737,61 @@
+ rces
++ 
+ ()
+-%0a%09%7b%0a%09%09CheckSupport(needDepth: false);%0a%09%09
++ %7b%0a            CheckSupport (false);%0a%0a            
+ blur
+@@ -829,16 +829,17 @@
+ Material
++ 
+ (blurSha
+@@ -858,18 +858,29 @@
+ erial);%0a
+-%09%09
++%0a            
+ if (!isS
+@@ -889,23 +889,32 @@
+ ported)%0a
+-%09%09%7b%0a%09%09%09
++                
+ ReportAu
+@@ -926,18 +926,25 @@
+ able
++ 
+ ();%0a
+-%09%09%7d%0a%09%09
++            
+ retu
+@@ -959,21 +959,35 @@
+ ported;%0a
+-%09%7d%0a%0a%09
++        %7d%0a%0a        
+ public v
+@@ -1003,54 +1003,60 @@
+ able
++ 
+ ()
+-%0a%09%7b%0a%09%09if ((bool)blurMaterial)%0a%09%09%7b%0a%09%09%09Object.
++ %7b%0a            if (blurMaterial)%0a                
+ Dest
+@@ -1067,16 +1067,17 @@
+ mmediate
++ 
+ (blurMat
+@@ -1088,17 +1088,27 @@
+ l);%0a
+-%09%09%7d%0a%09%7d%0a%0a%09
++        %7d%0a%0a        
+ publ
+@@ -1128,16 +1128,17 @@
+ derImage
++ 
+ (RenderT
+@@ -1182,19 +1182,27 @@
+ ion)
+-%0a%09%7b%0a%09%09
++ %7b%0a            
+ if (
+-!
+ Chec
+@@ -1213,25 +1213,45 @@
+ ources()
+-)%0a%09%09%7b%0a%09%09%09
++ == false) %7b%0a                
+ Graphics
+@@ -1247,32 +1247,33 @@
+    Graphics.Blit
++ 
+ (source, destina
+@@ -1283,61 +1283,95 @@
+ n);%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09float num
++                return;%0a            %7d%0a%0a            float widthMod
+  = 1
++.0
+ f / (1
++.0
+ f * (
+-float)(1 
++1
+ %3c%3c
+- 
+ down
+@@ -1380,18 +1380,29 @@
+ mple));%0a
+-%09%09
++%0a            
+ blurMate
+@@ -1407,32 +1407,33 @@
+ terial.SetVector
++ 
+ (%22_Parameter%22, n
+@@ -1434,32 +1434,33 @@
+ er%22, new Vector4
++ 
+ (blurSize * num,
+@@ -1459,27 +1459,27 @@
+ e * 
+-num, (0f - 
++widthMod, -
+ blurSize
+ ) * 
+@@ -1478,29 +1478,47 @@
+ Size
+-)
+  * 
+-num
++widthMod
+ , 
++0.
+ 0f, 
++0.
+ 0f));%0a
+-%09%09
++            
+ sour
+@@ -1558,19 +1558,28 @@
+ ar;%0a
+-%09%09int width
++%0a            int rtW
+  = s
+@@ -1609,20 +1609,27 @@
+ le;%0a
+-%09%09int height
++            int rtH
+  = s
+@@ -1656,18 +1656,55 @@
+ sample;%0a
+-%09%09
++%0a            // downsample%0a            
+ RenderTe
+@@ -1710,28 +1710,17 @@
+ exture r
+-enderTexture
++t
+  = Rende
+@@ -1736,38 +1736,34 @@
+ GetTemporary
+-(width, height
++ (rtW, rtH
+ , 0, source.
+@@ -1771,31 +1771,31 @@
+ ormat);%0a
+-%09%09renderTexture
++%0a            rt
+ .filterM
+@@ -1821,18 +1821,28 @@
+ linear;%0a
+-%09%09
++            
+ Graphics
+@@ -1846,16 +1846,17 @@
+ ics.Blit
++ 
+ (source,
+@@ -1857,28 +1857,17 @@
+ ource, r
+-enderTexture
++t
+ , blurMa
+@@ -1882,23 +1882,35 @@
+ 0);%0a
+-%09%09int num2 = ((
++%0a            var passOffs= 
+ blur
+@@ -1918,30 +1918,59 @@
+ ype 
+-!= 0) ? 2 : 0);%0a%09%09
++== BlurType.StandardGauss ? 0 : 2;%0a%0a            
+ for
+- 
+ (int
+@@ -2005,47 +2005,75 @@
+ i++)
+-%0a%09%09%7b%0a%09%09%09float num3 = (float)i * 1f;%0a%09%09%09
++ %7b%0a                float iterationOffs = (i*1.0f);%0a                
+ blur
+@@ -2090,16 +2090,17 @@
+ etVector
++ 
+ (%22_Param
+@@ -2117,16 +2117,17 @@
+  Vector4
++ 
+ (blurSiz
+@@ -2134,34 +2134,43 @@
+ e * 
+-num + num3, (0f - 
++widthMod + iterationOffs, -
+ blurSize
+ ) * 
+@@ -2169,37 +2169,101 @@
+ Size
+-)
+  * 
+-num - num3
++widthMod - iterationOffs
+ , 
++0.
+ 0f, 
++0.
+ 0f));%0a
+-%09%09%09
++%0a                // vertical blur%0a                
+ Rend
+@@ -2272,25 +2272,19 @@
+ Texture 
+-temporary
++rt2
+  = Rende
+@@ -2300,38 +2300,34 @@
+ GetTemporary
+-(width, height
++ (rtW, rtH
+ , 0, source.
+@@ -2331,36 +2331,43 @@
+ ce.format);%0a
+-%09%09%09temporary
++                rt2
+ .filterMode 
+@@ -2381,35 +2381,48 @@
+ rMode.Bilinear;%0a
+-%09%09%09
++                
+ Graphics.Blit(re
+@@ -2422,63 +2422,64 @@
+ Blit
++ 
+ (r
+-enderTexture, temporary, blurMaterial, 1 + num2);%0a%09%09%09
++t, rt2, blurMaterial, 1 + passOffs);%0a                
+ Rend
+@@ -2508,67 +2508,96 @@
+ rary
++ 
+ (r
+-enderTexture);%0a%09%09%09renderTexture = temporary;%0a%09%09%09temporary
++t);%0a                rt = rt2;%0a%0a                // horizontal blur%0a                rt2
+  = R
+@@ -2625,22 +2625,18 @@
+ rary
+-(width, height
++ (rtW, rtH
+ , 0,
+@@ -2656,20 +2656,27 @@
+ t);%0a
+-%09%09%09temporary
++                rt2
+ .fil
+@@ -2706,19 +2706,32 @@
+ linear;%0a
+-%09%09%09
++                
+ Graphics
+@@ -2739,63 +2739,64 @@
+ Blit
++ 
+ (r
+-enderTexture, temporary, blurMaterial, 2 + num2);%0a%09%09%09
++t, rt2, blurMaterial, 2 + passOffs);%0a                
+ Rend
+@@ -2825,61 +2825,68 @@
+ rary
++ 
+ (r
+-enderTexture);%0a%09%09%09renderTexture = temporary;%0a%09%09%7d%0a%09%09
++t);%0a                rt = rt2;%0a            %7d%0a%0a            
+ Grap
+@@ -2894,30 +2894,20 @@
+ ics.Blit
++ 
+ (r
+-enderTexture
++t
+ , destin
+@@ -2918,10 +2918,21 @@
+ n);%0a
+-%09%09
++%0a            
+ Rend
+@@ -2961,26 +2961,29 @@
+ rary
++ 
+ (r
+-enderTexture);%0a%09
++t);%0a        %7d%0a    
+ %7d%0a%7d%0a

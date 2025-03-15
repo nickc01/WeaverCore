@@ -1,344 +1,401 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,210 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    public enum AAMode%0a    %7b%0a        FXAA2 = 0,%0a        FXAA3Console = 1,%0a        FXAA1PresetA = 2,%0a        FXAA1PresetB = 3,%0a        NFAA = 4,%0a        SSAA = 5,%0a        DLAA = 6,%0a    %7d%0a%0a    
+@@ -72,17 +72,207 @@
+ fects%0a%7b%0a
+-%09
++    public enum AAMode%0a    %7b%0a        FXAA2 = 0,%0a        FXAA3Console = 1,%0a        FXAA1PresetA = 2,%0a        FXAA1PresetB = 3,%0a        NFAA = 4,%0a        SSAA = 5,%0a        DLAA = 6,%0a    %7d%0a%0a    
  %5bExecute
-@@ -283,16 +283,20 @@
+@@ -283,17 +283,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bRequire
-@@ -311,16 +311,17 @@
- t(typeof
+@@ -308,16 +308,16 @@
+ nent
+- 
+ (typeof
 + 
- (Camera)
-@@ -323,16 +323,20 @@
+ (Cam
+@@ -323,17 +323,20 @@
  mera))%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -382,16 +382,20 @@
+@@ -344,17 +344,16 @@
+ nentMenu
+- 
+ (%22Image 
+@@ -382,17 +382,20 @@
  sing%22)%5d%0a
+-%09
 +    
  public c
-@@ -430,19 +430,30 @@
+@@ -430,21 +430,30 @@
  ctsBase%0a
--%7b%0a%09
+-%09%7b%0a%09%09
 +    %7b%0a        
  public A
-@@ -487,17 +487,24 @@
+@@ -487,18 +487,24 @@
  nsole;%0a%0a
--%09
+-%09%09
 +        
  public b
-@@ -527,20 +527,34 @@
+@@ -527,21 +527,34 @@
  dNormals
--;%0a%0a%09
+-;%0a%0a%09%09
 + = false;%0a        
  public f
-@@ -570,34 +570,40 @@
+@@ -570,35 +570,40 @@
  etScale = 0.2f;%0a
--%0a%09
+-%0a%09%09
 +        
  public float blu
-@@ -614,21 +614,30 @@
+@@ -614,22 +614,30 @@
  ius = 18
 +.0
  f;%0a%0a
--%09
+-%09%09
 +        
  public f
-@@ -667,18 +667,24 @@
+@@ -667,19 +667,24 @@
   0.05f;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -710,18 +710,24 @@
+@@ -710,19 +710,24 @@
  = 0.2f;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -752,13 +752,22 @@
+@@ -752,14 +752,22 @@
   = 4
 +.0
  f;%0a%0a
--%09
+-%09%09
 +        
  publ
-@@ -783,20 +783,35 @@
+@@ -783,21 +783,35 @@
  laaSharp
--;%0a%0a%09
+-;%0a%0a%09%09
 + = false;%0a%0a        
  public S
-@@ -820,34 +820,40 @@
+@@ -820,35 +820,40 @@
  der ssaaShader;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -855,26 +855,32 @@
+@@ -855,27 +855,32 @@
  erial ssaa;%0a
--%0a%09
+-%0a%09%09
 +        
  public Shade
-@@ -885,34 +885,40 @@
+@@ -885,35 +885,40 @@
  der dlaaShader;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -920,26 +920,32 @@
+@@ -920,27 +920,32 @@
  erial dlaa;%0a
--%0a%09
+-%0a%09%09
 +        
  public Shade
-@@ -958,18 +958,24 @@
+@@ -958,19 +958,24 @@
  Shader;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -989,18 +989,24 @@
+@@ -989,19 +989,24 @@
  l nfaa;%0a
--%0a%09
+-%0a%09%09
 +        
  public S
-@@ -1030,18 +1030,24 @@
+@@ -1030,19 +1030,24 @@
  reset2;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -1076,18 +1076,24 @@
+@@ -1076,19 +1076,24 @@
  reset2;%0a
--%0a%09
+-%0a%09%09
 +        
  public S
-@@ -1117,18 +1117,24 @@
+@@ -1117,19 +1117,24 @@
  reset3;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -1163,18 +1163,24 @@
+@@ -1163,19 +1163,24 @@
  reset3;%0a
--%0a%09
+-%0a%09%09
 +        
  public S
-@@ -1195,26 +1195,32 @@
+@@ -1195,27 +1195,32 @@
  aderFXAAII;%0a
--%0a%09
+-%0a%09%09
 +        
  private Mate
-@@ -1236,26 +1236,32 @@
+@@ -1236,27 +1236,32 @@
  rialFXAAII;%0a
--%0a%09
+-%0a%09%09
 +        
  public Shade
-@@ -1277,18 +1277,24 @@
+@@ -1277,19 +1277,24 @@
  XAAIII;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -1320,17 +1320,25 @@
+@@ -1320,18 +1320,25 @@
  AAIII;%0a%0a
--%09
+-%09%09
 +%0a        
  public M
-@@ -1369,89 +1369,175 @@
- l()%0a
--%09%7b%0a%09%09Material material = null;%0a%09%09return mode switch%0a%09%09%7b%0a%09%09%09AAMode.FXAA3Consol
-+        %7b%0a            Material returnValue = null;%0a%0a            switch (mode)%0a            %7b%0a                case AAMode.FXAA3Console:%0a                    returnValu
- e =
--%3e
-  mat
-@@ -1552,29 +1552,105 @@
- AIII
--, %0a%09%09%09AAMode.FXAA2
-+;%0a                    break;%0a                case AAMode.FXAA2:%0a                    returnValue
-  =
--%3e
-  mat
-@@ -1664,36 +1664,112 @@
- AAII
--, %0a%09%09%09AAMode.FXAA1PresetA
-+;%0a                    break;%0a                case AAMode.FXAA1PresetA:%0a                    returnValue
-  =
--%3e
-  mat
-@@ -1788,36 +1788,112 @@
- set2
--, %0a%09%09%09AAMode.FXAA1PresetB
-+;%0a                    break;%0a                case AAMode.FXAA1PresetB:%0a                    returnValue
-  =
--%3e
-  mat
-@@ -1912,188 +1912,593 @@
- set3
--, %0a%09%09%09AAMode.NFAA
-+;%0a                    break;%0a                case AAMode.NFAA:%0a                    returnValue
-  =
--%3e
-  nfaa
--, %0a%09%09%09AAMode.SSAA
-+;%0a                    break;%0a                case AAMode.SSAA:%0a                    returnValue
-  =
--%3e
-  ssaa
--, %0a%09%09%09AAMode.DLAA
-+;%0a                    break;%0a                case AAMode.DLAA:%0a                    returnValue
-  =
--%3e
-  dlaa
--, %0a%09%09%09_
-+;%0a                    break;%0a                default:%0a                    returnValue
-  =
--%3e
-  null
--, %0a%09%09%7d;%0a%09%7d%0a%0a%09public override bool CheckResources()%0a%09%7b%0a%09%09CheckSupport(needDepth: false);%0a%09%09
-+;%0a                    break;%0a            %7d%0a%0a            return returnValue;%0a        %7d%0a%0a%0a        public override bool CheckResources()%0a        %7b%0a            CheckSupport(false);%0a%0a            
+@@ -1366,447 +1366,1045 @@
+ rial
+- 
+ ()%0a
+-%09%09%7b%0a%09%09%09Material material = null;%0a%09%09%09switch (mode) %7b%0a%09%09%09case AAMode.FXAA3Console:%0a%09%09%09%09return materialFXAAIII;%0a%09%09%09case AAMode.FXAA2:%0a%09%09%09%09return materialFXAAII;%0a%09%09%09case AAMode.FXAA1PresetA:%0a%09%09%09%09return materialFXAAPreset2;%0a%09%09%09case AAMode.FXAA1PresetB:%0a%09%09%09%09return materialFXAAPreset3;%0a%09%09%09case AAMode.NFAA:%0a%09%09%09%09return nfaa;%0a%09%09%09case AAMode.SSAA:%0a%09%09%09%09return ssaa;%0a%09%09%09case AAMode.DLAA:%0a%09%09%09%09return dlaa;%0a%09%09%09default:%0a%09%09%09%09return null;%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++        %7b%0a            Material returnValue = null;%0a%0a            switch (mode)%0a            %7b%0a                case AAMode.FXAA3Console:%0a                    returnValue = materialFXAAIII;%0a                    break;%0a                case AAMode.FXAA2:%0a                    returnValue = materialFXAAII;%0a                    break;%0a                case AAMode.FXAA1PresetA:%0a                    returnValue = materialFXAAPreset2;%0a                    break;%0a                case AAMode.FXAA1PresetB:%0a                    returnValue = materialFXAAPreset3;%0a                    break;%0a                case AAMode.NFAA:%0a                    returnValue = nfaa;%0a                    break;%0a                case AAMode.SSAA:%0a                    returnValue = ssaa;%0a                    break;%0a                case AAMode.DLAA:%0a                    returnValue = dlaa;%0a                    break;%0a                default:%0a                    returnValue = null;%0a                    break;%0a            %7d%0a%0a            return returnValue;%0a        %7d%0a%0a%0a        
+ publ
+@@ -2438,55 +2438,67 @@
+ rces
+- 
+ ()%0a
+-%09%09%7b%0a%09%09%09CheckSupport (needDepth: false);%0a%09%09%09
++        %7b%0a            CheckSupport(false);%0a%0a            
  mate
-@@ -2571,18 +2571,28 @@
+@@ -2521,33 +2521,32 @@
+ = CreateMaterial
+- 
+ (shaderFXAAPrese
+@@ -2571,19 +2571,28 @@
  eset2);%0a
--%09%09
+-%09%09%09
 +            
  material
-@@ -2661,18 +2661,28 @@
+@@ -2611,33 +2611,32 @@
+ = CreateMaterial
+- 
+ (shaderFXAAPrese
+@@ -2661,19 +2661,28 @@
  eset3);%0a
--%09%09
+-%09%09%09
 +            
  material
-@@ -2736,18 +2736,28 @@
+@@ -2696,33 +2696,32 @@
+ = CreateMaterial
+- 
+ (shaderFXAAII, m
+@@ -2736,19 +2736,28 @@
  XAAII);%0a
--%09%09
+-%09%09%09
 +            
  material
-@@ -2814,18 +2814,28 @@
+@@ -2780,17 +2780,16 @@
+ Material
+- 
+ (shaderF
+@@ -2814,19 +2814,28 @@
  AAIII);%0a
--%09%09
+-%09%09%09
 +            
  nfaa = C
-@@ -2867,18 +2867,28 @@
+@@ -2847,17 +2847,16 @@
+ Material
+- 
+ (nfaaSha
+@@ -2867,19 +2867,28 @@
   nfaa);%0a
--%09%09
+-%09%09%09
 +            
  ssaa = C
-@@ -2920,18 +2920,28 @@
+@@ -2900,17 +2900,16 @@
+ Material
+- 
+ (ssaaSha
+@@ -2920,19 +2920,28 @@
   ssaa);%0a
--%09%09
+-%09%09%09
 +            
  dlaa = C
-@@ -2973,18 +2973,29 @@
+@@ -2953,17 +2953,16 @@
+ Material
+- 
+ (dlaaSha
+@@ -2973,19 +2973,29 @@
   dlaa);%0a
--%09%09
+-%09%09%09
 +%0a            
  if (!ssa
-@@ -3019,86 +3019,158 @@
- ed)%0a
--%09%09%7b%0a%09%09%09NotSupported();%0a%09%09%09ReportAutoDisable();%0a%09%09%7d%0a%09%09return isSupported;%0a%09%7d%0a%0a%09
-+            %7b%0a                NotSupported();%0a                ReportAutoDisable();%0a            %7d%0a%0a            return isSupported;%0a        %7d%0a%0a%0a        
+@@ -3014,23 +3014,47 @@
+ pported)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ NotSuppo
+@@ -3061,17 +3061,28 @@
+ rted
+- 
+ ();%0a
+-%09%09%09%09
++                
+ Repo
+@@ -3098,48 +3098,79 @@
+ able
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%09return isSupported;%0a%09%09%7d%0a%0a%09%09
++            %7d%0a%0a            return isSupported;%0a        %7d%0a%0a%0a        
  publ
-@@ -3244,18 +3244,34 @@
+@@ -3190,17 +3190,16 @@
+ derImage
+- 
+ (RenderT
+@@ -3244,20 +3244,34 @@
  on)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  if (
 -!
  Chec
-@@ -3286,63 +3286,246 @@
- es()
--)%0a%09%09%7b%0a%09%09%09Graphics.Blit(source, destination);%0a%09%09%7d%0a%09%09else
-+ == false)%0a            %7b%0a                Graphics.Blit(source, destination);%0a                return;%0a            %7d%0a%0a%09%09%09// ----------------------------------------------------------------%0a            // FXAA antialiasing modes%0a%0a           
-  if 
+@@ -3284,19 +3284,51 @@
+ rces
+- 
+ ()
+-) %7b%0a%09%09%09%09
++ == false)%0a            %7b%0a                
+ Grap
+@@ -3328,33 +3328,32 @@
+    Graphics.Blit
+- 
+ (source, destina
+@@ -3359,25 +3359,177 @@
+ ation);%0a
+-%09%09%09%7d else
++                return;%0a            %7d%0a%0a%09%09%09// ----------------------------------------------------------------%0a            // FXAA antialiasing modes%0a%0a           
+  if (mod
 @@ -3552,24 +3552,25 @@
  3Console && 
 +(
  materialFXAA
-@@ -3581,24 +3581,48 @@
+@@ -3581,23 +3581,48 @@
  != null)
--%0a%09%09%7b%0a%09%09%09
+- %7b%0a%09%09%09%09
 +)%0a            %7b%0a                
  material
-@@ -3678,19 +3678,32 @@
+@@ -3629,33 +3629,32 @@
+ FXAAIII.SetFloat
+- 
+ (%22_EdgeThreshold
+@@ -3678,20 +3678,32 @@
  ldMin);%0a
--%09%09%09
+-%09%09%09%09
 +                
  material
-@@ -3753,19 +3753,32 @@
+@@ -3714,25 +3714,24 @@
+ III.SetFloat
+- 
+ (%22_EdgeThres
+@@ -3753,20 +3753,32 @@
  shold);%0a
--%09%09%09
+-%09%09%09%09
 +                
  material
-@@ -3824,27 +3824,41 @@
+@@ -3793,17 +3793,16 @@
+ SetFloat
+- 
+ (%22_EdgeS
+@@ -3824,28 +3824,41 @@
  Sharpness);%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  Graphics.Bli
-@@ -3894,30 +3894,50 @@
+@@ -3850,33 +3850,32 @@
+    Graphics.Blit
+- 
+ (source, destina
+@@ -3894,28 +3894,49 @@
  alFXAAIII);%0a
--%09%09%7d%0a%09%09
-+            %7d%0a            
- else if (mod
+-%09%09%09%7d
++            %7d%0a           
+  else if (mo
 @@ -3960,24 +3960,25 @@
  1PresetB && 
 +(
  materialFXAA
-@@ -3989,32 +3989,56 @@
- et3 != null)
--%0a%09%09%7b%0a%09%09%09
+@@ -3985,39 +3985,64 @@
+ Preset3 != null)
+- %7b%0a%09%09%09%09
 +)%0a            %7b%0a                
- Graphics.Bli
-@@ -4082,22 +4082,42 @@
+ Graphics.Blit (s
+@@ -4030,33 +4030,32 @@
+    Graphics.Blit
+- 
+ (source, destina
+@@ -4082,20 +4082,41 @@
  eset3);%0a
--%09%09%7d%0a%09%09
-+            %7d%0a            
- else if 
-@@ -4169,39 +4169,62 @@
- reset2 != null)%0a
--%09%09%7b%0a%09%09%09
-+            %7b%0a                
+-%09%09%09%7d
++            %7d%0a           
+  else if
+@@ -4168,39 +4168,63 @@
+ Preset2 != null)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  source.anisoLeve
-@@ -4230,19 +4230,32 @@
+@@ -4230,20 +4230,32 @@
  el = 4;%0a
--%09%09%09
+-%09%09%09%09
 +                
  Graphics
-@@ -4303,19 +4303,32 @@
+@@ -4251,33 +4251,32 @@
+    Graphics.Blit
+- 
+ (source, destina
+@@ -4303,20 +4303,32 @@
  eset2);%0a
--%09%09%09
+-%09%09%09%09
 +                
  source.a
-@@ -4342,22 +4342,42 @@
+@@ -4342,20 +4342,41 @@
  el = 0;%0a
--%09%09%7d%0a%09%09
-+            %7d%0a            
- else if 
-@@ -4417,39 +4417,62 @@
- FXAAII != null)%0a
--%09%09%7b%0a%09%09%09
-+            %7b%0a                
- Graphics.Blit(so
-@@ -4507,22 +4507,42 @@
+-%09%09%09%7d
++            %7d%0a           
+  else if
+@@ -4416,39 +4416,63 @@
+ lFXAAII != null)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ Graphics.Blit (s
+@@ -4460,33 +4460,32 @@
+    Graphics.Blit
+- 
+ (source, destina
+@@ -4507,20 +4507,41 @@
  XAAII);%0a
--%09%09%7d%0a%09%09
-+            %7d%0a            
- else if 
-@@ -4579,23 +4579,155 @@
- = null)%0a
--%09%09
-+            
- %7b%0a%09%09%09
-+%09// ----------------------------------------------------------------%0a                // SSAA antialiasing%0a                
+-%09%09%09%7d
++            %7d%0a           
+  else if
+@@ -4578,23 +4578,156 @@
+ != null)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a%09%09%09%09// ----------------------------------------------------------------%0a                // SSAA antialiasing%0a                
  Graphics
-@@ -4760,22 +4760,42 @@
+@@ -4723,33 +4723,32 @@
+    Graphics.Blit
+- 
+ (source, destina
+@@ -4760,20 +4760,41 @@
   ssaa);%0a
--%09%09%7d%0a%09%09
-+            %7d%0a            
- else if 
-@@ -4824,39 +4824,160 @@
- & dlaa != null)%0a
--%09%09%7b%0a%09%09%09
-+            %7b%0a%09%09%09%09// ----------------------------------------------------------------%0a%09%09%09%09// DLAA antialiasing%0a%0a                
+-%09%09%09%7d
++            %7d%0a           
+  else if
+@@ -4823,39 +4823,161 @@
+ && dlaa != null)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a%09%09%09%09// ----------------------------------------------------------------%0a%09%09%09%09// DLAA antialiasing%0a%0a                
  source.anisoLeve
-@@ -4983,19 +4983,32 @@
+@@ -4983,20 +4983,32 @@
  el = 0;%0a
--%09%09%09
+-%09%09%09%09
 +                
  RenderTe
 @@ -5013,25 +5013,23 @@
@@ -346,69 +403,93 @@
 -temporary
 +interim
   = Rende
-@@ -5080,19 +5080,32 @@
+@@ -5049,17 +5049,16 @@
+ emporary
+- 
+ (source.
+@@ -5080,20 +5080,32 @@
  eight);%0a
--%09%09%09
+-%09%09%09%09
 +                
  Graphics
+@@ -5101,33 +5101,32 @@
+    Graphics.Blit
+- 
+ (source, tempora
 @@ -5118,25 +5118,23 @@
  source, 
 -temporary
 +interim
  , dlaa, 
-@@ -5137,19 +5137,32 @@
+@@ -5137,20 +5137,32 @@
  aa, 0);%0a
--%09%09%09
+-%09%09%09%09
 +                
  Graphics
-@@ -5167,25 +5167,23 @@
- cs.Blit(
--temporary
-+interim
+@@ -5166,27 +5166,24 @@
+ ics.Blit
+- (temporary
++(interim
  , destin
 @@ -5195,18 +5195,16 @@
  , dlaa, 
 -(!
  dlaaShar
-@@ -5208,23 +5208,35 @@
+@@ -5208,24 +5208,35 @@
  harp
 -)
   ? 
--1 : 2);%0a%09%09%09
+-1 : 2);%0a%09%09%09%09
 +2 : 1);%0a                
  Rend
-@@ -5266,26 +5266,44 @@
- ary(
--temporary);%0a%09%09%7d%0a%09%09
-+interim);%0a            %7d%0a            
- else
-@@ -5344,23 +5344,168 @@
- = null)%0a
--%09%09%7b%0a%09%09%09
-+            %7b%0a                // ----------------------------------------------------------------%0a                // nfaa antialiasing%0a%0a                
+@@ -5265,26 +5265,44 @@
+ rary
+- (temporary);%0a%09%09%09%7d
++(interim);%0a            %7d%0a           
+  els
+@@ -5343,23 +5343,169 @@
+ != null)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                // ----------------------------------------------------------------%0a                // nfaa antialiasing%0a%0a                
  source.a
-@@ -5519,19 +5519,33 @@
+@@ -5519,20 +5519,33 @@
  el = 0;%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  nfaa.Set
-@@ -5580,19 +5580,32 @@
+@@ -5549,17 +5549,16 @@
+ SetFloat
+- 
+ (%22_Offse
+@@ -5580,20 +5580,32 @@
  Scale);%0a
--%09%09%09
+-%09%09%09%09
 +                
  nfaa.Set
-@@ -5638,19 +5638,33 @@
+@@ -5609,17 +5609,16 @@
+ SetFloat
+- 
+ (%22_BlurR
+@@ -5638,20 +5638,33 @@
  adius);%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  Graphics
-@@ -5731,26 +5731,143 @@
+@@ -5660,33 +5660,32 @@
+    Graphics.Blit
+- 
+ (source, destina
+@@ -5731,24 +5731,143 @@
  0);%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%09%7d else %7b%0a%09%09%09%09
 +            %7d%0a            else%0a            %7b%0a                // none of the AA is supported, fallback to a simple blit%0a                
  Grap
-@@ -5902,13 +5902,36 @@
+@@ -5875,17 +5875,16 @@
+ ics.Blit
+- 
+ (source,
+@@ -5902,18 +5902,36 @@
  n);%0a
--%09%09%7d%0a%09
+-%09%09%09%7d%0a%09%09%7d%0a%09
 +            %7d%0a        %7d%0a    
  %7d%0a%7d%0a

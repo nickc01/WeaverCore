@@ -1,46 +1,111 @@
+@@ -30,17 +30,16 @@
+ omponent
+- 
+ (typeof(
 @@ -162,16 +162,68 @@
  Plane;%0a%0a
 +%09%5bSerializeField%5d%0a%09private int renderTextureWidth;%0a%0a
  %09%5bSerial
-@@ -707,182 +707,131 @@
+@@ -707,184 +707,131 @@
  %0a%0a%09p
--rivate static readonly int _vibrancyProp = Shader.PropertyToID(%22_Vibrancy%22);%0a%0a%09private static readonly int _blurPlaneVibranceProp = Shader.PropertyToID(%22_BlurPlaneVibrance%22);
+-rivate static readonly int _vibrancyProp = Shader.PropertyToID (%22_Vibrancy%22);%0a%0a%09private static readonly int _blurPlaneVibranceProp = Shader.PropertyToID (%22_BlurPlaneVibrance%22);
 +ublic int RenderTextureWidth%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09return renderTextureWidth;%0a%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09renderTextureWidth = value;%0a%09%09%7d%0a%09%7d
  %0a%0a%09p
+@@ -859,25 +859,28 @@
+ reHeight
+- 
++%0a%09
+ %7b%0a%09%09get
+- 
++%0a%09%09
+ %7b%0a%09%09%09ret
+@@ -909,25 +909,27 @@
+ t;%0a%09%09%7d%0a%09%09set
+- 
++%0a%09%09
+ %7b%0a%09%09%09renderT
+@@ -988,17 +988,20 @@
+ ount
+- 
++%0a%09
+ %7b%0a%09%09get
+- 
++%0a%09%09
+ %7b%0a%09%09
+@@ -1033,17 +1033,19 @@
+ %09%7d%0a%09%09set
+- 
++%0a%09%09
+ %7b%0a%09%09%09pas
+@@ -1086,25 +1086,28 @@
+ lur != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09lightB
+@@ -1177,17 +1177,16 @@
+ id Awake
+- 
+ ()%0a%09%7b%0a%09%09
 @@ -1199,29 +1199,16 @@
  meras = 
 -GetComponent%3c
  GameCame
-@@ -1210,19 +1210,25 @@
+@@ -1210,20 +1210,25 @@
  eCameras
--%3e()
+-%3e ()
 +.instance
  ;%0a%09%09scen
-@@ -1253,38 +1253,18 @@
+@@ -1253,39 +1253,18 @@
  ras.
 -tk2dCam.GetComponent%3c
 +main
  Camera
--%3e()
+-%3e ()
  ;%0a%09%09
+@@ -1307,25 +1307,24 @@
+ oid OnEnable
+- 
+ ()%0a%09%7b%0a%09%09dist
+@@ -1407,17 +1407,16 @@
+ meObject
+- 
+ (%22BlurCa
+@@ -1455,17 +1455,16 @@
+ etParent
+- 
+ (sceneCa
+@@ -1532,17 +1532,16 @@
+ %3cCamera%3e
+- 
+ ();%0a%09%09ba
+@@ -1563,17 +1563,16 @@
+ CopyFrom
+- 
+ (sceneCa
 @@ -1576,24 +1576,73 @@
  eCamera);%0a%09%09
 +backgroundCamera.rect = new Rect(0, 0, 1, 1); %0a%09%09
  backgroundCa
-@@ -1777,60 +1777,8 @@
+@@ -1777,61 +1777,8 @@
  ;%0a%09%09
--backgroundCamera.rect = new Rect(0f, 0f, 1f, 1f);%0a%09%09
+-backgroundCamera.rect = new Rect (0f, 0f, 1f, 1f);%0a%09%09
  ligh
-@@ -1902,524 +1902,22 @@
- ;%0a%09%09
--blitMaterialInstance = new Material(blitMaterial);%0a%09%09blitMaterialInstance.EnableKeyword(%22BLUR_PLANE%22);%0a%09%09OnCameraAspectChanged(ForceCameraAspect.CurrentViewportAspect);%0a%09%09ForceCameraAspect.ViewportAspectChanged += OnCameraAspectChanged;%0a%09%09OnBlurPlanesChanged();%0a%09%09BlurPlane.BlurPlanesChanged += OnBlurPlanesChanged;%0a%09%7d%0a%0a%09private void OnCameraAspectChanged(float aspect)%0a%09%7b%0a%09%09if (aspect %3c= Mathf.Epsilon)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09int num = Mathf.RoundToInt((float)renderTextureHeight * aspect);%0a%09%09if (num %3e 0)%0a%09%09%7b%0a%09%09%09if (
+@@ -1819,17 +1819,16 @@
+ ghtBlur%3e
+- 
+ ();%0a%09%09li
+@@ -1896,533 +1896,28 @@
+ anes
+- 
+ ();%0a%09%09
+-blitMaterialInstance = new Material (blitMaterial);%0a%09%09blitMaterialInstance.EnableKeyword (%22BLUR_PLANE%22);%0a%09%09OnCameraAspectChanged (ForceCameraAspect.CurrentViewportAspect);%0a%09%09ForceCameraAspect.ViewportAspectChanged += OnCameraAspectChanged;%0a%09%09OnBlurPlanesChanged ();%0a%09%09BlurPlane.BlurPlanesChanged += OnBlurPlanesChanged;%0a%09%7d%0a%0a%09private void OnCameraAspectChanged (float aspect)%0a%09%7b%0a%09%09if (aspect %3c= Mathf.Epsilon) %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09int num = Mathf.RoundToInt ((float)renderTextureHeight * aspect);%0a%09%09if (num %3e 0) %7b%0a%09%09%09if (
 +RenderTexture 
  rend
-@@ -1930,42 +1930,15 @@
+@@ -1930,40 +1930,15 @@
  ure 
 -!
  = n
--ull)%0a%09%09%09%7b%0a%09%09%09%09Object.Destroy(r
+-ull) %7b%0a%09%09%09%09Object.Destroy (r
 +ew R
  ende
 @@ -1949,19 +1949,9 @@
@@ -48,9 +113,9 @@
 -);%0a%09%09%09%7d%0a%09%09%09
 +(
  rend
-@@ -1963,32 +1963,13 @@
+@@ -1963,33 +1963,13 @@
  ture
-- = new RenderTexture(num
+- = new RenderTexture (num
 +Width
  , re
 @@ -2019,25 +2019,24 @@
@@ -61,10 +126,15 @@
  rTexture;%0a%09%09
 +blitMaterialInstance = new Material(blitMaterial);%0a%09
  %09blitMateria
-@@ -2182,87 +2182,61 @@
+@@ -2182,88 +2182,61 @@
  ;%0a%09%09
--%7d%0a%09%7d%0a%0a%09protected void OnDisable()%0a%09%7b%0a%09%09ForceCameraAspect.ViewportAspect
-+OnBlurPlanesChanged();%0a%09%09BlurPlane.BlurPlanes
+-%7d%0a%09%7d%0a%0a%09protected void OnDisable 
++OnBlurPlanesChanged
+ ()
++;
+ %0a%09
+-%7b%0a%09%09ForceCameraAspect.ViewportAspect
++%09BlurPlane.BlurPlanes
  Changed 
  -= O
 @@ -2235,33 +2235,66 @@
@@ -75,11 +145,94 @@
 -CameraAspectChanged;
 +BlurPlanesChanged;%0a%09%7d%0a%0a%09protected void OnDisable()%0a%09%7b
  %0a%09%09B
-@@ -2799,22 +2799,16 @@
+@@ -2388,33 +2388,35 @@
+ PlaneCount; i++)
+- 
++%0a%09%09
+ %7b%0a%09%09%09BlurPlane b
+@@ -2440,33 +2440,32 @@
+ ane.GetBlurPlane
+- 
+ (i);%0a%09%09%09blurPlan
+@@ -2482,17 +2482,16 @@
+ Material
+- 
+ (null);%0a
+@@ -2513,33 +2513,32 @@
+ tPlaneVisibility
+- 
+ (isVisible: true
+@@ -2560,17 +2560,16 @@
  .Destroy
--Object
+- 
+ (blitMat
+@@ -2692,17 +2692,16 @@
+ .Destroy
+- 
+ (renderT
+@@ -2799,23 +2799,16 @@
+ .Destroy
+-Object 
  (backgro
-@@ -3118,144 +3118,8 @@
+@@ -2894,17 +2894,16 @@
+ sChanged
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -2952,17 +2952,19 @@
+ nt; i++)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Blu
+@@ -3004,17 +3004,16 @@
+ lurPlane
+- 
+ (i);%0a%09%09%09
+@@ -3040,17 +3040,16 @@
+ sibility
+- 
+ (isVisib
+@@ -3088,17 +3088,16 @@
+ Material
+- 
+ (blitMat
+@@ -3118,146 +3118,8 @@
  ;%0a%09%09
--%09float @float = blurPlane.OriginalMaterial.GetFloat(_vibrancyProp);%0a%09%09%09blitMaterialInstance.SetFloat(_blurPlaneVibranceProp, @float);%0a%09%09
+-%09float @float = blurPlane.OriginalMaterial.GetFloat (_vibrancyProp);%0a%09%09%09blitMaterialInstance.SetFloat (_blurPlaneVibranceProp, @float);%0a%09%09
  %7d%0a%09%09
+@@ -3132,33 +3132,32 @@
+ CameraClipPlanes
+- 
+ ();%0a%09%7d%0a%0a%09protect
+@@ -3174,17 +3174,16 @@
+ teUpdate
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -3204,17 +3204,16 @@
+ ipPlanes
+- 
+ ();%0a%09%7d%0a%0a
+@@ -3248,17 +3248,16 @@
+ ipPlanes
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -3344,17 +3344,19 @@
+ != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09sce
+@@ -3431,33 +3431,32 @@
+ orm.GetPositionZ
+- 
+ () + clipEpsilon
+@@ -3558,17 +3558,16 @@
+ ositionZ
+- 
+ () + cli
+@@ -3583,14 +3583,18 @@
+ %0a%09%09%7d
+- 
++%0a%09%09
+ else
+- 
++%0a%09%09
+ %7b%0a%09%09

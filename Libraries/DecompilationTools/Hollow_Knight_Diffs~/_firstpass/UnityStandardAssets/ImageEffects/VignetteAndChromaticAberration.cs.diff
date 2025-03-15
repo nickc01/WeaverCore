@@ -1,267 +1,221 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,23 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    
+@@ -72,17 +72,20 @@
+ fects%0a%7b%0a
+-%09
++    
  %5bExecute
-@@ -96,16 +96,20 @@
+@@ -96,17 +96,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bRequire
-@@ -117,16 +117,17 @@
- omponent
-+ 
- (typeof(
-@@ -136,16 +136,20 @@
+@@ -136,17 +136,20 @@
  mera))%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -157,16 +157,17 @@
- nentMenu
-+ 
- (%22Image 
-@@ -218,16 +218,20 @@
+@@ -218,17 +218,20 @@
  tion%22)%5d%0a
+-%09
 +    
  public c
-@@ -284,19 +284,30 @@
+@@ -284,21 +284,30 @@
  ctsBase%0a
--%7b%0a%09
+-%09%7b%0a%09%09
 +    %7b%0a        
  public e
-@@ -329,102 +329,259 @@
+@@ -329,109 +329,259 @@
  ode%0a
--%09%7b%0a%09%09Simple,%0a%09%09Advanced%0a%09%7d%0a%0a%09public AberrationMode mode;%0a%0a%09public float intensity = 0.375f;%0a%0a%09
+-%09%09%7b%0a%09%09%09Simple,%0a%09%09%09Advanced%0a%09%09%7d%0a%0a%09%09public AberrationMode mode;%0a%0a%09%09public float intensity = 0.375f;%0a%0a%09%09
 +        %7b%0a            Simple = 0,%0a            Advanced = 1,%0a        %7d%0a%0a%0a        public AberrationMode mode = AberrationMode.Simple;%0a        public float intensity = 0.036f;                    // intensity == 0 disables pre pass (optimization)%0a        
  publ
-@@ -617,18 +617,24 @@
+@@ -617,19 +617,24 @@
  = 0.2f;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -658,26 +658,32 @@
+@@ -658,27 +658,32 @@
  ion = 0.5f;%0a
--%0a%09
+-%0a%09%09
 +        
  public float
-@@ -687,20 +687,106 @@
+@@ -687,21 +687,106 @@
  oat blur
--;%0a%0a%09
+-;%0a%0a%09%09
 + = 0.0f;                           // blur == 0 disables blur pass (optimization)%0a        
  public f
-@@ -806,26 +806,32 @@
+@@ -806,27 +806,32 @@
  ad = 0.75f;%0a
--%0a%09
+-%0a%09%09
 +        
  public float
-@@ -856,26 +856,32 @@
+@@ -856,27 +856,32 @@
  cy = 0.25f;%0a
--%0a%09
+-%0a%09%09
 +        
  public float
-@@ -902,18 +902,24 @@
+@@ -902,19 +902,24 @@
  = 2.5f;%0a
--%0a%09
+-%0a%09%09
 +        
  public S
-@@ -932,34 +932,40 @@
+@@ -932,35 +932,40 @@
  vignetteShader;%0a
--%0a%09
+-%0a%09%09
 +        
  public Shader se
-@@ -983,18 +983,24 @@
+@@ -983,19 +983,24 @@
  Shader;%0a
--%0a%09
+-%0a%09%09
 +        
  public S
-@@ -1028,18 +1028,42 @@
+@@ -1028,19 +1028,42 @@
  Shader;%0a
--%0a%09
+-%0a%09%09
 +        %0a        %0a        
  private 
-@@ -1083,34 +1083,40 @@
+@@ -1083,35 +1083,40 @@
  gnetteMaterial;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -1141,18 +1141,24 @@
+@@ -1141,19 +1141,24 @@
  terial;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -1194,17 +1194,25 @@
+@@ -1194,18 +1194,25 @@
  erial;%0a%0a
--%09
+-%09%09
 +%0a        
  public o
-@@ -1242,50 +1242,69 @@
- rces
-+ 
- ()%0a
--%09%7b%0a%09%09CheckSupport(needDepth: false);%0a%09%09
+@@ -1246,51 +1246,65 @@
+  ()%0a
+-%09%09%7b%0a%09%09%09CheckSupport (needDepth: false);%0a%09%09%09
 +        %7b%0a            CheckSupport (false);%0a%0a            
  m_Vi
-@@ -1348,16 +1348,17 @@
- Material
-+ 
- (vignett
-@@ -1387,18 +1387,28 @@
+@@ -1387,19 +1387,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  m_Separa
-@@ -1453,16 +1453,17 @@
- Material
-+ 
- (separab
-@@ -1502,18 +1502,28 @@
+@@ -1502,19 +1502,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  m_ChromA
-@@ -1570,16 +1570,17 @@
- Material
-+ 
- (chromAb
-@@ -1623,18 +1623,29 @@
+@@ -1623,19 +1623,29 @@
  erial);%0a
--%09%09
+-%09%09%09
 +%0a            
  if (!isS
-@@ -1654,23 +1654,32 @@
- ported)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -1653,23 +1653,33 @@
+ pported)
+- %7b%0a%09%09%09%09
++%0a                
  ReportAu
-@@ -1691,18 +1691,25 @@
- able
-+ 
- ();%0a
--%09%09%7d%0a%09%09
+@@ -1692,24 +1692,28 @@
+ ble ();%0a
+-%09%09%09%7d%0a%09%09%09
 +            
- retu
-@@ -1728,20 +1728,27 @@
+ return i
+@@ -1728,22 +1728,27 @@
  ed;%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a%0a       
   voi
-@@ -1762,16 +1762,17 @@
- derImage
-+ 
- (RenderT
-@@ -1817,18 +1817,35 @@
+@@ -1817,20 +1817,35 @@
  on)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  if (
 -!
 + 
  Chec
-@@ -1858,19 +1858,52 @@
- rces
-+ 
- ()
--)%0a%09%09%7b%0a%09%09%09
-+ == false)%0a            %7b%0a                
- Grap
-@@ -1903,32 +1903,33 @@
-    Graphics.Blit
-+ 
- (source, destina
-@@ -1939,95 +1939,152 @@
- n);%0a
--%09%09%09return;%0a%09%09%7d%0a%09%09int width = source.width;%0a%09%09int height = source.height;%0a%09%09bool flag
-+                return;%0a            %7d%0a%0a            int rtW = source.width;%0a            int rtH = source.height;%0a%0a            bool  doPrepass
+@@ -1861,145 +1861,230 @@
+ s ()
+-) %7b%0a%09%09%09%09Graphics.Blit (source, destination);%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09int width = source.width;%0a%09%09%09int height = source.height;%0a%09%09%09bool flag
++ == false)%0a            %7b%0a                Graphics.Blit (source, destination);%0a                return;%0a            %7d%0a%0a            int rtW = source.width;%0a            int rtH = source.height;%0a%0a            bool  doPrepass
   = 
 +(
  Math
-@@ -2094,19 +2094,19 @@
- bs(blur)
+@@ -2088,26 +2088,25 @@
+ athf.Abs
+- 
+ (blur)
 - %3e 
 +%3e0.
  0f %7c%7c Ma
-@@ -2127,180 +2127,285 @@
+@@ -2112,17 +2112,16 @@
+ athf.Abs
+- 
+ (intensi
+@@ -2127,183 +2127,285 @@
  ity)
 - %3e 
 +%3e0.
  0f
 +)
  ;%0a
--%09%09float num = 1f * (float)width
+-%09%09%09float num = 1f * (float)width
 +%0a            float widthOverHeight = (1.0f * rtW)
   / (1
 +.0
  f * 
--(float)height);%0a%09%09RenderTexture renderTexture = null;%0a%09%09RenderTexture renderTexture2 = null;%0a%09%09if (flag)%0a%09%09%7b%0a%09%09%09renderTexture
+-(float)height);%0a%09%09%09RenderTexture renderTexture = null;%0a%09%09%09RenderTexture renderTexture2 = null;%0a%09%09%09if (flag) %7b%0a%09%09%09%09renderTexture
 +rtH);%0a            const float oneOverBaseSize = 1.0f / 512.0f;%0a%0a            RenderTexture color = null;%0a            RenderTexture color2A = null;%0a%0a            if (doPrepass)%0a            %7b%0a                color
   = R
-@@ -2433,22 +2433,18 @@
- rary
--(width, height
-+ (rtW, rtH
+@@ -2435,21 +2435,16 @@
+ ry (
+-width, height
++rtW, rtH
  , 0,
-@@ -2460,19 +2460,65 @@
- ormat);%0a
--%09%09%09
-+%0a                // Blur corners%0a                
- if (Math
-@@ -2526,44 +2526,67 @@
- .Abs
-+ 
- (blur)
-- %3e 
-+%3e0.
- 0f)%0a
--%09%09%09%7b%0a%09%09%09%09renderTexture2
-+                %7b%0a                    color2A
+@@ -2464,60 +2464,129 @@
+ t);%0a
+-%09%09%09%09if (Mathf.Abs (blur) %3e 0f) %7b%0a%09%09%09%09%09renderTexture2
++%0a                // Blur corners%0a                if (Mathf.Abs (blur)%3e0.0f)%0a                %7b%0a                    color2A
   = R
-@@ -2610,34 +2610,30 @@
- emporary
--(width / 2, height
-+ (rtW / 2, rtH
+@@ -2612,33 +2612,28 @@
+ porary (
+-width
++rtW
+  / 2, 
+-height
++rtH
   / 2, 0,
-@@ -2649,20 +2649,37 @@
+@@ -2649,21 +2649,37 @@
  ormat);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +%0a                    
  Graphics
-@@ -2675,32 +2675,33 @@
-    Graphics.Blit
-+ 
- (source, renderT
 @@ -2693,30 +2693,23 @@
  source, 
 -renderTexture2
 +color2A
  , m_Chro
-@@ -2737,16 +2737,32 @@
+@@ -2737,17 +2737,32 @@
  0);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +%0a                    
  for
 - 
  (int
-@@ -2785,19 +2785,94 @@
- ++)%0a
--%09%09%09%09%7b%0a%09%09%09%09%09
-+                    %7b%09// maybe make iteration count tweakable%0a                        
+@@ -2784,17 +2784,95 @@
+ i++)
+- %7b%0a%09%09%09%09%09%09
++%0a                    %7b%09// maybe make iteration count tweakable%0a                        
  m_Se
-@@ -2892,32 +2892,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
 @@ -2904,33 +2904,32 @@
  ctor (%22offsets%22,
 - 
- new Vector4(0f, 
-@@ -2923,17 +2923,20 @@
-  Vector4
--(
-+ (0.
+ new Vector4 (0f,
+@@ -2925,16 +2925,18 @@
+ ector4 (
++0.
  0f, blur
-@@ -2948,37 +2948,63 @@
+@@ -2948,38 +2948,63 @@
  d * 
 -0.001953125
 +oneOverBaseSize, 0.0
@@ -269,7 +223,7 @@
 -f, 
 +.
  0f));%0a
--%09%09%09%09%09
+-%09%09%09%09%09%09
 +                        
  Rend
 @@ -3013,25 +3013,23 @@
@@ -277,153 +231,153 @@
 -temporary
 +color2B
   = Rende
-@@ -3049,34 +3049,30 @@
- emporary
--(width / 2, height
-+ (rtW / 2, rtH
+@@ -3051,33 +3051,28 @@
+ porary (
+-width
++rtW
+  / 2, 
+-height
++rtH
   / 2, 0,
-@@ -3092,52 +3092,63 @@
+@@ -3092,54 +3092,63 @@
  t);%0a
--%09%09%09%09%09Graphics.Blit(renderTexture2, temporary
+-%09%09%09%09%09%09Graphics.Blit (renderTexture2, temporary
 +                        Graphics.Blit (color2A, color2B
  , m_
-@@ -3163,37 +3163,56 @@
+@@ -3163,38 +3163,56 @@
  eBlurMaterial);%0a
--%09%09%09%09%09
+-%09%09%09%09%09%09
 +                        
  RenderTexture.Re
-@@ -3229,31 +3229,45 @@
- rary
--(renderTexture2);%0a%09%09%09%09%09
-+ (color2A);%0a%0a                        
+@@ -3231,31 +3231,43 @@
+ ry (
+-renderTexture2);%0a%09%09%09%09%09%09
++color2A);%0a%0a                        
  m_Se
-@@ -3295,16 +3295,17 @@
- etVector
-+ 
- (%22offset
 @@ -3307,17 +3307,16 @@
  ffsets%22,
 - 
  new Vect
-@@ -3318,16 +3318,17 @@
-  Vector4
-+ 
- (blurSpr
-@@ -3337,61 +3337,94 @@
+@@ -3337,62 +3337,94 @@
  d * 
--0.001953125f / num, 
-+oneOverBaseSize / widthOverHeight, 0.
+-0.001953125f / num
++oneOverBaseSize / widthOverHeight
+ , 
++0.
  0f, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09%09%09%09renderTexture2
+-%09%09%09%09%09%09renderTexture2
 +                        color2A
   = R
-@@ -3452,26 +3452,22 @@
- rary
--(width / 2, height
-+ (rtW / 2, rtH
+@@ -3454,25 +3454,20 @@
+ ry (
+-width
++rtW
+  / 2, 
+-height
++rtH
   / 2
-@@ -3491,52 +3491,63 @@
+@@ -3491,54 +3491,63 @@
  t);%0a
--%09%09%09%09%09Graphics.Blit(temporary, renderTexture2
+-%09%09%09%09%09%09Graphics.Blit (temporary, renderTexture2
 +                        Graphics.Blit (color2B, color2A
  , m_
-@@ -3574,13 +3574,32 @@
+@@ -3574,14 +3574,32 @@
  l);%0a
--%09%09%09%09%09
+-%09%09%09%09%09%09
 +                        
  Rend
-@@ -3628,139 +3628,306 @@
- rary
--(temporary);%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09m_VignetteMaterial.SetFloat(%22_Intensity%22, intensity);%0a%09%09%09m_VignetteMaterial.SetFloat(%22_Blur%22, blur);%0a%09%09%09
-+ (color2B);%0a                    %7d%0a                %7d%0a%0a                m_VignetteMaterial.SetFloat(%22_Intensity%22, (1.0f / (1.0f - intensity) - 1.0f));%09%09// intensity for vignette%0a                m_VignetteMaterial.SetFloat(%22_Blur%22, (1.0f / (1.0f - blur)) - 1.0f);%09%09%09%09%09// blur intensity%0a                
+@@ -3630,37 +3630,75 @@
+ ry (
+-temporary);%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09
++color2B);%0a                    %7d%0a                %7d%0a%0a                
  m_Vi
-@@ -3951,16 +3951,17 @@
- tTexture
-+ 
- (%22_Vigne
-@@ -3973,28 +3973,54 @@
+@@ -3720,17 +3720,16 @@
+ SetFloat
+- 
+ (%22_Inten
+@@ -3739,24 +3739,88 @@
+ y%22, 
+-intensity);%0a%09%09%09%09
++(1.0f / (1.0f - intensity) - 1.0f));%09%09// intensity for vignette%0a                
+ m_Vi
+@@ -3842,17 +3842,16 @@
+ SetFloat
+- 
+ (%22_Blur%22
+@@ -3856,19 +3856,78 @@
+ r%22, 
+-blur);%0a%09%09%09%09
++(1.0f / (1.0f - blur)) - 1.0f);%09%09%09%09%09// blur intensity%0a                
+ m_Vi
+@@ -3973,29 +3973,54 @@
  x%22, 
--renderTexture2);%0a%09%09%09
+-renderTexture2);%0a%09%09%09%09
 +color2A);%09// blurred texture%0a%0a                
  Grap
-@@ -4028,16 +4028,17 @@
- ics.Blit
-+ 
- (source,
 @@ -4038,29 +4038,21 @@
  source, 
 -renderTexture
 +color
  , m_Vign
-@@ -4068,23 +4068,85 @@
+@@ -4068,25 +4068,85 @@
  ial, 0);
--%0a%09%09%7d%0a%09%09
-+%09%09%09// prepass blit: darken & blur corners%0a            %7d%0a%0a            
+-%0a
+ %09%09%09
+-%7d%0a%09%09%09
++// prepass blit: darken & blur corners%0a            %7d%0a%0a            
  m_ChromA
-@@ -4171,16 +4171,17 @@
- SetFloat
-+ 
- (%22_Chrom
-@@ -4211,34 +4211,44 @@
+@@ -4211,35 +4211,44 @@
  ticAberration);%0a
--%09%09
+-%09%09%09
 +            
  m_ChromAberratio
-@@ -4265,16 +4265,17 @@
- SetFloat
-+ 
- (%22_Axial
-@@ -4305,18 +4305,28 @@
+@@ -4305,19 +4305,28 @@
  ation);%0a
--%09%09
+-%09%09%09
 +            
  m_ChromA
-@@ -4352,16 +4352,17 @@
- etVector
-+ 
- (%22_BlurD
-@@ -4386,14 +4386,11 @@
- tor2
--(0f - 
-+ (-
- blur
-@@ -4415,18 +4415,28 @@
+@@ -4384,21 +4384,17 @@
+ ector2 (
+-0f - 
++-
+ blurDist
+@@ -4415,19 +4415,28 @@
  ance));%0a
--%09%09
+-%09%09%09
 +            
  m_ChromA
-@@ -4461,16 +4461,17 @@
- SetFloat
-+ 
- (%22_Lumin
 @@ -4478,20 +4478,20 @@
  ance%22, 1
 -f / 
 +.0f/
  Mathf.Ma
+@@ -4491,17 +4491,16 @@
+ athf.Max
+- 
+ (Mathf.E
 @@ -4534,40 +4534,41 @@
  ));%0a
--%09%09if (flag)%0a%09%09%7b%0a%09%09%09renderTexture
+-%09%09%09if (flag) %7b%0a%09%09%09%09renderTexture
 +%0a            if (doPrepass) color
  .wra
-@@ -4602,26 +4602,25 @@
+@@ -4602,24 +4602,25 @@
  mp;%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%09%7d else %7b%0a%09%09%09%09
 +            else 
  sour
-@@ -4660,14 +4660,20 @@
+@@ -4660,16 +4660,20 @@
  mp;%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +            
  Grap
-@@ -4685,29 +4685,27 @@
- Blit
--(flag ? renderTexture
-+ (doPrepass ? color
+@@ -4687,28 +4687,25 @@
+ it (
+-flag ? renderTexture
++doPrepass ? color
   : s
 @@ -4755,15 +4755,14 @@
  al, 
@@ -432,20 +386,20 @@
 -!
 +=
  = Ab
-@@ -4786,22 +4786,32 @@
+@@ -4786,23 +4786,32 @@
  nced
 -)
   ? 
--1 : 2);%0a%09%09
+-1 : 2);%0a%09%09%09
 +2 : 1);%0a%0a            
  Rend
-@@ -4840,27 +4840,30 @@
- rary
--(renderTexture);%0a%09%09
-+ (color);%0a            
+@@ -4842,27 +4842,28 @@
+ ry (
+-renderTexture);%0a%09%09%09
++color);%0a            
  Rend
-@@ -4892,27 +4892,34 @@
- rary
--(renderTexture2);%0a%09
-+ (color2A);%0a        %7d%0a    
+@@ -4894,30 +4894,32 @@
+ ry (
+-renderTexture2);%0a%09%09%7d%0a%09
++color2A);%0a        %7d%0a    
  %7d%0a%7d%0a

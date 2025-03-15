@@ -1,308 +1,367 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,23 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    
+@@ -72,17 +72,20 @@
+ fects%0a%7b%0a
+-%09
++    
  %5bExecute
-@@ -96,16 +96,20 @@
+@@ -96,17 +96,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -171,16 +171,20 @@
+@@ -117,17 +117,16 @@
+ nentMenu
+- 
+ (%22Image 
+@@ -171,17 +171,20 @@
  etch%22)%5d%0a
+-%09
 +    
  public c
-@@ -224,123 +224,954 @@
+@@ -224,128 +224,954 @@
  our%0a
--%7b%0a%09public float adaptationSpeed = 0.02f;%0a%0a%09public float limitMinimum = 0.2f;%0a%0a%09public float limitMaximum = 0.6f;%0a%0a%09
+-%09%7b%0a%09%09public float adaptationSpeed = 0.02f;%0a%0a%09%09public float limitMinimum = 0.2f;%0a%0a%09%09public float limitMaximum = 0.6f;%0a%0a%09%09
 +    %7b%0a        /// Adaptation speed - percents per frame, if playing at 30FPS.%0a        /// Default is 0.02 (2%25 each 1/30s).%0a        %5bRange(0.0001f, 1.0f)%5d%0a        public float adaptationSpeed = 0.02f;%0a%0a        /// If our scene is really dark (or really bright), we might not want to%0a        /// stretch its contrast to the full range.%0a        /// limitMinimum=0, limitMaximum=1 is the same as not applying the effect at all.%0a        /// limitMinimum=1, limitMaximum=0 is always stretching colors to full range.%0a%0a        /// The limit on the minimum luminance (0...1) - we won't go above this.%0a        %5bRange(0.0f,1.0f)%5d%0a        public float limitMinimum = 0.2f;%0a%0a        /// The limit on the maximum luminance (0...1) - we won't go below this.%0a        %5bRange(0.0f, 1.0f)%5d%0a        public float limitMaximum = 0.6f;%0a%0a%0a        // To maintain adaptation levels over time, we need two 1x1 render textures%0a        // and ping-pong between them.%0a        
  priv
-@@ -1229,18 +1229,24 @@
+@@ -1229,19 +1229,24 @@
  ure%5b2%5d;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -1266,205 +1266,78 @@
+@@ -1266,212 +1266,78 @@
  ndex
--;%0a%0a%09public Shader shaderLum;%0a%0a%09private Material m_materialLum;%0a%0a%09public Shader shaderReduce;%0a%0a%09private Material m_materialReduce;%0a%0a%09public Shader shaderAdapt;%0a%0a%09private Material m_materialAdapt;%0a%0a%09
+-;%0a%0a%09%09public Shader shaderLum;%0a%0a%09%09private Material m_materialLum;%0a%0a%09%09public Shader shaderReduce;%0a%0a%09%09private Material m_materialReduce;%0a%0a%09%09public Shader shaderAdapt;%0a%0a%09%09private Material m_materialAdapt;%0a%0a%09%09
 + = 0;%0a%0a%0a        // Computes scene luminance (grayscale) image%0a        
  publ
-@@ -1350,23 +1350,29 @@
+@@ -1350,24 +1350,29 @@
  der 
 +  
  shader
--Apply;%0a%0a%09
+-Apply;%0a%0a%09%09
 +Lum;%0a        
  priv
-@@ -1398,17 +1398,21 @@
+@@ -1398,18 +1398,21 @@
  rial
--Apply;%0a%0a%09
+-Apply;%0a%0a%09%09
 +Lum;%0a        
  prot
-@@ -1437,37 +1437,58 @@
- erialLum
--%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09
-+ %7b%0a            get %7b%0a                
+@@ -1440,33 +1440,55 @@
+ alLum %7b%0a
+-%09%09%09get %7b%0a%09%09%09%09
++            get %7b%0a                
  if (
 + 
  m_materi
-@@ -1496,35 +1496,49 @@
+@@ -1496,33 +1496,49 @@
  lLum == null
--)%0a%09%09%09%7b%0a%09%09%09%09
-+ ) %7b%0a                    
++ 
+ ) %7b%0a
+-%09%09%09%09%09
++                    
  m_materialLu
-@@ -1566,20 +1566,36 @@
+@@ -1549,25 +1549,24 @@
+ new Material
+- 
+ (shaderLum);
+@@ -1566,21 +1566,36 @@
  erLum);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  m_materi
-@@ -1643,56 +1643,375 @@
+@@ -1643,52 +1643,411 @@
  ve;%0a
--%09%09%09%7d%0a%09%09%09return m_materialLum;%0a%09%09%7d%0a%09%7d%0a%0a%09protected
-+                %7d%0a                return m_materialLum;%0a            %7d%0a        %7d%0a%0a        // Reduces size of the image by 2x2, while computing maximum/minimum values.%0a        // By repeatedly applying this shader, we reduce the initial luminance image%0a        // to 1x1 image with minimum/maximum luminances found.%0a        public Shader   shaderReduce;%0a        private
-  Mat
-@@ -2008,32 +2008,34 @@
- rivate Material 
-+m_
- materialReduce%0a%09
-@@ -2032,37 +2032,101 @@
- alReduce
--%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09
-+;%0a        protected Material materialReduce %7b%0a            get %7b%0a                
+-%09%09%09%09%7d%0a%09%09%09%09return m_materialLum;%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++                %7d%0a                return m_materialLum;%0a            %7d%0a        %7d%0a%0a        // Reduces size of the image by 2x2, while computing maximum/minimum values.%0a        // By repeatedly applying this shader, we reduce the initial luminance image%0a        // to 1x1 image with minimum/maximum luminances found.%0a        public Shader   shaderReduce;%0a        private Material m_materialReduce;%0a        
+ prot
+@@ -2078,33 +2078,55 @@
+ educe %7b%0a
+-%09%09%09get %7b%0a%09%09%09%09
++            get %7b%0a                
  if (
 + 
  m_materi
-@@ -2137,35 +2137,49 @@
+@@ -2137,33 +2137,49 @@
  duce == null
--)%0a%09%09%09%7b%0a%09%09%09%09
-+ ) %7b%0a                    
++ 
+ ) %7b%0a
+-%09%09%09%09%09
++                    
  m_materialRe
-@@ -2213,20 +2213,36 @@
+@@ -2193,25 +2193,24 @@
+ new Material
+- 
+ (shaderReduc
+@@ -2213,21 +2213,36 @@
  educe);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  m_materi
-@@ -2293,59 +2293,317 @@
+@@ -2293,55 +2293,352 @@
  ve;%0a
--%09%09%09%7d%0a%09%09%09return m_materialReduce;%0a%09%09%7d%0a%09%7d%0a%0a%09protected
-+                %7d%0a                return m_materialReduce;%0a            %7d%0a        %7d%0a%0a        // Adaptation shader - gradually %22adapts%22 minimum/maximum luminances,%0a        // based on currently adapted 1x1 image and the actual 1x1 image of the current scene.%0a        public Shader   shaderAdapt;%0a        private
-  Mat
-@@ -2600,32 +2600,34 @@
- rivate Material 
-+m_
- materialAdapt%0a%09%7b
-@@ -2623,37 +2623,100 @@
- ialAdapt
--%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09
-+;%0a        protected Material materialAdapt %7b%0a            get %7b%0a                
+-%09%09%09%09%7d%0a%09%09%09%09return m_materialReduce;%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++                %7d%0a                return m_materialReduce;%0a            %7d%0a        %7d%0a%0a        // Adaptation shader - gradually %22adapts%22 minimum/maximum luminances,%0a        // based on currently adapted 1x1 image and the actual 1x1 image of the current scene.%0a        public Shader   shaderAdapt;%0a        private Material m_materialAdapt;%0a        
+ prot
+@@ -2668,33 +2668,55 @@
+ Adapt %7b%0a
+-%09%09%09get %7b%0a%09%09%09%09
++            get %7b%0a                
  if (
 + 
  m_materi
-@@ -2726,35 +2726,49 @@
+@@ -2726,33 +2726,49 @@
  dapt == null
--)%0a%09%09%09%7b%0a%09%09%09%09
-+ ) %7b%0a                    
++ 
+ ) %7b%0a
+-%09%09%09%09%09
++                    
  m_materialAd
-@@ -2800,20 +2800,36 @@
+@@ -2777,33 +2777,32 @@
+ t = new Material
+- 
+ (shaderAdapt);%0a%09
+@@ -2800,21 +2800,36 @@
  Adapt);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  m_materi
-@@ -2879,58 +2879,279 @@
+@@ -2879,54 +2879,314 @@
  ve;%0a
--%09%09%09%7d%0a%09%09%09return m_materialAdapt;%0a%09%09%7d%0a%09%7d%0a%0a%09protected
-+                %7d%0a                return m_materialAdapt;%0a            %7d%0a        %7d%0a%0a        // Final pass - stretches the color values of the original scene, based on currently%0a        // adpated minimum/maximum values.%0a        public Shader   shaderApply;%0a        private
-  Mat
-@@ -3148,32 +3148,34 @@
- rivate Material 
-+m_
- materialApply%0a%09%7b
-@@ -3175,29 +3175,92 @@
- pply
--%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09
-+;%0a        protected Material materialApply %7b%0a            get %7b%0a                
+-%09%09%09%09%7d%0a%09%09%09%09return m_materialAdapt;%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++                %7d%0a                return m_materialAdapt;%0a            %7d%0a        %7d%0a%0a        // Final pass - stretches the color values of the original scene, based on currently%0a        // adpated minimum/maximum values.%0a        public Shader   shaderApply;%0a        private Material m_materialApply;%0a        
+ prot
+@@ -3220,25 +3220,47 @@
+ y %7b%0a
+-%09%09%09get %7b%0a%09%09%09%09
++            get %7b%0a                
  if (
 + 
  m_ma
-@@ -3278,27 +3278,41 @@
+@@ -3278,25 +3278,41 @@
   == null
--)%0a%09%09%09%7b%0a%09%09%09%09
-+ ) %7b%0a                    
- m_materi
-@@ -3348,20 +3348,36 @@
- Apply);%0a
--%09%09%09%09
++ 
+ ) %7b%0a
+-%09%09%09%09%09
 +                    
  m_materi
-@@ -3427,338 +3427,563 @@
+@@ -3333,17 +3333,16 @@
+ Material
+- 
+ (shaderA
+@@ -3348,21 +3348,36 @@
+ Apply);%0a
+-%09%09%09%09%09
++                    
+ m_materi
+@@ -3427,61 +3427,98 @@
  ve;%0a
--%09%09%09%7d%0a%09%09%09return m_materialApply;%0a%09%09%7d%0a%09%7d%0a%0a%09private void Start()%0a%09%7b%0a%09%09if (!SystemInfo.supportsImageEffects)%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%09else if (!shaderAdapt.isSupported %7c%7c !shaderApply.isSupported %7c%7c !shaderLum.isSupported %7c%7c !shaderReduce.isSupported)%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%7d%0a%0a%09private void OnEnable()%0a%09%7b%0a%09%09
-+                %7d%0a                return m_materialApply;%0a            %7d%0a        %7d%0a%0a        void Start()%0a        %7b%0a            // Disable if we don't support image effects%0a            if (!SystemInfo.supportsImageEffects) %7b%0a                enabled = false;%0a                return;%0a            %7d%0a%0a            if (!shaderAdapt.isSupported %7c%7c !shaderApply.isSupported %7c%7c !shaderLum.isSupported %7c%7c !shaderReduce.isSupported) %7b%0a                enabled = false;%0a                return;%0a            %7d%0a        %7d%0a%0a        void OnEnable()%0a        %7b%0a            
+-%09%09%09%09%7d%0a%09%09%09%09return m_materialApply;%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09private
++                %7d%0a                return m_materialApply;%0a            %7d%0a        %7d%0a%0a       
+  voi
+@@ -3524,27 +3524,98 @@
+ id Start
+- 
+ ()%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            // Disable if we don't support image effects%0a            
+ if (!Sys
+@@ -3642,33 +3642,40 @@
+ eEffects) %7b%0a
+-%09%09%09%09base.
++                
+ enabled = fa
+@@ -3683,17 +3683,58 @@
+ se;%0a
+-%09%09%09%7d else
++                return;%0a            %7d%0a%0a           
+  if 
+@@ -3849,17 +3849,24 @@
+ ) %7b%0a
+-%09%09%09%09base.
++                
+ enab
+@@ -3878,35 +3878,72 @@
+  false;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09private
++                return;%0a            %7d%0a        %7d%0a%0a       
+  void On
+@@ -3948,32 +3948,46 @@
+ OnEnable
+- 
+ ()%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
  for
 - 
  (
 + 
- int 
-@@ -4000,24 +4000,49 @@
+ int i = 
+@@ -4000,23 +4000,49 @@
   2; 
 -i
  ++
--)%0a%09%09%7b%0a%09%09%09
+-) %7b%0a%09%09%09%09
 +i )%0a            %7b%0a                
  if (
 + 
  !ada
-@@ -4055,27 +4055,41 @@
- erTex%5bi%5d
--)%0a%09%09%09%7b%0a%09%09%09%09
-+ ) %7b%0a                    
- adaptRen
-@@ -4128,20 +4128,36 @@
+@@ -4056,21 +4056,36 @@
+ rTex
+- 
+ %5bi%5d
++ 
+ ) %7b%0a
+-%09%09%09%09%09
++                    
+ adap
+@@ -4090,25 +4090,24 @@
+ aptRenderTex
+- 
+ %5bi%5d = new Re
+@@ -4117,17 +4117,16 @@
+ rTexture
+- 
+ (1, 1, 0
+@@ -4128,21 +4128,36 @@
   1, 0);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  adaptRen
-@@ -4209,57 +4209,103 @@
+@@ -4162,17 +4162,16 @@
+ enderTex
+- 
+ %5bi%5d.hide
+@@ -4209,33 +4209,58 @@
  ve;%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09private void OnDisable()%0a%09%7b%0a%09%09
-+                %7d%0a            %7d%0a        %7d%0a%0a        void OnDisable()%0a        %7b%0a            
+-%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09private
++                %7d%0a            %7d%0a        %7d%0a%0a       
+  voi
+@@ -4274,24 +4274,38 @@
+ able
+- 
+ ()%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            
  for
 - 
  (
 + 
  int 
-@@ -4322,27 +4322,44 @@
+@@ -4322,26 +4322,44 @@
   2; 
 -i
  ++
--)%0a%09%09%7b%0a%09%09%09Object.
+-) %7b%0a%09%09%09%09Object.
 +i )%0a            %7b%0a                
  Dest
-@@ -4371,16 +4371,17 @@
- mediate(
+@@ -4370,18 +4370,18 @@
+ mmediate
+- 
+ (
 + 
  adaptRen
-@@ -4389,22 +4389,36 @@
- erTex%5bi%5d
+@@ -4390,19 +4390,31 @@
+ rTex
+- 
+ %5bi%5d
 + 
  );%0a
--%09%09%09
+-%09%09%09%09
 +                
- adaptRen
-@@ -4435,32 +4435,47 @@
- = null;%0a
--%09%09%7d%0a%09%09if ((bool)
-+            %7d%0a            if ( 
- m_materi
-@@ -4479,32 +4479,35 @@
- erialLum
-+ 
- )%0a
--%09%09%7b%0a%09%09%09Object.
-+                
- DestroyI
-@@ -4507,32 +4507,33 @@
- estroyImmediate(
+ adap
+@@ -4423,17 +4423,16 @@
+ enderTex
+- 
+ %5bi%5d = nu
+@@ -4439,54 +4439,71 @@
+ ll;%0a
+-%09%09%09%7d%0a%09%09%09if ((bool)m_materialLum) %7b%0a%09%09%09%09Object.
++            %7d%0a            if ( m_materialLum )%0a                
+ Dest
+@@ -4506,34 +4506,34 @@
+ DestroyImmediate
+- 
+ (
 + 
  m_materialLum);%0a
-@@ -4529,35 +4529,37 @@
- erialLum
+@@ -4533,60 +4533,64 @@
+ lLum
 + 
  );%0a
--%09%09%7d%0a%09%09if ((bool)
-+            if ( 
- m_materi
-@@ -4566,32 +4566,35 @@
- alReduce
-+ 
- )%0a
--%09%09%7b%0a%09%09%09Object.
-+                
- DestroyI
-@@ -4594,32 +4594,33 @@
- estroyImmediate(
+-%09%09%09%7d%0a%09%09%09if ((bool)m_materialReduce) %7b%0a%09%09%09%09Object.
++            if ( m_materialReduce )%0a                
+ Dest
+@@ -4593,34 +4593,34 @@
+ DestroyImmediate
+- 
+ (
 + 
  m_materialReduce
-@@ -4619,35 +4619,37 @@
- alReduce
+@@ -4623,59 +4623,63 @@
+ duce
 + 
  );%0a
--%09%09%7d%0a%09%09if ((bool)
-+            if ( 
- m_materi
-@@ -4655,32 +4655,35 @@
- ialAdapt
-+ 
- )%0a
--%09%09%7b%0a%09%09%09Object.
-+                
- DestroyI
-@@ -4683,32 +4683,33 @@
- estroyImmediate(
+-%09%09%09%7d%0a%09%09%09if ((bool)m_materialAdapt) %7b%0a%09%09%09%09Object.
++            if ( m_materialAdapt )%0a                
+ Dest
+@@ -4682,34 +4682,34 @@
+ DestroyImmediate
+- 
+ (
 + 
  m_materialAdapt)
-@@ -4711,27 +4711,29 @@
+@@ -4711,59 +4711,63 @@
  dapt
 + 
  );%0a
--%09%09%7d%0a%09%09if ((bool)
-+            if ( 
- m_ma
-@@ -4747,24 +4747,27 @@
- pply
-+ 
- )%0a
--%09%09%7b%0a%09%09%09Object.
-+                
+-%09%09%09%7d%0a%09%09%09if ((bool)m_materialApply) %7b%0a%09%09%09%09Object.
++            if ( m_materialApply )%0a                
  Dest
-@@ -4779,16 +4779,17 @@
- mediate(
+@@ -4778,18 +4778,18 @@
+ mmediate
+- 
+ (
 + 
  m_materi
-@@ -4799,27 +4799,60 @@
+@@ -4799,30 +4799,60 @@
  pply
 + 
  );%0a
--%09%09%7d%0a%09%7d%0a%0a%09private
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a%0a        /// Apply the filter%0a       
   voi
-@@ -4866,16 +4866,17 @@
- derImage
-+ 
- (RenderT
-@@ -4921,28 +4921,154 @@
+@@ -4921,30 +4921,154 @@
  on)%0a
--%09%7b%0a%09%09RenderTexture r
+-%09%09%7b%0a%09%09%09RenderTexture r
 +        %7b%0a            // Blit to smaller RT and convert to luminance on the way%0a            const int TEMP_RATIO = 1; // 4x4 smaller%0a            R
  ende
 @@ -5076,16 +5076,26 @@
  Texture 
 +rtTempSrc 
  = Render
+@@ -5114,17 +5114,16 @@
+ emporary
+- 
+ (source.
 @@ -5127,20 +5127,27 @@
  ce.width
 - / 1
 +/TEMP_RATIO
  , source
-@@ -5157,17 +5157,34 @@
+@@ -5157,18 +5157,34 @@
  ight
-- / 1);%0a%09%09
+- / 1);%0a%09%09%09
 +/TEMP_RATIO);%0a            
  Grap
-@@ -5184,32 +5184,33 @@
-    Graphics.Blit
-+ 
- (source, renderT
 @@ -5203,28 +5203,24 @@
  ource, r
 -enderTexture
 +tTempSrc
  , materi
-@@ -5231,235 +5231,688 @@
+@@ -5231,237 +5231,688 @@
  m);%0a
--%09%09while (renderTexture.width %3e 1 %7c%7c renderTexture.height %3e 1)%0a%09%09%7b%0a%09%09%09int num = renderTexture.width / 2;%0a%09%09%09if (num %3c 1)%0a%09%09%09%7b%0a%09%09%09%09num = 1;%0a%09%09%09%7d%0a%09%09%09int num2 = renderTexture.height / 2;%0a%09%09%09if (num2 %3c 1)%0a%09%09%09%7b%0a%09%09%09%09num2 = 1;%0a%09%09%09%7d%0a%09%09%09
+-%09%09%09while (renderTexture.width %3e 1 %7c%7c renderTexture.height %3e 1) %7b%0a%09%09%09%09int num = renderTexture.width / 2;%0a%09%09%09%09if (num %3c 1) %7b%0a%09%09%09%09%09num = 1;%0a%09%09%09%09%7d%0a%09%09%09%09int num2 = renderTexture.height / 2;%0a%09%09%09%09if (num2 %3c 1) %7b%0a%09%09%09%09%09num2 = 1;%0a%09%09%09%09%7d%0a%09%09%09%09
 +%0a            // Repeatedly reduce this image in size, computing min/max luminance values%0a            // In the end we'll have 1x1 image with min/max luminances found.%0a            const int FINAL_SIZE = 1;%0a            //const int FINAL_SIZE = 1;%0a            while( rtTempSrc.width %3e FINAL_SIZE %7c%7c rtTempSrc.height %3e FINAL_SIZE )%0a            %7b%0a                const int REDUCE_RATIO = 2; // our shader does 2x2 reduction%0a                int destW = rtTempSrc.width / REDUCE_RATIO;%0a                if ( destW %3c FINAL_SIZE ) destW = FINAL_SIZE;%0a                int destH = rtTempSrc.height / REDUCE_RATIO;%0a                if ( destH %3c FINAL_SIZE ) destH = FINAL_SIZE;%0a                
  Rend
 @@ -5921,25 +5921,25 @@
@@ -310,53 +369,52 @@
 -temporary
 +rtTempDst
   = Rende
-@@ -5964,23 +5964,38 @@
- ary(
--num, num2);%0a%09%09%09
-+destW,destH);%0a                
- Grap
-@@ -6007,176 +6007,447 @@
- Blit
-+ 
- (r
--enderTexture, temporary, materialReduce);%0a%09%09%09RenderTexture.ReleaseTemporary(renderTexture);%0a%09%09%09renderTexture = temporary;%0a%09%09%7d%0a%09%09CalculateAdaptation(renderTexture);%0a%09%09
-+tTempSrc, rtTempDst, materialReduce);%0a%0a                // Release old src temporary, and make new temporary the source%0a                RenderTexture.ReleaseTemporary( rtTempSrc );%0a                rtTempSrc = rtTempDst;%0a            %7d%0a%0a            // Update viewer's adaptation level%0a            CalculateAdaptation( rtTempSrc );%0a%0a            // Apply contrast strech to the original scene, using currently adapted parameters%0a            
+@@ -5963,215 +5963,491 @@
+ rary
+- (num, num2);%0a%09%09%09%09Graphics.Blit (renderTexture, temporary, materialReduce);%0a%09%09%09%09RenderTexture.ReleaseTemporary (renderTexture);%0a%09%09%09%09renderTexture = temporary;%0a%09%09%09%7d%0a%09%09%09CalculateAdaptation (renderTexture);%0a%09%09%09
++(destW,destH);%0a                Graphics.Blit (rtTempSrc, rtTempDst, materialReduce);%0a%0a                // Release old src temporary, and make new temporary the source%0a                RenderTexture.ReleaseTemporary( rtTempSrc );%0a                rtTempSrc = rtTempDst;%0a            %7d%0a%0a            // Update viewer's adaptation level%0a            CalculateAdaptation( rtTempSrc );%0a%0a            // Apply contrast strech to the original scene, using currently adapted parameters%0a            
  mate
-@@ -6509,21 +6509,32 @@
+@@ -6466,17 +6466,16 @@
+ tTexture
+- 
+ (%22_Adapt
+@@ -6486,33 +6486,32 @@
+ , adaptRenderTex
+- 
+ %5bcurAdaptIndex%5d)
+@@ -6509,22 +6509,32 @@
  ptIndex%5d
 + 
  );%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -6538,16 +6538,17 @@
- ics.Blit
-+ 
- (source,
-@@ -6577,18 +6577,29 @@
+@@ -6577,19 +6577,29 @@
  Apply);%0a
--%09%09
+-%09%09%09
 +%0a            
  RenderTe
-@@ -6625,29 +6625,117 @@
- ary(
--renderTexture);%0a%09%7d%0a%0a%09
-+ rtTempSrc );%0a        %7d%0a%0a%0a        /// Helper function to do gradual adaptation to min/max luminances%0a        
+@@ -6624,33 +6624,118 @@
+ rary
+- (renderTexture);%0a%09%09%7d%0a%0a%09%09
++( rtTempSrc );%0a        %7d%0a%0a%0a        /// Helper function to do gradual adaptation to min/max luminances%0a        
  priv
-@@ -6763,16 +6763,17 @@
- ptation(
+@@ -6762,18 +6762,18 @@
+ aptation
+- 
+ (
 + 
  Texture 
-@@ -6786,22 +6786,51 @@
+@@ -6786,24 +6786,51 @@
  ture
 + 
  )%0a
--%09%7b%0a%09%09int num
+-%09%09%7b%0a%09%09%09int num
 +        %7b%0a            int prevAdaptIndex
   = c
-@@ -6843,18 +6843,28 @@
+@@ -6843,19 +6843,28 @@
  tIndex;%0a
--%09%09
+-%09%09%09
 +            
  curAdapt
 @@ -6889,19 +6889,17 @@
@@ -364,63 +422,83 @@
 - + 
 ++
  1) %25 2;%0a
- %09%09fl
-@@ -6898,25 +6898,190 @@
+ %09%09%09f
+@@ -6898,26 +6898,190 @@
   2;%0a
--%09%09float value
+-%09%09%09float value
 +%0a            // Adaptation speed is expressed in percents/frame, based on 30FPS.%0a            // Calculate the adaptation lerp, based on current FPS.%0a            float adaptLerp
   = 1
 +.0
  f - 
-@@ -7090,17 +7090,20 @@
- thf.Pow(
--1
-+ 1.0
- f - adap
+@@ -7093,11 +7093,13 @@
+ .Pow
+- (1
++( 1.0
+ f - 
 @@ -7117,16 +7117,18 @@
  peed, 30
 +.0
  f * Time
-@@ -7141,54 +7141,140 @@
+@@ -7141,57 +7141,140 @@
  Time
 + 
  );%0a
--%09%09value = Mathf.Clamp(value, 0.01f, 1f);%0a%09%09
+-%09%09%09value = Mathf.Clamp (value, 0.01f, 1f);%0a%09%09%09
 +            const float kMinAdaptLerp = 0.01f;%0a            adaptLerp = Mathf.Clamp( adaptLerp, kMinAdaptLerp, 1 );%0a%0a            
  mate
-@@ -7315,21 +7315,32 @@
+@@ -7293,17 +7293,16 @@
+ tTexture
+- 
+ (%22_CurTe
+@@ -7315,22 +7315,32 @@
  rTexture
 + 
  );%0a
--%09%09
+-%09%09%09
 +            
  material
-@@ -7387,51 +7387,427 @@
- or4(
--value, limitMinimum, limitMaximum, 0f));%0a%09%09
-+%0a                                                        adaptLerp,%0a                                                        limitMinimum,%0a                                                        limitMaximum,%0a                                                        0.0f%0a                                                        ));%0a            // clear destination RT so its contents don't need to be restored%0a            
+@@ -7354,17 +7354,16 @@
+ etVector
+- 
+ (%22_Adapt
+@@ -7386,54 +7386,428 @@
+ tor4
+- (value, limitMinimum, limitMaximum, 0f));%0a%09%09%09
++(%0a                                                        adaptLerp,%0a                                                        limitMinimum,%0a                                                        limitMaximum,%0a                                                        0.0f%0a                                                        ));%0a            // clear destination RT so its contents don't need to be restored%0a            
  Grap
-@@ -7863,49 +7863,35 @@
+@@ -7826,17 +7826,16 @@
+ erTarget
+- 
+ (adaptRe
+@@ -7833,33 +7833,32 @@
+ t(adaptRenderTex
+- 
+ %5bcurAdaptIndex%5d)
+@@ -7863,51 +7863,35 @@
  %5d);%0a
--%09%09GL.Clear(clearDepth: false, clearColor:
+-%09%09%09GL.Clear (clearDepth: false, clearColor:
 +            GL.Clear(false,
   tru
-@@ -7911,10 +7911,20 @@
+@@ -7911,11 +7911,20 @@
  k);%0a
--%09%09
+-%09%09%09
 +            
  Grap
-@@ -7936,29 +7936,74 @@
- Blit
--(adaptRenderTex%5bnum%5d,
-+ (%0a                adaptRenderTex%5bprevAdaptIndex%5d,%0a               
+@@ -7938,29 +7938,72 @@
+ it (
+-adaptRenderTex %5bnum%5d,
++%0a                adaptRenderTex%5bprevAdaptIndex%5d,%0a               
   ada
+@@ -8013,17 +8013,16 @@
+ enderTex
+- 
+ %5bcurAdap
 @@ -8029,16 +8029,32 @@
  tIndex%5d,
 +%0a               
   materia
-@@ -8066,9 +8066,22 @@
+@@ -8066,13 +8066,22 @@
  t);%0a
--%09
+-%09%09%7d%0a%09
 +        %7d%0a    
  %7d%0a%7d%0a

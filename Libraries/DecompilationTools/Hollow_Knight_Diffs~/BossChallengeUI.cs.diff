@@ -7,16 +7,20 @@
 -%09
 +    
  public d
-@@ -192,17 +192,20 @@
- ent();%0a%0a
+@@ -187,23 +187,25 @@
+ ideEvent
+- 
+ ();%0a%0a
 -%09
 +    
  public d
-@@ -240,17 +240,20 @@
- ent();%0a%0a
+@@ -239,15 +239,17 @@
+ vent
+- 
+ ();%0a%0a
 -%09
 +    
- %5bSeriali
+ %5bSer
 @@ -259,17 +259,20 @@
  izable%5d%0a
 -%09
@@ -52,6 +56,10 @@
 -%09%09
 +        
  public v
+@@ -531,17 +531,16 @@
+ vigation
+- 
+ (bool is
 @@ -601,23 +601,38 @@
  OnDown)%0a
 -%09%09%7b%0a%09%09%09
@@ -82,41 +90,50 @@
 -%09%09%09
 +            
  CanvasGr
-@@ -940,19 +940,28 @@
- oup%3e();%0a
+@@ -936,24 +936,32 @@
+ asGroup%3e
+- 
+ ();%0a
 -%09%09%09
 +            
  if ((boo
-@@ -973,25 +973,46 @@
- ponent)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -972,23 +972,47 @@
+ mponent)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  componen
 @@ -1068,20 +1068,41 @@
  a);%0a
 -%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
 +            %7d%0a        %7d%0a%0a        
  publ
-@@ -1135,23 +1135,38 @@
- mplete)%0a
+@@ -1117,17 +1117,16 @@
+ SetState
+- 
+ (bool is
+@@ -1139,15 +1139,30 @@
+ te)%0a
 -%09%09%7b%0a%09%09%09
 +        %7b%0a            
- if ((boo
-@@ -1182,25 +1182,46 @@
- eImage)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+ if (
+@@ -1181,23 +1181,47 @@
+ teImage)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  complete
-@@ -1260,24 +1260,42 @@
- plete);%0a
--%09%09%09%7d%0a%09%09%09
-+            %7d%0a            
- if ((boo
-@@ -1313,25 +1313,46 @@
- eImage)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- incomple
+@@ -1246,17 +1246,16 @@
+ etActive
+- 
+ (isCompl
+@@ -1264,49 +1264,91 @@
+ e);%0a
+-%09%09%09%7d%0a%09%09%09if ((bool)incompleteImage) %7b%0a%09%09%09%09
++            %7d%0a            if ((bool)incompleteImage)%0a            %7b%0a                
+ inco
+@@ -1379,17 +1379,16 @@
+ etActive
+- 
+ (!isComp
 @@ -1398,22 +1398,43 @@
  e);%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
@@ -213,46 +230,60 @@
 -%09
 +    
  private 
-@@ -2131,21 +2131,30 @@
- Awake()%0a
+@@ -2128,25 +2128,33 @@
+ id Awake
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  canvas =
-@@ -2178,18 +2178,24 @@
- vas%3e();%0a
+@@ -2174,23 +2174,28 @@
+ %3cCanvas%3e
+- 
+ ();%0a
 -%09%09
 +        
  animator
-@@ -2223,18 +2223,24 @@
- tor%3e();%0a
+@@ -2219,23 +2219,28 @@
+ nimator%3e
+- 
+ ();%0a
 -%09%09
 +        
  group = 
-@@ -2268,18 +2268,24 @@
- oup%3e();%0a
+@@ -2264,23 +2264,28 @@
+ asGroup%3e
+- 
+ ();%0a
 -%09%09
 +        
  if ((boo
-@@ -2297,42 +2297,69 @@
- up)%0a
--%09%09%7b%0a%09%09%09group.alpha = 0f;%0a%09%09%7d%0a%09%7d%0a%0a%09
-+        %7b%0a            group.alpha = 0f;%0a        %7d%0a    %7d%0a%0a    
+@@ -2296,41 +2296,70 @@
+ oup)
+- %7b%0a%09%09%09group.alpha = 0f;%0a%09%09%7d%0a%09%7d%0a%0a%09
++%0a        %7b%0a            group.alpha = 0f;%0a        %7d%0a    %7d%0a%0a    
  priv
-@@ -2375,21 +2375,30 @@
- Start()%0a
+@@ -2372,25 +2372,33 @@
+ id Start
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if ((boo
-@@ -2477,23 +2477,38 @@
- Camera)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -2476,22 +2476,39 @@
+ dCamera)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  canvas.w
 @@ -2552,25 +2552,37 @@
  Camera;%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  public v
+@@ -2590,17 +2590,16 @@
+ id Setup
+- 
+ (BossSta
 @@ -2704,21 +2704,30 @@
  ionKey)%0a
 -%09%7b%0a%09%09
@@ -263,92 +294,139 @@
 -%09%09
 +        
  if ((bool)bo
-@@ -2784,35 +2784,102 @@
- xt)%0a
--%09%09%7b%0a%09%09%09bossNameText.text = 
-+        %7b%0a%0a            bossNameText.text = ModHooks.LanguageGet(bossNameKey, bossNameSheet);//
+@@ -2783,34 +2783,103 @@
+ ext)
+- %7b%0a%09%09%09bossNameText.text = 
++%0a        %7b%0a%0a            bossNameText.text = ModHooks.LanguageGet(bossNameKey, bossNameSheet);//
  glob
+@@ -2903,17 +2903,16 @@
+ uage.Get
+- 
+ (bossNam
 @@ -2929,30 +2929,42 @@
  NameSheet);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if ((bool)de
-@@ -2978,23 +2978,38 @@
- onText)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
- descript
-@@ -3023,16 +3023,73 @@
- .text = 
-+ModHooks.LanguageGet(descriptionKey, descriptionSheet);//
- global::
+@@ -2981,37 +2981,111 @@
+ ext)
+- %7b%0a%09%09%09descriptionText.text = 
++%0a        %7b%0a            descriptionText.text = ModHooks.LanguageGet(descriptionKey, descriptionSheet);//
+ glob
+@@ -3109,17 +3109,16 @@
+ uage.Get
+- 
+ (descrip
 @@ -3145,22 +3145,34 @@
  Sheet);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if (!bos
-@@ -3191,23 +3191,38 @@
- oTiers)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3190,22 +3190,39 @@
+ NoTiers)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  BossStat
 @@ -3335,19 +3335,28 @@
  State);%0a
 -%09%09%09
 +            
  tier1But
+@@ -3359,33 +3359,32 @@
+ 1Button.SetState
+- 
+ (completion.comp
 @@ -3396,19 +3396,28 @@
  Tier1);%0a
 -%09%09%09
 +            
  tier2But
+@@ -3420,33 +3420,32 @@
+ 2Button.SetState
+- 
+ (completion.comp
 @@ -3457,19 +3457,28 @@
  Tier2);%0a
 -%09%09%09
 +            
  tier3But
+@@ -3489,17 +3489,16 @@
+ SetState
+- 
+ (complet
 @@ -3518,19 +3518,28 @@
  Tier3);%0a
 -%09%09%09
 +            
  tier1But
+@@ -3549,33 +3549,32 @@
+ .SetupNavigation
+- 
+ (isActive: true,
 @@ -3639,27 +3639,36 @@
  er2Button);%0a
 -%09%09%09
 +            
  tier2Button.
+@@ -3682,17 +3682,16 @@
+ vigation
+- 
+ (isActiv
 @@ -3768,19 +3768,28 @@
  utton);%0a
 -%09%09%09
 +            
  tier3But
+@@ -3807,17 +3807,16 @@
+ vigation
+- 
+ (complet
 @@ -3862,19 +3862,28 @@
  utton);%0a
 -%09%09%09
 +            
  if ((boo
-@@ -3963,25 +3963,46 @@
- Unlock)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -3962,23 +3962,47 @@
+ 3Unlock)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  StartCor
-@@ -4029,24 +4029,42 @@
- ect());%0a
+@@ -4007,17 +4007,16 @@
+ oroutine
+- 
+ (ShowUnl
+@@ -4028,22 +4028,39 @@
+ fect
+- 
+ ());%0a
 -%09%09%09%7d%0a%09%09%09
 +            %7d%0a            
- StartCor
-@@ -4091,34 +4091,61 @@
- ted());%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+ Star
+@@ -4069,17 +4069,16 @@
+ oroutine
+- 
+ (SetFirs
+@@ -4090,36 +4090,66 @@
+ cted
+- 
+ ());%0a
+-%09%09%7d else %7b%0a%09%09%09
 +        %7d%0a        else%0a        %7b%0a            
  LoadBoss
+  (0,
+@@ -4144,17 +4144,16 @@
+ LoadBoss
+- 
+ (0, doHi
 @@ -4168,25 +4168,37 @@
  false);%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  private 
-@@ -4228,21 +4228,30 @@
- ffect()%0a
+@@ -4225,25 +4225,33 @@
+ ckEffect
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  BossStat
@@ -357,11 +435,19 @@
 -%09%09
 +        
  yield re
+@@ -4398,17 +4398,16 @@
+ rSeconds
+- 
+ (tier3Un
 @@ -4424,18 +4424,24 @@
  Delay);%0a
 -%09%09
 +        
  tier3Unl
+@@ -4451,33 +4451,32 @@
+ Effect.SetActive
+- 
+ (value: true);%0a%09
 @@ -4474,18 +4474,24 @@
   true);%0a
 -%09%09
@@ -372,14 +458,14 @@
 -%09%09
 +        
  if (boss
-@@ -4554,23 +4554,38 @@
- ersion)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -4553,22 +4553,39 @@
+ Version)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  bossStat
-@@ -4617,26 +4617,53 @@
+@@ -4617,22 +4617,53 @@
  te;%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%7d else %7b%0a%09%09%09
 +        %7d%0a        else%0a        %7b%0a            
  boss
 @@ -4690,25 +4690,37 @@
@@ -387,8 +473,10 @@
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  private 
-@@ -4750,21 +4750,30 @@
- ected()%0a
+@@ -4747,25 +4747,33 @@
+ Selected
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  MenuSele
@@ -397,23 +485,25 @@
 -%09%09
 +        
  if (last
-@@ -4840,23 +4840,38 @@
- n %3e= 0)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -4839,22 +4839,39 @@
+ on %3e= 0)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  switch (
-@@ -4894,28 +4894,66 @@
- on)%0a
--%09%09%09%7b%0a%09%09%09case 0:%0a%09%09%09%09
-+            %7b%0a                case 0:%0a                    
+@@ -4893,26 +4893,67 @@
+ ton)
+- %7b%0a%09%09%09case 0:%0a%09%09%09%09
++%0a            %7b%0a                case 0:%0a                    
  if (
-@@ -5017,375 +5017,670 @@
- le)%0a
--%09%09%09%09%7b%0a%09%09%09%09%09select = tier1Button.button;%0a%09%09%09%09%7d%0a%09%09%09%09break;%0a%09%09%09case 1:%0a%09%09%09%09if ((bool)tier2Button.button && tier2Button.button.interactable)%0a%09%09%09%09%7b%0a%09%09%09%09%09select = tier2Button.button;%0a%09%09%09%09%7d%0a%09%09%09%09break;%0a%09%09%09case 2:%0a%09%09%09%09if ((bool)tier3Button.button && tier3Button.button.interactable)%0a%09%09%09%09%7b%0a%09%09%09%09%09select = tier3Button.button;%0a%09%09%09%09%7d%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if ((bool)select)%0a%09%09%7b%0a%09%09%09
-+                    %7b%0a                        select = tier1Button.button;%0a                    %7d%0a                    break;%0a                case 1:%0a                    if ((bool)tier2Button.button && tier2Button.button.interactable)%0a                    %7b%0a                        select = tier2Button.button;%0a                    %7d%0a                    break;%0a                case 2:%0a                    if ((bool)tier3Button.button && tier3Button.button.interactable)%0a                    %7b%0a                        select = tier3Button.button;%0a                    %7d%0a                    break;%0a            %7d%0a        %7d%0a        if ((bool)select)%0a        %7b%0a            
+@@ -5016,362 +5016,671 @@
+ ble)
+- %7b%0a%09%09%09%09%09select = tier1Button.button;%0a%09%09%09%09%7d%0a%09%09%09%09break;%0a%09%09%09case 1:%0a%09%09%09%09if ((bool)tier2Button.button && tier2Button.button.interactable) %7b%0a%09%09%09%09%09select = tier2Button.button;%0a%09%09%09%09%7d%0a%09%09%09%09break;%0a%09%09%09case 2:%0a%09%09%09%09if ((bool)tier3Button.button && tier3Button.button.interactable) %7b%0a%09%09%09%09%09select = tier3Button.button;%0a%09%09%09%09%7d%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if ((bool)select) %7b%0a%09%09%09
++%0a                    %7b%0a                        select = tier1Button.button;%0a                    %7d%0a                    break;%0a                case 1:%0a                    if ((bool)tier2Button.button && tier2Button.button.interactable)%0a                    %7b%0a                        select = tier2Button.button;%0a                    %7d%0a                    break;%0a                case 2:%0a                    if ((bool)tier3Button.button && tier3Button.button.interactable)%0a                    %7b%0a                        select = tier3Button.button;%0a                    %7d%0a                    break;%0a            %7d%0a        %7d%0a        if ((bool)select)%0a        %7b%0a            
  sele
-@@ -5699,19 +5699,28 @@
- lect();%0a
+@@ -5695,24 +5695,32 @@
+ Deselect
+- 
+ ();%0a
 -%09%09%09
 +            
  yield re
@@ -427,91 +517,174 @@
 -%09%09%09
 +            
  select.S
-@@ -5806,19 +5806,30 @@
- lect();%0a
+@@ -5802,24 +5802,34 @@
+ t.Select
+- 
+ ();%0a
 -%09%09%09
 +            //
  InputHan
-@@ -5854,33 +5854,45 @@
- tUIInput();%0a
+@@ -5854,30 +5854,41 @@
+ tUIInput
+- 
+ ();%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
- public void 
-@@ -5898,21 +5898,30 @@
-  Hide()%0a
+ public v
+@@ -5899,22 +5899,29 @@
+ Hide
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- Hide(doA
+ Hide
+- 
+ (doA
 @@ -5924,37 +5924,43 @@
  (doAnim: true);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  public void Hide
-@@ -5977,134 +5977,206 @@
+@@ -5959,17 +5959,16 @@
+ oid Hide
+- 
+ (bool do
+@@ -5977,30 +5977,56 @@
  im)%0a
--%09%7b%0a%09%09if (doAnim)%0a%09%09%7b%0a%09%09%09StartCoroutine(HideAnim());%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (this.OnCancel != null)%0a%09%09%7b%0a%09%09%09this.OnCancel();%0a%09%09%7d%0a%09%09
-+    %7b%0a        if (doAnim)%0a        %7b%0a            StartCoroutine(HideAnim());%0a            return;%0a        %7d%0a        if (this.OnCancel != null)%0a        %7b%0a            this.OnCancel();%0a        %7d%0a        
- base
+-%09%7b%0a%09%09if (doAnim) %7b%0a%09%09%09
++    %7b%0a        if (doAnim)%0a        %7b%0a            
+ Star
+@@ -6035,17 +6035,16 @@
+ oroutine
+- 
+ (HideAni
+@@ -6048,31 +6048,51 @@
+ Anim
+- 
+ ());%0a
+-%09%09%09return;%0a%09%09%7d%0a%09%09
++            return;%0a        %7d%0a        
+ if (
+@@ -6105,38 +6105,55 @@
+ nCancel != null)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ this.OnCancel ()
+@@ -6149,27 +6149,38 @@
+ OnCancel
+- 
+ ();%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ base.gam
+@@ -6188,33 +6188,32 @@
+ Object.SetActive
+- 
+ (value: false);%0a
 @@ -6212,21 +6212,27 @@
  false);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
-@@ -6254,21 +6254,30 @@
- eAnim()%0a
+@@ -6255,17 +6255,25 @@
+ Anim
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- if ((boo
-@@ -6288,23 +6288,38 @@
- imator)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if (
+@@ -6287,22 +6287,39 @@
+ nimator)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  animator
+@@ -6323,17 +6323,16 @@
+ tor.Play
+- 
+ (closeSt
 @@ -6341,19 +6341,28 @@
  eName);%0a
 -%09%09%09
 +            
  Animator
-@@ -6438,19 +6438,28 @@
- nfo(0);%0a
+@@ -6437,17 +6437,25 @@
+ Info
+- 
+ (0);%0a
 -%09%09%09
 +            
- yield re
+ yiel
+@@ -6481,17 +6481,16 @@
+ rSeconds
+- 
+ (current
+@@ -6505,17 +6505,16 @@
+ ClipInfo
+- 
+ %5b0%5d.clip
 @@ -6523,22 +6523,34 @@
  ength);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if ((boo
-@@ -6570,23 +6570,38 @@
- Effect)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -6569,22 +6569,39 @@
+ kEffect)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  tier3Unl
+@@ -6611,33 +6611,32 @@
+ Effect.SetActive
+- 
+ (value: false);%0a
 @@ -6635,22 +6635,34 @@
  false);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if (this
-@@ -6684,38 +6684,70 @@
- ll)%0a
--%09%09%7b%0a%09%09%09this.OnCancel();%0a%09%09%7d%0a%09%09
-+        %7b%0a            this.OnCancel();%0a        %7d%0a        base.
+@@ -6675,30 +6675,47 @@
+ cel != null)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ this.OnCance
+@@ -6719,19 +6719,35 @@
+ ncel
+- 
+ ();%0a
+-%09%09%7d%0a%09%09
++        %7d%0a        base.
  game
+@@ -6762,17 +6762,16 @@
+ etActive
+- 
+ (value: 
 @@ -6774,29 +6774,35 @@
  ue: false);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  public void 
-@@ -6821,21 +6821,30 @@
-  level)%0a
+@@ -6801,33 +6801,32 @@
+ ic void LoadBoss
+- 
+ (int level)%0a%09%7b%0a%09
+@@ -6825,21 +6825,30 @@
+ el)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  LoadBoss
+  (le
+@@ -6843,17 +6843,16 @@
+ LoadBoss
+- 
+ (level, 
 @@ -6870,21 +6870,27 @@
   true);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  public v
+@@ -6901,17 +6901,16 @@
+ LoadBoss
+- 
+ (int lev
 @@ -6930,21 +6930,30 @@
  deAnim)%0a
 -%09%7b%0a%09%09
@@ -527,49 +700,67 @@
 -%09%09
 +        
  switch (
-@@ -7119,174 +7119,300 @@
- el)%0a
--%09%09%7b%0a%09%09case 0:%0a%09%09%09text = bossScene.Tier1Scene;%0a%09%09%09break;%0a%09%09case 1:%0a%09%09%09text = bossScene.Tier2Scene;%0a%09%09%09break;%0a%09%09case 2:%0a%09%09%09text = bossScene.Tier3Scene;%0a%09%09%09break;%0a%09%09%7d%0a%09%09
-+        %7b%0a            case 0:%0a                text = bossScene.Tier1Scene;%0a                break;%0a            case 1:%0a                text = bossScene.Tier2Scene;%0a                break;%0a            case 2:%0a                text = bossScene.Tier3Scene;%0a                break;%0a        %7d%0a        
+@@ -7118,173 +7118,301 @@
+ vel)
+- %7b%0a%09%09case 0:%0a%09%09%09text = bossScene.Tier1Scene;%0a%09%09%09break;%0a%09%09case 1:%0a%09%09%09text = bossScene.Tier2Scene;%0a%09%09%09break;%0a%09%09case 2:%0a%09%09%09text = bossScene.Tier3Scene;%0a%09%09%09break;%0a%09%09%7d%0a%09%09
++%0a        %7b%0a            case 0:%0a                text = bossScene.Tier1Scene;%0a                break;%0a            case 1:%0a                text = bossScene.Tier2Scene;%0a                break;%0a            case 2:%0a                text = bossScene.Tier3Scene;%0a                break;%0a        %7d%0a        
  if (
-@@ -7456,23 +7456,38 @@
- (text))%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
- Hide(doH
+@@ -7452,27 +7452,42 @@
+ aded
+- 
+ (text))
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ Hide
+- 
+ (doH
 @@ -7496,19 +7496,28 @@
  eAnim);%0a
 -%09%09%09
 +            
  Debug.Lo
+@@ -7522,17 +7522,16 @@
+ LogError
+- 
+ ($%22Could
 @@ -7594,25 +7594,46 @@
  %22);%0a
 -%09%09%09return;%0a%09%09%7d%0a%09%09
 +            return;%0a        %7d%0a        
  Stat
+@@ -7655,17 +7655,16 @@
+ SetValue
+- 
+ (%22bossSc
 @@ -7682,18 +7682,24 @@
   text);%0a
 -%09%09
 +        
  BossStat
+@@ -7727,17 +7727,16 @@
+ ossScene
+- 
+ (bossSce
 @@ -7740,18 +7740,24 @@
  Scene);%0a
 -%09%09
 +        
  this.OnC
-@@ -7770,18 +7770,24 @@
- = null;%0a
+@@ -7774,15 +7774,20 @@
+ ll;%0a
 -%09%09
 +        
- Hide(doH
+ Hide
+- 
+ (doH
 @@ -7796,18 +7796,24 @@
  eAnim);%0a
 -%09%09
 +        
  GameMana
-@@ -7836,37 +7836,38 @@
+@@ -7836,38 +7836,38 @@
  yerData.
--SetStringSwappedArgs(
+-SetStringSwappedArgs (
 +bossReturnEntryGate = 
  bossStat
 @@ -7893,36 +7893,18 @@
@@ -581,10 +772,10 @@
  delegate
 + 
  (BossSce
-@@ -7968,23 +7968,74 @@
- r self)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            //(%22BOSS SCENE SETUP%22);%0a            
+@@ -7967,22 +7967,75 @@
+ er self)
+- %7b%0a%09%09%09
++%0a        %7b%0a            //(%22BOSS SCENE SETUP%22);%0a            
  self.Bos
 @@ -8050,19 +8050,28 @@
   level;%0a
@@ -596,46 +787,67 @@
 -%09%09%09
 +            
  self.OnB
-@@ -8144,25 +8144,92 @@
- elegate%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                //(%22BOSS SCENE BOSSES DEAD%22);%0a                
+@@ -8143,23 +8143,93 @@
+ delegate
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                //(%22BOSS SCENE BOSSES DEAD%22);%0a                
  string f
 @@ -8330,20 +8330,32 @@
  atePD);%0a
 -%09%09%09%09
 +                
  BossStat
-@@ -8471,256 +8471,466 @@
+@@ -8454,17 +8454,16 @@
+ pletion%3e
+- 
+ (fieldNa
+@@ -8471,252 +8471,466 @@
  e);%0a
--%09%09%09%09switch (level)%0a%09%09%09%09%7b%0a%09%09%09%09case 0:%0a%09%09%09%09%09playerDataVariable.completedTier1 = true;%0a%09%09%09%09%09break;%0a%09%09%09%09case 1:%0a%09%09%09%09%09playerDataVariable.completedTier2 = true;%0a%09%09%09%09%09break;%0a%09%09%09%09case 2:%0a%09%09%09%09%09playerDataVariable.completedTier3 = true;%0a%09%09%09%09%09break;%0a%09%09%09%09%7d%0a%09%09%09%09
+-%09%09%09%09switch (level) %7b%0a%09%09%09%09case 0:%0a%09%09%09%09%09playerDataVariable.completedTier1 = true;%0a%09%09%09%09%09break;%0a%09%09%09%09case 1:%0a%09%09%09%09%09playerDataVariable.completedTier2 = true;%0a%09%09%09%09%09break;%0a%09%09%09%09case 2:%0a%09%09%09%09%09playerDataVariable.completedTier3 = true;%0a%09%09%09%09%09break;%0a%09%09%09%09%7d%0a%09%09%09%09
 +                switch (level)%0a                %7b%0a                    case 0:%0a                        playerDataVariable.completedTier1 = true;%0a                        break;%0a                    case 1:%0a                        playerDataVariable.completedTier2 = true;%0a                        break;%0a                    case 2:%0a                        playerDataVariable.completedTier3 = true;%0a                        break;%0a                %7d%0a                
  Game
+@@ -8967,17 +8967,16 @@
+ Variable
+- 
+ (fieldNa
 @@ -9000,20 +9000,32 @@
  iable);%0a
 -%09%09%09%09
 +                
  GameMana
-@@ -9052,28 +9052,41 @@
+@@ -9052,28 +9052,40 @@
  ata.
 -SetStringSwappedArgs
-+currentBossStatueCompletionKey = 
- (bos
-@@ -9173,222 +9173,284 @@
++currentBossStatueCompletionKey =
+  (bo
+@@ -9173,185 +9173,228 @@
  tePD
--, %22currentBossStatueCompletionKey%22);%0a%09%09%09%09GameManager.instance.playerData.SetIntSwappedArgs(level, %22bossStatueTargetLevel%22);%0a%09%09%09%7d;%0a%09%09%09self.OnBossSceneComplete += delegate%0a%09%09%09%7b%0a%09%09%09%09self.DoDreamReturn();%0a%09%09%09%7d;%0a%09%09%7d;%0a%09%09
-+);%0a                GameManager.instance.playerData.bossStatueTargetLevel = level;%0a            %7d;%0a            self.OnBossSceneComplete += delegate%0a            %7b%0a                //(%22BOSS SCENE COMPLETED%22);%0a                self.DoDreamReturn();%0a            %7d;%0a        %7d;%0a        
+-, %22currentBossStatueCompletionKey%22);%0a%09%09%09%09GameManager.instance.playerData.SetIntSwappedArgs (level, %22bossStatueTargetLevel%22);%0a%09%09%09%7d;%0a%09%09%09self.OnBossSceneComplete += delegate %7b%0a%09%09%09%09
++);%0a                GameManager.instance.playerData.bossStatueTargetLevel = level;%0a            %7d;%0a            self.OnBossSceneComplete += delegate%0a            %7b%0a                //(%22BOSS SCENE COMPLETED%22);%0a                
+ self
+@@ -9411,26 +9411,46 @@
+ turn
+- 
+ ();%0a
+-%09%09%09%7d;%0a%09%09%7d;%0a%09%09
++            %7d;%0a        %7d;%0a        
  if (
-@@ -9483,15 +9483,30 @@
- ll)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -9482,14 +9482,31 @@
+ ull)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  this
-@@ -9529,17 +9529,29 @@
+@@ -9525,22 +9525,33 @@
+ cted
+- 
  ();%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  publ
+@@ -9576,17 +9576,16 @@
+ Selected
+- 
+ (int ind
 @@ -9592,13 +9592,22 @@
  ex)%0a
 -%09%7b%0a%09%09

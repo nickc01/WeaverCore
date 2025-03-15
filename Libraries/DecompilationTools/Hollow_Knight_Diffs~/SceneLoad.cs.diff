@@ -1,11 +1,11 @@
-@@ -43,713 +43,152 @@
+@@ -43,720 +43,152 @@
  ing 
--UnityEngine;%0ausing UnityEngine.SceneManagement;%0a%0apublic class SceneLoad%0a%7b%0a%09public enum Phases%0a%09%7b%0a%09%09FetchBlocked,%0a%09%09Fetch,%0a%09%09ActivationBlocked,%0a%09%09Activation,%0a%09%09UnloadUnusedAssets,%0a%09%09GarbageCollect,%0a%09%09StartCall,%0a%09%09LoadBoss%0a%09%7d%0a%0a%09private class PhaseInfo%0a%09%7b%0a%09%09public float? BeginTime;%0a%0a%09%09public float? EndTime;%0a%09%7d%0a%0a%09public delegate void FetchCompleteDelegate();%0a%0a%09public delegate void WillActivateDelegate();%0a%0a%09public delegate void ActivationCompleteDelegate();%0a%0a%09public delegate void CompleteDelegate()
+-UnityEngine;%0ausing UnityEngine.SceneManagement;%0a%0apublic class SceneLoad%0a%7b%0a%09public enum Phases%0a%09%7b%0a%09%09FetchBlocked,%0a%09%09Fetch,%0a%09%09ActivationBlocked,%0a%09%09Activation,%0a%09%09UnloadUnusedAssets,%0a%09%09GarbageCollect,%0a%09%09StartCall,%0a%09%09LoadBoss%0a%09%7d%0a%0a%09private class PhaseInfo%0a%09%7b%0a%09%09public float? BeginTime;%0a%0a%09%09public float? EndTime;%0a%09%7d%0a%0a%09public delegate void FetchCompleteDelegate ();%0a%0a%09public delegate void WillActivateDelegate ();%0a%0a%09public delegate void ActivationCompleteDelegate ();%0a%0a%09public delegate void CompleteDelegate ()
 +System.IO;%0ausing System.Linq;%0ausing UnityEditor;%0ausing UnityEngine;%0ausing UnityEngine.SceneManagement
  ;%0a%0a
 -%09
  public 
--delegate void StartCalledDelegate();%0a%0a%09public delegate void BossLoadCompleteDelegate();%0a%0a%09public delegate void FinishDelegate();%0a%0a%09private readonly MonoBehaviour runner;%0a%0a%09private readonly
+-delegate void StartCalledDelegate ();%0a%0a%09public delegate void BossLoadCompleteDelegate ();%0a%0a%09public delegate void FinishDelegate ();%0a%0a%09private readonly MonoBehaviour runner;%0a%0a%09private readonly
 +class SceneLoad%0a%7b%0a%09public
   string 
  targ
@@ -23,10 +23,11 @@
  eneName;
 +%0a%09%09%7d%0a%09%7d
  %0a%0a%09publi
-@@ -498,406 +498,8 @@
-  %7d%0a%0a
--%09public float? BeginTime =%3e phaseInfos%5b0%5d.BeginTime;%0a%0a%09public event FetchCompleteDelegate FetchComplete;%0a%0a%09public event WillActivateDelegate WillActivate;%0a%0a%09public event ActivationCompleteDelegate ActivationComplete;%0a%0a%09public event CompleteDelegate Complete;%0a%0a%09public event StartCalledDelegate StartCalled;%0a%0a%09public event BossLoadCompleteDelegate BossLoaded;%0a%0a%09public event FinishDelegate Finish;%0a%0a
- %09pub
+@@ -506,417 +506,17 @@
+ lic 
+-float? BeginTime =%3e phaseInfos %5b0%5d.BeginTime;%0a%0a%09public event FetchCompleteDelegate FetchComplete;%0a%0a%09public event WillActivateDelegate WillActivate;%0a%0a%09public event ActivationCompleteDelegate ActivationComplete;%0a%0a%09public event CompleteDelegate Complete;%0a%0a%09public event StartCalledDelegate StartCalled;%0a%0a%09public event BossLoadCompleteDelegate BossLoaded;%0a%0a%09public event FinishDelegate Finish;%0a%0a%09public SceneLoad 
++SceneLoad
+ (Mon
 @@ -629,16 +629,21 @@
  Name;%0a%09%09
 +this.
@@ -35,26 +36,44 @@
  Infos = new 
 +SceneLoad.
  PhaseInfo%5b8%5d
-@@ -712,16 +712,21 @@
- %0a%09%09%7b%0a%09%09%09
+@@ -704,22 +704,29 @@
+  8; i++)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 +this.
  phaseInf
+@@ -727,17 +727,16 @@
+ aseInfos
+- 
+ %5bi%5d = ne
 @@ -737,16 +737,26 @@
  %5d = new 
 +SceneLoad.
  PhaseInf
+@@ -756,17 +756,20 @@
+ haseInfo
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09Be
 @@ -793,24 +793,110 @@
  %09%7d;%0a%09%09%7d%0a%09%7d%0a%0a
 +%09public float? BeginTime%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09return this.phaseInfos%5b0%5d.BeginTime;%0a%09%09%7d%0a%09%7d%0a%0a
  %09private voi
-@@ -909,24 +909,34 @@
- rdBeginTime(
+@@ -908,26 +908,35 @@
+ ordBeginTime
+- 
+ (
 +SceneLoad.
  Phases phase
 @@ -934,32 +934,37 @@
  ses phase)%0a%09%7b%0a%09%09
 +this.
- phaseInfos%5b(int)
+ phaseInfos %5b(int
+@@ -949,33 +949,32 @@
+ %09this.phaseInfos
+- 
+ %5b(int)phase%5d.Beg
 @@ -978,24 +978,35 @@
  BeginTime = 
 +new float?(
@@ -63,14 +82,20 @@
  timeSinceStartup
 +)
  ;%0a%09%7d%0a%0a%09private v
-@@ -1049,24 +1049,34 @@
- cordEndTime(
+@@ -1048,26 +1048,35 @@
+ ecordEndTime
+- 
+ (
 +SceneLoad.
  Phases phase
 @@ -1082,16 +1082,21 @@
  e)%0a%09%7b%0a%09%09
 +this.
  phaseInf
+@@ -1089,33 +1089,32 @@
+ %09this.phaseInfos
+- 
+ %5b(int)phase%5d.End
 @@ -1120,16 +1120,27 @@
  dTime = 
 +new float?(
@@ -79,8 +104,10 @@
  eStartup
 +)
  ;%0a%09%7d%0a%0a%09p
-@@ -1190,16 +1190,26 @@
- uration(
+@@ -1189,18 +1189,27 @@
+ Duration
+- 
+ (
 +SceneLoad.
  Phases p
 @@ -1219,16 +1219,26 @@
@@ -91,16 +118,20 @@
  eInfo = 
 +this.
  phaseInf
+@@ -1266,17 +1266,16 @@
+ aseInfos
+- 
+ %5b(int)ph
 @@ -1305,25 +1305,24 @@
  eginTime
 -.HasValue
 + != null
   && phas
-@@ -1338,17 +1338,16 @@
+@@ -1338,19 +1338,20 @@
  Time
--.HasValue
-+ != null
- )%0a%09%09
+-.HasValue) 
++ != null)%0a%09%09
+ %7b%0a%09%09
 @@ -1358,16 +1358,27 @@
  %09return 
 +new float?(
@@ -109,18 +140,31 @@
  me.Value
 +)
  ;%0a%09%09%7d%0a%09%09
+@@ -1464,25 +1464,24 @@
+ id Begin
+- 
+ ()%0a%09%7b%0a%09%09
+ runner.S
 @@ -1472,16 +1472,21 @@
  ()%0a%09%7b%0a%09%09
 +this.
  runner.S
-@@ -1499,16 +1499,21 @@
- routine(
+@@ -1498,18 +1498,22 @@
+ oroutine
+- 
+ (
 +this.
  BeginRou
-@@ -1521,24 +1521,568 @@
- ine());%0a%09%7d%0a%0a
-+%09static string MakePathRelative(string relativeTo, string path)%0a%09%7b%0a%09%09if (relativeTo.Last() != '%5c%5c')%0a%09%09%7b%0a%09%09%09relativeTo += %22%5c%5c%22;%0a%09%09%7d%0a%0a%09%09Uri fullPath = new Uri(path, UriKind.Absolute);%0a%09%09Uri relRoot = new Uri(relativeTo, UriKind.Absolute);%0a%0a%09%09return relRoot.MakeRelativeUri(fullPath).ToString().Replace(%22%2520%22,%22 %22);%0a%09%7d%0a%0a%09static string ConvertToProjectPath(string path)%0a%09%7b%0a%09%09var relative = MakePathRelative(new DirectoryInfo($%22Assets%7bPath.DirectorySeparatorChar%7d..%22).FullName, path);%0a%09%09relative = relative.Replace('%5c%5c', '/');%0a%09%09return relative;%0a%09%7d%0a%0a
- %09private IEn
+@@ -1516,20 +1516,563 @@
+ nRoutine
+- 
+ ())
++;%0a%09%7d%0a%0a%09static string MakePathRelative(string relativeTo, string path)%0a%09%7b%0a%09%09if (relativeTo.Last() != '%5c%5c')%0a%09%09%7b%0a%09%09%09relativeTo += %22%5c%5c%22;%0a%09%09%7d%0a%0a%09%09Uri fullPath = new Uri(path, UriKind.Absolute);%0a%09%09Uri relRoot = new Uri(relativeTo, UriKind.Absolute);%0a%0a%09%09return relRoot.MakeRelativeUri(fullPath).ToString().Replace(%22%2520%22,%22 %22);%0a%09%7d%0a%0a%09static string ConvertToProjectPath(string path)%0a%09%7b%0a%09%09var relative = MakePathRelative(new DirectoryInfo($%22Assets%7bPath.DirectorySeparatorChar%7d..%22).FullName, path);%0a%09%09relative = relative.Replace('%5c%5c', '/');%0a%09%09return relative
+ ;%0a%09%7d%0a%0a%09p
+@@ -2102,17 +2102,16 @@
+ nRoutine
+- 
+ ()%0a%09%7b%0a%09%09
 @@ -2156,32 +2156,34 @@
  uence = true;%0a%09%09
 +//
@@ -129,122 +173,269 @@
  %09//yield return 
 +this.
  runner.StartCoro
-@@ -2247,24 +2247,29 @@
- tions());%0a%09%09
+@@ -2201,25 +2201,24 @@
+ artCoroutine
+- 
+ (ScenePreloa
+@@ -2244,24 +2244,28 @@
+ erations
+- 
+ ());%0a%09%09
 +this.
- RecordBeginT
-@@ -2264,32 +2264,42 @@
- RecordBeginTime(
+ RecordBe
+@@ -2263,34 +2263,43 @@
+ .RecordBeginTime
+- 
+ (
 +SceneLoad.
  Phases.FetchBloc
 @@ -2314,16 +2314,21 @@
  while (!
 +this.
  IsFetchA
+@@ -2326,33 +2326,35 @@
+ .IsFetchAllowed)
+- 
++%0a%09%09
+ %7b%0a%09%09%09yield retur
 @@ -2359,32 +2359,37 @@
  urn null;%0a%09%09%7d%0a%09%09
 +this.
- RecordEndTime(Ph
-@@ -2378,32 +2378,42 @@
- s.RecordEndTime(
+ RecordEndTime (P
+@@ -2377,34 +2377,43 @@
+ is.RecordEndTime
+- 
+ (
 +SceneLoad.
  Phases.FetchBloc
 @@ -2412,32 +2412,37 @@
  etchBlocked);%0a%09%09
 +this.
- RecordBeginTime(
-@@ -2437,24 +2437,34 @@
- rdBeginTime(
-+SceneLoad.
- Phases.Fetch
-@@ -2466,16 +2466,720 @@
- Fetch);%0a
-+#if UNITY_EDITOR%0a%09%09yield return null;%0a%09%09/*foreach (var scene in AssetDatabase.FindAssets(%22*.unity%22))%0a%09%09%7b%0a%09%09%09Debug.Log(%22Scene = %22 + AssetDatabase.GUIDToAssetPath(scene));%0a%09%09%7d*/%0a%09%09string scenePathToLoad = null;%0a%09%09foreach (var sceneFile in new DirectoryInfo(%22Assets%22).GetFiles(%22*.unity%22,SearchOption.AllDirectories))%0a%09%09%7b%0a%09%09%09var assetPath = ConvertToProjectPath(sceneFile.FullName);%0a%09%09%09if (assetPath.Contains(targetSceneName))%0a%09%09%09%7b%0a%09%09%09%09scenePathToLoad = assetPath;%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09AsyncOperation loadOperation = UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(scenePathToLoad ?? targetSceneName, new LoadSceneParameters%0a%09%09%7b%0a%09%09%09loadSceneMode = LoadSceneMode.Additive%0a%09%09%7d);%0a#else%0a
- %09%09AsyncO
-@@ -3259,16 +3259,21 @@
- neAsync(
+ RecordBeginTime 
+@@ -2440,32 +2440,745 @@
+ eginTime
+- (Phases.Fetch);
++(SceneLoad.Phases.Fetch);%0a#if UNITY_EDITOR%0a%09%09yield return null;%0a%09%09/*foreach (var scene in AssetDatabase.FindAssets(%22*.unity%22))%0a%09%09%7b%0a%09%09%09Debug.Log(%22Scene = %22 + AssetDatabase.GUIDToAssetPath(scene));%0a%09%09%7d*/%0a%09%09string scenePathToLoad = null;%0a%09%09foreach (var sceneFile in new DirectoryInfo(%22Assets%22).GetFiles(%22*.unity%22,SearchOption.AllDirectories))%0a%09%09%7b%0a%09%09%09var assetPath = ConvertToProjectPath(sceneFile.FullName);%0a%09%09%09if (assetPath.Contains(targetSceneName))%0a%09%09%09%7b%0a%09%09%09%09scenePathToLoad = assetPath;%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09AsyncOperation loadOperation = UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(scenePathToLoad ?? targetSceneName, new LoadSceneParameters%0a%09%09%7b%0a%09%09%09loadSceneMode = LoadSceneMode.Additive%0a%09%09%7d);%0a#else
+ %0a%09%09Async
+@@ -3258,18 +3258,22 @@
+ eneAsync
+- 
+ (
 +this.
  targetSc
 @@ -3306,16 +3306,28 @@
  itive);%0a
 +#endif%0a%09%09//%0a
  %09%09loadOp
+@@ -3403,17 +3403,19 @@
+  %3c 0.9f)
+- 
++%0a%09%09
+ %7b%0a%09%09%09yie
 @@ -3428,32 +3428,37 @@
  urn null;%0a%09%09%7d%0a%09%09
 +this.
- RecordEndTime(Ph
-@@ -3451,24 +3451,34 @@
- cordEndTime(
+ RecordEndTime (P
+@@ -3450,26 +3450,35 @@
+ ecordEndTime
+- 
+ (
 +SceneLoad.
  Phases.Fetch
+@@ -3509,33 +3509,35 @@
+ ete != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09try
+  %7b%0a%09%09%09%09this.
+@@ -3516,33 +3516,36 @@
+ null)%0a%09%09%7b%0a%09%09%09try
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09this.Fetch
+@@ -3548,33 +3548,32 @@
+ etchComplete
+- 
+ ();%0a%09%09%09%7d
+  catch (Exce
+@@ -3552,33 +3552,36 @@
+ Complete();%0a%09%09%09%7d
+- 
++%0a%09%09%09
+ catch (Exception
+@@ -3591,17 +3591,20 @@
+ ception)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09De
+@@ -3607,33 +3607,32 @@
+ %09%09Debug.LogError
+- 
+ (%22Exception in r
+@@ -3726,33 +3726,32 @@
+ bug.LogException
+- 
+ (exception);%0a%09%09%09
 @@ -3750,32 +3750,37 @@
  on);%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
 +this.
- RecordBeginTime(
-@@ -3771,32 +3771,42 @@
- RecordBeginTime(
+ RecordBeginTime 
+@@ -3770,34 +3770,43 @@
+ .RecordBeginTime
+- 
+ (
 +SceneLoad.
  Phases.Activatio
 @@ -3826,16 +3826,21 @@
  while (!
 +this.
  IsActiva
+@@ -3851,17 +3851,19 @@
+ Allowed)
+- 
++%0a%09%09
+ %7b%0a%09%09%09yie
 @@ -3876,32 +3876,37 @@
  urn null;%0a%09%09%7d%0a%09%09
 +this.
- RecordEndTime(Ph
-@@ -3895,32 +3895,42 @@
- s.RecordEndTime(
+ RecordEndTime (P
+@@ -3894,34 +3894,43 @@
+ is.RecordEndTime
+- 
+ (
 +SceneLoad.
  Phases.Activatio
 @@ -3938,24 +3938,29 @@
  Blocked);%0a%09%09
 +this.
  RecordBeginT
-@@ -3959,24 +3959,34 @@
- rdBeginTime(
+@@ -3958,26 +3958,35 @@
+ ordBeginTime
+- 
+ (
 +SceneLoad.
  Phases.Activ
+@@ -4021,33 +4021,35 @@
+ ate != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09try
+  %7b%0a%09%09%09%09this.
+@@ -4028,33 +4028,36 @@
+ null)%0a%09%09%7b%0a%09%09%09try
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09this.WillA
+@@ -4063,25 +4063,24 @@
+ Activate
+- 
+ ();%0a%09%09%09%7d
+  catch (
+@@ -4063,33 +4063,36 @@
+ Activate();%0a%09%09%09%7d
+- 
++%0a%09%09%09
+ catch (Exception
+@@ -4103,17 +4103,20 @@
+ eption2)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09De
+@@ -4119,33 +4119,32 @@
+ %09%09Debug.LogError
+- 
+ (%22Exception in r
+@@ -4237,33 +4237,32 @@
+ bug.LogException
+- 
+ (exception2);%0a%09%09
 @@ -4341,24 +4341,29 @@
  peration;%0a%09%09
 +this.
  RecordEndTim
-@@ -4360,24 +4360,34 @@
- cordEndTime(
+@@ -4359,26 +4359,35 @@
+ ecordEndTime
+- 
+ (
 +SceneLoad.
  Phases.Activ
+@@ -4428,33 +4428,35 @@
+ ete != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09try
+  %7b%0a%09%09%09%09this.
+@@ -4435,33 +4435,36 @@
+ null)%0a%09%09%7b%0a%09%09%09try
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09this.Activ
+@@ -4472,33 +4472,32 @@
+ tionComplete
+- 
+ ();%0a%09%09%09%7d
+  catch (Exce
+@@ -4476,33 +4476,36 @@
+ Complete();%0a%09%09%09%7d
+- 
++%0a%09%09%09
+ catch (Exception
+@@ -4516,17 +4516,20 @@
+ eption3)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09De
+@@ -4532,33 +4532,32 @@
+ %09%09Debug.LogError
+- 
+ (%22Exception in r
+@@ -4656,33 +4656,32 @@
+ bug.LogException
+- 
+ (exception3);%0a%09%09
 @@ -4681,32 +4681,37 @@
  n3);%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
 +this.
- RecordBeginTime(
-@@ -4706,24 +4706,34 @@
- rdBeginTime(
+ RecordBeginTime 
+@@ -4705,26 +4705,35 @@
+ ordBeginTime
+- 
+ (
 +SceneLoad.
  Phases.Unloa
 @@ -4754,16 +4754,21 @@
  ;%0a%09%09if (
 +this.
  IsUnload
-@@ -4790,28 +4790,47 @@
- %0a%09%09%7b%0a%09%09%09
+@@ -4786,26 +4786,47 @@
+ red)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 -yield return
 +AsyncOperation asyncOperation =
-  Resourc
-@@ -4852,28 +4852,65 @@
- Assets();%0a%09%09
+  Res
+@@ -4850,27 +4850,63 @@
+ edAssets
+- 
+ ();%0a%09%09
 -%7d%0a%09%09
 +%09yield return asyncOperation;%0a%09%09%7d%0a%09%09this.
- RecordEndTim
-@@ -4907,24 +4907,34 @@
- cordEndTime(
+ RecordEn
+@@ -4906,26 +4906,35 @@
+ ecordEndTime
+- 
+ (
 +SceneLoad.
  Phases.Unloa
 @@ -4947,24 +4947,29 @@
  dAssets);%0a%09%09
 +this.
  RecordBeginT
-@@ -4968,24 +4968,34 @@
- rdBeginTime(
+@@ -4967,26 +4967,35 @@
+ ordBeginTime
+- 
+ (
 +SceneLoad.
  Phases.Garba
 @@ -5008,20 +5008,27 @@
@@ -253,68 +444,256 @@
  if (
 +this.
  IsGarbag
-@@ -5072,27 +5072,34 @@
- llect();%0a%09%09%7d
+@@ -5044,17 +5044,19 @@
+ equired)
+- 
++%0a%09%09
+ %7b%0a%09%09%09GCM
+@@ -5073,19 +5073,25 @@
+ lect
+- 
+ ();%0a%09%09%7d
 +*/
  %0a%09%09
 +this.
- RecordEndTim
-@@ -5096,24 +5096,34 @@
- cordEndTime(
+ Reco
+@@ -5095,26 +5095,35 @@
+ ecordEndTime
+- 
+ (
 +SceneLoad.
  Phases.Garba
+@@ -5158,33 +5158,35 @@
+ ete != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09try
+  %7b%0a%09%09%09%09this.
+@@ -5165,33 +5165,36 @@
+ null)%0a%09%09%7b%0a%09%09%09try
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09this.Compl
+@@ -5196,25 +5196,24 @@
+ Complete
+- 
+ ();%0a%09%09%09%7d
+  catch (
+@@ -5196,33 +5196,36 @@
+ Complete();%0a%09%09%09%7d
+- 
++%0a%09%09%09
+ catch (Exception
+@@ -5236,17 +5236,20 @@
+ eption4)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09De
+@@ -5252,33 +5252,32 @@
+ %09%09Debug.LogError
+- 
+ (%22Exception in r
+@@ -5366,33 +5366,32 @@
+ bug.LogException
+- 
+ (exception4);%0a%09%09
 @@ -5399,16 +5399,21 @@
  %7d%0a%09%09%7d%0a%09%09
 +this.
  RecordBe
-@@ -5416,24 +5416,34 @@
- rdBeginTime(
+@@ -5415,26 +5415,35 @@
+ ordBeginTime
+- 
+ (
 +SceneLoad.
  Phases.Start
 @@ -5472,16 +5472,21 @@
  null;%0a%09%09
 +this.
  RecordEn
-@@ -5487,24 +5487,34 @@
- cordEndTime(
+@@ -5486,26 +5486,35 @@
+ ecordEndTime
+- 
+ (
 +SceneLoad.
  Phases.Start
-@@ -5846,24 +5846,29 @@
- oss)%0a%09%09%7b%0a%09%09%09
+@@ -5547,33 +5547,35 @@
+ led != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09try
+  %7b%0a%09%09%09%09this.
+@@ -5554,33 +5554,36 @@
+ null)%0a%09%09%7b%0a%09%09%09try
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09this.Start
+@@ -5588,25 +5588,24 @@
+ rtCalled
+- 
+ ();%0a%09%09%09%7d
+  catch (
+@@ -5588,33 +5588,36 @@
+ rtCalled();%0a%09%09%09%7d
+- 
++%0a%09%09%09
+ catch (Exception
+@@ -5628,17 +5628,20 @@
+ eption5)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09De
+@@ -5644,33 +5644,32 @@
+ %09%09Debug.LogError
+- 
+ (%22Exception in r
+@@ -5761,33 +5761,32 @@
+ bug.LogException
+- 
+ (exception5);%0a%09%09
+@@ -5842,22 +5842,29 @@
+ oadBoss)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 +this.
- RecordBeginT
-@@ -5867,24 +5867,34 @@
- rdBeginTime(
+ RecordBe
+@@ -5866,26 +5866,35 @@
+ ordBeginTime
+- 
+ (
 +SceneLoad.
  Phases.LoadB
 @@ -5915,16 +5915,21 @@
   return 
 +this.
  runner.S
+@@ -5941,17 +5941,16 @@
+ oroutine
+- 
+ (SceneAd
+@@ -5982,17 +5982,16 @@
+ dAll
+- 
+ ());%0a%09%09%09
+ Reco
 @@ -5986,16 +5986,21 @@
  ());%0a%09%09%09
 +this.
  RecordEn
-@@ -6005,16 +6005,26 @@
- EndTime(
+@@ -6004,18 +6004,27 @@
+ dEndTime
+- 
+ (
 +SceneLoad.
  Phases.L
+@@ -6035,25 +6035,28 @@
+ oss);%0a%09%09%09try
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09if (th
+@@ -6073,25 +6073,29 @@
+ ded != null)
+- 
++%0a%09%09%09%09
+ %7b%0a%09%09%09%09%09this.
+@@ -6104,17 +6104,16 @@
+ ssLoaded
+- 
+ ();%0a%09%09%09%09
 @@ -6126,14 +6126,8 @@
  if (
 -(bool)
  Game
-@@ -6408,16 +6408,18 @@
- %0a%09%09%7b%0a%09%09%09
+@@ -6143,17 +6143,21 @@
+ nstance)
+- 
++%0a%09%09%09%09
+ %7b%0a%09%09%09%09%09G
+@@ -6186,17 +6186,16 @@
+ adedBoss
+- 
+ ();%0a%09%09%09%09
+@@ -6196,25 +6196,28 @@
+ ;%0a%09%09%09%09%7d%0a%09%09%09%7d
+- 
++%0a%09%09%09
+ catch (Excep
+@@ -6232,17 +6232,20 @@
+ eption6)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09De
+@@ -6248,33 +6248,32 @@
+ %09%09Debug.LogError
+- 
+ (%22Exception in r
+@@ -6364,33 +6364,32 @@
+ bug.LogException
+- 
+ (exception6);%0a%09%09
+@@ -6400,22 +6400,26 @@
+ %09%7d%0a%09%09try
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 +//
  ScenePre
+@@ -6436,17 +6436,18 @@
+ anup
+- 
+ ();%0a%09%09%7d
+- 
++%0a%09%09
+ catc
+@@ -6470,17 +6470,19 @@
+ eption7)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Deb
+@@ -6484,33 +6484,32 @@
+ %09%09Debug.LogError
+- 
+ (%22Exception in r
+@@ -6601,33 +6601,32 @@
+ bug.LogException
+- 
+ (exception7);%0a%09%09
 @@ -6629,16 +6629,21 @@
  ;%0a%09%09%7d%0a%09%09
 +this.
  IsFinish
-@@ -6714,24 +6714,41 @@
- inish();%0a%09%09%09
-+%09yield break;%0a%09%09%09
- %7d%0a%09%09%09catch (
+@@ -6683,17 +6683,19 @@
+ ull)
+- 
++%0a%09%09
+ %7b%0a%09%09%09try
+  %7b%0a%09
+@@ -6690,17 +6690,20 @@
+ %7b%0a%09%09%09try
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09th
+@@ -6715,18 +6715,37 @@
+ nish
+- 
+ ();%0a%09%09%09
+-%7d 
++%09yield break;%0a%09%09%09%7d%0a%09%09%09
+ catc
+@@ -6768,17 +6768,20 @@
+ eption8)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09De
+@@ -6792,17 +6792,16 @@
+ LogError
+- 
+ (%22Except
+@@ -6904,17 +6904,16 @@
+ xception
+- 
+ (excepti
 @@ -6925,15 +6925,1198 @@
  %0a%09%09%09
 -%7d%0a%09%09%7d%0a%09%7d

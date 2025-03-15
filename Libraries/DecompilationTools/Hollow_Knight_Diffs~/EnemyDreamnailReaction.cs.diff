@@ -8,11 +8,23 @@
 -private enum States%0a%09%7b%0a%09%09Suppressed,%0a%09%09Ready,%0a%09%09CoolingDown%0a%09%7d%0a%0a%09private const int RegularMPGain = 33;%0a%0a%09private const int BoostedMPGain = 66;%0a%0a%09private const float AttackMagnitude = 2f;%0a%0a%09private const float CooldownDuration = 0.2f;%0a%0a%09%5bSerializeField%5d%0a%09private int convoAmount;%0a%0a%09%5bSerializeField%5d%0a%09private string convoTitle;%0a%0a%09%5bSerializeField%5d%0a%09private bool startSuppressed;%0a%0a%09%5bSerializeField%5d%0a%09private bool noSoul;%0a%0a%09%5bSerializeField%5d%0a%09private GameObject dreamImpactPrefab;%0a%0a%09public bool allowUseChildColliders;%0a%0a%09private States state;%0a%0a%09private float cooldownTimeRemaining;
 +static Type spriteFlasherType;%0a%0a%09static Type GetFlasherType()%0a    %7b%0a        if (spriteFlasherType == null)%0a        %7b%0a            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())%0a            %7b%0a                if (asm.GetName().Name == %22WeaverCore%22)%0a                %7b%0a%09%09%09%09%09spriteFlasherType = asm.GetType(%22WeaverCore.Components.SpriteFlasher%22);%0a%09%09%09%09%09break;%0a                %7d%0a            %7d%0a        %7d%0a%09%09return spriteFlasherType;%0a    %7d
  %0a%0a%09p
+@@ -566,17 +566,16 @@
+ id Reset
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -669,17 +669,16 @@
+ id Start
+- 
+ ()%0a%09%7b%0a%09%09
 @@ -711,23 +711,69 @@
  ) ? 
 -States.Ready : 
 +EnemyDreamnailReaction.States.Ready : EnemyDreamnailReaction.
  Stat
+@@ -823,17 +823,16 @@
+ amImpact
+- 
+ ()%0a%09%7b%0a%09%09
 @@ -837,27 +837,50 @@
  %09%09if (state 
 -=
@@ -20,21 +32,29 @@
  = 
 +EnemyDreamnailReaction.
  States.Ready
-@@ -884,24 +884,38 @@
- ady)%0a%09%09%7b%0a%09%09%09
-+return;%0a%09%09%7d%0a%09%09
- if (!noSoul)
-@@ -917,23 +917,21 @@
- Soul)%0a%09%09
--%09
+@@ -880,22 +880,38 @@
+ s.Ready)
+- 
++%0a%09%09
  %7b%0a%09%09%09
--%09
- int amou
-@@ -940,39 +940,28 @@
++return;%0a%09%09%7d%0a%09%09
+ if (!noS
+@@ -914,20 +914,21 @@
+ !noSoul)
+- %7b
+ %0a%09
++%09%7b%0a
+ %09%09%09int a
+@@ -940,47 +940,36 @@
   = (
 -GameManager.instance.playerData
 +!PlayerData.instance
- .Get
+ .GetBool
+  (%22e
+@@ -964,17 +964,16 @@
+ .GetBool
+- 
+ (%22equipp
 @@ -988,25 +988,33 @@
  30%22)
 +)
@@ -42,6 +62,10 @@
 -66 : 33);%0a%09%09%09%09
 +33 : 66;%0a            
  Hero
+@@ -1044,17 +1044,16 @@
+ MPCharge
+- 
+ (amount)
 @@ -1054,24 +1054,28 @@
  mount);%0a
 -%09%09%09
@@ -49,20 +73,23 @@
  %7d%0a%09%09
 -%09
  ShowConv
-@@ -1077,25 +1077,24 @@
- wConvo();%0a%09%09
+@@ -1075,24 +1075,22 @@
+ howConvo
+- 
+ ();%0a%09%09
 -%09
- if (dreamImp
-@@ -1114,23 +1114,44 @@
- null)%0a%09%09
--%09
+ if (drea
+@@ -1111,23 +1111,47 @@
+ != null)
+- 
++%0a%09%09
  %7b%0a%09%09%09
 -%09
 +GameObject.Instantiate(
  dreamImp
-@@ -1163,17 +1163,10 @@
+@@ -1163,18 +1163,10 @@
  efab
--.Spawn().
+-.Spawn ().
 +, 
  tran
 @@ -1183,44 +1183,38 @@
@@ -78,13 +105,16 @@
  onent = 
 +base.
  GetCompo
-@@ -1255,25 +1255,24 @@
- ecoil%3e();%0a%09%09
+@@ -1253,24 +1253,22 @@
+ %3cRecoil%3e
+- 
+ ();%0a%09%09
 -%09
- if (componen
-@@ -1284,23 +1284,21 @@
- null)%0a%09%09
--%09
+ if (comp
+@@ -1281,23 +1281,24 @@
+ != null)
+- 
++%0a%09%09
  %7b%0a%09%09%09
 -%09
  bool fla
@@ -92,38 +122,32 @@
  x %3c= 0f;%0a%09%09%09
 -%09
  component.Re
-@@ -1414,58 +1414,170 @@
+@@ -1385,17 +1385,16 @@
+ irection
+- 
+ ((!flag)
+@@ -1414,68 +1414,181 @@
  ;%0a%09%09
 -%09
  %7d
 +%0a
  %0a%09%09
--%09SpriteFlash component2 = base.gameObject.Get
-+//var flasherType = typeof(WeaverCore)%0a%0a%09%09Component%5b%5d flashers = GetComponentsInChildren(GetFlasherType());%0a%09%09//Component flasher = GetComponent(%22WeaverCore.
- Comp
-@@ -1581,17 +1581,18 @@
- omponent
--%3c
-+s.
- SpriteFl
-@@ -1598,30 +1598,28 @@
+-%09SpriteFlash component2 = base.gameObject.GetComponent%3c
++//var flasherType = typeof(WeaverCore)%0a%0a%09%09Component%5b%5d flashers = GetComponentsInChildren(GetFlasherType());%0a%09%09//Component flasher = GetComponent(%22WeaverCore.Components.
+ Spri
+@@ -1598,58 +1598,127 @@
  lash
--%3e(
+-%3e (
 +er%22
  );%0a%09%09
 -%09
  if (
--component2
-+flashers
-  != 
-@@ -1630,26 +1630,95 @@
- )%0a%09%09
--%09%7b%0a%09%09%09%09component2.
-+%7b%0a            foreach (var flasher in flashers)%0a            %7b%0a%09%09%09%09flasher.SendMessage(%22
+-component2 != null) %7b%0a%09%09%09%09component2.
++flashers != null)%0a%09%09%7b%0a            foreach (var flasher in flashers)%0a            %7b%0a%09%09%09%09flasher.SendMessage(%22
  flas
-@@ -1729,17 +1729,17 @@
+@@ -1729,18 +1729,17 @@
  amImpact
--(
+- (
 +%22
  );%0a%09%09%09%7d%0a
 @@ -1740,16 +1740,19 @@
@@ -142,6 +166,10 @@
   0.2f;%0a%09
 -%09%7d%0a%09
  %7d%0a%0a%09publ
+@@ -1853,17 +1853,16 @@
+ akeReady
+- 
+ ()%0a%09%7b%0a%09%09
 @@ -1867,27 +1867,50 @@
  %09%09if (state 
 -=
@@ -149,36 +177,43 @@
  = 
 +EnemyDreamnailReaction.
  States.Suppr
-@@ -1923,24 +1923,61 @@
- %0a%09%09%7b%0a%09%09%09
+@@ -1919,22 +1919,61 @@
+ sed)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 -state = 
 +return;%0a%09%09%7d%0a%09%09state = EnemyDreamnailReaction.
- States.R
+ Stat
 @@ -1983,20 +1983,16 @@
  Ready;%0a%09
 -%09%7d%0a%09
  %7d%0a%0a%09publ
-@@ -2090,476 +2090,1055 @@
- %09%7b%0a%09
--%09PlayMakerFSM playMakerFSM = PlayMakerFSM.FindFsmOnGameObject(FsmVariables.GlobalVariables.GetFsmGameObject(%22
+@@ -2012,17 +2012,16 @@
+ nvoTitle
+- 
+ (string 
+@@ -2083,555 +2083,1147 @@
+ onvo
+- 
+ ()%0a%09%7b%0a%09
+-%09PlayMakerFSM playMakerFSM = PlayMakerFSM.FindFsmOnGameObject (FsmVariables.GlobalVariables.GetFsmGameObject (%22
 +%7d%0a%0a%09protected void Update()%0a%09%7b%0a%09%09if (state == EnemyDreamnailReaction.States.CoolingDown)%0a%09%09%7b%0a%09%09%09cooldownTimeRemaining -= Time.deltaTime;%0a%09%09%09if (cooldownTimeRemaining %3c= 0f)%0a%09%09%09%7b%0a%09%09%09%09state = 
  Enemy
 - 
  Dream
-- Msg%22).Value, %22Display%22);%0a%09%09playMakerFSM.FsmVariables.GetFsmInt(%22Convo Amount%22).Value = convoAmount;%0a%09%09playMakerFSM.FsmVariables.GetFsmS
+- Msg%22).Value, %22Display%22);%0a%09%09playMakerFSM.FsmVariables.GetFsmInt (%22Convo Amount%22).Value = convoAmount;%0a%09%09playMakerFSM.FsmVariables.GetFsmS
 +nailReaction.States.Ready;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09private const int RegularMPGain = 33;%0a%0a%09private const int BoostedMPGain = 66;%0a%0a%09private const float AttackMagnitude = 2f;%0a%0a%09private const float CooldownDuration = 0.2f;%0a%0a%09%5bSerializeField%5d%0a%09private int convoAmount;%0a%0a%09%5bSerializeField%5d%0a%09private s
- tring
+ tring 
 -(%22C
-+ c
++c
  onvo
 - 
  Title
--%22).Value = convoTitle;%0a%09%09playMakerFSM.SendEvent(%22DISPLAY ENEMY DREAM%22);%0a%09%7d%0a%0a%09protected void Update()%0a%09%7b%0a%09%09if (state == States.CoolingDown)%0a%09%09%7b%0a%09%09%09cooldownTimeRemaining -= Time.deltaTime;%0a%09%09%09if (
-+;%0a%0a%09%5bSerializeField%5d%0a%09%5bTooltip(%22If enabled, this component will not react to dream nail hits until MakeReady() is called%22)%5d%0a%09private bool startSuppressed;%0a%0a%09%5bSerializeField%5d%0a%09%5bTooltip(%22If set to true, dreamnailing this object will not give the player any soul%22)%5d%0a%09private bool noSoul;%0a%0a%09%5bSerializeField%5d%0a%09%5bTooltip(%22If this field is not null, then it will spawn the prefab when this object is dreamnailed%22)%5d%0a%09private GameObject dreamImpactPrefab;%0a%0a%09public bool allowUseChildColliders;%0a%0a%09private EnemyDreamnailReaction.States state;%0a%0a%09private float 
- cool
-@@ -3158,57 +3158,72 @@
- ning
-- %3c= 0f)%0a%09%09%09%7b%0a%09%09%09%09state = States.Ready;%0a%09%09%09%7d%0a%09%09%7d
-+;%0a%0a%09private enum States%0a%09%7b%0a%09%09Suppressed,%0a%09%09Ready,%0a%09%09CoolingDown
+-%22).Value = convoTitle;%0a%09%09playMakerFSM.SendEvent (%22DISPLAY ENEMY DREAM%22);%0a%09%7d%0a%0a%09protected void Update ()%0a%09%7b%0a%09%09if (state == States.CoolingDown) %7b%0a%09%09%09cooldownTimeRemaining -= Time.deltaTime;%0a%09%09%09if (cooldownTimeRemaining %3c= 0f) %7b%0a%09%09%09%09state = States.
++;%0a%0a%09%5bSerializeField%5d%0a%09%5bTooltip(%22If enabled, this component will not react to dream nail hits until MakeReady() is called%22)%5d%0a%09private bool startSuppressed;%0a%0a%09%5bSerializeField%5d%0a%09%5bTooltip(%22If set to true, dreamnailing this object will not give the player any soul%22)%5d%0a%09private bool noSoul;%0a%0a%09%5bSerializeField%5d%0a%09%5bTooltip(%22If this field is not null, then it will spawn the prefab when this object is dreamnailed%22)%5d%0a%09private GameObject dreamImpactPrefab;%0a%0a%09public bool allowUseChildColliders;%0a%0a%09private EnemyDreamnailReaction.States state;%0a%0a%09private float cooldownTimeRemaining;%0a%0a%09private enum States%0a%09%7b%0a%09%09Suppressed,%0a%09%09
+ Ready
+-;%0a%09%09%09%7d%0a%09%09%7d
++,%0a%09%09CoolingDown
  %0a%09%7d%0a%7d
 -%0a

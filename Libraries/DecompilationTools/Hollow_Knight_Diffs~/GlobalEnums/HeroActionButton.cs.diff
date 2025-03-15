@@ -1,10 +1,16 @@
-@@ -18,11 +18,15 @@
- nums
--;%0a%0a
-+%0a%7b%0a    
- publ
-@@ -54,190 +54,395 @@
+@@ -17,17 +17,20 @@
+ Enums%0a%7b%0a
+-%09
++    
+ public e
+@@ -54,194 +54,369 @@
  ton%0a
--%7b%0a%09JUMP,%0a%09ATTACK,%0a%09DASH,%0a%09SUPER_DASH,%0a%09CAST,%0a%09QUICK_MAP,%0a%09INVENTORY,%0a%09MENU_SUBMIT,%0a%09MENU_CANCEL,%0a%09DREAM_NAIL,%0a%09UP,%0a%09DOWN,%0a%09LEFT,%0a%09RIGHT,%0a%09QUICK_CAST,%0a%09MENU_PANE_LEFT,%0a%09MENU_PANE_RIGHT%0a%7d
-+    %7b%0a        JUMP = 0,%0a        ATTACK = 1,%0a        DASH = 2,%0a        SUPER_DASH = 3,%0a        CAST = 4,%0a        QUICK_MAP = 5,%0a        INVENTORY = 6,%0a        MENU_SUBMIT = 7,%0a        MENU_CANCEL = 8,%0a        DREAM_NAIL = 9,%0a        UP = 10,%0a        DOWN = 11,%0a        LEFT = 12,%0a        RIGHT = 13,%0a        QUICK_CAST = 14,%0a        MENU_PANE_LEFT = 15,%0a        MENU_PANE_RIGHT = 16%0a    %7d%0a%7d%0a
- %0a
+-%09%7b%0a%09%09JUMP,%0a%09%09ATTACK,%0a%09%09DASH,%0a%09%09SUPER_DASH,%0a%09%09CAST,%0a%09%09QUICK_MAP,%0a%09%09INVENTORY,%0a%09%09MENU_SUBMIT,%0a%09%09MENU_CANCEL,%0a%09%09DREAM_NAIL,%0a%09%09UP,%0a%09%09DOWN,%0a%09%09LEFT,%0a%09%09RIGHT,%0a%09%09QUICK_CAST,%0a%09%09MENU_PANE_LEFT,%0a%09%09
++    %7b%0a        JUMP = 0,%0a        ATTACK = 1,%0a        DASH = 2,%0a        SUPER_DASH = 3,%0a        CAST = 4,%0a        QUICK_MAP = 5,%0a        INVENTORY = 6,%0a        MENU_SUBMIT = 7,%0a        MENU_CANCEL = 8,%0a        DREAM_NAIL = 9,%0a        UP = 10,%0a        DOWN = 11,%0a        LEFT = 12,%0a        RIGHT = 13,%0a        QUICK_CAST = 14,%0a        MENU_PANE_LEFT = 15,%0a        
+ MENU
+@@ -430,10 +430,19 @@
+ IGHT
+-%0a%09
++ = 16%0a    
+ %7d%0a%7d%0a
++%0a

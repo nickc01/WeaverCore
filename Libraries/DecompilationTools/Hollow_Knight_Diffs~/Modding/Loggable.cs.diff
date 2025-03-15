@@ -1,185 +1,238 @@
-@@ -1,288 +1,91 @@
--namespace Modding;%0a%0a/// %3cinheritdoc /%3e%0a/// %3csummary%3e%0a///     Base class that allows other classes to have context specific logging%0a/// %3c/summary%3e%0apublic abstract class Loggable : ILogger%0a%7b%0a%09internal string ClassName;%0a%0a%09/// %3csummary%3e%0a%09///     Basic setup for Loggable.%0a%09/// %3c/summary%3e%0a
-+%0ausing UnityEngine;%0a%0anamespace Modding%0a%7b%0a%09public abstract class Loggable : ILogger%0a%09%7b%0a%09
- %09pro
-@@ -103,20 +103,22 @@
- able()%0a%09
-+%09
- %7b%0a%09%09
-+%09
- ClassNam
-@@ -121,16 +121,21 @@
- sName = 
+@@ -1,297 +1,89 @@
+-namespace Modding%0a%7b%0a%09/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Base class that allows other classes to have context specific logging%0a%09/// %3c/summary%3e%0a%09public abstract class Loggable : ILogger%0a%09%7b%0a%09%09internal string ClassName;%0a%0a%09%09/// %3csummary%3e%0a%09%09///     Basic setup for Loggable.%0a%09%09/// %3c/summary%3e
++%0ausing UnityEngine;%0a%0anamespace Modding%0a%7b%0a%09public abstract class Loggable : ILogger%0a%09%7b
+ %0a%09%09p
+@@ -99,17 +99,16 @@
+ Loggable
+- 
+ ()%0a%09%09%7b%0a%09
+@@ -125,16 +125,20 @@
+ e = 
 +base.
- GetType(
-@@ -147,193 +147,13 @@
- e;%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the fine/detailed level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -186,34 +186,32 @@
- ssage)%0a%09
--%7b%0a%09%09Logger.LogFine
-+%09%7b%0a%0a%09%09%09Debug.Log
+ GetType
+- 
+ ().N
+@@ -151,195 +151,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the fine/detailed level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -168,17 +168,16 @@
+  LogFine
+- 
+ (string 
+@@ -189,34 +189,29 @@
+ ge)%0a%09%09%7b%0a
++%0a
+ %09%09%09
+-Logger.LogFine 
++Debug.Log
  (FormatL
-@@ -236,193 +236,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the fine/detailed level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -279,26 +279,23 @@
- e)%0a%09
-+%09
- %7b%0a%09%09
--Logger.LogFine
-+%09Debug.Log
+@@ -211,33 +211,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -240,195 +240,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the fine/detailed level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -257,17 +257,16 @@
+  LogFine
+- 
+ (object 
+@@ -285,23 +285,17 @@
+ %0a%09%09%09
+-Logger.LogFine 
++Debug.Log
  (For
-@@ -324,185 +324,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the debug level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -364,35 +364,31 @@
- ssage)%0a%09
-+%09
- %7b%0a%09%09
+@@ -299,33 +299,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -328,187 +328,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the debug level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -346,17 +346,16 @@
+ LogDebug
+- 
+ (string 
+@@ -370,32 +370,25 @@
+ %0a%09%09%7b%0a%09%09%09
 -Logger.Log
-+%09
  Debug
+- 
 +.Log
  (FormatL
-@@ -413,185 +413,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the debug level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -457,26 +457,22 @@
- e)%0a%09
-+%09
- %7b%0a%09%09
--Logger.LogDebu
-+%09Debug.Lo
- g(Fo
-@@ -502,184 +502,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the info level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -533,34 +533,35 @@
- g message)%0a%09
-+%09
- %7b%0a%09%09
+@@ -388,33 +388,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -417,187 +417,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the debug level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -435,17 +435,16 @@
+ LogDebug
+- 
+ (object 
+@@ -463,24 +463,17 @@
+ %0a%09%09%09
+-Logger.LogDebug 
++Debug.Log
+ (For
+@@ -477,33 +477,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -506,186 +506,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the info level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -519,17 +519,16 @@
+ void Log
+- 
+ (string 
+@@ -539,35 +539,33 @@
+ age)%0a%09%09%7b%0a%09%09%09
 -Logger
-+%09Debug
- .Log(FormatL
-@@ -586,184 +586,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the info level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -617,34 +617,35 @@
- t message)%0a%09
-+%09
- %7b%0a%09%09
++Debug
+ .Log
+- 
+ (FormatLogMe
+@@ -561,33 +561,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -590,186 +590,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the info level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -603,17 +603,16 @@
+ void Log
+- 
+ (object 
+@@ -631,19 +631,17 @@
+ %0a%09%09%09
 -Logger
-+%09Debug
- .Log(FormatL
-@@ -670,184 +670,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the warn level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -709,34 +709,35 @@
- ssage)%0a%09
-+%09
- %7b%0a%09%09
++Debug
+ .Log
+- 
+ (For
+@@ -645,33 +645,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -674,186 +674,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the warn level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -691,17 +691,16 @@
+  LogWarn
+- 
+ (string 
+@@ -711,38 +711,37 @@
+ age)%0a%09%09%7b%0a%09%09%09
 -Logger
-+%09Debug
++Debug
  .LogWarn
- (FormatL
-@@ -720,32 +720,35 @@
+  (FormatLogM
+@@ -720,33 +720,35 @@
  %09%09%09Debug.LogWarn
+- 
 +ing
  (FormatLogMessag
-@@ -765,184 +765,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the warn level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -808,26 +808,27 @@
- e)%0a%09
-+%09
- %7b%0a%09%09
+@@ -740,33 +740,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -769,186 +769,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the warn level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -786,17 +786,16 @@
+  LogWarn
+- 
+ (object 
+@@ -814,22 +814,21 @@
+ %0a%09%09%09
 -Logger
-+%09Debug
++Debug
  .LogWarn
- (For
-@@ -823,16 +823,19 @@
+  (Fo
+@@ -823,17 +823,19 @@
  .LogWarn
+- 
 +ing
  (FormatL
-@@ -860,185 +860,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the error level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -896,34 +896,35 @@
- g message)%0a%09
-+%09
- %7b%0a%09%09
+@@ -835,33 +835,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -864,187 +864,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the error level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -882,17 +882,16 @@
+ LogError
+- 
+ (string 
+@@ -898,38 +898,37 @@
+ message)%0a%09%09%7b%0a%09%09%09
 -Logger
-+%09Debug
- .LogError(Fo
-@@ -954,185 +954,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Log at the error level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
- %09pub
-@@ -998,18 +998,19 @@
- e)%0a%09
-+%09
- %7b%0a%09%09
++Debug
+ .LogError (Forma
+@@ -912,33 +912,32 @@
+ %09%09Debug.LogError
+- 
+ (FormatLogMessag
+@@ -929,33 +929,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -958,187 +958,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3cinheritdoc /%3e%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the error level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a
+ %09%09pu
+@@ -976,17 +976,16 @@
+ LogError
+- 
+ (object 
+@@ -1000,22 +1000,21 @@
+ %0a%09%09%7b%0a%09%09%09
 -Logger
-+%09Debug
- .Log
-@@ -1048,201 +1048,13 @@
- );%0a%09
-+%09
- %7d%0a%0a%09
--/// %3csummary%3e%0a%09///     Formats a log message as %22%5bTypeName%5d - Message%22%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to be formatted.%3c/param%3e%0a%09/// %3creturns%3eFormatted Message%3c/returns%3e%0a
- %09pri
-@@ -1103,20 +1103,21 @@
- e)%0a%09
-+%09
- %7b%0a%09%09
-+%09
- return 
++Debug
+ .LogErro
+@@ -1014,17 +1014,16 @@
+ LogError
+- 
+ (FormatL
+@@ -1023,33 +1023,32 @@
+ FormatLogMessage
+- 
+ (message));%0a%09%09%7d%0a
+@@ -1052,203 +1052,8 @@
+ %09%7d%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Formats a log message as %22%5bTypeName%5d - Message%22%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to be formatted.%3c/param%3e%0a%09%09/// %3creturns%3eFormatted Message%3c/returns%3e%0a
+ %09%09pr
+@@ -1081,17 +1081,16 @@
+ gMessage
+- 
+ (string 
+@@ -1112,17 +1112,16 @@
+ %09return 
 -(
- %22%5b%22 
-@@ -1150,247 +1150,16 @@
+ %22%5b%22 + Cl
+@@ -1150,253 +1150,14 @@
  sage
--).Replace(%22%5cn%22, %22%5cn%5b%22 + ClassName + %22%5d - %22)
- ;%0a%09
-+%09
- %7d%0a%0a%09
--/// %3csummary%3e%0a%09///     Formats a log message as %22%5bTypeName%5d - Message%22%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to be formatted.%3c/param%3e%0a%09/// %3creturns%3eFormatted Message%3c/returns%3e%0a
- %09pri
-@@ -1208,66 +1208,103 @@
- e)%0a%09
-+%09
- %7b%0a%09%09
-+%09
- return 
--FormatLogMessage(message?.ToString() ?? %22null%22)
-+string.Format(%22%5b%7b0%7d%5d - %7b1%7d%22, ClassName, message);%0a%09%09%7d%0a%0a%09%09internal string ClassName
- ;%0a%09%7d
+-).Replace (%22%5cn%22, %22%5cn%5b%22 + ClassName + %22%5d - %22);%0a%09%09%7d%0a%0a%09%09/// %3csummary%3e%0a%09%09///     Formats a log message as %22%5bTypeName%5d - Message%22%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to be formatted.%3c/param%3e%0a%09%09/// %3creturns%3eFormatted Message%3c/returns%3e
++;%0a%09%09%7d%0a
+ %0a%09%09p
+@@ -1186,17 +1186,16 @@
+ gMessage
+- 
+ (object 
+@@ -1221,62 +1221,91 @@
+ urn 
+-FormatLogMessage (message?.ToString () ?? %22null%22);%0a%09%09%7d
++string.Format(%22%5b%7b0%7d%5d - %7b1%7d%22, ClassName, message);%0a%09%09%7d%0a%0a%09%09internal string ClassName;
+ %0a%09%7d%0a

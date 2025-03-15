@@ -1,141 +1,128 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,23 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    
+@@ -72,17 +72,20 @@
+ fects%0a%7b%0a
+-%09
++    
  %5bExecute
-@@ -96,16 +96,20 @@
+@@ -96,17 +96,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bRequire
-@@ -135,16 +135,20 @@
+@@ -117,17 +117,16 @@
+ omponent
+- 
+ (typeof(
+@@ -135,17 +135,20 @@
  mera))%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -229,16 +229,18 @@
+@@ -156,17 +156,16 @@
+ nentMenu
+- 
+ (%22Image 
+@@ -229,17 +229,18 @@
  %22)%5d%0a
--internal
+-%09internal
 +    public
   cla
-@@ -280,44 +280,115 @@
- ase%0a
-+%09
- %7b%0a
--%09public float intensity = 0.5f;%0a%0a%09
+@@ -283,44 +283,112 @@
+ %0a%09%7b%0a
+-%09%09public float intensity = 0.5f;%0a%0a%09%09
 +        %5bRange(0.0f, 1.0f)%5d%0a        public float intensity = 0.5f;%0a        %5bRange(0.0f,0.999f)%5d%0a        
  publ
-@@ -405,20 +405,34 @@
+@@ -405,21 +405,34 @@
  hreshold
--;%0a%0a%09
+-;%0a%0a%09%09
 + = 0.0f;%0a%0a        
  private 
-@@ -463,18 +463,24 @@
+@@ -463,19 +463,24 @@
  terial;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -516,17 +516,51 @@
+@@ -516,18 +516,51 @@
  erial;%0a%0a
--%09
+-%09%09
 +        %5bRange(0.0f,1.0f)%5d%0a        
  public f
-@@ -582,13 +582,22 @@
+@@ -582,14 +582,22 @@
   = 1
 +.0
  f;%0a%0a
--%09
+-%09%09
 +        
  publ
-@@ -621,28 +621,41 @@
+@@ -621,29 +621,41 @@
  leBlurShader
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a        
  public Shade
-@@ -683,12 +683,27 @@
+@@ -683,13 +683,27 @@
  ader
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a%0a%0a        
  publ
-@@ -737,50 +737,63 @@
- rces
-+ 
- ()%0a%09
-+%09
- %7b%0a
--%09%09CheckSupport(needDepth: false);%0a%09%09
-+            CheckSupport (false);%0a%0a            
+@@ -741,19 +741,28 @@
+  ()%0a%09%09%7b%0a
+-%09%09%09
++            
+ CheckSup
+@@ -771,30 +771,29 @@
+ rt (
+-needDepth: false);%0a%09%09%09
++false);%0a%0a            
  cont
-@@ -844,16 +844,17 @@
- Material
-+ 
- (contras
-@@ -899,18 +899,28 @@
+@@ -899,19 +899,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  separabl
-@@ -963,16 +963,17 @@
- Material
-+ 
- (separab
-@@ -1010,18 +1010,29 @@
+@@ -1010,19 +1010,29 @@
  erial);%0a
--%09%09
+-%09%09%09
 +%0a            
  if (!isS
-@@ -1041,23 +1041,32 @@
- ported)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -1040,23 +1040,33 @@
+ pported)
+- %7b%0a%09%09%09%09
++%0a                
  ReportAu
-@@ -1078,18 +1078,25 @@
- able
-+ 
- ();%0a
--%09%09%7d%0a%09%09
+@@ -1079,24 +1079,28 @@
+ ble ();%0a
+-%09%09%09%7d%0a%09%09%09
 +            
- retu
-@@ -1115,20 +1115,26 @@
+ return i
+@@ -1115,22 +1115,26 @@
  ed;%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
   voi
-@@ -1148,16 +1148,17 @@
- derImage
-+ 
- (RenderT
-@@ -1204,17 +1204,27 @@
- n)%0a%09
-+%09
- %7b%0a
--%09%09
+@@ -1207,16 +1207,24 @@
+ %09%09%7b%0a
+-%09%09%09
 +            
  if (
 -!
  Chec
-@@ -1239,17 +1239,38 @@
- es()
-+==false
- )%0a%09%09
-+%09
- %7b%0a
--%09%09%09
-+                
+@@ -1237,19 +1237,40 @@
+ rces
+- 
+ ()
+-) %7b%0a%09%09%09%09
++==false)%0a%09%09%09%7b%0a                
  Grap
-@@ -1270,32 +1270,33 @@
-    Graphics.Blit
-+ 
- (source, destina
-@@ -1306,63 +1306,102 @@
+@@ -1306,67 +1306,102 @@
  n);%0a
--%09%09%09return;%0a%09%09%7d%0a%09%09int width = source.width;%0a%09%09int height
+-%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09int width = source.width;%0a%09%09%09int height
 +                return;%0a            %7d%0a%0a            int rtW = source.width;%0a            int rtH
   = s
-@@ -1414,18 +1414,29 @@
+@@ -1414,19 +1414,29 @@
  height;%0a
--%09%09
+-%09%09%09
 +%0a            
  RenderTe
 @@ -1441,25 +1441,22 @@
@@ -143,18 +130,14 @@
 -temporary
 +color2
   = Rende
-@@ -1480,38 +1480,68 @@
- rary
--(width / 2, height / 2, 0);%0a%09%09
-+ (rtW/2, rtH/2, 0);%0a%0a            // downsample%0a%0a            
+@@ -1482,38 +1482,66 @@
+ ry (
+-width / 2, height / 2, 0);%0a%09%09%09
++rtW/2, rtH/2, 0);%0a%0a            // downsample%0a%0a            
  Grap
-@@ -1541,32 +1541,33 @@
-    Graphics.Blit
-+ 
- (source, tempora
-@@ -1559,30 +1559,37 @@
+@@ -1559,31 +1559,37 @@
  source, 
--temporary);%0a%09%09
+-temporary);%0a%09%09%09
 +color2);%0a            
  RenderTe
 @@ -1594,26 +1594,23 @@
@@ -162,35 +145,29 @@
 -temporary2
 +color4a
   = Rende
-@@ -1634,123 +1634,160 @@
- rary
--(width / 4, height / 4, 0);%0a%09%09Graphics.Blit(temporary, temporary2);%0a%09%09RenderTexture.ReleaseTemporary(temporary);%0a%09%09
-+ (rtW/4, rtH/4, 0);%0a            Graphics.Blit (color2, color4a);%0a            RenderTexture.ReleaseTemporary (color2);%0a%0a            // blur%0a%0a            
+@@ -1636,127 +1636,158 @@
+ ry (
+-width / 4, height / 4, 0);%0a%09%09%09Graphics.Blit (temporary, temporary2);%0a%09%09%09RenderTexture.ReleaseTemporary (temporary);%0a%09%09%09
++rtW/4, rtH/4, 0);%0a            Graphics.Blit (color2, color4a);%0a            RenderTexture.ReleaseTemporary (color2);%0a%0a            // blur%0a%0a            
  sepa
-@@ -1805,32 +1805,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -1841,13 +1841,17 @@
- tor4
-+ 
- (
+@@ -1839,20 +1839,23 @@
+ ector4 (
 +0.
  0f, 
 +(
- blur
+ blurSpre
 @@ -1860,37 +1860,30 @@
  read * 1
 -f / (float)temporary2
 +.0f) / color4a
  .height,
-@@ -1883,28 +1883,42 @@
+@@ -1883,29 +1883,42 @@
  height, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09
+-%09%09%09
 +            
  RenderTe
 @@ -1923,26 +1923,23 @@
@@ -198,28 +175,24 @@
 -temporary3
 +color4b
   = Rende
-@@ -1963,74 +1963,71 @@
- rary
--(width / 4, height / 4, 0);%0a%09%09Graphics.Blit(temporary2, temporary3
-+ (rtW/4, rtH/4, 0);%0a            Graphics.Blit (color4a, color4b
+@@ -1965,75 +1965,69 @@
+ ry (
+-width / 4, height / 4, 0);%0a%09%09%09Graphics.Blit (temporary2, temporary3
++rtW/4, rtH/4, 0);%0a            Graphics.Blit (color4a, color4b
  , se
-@@ -2040,34 +2040,44 @@
+@@ -2040,35 +2040,44 @@
  eBlurMaterial);%0a
--%09%09
+-%09%09%09
 +            
  RenderTexture.Re
-@@ -2094,24 +2094,33 @@
- rary
--(temporary2);%0a%09%09
-+ (color4a);%0a%0a            
- sepa
-@@ -2146,16 +2146,17 @@
- etVector
-+ 
- (%22offset
-@@ -2170,16 +2170,18 @@
-  Vector4
-+ (
+@@ -2092,32 +2092,39 @@
+ porary (
+-temporary2);%0a%09%09%09
++color4a);%0a%0a            
+ separabl
+@@ -2171,16 +2171,17 @@
+ Vector4 
++(
  (blurSpr
 @@ -2191,37 +2191,30 @@
   * 1
@@ -227,7 +200,7 @@
 +.0f) / color4a
  .width, 
  0f, 
-@@ -2213,34 +2213,47 @@
+@@ -2213,35 +2213,47 @@
  th, 
 +0.
  0f, 
@@ -235,67 +208,50 @@
  0f, 
 +0.
  0f));%0a
--%09%09temporary2
+-%09%09%09temporary2
 +            color4a
   = R
-@@ -2281,74 +2281,71 @@
- rary
--(width / 4, height / 4, 0);%0a%09%09Graphics.Blit(temporary3, temporary2
-+ (rtW/4, rtH/4, 0);%0a            Graphics.Blit (color4b, color4a
+@@ -2283,75 +2283,69 @@
+ ry (
+-width / 4, height / 4, 0);%0a%09%09%09Graphics.Blit (temporary3, temporary2
++rtW/4, rtH/4, 0);%0a            Graphics.Blit (color4b, color4a
  , se
-@@ -2358,34 +2358,44 @@
+@@ -2358,35 +2358,44 @@
  eBlurMaterial);%0a
--%09%09
+-%09%09%09
 +            
  RenderTexture.Re
-@@ -2412,24 +2412,59 @@
- rary
--(temporary3);%0a%09%09
-+ (color4b);%0a%0a            // composite%0a%0a            
+@@ -2414,24 +2414,57 @@
+ ry (
+-temporary3);%0a%09%09%09
++color4b);%0a%0a            // composite%0a%0a            
  cont
-@@ -2495,16 +2495,17 @@
- tTexture
-+ 
- (%22_MainT
-@@ -2520,23 +2520,30 @@
+@@ -2520,24 +2520,30 @@
  d%22, 
--temporary2);%0a%09%09
+-temporary2);%0a%09%09%09
 +color4a);%0a            
  cont
-@@ -2572,16 +2572,17 @@
- SetFloat
-+ 
- (%22intens
-@@ -2599,18 +2599,28 @@
+@@ -2599,19 +2599,28 @@
  nsity);%0a
--%09%09
+-%09%09%09
 +            
  contrast
-@@ -2649,16 +2649,17 @@
- loat
-+ 
- (%22thresh
- hold
 @@ -2654,17 +2654,16 @@
  (%22thresh
 -h
  old%22, th
-@@ -2672,18 +2672,28 @@
+@@ -2672,19 +2672,28 @@
  shold);%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -2697,16 +2697,17 @@
- ics.Blit
-+ 
- (source,
-@@ -2748,18 +2748,29 @@
+@@ -2748,19 +2748,29 @@
  erial);%0a
--%09%09
+-%09%09%09
 +%0a            
  RenderTe
-@@ -2795,23 +2795,34 @@
- rary
--(temporary2);%0a%09
-+ (color4a);%0a        %7d%0a    
+@@ -2797,26 +2797,32 @@
+ ry (
+-temporary2);%0a%09%09%7d%0a%09
++color4a);%0a        %7d%0a    
  %7d%0a%7d%0a

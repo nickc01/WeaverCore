@@ -28,45 +28,72 @@
 -%09
 +    
  private 
-@@ -350,21 +350,30 @@
- Start()%0a
+@@ -347,25 +347,33 @@
+ id Start
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  BossStat
-@@ -431,18 +431,24 @@
- tue%3e();%0a
+@@ -427,23 +427,28 @@
+ sStatue%3e
+- 
+ ();%0a
 -%09%09
 +        
  if ((boo
-@@ -563,23 +563,38 @@
- dDream)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -562,22 +562,39 @@
+ edDream)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  toggle.S
+@@ -593,33 +593,32 @@
+ toggle.SetActive
+- 
+ (value: false);%0a
 @@ -617,19 +617,28 @@
  false);%0a
 -%09%09%09
 +            
  if (comp
-@@ -680,25 +680,46 @@
- locked)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -679,23 +679,47 @@
+ nlocked)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  if (comp
-@@ -826,172 +826,298 @@
- ct)%0a
--%09%09%09%09%7b%0a%09%09%09%09%09mainEffect.OnFlashBegin += delegate%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09Invoke(%22DoAppear%22, flashSequenceDelay);%0a%09%09%09%09%09%7d;%0a%09%09%09%09%7d%0a%09%09%09%09else if ((bool)triggerUnlockEvent)%0a%09%09%09%09%7b%0a%09%09%09%09%09
-+                %7b%0a                    mainEffect.OnFlashBegin += delegate%0a                    %7b%0a                        Invoke(%22DoAppear%22, flashSequenceDelay);%0a                    %7d;%0a                %7d%0a                else if ((bool)triggerUnlockEvent)%0a                %7b%0a                    
+@@ -825,67 +825,135 @@
+ ect)
+- %7b%0a%09%09%09%09%09mainEffect.OnFlashBegin += delegate %7b%0a%09%09%09%09%09%09
++%0a                %7b%0a                    mainEffect.OnFlashBegin += delegate%0a                    %7b%0a                        
+ Invoke
+- 
+ (%22Do
+@@ -986,64 +986,138 @@
+ y);%0a
+-%09%09%09%09%09%7d;%0a%09%09%09%09%7d else if ((bool)triggerUnlockEvent) %7b%0a%09%09%09%09%09
++                    %7d;%0a                %7d%0a                else if ((bool)triggerUnlockEvent)%0a                %7b%0a                    
  Trig
 @@ -1158,21 +1158,36 @@
  = null;%0a
 -%09%09%09%09%09
 +                    
  temp = (
-@@ -1289,39 +1289,90 @@
- ate%0a
--%09%09%09%09%09%7b%0a%09%09%09%09%09%09DoAppear();%0a%09%09%09%09%09%09
-+                    %7b%0a                        DoAppear();%0a                        
+@@ -1235,17 +1235,16 @@
+ .Combine
+- 
+ (temp, (
+@@ -1288,25 +1288,63 @@
+ gate
+- %7b%0a%09%09%09%09%09%09
++%0a                    %7b%0a                        
+ DoAppear
+  ();
+@@ -1343,19 +1343,36 @@
+ pear
+- 
+ ();%0a
+-%09%09%09%09%09%09
++                        
  trig
 @@ -1416,22 +1416,52 @@
  mp;%0a
@@ -78,36 +105,66 @@
 -%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
 +                %7d%0a            %7d%0a        %7d%0a        
  base
+@@ -1568,33 +1568,32 @@
+ Object.SetActive
+- 
+ (value: false);%0a
 @@ -1592,21 +1592,27 @@
  false);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
-@@ -1627,21 +1627,30 @@
- ppear()%0a
+@@ -1628,17 +1628,25 @@
+ pear
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- base.gam
+ base
+@@ -1658,33 +1658,32 @@
+ Object.SetActive
+- 
+ (value: true);%0a%09
 @@ -1681,18 +1681,24 @@
   true);%0a
 -%09%09
 +        
  StartCor
+@@ -1703,17 +1703,16 @@
+ oroutine
+- 
+ (AppearR
+@@ -1717,17 +1717,16 @@
+ rRoutine
+- 
+ (toggle)
 @@ -1732,13 +1732,19 @@
  ));%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  priv
+@@ -1772,17 +1772,16 @@
+ rRoutine
+- 
+ (GameObj
 @@ -1796,13 +1796,22 @@
  le)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  yiel
+@@ -1837,17 +1837,16 @@
+ rSeconds
+- 
+ (toggleE
 @@ -1861,10 +1861,16 @@
  e);%0a
 -%09%09
 +        
  togg
+@@ -1881,17 +1881,16 @@
+ etActive
+- 
+ (value: 
 @@ -1900,9 +1900,12 @@
  e);%0a
 -%09

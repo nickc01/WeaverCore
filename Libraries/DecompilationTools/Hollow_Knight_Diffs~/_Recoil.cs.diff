@@ -1,6 +1,6 @@
-@@ -17,188 +17,205 @@
+@@ -17,190 +17,205 @@
  e;%0a%0a
--public class Recoil : MonoBehaviour%0a%7b%0a%09public delegate void FreezeEvent();%0a%0a%09public delegate void CancelRecoilEvent();%0a%0a%09private enum States%0a%09%7b%0a%09%09Ready,%0a%09%09Frozen,%0a%09%09Recoiling%0a%09%7d%0a%0a%09
+-public class Recoil : MonoBehaviour%0a%7b%0a%09public delegate void FreezeEvent ();%0a%0a%09public delegate void CancelRecoilEvent ();%0a%0a%09private enum States%0a%09%7b%0a%09%09Ready,%0a%09%09Frozen,%0a%09%09Recoiling%0a%09%7d%0a%0a%09
 +#if UNITY_EDITOR%0a%5bSystem.ComponentModel.Browsable(false)%5d%0a%5bSystem.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)%5d%0a#endif%0apublic class Recoil : MonoBehaviour%0a%7b%0a    
  priv
 @@ -236,18 +236,20 @@
@@ -83,14 +83,14 @@
 -%09private Sweep recoilSweep;%0a%0a%09private bool isRecoilSweeping;%0a%0a%09private const int SweepLayerMask = 256;%0a%0a%09
 +    public event FreezeEvent OnHandleFreeze;%0a    public event CancelRecoilEvent OnCancelRecoil;%0a%0a    private const int SweepLayerMask = 256;%0a    private Vector2 recoilDirection;%0a%0a    
  publ
-@@ -938,30 +938,28 @@
- ler%0a
--%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09return
-+    %7b%0a        get =%3e
+@@ -937,28 +937,29 @@
+ ller
+- %7b%0a%09%09get %7b%0a%09%09%09return
++%0a    %7b%0a        get =%3e
   ski
-@@ -985,25 +985,23 @@
+@@ -985,23 +985,23 @@
  er;%0a
--%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09
+-%09%09%7d%0a%09%09set %7b%0a%09%09%09
 +        set =%3e 
  skip
 @@ -1026,33 +1026,35 @@
@@ -98,17 +98,17 @@
 -%09%09%7d%0a%09%7d%0a%0a%09
 +    %7d%0a%0a    
  public bool 
-@@ -1068,36 +1068,19 @@
- ling
--%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (
-+ =%3e 
+@@ -1069,32 +1069,18 @@
+ ing 
+-%7b%0a%09%09get %7b%0a%09%09%09if (
++=%3e 
  state 
 -!
 +=
  = St
-@@ -1093,33 +1093,19 @@
+@@ -1093,30 +1093,19 @@
  ecoiling
--)%0a%09%09%09%7b%0a%09%09%09%09return
+-) %7b%0a%09%09%09%09return
 + %7c%7c
   state =
 @@ -1125,130 +1125,392 @@
@@ -116,8 +116,10 @@
 -%09%09%09%7d%0a%09%09%09return true;%0a%09%09%7d%0a%09%7d%0a%0a%09public event FreezeEvent OnHandleFreeze;%0a%0a%09public event CancelRecoilEvent OnCancelRecoil;%0a%0a%09
 +%0a    private static Vector2 DirectionToVector(int direction)%0a    %7b%0a        switch (direction)%0a        %7b%0a            case 1:%0a                return new Vector2(0f, 1f);%0a            case 2:%0a                return new Vector2(-1f, 0f);%0a            case 3:%0a                return new Vector2(0f, -1f);%0a            default:%0a                return new Vector2(1f, 0f);%0a        %7d%0a    %7d%0a%0a    
  prot
-@@ -1528,21 +1528,30 @@
- Reset()%0a
+@@ -1525,25 +1525,33 @@
+ id Reset
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  freezeIn
@@ -148,15 +150,19 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  protecte
-@@ -1745,20 +1745,34 @@
- e()%0a
+@@ -1742,24 +1742,37 @@
+ wake
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  body = 
 +base.
  GetC
-@@ -1796,18 +1796,24 @@
- y2D%3e();%0a
+@@ -1792,23 +1792,28 @@
+ dbody2D%3e
+- 
+ ();%0a
 -%09%09
 +        
  bodyColl
@@ -164,15 +170,50 @@
   bodyCollider = 
 +base.
  GetComponent%3cCol
-@@ -1852,21 +1852,27 @@
- r2D%3e();%0a
+@@ -1848,26 +1848,31 @@
+ lider2D%3e
+- 
+ ();%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
-@@ -1891,906 +1891,300 @@
- e()%0a
--%09%7b%0a%09%09CancelRecoil();%0a%09%7d%0a%0a%09public void RecoilByHealthManagerFSMParameters()%0a%09%7b%0a%09%09PlayMakerFSM playMakerFSM = PlayMakerFSM.FindFsmOnGameObject(base.gameObject, %22health_manager_enemy%22);%0a%09%09int cardinalDirection = DirectionUtils.GetCardinalDirection(playMakerFSM.FsmVariables.GetFsmFloat(%22Attack Direction%22).Value);%0a%09%09_ = playMakerFSM.FsmVariables.GetFsmInt(%22Attack Type%22).Value;%0a%09%09float value = playMakerFSM.FsmVariables.GetFsmFloat(%22Attack Magnitude%22).Value;%0a%09%09RecoilByDirection(cardinalDirection, value);%0a%09%7d%0a%0a%09public void RecoilByDamage(HitInstance damageInstance)%0a%09%7b%0a%09%09int cardinalDirection = DirectionUtils.GetCardinalDirection(damageInstance.Direction);%0a%09%09RecoilByDirection(cardinalDirection, damageInstance.MagnitudeMultiplier);%0a%09%7d%0a%0a%09public void RecoilByDirection(int attackDirection, float attackMagnitude)%0a%09%7b%0a%09%09if (state != 0)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (freezeInPlace)%0a%09%09%7b%0a%09%09%09Freeze();%0a%09%09%7d%0a%09%09else
-+    %7b%0a        CancelRecoil();%0a    %7d%0a%0a    public void RecoilByDirection(int attackDirection, float attackMagnitude)%0a    %7b%0a        if (state != States.Ready)%0a        %7b%0a            return;%0a        %7d%0a        if (freezeInPlace)%0a        %7b%0a            Freeze();%0a            return;%0a        %7d%0a       
+@@ -1884,25 +1884,33 @@
+ OnEnable
+- 
+ ()%0a
+-%09%7b%0a%09%09
++    %7b%0a        
+ CancelRe
+@@ -1917,18 +1917,23 @@
+ coil
+- 
+ ();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ publ
+@@ -1952,257 +1952,28 @@
+ ilBy
+-HealthManagerFSMParameters ()%0a%09%7b%0a%09%09PlayMakerFSM playMakerFSM = PlayMakerFSM.FindFsmOnGameObject (base.gameObject, %22health_manager_enemy%22);%0a%09%09int cardinalDirection = DirectionUtils.GetCardinalDirection (playMakerFSM.FsmVariables.GetFsmFloat (%22A
++Direction(int a
+ ttack
+- 
+ Dire
+@@ -1981,147 +1981,22 @@
+ tion
+-%22).Value);%0a%09%09_ = playMakerFSM.FsmVariables.GetFsmInt (%22Attack Type%22).Value;%0a%09%09float value = playMakerFSM.FsmVariables.GetFsmFloat (%22A
++, float a
+ ttack
+- 
+ Magn
+@@ -2004,460 +2004,187 @@
+ tude
+-%22).Value;%0a%09%09RecoilByDirection (cardinalDirection, value);%0a%09%7d%0a%0a%09public void RecoilByDamage (HitInstance damageInstance)%0a%09%7b%0a%09%09int cardinalDirection = DirectionUtils.GetCardinalDirection (damageInstance.Direction);%0a%09%09RecoilByDirection (cardinalDirection, damageInstance.MagnitudeMultiplier);%0a%09%7d%0a%0a%09public void RecoilByDirection (int attackDirection, float attackMagnitude)%0a%09%7b%0a%09%09if (state != 0) %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (freezeInPlace) %7b%0a%09%09%09
++)%0a    %7b%0a        if (state != States.Ready)%0a        %7b%0a            return;%0a        %7d%0a        if (freezeInPlace)%0a        %7b%0a            
+ Freeze
+- 
+ ();%0a
+-%09%09%7d else
++            return;%0a        %7d%0a       
   if 
 @@ -2204,17 +2204,16 @@
  ion 
@@ -182,43 +223,49 @@
 -%7c%7c !
 +&& 
  prev
-@@ -2225,23 +2225,64 @@
- coilUp)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            return;%0a        %7d%0a        
+@@ -2224,22 +2224,65 @@
+ ecoilUp)
+- %7b%0a%09%09%09
++%0a        %7b%0a            return;%0a        %7d%0a        
  if (body
-@@ -2295,33 +2295,46 @@
- er == null)%0a
--%09%09%09%7b%0a%09%09%09%09
-+        %7b%0a            
+@@ -2294,31 +2294,47 @@
+ der == null)
+- %7b%0a%09%09%09%09
++%0a        %7b%0a            
  bodyCollider
 @@ -2336,16 +2336,21 @@
  lider = 
 +base.
  GetCompo
-@@ -2365,32 +2365,42 @@
- lider2D%3e();%0a
+@@ -2365,29 +2365,38 @@
+ lider2D%3e
+- 
+ ();%0a
 -%09%09%09%7d%0a%09%09%09
 +        %7d%0a        
- state = Stat
+ state = 
 @@ -2413,19 +2413,24 @@
  oiling;%0a
 -%09%09%09
 +        
  recoilSp
-@@ -2474,687 +2474,124 @@
+@@ -2474,691 +2474,124 @@
  de;%0a
--%09%09%09recoilSweep = new Sweep(bodyCollider, attackDirection, 3);%0a%09%09%09isRecoilSweeping = true;%0a%09%09%09recoilTimeRemaining = recoilDuration;%0a%09%09%09switch (attackDirection)%0a%09%09%09%7b%0a%09%09%09case 2:%0a%09%09%09%09FSMUtility.SendEventToGameObject(base.gameObject, %22RECOIL HORIZONTAL%22);%0a%09%09%09%09FSMUtility.SendEventToGameObject(base.gameObject, %22HIT LEFT%22);%0a%09%09%09%09break;%0a%09%09%09case 0:%0a%09%09%09%09FSMUtility.SendEventToGameObject(base.gameObject, %22RECOIL HORIZONTAL%22);%0a%09%09%09%09FSMUtility.SendEventToGameObject(base.gameObject, %22HIT RIGHT%22);%0a%09%09%09%09break;%0a%09%09%09case 3:%0a%09%09%09%09FSMUtility.SendEventToGameObject(base.gameObject, %22HIT DOWN%22);%0a%09%09%09%09break;%0a%09%09%09case 1:%0a%09%09%09%09FSMUtility.SendEventToGameObject(base.gameObject, %22HIT UP%22);%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%09
+-%09%09%09recoilSweep = new Sweep (bodyCollider, attackDirection, 3);%0a%09%09%09isRecoilSweeping = true;%0a%09%09%09recoilTimeRemaining = recoilDuration;%0a%09%09%09switch (attackDirection) %7b%0a%09%09%09case 2:%0a%09%09%09%09FSMUtility.SendEventToGameObject (base.gameObject, %22RECOIL HORIZONTAL%22);%0a%09%09%09%09FSMUtility.SendEventToGameObject (base.gameObject, %22HIT LEFT%22);%0a%09%09%09%09break;%0a%09%09%09case 0:%0a%09%09%09%09FSMUtility.SendEventToGameObject (base.gameObject, %22RECOIL HORIZONTAL%22);%0a%09%09%09%09FSMUtility.SendEventToGameObject (base.gameObject, %22HIT RIGHT%22);%0a%09%09%09%09break;%0a%09%09%09case 3:%0a%09%09%09%09FSMUtility.SendEventToGameObject (base.gameObject, %22HIT DOWN%22);%0a%09%09%09%09break;%0a%09%09%09case 1:%0a%09%09%09%09FSMUtility.SendEventToGameObject (base.gameObject, %22HIT UP%22);%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%09
 +        recoilTimeRemaining = recoilDuration;%0a        recoilDirection = DirectionToVector(attackDirection);%0a        
  Upda
-@@ -2605,25 +2605,27 @@
- cs(0f);%0a
+@@ -2603,24 +2603,25 @@
+ sics
+- 
+ (0f);%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +    %7d%0a%0a    
- public v
-@@ -2647,36 +2647,71 @@
- l()%0a
--%09%7b%0a%09%09if (state != 0)%0a%09%09%7b%0a%09%09%09
+ publ
+@@ -2644,38 +2644,74 @@
+ coil
+- 
+ ()%0a
+-%09%7b%0a%09%09if (state != 0) %7b%0a%09%09%09
 +    %7b%0a        if (state != States.Ready)%0a        %7b%0a            
  stat
 @@ -2728,28 +2728,32 @@
@@ -226,34 +273,50 @@
 -%09%09%09if (this.
 +            if (
  OnCancel
-@@ -2772,54 +2772,91 @@
- ll)%0a
--%09%09%09%7b%0a%09%09%09%09this.OnCancelRecoil();%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
-+            %7b%0a                OnCancelRecoil();%0a            %7d%0a        %7d%0a    %7d%0a%0a    
- priv
-@@ -2873,21 +2873,30 @@
- reeze()%0a
+@@ -2767,28 +2767,47 @@
+ != null)
+- %7b%0a%09%09%09%09this.
++%0a            %7b%0a                
+ OnCancel
+@@ -2812,35 +2812,55 @@
+ elRecoil
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a    %7d%0a%0a    
+ private 
+@@ -2870,25 +2870,33 @@
+ d Freeze
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (skip
-@@ -2921,127 +2921,192 @@
- er)%0a
--%09%09%7b%0a%09%09%09if (this.OnHandleFreeze != null)%0a%09%09%09%7b%0a%09%09%09%09this.OnHandleFreeze();%0a%09%09%09%7d%0a%09%09%09state = States.Ready;%0a%09%09%09return;%0a%09%09%7d%0a%09%09
-+        %7b%0a            if (OnHandleFreeze != null)%0a            %7b%0a                OnHandleFreeze();%0a            %7d%0a            state = States.Ready;%0a            return;%0a        %7d%0a        
+@@ -2920,58 +2920,89 @@
+ ler)
+- %7b%0a%09%09%09if (this.OnHandleFreeze != null) %7b%0a%09%09%09%09this.
++%0a        %7b%0a            if (OnHandleFreeze != null)%0a            %7b%0a                
+ OnHa
+@@ -3015,60 +3015,98 @@
+ eeze
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%09state = States.Ready;%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++            %7d%0a            state = States.Ready;%0a            return;%0a        %7d%0a        
  stat
 @@ -3124,18 +3124,24 @@
  Frozen;%0a
 -%09%09
 +        
  if (body
-@@ -3150,23 +3150,38 @@
- = null)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3149,22 +3149,39 @@
+ != null)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  body.vel
 @@ -3206,196 +3206,26 @@
  ro;%0a
--%09%09%7d%0a%09%09PlayMakerFSM playMakerFSM = PlayMakerFSM.FindFsmOnGameObject(base.gameObject, %22Climber Control%22);%0a%09%09if (playMakerFSM != null)%0a%09%09%7b%0a%09%09%09playMakerFSM.SendEvent(%22FREEZE IN PLACE%22);%0a%09%09%7d%0a%09%09
+-%09%09%7d%0a%09%09PlayMakerFSM playMakerFSM = PlayMakerFSM.FindFsmOnGameObject (base.gameObject, %22Climber Control%22);%0a%09%09if (playMakerFSM != null) %7b%0a%09%09%09playMakerFSM.SendEvent (%22FREEZE IN PLACE%22);%0a%09%09%7d%0a%09%09
 +        %7d%0a        
  reco
 @@ -3258,18 +3258,24 @@
@@ -261,30 +324,42 @@
 -%09%09
 +        
  UpdatePh
-@@ -3285,21 +3285,27 @@
- cs(0f);%0a
+@@ -3283,20 +3283,25 @@
+ sics
+- 
+ (0f);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
- protecte
-@@ -3325,21 +3325,30 @@
- pdate()%0a
+ prot
+@@ -3326,17 +3326,25 @@
+ date
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- UpdatePh
+ Upda
+@@ -3352,17 +3352,16 @@
+ ePhysics
+- 
+ (Time.fi
 @@ -3375,21 +3375,27 @@
  aTime);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
+@@ -3412,17 +3412,16 @@
+ ePhysics
+- 
+ (float d
 @@ -3430,21 +3430,30 @@
  taTime)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (stat
-@@ -3476,42 +3476,78 @@
- en)%0a
--%09%09%7b%0a%09%09%09if (body != null)%0a%09%09%09%7b%0a%09%09%09%09
-+        %7b%0a            if (body != null)%0a            %7b%0a                
+@@ -3475,38 +3475,79 @@
+ zen)
+- %7b%0a%09%09%09if (body != null) %7b%0a%09%09%09%09
++%0a        %7b%0a            if (body != null)%0a            %7b%0a                
  body
 @@ -3572,24 +3572,42 @@
  2.zero;%0a
@@ -296,23 +371,34 @@
 -%09%09%09
 +            
  if (recoilTimeRe
-@@ -3679,56 +3679,91 @@
- 0f)%0a
--%09%09%09%7b%0a%09%09%09%09CancelRecoil();%0a%09%09%09%7d%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
-+            %7b%0a                CancelRecoil();%0a            %7d%0a        %7d%0a        else 
+@@ -3666,39 +3666,63 @@
+ Remaining %3c= 0f)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ CancelRecoil ();
+@@ -3721,32 +3721,49 @@
+ coil
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%7d
++            %7d%0a        %7d%0a       
+  else 
+-%7b%0a%09%09%09
  if (
 @@ -3760,33 +3760,33 @@
   else if (state 
 -!
 +=
  = States.Recoili
-@@ -3793,267 +3793,30 @@
- ng)%0a
--%09%09%09%7b%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09if (isRecoilSweeping)%0a%09%09%09%7b%0a%09%09%09%09if (recoilSweep.Check(base.transform.position, recoilSpeed * deltaTime, 256, out var clippedDistance))%0a%09%09%09%09%7b%0a%09%09%09%09%09isRecoilSweeping = false;%0a%09%09%09%09%7d%0a%09%09%09%09if (clippedDistance %3e Mathf.Epsilon)%0a%09%09%09%09%7b%0a%09%09%09%09%09base.
-+        %7b%0a            
+@@ -3792,255 +3792,31 @@
+ ing)
+- %7b%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09if (isRecoilSweeping) %7b%0a%09%09%09%09if (recoilSweep.Check (base.transform.position, recoilSpeed * deltaTime, 256, out var clippedDistance)) %7b%0a%09%09%09%09%09isRecoilSweeping = false;%0a%09%09%09%09%7d%0a%09%09%09%09if (clippedDistance %3e Mathf.Epsilon) %7b%0a%09%09%09%09%09base.
++%0a        %7b%0a            
  tran
-@@ -3841,14 +3841,8 @@
- coil
+@@ -3834,22 +3834,15 @@
+ late
+- 
+ (recoil
 -Sweep.
  Dire
 @@ -3853,22 +3853,35 @@
@@ -330,11 +416,22 @@
 -%09%09%09
 +            
  if (reco
-@@ -3986,47 +3986,89 @@
- 0f)%0a
--%09%09%09%7b%0a%09%09%09%09CancelRecoil();%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
-+            %7b%0a                CancelRecoil();%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+@@ -3985,15 +3985,39 @@
+  0f)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ Canc
+@@ -4028,27 +4028,47 @@
+ coil
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a    %7d%0a%0a    
  publ
+@@ -4089,17 +4089,16 @@
+ oilSpeed
+- 
+ (float n
 @@ -4110,13 +4110,22 @@
  ed)%0a
 -%09%7b%0a%09%09

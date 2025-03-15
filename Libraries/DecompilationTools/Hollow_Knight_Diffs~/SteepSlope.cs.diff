@@ -1,7 +1,11 @@
-@@ -59,149 +59,8 @@
+@@ -59,150 +59,8 @@
  r%0a%7b%0a
--%09public bool slideLeft;%0a%0a%09public bool slideRight;%0a%0a%09private HeroController hc;%0a%0a%09private void Start()%0a%09%7b%0a%09%09hc = HeroController.instance;%0a%09%7d%0a%0a
+-%09public bool slideLeft;%0a%0a%09public bool slideRight;%0a%0a%09private HeroController hc;%0a%0a%09private void Start ()%0a%09%7b%0a%09%09hc = HeroController.instance;%0a%09%7d%0a%0a
  %09pri
+@@ -86,17 +86,16 @@
+ onStay2D
+- 
+ (Collisi
 @@ -126,19 +126,26 @@
  eObject 
 -obj
@@ -12,38 +16,97 @@
 -obj
 +gameObject
  .GetComp
+@@ -223,17 +223,16 @@
+ dbody2D%3e
+- 
+ ();%0a%09%09co
+@@ -261,17 +261,16 @@
+  Vector2
+- 
+ (compone
 @@ -301,11 +301,18 @@
  if (
 -obj
 +gameObject
  .Com
-@@ -337,18 +337,39 @@
- %0a%09%09%7b%0a%09%09%09
+@@ -310,33 +310,32 @@
+ bject.CompareTag
+- 
+ (%22Player%22)) %7b%0a%09%09
+@@ -333,16 +333,39 @@
+ r%22))
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 -hc
 +HeroController.instance
- .ResetHa
-@@ -389,18 +389,39 @@
- r();%0a%09%09%09
+ .Res
+@@ -386,18 +386,38 @@
+ imer
+- 
+ ();%0a%09%09%09
 -hc
 +HeroController.instance
- .CancelS
-@@ -571,34 +571,55 @@
- eLeft)%0a%09%09%09%7b%0a%09%09%09%09
+ .Can
+@@ -428,17 +428,16 @@
+ uperDash
+- 
+ ();%0a%09%09%7d%0a
+@@ -472,17 +472,16 @@
+ nEnter2D
+- 
+ (Collisi
+@@ -528,33 +528,32 @@
+ bject.CompareTag
+- 
+ (%22Player%22)) %7b%0a%09%09
+@@ -539,33 +539,35 @@
+ reTag(%22Player%22))
+- 
++%0a%09%09
+ %7b%0a%09%09%09if (slideLe
+@@ -565,33 +565,57 @@
+  (slideLeft)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09
 -hc
 +HeroController.instance
- .cState.slidingL
-@@ -655,34 +655,55 @@
- Right)%0a%09%09%09%7b%0a%09%09%09%09
+ .cState.slid
+@@ -649,33 +649,57 @@
+ (slideRight)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09
 -hc
 +HeroController.instance
- .cState.slidingR
-@@ -858,34 +858,55 @@
- eLeft)%0a%09%09%09%7b%0a%09%09%09%09
+ .cState.slid
+@@ -759,17 +759,16 @@
+ onExit2D
+- 
+ (Collisi
+@@ -823,17 +823,16 @@
+ mpareTag
+- 
+ (%22Player
+@@ -834,17 +834,19 @@
+ layer%22))
+- 
++%0a%09%09
+ %7b%0a%09%09%09if 
+@@ -856,25 +856,49 @@
+ ideLeft)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09
 -hc
 +HeroController.instance
- .cState.slidingL
-@@ -955,10 +955,31 @@
- %09%09%09%09
+ .cState.
+@@ -945,17 +945,41 @@
+ ght)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09
 -hc
 +HeroController.instance
  .cSt

@@ -1,281 +1,221 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,23 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    
+@@ -72,17 +72,20 @@
+ fects%0a%7b%0a
+-%09
++    
  %5bExecute
-@@ -96,16 +96,20 @@
+@@ -96,17 +96,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bRequire
-@@ -117,16 +117,17 @@
- omponent
-+ 
- (typeof(
-@@ -136,16 +136,20 @@
+@@ -136,17 +136,20 @@
  mera))%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -157,16 +157,17 @@
- nentMenu
-+ 
- (%22Image 
-@@ -211,16 +211,18 @@
+@@ -211,17 +211,18 @@
  %22)%5d%0a
--internal
+-%09internal
 +    public
   cla
-@@ -256,19 +256,27 @@
- ctsBase%0a
-+%09
- %7b%0a
--%09
+@@ -259,18 +259,24 @@
+ Base%0a%09%7b%0a
+-%09%09
 +        
  public f
-@@ -298,18 +298,24 @@
+@@ -298,19 +298,24 @@
  = 0.5f;%0a
--%0a%09
+-%0a%09%09
 +        
  public i
-@@ -331,18 +331,24 @@
+@@ -331,19 +331,24 @@
  ss = 1;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -366,13 +366,22 @@
+@@ -366,14 +366,22 @@
   = 1
 +.0
  f;%0a%0a
--%09
+-%09%09
 +        
  publ
-@@ -396,28 +396,41 @@
+@@ -396,29 +396,41 @@
  r blurShader
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a        
  private Mate
-@@ -438,36 +438,50 @@
+@@ -438,37 +438,50 @@
  ial blurMaterial
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a%0a        
  public Shader de
-@@ -490,28 +490,41 @@
+@@ -490,29 +490,41 @@
  hFetchShader
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a        
  private Mate
-@@ -542,28 +542,42 @@
+@@ -542,29 +542,42 @@
  etchMaterial
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a%0a        
  public Shade
-@@ -595,20 +595,33 @@
+@@ -595,21 +595,33 @@
  lyShader
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a        
  private 
-@@ -652,12 +652,27 @@
+@@ -652,13 +652,27 @@
  rial
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a%0a%0a        
  publ
-@@ -706,49 +706,62 @@
- rces
-+ 
- ()%0a%09
-+%09
- %7b%0a
--%09%09CheckSupport(needDepth: true);%0a%09%09
-+            CheckSupport (true);%0a%0a            
+@@ -710,19 +710,28 @@
+  ()%0a%09%09%7b%0a
+-%09%09%09
++            
+ CheckSup
+@@ -740,29 +740,28 @@
+ rt (
+-needDepth: true);%0a%09%09%09
++true);%0a%0a            
  blur
-@@ -799,16 +799,17 @@
- Material
-+ 
- (blurSha
-@@ -828,18 +828,28 @@
+@@ -828,19 +828,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  depthFet
-@@ -889,16 +889,17 @@
- Material
-+ 
- (depthFe
-@@ -930,18 +930,28 @@
+@@ -930,19 +930,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  creaseAp
-@@ -992,16 +992,17 @@
- Material
-+ 
- (creaseA
-@@ -1035,18 +1035,29 @@
+@@ -1035,19 +1035,29 @@
  erial);%0a
--%09%09
+-%09%09%09
 +%0a            
  if (!isS
-@@ -1066,23 +1066,32 @@
- ported)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -1065,23 +1065,33 @@
+ pported)
+- %7b%0a%09%09%09%09
++%0a                
  ReportAu
-@@ -1103,18 +1103,25 @@
- able
-+ 
- ();%0a
--%09%09%7d%0a%09%09
+@@ -1104,24 +1104,28 @@
+ ble ();%0a
+-%09%09%09%7d%0a%09%09%09
 +            
- retu
-@@ -1140,20 +1140,26 @@
+ return i
+@@ -1140,22 +1140,26 @@
  ed;%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
   voi
-@@ -1173,16 +1173,17 @@
- derImage
-+ 
- (RenderT
-@@ -1229,17 +1229,27 @@
- n)%0a%09
-+%09
- %7b%0a
--%09%09
+@@ -1232,16 +1232,24 @@
+ %09%09%7b%0a
+-%09%09%09
 +            
  if (
 -!
  Chec
-@@ -1260,25 +1260,46 @@
- ources()
-+==false
- )%0a%09%09
-+%09
- %7b%0a
--%09%09%09
-+                
- Graphics
-@@ -1295,32 +1295,33 @@
-    Graphics.Blit
-+ 
- (source, destina
-@@ -1331,168 +1331,250 @@
+@@ -1262,19 +1262,40 @@
+ rces
+- 
+ ()
+-) %7b%0a%09%09%09%09
++==false)%0a%09%09%09%7b%0a                
+ Grap
+@@ -1331,175 +1331,250 @@
  n);%0a
--%09%09%09return;%0a%09%09%7d%0a%09%09int width = source.width;%0a%09%09int height = source.height;%0a%09%09float num = 1f * (
-+                return;%0a            %7d%0a%0a            int rtW = source.width;%0a            int rtH = source.height;%0a%0a            
- float
--)
-+ 
- width
-- /
-+OverHeight =
-  (1
+-%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09int width = source.width;%0a%09%09%09int height = source.height;%0a%09%09%09float num = 1f * (float)width
++                return;%0a            %7d%0a%0a            int rtW = source.width;%0a            int rtH = source.height;%0a%0a            float widthOverHeight = (1.0f * rtW)
+  / (1
 +.0
  f * 
--(float)height);%0a%09%09float num2 = 0.001953125f;%0a%09%09
-+rtW) / (1.0f * rtH);%0a            float oneOverBaseSize = 1.0f / 512.0f;%0a%0a            
+-(float)height);%0a%09%09%09float num2 = 0.001953125f;%0a%09%09%09
++rtH);%0a            float oneOverBaseSize = 1.0f / 512.0f;%0a%0a            
  Rend
 @@ -1583,25 +1583,21 @@
  Texture 
 -temporary
 +hrTex
   = Rende
-@@ -1621,30 +1621,36 @@
- rary
--(width, height, 0);%0a%09%09
-+ (rtW, rtH, 0);%0a            
+@@ -1623,30 +1623,34 @@
+ ry (
+-width, height, 0);%0a%09%09%09
++rtW, rtH, 0);%0a            
  Rend
 @@ -1659,29 +1659,22 @@
  Texture 
 -renderTexture
 +lrTex1
   = Rende
-@@ -1698,38 +1698,41 @@
- rary
--(width / 2, height / 2, 0);%0a%09%09
-+ (rtW/2, rtH/2, 0);%0a%0a            
+@@ -1700,38 +1700,39 @@
+ ry (
+-width / 2, height / 2, 0);%0a%09%09%09
++rtW/2, rtH/2, 0);%0a%0a            
  Grap
-@@ -1740,24 +1740,25 @@
- ics.Blit
-+ 
- (source,
-  tempora
 @@ -1749,26 +1749,21 @@
  (source,
 - temporary
 +hrTex
  , depthF
-@@ -1777,18 +1777,28 @@
+@@ -1777,19 +1777,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -1806,42 +1806,42 @@
- Blit
--(temporary, renderTexture);%0a%09%09
-+ (hrTex, lrTex1);%0a%0a            
+@@ -1808,42 +1808,40 @@
+ it (
+-temporary, renderTexture);%0a%09%09%09
++hrTex, lrTex1);%0a%0a            
  for
 - 
  (int
-@@ -1873,13 +1873,27 @@
- )%0a%09%09
-+%09
- %7b%0a
--%09%09%09
-+                
+@@ -1870,15 +1870,30 @@
+ i++)
+- %7b
+ %0a%09%09%09
+-%09
++%7b%0a                
  Rend
 @@ -1902,25 +1902,21 @@
  Texture 
 -temporary
 +lrTex
  2 = Rend
-@@ -1941,39 +1941,44 @@
- rary
--(width / 2, height / 2, 0);%0a%09%09%09
-+ (rtW/2, rtH/2, 0);%0a                
+@@ -1943,39 +1943,42 @@
+ ry (
+-width / 2, height / 2, 0);%0a%09%09%09%09
++rtW/2, rtH/2, 0);%0a                
  blur
-@@ -1987,32 +1987,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -2019,17 +2019,20 @@
-  Vector4
-+ 
- (
+@@ -2021,16 +2021,18 @@
+ ector4 (
 +0.
  0f, spre
-@@ -2040,65 +2040,83 @@
+@@ -2040,67 +2040,83 @@
  d * 
--num2
-+oneOverBaseSize
- , 
-+0.
+-num2, 
++oneOverBaseSize, 0.
  0f, 
 +0.
  0f));%0a
--%09%09%09Graphics.Blit(renderTexture, temporary
+-%09%09%09%09Graphics.Blit (renderTexture, temporary
 +                Graphics.Blit (lrTex1, lrTex
  2, b
-@@ -2121,35 +2121,48 @@
+@@ -2121,36 +2121,48 @@
   blurMaterial);%0a
--%09%09%09
+-%09%09%09%09
 +                
  RenderTexture.Re
-@@ -2179,129 +2179,140 @@
- rary
--(renderTexture);%0a%09%09%09renderTexture = temporary2;%0a%09%09%09temporary2 = RenderTexture.GetTemporary(width / 2, height / 2, 0);%0a%09%09%09
-+ (lrTex1);%0a                lrTex1 = lrTex2;%0a%0a                lrTex2 = RenderTexture.GetTemporary (rtW/2, rtH/2, 0);%0a                
+@@ -2181,132 +2181,138 @@
+ ry (
+-renderTexture);%0a%09%09%09%09renderTexture = temporary2;%0a%09%09%09%09temporary2 = RenderTexture.GetTemporary (width / 2, height / 2, 0);%0a%09%09%09%09
++lrTex1);%0a                lrTex1 = lrTex2;%0a%0a                lrTex2 = RenderTexture.GetTemporary (rtW/2, rtH/2, 0);%0a                
  blur
-@@ -2329,16 +2329,17 @@
- etVector
-+ 
- (%22offset
-@@ -2353,16 +2353,17 @@
-  Vector4
-+ 
- (spread 
-@@ -2368,75 +2368,108 @@
+@@ -2368,77 +2368,108 @@
  d * 
 -num2 / num, 
 +oneOverBaseSize / widthOverHeight,  0.
@@ -284,67 +224,50 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09Graphics.Blit(renderTexture, temporary
+-%09%09%09%09Graphics.Blit (renderTexture, temporary
 +                Graphics.Blit (lrTex1, lrTex
  2, b
-@@ -2482,19 +2482,32 @@
+@@ -2482,20 +2482,32 @@
  erial);%0a
--%09%09%09
+-%09%09%09%09
 +                
  RenderTe
-@@ -2532,62 +2532,79 @@
- rary
--(renderTexture);%0a%09%09%09renderTexture = temporary2;%0a%09%09%7d%0a%09%09
-+ (lrTex1);%0a                lrTex1 = lrTex2;%0a            %7d%0a%0a            
+@@ -2534,64 +2534,77 @@
+ ry (
+-renderTexture);%0a%09%09%09%09renderTexture = temporary2;%0a%09%09%09%7d%0a%09%09%09
++lrTex1);%0a                lrTex1 = lrTex2;%0a            %7d%0a%0a            
  crea
-@@ -2629,16 +2629,17 @@
- tTexture
-+ 
- (%22_HrDep
-@@ -2646,30 +2646,36 @@
+@@ -2646,31 +2646,36 @@
  thTex%22, 
--temporary);%0a%09%09
+-temporary);%0a%09%09%09
 +hrTex);%0a            
  creaseAp
-@@ -2696,16 +2696,17 @@
- tTexture
-+ 
- (%22_LrDep
-@@ -2717,26 +2717,29 @@
+@@ -2717,27 +2717,29 @@
  x%22, 
--renderTexture);%0a%09%09
+-renderTexture);%0a%09%09%09
 +lrTex1);%0a            
  crea
-@@ -2762,16 +2762,17 @@
- SetFloat
-+ 
- (%22intens
-@@ -2789,18 +2789,28 @@
+@@ -2789,19 +2789,28 @@
  nsity);%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -2814,24 +2814,25 @@
- ics.Blit
-+ 
- (source,
-  destina
 @@ -2815,33 +2815,32 @@
  cs.Blit (source,
 - 
  destination, cre
-@@ -2858,18 +2858,29 @@
+@@ -2858,19 +2858,29 @@
  erial);%0a
--%09%09
+-%09%09%09
 +%0a            
  RenderTe
-@@ -2905,23 +2905,30 @@
- rary
--(temporary);%0a%09%09
-+ (hrTex);%0a            
+@@ -2907,23 +2907,28 @@
+ ry (
+-temporary);%0a%09%09%09
++hrTex);%0a            
  Rend
-@@ -2957,26 +2957,33 @@
- rary
--(renderTexture);%0a%09
-+ (lrTex1);%0a        %7d%0a    
+@@ -2959,29 +2959,31 @@
+ ry (
+-renderTexture);%0a%09%09%7d%0a%09
++lrTex1);%0a        %7d%0a    
  %7d%0a%7d%0a

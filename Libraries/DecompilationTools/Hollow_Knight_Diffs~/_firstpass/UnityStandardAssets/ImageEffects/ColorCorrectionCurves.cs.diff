@@ -1,73 +1,98 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,23 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    
+@@ -72,17 +72,20 @@
+ fects%0a%7b%0a
+-%09
++    
  %5bExecute
-@@ -96,16 +96,20 @@
+@@ -96,17 +96,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -117,16 +117,17 @@
- nentMenu
-+ 
- (%22Image 
-@@ -193,16 +193,20 @@
+@@ -193,17 +193,20 @@
  ion)%22)%5d%0a
+-%09
 +    
  public c
-@@ -254,43 +254,123 @@
- ase%0a
-+%09
- %7b%0a
--%09public float saturation = 1f;%0a%0a%09
+@@ -257,43 +257,120 @@
+ %0a%09%7b%0a
+-%09%09public float saturation = 1f;%0a%0a%09%09
 +        public enum ColorCorrectionMode%0a%09%09%7b%0a            Simple = 0,%0a            Advanced = 1%0a        %7d%0a%0a        
  publ
-@@ -427,33 +427,32 @@
- new Keyframe(0f,
+@@ -410,33 +410,32 @@
+ w AnimationCurve
+- 
+ (new Keyframe (0
+@@ -423,38 +423,36 @@
+ rve(new Keyframe
+- 
+ (0f,
 - 
  0f), new Keyfram
-@@ -452,33 +452,38 @@
- Keyframe(1f,
+@@ -448,39 +448,42 @@
+ new Keyframe
+- 
+ (1f,
 - 
  1f));%0a
--%0a%09
+-%0a%09%09
 +        
  public Anima
-@@ -534,33 +534,32 @@
- new Keyframe(0f,
+@@ -517,33 +517,32 @@
+ w AnimationCurve
+- 
+ (new Keyframe (0
+@@ -530,38 +530,36 @@
+ rve(new Keyframe
+- 
+ (0f,
 - 
  0f), new Keyfram
-@@ -559,33 +559,38 @@
- Keyframe(1f,
+@@ -555,39 +555,42 @@
+ new Keyframe
+- 
+ (1f,
 - 
  1f));%0a
--%0a%09
+-%0a%09%09
 +        
  public Anima
-@@ -648,17 +648,16 @@
- rame(0f,
+@@ -631,17 +631,16 @@
+ ionCurve
 - 
- 0f), new
-@@ -673,17 +673,23 @@
+ (new Key
+@@ -648,14 +648,12 @@
+ rame
+- 
+ (0f,
+- 
+ 0f),
+@@ -669,23 +669,27 @@
+ rame
+- 
  (1f,
 - 
  1f));%0a%0a
--%09
+-%09%09
 +        
  publ
-@@ -700,785 +700,1733 @@
+@@ -700,818 +700,1733 @@
  ool 
--updateTextures = true;%0a%0a%09public Shader colorCorrectionCurvesShader;%0a%0a%09public Shader simpleColorCorrectionCurvesShader;%0a%0a%09private Material ccMaterial;%0a%0a%09private Texture2D rgbChannelTex;%0a%0a%09private bool updateTexturesOnStartup = true;%0a%0a%09private new void Start()%0a%09%7b%0a%09%09base.Start();%0a%09%09updateTexturesOnStartup = true;%0a%09%7d%0a%0a%09private void OnRenderImage(RenderTexture source, RenderTexture destination)%0a%09%7b%0a%09%09if (!CheckResources())%0a%09%09%7b%0a%09%09%09Graphics.Blit(source, destination);%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (updateTexturesOnStartup)%0a%09%09%7b%0a%09%09%09UpdateParameters();%0a%09%09%09updateTexturesOnStartup = false;%0a%09%09%7d%0a%09%09ccMaterial.SetTexture(%22_RgbTex%22, rgbChannelTex);%0a%09%09ccMaterial.SetFloat(%22_Saturation%22, saturation);%0a%09%09Graphics.Blit(source, destination, ccMaterial);%0a%09%7d%0a%0a%09public override bool CheckResources()%0a%09%7b%0a%09%09c
-+ useDepthCorrection = false;%0a%0a        public AnimationCurve zCurve = new AnimationCurve(new Keyframe(0f,0f), new Keyframe(1f,1f));%0a        public AnimationCurve depthRedChannel = new AnimationCurve(new Keyframe(0f,0f), new Keyframe(1f,1f));%0a        public AnimationCurve depthGreenChannel = new AnimationCurve(new Keyframe(0f,0f), new Keyframe(1f,1f));%0a        public AnimationCurve depthBlueChannel = new AnimationCurve(new Keyframe(0f,0f), new Keyframe(1f,1f));%0a%0a        private Material ccMaterial;%0a        private Material ccDepthMaterial;%0a        private Material selectiveCcMaterial;%0a%0a        private Texture2D rgbChannelTex;%0a        private Texture2D rgbDepthChannelTex;%0a        private Texture2D zCurveTex;%0a%0a        public float saturation = 1.0f;%0a%0a        public bool  selectiveCc = false;%0a%0a        public Color selectiveFromColor = Color.white;%0a        public Color selectiveToColor = Color.white;%0a%0a        public ColorCorrectionMode mode;%0a%0a        public bool  updateTextures = true;%0a%0a        public Shader colorCorrectionCurvesShader = null;%0a        public Shader simpleColorCorrectionCurvesShader = null;%0a        public Shader colorCorrectionSelectiveShader = null;%0a%0a        private bool  updateTexturesOnStartup = true;%0a%0a%0a        new void Start ()%0a%09%09%7b%0a            base.Start ();%0a            updateTexturesOnStartup = true;%0a        %7d%0a%0a        void Awake () %7b%09%7d%0a%0a%0a        public override bool CheckResources ()%0a%09%09%7b%0a            CheckSupport (mode == ColorCorrectionMode.Advanced);%0a%0a            ccMaterial = CheckShaderAndCreateMaterial (simpleColorCorrectionCurvesShader, ccMaterial);%0a            ccDepthMaterial = CheckShaderAndCreateMaterial (colorCorrectionCurvesShader, ccDepthMaterial);%0a            selectiveC
+-updateTextures = true;%0a%0a%09%09public Shader colorCorrectionCurvesShader;%0a%0a%09%09public Shader simpleColorCorrectionCurvesShader;%0a%0a%09%09private Material ccMaterial;%0a%0a%09%09private Texture2D rgbChannelTex;%0a%0a%09%09private bool upd
++ useDepthCorrection = false;%0a%0a        public AnimationCurve zCurve = new AnimationCurve(new Keyframe(0f,0f), new Keyframe(1f,1f));%0a        public AnimationCurve depthRedChannel = new AnimationCurve(new Keyframe(0f,0f), new Keyframe(1f,1f));%0a        public AnimationCurve depthGreenChannel = new AnimationCurve(new Keyframe(0f,0f), new Keyframe(1f,1f));%0a        public AnimationCurve depthBlueChannel = new AnimationCurve(new Keyframe(0f,0f), new Keyframe(1f,1f));%0a%0a        private Material ccMaterial;%0a        private Material ccDepthMaterial;%0a        private Material selectiveCcMaterial;%0a%0a        private Texture2D rgbChannelTex;%0a        private Texture2D rgbDepthChannelTex;%0a        priv
+ ate
++ 
+ Texture
+-sOnStartup = true;%0a%0a%09%09private new void Start ()%0a%09%09%7b%0a%09%09%09base.Start ();%0a%09%09%09updateTexturesOnStartup = true;%0a%09%09%7d%0a%0a%09%09private void OnRenderImage (RenderTexture source, RenderTexture destination)%0a%09%09%7b%0a%09%09%09if (!CheckResources ()) %7b%0a%09%09%09%09Graphics.Blit (source, destination);%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09if (updateTexturesOnStartup) %7b%0a%09%09%09%09UpdateParameters ();%0a%09%09%09%09updateTexturesOnStartup = false;%0a%09%09%09%7d%0a%09%09%09ccMaterial.SetTexture (%22_RgbTex%22, rgbChannelTex);%0a%09%09%09ccMaterial.SetFloat (%22_Saturation%22, saturation);%0a%09%09%09Graphics.Blit (source, destination, ccMaterial);%0a%09%09%7d%0a%0a%09%09public override bool CheckResources ()%0a%09%09%7b%0a%09%09%09c
++2D zCurveTex;%0a%0a        public float saturation = 1.0f;%0a%0a        public bool  selectiveCc = false;%0a%0a        public Color selectiveFromColor = Color.white;%0a        public Color selectiveToColor = Color.white;%0a%0a        public ColorCorrectionMode mode;%0a%0a        public bool  updateTextures = true;%0a%0a        public Shader colorCorrectionCurvesShader = null;%0a        public Shader simpleColorCorrectionCurvesShader = null;%0a        public Shader colorCorrectionSelectiveShader = null;%0a%0a        private bool  updateTexturesOnStartup = true;%0a%0a%0a        new void Start ()%0a%09%09%7b%0a            base.Start ();%0a            updateTexturesOnStartup = true;%0a        %7d%0a%0a        void Awake () %7b%09%7d%0a%0a%0a        public override bool CheckResources ()%0a%09%09%7b%0a            CheckSupport (mode == ColorCorrectionMode.Advanced);%0a%0a            ccMaterial = CheckShaderAndCreateMaterial (simpleColorCorrectionCurvesShader, ccMaterial);%0a            ccDepthMaterial = CheckShaderAndCreateMaterial (colorCorrectionCurvesShader, ccDepthMaterial);%0a            selectiveC
  cMat
-@@ -2461,24 +2461,19 @@
- Material
--(simpleC
-+ (c
- olorCorr
+@@ -2455,39 +2455,33 @@
+ CreateMaterial (
+-simpleC
++c
+ olorCorrectionCu
 @@ -2474,38 +2474,41 @@
  orCorrection
 -Cur
@@ -80,65 +105,65 @@
  electiveShader, 
 -c
 +selectiveC
- cMaterial);%0a%09%09if
-@@ -2517,18 +2517,29 @@
+ cMaterial);%0a%09%09%09i
+@@ -2517,19 +2517,29 @@
  erial);%0a
--%09%09
+-%09%09%09
 +%0a            
  if (!rgb
-@@ -2550,23 +2550,32 @@
- nelTex)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -2549,23 +2549,33 @@
+ nnelTex)
+- %7b%0a%09%09%09%09
++%0a                
  rgbChann
-@@ -2595,16 +2595,17 @@
- exture2D
-+ 
- (256, 4,
-@@ -2631,191 +2631,641 @@
+@@ -2631,97 +2631,459 @@
  32, 
--mipChain: false, linear: true);%0a%09%09%7d%0a%09%09rgbChannelTex.hideFlags = HideFlags.DontSave;%0a%09%09rgbChannelTex.wrapMode = TextureWrapMode.Clamp;%0a%09%09rgbChannelTex.filterMode = FilterMode.Point;%0a%09%09
-+false, true);%0a            if (!rgbDepthChannelTex)%0a                rgbDepthChannelTex = new Texture2D (256, 4, TextureFormat.ARGB32, false, true);%0a            if (!zCurveTex)%0a                zCurveTex = new Texture2D (256, 1, TextureFormat.ARGB32, false, true);%0a%0a            rgbChannelTex.hideFlags = HideFlags.DontSave;%0a            rgbDepthChannelTex.hideFlags = HideFlags.DontSave;%0a            zCurveTex.hideFlags = HideFlags.DontSave;%0a%0a            rgbChannelTex.wrapMode = TextureWrapMode.Clamp;%0a            rgbDepthChannelTex.wrapMode = TextureWrapMode.Clamp;%0a            zCurveTex.wrapMode = TextureWrapMode.Clamp;%0a%0a            
- if (
-@@ -3278,23 +3278,32 @@
- ported)%0a
--%09%09%7b%0a%09%09%09
-+                
- ReportAu
-@@ -3315,18 +3315,25 @@
- able
-+ 
- ();%0a
--%09%09%7d%0a%09%09
+-mipChain: false, linear: true);%0a%09%09%09%7d%0a%09%09%09rgbChannelTex.hideFlags = HideFlags.DontSave;%0a%09%09%09
++false, true);%0a            if (!rgbDepthChannelTex)%0a                rgbDepthChannelTex = new Texture2D (256, 4, TextureFormat.ARGB32, false, true);%0a            if (!zCurveTex)%0a                zCurveTex = new Texture2D (256, 1, TextureFormat.ARGB32, false, true);%0a%0a            rgbChannelTex.hideFlags = HideFlags.DontSave;%0a            rgbDepthChannelTex.hideFlags = HideFlags.DontSave;%0a            zCurveTex.hideFlags = HideFlags.DontSave;%0a%0a            
+ rgbC
+@@ -3126,22 +3126,36 @@
+ .Clamp;%0a
+-%09%09%09rgb
++            rgbDepth
+ ChannelT
+@@ -3161,66 +3161,145 @@
+ Tex.
+-filter
++wrap
+ Mode = 
+-FilterMode.Point;%0a%09%09%09if (!isSupported) %7b%0a%09%09%09%09
++TextureWrapMode.Clamp;%0a            zCurveTex.wrapMode = TextureWrapMode.Clamp;%0a%0a            if (!isSupported)%0a                
+ Repo
+@@ -3316,24 +3316,28 @@
+ ble ();%0a
+-%09%09%09%7d%0a%09%09%09
 +            
- retu
-@@ -3348,21 +3348,35 @@
+ return i
+@@ -3348,23 +3348,35 @@
  ported;%0a
--%09%7d%0a%0a%09
+-%09%09%7d%0a%0a%09%09
 +        %7d%0a%0a        
  public v
-@@ -3395,24 +3395,36 @@
- rameters
-+ 
- ()%0a%09
-+%09
- %7b%0a
--%09%09
+@@ -3403,19 +3403,28 @@
+  ()%0a%09%09%7b%0a
+-%09%09%09
 +            
  CheckRes
-@@ -3432,19 +3432,99 @@
- urces();
--%0a%09%09
+@@ -3429,24 +3429,102 @@
+ esources
+- 
+ ();
+-%0a%09%09%09
 + // textures might not be created if we're tweaking UI while disabled%0a%0a            
  if (redC
-@@ -3588,21 +3588,35 @@
- null)%0a%09%09
-+%09
- %7b%0a
--%09%09%09
-+                
+@@ -3585,23 +3585,38 @@
+ != null)
+- %7b
+ %0a%09%09%09
+-%09
++%7b%0a                
  for (flo
-@@ -3622,69 +3622,84 @@
+@@ -3622,67 +3622,84 @@
  oat 
 -num
 +i
@@ -153,135 +178,105 @@
 -num
 +i
   += 
--0.003921569
-+1.0f / 255.0
- f)%0a%09%09%09
-+%09
- %7b%0a
--%09%09%09%09
-+                    
+-0.003921569f) %7b%0a%09%09%09%09%09
++1.0f / 255.0f)%0a%09%09%09%09%7b%0a                    
  float 
 -num2
 +rCh
   = M
-@@ -3708,16 +3708,17 @@
- hf.Clamp
-+ 
- (redChan
-@@ -3734,37 +3734,54 @@
- ate(
--num
-+i
+@@ -3733,40 +3733,55 @@
+ uate
+- (num
++(i
  ), 
 +0.
  0f, 1
 +.0
  f);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  float 
 -num3
 +gCh
   = M
-@@ -3790,16 +3790,17 @@
- hf.Clamp
-+ 
- (greenCh
-@@ -3818,37 +3818,54 @@
- ate(
--num
-+i
+@@ -3817,40 +3817,55 @@
+ uate
+- (num
++(i
  ), 
 +0.
  0f, 1
 +.0
  f);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  float 
 -num4
 +bCh
   = M
-@@ -3874,16 +3874,17 @@
- hf.Clamp
-+ 
- (blueCha
-@@ -3901,27 +3901,46 @@
- ate(
--num
-+i
+@@ -3900,30 +3900,47 @@
+ uate
+- (num
++(i
  ), 
 +0.
  0f, 1
 +.0
  f);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +%0a                    
  rgbC
-@@ -3949,38 +3949,40 @@
- nnelTex.SetPixel
+@@ -3956,32 +3956,33 @@
+ .SetPixel ((int)
 + 
- ((int)
-+ 
- Mathf.Floor(num 
-@@ -3973,33 +3973,31 @@
- Mathf.Floor(
--num * 
-+i*
+ Mathf.Floor (num
+@@ -3972,35 +3972,32 @@
+  Mathf.Floor
+- (num * 
++(i*
  255
 +.0
  f), 0, new C
-@@ -4005,32 +4005,146 @@
- lor(
--num2, num2, num2));%0a%09%09%09%09
-+rCh,rCh,rCh) );%0a                    rgbChannelTex.SetPixel ((int) Mathf.Floor(i*255.0f), 1, new Color(gCh,gCh,gCh) );%0a                    
+@@ -4004,35 +4004,147 @@
+ olor
+- (num2, num2, num2));%0a%09%09%09%09%09
++(rCh,rCh,rCh) );%0a                    rgbChannelTex.SetPixel ((int) Mathf.Floor(i*255.0f), 1, new Color(gCh,gCh,gCh) );%0a                    
  rgbC
-@@ -4153,38 +4153,40 @@
- nnelTex.SetPixel
+@@ -4160,32 +4160,33 @@
+ .SetPixel ((int)
 + 
- ((int)
-+ 
- Mathf.Floor(num 
-@@ -4185,22 +4185,196 @@
- oor(
--num * 
-+i*255.0f), 2, new Color(bCh,bCh,bCh) );%0a%0a                    float zC = Mathf.Clamp (zCurve.Evaluate(i), 0.0f,1.0f);%0a%0a                    zCurveTex.SetPixel ((int) Mathf.Floor(i*
+ Mathf.Floor (num
+@@ -4184,24 +4184,197 @@
+ loor
+- (num * 
++(i*255.0f), 2, new Color(bCh,bCh,bCh) );%0a%0a                    float zC = Mathf.Clamp (zCurve.Evaluate(i), 0.0f,1.0f);%0a%0a                    zCurveTex.SetPixel ((int) Mathf.Floor(i*
  255
 +.0
  f), 
 -1
 +0
  , ne
-@@ -4385,35 +4385,294 @@
- lor(
--num3, num3, num3));%0a%09%09%09%09rgb
-+zC,zC,zC) );%0a%0a                    rCh = Mathf.Clamp (depthRedChannel.Evaluate(i), 0.0f,1.0f);%0a                    gCh = Mathf.Clamp (depthGreenChannel.Evaluate(i), 0.0f,1.0f);%0a                    bCh = Mathf.Clamp (depthBlueChannel.Evaluate(i), 0.0f,1.0f);%0a%0a                    rgbDepth
+@@ -4384,38 +4384,295 @@
+ olor
+- (num3, num3, num3));%0a%09%09%09%09%09rgb
++(zC,zC,zC) );%0a%0a                    rCh = Mathf.Clamp (depthRedChannel.Evaluate(i), 0.0f,1.0f);%0a                    gCh = Mathf.Clamp (depthGreenChannel.Evaluate(i), 0.0f,1.0f);%0a                    bCh = Mathf.Clamp (depthBlueChannel.Evaluate(i), 0.0f,1.0f);%0a%0a                    rgbDepth
  Chan
-@@ -4686,22 +4686,24 @@
- SetPixel
-+ 
- ((int)
+@@ -4693,16 +4693,17 @@
+ l ((int)
 + 
  Mathf.Fl
-@@ -4710,22 +4710,127 @@
- oor(
--num * 
-+i*255.0f), 0, new Color(rCh,rCh,rCh) );%0a                    rgbDepthChannelTex.SetPixel ((int) Mathf.Floor(i*
+@@ -4709,24 +4709,128 @@
+ loor
+- (num * 
++(i*255.0f), 0, new Color(rCh,rCh,rCh) );%0a                    rgbDepthChannelTex.SetPixel ((int) Mathf.Floor(i*
  255
 +.0
  f), 
 -2
 +1
  , ne
-@@ -4841,36 +4841,166 @@
- lor(
--num4, num4, num4));%0a%09%09%09%7d%0a%09%09%09
-+gCh,gCh,gCh) );%0a                    rgbDepthChannelTex.SetPixel ((int) Mathf.Floor(i*255.0f), 2, new Color(bCh,bCh,bCh) );%0a                %7d%0a%0a                
- rgbC
-@@ -5018,76 +5018,1917 @@
- pply
-+ 
- ();%0a
--%09%09%7d%0a%09%7d%0a%0a%09public void UpdateTextures()%0a%09%7b%0a%09%09UpdateParameters();%0a%09
-+                rgbDepthChannelTex.Apply ();%0a                zCurveTex.Apply ();%0a            %7d%0a        %7d%0a%0a        void UpdateTextures ()%0a%09%09%7b%0a            UpdateParameters ();%0a        %7d%0a%0a        void OnRenderImage (RenderTexture source, RenderTexture destination)%0a%09%09%7b%0a            if (CheckResources()==false)%0a%09%09%09%7b%0a                Graphics.Blit (source, destination);%0a                return;%0a            %7d%0a%0a            if (updateTexturesOnStartup)%0a%09%09%09%7b%0a                UpdateParameters ();%0a                updateTexturesOnStartup = false;%0a            %7d%0a%0a            if (useDepthCorrection)%0a                GetComponent%3cCamera%3e().depthTextureMode %7c= DepthTextureMode.Depth;%0a%0a            RenderTexture renderTarget2Use = destination;%0a%0a            if (selectiveCc)%0a%09%09%09%7b%0a                renderTarget2Use = RenderTexture.GetTemporary (source.width, source.height);%0a            %7d%0a%0a            if (useDepthCorrection)%0a%09%09%09%7b%0a                ccDepthMaterial.SetTexture (%22_RgbTex%22, rgbChannelTex);%0a                ccDepthMaterial.SetTexture (%22_ZCurve%22, zCurveTex);%0a                ccDepthMaterial.SetTexture (%22_RgbDepthTex%22, rgbDepthChannelTex);%0a                ccDepthMaterial.SetFloat (%22_Saturation%22, saturation);%0a%0a                Graphics.Blit (source, renderTarget2Use, ccDepthMaterial);%0a            %7d%0a            else%0a%09%09%09%7b%0a                ccMaterial.SetTexture (%22_RgbTex%22, rgbChannelTex);%0a                ccMaterial.SetFloat (%22_Saturation%22, saturation);%0a%0a                Graphics.Blit (source, renderTarget2Use, ccMaterial);%0a            %7d%0a%0a            if (selectiveCc)%0a%09%09%09%7b%0a                selectiveCcMaterial.SetColor (%22selColor%22, selectiveFromColor);%0a                selectiveCcMaterial.SetColor (%22targetColor%22, selectiveToColor);%0a                Graphics.Blit (renderTarget2Use, destination, selectiveCcMaterial);%0a%0a                RenderTexture.ReleaseTemporary (renderTarget2Use);%0a            %7d%0a        %7d%0a    
+@@ -4840,139 +4840,2095 @@
+ olor
+- (num4, num4, num4));%0a%09%09%09%09%7d%0a%09%09%09%09rgbChannelTex.Apply ();%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09public void UpdateTextures ()%0a%09%09%7b%0a%09%09%09UpdateParameters ();%0a%09%09%7d%0a%09
++(gCh,gCh,gCh) );%0a                    rgbDepthChannelTex.SetPixel ((int) Mathf.Floor(i*255.0f), 2, new Color(bCh,bCh,bCh) );%0a                %7d%0a%0a                rgbChannelTex.Apply ();%0a                rgbDepthChannelTex.Apply ();%0a                zCurveTex.Apply ();%0a            %7d%0a        %7d%0a%0a        void UpdateTextures ()%0a%09%09%7b%0a            UpdateParameters ();%0a        %7d%0a%0a        void OnRenderImage (RenderTexture source, RenderTexture destination)%0a%09%09%7b%0a            if (CheckResources()==false)%0a%09%09%09%7b%0a                Graphics.Blit (source, destination);%0a                return;%0a            %7d%0a%0a            if (updateTexturesOnStartup)%0a%09%09%09%7b%0a                UpdateParameters ();%0a                updateTexturesOnStartup = false;%0a            %7d%0a%0a            if (useDepthCorrection)%0a                GetComponent%3cCamera%3e().depthTextureMode %7c= DepthTextureMode.Depth;%0a%0a            RenderTexture renderTarget2Use = destination;%0a%0a            if (selectiveCc)%0a%09%09%09%7b%0a                renderTarget2Use = RenderTexture.GetTemporary (source.width, source.height);%0a            %7d%0a%0a            if (useDepthCorrection)%0a%09%09%09%7b%0a                ccDepthMaterial.SetTexture (%22_RgbTex%22, rgbChannelTex);%0a                ccDepthMaterial.SetTexture (%22_ZCurve%22, zCurveTex);%0a                ccDepthMaterial.SetTexture (%22_RgbDepthTex%22, rgbDepthChannelTex);%0a                ccDepthMaterial.SetFloat (%22_Saturation%22, saturation);%0a%0a                Graphics.Blit (source, renderTarget2Use, ccDepthMaterial);%0a            %7d%0a            else%0a%09%09%09%7b%0a                ccMaterial.SetTexture (%22_RgbTex%22, rgbChannelTex);%0a                ccMaterial.SetFloat (%22_Saturation%22, saturation);%0a%0a                Graphics.Blit (source, renderTarget2Use, ccMaterial);%0a            %7d%0a%0a            if (selectiveCc)%0a%09%09%09%7b%0a                selectiveCcMaterial.SetColor (%22selColor%22, selectiveFromColor);%0a                selectiveCcMaterial.SetColor (%22targetColor%22, selectiveToColor);%0a                Graphics.Blit (renderTarget2Use, destination, selectiveCcMaterial);%0a%0a                RenderTexture.ReleaseTemporary (renderTarget2Use);%0a            %7d%0a        %7d%0a    
  %7d%0a%7d%0a

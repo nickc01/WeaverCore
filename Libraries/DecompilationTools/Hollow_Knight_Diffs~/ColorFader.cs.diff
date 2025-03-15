@@ -7,11 +7,19 @@
 -%09
 +    
  public d
+@@ -153,17 +153,16 @@
+ EndEvent
+- 
+ (bool up
 @@ -161,25 +161,28 @@
  (bool up);%0a%0a
 -%09
 +    
  public Color
+@@ -196,33 +196,32 @@
+ lour = new Color
+- 
+ (1f, 1f, 1f, 0f)
 @@ -219,25 +219,28 @@
  , 1f, 0f);%0a%0a
 -%09
@@ -22,6 +30,10 @@
 -%09
 +    
  public C
+@@ -295,17 +295,16 @@
+ ew Color
+- 
+ (1f, 1f,
 @@ -314,17 +314,20 @@
  , 1f);%0a%0a
 -%09
@@ -83,59 +95,68 @@
 -%09
 +    
  private 
-@@ -690,734 +690,144 @@
+@@ -690,737 +690,144 @@
  oid 
--Reset()%0a%09%7b%0a%09%09PlayMakerFSM%5b%5d components = GetComponents%3cPlayMakerFSM%3e();%0a%09%09foreach (PlayMakerFSM playMakerFSM in components)%0a%09%09%7b%0a%09%09%09if ((playMakerFSM.FsmTemplate ? playMakerFSM.FsmTemplate.name : playMakerFSM.FsmName) == %22color_fader%22)%0a%09%09%09%7b%0a%09%09%09%09downColour = playMakerFSM.FsmVariables.GetFsmColor(%22Down Colour%22).Value;%0a%09%09%09%09downTime = playMakerFSM.FsmVariables.GetFsmFloat(%22Down Time%22).Value;%0a%09%09%09%09upColour = playMakerFSM.FsmVariables.GetFsmColor(%22Up Colour%22).Value;%0a%09%09%09%09upDelay = playMakerFSM.FsmVariables.GetFsmFloat(%22Up Delay%22).Value;%0a%09%09%09%09upTime = playMakerFSM.FsmVariables.GetFsmFloat(%22Up Time%22).Value;%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09private void Start()%0a%09%7b%0a%09%09Setup();%0a%09%7d%0a%0a%09private void Setup()%0a%09%7b%0a%09%09if (setup)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
-+Start()%0a    %7b%0a        Setup();%0a    %7d%0a%0a    private void Setup()%0a    %7b%0a        if (setup)%0a        %7b%0a            return;%0a        %7d%0a        
+-Reset ()%0a%09%7b%0a%09%09PlayMakerFSM%5b%5d components = GetComponents%3cPlayMakerFSM%3e ();%0a%09%09foreach (PlayMakerFSM playMakerFSM in components) %7b%0a%09%09%09if ((playMakerFSM.FsmTemplate ? playMakerFSM.FsmTemplate.name : playMakerFSM.FsmName) == %22color_fader%22) %7b%0a%09%09%09%09downColour = playMakerFSM.FsmVariables.GetFsmColor (%22Down Colour%22).Value;%0a%09%09%09%09downTime = playMakerFSM.FsmVariables.GetFsmFloat (%22Down Time%22).Value;%0a%09%09%09%09upColour = playMakerFSM.FsmVariables.GetFsmColor (%22Up Colour%22).Value;%0a%09%09%09%09upDelay = playMakerFSM.FsmVariables.GetFsmFloat (%22Up Delay%22).Value;%0a%09%09%09%09upTime = playMakerFSM.FsmVariables.GetFsmFloat (%22Up Time%22).Value;%0a%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09private void Start ()%0a%09%7b%0a%09%09
++Start()%0a    %7b%0a        Setup();%0a    %7d%0a%0a    private void 
+ Setup
+- 
+ ()
+-;%0a%09%7d%0a%0a%09private void Setup ()%0a%09%7b%0a%09%09if (setup) %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++%0a    %7b%0a        if (setup)%0a        %7b%0a            return;%0a        %7d%0a        
  setu
 @@ -836,18 +836,24 @@
  = true;%0a
 -%09%09
 +        
  if (!spr
-@@ -857,39 +857,54 @@
- spriteRenderer)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -856,38 +856,55 @@
+ !spriteRenderer)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  spriteRenderer =
-@@ -932,30 +932,42 @@
- enderer%3e();%0a
+@@ -932,27 +932,38 @@
+ enderer%3e
+- 
+ ();%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
- if ((bool)sp
-@@ -972,39 +972,54 @@
- spriteRenderer)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if ((boo
+@@ -971,38 +971,55 @@
+ )spriteRenderer)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  initialColour = 
 @@ -1075,19 +1075,28 @@
  white);%0a
 -%09%09%09
 +            
  spriteRe
-@@ -1142,51 +1142,87 @@
+@@ -1142,49 +1142,87 @@
  ur;%0a
--%09%09%09return;%0a%09%09%7d%0a%09%09if (!textRenderer)%0a%09%09%7b%0a%09%09%09
+-%09%09%09return;%0a%09%09%7d%0a%09%09if (!textRenderer) %7b%0a%09%09%09
 +            return;%0a        %7d%0a        if (!textRenderer)%0a        %7b%0a            
  text
-@@ -1257,30 +1257,42 @@
- MeshPro%3e();%0a
+@@ -1257,27 +1257,38 @@
+ MeshPro%3e
+- 
+ ();%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
- if ((bool)te
-@@ -1303,23 +1303,38 @@
- nderer)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if ((boo
+@@ -1302,22 +1302,39 @@
+ enderer)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  initialC
 @@ -1396,19 +1396,28 @@
  white);%0a
 -%09%09%09
 +            
  textRend
-@@ -1461,125 +1461,185 @@
+@@ -1461,122 +1461,185 @@
  ur;%0a
--%09%09%09return;%0a%09%09%7d%0a%09%09if (!tk2dSprite)%0a%09%09%7b%0a%09%09%09tk2dSprite = GetComponent%3ctk2dSprite%3e();%0a%09%09%7d%0a%09%09if ((bool)tk2dSprite)%0a%09%09%7b%0a%09%09%09
+-%09%09%09return;%0a%09%09%7d%0a%09%09if (!tk2dSprite) %7b%0a%09%09%09tk2dSprite = GetComponent%3ctk2dSprite%3e ();%0a%09%09%7d%0a%09%09if ((bool)tk2dSprite) %7b%0a%09%09%09
 +            return;%0a        %7d%0a        if (!tk2dSprite)%0a        %7b%0a            tk2dSprite = GetComponent%3cGraphic%3e();%0a        %7d%0a        if ((bool)tk2dSprite)%0a        %7b%0a            
  init
 @@ -1703,19 +1703,28 @@
@@ -148,141 +169,179 @@
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  public v
-@@ -1809,21 +1809,30 @@
- ool up)%0a
+@@ -1799,17 +1799,16 @@
+ oid Fade
+- 
+ (bool up
+@@ -1813,25 +1813,39 @@
+ up)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- Setup();
-@@ -1832,18 +1832,24 @@
- etup();%0a
+ Setup
+- 
+ ();%0a
 -%09%09
 +        
- if (fade
-@@ -1865,23 +1865,38 @@
- = null)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if (
+@@ -1864,22 +1864,39 @@
+ != null)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  StopCoro
-@@ -1919,29 +1919,56 @@
+@@ -1900,17 +1900,16 @@
+ oroutine
+- 
+ (fadeRou
+@@ -1919,27 +1919,56 @@
  e);%0a
--%09%09%7d%0a%09%09if (up)%0a%09%09%7b%0a%09%09%09
+-%09%09%7d%0a%09%09if (up) %7b%0a%09%09%09
 +        %7d%0a        if (up)%0a        %7b%0a            
  fade
-@@ -2030,26 +2030,53 @@
+@@ -1991,23 +1991,21 @@
+ oroutine
+- 
+ (Fade
+- 
+ (upColou
+@@ -2030,22 +2030,53 @@
  ));%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%7d else %7b%0a%09%09%09
 +        %7d%0a        else%0a        %7b%0a            
  fade
+@@ -2103,15 +2103,13 @@
+ tine
+- 
+ (Fade
+- 
+ (dow
 @@ -2137,17 +2137,29 @@
  ));%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  priv
-@@ -2214,21 +2214,30 @@
-  delay)%0a
+@@ -2178,17 +2178,16 @@
+ tor Fade
+- 
+ (Color t
+@@ -2218,13 +2218,22 @@
+ ay)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- if (!spr
-@@ -2241,39 +2241,54 @@
- spriteRenderer)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if (
+@@ -2240,38 +2240,55 @@
+ !spriteRenderer)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  spriteRenderer =
-@@ -2320,22 +2320,34 @@
- rer%3e();%0a
+@@ -2320,19 +2320,30 @@
+ rer%3e
+- 
+ ();%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
- Color fr
+ Colo
 @@ -2478,18 +2478,24 @@
  ite)));%0a
 -%09%09
 +        
  if (dela
-@@ -2502,23 +2502,38 @@
- y %3e 0f)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -2501,22 +2501,39 @@
+ ay %3e 0f)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  yield re
+@@ -2555,17 +2555,16 @@
+ rSeconds
+- 
+ (upDelay
 @@ -2566,22 +2566,34 @@
  Delay);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  for (flo
-@@ -2652,23 +2652,38 @@
- taTime)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -2651,22 +2651,39 @@
+ ltaTime)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  Color co
+@@ -2698,17 +2698,16 @@
+ lor.Lerp
+- 
+ (from, t
 @@ -2742,19 +2742,28 @@
  Colour;%0a
 -%09%09%09
 +            
  if ((boo
-@@ -2780,25 +2780,46 @@
- nderer)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -2779,23 +2779,47 @@
+ enderer)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  spriteRe
-@@ -2836,32 +2836,50 @@
- or = color;%0a
--%09%09%09%7d%0a%09%09%09
-+            %7d%0a            
- else if ((bo
-@@ -2895,25 +2895,46 @@
- nderer)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -2832,36 +2832,57 @@
+ .color = color;%0a
+-%09%09%09%7d
++            %7d%0a           
+  else if ((bool)
+@@ -2894,23 +2894,47 @@
+ enderer)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  textRend
-@@ -2953,24 +2953,42 @@
+@@ -2953,20 +2953,41 @@
   color;%0a
--%09%09%09%7d%0a%09%09%09
-+            %7d%0a            
- else if 
-@@ -3010,51 +3010,90 @@
- te)%0a
--%09%09%09%7b%0a%09%09%09%09tk2dSprite.color = color;%0a%09%09%09%7d%0a%09%09%09
-+            %7b%0a                tk2dSprite.color = color;%0a            %7d%0a            
+-%09%09%09%7d
++            %7d%0a           
+  else if
+@@ -3009,49 +3009,91 @@
+ ite)
+- %7b%0a%09%09%09%09tk2dSprite.color = color;%0a%09%09%09%7d%0a%09%09%09
++%0a            %7b%0a                tk2dSprite.color = color;%0a            %7d%0a            
  yiel
 @@ -3107,22 +3107,34 @@
  n null;%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if ((boo
-@@ -3151,23 +3151,38 @@
- nderer)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3150,22 +3150,39 @@
+ enderer)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  spriteRe
-@@ -3208,38 +3208,50 @@
+@@ -3208,35 +3208,49 @@
   initialColour;%0a
--%09%09%7d%0a%09%09
-+        %7d%0a        
- else if ((bool)t
-@@ -3263,23 +3263,38 @@
- nderer)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+-%09%09%7d
++        %7d%0a       
+  else if ((bool)
+@@ -3262,22 +3262,39 @@
+ enderer)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  textRend
-@@ -3326,22 +3326,34 @@
+@@ -3326,19 +3326,33 @@
  Colour;%0a
--%09%09%7d%0a%09%09
-+        %7d%0a        
- else if 
-@@ -3371,23 +3371,38 @@
- Sprite)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+-%09%09%7d
++        %7d%0a       
+  else if
+@@ -3370,22 +3370,39 @@
+ dSprite)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  tk2dSpri
 @@ -3436,14 +3436,26 @@
  ur;%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if (
-@@ -3482,15 +3482,30 @@
- ll)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3481,14 +3481,31 @@
+ ull)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  this
+@@ -3514,17 +3514,16 @@
+ nFadeEnd
+- 
+ (to == u
 @@ -3536,13 +3536,22 @@
  r);%0a
 -%09%09%7d%0a%09

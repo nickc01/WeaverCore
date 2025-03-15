@@ -58,8 +58,10 @@
 -%09
 +    
  private 
-@@ -487,21 +487,30 @@
- Awake()%0a
+@@ -484,25 +484,33 @@
+ id Awake
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  Instance
@@ -68,38 +70,113 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
-@@ -550,21 +550,30 @@
- Start()%0a
+@@ -551,17 +551,25 @@
+ tart
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- playerDa
+ play
 @@ -602,13 +602,19 @@
  ce;%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  publ
-@@ -641,21 +641,30 @@
- int id)%0a
+@@ -632,17 +632,16 @@
+ etSprite
+- 
+ (int id)
+@@ -645,13 +645,22 @@
+ id)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- playerDa
+ play
 @@ -689,18 +689,24 @@
  stance;%0a
 -%09%09
 +        
  switch (
-@@ -713,26 +713,55 @@
- id)%0a
--%09%09%7b%0a%09%09case 23:%0a%09%09%09
-+        %7b%0a            case 23:%0a                
+@@ -712,25 +712,56 @@
+ (id)
+- %7b%0a%09%09case 23:%0a%09%09%09
++%0a        %7b%0a            case 23:%0a                
  if (
-@@ -813,758 +813,1279 @@
- %22))%0a
--%09%09%09%7b%0a%09%09%09%09return unbreakableHeart;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09case 24:%0a%09%09%09if (playerData.GetBool(%22fragileGreed_unbreakable%22))%0a%09%09%09%7b%0a%09%09%09%09return unbreakableGreed;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09case 25:%0a%09%09%09if (playerData.GetBool(%22fragileStrength_unbreakable%22))%0a%09%09%09%7b%0a%09%09%09%09return unbreakableStrength;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09case 40:%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 1)%0a%09%09%09%7b%0a%09%09%09%09return grimmchildLevel1;%0a%09%09%09%7d%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 2)%0a%09%09%09%7b%0a%09%09%09%09return grimmchildLevel2;%0a%09%09%09%7d%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 3)%0a%09%09%09%7b%0a%09%09%09%09return grimmchildLevel3;%0a%09%09%09%7d%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 4)%0a%09%09%09%7b%0a%09%09%09%09return grimmchildLevel4;%0a%09%09%09%7d%0a%09%09%09if (playerData.GetInt(%22grimmChildLevel%22) == 5)%0a%09%09%09%7b%0a%09%09%09%09return nymmCharm;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09%7d%0a%09%09
-+                %7b%0a                    return unbreakableHeart;%0a                %7d%0a                break;%0a            case 24:%0a                if (playerData.GetBool(%22fragileGreed_unbreakable%22))%0a                %7b%0a                    return unbreakableGreed;%0a                %7d%0a                break;%0a            case 25:%0a                if (playerData.GetBool(%22fragileStrength_unbreakable%22))%0a                %7b%0a                    return unbreakableStrength;%0a                %7d%0a                break;%0a            case 40:%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 1)%0a                %7b%0a                    return grimmchildLevel1;%0a                %7d%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 2)%0a                %7b%0a                    return grimmchildLevel2;%0a                %7d%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 3)%0a                %7b%0a                    return grimmchildLevel3;%0a                %7d%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 4)%0a                %7b%0a                    return grimmchildLevel4;%0a                %7d%0a                if (playerData.GetInt(%22grimmChildLevel%22) == 5)%0a                %7b%0a                    return nymmCharm;%0a                %7d%0a                break;%0a        %7d%0a        
+@@ -770,33 +770,32 @@
+ ayerData.GetBool
+- 
+ (%22fragileHealth_
+@@ -812,69 +812,150 @@
+ e%22))
+- %7b%0a%09%09%09%09return unbreakableHeart;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09case 24:%0a%09%09%09
++%0a                %7b%0a                    return unbreakableHeart;%0a                %7d%0a                break;%0a            case 24:%0a                
+ if (
+@@ -964,33 +964,32 @@
+ ayerData.GetBool
+- 
+ (%22fragileGreed_u
+@@ -1005,69 +1005,150 @@
+ e%22))
+- %7b%0a%09%09%09%09return unbreakableGreed;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09case 25:%0a%09%09%09
++%0a                %7b%0a                    return unbreakableGreed;%0a                %7d%0a                break;%0a            case 25:%0a                
+ if (
+@@ -1165,17 +1165,16 @@
+ .GetBool
+- 
+ (%22fragil
+@@ -1201,72 +1201,153 @@
+ e%22))
+- %7b%0a%09%09%09%09return unbreakableStrength;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09case 40:%0a%09%09%09
++%0a                %7b%0a                    return unbreakableStrength;%0a                %7d%0a                break;%0a            case 40:%0a                
+ if (
+@@ -1355,33 +1355,32 @@
+ layerData.GetInt
+- 
+ (%22grimmChildLeve
+@@ -1392,48 +1392,106 @@
+ = 1)
+- %7b%0a%09%09%09%09return grimmchildLevel1;%0a%09%09%09%7d%0a%09%09%09
++%0a                %7b%0a                    return grimmchildLevel1;%0a                %7d%0a                
+ if (
+@@ -1499,33 +1499,32 @@
+ layerData.GetInt
+- 
+ (%22grimmChildLeve
+@@ -1536,48 +1536,106 @@
+ = 2)
+- %7b%0a%09%09%09%09return grimmchildLevel2;%0a%09%09%09%7d%0a%09%09%09
++%0a                %7b%0a                    return grimmchildLevel2;%0a                %7d%0a                
+ if (
+@@ -1643,33 +1643,32 @@
+ layerData.GetInt
+- 
+ (%22grimmChildLeve
+@@ -1680,48 +1680,106 @@
+ = 3)
+- %7b%0a%09%09%09%09return grimmchildLevel3;%0a%09%09%09%7d%0a%09%09%09
++%0a                %7b%0a                    return grimmchildLevel3;%0a                %7d%0a                
+ if (
+@@ -1787,33 +1787,32 @@
+ layerData.GetInt
+- 
+ (%22grimmChildLeve
+@@ -1824,48 +1824,106 @@
+ = 4)
+- %7b%0a%09%09%09%09return grimmchildLevel4;%0a%09%09%09%7d%0a%09%09%09
++%0a                %7b%0a                    return grimmchildLevel4;%0a                %7d%0a                
+ if (
+@@ -1939,17 +1939,16 @@
+ a.GetInt
+- 
+ (%22grimmC
+@@ -1968,54 +1968,124 @@
+ = 5)
+- %7b%0a%09%09%09%09return nymmCharm;%0a%09%09%09%7d%0a%09%09%09break;%0a%09%09%7d%0a%09%09
++%0a                %7b%0a                    return nymmCharm;%0a                %7d%0a                break;%0a        %7d%0a        
  retu
-@@ -2107,9 +2107,12 @@
- d%5d;%0a
+@@ -2101,16 +2101,18 @@
+ List
+- 
+ %5bid%5d;%0a
 -%09
 +    
  %7d%0a%7d%0a

@@ -1,11 +1,53 @@
-@@ -190,67 +190,8 @@
- );%0a%0a
+@@ -185,73 +185,13 @@
+ vent
+- 
+ ();%0a%0a
 -%09private GameManager gm;%0a%0a%09private PlayerData playerData;%0a%0a
  %09pri
-@@ -267,448 +267,1252 @@
- )%5d%0a%09
--public bool isADoor;%0a%0a%09public bool dontWalkOutOfDoor;%0a%0a%09%5bHeader(%22Gate Entry%22)%5d%0a%09%5bTooltip(%22The wait time before entering from this gate (not the target gate).%22)%5d%0a%09public float entryDelay;%0a%0a%09public bool alwaysEnterRight;%0a%0a%09public bool alwaysEnterLeft;%0a%0a%09%5bHeader(%22Force Hard Land (Top Gates Only)%22)%5d%0a%09%5bSpace(5f)%5d%0a%09public bool hardLandOnExit;%0a%0a%09%5bHeader(%22Destination Scene%22)%5d%0a%09%5bSpace(5f)%5d%0a%09public string targetScene;%0a%0a%09public string entryPoint;%0a
-+%5bTooltip(%22If set to true, the player will not automatically use the TransitionPoint when colliding with it%22)%5d%0a%09public bool isADoor;%0a%0a%09//Not sure what this does%0a%09%5bHideInInspector%5d%0a%09public bool dontWalkOutOfDoor;%0a%0a%09%5bHeader(%22Gate Entry%22)%5d%0a%09%5bTooltip(%22The wait time before entering from this gate (not the target gate).%22)%5d%0a%09public float entryDelay;%0a%0a%09%5bTooltip(%22Should the player always face right when entering the scene from this transition point?%22)%5d%0a%09public bool alwaysEnterRight;%0a%0a%09%5bTooltip(%22Should the player always face left when entering the scene from this transition point?%22)%5d%0a%09public bool alwaysEnterLeft;%0a%0a%09%5bHeader(%22Force Hard Land (Top Gates Only)%22)%5d%0a%09%5bSpace(5f)%5d%0a%09%5bTooltip(%22Should the player land with a loud thud when entering the scene? Only works if the gate type is set to %5c%22top%5c%22%22)%5d%0a%09public bool hardLandOnExit;%0a%0a%09%5bHeader(%22Destination Scene%22)%5d%0a%09%5bSpace(5f)%5d%0a%09%5bTooltip(%22The destination scene the player will be transported to when touching this transition point%22)%5d%0a%09public string targetScene;%0a%0a%09%5bTooltip(%22The name of the TransitionPoint the player will be placed at when traveling to the destination scene%22)%5d%0a%09public string entryPoint;%0a%0a%09%5bTooltip(%22A positional offset applied to the player when they travel to the destination scene%22)%5d
+@@ -220,17 +220,16 @@
+ %09%5bHeader
+- 
+ (%22Door T
+@@ -260,37 +260,193 @@
+ pace
+- 
+ (5f)%5d%0a%09
+-public bool isADoor;%0a
++%5bTooltip(%22If set to true, the player will not automatically use the TransitionPoint when colliding with it%22)%5d%0a%09public bool isADoor;%0a%0a%09//Not sure what this does%0a%09%5bHideInInspector%5d
+ %0a%09pu
+@@ -483,17 +483,16 @@
+ %09%5bHeader
+- 
+ (%22Gate E
+@@ -508,17 +508,16 @@
+ %5bTooltip
+- 
+ (%22The wa
+@@ -613,38 +613,241 @@
+ ;%0a%0a%09
+-public bool alwaysEnterRight;%0a
++%5bTooltip(%22Should the player always face right when entering the scene from this transition point?%22)%5d%0a%09public bool alwaysEnterRight;%0a%0a%09%5bTooltip(%22Should the player always face left when entering the scene from this transition point?%22)%5d
+ %0a%09pu
+@@ -882,17 +882,16 @@
+ %09%5bHeader
+- 
+ (%22Force 
+@@ -923,32 +923,156 @@
+ )%22)%5d%0a%09%5bSpace
+- 
+ (5f)%5d%0a%09
++%5bTooltip(%22Should the player land with a loud thud when entering the scene? Only works if the gate type is set to %5c%22top%5c%22%22)%5d%0a%09
+ public bool 
+@@ -1096,17 +1096,16 @@
+ %09%5bHeader
+- 
+ (%22Destin
+@@ -1130,71 +1130,389 @@
+ pace
+- 
+ (5f)%5d%0a%09
+-public string targetScene;%0a%0a%09public string entryPoint;%0a
++%5bTooltip(%22The destination scene the player will be transported to when touching this transition point%22)%5d%0a%09public string targetScene;%0a%0a%09%5bTooltip(%22The name of the TransitionPoint the player will be placed at when traveling to the destination scene%22)%5d%0a%09public string entryPoint;%0a%0a%09%5bTooltip(%22A positional offset applied to the player when they travel to the destination scene%22)%5d
  %0a%09pu
 @@ -1542,26 +1542,8 @@
  t;%0a%0a
@@ -15,9 +57,15 @@
  s;%0a%0a
 -%09public PlayMakerFSM customFadeFSM;%0a
  %0a%09%5bH
-@@ -1626,133 +1626,309 @@
- )%5d%0a%09
--public bool nonHazardGate;%0a%0a%09public HazardRespawnMarker respawnMarker;%0a%0a%09%5bHeader(%22Set Audio Snapshots%22)%5d%0a%09%5bSpace(5f)%5d%0a%09public
+@@ -1588,17 +1588,16 @@
+ %09%5bHeader
+- 
+ (%22Hazard
+@@ -1619,143 +1619,316 @@
+ pace
+- 
+ (5f)%5d%0a%09
+-public bool nonHazardGate;%0a%0a%09public HazardRespawnMarker respawnMarker;%0a%0a%09%5bHeader (%22Set Audio Snapshots%22)%5d%0a%09%5bSpace (5f)%5d%0a%09public
 +%5bTooltip(%22When the player travels to the destination scene, should the TransitionPoint NOT also be used as a hazard respawn point?%22)%5d%0a%09public bool nonHazardGate;%0a%0a%09%5bTooltip(%22The respawn marker that is used when %5c%22nonHazardGate%5c%22 is set to true%22)%5d%0a%09public HazardRespawnMarker respawnMarker;%0a%0a%09protected
   Aud
 @@ -1953,37 +1953,40 @@
@@ -35,6 +83,14 @@
 -ublic
 +rotected
   AudioMi
+@@ -2132,17 +2132,16 @@
+ ew Color
+- 
+ (0f, 0.8
+@@ -2163,17 +2163,16 @@
+ %09%5bHeader
+- 
+ (%22Cosmet
 @@ -2244,24 +2244,214 @@
  lization;%0a%0a%09
 +%5bTooltip(%22If set to true, the default fade-in-from-black transition does not play, allowing for custom transitions. This should be checked if the player is dream warping into this scene%22)%5d%0a%09
@@ -43,58 +99,267 @@
  Fade;%0a%0a%09
 -public 
  bool for
+@@ -2748,17 +2748,16 @@
+ adMethod
+- 
+ (Runtime
+@@ -2818,17 +2818,16 @@
+ oid Init
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -2870,17 +2870,16 @@
+ onPoint%3e
+- 
+ ();%0a%09%7d%0a%0a
+@@ -2899,17 +2899,16 @@
+ id Awake
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -2927,17 +2927,16 @@
+ ints.Add
+- 
+ (this);%0a
+@@ -2964,17 +2964,16 @@
+ nDestroy
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -2995,17 +2995,16 @@
+ s.Remove
+- 
+ (this);%0a
+@@ -3026,25 +3026,24 @@
+ id Start
+- 
+ ()%0a%09%7b%0a%09%09
+ gm = Gam
 @@ -3038,73 +3038,8 @@
  %7b%0a%09%09
 -gm = GameManager.instance;%0a%09%09playerData = PlayerData.instance;%0a%09%09
  if (
+@@ -3074,25 +3074,27 @@
+ ker == null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Debug.L
+@@ -3100,17 +3100,16 @@
+ LogError
+- 
+ (%22Transi
 @@ -3143,18 +3143,36 @@
   in %22 + 
 -gm
 +GameManager.instance
  .sceneNa
+@@ -3270,17 +3270,16 @@
+ rEnter2D
+- 
+ (Collide
 @@ -3348,18 +3348,36 @@
  != 9 %7c%7c 
 -gm
 +GameManager.instance
  .gameSta
-@@ -3510,83 +3510,8 @@
+@@ -3400,17 +3400,19 @@
+ PLAYING)
+- 
++%0a%09%09
+ %7b%0a%09%09%09ret
+@@ -3447,17 +3447,16 @@
+ lOrEmpty
+- 
+ (targetS
+@@ -3485,17 +3485,16 @@
+ lOrEmpty
+- 
+ (entryPo
+@@ -3502,83 +3502,12 @@
+ nt))
+- %7b
+ %0a%09%09
+-%09if ((bool)customFadeFSM) %7b%0a%09%09%09%09customFadeFSM.SendEvent (%22FADE%22);%0a%09%09%09%7d
++%7b
  %0a%09%09%09
--if ((bool)customFadeFSM)%0a%09%09%09%7b%0a%09%09%09%09customFadeFSM.SendEvent(%22FADE%22);%0a%09%09%09%7d%0a%09%09%09
- if (
+@@ -3528,25 +3528,28 @@
+ hot != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09atmosS
+@@ -3560,33 +3560,32 @@
+ hot.TransitionTo
+- 
+ (1.5f);%0a%09%09%09%7d%0a%09%09%09
+@@ -3607,25 +3607,28 @@
+ hot != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09enviro
+@@ -3640,33 +3640,32 @@
+ hot.TransitionTo
+- 
+ (1.5f);%0a%09%09%09%7d%0a%09%09%09
+@@ -3686,25 +3686,28 @@
+ hot != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09actorS
+@@ -3718,33 +3718,32 @@
+ hot.TransitionTo
+- 
+ (1.5f);%0a%09%09%09%7d%0a%09%09%09
+@@ -3764,25 +3764,28 @@
+ hot != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09musicS
+@@ -3804,17 +3804,16 @@
+ sitionTo
+- 
+ (1.5f);%0a
+@@ -3912,25 +3912,28 @@
+ ion != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09this.O
+@@ -3949,17 +3949,16 @@
+ ansition
+- 
+ ();%0a%09%09%09%7d
 @@ -3961,18 +3961,36 @@
  %09%09%09%7d%0a%09%09%09
 -gm
 +GameManager.instance
  .BeginSc
+@@ -4002,17 +4002,16 @@
+ ansition
+- 
+ (new Gam
+@@ -4032,17 +4032,20 @@
+ LoadInfo
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09Sc
+@@ -4139,17 +4139,16 @@
+ Position
+- 
+ (),%0a%09%09%09%09
 @@ -4225,60 +4225,8 @@
  %09%09%09%09
 -PreventCameraFadeOut = (customFadeFSM != null),%0a%09%09%09%09
  Visu
-@@ -4398,10 +4398,28 @@
- ror(
--gm
-+GameManager.instance
+@@ -4368,14 +4368,18 @@
+ %0a%09%09%7d
+- 
++%0a%09%09
+ else
+- 
++%0a%09%09
+ %7b%0a%09%09
+@@ -4397,12 +4397,29 @@
+ rror
+- (gm
++(GameManager.instance
  .sce
-@@ -4687,16 +4687,96 @@
- %0a%09%09%7b%0a%09%09%09
+@@ -4530,17 +4530,16 @@
+ erStay2D
+- 
+ (Collide
+@@ -4573,17 +4573,19 @@
+ tivated)
+- 
++%0a%09%09
+ %7b%0a%09%09%09OnT
+@@ -4597,17 +4597,16 @@
+ rEnter2D
+- 
+ (movingO
+@@ -4644,17 +4644,16 @@
+ awGizmos
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -4679,22 +4679,104 @@
+ != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 +var collider = GetComponent%3cBoxCollider2D%3e();%0a%09%09%09if (collider != null)%0a%09%09%09%7b%0a%09%09%09%09
  Vector3 
 @@ -4790,26 +4790,8 @@
  n = 
 -(Vector3)(Vector2)
  base
-@@ -4832,37 +4832,16 @@
- 0f, 
+@@ -4827,44 +4827,21 @@
+ tor3
+- 
+ (0f, 
 -GetComponent%3cBoxC
 +c
  ollider
--2D%3e()
+-2D%3e ()
  .bou
-@@ -4871,79 +4871,377 @@
+@@ -4871,80 +4871,377 @@
  f);%0a
--%09%09%09GizmoUtility.DrawText(GUI.skin, targetScene, position, myGreen, 10);
+-%09%09%09GizmoUtility.DrawText (GUI.skin, targetScene, position, myGreen, 10);
 +#if UNITY_EDITOR%0a%09%09%09%09UnityEditor.Handles.color = myGreen;%0a%09%09%09%09UnityEditor.Handles.Label(position, targetScene);%0a#endif%0a%09%09%09%09var scale = transform.localScale;%0a%09%09%09%09Gizmos.color = myGreen;%0a%09%09%09%09Gizmos.DrawCube(transform.position + new Vector3(collider.offset.x * scale.x, collider.offset.y * scale.y), new Vector3(collider.size.x * scale.x, collider.size.y * scale.y));%0a%09%09%09%7d
  %0a%09%09%7d
+@@ -5281,17 +5281,16 @@
+ Position
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -5337,17 +5337,16 @@
+ ains
+- 
+ (%22top%22))
+  %7b%0a%09
+@@ -5341,17 +5341,19 @@
+ (%22top%22))
+- 
++%0a%09%09
+ %7b%0a%09%09%09ret
+@@ -5397,17 +5397,16 @@
+ Contains
+- 
+ (%22right%22
+@@ -5403,25 +5403,27 @@
+ ns(%22right%22))
+- 
++%0a%09%09
+ %7b%0a%09%09%09return 
+@@ -5465,17 +5465,16 @@
+ Contains
+- 
+ (%22left%22)
+@@ -5470,25 +5470,27 @@
+ ins(%22left%22))
+- 
++%0a%09%09
+ %7b%0a%09%09%09return 
+@@ -5535,17 +5535,16 @@
+ ains
+- 
+ (%22bot%22))
+  %7b%0a%09
+@@ -5539,17 +5539,19 @@
+ (%22bot%22))
+- 
++%0a%09%09
+ %7b%0a%09%09%09ret
+@@ -5598,17 +5598,16 @@
+ Contains
+- 
+ (%22door%22)
+@@ -5618,17 +5618,19 @@
+ isADoor)
+- 
++%0a%09%09
+ %7b%0a%09%09%09ret
+@@ -5672,17 +5672,16 @@
+ LogError
+- 
+ (%22Gate n
+@@ -5850,17 +5850,16 @@
+ getScene
+- 
+ (string 
 @@ -5901,9 +5901,8 @@
  ne;%0a%09%7d%0a%7d
 -%0a

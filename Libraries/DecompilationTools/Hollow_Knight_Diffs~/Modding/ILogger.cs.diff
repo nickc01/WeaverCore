@@ -1,9 +1,97 @@
-@@ -1,1965 +1,416 @@
--using JetBrains.Annotations;%0a%0anamespace Modding;%0a%0a/// %3csummary%3e%0a///     Logging Utility%0a/// %3c/summary%3e%0a%5bPublicAPI%5d%0apublic interface ILogger%0a%7b%0a%09/// %3csummary%3e%0a%09///     Log at the info level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09void Log(string message);%0a%0a%09/// %3csummary%3e%0a%09///     Log at the info level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09void Log(object message);%0a%0a%09/// %3csummary%3e%0a%09///     Log at the debug level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09void LogDebug(string message);%0a%0a%09/// %3csummary%3e%0a%09///     Log at the debug level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09void LogDebug(object message);%0a%0a%09/// %3csummary%3e%0a%09///     Log at the error level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09void LogError(string message);%0a%0a%09/// %3csummary%3e%0a%09///     Log at the error level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09void LogError(object message);%0a%0a%09/// %3csummary%3e%0a%09///     Log at the fine level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09void LogFine(string message);%0a%0a%09/// %3csummary%3e%0a%09///     Log at the fine level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09void LogFine(object message);%0a%0a%09/// %3csummary%3e%0a%09///     Log at the warn level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09void LogWarn(string message);%0a%0a%09/// %3csummary%3e%0a%09///     Log at the warn level.  Includes the Mod's name in the output.%0a%09/// %3c/summary%3e%0a%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09
-+%0a%0anamespace Modding%0a%7b%0a    public interface ILogger%0a    %7b%0a        void Log(string message);%0a%0a        void Log(object message);%0a%0a        void LogDebug(string message);%0a%0a        void LogDebug(object message);%0a%0a        void LogError(string message);%0a%0a        void LogError(object message);%0a%0a        void LogFine(string message);%0a%0a        void LogFine(object message);%0a%0a        void LogWarn(string message);%0a%0a        
+@@ -1,319 +1,77 @@
+-using JetBrains.Annotations;%0a%0anamespace Modding%0a%7b%0a%09/// %3csummary%3e%0a%09///     Logging Utility%0a%09/// %3c/summary%3e%0a%09%5bPublicAPI%5d%0a%09public interface ILogger%0a%09%7b%0a%09%09/// %3csummary%3e%0a%09%09///     Log at the info level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++%0a%0anamespace Modding%0a%7b%0a    public interface ILogger%0a    %7b%0a        
+ void Log
+  (st
+@@ -66,17 +66,16 @@
+ void Log
+- 
+ (string 
+@@ -89,175 +89,24 @@
+ );%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Log at the info level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++        
+ void Log
+  (ob
+@@ -101,17 +101,16 @@
+ void Log
+- 
+ (object 
+@@ -124,168 +124,16 @@
+ );%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Log at the debug level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++        
  void
-@@ -439,6 +439,11 @@
+@@ -141,17 +141,16 @@
+ LogDebug
+- 
+ (string 
+@@ -164,168 +164,16 @@
+ );%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Log at the debug level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++        
+ void
+@@ -181,17 +181,16 @@
+ LogDebug
+- 
+ (object 
+@@ -204,168 +204,16 @@
+ );%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Log at the error level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++        
+ void
+@@ -221,17 +221,16 @@
+ LogError
+- 
+ (string 
+@@ -244,168 +244,16 @@
+ );%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Log at the error level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++        
+ void
+@@ -261,17 +261,16 @@
+ LogError
+- 
+ (object 
+@@ -284,167 +284,16 @@
+ );%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Log at the fine level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++        
+ void
+@@ -300,17 +300,16 @@
+  LogFine
+- 
+ (string 
+@@ -323,167 +323,16 @@
+ );%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Log at the fine level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++        
+ void
+@@ -339,17 +339,16 @@
+  LogFine
+- 
+ (object 
+@@ -362,167 +362,16 @@
+ );%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Log at the warn level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++        
+ void
+@@ -378,17 +378,16 @@
+  LogWarn
+- 
+ (string 
+@@ -401,167 +401,16 @@
+ );%0a%0a
+-%09%09/// %3csummary%3e%0a%09%09///     Log at the warn level.  Includes the Mod's name in the output.%0a%09%09/// %3c/summary%3e%0a%09%09/// %3cparam name=%22message%22%3eMessage to log%3c/param%3e%0a%09%09
++        
+ void
+@@ -417,17 +417,16 @@
+  LogWarn
+- 
+ (object 
+@@ -439,9 +439,11 @@
  e);%0a
+-%09
 +    
- %7d%0a
-+%7d
+ %7d%0a%7d
+-%0a

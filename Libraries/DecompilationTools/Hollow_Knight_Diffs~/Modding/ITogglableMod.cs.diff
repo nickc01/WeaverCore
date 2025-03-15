@@ -1,13 +1,11 @@
-@@ -1,13 +1,9 @@
--namespace
-+using
-  Mod
-@@ -12,454 +12,172 @@
- ng;%0a
--%0a/// %3cinheritdoc /%3e%0a/// %3csummary%3e%0a///     Interface which signifies that this mod can be loaded _and_ unloaded while in game. When re-initialized the mod%0a///     will be passed null rather than preloading again.%0a/// %3c/summary%3e%0apublic interface ITogglableMod : IMod, ILogger%0a%7b%0a%09/// %3csummary%3e%0a%09///     Called when the Mod is disabled or unloaded.  Ensure you unhook any events that you hooked up in the Initialize%0a%09///     method.%0a%09/// %3c/summary%3e%0a%09
-+using System;%0ausing System.Collections.Generic;%0ausing System.Linq;%0ausing System.Text;%0a%0a%0anamespace Modding%0a%7b%0a    public interface ITogglableMod : IMod%0a    %7b%0a        
+@@ -1,481 +1,183 @@
+-namespace Modding%0a%7b%0a%09/// %3cinheritdoc /%3e%0a%09/// %3csummary%3e%0a%09///     Interface which signifies that this mod can be loaded _and_ unloaded while in game. When re-initialized the mod%0a%09///     will be passed null rather than preloading again.%0a%09/// %3c/summary%3e%0a%09public interface ITogglableMod : IMod, ILogger%0a%09%7b%0a%09%09/// %3csummary%3e%0a%09%09///     Called when the Mod is disabled or unloaded.  Ensure you unhook any events that you hooked up in the Initialize%0a%09%09///     method.%0a%09%09/// %3c/summary%3e%0a%09%09
++using Modding;%0ausing System;%0ausing System.Collections.Generic;%0ausing System.Linq;%0ausing System.Text;%0a%0a%0anamespace Modding%0a%7b%0a    public interface ITogglableMod : IMod%0a    %7b%0a        
  void
-@@ -187,10 +187,16 @@
- load();%0a
-+    %7d%0a
- %7d%0a
+@@ -187,14 +187,16 @@
+ load
+- 
+ ();%0a
+-%09
++    
+ %7d%0a%7d%0a

@@ -5,228 +5,197 @@
  Engine;%0a
 +using Object = UnityEngine.Object;%0a%0a// same as Triangles but creates quads instead which generally%0a// saves fillrate at the expense for more triangles to issue
  %0anamespa
-@@ -232,19 +232,14 @@
- ects
--;%0a%0ainternal
-+%0a%7b%0a   
+@@ -235,17 +235,11 @@
+ s%0a%7b%0a
+-%09internal
++   
   cla
-@@ -251,18 +251,21 @@
+@@ -251,20 +251,21 @@
  ads%0a
--%7b%0a%09private
+-%09%7b%0a%09%09private
 +    %7b%0a       
   sta
-@@ -283,25 +283,23 @@
+@@ -283,26 +283,23 @@
  meshes;%0a
--%0a%09private
+-%0a%09%09private
 +       
   static 
-@@ -318,19 +318,22 @@
+@@ -318,20 +318,22 @@
  uads
--;%0a%0a%09private
+-;%0a%0a%09%09private
 + = 0;%0a%0a       
   sta
-@@ -354,88 +354,96 @@
- shes
-+ 
- ()%0a
--%09%7b%0a%09%09if (meshes == null)%0a%09%09%7b%0a%09%09%09return false;%0a%09%09%7d%0a%09%09Mesh%5b%5d array = meshes;%0a%09%09
+@@ -358,89 +358,92 @@
+  ()%0a
+-%09%09%7b%0a%09%09%09if (meshes == null) %7b%0a%09%09%09%09return false;%0a%09%09%09%7d%0a%09%09%09Mesh%5b%5d array = meshes;%0a%09%09%09
 +        %7b%0a            if (meshes == null)%0a                return false;%0a            
  fore
-@@ -457,56 +457,71 @@
+@@ -457,180 +457,239 @@
  sh m
 -esh
   in 
--array)%0a%09%09%7b%0a%09%09%09if (null == mesh)%0a%09%09%09%7b%0a%09%09%09%09
-+meshes)%0a                if (null == m)%0a                    
- retu
-@@ -530,27 +530,28 @@
-  false;%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%09
-+            
- return t
-@@ -555,21 +555,36 @@
- n true;%0a
--%09%7d%0a%0a%09
-+        %7d%0a%0a%0a        
- public s
-@@ -605,136 +605,222 @@
- anup
-+ 
- ()%0a
--%09%7b%0a%09%09if (meshes == null)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09for (int i = 0; i %3c meshes.Length; i++)%0a%09%09%7b%0a%09%09%09if (null != meshes%5bi%5d)%0a%09%09%09%7b%0a%09%09%09%09
-+        %7b%0a            if (meshes == null)%0a                return;%0a%0a            for (int i = 0; i %3c meshes.Length; i++)%0a            %7b%0a                if (null != meshes%5bi%5d)%0a                %7b%0a                    
+-array) %7b%0a%09%09%09%09if (null == mesh) %7b%0a%09%09%09%09%09return false;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09return true;%0a%09%09%7d%0a%0a%09%09public static void Cleanup ()%0a%09%09%7b%0a%09%09%09if (meshes == null) %7b%0a%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09
++meshes)%0a                if (null == m)%0a                    return false;%0a            return true;%0a        %7d%0a%0a%0a        public static void Cleanup ()%0a        %7b%0a            if (meshes == null)%0a                return;%0a%0a            
+ for 
+@@ -723,23 +723,47 @@
+ th; i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ if (null
+@@ -776,21 +776,51 @@
+ shes
+- 
+ %5bi%5d)
+- %7b%0a%09%09%09%09%09
++%0a                %7b%0a                    
  Obje
-@@ -838,16 +838,17 @@
- mmediate
-+ 
- (meshes%5b
-@@ -856,61 +856,125 @@
- %5d);%0a
--%09%09%09%09meshes%5bi%5d = null;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09meshes = null;%0a%09%7d%0a%0a%09
-+                    meshes%5bi%5d = null;%0a                %7d%0a            %7d%0a            meshes = null;%0a        %7d%0a%0a%0a        
+@@ -850,27 +850,40 @@
+ shes
+- 
+ %5bi%5d);%0a
+-%09%09%09%09%09
++                    
+ meshes
+- 
+ %5bi%5d 
+@@ -894,44 +894,87 @@
+ ll;%0a
+-%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09meshes = null;%0a%09%09%7d%0a%0a%09%09
++                %7d%0a            %7d%0a            meshes = null;%0a        %7d%0a%0a%0a        
  publ
-@@ -999,17 +999,19 @@
- etMeshes
--(
-+ ( 
+@@ -1001,16 +1001,17 @@
+ Meshes (
++ 
  int tota
-@@ -1035,21 +1035,38 @@
+@@ -1035,23 +1035,38 @@
  Height)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  if (HasM
-@@ -1074,14 +1074,16 @@
- shes
-+ 
- () && 
+@@ -1077,16 +1077,17 @@
+ s () && 
 +(
- curr
+ currentQ
 @@ -1094,16 +1094,17 @@
  uads == 
 +(
  totalWid
-@@ -1124,75 +1124,118 @@
+@@ -1124,77 +1124,118 @@
  ght)
--%0a%09%09%7b%0a%09%09%09return meshes;%0a%09%09%7d%0a%09%09int num = 10833;%0a%09%09int num2 = (current
-+)) %7b%0a                return meshes;%0a            %7d%0a%0a            int maxQuads = 65000 / 6;%0a            int total
++))
+  %7b%0a
+-%09%09%09%09return meshes;%0a%09%09%09%7d%0a%09%09%09int num = 10833;%0a%09%09%09int num2 = (current
++                return meshes;%0a            %7d%0a%0a            int maxQuads = 65000 / 6;%0a            int total
  Quad
-@@ -1266,181 +1266,326 @@
+@@ -1266,362 +1266,554 @@
  ight
 -)
  ;%0a
--%09%09meshes = new Mesh%5bMathf.CeilToInt(1f * (float)num2
+-%09%09%09meshes = new Mesh%5bMathf.CeilToInt (1f * (float)num2
 +            currentQuads = totalQuads;%0a%0a            int meshCount = Mathf.CeilToInt ((1.0f * totalQuads)
   / (1
 +.0
  f * 
--(float)num))%5d;%0a%09%09int num3 = 0;%0a%09%09int num4 = 0;%0a%09%09
+-(float)num))%5d;%0a%09%09%09int num3 = 0;%0a%09%09%09int num4 = 0;%0a%09%09%09
 +maxQuads));%0a%0a            meshes = new Mesh %5bmeshCount%5d;%0a%0a            int i = 0;%0a            int index = 0;%0a            
  for (
 -num3
 +i
   = 0; 
--num3 %3c num2; num3 += num)%0a%09%09%7b%0a%09%09%09int triCount
-+i %3c totalQuads; i += maxQuads)%0a            %7b%0a                int quads
-  = M
-@@ -1599,16 +1599,17 @@
- oorToInt
-+ 
- (Mathf.C
-@@ -1616,46 +1616,70 @@
- lamp
--(num2 - num3, 0, num));%0a%09%09%09
-+ ((totalQuads-i), 0, maxQuads));%0a%0a                
- meshes%5b
--num4
-+index
- %5d = 
-@@ -1689,23 +1689,18 @@
- Mesh
--(triCount, num3
-+ (quads, i
- , to
-@@ -1727,52 +1727,93 @@
- t);%0a
--%09%09%09num4++;%0a%09%09%7d%0a%09%09return meshes;%0a%09%7d%0a%0a%09private
-+                index++;%0a            %7d%0a%0a            return meshes;%0a        %7d%0a%0a       
+-num3 %3c num2; num3 += num) %7b%0a%09%09%09%09int triCount = Mathf.FloorToInt (Mathf.Clamp (num2 - num3, 0, num));%0a%09%09%09%09meshes %5bnum4%5d = GetMesh (triCount, num3, totalWidth, totalHeight);%0a%09%09%09%09num4++;%0a%09%09%09%7d%0a%09%09%09return meshes;%0a%09%09%7d%0a%0a%09%09private
++i %3c totalQuads; i += maxQuads)%0a            %7b%0a                int quads = Mathf.FloorToInt (Mathf.Clamp ((totalQuads-i), 0, maxQuads));%0a%0a                meshes%5bindex%5d = GetMesh (quads, i, totalWidth, totalHeight);%0a                index++;%0a            %7d%0a%0a            return meshes;%0a        %7d%0a%0a       
   sta
-@@ -1828,16 +1828,17 @@
-  GetMesh
-+ 
- (int tri
-@@ -1896,17 +1896,33 @@
+@@ -1896,19 +1896,33 @@
  ht)%0a
--%09%7b%0a%09%09Mesh
+-%09%09%7b%0a%09%09%09Mesh
 +        %7b%0a            var
   mes
-@@ -1937,14 +1937,25 @@
- Mesh
-+ 
- ();%0a
--%09%09
+@@ -1938,19 +1938,28 @@
+ esh ();%0a
+-%09%09%09
 +            
- mesh
-@@ -1991,25 +1991,30 @@
+ mesh.hid
+@@ -1991,26 +1991,30 @@
  ve;%0a
--%09%09Vector3%5b%5d array
+-%09%09%09Vector3%5b%5d array
 +%0a            var verts
   = n
-@@ -2043,26 +2043,27 @@
+@@ -2043,27 +2043,27 @@
  4%5d;%0a
--%09%09Vector2%5b%5d array2
+-%09%09%09Vector2%5b%5d array2
 +            var uvs
   = n
-@@ -2092,26 +2092,28 @@
+@@ -2092,27 +2092,28 @@
  4%5d;%0a
--%09%09Vector2%5b%5d array3
+-%09%09%09Vector2%5b%5d array3
 +            var uvs2
   = n
-@@ -2142,22 +2142,28 @@
+@@ -2142,23 +2142,28 @@
  4%5d;%0a
--%09%09int%5b%5d array4
+-%09%09%09int%5b%5d array4
 +            var tris
   = n
-@@ -2184,18 +2184,29 @@
+@@ -2184,19 +2184,29 @@
  t * 6%5d;%0a
--%09%09
+-%09%09%09
 +%0a            
  for (int
-@@ -2236,22 +2236,44 @@
- ++)%0a
--%09%09%7b%0a%09%09%09
-+            %7b%0a                
+@@ -2235,22 +2235,45 @@
+ i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  int 
 -num
 +i4
   = i
-@@ -2282,40 +2282,77 @@
+@@ -2282,42 +2282,77 @@
   4;%0a
--%09%09%09int num2 = i * 6;%0a%09%09%09int num3
+-%09%09%09%09int num2 = i * 6;%0a%09%09%09%09int num3
 +                int i6 = i * 6;%0a%0a                int vertexWithOffset
   = t
-@@ -2369,21 +2369,32 @@
+@@ -2369,22 +2369,32 @@
   i;%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  float 
 -num4
 +x
   = M
-@@ -2403,21 +2403,34 @@
- hf.Floor
--(num3
-+ (vertexWithOffset
+@@ -2405,20 +2405,32 @@
+ .Floor (
+-num3
++vertexWithOffset
   %25 total
 @@ -2434,31 +2434,24 @@
  talWidth) / 
 -(float)
  totalWidth;%0a
-@@ -2454,21 +2454,31 @@
+@@ -2454,22 +2454,31 @@
  th;%0a
--%09%09%09
+-%09%09%09%09
 +                
  float 
 -num5
 +y
   = M
-@@ -2491,13 +2491,26 @@
- loor
--(num3
-+ (vertexWithOffset
+@@ -2493,12 +2493,24 @@
+ or (
+-num3
++vertexWithOffset
   / t
 @@ -2526,15 +2526,8 @@
  ) / 
 -(float)
  tota
-@@ -2539,75 +2539,41 @@
+@@ -2539,80 +2539,41 @@
  ht;%0a
--%09%09%09array%5bnum + 3%5d = (array%5bnum + 2%5d = (array%5bnum + 1%5d = (array%5bnum%5d
+-%09%09%09%09array %5bnum + 3%5d = (array %5bnum + 2%5d = (array %5bnum + 1%5d = (array %5bnum%5d
 +%0a                Vector3 position
   = n
-@@ -2586,62 +2586,235 @@
- tor3
--(num4
-+ (x
+@@ -2588,63 +2588,233 @@
+ r3 (
+-num4
++x
   * 2
 -f
   - 1
@@ -239,95 +208,87 @@
   - 1
 -f
  , 1
--f))));%0a%09%09%09array2%5bnum
+-f))));%0a%09%09%09%09array2 %5bnum
 +.0f);%0a%0a                verts%5bi4 + 0%5d = position;%0a                verts%5bi4 + 1%5d = position;%0a                verts%5bi4 + 2%5d = position;%0a                verts%5bi4 + 3%5d = position;%0a%0a                uvs%5bi4 + 0
  %5d = 
-@@ -2828,31 +2828,45 @@
- tor2
-+ 
- (
+@@ -2830,32 +2830,43 @@
+ r2 (
 +0.
  0f, 
 +0.
  0f);%0a
--%09%09%09array2%5bnum
+-%09%09%09%09array2 %5bnum
 +                uvs%5bi4
   + 1
-@@ -2884,31 +2884,45 @@
- tor2
-+ 
- (1
+@@ -2887,31 +2887,42 @@
+ 2 (1
 +.0
  f, 
 +0.
  0f);%0a
--%09%09%09array2%5bnum
+-%09%09%09%09array2 %5bnum
 +                uvs%5bi4
   + 2
-@@ -2940,31 +2940,45 @@
- tor2
-+ 
- (
+@@ -2942,32 +2942,43 @@
+ r2 (
 +0.
  0f, 1
 +.0
  f);%0a
--%09%09%09array2%5bnum
+-%09%09%09%09array2 %5bnum
 +                uvs%5bi4
   + 3
-@@ -2996,243 +2996,299 @@
- tor2
-+ 
- (1
+@@ -2999,257 +2999,296 @@
+ 2 (1
 +.0
  f, 1
 +.0
  f);%0a
--%09%09%09array3%5bnum%5d = new Vector2(num4, num5);%0a%09%09%09array3%5bnum + 1%5d = new Vector2(num4, num5);%0a%09%09%09array3%5bnum + 2%5d = new Vector2(num4, num5);%0a%09%09%09array3%5bnum + 3%5d = new Vector2(num4, num5);%0a%09%09%09array4%5bnum2%5d = num;%0a%09%09%09array4%5bnum2
+-%09%09%09%09array3 %5bnum%5d = new Vector2 (num4, num5);%0a%09%09%09%09array3 %5bnum + 1%5d = new Vector2 (num4, num5);%0a%09%09%09%09array3 %5bnum + 2%5d = new Vector2 (num4, num5);%0a%09%09%09%09array3 %5bnum + 3%5d = new Vector2 (num4, num5);%0a%09%09%09%09array4 %5bnum2%5d = num;%0a%09%09%09%09array4 %5bnum2
 +%0a                uvs2%5bi4 + 0%5d = new Vector2 (x, y);%0a                uvs2%5bi4 + 1%5d = new Vector2 (x, y);%0a                uvs2%5bi4 + 2%5d = new Vector2 (x, y);%0a                uvs2%5bi4 + 3%5d = new Vector2 (x, y);%0a%0a                tris%5bi6 + 0%5d = i4 + 0;%0a                tris%5bi6
   + 1%5d = 
  num 
-@@ -3287,39 +3287,47 @@
+@@ -3287,41 +3287,47 @@
  %5d = 
 -num
 +i4
   + 1;%0a
--%09%09%09array4%5bnum2
+-%09%09%09%09array4 %5bnum2
 +                tris%5bi6
   + 2%5d = 
  num 
-@@ -3326,39 +3326,48 @@
+@@ -3326,41 +3326,48 @@
  %5d = 
 -num
 +i4
   + 2;%0a
--%09%09%09array4%5bnum2
+-%09%09%09%09array4 %5bnum2
 +%0a                tris%5bi6
   + 3%5d = 
  num 
-@@ -3366,39 +3366,47 @@
+@@ -3366,41 +3366,47 @@
  %5d = 
 -num
 +i4
   + 1;%0a
--%09%09%09array4%5bnum2
+-%09%09%09%09array4 %5bnum2
 +                tris%5bi6
   + 4%5d = 
  num 
-@@ -3405,39 +3405,47 @@
+@@ -3405,41 +3405,47 @@
  %5d = 
 -num
 +i4
   + 2;%0a
--%09%09%09array4%5bnum2
+-%09%09%09%09array4 %5bnum2
 +                tris%5bi6
   + 5%5d = 
  num 
-@@ -3444,130 +3444,199 @@
+@@ -3444,140 +3444,199 @@
  %5d = 
 -num
 +i4
   + 3;%0a
--%09%09%7d%0a%09%09mesh.vertices = array;%0a%09%09mesh.triangles = array4;%0a%09%09mesh.uv = array2;%0a%09%09mesh.uv2 = array3;%0a%09%09return mesh;%0a%09
+-%09%09%09%7d%0a%09%09%09mesh.vertices = array;%0a%09%09%09mesh.triangles = array4;%0a%09%09%09mesh.uv = array2;%0a%09%09%09mesh.uv2 = array3;%0a%09%09%09return mesh;%0a%09%09%7d%0a%09
 +%0a            %7d%0a%0a            mesh.vertices = verts;%0a            mesh.triangles = tris;%0a            mesh.uv = uvs;%0a            mesh.uv2 = uvs2;%0a%0a            return mesh;%0a        %7d%0a%0a    
  %7d%0a%7d%0a

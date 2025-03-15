@@ -7,8 +7,8 @@
  public 
 +class 
  Save
-@@ -109,119 +109,10 @@
+@@ -109,120 +109,10 @@
  Data
--(PlayerData playerData, SceneData sceneData)%0a%09%7b%0a%09%09this.playerData = playerData;%0a%09%09this.sceneData = sceneData;%0a%09%7d
+- (PlayerData playerData, SceneData sceneData)%0a%09%7b%0a%09%09this.playerData = playerData;%0a%09%09this.sceneData = sceneData;%0a%09%7d
 +%0a%7b%0a
  %0a%7d%0a

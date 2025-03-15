@@ -50,50 +50,72 @@
 -%09
 +    
  private 
-@@ -451,21 +451,30 @@
- Start()%0a
+@@ -452,17 +452,25 @@
+ tart
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- if ((boo
-@@ -491,23 +491,38 @@
- tector)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if (
+@@ -490,22 +490,39 @@
+ etector)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  corpseDe
 @@ -556,16 +556,17 @@
  delegate
 + 
  (Collide
-@@ -593,25 +593,46 @@
- sender)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -592,23 +592,47 @@
+  sender)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  StartCor
+@@ -637,17 +637,16 @@
+ oroutine
+- 
+ (CorpseS
+@@ -650,17 +650,16 @@
+ seSplash
+- 
+ (col.gam
 @@ -673,23 +673,44 @@
  ));%0a
 -%09%09%09%7d;%0a%09%09%7d%0a%09%7d%0a%0a%09
 +            %7d;%0a        %7d%0a    %7d%0a%0a    
  priv
-@@ -763,21 +763,32 @@
- Object)%0a
+@@ -737,17 +737,16 @@
+ seSplash
+- 
+ (GameObj
+@@ -767,13 +767,24 @@
+ ct)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        /*
- Corpse c
-@@ -835,18 +835,24 @@
- pse%3e();%0a
+ Corp
+@@ -831,23 +831,28 @@
+ %3cCorpse%3e
+- 
+ ();%0a
 -%09%09
 +        
  if (!com
-@@ -863,54 +863,287 @@
- nt)%0a
--%09%09%7b%0a%09%09%09yield break;%0a%09%09%7d%0a%09%09component.Acid();%0a%09%09
-+        %7b%0a            yield break;%0a        %7d%0a        component.Acid();*/%0a%0a        var corpseComponent = corpseObject.GetComponent(%22Corpse%22);%0a%0a        if (corpseComponent == null)%0a        %7b%0a            yield break;%0a        %7d%0a%0a        corpseComponent.SendMessage(%22Acid%22);%0a%0a        
+@@ -862,54 +862,288 @@
+ ent)
+- %7b%0a%09%09%09yield break;%0a%09%09%7d%0a%09%09component.Acid ();%0a%09%09
++%0a        %7b%0a            yield break;%0a        %7d%0a        component.Acid();*/%0a%0a        var corpseComponent = corpseObject.GetComponent(%22Corpse%22);%0a%0a        if (corpseComponent == null)%0a        %7b%0a            yield break;%0a        %7d%0a%0a        corpseComponent.SendMessage(%22Acid%22);%0a%0a        
  Rigi
-@@ -1199,18 +1199,24 @@
- y2D%3e();%0a
+@@ -1195,23 +1195,28 @@
+ dbody2D%3e
+- 
+ ();%0a
 -%09%09
 +        
  splashSo
+@@ -1238,17 +1238,16 @@
+ yOneShot
+- 
+ (audioPl
 @@ -1291,18 +1291,24 @@
  ition);%0a
 -%09%09
@@ -104,41 +126,55 @@
 -%09%09
 +        
  if ((boo
-@@ -1385,23 +1385,38 @@
- tector)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -1384,22 +1384,39 @@
+ etector)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  BoxColli
-@@ -1476,27 +1476,36 @@
- lider2D%3e();%0a
+@@ -1476,24 +1476,32 @@
+ lider2D%3e
+- 
+ ();%0a
 -%09%09%09
 +            
- if ((bool)co
-@@ -1514,25 +1514,46 @@
- onent2)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+ if ((boo
+@@ -1513,23 +1513,47 @@
+ ponent2)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  position
 @@ -1582,27 +1582,48 @@
  .max.y;%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09%09
 +            %7d%0a        %7d%0a        
  if ((boo
-@@ -1634,39 +1634,54 @@
- idSplashPrefab)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
- Object.Instantia
+@@ -1637,30 +1637,47 @@
+ plashPrefab)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ Object.Insta
+@@ -1678,25 +1678,24 @@
+ .Instantiate
+- 
+ (acidSplashP
+@@ -1723,17 +1723,16 @@
+  Vector3
+- 
+ (0f, 0f,
 @@ -1778,22 +1778,34 @@
  ation);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if ((boo
-@@ -1823,23 +1823,38 @@
- Prefab)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -1822,22 +1822,39 @@
+ mPrefab)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  Object.I
+@@ -1863,17 +1863,16 @@
+ tantiate
+- 
+ (acidSte
 @@ -1928,22 +1928,34 @@
  ation);%0a
 -%09%09%7d%0a%09%09
@@ -149,40 +185,62 @@
 -%09%09
 +        
  if ((bool)bubClo
-@@ -2010,31 +2010,46 @@
- loudPrefab)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -2009,30 +2009,47 @@
+ CloudPrefab)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  acidBubble =
+@@ -2067,17 +2067,16 @@
+ tantiate
+- 
+ (bubClou
 @@ -2122,35 +2122,44 @@
  form.rotation);%0a
 -%09%09%09
 +            
  if ((bool)acidBu
-@@ -2168,47 +2168,89 @@
- le)%0a
--%09%09%09%7b%0a%09%09%09%09acidBubble.Play();%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
-+            %7b%0a                acidBubble.Play();%0a            %7d%0a        %7d%0a        
- Part
+@@ -2163,23 +2163,47 @@
+ dBubble)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ acidBubb
+@@ -2209,32 +2209,52 @@
+ ble.Play
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
+ Particle
 @@ -2278,18 +2278,24 @@
  = null;%0a
 -%09%09
 +        
  if ((boo
-@@ -2314,23 +2314,38 @@
- Prefab)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -2313,22 +2313,39 @@
+ dPrefab)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  acidSpor
+@@ -2366,17 +2366,16 @@
+ tantiate
+- 
+ (sporeCl
 @@ -2433,19 +2433,28 @@
  ation);%0a
 -%09%09%09
 +            
  if ((boo
-@@ -2470,46 +2470,88 @@
- re)%0a
--%09%09%09%7b%0a%09%09%09%09acidSpore.Play();%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
-+            %7b%0a                acidSpore.Play();%0a            %7d%0a        %7d%0a        
+@@ -2465,23 +2465,47 @@
+ idSpore)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ acidSpor
+@@ -2514,24 +2514,44 @@
+ Play
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        
  for 
 @@ -2560,24 +2560,25 @@
  loat elapsed
@@ -196,30 +254,39 @@
  %3c= 0.5f; elapsed
 +2
   += Time.fixedDe
-@@ -2627,139 +2627,220 @@
- me)%0a
--%09%09%7b%0a%09%09%09if ((bool)body)%0a%09%09%09%7b%0a%09%09%09%09body.velocity *= 0.1f;%0a%09%09%09%7d%0a%09%09%09yield return new WaitForFixedUpdate();%0a%09%09%7d%0a%09%09if ((bool)body)%0a%09%09%7b%0a%09%09%09
-+        %7b%0a            if ((bool)body)%0a            %7b%0a                body.velocity *= 0.1f;%0a            %7d%0a            yield return new WaitForFixedUpdate();%0a        %7d%0a        if ((bool)body)%0a        %7b%0a            
+@@ -2626,67 +2626,126 @@
+ ime)
+- %7b%0a%09%09%09if ((bool)body) %7b%0a%09%09%09%09body.velocity *= 0.1f;%0a%09%09%09%7d%0a%09%09%09
++%0a        %7b%0a            if ((bool)body)%0a            %7b%0a                body.velocity *= 0.1f;%0a            %7d%0a            
+ yiel
+@@ -2779,40 +2779,68 @@
+ date
+- 
+ ();%0a
+-%09%09%7d%0a%09%09if ((bool)body) %7b%0a%09%09%09
++        %7d%0a        if ((bool)body)%0a        %7b%0a            
  body
 @@ -2860,22 +2860,34 @@
  = true;%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if ((boo
-@@ -2902,23 +2902,108 @@
- Object)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            var rend = corpseObject.GetComponent%3cSpriteRenderer%3e();%0a            //
+@@ -2901,22 +2901,109 @@
+ eObject)
+- %7b%0a%09%09%09
++%0a        %7b%0a            var rend = corpseObject.GetComponent%3cSpriteRenderer%3e();%0a            //
  tk2dSpri
-@@ -3053,19 +3053,28 @@
- ite%3e();%0a
+@@ -3053,16 +3053,24 @@
+ ite%3e
+- 
+ ();%0a
 -%09%09%09
 +            
- if ((boo
-@@ -3081,25 +3081,46 @@
- l)rend)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+ if (
+@@ -3080,23 +3080,47 @@
+ ol)rend)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  float el
 @@ -3128,19 +3128,32 @@
  psed
@@ -236,31 +303,39 @@
   elapsed
 +2
   += Time
-@@ -3228,19 +3228,46 @@
- me)%0a
--%09%09%09%09%7b%0a%09%09%09%09%09
-+                %7b%0a                    
+@@ -3227,16 +3227,47 @@
+ ime)
+- %7b%0a%09%09%09%09%09
++%0a                %7b%0a                    
  rend
+@@ -3285,17 +3285,16 @@
+ lor.Lerp
+- 
+ (Color.w
 @@ -3319,16 +3319,17 @@
   elapsed
 +2
   / fadeT
-@@ -3338,78 +3338,141 @@
+@@ -3338,76 +3338,141 @@
  e);%0a
--%09%09%09%09%09yield return null;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if ((bool)acidBubble)%0a%09%09%7b%0a%09%09%09
+-%09%09%09%09%09yield return null;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if ((bool)acidBubble) %7b%0a%09%09%09
 +                    yield return null;%0a                %7d%0a            %7d%0a        %7d%0a        if ((bool)acidBubble)%0a        %7b%0a            
  acid
-@@ -3490,14 +3490,26 @@
+@@ -3486,19 +3486,30 @@
+ Stop
+- 
  ();%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if (
-@@ -3529,15 +3529,30 @@
- re)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3528,14 +3528,31 @@
+ ore)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  acid
-@@ -3569,13 +3569,22 @@
+@@ -3565,18 +3565,26 @@
+ Stop
+- 
  ();%0a
 -%09%09%7d%0a%09
 +        %7d%0a    

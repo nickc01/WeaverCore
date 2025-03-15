@@ -7,16 +7,20 @@
 -%09
 +    
  public d
-@@ -177,17 +177,20 @@
- ent();%0a%0a
+@@ -172,23 +172,25 @@
+ EndEvent
+- 
+ ();%0a%0a
 -%09
 +    
  public d
-@@ -225,17 +225,20 @@
- ent();%0a%0a
+@@ -224,15 +224,17 @@
+ vent
+- 
+ ();%0a%0a
 -%09
 +    
- %5bSeriali
+ %5bSer
 @@ -236,33 +236,36 @@
   %5bSerializable%5d%0a
 -%09
@@ -62,10 +66,10 @@
 -%09%09
 +        
  public s
-@@ -575,28 +575,64 @@
- one%0a
--%09%09%7b%0a%09%09%09get%0a%09%09%09%7b%0a%09%09%09%09
-+        %7b%0a            get%0a            %7b%0a                
+@@ -574,24 +574,65 @@
+ None
+- %7b%0a%09%09%09get %7b%0a%09%09%09%09
++%0a        %7b%0a            get%0a            %7b%0a                
  Comp
 @@ -668,20 +668,32 @@
  etion);%0a
@@ -132,11 +136,13 @@
 -%09%09
 +        
  public s
-@@ -1256,21 +1256,27 @@
- nSheet;%0a
+@@ -1260,21 +1260,26 @@
+ et;%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
- %5bHeader(
+ %5bHeader
+- 
+ (%22Bo
 @@ -1285,25 +1285,28 @@
  oss Data%22)%5d%0a
 -%09
@@ -147,16 +153,22 @@
 -%09
 +    
  public BossS
-@@ -1360,17 +1360,20 @@
+@@ -1360,25 +1360,27 @@
  Scene;%0a%0a
 -%09
 +    
- %5bHeader(
+ %5bHeader
+- 
+ (%22Statue
 @@ -1388,17 +1388,20 @@
  Data%22)%5d%0a
 -%09
 +    
  %5bFormerl
+@@ -1413,17 +1413,16 @@
+ alizedAs
+- 
+ (%22statue
 @@ -1425,33 +1425,58 @@
  atueStateInt%22)%5d%0a
 -%09
@@ -178,6 +190,10 @@
 -%09
 +    
  %5bFormerl
+@@ -1587,17 +1587,16 @@
+ alizedAs
+- 
+ (%22dreamS
 @@ -1608,25 +1608,50 @@
  StateInt%22)%5d%0a
 -%09
@@ -224,11 +240,13 @@
 -%09
 +    
  public bool 
-@@ -1966,17 +1966,22 @@
+@@ -1966,25 +1966,29 @@
  idden;%0a%0a
 -%09
 +    //
- %5bHeader(
+ %5bHeader
+- 
+ (%22Prefab
 @@ -1993,25 +1993,30 @@
  ab Stuff%22)%5d%0a
 -%09
@@ -291,11 +309,13 @@
 -%09
 +    
  public C
-@@ -2457,17 +2457,20 @@
- aLock;%0a%0a
+@@ -2461,17 +2461,19 @@
+ k;%0a%0a
 -%09
 +    
- %5bHeader(
+ %5bHeader
+- 
+ (%22An
 @@ -2483,17 +2483,20 @@
  tion%22)%5d%0a
 -%09
@@ -381,10 +401,10 @@
 -%09
 +    
  public b
-@@ -3244,85 +3244,136 @@
- ion%0a
--%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09return StatueState.usingAltVersion;%0a%09%09%7d%0a%09%09private set%0a%09%09%7b%0a%09%09%09
-+    %7b%0a        get%0a        %7b%0a            return StatueState.usingAltVersion;%0a        %7d%0a        private set%0a        %7b%0a            
+@@ -3243,81 +3243,137 @@
+ sion
+- %7b%0a%09%09get %7b%0a%09%09%09return StatueState.usingAltVersion;%0a%09%09%7d%0a%09%09private set %7b%0a%09%09%09
++%0a    %7b%0a        get%0a        %7b%0a            return StatueState.usingAltVersion;%0a        %7d%0a        private set%0a        %7b%0a            
  Comp
 @@ -3406,19 +3406,28 @@
  eState;%0a
@@ -401,75 +421,138 @@
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  public C
-@@ -3545,32 +3545,56 @@
- ueState%0a
--%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09
-+    %7b%0a        get%0a        %7b%0a            
- if (stri
-@@ -3630,49 +3630,88 @@
- D))%0a
--%09%09%09%7b%0a%09%09%09%09return Completion.None;%0a%09%09%09%7d%0a%09%09%09
-+            %7b%0a                return Completion.None;%0a            %7d%0a            
+@@ -3540,38 +3540,65 @@
+  StatueState
+- %7b%0a%09%09get %7b%0a%09%09%09
++%0a    %7b%0a        get%0a        %7b%0a            
+ if (string.I
+@@ -3601,33 +3601,32 @@
+ ng.IsNullOrEmpty
+- 
+ (statueStatePD))
+@@ -3629,47 +3629,89 @@
+ PD))
+- %7b%0a%09%09%09%09return Completion.None;%0a%09%09%09%7d%0a%09%09%09
++%0a            %7b%0a                return Completion.None;%0a            %7d%0a            
  Comp
+@@ -3792,17 +3792,16 @@
+ pletion%3e
+- 
+ (statueS
 @@ -3801,35 +3801,44 @@
  statueStatePD);%0a
 -%09%09%09
 +            
  if (!playerDataV
-@@ -3951,25 +3951,46 @@
- ocked))%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -3891,33 +3891,32 @@
+ Scene.IsUnlocked
+- 
+ (BossSceneCheckS
+@@ -3950,23 +3950,47 @@
+ locked))
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  playerDa
 @@ -4015,32 +4015,50 @@
  ked = true;%0a
 -%09%09%09%7d%0a%09%09%09
 +            %7d%0a            
  return playe
-@@ -4072,33 +4072,60 @@
- riable;%0a
--%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09
+@@ -4068,39 +4068,68 @@
+ taVariable;%0a
+-%09%09%7d%0a%09%09set %7b%0a%09%09%09
 +        %7d%0a        set%0a        %7b%0a            
- if (!str
-@@ -4154,33 +4154,54 @@
- ueStatePD))%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- GameManager.
-@@ -4258,160 +4258,244 @@
+ if (!string.
+@@ -4133,33 +4133,32 @@
+ ng.IsNullOrEmpty
+- 
+ (statueStatePD))
+@@ -4149,39 +4149,63 @@
+ (statueStatePD))
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ GameManager.inst
+@@ -4230,17 +4230,16 @@
+ Variable
+- 
+ (statueS
+@@ -4258,70 +4258,118 @@
  e);%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09public Completion DreamStatueState%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (string.IsNullOrEmpty(dreamStatueStatePD))%0a%09%09%09%7b%0a%09%09%09%09return Completion.None;%0a%09%09%09%7d%0a%09%09%09
-+            %7d%0a        %7d%0a    %7d%0a%0a    public Completion DreamStatueState%0a    %7b%0a        get%0a        %7b%0a            if (string.IsNullOrEmpty(dreamStatueStatePD))%0a            %7b%0a                return Completion.None;%0a            %7d%0a            
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09public Completion DreamStatueState %7b%0a%09%09get %7b%0a%09%09%09
++            %7d%0a        %7d%0a    %7d%0a%0a    public Completion DreamStatueState%0a    %7b%0a        get%0a        %7b%0a            
+ if (
+@@ -4380,33 +4380,32 @@
+ ng.IsNullOrEmpty
+- 
+ (dreamStatueStat
+@@ -4413,47 +4413,89 @@
+ PD))
+- %7b%0a%09%09%09%09return Completion.None;%0a%09%09%09%7d%0a%09%09%09
++%0a            %7b%0a                return Completion.None;%0a            %7d%0a            
  Comp
+@@ -4576,17 +4576,16 @@
+ pletion%3e
+- 
+ (dreamSt
 @@ -4598,19 +4598,28 @@
  atePD);%0a
 -%09%09%09
 +            
  if (!pla
-@@ -4755,25 +4755,46 @@
- Dream))%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -4698,17 +4698,16 @@
+ Unlocked
+- 
+ (BossSce
+@@ -4754,23 +4754,47 @@
+ dDream))
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  playerDa
 @@ -4823,24 +4823,42 @@
  = true;%0a
 -%09%09%09%7d%0a%09%09%09
 +            %7d%0a            
  return p
-@@ -4880,25 +4880,52 @@
+@@ -4880,23 +4880,52 @@
  le;%0a
--%09%09%7d%0a%09%09set%0a%09%09%7b%0a%09%09%09
+-%09%09%7d%0a%09%09set %7b%0a%09%09%09
 +        %7d%0a        set%0a        %7b%0a            
  if (
-@@ -4967,25 +4967,46 @@
- atePD))%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -4937,33 +4937,32 @@
+ ng.IsNullOrEmpty
+- 
+ (dreamStatueStat
+@@ -4966,23 +4966,47 @@
+ tatePD))
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  GameMana
-@@ -5072,334 +5072,505 @@
+@@ -5039,17 +5039,16 @@
+ Variable
+- 
+ (dreamSt
+@@ -5072,92 +5072,164 @@
  e);%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09public bool HasRegularVersion%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if ((bool)bossScene)%0a%09%09%09%7b%0a%09%09%09%09return !string.IsNullOrEmpty(statueStatePD);%0a%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09public bool HasDreamVersion%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if ((bool)dreamBossScene)%0a%09%09%09%7b%0a%09%09%09%09return !string.IsNullOrEmpty(dreamStatueStatePD);%0a%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09
-+            %7d%0a        %7d%0a    %7d%0a%0a    public bool HasRegularVersion%0a    %7b%0a        get%0a        %7b%0a            if ((bool)bossScene)%0a            %7b%0a                return !string.IsNullOrEmpty(statueStatePD);%0a            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    public bool HasDreamVersion%0a    %7b%0a        get%0a        %7b%0a            if ((bool)dreamBossScene)%0a            %7b%0a                return !string.IsNullOrEmpty(dreamStatueStatePD);%0a            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09public bool HasRegularVersion %7b%0a%09%09get %7b%0a%09%09%09if ((bool)bossScene) %7b%0a%09%09%09%09
++            %7d%0a        %7d%0a    %7d%0a%0a    public bool HasRegularVersion%0a    %7b%0a        get%0a        %7b%0a            if ((bool)bossScene)%0a            %7b%0a                
+ retu
+@@ -5252,17 +5252,16 @@
+ lOrEmpty
+- 
+ (statueS
+@@ -5273,112 +5273,193 @@
+ D);%0a
+-%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09public bool HasDreamVersion %7b%0a%09%09get %7b%0a%09%09%09if ((bool)dreamBossScene) %7b%0a%09%09%09%09
++            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    public bool HasDreamVersion%0a    %7b%0a        get%0a        %7b%0a            if ((bool)dreamBossScene)%0a            %7b%0a                
+ retu
+@@ -5482,17 +5482,16 @@
+ lOrEmpty
+- 
+ (dreamSt
+@@ -5508,39 +5508,69 @@
+ D);%0a
+-%09%09%09%7d%0a%09%09%09return false;%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a            return false;%0a        %7d%0a    %7d%0a%0a    
  publ
 @@ -5620,17 +5620,20 @@
  ished;%0a%0a
@@ -481,20 +564,26 @@
 -%09
 +    
  private 
-@@ -5699,21 +5699,30 @@
- Awake()%0a
+@@ -5696,25 +5696,33 @@
+ id Awake
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  dreamTog
+@@ -5768,17 +5768,16 @@
+ eToggle%3e
+- 
+ (include
 @@ -5790,26 +5790,32 @@
  ve: false);%0a
 -%09%09
 +        
  if ((bool)dr
-@@ -5829,23 +5829,38 @@
- rnGate)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -5828,22 +5828,39 @@
+ urnGate)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  GameObje
 @@ -5885,19 +5885,28 @@
  rnGate;%0a
@@ -506,66 +595,100 @@
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if ((boo
-@@ -5987,23 +5987,38 @@
- raLock)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -5986,22 +5986,39 @@
+ eraLock)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  cameraLo
 @@ -6108,25 +6108,37 @@
  eight);%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  private 
-@@ -6150,21 +6150,30 @@
- Start()%0a
+@@ -6147,25 +6147,33 @@
+ id Start
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  UpdateDe
-@@ -6177,26 +6177,32 @@
- eDetails();%0a
+@@ -6177,23 +6177,28 @@
+ eDetails
+- 
+ ();%0a
 -%09%09
 +        
- if (StatueSt
-@@ -6217,23 +6217,38 @@
- locked)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if (Stat
+@@ -6216,22 +6216,39 @@
+ nlocked)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  GameObje
 @@ -6277,19 +6277,28 @@
  Locked;%0a
 -%09%09%09
 +            
  foreach 
-@@ -6334,99 +6334,177 @@
- ay)%0a
--%09%09%09%7b%0a%09%09%09%09if ((bool)gameObject)%0a%09%09%09%09%7b%0a%09%09%09%09%09gameObject.SetActive(value: true);%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09
-+            %7b%0a                if ((bool)gameObject)%0a                %7b%0a                    gameObject.SetActive(value: true);%0a                %7d%0a            %7d%0a            
+@@ -6333,44 +6333,99 @@
+ ray)
+- %7b%0a%09%09%09%09if ((bool)gameObject) %7b%0a%09%09%09%09%09
++%0a            %7b%0a                if ((bool)gameObject)%0a                %7b%0a                    
+ game
+@@ -6432,33 +6432,32 @@
+ Object.SetActive
+- 
+ (value: true);%0a%09
+@@ -6459,22 +6459,52 @@
+ e);%0a
+-%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09
++                %7d%0a            %7d%0a            
  arra
 @@ -6515,35 +6515,44 @@
  enableIfLocked;%0a
 -%09%09%09
 +            
  for (int i = 0; 
-@@ -6570,33 +6570,54 @@
- ength; i++)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- array%5bi%5d.Set
-@@ -6642,111 +6642,186 @@
+@@ -6569,37 +6569,60 @@
+ Length; i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ array
+- 
+ %5bi%5d.SetActiv
+@@ -6614,33 +6614,32 @@
+ ray%5bi%5d.SetActive
+- 
+ (value: false);%0a
+@@ -6642,47 +6642,89 @@
  e);%0a
--%09%09%09%7d%0a%09%09%09if ((bool)statueDisplay)%0a%09%09%09%7b%0a%09%09%09%09statueDisplay.SetActive(value: true);%0a%09%09%09%7d%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
-+            %7d%0a            if ((bool)statueDisplay)%0a            %7b%0a                statueDisplay.SetActive(value: true);%0a            %7d%0a        %7d%0a        else%0a        %7b%0a            
+-%09%09%09%7d%0a%09%09%09if ((bool)statueDisplay) %7b%0a%09%09%09%09
++            %7d%0a            if ((bool)statueDisplay)%0a            %7b%0a                
+ stat
+@@ -6734,33 +6734,32 @@
+ isplay.SetActive
+- 
+ (value: true);%0a%09
+@@ -6761,27 +6761,67 @@
+ e);%0a
+-%09%09%09%7d%0a%09%09%7d else %7b%0a%09%09%09
++            %7d%0a        %7d%0a        else%0a        %7b%0a            
  Game
 @@ -6846,35 +6846,44 @@
  isableIfLocked;%0a
 -%09%09%09
 +            
  for (int i = 0; 
-@@ -6901,33 +6901,54 @@
- ength; i++)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- array%5bi%5d.Set
+@@ -6900,37 +6900,60 @@
+ Length; i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ array
+- 
+ %5bi%5d.SetActiv
+@@ -6945,33 +6945,32 @@
+ ray%5bi%5d.SetActive
+- 
+ (value: false);%0a
 @@ -6969,24 +6969,42 @@
  false);%0a
 -%09%09%09%7d%0a%09%09%09
@@ -576,191 +699,278 @@
 -%09%09%09
 +            
  for (int
-@@ -7070,25 +7070,46 @@
- h; i++)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- array%5bi%5d
-@@ -7137,50 +7137,89 @@
+@@ -7073,21 +7073,44 @@
+ i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ array
+- 
+ %5bi%5d.
+@@ -7110,33 +7110,32 @@
+ ray%5bi%5d.SetActive
+- 
+ (value: true);%0a%09
+@@ -7137,47 +7137,89 @@
  e);%0a
--%09%09%09%7d%0a%09%09%09if ((bool)statueDisplay)%0a%09%09%09%7b%0a%09%09%09%09
+-%09%09%09%7d%0a%09%09%09if ((bool)statueDisplay) %7b%0a%09%09%09%09
 +            %7d%0a            if ((bool)statueDisplay)%0a            %7b%0a                
  stat
+@@ -7229,33 +7229,32 @@
+ isplay.SetActive
+- 
+ (value: false);%0a
 @@ -7253,27 +7253,48 @@
  false);%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09%09
 +            %7d%0a        %7d%0a        
  if ((boo
-@@ -7313,23 +7313,38 @@
- layAlt)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -7312,22 +7312,39 @@
+ playAlt)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  statueDi
+@@ -7353,33 +7353,32 @@
+ layAlt.SetActive
+- 
+ (value: false);%0a
 @@ -7377,22 +7377,34 @@
  false);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if (drea
-@@ -7412,39 +7412,54 @@
- Toggle != null)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -7411,38 +7411,55 @@
+ mToggle != null)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  dreamToggle.SetO
+@@ -7466,17 +7466,16 @@
+ wner
+- 
+ (this);%0a
+ %09%09%7d%0a
 @@ -7470,22 +7470,34 @@
  (this);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if (Drea
-@@ -7517,31 +7517,46 @@
- isUnlocked)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
- if (dreamTog
-@@ -7568,25 +7568,46 @@
- = null)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -7520,22 +7520,39 @@
+ nlocked)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ if (drea
+@@ -7567,23 +7567,47 @@
+ != null)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  dreamTog
-@@ -7633,27 +7633,48 @@
+@@ -7610,33 +7610,32 @@
+ mToggle.SetState
+- 
+ (value: true);%0a%09
+@@ -7633,24 +7633,47 @@
   true);%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%09
-+            %7d%0a        %7d%0a        
- else if 
-@@ -7695,23 +7695,38 @@
- = null)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+-%09%09%09%7d%0a%09%09%7d
++            %7d%0a        %7d%0a       
+  else if
+@@ -7694,22 +7694,39 @@
+ != null)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  dreamTog
+@@ -7737,17 +7737,16 @@
+ SetState
+- 
+ (value: 
 @@ -7753,22 +7753,34 @@
  false);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  Animator
-@@ -7824,34 +7824,40 @@
- nt%3cAnimator%3e();%0a
+@@ -7820,39 +7820,44 @@
+ ponent%3cAnimator%3e
+- 
+ ();%0a
 -%09%09
 +        
  if ((bool)compon
-@@ -7853,39 +7853,54 @@
- bool)component)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -7852,38 +7852,55 @@
+ (bool)component)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  component.enable
 @@ -7910,22 +7910,34 @@
   false;%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  componen
-@@ -7983,18 +7983,24 @@
- tor%3e();%0a
+@@ -7979,23 +7979,28 @@
+ nimator%3e
+- 
+ ();%0a
 -%09%09
 +        
  if ((boo
-@@ -8012,23 +8012,38 @@
- ponent)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -8011,22 +8011,39 @@
+ mponent)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  componen
 @@ -8061,22 +8061,34 @@
   false;%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if ((boo
-@@ -8103,23 +8103,38 @@
- rigger)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -8102,22 +8102,39 @@
+ Trigger)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  lightTri
-@@ -8171,97 +8171,140 @@
- ate%0a
--%09%09%09%7b%0a%09%09%09%09bool flag = false;%0a%09%09%09%09Completion statueState = StatueState;%0a%09%09%09%09if (statueState
-+            %7b%0a                bool flag = false;%0a                Completion completion = StatueState;%0a                if (completion
+@@ -8170,95 +8170,141 @@
+ gate
+- %7b%0a%09%09%09%09bool flag = false;%0a%09%09%09%09Completion statueState = StatueState;%0a%09%09%09%09if (statueState
++%0a            %7b%0a                bool flag = false;%0a                Completion completion = StatueState;%0a                if (completion
  .isU
 @@ -8311,35 +8311,34 @@
  nlocked && !
 -statueState
 +completion
  .hasBeenSeen
-@@ -8364,162 +8364,251 @@
- ed)%0a
--%09%09%09%09%7b%0a%09%09%09%09%09statueState.hasBeenSeen = true;%0a%09%09%09%09%09StatueState = statueState;%0a%09%09%09%09%09flag = true;%0a%09%09%09%09%7d%0a%09%09%09%09statueState = DreamStatueState;%0a%09%09%09%09if (statueState
-+                %7b%0a                    completion.hasBeenSeen = true;%0a                    StatueState = completion;%0a                    flag = true;%0a                %7d%0a                completion = DreamStatueState;%0a                if (completion
+@@ -8363,159 +8363,252 @@
+ ked)
+- %7b%0a%09%09%09%09%09statueState.hasBeenSeen = true;%0a%09%09%09%09%09StatueState = statueState;%0a%09%09%09%09%09flag = true;%0a%09%09%09%09%7d%0a%09%09%09%09statueState = DreamStatueState;%0a%09%09%09%09if (statueState
++%0a                %7b%0a                    completion.hasBeenSeen = true;%0a                    StatueState = completion;%0a                    flag = true;%0a                %7d%0a                completion = DreamStatueState;%0a                if (completion
  .isU
 @@ -8619,27 +8619,26 @@
  ked && !
 -statueState
 +completion
  .hasBeen
-@@ -8673,211 +8673,350 @@
- am)%0a
--%09%09%09%09%7b%0a%09%09%09%09%09statueState.hasBeenSeen = true;%0a%09%09%09%09%09DreamStatueState = statueState;%0a%09%09%09%09%09flag = true;%0a%09%09%09%09%7d%0a%09%09%09%09if (flag && this.OnSeenNewStatue != null)%0a%09%09%09%09%7b%0a%09%09%09%09%09this.OnSeenNewStatue();%0a%09%09%09%09%7d%0a%09%09%09%7d;%0a%09%09%7d%0a%09%09
-+                %7b%0a                    completion.hasBeenSeen = true;%0a                    DreamStatueState = completion;%0a                    flag = true;%0a                %7d%0a                if (flag && this.OnSeenNewStatue != null)%0a                %7b%0a                    this.OnSeenNewStatue();%0a                %7d%0a            %7d;%0a        %7d%0a        
+@@ -8672,113 +8672,196 @@
+ eam)
+- %7b%0a%09%09%09%09%09statueState.hasBeenSeen = true;%0a%09%09%09%09%09DreamStatueState = statueState;%0a%09%09%09%09%09flag = true;%0a%09%09%09%09%7d%0a%09%09%09%09
++%0a                %7b%0a                    completion.hasBeenSeen = true;%0a                    DreamStatueState = completion;%0a                    flag = true;%0a                %7d%0a                
+ if (
+@@ -8901,16 +8901,47 @@
+ ull)
+- %7b%0a%09%09%09%09%09
++%0a                %7b%0a                    
+ this
+@@ -8960,31 +8960,63 @@
+ atue
+- 
+ ();%0a
+-%09%09%09%09%7d%0a%09%09%09%7d;%0a%09%09%7d%0a%09%09
++                %7d%0a            %7d;%0a        %7d%0a        
  SetP
+@@ -9028,17 +9028,16 @@
+ sVisible
+- 
+ ((Statue
 @@ -9103,21 +9103,27 @@
  ocked);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  public v
+@@ -9143,17 +9143,16 @@
+ sVisible
+- 
+ (bool is
 @@ -9160,21 +9160,30 @@
  nabled)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  regularP
+@@ -9200,33 +9200,32 @@
+ Object.SetActive
+- 
+ (value: false);%0a
 @@ -9216,34 +9216,40 @@
  (value: false);%0a
 -%09%09
 +        
  altPlaqueL.gameO
+@@ -9255,33 +9255,32 @@
+ Object.SetActive
+- 
+ (value: false);%0a
 @@ -9279,18 +9279,24 @@
  false);%0a
 -%09%09
 +        
  altPlaqu
+@@ -9310,33 +9310,32 @@
+ Object.SetActive
+- 
+ (value: false);%0a
 @@ -9330,26 +9330,32 @@
  ue: false);%0a
 -%09%09
 +        
  if (isEnable
-@@ -9357,23 +9357,38 @@
- nabled)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -9356,22 +9356,39 @@
+ Enabled)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  if ((boo
-@@ -9419,25 +9419,46 @@
- sScene)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -9418,23 +9418,47 @@
+ ssScene)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  regularP
+@@ -9475,33 +9475,32 @@
+ Object.SetActive
+- 
+ (value: true);%0a%09
 @@ -9490,36 +9490,48 @@
  e(value: true);%0a
 -%09%09%09%09
 +                
- SetPlaqueState(S
-@@ -9573,24 +9573,42 @@
+ SetPlaqueState (
+@@ -9520,33 +9520,32 @@
+   SetPlaqueState
+- 
+ (StatueState, re
+@@ -9573,20 +9573,41 @@
  atePD);%0a
--%09%09%09%7d%0a%09%09%09
-+            %7d%0a            
- else if 
-@@ -9649,25 +9649,46 @@
- sScene)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+-%09%09%09%7d
++            %7d%0a           
+  else if
+@@ -9648,23 +9648,47 @@
+ ssScene)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  altPlaqu
+@@ -9702,33 +9702,32 @@
+ Object.SetActive
+- 
+ (value: true);%0a%09
 @@ -9725,20 +9725,32 @@
   true);%0a
 -%09%09%09%09
 +                
  altPlaqu
+@@ -9764,33 +9764,32 @@
+ Object.SetActive
+- 
+ (value: true);%0a%09
 @@ -9787,20 +9787,32 @@
   true);%0a
 -%09%09%09%09
 +                
  SetPlaqu
+@@ -9817,17 +9817,16 @@
+ queState
+- 
+ (StatueS
 @@ -9859,20 +9859,32 @@
  atePD);%0a
 -%09%09%09%09
 +                
  SetPlaqu
+@@ -9889,17 +9889,16 @@
+ queState
+- 
+ (DreamSt
 @@ -9941,27 +9941,48 @@
  atePD);%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09%09
@@ -771,6 +981,10 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  public v
+@@ -10045,17 +10045,16 @@
+ queState
+- 
+ (Complet
 @@ -10123,21 +10123,30 @@
  ataKey)%0a
 -%09%7b%0a%09%09
@@ -781,45 +995,69 @@
 -%09%09
 +        
  if (stri
-@@ -10234,35 +10234,24 @@
+@@ -10226,17 +10226,16 @@
+ lOrEmpty
+- 
+ (playerD
+@@ -10234,36 +10234,24 @@
  (playerData.
--GetString(%22
+-GetString (%22
  currentBossS
 @@ -10268,18 +10268,16 @@
  etionKey
 -%22)
  ) %7c%7c pla
-@@ -10288,19 +10288,8 @@
+@@ -10288,20 +10288,8 @@
  ata.
--GetString(%22
+-GetString (%22
  curr
 @@ -10314,18 +10314,16 @@
  etionKey
 -%22)
   != play
-@@ -10333,23 +10333,38 @@
- ataKey)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -10332,22 +10332,39 @@
+ DataKey)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  plaque.S
+@@ -10372,17 +10372,16 @@
+ tDisplay
+- 
+ (BossSta
+@@ -10402,33 +10402,32 @@
+ e.GetDisplayType
+- 
+ (statueState));%0a
 @@ -10430,25 +10430,46 @@
  ));%0a
 -%09%09%09return;%0a%09%09%7d%0a%09%09
 +            return;%0a        %7d%0a        
  Boss
+@@ -10550,17 +10550,16 @@
+ playType
+- 
+ (statueS
 @@ -10561,26 +10561,32 @@
  atueState);%0a
 -%09%09
 +        
  plaque.SetDi
+@@ -10590,17 +10590,16 @@
+ tDisplay
+- 
+ (display
 @@ -10605,18 +10605,24 @@
  yType);%0a
 -%09%09
 +        
  plaque.D
-@@ -10692,16 +10692,8 @@
+@@ -10640,17 +10640,16 @@
+ teEffect
+- 
+ ((BossSt
+@@ -10692,17 +10692,8 @@
  ata.
--GetInt(%22
+-GetInt (%22
  boss
 @@ -10713,15 +10713,19 @@
  evel
@@ -828,13 +1066,13 @@
 -%09%09
 +        
  play
-@@ -10735,34 +10735,8 @@
+@@ -10735,35 +10735,8 @@
  ata.
--SetStringSwappedArgs(%22%22, %22
+-SetStringSwappedArgs (%22%22, %22
  curr
-@@ -10765,48 +10765,34 @@
+@@ -10765,49 +10765,34 @@
  nKey
--%22);%0a%09%09playerData.SetIntSwappedArgs(-1, %22
+-%22);%0a%09%09playerData.SetIntSwappedArgs (-1, %22
 + = %22%22;%0a        playerData.
  boss
 @@ -10812,17 +10812,26 @@
@@ -842,6 +1080,10 @@
 -%22);%0a%09%7d%0a%0a%09
 + = -1;%0a    %7d%0a%0a    
  publ
+@@ -10853,17 +10853,16 @@
+ mVersion
+- 
+ (bool va
 @@ -10913,21 +10913,30 @@
  = true)%0a
 -%09%7b%0a%09%09
@@ -852,71 +1094,105 @@
 -%09%09
 +        
  if (useA
-@@ -11029,23 +11029,38 @@
- isplay)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -11028,22 +11028,39 @@
+ Display)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  StartCor
-@@ -11088,22 +11088,34 @@
+@@ -11065,17 +11065,16 @@
+ oroutine
+- 
+ (SwapSta
+@@ -11077,17 +11077,16 @@
+ pStatues
+- 
+ (doAnim)
+@@ -11088,19 +11088,33 @@
  Anim));%0a
--%09%09%7d%0a%09%09
-+        %7d%0a        
- else if 
-@@ -11142,39 +11142,54 @@
- nished != null)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+-%09%09%7d
++        %7d%0a       
+  else if
+@@ -11141,38 +11141,55 @@
+ inished != null)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  this.OnStatueSwa
-@@ -11201,22 +11201,34 @@
- shed();%0a
+@@ -11201,19 +11201,30 @@
+ shed
+- 
+ ();%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
- wasUsing
+ wasU
 @@ -11249,18 +11249,24 @@
   value;%0a
 -%09%09
 +        
  UpdateDe
-@@ -11274,21 +11274,27 @@
- ails();%0a
+@@ -11274,18 +11274,23 @@
+ ails
+- 
+ ();%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
- private 
-@@ -11314,21 +11314,84 @@
- tails()%0a
+ priv
+@@ -11311,25 +11311,87 @@
+ eDetails
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        //TODO - SET BOSS DETAILS ON INSPECT OBJECT%0a        /*
  if ((boo
-@@ -11410,23 +11410,38 @@
- rolFSM)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -11409,22 +11409,39 @@
+ trolFSM)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  BossUIDe
 @@ -11516,19 +11516,28 @@
  tails);%0a
 -%09%09%09
 +            
  bossUICo
+@@ -11563,33 +11563,32 @@
+ es.FindFsmString
+- 
+ (%22Boss Name Key%22
 @@ -11616,27 +11616,36 @@
  ls.nameKey;%0a
 -%09%09%09
 +            
  bossUIContro
+@@ -11675,17 +11675,16 @@
+ smString
+- 
+ (%22Boss N
 @@ -11728,19 +11728,28 @@
  eSheet;%0a
 -%09%09%09
 +            
  bossUICo
+@@ -11775,33 +11775,32 @@
+ es.FindFsmString
+- 
+ (%22Description Ke
 @@ -11841,19 +11841,28 @@
  ionKey;%0a
 -%09%09%09
 +            
  bossUICo
+@@ -11896,17 +11896,16 @@
+ smString
+- 
+ (%22Descri
 @@ -11958,25 +11958,39 @@
  nSheet;%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d*/%0a    %7d%0a%0a    
  private 
+@@ -12012,17 +12012,16 @@
+ pStatues
+- 
+ (bool do
 @@ -12026,21 +12026,30 @@
  doAnim)%0a
 -%09%7b%0a%09%09
@@ -932,76 +1208,145 @@
 -%09%09
 +        
  if (doAn
-@@ -12229,52 +12229,147 @@
- im)%0a
--%09%09%7b%0a%09%09%09if ((bool)bossUIControlFSM)%0a%09%09%09%7b%0a%09%09%09%09
-+        %7b%0a            //TODO - REPLACE WITH CALL TO INSPECT OBJECT%0a            /*if ((bool)bossUIControlFSM)%0a            %7b%0a                
+@@ -12228,48 +12228,148 @@
+ nim)
+- %7b%0a%09%09%09if ((bool)bossUIControlFSM) %7b%0a%09%09%09%09
++%0a        %7b%0a            //TODO - REPLACE WITH CALL TO INSPECT OBJECT%0a            /*if ((bool)bossUIControlFSM)%0a            %7b%0a                
  FSMU
+@@ -12388,33 +12388,32 @@
+ ventToGameObject
+- 
+ (bossUIControlFS
 @@ -12446,24 +12446,44 @@
   OFF%22);%0a
 -%09%09%09%7d%0a%09%09%09
 +            %7d*/%0a            
  yield re
+@@ -12505,17 +12505,16 @@
+ rSeconds
+- 
+ (swapWai
 @@ -12521,19 +12521,28 @@
  tTime);%0a
 -%09%09%09
 +            
  if ((boo
-@@ -12565,25 +12565,46 @@
- ticles)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -12564,23 +12564,47 @@
+ rticles)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  statueSh
-@@ -12624,24 +12624,42 @@
- Play();%0a
+@@ -12624,54 +12624,95 @@
+ Play
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%09if ((bool)statueShakeLoop) %7b%0a%09%09%09%09
++            %7d%0a            if ((bool)statueShakeLoop)%0a            %7b%0a                
+ stat
+@@ -12727,29 +12727,46 @@
+ oop.Play
+- 
+ ();%0a
 -%09%09%09%7d%0a%09%09%09
 +            %7d%0a            
- if ((boo
-@@ -12681,49 +12681,88 @@
- op)%0a
--%09%09%09%7b%0a%09%09%09%09statueShakeLoop.Play();%0a%09%09%09%7d%0a%09%09%09
-+            %7b%0a                statueShakeLoop.Play();%0a            %7d%0a            
- yiel
+ yield re
+@@ -12788,17 +12788,15 @@
+ tine
+- 
+ (Jitter
+- 
+ (sha
 @@ -12816,27 +12816,36 @@
   current));%0a
 -%09%09%09
 +            
  if ((bool)st
-@@ -12863,49 +12863,88 @@
- op)%0a
--%09%09%09%7b%0a%09%09%09%09statueShakeLoop.Stop();%0a%09%09%09%7d%0a%09%09%09
-+            %7b%0a                statueShakeLoop.Stop();%0a            %7d%0a            
+@@ -12858,23 +12858,47 @@
+ akeLoop)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ statueSh
+@@ -12913,21 +12913,38 @@
+ Stop
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
  Star
+@@ -12945,33 +12945,32 @@
+   StartCoroutine
+- 
+ (PlayAudioEventD
+@@ -12971,25 +12971,24 @@
+ EventDelayed
+- 
+ (statueDownS
 @@ -13017,19 +13017,28 @@
  elay));%0a
 -%09%09%09
 +            
  yield re
+@@ -13048,33 +13048,32 @@
+ n StartCoroutine
+- 
+ (PlayAnimWait (c
+@@ -13069,17 +13069,16 @@
+ AnimWait
+- 
+ (current
+@@ -13096,25 +13096,24 @@
+ nt%3cAnimator%3e
+- 
+ (), %22Down%22, 
 @@ -13118,22 +13118,34 @@
  , 0f));%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  current.
+@@ -13145,33 +13145,32 @@
+ urrent.SetActive
+- 
+ (value: false);%0a
 @@ -13165,26 +13165,32 @@
  ue: false);%0a
 -%09%09
 +        
- if (doAnim)%0a
-@@ -13181,39 +13181,54 @@
-     if (doAnim)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if (doAnim) 
+@@ -13180,38 +13180,55 @@
+      if (doAnim)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  yield return new
+@@ -13242,17 +13242,16 @@
+ rSeconds
+- 
+ (holdTim
 @@ -13254,19 +13254,28 @@
  dTime);%0a
 -%09%09%09
 +            
  StartCor
+@@ -13276,25 +13276,24 @@
+ artCoroutine
+- 
+ (PlayParticl
+@@ -13299,17 +13299,16 @@
+ lesDelay
+- 
+ (statueU
 @@ -13338,19 +13338,28 @@
  elay));%0a
 -%09%09%09
 +            
  StartCor
+@@ -13360,25 +13360,24 @@
+ artCoroutine
+- 
+ (PlayAudioEv
+@@ -13386,17 +13386,16 @@
+ tDelayed
+- 
+ (statueU
 @@ -13424,22 +13424,34 @@
  elay));%0a
 -%09%09%7d%0a%09%09
@@ -1012,36 +1357,62 @@
 -%09%09
 +        
  next.Set
+@@ -13518,17 +13518,16 @@
+ etActive
+- 
+ (value: 
 @@ -13533,18 +13533,24 @@
   true);%0a
 -%09%09
 +        
  if (doAn
-@@ -13553,23 +13553,38 @@
- doAnim)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -13552,22 +13552,39 @@
+ (doAnim)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  yield re
-@@ -13663,48 +13663,137 @@
+@@ -13602,17 +13602,16 @@
+ oroutine
+- 
+ (PlayAni
+@@ -13615,17 +13615,16 @@
+ AnimWait
+- 
+ (next.Ge
+@@ -13643,17 +13643,16 @@
+ nimator%3e
+- 
+ (), %22Up%22
+@@ -13663,45 +13663,137 @@
  ));%0a
--%09%09%09if ((bool)bossUIControlFSM)%0a%09%09%09%7b%0a%09%09%09%09
+-%09%09%09if ((bool)bossUIControlFSM) %7b%0a%09%09%09%09
 +            //TODO - REPLACE WITH CALL TO INSPECT OBJECT%0a            /*if ((bool)bossUIControlFSM)%0a            %7b%0a                
  FSMU
+@@ -13820,17 +13820,16 @@
+ meObject
+- 
+ (bossUIC
 @@ -13871,19 +13871,42 @@
  %22);%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09%09
 +            %7d*/%0a        %7d%0a        
  if (
-@@ -13940,23 +13940,38 @@
- = null)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -13939,22 +13939,39 @@
+ != null)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  this.OnS
-@@ -13987,33 +13987,45 @@
- Finished();%0a
+@@ -13987,30 +13987,41 @@
+ Finished
+- 
+ ();%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
- private IEnu
+ private 
+@@ -14038,17 +14038,16 @@
+ r Jitter
+- 
+ (float d
 @@ -14088,21 +14088,30 @@
  ct obj)%0a
 -%09%7b%0a%09%09
@@ -1067,11 +1438,23 @@
 -%09%09
 +        
  for (; e
-@@ -14309,23 +14309,38 @@
- taTime)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -14308,22 +14308,39 @@
+ ltaTime)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  sprite.p
+@@ -14373,17 +14373,16 @@
+  Vector3
+- 
+ (UnityEn
+@@ -14390,33 +14390,32 @@
+ ine.Random.Range
+- 
+ (0f - half, half
+@@ -14441,17 +14441,16 @@
+ om.Range
+- 
+ (0f - ha
 @@ -14465,19 +14465,28 @@
  ), 0f);%0a
 -%09%09%09
@@ -1087,21 +1470,29 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
+@@ -14587,17 +14587,16 @@
+ AnimWait
+- 
+ (Animato
 @@ -14647,21 +14647,30 @@
  edTime)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if ((boo
-@@ -14681,23 +14681,38 @@
- imator)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -14680,22 +14680,39 @@
+ nimator)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  animator
 @@ -14728,19 +14728,28 @@
  = true;%0a
 -%09%09%09
 +            
  animator
+@@ -14753,17 +14753,16 @@
+ tor.Play
+- 
+ (stateNa
 @@ -14785,19 +14785,28 @@
  dTime);%0a
 -%09%09%09
@@ -1112,6 +1503,14 @@
 -%09%09%09
 +            
  yield re
+@@ -14859,17 +14859,16 @@
+ rSeconds
+- 
+ (animato
+@@ -14896,17 +14896,16 @@
+ tateInfo
+- 
+ (0).leng
 @@ -14909,19 +14909,28 @@
  ength);%0a
 -%09%09%09
@@ -1122,36 +1521,58 @@
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  private 
+@@ -15006,17 +15006,16 @@
+ lesDelay
+- 
+ (Particl
 @@ -15043,21 +15043,30 @@
   delay)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if ((boo
-@@ -15079,15 +15079,30 @@
- em)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -15078,14 +15078,31 @@
+ tem)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  yiel
+@@ -15120,33 +15120,32 @@
+ w WaitForSeconds
+- 
+ (delay);%0a%09%09%09syst
 @@ -15141,11 +15141,20 @@
  y);%0a
 -%09%09%09
 +            
  syst
-@@ -15168,17 +15168,29 @@
+@@ -15164,22 +15164,33 @@
+ Play
+- 
  ();%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  priv
+@@ -15226,17 +15226,16 @@
+ tDelayed
+- 
+ (AudioEv
 @@ -15263,21 +15263,30 @@
   delay)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  yield re
+@@ -15308,17 +15308,16 @@
+ rSeconds
+- 
+ (delay);
 @@ -15317,18 +15317,24 @@
  delay);%0a
 -%09%09
 +        
  audioEve
+@@ -15355,17 +15355,16 @@
+ yOneShot
+- 
+ (audioSo
 @@ -15375,16 +15375,21 @@
  Prefab, 
 +base.
@@ -1161,8 +1582,10 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  priv
-@@ -15452,13 +15452,22 @@
- d()%0a
+@@ -15449,17 +15449,25 @@
+ cted
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  Gizm
@@ -1171,6 +1594,14 @@
 -%09%09
 +        
  Gizm
+@@ -15519,17 +15519,16 @@
+ reSphere
+- 
+ (base.tr
+@@ -15557,17 +15557,16 @@
+  Vector3
+- 
+ (0f, ins
 @@ -15600,9 +15600,12 @@
  f);%0a
 -%09

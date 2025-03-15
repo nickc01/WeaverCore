@@ -1,98 +1,153 @@
-@@ -69,19 +69,99 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    /// A Utility class for performing various image based rendering tasks.%0a    
+@@ -72,17 +72,96 @@
+ fects%0a%7b%0a
+-%09
++    /// A Utility class for performing various image based rendering tasks.%0a    
  %5bAddComp
-@@ -175,16 +175,20 @@
- nu(%22%22)%5d%0a
+@@ -173,16 +173,18 @@
+ Menu
+- 
+ (%22%22)%5d%0a
+-%09
 +    
- public c
-@@ -205,19 +205,30 @@
+ publ
+@@ -205,21 +205,30 @@
  Effects%0a
--%7b%0a%09
+-%09%7b%0a%09%09
 +    %7b%0a        
  public s
-@@ -372,49 +372,127 @@
+@@ -254,17 +254,16 @@
+ stortion
+- 
+ (Materia
+@@ -372,50 +372,127 @@
  us)%0a
--%09%7b%0a%09%09if (source.texelSize.y %3c 0f)%0a%09%09%7b%0a%09%09%09
+-%09%09%7b%0a%09%09%09if (source.texelSize.y %3c 0f) %7b%0a%09%09%09%09
 +        %7b%0a            bool invertY = source.texelSize.y %3c 0.0f;%0a            if (invertY)%0a            %7b%0a                
  cent
 @@ -499,16 +499,18 @@
  er.y = 1
 +.0
  f - cent
-@@ -519,19 +519,32 @@
+@@ -519,55 +519,91 @@
  .y;%0a
--%09%09%09
+-%09%09%09%09
 +                
- angle = 
- 0f -
-@@ -543,41 +543,67 @@
- e = 
--0f - 
-+-
+ angle =
+- 0f
+  -
+- 
  angle;%0a
--%09%09%7d%0a%09%09Matrix4x4 value
+-%09%09%09%7d%0a%09%09%09Matrix4x4 value
 +            %7d%0a%0a            Matrix4x4 rotationMatrix
   = M
-@@ -651,13 +651,11 @@
- er(0
+@@ -614,17 +614,16 @@
+ x4x4.TRS
+- 
+ (Vector3
+@@ -649,16 +649,13 @@
+ uler
+- 
+ (0
 -f
  , 0
 -f
  , an
-@@ -670,26 +670,37 @@
+@@ -670,27 +670,37 @@
  ctor3.one);%0a
--%09%09
+-%09%09%09
 +%0a            
  material.Set
-@@ -729,18 +729,37 @@
+@@ -705,17 +705,16 @@
+ etMatrix
+- 
+ (%22_Rotat
+@@ -729,19 +729,37 @@
  x%22, 
--value);%0a%09%09
+-value);%0a%09%09%09
 +rotationMatrix);%0a            
  mate
-@@ -844,18 +844,28 @@
+@@ -772,17 +772,16 @@
+ etVector
+- 
+ (%22_Cente
+@@ -801,17 +801,16 @@
+  Vector4
+- 
+ (center.
+@@ -844,19 +844,28 @@
  us.y));%0a
--%09%09
+-%09%09%09
 +            
  material
-@@ -893,39 +893,38 @@
+@@ -873,17 +873,16 @@
+ SetFloat
+- 
+ (%22_Angle
+@@ -893,40 +893,38 @@
  ngle
-- * ((float)Math.PI / 180f));%0a%09%09
+- * ((float)Math.PI / 180f));%0a%09%09%09
 +*Mathf.Deg2Rad);%0a%0a            
  Grap
-@@ -965,21 +965,36 @@
+@@ -924,33 +924,32 @@
+    Graphics.Blit
+- 
+ (source, destina
+@@ -965,23 +965,36 @@
  erial);%0a
--%09%7d%0a%0a%09
+-%09%09%7d%0a%0a%09%09
 +        %7d%0a%0a%0a        
  %5bObsolet
-@@ -1030,33 +1030,40 @@
+@@ -986,33 +986,32 @@
+        %5bObsolete
+- 
+ (%22Use Graphics.B
+@@ -1030,34 +1030,40 @@
  est) instead%22)%5d%0a
--%09
+-%09%09
 +        
  public static vo
-@@ -1104,37 +1104,54 @@
+@@ -1069,17 +1069,16 @@
+ oid Blit
+- 
+ (RenderT
+@@ -1104,39 +1104,54 @@
  erTexture dest)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
- Graphics.Blit(so
-@@ -1167,13 +1167,28 @@
+ Graphics.Blit (s
+@@ -1139,33 +1139,32 @@
+    Graphics.Blit
+- 
+ (source, dest);%0a
+@@ -1167,15 +1167,28 @@
  t);%0a
--%09%7d%0a%0a%09
+-%09%09%7d%0a%0a%09%09
 +        %7d%0a%0a%0a        
  %5bObs
-@@ -1254,17 +1254,24 @@
+@@ -1192,17 +1192,16 @@
+ Obsolete
+- 
+ (%22Use Gr
+@@ -1254,18 +1254,24 @@
  tead%22)%5d%0a
--%09
+-%09%09
 +        
  public s
-@@ -1363,13 +1363,30 @@
+@@ -1297,17 +1297,16 @@
+ Material
+- 
+ (Materia
+@@ -1363,15 +1363,30 @@
  st)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  Grap
-@@ -1424,9 +1424,22 @@
+@@ -1394,17 +1394,16 @@
+ ics.Blit
+- 
+ (source,
+@@ -1424,13 +1424,22 @@
  l);%0a
--%09
+-%09%09%7d%0a%09
 +        %7d%0a    
  %7d%0a%7d%0a

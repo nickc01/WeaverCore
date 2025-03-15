@@ -3,29 +3,31 @@
 -System.Collections;%0ausing GlobalEnum
 +GlobalEnums;%0ausing System;%0ausing System.Collection
  s;%0au
-@@ -166,802 +166,209 @@
+@@ -166,805 +166,209 @@
  ate 
--bool verboseMode;%0a%0a%09public float cameraXMin;%0a%0a%09public float cameraYMin;%0a%0a%09public float cameraXMax;%0a%0a%09public float cameraYMax;%0a%0a%09private float leftSideX;%0a%0a%09private float rightSideX;%0a%0a%09private float topSideY;%0a%0a%09private float botSideY;%0a%0a%09private Vector3 heroPos;%0a%0a%09private bool enteredLeft;%0a%0a%09private bool enteredRight;%0a%0a%09private bool enteredTop;%0a%0a%09private bool enteredBot;%0a%0a%09private bool exitedLeft;%0a%0a%09private bool exitedRight;%0a%0a%09private bool exitedTop;%0a%0a%09private bool exitedBot;%0a%0a%09public bool preventLookUp;%0a%0a%09public bool preventLookDown;%0a%0a%09public bool maxPriority;%0a%0a%09private GameCameras gcams;%0a%0a%09private CameraController cameraCtrl;%0a%0a%09private CameraTarget camTarget;%0a%0a%09private Collider2D box2d;%0a%0a%09private void Awake(
+-bool verboseMode;%0a%0a%09public float cameraXMin;%0a%0a%09public float cameraYMin;%0a%0a%09public float cameraXMax;%0a%0a%09public float cameraYMax;%0a%0a%09private float leftSideX;%0a%0a%09private float rightSideX;%0a%0a%09private float topSideY;%0a%0a%09private float botSideY;%0a%0a%09private Vector3 heroPos;%0a%0a%09private bool enteredLeft;%0a%0a%09private bool enteredRight;%0a%0a%09private bool enteredTop;%0a%0a%09private bool enteredBot;%0a%0a%09private bool exitedLeft;%0a%0a%09private bool exitedRight;%0a%0a%09private bool exitedTop;%0a%0a%09private bool exitedBot;%0a%0a%09public bool preventLookUp;%0a%0a%09public bool preventLookDown;%0a%0a%09public bool maxPriority;%0a%0a%09private GameCameras gcams;%0a%0a%09private CameraController cameraCtrl;%0a%0a%09private CameraTarget camTarget;%0a%0a%09private Collider2D box2d;%0a%0a%09private void Awake (
 +void Awake()%0a%09%7b%0a%09%09if (Application.isPlaying)%0a%09%09%7b%0a            box2d = base.GetComponent%3cCollider2D%3e();%0a        %7d%0a%09%7d%0a%0a%09private IEnumerator Start()%0a%09%7b%0a%09%09if (!Application.isPlaying
  )%0a%09
 +%09
  %7b%0a%09%09
-+%09
--box2d = GetComponent%3cCollider2D%3e();%0a%09%7d%0a%0a%09private IEnumerator Start()%0a%09%7b
-+yield break;%0a%09%09%7d
+-box2d = GetComponent%3cCollider2D%3e ();%0a%09%7d%0a%0a%09private IEnumerator Start ()%0a%09%7b
++%09yield break;%0a%09%09%7d
  %0a%09%09g
+@@ -412,25 +412,27 @@
+ ams == null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09yield b
 @@ -553,18 +553,16 @@
  e;%0a%09%09if 
 -(!
  (cameraC
-@@ -573,25 +573,24 @@
- == null)
--)
- %0a%09%09%7b%0a%09%09%09
- while (c
-@@ -585,127 +585,29 @@
- %0a%09%09%09
--while (cameraCtrl.tilemap == null %7c%7c cameraCtrl.tilemap.gameObject.scene != scene)%0a%09%09%09%7b%0a%09%09%09%09
+@@ -577,131 +577,37 @@
+ ull)
+-) %7b%0a%09%09%09while (cameraCtrl.tilemap == null %7c%7c cameraCtrl.tilemap.gameObject.scene != scene) 
++%0a%09%09
+ %7b%0a%09%09%09
+-%09
  yield 
 +b
  re
@@ -37,23 +39,29 @@
 -%09
 +/*
  if (
-@@ -623,31 +623,29 @@
- Bounds())%0a%09%09
--%09
- %7b%0a%09%09%09
--%09
- Debug.LogErr
+@@ -621,24 +621,24 @@
+ teBounds
+- 
+ ())
+- %7b
+ %0a%09
++%09%7b%0a
+ %09%09%09Debug
+@@ -638,33 +638,32 @@
+ %09%09Debug.LogError
+- 
+ (%22Camera bounds 
 @@ -756,28 +756,28 @@
   Area.%22);%0a%09%09
 -%09%7d%0a%09
 +%7d*/%0a
  %09%09if (box2d 
-@@ -787,23 +787,21 @@
- null)%0a%09%09
--%09
- %7b%0a%09%09%09
--%09
- leftSide
+@@ -784,21 +784,22 @@
+ != null)
+- %7b
+ %0a%09%09
++%7b%0a%09
+ %09%09leftSi
 @@ -827,17 +827,16 @@
  n.x;%0a%09%09%09
 -%09
@@ -76,6 +84,10 @@
 -%09
 +    
  priv
+@@ -991,17 +991,16 @@
+ ameState
+- 
+ ()%0a%09%7b%0a%09%09
 @@ -1044,15 +1044,9 @@
  ger.
 -UnsafeI
@@ -86,19 +98,19 @@
 -if 
 +return !
  (unsafeI
-@@ -1088,38 +1088,11 @@
- ull)
--%0a%09%09%7b%0a%09%09%09return false;%0a%09%09%7d%0a%09%09if
-+ &&
+@@ -1089,35 +1089,10 @@
+ ll) 
+-%7b%0a%09%09%09return false;%0a%09%09%7d%0a%09%09if
++&&
   (un
 @@ -1114,17 +1114,17 @@
  meState 
 -!
 +=
  = GameSt
-@@ -1134,31 +1134,19 @@
+@@ -1134,29 +1134,19 @@
  .PLAYING
--)%0a%09%09%7b%0a%09%09%09return
+-) %7b%0a%09%09%09return
 + %7c%7c
   unsafeI
 @@ -1190,35 +1190,17 @@
@@ -106,6 +118,10 @@
 -;%0a%09%09%7d%0a%09%09return true
 +)
  ;%0a%09%7d%0a%0a%09p
+@@ -1226,17 +1226,16 @@
+ rEnter2D
+- 
+ (Collide
 @@ -1256,23 +1256,95 @@
  der)%0a%09%7b%0a
 -%09%09
@@ -113,119 +129,109 @@
  if (
 -!
  IsInAppl
-@@ -1361,20 +1361,19 @@
- State() 
+@@ -1362,16 +1362,14 @@
+ tate
+- 
+ () 
 -%7c%7c !
 +&& 
- otherCol
-@@ -1403,38 +1403,24 @@
- r%22))%0a%09%09%7b%0a%09%09%09
--return;%0a%09%09%7d%0a%09%09
- heroPos = ot
+ othe
+@@ -1380,33 +1380,32 @@
+ lider.CompareTag
+- 
+ (%22Player%22)) %7b%0a%09%09
+@@ -1399,34 +1399,22 @@
+ layer%22))
+- %7b
+ %0a%09%09
+-%09return;%0a%09%09%7d%0a
++%7b%0a%09
+ %09%09heroPo
 @@ -1456,32 +1456,33 @@
  orm.position;%0a%09%09
 +%09
  if (box2d != nul
-@@ -1478,37 +1478,39 @@
- ox2d != null)%0a%09%09
-+%09
+@@ -1475,38 +1475,42 @@
+  (box2d != null)
+- 
++%0a%09%09%09
  %7b%0a%09%09%09
 +%09
  if (heroPos.x %3e 
-@@ -1550,38 +1550,40 @@
- tSideX + 1f)%0a%09%09%09
-+%09
+@@ -1546,39 +1546,44 @@
+  leftSideX + 1f)
+- 
++%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
  camTarget.entere
-@@ -1595,37 +1595,39 @@
+@@ -1595,37 +1595,47 @@
   = true;%0a%09%09%09
-+%09
- %7d%0a%09%09%09
-+%09
- else%0a%09%09%09
- %7b%0a%09%09%09%09camTar
-@@ -1606,38 +1606,40 @@
- %09%09%7d%0a%09%09%09%09else%0a%09%09%09
-+%09
+-%7d else 
++%09%7d%0a%09%09%09%09else%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
- camTarget.entere
+ camTarget.en
 @@ -1648,37 +1648,39 @@
  eft = false;%0a%09%09%09
 +%09
  %7d%0a%09%09%09
 +%09
  if (heroPos.x %3e 
-@@ -1722,38 +1722,40 @@
- tSideX + 1f)%0a%09%09%09
-+%09
+@@ -1718,39 +1718,44 @@
+ rightSideX + 1f)
+- 
++%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
  camTarget.entere
-@@ -1768,37 +1768,39 @@
+@@ -1768,37 +1768,47 @@
   = true;%0a%09%09%09
-+%09
- %7d%0a%09%09%09
-+%09
- else%0a%09%09%09
- %7b%0a%09%09%09%09camTar
-@@ -1779,38 +1779,40 @@
- %09%09%7d%0a%09%09%09%09else%0a%09%09%09
-+%09
+-%7d else 
++%09%7d%0a%09%09%09%09else%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
- camTarget.entere
+ camTarget.en
 @@ -1822,37 +1822,39 @@
  ght = false;%0a%09%09%09
 +%09
  %7d%0a%09%09%09
 +%09
  if (heroPos.y %3e 
-@@ -1892,38 +1892,40 @@
- pSideY + 2f)%0a%09%09%09
-+%09
+@@ -1888,39 +1888,44 @@
+ %3c topSideY + 2f)
+- 
++%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
  camTarget.entere
-@@ -1936,37 +1936,39 @@
+@@ -1936,37 +1936,47 @@
   = true;%0a%09%09%09
-+%09
- %7d%0a%09%09%09
-+%09
- else%0a%09%09%09
- %7b%0a%09%09%09%09camTar
-@@ -1947,38 +1947,40 @@
- %09%09%7d%0a%09%09%09%09else%0a%09%09%09
-+%09
+-%7d else 
++%09%7d%0a%09%09%09%09else%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
- camTarget.entere
+ camTarget.en
 @@ -1988,37 +1988,39 @@
  Top = false;%0a%09%09%09
 +%09
  %7d%0a%09%09%09
 +%09
  if (heroPos.y %3e 
-@@ -2058,38 +2058,40 @@
- tSideY + 1f)%0a%09%09%09
-+%09
+@@ -2054,39 +2054,44 @@
+ %3c botSideY + 1f)
+- 
++%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
  camTarget.entere
-@@ -2102,37 +2102,39 @@
+@@ -2102,37 +2102,47 @@
   = true;%0a%09%09%09
-+%09
- %7d%0a%09%09%09
-+%09
- else%0a%09%09%09
- %7b%0a%09%09%09%09camTar
-@@ -2113,38 +2113,40 @@
- %09%09%7d%0a%09%09%09%09else%0a%09%09%09
-+%09
+-%7d else 
++%09%7d%0a%09%09%09%09else%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
- camTarget.entere
+ camTarget.en
 @@ -2158,32 +2158,35 @@
  = false;%0a%09%09%09
 +%09
@@ -234,149 +240,184 @@
  %7d%0a%09%09
 +%09
  cameraCtrl.L
+@@ -2186,33 +2186,32 @@
+ aCtrl.LockToArea
+- 
+ (this);%0a%09%09if (ve
 @@ -2196,32 +2196,33 @@
  ToArea(this);%0a%09%09
 +%09
  if (verboseMode)
-@@ -2216,37 +2216,51 @@
- (verboseMode)%0a%09%09
-+%09
- %7b%0a
--%09%09%09
-+                
- Debug.Log(%22Lockz
+@@ -2213,38 +2213,54 @@
+ if (verboseMode)
+- %7b
+ %0a%09%09%09
++%7b%0a                
+ Debug.Log (%22Lock
+@@ -2244,33 +2244,32 @@
+        Debug.Log
+- 
+ (%22Lockzone Enter
 @@ -2284,32 +2284,37 @@
  + base.name);%0a%09%09
 +%09%7d%0a%09%09
  %7d%0a%09%7d%0a%0a%09public vo
+@@ -2331,17 +2331,16 @@
+ erStay2D
+- 
+ (Collide
 @@ -2357,26 +2357,108 @@
  ollider)%0a%09%7b%0a
 -%09%09
 +        if (!Application.isPlaying)%0a        %7b%0a            return;%0a        %7d%0a        
  if (!base.is
-@@ -2573,17 +2573,23 @@
- ;%0a%09%09
--%7d%0a%09%09else 
+@@ -2503,17 +2503,19 @@
+ Enabled)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Deb
+@@ -2527,17 +2527,16 @@
+ gWarning
+- 
+ (%22Fix fo
+@@ -2569,23 +2569,31 @@
+ e!%22);%0a%09%09
+-%7d else 
 +%09return;%0a%09%09%7d%0a%09%09
- if (
-@@ -2682,20 +2682,32 @@
- e)%0a%09%09%09%7b%0a
--%09%09%09%09
-+                
+ if (IsIn
+@@ -2611,17 +2611,16 @@
+ ameState
+- 
+ () && ot
+@@ -2633,33 +2633,32 @@
+ lider.CompareTag
+- 
+ (%22Player%22)) %7b%0a%09%09
+@@ -2648,25 +2648,27 @@
+ g(%22Player%22))
+- 
++%0a%09%09
+ %7b%0a%09%09%09if (ver
+@@ -2676,23 +2676,38 @@
+ oseMode)
+- %7b
+ %0a%09%09%09
+-%09
++%7b%0a                
  Debug.Lo
+@@ -2699,33 +2699,32 @@
+        Debug.Log
+- 
+ (%22Lockzone Stay 
+@@ -2773,17 +2773,16 @@
+ ckToArea
+- 
+ (this);%0a
+@@ -2817,17 +2817,16 @@
+ erExit2D
+- 
+ (Collide
 @@ -2847,23 +2847,104 @@
  der)%0a%09%7b%0a
 -%09%09if (!
 +        if (!Application.isPlaying)%0a        %7b%0a            return;%0a        %7d%0a        if (
  otherCol
-@@ -2978,30 +2978,16 @@
- %0a%09%09%7b%0a%09%09%09
--return;%0a%09%09%7d%0a%09%09
- heroPos 
+@@ -2959,17 +2959,16 @@
+ mpareTag
+- 
+ (%22Player
+@@ -2974,26 +2974,14 @@
+ r%22))
+- %7b
+ %0a%09%09
+-%09return;%0a%09%09%7d%0a
++%7b%0a%09
+ %09%09he
 @@ -3031,24 +3031,25 @@
  position;%0a%09%09
 +%09
  if (box2d !=
-@@ -3053,29 +3053,31 @@
-  != null)%0a%09%09
-+%09
+@@ -3054,22 +3054,26 @@
+ != null)
+- 
++%0a%09%09%09
  %7b%0a%09%09%09
 +%09
- if (heroPos.
-@@ -3121,38 +3121,40 @@
- tSideX + 1f)%0a%09%09%09
-+%09
+ if (hero
+@@ -3117,39 +3117,44 @@
+  leftSideX + 1f)
+- 
++%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
  camTarget.exited
-@@ -3165,37 +3165,39 @@
+@@ -3165,37 +3165,47 @@
   = true;%0a%09%09%09
-+%09
- %7d%0a%09%09%09
-+%09
- else%0a%09%09%09
- %7b%0a%09%09%09%09camTar
-@@ -3176,38 +3176,40 @@
- %09%09%7d%0a%09%09%09%09else%0a%09%09%09
-+%09
+-%7d else 
++%09%7d%0a%09%09%09%09else%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
- camTarget.exited
+ camTarget.ex
 @@ -3217,37 +3217,39 @@
  eft = false;%0a%09%09%09
 +%09
  %7d%0a%09%09%09
 +%09
  if (heroPos.x %3e 
-@@ -3291,38 +3291,40 @@
- tSideX + 1f)%0a%09%09%09
-+%09
+@@ -3291,31 +3291,36 @@
+ tSideX + 1f)
+- 
++%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
- camTarget.exited
-@@ -3336,37 +3336,39 @@
+ camTarget.ex
+@@ -3336,37 +3336,47 @@
   = true;%0a%09%09%09
-+%09
- %7d%0a%09%09%09
-+%09
- else%0a%09%09%09
- %7b%0a%09%09%09%09camTar
-@@ -3347,38 +3347,40 @@
- %09%09%7d%0a%09%09%09%09else%0a%09%09%09
-+%09
+-%7d else 
++%09%7d%0a%09%09%09%09else%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
- camTarget.exited
+ camTarget.ex
 @@ -3389,37 +3389,39 @@
  ght = false;%0a%09%09%09
 +%09
  %7d%0a%09%09%09
 +%09
  if (heroPos.y %3e 
-@@ -3463,30 +3463,32 @@
- eY + 2f)%0a%09%09%09
+@@ -3463,23 +3463,28 @@
+ eY + 2f)
+- 
++%0a%09%09%09%09
+ %7b%0a%09%09%09%09
 +%09
+ camTarge
+@@ -3502,37 +3502,47 @@
+  = true;%0a%09%09%09
+-%7d else 
++%09%7d%0a%09%09%09%09else%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
  camTarget.ex
-@@ -3502,37 +3502,39 @@
-  = true;%0a%09%09%09
-+%09
- %7d%0a%09%09%09
-+%09
- else%0a%09%09%09
- %7b%0a%09%09%09%09camTar
-@@ -3513,38 +3513,40 @@
- %09%09%7d%0a%09%09%09%09else%0a%09%09%09
-+%09
- %7b%0a%09%09%09%09
-+%09
- camTarget.exited
 @@ -3561,21 +3561,23 @@
  lse;%0a%09%09%09
 +%09
  %7d%0a%09%09%09
 +%09
  if (hero
-@@ -3627,30 +3627,32 @@
- eY + 1f)%0a%09%09%09
-+%09
- %7b%0a%09%09%09%09
-+%09
- camTarget.ex
-@@ -3674,21 +3674,23 @@
- %0a%09%09%09
-+%09
- %7d%0a%09%09%09
-+%09
- else%0a%09%09%09
- %7b%0a%09%09
-@@ -3685,22 +3685,24 @@
- else%0a%09%09%09
-+%09
+@@ -3627,23 +3627,28 @@
+ eY + 1f)
+- 
++%0a%09%09%09%09
  %7b%0a%09%09%09%09
 +%09
  camTarge
+@@ -3674,21 +3674,31 @@
+ %0a%09%09%09
+-%7d else 
++%09%7d%0a%09%09%09%09else%0a%09%09%09%09
+ %7b%0a%09%09%09%09
++%09
+ camT
 @@ -3729,16 +3729,19 @@
  %0a%09%09%09
 +%09
@@ -385,61 +426,84 @@
  %7d%0a%09%09
 +%09
  came
+@@ -3750,33 +3750,32 @@
+ Ctrl.ReleaseLock
+- 
+ (this);%0a%09%09if (ve
 @@ -3764,24 +3764,25 @@
  ck(this);%0a%09%09
 +%09
  if (verboseM
-@@ -3784,29 +3784,43 @@
- boseMode)%0a%09%09
-+%09
- %7b%0a
--%09%09%09
-+                
- Debug.Log(%22L
+@@ -3785,22 +3785,38 @@
+ oseMode)
+- %7b
+ %0a%09%09%09
++%7b%0a                
+ Debug.Lo
+@@ -3816,17 +3816,16 @@
+ ebug.Log
+- 
+ (%22Lockzo
 @@ -3851,24 +3851,29 @@
  se.name);%0a%09%09
 +%09%7d%0a%09%09
  %7d%0a%09%7d%0a%0a%09publi
-@@ -3890,26 +3890,108 @@
- isable()%0a%09%7b%0a
+@@ -3888,25 +3888,106 @@
+ nDisable
+- 
+ ()%0a%09%7b%0a
 -%09%09
 +        if (!Application.isPlaying)%0a        %7b%0a            return;%0a        %7d%0a        
- if (cameraCt
-@@ -4087,29 +4087,157 @@
+ if (came
+@@ -3997,25 +3997,27 @@
+ trl != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09cameraC
+@@ -4031,17 +4031,16 @@
+ easeLock
+- 
+ (this);%0a
+@@ -4075,25 +4075,24 @@
+ teBounds
+- 
+ ()%0a%09%7b%0a%09%09
+ if (came
+@@ -4087,31 +4087,161 @@
  %7b%0a%09%09
--if (cameraXMin == -1f
-+var cameraBounds = GameManager.instance.SceneDimensions;%0a%0a        Debug.Log(%22Camera Bounds = %22 + cameraBounds);%0a%0a%09%09if (cameraXMin %3c cameraBounds.xMin
- )%0a%09%09
+-if (cameraXMin == -1f) 
++var cameraBounds = GameManager.instance.SceneDimensions;%0a%0a        Debug.Log(%22Camera Bounds = %22 + cameraBounds);%0a%0a%09%09if (cameraXMin %3c cameraBounds.xMin)%0a%09%09
+ %7b%0a%09%09
 @@ -4258,13 +4258,25 @@
  n = 
 -14.6f
 +cameraBounds.xMin
  ;%0a%09%09
-@@ -4290,30 +4290,43 @@
+@@ -4290,32 +4290,47 @@
  (cameraXMax 
--== -1f
-+%3e cameraBounds.xMax
- )%0a%09%09%7b%0a%09%09%09cam
+-== -1f) 
++%3e cameraBounds.xMax)%0a%09%09
+ %7b%0a%09%09%09cameraX
 @@ -4345,19 +4345,19 @@
  mera
 -Ctrl.xLimit
 +Bounds.xMax
  ;%0a%09%09
-@@ -4375,22 +4375,35 @@
+@@ -4375,24 +4375,39 @@
  eraYMin 
--== -1f
-+%3c cameraBounds.yMin
- )%0a%09%09%7b%0a%09%09
+-== -1f) 
++%3c cameraBounds.yMin)%0a%09%09
+ %7b%0a%09%09%09cam
 @@ -4420,12 +4420,25 @@
  n = 
 -8.3f
 +cameraBounds.yMin
  ;%0a%09%09
-@@ -4460,14 +4460,27 @@
+@@ -4460,16 +4460,31 @@
  Max 
--== -1f
-+%3e cameraBounds.yMax
- )%0a%09%09
+-== -1f) 
++%3e cameraBounds.yMax)%0a%09%09
+ %7b%0a%09%09
 @@ -4507,27 +4507,27 @@
  mera
 -Ctrl.yLimit
@@ -475,25 +539,53 @@
 -&&
 +%7c%7c
   cam
-@@ -4604,53 +4604,13 @@
+@@ -4604,51 +4604,13 @@
  Max 
 -=
 +!
  = 0f
--)%0a%09%09%7b%0a%09%09%09return false;%0a%09%09%7d%0a%09%09return true
+-) %7b%0a%09%09%09return false;%0a%09%09%7d%0a%09%09return true
  ;%0a%09%7d
+@@ -4631,17 +4631,16 @@
+  SetXMin
+- 
+ (float x
+@@ -4692,17 +4692,16 @@
+  SetXMax
+- 
+ (float x
+@@ -4764,17 +4764,16 @@
+ ig_Start
+- 
+ ()%0a%09%7b%0a%09%09
 @@ -4909,16 +4909,17 @@
  .scene;%0a
 +%0a
  %09%09while 
-@@ -4934,71 +4934,24 @@
+@@ -4934,73 +4934,28 @@
  trl.
--tilemap == null %7c%7c cameraCtrl.tilemap.gameObject.scene != scene
-+sceneWidth == 0f
- )%0a%09%09
+-tilemap == null %7c%7c cameraCtrl.tilemap.gameObject.scene != scene) 
++sceneWidth == 0f)%0a%09%09
+ %7b%0a%09%09
+@@ -5003,13 +5003,14 @@
+ unds
+- 
+ ())
+- 
++%0a%09%09
+ %7b%0a%09%09
+@@ -5024,17 +5024,16 @@
+ LogError
+- 
+ (%22Camera
+@@ -5160,17 +5160,19 @@
+ != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09lef
 @@ -5313,8 +5313,827 @@
  %09%7d%0a%09
-+%09yield break;%0a%09%7d%0a%0a%09private readonly bool verboseMode;%0a%0a%09public float cameraXMin;%0a%0a%09public float cameraYMin;%0a%0a%09public float cameraXMax;%0a%0a%09public float cameraYMax;%0a%0a%09private float leftSideX;%0a%0a%09private float rightSideX;%0a%0a%09private float topSideY;%0a%0a%09private float botSideY;%0a%0a%09private Vector3 heroPos;%0a%0a%09private readonly bool enteredLeft;%0a%0a%09private readonly bool enteredRight;%0a%0a%09private readonly bool enteredTop;%0a%0a%09private readonly bool enteredBot;%0a%0a%09private readonly bool exitedLeft;%0a%0a%09private readonly bool exitedRight;%0a%0a%09private readonly bool exitedTop;%0a%0a%09private readonly bool exitedBot;%0a%0a%09public bool preventLookUp;%0a%0a%09public bool preventLookDown;%0a%0a%09public bool maxPriority;%0a%0a%09private GameCameras gcams;%0a%0a%09private CameraController cameraCtrl;%0a%0a%09private CameraTarget camTarget;%0a%0a%09%5bNonSerialized%5d%0a%09private Collider2D box2d;%0a
- %7d%0a
 -%7d
- %0a
++%09yield break;%0a%09%7d%0a%0a%09private readonly bool verboseMode;%0a%0a%09public float cameraXMin;%0a%0a%09public float cameraYMin;%0a%0a%09public float cameraXMax;%0a%0a%09public float cameraYMax;%0a%0a%09private float leftSideX;%0a%0a%09private float rightSideX;%0a%0a%09private float topSideY;%0a%0a%09private float botSideY;%0a%0a%09private Vector3 heroPos;%0a%0a%09private readonly bool enteredLeft;%0a%0a%09private readonly bool enteredRight;%0a%0a%09private readonly bool enteredTop;%0a%0a%09private readonly bool enteredBot;%0a%0a%09private readonly bool exitedLeft;%0a%0a%09private readonly bool exitedRight;%0a%0a%09private readonly bool exitedTop;%0a%0a%09private readonly bool exitedBot;%0a%0a%09public bool preventLookUp;%0a%0a%09public bool preventLookDown;%0a%0a%09public bool maxPriority;%0a%0a%09private GameCameras gcams;%0a%0a%09private CameraController cameraCtrl;%0a%0a%09private CameraTarget camTarget;%0a%0a%09%5bNonSerialized%5d%0a%09private Collider2D box2d;
+ %0a%7d%0a
++%0a

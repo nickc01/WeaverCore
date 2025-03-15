@@ -3,8 +3,16 @@
 -%09
 +    
  void Set
+@@ -47,17 +47,16 @@
+ SetOwner
+- 
+ (BossSta
 @@ -73,9 +73,12 @@
  );%0a%0a
 -%09
 +    
  void
+@@ -86,17 +86,16 @@
+ SetState
+- 
+ (bool va

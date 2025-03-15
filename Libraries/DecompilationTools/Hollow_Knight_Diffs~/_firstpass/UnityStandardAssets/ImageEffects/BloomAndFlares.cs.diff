@@ -1,295 +1,373 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,398 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    public enum LensflareStyle34%0a    %7b%0a        Ghosting = 0,%0a        Anamorphic = 1,%0a        Combined = 2,%0a    %7d%0a%0a    public enum TweakMode34%0a    %7b%0a        Basic = 0,%0a        Complex = 1,%0a    %7d%0a%0a    public enum HDRBloomMode%0a    %7b%0a        Auto = 0,%0a        On = 1,%0a        Off = 2,%0a    %7d%0a%0a    public enum BloomScreenBlendMode%0a    %7b%0a        Screen = 0,%0a        Add = 1,%0a    %7d%0a%0a    
+@@ -72,17 +72,395 @@
+ fects%0a%7b%0a
+-%09
++    public enum LensflareStyle34%0a    %7b%0a        Ghosting = 0,%0a        Anamorphic = 1,%0a        Combined = 2,%0a    %7d%0a%0a    public enum TweakMode34%0a    %7b%0a        Basic = 0,%0a        Complex = 1,%0a    %7d%0a%0a    public enum HDRBloomMode%0a    %7b%0a        Auto = 0,%0a        On = 1,%0a        Off = 2,%0a    %7d%0a%0a    public enum BloomScreenBlendMode%0a    %7b%0a        Screen = 0,%0a        Add = 1,%0a    %7d%0a%0a    
  %5bExecute
-@@ -471,16 +471,20 @@
+@@ -471,17 +471,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bRequire
-@@ -510,16 +510,20 @@
+@@ -492,17 +492,16 @@
+ omponent
+- 
+ (typeof(
+@@ -510,17 +510,20 @@
  mera))%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -598,16 +598,20 @@
+@@ -531,17 +531,16 @@
+ nentMenu
+- 
+ (%22Image 
+@@ -598,17 +598,20 @@
  ted)%22)%5d%0a
+-%09
 +    
  public c
-@@ -648,19 +648,30 @@
+@@ -648,21 +648,30 @@
  ctsBase%0a
--%7b%0a%09
+-%09%7b%0a%09%09
 +    %7b%0a        
  public T
-@@ -690,20 +690,30 @@
+@@ -690,21 +690,30 @@
  weakMode
--;%0a%0a%09
+-;%0a%0a%09%09
 + = 0;%0a        
  public B
-@@ -773,25 +773,32 @@
+@@ -773,26 +773,32 @@
  dMode.Add;%0a%0a
--%09
+-%09%09
 +        
  public HDRBl
-@@ -812,34 +812,74 @@
+@@ -812,36 +812,74 @@
   hdr
--;%0a%0a%09private bool doHdr;%0a%0a%09
+-;%0a%0a%09%09private bool doHdr;%0a%0a%09%09
 + = HDRBloomMode.Auto;%0a        private bool doHdr = false;%0a        
  publ
-@@ -905,26 +905,32 @@
+@@ -905,27 +905,32 @@
  ead = 1.5f;%0a
--%0a%09
+-%0a%09%09
 +        
  public float
-@@ -953,25 +953,32 @@
+@@ -953,26 +953,32 @@
  sk = 0.5f;%0a%0a
--%09
+-%09%09
 +        
  public float
-@@ -988,37 +988,45 @@
+@@ -988,38 +988,45 @@
  oomIntensity = 1
 +.0
  f;%0a
--%0a%09
+-%0a%09%09
 +        
  public float blo
-@@ -1041,26 +1041,32 @@
+@@ -1041,27 +1041,32 @@
  old = 0.5f;%0a
--%0a%09
+-%0a%09%09
 +        
  public int b
-@@ -1086,25 +1086,32 @@
+@@ -1086,26 +1086,32 @@
  tions = 2;%0a%0a
--%09
+-%09%09
 +        
  public bool 
-@@ -1120,20 +1120,34 @@
+@@ -1120,21 +1120,34 @@
  nsflares
--;%0a%0a%09
+-;%0a%0a%09%09
 + = false;%0a        
  public i
-@@ -1183,18 +1183,24 @@
+@@ -1183,19 +1183,24 @@
  ns = 2;%0a
--%0a%09
+-%0a%09%09
 +        
  public L
 @@ -1231,16 +1231,17 @@
  eMode = 
 +(
  Lensflar
-@@ -1252,23 +1252,20 @@
+@@ -1252,24 +1252,20 @@
  le34
--.Anamorphic;%0a%0a%09
+-.Anamorphic;%0a%0a%09%09
 +)1;%0a        
  publ
-@@ -1299,18 +1299,24 @@
+@@ -1299,19 +1299,24 @@
  = 3.5f;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -1342,21 +1342,29 @@
+@@ -1342,22 +1342,29 @@
  sity = 1
 +.0
  f;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -1395,18 +1395,24 @@
+@@ -1395,19 +1395,24 @@
  = 0.3f;%0a
--%0a%09
+-%0a%09%09
 +        
  public C
-@@ -1458,34 +1458,40 @@
+@@ -1431,33 +1431,32 @@
+ lorA = new Color
+- 
+ (0.4f, 0.4f, 0.8
+@@ -1458,35 +1458,40 @@
  , 0.8f, 0.75f);%0a
--%0a%09
+-%0a%09%09
 +        
  public Color fla
-@@ -1529,34 +1529,40 @@
+@@ -1510,17 +1510,16 @@
+ ew Color
+- 
+ (0.4f, 0
+@@ -1529,35 +1529,40 @@
  , 0.8f, 0.75f);%0a
--%0a%09
+-%0a%09%09
 +        
  public Color fla
-@@ -1604,26 +1604,32 @@
+@@ -1573,33 +1573,32 @@
+ lorC = new Color
+- 
+ (0.8f, 0.4f, 0.8
+@@ -1604,27 +1604,32 @@
  8f, 0.75f);%0a
--%0a%09
+-%0a%09%09
 +        
  public Color
+@@ -1652,17 +1652,16 @@
+ ew Color
+- 
+ (0.8f, 0
 @@ -1665,16 +1665,18 @@
  , 0.4f, 
 +0.
  0f, 0.75
-@@ -1679,18 +1679,24 @@
+@@ -1679,19 +1679,24 @@
  0.75f);%0a
--%0a%09
+-%0a%09%09
 +        
  public T
-@@ -1728,17 +1728,24 @@
+@@ -1728,18 +1728,24 @@
  eMask;%0a%0a
--%09
+-%09%09
 +        
  public S
-@@ -1759,34 +1759,40 @@
+@@ -1759,35 +1759,40 @@
  ensFlareShader;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -1804,33 +1804,40 @@
+@@ -1804,34 +1804,40 @@
  FlareMaterial;%0a%0a
--%09
+-%09%09
 +        
  public Shader vi
-@@ -1842,34 +1842,40 @@
+@@ -1842,35 +1842,40 @@
  vignetteShader;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -1886,33 +1886,40 @@
+@@ -1886,34 +1886,40 @@
  netteMaterial;%0a%0a
--%09
+-%09%09
 +        
  public Shader se
-@@ -1929,34 +1929,40 @@
+@@ -1929,35 +1929,40 @@
  ableBlurShader;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -1978,33 +1978,40 @@
+@@ -1978,34 +1978,40 @@
  eBlurMaterial;%0a%0a
--%09
+-%09%09
 +        
  public Shader ad
-@@ -2028,34 +2028,40 @@
+@@ -2028,35 +2028,40 @@
  ffOneOneShader;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -2089,33 +2089,40 @@
+@@ -2089,34 +2089,40 @@
  neOneMaterial;%0a%0a
--%09
+-%09%09
 +        
  public Shader sc
-@@ -2130,34 +2130,40 @@
+@@ -2130,35 +2130,40 @@
  eenBlendShader;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -2177,17 +2177,24 @@
+@@ -2177,18 +2177,24 @@
  Blend;%0a%0a
--%09
+-%09%09
 +        
  public S
-@@ -2214,34 +2214,40 @@
+@@ -2214,35 +2214,40 @@
  odFlaresShader;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -2269,25 +2269,32 @@
+@@ -2269,26 +2269,32 @@
  sMaterial;%0a%0a
--%09
+-%09%09
 +        
  public Shade
-@@ -2319,18 +2319,24 @@
+@@ -2319,19 +2319,24 @@
  Shader;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -2371,17 +2371,25 @@
+@@ -2371,18 +2371,25 @@
  erial;%0a%0a
--%09
+-%09%09
 +%0a        
  public o
-@@ -2422,47 +2422,64 @@
- s()%0a
--%09%7b%0a%09%09CheckSupport(needDepth: false);%0a%09%09
+@@ -2419,55 +2419,67 @@
+ rces
+- 
+ ()%0a
+-%09%09%7b%0a%09%09%09CheckSupport (needDepth: false);%0a%09%09%09
 +        %7b%0a            CheckSupport(false);%0a%0a            
  scre
-@@ -2550,18 +2550,28 @@
+@@ -2516,17 +2516,16 @@
+ Material
+- 
+ (screenB
+@@ -2550,19 +2550,28 @@
  Blend);%0a
--%09%09
+-%09%09%09
 +            
  lensFlar
-@@ -2648,18 +2648,28 @@
+@@ -2610,17 +2610,16 @@
+ Material
+- 
+ (lensFla
+@@ -2648,19 +2648,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  vignette
-@@ -2743,18 +2743,28 @@
+@@ -2707,17 +2707,16 @@
+ Material
+- 
+ (vignett
+@@ -2743,19 +2743,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  separabl
-@@ -2853,18 +2853,28 @@
+@@ -2807,17 +2807,16 @@
+ Material
+- 
+ (separab
+@@ -2853,19 +2853,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  addBrigh
-@@ -2994,18 +2994,28 @@
+@@ -2929,17 +2929,16 @@
+ Material
+- 
+ (addBrig
+@@ -2994,19 +2994,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  hollywoo
-@@ -3110,18 +3110,28 @@
+@@ -3060,17 +3060,16 @@
+ Material
+- 
+ (hollywo
+@@ -3110,19 +3110,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  brightPa
-@@ -3229,18 +3229,29 @@
+@@ -3177,17 +3177,16 @@
+ Material
+- 
+ (brightP
+@@ -3229,19 +3229,29 @@
  erial);%0a
--%09%09
+-%09%09%09
 +%0a            
  if (!isS
-@@ -3260,23 +3260,32 @@
- ported)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -3259,23 +3259,33 @@
+ pported)
+- %7b%0a%09%09%09%09
++%0a                
  ReportAu
-@@ -3297,22 +3297,28 @@
- able();%0a
--%09%09%7d%0a%09%09
+@@ -3293,29 +3293,32 @@
+ oDisable
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%09
 +            
  return i
-@@ -3329,28 +3329,34 @@
+@@ -3329,30 +3329,34 @@
  ported;%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
   void On
-@@ -3420,18 +3420,34 @@
+@@ -3366,17 +3366,16 @@
+ derImage
+- 
+ (RenderT
+@@ -3420,20 +3420,34 @@
  on)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  if (
 -!
  Chec
-@@ -3462,70 +3462,220 @@
- es()
--)%0a%09%09%7b%0a%09%09%09Graphics.Blit(source, destination);%0a%09%09%09return;%0a%09%09%7d%0a%09%09
-+ == false)%0a            %7b%0a                Graphics.Blit(source, destination);%0a                return;%0a            %7d%0a%0a            // screen blend is not supported when HDR is enabled (will cap values)%0a%0a            
+@@ -3460,19 +3460,51 @@
+ rces
+- 
+ ()
+-) %7b%0a%09%09%09%09
++ == false)%0a            %7b%0a                
+ Grap
+@@ -3504,33 +3504,32 @@
+    Graphics.Blit
+- 
+ (source, destina
+@@ -3539,28 +3539,143 @@
+ n);%0a
+-%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09
++                return;%0a            %7d%0a%0a            // screen blend is not supported when HDR is enabled (will cap values)%0a%0a            
  doHd
-@@ -3685,18 +3685,28 @@
+@@ -3685,19 +3685,28 @@
   false;%0a
--%09%09
+-%09%09%09
 +            
  if (hdr 
-@@ -3727,23 +3727,55 @@
- e.Auto)%0a
--%09%09%7b%0a%09%09%09
-+#if UNITY_5_6_OR_NEWER%0a                
+@@ -3726,23 +3726,56 @@
+ de.Auto)
+- %7b%0a%09%09%09%09
++%0a#if UNITY_5_6_OR_NEWER%0a                
  doHdr = 
-@@ -3856,34 +3856,177 @@
+@@ -3843,17 +3843,16 @@
+ %3cCamera%3e
+- 
+ ().allow
+@@ -3856,32 +3856,177 @@
  lowHDR;%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%09%7d else %7b%0a%09%09%09%09
 +#else%0a                doHdr = source.format == RenderTextureFormat.ARGBHalf && GetComponent%3cCamera%3e().hdr;%0a#endif%0a            else%0a            %7b%0a                
  doHdr = 
-@@ -4049,22 +4049,43 @@
+@@ -4049,24 +4049,43 @@
  ode.On;%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +            %7d%0a%0a            
  doHdr = 
-@@ -4113,18 +4113,29 @@
+@@ -4113,19 +4113,29 @@
  xtures;%0a
--%09%09
+-%09%09%09
 +%0a            
  BloomScr
 @@ -4147,20 +4147,29 @@
@@ -297,25 +375,20 @@
 -pass
 +realBlendMode
   = scree
-@@ -4184,32 +4184,60 @@
+@@ -4184,90 +4184,109 @@
  de;%0a
--%09%09if (doHdr)%0a%09%09%7b%0a%09%09%09pass
-+            if (doHdr)%0a                realBlendMode
-  = B
-@@ -4265,35 +4265,28 @@
- dd;%0a
--%09%09%7d%0a%09%09RenderTextureFormat f
-+%0a            var rtF
+-%09%09%09if (doHdr) %7b%0a%09%09%09%09pass = BloomScreenBlendMode.Add;%0a%09%09%09%7d%0a%09%09%09RenderTextureFormat f
++            if (doHdr)%0a                realBlendMode = BloomScreenBlendMode.Add;%0a%0a            var rtF
  orma
 @@ -4295,16 +4295,17 @@
  = (doHdr
 +)
   ? Rende
-@@ -4357,21 +4357,30 @@
+@@ -4357,22 +4357,30 @@
  .Default
 -)
  ;%0a
--%09%09
+-%09%09%09
 +            
  RenderTe
 @@ -4385,25 +4385,28 @@
@@ -323,15 +396,19 @@
 -temporary
 +halfRezColor
   = Rende
+@@ -4418,33 +4418,32 @@
+ ure.GetTemporary
+- 
+ (source.width / 
 @@ -4463,33 +4463,35 @@
  ght / 2, 0, 
 -f
 +rtF
  ormat);%0a
- %09%09RenderText
-@@ -4470,34 +4470,44 @@
+ %09%09%09RenderTex
+@@ -4470,35 +4470,44 @@
  , 0, rtFormat);%0a
--%09%09
+-%09%09%09
 +            
  RenderTexture te
 @@ -4504,26 +4504,31 @@
@@ -339,15 +416,19 @@
 -temporary2
 +quarterRezColor
   = Rende
+@@ -4540,33 +4540,32 @@
+ ure.GetTemporary
+- 
+ (source.width / 
 @@ -4585,33 +4585,35 @@
  ght / 4, 0, 
 -f
 +rtF
  ormat);%0a
- %09%09RenderText
-@@ -4592,34 +4592,44 @@
+ %09%09%09RenderTex
+@@ -4592,35 +4592,44 @@
  , 0, rtFormat);%0a
--%09%09
+-%09%09%09
 +            
  RenderTexture te
 @@ -4626,26 +4626,37 @@
@@ -355,15 +436,19 @@
 -temporary3
 +secondQuarterRezColor
   = Rende
+@@ -4668,33 +4668,32 @@
+ ure.GetTemporary
+- 
+ (source.width / 
 @@ -4717,25 +4717,27 @@
  / 4, 0, 
 -f
 +rtF
  ormat);%0a
- %09%09Render
-@@ -4728,18 +4728,28 @@
+ %09%09%09Rende
+@@ -4728,19 +4728,28 @@
  ormat);%0a
--%09%09
+-%09%09%09
 +            
  RenderTe
 @@ -4755,25 +4755,35 @@
@@ -371,15 +456,19 @@
 -emporary4
 +hirdQuarterRezColor
   = Rende
+@@ -4803,17 +4803,16 @@
+ emporary
+- 
+ (source.
 @@ -4848,17 +4848,19 @@
   0, 
 -f
 +rtF
  ormat);%0a
- %09%09fl
-@@ -4859,34 +4859,53 @@
+ %09%09%09f
+@@ -4859,35 +4859,53 @@
  t);%0a
--%09%09float num = 1f * (float)
+-%09%09%09float num = 1f * (float)
 +%0a            float widthOverHeight = (1.0f * 
  sour
 @@ -4916,24 +4916,20 @@
@@ -390,29 +479,48 @@
  f * 
 -(float)
  sour
-@@ -4944,39 +4944,99 @@
+@@ -4944,41 +4944,99 @@
  t);%0a
--%09%09float num2 = 0.001953125f;%0a%09%09
+-%09%09%09float num2 = 0.001953125f;%0a%09%09%09
 +            float oneOverBaseSize = 1.0f / 512.0f;%0a%0a            // downsample%0a%0a            
  Grap
+@@ -5044,17 +5044,16 @@
+ ics.Blit
+- 
+ (source,
 @@ -5053,25 +5053,28 @@
  source, 
 -temporary
 +halfRezColor
  , screen
-@@ -5087,219 +5087,429 @@
+@@ -5087,117 +5087,255 @@
   2);
--%0a%09%09Graphics.Blit(temporary, temporary2, screenBlend, 2);%0a%09%09RenderTexture.ReleaseTemporary(temporary);%0a%09%09BrightFilter(bloomThreshold, useSrcAlphaAsMask, temporary2, temporary3);%0a%09%09temporary2.DiscardContents();%0a%09%09
-+ // %3c- 2 is stable downsample%0a            Graphics.Blit(halfRezColor, quarterRezColor, screenBlend, 2); // %3c- 2 is stable downsample%0a%0a            RenderTexture.ReleaseTemporary(halfRezColor);%0a%0a            // cut colors (thresholding)%0a%0a            BrightFilter(bloomThreshold, useSrcAlphaAsMask, quarterRezColor, secondQuarterRezColor);%0a            quarterRezColor.DiscardContents();%0a%0a            // blurring%0a%0a            
- if (
-@@ -5532,24 +5532,17 @@
- ons %3c 1)
--%0a%09%09%7b%0a%09%09%09
-+ 
+-%0a%09%09%09Graphics.Blit (temporary, temporary2, screenBlend, 2);%0a%09%09%09RenderTexture.ReleaseTemporary (temporary);%0a%09%09%09
++ // %3c- 2 is stable downsample%0a            Graphics.Blit(halfRezColor, quarterRezColor, screenBlend, 2); // %3c- 2 is stable downsample%0a%0a            RenderTexture.ReleaseTemporary(halfRezColor);%0a%0a            // cut colors (thresholding)%0a%0a            
+ Brig
+@@ -5342,17 +5342,16 @@
+ htFilter
+- 
+ (bloomTh
+@@ -5382,46 +5382,76 @@
+ sk, 
+-temporary2, temporary3);%0a%09%09%09temporary2
++quarterRezColor, secondQuarterRezColor);%0a            quarterRezColor
+ .Dis
+@@ -5462,24 +5462,58 @@
+ Contents
+- 
+ ();%0a
+-%09%09%09
++%0a            // blurring%0a%0a            
+ if (bloo
+@@ -5533,22 +5533,16 @@
+ ns %3c 1) 
+-%7b%0a%09%09%09%09
  bloomBlu
-@@ -5558,22 +5558,29 @@
+@@ -5558,24 +5558,29 @@
  ns = 1;%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +%0a            
  for (int
 @@ -5585,15 +5585,21 @@
@@ -421,12 +529,10 @@
   = 0; i
 +ter
   %3c b
-@@ -5623,54 +5623,88 @@
+@@ -5623,53 +5623,88 @@
  s; i
-+ter
- ++)%0a
--%09%09%7b%0a%09%09%09float num3
-+            %7b%0a                float spreadForPass
+-++) %7b%0a%09%09%09%09float num3
++ter++)%0a            %7b%0a                float spreadForPass
   = (1
 +.0
  f + (
@@ -438,49 +544,59 @@
   * 0.5f)
 +)
   * sepBl
-@@ -5718,19 +5718,32 @@
+@@ -5718,20 +5718,32 @@
  Spread;%0a
--%09%09%09
+-%09%09%09%09
 +                
  separabl
-@@ -5793,38 +5793,78 @@
- or4(
+@@ -5757,33 +5757,32 @@
+ terial.SetVector
+- 
+ (%22offsets%22, new 
+@@ -5792,41 +5792,79 @@
+ tor4
+- 
+ (
 +0.
  0f, 
--num3 * num2
-+spreadForPass * oneOverBaseSize
- , 
-+0.
+-num3 * num2, 
++spreadForPass * oneOverBaseSize, 0.
  0f, 
 +0.
  0f));%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  Rend
-@@ -5877,84 +5877,122 @@
+@@ -5877,86 +5877,122 @@
  ure 
 -obj = ((i
 +src = iter
   == 0
 -)
   ? 
--temporary3 : temporary2);%0a%09%09%09Graphics.Blit(obj, temporary4
+-temporary3 : temporary2);%0a%09%09%09%09Graphics.Blit (obj, temporary4
 +secondQuarterRezColor : quarterRezColor;%0a                Graphics.Blit(src, thirdQuarterRezColor
  , se
-@@ -6017,14 +6017,27 @@
+@@ -6017,15 +6017,27 @@
  l);%0a
--%09%09%09obj
+-%09%09%09%09obj
 +                src
  .Dis
-@@ -6052,19 +6052,33 @@
- ents();%0a
--%09%09%09
+@@ -6048,25 +6048,37 @@
+ Contents
+- 
+ ();%0a
+-%09%09%09%09
 +%0a                
  separabl
-@@ -6128,225 +6128,434 @@
- or4(
--num3 / num * num2
-+(spreadForPass / widthOverHeight) * oneOverBaseSize
+@@ -6092,33 +6092,32 @@
+ terial.SetVector
+- 
+ (%22offsets%22, new 
+@@ -6127,47 +6127,98 @@
+ tor4
+- (num3 / num * num2
++((spreadForPass / widthOverHeight) * oneOverBaseSize
  , 
 +0.
  0f, 
@@ -488,41 +604,122 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09Graphics.Blit(temporary4, temporary2, separableBlurMaterial);%0a%09%09%09temporary4.DiscardContents();%0a%09%09%7d%0a%09%09if (lensflares)%0a%09%09%7b%0a%09%09%09if (lensflareMode == LensflareStyle34.Ghosting)%0a%09%09%09%7b%0a%09%09%09%09
-+                Graphics.Blit(thirdQuarterRezColor, quarterRezColor, separableBlurMaterial);%0a                thirdQuarterRezColor.DiscardContents();%0a            %7d%0a%0a            // lens flares: ghosting, anamorphic or a combination%0a%0a            if (lensflares)%0a            %7b%0a%0a                if (lensflareMode == 0)%0a                %7b%0a%0a                    
+-%09%09%09%09
++                
+ Grap
+@@ -6230,72 +6230,108 @@
+ Blit
+- 
+ (t
+-emporary4, temporary2, separableBlurMaterial);%0a%09%09%09%09temporary4
++hirdQuarterRezColor, quarterRezColor, separableBlurMaterial);%0a                thirdQuarterRezColor
+ .Dis
+@@ -6346,98 +6346,216 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%09if (lensflares) %7b%0a%09%09%09%09if (lensflareMode == LensflareStyle34.Ghosting) %7b%0a%09%09%09%09%09
++            %7d%0a%0a            // lens flares: ghosting, anamorphic or a combination%0a%0a            if (lensflares)%0a            %7b%0a%0a                if (lensflareMode == 0)%0a                %7b%0a%0a                    
  Brig
-@@ -6587,248 +6587,1340 @@
+@@ -6562,17 +6562,16 @@
+ htFilter
+- 
+ (lensfla
+@@ -6587,52 +6587,89 @@
  ld, 
 +0.
  0f, 
--temporary2, temporary4);%0a%09%09%09%09temporary2.DiscardContents();%0a%09%09%09%09Vignette(0.975f, temporary4, temporary3);%0a%09%09%09%09temporary4.DiscardContents();%0a%09%09%09%09BlendFlares(temporary3, temporary2);%0a%09%09%09%09temporary3.DiscardContents();%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
-+quarterRezColor, thirdQuarterRezColor);%0a                    quarterRezColor.DiscardContents();%0a%0a                    // smooth a little, this needs to be resolution dependent%0a                    /*%0a                    separableBlurMaterial.SetVector (%22offsets%22, Vector4 (0.0ff, (2.0ff) / (1.0ff * quarterRezColor.height), 0.0ff, 0.0ff));%0a                    Graphics.Blit (thirdQuarterRezColor, secondQuarterRezColor, separableBlurMaterial);%0a                    separableBlurMaterial.SetVector (%22offsets%22, Vector4 ((2.0ff) / (1.0ff * quarterRezColor.width), 0.0ff, 0.0ff, 0.0ff));%0a                    Graphics.Blit (secondQuarterRezColor, thirdQuarterRezColor, separableBlurMaterial);%0a                    */%0a                    // no ugly edges!%0a%0a                    Vignette(0.975f, thirdQuarterRezColor, secondQuarterRezColor);%0a                    thirdQuarterRezColor.DiscardContents();%0a%0a                    BlendFlares(secondQuarterRezColor, quarterRezColor);%0a                    secondQuarterRezColor.DiscardContents();%0a                %7d%0a%0a                // (b) hollywood/anamorphic flares?%0a%0a                else%0a                %7b%0a%0a                    // thirdQuarter has the brightcut unblurred colors%0a                    // quarterRezColor is the blurred, brightcut buffer that will end up as bloom%0a%0a                    
+-temporary2, temporary4);%0a%09%09%09%09%09temporary2
++quarterRezColor, thirdQuarterRezColor);%0a                    quarterRezColor
+ .Dis
+@@ -6684,76 +6684,786 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%09Vignette (0.975f, temporary4, temporary3);%0a%09%09%09%09%09temporary4
++%0a                    // smooth a little, this needs to be resolution dependent%0a                    /*%0a                    separableBlurMaterial.SetVector (%22offsets%22, Vector4 (0.0ff, (2.0ff) / (1.0ff * quarterRezColor.height), 0.0ff, 0.0ff));%0a                    Graphics.Blit (thirdQuarterRezColor, secondQuarterRezColor, separableBlurMaterial);%0a                    separableBlurMaterial.SetVector (%22offsets%22, Vector4 ((2.0ff) / (1.0ff * quarterRezColor.width), 0.0ff, 0.0ff, 0.0ff));%0a                    Graphics.Blit (secondQuarterRezColor, thirdQuarterRezColor, separableBlurMaterial);%0a                    */%0a                    // no ugly edges!%0a%0a                    Vignette(0.975f, thirdQuarterRezColor, secondQuarterRezColor);%0a                    thirdQuarterRezColor
+ .Dis
+@@ -7478,71 +7478,127 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%09BlendFlares (temporary3, temporary2);%0a%09%09%09%09%09temporary3
++%0a                    BlendFlares(secondQuarterRezColor, quarterRezColor);%0a                    secondQuarterRezColor
+ .Dis
+@@ -7613,31 +7613,314 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%7d else %7b%0a%09%09%09%09%09
++                %7d%0a%0a                // (b) hollywood/anamorphic flares?%0a%0a                else%0a                %7b%0a%0a                    // thirdQuarter has the brightcut unblurred colors%0a                    // quarterRezColor is the blurred, brightcut buffer that will end up as bloom%0a%0a                    
  holl
+@@ -7948,17 +7948,16 @@
+ etVector
+- 
+ (%22_thres
+@@ -7974,17 +7974,16 @@
+  Vector4
+- 
+ (lensfla
 @@ -7996,22 +7996,26 @@
  shold, 1
 +.0
  f / (1
 +.0
  f - lens
-@@ -8031,30 +8031,50 @@
+@@ -8031,31 +8031,50 @@
  shold), 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  hollywoo
-@@ -8227,222 +8227,367 @@
- y);%0a
--%09%09%09%09Graphics.Blit(temporary4, temporary3, hollywoodFlaresMaterial, 2);%0a%09%09%09%09temporary4.DiscardContents();%0a%09%09%09%09Graphics.Blit(temporary3, temporary4, hollywoodFlaresMaterial, 3);%0a%09%09%09%09temporary3.DiscardContents();%0a%09%09%09%09
-+                    Graphics.Blit(thirdQuarterRezColor, secondQuarterRezColor, hollywoodFlaresMaterial, 2);%0a                    thirdQuarterRezColor.DiscardContents();%0a%0a                    Graphics.Blit(secondQuarterRezColor, thirdQuarterRezColor, hollywoodFlaresMaterial, 3);%0a                    secondQuarterRezColor.DiscardContents();%0a%0a                    
- holl
-@@ -8639,16 +8639,17 @@
- Vector4(
+@@ -8098,17 +8098,16 @@
+ etVector
+- 
+ (%22tintCo
+@@ -8115,33 +8115,32 @@
+ or%22, new Vector4
+- 
+ (flareColorA.r, 
+@@ -8223,21 +8223,36 @@
+ nsity);%0a
+-%09%09%09%09%09
++                    
+ Graphics
+@@ -8260,78 +8260,123 @@
+ Blit
+- 
+ (t
+-emporary4, temporary3, hollywoodFlaresMaterial, 2);%0a%09%09%09%09%09temporary4
++hirdQuarterRezColor, secondQuarterRezColor, hollywoodFlaresMaterial, 2);%0a                    thirdQuarterRezColor
+ .Dis
+@@ -8391,101 +8391,162 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%09Graphics.Blit (temporary3, temporary4, hollywoodFlaresMaterial, 3);%0a%09%09%09%09%09temporary3
++%0a                    Graphics.Blit(secondQuarterRezColor, thirdQuarterRezColor, hollywoodFlaresMaterial, 3);%0a                    secondQuarterRezColor
+ .Dis
+@@ -8553,34 +8553,49 @@
+ cardContents
+- 
+ ();%0a
+-%09%09%09%09%09
++%0a                    
+ hollywoodFla
+@@ -8607,33 +8607,32 @@
+ terial.SetVector
+- 
+ (%22offsets%22, new 
+@@ -8638,17 +8638,17 @@
+  Vector4
+- 
 +(
- sepBlurS
-@@ -8661,42 +8661,90 @@
+ (sepBlur
+@@ -8661,43 +8661,90 @@
   * 1
 +.0
  f / 
@@ -535,35 +732,82 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  holl
-@@ -8812,117 +8812,197 @@
- h);%0a
--%09%09%09%09Graphics.Blit(temporary4, temporary3, hollywoodFlaresMaterial, 1);%0a%09%09%09%09temporary4.DiscardContents();%0a%09%09%09%09
-+                    Graphics.Blit(thirdQuarterRezColor, secondQuarterRezColor, hollywoodFlaresMaterial, 1);%0a                    thirdQuarterRezColor.DiscardContents();%0a%0a                    
- holl
-@@ -9071,121 +9071,204 @@
+@@ -8763,33 +8763,32 @@
+ aterial.SetFloat
+- 
+ (%22stretchWidth%22,
+@@ -8808,21 +8808,36 @@
+ Width);%0a
+-%09%09%09%09%09
++                    
+ Graphics
+@@ -8845,78 +8845,123 @@
+ Blit
+- 
+ (t
+-emporary4, temporary3, hollywoodFlaresMaterial, 1);%0a%09%09%09%09%09temporary4
++hirdQuarterRezColor, secondQuarterRezColor, hollywoodFlaresMaterial, 1);%0a                    thirdQuarterRezColor
+ .Dis
+@@ -8968,34 +8968,49 @@
+ cardContents
+- 
+ ();%0a
+-%09%09%09%09%09
++%0a                    
+ hollywoodFla
+@@ -9021,33 +9021,32 @@
+ aterial.SetFloat
+- 
+ (%22stretchWidth%22,
+@@ -9071,100 +9071,163 @@
   * 2
 +.0
  f);%0a
--%09%09%09%09Graphics.Blit(temporary3, temporary4, hollywoodFlaresMaterial, 1);%0a%09%09%09%09temporary3.DiscardContents();%0a%09%09%09%09
-+                    Graphics.Blit(secondQuarterRezColor, thirdQuarterRezColor, hollywoodFlaresMaterial, 1);%0a                    secondQuarterRezColor.DiscardContents();%0a%0a                    
- holl
-@@ -9337,121 +9337,203 @@
+-%09%09%09%09%09Graphics.Blit (temporary3, temporary4, hollywoodFlaresMaterial, 1);%0a%09%09%09%09%09temporary3
++                    Graphics.Blit(secondQuarterRezColor, thirdQuarterRezColor, hollywoodFlaresMaterial, 1);%0a                    secondQuarterRezColor
+ .Dis
+@@ -9238,26 +9238,41 @@
+ Contents
+- 
+ ();%0a
+-%09%09%09%09%09
++%0a                    
+ hollywoo
+@@ -9295,17 +9295,16 @@
+ SetFloat
+- 
+ (%22stretc
+@@ -9337,17 +9337,34 @@
   * 4
 +.0
  f);%0a
--%09%09%09%09Graphics.Blit(temporary4, temporary3, hollywoodFlaresMaterial, 1);%0a%09%09%09%09temporary4.DiscardContents();%0a%09%09%09%09
-+                    Graphics.Blit(thirdQuarterRezColor, secondQuarterRezColor, hollywoodFlaresMaterial, 1);%0a                    thirdQuarterRezColor.DiscardContents();%0a%0a                    
- if (
+-%09%09%09%09%09
++                    
+ Grap
+@@ -9376,78 +9376,123 @@
+ Blit
+- 
+ (t
+-emporary4, temporary3, hollywoodFlaresMaterial, 1);%0a%09%09%09%09%09temporary4
++hirdQuarterRezColor, secondQuarterRezColor, hollywoodFlaresMaterial, 1);%0a                    thirdQuarterRezColor
+ .Dis
+@@ -9503,26 +9503,41 @@
+ Contents
+- 
+ ();%0a
+-%09%09%09%09%09
++%0a                    
+ if (lens
 @@ -9549,16 +9549,17 @@
  Mode == 
 +(
  Lensflar
-@@ -9570,32 +9570,58 @@
+@@ -9570,29 +9570,58 @@
  le34
--.Anamorphic)%0a%09%09%09%09%7b%0a%09%09%09%09%09
+-.Anamorphic) %7b%0a%09%09%09%09%09%09
 +)1)%0a                    %7b%0a                        
  for 
 @@ -9629,16 +9629,24 @@
@@ -574,16 +818,21 @@
 -j
 +itera
   %3c h
-@@ -9678,26 +9678,71 @@
+@@ -9678,22 +9678,71 @@
  ns; 
--j++)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09
+-j++) %7b%0a%09%09%09%09%09%09%09
 +itera++)%0a                        %7b%0a                            
  sepa
-@@ -9784,32 +9784,33 @@
- s%22, new Vector4(
+@@ -9760,33 +9760,32 @@
+ terial.SetVector
+- 
+ (%22offsets%22, new 
+@@ -9783,33 +9783,33 @@
+ ts%22, new Vector4
+- 
 +(
- hollyStretchWidt
-@@ -9818,148 +9818,279 @@
+ (hollyStretchWid
+@@ -9818,125 +9818,230 @@
   * 2
 +.0
  f / 
@@ -596,33 +845,66 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09%09%09%09Graphics.Blit(temporary3, temporary4, separableBlurMaterial);%0a%09%09%09%09%09%09temporary3.DiscardContents();%0a%09%09%09%09%09%09
-+                            Graphics.Blit(secondQuarterRezColor, thirdQuarterRezColor, separableBlurMaterial);%0a                            secondQuarterRezColor.DiscardContents();%0a%0a                            
- sepa
-@@ -10132,32 +10132,33 @@
- s%22, new Vector4(
+-%09%09%09%09%09%09%09Graphics.Blit (temporary3, temporary4, separableBlurMaterial);%0a%09%09%09%09%09%09%09temporary3
++                            Graphics.Blit(secondQuarterRezColor, thirdQuarterRezColor, separableBlurMaterial);%0a                            secondQuarterRezColor
+ .Dis
+@@ -10048,36 +10048,57 @@
+ cardContents
+- 
+ ();%0a
+-%09%09%09%09%09%09%09
++%0a                            
+ separableBlu
+@@ -10108,33 +10108,32 @@
+ terial.SetVector
+- 
+ (%22offsets%22, new 
+@@ -10131,33 +10131,33 @@
+ ts%22, new Vector4
+- 
 +(
- hollyStretchWidt
-@@ -10166,250 +10166,553 @@
+ (hollyStretchWid
+@@ -10166,45 +10166,98 @@
   * 2
 +.0
  f / 
--num * num2
-+widthOverHeight) * oneOverBaseSize
- , 
-+0.
+-num * num2, 
++widthOverHeight) * oneOverBaseSize, 0.
  0f, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09%09%09%09%09Graphics.Blit(temporary4, temporary3, separableBlurMaterial);%0a%09%09%09%09%09%09temporary4.DiscardContents();%0a%09%09%09%09%09%7d%0a%09%09%09%09%09
-+                            Graphics.Blit(thirdQuarterRezColor, secondQuarterRezColor, separableBlurMaterial);%0a                            thirdQuarterRezColor.DiscardContents();%0a                        %7d%0a%0a                        
- AddTo(1
+-%09%09%09%09%09%09%09
++                            
+ Grap
+@@ -10269,75 +10269,126 @@
+ Blit
+- 
+ (t
+-emporary4, temporary3, separableBlurMaterial);%0a%09%09%09%09%09%09%09temporary4
++hirdQuarterRezColor, secondQuarterRezColor, separableBlurMaterial);%0a                            thirdQuarterRezColor
+ .Dis
+@@ -10403,79 +10403,161 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%09%09%7d%0a%09%09%09%09%09%09
++                        %7d%0a%0a                        
+ AddTo
+- 
+ (1
 +.0
  f, 
--temporary3, temporary2);%0a%09%09%09%09%09temporary3.DiscardContents();%0a%09%09%09%09%7d%0a%09%09%09%09else%0a%09%09%09%09%7b%0a%09%09%09%09%09
-+secondQuarterRezColor, quarterRezColor);%0a                        secondQuarterRezColor.DiscardContents();%0a                    %7d%0a                    else%0a                    %7b%0a%0a                        // (c) combined%0a%0a                        
+-temporary3, temporary2);%0a%09%09%09%09%09%09temporary3
++secondQuarterRezColor, quarterRezColor);%0a                        secondQuarterRezColor
+ .Dis
+@@ -10572,33 +10572,147 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%09%7d else %7b%0a%09%09%09%09%09%09
++                    %7d%0a                    else%0a                    %7b%0a%0a                        // (c) combined%0a%0a                        
  for 
 @@ -10720,16 +10720,18 @@
  int 
@@ -632,19 +914,21 @@
 -k
 +ix
   %3c h
-@@ -10763,26 +10763,68 @@
+@@ -10763,22 +10763,68 @@
  ns; 
--k
-+ix
- ++)%0a
--%09%09%09%09%09%7b%0a%09%09%09%09%09%09
-+                        %7b%0a                            
+-k++) %7b%0a%09%09%09%09%09%09%09
++ix++)%0a                        %7b%0a                            
  sepa
-@@ -10866,32 +10866,33 @@
- s%22, new Vector4(
+@@ -10842,33 +10842,32 @@
+ terial.SetVector
+- 
+ (%22offsets%22, new 
+@@ -10865,33 +10865,33 @@
+ ts%22, new Vector4
+- 
 +(
- hollyStretchWidt
-@@ -10900,148 +10900,279 @@
+ (hollyStretchWid
+@@ -10900,125 +10900,230 @@
   * 2
 +.0
  f / 
@@ -657,14 +941,26 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09%09%09%09Graphics.Blit(temporary3, temporary4, separableBlurMaterial);%0a%09%09%09%09%09%09temporary3.DiscardContents();%0a%09%09%09%09%09%09
-+                            Graphics.Blit(secondQuarterRezColor, thirdQuarterRezColor, separableBlurMaterial);%0a                            secondQuarterRezColor.DiscardContents();%0a%0a                            
+-%09%09%09%09%09%09%09Graphics.Blit (temporary3, temporary4, separableBlurMaterial);%0a%09%09%09%09%09%09%09temporary3
++                            Graphics.Blit(secondQuarterRezColor, thirdQuarterRezColor, separableBlurMaterial);%0a                            secondQuarterRezColor
+ .Dis
+@@ -11138,20 +11138,41 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%09%09%09
++%0a                            
  sepa
-@@ -11222,16 +11222,17 @@
- Vector4(
+@@ -11190,33 +11190,32 @@
+ terial.SetVector
+- 
+ (%22offsets%22, new 
+@@ -11221,17 +11221,17 @@
+  Vector4
+- 
 +(
- hollyStr
-@@ -11248,154 +11248,300 @@
+ (hollySt
+@@ -11248,45 +11248,98 @@
   * 2
 +.0
  f / 
@@ -677,102 +973,223 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09%09%09%09Graphics.Blit(temporary4, temporary3, separableBlurMaterial);%0a%09%09%09%09%09%09temporary4.DiscardContents();%0a%09%09%09%09%09%7d%0a%09%09%09%09%09
-+                            Graphics.Blit(thirdQuarterRezColor, secondQuarterRezColor, separableBlurMaterial);%0a                            thirdQuarterRezColor.DiscardContents();%0a                        %7d%0a%0a                        
- Vign
-@@ -11550,240 +11550,540 @@
- te(1
+-%09%09%09%09%09%09%09
++                            
+ Grap
+@@ -11351,75 +11351,126 @@
+ Blit
+- 
+ (t
+-emporary4, temporary3, separableBlurMaterial);%0a%09%09%09%09%09%09%09temporary4
++hirdQuarterRezColor, secondQuarterRezColor, separableBlurMaterial);%0a                            thirdQuarterRezColor
+ .Dis
+@@ -11485,35 +11485,71 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%09%09%7d%0a%09%09%09%09%09%09
++                        %7d%0a%0a                        
+ Vignette
+  (1f
+@@ -11548,55 +11548,106 @@
+ ette
+- 
+ (1
 +.0
  f, 
--temporary3, temporary4);%0a%09%09%09%09%09temporary3.DiscardContents();%0a%09%09%09%09%09BlendFlares(temporary4, temporary3);%0a%09%09%09%09%09temporary4.DiscardContents();%0a%09%09%09%09%09
-+secondQuarterRezColor, thirdQuarterRezColor);%0a                        secondQuarterRezColor.DiscardContents();%0a%0a                        BlendFlares(thirdQuarterRezColor, secondQuarterRezColor);%0a                        thirdQuarterRezColor.DiscardContents();%0a%0a                        
- AddTo(1
+-temporary3, temporary4);%0a%09%09%09%09%09%09temporary3
++secondQuarterRezColor, thirdQuarterRezColor);%0a                        secondQuarterRezColor
+ .Dis
+@@ -11658,27 +11658,45 @@
+ Contents
+- 
+ ();%0a
+-%09%09%09%09%09%09
++%0a                        
+ BlendFla
+@@ -11702,51 +11702,99 @@
+ ares
+- 
+ (t
+-emporary4, temporary3);%0a%09%09%09%09%09%09temporary4
++hirdQuarterRezColor, secondQuarterRezColor);%0a                        thirdQuarterRezColor
+ .Dis
+@@ -11809,71 +11809,135 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%09%09
++%0a                        
+ AddTo
+- 
+ (1
 +.0
  f, 
--temporary3, temporary2);%0a%09%09%09%09%09temporary3.DiscardContents();%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
-+secondQuarterRezColor, quarterRezColor);%0a                        secondQuarterRezColor.DiscardContents();%0a                    %7d%0a                %7d%0a            %7d%0a%0a            // screen blend bloom results to color buffer%0a%0a            
+-temporary3, temporary2);%0a%09%09%09%09%09%09temporary3
++secondQuarterRezColor, quarterRezColor);%0a                        secondQuarterRezColor
+ .Dis
+@@ -11952,34 +11952,138 @@
+ ents
+- 
+ ();%0a
+-%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09
++                    %7d%0a                %7d%0a            %7d%0a%0a            // screen blend bloom results to color buffer%0a%0a            
  scre
-@@ -12130,18 +12130,28 @@
+@@ -12090,33 +12090,32 @@
+ enBlend.SetFloat
+- 
+ (%22_Intensity%22, b
+@@ -12130,19 +12130,28 @@
  nsity);%0a
--%09%09
+-%09%09%09
 +            
  screenBl
-@@ -12190,18 +12190,28 @@
+@@ -12156,33 +12156,32 @@
+ Blend.SetTexture
+- 
+ (%22_ColorBuffer%22,
+@@ -12190,19 +12190,28 @@
  ource);%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -12216,26 +12216,31 @@
- cs.Blit(
--temporary2
-+quarterRezColor
+@@ -12215,28 +12215,32 @@
+ ics.Blit
+- (temporary2
++(quarterRezColor
  , destin
-@@ -12268,17 +12268,37 @@
+@@ -12268,18 +12268,37 @@
  int)
--pass);%0a%09%09
+-pass);%0a%09%09%09
 +realBlendMode);%0a%0a            
  Rend
-@@ -12328,23 +12328,38 @@
- ary(
--temporary2);%0a%09%09
-+quarterRezColor);%0a            
+@@ -12327,74 +12327,106 @@
+ rary
+- (temporary2);%0a%09%09%09RenderTexture.ReleaseTemporary (temporary3);%0a%09%09%09
++(quarterRezColor);%0a            RenderTexture.ReleaseTemporary(secondQuarterRezColor);%0a            
  Rend
-@@ -12389,72 +12389,117 @@
- ary(
--temporary3);%0a%09%09RenderTexture.ReleaseTemporary(temporary4);%0a%09%7d%0a%0a%09
-+secondQuarterRezColor);%0a            RenderTexture.ReleaseTemporary(thirdQuarterRezColor);%0a        %7d%0a%0a        
+@@ -12455,30 +12455,51 @@
+ rary
+- 
+ (t
+-emporary4);%0a%09%09%7d%0a%0a%09%09
++hirdQuarterRezColor);%0a        %7d%0a%0a        
  priv
-@@ -12569,21 +12569,38 @@
+@@ -12512,17 +12512,16 @@
+ id AddTo
+- 
+ (float i
+@@ -12569,23 +12569,38 @@
  ure to)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  addBrigh
-@@ -12661,18 +12661,28 @@
+@@ -12633,17 +12633,16 @@
+ SetFloat
+- 
+ (%22_Inten
+@@ -12661,19 +12661,28 @@
  sity_);%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -12725,37 +12725,51 @@
+@@ -12678,33 +12678,32 @@
+    Graphics.Blit
+- 
+ (from, to, addBr
+@@ -12725,39 +12725,51 @@
  neOneMaterial);%0a
--%09%7d%0a%0a%09
+-%09%09%7d%0a%0a%09%09
 +        %7d%0a%0a        
  private void Ble
-@@ -12815,21 +12815,38 @@
+@@ -12776,17 +12776,16 @@
+ ndFlares
+- 
+ (RenderT
+@@ -12815,23 +12815,38 @@
  ure to)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  lensFlar
-@@ -12962,34 +12962,44 @@
+@@ -12860,25 +12860,24 @@
+ al.SetVector
+- 
+ (%22colorA%22, n
+@@ -12878,33 +12878,32 @@
+ rA%22, new Vector4
+- 
+ (flareColorA.r, 
+@@ -12962,35 +12962,44 @@
  lareIntensity);%0a
--%09%09
+-%09%09%09
 +            
  lensFlareMateria
-@@ -13107,34 +13107,44 @@
+@@ -13005,25 +13005,24 @@
+ al.SetVector
+- 
+ (%22colorB%22, n
+@@ -13023,33 +13023,32 @@
+ rB%22, new Vector4
+- 
+ (flareColorB.r, 
+@@ -13107,35 +13107,44 @@
  lareIntensity);%0a
--%09%09
+-%09%09%09
 +            
  lensFlareMateria
-@@ -13260,18 +13260,28 @@
+@@ -13150,25 +13150,24 @@
+ al.SetVector
+- 
+ (%22colorC%22, n
+@@ -13168,33 +13168,32 @@
+ rC%22, new Vector4
+- 
+ (flareColorC.r, 
+@@ -13260,19 +13260,28 @@
  nsity);%0a
--%09%09
+-%09%09%09
 +            
  lensFlar
-@@ -13405,18 +13405,28 @@
+@@ -13299,17 +13299,16 @@
+ etVector
+- 
+ (%22colorD
+@@ -13321,17 +13321,16 @@
+  Vector4
+- 
+ (flareCo
+@@ -13405,19 +13405,28 @@
  nsity);%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -13453,37 +13453,51 @@
+@@ -13422,33 +13422,32 @@
+    Graphics.Blit
+- 
+ (from, to, lensF
+@@ -13453,39 +13453,51 @@
  FlareMaterial);%0a
--%09%7d%0a%0a%09
+-%09%09%7d%0a%0a%09%09
 +        %7d%0a%0a        
  private void Bri
-@@ -13584,31 +13584,57 @@
+@@ -13505,17 +13505,16 @@
+ htFilter
+- 
+ (float t
+@@ -13584,32 +13584,57 @@
  to)%0a
--%09%7b%0a%09%09if (doHdr)%0a%09%09%7b%0a%09%09%09
+-%09%09%7b%0a%09%09%09if (doHdr) %7b%0a%09%09%09%09
 +        %7b%0a            if (doHdr)%0a                
  brig
-@@ -13702,39 +13702,60 @@
+@@ -13655,33 +13655,32 @@
+ terial.SetVector
+- 
+ (%22threshold%22, ne
+@@ -13680,33 +13680,32 @@
+ ld%22, new Vector4
+- 
+ (thresh, 1f, 0f,
+@@ -13702,37 +13702,60 @@
  h, 1
 +.0
  f, 
@@ -780,56 +1197,92 @@
  0f, 
 +0.
  0f));%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%09%7d else %7b%0a%09%09%09%09
 +            else%0a                
  brig
+@@ -13784,17 +13784,16 @@
+ etVector
+- 
+ (%22thresh
+@@ -13809,17 +13809,16 @@
+  Vector4
+- 
+ (thresh,
 @@ -13819,22 +13819,26 @@
  hresh, 1
 +.0
  f / (1
 +.0
  f - thre
-@@ -13846,24 +13846,34 @@
+@@ -13846,26 +13846,34 @@
  h), 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +            
  brig
-@@ -13940,18 +13940,28 @@
+@@ -13901,17 +13901,16 @@
+ SetFloat
+- 
+ (%22useSrc
+@@ -13940,19 +13940,28 @@
  sMask);%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -14007,13 +14007,27 @@
+@@ -13957,33 +13957,32 @@
+    Graphics.Blit
+- 
+ (from, to, brigh
+@@ -14007,15 +14007,27 @@
  l);%0a
--%09%7d%0a%0a%09
+-%09%09%7d%0a%0a%09%09
 +        %7d%0a%0a        
  priv
-@@ -14100,53 +14100,87 @@
+@@ -14043,17 +14043,16 @@
+ Vignette
+- 
+ (float a
+@@ -14100,54 +14100,87 @@
  to)%0a
--%09%7b%0a%09%09if ((bool)lensFlareVignetteMask)%0a%09%09%7b%0a%09%09%09
+-%09%09%7b%0a%09%09%09if ((bool)lensFlareVignetteMask) %7b%0a%09%09%09%09
 +        %7b%0a            if (lensFlareVignetteMask)%0a            %7b%0a                
  scre
-@@ -14238,19 +14238,32 @@
+@@ -14197,17 +14197,16 @@
+ tTexture
+- 
+ (%22_Color
+@@ -14238,20 +14238,32 @@
  eMask);%0a
--%09%09%09
+-%09%09%09%09
 +                
  Graphics
-@@ -14299,26 +14299,69 @@
+@@ -14259,33 +14259,32 @@
+    Graphics.Blit
+- 
+ (from, to, scree
+@@ -14299,24 +14299,69 @@
  3);%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%09%7d else %7b%0a%09%09%09%09
 +            %7d%0a            else%0a            %7b%0a                
  vign
-@@ -14416,11 +14416,24 @@
+@@ -14381,17 +14381,16 @@
+ SetFloat
+- 
+ (%22vignet
+@@ -14416,12 +14416,24 @@
  t);%0a
--%09%09%09
+-%09%09%09%09
 +                
  Grap
-@@ -14475,13 +14475,37 @@
+@@ -14441,17 +14441,16 @@
+ ics.Blit
+- 
+ (from, t
+@@ -14475,18 +14475,37 @@
  l);%0a
--%09%09%7d%0a%09
+-%09%09%09%7d%0a%09%09%7d%0a%09
 +            %7d%0a        %7d%0a%0a    
  %7d%0a%7d%0a

@@ -23,8 +23,10 @@
 -%09
 +    
  private 
-@@ -210,21 +210,30 @@
- Start()%0a
+@@ -207,25 +207,33 @@
+ id Start
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  gm = Gam
@@ -43,9 +45,11 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
-@@ -376,34 +376,33 @@
- D()%0a
--%09%7b%0a%09%09pd.SetIntSwappedArgs(
+@@ -373,39 +373,36 @@
+ er2D
+- 
+ ()%0a
+-%09%7b%0a%09%09pd.SetIntSwappedArgs (
 +    %7b%0a        pd.SetInt(%22
  envi
 @@ -412,19 +412,19 @@
@@ -61,27 +65,32 @@
 -%09%09
 +        
  heroCtrl.checkEn
-@@ -474,13 +474,19 @@
+@@ -470,18 +470,23 @@
+ ment
+- 
  ();%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  priv
-@@ -516,38 +516,26 @@
- D()%0a
--%09%7b%0a%09%09pd.SetIntSwappedArgs(pd.G
-+    %7b%0a        pd.S
- etIn
-@@ -556,19 +556,21 @@
- Type
--Default%22), 
-+%22, pd.GetInt(
- %22env
-@@ -585,14 +585,28 @@
- Type
--%22);%0a%09%09
-+Default%22));%0a        
+@@ -513,39 +513,54 @@
+ it2D
+- 
+ ()%0a
+-%09%7b%0a%09%09pd.SetIntSwappedArgs (
++    %7b%0a        pd.SetInt(%22environmentType%22, 
+ pd.G
+@@ -564,17 +564,16 @@
+ d.GetInt
+- 
+ (%22enviro
+@@ -594,32 +594,19 @@
+ lt%22)
+-, %22environmentType%22);%0a%09%09
++);%0a        
  hero
-@@ -634,9 +634,12 @@
+@@ -630,14 +630,16 @@
+ ment
+- 
  ();%0a
 -%09
 +    

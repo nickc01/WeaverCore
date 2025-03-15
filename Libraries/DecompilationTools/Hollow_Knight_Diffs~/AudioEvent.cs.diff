@@ -31,8 +31,10 @@
 -%09
 +    
  public v
-@@ -316,21 +316,30 @@
- Reset()%0a
+@@ -313,25 +313,33 @@
+ id Reset
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  PitchMin
@@ -51,29 +53,43 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  public f
-@@ -433,21 +433,30 @@
- Pitch()%0a
+@@ -434,17 +434,25 @@
+ itch
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- if (Math
-@@ -496,38 +496,65 @@
- x))%0a
--%09%09%7b%0a%09%09%09return PitchMax;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return PitchMax;%0a        %7d%0a        
+ if (
+@@ -470,17 +470,16 @@
+ ximately
+- 
+ (PitchMi
+@@ -495,37 +495,66 @@
+ ax))
+- %7b%0a%09%09%09return PitchMax;%0a%09%09%7d%0a%09%09
++%0a        %7b%0a            return PitchMax;%0a        %7d%0a        
  retu
+@@ -580,17 +580,16 @@
+ om.Range
+- 
+ (PitchMi
 @@ -606,13 +606,19 @@
  x);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  publ
-@@ -683,21 +683,30 @@
- sition)%0a
+@@ -644,17 +644,16 @@
+ yOneShot
+- 
+ (AudioSo
+@@ -687,13 +687,22 @@
+ on)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- if (!(Cl
-@@ -749,91 +749,835 @@
+ if (
+@@ -749,90 +749,835 @@
  lon)
-- && !(prefab == null))%0a%09%09%7b%0a%09%09%09AudioSource audioSource = prefab.Spawn(position);%0a%09%09%09
+- && !(prefab == null)) %7b%0a%09%09%09AudioSource audioSource = prefab.Spawn (position);%0a%09%09%09
 +)%0a        %7b%0a#if UNITY_EDITOR%0a            if (playAtPointMethod == null)%0a            %7b%0a                playAtPointMethod = WeaverTypeHelpers.GetWeaverMethod(%22WeaverCore.WeaverAudio%22, %22PlayAtPoint%22);%0a%0a            %7d%0a%0a            Debug.Log(%22SOUND = %22 + Clip.name);%0a%0a            var instance = playAtPointMethod.Invoke(null, new object%5b%5d %7bClip, position, Volume, 2%7d);%0a%0a            if (audioSourceProperty == null)%0a            %7b%0a                audioSourceProperty = instance.GetType().GetProperty(%22AudioSource%22);%0a            %7d%0a%0a            var audioSource = (AudioSource)audioSourceProperty.GetValue(instance);%0a%0a            audioSource.pitch = SelectPitch();%0a#else%0a            if (prefab != null)%0a            %7b%0a                AudioSource audioSource = GameObject.Instantiate(prefab, position, Quaternion.identity);%0a                
  audi
 @@ -1601,19 +1601,32 @@
@@ -81,11 +97,18 @@
 -%09%09%09
 +                
  audioSou
-@@ -1656,11 +1656,24 @@
+@@ -1652,16 +1652,28 @@
+ itch
+- 
  ();%0a
 -%09%09%09
 +                
  audi
+@@ -1695,17 +1695,16 @@
+ Shot
+- 
+ (Clip);%0a
+ %09%09%7d%0a
 @@ -1703,13 +1703,43 @@
  p);%0a
 -%09%09%7d%0a%09

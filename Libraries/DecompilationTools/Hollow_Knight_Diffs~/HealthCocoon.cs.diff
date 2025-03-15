@@ -18,11 +18,13 @@
 -%09%09
 +        
  private 
-@@ -281,26 +281,32 @@
- Object%3e();%0a%0a
+@@ -284,16 +284,21 @@
+ ect%3e
+- 
+ ();%0a%0a
 -%09%09
 +        
- public int m
+ publ
 @@ -312,26 +312,32 @@
  minAmount;%0a%0a
 -%09%09
@@ -33,6 +35,10 @@
 -%09%09
 +        
  public V
+@@ -399,17 +399,16 @@
+  Vector2
+- 
+ (0.5f, 0
 @@ -414,18 +414,24 @@
  0.5f);%0a%0a
 -%09%09
@@ -58,9 +64,13 @@
 -%09%09
 +        
  public v
-@@ -594,42 +594,78 @@
+@@ -571,17 +571,16 @@
+ etupPool
+- 
+ (Transfo
+@@ -594,39 +594,78 @@
  nt)%0a
--%09%09%7b%0a%09%09%09if ((bool)prefab)%0a%09%09%09%7b%0a%09%09%09%09
+-%09%09%7b%0a%09%09%09if ((bool)prefab) %7b%0a%09%09%09%09
 +        %7b%0a            if ((bool)prefab)%0a            %7b%0a                
  pool
 @@ -687,20 +687,32 @@
@@ -68,11 +78,15 @@
 -%09%09%09%09
 +                
  for (int
-@@ -748,27 +748,54 @@
- t; i++)%0a
--%09%09%09%09%7b%0a%09%09%09%09%09
-+                %7b%0a                    
+@@ -747,24 +747,55 @@
+ nt; i++)
+- %7b%0a%09%09%09%09%09
++%0a                %7b%0a                    
  GameObje
+@@ -840,17 +840,16 @@
+ tantiate
+- 
+ (prefab,
 @@ -858,21 +858,36 @@
  arent);%0a
 -%09%09%09%09%09
@@ -83,26 +97,48 @@
 -%09%09%09%09%09
 +                    
  gameObje
-@@ -985,21 +985,36 @@
- false);%0a
+@@ -961,33 +961,32 @@
+ Object.SetActive
+- 
+ (value: false);%0a
+@@ -989,21 +989,36 @@
+ e);%0a
 -%09%09%09%09%09
 +                    
  pool.Add
+  (ga
+@@ -1013,17 +1013,16 @@
+ pool.Add
+- 
+ (gameObj
 @@ -1031,26 +1031,59 @@
  t);%0a
 -%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
 +                %7d%0a            %7d%0a        %7d%0a%0a        
  publ
-@@ -1104,23 +1104,38 @@
- Spawn()%0a
+@@ -1105,19 +1105,33 @@
+ pawn
+- 
+ ()%0a
 -%09%09%7b%0a%09%09%09
 +        %7b%0a            
- foreach 
-@@ -1164,133 +1164,238 @@
- ol)%0a
--%09%09%09%7b%0a%09%09%09%09if (!item.activeSelf)%0a%09%09%09%09%7b%0a%09%09%09%09%09item.SetActive(value: true);%0a%09%09%09%09%09return item;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09return null;%0a%09%09%7d%0a%09%7d%0a%0a%09
-+            %7b%0a                if (!item.activeSelf)%0a                %7b%0a                    item.SetActive(value: true);%0a                    return item;%0a                %7d%0a            %7d%0a            return null;%0a        %7d%0a    %7d%0a%0a    
- %5bHea
+ fore
+@@ -1163,44 +1163,99 @@
+ ool)
+- %7b%0a%09%09%09%09if (!item.activeSelf) %7b%0a%09%09%09%09%09
++%0a            %7b%0a                if (!item.activeSelf)%0a                %7b%0a                    
+ item
+@@ -1256,33 +1256,32 @@
+   item.SetActive
+- 
+ (value: true);%0a%09
+@@ -1283,70 +1283,126 @@
+ e);%0a
+-%09%09%09%09%09return item;%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09return null;%0a%09%09%7d%0a%09%7d%0a%0a%09
++                    return item;%0a                %7d%0a            %7d%0a            return null;%0a        %7d%0a    %7d%0a%0a    
+ %5bHeader
+- 
+ (%22Be
 @@ -1408,25 +1408,28 @@
  ehaviour%22)%5d%0a
 -%09
@@ -118,6 +154,10 @@
 -%09
 +    
  public V
+@@ -1531,25 +1531,24 @@
+  new Vector3
+- 
+ (0f, 0.8f, 0
 @@ -1552,25 +1552,28 @@
  , 0f);%0a%0a
 -%09
@@ -182,11 +222,13 @@
 -%09
 +    
  private 
-@@ -1895,17 +1895,20 @@
- vated;%0a%0a
+@@ -1899,17 +1899,19 @@
+ d;%0a%0a
 -%09
 +    
- %5bHeader(
+ %5bHeader
+- 
+ (%22An
 @@ -1921,17 +1921,20 @@
  tion%22)%5d%0a
 -%09
@@ -232,159 +274,235 @@
 -%09
 +    
  private 
-@@ -2258,21 +2258,30 @@
- Awake()%0a
+@@ -2255,25 +2255,33 @@
+ id Awake
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  source =
-@@ -2310,18 +2310,26 @@
- rce%3e();%0a
+@@ -2306,23 +2306,30 @@
+ oSource%3e
+- 
+ ();%0a
 -%09%09
 +        //
  animator
-@@ -2367,18 +2367,26 @@
- tor%3e();%0a
+@@ -2363,23 +2363,30 @@
+ nimator%3e
+- 
+ ();%0a
 -%09%09
 +        /*
  Persiste
-@@ -2444,18 +2444,24 @@
- tem%3e();%0a
+@@ -2440,23 +2440,28 @@
+ oolItem%3e
+- 
+ ();%0a
 -%09%09
 +        
  if (!com
-@@ -2468,37 +2468,64 @@
- ponent)%0a
--%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return;%0a        %7d%0a        
+@@ -2467,36 +2467,65 @@
+ mponent)
+- %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++%0a        %7b%0a            return;%0a        %7d%0a        
  componen
 @@ -2552,16 +2552,17 @@
  delegate
 + 
  (ref boo
-@@ -2574,41 +2574,68 @@
- ue)%0a
--%09%09%7b%0a%09%09%09value = activated;%0a%09%09%7d;%0a%09%09
-+        %7b%0a            value = activated;%0a        %7d;%0a        
+@@ -2573,40 +2573,69 @@
+ lue)
+- %7b%0a%09%09%09value = activated;%0a%09%09%7d;%0a%09%09
++%0a        %7b%0a            value = activated;%0a        %7d;%0a        
  comp
 @@ -2666,16 +2666,17 @@
  delegate
 + 
  (bool va
-@@ -2680,23 +2680,38 @@
-  value)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -2679,22 +2679,39 @@
+ l value)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  activate
 @@ -2721,19 +2721,28 @@
   value;%0a
 -%09%09%09
 +            
  if (acti
-@@ -2752,45 +2752,89 @@
- ed)%0a
--%09%09%09%7b%0a%09%09%09%09SetBroken();%0a%09%09%09%7d%0a%09%09%7d;%0a%09%7d%0a%0a%09
-+            %7b%0a                SetBroken();%0a            %7d%0a        %7d;*/%0a    %7d%0a%0a    
+@@ -2747,23 +2747,47 @@
+ tivated)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ SetBroke
+@@ -2791,28 +2791,50 @@
+ oken
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%7d;%0a%09%7d%0a%0a%09
++            %7d%0a        %7d;*/%0a    %7d%0a%0a    
  priv
-@@ -2850,21 +2850,30 @@
- Start()%0a
+@@ -2847,25 +2847,33 @@
+ id Start
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  animRout
-@@ -2905,18 +2905,24 @@
- ate());%0a
+@@ -2896,17 +2896,16 @@
+ tine
+- 
+ (Animate
+  ())
+@@ -2904,16 +2904,21 @@
+ mate
+- 
+ ());%0a
 -%09%09
 +        
- FlingPre
+ Flin
 @@ -2949,18 +2949,24 @@
  refabs;%0a
 -%09%09
 +        
  for (int
-@@ -2988,39 +2988,54 @@
- ay.Length; i++)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
- array%5bi%5d.SetupPo
+@@ -2991,36 +2991,52 @@
+ Length; i++)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ array
+- 
+ %5bi%5d.SetupPoo
+@@ -3028,33 +3028,32 @@
+ ray%5bi%5d.SetupPool
+- 
+ (base.transform)
 @@ -3054,25 +3054,37 @@
  sform);%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  private 
+@@ -3097,17 +3097,16 @@
+ laySound
+- 
+ (AudioCl
 @@ -3114,21 +3114,30 @@
  p clip)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if ((boo
-@@ -3160,23 +3160,38 @@
- l)clip)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3159,22 +3159,39 @@
+ ol)clip)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  source.P
+@@ -3204,17 +3204,16 @@
+ Shot
+- 
+ (clip);%0a
+ %09%09%7d%0a
 @@ -3208,25 +3208,37 @@
  (clip);%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  private 
-@@ -3263,33 +3263,57 @@
- e()%0a
--%09%7b%0a%09%09while (true)%0a%09%09%7b%0a%09%09%09
+@@ -3260,35 +3260,60 @@
+ mate
+- 
+ ()%0a
+-%09%7b%0a%09%09while (true) %7b%0a%09%09%09
 +    %7b%0a        while (true)%0a        %7b%0a            
  yiel
+@@ -3339,17 +3339,16 @@
+ rSeconds
+- 
+ (UnityEn
+@@ -3364,17 +3364,16 @@
+ om.Range
+- 
+ (waitMin
 @@ -3385,19 +3385,28 @@
  tMax));%0a
 -%09%09%09
 +            
  PlaySoun
+@@ -3406,17 +3406,16 @@
+ laySound
+- 
+ (moveSou
 @@ -3419,19 +3419,30 @@
  Sound);%0a
 -%09%09%09
 +            /*
  if ((boo
-@@ -3453,25 +3453,46 @@
- imator)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -3452,23 +3452,47 @@
+ nimator)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  tk2dSpri
+@@ -3542,17 +3542,16 @@
+ ipByName
+- 
+ (sweatAn
 @@ -3560,20 +3560,32 @@
  ation);%0a
 -%09%09%09%09
 +                
  animator
+@@ -3589,17 +3589,16 @@
+ tor.Play
+- 
+ (clipByN
 @@ -3603,20 +3603,32 @@
  yName);%0a
 -%09%09%09%09
 +                
  yield re
+@@ -3650,17 +3650,16 @@
+ rSeconds
+- 
+ ((float)
 @@ -3702,20 +3702,32 @@
  e.fps);%0a
 -%09%09%09%09
 +                
  animator
+@@ -3731,17 +3731,16 @@
+ tor.Play
+- 
+ (idleAni
 @@ -3748,30 +3748,425 @@
  ation);%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
 +            %7d*/%0a        %7d%0a    %7d%0a%0a    /*bool TryGetHitDirection(Collider2D collision)%0a    %7b%0a        if (collision != null)%0a        %7b%0a            var components = collision.GetComponents%3cMonoBehaviour%3e();%0a            foreach (var component in components)%0a            %7b%0a                if (component.GetType().FullName == %22PlayMakerFSM%22)%0a                %7b%0a%0a                %7d%0a            %7d%0a        %7d%0a    %7d*/%0a%0a    
  private 
-@@ -4209,21 +4209,30 @@
- lision)%0a
--%09%7b%0a%09%09
-+    %7b%0a        
- if (acti
-@@ -4238,37 +4238,64 @@
- ivated)%0a
--%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return;%0a        %7d%0a        
- bool fla
+@@ -4186,17 +4186,16 @@
+ rEnter2D
+- 
+ (Collide
+@@ -4213,47 +4213,85 @@
+ on)%0a
+-%09%7b%0a%09%09if (activated) %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++    %7b%0a        if (activated)%0a        %7b%0a            return;%0a        %7d%0a        
+ bool
 @@ -4305,18 +4305,25 @@
   false;%0a
 -%09%09
 +%0a        
  if (coll
-@@ -4350,39 +4350,85 @@
- ttack%22)%0a
--%09%09%7b%0a%09%09%09flag = true;%0a%09%09%09
-+        %7b%0a            flag = true;%0a%0a            //TODO%0a            /*
+@@ -4349,38 +4349,86 @@
+ Attack%22)
+- %7b%0a%09%09%09flag = true;%0a%09%09%09
++%0a        %7b%0a            flag = true;%0a%0a            //TODO%0a            /*
  float va
+@@ -4465,17 +4465,16 @@
+ meObject
+- 
+ (collisi
+@@ -4530,17 +4530,16 @@
+ FsmFloat
+- 
+ (%22direct
 @@ -4551,19 +4551,28 @@
  .Value;%0a
 -%09%09%09
@@ -395,46 +513,84 @@
 -%09%09%09
 +            
  Vector2 
+@@ -4617,17 +4617,16 @@
+  Vector2
+- 
+ (1.5f, 1
 @@ -4631,19 +4631,28 @@
   1.5f);%0a
 -%09%09%09
 +            
  if (valu
-@@ -4656,33 +4656,54 @@
- alue %3c 45f)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- z = UnityEng
-@@ -4734,128 +4734,206 @@
+@@ -4659,23 +4659,47 @@
+ e %3c 45f)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ z = Unit
+@@ -4710,33 +4710,32 @@
+ ine.Random.Range
+- 
+ (340, 380);%0a%09%09%09%7d
+@@ -4734,42 +4734,87 @@
  0);%0a
--%09%09%09%7d%0a%09%09%09else if (value %3c 135f)%0a%09%09%09%7b%0a%09%09%09%09z = UnityEngine.Random.Range(340, 380);%0a%09%09%09%7d%0a%09%09%09else if (value %3c 225f)%0a%09%09%09%7b%0a%09%09%09%09
-+            %7d%0a            else if (value %3c 135f)%0a            %7b%0a                z = UnityEngine.Random.Range(340, 380);%0a            %7d%0a            else if (value %3c 225f)%0a            %7b%0a                
+-%09%09%09%7d else if (value %3c 135f) %7b%0a%09%09%09%09
++            %7d%0a            else if (value %3c 135f)%0a            %7b%0a                
+ z = 
+@@ -4837,17 +4837,16 @@
+ om.Range
+- 
+ (340, 38
+@@ -4853,42 +4853,87 @@
+ 0);%0a
+-%09%09%09%7d else if (value %3c 225f) %7b%0a%09%09%09%09
++            %7d%0a            else if (value %3c 225f)%0a            %7b%0a                
  vect
 @@ -4945,20 +4945,32 @@
  *= -1f;%0a
 -%09%09%09%09
 +                
  z = Unit
-@@ -5004,96 +5004,268 @@
+@@ -4989,17 +4989,16 @@
+ om.Range
+- 
+ (70, 110
+@@ -5004,42 +5004,87 @@
  0);%0a
--%09%09%09%7d%0a%09%09%09else if (value %3c 360f)%0a%09%09%09%7b%0a%09%09%09%09z = UnityEngine.Random.Range(250, 290);%0a%09%09%09%7d%0a%09%09%09
-+            %7d%0a            else if (value %3c 360f)%0a            %7b%0a                z = UnityEngine.Random.Range(250, 290);%0a            %7d*/%0a%0a            Vector2 vector = new Vector2(-1.5f, 1.5f);%0a            float z = UnityEngine.Random.Range(70, 110);%0a            
- Game
+-%09%09%09%7d else if (value %3c 360f) %7b%0a%09%09%09%09
++            %7d%0a            else if (value %3c 360f)%0a            %7b%0a                
+ z = 
+@@ -5107,17 +5107,16 @@
+ om.Range
+- 
+ (250, 29
+@@ -5119,24 +5119,157 @@
+ , 290);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d*/%0a%0a            Vector2 vector = new Vector2(-1.5f, 1.5f);%0a            float z = UnityEngine.Random.Range(70, 110);%0a            
+ GameObje
 @@ -5287,35 +5287,44 @@
  = slashEffects;%0a
 -%09%09%09
 +            
  for (int i = 0; 
-@@ -5342,33 +5342,56 @@
- ength; i++)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                //
- GameObject o
-@@ -5451,20 +5451,195 @@
- rigin);%0a
--%09%09%09%09
-+                GameObject obj = GameObject.Instantiate(array%5bi%5d, base.transform.position + effectOrigin, Quaternion.identity);%0a%0a                //TODO : FIX THIS%0a                
- obj.tran
+@@ -5337,39 +5337,65 @@
+ ray.Length; i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                //
+ GameObject obj =
+@@ -5392,33 +5392,32 @@
+ ject obj = array
+- 
+ %5bi%5d.Spawn (base.
+@@ -5413,55 +5413,229 @@
+ pawn
+- (base.transform.position + effectOrigin);%0a%09%09%09%09
++(base.transform.position + effectOrigin);%0a                GameObject obj = GameObject.Instantiate(array%5bi%5d, base.transform.position + effectOrigin, Quaternion.identity);%0a%0a                //TODO : FIX THIS%0a                
+ obj.
+@@ -5669,17 +5669,16 @@
+  Vector3
+- 
+ (0f, 0f,
 @@ -5682,20 +5682,32 @@
  0f, z);%0a
 -%09%09%09%09
@@ -445,10 +601,10 @@
 -%09%09%09%7d%0a%09%09%7d%0a%09%09
 +            %7d%0a        %7d%0a        
  if (coll
-@@ -5800,23 +5800,38 @@
- Spell%22)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -5799,22 +5799,39 @@
+  Spell%22)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  flag = t
 @@ -5827,35 +5827,44 @@
     flag = true;%0a
@@ -460,16 +616,20 @@
 -%09%09%09
 +            
  for (int
-@@ -5933,25 +5933,48 @@
- h; i++)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                //
+@@ -5932,23 +5932,49 @@
+ th; i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                //
  GameObje
-@@ -6039,20 +6039,161 @@
- rigin);%0a
--%09%09%09%09
-+                GameObject obj2 = GameObject.Instantiate(array%5bi%5d, base.transform.position + effectOrigin, Quaternion.identity);%0a                
- Vector3 
+@@ -5984,25 +5984,24 @@
+ obj2 = array
+- 
+ %5bi%5d.Spawn (b
+@@ -6001,55 +6001,195 @@
+ pawn
+- (base.transform.position + effectOrigin);%0a%09%09%09%09
++(base.transform.position + effectOrigin);%0a                GameObject obj2 = GameObject.Instantiate(array%5bi%5d, base.transform.position + effectOrigin, Quaternion.identity);%0a                
+ Vect
 @@ -6228,20 +6228,32 @@
  sition;%0a
 -%09%09%09%09
@@ -480,9 +640,9 @@
 -%09%09%09%09
 +                
  obj2.tra
-@@ -6322,36 +6322,72 @@
+@@ -6322,34 +6322,72 @@
  on;%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%09if (flag)%0a%09%09%7b%0a%09%09%09
+-%09%09%09%7d%0a%09%09%7d%0a%09%09if (flag) %7b%0a%09%09%09
 +            %7d%0a        %7d%0a        if (flag)%0a        %7b%0a            
  acti
 @@ -6400,19 +6400,28 @@
@@ -495,16 +655,26 @@
 -%09%09%09
 +            
  for (int
-@@ -6500,25 +6500,46 @@
- h; i++)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- array%5bi%5d
-@@ -6567,40 +6567,79 @@
+@@ -6503,21 +6503,44 @@
+ i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ array
+- 
+ %5bi%5d.
+@@ -6540,33 +6540,32 @@
+ ray%5bi%5d.SetActive
+- 
+ (value: true);%0a%09
+@@ -6567,37 +6567,79 @@
  e);%0a
--%09%09%09%7d%0a%09%09%09if ((bool)cap)%0a%09%09%09%7b%0a%09%09%09%09
+-%09%09%09%7d%0a%09%09%09if ((bool)cap) %7b%0a%09%09%09%09
 +            %7d%0a            if ((bool)cap)%0a            %7b%0a                
  cap.
+@@ -6650,33 +6650,32 @@
+ Object.SetActive
+- 
+ (value: true);%0a%09
 @@ -6673,20 +6673,32 @@
   true);%0a
 -%09%09%09%09
@@ -515,11 +685,17 @@
 -%09%09%09%09
 +                
  vector2.
-@@ -6800,20 +6800,32 @@
- lize();%0a
+@@ -6800,17 +6800,28 @@
+ lize
+- 
+ ();%0a
 -%09%09%09%09
 +                
- cap.AddF
+ cap.
+@@ -6828,17 +6828,16 @@
+ AddForce
+- 
+ (capHitF
 @@ -6874,24 +6874,42 @@
  pulse);%0a
 -%09%09%09%7d%0a%09%09%09
@@ -530,51 +706,84 @@
 -%09%09%09
 +            
  foreach 
-@@ -6991,46 +6991,85 @@
- y2)%0a
--%09%09%09%7b%0a%09%09%09%09FlingObjects(fling);%0a%09%09%09%7d%0a%09%09%09
-+            %7b%0a                FlingObjects(fling);%0a            %7d%0a            
+@@ -6986,23 +6986,47 @@
+  array2)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ FlingObj
+@@ -7029,17 +7029,16 @@
+ gObjects
+- 
+ (fling);
+@@ -7042,16 +7042,34 @@
+ g);%0a
+-%09%09%09%7d%0a%09%09%09
++            %7d%0a            
  Play
+@@ -7073,17 +7073,16 @@
+ laySound
+- 
+ (deathSo
 @@ -7087,19 +7087,28 @@
  Sound);%0a
 -%09%09%09
 +            
  SetBroke
-@@ -7108,27 +7108,36 @@
- etBroken();%0a
+@@ -7108,24 +7108,32 @@
+ etBroken
+- 
+ ();%0a
 -%09%09%09
 +            
- GameManager.
-@@ -7164,19 +7164,30 @@
- List();%0a
+ GameMana
+@@ -7160,24 +7160,34 @@
+ coonList
+- 
+ ();%0a
 -%09%09%09
 +            //
  GameCame
-@@ -7252,27 +7252,38 @@
- Cameras%3e();%0a
+@@ -7252,24 +7252,34 @@
+ Cameras%3e
+- 
+ ();%0a
 -%09%09%09
 +            /*
- if ((bool)ga
-@@ -7293,25 +7293,65 @@
- ameras)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                %0a                //
+ if ((boo
+@@ -7292,23 +7292,66 @@
+ Cameras)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                %0a                //
  gameCame
+@@ -7378,17 +7378,16 @@
+ endEvent
+- 
+ (%22EnemyK
 @@ -7398,30 +7398,53 @@
  hake%22);%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
 +            %7d*/%0a        %7d%0a    %7d%0a%0a    
  private 
-@@ -7460,21 +7460,30 @@
- roken()%0a
+@@ -7461,17 +7461,25 @@
+ oken
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- StopCoro
+ Stop
+@@ -7487,17 +7487,16 @@
+ oroutine
+- 
+ (animRou
 @@ -7502,18 +7502,24 @@
  utine);%0a
 -%09%09
 +        
  GetCompo
+@@ -7536,17 +7536,16 @@
+ enderer%3e
+- 
+ ().enabl
 @@ -7556,18 +7556,24 @@
   false;%0a
 -%09%09
@@ -585,11 +794,17 @@
 -%09%09
 +        
  for (int
-@@ -7645,31 +7645,46 @@
- ength; i++)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
- array%5bi%5d.Set
+@@ -7652,20 +7652,36 @@
+ i++)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ array
+- 
+ %5bi%5d.
+@@ -7689,17 +7689,16 @@
+ etActive
+- 
+ (value: 
 @@ -7705,22 +7705,34 @@
  false);%0a
 -%09%09%7d%0a%09%09
@@ -600,26 +815,36 @@
 -%09%09
 +        
  for (int
-@@ -7811,23 +7811,38 @@
- h; i++)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
- array2%5bi
+@@ -7814,21 +7814,37 @@
+ i++)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ array2
+- 
+ %5bi%5d.
 @@ -7860,25 +7860,37 @@
   false;%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  private 
+@@ -7906,17 +7906,16 @@
+ gObjects
+- 
+ (FlingPr
 @@ -7926,21 +7926,30 @@
   fling)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (!fli
-@@ -7963,29 +7963,56 @@
- ab)%0a
--%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return;%0a        %7d%0a        
+@@ -7962,28 +7962,57 @@
+ fab)
+- %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++%0a        %7b%0a            return;%0a        %7d%0a        
  int 
+@@ -8033,33 +8033,32 @@
+ ine.Random.Range
+- 
+ (fling.minAmount
 @@ -8081,18 +8081,24 @@
  t + 1);%0a
 -%09%09
@@ -630,36 +855,66 @@
 -%09%09
 +        
  for (int
-@@ -8165,23 +8165,38 @@
- m; i++)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -8164,22 +8164,39 @@
+ um; i++)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  GameObje
-@@ -8219,19 +8219,28 @@
- pawn();%0a
+@@ -8215,24 +8215,32 @@
+ ng.Spawn
+- 
+ ();%0a
 -%09%09%09
 +            
  obj.tran
+@@ -8268,17 +8268,16 @@
+  Vector3
+- 
+ (fling.o
+@@ -8311,33 +8311,32 @@
+ ine.Random.Range
+- 
+ (-1f, 1f), fling
+@@ -8380,17 +8380,16 @@
+ om.Range
+- 
+ (-1f, 1f
 @@ -8388,27 +8388,36 @@
  (-1f, 1f));%0a
 -%09%09%09
 +            
  float num2 =
+@@ -8433,33 +8433,32 @@
+ ine.Random.Range
+- 
+ (fling.minSpeed,
 @@ -8475,19 +8475,28 @@
  Speed);%0a
 -%09%09%09
 +            
  float nu
+@@ -8524,17 +8524,16 @@
+ om.Range
+- 
+ (fling.m
 @@ -8558,19 +8558,28 @@
  Angle);%0a
 -%09%09%09
 +            
  float x 
+@@ -8596,17 +8596,16 @@
+ athf.Cos
+- 
+ (num3 * 
 @@ -8630,19 +8630,28 @@
  180f));%0a
 -%09%09%09
 +            
  float y 
+@@ -8668,17 +8668,16 @@
+ athf.Sin
+- 
+ (num3 * 
 @@ -8702,19 +8702,28 @@
  180f));%0a
 -%09%09%09
@@ -675,46 +930,51 @@
 -%09%09%09
 +            
  Rigidbod
-@@ -8827,19 +8827,28 @@
- y2D%3e();%0a
+@@ -8827,16 +8827,24 @@
+ y2D%3e
+- 
+ ();%0a
 -%09%09%09
 +            
- if ((boo
-@@ -8860,25 +8860,46 @@
- ponent)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- componen
-@@ -8925,22 +8925,43 @@
- ty;%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
-+            %7d%0a        %7d%0a    %7d%0a%0a    
+ if (
+@@ -8863,60 +8863,105 @@
+ ent)
+- %7b%0a%09%09%09%09component.velocity = velocity;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++%0a            %7b%0a                component.velocity = velocity;%0a            %7d%0a        %7d%0a    %7d%0a%0a    
  publ
-@@ -8998,21 +8998,30 @@
- amount)%0a
+@@ -8985,17 +8985,16 @@
+ erAmount
+- 
+ (int amo
+@@ -9002,13 +9002,22 @@
+ nt)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- FlingPre
+ Flin
 @@ -9048,18 +9048,24 @@
  refabs;%0a
 -%09%09
 +        
  foreach 
-@@ -9099,23 +9099,38 @@
-  array)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -9098,22 +9098,39 @@
+ n array)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  if (flin
-@@ -9175,17 +9175,38 @@
- r%22)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -9174,15 +9174,39 @@
+ er%22)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  flin
 @@ -9259,20 +9259,32 @@
  mount);%0a
 -%09%09%09%09
 +                
  flingPre
+@@ -9296,17 +9296,16 @@
+ etupPool
+- 
+ (base.tr
 @@ -9318,29 +9318,59 @@
  m);%0a
 -%09%09%09%09break;%0a%09%09%09%7d%0a%09%09%7d%0a%09

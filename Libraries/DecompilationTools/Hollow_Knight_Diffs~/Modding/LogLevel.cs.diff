@@ -1,94 +1,80 @@
-@@ -1,138 +1,25 @@
--using JetBrains.Annotations;%0a%0anamespace Modding;%0a%0a/// %3csummary%3e%0a///     What level should logs be done at?%0a/// %3c/summary%3e%0a%5bPublicAPI%5d%0a
-+namespace Modding%0a%7b%0a%09
- publ
-@@ -39,27 +39,32 @@
- vel%0a
-+%09
- %7b%0a%09
-+%09
- //
--/ %3cs
-+%0a%09%09// S
+@@ -1,141 +1,23 @@
+-using JetBrains.Annotations;%0a%0anamespace Modding%0a%7b%0a%09/// %3csummary%3e%0a%09///     What level should logs be done at?%0a%09/// %3c/summary%3e%0a%09%5bPublicAPI%5d
++namespace Modding%0a%7b
+ %0a%09pu
+@@ -38,39 +38,41 @@
+ evel%0a%09%7b%0a%09%09//
++%0a%09%09/
+ / 
+-%3cs
++S
  ummary
--%3e%0a%09/
-+:%0a%09%09
- //  
-@@ -113,47 +113,40 @@
- ly%0a%09
--/// %3c/summary%3e%0a
- %09Fine
-+ = 0
- ,%0a%09
-+%09
- //
--/ %3cs
-+%0a%09%09// S
- ummary
--%3e%0a%09/
-+:%0a%09%09
- //  
-@@ -201,48 +201,41 @@
- ly%0a%09
--/// %3c/summary%3e%0a
- %09Debug
-+ = 1
- ,%0a%09
-+%09
- //
--/ %3cs
-+%0a%09%09// S
- ummary
--%3e%0a%09/
-+:%0a%09%09
- //  
-@@ -263,47 +263,40 @@
- el%0a%09
--/// %3c/summary%3e%0a
- %09Info
-+ = 2
- ,%0a%09
-+%09
- //
--/ %3cs
-+%0a%09%09// S
- ummary
--%3e%0a%09/
-+:%0a%09%09
- //  
-@@ -332,47 +332,40 @@
- ve%0a%09
--/// %3c/summary%3e%0a
- %09Warn
-+ = 3
- ,%0a%09
-+%09
- //
--/ %3cs
-+%0a%09%09// S
- ummary
--%3e%0a%09/
-+:%0a%09%09
- //  
-@@ -394,50 +394,43 @@
- rs%0a%09
--/// %3c/summary%3e%0a
- %09Error
-+ = 4
- ,%0a%09
-+%09
- //
--/ %3cs
-+%0a%09%09// S
- ummary
--%3e%0a
-+:%0a%09
- %09//
+-%3e
++:
+ %0a%09%09
 -/
-     
-@@ -453,44 +453,17 @@
- ll%0a%09
--/// %3c/summary%3e%0a%09%5bUsedImplicitly%5d%0a%09Off%0a
-+%09Off = 5%0a%09
- %7d%0a
-+%7d
+ //     Fines
+@@ -114,50 +114,39 @@
+ y%0a%09%09
+-/// %3c/summary%3e%0a%09%09Fine,%0a%09%09/// %3cs
++Fine = 0,%0a%09%09//%0a%09%09// S
+ ummary
+-%3e
++:
+ %0a%09%09
+-/
+ //  
+@@ -202,51 +202,40 @@
+ y%0a%09%09
+-/// %3c/summary%3e%0a%09%09
+ Debug
++ = 1
+ ,%0a%09%09//
+-/ %3cs
++%0a%09%09// S
+ ummary
+-%3e
++:
+ %0a%09%09
+-/
+ //  
+@@ -264,50 +264,39 @@
+ l%0a%09%09
+-/// %3c/summary%3e%0a%09%09Info,%0a%09%09/// %3cs
++Info = 2,%0a%09%09//%0a%09%09// S
+ ummary
+-%3e
++:
+ %0a%09%09
+-/
+ //  
+@@ -333,50 +333,39 @@
+ e%0a%09%09
+-/// %3c/summary%3e%0a%09%09Warn,%0a%09%09/// %3cs
++Warn = 3,%0a%09%09//%0a%09%09// S
+ ummary
+-%3e
++:
+ %0a%09%09
+-/
+ //  
+@@ -395,51 +395,40 @@
+ s%0a%09%09
+-/// %3c/summary%3e%0a%09%09
+ Error
++ = 4
+ ,%0a%09%09//
+-/ %3cs
++%0a%09%09// S
+ ummary
+-%3e
++:
+ %0a%09%09
+-/
+ //  
+@@ -454,49 +454,16 @@
+ l%0a%09%09
+-/// %3c/summary%3e%0a%09%09%5bUsedImplicitly%5d%0a%09%09Off
++Off = 5
+ %0a%09%7d%0a%7d
+-%0a

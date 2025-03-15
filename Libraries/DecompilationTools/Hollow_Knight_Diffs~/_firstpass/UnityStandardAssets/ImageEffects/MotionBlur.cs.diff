@@ -5,100 +5,139 @@
  ngine;%0a%0a
 +// This class implements simple ghosting type Motion Blur.%0a// If Extra Blur is selected, the scene will allways be a little blurred,%0a// as it is scaled to a smaller resolution.%0a// The effect works by accumulating the previous frames in an accumulation%0a// texture.%0a
  namespac
-@@ -333,19 +333,23 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    
+@@ -336,17 +336,20 @@
+ fects%0a%7b%0a
+-%09
++    
  %5bExecute
-@@ -360,16 +360,20 @@
+@@ -360,17 +360,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -438,16 +438,20 @@
+@@ -381,17 +381,16 @@
+ nentMenu
+- 
+ (%22Image 
+@@ -438,17 +438,20 @@
  ion)%22)%5d%0a
+-%09
 +    
  %5bRequire
-@@ -477,16 +477,20 @@
+@@ -459,17 +459,16 @@
+ omponent
+- 
+ (typeof(
+@@ -477,17 +477,20 @@
  mera))%5d%0a
+-%09
 +    
  public c
-@@ -523,19 +523,59 @@
+@@ -523,21 +523,59 @@
  ectBase%0a
--%7b%0a%09
+-%09%7b%0a%09%09
 +    %7b%0a        %5bRange(0.0f, 0.92f)%5d%0a        
  public f
-@@ -598,18 +598,24 @@
+@@ -598,19 +598,24 @@
  = 0.8f;%0a
--%0a%09
+-%0a%09%09
 +        
  public b
-@@ -627,20 +627,35 @@
+@@ -627,21 +627,35 @@
  xtraBlur
--;%0a%0a%09
+-;%0a%0a%09%09
 + = false;%0a%0a        
  private 
-@@ -687,156 +687,112 @@
- e;%0a%0a
--%09protected override void Start()%0a%09%7b%0a%09%09if (!SystemInfo.supportsRenderTextures)%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09base.Start();%0a%09%09%7d%0a%09%7d%0a%0a%09
-+        override protected void Start()%0a        %7b%0a            base.Start();%0a        %7d%0a%0a        override 
+@@ -683,36 +683,42 @@
+ xture;%0a%0a
+-%09%09protected override
++        override protected
+  void St
+@@ -724,103 +724,33 @@
+ tart
+- 
+ ()%0a
+-%09%09%7b%0a%09%09%09if (!SystemInfo.supportsRenderTextures) %7b%0a%09%09%09%09base.enabled = false;%0a%09%09%09%7d else %7b%0a%09%09%09%09
++        %7b%0a            
+ base
+@@ -759,25 +759,40 @@
+ tart
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++        %7d%0a%0a        override 
  prot
 @@ -797,25 +797,16 @@
  otected 
 -override 
  void OnD
-@@ -814,21 +814,38 @@
- sable()%0a
--%09%7b%0a%09%09
+@@ -815,19 +815,33 @@
+ able
+- 
+ ()%0a
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
- base.OnD
-@@ -854,25 +854,28 @@
- able();%0a
--%09%09Object.
+ base
+@@ -854,23 +854,24 @@
+ able
+- 
+ ();%0a
+-%09%09%09Object.
 +            
- DestroyI
-@@ -902,20 +902,76 @@
+ Dest
+@@ -874,33 +874,32 @@
+ DestroyImmediate
+- 
+ (accumTexture);%0a
+@@ -902,22 +902,76 @@
  e);%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a        // Called by camera to apply image effect%0a       
   voi
-@@ -985,16 +985,17 @@
- derImage
-+ 
- (RenderT
-@@ -1036,21 +1036,85 @@
- nation)%0a
--%09%7b%0a%09%09
+@@ -1040,15 +1040,77 @@
+ on)%0a
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            // Create the accumulation texture%0a            
- if (accu
-@@ -1213,22 +1213,38 @@
- ht)%0a
--%09%09%7b%0a%09%09%09Object.
-+            %7b%0a                
+ if (
+@@ -1212,22 +1212,39 @@
+ ght)
+- %7b%0a%09%09%09%09Object.
++%0a            %7b%0a                
  Dest
-@@ -1271,19 +1271,32 @@
+@@ -1255,17 +1255,16 @@
+ mmediate
+- 
+ (accumTe
+@@ -1271,20 +1271,32 @@
  xture);%0a
--%09%09%09
+-%09%09%09%09
 +                
  accumTex
-@@ -1349,27 +1349,40 @@
+@@ -1319,17 +1319,16 @@
+ rTexture
+- 
+ (source.
+@@ -1349,28 +1349,40 @@
  height, 0);%0a
--%09%09%09
+-%09%09%09%09
 +                
  accumTexture
-@@ -1421,19 +1421,32 @@
+@@ -1421,20 +1421,32 @@
  ntSave;%0a
--%09%09%09
+-%09%09%09%09
 +                
  Graphics
-@@ -1443,32 +1443,33 @@
-   Graphics.Blit(
+@@ -1442,34 +1442,34 @@
+    Graphics.Blit
+- 
+ (
 + 
  source, accumTex
-@@ -1476,39 +1476,175 @@
+@@ -1476,40 +1476,175 @@
  ture
 + 
  );%0a
--%09%09%7d%0a%09%09if (extraBlur)%0a%09%09%7b%0a%09%09%09
+-%09%09%09%7d%0a%09%09%09if (extraBlur) %7b%0a%09%09%09%09
 +            %7d%0a%0a            // If Extra Blur is selected, downscale the texture to 4x4 smaller resolution.%0a            if (extraBlur)%0a            %7b%0a                
  Rend
 @@ -1653,25 +1653,26 @@
@@ -106,93 +145,97 @@
 -temporary
 +blurbuffer
   = Rende
+@@ -1692,17 +1692,16 @@
+ emporary
+- 
+ (source.
 @@ -1705,19 +1705,17 @@
  ce.width
 - / 
 +/
  4, sourc
-@@ -1726,21 +1726,32 @@
+@@ -1726,22 +1726,32 @@
  ight
 - / 
 +/
  4, 0);%0a
--%09%09%09
+-%09%09%09%09
 +                
  accu
-@@ -1782,19 +1782,32 @@
- cted();%0a
--%09%09%09
+@@ -1782,17 +1782,28 @@
+ cted
+- 
+ ();%0a
+-%09%09%09%09
 +                
- Graphics
-@@ -1830,23 +1830,37 @@
- re, 
--temporary);%0a%09%09%09
-+blurbuffer);%0a                
  Grap
-@@ -1873,19 +1873,19 @@
- lit(
--temporary, 
-+blurbuffer,
- accu
-@@ -1899,11 +1899,24 @@
- e);%0a
--%09%09%09
-+                
- Rend
-@@ -1946,26 +1946,147 @@
- ary(
--temporary);%0a%09%09%7d%0a%09%09
-+blurbuffer);%0a            %7d%0a%0a            // Clamp the motion blur variable, so it can never leave permanent trails in the image%0a            
+@@ -1803,33 +1803,32 @@
+    Graphics.Blit
+- 
+ (accumTexture, t
+@@ -1830,121 +1830,263 @@
+ re, 
+-temporary);%0a%09%09%09%09Graphics.Blit (temporary, accumTexture);%0a%09%09%09%09RenderTexture.ReleaseTemporary (temporary);%0a%09%09%09%7d%0a%09%09%09
++blurbuffer);%0a                Graphics.Blit(blurbuffer,accumTexture);%0a                RenderTexture.ReleaseTemporary(blurbuffer);%0a            %7d%0a%0a            // Clamp the motion blur variable, so it can never leave permanent trails in the image%0a            
  blur
-@@ -2106,16 +2106,17 @@
- f.Clamp(
+@@ -2105,18 +2105,18 @@
+ hf.Clamp
+- 
+ (
 + 
  blurAmou
 @@ -2119,16 +2119,18 @@
  Amount, 
 +0.
  0f, 0.92
-@@ -2130,26 +2130,106 @@
+@@ -2130,27 +2130,106 @@
  f, 0.92f
 + 
  );%0a
--%09%09base.
+-%09%09%09base.
 +%0a            // Setup the texture and floating point values in the shader%0a            
  material
-@@ -2271,15 +2271,20 @@
+@@ -2239,17 +2239,16 @@
+ tTexture
+- 
+ (%22_MainT
+@@ -2271,16 +2271,20 @@
  e);%0a
--%09%09base.
+-%09%09%09base.
 +            
  mate
+@@ -2296,17 +2296,16 @@
+ SetFloat
+- 
+ (%22_Accum
 @@ -2316,12 +2316,12 @@
  %22, 1
 -f - 
 +.0F-
  blur
-@@ -2333,48 +2333,280 @@
- t);%0a
--%09%09accumTexture.MarkRestoreExpected();%0a%09%09
-+%0a            // We are accumulating motion over frames without clear/discard%0a            // by design, so silence any performance warnings from Unity%0a            accumTexture.MarkRestoreExpected();%0a%0a            // Render the image using the motion blur shader%0a            
+@@ -2329,19 +2329,178 @@
+ mount);%0a
+-%09%09%09
++%0a            // We are accumulating motion over frames without clear/discard%0a            // by design, so silence any performance warnings from Unity%0a            
+ accumTex
+@@ -2527,16 +2527,86 @@
+ cted
+- 
+ ();%0a
+-%09%09%09
++%0a            // Render the image using the motion blur shader%0a            
  Grap
-@@ -2614,16 +2614,17 @@
- ics.Blit
-+ 
- (source,
 @@ -2638,21 +2638,16 @@
  exture, 
 -base.
  material
-@@ -2653,10 +2653,20 @@
+@@ -2653,11 +2653,20 @@
  l);%0a
--%09%09
+-%09%09%09
 +            
  Grap
-@@ -2666,32 +2666,33 @@
-    Graphics.Blit
-+ 
- (accumTexture, d
-@@ -2708,9 +2708,22 @@
+@@ -2708,13 +2708,22 @@
  n);%0a
--%09
+-%09%09%7d%0a%09
 +        %7d%0a    
  %7d%0a%7d%0a

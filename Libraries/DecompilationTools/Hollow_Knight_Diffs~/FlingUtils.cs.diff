@@ -138,21 +138,33 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    /*static GameObject DefaultSpawnFunction(GameObject prefab, Vector3 position)%0a    %7b%0a        return GameObject.Instantiate(prefab, position, Quaternion.identity);%0a    %7d*/%0a%0a    
  public s
+@@ -1194,17 +1194,16 @@
+ AndFling
+- 
+ (Config 
 @@ -1248,37 +1248,46 @@
  positionOffset)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (config.Prefa
-@@ -1301,34 +1301,176 @@
- ll)%0a
--%09%09%7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return null;%0a        %7d%0a%0a        /*if (spawnPrefabFunc == null)%0a        %7b%0a            spawnPrefabFunc = DefaultSpawnFunction;%0a        %7d*/%0a%0a        
+@@ -1300,33 +1300,177 @@
+ ull)
+- %7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
++%0a        %7b%0a            return null;%0a        %7d%0a%0a        /*if (spawnPrefabFunc == null)%0a        %7b%0a            spawnPrefabFunc = DefaultSpawnFunction;%0a        %7d*/%0a%0a        
  int 
+@@ -1491,33 +1491,32 @@
+ ine.Random.Range
+- 
+ (config.AmountMi
 @@ -1541,18 +1541,24 @@
  x + 1);%0a
 -%09%09
 +        
  Vector3 
+@@ -1607,33 +1607,32 @@
+ t.TransformPoint
+- 
+ (positionOffset)
 @@ -1651,18 +1651,24 @@
  ffset);%0a
 -%09%09
@@ -163,46 +175,82 @@
 -%09%09
 +        
  for (int
-@@ -1739,23 +1739,38 @@
- m; i++)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -1738,22 +1738,39 @@
+ um; i++)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  Vector3 
+@@ -1792,33 +1792,32 @@
+ or + new Vector3
+- 
+ (UnityEngine.Ran
+@@ -1817,33 +1817,32 @@
+ ine.Random.Range
+- 
+ (0f - config.Ori
+@@ -1898,33 +1898,32 @@
+ ine.Random.Range
+- 
+ (0f - config.Ori
 @@ -1968,19 +1968,30 @@
  ), 0f);%0a
 -%09%09%09
 +            //
  GameObje
-@@ -2037,19 +2037,214 @@
- ition);%0a
--%09%09%09
-+            GameObject gameObject = GameObject.Instantiate(config.Prefab, position, Quaternion.identity);%0a            //GameObject gameObject = spawnPrefabFunc(config.Prefab, position);%0a            
- Rigidbod
-@@ -2291,35 +2291,44 @@
- Rigidbody2D%3e();%0a
+@@ -2029,24 +2029,218 @@
+ pawn
+- (position);%0a%09%09%09
++(position);%0a            GameObject gameObject = GameObject.Instantiate(config.Prefab, position, Quaternion.identity);%0a            //GameObject gameObject = spawnPrefabFunc(config.Prefab, position);%0a            
+ Rigi
+@@ -2291,32 +2291,40 @@
+ Rigidbody2D%3e
+- 
+ ();%0a
 -%09%09%09
 +            
- if (component !=
-@@ -2330,33 +2330,54 @@
- nt != null)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- float num2 =
+ if (componen
+@@ -2325,39 +2325,63 @@
+ mponent != null)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ float num2 = Uni
+@@ -2393,33 +2393,32 @@
+ ine.Random.Range
+- 
+ (config.SpeedMin
 @@ -2429,36 +2429,48 @@
  nfig.SpeedMax);%0a
 -%09%09%09%09
 +                
  float num3 = Uni
+@@ -2482,33 +2482,32 @@
+ ine.Random.Range
+- 
+ (config.AngleMin
 @@ -2518,36 +2518,48 @@
  nfig.AngleMax);%0a
 -%09%09%09%09
 +                
  component.veloci
-@@ -2669,24 +2669,42 @@
- * num2;%0a
+@@ -2566,33 +2566,32 @@
+ ty = new Vector2
+- 
+ (Mathf.Cos (num3
+@@ -2576,33 +2576,32 @@
+ ector2(Mathf.Cos
+- 
+ (num3 * ((float)
+@@ -2619,33 +2619,32 @@
+ 80f)), Mathf.Sin
+- 
+ (num3 * ((float)
+@@ -2673,22 +2673,39 @@
+ m2;%0a
 -%09%09%09%7d%0a%09%09%09
 +            %7d%0a            
- array%5bi%5d
+ array
+- 
+ %5bi%5d 
 @@ -2718,22 +2718,34 @@
  Object;%0a
 -%09%09%7d%0a%09%09
@@ -213,111 +261,188 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  public s
+@@ -2793,17 +2793,16 @@
+ Children
+- 
+ (Childre
 @@ -2859,29 +2859,38 @@
  tionOffset)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (config.P
-@@ -2908,29 +2908,56 @@
- ll)%0a
--%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return;%0a        %7d%0a        
+@@ -2907,28 +2907,57 @@
+ ull)
+- %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++%0a        %7b%0a            return;%0a        %7d%0a        
  Vect
+@@ -3010,33 +3010,32 @@
+ t.TransformPoint
+- 
+ (positionOffset)
 @@ -3054,18 +3054,24 @@
  ffset);%0a
 -%09%09
 +        
  int num 
+@@ -3114,33 +3114,32 @@
+ ine.Random.Range
+- 
+ (config.AmountMi
 @@ -3198,18 +3198,24 @@
  Count);%0a
 -%09%09
 +        
  for (int
-@@ -3236,23 +3236,38 @@
- m; i++)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3235,22 +3235,39 @@
+ um; i++)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  Transfor
-@@ -3313,19 +3313,28 @@
- ild(i);%0a
+@@ -3312,17 +3312,25 @@
+ hild
+- 
+ (i);%0a
 -%09%09%09
 +            
- child.ga
+ chil
+@@ -3351,17 +3351,16 @@
+ etActive
+- 
+ (value: 
 @@ -3366,19 +3366,28 @@
   true);%0a
 -%09%09%09
 +            
  _ = vect
+@@ -3402,17 +3402,16 @@
+  Vector3
+- 
+ (UnityEn
+@@ -3419,33 +3419,32 @@
+ ine.Random.Range
+- 
+ (0f - config.Ori
+@@ -3508,17 +3508,16 @@
+ om.Range
+- 
+ (0f - co
 @@ -3570,19 +3570,28 @@
  ), 0f);%0a
 -%09%09%09
 +            
  Rigidbod
-@@ -3633,35 +3633,44 @@
- Rigidbody2D%3e();%0a
+@@ -3633,32 +3633,40 @@
+ Rigidbody2D%3e
+- 
+ ();%0a
 -%09%09%09
 +            
- if (component !=
-@@ -3672,33 +3672,54 @@
- nt != null)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- float num2 =
+ if (componen
+@@ -3667,39 +3667,63 @@
+ mponent != null)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ float num2 = Uni
+@@ -3735,33 +3735,32 @@
+ ine.Random.Range
+- 
+ (config.SpeedMin
 @@ -3771,36 +3771,48 @@
  nfig.SpeedMax);%0a
 -%09%09%09%09
 +                
  float num3 = Uni
+@@ -3824,33 +3824,32 @@
+ ine.Random.Range
+- 
+ (config.AngleMin
 @@ -3860,36 +3860,48 @@
  nfig.AngleMax);%0a
 -%09%09%09%09
 +                
  component.veloci
+@@ -3908,33 +3908,32 @@
+ ty = new Vector2
+- 
+ (Mathf.Cos (num3
+@@ -3922,25 +3922,24 @@
+ r2(Mathf.Cos
+- 
+ (num3 * ((fl
+@@ -3965,25 +3965,24 @@
+ ), Mathf.Sin
+- 
+ (num3 * ((fl
 @@ -4015,22 +4015,43 @@
  m2;%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
 +            %7d%0a        %7d%0a    %7d%0a%0a    
  publ
-@@ -4142,21 +4142,30 @@
- Offset)%0a
+@@ -4076,17 +4076,16 @@
+ ngObject
+- 
+ (SelfCon
+@@ -4146,13 +4146,22 @@
+ et)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- if (!(co
-@@ -4186,23 +4186,38 @@
-  null))%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
- if (spaw
-@@ -4232,25 +4232,46 @@
- = null)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- spawnPoi
+ if (
+@@ -4189,44 +4189,85 @@
+ ll))
+- %7b%0a%09%09%09if (spawnPoint != null) %7b%0a%09%09%09%09
++%0a        %7b%0a            if (spawnPoint != null)%0a            %7b%0a                
+ spaw
+@@ -4287,17 +4287,16 @@
+ ormPoint
+- 
+ (positio
 @@ -4309,16 +4309,34 @@
  t);%0a
 -%09%09%09%7d%0a%09%09%09
 +            %7d%0a            
  Rigi
-@@ -4398,19 +4398,28 @@
- y2D%3e();%0a
+@@ -4398,16 +4398,24 @@
+ y2D%3e
+- 
+ ();%0a
 -%09%09%09
 +            
- if (comp
-@@ -4437,17 +4437,38 @@
- ll)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+ if (
+@@ -4436,15 +4436,39 @@
+ ull)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  floa
+@@ -4491,33 +4491,32 @@
+ ine.Random.Range
+- 
+ (config.SpeedMin
 @@ -4535,20 +4535,32 @@
  edMax);%0a
 -%09%09%09%09
 +                
  float nu
+@@ -4588,17 +4588,16 @@
+ om.Range
+- 
+ (config.
 @@ -4628,12 +4628,24 @@
  x);%0a
 -%09%09%09%09
 +                
  comp
+@@ -4672,17 +4672,16 @@
+  Vector2
+- 
+ (Mathf.C
+@@ -4682,17 +4682,16 @@
+ athf.Cos
+- 
+ (num2 * 
+@@ -4725,17 +4725,16 @@
+ athf.Sin
+- 
+ (num2 * 
 @@ -4770,18 +4770,36 @@
  um;%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09

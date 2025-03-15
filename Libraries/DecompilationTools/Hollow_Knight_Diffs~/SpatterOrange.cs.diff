@@ -87,23 +87,24 @@
 -%09
 +    
  private 
-@@ -708,17 +708,163 @@
- Frame;%0a%0a
--%09
-+    //static MethodInfo poolReturnMethod;%0a%0a    private void Awake() %7b%0a        //Debug.Log(%22STARTING POSITION = %22 + transform.position);%0a    %7d%0a%0a    
- private 
-@@ -876,21 +876,30 @@
- Start()%0a
--%09%7b%0a%09%09
-+    %7b%0a        
- scaleMod
+@@ -712,36 +712,190 @@
+ e;%0a%0a
+-%09private void Start ()%0a%09%7b%0a%09%09
++    //static MethodInfo poolReturnMethod;%0a%0a    private void Awake() %7b%0a        //Debug.Log(%22STARTING POSITION = %22 + transform.position);%0a    %7d%0a%0a    private void Start()%0a    %7b%0a        
+ scal
+@@ -930,17 +930,16 @@
+ om.Range
+- 
+ (scaleMo
 @@ -968,21 +968,27 @@
  erMax);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
-@@ -1003,21 +1003,30 @@
- nable()%0a
+@@ -1000,25 +1000,33 @@
+ OnEnable
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  rb2d.isK
@@ -127,11 +128,13 @@
 -%09%09
 +        
  spriteRe
-@@ -1174,18 +1174,24 @@
- tes%5b0%5d;%0a
+@@ -1173,16 +1173,21 @@
+ ites
+- 
+ %5b0%5d;%0a
 -%09%09
 +        
- animFram
+ anim
 @@ -1197,18 +1197,24 @@
  me = 1;%0a
 -%09%09
@@ -142,23 +145,29 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    private void Reset()%0a    %7b%0a        rb2d = GetComponent%3cRigidbody2D%3e();%0a        circleCollider = GetComponent%3cCircleCollider2D%3e();%0a        spriteRenderer = GetComponent%3cSpriteRenderer%3e();%0a    %7d%0a%0a    
  private 
-@@ -1448,21 +1448,30 @@
- pdate()%0a
+@@ -1445,25 +1445,33 @@
+ d Update
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (stat
-@@ -1479,23 +1479,38 @@
-  == 0f)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -1478,22 +1478,39 @@
+ e == 0f)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  FaceAngl
-@@ -1514,19 +1514,28 @@
- ngle();%0a
+@@ -1510,24 +1510,32 @@
+ aceAngle
+- 
+ ();%0a
 -%09%09%09
 +            
  Projecti
-@@ -1546,19 +1546,28 @@
- uash();%0a
+@@ -1542,24 +1542,32 @@
+ leSquash
+- 
+ ();%0a
 -%09%09%09
 +            
  idleTime
@@ -167,20 +176,25 @@
 -%09%09%09
 +            
  if (idle
-@@ -1623,76 +1623,145 @@
- 3f)%0a
--%09%09%09%7b%0a%09%09%09%09Impact();%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if (state != 1f)%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
-+            %7b%0a                Impact();%0a            %7d%0a        %7d%0a        if (state != 1f)%0a        %7b%0a            return;%0a        %7d%0a        
+@@ -1622,73 +1622,146 @@
+  3f)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ Impact
+- 
+ ();%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%09if (state != 1f) %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++            %7d%0a        %7d%0a        if (state != 1f)%0a        %7b%0a            return;%0a        %7d%0a        
  anim
 @@ -1785,18 +1785,24 @@
  taTime;%0a
 -%09%09
 +        
  if (anim
-@@ -1820,23 +1820,38 @@
-  / fps)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -1819,22 +1819,39 @@
+ f / fps)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  animTime
 @@ -1858,19 +1858,28 @@
  r = 0f;%0a
@@ -192,26 +206,40 @@
 -%09%09%09
 +            
  if (anim
-@@ -1918,66 +1918,567 @@
-  6)%0a
--%09%09%09%7b%0a%09%09%09%09base.gameObject.Recycle();%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                //base.gameObject.Recycle();%0a                GameObject.Destroy(gameObject);%0a                //Pooling.Destroy();%0a                /*if (poolReturnMethod == null)%0a                %7b%0a                    var pooler = WeaverTypeHelpers.GetWeaverType(%22WeaverCore.Pooling%22);%0a%0a                    poolReturnMethod = pooler.GetMethod(%22Destroy%22, new Type%5b%5d %7b typeof(GameObject) %7d);%0a                %7d%0a                poolReturnMethod.Invoke(null, new object%5b%5d %7b gameObject %7d);*/%0a            %7d%0a            else%0a            %7b%0a                
+@@ -1917,59 +1917,568 @@
+ %3e 6)
+- %7b%0a%09%09%09%09base.gameObject.Recycle ();%0a%09%09%09%7d else %7b%0a%09%09%09%09
++%0a            %7b%0a                //base.gameObject.Recycle();%0a                GameObject.Destroy(gameObject);%0a                //Pooling.Destroy();%0a                /*if (poolReturnMethod == null)%0a                %7b%0a                    var pooler = WeaverTypeHelpers.GetWeaverType(%22WeaverCore.Pooling%22);%0a%0a                    poolReturnMethod = pooler.GetMethod(%22Destroy%22, new Type%5b%5d %7b typeof(GameObject) %7d);%0a                %7d%0a                poolReturnMethod.Invoke(null, new object%5b%5d %7b gameObject %7d);*/%0a            %7d%0a            else%0a            %7b%0a                
  spri
+@@ -2504,17 +2504,16 @@
+  sprites
+- 
+ %5banimFra
 @@ -2521,22 +2521,43 @@
  e%5d;%0a
 -%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
 +            %7d%0a        %7d%0a    %7d%0a%0a    
  priv
-@@ -2574,21 +2574,30 @@
- mpact()%0a
+@@ -2571,25 +2571,33 @@
+ d Impact
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  float nu
+@@ -2624,17 +2624,16 @@
+ om.Range
+- 
+ (splashS
 @@ -2658,18 +2658,24 @@
  leMax);%0a
 -%09%09
 +        
  base.tra
+@@ -2705,17 +2705,16 @@
+  Vector2
+- 
+ (num, nu
 @@ -2717,18 +2717,24 @@
  , num);%0a
 -%09%09
@@ -227,23 +255,31 @@
 -%09%09
 +        
  rb2d.vel
+@@ -2825,17 +2825,16 @@
+  Vector2
+- 
+ (0f, 0f)
 @@ -2835,18 +2835,24 @@
  f, 0f);%0a
 -%09%09
 +        
  spriteRe
-@@ -2879,18 +2879,24 @@
- tes%5b1%5d;%0a
+@@ -2878,16 +2878,21 @@
+ ites
+- 
+ %5b1%5d;%0a
 -%09%09
 +        
- state = 
+ stat
 @@ -2899,21 +2899,27 @@
  e = 1f;%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
-@@ -2935,21 +2935,30 @@
- Angle()%0a
+@@ -2932,25 +2932,33 @@
+ aceAngle
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  Vector2 
@@ -252,18 +288,28 @@
 -%09%09
 +        
  float z 
+@@ -3012,17 +3012,16 @@
+ hf.Atan2
+- 
+ (velocit
 @@ -3064,18 +3064,24 @@
  th.PI);%0a
 -%09%09
 +        
  base.tra
+@@ -3117,17 +3117,16 @@
+  Vector3
+- 
+ (0f, 0f,
 @@ -3126,29 +3126,35 @@
  0f, 0f, z);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private void
-@@ -3173,21 +3173,30 @@
- quash()%0a
+@@ -3170,25 +3170,33 @@
+ leSquash
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  float nu
@@ -277,20 +323,20 @@
 -%09%09
 +        
  if (num2
-@@ -3360,23 +3360,38 @@
- chMinX)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3359,22 +3359,39 @@
+ tchMinX)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  num2 = s
 @@ -3402,22 +3402,34 @@
  chMinX;%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        
  if (num 
-@@ -3443,23 +3443,38 @@
- chMaxY)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3442,22 +3442,39 @@
+ tchMaxY)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  num = st
 @@ -3484,22 +3484,34 @@
  chMaxY;%0a
@@ -307,21 +353,31 @@
 -%09%09
 +        
  base.tra
+@@ -3602,17 +3602,16 @@
+  Vector3
+- 
+ (num2, n
 @@ -3644,21 +3644,27 @@
  ale.z);%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
+@@ -3686,17 +3686,16 @@
+ nEnter2D
+- 
+ (Collisi
 @@ -3710,21 +3710,30 @@
  lision)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  Collisio
-@@ -3806,18 +3806,24 @@
- tact();%0a
+@@ -3806,15 +3806,20 @@
+ tact
+- 
+ ();%0a
 -%09%09
 +        
- float x 
+ floa
 @@ -3846,18 +3846,24 @@
  rmal.x;%0a
 -%09%09
@@ -332,52 +388,100 @@
 -%09%09
 +        
  if (y ==
-@@ -3900,39 +3900,54 @@
-   if (y == -1f)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3899,38 +3899,55 @@
+    if (y == -1f)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  base.transform.l
-@@ -4057,39 +4057,66 @@
- f);%0a
--%09%09%7d%0a%09%09else if (y == 1f)%0a%09%09%7b%0a%09%09%09
-+        %7d%0a        else if (y == 1f)%0a        %7b%0a            
- base
-@@ -4236,39 +4236,66 @@
- f);%0a
--%09%09%7d%0a%09%09else if (x == 1f)%0a%09%09%7b%0a%09%09%09
-+        %7d%0a        else if (x == 1f)%0a        %7b%0a            
- base
-@@ -4409,30 +4409,42 @@
- s.y, 270f);%0a
--%09%09%7d%0a%09%09
-+        %7d%0a        
- else if (x =
-@@ -4450,23 +4450,38 @@
- == -1f)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3967,33 +3967,32 @@
+ es = new Vector3
+- 
+ (base.transform.
+@@ -4049,27 +4049,41 @@
+ s.y, 180f);%0a
+-%09%09%7d
++        %7d%0a       
+  else if (y 
+@@ -4084,30 +4084,47 @@
+ if (y == 1f)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ base.transfo
+@@ -4148,33 +4148,32 @@
+ es = new Vector3
+- 
+ (base.transform.
+@@ -4228,27 +4228,41 @@
+ les.y, 0f);%0a
+-%09%09%7d
++        %7d%0a       
+  else if (x 
+@@ -4267,22 +4267,39 @@
+ x == 1f)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  base.tra
-@@ -4598,26 +4598,53 @@
+@@ -4327,33 +4327,32 @@
+ es = new Vector3
+- 
+ (base.transform.
+@@ -4409,27 +4409,41 @@
+ s.y, 270f);%0a
+-%09%09%7d
++        %7d%0a       
+  else if (x 
+@@ -4449,22 +4449,39 @@
+  == -1f)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
+ base.tra
+@@ -4509,33 +4509,32 @@
+ es = new Vector3
+- 
+ (base.transform.
+@@ -4598,22 +4598,53 @@
  f);%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%7d else %7b%0a%09%09%09
 +        %7d%0a        else%0a        %7b%0a            
  base
-@@ -4801,66 +4801,112 @@
+@@ -4676,33 +4676,32 @@
+ es = new Vector3
+- 
+ (base.transform.
+@@ -4801,30 +4801,47 @@
  f);%0a
--%09%09%7d%0a%09%09Impact();%0a%09%7d%0a%0a%09private void OnTriggerEnter2D()%0a%09%7b%0a%09%09
-+        %7d%0a        Impact();%0a    %7d%0a%0a    private void OnTriggerEnter2D(Collider2D collider)%0a    %7b%0a        
+-%09%09%7d%0a%09%09
++        %7d%0a        
+ Impact
+- 
+ ();%0a
+-%09%7d%0a%0a%09
++    %7d%0a%0a    
+ priv
+@@ -4869,17 +4869,44 @@
+ er2D
+- ()%0a%09%7b%0a%09%09
++(Collider2D collider)%0a    %7b%0a        
  base
+@@ -4938,33 +4938,32 @@
+ es = new Vector3
+- 
+ (base.transform.
 @@ -5022,18 +5022,24 @@
  y, 0f);%0a
 -%09%09
 +        
  base.tra
-@@ -5162,10 +5162,16 @@
+@@ -5067,17 +5067,16 @@
+  Vector3
+- 
+ (base.tr
+@@ -5162,22 +5162,30 @@
  z);%0a
 -%09%09
 +        
- Impa
-@@ -5180,9 +5180,12 @@
+ Impact
+- 
  ();%0a
 -%09
 +    

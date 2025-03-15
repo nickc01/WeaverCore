@@ -9,7 +9,13 @@
  s%0a%7b%0a
 -%09%5bSerializeField%5d%0a%09public MapZone mapZone;%0a%0a%09%5bSerializeField%5d%0a%09public Color defaultColor;%0a%0a%09public float defaultIntensity;%0a%0a%09public float saturation;%0a%0a%09%5bSerializeField%5d%0a%09public AnimationCurve redChannel;%0a%0a%09%5bSerializeField%5d%0a%09public AnimationCurve greenChannel;%0a%0a%09%5bSerializeField%5d%0a%09public AnimationCurve blueChannel;%0a%0a%09%5bSerializeField%5d%0a%09public Color heroLightColor;%0a%0a
  %09pub
-@@ -632,13 +632,375 @@
- gs()
+@@ -125,17 +125,16 @@
+ Settings
+- 
+ (MapZone
+@@ -630,16 +630,377 @@
+ ings
+- 
+ ()
 -%0a%09%7b%0a%09%7d%0a%7d%0a
 + %7b %7d%0a%0a%09%5bSerializeField%5d%0a%09public MapZone mapZone;%0a%0a%09%5bSerializeField%5d%0a%09public Color defaultColor;%0a%0a%09public float defaultIntensity;%0a%0a%09public float saturation;%0a%0a%09%5bSerializeField%5d%0a%09public AnimationCurve redChannel;%0a%0a%09%5bSerializeField%5d%0a%09public AnimationCurve greenChannel;%0a%0a%09%5bSerializeField%5d%0a%09public AnimationCurve blueChannel;%0a%0a%09%5bSerializeField%5d%0a%09public Color heroLightColor;%0a%7d

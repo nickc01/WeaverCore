@@ -1,3 +1,11 @@
+@@ -92,33 +92,32 @@
+ RequireComponent
+- 
+ (typeof(AudioSou
+@@ -140,17 +140,16 @@
+ omponent
+- 
+ (typeof(
 @@ -250,16 +250,20 @@
  ON_START
 + = 0
@@ -66,6 +74,50 @@
  EndingGG
 + = 7
  %0a%09%7d%0a%0a%09%5bS
+@@ -896,17 +896,16 @@
+ %09%5bHeader
+- 
+ (%22Cinema
+@@ -929,17 +929,16 @@
+ %5bTooltip
+- 
+ (%22Determ
+@@ -1018,33 +1018,32 @@
+ gger;%0a%0a%09%5bTooltip
+- 
+ (%22The speed of t
+@@ -1125,25 +1125,24 @@
+ ;%0a%0a%09%5bTooltip
+- 
+ (%22The amount
+@@ -1245,17 +1245,16 @@
+ %0a%09%5bRange
+- 
+ (0f, 10f
+@@ -1299,17 +1299,16 @@
+ %5bTooltip
+- 
+ (%22Allows
+@@ -1384,17 +1384,16 @@
+ %5bTooltip
+- 
+ (%22Preven
+@@ -1540,25 +1540,24 @@
+ ;%0a%0a%09%5bTooltip
+- 
+ (%22The speed 
+@@ -1649,17 +1649,16 @@
+ %5bTooltip
+- 
+ (%22Video 
+@@ -1751,17 +1751,16 @@
+ %0a%09%5bSpace
+- 
+ (6f)%5d%0a%09%5b
+@@ -1766,17 +1766,16 @@
+ %5bTooltip
+- 
+ (%22The na
 @@ -2062,24 +2062,26 @@
  nager gm;%0a%0a%09
 +//
@@ -82,6 +134,40 @@
  erializeField%5d%0a%09
 +%5bHideInInspector%5d%0a%09
  private AudioMix
+@@ -2388,17 +2388,16 @@
+ id Awake
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -2435,17 +2435,16 @@
+ oSource%3e
+- 
+ ();%0a%09%09my
+@@ -2480,17 +2480,16 @@
+ enderer%3e
+- 
+ ();%0a%09%09if
+@@ -2521,25 +2521,27 @@
+ InGameVideo)
+- 
++%0a%09%09
+ %7b%0a%09%09%09myRende
+@@ -2594,17 +2594,16 @@
+ nDestroy
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -2627,33 +2627,35 @@
+ oPlayer != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09cinematicVi
+@@ -2663,33 +2663,32 @@
+ eoPlayer.Dispose
+- 
+ ();%0a%09%09%09cinematic
+@@ -2734,17 +2734,16 @@
+ id Start
+- 
+ ()%0a%09%7b%0a%09%09
 @@ -2771,16 +2771,18 @@
  ance;%0a%09%09
 +//
@@ -90,143 +176,769 @@
  instance;%0a%09%09
 +/*
  if (startSki
+@@ -2850,17 +2850,19 @@
+ pLocked)
+- 
++%0a%09%09
+ %7b%0a%09%09%09gm.
+@@ -2885,17 +2885,16 @@
+ SkipMode
+- 
+ (SkipPro
+@@ -2916,30 +2916,34 @@
+ PPABLE);%0a%09%09%7d
+- 
++%0a%09%09
+ else
+- 
++%0a%09%09
+ %7b%0a%09%09%09gm.inpu
+@@ -2954,33 +2954,32 @@
+ dler.SetSkipMode
+- 
+ (skipMode);%0a%09%09%7d%0a
 @@ -2973,24 +2973,26 @@
  ipMode);%0a%09%09%7d
 +*/
  %0a%09%09if (playT
-@@ -4275,27 +4275,100 @@
- NORMAL)%0a%09%09%7b%0a
-+            WeaverTypeHelpers.BroadcastEvent(%22JUST FADE%22, gameObject);%0a
- %09%09%09
-+//
- PlayMakerFSM
-@@ -4493,19 +4493,93 @@
- OW)%0a%09%09%7b%0a
-+            WeaverTypeHelpers.BroadcastEvent(%22START FADE%22, gameObject);%0a
- %09%09%09
+@@ -3023,17 +3023,19 @@
+ N_START)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Sta
+@@ -3037,33 +3037,32 @@
+ %09%09StartCoroutine
+- 
+ (StartVideo ());
+@@ -3052,25 +3052,24 @@
+ e(StartVideo
+- 
+ ());%0a%09%09%7d%0a%09%7d%0a
+@@ -3089,17 +3089,16 @@
+ d Update
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -3122,33 +3122,35 @@
+ oPlayer != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09cinematicVi
+@@ -3165,17 +3165,16 @@
+ r.Update
+- 
+ ();%0a%09%09%7d%0a
+@@ -3205,17 +3205,19 @@
+ 10 == 0)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Upd
+@@ -3221,17 +3221,16 @@
+ Update10
+- 
+ ();%0a%09%09%7d%0a
+@@ -3255,17 +3255,16 @@
+ Update10
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -3401,25 +3401,27 @@
+ eoTriggered)
+- 
++%0a%09%09
+ %7b%0a%09%09%09if (vid
+@@ -3448,25 +3448,28 @@
+ InGameVideo)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09Finish
+@@ -3479,25 +3479,24 @@
+ ameVideo
+- 
+ ();%0a%09%09%09%7d
+  else %7b%0a
+@@ -3483,30 +3483,36 @@
+ ideo();%0a%09%09%09%7d
+- else 
++%0a%09%09%09else%0a%09%09%09
+ %7b%0a%09%09%09%09Finish
+@@ -3516,17 +3516,16 @@
+ ishVideo
+- 
+ ();%0a%09%09%09%7d
+@@ -3558,25 +3558,24 @@
+ or SkipVideo
+- 
+ ()%0a%09%7b%0a%09%09if (
+@@ -3590,17 +3590,19 @@
+ iggered)
+- 
++%0a%09%09
+ %7b%0a%09%09%09yie
+@@ -3652,25 +3652,27 @@
+ InGameVideo)
+- 
++%0a%09%09
+ %7b%0a%09%09%09if (fad
+@@ -3702,17 +3702,20 @@
+ ed.NONE)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09fl
+@@ -3773,25 +3773,29 @@
+ peed.NORMAL)
+- 
++%0a%09%09%09%09
+ %7b%0a%09%09%09%09%09durat
+@@ -3807,25 +3807,29 @@
+  0.5f;%0a%09%09%09%09%7d
+- 
++%0a%09%09%09%09
+ else if (fad
+@@ -3855,25 +3855,29 @@
+ tSpeed.SLOW)
+- 
++%0a%09%09%09%09
+ %7b%0a%09%09%09%09%09durat
+@@ -3994,17 +3994,21 @@
+ uration)
+- 
++%0a%09%09%09%09
+ %7b%0a%09%09%09%09%09f
+@@ -4029,17 +4029,16 @@
+ .Clamp01
+- 
+ (timer /
+@@ -4092,17 +4092,16 @@
+ ew Color
+- 
+ (0f, 0f,
+@@ -4177,30 +4177,36 @@
+ ;%0a%09%09%09%09%7d%0a%09%09%09%7d
+- else 
++%0a%09%09%09else%0a%09%09%09
+ %7b%0a%09%09%09%09yield 
+@@ -4218,33 +4218,35 @@
+ n null;%0a%09%09%09%7d%0a%09%09%7d
+- 
++%0a%09%09
+ else if (fadeOut
+@@ -4274,22 +4274,97 @@
+ .NORMAL)
+- %7b
++%0a%09%09%7b%0a            WeaverTypeHelpers.BroadcastEvent(%22JUST FADE%22, gameObject);
+ %0a%09%09%09
 +//
  PlayMake
+@@ -4378,25 +4378,24 @@
+ oadcastEvent
+- 
+ (%22JUST FADE%22
+@@ -4431,17 +4431,16 @@
+ rSeconds
+- 
+ (0.5f);%0a
+@@ -4438,25 +4438,27 @@
+ s(0.5f);%0a%09%09%7d
+- 
++%0a%09%09
+ else if (fad
+@@ -4488,22 +4488,98 @@
+ ed.SLOW)
+- %7b
++%0a%09%09%7b%0a            WeaverTypeHelpers.BroadcastEvent(%22START FADE%22, gameObject);
+ %0a%09%09%09
++//
+ PlayMake
+@@ -4597,17 +4597,16 @@
+ astEvent
+- 
+ (%22START 
+@@ -4647,17 +4647,16 @@
+ rSeconds
+- 
+ (2.3f);%0a
+@@ -4654,30 +4654,34 @@
+ s(2.3f);%0a%09%09%7d
+- 
++%0a%09%09
+ else
+- 
++%0a%09%09
+ %7b%0a%09%09%09yield r
+@@ -4723,33 +4723,35 @@
+ oPlayer != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09cinematicVi
+@@ -4760,25 +4760,24 @@
+ oPlayer.Stop
+- 
+ ();%0a%09%09%7d%0a%09%7d%0a%0a
+@@ -4798,33 +4798,32 @@
+ riggerStartVideo
+- 
+ ()%0a%09%7b%0a%09%09StartCor
+@@ -4828,17 +4828,16 @@
+ oroutine
+- 
+ (StartVi
+@@ -4835,25 +4835,24 @@
+ e(StartVideo
+- 
+ ());%0a%09%7d%0a%0a%09pu
+@@ -4873,25 +4873,24 @@
+ gerStopVideo
+- 
+ ()%0a%09%7b%0a%09%09if (
+@@ -4920,25 +4920,27 @@
+ InGameVideo)
+- 
++%0a%09%09
+ %7b%0a%09%09%09StartCo
+@@ -4946,17 +4946,16 @@
+ oroutine
+- 
+ (SkipVid
+@@ -4956,17 +4956,16 @@
+ kipVideo
+- 
+ ());%0a%09%09%7d
+@@ -4992,25 +4992,24 @@
+ lockSkip
+- 
+ ()%0a%09%7b%0a%09%09
+ gm.input
 @@ -5000,16 +5000,18 @@
  ()%0a%09%7b%0a%09%09
 +//
  gm.input
-@@ -5078,24 +5078,94 @@
- tVideo()%0a%09%7b%0a
+@@ -5029,17 +5029,16 @@
+ SkipMode
+- 
+ (skipMod
+@@ -5076,23 +5076,92 @@
+ artVideo
+- 
+ ()%0a%09%7b%0a
 +        var camera = GameObject.FindObjectOfType%3cCameraController%3e();%0a
- %09%09if (master
+ %09%09if (ma
+@@ -5168,33 +5168,35 @@
+ sterOff != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09masterOff.T
+@@ -5198,33 +5198,32 @@
+ Off.TransitionTo
+- 
+ (0f);%0a%09%09%7d%0a%09%09vide
+@@ -5282,17 +5282,19 @@
+ meVideo)
+- 
++%0a%09%09
+ %7b%0a%09%09%09gm.
+@@ -5357,25 +5357,28 @@
+ yer == null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09Debug.
+@@ -5386,17 +5386,16 @@
+ ogFormat
+- 
+ (%22Creati
+@@ -5489,33 +5489,32 @@
+ deoPlayer.Create
+- 
+ (new CinematicVi
+@@ -5520,33 +5520,32 @@
+ ideoPlayerConfig
+- 
+ (videoClip, myRe
+@@ -5616,33 +5616,32 @@
+ tCinematicVolume
+- 
+ ()));%0a%09%09%09%7d%0a%09%09%09De
+@@ -5653,17 +5653,16 @@
+ ogFormat
+- 
+ (%22Waitin
+@@ -5778,33 +5778,36 @@
+ layer.IsLoading)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09yield retu
+@@ -5838,17 +5838,16 @@
+ ogFormat
+- 
+ (%22Starti
+@@ -5918,33 +5918,36 @@
+ oPlayer != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09cinematicV
+@@ -6001,33 +6001,32 @@
+ VideoPlayer.Play
+- 
+ ();%0a%09%09%09%09myRender
+@@ -6076,25 +6076,28 @@
+ dio != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09additi
+@@ -6106,25 +6106,24 @@
+ alAudio.Play
+- 
+ ();%0a%09%09%09%7d%0a%09%09%09
+@@ -6145,33 +6145,32 @@
+ w WaitForSeconds
+- 
+ (delayBeforeFade
 @@ -6166,32 +6166,33 @@
  yBeforeFadeIn);%0a
 +%0a
  %09%09%09if (fadeInSpe
-@@ -6212,36 +6212,138 @@
- peed.SLOW)%0a%09%09%09%7b%0a
-+                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN SLOWLY%22, camera.gameObject);%0a
- %09%09%09%09
+@@ -6206,39 +6206,144 @@
+ adeInSpeed.SLOW)
+- %7b
++%0a%09%09%09%7b%0a                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN SLOWLY%22, camera.gameObject);
+ %0a%09%09%09%09
 +//
  GameCameras.inst
-@@ -6445,36 +6445,131 @@
- ed.NORMAL)%0a%09%09%09%7b%0a
-+                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN%22, camera.gameObject);%0a
- %09%09%09%09
+@@ -6362,33 +6362,32 @@
+ adeFSM.Fsm.Event
+- 
+ (%22FADE SCENE IN 
+@@ -6392,33 +6392,36 @@
+ N SLOWLY%22);%0a%09%09%09%7d
+- 
++%0a%09%09%09
+ else if (fadeInS
+@@ -6439,39 +6439,137 @@
+ eInSpeed.NORMAL)
+- %7b
++%0a%09%09%09%7b%0a                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN%22, camera.gameObject);
+ %0a%09%09%09%09
 +//
  GameCameras.inst
-@@ -7313,36 +7313,138 @@
- peed.SLOW)%0a%09%09%09%7b%0a
-+                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN SLOWLY%22, camera.gameObject);%0a
- %09%09%09%09
+@@ -6588,33 +6588,32 @@
+ adeFSM.Fsm.Event
+- 
+ (%22FADE SCENE IN%22
+@@ -6619,25 +6619,27 @@
+ %22);%0a%09%09%09%7d%0a%09%09%7d
+- 
++%0a%09%09
+ else if (vid
+@@ -6665,25 +6665,27 @@
+ .StagTravel)
+- 
++%0a%09%09
+ %7b%0a%09%09%09GameCam
+@@ -6709,33 +6709,32 @@
+ ableImageEffects
+- 
+ ();%0a%09%09%09if (cinem
+@@ -6749,33 +6749,36 @@
+ oPlayer == null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09cinematicV
+@@ -6809,33 +6809,32 @@
+ deoPlayer.Create
+- 
+ (new CinematicVi
+@@ -6840,33 +6840,32 @@
+ ideoPlayerConfig
+- 
+ (videoClip, myRe
+@@ -6936,33 +6936,32 @@
+ tCinematicVolume
+- 
+ ()));%0a%09%09%09%7d%0a%09%09%09wh
+@@ -7020,33 +7020,36 @@
+ layer.IsLoading)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09yield retu
+@@ -7090,33 +7090,36 @@
+ oPlayer != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09cinematicV
+@@ -7173,33 +7173,32 @@
+ VideoPlayer.Play
+- 
+ ();%0a%09%09%09%09myRender
+@@ -7247,33 +7247,32 @@
+ w WaitForSeconds
+- 
+ (delayBeforeFade
+@@ -7307,39 +7307,144 @@
+ adeInSpeed.SLOW)
+- %7b
++%0a%09%09%09%7b%0a                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN SLOWLY%22, camera.gameObject);
+ %0a%09%09%09%09
 +//
  GameCameras.inst
-@@ -7546,36 +7546,131 @@
- ed.NORMAL)%0a%09%09%09%7b%0a
-+                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN%22, camera.gameObject);%0a
- %09%09%09%09
+@@ -7463,33 +7463,32 @@
+ adeFSM.Fsm.Event
+- 
+ (%22FADE SCENE IN 
+@@ -7493,33 +7493,36 @@
+ N SLOWLY%22);%0a%09%09%09%7d
+- 
++%0a%09%09%09
+ else if (fadeInS
+@@ -7540,39 +7540,137 @@
+ eInSpeed.NORMAL)
+- %7b
++%0a%09%09%09%7b%0a                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN%22, camera.gameObject);
+ %0a%09%09%09%09
 +//
  GameCameras.inst
-@@ -7766,46 +7766,48 @@
- ));%0a
--%09%09%09pd.SetBoolSwappedArgs(value: true, 
+@@ -7689,33 +7689,32 @@
+ adeFSM.Fsm.Event
+- 
+ (%22FADE SCENE IN%22
+@@ -7738,17 +7738,16 @@
+ oroutine
+- 
+ (WaitFor
+@@ -7761,53 +7761,53 @@
+ eOut
+- 
+ ());%0a
+-%09%09%09pd.SetBoolSwappedArgs (value: true, 
 +            PlayerData.instance.SetBool(
  %22dis
-@@ -7816,16 +7816,22 @@
+@@ -7816,28 +7816,38 @@
  lePause%22
 +, true
- );%0a%09%09%7d%0a%09
-@@ -8483,28 +8483,130 @@
- .SLOW)%0a%09%09%09%7b%0a
-+                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN SLOWLY%22, camera.gameObject);%0a
- %09%09%09%09
-+//
- GameCameras.
-@@ -8720,20 +8720,115 @@
- L)%0a%09%09%09%7b%0a
-+                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN%22, camera.gameObject);%0a
- %09%09%09%09
+ );%0a%09%09%7d
+- 
++%0a%09%09
+ else
+- 
++%0a%09%09
+ %7b%0a%09%09%09Gam
+@@ -7883,17 +7883,16 @@
+ eEffects
+- 
+ ();%0a%09%09%09i
+@@ -7919,25 +7919,28 @@
+ yer == null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09cinema
+@@ -7983,17 +7983,16 @@
+ r.Create
+- 
+ (new Cin
+@@ -8014,17 +8014,16 @@
+ erConfig
+- 
+ (videoCl
+@@ -8110,17 +8110,16 @@
+ icVolume
+- 
+ ()));%0a%09%09
+@@ -8194,17 +8194,20 @@
+ Loading)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09yi
+@@ -8260,25 +8260,28 @@
+ yer != null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09cinema
+@@ -8347,17 +8347,16 @@
+ yer.Play
+- 
+ ();%0a%09%09%09%09
+@@ -8421,17 +8421,16 @@
+ rSeconds
+- 
+ (delayBe
+@@ -8481,23 +8481,128 @@
+ ed.SLOW)
+- %7b
++%0a%09%09%09%7b%0a                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN SLOWLY%22, camera.gameObject);
+ %0a%09%09%09%09
 +//
  GameCame
-@@ -8926,16 +8926,86 @@
- eo()%0a%09%7b%0a
+@@ -8629,33 +8629,32 @@
+ adeFSM.Fsm.Event
+- 
+ (%22FADE SCENE IN 
+@@ -8663,25 +8663,28 @@
+ OWLY%22);%0a%09%09%09%7d
+- 
++%0a%09%09%09
+ else if (fad
+@@ -8714,23 +8714,121 @@
+ .NORMAL)
+- %7b
++%0a%09%09%09%7b%0a                WeaverTypeHelpers.SendEventToGameObject(%22FADE SCENE IN%22, camera.gameObject);
+ %0a%09%09%09%09
++//
+ GameCame
+@@ -8863,17 +8863,16 @@
+ sm.Event
+- 
+ (%22FADE S
+@@ -8920,23 +8920,92 @@
+ ishVideo
+- 
+ ()%0a%09%7b%0a
 +        var camera = GameObject.FindObjectOfType%3cCameraController%3e();%0a
  %09%09GameCa
-@@ -9154,32 +9154,34 @@
- utscene)%0a%09%09%7b%0a%09%09%09
+@@ -9029,33 +9029,32 @@
+ ableImageEffects
+- 
+ (gm.IsGameplaySc
+@@ -9048,33 +9048,32 @@
+ .IsGameplayScene
+- 
+ (), isBloomForce
+@@ -9154,22 +9154,26 @@
+ utscene)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 +//
- GameCameras.inst
-@@ -9215,35 +9215,122 @@
- t(%22JUST FADE%22);%0a
-+            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a
- %09%09%09
+ GameCame
+@@ -9200,33 +9200,32 @@
+ adeFSM.Fsm.Event
+- 
+ (%22JUST FADE%22);%0a%09
+@@ -9212,38 +9212,125 @@
+ vent(%22JUST FADE%22
++);%0a            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject
+ );%0a%09%09%09
 +//
- ui.SetState(UISt
-@@ -9462,32 +9462,34 @@
- rologue)%0a%09%09%7b%0a%09%09%09
+ ui.SetState (UIS
+@@ -9316,33 +9316,32 @@
+ %09%09%09//ui.SetState
+- 
+ (UIState.INACTIV
+@@ -9385,17 +9385,16 @@
+ oroutine
+- 
+ (gm.Load
+@@ -9407,17 +9407,16 @@
+ cene
+- 
+ ());%0a%09%09%7d
+  els
+@@ -9407,25 +9407,27 @@
+ cene());%0a%09%09%7d
+- 
++%0a%09%09
+ else if (vid
+@@ -9462,22 +9462,26 @@
+ rologue)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 +//
- GameCameras.inst
-@@ -9523,35 +9523,122 @@
- t(%22JUST FADE%22);%0a
-+            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a
- %09%09%09
+ GameCame
+@@ -9508,33 +9508,32 @@
+ adeFSM.Fsm.Event
+- 
+ (%22JUST FADE%22);%0a%09
+@@ -9520,38 +9520,125 @@
+ vent(%22JUST FADE%22
++);%0a            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject
+ );%0a%09%09%09
 +//
- ui.SetState(UISt
-@@ -9820,32 +9820,34 @@
- EndingC)%0a%09%09%7b%0a%09%09%09
+ ui.SetState (UIS
+@@ -9624,33 +9624,32 @@
+ %09%09%09//ui.SetState
+- 
+ (UIState.INACTIV
+@@ -9706,17 +9706,18 @@
+ atic
+- 
+ ();%0a%09%09%7d
+- 
++%0a%09%09
+ else
+@@ -9820,22 +9820,26 @@
+ EndingC)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 +//
- GameCameras.inst
-@@ -9881,35 +9881,122 @@
- t(%22JUST FADE%22);%0a
-+            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a
- %09%09%09
+ GameCame
+@@ -9866,33 +9866,32 @@
+ adeFSM.Fsm.Event
+- 
+ (%22JUST FADE%22);%0a%09
+@@ -9878,38 +9878,125 @@
+ vent(%22JUST FADE%22
++);%0a            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject
+ );%0a%09%09%09
 +//
- ui.SetState(UISt
-@@ -10119,24 +10119,26 @@
- vel)%0a%09%09%7b%0a%09%09%09
-+//
- ui.SetState(
-@@ -10296,32 +10296,34 @@
- ndingGG)%0a%09%09%7b%0a%09%09%09
-+//
- GameCameras.inst
-@@ -10365,19 +10365,106 @@
- FADE%22);%0a
-+            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a
- %09%09%09
+ ui.SetState (UIS
+@@ -9982,33 +9982,32 @@
+ %09%09%09//ui.SetState
+- 
+ (UIState.INACTIV
+@@ -10041,33 +10041,32 @@
+ %0a%09%09%09gm.LoadScene
+- 
+ (%22End_Credits%22);
+@@ -10065,25 +10065,27 @@
+ edits%22);%0a%09%09%7d
+- 
++%0a%09%09
+ else if (vid
+@@ -10115,22 +10115,26 @@
+ gTravel)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
 +//
  ui.SetSt
+@@ -10128,33 +10128,32 @@
+ %09%09%09//ui.SetState
+- 
+ (UIState.INACTIV
+@@ -10199,17 +10199,16 @@
+ eToScene
+- 
+ (pd.GetS
+@@ -10212,17 +10212,16 @@
+ etString
+- 
+ (%22nextSc
+@@ -10252,17 +10252,19 @@
+ 0f);%0a%09%09%7d
+- 
++%0a%09%09
+ else if 
+@@ -10296,22 +10296,26 @@
+ ndingGG)
+- 
++%0a%09%09
+ %7b%0a%09%09%09
++//
+ GameCame
+@@ -10342,33 +10342,32 @@
+ adeFSM.Fsm.Event
+- 
+ (%22JUST FADE%22);%0a%09
+@@ -10362,22 +10362,109 @@
+ ST FADE%22
++);%0a            WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject
+ );%0a%09%09%09
++//
+ ui.SetSt
+@@ -10466,17 +10466,16 @@
+ SetState
+- 
+ (UIState
 @@ -10521,12 +10521,9 @@
  if (
 -gm.p
 +P
  laye
-@@ -10528,16 +10528,25 @@
- yerData.
+@@ -10532,16 +10532,24 @@
+ ata.
 +instance.
- GetBool(
+ GetBool
+- 
+ (%22bo
+@@ -10561,17 +10561,20 @@
+ hMode%22))
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09gm
+@@ -10583,17 +10583,16 @@
+ oadScene
+- 
+ (%22GG_End
+@@ -10612,14 +10612,20 @@
+ %09%09%09%7d
+- else 
++%0a%09%09%09else%0a%09%09%09
+ %7b%0a%09%09
+@@ -10638,17 +10638,16 @@
+ oadScene
+- 
+ (%22End_Cr
+@@ -10699,17 +10699,16 @@
+ ameVideo
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -10722,17 +10722,16 @@
+ ogFormat
+- 
+ (%22Finish
 @@ -10752,18 +10752,91 @@
  deo.%22);%0a
 -%09%09
 +        WeaverTypeHelpers.BroadcastEvent(%22CINEMATIC END%22, gameObject);%0a%09%09//
  PlayMake
-@@ -11453,51 +11453,204 @@
- %0a%09%7b%0a
--%09%09yield return new WaitForSeconds(2.6f);%0a%09%09
-+        var camera = GameObject.FindObjectOfType%3cCameraController%3e();%0a%09%09yield return new WaitForSeconds(2.6f);%0a        WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a%09%09//
- Game
+@@ -10854,17 +10854,16 @@
+ astEvent
+- 
+ (%22CINEMA
+@@ -10914,17 +10914,16 @@
+ eEffects
+- 
+ (gm.IsGa
+@@ -10933,17 +10933,16 @@
+ layScene
+- 
+ (), isBl
+@@ -11044,25 +11044,27 @@
+ ume != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09masterR
+@@ -11081,17 +11081,16 @@
+ sitionTo
+- 
+ (0f);%0a%09%09
+@@ -11155,25 +11155,27 @@
+ dio != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09additio
+@@ -11183,25 +11183,24 @@
+ alAudio.Stop
+- 
+ ();%0a%09%09%7d%0a%09%09if
+@@ -11230,17 +11230,19 @@
+ != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09cin
+@@ -11263,17 +11263,16 @@
+ yer.Stop
+- 
+ ();%0a%09%09%09c
+@@ -11298,17 +11298,16 @@
+ .Dispose
+- 
+ ();%0a%09%09%09c
+@@ -11447,15 +11447,84 @@
+ eOut
+- 
+ ()%0a%09%7b%0a
++        var camera = GameObject.FindObjectOfType%3cCameraController%3e();%0a
+ %09%09yi
+@@ -11556,17 +11556,16 @@
+ onds
+- 
+ (2.6f);%0a
+ %09%09Ga
+@@ -11560,18 +11560,101 @@
+ (2.6f);%0a
+-%09%09
++        WeaverTypeHelpers.SendEventToGameObject(%22JUST FADE%22, camera.gameObject);%0a%09%09//
+ GameCame
+@@ -11689,17 +11689,16 @@
+ sm.Event
+- 
+ (%22JUST F

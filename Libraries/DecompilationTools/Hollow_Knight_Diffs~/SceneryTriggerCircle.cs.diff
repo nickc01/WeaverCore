@@ -38,126 +38,184 @@
 -%09
 +    
  private 
-@@ -350,21 +350,30 @@
- Awake()%0a
+@@ -351,17 +351,25 @@
+ wake
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- col2ds =
-@@ -418,18 +418,24 @@
- r2D%3e();%0a
+ col2
+@@ -414,23 +414,28 @@
+ lider2D%3e
+- 
+ ();%0a
 -%09%09
 +        
  animator
-@@ -473,18 +473,24 @@
- tor%3e();%0a
+@@ -473,15 +473,20 @@
+ tor%3e
+- 
+ ();%0a
 -%09%09
 +        
- if (col2
-@@ -525,23 +525,38 @@
- th %3c 2)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if (
+@@ -524,22 +524,39 @@
+ gth %3c 2)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  Debug.Lo
+@@ -561,17 +561,16 @@
+ LogError
+- 
+ (%22Scener
 @@ -651,19 +651,28 @@
  tly.%22);%0a
 -%09%09%09
 +            
  base.gam
+@@ -688,17 +688,16 @@
+ etActive
+- 
+ (value: 
 @@ -704,25 +704,37 @@
  false);%0a
 -%09%09%7d%0a%09%7d%0a%0a%09
 +        %7d%0a    %7d%0a%0a    
  private 
+@@ -754,17 +754,16 @@
+ rEnter2D
+- 
+ (Collide
 @@ -765,37 +765,46 @@
  llider2D other)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (other.gameOb
-@@ -824,79 +824,133 @@
-  9)%0a
--%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (enterCount == 0)%0a%09%09%7b%0a%09%09%09enterCount = 1;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return;%0a        %7d%0a        if (enterCount == 0)%0a        %7b%0a            enterCount = 1;%0a        %7d%0a        
- else
-@@ -963,39 +963,54 @@
- nterCount == 1)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -823,73 +823,133 @@
+ = 9)
+- %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (enterCount == 0) %7b%0a%09%09%09enterCount = 1;%0a%09%09%7d
++%0a        %7b%0a            return;%0a        %7d%0a        if (enterCount == 0)%0a        %7b%0a            enterCount = 1;%0a        %7d%0a       
+  els
+@@ -962,38 +962,55 @@
+ enterCount == 1)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  active = true;%0a%09
 @@ -1008,19 +1008,28 @@
  = true;%0a
 -%09%09%09
 +            
  animator
+@@ -1033,17 +1033,16 @@
+ tor.Play
+- 
+ (%22Show%22)
 @@ -1039,27 +1039,36 @@
  ay(%22Show%22);%0a
 -%09%09%09
 +            
  if (activate
-@@ -1101,33 +1101,54 @@
- ce != null)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
- RandomizePit
+@@ -1096,39 +1096,63 @@
+ oSource != null)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ RandomizePitch (
+@@ -1141,33 +1141,32 @@
+   RandomizePitch
+- 
+ (audioSource, 0.
 @@ -1170,36 +1170,48 @@
   0.85f, 1.15f);%0a
 -%09%09%09%09
 +                
  audioSource.Play
+@@ -1217,17 +1217,16 @@
+ yOneShot
+- 
+ (activat
 @@ -1238,41 +1238,71 @@
  d);%0a
 -%09%09%09%7d%0a%09%09%09enterCount = 2;%0a%09%09%7d%0a%09%7d%0a%0a%09
 +            %7d%0a            enterCount = 2;%0a        %7d%0a    %7d%0a%0a    
  priv
+@@ -1325,17 +1325,16 @@
+ erStay2D
+- 
+ (Collide
 @@ -1336,37 +1336,46 @@
  llider2D other)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (other.gameOb
-@@ -1414,40 +1414,67 @@
-  0)%0a
--%09%09%7b%0a%09%09%09enterCount = 1;%0a%09%09%7d%0a%09%7d%0a%0a%09
-+        %7b%0a            enterCount = 1;%0a        %7d%0a    %7d%0a%0a    
+@@ -1413,39 +1413,68 @@
+ = 0)
+- %7b%0a%09%09%09enterCount = 1;%0a%09%09%7d%0a%09%7d%0a%0a%09
++%0a        %7b%0a            enterCount = 1;%0a        %7d%0a    %7d%0a%0a    
  priv
+@@ -1497,17 +1497,16 @@
+ erExit2D
+- 
+ (Collide
 @@ -1516,21 +1516,30 @@
   other)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (othe
-@@ -1567,57 +1567,99 @@
-  9)%0a
--%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (enterCount == 1)%0a%09%09%7b%0a%09%09%09
-+        %7b%0a            return;%0a        %7d%0a        if (enterCount == 1)%0a        %7b%0a            
+@@ -1566,54 +1566,100 @@
+ = 9)
+- %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09if (enterCount == 1) %7b%0a%09%09%09
++%0a        %7b%0a            return;%0a        %7d%0a        if (enterCount == 1)%0a        %7b%0a            
  acti
 @@ -1670,19 +1670,28 @@
   false;%0a
 -%09%09%09
 +            
  animator
+@@ -1695,17 +1695,16 @@
+ tor.Play
+- 
+ (%22Hide%22)
 @@ -1705,19 +1705,28 @@
  Hide%22);%0a
 -%09%09%09
 +            
  if (deac
-@@ -1773,17 +1773,38 @@
- ll)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -1772,15 +1772,39 @@
+ ull)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  Rand
+@@ -1813,17 +1813,16 @@
+ izePitch
+- 
+ (audioSo
 @@ -1846,12 +1846,24 @@
  f);%0a
 -%09%09%09%09
 +                
  audi
-@@ -1904,96 +1904,153 @@
+@@ -1881,17 +1881,16 @@
+ yOneShot
+- 
+ (deactiv
+@@ -1904,92 +1904,153 @@
  d);%0a
--%09%09%09%7d%0a%09%09%09enterCount = 0;%0a%09%09%7d%0a%09%09else if (enterCount == 2)%0a%09%09%7b%0a%09%09%09enterCount = 1;%0a%09%09%7d%0a%09%7d%0a%0a%09
+-%09%09%09%7d%0a%09%09%09enterCount = 0;%0a%09%09%7d else if (enterCount == 2) %7b%0a%09%09%09enterCount = 1;%0a%09%09%7d%0a%09%7d%0a%0a%09
 +            %7d%0a            enterCount = 0;%0a        %7d%0a        else if (enterCount == 2)%0a        %7b%0a            enterCount = 1;%0a        %7d%0a    %7d%0a%0a    
  priv
+@@ -2068,25 +2068,24 @@
+ ndomizePitch
+- 
+ (AudioSource
 @@ -2122,21 +2122,30 @@
  xPitch)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  float pi
+@@ -2162,17 +2162,16 @@
+ om.Range
+- 
+ (minPitc
 @@ -2184,18 +2184,24 @@
  Pitch);%0a
 -%09%09
@@ -168,6 +226,10 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  priv
+@@ -2245,17 +2245,16 @@
+ setPitch
+- 
+ (AudioSo
 @@ -2267,13 +2267,22 @@
  rc)%0a
 -%09%7b%0a%09%09

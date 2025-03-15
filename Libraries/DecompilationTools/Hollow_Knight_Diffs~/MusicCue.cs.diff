@@ -2,6 +2,10 @@
  Audio;%0a%0a
 +%0a//
  %5bCreateA
+@@ -71,17 +71,16 @@
+ ssetMenu
+- 
+ (fileNam
 @@ -191,17 +191,20 @@
  bject%0a%7b%0a
 -%09
@@ -47,10 +51,10 @@
 -%09%09
 +        
  public b
-@@ -500,212 +500,371 @@
- red%0a
--%09%09%7b%0a%09%09%09get%0a%09%09%09%7b%0a%09%09%09%09if (sync == MusicChannelSync.Implicit)%0a%09%09%09%09%7b%0a%09%09%09%09%09return clip != null;%0a%09%09%09%09%7d%0a%09%09%09%09if (sync == MusicChannelSync.ExplicitOn)%0a%09%09%09%09%7b%0a%09%09%09%09%09return true;%0a%09%09%09%09%7d%0a%09%09%09%09return false;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
-+        %7b%0a            get%0a            %7b%0a                if (sync == MusicChannelSync.Implicit)%0a                %7b%0a                    return clip != null;%0a                %7d%0a                if (sync == MusicChannelSync.ExplicitOn)%0a                %7b%0a                    return true;%0a                %7d%0a                return false;%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+@@ -499,200 +499,372 @@
+ ired
+- %7b%0a%09%09%09get %7b%0a%09%09%09%09if (sync == MusicChannelSync.Implicit) %7b%0a%09%09%09%09%09return clip != null;%0a%09%09%09%09%7d%0a%09%09%09%09if (sync == MusicChannelSync.ExplicitOn) %7b%0a%09%09%09%09%09return true;%0a%09%09%09%09%7d%0a%09%09%09%09return false;%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++%0a        %7b%0a            get%0a            %7b%0a                if (sync == MusicChannelSync.Implicit)%0a                %7b%0a                    return clip != null;%0a                %7d%0a                if (sync == MusicChannelSync.ExplicitOn)%0a                %7b%0a                    return true;%0a                %7d%0a                return false;%0a            %7d%0a        %7d%0a    %7d%0a%0a    
  %5bSer
 @@ -874,17 +874,20 @@
  izable%5d%0a
@@ -102,9 +106,9 @@
 -%09
 +    
  %5bSeriali
-@@ -1227,48 +1227,12 @@
+@@ -1227,49 +1227,12 @@
  ld%5d%0a
--%09%5bArrayForEnum(typeof(MusicChannels))%5d%0a%09
+-%09%5bArrayForEnum (typeof(MusicChannels))%5d%0a%09
 +    
  priv
 @@ -1269,17 +1269,20 @@
@@ -137,45 +141,72 @@
 -%09
 +    
  public M
+@@ -1565,17 +1565,16 @@
+ nnelInfo
+- 
+ (MusicCh
 @@ -1589,21 +1589,30 @@
  hannel)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (chan
-@@ -1680,34 +1680,61 @@
- th)%0a
--%09%09%7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return null;%0a        %7d%0a        
+@@ -1679,33 +1679,62 @@
+ gth)
+- %7b%0a%09%09%09return null;%0a%09%09%7d%0a%09%09
++%0a        %7b%0a            return null;%0a        %7d%0a        
  retu
+@@ -1748,17 +1748,16 @@
+ nelInfos
+- 
+ %5b(int)ch
 @@ -1768,13 +1768,19 @@
  l%5d;%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  publ
-@@ -1834,21 +1834,30 @@
- erData)%0a
+@@ -1810,17 +1810,16 @@
+ rnatives
+- 
+ (PlayerD
+@@ -1838,13 +1838,22 @@
+ ta)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- if (alte
-@@ -1874,23 +1874,38 @@
- = null)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+ if (
+@@ -1873,22 +1873,39 @@
+ != null)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  for (int
-@@ -1942,25 +1942,46 @@
- h; i++)%0a
--%09%09%09%7b%0a%09%09%09%09
-+            %7b%0a                
+@@ -1941,23 +1941,47 @@
+ th; i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  Alternat
-@@ -2015,20 +2015,32 @@
- ves%5bi%5d;%0a
+@@ -2014,18 +2014,29 @@
+ ives
+- 
+ %5bi%5d;%0a
 -%09%09%09%09
 +                
- if (play
-@@ -2090,175 +2090,313 @@
- y))%0a
--%09%09%09%09%7b%0a%09%09%09%09%09MusicCue cue = alternative.Cue;%0a%09%09%09%09%09if (!(cue != null))%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09return null;%0a%09%09%09%09%09%7d%0a%09%09%09%09%09return cue.ResolveAlternatives(playerData);%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
-+                %7b%0a                    MusicCue cue = alternative.Cue;%0a                    if (!(cue != null))%0a                    %7b%0a                        return null;%0a                    %7d%0a                    return cue.ResolveAlternatives(playerData);%0a                %7d%0a            %7d%0a        %7d%0a        
+ if (
+@@ -2053,17 +2053,16 @@
+ .GetBool
+- 
+ (alterna
+@@ -2089,106 +2089,220 @@
+ ey))
+- %7b%0a%09%09%09%09%09MusicCue cue = alternative.Cue;%0a%09%09%09%09%09if (!(cue != null)) %7b%0a%09%09%09%09%09%09return null;%0a%09%09%09%09%09%7d%0a%09%09%09%09%09
++%0a                %7b%0a                    MusicCue cue = alternative.Cue;%0a                    if (!(cue != null))%0a                    %7b%0a                        return null;%0a                    %7d%0a                    
+ retu
+@@ -2327,17 +2327,16 @@
+ rnatives
+- 
+ (playerD
+@@ -2345,25 +2345,58 @@
+ a);%0a
+-%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09
++                %7d%0a            %7d%0a        %7d%0a        
  retu
 @@ -2408,9 +2408,12 @@
  is;%0a

@@ -1,21 +1,8 @@
 @@ -1,8 +1,23 @@
 +using System;%0a%0a
  namespac
-@@ -29,19 +29,52 @@
- balEnums
--;%0a%0a
-+%0a%7b%0a%09// Token: 0x02000B68 RID: 2920%0a%09
- public e
-@@ -94,47 +94,809 @@
- ion%0a
-+%09
- %7b%0a%09
-+%09/// %3csummary%3e%0a%09%09/// The transition point is located at the top of the level. The player will spawn travelling downwards%0a%09%09/// %3c/summary%3e%0a%09%09
- top,%0a
--%09right,%0a%09left,%0a%09bottom,%0a%09door,%0a
-+%0a%09%09/// %3csummary%3e%0a%09%09/// The transition point is located at the right side of the level. The player will spawn travelling leftwards%0a%09%09/// %3c/summary%3e%0a%09%09right,%0a%0a%09%09/// %3csummary%3e%0a%09%09/// The transition point is located at the left side of the level. The player will spawn travelling rightwards%0a%09%09/// %3c/summary%3e%0a%09%09left,%0a%0a%09%09/// %3csummary%3e%0a%09%09/// The transition point is located at the bottom of the level. The player will spawn travelling upwards%0a%09%09/// %3c/summary%3e%0a%09%09bottom,%0a%0a%09%09/// %3csummary%3e%0a%09%09/// The transition point will act as a doorway. The player will spawn leaving the doorway%0a%09%09/// %3c/summary%3e%0a%09%09door,%0a%0a%09%09/// %3csummary%3e%0a%09%09/// Don't use this%0a%09%09/// %3c/summary%3e%0a%09
- %09unk
-@@ -900,10 +900,13 @@
- unknown%0a
-+%09%7d%0a
- %7d%0a
+@@ -37,77 +37,864 @@
+ %0a%7b%0a%09
+-public enum GatePosition%0a%09%7b%0a%09%09top,%0a%09%09right,%0a%09%09left,%0a%09%09bottom,%0a%09%09door,
++// Token: 0x02000B68 RID: 2920%0a%09public enum GatePosition%0a%09%7b%0a%09%09/// %3csummary%3e%0a%09%09/// The transition point is located at the top of the level. The player will spawn travelling downwards%0a%09%09/// %3c/summary%3e%0a%09%09top,%0a%0a%09%09/// %3csummary%3e%0a%09%09/// The transition point is located at the right side of the level. The player will spawn travelling leftwards%0a%09%09/// %3c/summary%3e%0a%09%09right,%0a%0a%09%09/// %3csummary%3e%0a%09%09/// The transition point is located at the left side of the level. The player will spawn travelling rightwards%0a%09%09/// %3c/summary%3e%0a%09%09left,%0a%0a%09%09/// %3csummary%3e%0a%09%09/// The transition point is located at the bottom of the level. The player will spawn travelling upwards%0a%09%09/// %3c/summary%3e%0a%09%09bottom,%0a%0a%09%09/// %3csummary%3e%0a%09%09/// The transition point will act as a doorway. The player will spawn leaving the doorway%0a%09%09/// %3c/summary%3e%0a%09%09door,%0a%0a%09%09/// %3csummary%3e%0a%09%09/// Don't use this%0a%09%09/// %3c/summary%3e
+ %0a%09%09u

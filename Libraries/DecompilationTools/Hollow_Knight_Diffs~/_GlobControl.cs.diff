@@ -1,6 +1,10 @@
 @@ -1,12 +1,14 @@
 +/*
  using System
+@@ -58,17 +58,16 @@
+ omponent
+- 
+ (typeof(
 @@ -123,17 +123,20 @@
  viour%0a%7b%0a
 -%09
@@ -64,6 +68,10 @@
 -%09
 +    
  public C
+@@ -538,17 +538,16 @@
+ ew Color
+- 
+ (1f, 0.5
 @@ -561,25 +561,28 @@
  188f);%0a%0a
 -%09
@@ -106,36 +114,54 @@
 -%09
 +    
  private 
-@@ -776,21 +776,32 @@
- Awake()%0a
+@@ -773,25 +773,35 @@
+ id Awake
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        //
  anim = G
-@@ -835,21 +835,27 @@
- tor%3e();%0a
+@@ -835,18 +835,23 @@
+ tor%3e
+- 
+ ();%0a
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
- private 
-@@ -870,21 +870,30 @@
- nable()%0a
+ priv
+@@ -867,25 +867,33 @@
+ OnEnable
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  float nu
+@@ -908,17 +908,16 @@
+ om.Range
+- 
+ (minScal
 @@ -930,18 +930,24 @@
  Scale);%0a
 -%09%09
 +        
  base.tra
+@@ -977,17 +977,16 @@
+  Vector3
+- 
+ (num, nu
 @@ -993,18 +993,24 @@
  m, 1f);%0a
 -%09%09
 +        
  if ((boo
-@@ -1015,39 +1015,54 @@
- ool)splatChild)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -1014,38 +1014,55 @@
+ bool)splatChild)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  splatChild.SetAc
+@@ -1057,33 +1057,32 @@
+ tChild.SetActive
+- 
+ (value: false);%0a
 @@ -1081,22 +1081,34 @@
  false);%0a
 -%09%09%7d%0a%09%09
@@ -151,71 +177,145 @@
 -%09%7d%0a%0a%09
 +    %7d%0a%0a    
  private 
-@@ -1171,21 +1171,30 @@
- Start()%0a
+@@ -1168,25 +1168,33 @@
+ id Start
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  Collisio
-@@ -1250,26 +1250,32 @@
- erEvent%3e();%0a
+@@ -1246,31 +1246,36 @@
+ nEnterEvent%3e
+- 
+ ();%0a
 -%09%09
 +        
  if ((bool)co
-@@ -1283,23 +1283,38 @@
- lision)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -1282,22 +1282,39 @@
+ llision)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  collisio
 @@ -1352,24 +1352,25 @@
   += delegate
 + 
  (CollisionEn
-@@ -1420,385 +1420,747 @@
- ol)%0a
--%09%09%09%7b%0a%09%09%09%09if (!landed)%0a%09%09%09%09%7b%0a%09%09%09%09%09if (direction == CollisionEnterEvent.Direction.Bottom)%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09landed = true;%0a%09%09%09%09%09%09collision.doCollisionStay = false;%0a%09%09%09%09%09%09if (CheckForGround())%0a%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09%09anim.Play(landAnim);%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%09else%0a%09%09%09%09%09%09%7b%0a%09%09%09%09%09%09%09StartCoroutine(Break());%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%7d%0a%09%09%09%09%09else%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09collision.doCollisionStay = true;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d;%0a%09%09%7d%0a%09%09
-+            %7b%0a                if (!landed)%0a                %7b%0a                    if (direction == CollisionEnterEvent.Direction.Bottom)%0a                    %7b%0a                        landed = true;%0a                        collision.doCollisionStay = false;%0a                        if (CheckForGround())%0a                        %7b%0a                            //anim.Play(landAnim);%0a                        %7d%0a                        else%0a                        %7b%0a                            StartCoroutine(Break());%0a                        %7d%0a                    %7d%0a                    else%0a                    %7b%0a                        collision.doCollisionStay = true;%0a                    %7d%0a                %7d%0a            %7d;%0a        %7d%0a        
+@@ -1419,119 +1419,230 @@
+ col)
+- %7b%0a%09%09%09%09if (!landed) %7b%0a%09%09%09%09%09if (direction == CollisionEnterEvent.Direction.Bottom) %7b%0a%09%09%09%09%09%09landed = true;%0a%09%09%09%09%09%09
++%0a            %7b%0a                if (!landed)%0a                %7b%0a                    if (direction == CollisionEnterEvent.Direction.Bottom)%0a                    %7b%0a                        landed = true;%0a                        
+ coll
+@@ -1672,22 +1672,40 @@
+  false;%0a
+-%09%09%09%09%09%09
++                        
+ if (Chec
+@@ -1718,22 +1718,68 @@
+ ound
+- 
+ ())
+- %7b%0a%09%09%09%09%09%09%09
++%0a                        %7b%0a                            //
+ anim
+@@ -1783,17 +1783,16 @@
+ nim.Play
+- 
+ (landAni
+@@ -1799,30 +1799,117 @@
+ m);%0a
+-%09%09%09%09%09%09%7d else %7b%0a%09%09%09%09%09%09%09
++                        %7d%0a                        else%0a                        %7b%0a                            
+ Star
+@@ -1922,108 +1922,245 @@
+ tine
+- 
+ (Break
+- 
+ ());%0a
+-%09%09%09%09%09%09%7d%0a%09%09%09%09%09%7d else %7b%0a%09%09%09%09%09%09collision.doCollisionStay = true;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d;%0a%09%09%7d%0a%09%09
++                        %7d%0a                    %7d%0a                    else%0a                    %7b%0a                        collision.doCollisionStay = true;%0a                    %7d%0a                %7d%0a            %7d;%0a        %7d%0a        
  Trig
-@@ -2240,18 +2240,24 @@
- ent%3e();%0a
+@@ -2240,15 +2240,20 @@
+ ent%3e
+- 
+ ();%0a
 -%09%09
 +        
- if (!com
-@@ -2278,29 +2278,56 @@
- en)%0a
--%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return;%0a        %7d%0a        
+ if (
+@@ -2277,28 +2277,57 @@
+ ren)
+- %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09
++%0a        %7b%0a            return;%0a        %7d%0a        
  comp
 @@ -2370,16 +2370,17 @@
  delegate
 + 
  (Collide
-@@ -2407,23 +2407,38 @@
- sender)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -2406,22 +2406,39 @@
+  sender)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  if (land
-@@ -2486,55 +2486,99 @@
- 11)%0a
--%09%09%09%7b%0a%09%09%09%09anim.Play(wobbleAnim);%0a%09%09%09%7d%0a%09%09%7d;%0a%09%7d%0a%0a%09
-+            %7b%0a                //anim.Play(wobbleAnim);%0a            %7d%0a        %7d;%0a    %7d%0a%0a    
+@@ -2481,23 +2481,49 @@
+ r == 11)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                //
+ anim.Pla
+@@ -2515,33 +2515,32 @@
+      //anim.Play
+- 
+ (wobbleAnim);%0a%09%09
+@@ -2541,23 +2541,44 @@
+ m);%0a
+-%09%09%09%7d%0a%09%09%7d;%0a%09%7d%0a%0a%09
++            %7d%0a        %7d;%0a    %7d%0a%0a    
  priv
+@@ -2602,17 +2602,16 @@
+ rEnter2D
+- 
+ (Collide
 @@ -2619,21 +2619,30 @@
  2D col)%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  if (land
-@@ -2656,23 +2656,38 @@
- broken)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -2655,22 +2655,39 @@
+ !broken)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  if (col.
-@@ -2712,127 +2712,210 @@
- k%22)%0a
--%09%09%09%7b%0a%09%09%09%09StartCoroutine(Break());%0a%09%09%09%7d%0a%09%09%09else if (col.tag == %22HeroBox%22)%0a%09%09%09%7b%0a%09%09%09%09anim.Play(wobbleAnim);%0a%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
-+            %7b%0a                StartCoroutine(Break());%0a            %7d%0a            else if (col.tag == %22HeroBox%22)%0a            %7b%0a                //anim.Play(wobbleAnim);%0a            %7d%0a        %7d%0a    %7d%0a%0a    
+@@ -2707,23 +2707,47 @@
+ Attack%22)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
+ StartCor
+@@ -2756,25 +2756,44 @@
+ tine
+- 
+ (Break
+- 
+ ());%0a
+-%09%09%09%7d
++            %7d%0a           
+  els
+@@ -2823,15 +2823,41 @@
+ ox%22)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                //
+ anim
+@@ -2861,17 +2861,16 @@
+ nim.Play
+- 
+ (wobbleA
+@@ -2879,22 +2879,43 @@
+ m);%0a
+-%09%09%09%7d%0a%09%09%7d%0a%09%7d%0a%0a%09
++            %7d%0a        %7d%0a    %7d%0a%0a    
  priv
-@@ -2938,21 +2938,30 @@
- Break()%0a
+@@ -2935,25 +2935,33 @@
+ or Break
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
  broken =
@@ -224,6 +324,10 @@
 -%09%09
 +        //
  breakSou
+@@ -3007,17 +3007,16 @@
+ yOneShot
+- 
+ (audioPl
 @@ -3027,16 +3027,21 @@
  Prefab, 
 +base.
@@ -233,8 +337,10 @@
 -%09%09
 +%0a%0a        var playMethod = WeaverTypeHelpers.GetWeaverMethod(%22WeaverCore.WeaverAudio%22, %22PlayAtPoint%22);%0a%0a        playMethod.Invoke(null, new object%5b%5d %7b breakSound, transform.position%7d);%0a%0a        //
  GlobalPr
-@@ -3290,16 +3290,21 @@
- wnBlood(
+@@ -3289,18 +3289,22 @@
+ awnBlood
+- 
+ (
 +base.
  transfor
 @@ -3362,18 +3362,24 @@
@@ -242,35 +348,45 @@
 -%09%09
 +        
  if ((boo
-@@ -3392,23 +3392,38 @@
- tChild)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -3391,22 +3391,39 @@
+ atChild)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  splatChi
+@@ -3434,17 +3434,16 @@
+ etActive
+- 
+ (value: 
 @@ -3449,22 +3449,36 @@
   true);%0a
 -%09%09%7d%0a%09%09
 +        %7d%0a        //
  yield re
+@@ -3499,17 +3499,16 @@
+ AnimWait
+- 
+ (breakAn
 @@ -3512,18 +3512,24 @@
  kAnim);%0a
 -%09%09
 +        
  if ((boo
-@@ -3540,46 +3540,94 @@
- nd)%0a
--%09%09%7b%0a%09%09%09rend.enabled = false;%0a%09%09%7d%0a%09%7d%0a%0a%09
-+        %7b%0a            rend.enabled = false;%0a        %7d%0a        yield break;%0a    %7d%0a%0a    
+@@ -3539,45 +3539,95 @@
+ end)
+- %7b%0a%09%09%09rend.enabled = false;%0a%09%09%7d%0a%09%7d%0a%0a%09
++%0a        %7b%0a            rend.enabled = false;%0a        %7d%0a        yield break;%0a    %7d%0a%0a    
  priv
-@@ -3652,21 +3652,30 @@
- round()%0a
+@@ -3653,17 +3653,25 @@
+ ound
+- 
+ ()%0a
 -%09%7b%0a%09%09
 +    %7b%0a        
- if (!gro
-@@ -3691,34 +3691,61 @@
- er)%0a
--%09%09%7b%0a%09%09%09return true;%0a%09%09%7d%0a%09%09
-+        %7b%0a            return true;%0a        %7d%0a        
+ if (
+@@ -3690,33 +3690,62 @@
+ der)
+- %7b%0a%09%09%09return true;%0a%09%09%7d%0a%09%09
++%0a        %7b%0a            return true;%0a        %7d%0a        
  Vect
 @@ -3784,18 +3784,24 @@
  ds.min;%0a
@@ -302,20 +418,28 @@
 -%09%09
 +        
  RaycastH
+@@ -4011,25 +4011,24 @@
+ cs2D.Raycast
+- 
+ (origin, Vec
 @@ -4057,18 +4057,24 @@
  , 256);%0a
 -%09%09
 +        
  RaycastH
+@@ -4111,17 +4111,16 @@
+ .Raycast
+- 
+ (origin2
 @@ -4154,18 +4154,24 @@
  , 256);%0a
 -%09%09
 +        
  if (rayc
-@@ -4201,15 +4201,30 @@
- ll)%0a
--%09%09%7b%0a%09%09%09
-+        %7b%0a            
+@@ -4200,14 +4200,31 @@
+ ull)
+- %7b%0a%09%09%09
++%0a        %7b%0a            
  retu
 @@ -4262,14 +4262,26 @@
  ll;%0a

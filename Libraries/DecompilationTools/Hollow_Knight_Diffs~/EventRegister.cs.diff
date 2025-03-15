@@ -1,7 +1,155 @@
 @@ -1,12 +1,30 @@
 +//using Language;%0a
  using System
-@@ -525,78 +525,8 @@
+@@ -143,25 +143,24 @@
+ isteredEvent
+- 
+ ();%0a%0a%09public
+@@ -266,17 +266,16 @@
+ gister%3e%3e
+- 
+ ();%0a%0a%09%5bS
+@@ -395,17 +395,16 @@
+ id Awake
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -409,33 +409,32 @@
+ %09%09SubscribeEvent
+- 
+ (this);%0a%09%7d%0a%0a%09pri
+@@ -452,17 +452,16 @@
+ nDestroy
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -468,33 +468,32 @@
+ UnsubscribeEvent
+- 
+ (this);%0a%09%7d%0a%0a%09pub
+@@ -517,17 +517,16 @@
+ vent
+- 
+ ()%0a%09%7b%0a%09%09
+ FSMU
+@@ -525,79 +525,8 @@
  %7b%0a%09%09
--FSMUtility.SendEventToGameObject(base.gameObject, subscribedEvent);%0a%09%09
+-FSMUtility.SendEventToGameObject (base.gameObject, subscribedEvent);%0a%09%09
  if (
+@@ -554,17 +554,19 @@
+ != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09thi
+@@ -578,25 +578,24 @@
+ eceivedEvent
+- 
+ ();%0a%09%09%7d%0a%09%7d%0a%0a
+@@ -614,25 +614,24 @@
+  SwitchEvent
+- 
+ (string even
+@@ -650,33 +650,32 @@
+ UnsubscribeEvent
+- 
+ (this);%0a%09%09subscr
+@@ -713,17 +713,16 @@
+ ibeEvent
+- 
+ (this);%0a
+@@ -754,17 +754,16 @@
+ endEvent
+- 
+ (string 
+@@ -827,17 +827,16 @@
+ tainsKey
+- 
+ (eventNa
+@@ -839,17 +839,19 @@
+ ntName))
+- 
++%0a%09%09
+ %7b%0a%09%09%09ret
+@@ -905,17 +905,16 @@
+ Register
+- 
+ %5beventNa
+@@ -917,17 +917,19 @@
+ ntName%5d)
+- 
++%0a%09%09
+ %7b%0a%09%09%09ite
+@@ -942,17 +942,16 @@
+ iveEvent
+- 
+ ();%0a%09%09%7d%0a
+@@ -980,33 +980,32 @@
+ d SubscribeEvent
+- 
+ (EventRegister r
+@@ -1119,32 +1119,33 @@
+ .ContainsKey
+- 
+ (key))
+- 
++%0a%09%09
+ %7b%0a%09%09%09list = 
+@@ -1149,33 +1149,32 @@
+  = eventRegister
+- 
+ %5bkey%5d;%0a%09%09%7d else 
+@@ -1171,14 +1171,18 @@
+ %0a%09%09%7d
+- 
++%0a%09%09
+ else
+- 
++%0a%09%09
+ %7b%0a%09%09
+@@ -1212,17 +1212,16 @@
+ egister%3e
+- 
+ ();%0a%09%09%09e
+@@ -1236,17 +1236,16 @@
+ ster.Add
+- 
+ (key, li
+@@ -1263,17 +1263,16 @@
+ list.Add
+- 
+ (registe
+@@ -1315,17 +1315,16 @@
+ ibeEvent
+- 
+ (EventRe
+@@ -1419,16 +1419,17 @@
+ sKey
+- 
+ (key))
+- 
++%0a%09%09
+ %7b%0a%09%09
+@@ -1469,17 +1469,16 @@
+ Register
+- 
+ %5bkey%5d;%0a%09
+@@ -1496,17 +1496,16 @@
+ Contains
+- 
+ (registe
+@@ -1507,17 +1507,20 @@
+ gister))
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09li
+@@ -1528,17 +1528,16 @@
+ t.Remove
+- 
+ (registe
+@@ -1568,17 +1568,20 @@
+ nt %3c= 0)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09ev
+@@ -1598,17 +1598,16 @@
+ r.Remove
+- 
+ (key);%0a%09

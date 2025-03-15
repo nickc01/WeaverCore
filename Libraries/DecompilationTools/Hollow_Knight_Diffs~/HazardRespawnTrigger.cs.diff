@@ -1,14 +1,41 @@
-@@ -257,149 +257,239 @@
+@@ -210,17 +210,16 @@
+ id Awake
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -257,148 +257,239 @@
  e;%0a%09
--%09if (playerData == null
-+%7d%0a%0a%09private void Reset(
- )%0a%09
--%09
- %7b%0a%09%09
--%09Debug.LogError(base.name + %22- Player Data reference is null, please check this is being set correctly.%22);%0a%09%09%7d
-+var collider = gameObject.GetComponent%3cCollider2D%3e();%0a%09%09if (collider == null)%0a%09%09%7b%0a%09%09%09collider = gameObject.AddComponent%3cBoxCollider2D%3e();%0a%09%09%7d%0a%09%09collider.isTrigger = true;%0a%0a%09%09transform.SetPositionZ(0f);
+-%09if (playerData == null) %7b%0a%09%09%09Debug.LogError (base.name + %22- Player Data reference is null, please check this is being set correctly.%22);%0a%09%09%7d
++%7d%0a%0a%09private void Reset()%0a%09%7b%0a%09%09var collider = gameObject.GetComponent%3cCollider2D%3e();%0a%09%09if (collider == null)%0a%09%09%7b%0a%09%09%09collider = gameObject.AddComponent%3cBoxCollider2D%3e();%0a%09%09%7d%0a%09%09collider.isTrigger = true;%0a%0a%09%09transform.SetPositionZ(0f);
  %0a%09%7d%0a
-@@ -748,16 +748,47 @@
+@@ -508,17 +508,16 @@
+ id Start
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -542,17 +542,19 @@
+ == null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Deb
+@@ -566,17 +566,16 @@
+ gWarning
+- 
+ (base.na
+@@ -664,17 +664,16 @@
+ rEnter2D
+- 
+ (Collide
+@@ -748,18 +748,51 @@
  yer == 9
-+ && PlayerData.instance != null
- )%0a%09%09%7b%0a%09%09
+-)
+  
++&& PlayerData.instance != null)%0a%09%09
+ %7b%0a%09%09%09pla
+@@ -815,17 +815,16 @@
+ dRespawn
+- 
+ (respawn
+@@ -848,17 +848,20 @@
+ ireOnce)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09in

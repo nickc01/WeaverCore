@@ -5,20 +5,28 @@
  viour%0a%7b%0a
 +%0a
  %09public 
-@@ -448,24 +448,25 @@
- ng)%0a%09%09%09%7b%0a%09%09%09
+@@ -381,33 +381,32 @@
+ oat GetFontScale
+- 
+ (string lang, fl
+@@ -443,22 +443,26 @@
+ h (lang)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09
 +%09
- case %22JA%22:%0a%09
+ case %22JA
 @@ -464,24 +464,25 @@
  e %22JA%22:%0a%09%09%09%09
 +%09
  if (!fontSiz
-@@ -491,39 +491,41 @@
- A.HasValue)%0a%09%09%09%09
-+%09
+@@ -490,32 +490,38 @@
+ JA.HasValue)
+- 
++%0a%09%09%09%09%09
  %7b%0a%09%09%09%09%09
 +%09
- return defaultSc
+ return defau
 @@ -525,38 +525,40 @@
  faultScale;%0a%09%09%09%09
 +%09
@@ -33,12 +41,13 @@
  e %22RU%22:%0a%09%09%09%09
 +%09
  if (!fontSiz
-@@ -608,39 +608,41 @@
- U.HasValue)%0a%09%09%09%09
-+%09
+@@ -607,32 +607,38 @@
+ RU.HasValue)
+- 
++%0a%09%09%09%09%09
  %7b%0a%09%09%09%09%09
 +%09
- return defaultSc
+ return defau
 @@ -642,38 +642,40 @@
  faultScale;%0a%09%09%09%09
 +%09
@@ -53,12 +62,13 @@
  e %22ZH%22:%0a%09%09%09%09
 +%09
  if (!fontSiz
-@@ -725,39 +725,41 @@
- H.HasValue)%0a%09%09%09%09
-+%09
+@@ -724,32 +724,38 @@
+ ZH.HasValue)
+- 
++%0a%09%09%09%09%09
  %7b%0a%09%09%09%09%09
 +%09
- return defaultSc
+ return defau
 @@ -759,38 +759,40 @@
  faultScale;%0a%09%09%09%09
 +%09
@@ -73,12 +83,13 @@
  e %22KO%22:%0a%09%09%09%09
 +%09
  if (!fontSiz
-@@ -850,23 +850,25 @@
- ue)%0a%09%09%09%09
-+%09
+@@ -849,16 +849,22 @@
+ lue)
+- 
++%0a%09%09%09%09%09
  %7b%0a%09%09%09%09%09
 +%09
- return d
+ retu
 @@ -884,22 +884,24 @@
  le;%0a%09%09%09%09
 +%09
@@ -93,31 +104,172 @@
  efault:%0a%09%09%09%09
 +%09
  return defau
-@@ -2422,574 +2422,8 @@
- %7d%0a%09%09
--switch (global::Language.Language.CurrentLanguage().ToString())%0a%09%09%7b%0a%09%09case %22JA%22:%0a%09%09%09tmpro.fontSize = GetFontScale(%22JA%22);%0a%09%09%09tmpro.font = ((fontJA != null) ? fontJA : defaultFont);%0a%09%09%09return;%0a%09%09case %22RU%22:%0a%09%09%09tmpro.fontSize = GetFontScale(%22RU%22);%0a%09%09%09tmpro.font = ((fontRU != null) ? fontRU : defaultFont);%0a%09%09%09return;%0a%09%09case %22ZH%22:%0a%09%09%09tmpro.fontSize = GetFontScale(%22ZH%22);%0a%09%09%09tmpro.font = ((fontZH != null) ? fontZH : defaultFont);%0a%09%09%09return;%0a%09%09case %22KO%22:%0a%09%09%09tmpro.fontSize = GetFontScale(%22KO%22);%0a%09%09%09tmpro.font = ((fontKO != null) ? fontKO : defaultFont);%0a%09%09%09return;%0a%09%09%7d%0a%09%09
- tmpr
-@@ -2678,33 +2678,32 @@
-  startFontSize),
+@@ -1315,33 +1315,34 @@
+ ew FontScaleLang
 - 
- %0a%09%09%09FontScaleLan
-@@ -2771,33 +2771,32 @@
-  startFontSize),
++%0a%09
+ %7b%0a%09%09fontSizeJA =
+@@ -1470,33 +1470,34 @@
+ ew FontScaleLang
 - 
- %0a%09%09%09FontScaleLan
-@@ -2856,33 +2856,32 @@
-  startFontSize),
++%0a%09
+ %7b%0a%09%09fontSizeJA =
+@@ -1621,33 +1621,34 @@
+ ew FontScaleLang
 - 
- %0a%09%09%09FontScaleLan
-@@ -2955,25 +2955,24 @@
- rtFontSize),
++%0a%09
+ %7b%0a%09%09fontSizeJA =
+@@ -1779,33 +1779,34 @@
+ ew FontScaleLang
 - 
- %0a%09%09%09FontScal
-@@ -3056,17 +3056,16 @@
- ntSize),
++%0a%09
+ %7b%0a%09%09fontSizeJA =
+@@ -1944,17 +1944,18 @@
+ caleLang
 - 
- %0a%09%09%09_ =%3e
-@@ -3079,17 +3079,16 @@
- ontSize,
++%0a%09
+ %7b%0a%09%09font
+@@ -2055,17 +2055,16 @@
+ id Awake
 - 
- %0a%09%09%7d;%0a%09%7d
+ ()%0a%09%7b%0a%09%09
+@@ -2096,17 +2096,16 @@
+ MeshPro%3e
+- 
+ ();%0a%09%09if
+@@ -2118,17 +2118,19 @@
+ l)tmpro)
+- 
++%0a%09%09
+ %7b%0a%09%09%09if 
+@@ -2146,25 +2146,28 @@
+ ont == null)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09defaul
+@@ -2253,17 +2253,16 @@
+ id Start
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -2264,25 +2264,24 @@
+ %09%7b%0a%09%09SetFont
+- 
+ ();%0a%09%7d%0a%0a%09pri
+@@ -2298,17 +2298,16 @@
+ OnEnable
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -2323,17 +2323,19 @@
+ OnStart)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Set
+@@ -2338,17 +2338,16 @@
+ %09SetFont
+- 
+ ();%0a%09%09%7d%0a
+@@ -2370,17 +2370,16 @@
+  SetFont
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -2400,580 +2400,12 @@
+ ull)
+- %7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09switch (global::Language.Language.CurrentLanguage ().ToString ()) %7b%0a%09%09case %22JA%22:%0a%09%09%09tmpro.fontSize = GetFontScale (%22JA%22);%0a%09%09%09tmpro.font = ((fontJA != null) ? fontJA : defaultFont);%0a%09%09%09return;%0a%09%09case %22RU%22:%0a%09%09%09tmpro.fontSize = GetFontScale (%22RU%22);%0a%09%09%09tmpro.font = ((fontRU != null) ? fontRU : defaultFont);%0a%09%09%09return;%0a%09%09case %22ZH%22:%0a%09%09%09tmpro.fontSize = GetFontScale (%22ZH%22);%0a%09%09%09tmpro.font = ((fontZH != null) ? fontZH : defaultFont);%0a%09%09%09return;%0a%09%09case %22KO%22:%0a%09%09%09tmpro.fontSize = GetFontScale (%22KO%22);%0a%09%09%09tmpro.font = ((fontKO != null) ? fontKO : defaultFont);
++%0a%09%09%7b
+ %0a%09%09%09
+@@ -2476,17 +2476,19 @@
+ != null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09tmp
+@@ -2545,17 +2545,16 @@
+ ontScale
+- 
+ (string 
+@@ -2564,24 +2564,23 @@
+ g)%0a%09%7b%0a%09%09
+-switch (
++return 
+ fontScal
+@@ -2592,19 +2592,23 @@
+ Type
+-) %7b%0a%09%09case 
++ switch%0a%09%09%7b%0a%09%09%09
+ Font
+@@ -2626,35 +2626,27 @@
+ pes.AreaName
+-:%0a%09%09%09return
++ =%3e
+  fontScaleAr
+@@ -2656,33 +2656,32 @@
+ ame.GetFontScale
+- 
+ (lang, startFont
+@@ -2681,33 +2681,29 @@
+ artFontSize)
+-;%0a%09%09case 
++,%0a%09%09%09
+ FontScaleLan
+@@ -2720,27 +2720,19 @@
+ AreaName
+-:%0a%09%09%09return
++ =%3e
+  fontSca
+@@ -2749,33 +2749,32 @@
+ ame.GetFontScale
+- 
+ (lang, startFont
+@@ -2774,33 +2774,29 @@
+ artFontSize)
+-;%0a%09%09case 
++,%0a%09%09%09
+ FontScaleLan
+@@ -2809,27 +2809,19 @@
+ .WideMap
+-:%0a%09%09%09return
++ =%3e
+  fontSca
+@@ -2834,33 +2834,32 @@
+ Map.GetFontScale
+- 
+ (lang, startFont
+@@ -2859,33 +2859,29 @@
+ artFontSize)
+-;%0a%09%09case 
++,%0a%09%09%09
+ FontScaleLan
+@@ -2899,27 +2899,19 @@
+ itsTitle
+-:%0a%09%09%09return
++ =%3e
+  fontSca
+@@ -2929,33 +2929,32 @@
+ tle.GetFontScale
+- 
+ (lang, startFont
+@@ -2962,17 +2962,13 @@
+ ize)
+-;%0a%09%09case 
++,%0a%09%09%09
+ Font
+@@ -2995,27 +2995,19 @@
+ ptAuthor
+-:%0a%09%09%09return
++ =%3e
+  fontSca
+@@ -3034,17 +3034,16 @@
+ ontScale
+- 
+ (lang, s
+@@ -3059,30 +3059,17 @@
+ ize)
+-;%0a%09%09default:%0a%09%09%09return
++,%0a%09%09%09_ =%3e
+  sta
+@@ -3074,23 +3074,24 @@
+ tartFontSize
+-;
++,
+ %0a%09%09%7d
++;
+ %0a%09%7d%0a%7d%0a

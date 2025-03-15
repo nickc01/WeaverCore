@@ -1,24 +1,3 @@
 @@ -1,8 +1,23 @@
 +using System;%0a%0a
  namespac
-@@ -29,19 +29,20 @@
- balEnums
--;%0a%0a
-+%0a%7b%0a%09
- public e
-@@ -54,19 +54,21 @@
- eroType%0a
-+%09
- %7b%0a%09
-+%09
- KNIGHT,%0a
-@@ -68,16 +68,17 @@
- NIGHT,%0a%09
-+%09
- HORNET,%0a
-@@ -82,11 +82,15 @@
- T,%0a%09
-+%09
- ZOTE%0a
-+%09%7d%0a
- %7d%0a

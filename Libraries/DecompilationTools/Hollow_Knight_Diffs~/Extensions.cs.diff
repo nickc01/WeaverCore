@@ -1,63 +1,295 @@
 @@ -1,12 +1,26 @@
 +using System;%0a
  using System
+@@ -154,17 +154,16 @@
+ ractable
+- 
+ (this Se
+@@ -201,17 +201,19 @@
+ == null)
+- 
++%0a%09%09
+ %7b%0a%09%09%09ret
+@@ -251,17 +251,19 @@
+ actable)
+- 
++%0a%09%09
+ %7b%0a%09%09%09ret
+@@ -336,17 +336,16 @@
+ ractable
+- 
+ ();%0a%09%7d%0a%0a
+@@ -376,17 +376,16 @@
+ OnSource
+- 
+ (this Au
 @@ -473,22 +473,16 @@
  if (
 -(bool)
  self && 
  (boo
-@@ -481,14 +481,8 @@
+@@ -481,22 +481,18 @@
   && 
 -(bool)
- sour
+ source)
+- 
++%0a%09%09
+ %7b%0a%09%09
 @@ -507,16 +507,28 @@
  pitch = 
 +UnityEngine.
  Random.R
-@@ -1148,22 +1148,21 @@
+@@ -531,17 +531,16 @@
+ om.Range
+- 
+ (pitchMi
+@@ -574,17 +574,16 @@
+ yOneShot
+- 
+ (self);%0a
+@@ -623,25 +623,24 @@
+ tiveChildren
+- 
+ (this GameOb
+@@ -745,25 +745,27 @@
+ dCount; i++)
+- 
++%0a%09%09
+ %7b%0a%09%09%09self.tr
+@@ -780,17 +780,16 @@
+ GetChild
+- 
+ (i).game
+@@ -804,17 +804,16 @@
+ etActive
+- 
+ (value);
+@@ -862,17 +862,16 @@
+ Children
+- 
+ (this Me
+@@ -938,17 +938,19 @@
+ unt %3e 0)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Mes
+@@ -1026,17 +1026,16 @@
+ enderer%3e
+- 
+ ();%0a%09%09%09f
+@@ -1086,17 +1086,20 @@
+ th; i++)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09co
+@@ -1116,17 +1116,16 @@
+ Children
+- 
+ %5bi%5d.enab
+@@ -1148,18 +1148,21 @@
  %7d%0a%09%09
--%7d%0a%09%09else%0a%09%09%7b%0a%09
+-%7d else %7b%0a%09
 +%09return;%0a%09%09%7d%0a
  %09%09se
 @@ -1182,20 +1182,16 @@
  value;%0a%09
 -%09%7d%0a%09
  %7d%0a%0a%09publ
-@@ -1311,70 +1311,8 @@
- %7b%0a%09%09
--AnimatorControllerParameter%5b%5d parameters = self.parameters;%0a%09%09
- fore
-@@ -1375,16 +1375,21 @@
- eter in 
-+self.
- paramete
-@@ -1452,32 +1452,49 @@
- Name
-- &&
-+)%0a%09%09%09%7b%0a%09%09%09%09if
-  (
--!
- type
--.HasValue %7c%7c a
-+ != null)%0a%09%09%09%09%7b%0a%09%09%09%09%09A
+@@ -1217,17 +1217,16 @@
+ arameter
+- 
+ (this An
+@@ -1307,16 +1307,25 @@
+ l)%0a%09%7b%0a%09%09
++foreach (
+ Animator
+@@ -1347,20 +1347,36 @@
+ eter
+-%5b%5d p
++ animatorControllerP
+ arameter
+ s = 
+@@ -1371,19 +1371,19 @@
+ arameter
+-s =
++ in
+  self.pa
+@@ -1394,22 +1394,22 @@
+ ters
+-;%0a%09%09foreach (A
++)%0a%09%09%7b%0a%09%09%09if (a
  nima
-@@ -1519,552 +1519,337 @@
+@@ -1434,128 +1434,291 @@
+ eter
+- animatorControllerParameter in parameters) %7b%0a%09%09%09if (animatorControllerParameter.name == paramName && (!t
++.name == paramName)%0a%09%09%09%7b%0a%09%09%09%09if (type != null)%0a%09%09%09%09%7b%0a%09%09%09%09%09AnimatorControllerParameterType type2 = animatorControllerParameter.type;%0a%09%09%09%09%09AnimatorControllerParameterType? animatorControllerParameterType = type;%0a%09%09%09%09%09if (!(type2 == animatorControllerParameterT
+ ype.
+-Has
++Get
+ Value
+- %7c%7c
++OrDefault() &
+  ani
+@@ -1745,25 +1745,60 @@
  eter
 -.t
 +T
- ype
-- ==
-  type
--))%0a%09%09%09%7b%0a%09%09%09%09return true;%0a%09%09%09%7d%0a%09%09%7d%0a%09%09return false;%0a%09%7d%0a%0a%09public static IEnumerator PlayAnimWait(this tk2dSpriteAnimator self, string anim)%0a%09%7b%0a%09%09tk2dSpriteAnimationClip clipByName = self.GetClipByName(anim);%0a%09%09self.Play(clipByName);%0a%09%09yield return new WaitForSeconds(clipByName.Duration);%0a%09%09yield return new WaitForEndOfFrame();%0a%09%7d%0a%0a%09public static float PlayAnimGetTime(this tk2dSpriteAnimator self, string anim)%0a%09%7b%0a%09%09tk2dSpriteAnimationClip clipByName = self.GetClipByName(anim);%0a%09%09self.Play(clipByName);%0a%09%09return clipByName.Duration
-+2 = animatorControllerParameter.type;%0a%09%09%09%09%09AnimatorControllerParameterType? animatorControllerParameterType = type;%0a%09%09%09%09%09if (!(type2 == animatorControllerParameterType.GetValueOrDefault() & animatorControllerParameterType != null))%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09goto IL_43;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09return true;%0a%09%09%09%7d%0a%09%09IL_43:;%0a%09%09%7d%0a%09%09return false
- ;%0a%09%7d
+ ype 
+-== type)) %7b
++!= null))%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09goto IL_43;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d
+ %0a%09%09%09
+@@ -1810,32 +1810,42 @@
+ rn true;%0a%09%09%09%7d%0a%09%09
++IL_43:;%0a%09%09
+ %7d%0a%09%09return false
+@@ -1854,499 +1854,8 @@
+ %09%7d%0a%0a
+-%09public static IEnumerator PlayAnimWait (this tk2dSpriteAnimator self, string anim)%0a%09%7b%0a%09%09tk2dSpriteAnimationClip clipByName = self.GetClipByName (anim);%0a%09%09self.Play (clipByName);%0a%09%09yield return new WaitForSeconds (clipByName.Duration);%0a%09%09yield return new WaitForEndOfFrame ();%0a%09%7d%0a%0a%09public static float PlayAnimGetTime (this tk2dSpriteAnimator self, string anim)%0a%09%7b%0a%09%09tk2dSpriteAnimationClip clipByName = self.GetClipByName (anim);%0a%09%09self.Play (clipByName);%0a%09%09return clipByName.Duration;%0a%09%7d%0a%0a
+ %09pub
+@@ -1881,33 +1881,32 @@
+ MultiplyElements
+- 
+ (this Vector3 se
+@@ -2081,17 +2081,16 @@
+ Elements
+- 
+ (this Ve
+@@ -2235,33 +2235,32 @@
+ oid SetPositionX
+- 
+ (this Transform 
+@@ -2299,25 +2299,24 @@
+  new Vector3
+- 
+ (newX, t.pos
+@@ -2367,33 +2367,32 @@
+ oid SetPositionY
+- 
+ (this Transform 
+@@ -2427,33 +2427,32 @@
+ on = new Vector3
+- 
+ (t.position.x, n
+@@ -2499,33 +2499,32 @@
+ oid SetPositionZ
+- 
+ (this Transform 
+@@ -2567,17 +2567,16 @@
+  Vector3
+- 
+ (t.posit
+@@ -2632,33 +2632,32 @@
+ id SetPosition2D
+- 
+ (this Transform 
+@@ -2702,25 +2702,24 @@
+  new Vector3
+- 
+ (x, y, t.pos
+@@ -2761,25 +2761,24 @@
+ etPosition2D
+- 
+ (this Transf
+@@ -2831,17 +2831,16 @@
+  Vector3
+- 
+ (positio
+@@ -2908,17 +2908,16 @@
+ sition3D
+- 
+ (this Tr
+@@ -2983,17 +2983,16 @@
+  Vector3
+- 
+ (x, y, z
+@@ -3019,33 +3019,32 @@
+ c void SetScaleX
+- 
+ (this Transform 
+@@ -3090,25 +3090,24 @@
+  new Vector3
+- 
+ (newXScale, 
+@@ -3164,33 +3164,32 @@
+ c void SetScaleY
+- 
+ (this Transform 
+@@ -3231,33 +3231,32 @@
+ le = new Vector3
+- 
+ (t.localScale.x,
+@@ -3309,33 +3309,32 @@
+ c void SetScaleZ
+- 
+ (this Transform 
+@@ -3376,33 +3376,32 @@
+ le = new Vector3
+- 
+ (t.localScale.x,
+@@ -3461,25 +3461,24 @@
+ SetRotationZ
+- 
+ (this Transf
+@@ -3541,17 +3541,16 @@
+  Vector3
+- 
+ (t.local
+@@ -3641,17 +3641,16 @@
+ Matching
+- 
+ (this Tr
+@@ -3707,17 +3707,16 @@
+  Vector3
+- 
+ (newScal
+@@ -3776,17 +3776,16 @@
+ ositionX
+- 
+ (this Tr
+@@ -3858,17 +3858,16 @@
+ ositionY
+- 
+ (this Tr
+@@ -3940,17 +3940,16 @@
+ ositionZ
+- 
+ (this Tr
+@@ -4019,17 +4019,16 @@
+ etScaleX
+- 
+ (this Tr
+@@ -4100,17 +4100,16 @@
+ etScaleY
+- 
+ (this Tr
+@@ -4181,17 +4181,16 @@
+ etScaleZ
+- 
+ (this Tr
+@@ -4258,33 +4258,32 @@
+ at GetRotation2D
+- 
+ (this Transform 
+@@ -4356,17 +4356,16 @@
+ tation2D
+- 
+ (this Tr
+@@ -4521,17 +4521,16 @@
+ ol IsAny
+- 
+ (this st
 @@ -4586,20 +4586,17 @@
  (string 
 -text
 +b
   in othe
-@@ -4623,12 +4623,9 @@
+@@ -4598,17 +4598,19 @@
+  others)
+- 
++%0a%09%09
+ %7b%0a%09%09%09if 
+@@ -4623,14 +4623,14 @@
   == 
--text
-+b
- )%0a%09%09
+-text) 
++b)%0a%09%09%09
+ %7b%0a%09%09

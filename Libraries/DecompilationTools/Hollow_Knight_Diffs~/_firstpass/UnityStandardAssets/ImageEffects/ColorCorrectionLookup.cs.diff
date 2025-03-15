@@ -1,137 +1,103 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,23 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    
+@@ -72,17 +72,20 @@
+ fects%0a%7b%0a
+-%09
++    
  %5bExecute
-@@ -96,16 +96,20 @@
+@@ -96,17 +96,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -117,16 +117,17 @@
- nentMenu
-+ 
- (%22Image 
-@@ -192,16 +192,20 @@
+@@ -192,17 +192,20 @@
  ure)%22)%5d%0a
+-%09
 +    
  public c
-@@ -249,19 +249,30 @@
+@@ -249,21 +249,30 @@
  ctsBase%0a
--%7b%0a%09
+-%09%7b%0a%09%09
 +    %7b%0a        
  public S
-@@ -285,18 +285,24 @@
+@@ -285,19 +285,24 @@
  shader;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -321,17 +321,94 @@
+@@ -321,18 +321,94 @@
  erial;%0a%0a
--%09
+-%09%09
 +        // serialize this instead of having another 2d texture ref'ed%0a        
  public T
-@@ -430,20 +430,33 @@
+@@ -430,21 +430,33 @@
  ted3DLut
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a        
  public s
-@@ -483,17 +483,25 @@
+@@ -483,18 +483,25 @@
   = %22%22;%0a%0a
--%09
+-%09%09
 +%0a        
  public o
-@@ -531,50 +531,61 @@
- rces
-+ 
- ()
--%0a%09%7b%0a%09%09CheckSupport(needDepth: false);%0a%09%09
+@@ -534,52 +534,58 @@
+ s ()
+-%0a%09%09%7b%0a%09%09%09CheckSupport (needDepth: false);%0a%09%09%09
 + %7b%0a            CheckSupport (false);%0a%0a            
  mate
-@@ -619,16 +619,17 @@
- Material
-+ 
- (shader,
-@@ -640,18 +640,29 @@
- erial);%0a
--%09%09
-+%0a            
- if (!isS
-@@ -705,23 +705,32 @@
- xtures)%0a
--%09%09%7b%0a%09%09%09
-+                
- ReportAu
-@@ -738,26 +738,33 @@
- oDisable
-+ 
- ();%0a
--%09%09%7d%0a%09%09
-+            
- return i
-@@ -775,28 +775,34 @@
- ported;%0a
--%09%7d%0a%0a%09private
-+        %7d%0a%0a       
-  void On
-@@ -812,50 +812,58 @@
- able
-+ 
- ()
--%0a%09%7b%0a%09%09if ((bool)material)%0a%09%09%7b%0a%09%09%09Object.
-+ %7b%0a            if (material) %7b%0a                
- Dest
-@@ -874,16 +874,17 @@
- mmediate
-+ 
- (materia
-@@ -887,19 +887,32 @@
+@@ -640,19 +640,29 @@
  erial);%0a
 -%09%09%09
++%0a            
+ if (!isS
+@@ -704,23 +704,33 @@
+ extures)
+- %7b%0a%09%09%09%09
++%0a                
+ ReportAu
+@@ -743,24 +743,28 @@
+ ble ();%0a
+-%09%09%09%7d%0a%09%09%09
++            
+ return i
+@@ -779,81 +779,91 @@
+ ed;%0a
+-%09%09%7d%0a%0a%09%09private void OnDisable ()%0a%09%09%7b%0a%09%09%09if ((bool)material) %7b%0a%09%09%09%09Object.
++        %7d%0a%0a        void OnDisable () %7b%0a            if (material) %7b%0a                
+ Dest
+@@ -887,20 +887,32 @@
+ erial);%0a
+-%09%09%09%09
 +                
  material
-@@ -920,32 +920,48 @@
- = null;%0a
--%09%09%7d%0a%09%7d%0a%0a%09private
-+            %7d%0a        %7d%0a%0a       
-  void On
-@@ -971,56 +971,62 @@
- troy
-+ 
- ()
--%0a%09%7b%0a%09%09if ((bool)converted3DLut)%0a%09%09%7b%0a%09%09%09Object.
-+ %7b%0a            if (converted3DLut)%0a                
+@@ -924,92 +924,109 @@
+ ll;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09private void OnDestroy ()%0a%09%09%7b%0a%09%09%09if ((bool)converted3DLut) %7b%0a%09%09%09%09Object.
++            %7d%0a        %7d%0a%0a        void OnDestroy () %7b%0a            if (converted3DLut)%0a                
  Dest
-@@ -1029,32 +1029,33 @@
- DestroyImmediate
-+ 
- (converted3DLut)
-@@ -1048,38 +1048,44 @@
- onverted3DLut);%0a
--%09%09%7d%0a%09%09
+@@ -1052,32 +1052,36 @@
+ rted3DLut);%0a
+-%09%09%09%7d%0a%09%09%09
 +            
- converted3DLut =
-@@ -1091,21 +1091,35 @@
+ converted3DL
+@@ -1091,23 +1091,35 @@
  = null;%0a
--%09%7d%0a%0a%09
+-%09%09%7d%0a%0a%09%09
 +        %7d%0a%0a        
  public v
-@@ -1140,30 +1140,40 @@
- yLut
-+ 
- ()
--%0a%09%7b%0a%09%09
+@@ -1143,30 +1143,37 @@
+ t ()
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  int 
 -nu
 +di
  m = 16;%0a
- %09%09Co
-@@ -1172,104 +1172,130 @@
+ %09%09%09C
+@@ -1172,107 +1172,130 @@
  16;%0a
--%09%09Color%5b%5d array = new Color%5bnum * num * num%5d;%0a%09%09float num2
+-%09%09%09Color%5b%5d array = new Color%5bnum * num * num%5d;%0a%09%09%09float num2
 +            var newC = new Color%5bdim*dim*dim%5d;%0a            float oneOverDim
   = 1
 +.0
@@ -143,141 +109,168 @@
  m - 1
 +.0
  f);%0a
--%09%09
+-%09%09%09
 +%0a            
  for
 - 
  (int
-@@ -1310,29 +1310,39 @@
- i %3c 
+@@ -1298,34 +1298,34 @@
+ (int i = 0; i %3c 
 -nu
 +di
- m; i++)
--%0a%09%09%7b%0a%09%09%09
-+ %7b%0a                
+ m; i++) %7b%0a%09%09%09%09fo
+@@ -1318,24 +1318,35 @@
+  i++) %7b%0a
+-%09%09%09%09
++                
  for
 - 
- (int
-@@ -1357,31 +1357,43 @@
- j %3c 
+ (int j =
+@@ -1345,34 +1345,34 @@
+ (int j = 0; j %3c 
 -nu
 +di
- m; j++)
--%0a%09%09%09%7b%0a%09%09%09%09
-+ %7b%0a                    
+ m; j++) %7b%0a%09%09%09%09%09f
+@@ -1361,33 +1361,47 @@
+ dim; j++) %7b%0a
+-%09%09%09%09%09
++                    
  for
 - 
- (int
-@@ -1408,204 +1408,261 @@
- k %3c 
+ (int k = 0; 
+@@ -1396,34 +1396,34 @@
+ (int k = 0; k %3c 
 -nu
 +di
- m; k++)
--%0a%09%09%09%09%7b%0a%09%09%09%09%09array%5bi + j * num + k * num * num%5d = new Color((float)i * 1f * num2, (float)j * 1f * num2, (float)k * 1f * num2
-+ %7b%0a                        newC%5bi + (j*dim) + (k*dim*dim)%5d = new Color((i*1.0f)*oneOverDim, (j*1.0f)*oneOverDim, (k*1.0f)*oneOverDim
+ m; k++) %7b%0a%09%09%09%09%09%09
+@@ -1420,48 +1420,62 @@
+ ) %7b%0a
+-%09%09%09%09%09%09array %5bi + j * num + k * num * num
++                        newC%5bi + (j*dim) + (k*dim*dim)
+ %5d = 
+@@ -1487,141 +1487,182 @@
+ olor
+- 
+ ((
+-float)i * 1f * num2, (float)j * 1f * num2, (float)k * 1f * num2
++i*1.0f)*oneOverDim, (j*1.0f)*oneOverDim, (k*1.0f)*oneOverDim
  , 1
 +.0
  f);%0a
--%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%7d%0a%09%09if ((bool)converted3DLut)%0a%09%09%7b%0a%09%09%09Object.
+-%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09if ((bool)converted3DLut) %7b%0a%09%09%09%09Object.
 +                    %7d%0a                %7d%0a            %7d%0a%0a            if (converted3DLut)%0a                
  Dest
-@@ -1665,32 +1665,33 @@
- DestroyImmediate
-+ 
- (converted3DLut)
-@@ -1692,22 +1692,28 @@
+@@ -1692,24 +1692,28 @@
  3DLut);%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +            
  converte
-@@ -1730,37 +1730,38 @@
- ew Texture3D
--(num, num, nu
-+ (dim, dim, di
+@@ -1732,36 +1732,36 @@
+  Texture3D (
+-num, num, nu
++dim, dim, di
  m, TextureFo
-@@ -1773,36 +1773,36 @@
+@@ -1773,37 +1773,36 @@
  ARGB32, 
--mipChain: false);%0a%09%09
+-mipChain: false);%0a%09%09%09
 +false);%0a            
  converte
-@@ -1817,27 +1817,37 @@
- etPixels
--(array);%0a%09%09
-+ (newC);%0a            
+@@ -1819,27 +1819,35 @@
+ Pixels (
+-array);%0a%09%09%09
++newC);%0a            
  converte
-@@ -1858,22 +1858,33 @@
- ut.Apply
-+ 
- ();%0a
--%09%09
+@@ -1863,19 +1863,28 @@
+ ply ();%0a
+-%09%09%09
 +            
  basedOnT
-@@ -1896,21 +1896,35 @@
+@@ -1896,23 +1896,35 @@
  x = %22%22;%0a
--%09%7d%0a%0a%09
+-%09%09%7d%0a%0a%09%09
 +        %7d%0a%0a        
  public b
-@@ -1942,17 +1942,19 @@
- mensions
--(
-+ ( 
+@@ -1944,16 +1944,17 @@
+ nsions (
++ 
  Texture2
-@@ -1961,22 +1961,31 @@
+@@ -1961,24 +1961,31 @@
  D tex2d)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  if (!tex
-@@ -1987,24 +1987,17 @@
- (!tex2d)
--%0a%09%09%7b%0a%09%09%09
-+ 
+@@ -1988,22 +1988,16 @@
+ !tex2d) 
+-%7b%0a%09%09%09%09
  return f
-@@ -2006,122 +2006,196 @@
+@@ -2006,32 +2006,59 @@
  se;%0a
--%09%09%7d%0a%09%09if (tex2d.height != Mathf.FloorToInt(Mathf.Sqrt(tex2d.width)))%0a%09%09%7b%0a%09%09%09return false;%0a%09%09%7d%0a%09%09return true;%0a%09%7d%0a%0a%09
-+            int h = tex2d.height;%0a            if (h != Mathf.FloorToInt(Mathf.Sqrt(tex2d.width))) %7b%0a                return false;%0a            %7d%0a            return true;%0a        %7d%0a%0a        
+-%09%09%09%7d%0a%09%09%09if (tex2d.height
++            int h = tex2d.height;%0a            if (h
+  != 
+@@ -2073,17 +2073,16 @@
+ oorToInt
+- 
+ (Mathf.S
+@@ -2084,17 +2084,16 @@
+ thf.Sqrt
+- 
+ (tex2d.w
+@@ -2106,54 +2106,96 @@
+ ) %7b%0a
+-%09%09%09%09return false;%0a%09%09%09%7d%0a%09%09%09return true;%0a%09%09%7d%0a%0a%09%09
++                return false;%0a            %7d%0a            return true;%0a        %7d%0a%0a        
  publ
-@@ -2209,17 +2209,19 @@
-  Convert
--(
-+ ( 
+@@ -2211,16 +2211,17 @@
+ onvert (
++ 
  Texture2
-@@ -2249,48 +2249,231 @@
+@@ -2249,49 +2249,231 @@
  ath)
--%0a%09%7b%0a%09%09if ((bool)temp2DTex)%0a%09%09%7b%0a%09%09%09
+-%0a%09%09%7b%0a%09%09%09if ((bool)temp2DTex) %7b%0a%09%09%09%09
 + %7b%0a%0a            // conversion fun: the given 2D texture needs to be of the format%0a            //  w * h, wheras h is the 'depth' (or 3d dimension 'dim') and w = dim * dim%0a%0a            if (temp2DTex) %7b%0a                
  int 
 -nu
 +di
  m = 
-@@ -2512,13 +2512,26 @@
+@@ -2512,14 +2512,26 @@
  ht;%0a
--%09%09%09nu
+-%09%09%09%09nu
 +                di
  m = 
-@@ -2548,19 +2548,33 @@
+@@ -2548,20 +2548,33 @@
  height;%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  if (!Val
-@@ -2597,26 +2597,39 @@
- p2DTex))
--%0a%09%09%09%7b%0a%09%09%09%09
-+ %7b%0a                    
+@@ -2585,17 +2585,16 @@
+ mensions
+- 
+ (temp2DT
+@@ -2600,21 +2600,36 @@
+ Tex)) %7b%0a
+-%09%09%09%09%09
++                    
  Debug.Lo
-@@ -2713,20 +2713,36 @@
+@@ -2636,17 +2636,16 @@
+ gWarning
+- 
+ (%22The gi
+@@ -2713,21 +2713,36 @@
  LUT.%22);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  basedOnT
-@@ -2758,42 +2758,76 @@
+@@ -2758,45 +2758,76 @@
  %22%22;%0a
--%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09Color%5b%5d pixels
+-%09%09%09%09%09return;%0a%09%09%09%09%7d%0a%09%09%09%09Color%5b%5d pixels
 +                    return;%0a                %7d%0a%0a                var c
   = t
-@@ -2852,24 +2852,32 @@
+@@ -2848,30 +2848,36 @@
+ xels
+- 
  ();%0a
--%09%09%09Color%5b%5d array
+-%09%09%09%09Color%5b%5d array
 +                var newC
   = n
 @@ -2885,22 +2885,17 @@
@@ -285,153 +278,158 @@
 -pixels
 +c
  .Length%5d
-@@ -2896,23 +2896,36 @@
+@@ -2896,24 +2896,36 @@
  ength%5d;%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  for
 - 
  (int i =
-@@ -2936,31 +2936,43 @@
- i %3c 
+@@ -2932,18 +2932,18 @@
+  0; i %3c 
 -nu
 +di
- m; i++)
--%0a%09%09%09%7b%0a%09%09%09%09
-+ %7b%0a                    
+ m; i++) 
+@@ -2944,25 +2944,39 @@
+  i++) %7b%0a
+-%09%09%09%09%09
++                    
+ for
+- 
+ (int j =
+@@ -2983,18 +2983,18 @@
+  0; j %3c 
+-nu
++di
+ m; j++) 
+@@ -2999,18 +2999,35 @@
+ ) %7b%0a
+-%09%09%09%09%09%09
++                        
  for
 - 
  (int
-@@ -2987,33 +2987,47 @@
- j %3c 
+@@ -3038,18 +3038,18 @@
+  0; k %3c 
 -nu
 +di
- m; j++)
--%0a%09%09%09%09%7b%0a%09%09%09%09%09
-+ %7b%0a                        
- for
-- 
- (int
-@@ -3042,201 +3042,274 @@
- k %3c 
--nu
-+di
- m; k++)
--%0a%09%09%09%09%09%7b%0a%09%09%09%09%09%09int num2 = num - j - 1;%0a%09%09%09%09%09%09array%5bi + j * num + k * num * num%5d = pixels%5bk * num + i + num2 * num * num%5d;%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09if ((bool)converted3DLut)%0a%09%09%09%7b%0a%09%09%09%09Object.
-+ %7b%0a                            int j_ = dim-j-1;%0a                            newC%5bi + (j*dim) + (k*dim*dim)%5d = c%5bk*dim+i+j_*dim*dim%5d;%0a                        %7d%0a                    %7d%0a                %7d%0a%0a                if (converted3DLut)%0a                    
+ m; k++) 
+@@ -3054,190 +3054,262 @@
+ ) %7b%0a
+-%09%09%09%09%09%09%09int num2 = num - j - 1;%0a%09%09%09%09%09%09%09array %5bi + j * num + k * num * num%5d = pixels %5bk * num + i + num2 * num * num%5d;%0a%09%09%09%09%09%09%7d%0a%09%09%09%09%09%7d%0a%09%09%09%09%7d%0a%09%09%09%09if ((bool)converted3DLut) %7b%0a%09%09%09%09%09Object.
++                            int j_ = dim-j-1;%0a                            newC%5bi + (j*dim) + (k*dim*dim)%5d = c%5bk*dim+i+j_*dim*dim%5d;%0a                        %7d%0a                    %7d%0a                %7d%0a%0a                if (converted3DLut)%0a                    
  Dest
-@@ -3320,16 +3320,17 @@
- mmediate
-+ 
- (convert
-@@ -3343,16 +3343,24 @@
+@@ -3343,18 +3343,24 @@
  t);%0a
--%09%09%09%7d%0a%09%09%09
+-%09%09%09%09%7d%0a%09%09%09%09
 +                
  conv
-@@ -3389,21 +3389,22 @@
- re3D
--(num, num, nu
-+ (dim, dim, di
+@@ -3391,20 +3391,20 @@
+ 3D (
+-num, num, nu
++dim, dim, di
  m, T
-@@ -3428,65 +3428,81 @@
+@@ -3428,30 +3428,32 @@
  32, 
--mipChain: false);%0a%09%09%09converted3DLut.SetPixels(array);%0a%09%09%09
-+false);%0a                converted3DLut.SetPixels (newC);%0a                
+-mipChain: false);%0a%09%09%09%09
++false);%0a                
  conv
-@@ -3521,15 +3521,29 @@
- pply
-+ 
- ();%0a
--%09%09%09
+@@ -3478,20 +3478,31 @@
+ ls (
+-array);%0a%09%09%09%09
++newC);%0a                
+ conv
+@@ -3522,20 +3522,32 @@
+ ply ();%0a
+-%09%09%09%09
 +                
- base
-@@ -3565,26 +3565,113 @@
+ basedOnT
+@@ -3565,24 +3565,113 @@
  th;%0a
--%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%09%7d else %7b%0a%09%09%09%09
 +            %7d%0a            else %7b%0a                // error, something went terribly wrong%0a                
  Debu
-@@ -3764,24 +3764,40 @@
+@@ -3680,17 +3680,16 @@
+ LogError
+- 
+ (%22Couldn
+@@ -3764,27 +3764,40 @@
  %22);%0a
--%09%09%7d%0a%09%7d%0a%0a%09private
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09private
 +            %7d%0a        %7d%0a%0a       
   voi
-@@ -3811,16 +3811,17 @@
- derImage
-+ 
- (RenderT
-@@ -3865,19 +3865,27 @@
+@@ -3865,21 +3865,27 @@
  ion)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  if (
 -!
  Chec
-@@ -3894,18 +3894,28 @@
- esources
-+ 
- ()
+@@ -3897,16 +3897,25 @@
+ urces ()
 + == false
   %7c%7c !Sys
-@@ -3941,24 +3941,35 @@
- extures)
--%0a%09%09%7b%0a%09%09%09
-+ %7b%0a                
+@@ -3944,20 +3944,32 @@
+ ures) %7b%0a
+-%09%09%09%09
++                
  Graphics
-@@ -3965,32 +3965,33 @@
-    Graphics.Blit
-+ 
- (source, destina
-@@ -4001,25 +4001,59 @@
+@@ -4001,28 +4001,59 @@
  n);%0a
--%09%09%09return;%0a%09%09%7d%0a%09%09
+-%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09
 +                return;%0a            %7d%0a%0a            
  if (
-@@ -4079,16 +4079,27 @@
- ull)
--%0a%09%09%7b%0a%09%09%09
-+ %7b%0a                
+@@ -4082,12 +4082,24 @@
+ ) %7b%0a
+-%09%09%09%09
++                
  SetI
-@@ -4112,27 +4112,51 @@
- yLut
-+ 
+@@ -4117,25 +4117,46 @@
  ();%0a
--%09%09%7d%0a%09%09int width
+-%09%09%09%7d%0a%09%09%09int width
 +            %7d%0a%0a            int lutSize
   = c
-@@ -4176,18 +4176,28 @@
+@@ -4176,19 +4176,28 @@
  .width;%0a
--%09%09
+-%09%09%09
 +            
  converte
-@@ -4237,18 +4237,28 @@
+@@ -4237,19 +4237,28 @@
  .Clamp;%0a
--%09%09
+-%09%09%09
 +            
  material
-@@ -4282,52 +4282,52 @@
+@@ -4266,17 +4266,16 @@
+ SetFloat
+- 
+ (%22_Scale
+@@ -4282,53 +4282,52 @@
  %22, (
--float)(width - 1) / (1f * (float)width));%0a%09%09
+-float)(width - 1) / (1f * (float)width));%0a%09%09%09
 +lutSize - 1) / (1.0f*lutSize));%0a            
  mate
-@@ -4356,36 +4356,45 @@
+@@ -4339,17 +4339,16 @@
+ SetFloat
+- 
+ (%22_Offse
+@@ -4356,37 +4356,45 @@
  %22, 1
 +.0
  f / (2
 +.0
  f * 
--(float)width));%0a%09%09
+-(float)width));%0a%09%09%09
 +lutSize));%0a            
  mate
-@@ -4442,10 +4442,21 @@
+@@ -4408,17 +4408,16 @@
+ tTexture
+- 
+ (%22_ClutT
+@@ -4442,11 +4442,21 @@
  t);%0a
--%09%09
+-%09%09%09
 +%0a            
  Grap
-@@ -4464,16 +4464,17 @@
- ics.Blit
-+ 
- (source,
 @@ -4497,17 +4497,16 @@
  terial, 
 -(
@@ -440,8 +438,8 @@
  e.Linear
 -)
   ? 1 : 0
-@@ -4565,9 +4565,22 @@
+@@ -4565,13 +4565,22 @@
  0);%0a
--%09
+-%09%09%7d%0a%09
 +        %7d%0a    
  %7d%0a%7d%0a

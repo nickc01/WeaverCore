@@ -1,67 +1,121 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,23 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    
+@@ -72,17 +72,20 @@
+ fects%0a%7b%0a
+-%09
++    
  %5bExecute
-@@ -96,16 +96,20 @@
+@@ -96,17 +96,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -146,16 +146,20 @@
+@@ -117,17 +117,16 @@
+ nentMenu
+- 
+ (%22Image 
+@@ -146,17 +146,20 @@
  Blur%22)%5d%0a
+-%09
 +    
  public c
-@@ -188,74 +188,703 @@
+@@ -188,78 +188,703 @@
  our%0a
--%7b%0a%09public int iterations = 3;%0a%0a%09public float blurSpread = 0.6f;%0a%0a%09
+-%09%7b%0a%09%09public int iterations = 3;%0a%0a%09%09public float blurSpread = 0.6f;%0a%0a%09%09
 +    %7b%0a        /// Blur iterations - larger number means more blur.%0a        %5bRange(0,10)%5d%0a        public int iterations = 3;%0a%0a        /// Blur spread for each iteration. Lower values%0a        /// give better looking blur, but require more iterations to%0a        /// get large blurs. Value is usually between 0.5 and 1.0.%0a        %5bRange(0.0f,1.0f)%5d%0a        public float blurSpread = 0.6f;%0a%0a%0a        // --------------------------------------------------------%0a        // The blur iteration shader.%0a        // Basically it just takes 4 texture samples and averages them.%0a        // By applying it repeatedly and spreading out sample locations%0a        // we get a Gaussian blur approximation.%0a%0a        
  publ
-@@ -907,19 +907,25 @@
+@@ -907,20 +907,25 @@
  ader
--;%0a%0a%09private
+-;%0a%0a%09%09private
 + = null;%0a%0a       
   sta
-@@ -951,12 +951,25 @@
+@@ -951,13 +951,25 @@
  rial
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a        
  prot
-@@ -995,58 +995,91 @@
- rial
--%0a%09%7b%0a%09%09get%0a%09%09%7b%0a%09%09%09if (m_Material == null)%0a%09%09%09%7b%0a%09%09%09%09
-+ %7b%0a            get %7b%0a                if (m_Material == null) %7b%0a                    
- m_Ma
-@@ -1117,12 +1117,28 @@
+@@ -998,21 +998,42 @@
+ l %7b%0a
+-%09%09%09get %7b%0a%09%09%09%09
++            get %7b%0a                
+ if (
+@@ -1054,21 +1054,36 @@
+ null) %7b%0a
+-%09%09%09%09%09
++                    
+ m_Materi
+@@ -1099,17 +1099,16 @@
+ Material
+- 
+ (blurSha
+@@ -1117,13 +1117,28 @@
  r);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  m_Ma
-@@ -1180,112 +1180,171 @@
+@@ -1180,49 +1180,94 @@
  ve;%0a
--%09%09%09%7d%0a%09%09%09return m_Material;%0a%09%09%7d%0a%09%7d%0a%0a%09protected void OnDisable()%0a%09%7b%0a%09%09if ((bool)m_Material)%0a%09%09%7b%0a%09%09%09Object.
-+                %7d%0a                return m_Material;%0a            %7d%0a        %7d%0a%0a        protected void OnDisable() %7b%0a            if ( m_Material ) %7b%0a                
+-%09%09%09%09%7d%0a%09%09%09%09return m_Material;%0a%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++                %7d%0a                return m_Material;%0a            %7d%0a        %7d%0a%0a        
+ prot
+@@ -1290,29 +1290,30 @@
+ able
+- 
+ ()
+-%0a%09%09%7b%0a%09%09%09if ((bool)
++ %7b%0a            if ( 
+ m_Ma
+@@ -1322,23 +1322,29 @@
+ rial
++ 
+ ) %7b%0a
+-%09%09%09%09Object.
++                
  Dest
-@@ -1356,16 +1356,17 @@
- mediate(
+@@ -1355,18 +1355,18 @@
+ mmediate
+- 
+ (
 + 
  m_Materi
-@@ -1371,213 +1371,594 @@
+@@ -1371,23 +1371,114 @@
  rial
 + 
  );%0a
--%09%09%7d%0a%09%7d%0a%0a%09protected void Start()%0a%09%7b%0a%09%09if (!SystemInfo.supportsImageEffects)%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%09else if (!blurShader %7c%7c !material.shader.isSupported)%0a%09%09%7b%0a%09%09%09base.enabled = false;%0a%09%09%7d%0a%09%7d%0a%0a%09
-+            %7d%0a        %7d%0a%0a        // --------------------------------------------------------%0a%0a        protected void Start()%0a        %7b%0a            // Disable if we don't support image effects%0a            if (!SystemInfo.supportsImageEffects) %7b%0a                enabled = false;%0a                return;%0a            %7d%0a            // Disable if the shader can't run on the users graphics card%0a            if (!blurShader %7c%7c !material.shader.isSupported) %7b%0a                enabled = false;%0a                return;%0a            %7d%0a        %7d%0a%0a        // Performs one blur iteration.%0a        
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++            %7d%0a        %7d%0a%0a        // --------------------------------------------------------%0a%0a        
+ prot
+@@ -1497,19 +1497,90 @@
+ tart
+- 
+ ()%0a
+-%09%09%7b%0a%09%09%09
++        %7b%0a            // Disable if we don't support image effects%0a            
+ if (
+@@ -1611,33 +1611,40 @@
+ eEffects) %7b%0a
+-%09%09%09%09base.
++                
+ enabled = fa
+@@ -1652,17 +1652,131 @@
+ se;%0a
+-%09%09%09%7d else
++                return;%0a            %7d%0a            // Disable if the shader can't run on the users graphics card%0a           
+  if 
+@@ -1827,17 +1827,24 @@
+ ) %7b%0a
+-%09%09%09%09base.
++                
+ enab
+@@ -1860,20 +1860,105 @@
+ se;%0a
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
++                return;%0a            %7d%0a        %7d%0a%0a        // Performs one blur iteration.%0a        
  publ
-@@ -1976,16 +1976,17 @@
- rTapCone
-+ 
- (RenderT
-@@ -2035,30 +2035,47 @@
+@@ -2035,32 +2035,47 @@
  ration)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  float 
 -num
@@ -76,27 +130,19 @@
 - * 
 +*
  blur
-@@ -2098,18 +2098,28 @@
+@@ -2098,19 +2098,28 @@
  Spread;%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -2123,32 +2123,33 @@
- ics.BlitMultiTap
-+ 
- (source, dest, m
-@@ -2160,127 +2160,346 @@
+@@ -2160,133 +2160,346 @@
  ial,
-- new Vector2(0f - num, 0f - num), new Vector2(0f - num, num), new Vector2(num, num), new Vector2(num, 0f - num));%0a%09%7d%0a%0a%09
+- new Vector2 (0f - num, 0f - num), new Vector2 (0f - num, num), new Vector2 (num, num), new Vector2 (num, 0f - num));%0a%09%09%7d%0a%0a%09%09
 +%0a                                   new Vector2(-off, -off),%0a                                   new Vector2(-off,  off),%0a                                   new Vector2( off,  off),%0a                                   new Vector2( off, -off)%0a                );%0a        %7d%0a%0a        // Downsamples the texture to a quarter resolution.%0a        
  priv
-@@ -2519,16 +2519,17 @@
- Sample4x
-+ 
- (RenderT
-@@ -2567,31 +2567,60 @@
+@@ -2567,34 +2567,60 @@
  st)%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  float 
 -num
@@ -104,75 +150,48 @@
   = 1
 +.0
  f;%0a
--%09%09
+-%09%09%09
 +            
  Grap
-@@ -2636,16 +2636,17 @@
- MultiTap
-+ 
- (source,
-@@ -2665,134 +2665,343 @@
+@@ -2665,285 +2665,504 @@
  ial,
-- new Vector2(0f - num, 0f - num), new Vector2(0f - num, num), new Vector2(num, num), new Vector2(num, 0f - num));%0a%09%7d%0a%0a%09private
-+%0a                                   new Vector2(-off, -off),%0a                                   new Vector2(-off,  off),%0a                                   new Vector2( off,  off),%0a                                   new Vector2( off, -off)%0a                );%0a        %7d%0a%0a        // Called by the camera to apply the image effect%0a       
-  voi
-@@ -3015,16 +3015,17 @@
- derImage
-+ 
- (RenderT
-@@ -3069,80 +3069,100 @@
- ion)
--%0a%09%7b%0a%09%09int width = source.width / 4;%0a%09%09int height = source.height / 4;%0a%09%09
-+ %7b%0a            int rtW = source.width/4;%0a            int rtH = source.height/4;%0a            
+- new Vector2 (0f - num, 0f - num), new Vector2 (0f - num, num), new Vector2 (num, num), new Vector2 (num, 0f - num));%0a%09%09%7d%0a%0a%09%09private void OnRenderImage (RenderTexture source, RenderTexture destination)%0a%09%09%7b%0a%09%09%09int width = source.width / 4;%0a%09%09%09int height = source.height / 4;%0a%09%09%09
++%0a                                   new Vector2(-off, -off),%0a                                   new Vector2(-off,  off),%0a                                   new Vector2( off,  off),%0a                                   new Vector2( off, -off)%0a                );%0a        %7d%0a%0a        // Called by the camera to apply the image effect%0a        void OnRenderImage (RenderTexture source, RenderTexture destination) %7b%0a            int rtW = source.width/4;%0a            int rtH = source.height/4;%0a            
  Rend
 @@ -3171,29 +3171,22 @@
  Texture 
 -renderTexture
 +buffer
   = Rende
-@@ -3207,37 +3207,98 @@
- mporary(
--width, height, 0);%0a%09%09
-+rtW, rtH, 0);%0a%0a            // Copy source to the 4x4 smaller texture.%0a            
- DownSamp
-@@ -3301,16 +3301,17 @@
- Sample4x
-+ 
- (source,
-@@ -3315,30 +3315,71 @@
- ce, 
--renderTexture);%0a%09%09
-+buffer);%0a%0a            // Blur the small texture%0a            
+@@ -3210,77 +3210,176 @@
+ rary
+- (width, height, 0);%0a%09%09%09DownSample4x (source, renderTexture);%0a%09%09%09
++(rtW, rtH, 0);%0a%0a            // Copy source to the 4x4 smaller texture.%0a            DownSample4x (source, buffer);%0a%0a            // Blur the small texture%0a            
  for
 - 
  (int
-@@ -3411,15 +3411,38 @@
- ++)%0a
--%09%09%7b%0a%09%09%09
-+            %7b%0a                
+@@ -3410,15 +3410,39 @@
+ i++)
+- %7b%0a%09%09%09%09
++%0a            %7b%0a                
  Rend
 @@ -3451,25 +3451,23 @@
  Texture 
 -temporary
 +buffer2
   = Rende
-@@ -3492,158 +3492,188 @@
- ary(
--width, height, 0);%0a%09%09%09FourTapCone(renderTexture, temporary, i);%0a%09%09%09RenderTexture.ReleaseTemporary(renderTexture);%0a%09%09%09renderTexture = temporary;%0a%09%09%7d%0a%09%09
-+rtW, rtH, 0);%0a                FourTapCone (buffer, buffer2, i);%0a                RenderTexture.ReleaseTemporary(buffer);%0a                buffer = buffer2;%0a            %7d%0a            
- Grap
-@@ -3682,29 +3682,22 @@
- cs.Blit(
--renderTexture
-+buffer
- , destin
-@@ -3708,10 +3708,21 @@
+@@ -3491,195 +3491,209 @@
+ rary
+- (width, height, 0);%0a%09%09%09%09FourTapCone (renderTexture, temporary, i);%0a%09%09%09%09RenderTexture.ReleaseTemporary (renderTexture);%0a%09%09%09%09renderTexture = temporary;%0a%09%09%09%7d%0a%09%09%09Graphics.Blit (renderTexture
++(rtW, rtH, 0);%0a                FourTapCone (buffer, buffer2, i);%0a                RenderTexture.ReleaseTemporary(buffer);%0a                buffer = buffer2;%0a            %7d%0a            Graphics.Blit(buffer
+ , de
+@@ -3708,11 +3708,21 @@
  n);%0a
--%09%09
+-%09%09%09
 +%0a            
  Rend
-@@ -3752,25 +3752,31 @@
- ary(
--renderTexture);%0a%09
-+buffer);%0a        %7d%0a    
+@@ -3751,31 +3751,32 @@
+ rary
+- (renderTexture);%0a%09%09%7d%0a%09
++(buffer);%0a        %7d%0a    
  %7d%0a%7d%0a

@@ -1,39 +1,118 @@
+@@ -64,17 +64,16 @@
+ omponent
+- 
+ (typeof(
+@@ -176,17 +176,16 @@
+ Delegate
+- 
+ ();%0a%0a%09pr
 @@ -231,99 +231,103 @@
  ate 
 -static List%3cBlurPlane%3e blurPlanes;%0a%0a%09public Material OriginalMaterial %7b get; private set; %7d
 +Material originalMaterial;%0a%0a%09private static List%3cBlurPlane%3e blurPlanes = new List%3cBlurPlane%3e();
  %0a%0a%09p
-@@ -732,157 +732,8 @@
+@@ -425,17 +425,20 @@
+ lane
+- 
++%0a%09
+ %7b%0a%09%09get
+- 
++%0a%09%09
+ %7b%0a%09%09
+@@ -464,17 +464,20 @@
+ nt %3c= 0)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09re
+@@ -512,17 +512,16 @@
+ urPlanes
+- 
+ %5b0%5d;%0a%09%09%7d
+@@ -681,17 +681,16 @@
+ lurPlane
+- 
+ (int ind
+@@ -715,17 +715,16 @@
+ urPlanes
+- 
+ %5bindex%5d;
+@@ -732,160 +732,8 @@
  %09%7d%0a%0a
--%09%5bRuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)%5d%0a%09private static void Init()%0a%09%7b%0a%09%09blurPlanes = new List%3cBlurPlane%3e();%0a%09%7d%0a%0a
+-%09%5bRuntimeInitializeOnLoadMethod (RuntimeInitializeLoadType.BeforeSceneLoad)%5d%0a%09private static void Init ()%0a%09%7b%0a%09%09blurPlanes = new List%3cBlurPlane%3e ();%0a%09%7d%0a%0a
  %09pro
-@@ -804,17 +804,17 @@
- r%3e();%0a%09%09
+@@ -749,17 +749,16 @@
+ id Awake
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -802,16 +802,15 @@
+ rer%3e
+- 
+ ();%0a%09%09
 -O
 +o
- riginalM
+ rigi
 @@ -852,24 +852,86 @@
  terial;%0a%09%7d%0a%0a
 +%09private void Reset()%0a%09%7b%0a%09%09transform.SetPositionZ(6.62f);%0a%09%7d%0a%0a
  %09protected v
+@@ -938,25 +938,24 @@
+ oid OnEnable
+- 
+ ()%0a%09%7b%0a%09%09int 
+@@ -997,17 +997,19 @@
+ nt; i++)
+- 
++%0a%09%09
+ %7b%0a%09%09%09Blu
+@@ -1037,17 +1037,16 @@
+ urPlanes
+- 
+ %5bi%5d;%0a%09%09%09
+@@ -1085,17 +1085,20 @@
+ .PlaneZ)
+- 
++%0a%09%09%09
+ %7b%0a%09%09%09%09br
+@@ -1130,17 +1130,16 @@
+ s.Insert
+- 
+ (i, this
 @@ -1135,32 +1135,36 @@
  ert(i, this);%0a%09%09
 +if (
  BlurPlane.BlurPl
-@@ -1170,35 +1170,75 @@
+@@ -1170,36 +1170,75 @@
  lanesChanged
--?.Invoke();
+-?.Invoke ();
 + != null)%0a%09%09%7b%0a%09%09%09BlurPlane.BlurPlanesChanged();%0a%09%09%7d
  %0a%09%7d%0a%0a%09protec
+@@ -1255,17 +1255,16 @@
+ nDisable
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -1280,17 +1280,16 @@
+ s.Remove
+- 
+ (this);%0a
 @@ -1290,16 +1290,20 @@
  his);%0a%09%09
 +if (
  BlurPlan
-@@ -1325,19 +1325,59 @@
+@@ -1325,22 +1325,61 @@
  nged
--?.Invoke();
-+ != null)%0a%09%09%7b%0a%09%09%09BlurPlane.BlurPlanesChanged();%0a%09%09%7d
- %0a%09%7d%0a
+-?.Invoke 
++ != null)%0a%09%09%7b%0a%09%09%09BlurPlane.BlurPlanesChanged
+ ();%0a%09
++%09%7d%0a%09
+ %7d%0a%0a%09
+@@ -1408,17 +1408,16 @@
+ sibility
+- 
+ (bool is
+@@ -1497,17 +1497,16 @@
+ Material
+- 
+ (Materia
 @@ -1518,24 +1518,53 @@
  erial)%0a%09%7b%0a%09%09
 +if (material == null)%0a%09%09%7b%0a%09%09%09

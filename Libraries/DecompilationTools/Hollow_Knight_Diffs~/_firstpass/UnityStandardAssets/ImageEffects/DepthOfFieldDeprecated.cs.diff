@@ -1,457 +1,411 @@
 @@ -1,8 +1,22 @@
 +using System;%0a
  using Un
-@@ -69,19 +69,23 @@
- eEffects
--;%0a%0a
-+%0a%7b%0a    
+@@ -72,17 +72,20 @@
+ fects%0a%7b%0a
+-%09
++    
  %5bExecute
-@@ -96,16 +96,20 @@
+@@ -96,17 +96,20 @@
  itMode%5d%0a
+-%09
 +    
  %5bRequire
-@@ -117,16 +117,17 @@
- omponent
-+ 
- (typeof(
-@@ -136,16 +136,20 @@
+@@ -136,17 +136,20 @@
  mera))%5d%0a
+-%09
 +    
  %5bAddComp
-@@ -157,16 +157,17 @@
- nentMenu
-+ 
- (%22Image 
-@@ -210,18 +210,23 @@
- cated)%22)
+@@ -214,11 +214,15 @@
+ d)%22)
 + 
  %5d%0a
+-%09
 +    
- public c
-@@ -271,19 +271,30 @@
+ publ
+@@ -271,21 +271,30 @@
  ctsBase%0a
--%7b%0a%09
+-%09%7b%0a%09%09
 +    %7b%0a        
  public e
-@@ -317,21 +317,38 @@
+@@ -317,23 +317,38 @@
  Setting%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  OnlyBack
-@@ -359,18 +359,28 @@
+@@ -359,19 +359,28 @@
  nd = 1,%0a
--%09%09
+-%09%09%09
 +            
  Backgrou
-@@ -394,22 +394,41 @@
+@@ -394,24 +394,41 @@
  reground
--%0a%09%7d%0a%0a%09
+-%0a%09%09%7d%0a%0a%09%09
 + = 2,%0a        %7d%0a%0a        
  public e
-@@ -449,116 +449,228 @@
+@@ -449,128 +449,228 @@
  ion%0a
--%09%7b%0a%09%09High = 2,%0a%09%09Medium,%0a%09%09Low%0a%09%7d%0a%0a%09public enum DofBlurriness%0a%09%7b%0a%09%09Low = 1,%0a%09%09High = 2,%0a%09%09VeryHigh = 4%0a%09%7d%0a%0a%09
+-%09%09%7b%0a%09%09%09High = 2,%0a%09%09%09Medium,%0a%09%09%09Low%0a%09%09%7d%0a%0a%09%09public enum DofBlurriness%0a%09%09%7b%0a%09%09%09Low = 1,%0a%09%09%09High = 2,%0a%09%09%09VeryHigh = 4%0a%09%09%7d%0a%0a%09%09
 +        %7b%0a            High = 2,%0a            Medium = 3,%0a            Low = 4,%0a        %7d%0a%0a        public enum DofBlurriness%0a        %7b%0a            Low = 1,%0a            High = 2,%0a            VeryHigh = 4,%0a        %7d%0a%0a        
  publ
-@@ -694,21 +694,38 @@
+@@ -694,23 +694,38 @@
  ination%0a
--%09%7b%0a%09%09
+-%09%09%7b%0a%09%09%09
 +        %7b%0a            
  Backgrou
-@@ -733,64 +733,120 @@
+@@ -733,74 +733,119 @@
  d = 
 +0x
  1,%0a
--%09%09Foreground,%0a%09%09BackgroundAndForeground%0a%09%7d%0a%0a%09
-+            Foreground = 0x2,%0a            BackgroundAndForeground = 0x3,%0a        %7d%0a%0a        static 
- private 
- stat
-@@ -841,23 +841,16 @@
- private 
--static 
- int SMOO
-@@ -873,26 +873,39 @@
- SS = 6;%0a
--%0a%09
-+        static 
- private 
- static f
-@@ -896,23 +896,16 @@
- private 
--static 
- float BO
-@@ -922,21 +922,30 @@
+-%09%09%09Foreground,%0a%09%09%09BackgroundAndForeground%0a%09%09%7d%0a%0a%09%09private static
++            Foreground = 0x2,%0a            BackgroundAndForeground = 0x3,%0a        %7d%0a%0a        static private
+  int
+@@ -877,25 +877,30 @@
+  6;%0a
+-%0a%09%09private static
++        static private
+  flo
+@@ -922,22 +922,30 @@
  BLUR = 2
 +.0
  f;%0a%0a
--%09
+-%09%09
 +        
  public D
-@@ -1009,18 +1009,24 @@
+@@ -1009,19 +1009,24 @@
  ground;%0a
--%0a%09
+-%0a%09%09
 +        
  public D
 @@ -1049,16 +1049,17 @@
  olution 
 + 
  = DofRes
-@@ -1071,18 +1071,24 @@
+@@ -1071,19 +1071,24 @@
  on.Low;%0a
--%0a%09
+-%0a%09%09
 +        
  public b
 @@ -1091,16 +1091,17 @@
  ic bool 
 + 
  simpleTw
-@@ -1113,25 +1113,32 @@
+@@ -1113,26 +1113,32 @@
  de = true;%0a%0a
--%09
+-%09%09
 +        
  public float
-@@ -1148,29 +1148,37 @@
+@@ -1148,30 +1148,37 @@
  calPoint = 1
 +.0
  f;%0a
--%0a%09
+-%0a%09%09
 +        
  public float
-@@ -1194,25 +1194,32 @@
+@@ -1194,26 +1194,32 @@
  ss = 0.5f;%0a%0a
--%09
+-%09%09
 +        
  public float
-@@ -1233,20 +1233,33 @@
+@@ -1233,21 +1233,33 @@
  Distance
--;%0a%0a%09
+-;%0a%0a%09%09
 + = 0.0f;%0a        
  public f
-@@ -1283,21 +1283,29 @@
+@@ -1283,22 +1283,29 @@
  urve = 1
 +.0
  f;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -1327,21 +1327,30 @@
+@@ -1327,22 +1327,30 @@
  urve = 1
 +.0
  f;%0a%0a
--%09
+-%09%09
 +        
  private 
-@@ -1366,37 +1366,45 @@
+@@ -1366,38 +1366,45 @@
  alStartCurve = 2
 +.0
  f;%0a
--%0a%09
+-%0a%09%09
 +        
  private float fo
-@@ -1418,21 +1418,29 @@
+@@ -1418,22 +1418,29 @@
  urve = 2
 +.0
  f;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -1466,25 +1466,32 @@
+@@ -1466,26 +1466,32 @@
  01 = 0.1f;%0a%0a
--%09
+-%09%09
 +        
  public Trans
-@@ -1506,20 +1506,33 @@
+@@ -1506,21 +1506,33 @@
  ectFocus
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a        
  public f
-@@ -1545,20 +1545,34 @@
+@@ -1545,21 +1545,34 @@
  ocalSize
--;%0a%0a%09
+-;%0a%0a%09%09
 + = 0.0f;%0a%0a        
  public D
-@@ -1616,18 +1616,24 @@
+@@ -1616,19 +1616,24 @@
  s.High;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -1657,25 +1657,32 @@
+@@ -1657,26 +1657,32 @@
  d = 1.75f;%0a%0a
--%09
+-%09%09
 +        
  public float
-@@ -1710,25 +1710,32 @@
+@@ -1710,26 +1710,32 @@
  e = 1.15f;%0a%0a
--%09
+-%09%09
 +        
  public Shade
-@@ -1743,34 +1743,40 @@
+@@ -1743,35 +1743,40 @@
   dofBlurShader;%0a
--%0a%09
+-%0a%09%09
 +        
  private Material
-@@ -1787,28 +1787,42 @@
+@@ -1787,29 +1787,42 @@
  BlurMaterial
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a%0a        
  public Shade
-@@ -1834,18 +1834,24 @@
+@@ -1834,19 +1834,24 @@
  Shader;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -1870,20 +1870,34 @@
+@@ -1870,21 +1870,34 @@
  Material
--;%0a%0a%09
+-;%0a%0a%09%09
 + = null;%0a%0a        
  public b
 @@ -1900,16 +1900,17 @@
  ic bool 
 + 
  visualiz
-@@ -1910,20 +1910,34 @@
+@@ -1910,21 +1910,34 @@
  isualize
--;%0a%0a%09
+-;%0a%0a%09%09
 + = false;%0a        
  public B
-@@ -2001,17 +2001,24 @@
+@@ -2001,18 +2001,24 @@
  round;%0a%0a
--%09
+-%09%09
 +        
  private 
-@@ -2048,18 +2048,24 @@
+@@ -2048,19 +2048,24 @@
   1.25f;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -2092,24 +2092,32 @@
+@@ -2092,25 +2092,32 @@
  e = 
--0.001953125f;%0a%0a%09
+-0.001953125f;%0a%0a%09%09
 +1.0f / 512.0f;%0a%0a        
  publ
-@@ -2128,17 +2128,32 @@
+@@ -2128,18 +2128,32 @@
  ool 
 + 
  bokeh
--;%0a%0a%09
+-;%0a%0a%09%09
 + = false;%0a        
  publ
 @@ -2160,16 +2160,17 @@
  ic bool 
 + 
  bokehSup
-@@ -2182,18 +2182,24 @@
+@@ -2182,19 +2182,24 @@
  = true;%0a
--%0a%09
+-%0a%09%09
 +        
  public S
-@@ -2217,18 +2217,24 @@
+@@ -2217,19 +2217,24 @@
  Shader;%0a
--%0a%09
+-%0a%09%09
 +        
  public T
-@@ -2256,18 +2256,24 @@
+@@ -2256,19 +2256,24 @@
  exture;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -2296,18 +2296,24 @@
+@@ -2296,19 +2296,24 @@
  = 2.4f;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -2337,26 +2337,32 @@
+@@ -2337,27 +2337,32 @@
  ty = 0.15f;%0a
--%0a%09
+-%0a%09%09
 +        
  public float
-@@ -2393,18 +2393,24 @@
+@@ -2393,19 +2393,24 @@
  = 0.1f;%0a
--%0a%09
+-%0a%09%09
 +        
  public f
-@@ -2447,18 +2447,24 @@
+@@ -2447,19 +2447,24 @@
   0.55f;%0a
--%0a%09
+-%0a%09%09
 +        
  public i
-@@ -2487,18 +2487,24 @@
+@@ -2487,19 +2487,24 @@
  le = 1;%0a
--%0a%09
+-%0a%09%09
 +        
  private 
-@@ -2528,17 +2528,24 @@
+@@ -2528,18 +2528,24 @@
  erial;%0a%0a
--%09
+-%09%09
 +        
  private 
-@@ -2565,261 +2565,15 @@
+@@ -2565,268 +2565,15 @@
  a;%0a%0a
--%09private RenderTexture foregroundTexture;%0a%0a%09private RenderTexture mediumRezWorkTexture;%0a%0a%09private RenderTexture finalDefocus;%0a%0a%09private RenderTexture lowRezWorkTexture;%0a%0a%09private RenderTexture bokehSource;%0a%0a%09private RenderTexture bokehSource2;%0a%0a%09private
+-%09%09private RenderTexture foregroundTexture;%0a%0a%09%09private RenderTexture mediumRezWorkTexture;%0a%0a%09%09private RenderTexture finalDefocus;%0a%0a%09%09private RenderTexture lowRezWorkTexture;%0a%0a%09%09private RenderTexture bokehSource;%0a%0a%09%09private RenderTexture bokehSource2;%0a%0a%09%09private
 +       
   voi
-@@ -2589,24 +2589,34 @@
- aterials
-+ 
- ()
--%0a%09%7b%0a%09%09
+@@ -2592,24 +2592,31 @@
+ rials ()
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  dofBlurM
-@@ -2645,32 +2645,33 @@
- ndCreateMaterial
-+ 
- (dofBlurShader, 
-@@ -2680,34 +2680,44 @@
+@@ -2680,35 +2680,44 @@
  fBlurMaterial);%0a
--%09%09
+-%09%09%09
 +            
  dofMaterial = Ch
-@@ -2734,32 +2734,33 @@
- ndCreateMaterial
-+ 
- (dofShader, dofM
 @@ -2746,33 +2746,32 @@
  rial (dofShader,
 - 
  dofMaterial);%0a%09%09
-@@ -2760,34 +2760,44 @@
+@@ -2760,35 +2760,44 @@
  r,dofMaterial);%0a
--%09%09
+-%09%09%09
 +            
  bokehSupport = b
-@@ -2812,34 +2812,45 @@
+@@ -2812,35 +2812,45 @@
  er.isSupported;%0a
--%09%09
+-%09%09%09
 +%0a            
  if (bokeh && bok
 @@ -2854,38 +2854,32 @@
  bokehSupport && 
 -(bool)
- bokehShader)%0a%09%09%7b
-@@ -2867,39 +2867,48 @@
- && bokehShader)%0a
--%09%09%7b%0a%09%09%09
-+                
+ bokehShader) %7b%0a%09
+@@ -2866,39 +2866,49 @@
+  && bokehShader)
+- %7b%0a%09%09%09%09
++%0a                
  bokehMaterial = 
-@@ -2927,32 +2927,33 @@
- ndCreateMaterial
-+ 
- (bokehShader, bo
-@@ -2966,25 +2966,36 @@
+@@ -2966,28 +2966,36 @@
  erial);%0a
--%09%09%7d%0a%09%7d%0a%0a%09
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09
 +        %7d%0a%0a%0a        
  public o
-@@ -3025,49 +3025,60 @@
- rces
-+ 
- ()
--%0a%09%7b%0a%09%09CheckSupport(needDepth: true);%0a%09%09
+@@ -3028,51 +3028,57 @@
+ s ()
+-%0a%09%09%7b%0a%09%09%09CheckSupport (needDepth: true);%0a%09%09%09
 + %7b%0a            CheckSupport (true);%0a%0a            
  dofB
-@@ -3115,24 +3115,25 @@
- eateMaterial
-+ 
- (dofBlurShad
-@@ -3154,18 +3154,28 @@
+@@ -3154,19 +3154,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  dofMater
-@@ -3208,16 +3208,17 @@
- Material
-+ 
- (dofShad
 @@ -3220,17 +3220,16 @@
  fShader,
 - 
  dofMater
-@@ -3234,18 +3234,28 @@
+@@ -3234,19 +3234,28 @@
  erial);%0a
--%09%09
+-%09%09%09
 +            
  bokehSup
-@@ -3286,18 +3286,29 @@
+@@ -3286,19 +3286,29 @@
  ported;%0a
--%09%09
+-%09%09%09
 +%0a            
  if (boke
 @@ -3328,22 +3328,16 @@
  port && 
 -(bool)
  bokehSha
-@@ -3341,23 +3341,32 @@
- Shader)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -3340,23 +3340,33 @@
+ hShader)
+- %7b%0a%09%09%09%09
++%0a                
  bokehMat
-@@ -3401,16 +3401,17 @@
- Material
-+ 
- (bokehSh
-@@ -3432,22 +3432,29 @@
+@@ -3432,24 +3432,29 @@
  erial);%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +%0a            
  if (!isS
-@@ -3463,23 +3463,32 @@
- ported)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -3462,23 +3462,33 @@
+ pported)
+- %7b%0a%09%09%09%09
++%0a                
  ReportAu
-@@ -3500,18 +3500,25 @@
- able
-+ 
- ();%0a
--%09%09%7d%0a%09%09
+@@ -3501,24 +3501,28 @@
+ ble ();%0a
+-%09%09%09%7d%0a%09%09%09
 +            
- retu
-@@ -3533,28 +3533,34 @@
+ return i
+@@ -3533,30 +3533,34 @@
  ported;%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
   void On
-@@ -3566,24 +3566,34 @@
- nDisable
-+ 
- ()
--%0a%09%7b%0a%09%09
+@@ -3569,24 +3569,31 @@
+ sable ()
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  Quads.Cl
-@@ -3597,32 +3597,39 @@
- .Cleanup
-+ 
- ();%0a
--%09%7d%0a%0a%09private
+@@ -3598,38 +3598,42 @@
+ Cleanup ();%0a
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
-  void On
-@@ -3634,24 +3634,34 @@
- OnEnable
-+ 
- ()
--%0a%09%7b%0a%09%09
+  void OnEnab
+@@ -3637,24 +3637,31 @@
+ nable ()
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  _camera 
-@@ -3686,18 +3686,28 @@
- era%3e();%0a
--%09%09
+@@ -3682,24 +3682,32 @@
+ %3cCamera%3e
+- 
+ ();%0a
+-%09%09%09
 +            
  _camera.
-@@ -3750,28 +3750,34 @@
+@@ -3750,30 +3750,34 @@
  .Depth;%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
   float F
-@@ -3790,17 +3790,19 @@
- stance01
--(
-+ ( 
+@@ -3792,16 +3792,17 @@
+ ance01 (
++ 
  float wo
-@@ -3809,22 +3809,31 @@
+@@ -3809,24 +3809,31 @@
  rldDist)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  return _
+@@ -3859,17 +3859,16 @@
+ ortPoint
+- 
+ ((worldD
 @@ -3870,19 +3870,17 @@
  orldDist
 - - 
@@ -462,128 +416,111 @@
 - - 
 +-
  _camera.nearClip
-@@ -4002,28 +4002,34 @@
+@@ -4002,30 +4002,34 @@
  Plane);%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
   int Get
-@@ -4053,193 +4053,253 @@
- lity
-+ 
- ()
--%0a%09%7b%0a%09%09int result = 1;%0a%09%09if (resolution == DofResolution.Medium)%0a%09%09%7b%0a%09%09%09result = 2;%0a%09%09%7d%0a%09%09else if (resolution == DofResolution.Low)%0a%09%09%7b%0a%09%09%09result = 2;%0a%09%09%7d%0a%09%09return result;%0a%09%7d%0a%0a%09private
+@@ -4056,195 +4056,250 @@
+ y ()
+-%0a%09%09%7b%0a%09%09%09int result = 1;%0a%09%09%09if (resolution == DofResolution.Medium) %7b%0a%09%09%09%09result = 2;%0a%09%09%09%7d else if (resolution == DofResolution.Low) %7b%0a%09%09%09%09result = 2;%0a%09%09%09%7d%0a%09%09%09return result;%0a%09%09%7d%0a%0a%09%09private
 + %7b%0a            int divider = 1;%0a            if (resolution == DofResolution.Medium)%0a                divider = 2;%0a            else if (resolution == DofResolution.Low)%0a                divider = 2;%0a            return divider;%0a        %7d%0a%0a       
   int
-@@ -4336,17 +4336,19 @@
- nQuality
--(
-+ ( 
+@@ -4338,16 +4338,17 @@
+ uality (
++ 
  int base
-@@ -4359,21 +4359,40 @@
+@@ -4359,23 +4359,40 @@
  der)
--%0a%09%7b%0a%09%09int num
+-%0a%09%09%7b%0a%09%09%09int num
 + %7b%0a            int lowTexDivider
   = b
-@@ -4403,18 +4403,28 @@
+@@ -4403,19 +4403,28 @@
  ivider;%0a
--%09%09
+-%09%09%09
 +            
  if (reso
-@@ -4457,115 +4457,505 @@
- gh)%0a
--%09%09%7b%0a%09%09%09num *= 2;%0a%09%09%7d%0a%09%09if (resolution == DofResolution.Low)%0a%09%09%7b%0a%09%09%09num *= 2;%0a%09%09%7d%0a%09%09return num;%0a%09%7d%0a%0a%09private
-+                lowTexDivider *= 2;%0a            if (resolution == DofResolution.Low)%0a                lowTexDivider *= 2;%0a            return lowTexDivider;%0a        %7d%0a%0a        private RenderTexture foregroundTexture = null;%0a        private RenderTexture mediumRezWorkTexture = null;%0a        private RenderTexture finalDefocus = null;%0a        private RenderTexture lowRezWorkTexture = null;%0a        private RenderTexture bokehSource = null;%0a        private RenderTexture bokehSource2 = null;%0a%0a       
+@@ -4456,120 +4456,506 @@
+ igh)
+- %7b%0a%09%09%09%09num *= 2;%0a%09%09%09%7d%0a%09%09%09if (resolution == DofResolution.Low) %7b%0a%09%09%09%09num *= 2;%0a%09%09%09%7d%0a%09%09%09return num;%0a%09%09%7d%0a%0a%09%09private
++%0a                lowTexDivider *= 2;%0a            if (resolution == DofResolution.Low)%0a                lowTexDivider *= 2;%0a            return lowTexDivider;%0a        %7d%0a%0a        private RenderTexture foregroundTexture = null;%0a        private RenderTexture mediumRezWorkTexture = null;%0a        private RenderTexture finalDefocus = null;%0a        private RenderTexture lowRezWorkTexture = null;%0a        private RenderTexture bokehSource = null;%0a        private RenderTexture bokehSource2 = null;%0a%0a       
   voi
-@@ -4969,16 +4969,17 @@
- derImage
-+ 
- (RenderT
-@@ -5019,27 +5019,35 @@
+@@ -5019,29 +5019,35 @@
  ination)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  if (
 -!
  CheckRes
-@@ -5054,25 +5054,43 @@
- ources()
--)%0a%09%09%7b%0a%09%09%09
+@@ -5056,19 +5056,37 @@
+ rces
+- 
+ ()
+-) %7b%0a%09%09%09%09
 +==false) %7b%0a                
- Graphics
-@@ -5086,32 +5086,33 @@
-    Graphics.Blit
-+ 
- (source, destina
-@@ -5118,33 +5118,67 @@
+ Grap
+@@ -5118,36 +5118,67 @@
  ation);%0a
--%09%09%09return;%0a%09%09%7d%0a%09%09
+-%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09
 +                return;%0a            %7d%0a%0a            
  if (smoo
-@@ -5192,23 +5192,32 @@
- %3c 0.1f)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -5191,23 +5191,33 @@
+  %3c 0.1f)
+- %7b%0a%09%09%09%09
++%0a                
  smoothne
-@@ -5231,60 +5231,147 @@
+@@ -5231,63 +5231,147 @@
  1f;%0a
--%09%09%7d%0a%09%09bokeh = bokeh && bokehSupport;%0a%09%09float num
+-%09%09%09%7d%0a%09%09%09bokeh = bokeh && bokehSupport;%0a%09%09%09float num
 +%0a            // update needed focal & rt size parameter%0a%0a            bokeh = bokeh && bokehSupport;%0a            float bokehBlurAmplifier
   = 
 -(
  boke
-@@ -5398,23 +5398,46 @@
+@@ -5398,24 +5398,46 @@
   : 1
--f);%0a%09%09bool flag
+-f);%0a%09%09%09bool flag
 +.0f;%0a%0a            bool  blurForeground
   = q
-@@ -5481,28 +5481,45 @@
+@@ -5481,29 +5481,45 @@
  ground;%0a
--%09%09float num2
+-%09%09%09float num2
 +            float focal01Size
   = focal
-@@ -5572,19 +5572,31 @@
+@@ -5572,20 +5572,31 @@
  pPlane);
--%0a%09%09
+-%0a%09%09%09
 +;%0a%0a            
  if (simp
-@@ -5607,24 +5607,35 @@
- eakMode)
--%0a%09%09%7b%0a%09%09%09
-+ %7b%0a                
+@@ -5610,20 +5610,32 @@
+ Mode) %7b%0a
+-%09%09%09%09
++                
  focalDis
 @@ -5644,17 +5644,16 @@
  nce01 = 
 -(
  objectFo
-@@ -5679,32 +5679,33 @@
- dToViewportPoint
-+ 
- (objectFocus.pos
 @@ -5710,21 +5710,23 @@
  osition)
 +)
  .z / 
 +(
  _camera.
-@@ -5752,24 +5752,25 @@
- alDistance01
-+ 
- (focalPoint)
-@@ -5769,22 +5769,34 @@
+@@ -5769,23 +5769,34 @@
  alPoint)
 -)
  ;%0a
--%09%09%09
+-%09%09%09%09
 +                
  focalSta
-@@ -5835,19 +5835,32 @@
+@@ -5835,20 +5835,32 @@
  thness;%0a
--%09%09%09
+-%09%09%09%09
 +                
  focalEnd
-@@ -5884,34 +5884,68 @@
+@@ -5884,35 +5884,68 @@
  tCurve;%0a
--%09%09%09flag = flag
+-%09%09%09%09flag = flag
 +                blurForeground = blurForeground
   && 
 +(
@@ -592,18 +529,14 @@
  & (focalPoint %3e 
 +(
  _camera.nearClip
-@@ -5991,75 +5991,111 @@
+@@ -5991,71 +5991,111 @@
  ilon
--;%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09if ((bool)objectFocus)%0a%09%09%09%7b%0a%09%09%09%09Vector3 vector 
+-;%0a%09%09%09%7d else %7b%0a%09%09%09%09if ((bool)objectFocus) %7b%0a%09%09%09%09%09Vector3 vector 
 +));%0a            %7d%0a            else %7b%0a                if (objectFocus) %7b%0a                    var vpPoint
  = _c
-@@ -6120,16 +6120,17 @@
- ortPoint
-+ 
- (objectF
-@@ -6149,24 +6149,55 @@
+@@ -6149,25 +6149,55 @@
  n);%0a
--%09%09%09%09vector
+-%09%09%09%09%09vector
 +                    vpPoint.z = (vpPoint
  .z
 +)
@@ -612,30 +545,26 @@
   
 +(
  _cam
-@@ -6216,64 +6216,119 @@
+@@ -6216,61 +6216,119 @@
  lane
 +)
  ;%0a
--%09%09%09%09focalDistance01 = vector.z;%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
+-%09%09%09%09%09focalDistance01 = vector.z;%0a%09%09%09%09%7d else %7b%0a%09%09%09%09%09
 +                    focalDistance01 = vpPoint.z;%0a                %7d%0a                else%0a                    
  foca
-@@ -6356,16 +6356,17 @@
- stance01
-+ 
- (focalZD
-@@ -6375,24 +6375,33 @@
+@@ -6375,26 +6375,33 @@
  tance);%0a
--%09%09%09%7d%0a%09%09%09
+-%09%09%09%09%7d%0a%09%09%09%09
 +%0a                
  focalSta
-@@ -6428,19 +6428,32 @@
+@@ -6428,20 +6428,32 @@
  tCurve;%0a
--%09%09%09
+-%09%09%09%09
 +                
  focalEnd
-@@ -6480,26 +6480,60 @@
+@@ -6480,27 +6480,60 @@
  ve;%0a
--%09%09%09flag = flag
+-%09%09%09%09flag = flag
 +                blurForeground = blurForeground
   && 
 +(
@@ -644,9 +573,9 @@
  Point %3e 
 +(
  _camera.
-@@ -6579,24 +6579,47 @@
+@@ -6579,26 +6579,47 @@
  .Epsilon
--;%0a%09%09%7d%0a%09%09
+-;%0a%09%09%09%7d%0a%09%09%09
 +));%0a            %7d%0a%0a            
  widthOve
 @@ -6628,28 +6628,24 @@
@@ -662,33 +591,21 @@
  f * 
 -(float)
  source.h
-@@ -6676,18 +6676,28 @@
+@@ -6676,19 +6676,28 @@
  eight);%0a
--%09%09
+-%09%09%09
 +            
  oneOverB
-@@ -6710,24 +6710,36 @@
+@@ -6710,25 +6710,36 @@
  e = 
--0.001953125f;%0a%09%09
+-0.001953125f;%0a%09%09%09
 +1.0f / 512.0f;%0a%0a            
  dofM
-@@ -6754,16 +6754,17 @@
- SetFloat
-+ 
- (%22_Foreg
-@@ -6806,18 +6806,28 @@
+@@ -6806,19 +6806,28 @@
  trude);%0a
--%09%09
+-%09%09%09
 +            
  dofMater
-@@ -6839,16 +6839,17 @@
- etVector
-+ 
- (%22_Curve
-@@ -6868,16 +6868,17 @@
-  Vector4
-+ 
- (simpleT
 @@ -6880,34 +6880,35 @@
  mpleTweakMode ? 
 -(
@@ -714,19 +631,13 @@
 -num2
 +focal01Size
   * 0.5f,
-@@ -7025,18 +7025,28 @@
+@@ -7025,19 +7025,28 @@
  ce01));%0a
--%09%09
+-%09%09%09
 +            
  dofMater
-@@ -7050,32 +7050,33 @@
- terial.SetVector
-+ 
- (%22_InvRenderTarg
-@@ -7095,35 +7095,33 @@
-  Vector4
-+ 
- (1
+@@ -7098,33 +7098,30 @@
+ ctor4 (1
 +.0
  f / (1
 +.0
@@ -741,54 +652,39 @@
  f * 
 -(float)
  source.h
-@@ -7161,48 +7161,48 @@
+@@ -7161,49 +7161,48 @@
  ht),
 - 0f, 
 +0.0f,0.
  0f));%0a
--%09%09int dividerBasedOnQuality
+-%09%09%09int dividerBasedOnQuality
 +%0a            int divider
   =
 + 
   Get
-@@ -7226,52 +7226,42 @@
- lity
-+ 
+@@ -7231,49 +7231,37 @@
  ();%0a
--%09%09int lowResolutionDividerBasedOnQuality
+-%09%09%09int lowResolutionDividerBasedOnQuality
 +            int lowTexDivider
   = G
-@@ -7300,16 +7300,17 @@
- lity
-+ 
+@@ -7305,36 +7305,32 @@
  (divider
- Base
-@@ -7309,120 +7309,214 @@
+-BasedOnQuality);%0a%09%09%09
++);%0a%0a            
+ Allocate
+@@ -7339,20 +7339,30 @@
+ xtures (
+-flag
++blurForeground
+ , source
+@@ -7374,161 +7374,532 @@
  ider
--BasedOnQuality);%0a%09%09AllocateTextures(flag, source, dividerBasedOnQuality, lowResolutionDividerBasedOnQuality);%0a%09%09
-+);%0a%0a            AllocateTextures (blurForeground, source, divider, lowTexDivider);%0a%0a            // WRITE COC to alpha channel%0a            // source is only being bound to detect y texcoord flip%0a            
- Grap
-@@ -7516,32 +7516,33 @@
-    Graphics.Blit
-+ 
- (source, source,
-@@ -7559,18 +7559,110 @@
- al, 3);%0a
--%09%09
-+%0a            // better DOWNSAMPLE (could actually be weighted for higher quality)%0a            
- Downsamp
-@@ -7655,32 +7655,33 @@
-       Downsample
-+ 
- (source, mediumR
-@@ -7696,22 +7696,219 @@
- xture);%0a
--%09%09Blur
-+%0a            // BLUR A LITTLE first, which has two purposes%0a            // 1.) reduce jitter, noise, aliasing%0a            // 2.) produce the little-blur buffer used in composition later%0a            Blur 
- (mediumR
-@@ -7982,31 +7982,45 @@
+-BasedOnQuality, lowResolutionDividerBasedOnQuality);%0a%09%09%09Graphics.Blit (source, source, dofMaterial, 3);%0a%09%09%09Downsample (source, mediumRezWorkTexture);%0a%09%09%09
++, lowTexDivider);%0a%0a            // WRITE COC to alpha channel%0a            // source is only being bound to detect y texcoord flip%0a            Graphics.Blit (source, source, dofMaterial, 3);%0a%0a            // better DOWNSAMPLE (could actually be weighted for higher quality)%0a            Downsample (source, mediumRezWorkTexture);%0a%0a            // BLUR A LITTLE first, which has two purposes%0a            // 1.) reduce jitter, noise, aliasing%0a            // 2.) produce the little-blur buffer used in composition later%0a            
+ Blur
+@@ -7982,32 +7982,45 @@
  pread);%0a
--%09%09
+-%09%09%09
 +%0a            
  if 
 +(
@@ -797,159 +693,94 @@
   && 
 +(
  (BokehDe
-@@ -8065,24 +8065,48 @@
+@@ -8065,23 +8065,48 @@
  n) != 0)
--%0a%09%09%7b%0a%09%09%09
+- %7b%0a%09%09%09%09
 +)%0a            %7b%0a                
  dofMater
-@@ -8110,32 +8110,33 @@
- terial.SetVector
-+ 
- (%22_Threshhold%22, 
-@@ -8203,25 +8203,118 @@
-  0.95f, 
+@@ -8138,33 +8138,32 @@
+ ld%22, new Vector4
+- 
+ (bokehThresholdC
+@@ -8207,152 +8207,721 @@
+ 5f, 
 +0.
  0f));%0a
--%09%09%09
-+%0a                // add and mark the parts that should end up as bokeh shapes%0a                
- Graphics
-@@ -8310,32 +8310,33 @@
-    Graphics.Blit
-+ 
- (mediumRezWorkTe
-@@ -8374,19 +8374,149 @@
- l, 11);%0a
--%09%09%09
-+%0a                // remove those parts (maybe even a little tittle bittle more) from the regurlarly blurred buffer%0a                //
- Graphics
-@@ -8512,32 +8512,33 @@
-  //Graphics.Blit
-+ 
- (mediumRezWorkTe
-@@ -8565,111 +8565,539 @@
- ture
--);%0a%09%09%09Blur(lowRezWorkTexture, lowRezWorkTexture, bluriness, 0, maxBlurSpread * num);%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
-+, dofMaterial, 10);%0a                Graphics.Blit (mediumRezWorkTexture, lowRezWorkTexture);//, dofMaterial, 10);%0a%0a                // maybe you want to reblur the small blur ... but not really needed.%0a                //Blur (mediumRezWorkTexture, mediumRezWorkTexture, DofBlurriness.Low, 4, maxBlurSpread);%0a%0a                // bigger BLUR%0a                Blur (lowRezWorkTexture, lowRezWorkTexture, bluriness, 0, maxBlurSpread * bokehBlurAmplifier);%0a            %7d%0a            else  %7b%0a                // bigger BLUR%0a                
- Down
-@@ -9102,16 +9102,17 @@
- wnsample
-+ 
- (mediumR
-@@ -9146,23 +9146,37 @@
- xture);%0a
--%09%09%09
-+                
+-%09%09%09%09Graphics.Blit (mediumRezWorkTexture, bokehSource2, dofMaterial, 11);%0a%09%09%09%09Graphics.Blit (mediumRezWorkTexture, lowRezWorkTexture);%0a%09%09%09%09
++%0a                // add and mark the parts that should end up as bokeh shapes%0a                Graphics.Blit (mediumRezWorkTexture, bokehSource2, dofMaterial, 11);%0a%0a                // remove those parts (maybe even a little tittle bittle more) from the regurlarly blurred buffer%0a                //Graphics.Blit (mediumRezWorkTexture, lowRezWorkTexture, dofMaterial, 10);%0a                Graphics.Blit (mediumRezWorkTexture, lowRezWorkTexture);//, dofMaterial, 10);%0a%0a                // maybe you want to reblur the small blur ... but not really needed.%0a                //Blur (mediumRezWorkTexture, mediumRezWorkTexture, DofBlurriness.Low, 4, maxBlurSpread);%0a%0a                // bigger BLUR%0a                
  Blur
+@@ -8994,30 +8994,110 @@
+ d * 
+-num);%0a%09%09%09%7d
++bokehBlurAmplifier);%0a            %7d%0a           
+  else 
 + 
- (lowRezW
-@@ -9236,22 +9236,43 @@
+ %7b%0a
+-%09%09%09%09
++                // bigger BLUR%0a                
+ Down
+@@ -9142,28 +9142,40 @@
+ rkTexture);%0a
+-%09%09%09%09
++                
+ Blur (lowRez
+@@ -9236,24 +9236,43 @@
  pread);%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +            %7d%0a%0a            
  dofBlurM
-@@ -9281,32 +9281,33 @@
- erial.SetTexture
-+ 
- (%22_TapLow%22, lowR
-@@ -9322,18 +9322,28 @@
+@@ -9322,19 +9322,28 @@
  xture);%0a
--%09%09
+-%09%09%09
 +            
  dofBlurM
-@@ -9352,32 +9352,33 @@
- erial.SetTexture
-+ 
- (%22_TapMedium%22, m
-@@ -9391,34 +9391,44 @@
+@@ -9391,35 +9391,44 @@
  ezWorkTexture);%0a
--%09%09
+-%09%09%09
 +            
- Graphics.Blit(nu
-@@ -9424,16 +9424,17 @@
- ics.Blit
-+ 
- (null, f
-@@ -9467,31 +9467,145 @@
+ Graphics.Blit (n
+@@ -9467,32 +9467,145 @@
  al, 3);%0a
--%09%09
-+%0a            // we are only adding bokeh now if the background is the only part we have to deal with%0a            
- if 
-+(
+-%09%09%09if 
++%0a            // we are only adding bokeh now if the background is the only part we have to deal with%0a            if (
  (bokeh
 +)
   && 
 +(
  (BokehDe
-@@ -9654,24 +9654,34 @@
- = 0)
--%0a%09%09%7b%0a%09%09%09
+@@ -9650,23 +9650,34 @@
+ n) != 0)
+- %7b%0a%09%09%09%09
 +)%0a                
  AddBokeh
- (bok
-@@ -9668,32 +9668,33 @@
-         AddBokeh
-+ 
- (bokehSource2, b
-@@ -9720,22 +9720,29 @@
+@@ -9720,24 +9720,29 @@
  focus);%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +%0a            
  dofMater
-@@ -9747,32 +9747,33 @@
- erial.SetTexture
-+ 
- (%22_TapLowBackgro
-@@ -9793,18 +9793,28 @@
+@@ -9793,19 +9793,28 @@
  focus);%0a
--%09%09
+-%09%09%09
 +            
  dofMater
-@@ -9823,24 +9823,25 @@
- l.SetTexture
-+ 
- (%22_TapMedium
-@@ -9865,19 +9865,110 @@
+@@ -9865,20 +9865,110 @@
  exture);
--%0a%09%09
+-%0a%09%09%09
 + // needed for debugging/visualization%0a%0a            // FINAL DEFOCUS (background)%0a            
  Graphics
-@@ -9964,32 +9964,33 @@
-    Graphics.Blit
-+ 
- (source, flag ? 
 @@ -9982,20 +9982,30 @@
  source, 
 -flag
 +blurForeground
   ? foreg
-@@ -10069,27 +10069,147 @@
+@@ -10069,137 +10069,523 @@
  0);%0a
--%09%09if (flag)%0a%09%09%7b%0a%09%09%09
-+%0a            // FINAL DEFOCUS (foreground)%0a            if (blurForeground) %7b%0a                // WRITE COC to alpha channel%0a                
- Grap
-@@ -10217,16 +10217,17 @@
- ics.Blit
-+ 
- (foregro
-@@ -10263,19 +10263,76 @@
- al, 5);%0a
--%09%09%09
-+%0a                // DOWNSAMPLE (unweighted)%0a                
- Downsamp
-@@ -10333,16 +10333,17 @@
- wnsample
-+ 
- (source,
-@@ -10366,25 +10366,237 @@
- xture);%0a
--%09%09%09
-+%0a                // BLUR A LITTLE first, which has two purposes%0a                // 1.) reduce jitter, noise, aliasing%0a                // 2.) produce the little-blur buffer used in composition later%0a                
- BlurFg
-+ 
- (mediumR
-@@ -10670,32 +10670,49 @@
+-%09%09%09if (flag) %7b%0a%09%09%09%09Graphics.Blit (foregroundTexture, source, dofMaterial, 5);%0a%09%09%09%09Downsample (source, mediumRezWorkTexture);%0a%09%09%09%09
++%0a            // FINAL DEFOCUS (foreground)%0a            if (blurForeground) %7b%0a                // WRITE COC to alpha channel%0a                Graphics.Blit (foregroundTexture, source, dofMaterial, 5);%0a%0a                // DOWNSAMPLE (unweighted)%0a                Downsample (source, mediumRezWorkTexture);%0a%0a                // BLUR A LITTLE first, which has two purposes%0a                // 1.) reduce jitter, noise, aliasing%0a                // 2.) produce the little-blur buffer used in composition later%0a                
+ Blur
+@@ -10670,33 +10670,49 @@
  pread);%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  if 
 +(
@@ -958,81 +789,52 @@
   && 
 +(
  (BokehDe
-@@ -10757,26 +10757,56 @@
+@@ -10757,24 +10757,56 @@
  n) != 0)
--%0a%09%09%09%7b%0a%09%09%09%09
+- %7b%0a%09%09%09%09%09
 +)%0a                %7b%0a                    
  dofMater
-@@ -10818,16 +10818,17 @@
- etVector
-+ 
- (%22_Thres
-@@ -10903,30 +10903,132 @@
- inance, 
+@@ -10846,17 +10846,16 @@
+  Vector4
+- 
+ (bokehTh
+@@ -10907,159 +10907,554 @@
+ ce, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09%09%09
-+%0a                    // add and mark the parts that should end up as bokeh shapes%0a                    
- Graphics
-@@ -11024,32 +11024,33 @@
-    Graphics.Blit
-+ 
- (mediumRezWorkTe
-@@ -11088,20 +11088,152 @@
- l, 11);%0a
--%09%09%09%09
-+%0a                    // remove the parts (maybe even a little tittle bittle more) that will end up in bokeh space%0a                    //
- Graphics
-@@ -11237,16 +11237,17 @@
- ics.Blit
-+ 
- (mediumR
-@@ -11282,21 +11282,186 @@
- ture
--);%0a%09%09%09%09
-+, dofMaterial, 10);%0a                    Graphics.Blit (mediumRezWorkTexture, lowRezWorkTexture);//, dofMaterial, 10);%0a%0a                    // big BLUR%0a                    
- BlurFg
-+ 
- (low
-@@ -11529,42 +11529,130 @@
+-%09%09%09%09%09Graphics.Blit (mediumRezWorkTexture, bokehSource2, dofMaterial, 11);%0a%09%09%09%09%09Graphics.Blit (mediumRezWorkTexture, lowRezWorkTexture);%0a%09%09%09%09%09
++%0a                    // add and mark the parts that should end up as bokeh shapes%0a                    Graphics.Blit (mediumRezWorkTexture, bokehSource2, dofMaterial, 11);%0a%0a                    // remove the parts (maybe even a little tittle bittle more) that will end up in bokeh space%0a                    //Graphics.Blit (mediumRezWorkTexture, lowRezWorkTexture, dofMaterial, 10);%0a                    Graphics.Blit (mediumRezWorkTexture, lowRezWorkTexture);//, dofMaterial, 10);%0a%0a                    // big BLUR%0a                    
+ Blur
+@@ -11529,32 +11529,123 @@
  d * 
--num);%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09
-+bokehBlurAmplifier);%0a                %7d%0a                else  %7b%0a                    // big BLUR%0a                    
- BlurFg
+-num);%0a%09%09%09%09%7d
++bokehBlurAmplifier);%0a                %7d%0a               
+  else 
 + 
- (med
-@@ -11723,16 +11723,83 @@
+ %7b%0a
+-%09%09%09%09%09
++                    // big BLUR%0a                    
+ Blur
+@@ -11723,18 +11723,83 @@
  d);%0a
--%09%09%09%7d%0a%09%09%09
+-%09%09%09%09%7d%0a%09%09%09%09
 +                %7d%0a%0a                // simple upsample once%0a                
  Grap
-@@ -11807,16 +11807,17 @@
- ics.Blit
-+ 
- (lowRezW
-@@ -11843,19 +11843,33 @@
+@@ -11843,20 +11843,33 @@
  focus);%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  dofMater
-@@ -11878,24 +11878,25 @@
- l.SetTexture
-+ 
- (%22_TapLowFor
-@@ -11920,19 +11920,32 @@
+@@ -11920,20 +11920,32 @@
  focus);%0a
--%09%09%09
+-%09%09%09%09
 +                
  Graphics
-@@ -11949,16 +11949,17 @@
- ics.Blit
-+ 
- (source,
-@@ -12009,24 +12009,41 @@
+@@ -12009,25 +12009,41 @@
  4);%0a
--%09%09%09
+-%09%09%09%09
 +%0a                
  if 
 +(
@@ -1041,36 +843,28 @@
   && 
 +(
  (Bok
-@@ -12096,26 +12096,38 @@
- = 0)
--%0a%09%09%09%7b%0a%09%09%09%09
+@@ -12092,24 +12092,38 @@
+ n) != 0)
+- %7b%0a%09%09%09%09%09
 +)%0a                    
  AddBokeh
- (bok
-@@ -12122,16 +12122,17 @@
- AddBokeh
-+ 
- (bokehSo
-@@ -12165,27 +12165,43 @@
+@@ -12165,30 +12165,43 @@
  ation);%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%09
+-%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09
 +            %7d%0a%0a            
  ReleaseT
-@@ -12211,24 +12211,31 @@
- ures
-+ 
- ();%0a
--%09%7d%0a%0a%09private
+@@ -12212,30 +12212,34 @@
+ res ();%0a
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
-  voi
-@@ -12240,17 +12240,19 @@
- oid Blur
--(
-+ ( 
+  void Bl
+@@ -12242,16 +12242,17 @@
+ d Blur (
++ 
  RenderTe
-@@ -12334,22 +12334,31 @@
+@@ -12334,24 +12334,31 @@
   spread)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  RenderTe
 @@ -12360,32 +12360,26 @@
@@ -1079,78 +873,43 @@
  mp
 -orary
   = RenderTex
-@@ -12387,32 +12387,33 @@
- ure.GetTemporary
-+ 
- (to.width, to.he
-@@ -12411,38 +12411,53 @@
- th, to.height);%0a
--%09%09
-+            
- if (
-+(int)
- iterations %3e Dof
-@@ -12457,41 +12457,37 @@
- s %3e 
--DofBlurriness.Low)%0a%09%09%7b%0a%09%09%09
-+1) %7b%0a                
- BlurHex
-+ 
- (fro
-@@ -12512,34 +12512,46 @@
- pread, t
+@@ -12423,53 +12423,63 @@
+ t);%0a
+-%09%09%09if (iterations %3e DofBlurriness.Low) %7b%0a%09%09%09%09
++            if ((int)iterations %3e 1) %7b%0a                
+ Blur
+@@ -12516,67 +12516,76 @@
+ d, t
 -e
  mp
--orary);%0a%09%09%09
-+);%0a                
- if (
-+(int)
- iteratio
-@@ -12559,37 +12559,33 @@
- s %3e 
--DofBlurriness.High)%0a%09%09%09%7b%0a%09%09%09%09
-+2) %7b%0a                    
+-orary);%0a%09%09%09%09if (iterations %3e DofBlurriness.High) %7b%0a%09%09%09%09%09
++);%0a                if ((int)iterations %3e 2) %7b%0a                    
  dofB
-@@ -12597,32 +12597,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -12621,33 +12621,36 @@
- ts%22, new Vector4
--(
-+ (0.
+@@ -12623,32 +12623,34 @@
+ %22, new Vector4 (
++0.
  0f, spread * one
-@@ -12659,38 +12659,58 @@
+@@ -12659,39 +12659,58 @@
  erBaseSize, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  Graphics.Bli
-@@ -12706,38 +12706,33 @@
- raphics.Blit
-+ 
- (to, t
+@@ -12713,32 +12713,26 @@
+ .Blit (to, t
 -e
  mp
 -orary
  , dofBlurMat
-@@ -12741,36 +12741,52 @@
+@@ -12741,37 +12741,52 @@
  ial, blurPass);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  dofBlurMaterial.
-@@ -12786,32 +12786,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -12810,32 +12810,33 @@
- ts%22, new Vector4
-+ 
- (spread / widthO
-@@ -12864,34 +12864,57 @@
+@@ -12864,35 +12864,57 @@
  seSize, 
 + 0.
  0f, 
@@ -1158,65 +917,45 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  Graphics
-@@ -12914,34 +12914,29 @@
- raphics.Blit
-+ 
- (t
+@@ -12917,32 +12917,26 @@
+ hics.Blit (t
 -e
  mp
 -orary
  , to, dofBlu
-@@ -12957,39 +12957,83 @@
+@@ -12957,38 +12957,83 @@
  rPass);%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%09%09%7d%0a%09%09%09%7d else %7b%0a%09%09%09%09
 +                %7d%0a            %7d%0a            else %7b%0a                
  dofBlurM
-@@ -13041,32 +13041,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -13065,33 +13065,36 @@
- ts%22, new Vector4
--(
-+ (0.
+@@ -13067,32 +13067,34 @@
+ %22, new Vector4 (
++0.
  0f, spread * one
-@@ -13103,37 +13103,54 @@
+@@ -13103,38 +13103,54 @@
  erBaseSize, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09%09
+-%09%09%09%09
 +                
  Graphics.Bli
-@@ -13146,32 +13146,33 @@
- raphics.Blit
-+ 
- (from, t
- emporary, do
 @@ -13155,32 +13155,26 @@
  lit (from, t
 -e
  mp
 -orary
  , dofBlurMat
-@@ -13183,35 +13183,48 @@
+@@ -13183,36 +13183,48 @@
  ial, blurPass);%0a
--%09%09%09
+-%09%09%09%09
 +                
  dofBlurMaterial.
-@@ -13224,32 +13224,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -13248,32 +13248,33 @@
- ts%22, new Vector4
-+ 
- (spread / widthO
-@@ -13302,33 +13302,53 @@
+@@ -13302,34 +13302,53 @@
  seSize, 
 + 0.
  0f, 
@@ -1224,48 +963,39 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09
+-%09%09%09%09
 +                
  Graphics
-@@ -13348,34 +13348,29 @@
- raphics.Blit
-+ 
- (t
+@@ -13351,32 +13351,26 @@
+ hics.Blit (t
 -e
  mp
 -orary
  , to, dofBlu
-@@ -13383,38 +13383,58 @@
- ial, blurPass);%0a
--%09%09%7d%0a%09%09
+@@ -13387,32 +13387,50 @@
+  blurPass);%0a
+-%09%09%09%7d%0a%09%09%09
 +            %7d%0a            
- RenderTexture.Re
-@@ -13451,33 +13451,34 @@
- rary
-+ 
- (t
+ RenderTextur
+@@ -13454,33 +13454,31 @@
+ y (t
 -e
  mp
--orary);%0a%09%7d%0a%0a%09private
+-orary);%0a%09%09%7d%0a%0a%09%09private
 +);%0a        %7d%0a%0a       
   voi
-@@ -13485,17 +13485,19 @@
- d BlurFg
--(
-+ ( 
+@@ -13487,16 +13487,17 @@
+ BlurFg (
++ 
  RenderTe
-@@ -13579,22 +13579,135 @@
+@@ -13579,24 +13579,135 @@
   spread)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            // we want a nice, big coc, hence we need to tap once from this (higher resolution) texture%0a            
  dofBlurM
-@@ -13724,16 +13724,17 @@
- tTexture
-+ 
- (%22_TapHi
-@@ -13745,18 +13745,29 @@
+@@ -13745,19 +13745,29 @@
   from);%0a
--%09%09
+-%09%09%09
 +%0a            
  RenderTe
 @@ -13773,24 +13773,18 @@
@@ -1274,64 +1004,43 @@
  mp
 -orary
   = Rende
-@@ -13804,16 +13804,17 @@
- emporary
-+ 
- (to.widt
-@@ -13832,60 +13832,71 @@
+@@ -13832,53 +13832,63 @@
  t);%0a
--%09%09if (iterations %3e DofBlurriness.Low)%0a%09%09%7b%0a%09%09%09
+-%09%09%09if (iterations %3e DofBlurriness.Low) %7b%0a%09%09%09%09
 +            if ((int)iterations %3e 1) %7b%0a                
- BlurHex
-+ 
- (fro
-@@ -13925,68 +13925,76 @@
+ Blur
+@@ -13925,67 +13925,76 @@
  d, t
 -e
  mp
--orary);%0a%09%09%09if (iterations %3e DofBlurriness.High)%0a%09%09%09%7b%0a%09%09%09%09
+-orary);%0a%09%09%09%09if (iterations %3e DofBlurriness.High) %7b%0a%09%09%09%09%09
 +);%0a                if ((int)iterations %3e 2) %7b%0a                    
  dofB
-@@ -14006,32 +14006,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -14030,33 +14030,36 @@
- ts%22, new Vector4
--(
-+ (0.
+@@ -14032,32 +14032,34 @@
+ %22, new Vector4 (
++0.
  0f, spread * one
-@@ -14072,30 +14072,50 @@
+@@ -14072,31 +14072,50 @@
  seSize, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  Graphics
-@@ -14123,22 +14123,17 @@
- Blit
-+ 
- (to, t
+@@ -14126,24 +14126,18 @@
+ t (to, t
 -e
  mp
 -orary
- , do
-@@ -14158,20 +14158,36 @@
+ , dofBlu
+@@ -14158,21 +14158,36 @@
  rPass);%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  dofBlurM
-@@ -14195,32 +14195,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -14219,32 +14219,33 @@
- ts%22, new Vector4
-+ 
- (spread / widthO
-@@ -14277,26 +14277,49 @@
+@@ -14277,27 +14277,49 @@
  ze, 
 + 0.
  0f, 
@@ -1339,66 +1048,45 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09%09
+-%09%09%09%09%09
 +                    
  Grap
-@@ -14323,34 +14323,29 @@
- raphics.Blit
-+ 
- (t
+@@ -14326,32 +14326,26 @@
+ hics.Blit (t
 -e
  mp
 -orary
  , to, dofBlu
-@@ -14370,31 +14370,75 @@
+@@ -14370,30 +14370,75 @@
  s);%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%09else%0a%09%09%7b%0a%09%09%09
+-%09%09%09%09%7d%0a%09%09%09%7d else %7b%0a%09%09%09%09
 +                %7d%0a            %7d%0a            else %7b%0a                
  dofB
-@@ -14450,32 +14450,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -14474,33 +14474,36 @@
- ts%22, new Vector4
-+ 
- (
+@@ -14476,32 +14476,34 @@
+ %22, new Vector4 (
 +0.
  0f, spread * one
-@@ -14516,29 +14516,46 @@
+@@ -14516,30 +14516,46 @@
  seSize, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09%09
+-%09%09%09%09
 +                
  Graphics
-@@ -14559,24 +14559,25 @@
- ics.Blit
-+ 
- (from, t
- emporary
 @@ -14568,24 +14568,18 @@
  (from, t
 -e
  mp
 -orary
  , dofBlu
-@@ -14600,19 +14600,32 @@
+@@ -14600,20 +14600,32 @@
  rPass);%0a
--%09%09%09
+-%09%09%09%09
 +                
  dofBlurM
-@@ -14633,32 +14633,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -14657,32 +14657,33 @@
- ts%22, new Vector4
-+ 
- (spread / widthO
-@@ -14715,25 +14715,45 @@
+@@ -14715,26 +14715,45 @@
  ze, 
 + 0.
  0f, 
@@ -1406,77 +1094,55 @@
  0f, 
 +0.
  0f));%0a
--%09%09%09
+-%09%09%09%09
 +                
  Grap
-@@ -14761,26 +14761,21 @@
- ics.Blit
-+ 
- (t
+@@ -14764,24 +14764,18 @@
+ .Blit (t
 -e
  mp
 -orary
  , to, do
-@@ -14800,22 +14800,42 @@
+@@ -14800,24 +14800,42 @@
  rPass);%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +            %7d%0a            
  RenderTe
-@@ -14860,33 +14860,34 @@
- rary
-+ 
- (t
+@@ -14863,33 +14863,31 @@
+ y (t
 -e
  mp
--orary);%0a%09%7d%0a%0a%09private
+-orary);%0a%09%09%7d%0a%0a%09%09private
 +);%0a        %7d%0a%0a       
   voi
-@@ -14895,17 +14895,19 @@
-  BlurHex
--(
-+ ( 
+@@ -14897,16 +14897,17 @@
+ lurHex (
++ 
  RenderTe
-@@ -14982,22 +14982,31 @@
+@@ -14982,24 +14982,31 @@
  ure tmp)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  dofBlurM
-@@ -15014,32 +15014,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -15046,17 +15046,20 @@
-  Vector4
--(
-+ (0.
+@@ -15048,16 +15048,18 @@
+ ector4 (
++0.
  0f, spre
-@@ -15076,36 +15076,50 @@
+@@ -15076,37 +15076,50 @@
  erBaseSize, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09
+-%09%09%09
 +            
  Graphics.Bli
-@@ -15111,32 +15111,33 @@
-    Graphics.Blit
-+ 
- (from, tmp, dofB
-@@ -15152,34 +15152,44 @@
+@@ -15152,35 +15152,44 @@
  ial, blurPass);%0a
--%09%09
+-%09%09%09
 +            
  dofBlurMaterial.
-@@ -15189,32 +15189,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -15213,32 +15213,33 @@
- ts%22, new Vector4
-+ 
- (spread / widthO
-@@ -15267,32 +15267,49 @@
+@@ -15267,33 +15267,49 @@
  seSize, 
 + 0.
  0f, 
@@ -1484,56 +1150,32 @@
  0f, 
 +0.
  0f));%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -15305,32 +15305,33 @@
-    Graphics.Blit
-+ 
- (tmp, to, dofBlu
-@@ -15344,34 +15344,44 @@
+@@ -15344,35 +15344,44 @@
  ial, blurPass);%0a
--%09%09
+-%09%09%09
 +            
  dofBlurMaterial.
-@@ -15381,32 +15381,33 @@
- terial.SetVector
-+ 
- (%22offsets%22, new 
-@@ -15405,32 +15405,33 @@
- ts%22, new Vector4
-+ 
- (spread / widthO
 @@ -15458,16 +15458,17 @@
  aseSize,
 + 
   spread 
-@@ -15482,36 +15482,50 @@
+@@ -15482,37 +15482,50 @@
  erBaseSize, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09
+-%09%09%09
 +            
  Graphics.Bli
-@@ -15525,16 +15525,17 @@
- ics.Blit
-+ 
- (to, tmp
-@@ -15564,18 +15564,28 @@
+@@ -15564,19 +15564,28 @@
  rPass);%0a
--%09%09
+-%09%09%09
 +            
  dofBlurM
-@@ -15601,16 +15601,17 @@
- etVector
-+ 
- (%22offset
-@@ -15625,16 +15625,17 @@
-  Vector4
-+ 
- (spread 
 @@ -15675,21 +15675,16 @@
  ze, 
 -(0f
@@ -1542,48 +1184,37 @@
  spread
 -)
   * o
-@@ -15699,28 +15699,42 @@
+@@ -15699,29 +15699,42 @@
  seSize, 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -15738,16 +15738,17 @@
- ics.Blit
-+ 
- (tmp, to
-@@ -15777,28 +15777,34 @@
+@@ -15777,30 +15777,34 @@
  rPass);%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
   void Do
-@@ -15811,17 +15811,19 @@
- wnsample
--(
-+ ( 
+@@ -15813,16 +15813,17 @@
+ sample (
++ 
  RenderTe
-@@ -15851,22 +15851,31 @@
+@@ -15851,24 +15851,31 @@
  ture to)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  dofMater
-@@ -15887,16 +15887,17 @@
- etVector
-+ 
- (%22_InvRe
-@@ -15928,27 +15928,25 @@
- tor4
-+ 
- (1
+@@ -15927,33 +15927,30 @@
+ ctor4 (1
 +.0
  f / (1
 +.0
  f * 
 -(float)
- to.w
+ to.width
 @@ -15953,33 +15953,30 @@
  idth), 1
 +.0
@@ -1592,54 +1223,43 @@
  f * 
 -(float)
  to.heigh
-@@ -15979,28 +15979,42 @@
+@@ -15979,29 +15979,42 @@
  eight), 
 +0.
  0f, 
 +0.
  0f));%0a
--%09%09
+-%09%09%09
 +            
  Graphics
-@@ -16018,16 +16018,17 @@
- ics.Blit
-+ 
- (from, t
-@@ -16068,28 +16068,34 @@
+@@ -16068,30 +16068,34 @@
  _PASS);%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
   void Ad
-@@ -16100,17 +16100,19 @@
- AddBokeh
--(
-+ ( 
+@@ -16102,16 +16102,17 @@
+ dBokeh (
++ 
  RenderTe
-@@ -16181,19 +16181,27 @@
+@@ -16181,21 +16181,27 @@
  get)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  if (
 -!
  boke
-@@ -16214,36 +16214,30 @@
- ial)
--%0a%09%09%7b%0a%09%09%09return;%0a%09%09%7d%0a%09%09Mesh%5b%5d
-+ %7b%0a                var
+@@ -16217,34 +16217,27 @@
+ ) %7b%0a
+-%09%09%09%09return;%0a%09%09%09%7d%0a%09%09%09Mesh%5b%5d
++                var
   mes
-@@ -16257,16 +16257,17 @@
- etMeshes
-+ 
- (tempTex
-@@ -16294,84 +16294,145 @@
+@@ -16294,87 +16294,145 @@
  ht);
--%0a%09%09RenderTexture.active = tempTex;%0a%09%09GL.Clear(clearDepth: false, clearColor:
+-%0a%09%09%09RenderTexture.active = tempTex;%0a%09%09%09GL.Clear (clearDepth: false, clearColor:
 +%09// quads: exchanging more triangles with less overdraw%0a%0a                RenderTexture.active = tempTex;%0a                GL.Clear (false,
   tru
-@@ -16443,37 +16443,61 @@
- ew Color
-+ 
- (
+@@ -16445,37 +16445,59 @@
+  Color (
 +0.
  0f, 
 +0.
@@ -1648,26 +1268,22 @@
  0f, 
 +0.
  0f));%0a
--%09%09
+-%09%09%09
 +%0a                
  GL.PushM
-@@ -16501,22 +16501,37 @@
- shMatrix
-+ 
- ();%0a
--%09%09
+@@ -16506,19 +16506,32 @@
+ rix ();%0a
+-%09%09%09
 +                
  GL.LoadI
-@@ -16537,22 +16537,135 @@
- Identity
-+ 
- ();%0a
--%09%09
+@@ -16542,19 +16542,130 @@
+ ity ();%0a
+-%09%09%09
 +%0a                // point filter mode is important, otherwise we get bokeh shape & size artefacts%0a                
  bokehInf
-@@ -16701,29 +16701,38 @@
+@@ -16701,30 +16701,38 @@
  nt;%0a
--%09%09
+-%09%09%09
 +%0a                
  float 
 -num
@@ -1680,11 +1296,11 @@
 -f / ((float)
 +.0f) / (
  boke
-@@ -16778,45 +16778,56 @@
+@@ -16778,46 +16778,56 @@
   * 1
 +.0
  f);%0a
--%09%09
+-%09%09%09
 +                
  float 
 -num2
@@ -1696,322 +1312,239 @@
  f * 
 -(float)
  boke
-@@ -16844,14 +16844,26 @@
+@@ -16844,15 +16844,26 @@
  h);%0a
--%09%09num2
+-%09%09%09num2
 +                sc
   += 
-@@ -16927,18 +16927,33 @@
+@@ -16927,19 +16927,33 @@
  seSize;%0a
--%09%09
+-%09%09%09
 +%0a                
  bokehMat
-@@ -16968,16 +16968,17 @@
- tTexture
-+ 
- (%22_Sourc
-@@ -16993,18 +16993,32 @@
+@@ -16993,19 +16993,32 @@
  hInfo);%0a
--%09%09
+-%09%09%09
 +                
  bokehMat
-@@ -17033,16 +17033,17 @@
- tTexture
-+ 
- (%22_MainT
-@@ -17062,18 +17062,32 @@
+@@ -17062,19 +17062,32 @@
  xture);%0a
--%09%09
+-%09%09%09
 +                
  bokehMat
-@@ -17101,16 +17101,17 @@
- etVector
-+ 
- (%22_ArSca
 @@ -17114,17 +17114,16 @@
  rScale%22,
 - 
  new Vect
-@@ -17129,25 +17129,22 @@
- tor4
--(num2, num2 * num
-+ (sc, sc * arW
+@@ -17131,24 +17131,20 @@
+ r4 (
+-num2, num2 * num
++sc, sc * arW
  , 0.
-@@ -17158,17 +17158,31 @@
+@@ -17158,18 +17158,31 @@
  f * 
 -num
 +arW
  ));%0a
--%09%09
+-%09%09%09
 +                
  boke
-@@ -17199,16 +17199,17 @@
- SetFloat
-+ 
- (%22_Inten
-@@ -17232,18 +17232,32 @@
+@@ -17232,19 +17232,32 @@
  nsity);%0a
--%09%09
+-%09%09%09
 +                
  bokehMat
-@@ -17273,101 +17273,84 @@
- Pass
-+ 
- (0);%0a
--%09%09Mesh%5b%5d array = meshes;%0a%09%09
+@@ -17279,95 +17279,78 @@
+ 0);%0a
+-%09%09%09Mesh%5b%5d array = meshes;%0a%09%09%09
 +%0a                
  foreach
 - 
  (Mesh m
--esh
-  in 
--array)%0a%09%09%7b%0a%09%09%09if ((bool)mesh)%0a%09%09%09%7b%0a%09%09%09%09
-+meshes)%0a                    if (m) 
+-esh in array) %7b%0a%09%09%09%09if ((bool)mesh) %7b%0a%09%09%09%09%09
++ in meshes)%0a                    if (m) 
  Grap
-@@ -17369,13 +17369,11 @@
- hNow
-+ 
- (m
+@@ -17368,19 +17368,16 @@
+ shNow (m
 -esh
- , Ma
-@@ -17395,19 +17395,25 @@
+ , Matrix
+@@ -17395,42 +17395,59 @@
  y);%0a
--%09%09%09%7d%0a%09%09%7d%0a%09%09
-+%0a                
- GL.P
-@@ -17424,14 +17424,30 @@
- trix
-+ 
- ();%0a
--%09%09
-+%0a                
+-%09%09%09%09%7d%0a%09%09%09%7d%0a%09%09%09GL.PopMatrix ();%0a%09%09%09
++%0a                GL.PopMatrix ();%0a%0a                
  Grap
-@@ -17455,16 +17455,17 @@
- ics.Blit
-+ 
- (tempTex
-@@ -17496,18 +17496,106 @@
+@@ -17496,19 +17496,106 @@
  al, 8);%0a
--%09%09
+-%09%09%09
 +%0a                // important to set back as we sample from this later on%0a                
  bokehInf
-@@ -17630,28 +17630,49 @@
+@@ -17630,30 +17630,49 @@
  linear;%0a
--%09%7d%0a%0a%09private
+-%09%09%7d%0a%0a%09%09private
 +            %7d%0a        %7d%0a%0a%0a       
   void Re
-@@ -17688,26 +17688,30 @@
- ures
-+ 
- ()
--%0a%09%7b%0a%09%09if ((bool)
+@@ -17691,26 +17691,27 @@
+ s ()
+-%0a%09%09%7b%0a%09%09%09if ((bool)
 + %7b%0a            if (
  fore
-@@ -17720,32 +17720,25 @@
- oundTexture)
--%0a%09%09%7b%0a%09%09%09
-+ 
- RenderTextur
-@@ -17755,16 +17755,17 @@
- emporary
-+ 
- (foregro
-@@ -17777,32 +17777,32 @@
+@@ -17717,38 +17717,32 @@
+ egroundTexture) 
+-%7b%0a%09%09%09%09
+ RenderTexture.Re
+@@ -17777,34 +17777,32 @@
  xture);%0a
--%09%09%7d%0a%09%09if ((bool)
+-%09%09%09%7d%0a%09%09%09if ((bool)
 +            if (
  finalDef
-@@ -17806,24 +17806,17 @@
- Defocus)
--%0a%09%09%7b%0a%09%09%09
-+ 
+@@ -17807,22 +17807,16 @@
+ efocus) 
+-%7b%0a%09%09%09%09
  RenderTe
-@@ -17837,16 +17837,17 @@
- emporary
-+ 
- (finalDe
-@@ -17854,32 +17854,32 @@
+@@ -17854,34 +17854,32 @@
  focus);%0a
--%09%09%7d%0a%09%09if ((bool)
+-%09%09%09%7d%0a%09%09%09if ((bool)
 +            if (
  mediumRe
-@@ -17887,32 +17887,25 @@
- WorkTexture)
--%0a%09%09%7b%0a%09%09%09
-+ 
- RenderTextur
-@@ -17922,16 +17922,17 @@
- emporary
-+ 
- (mediumR
-@@ -17947,32 +17947,32 @@
+@@ -17884,38 +17884,32 @@
+ RezWorkTexture) 
+-%7b%0a%09%09%09%09
+ RenderTexture.Re
+@@ -17947,34 +17947,32 @@
  xture);%0a
--%09%09%7d%0a%09%09if ((bool)
+-%09%09%09%7d%0a%09%09%09if ((bool)
 +            if (
  lowRezWo
-@@ -17981,24 +17981,17 @@
- Texture)
--%0a%09%09%7b%0a%09%09%09
-+ 
+@@ -17982,22 +17982,16 @@
+ exture) 
+-%7b%0a%09%09%09%09
  RenderTe
-@@ -18012,16 +18012,17 @@
- emporary
-+ 
- (lowRezW
-@@ -18034,32 +18034,32 @@
+@@ -18034,34 +18034,32 @@
  xture);%0a
--%09%09%7d%0a%09%09if ((bool)
+-%09%09%09%7d%0a%09%09%09if ((bool)
 +            if (
  bokehSou
-@@ -18062,24 +18062,17 @@
- hSource)
--%0a%09%09%7b%0a%09%09%09
-+ 
+@@ -18063,22 +18063,16 @@
+ Source) 
+-%7b%0a%09%09%09%09
  RenderTe
-@@ -18085,32 +18085,33 @@
- ReleaseTemporary
-+ 
- (bokehSource);%0a%09
-@@ -18113,24 +18113,24 @@
+@@ -18113,26 +18113,24 @@
  e);%0a
--%09%09%7d%0a%09%09if ((bool)
+-%09%09%09%7d%0a%09%09%09if ((bool)
 +            if (
  boke
-@@ -18138,24 +18138,17 @@
- Source2)
--%0a%09%09%7b%0a%09%09%09
-+ 
+@@ -18139,22 +18139,16 @@
+ ource2) 
+-%7b%0a%09%09%09%09
  RenderTe
-@@ -18169,16 +18169,17 @@
- emporary
-+ 
- (bokehSo
-@@ -18190,24 +18190,26 @@
+@@ -18190,27 +18190,26 @@
  2);%0a
--%09%09%7d%0a%09%7d%0a%0a%09private
+-%09%09%09%7d%0a%09%09%7d%0a%0a%09%09private
 +        %7d%0a%0a       
   voi
-@@ -18226,17 +18226,19 @@
- Textures
--(
-+ ( 
+@@ -18228,16 +18228,17 @@
+ xtures (
++ 
  bool blu
 @@ -18249,16 +18249,17 @@
  eground,
 + 
   RenderT
-@@ -18308,14 +18308,23 @@
+@@ -18308,16 +18308,23 @@
  der)
--%0a%09%7b%0a%09%09
+-%0a%09%09%7b%0a%09%09%09
 + %7b%0a            
  fore
-@@ -18341,26 +18341,36 @@
+@@ -18341,27 +18341,36 @@
  ure = null;%0a
--%09%09
+-%09%09%09
 +            
  if (blurFore
-@@ -18377,23 +18377,32 @@
- ground)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -18376,23 +18376,33 @@
+ eground)
+- %7b%0a%09%09%09%09
++%0a                
  foregrou
-@@ -18431,32 +18431,33 @@
- ure.GetTemporary
-+ 
- (source.width, s
-@@ -18474,22 +18474,28 @@
+@@ -18474,24 +18474,28 @@
  ht, 0);%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +            
  mediumRe
-@@ -18527,32 +18527,33 @@
- ure.GetTemporary
-+ 
- (source.width / 
-@@ -18590,18 +18590,28 @@
+@@ -18590,19 +18590,28 @@
  er, 0);%0a
--%09%09
+-%09%09%09
 +            
  finalDef
-@@ -18635,32 +18635,33 @@
- ure.GetTemporary
-+ 
- (source.width / 
-@@ -18698,18 +18698,28 @@
+@@ -18698,19 +18698,28 @@
  er, 0);%0a
--%09%09
+-%09%09%09
 +            
  lowRezWo
 @@ -18720,32 +18720,33 @@
  wRezWorkTexture 
 + 
  = RenderTexture.
-@@ -18749,32 +18749,33 @@
- ure.GetTemporary
-+ 
- (source.width / 
-@@ -18824,18 +18824,28 @@
+@@ -18824,19 +18824,28 @@
  er, 0);%0a
--%09%09
+-%09%09%09
 +            
  bokehSou
-@@ -18856,18 +18856,28 @@
+@@ -18856,19 +18856,28 @@
  = null;%0a
--%09%09
+-%09%09%09
 +            
  bokehSou
-@@ -18893,28 +18893,49 @@
- ll;%0a
--%09%09if (bokeh)%0a%09%09%7b%0a%09%09%09
-+            if (bokeh) %7b%0a                
- boke
+@@ -18889,19 +18889,28 @@
+ = null;%0a
+-%09%09%09
++            
+ if (boke
+@@ -18914,20 +18914,32 @@
+ okeh) %7b%0a
+-%09%09%09%09
++                
+ bokehSou
 @@ -18942,16 +18942,17 @@
  hSource 
 + 
  = Render
-@@ -18963,32 +18963,33 @@
- ure.GetTemporary
-+ 
- (source.width / 
-@@ -19100,35 +19100,48 @@
+@@ -19100,36 +19100,48 @@
  rmat.ARGBHalf);%0a
--%09%09%09
+-%09%09%09%09
 +                
  bokehSource2 = R
 @@ -19137,16 +19137,17 @@
  Source2 
 + 
  = Render
-@@ -19166,16 +19166,17 @@
- emporary
-+ 
- (source.
 @@ -19263,32 +19263,33 @@
  hDownsample), 0,
 + 
   RenderTextureFo
-@@ -19304,19 +19304,32 @@
+@@ -19304,20 +19304,32 @@
  BHalf);%0a
--%09%09%09
+-%09%09%09%09
 +                
  bokehSou
-@@ -19366,19 +19366,32 @@
+@@ -19366,20 +19366,32 @@
  linear;%0a
--%09%09%09
+-%09%09%09%09
 +                
  bokehSou
-@@ -19429,19 +19429,32 @@
+@@ -19429,20 +19429,32 @@
  linear;%0a
--%09%09%09
+-%09%09%09%09
 +                
  RenderTe
-@@ -19486,50 +19486,40 @@
+@@ -19486,52 +19486,40 @@
  e2;%0a
--%09%09%09GL.Clear(clearDepth: false, clearColor:
+-%09%09%09%09GL.Clear (clearDepth: false, clearColor:
 +                GL.Clear (false,
   tru
-@@ -19535,32 +19535,126 @@
- lor(
+@@ -19534,36 +19534,127 @@
+ olor
+- 
+ (
 +0.
  0f, 
 +0.
@@ -2020,36 +1553,36 @@
  0f, 
 +0.
  0f));%0a
--%09%09%7d%0a%09%09
+-%09%09%09%7d%0a%09%09%09
 +            %7d%0a%0a            // to make sure: always use bilinear filter setting%0a%0a            
  sour
-@@ -19690,18 +19690,28 @@
+@@ -19690,19 +19690,28 @@
  linear;%0a
--%09%09
+-%09%09%09
 +            
  finalDef
-@@ -19749,18 +19749,28 @@
+@@ -19749,19 +19749,28 @@
  linear;%0a
--%09%09
+-%09%09%09
 +            
  mediumRe
-@@ -19816,18 +19816,28 @@
+@@ -19816,19 +19816,28 @@
  linear;%0a
--%09%09
+-%09%09%09
 +            
  lowRezWo
-@@ -19884,20 +19884,24 @@
+@@ -19884,21 +19884,24 @@
  ar;%0a
--%09%09if ((bool)
+-%09%09%09if ((bool)
 +            if (
  fore
-@@ -19919,15 +19919,24 @@
- re)%0a
--%09%09%7b%0a%09%09%09
-+                
+@@ -19918,15 +19918,25 @@
+ ure)
+- %7b%0a%09%09%09%09
++%0a                
  fore
-@@ -19987,13 +19987,22 @@
+@@ -19987,18 +19987,22 @@
  ar;%0a
--%09%09%7d%0a%09
+-%09%09%09%7d%0a%09%09%7d%0a%09
 +        %7d%0a    
  %7d%0a%7d%0a

@@ -1,3 +1,7 @@
+@@ -30,17 +30,16 @@
+ omponent
+- 
+ (typeof(
 @@ -111,56 +111,8 @@
  r%0a%7b%0a
 -%09private ShaderQualities appliedShaderQuality;%0a%0a
@@ -10,24 +14,45 @@
  eight;%0a%0a
 +%09%5bSerializeField%5d%0a%09private int largeConsoleWidth;%0a%0a
  %09%5bSerial
+@@ -375,25 +375,24 @@
+ id Awake
+- 
+ ()%0a%09%7b%0a%09%09
+ appliedS
 @@ -387,55 +387,8 @@
  %7b%0a%09%09
 -appliedShaderQuality = ShaderQualities.High;%0a%09%09
  ligh
-@@ -450,16 +450,54 @@
- d%3e();%0a%09%09
+@@ -448,15 +448,52 @@
+ und%3e
+- 
+ ();%0a%09%09
 +int renderTextureWidth = baseWidth;%0a%09%09
- int rend
-@@ -570,16 +570,59 @@
- %0a%09%09%7b%0a%09%09%09
-+renderTextureWidth = largeConsoleWidth;%0a%09%09%09
- renderTe
+ int 
+@@ -562,18 +562,63 @@
+ latform)
+- %7b
++%0a%09%09%7b%0a%09%09%09renderTextureWidth = largeConsoleWidth;
+ %0a%09%09%09rend
 @@ -661,16 +661,82 @@
  ;%0a%09%09%7d%0a%09%09
 +lightBlurredBackground.RenderTextureWidth = renderTextureWidth;%0a%09%09
  lightBlu
-@@ -942,433 +942,46 @@
- %7d%0a%09%09
--ShaderQualities shaderQuality = unsafeInstance.gameSettings.shaderQuality;%0a%09%09if (shaderQuality != appliedShaderQuality)%0a%09%09%7b%0a%09%09%09appliedShaderQuality = shaderQuality;%0a%09%09%09if (shaderQuality %3c= ShaderQualities.Medium)%0a%09%09%09%7b%0a%09%09%09%09lightBlurredBackground.PassGroupCount = ((shaderQuality == ShaderQualities.Low) ? 1 : 2);%0a%09%09%09%09lightBlurredBackground.enabled = true;%0a%09%09%09%7d%0a%09%09%09else%0a%09%09%09%7b%0a%09%09%09%09lightBlurredBackground.enabled = false;%0a%09%09%09%7d%0a%09%09%7d
-+lightBlurredBackground.enabled = true;
- %0a%09%7d%0a
+@@ -819,17 +819,16 @@
+ d Update
+- 
+ ()%0a%09%7b%0a%09%09
+@@ -920,337 +920,28 @@
+ ll))
+- %7b
+ %0a%09%09
++%7b%0a%09%09
+ %09return
+-;%0a%09%09%7d%0a%09%09ShaderQualities shaderQuality = unsafeInstance.gameSettings.shaderQuality;%0a%09%09if (shaderQuality != appliedShaderQuality) %7b%0a%09%09%09appliedShaderQuality = shaderQuality;%0a%09%09%09if (shaderQuality %3c= ShaderQualities.Medium) %7b%0a%09%09%09%09lightBlurredBackground.PassGroupCount = ((shaderQuality == ShaderQualities.Low) ? 1 : 2)
+ ;%0a%09%09
++%7d%0a
+ %09%09li
+@@ -982,73 +982,8 @@
+ e;%0a%09
+-%09%09%7d else %7b%0a%09%09%09%09lightBlurredBackground.enabled = false;%0a%09%09%09%7d%0a%09%09%7d%0a%09
+ %7d%0a%7d%0a

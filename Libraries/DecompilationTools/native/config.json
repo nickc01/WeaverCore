@@ -1,0 +1,15 @@
+{
+  "app_path": "../DecompWizard~/WizardRunner.dll",
+  "app_args": "",
+  "fallback_app_path": "../DecompWizard~/WizardRunner.dll",
+  "fallback_app_args": "--nogui",
+  "diff_config": {
+    "enable_diff_check_loop": false,
+    "global_diff_id_file": "../GlobalDiffID~.txt",
+    "prev_diff_id_file": "../PrevDiffID~.txt"
+  },
+  "selected_dir_file": "selected_hollow_knight_directory.txt",
+  "search_paths": "/usr/bin:/usr/local/bin:/snap/bin:/usr/share/dotnet:/usr/local/share/dotnet:/opt/homebrew/bin:/Applications/dotnet:C:\\Program Files\\dotnet;C:\\Program Files (x86)\\dotnet;C:\\Scoop\\apps\\dotnet-sdk\\current\\dotnet",
+  "log_file_path": "../DecompWizard~/Logs/hkdll.log"
+}
+

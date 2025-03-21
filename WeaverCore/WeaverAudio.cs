@@ -231,6 +231,10 @@ namespace WeaverCore
 				var distance = Vector2.Distance(target.position, audio.AudioSource.transform.position);
 
 				audio.AudioSource.volume = (1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance)) * baseVolume;
+				WeaverLog.Log("Volume of " + audio.AudioSource.name + " = " + audio.AudioSource.volume);
+				WeaverLog.Log("Volume Range = " + volumeRange);
+				WeaverLog.Log("Distance = " + distance);
+				WeaverLog.Log("Base Volume = " + baseVolume);
 
 				yield return null;
 			}

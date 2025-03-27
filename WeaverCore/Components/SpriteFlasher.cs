@@ -12,7 +12,6 @@ namespace WeaverCore.Components
 	/// <summary>
 	/// This component causes the sprite to flash. This is also used by <see cref="EntityHealth"/> to flash the enemy upon hit
 	/// </summary>
-	[RequireComponent(typeof(SpriteRenderer))]
 	public class SpriteFlasher : MonoBehaviour
 	{
 		static SpriteFlasher_I impl;
@@ -50,7 +49,7 @@ namespace WeaverCore.Components
 				{
 					Start();
 					flashColor = value;
-					UpdateBlock();
+					UpdateMaterial();
 				}
 			}
 		}
@@ -66,13 +65,23 @@ namespace WeaverCore.Components
 				value = Mathf.Clamp01(value);
                 Start();
                 flashIntensity = value;
-                UpdateBlock();
+                UpdateMaterial();
             }
 		}
 
 		new SpriteRenderer renderer;
 
-		public SpriteRenderer Renderer => renderer;
+		public SpriteRenderer Renderer
+		{
+			get
+			{
+				if (renderer == null)
+				{
+					renderer = GetComponentInChildren<SpriteRenderer>();
+				}
+				return renderer;
+			}
+		}
 
 		void Start()
 		{
@@ -85,19 +94,21 @@ namespace WeaverCore.Components
 			{
 				ranOnce = true;
 
-				UpdateRenderer();
-
-				propertyBlock = new MaterialPropertyBlock();
+				//UpdateRenderer();
 
 				if (flasherMaterial == null)
 				{
 					flasherMaterial = Assets.MaterialAssets.SpriteFlash;
 				}
-				if (previousMaterial == null)
+
+				if (renderer != null)
 				{
-					previousMaterial = renderer.sharedMaterial;
+					if (previousMaterial == null)
+					{
+						previousMaterial = renderer.sharedMaterial;
+					}
+					renderer.sharedMaterial = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
 				}
-				renderer.sharedMaterial = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
 
 				impl.OnFlasherInit(this);
 			}
@@ -105,12 +116,15 @@ namespace WeaverCore.Components
 
 		void OnEnable()
 		{
-			UpdateRenderer();
-			if (previousMaterial == null)
+			//UpdateRenderer();
+			if (renderer != null)
 			{
-				previousMaterial = renderer.material;
+				if (previousMaterial == null)
+				{
+					previousMaterial = renderer.material;
+				}
+				renderer.sharedMaterial = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
 			}
-            renderer.sharedMaterial = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
         }
 
 		void OnDisable()
@@ -128,25 +142,29 @@ namespace WeaverCore.Components
 		}
 
 
-		void UpdateRenderer()
+		/*void UpdateRenderer()
 		{
 			renderer = GetComponentInChildren<SpriteRenderer>();
 			if (renderer == null)
 			{
 				throw new Exception("The GameObject " + gameObject.name + " does not have a SpriteRenderer Component");
 			}
-		}
+		}*/
 
-		void UpdateBlock()
+		protected virtual void UpdateMaterial()
 		{
-			if (renderer != null)
+			if (Renderer != null)
 			{
-				renderer.GetPropertyBlock(propertyBlock);
+				if (propertyBlock == null)
+				{
+					propertyBlock = new MaterialPropertyBlock();
+				}
+				Renderer.GetPropertyBlock(propertyBlock);
 
-				propertyBlock.SetColor("_FlashColor", flashColor);
-				propertyBlock.SetFloat("_FlashAmount", flashIntensity);
+				propertyBlock.SetColor("_FlashColor", FlashColor);
+				propertyBlock.SetFloat("_FlashAmount", FlashIntensity);
 
-				renderer.SetPropertyBlock(propertyBlock);
+				Renderer.SetPropertyBlock(propertyBlock);
 			}
 		}
 
@@ -238,7 +256,7 @@ namespace WeaverCore.Components
         private void OnValidate()
         {
             Start();
-            UpdateBlock();
+            UpdateMaterial();
         }
 
 

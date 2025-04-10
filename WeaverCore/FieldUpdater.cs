@@ -474,7 +474,9 @@ namespace WeaverCore
             {
                 try
                 {
-                    if (obj.TryGetComponent(field.ComponentType, out var component))
+                    var component = obj.GetComponentInChildren(field.ComponentType);
+                    //if (obj.TryGetComponent(field.ComponentType, out var component))
+                    if (component != null)
                     {
                         var member = field.Member;
 

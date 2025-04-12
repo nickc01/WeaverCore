@@ -213,8 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicStartDelay: 0.5
-  bossMusicPack: {fileID: 0}
-  remixBossMusicPack: {fileID: 0}
+  bossMusicCue: {fileID: 0}
+  remixBossMusicCue: {fileID: 0}
   disableSequenceMusic: 0
   waitForMusicEvent: 0
   pantheonSequenceMusic: {fileID: 0}
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcac9738d56950c4189245d4c6e85e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playNextSceneEvents: 1
 --- !u!1 &331585759782525753
 GameObject:
   m_ObjectHideFlags: 0

@@ -101,7 +101,7 @@ namespace WeaverCore.Components
             CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
 
             //PLAY AUDIO
-            if (TinkSound != null)
+            if (TinkSound != null && TinkSoundVolume > 0.01f)
             {
                 var instance = WeaverAudio.PlayAtPoint(TinkSound, transform.position, TinkSoundVolume);
                 instance.AudioSource.pitch = TinkSoundPitch;

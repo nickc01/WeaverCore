@@ -85,6 +85,10 @@ namespace WeaverCore.Components
         {
             if (__instance is WeaverBossStatue wbs)
             {
+                if (wbs.settings != null)
+                {
+                    wbs.settings = SaveSpecificSettings.GetSaveSettings(wbs.settings.GetType());
+                }
                 if (!playerDataHooks.ContainsKey(wbs.HookKey))
                 {
                     playerDataHooks.Add(wbs.HookKey, true);

@@ -154,8 +154,8 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredDynamic)
             {
-                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.position.x).ToList();
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(Player.Player1.transform.position.x - s.transform.position.x)).ToList();
+                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.localPosition.x).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(Player.Player1.transform.position.x - s.transform.localPosition.x)).ToList();
 
                 var farthestIndex = leftToRightSpikes.IndexOf(orderedSpikes[orderedSpikes.Count - 1]);
                 var nearestIndex = leftToRightSpikes.IndexOf(orderedSpikes[0]);
@@ -173,7 +173,7 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredLeftToRight)
             {
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => s.transform.position.x).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => s.transform.localPosition.x).ToList();
                 for (int i = 0; i < orderedSpikes.Count; i++)
                 {
                     completedSpikes.Add(orderedSpikes[i].RetractAndWait(group.PreDelay + (group.StaggeredDelay * i), 0.5f));
@@ -181,7 +181,7 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredRightToLeft)
             {
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderByDescending(s => s.transform.position.x).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderByDescending(s => s.transform.localPosition.x).ToList();
                 for (int i = 0; i < orderedSpikes.Count; i++)
                 {
                     completedSpikes.Add(orderedSpikes[i].RetractAndWait(group.PreDelay + (group.StaggeredDelay * i), 0.5f));
@@ -189,14 +189,14 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredSidesToCenter)
             {
-                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.position.x).ToList();
+                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.localPosition.x).ToList();
 
-                var left = leftToRightSpikes.Min(s => s.transform.position.x);
-                var right = leftToRightSpikes.Max(s => s.transform.position.x);
+                var left = leftToRightSpikes.Min(s => s.transform.localPosition.x);
+                var right = leftToRightSpikes.Max(s => s.transform.localPosition.x);
 
                 var centerX = Mathf.Lerp(left, right, 0.5f);
 
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(centerX - s.transform.position.x)).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(centerX - s.transform.localPosition.x)).ToList();
 
                 var farthestIndex = leftToRightSpikes.IndexOf(orderedSpikes[orderedSpikes.Count - 1]);
                 var nearestIndex = leftToRightSpikes.IndexOf(orderedSpikes[0]);
@@ -214,14 +214,14 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredCenterToSides)
             {
-                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.position.x).ToList();
+                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.localPosition.x).ToList();
 
-                var left = leftToRightSpikes.Min(s => s.transform.position.x);
-                var right = leftToRightSpikes.Max(s => s.transform.position.x);
+                var left = leftToRightSpikes.Min(s => s.transform.localPosition.x);
+                var right = leftToRightSpikes.Max(s => s.transform.localPosition.x);
 
                 var centerX = Mathf.Lerp(left, right, 0.5f);
 
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(centerX - s.transform.position.x)).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(centerX - s.transform.localPosition.x)).ToList();
 
                 var farthestIndex = leftToRightSpikes.IndexOf(orderedSpikes[orderedSpikes.Count - 1]);
                 var nearestIndex = leftToRightSpikes.IndexOf(orderedSpikes[0]);
@@ -263,8 +263,8 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredDynamic)
             {
-                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.position.x).ToList();
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(Player.Player1.transform.position.x - s.transform.position.x)).ToList();
+                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.localPosition.x).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(Player.Player1.transform.position.x - s.transform.localPosition.x)).ToList();
 
                 var farthestIndex = leftToRightSpikes.IndexOf(orderedSpikes[orderedSpikes.Count - 1]);
                 var nearestIndex = leftToRightSpikes.IndexOf(orderedSpikes[0]);
@@ -282,7 +282,7 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredLeftToRight)
             {
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => s.transform.position.x).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => s.transform.localPosition.x).ToList();
                 for (int i = 0; i < orderedSpikes.Count; i++)
                 {
                     completedSpikes.Add(orderedSpikes[i].ExpandAndWait(group.PreDelay + (group.StaggeredDelay * i), group.AnticDuration, 0.5f));
@@ -290,7 +290,7 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredRightToLeft)
             {
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderByDescending(s => s.transform.position.x).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderByDescending(s => s.transform.localPosition.x).ToList();
                 for (int i = 0; i < orderedSpikes.Count; i++)
                 {
                     completedSpikes.Add(orderedSpikes[i].ExpandAndWait(group.PreDelay + (group.StaggeredDelay * i), group.AnticDuration, 0.5f));
@@ -298,14 +298,14 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredSidesToCenter)
             {
-                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.position.x).ToList();
+                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.localPosition.x).ToList();
 
-                var left = leftToRightSpikes.Min(s => s.transform.position.x);
-                var right = leftToRightSpikes.Max(s => s.transform.position.x);
+                var left = leftToRightSpikes.Min(s => s.transform.localPosition.x);
+                var right = leftToRightSpikes.Max(s => s.transform.localPosition.x);
 
                 var centerX = Mathf.Lerp(left, right, 0.5f);
 
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(centerX - s.transform.position.x)).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(centerX - s.transform.localPosition.x)).ToList();
 
                 var farthestIndex = leftToRightSpikes.IndexOf(orderedSpikes[orderedSpikes.Count - 1]);
                 var nearestIndex = leftToRightSpikes.IndexOf(orderedSpikes[0]);
@@ -323,14 +323,14 @@ namespace WeaverCore.Components.Colosseum
             }
             else if (spikeMode == SpikeMode.StaggeredCenterToSides)
             {
-                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.position.x).ToList();
+                List<ColosseumSpike> leftToRightSpikes = group.Spikes.OrderBy(s => s.transform.localPosition.x).ToList();
 
-                var left = leftToRightSpikes.Min(s => s.transform.position.x);
-                var right = leftToRightSpikes.Max(s => s.transform.position.x);
+                var left = leftToRightSpikes.Min(s => s.transform.localPosition.x);
+                var right = leftToRightSpikes.Max(s => s.transform.localPosition.x);
 
                 var centerX = Mathf.Lerp(left, right, 0.5f);
 
-                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(centerX - s.transform.position.x)).ToList();
+                List<ColosseumSpike> orderedSpikes = group.Spikes.OrderBy(s => Mathf.Abs(centerX - s.transform.localPosition.x)).ToList();
 
                 var farthestIndex = leftToRightSpikes.IndexOf(orderedSpikes[orderedSpikes.Count - 1]);
                 var nearestIndex = leftToRightSpikes.IndexOf(orderedSpikes[0]);
@@ -451,5 +451,6 @@ namespace WeaverCore.Components.Colosseum
             float h = Mathf.Abs(((hash % 1000) / 1000f) % 1f);
             return Color.HSVToRGB(h, 0.7f, 1f);
         }
+        
     }
 }

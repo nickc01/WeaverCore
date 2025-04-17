@@ -22,7 +22,7 @@ namespace WeaverCore.Components
 
         public bool Hit(HitInfo hit)
         {
-			if (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam || hit.AttackType == AttackType.Generic)
+			if ((IsPartOfPlayer1(hit.Attacker.transform)) && (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam || hit.AttackType == AttackType.Generic))
 			{
                 if (deflectTimer <= 0f)
                 {
@@ -68,7 +68,7 @@ namespace WeaverCore.Components
 
         public static void PlayDeflectEffects(Vector3 playerPosition, GameObject deflectedObject, CardinalDirection hitDirection, bool applyRecoil = true, bool applyCameraShake = true)
         {
-
+			// WeaverLog.Log("PLAYING DEFLECTS");
 			CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
 			Vector3 vector = new Vector3(0f, 0f, 0f);
 			Vector3 euler = new Vector3(0f, 0f, 0f);
@@ -133,8 +133,25 @@ namespace WeaverCore.Components
 			}*/
 		}
 
+		static bool IsPartOfPlayer1(Transform transform)
+		{
+			// Replace this with your actual way to reference Player1
+			Transform player1Transform = Player.Player1.transform;
+
+			while (transform != null)
+			{
+				if (transform == player1Transform)
+					return true;
+
+				transform = transform.parent;
+			}
+
+			return false;
+		}
+
         protected virtual void OnDeflect(HitInfo hit)
         {
+			// WeaverLog.Log("ON DEFLECT = " + hit);
             PlayDeflectEffects(Player.Player1.transform.position, gameObject, DirectionUtilities.DegreesToDirection(hit.Direction), applyCameraShake: ApplyCameraShake);
         }
     }

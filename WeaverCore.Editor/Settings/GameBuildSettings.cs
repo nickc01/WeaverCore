@@ -78,15 +78,18 @@ namespace WeaverCore.Editor.Settings
 			}
 		}
 
-		[OnInit]
+		/*[OnInit]
 		static void VerifyOnStartup()
 		{
+
 			if (_settings == null)
 			{
+				Debug.Log("Loading Settings");
 				_settings = LoadSettings();
+				Debug.Log("Loaded Settings");
 				Verify(_settings);
 			}
-		}
+		}*/
 
 		static GameBuildSettings _settings;
 		public static GameBuildSettings Settings
@@ -137,6 +140,7 @@ namespace WeaverCore.Editor.Settings
 		/// </summary>
 		public static void Verify(GameBuildSettings settings)
 		{
+			Debug.Log("Verifying Path = " + settings.HollowKnightLocation + " , " + settings.UnityEditorLocation);
 			var hkDirectory = new DirectoryInfo(settings.HollowKnightLocation);
 			var ueDirectory = new DirectoryInfo(settings.UnityEditorLocation);
 
@@ -176,15 +180,19 @@ namespace WeaverCore.Editor.Settings
 
 			static bool CheckPath(DirectoryInfo hkDirectory)
 			{
+				Debug.Log("Checking directory = " + hkDirectory.FullName);
 				if (!hkDirectory.Exists)
 				{
+					Debug.Log("FALSE 1");
 					return false;
 				}
 
 				if (hkDirectory.Name.ToLower().Contains("hollow") && hkDirectory.Name.ToLower().Contains("knight"))
 				{
+					Debug.Log("TRUE 2");
 					return true;
 				}
+				Debug.Log("FALSE 3");
 				return false;
 
 				/*if (SystemInfo.operatingSystem.Contains("Windows") && hkDirectory.Name != "Hollow Knight")

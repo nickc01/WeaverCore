@@ -44,5 +44,56 @@ namespace WeaverCore.Utilities
 
             return path;
         }
+
+        /// <summary>
+        /// Finds a GameObject in the currently active scene by its full hierarchy path,
+        /// e.g. "RootObject/ChildObject/GrandChild".
+        /// </summary>
+        /// <param name="fullPath">Slash‑delimited path of the object, starting at a root.</param>
+        /// <returns>
+        /// The matching GameObject if found; otherwise <c>null</c>.
+        /// </returns>
+        public static GameObject FindByFullPath(string fullPath)
+        {
+            if (string.IsNullOrEmpty(fullPath))
+                return null;
+
+            var segments = fullPath.Split('/');
+            var roots = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+
+            GameObject current = null;
+            foreach (var root in roots)
+            {
+                if (root.name == segments[0])
+                {
+                    current = root;
+                    break;
+                }
+            }
+
+            if (current == null)
+                return null;
+
+            for (int i = 1; i < segments.Length; i++)
+            {
+                var child = current.transform.Find(segments[i]);
+                if (child == null)
+                    return null;
+                current = child.gameObject;
+            }
+
+            return current;
+        }
+
+        public static string Declonify(string name)
+        {
+            return name.Replace("(Clone)", "").Trim();
+        }
+
+        public static GameObject Declonify(this GameObject gameObject)
+        {
+            gameObject.name = Declonify(gameObject.name);
+            return gameObject;
+        }
     }
 }

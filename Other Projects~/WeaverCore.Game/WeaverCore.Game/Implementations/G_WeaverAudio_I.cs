@@ -58,11 +58,11 @@ namespace WeaverCore.Game.Implementations
 
         public override AudioMixerGroup Sounds => _sounds;
 
-		public override float MasterVolume => GameManager.instance.gameSettings.masterVolume / 10f;
+		public override float MasterVolume => GameManager.instance?.gameSettings != null ? (GameManager.instance.gameSettings.masterVolume / 10f) : 1f;
 
-        public override float MusicVolume => GameManager.instance.gameSettings.musicVolume / 10f;
+        public override float MusicVolume => GameManager.instance?.gameSettings != null ? (GameManager.instance.gameSettings.musicVolume / 10f) : 1f;
 
-        public override float SoundsVolume => GameManager.instance.gameSettings.soundVolume / 10f;
+        public override float SoundsVolume => GameManager.instance?.gameSettings != null ? (GameManager.instance.gameSettings.soundVolume / 10f) : 1f;
 
         [OnInit]
 		static void Init()

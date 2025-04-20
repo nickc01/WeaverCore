@@ -138,12 +138,19 @@ namespace WeaverCore.Features
 
         void OnCreate(GameObject inventoryPage)
         {
-            var instance = GameObject.Instantiate(this, inventoryPage.transform);
-            instance.transform.SetLocalPosition(0f, 0f, 0f);
-            instance.PanelGUID = PanelGUID;
-            instances.Add(GetType(), instance);
+            if (!instances.TryGetValue(GetType(), out var oldInstance) || oldInstance == null)
+            {
+                if (instances.ContainsKey(GetType()))
+                {
+                    instances.Remove(GetType());
+                }
+                var instance = GameObject.Instantiate(this, inventoryPage.transform);
+                instance.transform.SetLocalPosition(0f, 0f, 0f);
+                instance.PanelGUID = PanelGUID;
+                instances.Add(GetType(), instance);
 
-            instance.Setup();
+                instance.Setup();
+            }
         }
 
         protected virtual void OnDestroy()

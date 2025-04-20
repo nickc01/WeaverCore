@@ -1,9 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
+[Serializable]
 public class SaveGameData
 {
+	public PlayerData playerData;
 
+	public SceneData sceneData;
+
+	public SaveGameData(PlayerData playerData, SceneData sceneData)
+	{
+		this.playerData = playerData;
+		this.sceneData = sceneData;
+	}
 }

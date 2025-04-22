@@ -47,7 +47,14 @@ namespace WeaverCore.Assets.Components
             StartCoroutine(WaitUntilPlaying());
             if (destroyAfterTime)
             {
-                base.StartCoroutine(Waiter());
+                if (lifeTime == 0)
+                {
+                    Destroy();
+                }
+                else
+                {
+                    base.StartCoroutine(Waiter());
+                }
             }
         }
 

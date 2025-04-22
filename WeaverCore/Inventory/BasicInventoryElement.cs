@@ -18,19 +18,19 @@ namespace WeaverCore.Inventory
 
         [SerializeField]
         [Tooltip("The element to navigate to on left input")]
-        InventoryElement OnLeft;
+        public InventoryElement OnLeft;
 
         [SerializeField]
         [Tooltip("The element to navigate to on right input")]
-        InventoryElement OnRight;
+        public InventoryElement OnRight;
 
         [SerializeField]
         [Tooltip("The element to navigate to on up input")]
-        InventoryElement OnUp;
+        public InventoryElement OnUp;
 
         [SerializeField]
         [Tooltip("The element to navigate to on down input")]
-        InventoryElement OnDown;
+        public InventoryElement OnDown;
 
         [SerializeField]
         [Tooltip("Called when the element is clicked on")]

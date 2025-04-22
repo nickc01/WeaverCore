@@ -18,5 +18,7 @@ namespace WeaverCore.Internal
         public static Func<GameObject> GetJournalUpdateMessageSpawnedFunc;
         public static Action<GameObject> SetJournalUpdateMessageSpawnedFunc;
         public static GameObject dream_area_effectPrefab;
+
+        public static GameObject VesselFragmentUIPrefab;
     }
 }

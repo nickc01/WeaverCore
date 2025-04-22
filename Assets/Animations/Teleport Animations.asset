@@ -14,15 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipNames:
   - Death Glow
-  clipFrameStartIndexes: 00000000
-  clipFrameCounts: 05000000
+  - Plink
+  clipFrameStartIndexes: 0000000005000000
+  clipFrameCounts: 050000000b000000
   frames:
   - {fileID: -7481494428759831470, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
   - {fileID: -4190962772349927123, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
   - {fileID: -2411927482635579181, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
   - {fileID: 3602460126422121108, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
   - {fileID: -5447230373782437181, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 7861483486550250359, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -8873851827640088354, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -4539573286616286633, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -1924556269529348092, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -2604306774686341634, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 6514193934630121855, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 1587568368887314130, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -8416615644721522957, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -1706717787840131418, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: -3958095591818142761, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
+  - {fileID: 1230198586652909371, guid: 4bfe5e5234b7912448dc64f900b0672e, type: 3}
   clipFPSs:
   - 24
-  clipWrapModes: 00000000
-  clipLoopStarts: 00000000
+  - 24
+  clipWrapModes: 0000000000000000
+  clipLoopStarts: 0000000000000000

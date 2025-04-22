@@ -180,8 +180,8 @@ namespace WeaverCore.Components
                 if (SettingsStorage.HasField<bool>(SettingsField))
                 {
                     var result = SettingsStorage.GetFieldValue<bool>(SettingsField);
-                    //WeaverLog.Log($"{SettingsField} = {result}");
-                    //WeaverLog.Log("CAN SPAWN RESULT = " + !result);
+                    WeaverLog.Log($"{SettingsField} = {result}");
+                    WeaverLog.Log("CAN SPAWN RESULT = " + !result);
                     return !SettingsStorage.GetFieldValue<bool>(SettingsField);
                 }
                 else

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
@@ -34,7 +35,8 @@ namespace WeaverCore.Internal
                 ("Tutorial_01", "_Props/Health Cocoon"),
                 ("Tutorial_01", "_Props/Chest"),
                 ("Tutorial_01", "_Enemies/Buzzer"),
-                ("Town", "_NPCs/Elderbug/Dream Dialogue")
+                ("Town", "_NPCs/Elderbug/Dream Dialogue"),
+                ("Crossroads_37", "Vessel Fragment")
             };
             /*var preloads = WeaverAssets.LoadAssetsOfType<ChallengeEnemyPreloads, TheSanctuaryMod>().ToList();
             WeaverLog.Log("FOUND PRELOAD OBJECTS = " + preloads != null ? preloads.Count.ToString() : "null");
@@ -106,6 +108,30 @@ namespace WeaverCore.Internal
             if (preloadedObjects.TryGetValue("GG_Workshop", out var ggSceneDict) && ggSceneDict.TryGetValue("GG_Statue_Mage_Knight", out var mageKnightStatue))
             {
                 GG_Preloads.SetMageKnightStatue(mageKnightStatue);
+            }
+
+            if (preloadedObjects.TryGetValue("Crossroads_37", out var crossroadsDict) && crossroadsDict.TryGetValue("Vessel Fragment", out var fragment))
+            {
+                var fsmName = PlayMakerUtilities.GetAllFsmsOnObject(fragment).FirstOrDefault(n => n == "Vessel Fragment Control");
+                var fsmComp = PlayMakerUtilities.GetPlaymakerFSMOnObject(fragment, fsmName);
+                var fsm = PlayMakerUtilities.GetFSMOnPlayMakerComponent(fsmComp);
+                var uiState = PlayMakerUtilities.FindStateOnFSM(fsm, "UI");
+                var actions = PlayMakerUtilities.GetStateActions(uiState);
+
+                object action = null;
+
+                foreach (var a in actions)
+                {
+                    if (a != null && a.GetType().Name == "CreateObject")
+                    {
+                        action = a;
+                        break;
+                    }
+                }
+
+                var prefab = action.ReflectGetField("gameObject").ReflectGetProperty("Value") as GameObject;
+
+                Other_Preloads.VesselFragmentUIPrefab = prefab;
             }
 
             if (preloadedObjects.TryGetValue("Tutorial_01", out var tutorialSceneDict))

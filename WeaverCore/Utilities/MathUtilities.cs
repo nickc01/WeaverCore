@@ -201,5 +201,12 @@ namespace WeaverCore.Utilities
 			a = b;
 			b = temp;
 		}
+
+		public static Vector3 PredictFlightDeaccelPosition(Vector3 currentPos, Vector2 velocity, float deacceleration)
+		{
+			var t = velocity.magnitude / deacceleration;
+
+			return currentPos + (Vector3)(velocity * t) - (Vector3)(velocity.normalized * deacceleration * t * t * 0.5f);
+		}
 	}
 }

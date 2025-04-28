@@ -38,7 +38,17 @@ namespace WeaverCore.Assets.Components
 		{
 			var obj = collider.transform;
 
-			var hits = HitEnemy(obj,gameObject,damage,attackType,hitDirection);
+			var hitVector = (collider.gameObject.transform.position - transform.position).normalized;
+
+			Debug.DrawRay(transform.position, hitVector * 3f, Color.Lerp(Color.red, Color.yellow, 0.5f), 10f);
+
+			var angle = DirectionUtilities.ToDegrees(DirectionUtilities.RadToDirection(Mathf.Atan2(hitVector.y, hitVector.x)));
+
+			Debug.DrawRay(transform.position, VectorUtilities.DegreesToVector(angle, 2f), Color.cyan, 10f);
+
+
+			//var hits = HitEnemy(obj,gameObject,damage,attackType,DirectionUtilities.RadToDirection(Mathf.Atan2(hitVector.y, hitVector.x)));
+			var hits = HitEnemy(obj,gameObject,damage,attackType, VectorUtilities.VectorToDegrees(hitVector));
 
 			if (attackType == AttackType.Acid)
 			{
@@ -65,6 +75,11 @@ namespace WeaverCore.Assets.Components
         /// <returns>A list of IHittable objects that were successfully hit.</returns>
         public static System.Collections.Generic.List<IHittable> HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
         {
+			return HitEnemy(obj, attacker, damage, type, hitDirection.ToDegrees());
+        }
+
+		public static System.Collections.Generic.List<IHittable> HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, float hitDirectionDegrees)
+        {
             System.Collections.Generic.List<IHittable> hitObjects = new System.Collections.Generic.List<IHittable>();
 
             int depth = 0;
@@ -82,7 +97,7 @@ namespace WeaverCore.Assets.Components
 							Damage = damage,
 							AttackStrength = 1f,
 							AttackType = type,
-							Direction = hitDirection.ToDegrees(),
+							Direction = hitDirectionDegrees,
 							IgnoreInvincible = false
 						};
 

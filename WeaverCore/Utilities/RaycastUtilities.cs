@@ -60,13 +60,13 @@ namespace WeaverCore.Utilities
 			return result;
 		}
 
-		public static Vector2 FindMaxInDirection(Vector2 center, float targetX, float raycastDistance = 3f)
+		public static Vector2 FindMaxInDirection(Vector2 center, float targetX, int mask, float raycastDistance = 3f)
 		{
 			const float X_PRECISION = 0.5f;
 			const float Y_PRECISION = 0.01f;
 
 			Vector2 centerPoint;
-			if (TryRaycast(center, Vector2.down, hitCache, raycastDistance, terrainMask) > 0)
+			if (TryRaycast(center, Vector2.down, hitCache, raycastDistance, mask) > 0)
 			{
 				centerPoint = hitCache[0].point;
 			}
@@ -83,7 +83,7 @@ namespace WeaverCore.Utilities
 				{
 					var start = new Vector2(i, center.y);
 					Vector2 point;
-					if (TryRaycast(start, Vector2.down, hitCache, raycastDistance, terrainMask) > 0)
+					if (TryRaycast(start, Vector2.down, hitCache, raycastDistance, mask) > 0)
 					{
 						point = hitCache[0].point;
 					}
@@ -108,7 +108,7 @@ namespace WeaverCore.Utilities
 				{
 					var start = new Vector2(i, center.y);
 					Vector2 point;
-					if (TryRaycast(start, Vector2.down, hitCache, raycastDistance, terrainMask) > 0)
+					if (TryRaycast(start, Vector2.down, hitCache, raycastDistance, mask) > 0)
 					{
 						point = hitCache[0].point;
 					}

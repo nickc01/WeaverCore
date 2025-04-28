@@ -122,7 +122,10 @@ namespace WeaverCore.Components.Colosseum
 
         IEnumerator DebugRoutine()
         {
-            while (true)
+            yield return new WaitForSeconds(1f);
+            var extendFunc = RaiseSpikesRoutine(this);
+            yield return new WaitUntil(extendFunc);
+            /*while (true)
             {
                 yield return new WaitForSeconds(1f);
                 var extendFunc = RaiseSpikesRoutine(this);
@@ -131,7 +134,7 @@ namespace WeaverCore.Components.Colosseum
                 yield return new WaitForSeconds(1f);
                 var retractFunc = RetractSpikesRoutine(this);
                 yield return new WaitUntil(retractFunc);
-            }
+            }*/
         }
 
         public static Func<bool> RetractSpikesRoutine(ColosseumSpikeGroup group, SpikeMode? spikeModeOverride = null)

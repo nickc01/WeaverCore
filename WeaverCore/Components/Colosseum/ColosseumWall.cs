@@ -81,13 +81,16 @@ namespace WeaverCore.Components.Colosseum
 
         IEnumerator DebugRoutine()
         {
-            while (true)
+            MoveWallTo(15.4f);
+            yield break;
+
+            /*while (true)
             {
                 MoveWallTo(15.4f);
                 yield return new WaitForSeconds(2f);
                 ResetWall();
                 yield return new WaitForSeconds(2f);
-            }
+            }*/
         }
 
 

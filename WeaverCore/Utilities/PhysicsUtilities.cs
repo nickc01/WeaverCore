@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace WeaverCore.Utilities
 
         static Vector2[] corners = new Vector2[4];
 
-        public static bool PseudoCircleCast2DNonAlloc(Vector2 start, float radius, Vector2 direction, float distance, int layerMask, out Vector2 nearestPoint, int intervals = 4)
+        public static bool PseudoCircleCast2DNonAlloc(Vector2 start, float radius, Vector2 direction, float distance, int layerMask, out Vector2 nearestPoint, int intervals = 4, Func<RaycastHit2D, bool> filter = null)
         {
             hitPoints.Clear();
             var dirAngle = MathUtilities.CartesianToPolar(direction).x;
@@ -25,8 +26,9 @@ namespace WeaverCore.Utilities
                 var startPoint = start + currentDirOffset;
 
                 //Debug.DrawRay(startPoint, direction * distance, Color.red, 1f);
-                if (Physics2D.RaycastNonAlloc(startPoint, direction, hitCache, distance, layerMask) > 0)
+                if (Physics2D.RaycastNonAlloc(startPoint, direction, hitCache, distance, layerMask) > 0 && (filter == null || filter(hitCache[0])))
                 {
+                    WeaverLog.Log("HIT OBJECT = " + hitCache[0].collider.gameObject);
                     hitPoints.Add(hitCache[0].point - currentDirOffset);
                 }
                 else
@@ -51,7 +53,7 @@ namespace WeaverCore.Utilities
             return !float.IsInfinity(minDistance);
         }
 
-        public static bool PseudoBoxCast2DNonAlloc(Vector2 center, Vector2 size, float angle, Vector2 direction, float distance, int layerMask, out Vector2 nearestPoint)
+        public static bool PseudoBoxCast2DNonAlloc(Vector2 center, Vector2 size, float angle, Vector2 direction, float distance, int layerMask, out Vector2 nearestPoint, Func<RaycastHit2D, bool> filter = null)
         {
             hitPoints.Clear();
             Vector2 halfSize = size * 0.5f;
@@ -64,7 +66,7 @@ namespace WeaverCore.Utilities
             for (int i = 0; i < corners.Length; i++)
             {
                 //Debug.DrawRay(corners[i], direction * distance, Color.Lerp(Color.red, Color.yellow, 0.5f), 1f);
-                if (Physics2D.RaycastNonAlloc(corners[i], direction, hitCache, distance, layerMask) > 0)
+                if (Physics2D.RaycastNonAlloc(corners[i], direction, hitCache, distance, layerMask) > 0 && (filter == null || filter(hitCache[0])))
                 {
                     Debug.DrawLine(corners[i], hitCache[0].point - (corners[i] - center), Color.Lerp(Color.red, Color.yellow, 0.5f), 1f);
                     hitPoints.Add(hitCache[0].point - (corners[i] - center));

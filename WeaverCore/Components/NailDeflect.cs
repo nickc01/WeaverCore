@@ -72,7 +72,7 @@ namespace WeaverCore.Components
 			CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
 			Vector3 vector = new Vector3(0f, 0f, 0f);
 			Vector3 euler = new Vector3(0f, 0f, 0f);
-			Vector3 position = HeroController.instance.transform.position;
+			Vector3 position = playerPosition;
 			Vector3 position2 = deflectedObject.transform.position;
 
 			var boxCollider = deflectedObject.GetComponent<Collider2D>();
@@ -122,6 +122,7 @@ namespace WeaverCore.Components
 					euler = new Vector3(0f, 0f, 270f);
 					break;
 			}
+
 			var blockEffect = Pooling.Instantiate(Assets.EffectAssets.BlockedHitPrefab, vector, Quaternion.Euler(euler));
 
 			var clip = WeaverAudio.PlayAtPoint(Assets.AudioAssets.SwordCling, blockEffect.transform.position);

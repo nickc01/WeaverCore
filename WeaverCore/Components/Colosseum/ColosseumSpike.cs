@@ -102,13 +102,14 @@ namespace WeaverCore.Components.Colosseum
 
         IEnumerator Test()
         {
-            while (true)
+            yield return new WaitUntil(ExpandAndWait(0f, 0f));
+            /*while (true)
             {
                 yield return new WaitUntil(ExpandAndWait(0f, -1));
                 yield return new WaitForSeconds(0.5f);
                 yield return new WaitUntil(RetractAndWait(0f));
                 yield return new WaitForSeconds(0.5f);
-            }
+            }*/
         }
 
         public void Expand(float anticDuration) => ExpandAndWait(0f, anticDuration);

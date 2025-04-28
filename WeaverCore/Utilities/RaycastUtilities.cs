@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace WeaverCore.Utilities
@@ -60,20 +61,53 @@ namespace WeaverCore.Utilities
 			return result;
 		}
 
-		public static Vector2 FindMaxInDirection(Vector2 center, float targetX, int mask, float raycastDistance = 3f)
+		static bool SingleRaycast(Vector2 center, Vector2 direction, float distance, int terrainMask, out Vector2 hit, Func<RaycastHit2D, bool> filter = null)
+		{
+			var cache = HitCache.GetMultiCachedArray(20);
+			var count = Physics2D.RaycastNonAlloc(center, direction, cache, distance, terrainMask);
+
+			for (int i = 0; i < count; i++)
+			{
+				if (filter == null || filter(cache[i]))
+				{
+					hit = hitCache[i].point;
+					Debug.DrawLine(center, hitCache[i].point, Color.magenta, 1f);
+					return true;
+				}
+			}
+
+			hit = center + (direction * distance);
+			Debug.DrawLine(center, center + (direction * distance), Color.magenta, 1f);
+			return false;
+
+			/*if (result > 0)
+			{
+				Debug.DrawLine(center, hitCache[0].point, Color.magenta, 1f);
+			}
+			else
+			{
+				Debug.DrawLine(center, center + (direction * distance), Color.magenta, 1f);
+			}
+
+			return result;*/
+		}
+
+		public static Vector2 FindMaxInDirection(Vector2 center, float targetX, int mask, float raycastDistance = 3f, Func<RaycastHit2D, bool> filter = null)
 		{
 			const float X_PRECISION = 0.5f;
 			const float Y_PRECISION = 0.01f;
 
-			Vector2 centerPoint;
-			if (TryRaycast(center, Vector2.down, hitCache, raycastDistance, mask) > 0)
+			SingleRaycast(center, Vector2.down, raycastDistance, mask, out var centerPoint, filter);
+			/*if (TryRaycast(center, Vector2.down, hitCache, raycastDistance, mask) > 0)
 			{
 				centerPoint = hitCache[0].point;
 			}
 			else
 			{
 				centerPoint = (Vector2)center + (Vector2.down * raycastDistance);
-			}
+			}*/
+
+
 
 			Vector2 farthestPoint = centerPoint;
 
@@ -82,7 +116,8 @@ namespace WeaverCore.Utilities
 				for (float i = centerPoint.x; i <= targetX; i += X_PRECISION)
 				{
 					var start = new Vector2(i, center.y);
-					Vector2 point;
+					SingleRaycast(start, Vector2.down, raycastDistance, mask, out var point, filter);
+					/*Vector2 point;
 					if (TryRaycast(start, Vector2.down, hitCache, raycastDistance, mask) > 0)
 					{
 						point = hitCache[0].point;
@@ -90,7 +125,7 @@ namespace WeaverCore.Utilities
 					else
 					{
 						point = start + (Vector2.down * raycastDistance);
-					}
+					}*/
 
 					if (Mathf.Abs(point.y - centerPoint.y) <= Y_PRECISION)
 					{
@@ -107,15 +142,16 @@ namespace WeaverCore.Utilities
 				for (float i = centerPoint.x; i >= targetX; i -= X_PRECISION)
 				{
 					var start = new Vector2(i, center.y);
-					Vector2 point;
-					if (TryRaycast(start, Vector2.down, hitCache, raycastDistance, mask) > 0)
+					//Vector2 point;
+					/*if (TryRaycast(start, Vector2.down, hitCache, raycastDistance, mask) > 0)
 					{
 						point = hitCache[0].point;
 					}
 					else
 					{
 						point = start + (Vector2.down * raycastDistance);
-					}
+					}*/
+					SingleRaycast(start, Vector2.down, raycastDistance, mask, out var point, filter);
 
 					if (Mathf.Abs(point.y - centerPoint.y) <= Y_PRECISION)
 					{

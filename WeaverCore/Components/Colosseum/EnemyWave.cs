@@ -204,7 +204,16 @@ namespace WeaverCore.Components.Colosseum
                         // If prioritized, add to the list
                         if (entry.isPrioritized && hComponent != null)
                         {
+                            if (prioritizedEnemies.Contains(hComponent))
+                            {
+                                prioritizedEnemies.Remove(hComponent);
+                            }
                             prioritizedEnemies.Add(hComponent);
+                            //prioritizedEnemies.Add(hComponent);
+                            if (lastPositions.ContainsKey(hComponent))
+                            {
+                                lastPositions.Remove(hComponent);
+                            }
                             lastPositions.Add(hComponent, (hComponent.transform.position, Time.time));
                         }
 

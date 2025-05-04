@@ -488,6 +488,7 @@
     <Compile Include="Tools\DumpSpriteMapsTool.cs" />
     <Compile Include="Tools\DumpSpritesTool.cs" />
     <Compile Include="Tools\ToolsCommon.cs" />
+    <Compile Include="Misc\WeaverFSMAction_Impl.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

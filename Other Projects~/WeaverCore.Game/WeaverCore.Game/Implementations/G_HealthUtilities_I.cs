@@ -43,6 +43,21 @@ namespace WeaverCore.Game.Implementations
             }
         }
 
+        public override Type GetEntityHealthType()
+        {
+            return typeof(EntityHealth);
+        }
+
+        public override Type GetHealthManagerType()
+        {
+            return typeof(HealthManager);
+        }
+
+        public override Type[] GetHealthTypes()
+        {
+            return new Type[] { typeof(EntityHealth), typeof(HealthManager) };
+        }
+
         public override bool HasHealthComponent(GameObject obj)
         {
             return GetHealthComponent(obj) != null;

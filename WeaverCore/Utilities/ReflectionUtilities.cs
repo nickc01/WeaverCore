@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace WeaverCore.Utilities
 	/// </summary>
 	public static class ReflectionUtilities
 	{
+		private static readonly ConcurrentDictionary<string, (MemberInfo member, DateTime cachedAt)> _cache = new ConcurrentDictionary<string, (MemberInfo member, DateTime cachedAt)>();
+
 		/// <summary>
 		/// Retrives all types that inherit from <paramref name="parentType"/>
 		/// </summary>
@@ -609,6 +612,44 @@ namespace WeaverCore.Utilities
             return null;
         }
 
+		private static string GenerateKey(Type type, string name, BindingFlags flags, string memberKind) =>
+			$"{memberKind}:{type.FullName}:{name}:{(int)flags}";
+
+		private static void CleanupOldEntries(TimeSpan maxAge)
+		{
+			var now = DateTime.UtcNow;
+			foreach (var key in _cache.Keys)
+			{
+				if (_cache.TryGetValue(key, out var entry) && now - entry.cachedAt > maxAge)
+				{
+					_cache.TryRemove(key, out _);
+				}
+			}
+		}
+
+		private static T GetOrAdd<T>(string key, Func<T> getMember) where T : MemberInfo
+		{
+			CleanupOldEntries(TimeSpan.FromMinutes(3));
+
+			if (_cache.TryGetValue(key, out var entry) && entry.member is T member)
+			{
+				return member;
+			}
+
+			var newMember = getMember();
+			_cache[key] = (newMember, DateTime.UtcNow);
+			return newMember;
+		}
+
+		public static FieldInfo GetFieldCached(Type type, string name, BindingFlags flags) =>
+			GetOrAdd(GenerateKey(type, name, flags, "Field"), () => type.GetField(name, flags));
+
+		public static PropertyInfo GetPropertyCached(Type type, string name, BindingFlags flags) =>
+			GetOrAdd(GenerateKey(type, name, flags, "Property"), () => type.GetProperty(name, flags));
+
+		public static MethodInfo GetMethodCached(Type type, string name, BindingFlags flags) =>
+			GetOrAdd(GenerateKey(type, name, flags, "Method"), () => type.GetMethod(name, flags));
+
         /// <summary>
         /// Gets the value of a field using reflection.
         /// </summary>
@@ -616,10 +657,24 @@ namespace WeaverCore.Utilities
         /// <param name="fieldName">The name of the field.</param>
         /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
         /// <returns>The value of the specified field.</returns>
-        public static object ReflectGetField(this object obj, string fieldName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-        {
-            return obj.GetType().GetField(fieldName, flags).GetValue(obj);
-        }
+        public static object ReflectGetField(this object obj, string fieldName, BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public)
+		{
+			var field = GetFieldCached(obj.GetType(), fieldName, flags);
+			return field?.GetValue(obj);
+		}
+
+		/// <summary>
+        /// Gets the value of a field using reflection.
+        /// </summary>
+        /// <param name="obj">The object containing the field.</param>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The value of the specified field.</returns>
+        public static T ReflectGetField<T>(this object obj, string fieldName, BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public)
+		{
+			var field = GetFieldCached(obj.GetType(), fieldName, flags);
+			return (T)field?.GetValue(obj);
+		}
 
         /// <summary>
         /// Sets the value of a field using reflection.
@@ -628,10 +683,11 @@ namespace WeaverCore.Utilities
         /// <param name="fieldName">The name of the field.</param>
         /// <param name="value">The value to set.</param>
         /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
-        public static void ReflectSetField(this object obj, string fieldName, object value, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-        {
-            obj.GetType().GetField(fieldName, flags).SetValue(obj, value);
-        }
+        public static void ReflectSetField(this object obj, string fieldName, object value, BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public)
+		{
+			var field = GetFieldCached(obj.GetType(), fieldName, flags);
+			field?.SetValue(obj, value);
+		}
 
         /// <summary>
         /// Gets the value of a property using reflection.
@@ -642,7 +698,8 @@ namespace WeaverCore.Utilities
         /// <returns>The value of the specified property.</returns>
         public static object ReflectGetProperty(this object obj, string propertyName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
-            return obj.GetType().GetProperty(propertyName, flags).GetValue(obj);
+			var property = GetPropertyCached(obj.GetType(), propertyName, flags);
+			return property?.GetValue(obj);
         }
 
         /// <summary>
@@ -655,9 +712,9 @@ namespace WeaverCore.Utilities
         /// <returns>True if the property was successfully set; otherwise, false.</returns>
         public static bool ReflectSetProperty(this object obj, string propertyName, object value, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
-            var property = obj.GetType().GetProperty(propertyName, flags);
-            property?.SetValue(obj, value);
-            return property != null;
+			var property = GetPropertyCached(obj.GetType(), propertyName, flags);
+			property?.SetValue(obj, value);
+			return property != null;
         }
 
         /// <summary>
@@ -670,7 +727,8 @@ namespace WeaverCore.Utilities
         /// <returns>The result of the method invocation.</returns>
         public static object ReflectCallMethod(this object obj, string methodName, object[] parameters = null, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
-            return obj.GetType().GetMethod(methodName, flags).Invoke(obj, parameters);
+			var method = GetMethodCached(obj.GetType(), methodName, flags);
+			return method.Invoke(obj, parameters);
         }
 
         /// <summary>
@@ -682,7 +740,7 @@ namespace WeaverCore.Utilities
         /// <returns>The MethodInfo object for the specified method.</returns>
         public static MethodInfo ReflectGetMethod(this object obj, string methodName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
-            return obj.GetType().GetMethod(methodName, flags);
+			return GetMethodCached(obj.GetType(), methodName, flags);
         }
     }
 }

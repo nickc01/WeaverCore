@@ -22,6 +22,21 @@ namespace WeaverCore.Editor.Implementations
             return healthComponent is EntityHealth ? HealthUtilities.HealthComponentType.EntityHealth : HealthUtilities.HealthComponentType.None;
         }
 
+        public override Type GetEntityHealthType()
+        {
+            return typeof(EntityHealth);
+        }
+
+        public override Type GetHealthManagerType()
+        {
+            return null;
+        }
+
+        public override Type[] GetHealthTypes()
+        {
+            return new Type[] { typeof(EntityHealth) };
+        }
+
         public override int GetLargeGeo(GameObject obj)
         {
             if (obj.TryGetComponent<EntityHealth>(out var eh))

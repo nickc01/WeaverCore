@@ -135,6 +135,8 @@ namespace WeaverCore
             //channelInfosSetter(this, container.channelInfos);
             //alternativesSetter(this, container.alternatives);
 
+            Init();
+
             if (channelInfos_clip != null && channelInfos_sync != null)
             {
                 MusicChannelInfo[] channels = new MusicChannelInfo[channelInfos_clip.Count];
@@ -144,11 +146,6 @@ namespace WeaverCore
                     channels[i] = new MusicChannelInfo();
                     clipSetter(channels[i], channelInfos_clip[i]);
                     syncSetter(channels[i], channelInfos_sync[i]);
-                }
-
-                if (channelInfosSetter == null)
-                {
-                    Init();
                 }
 
                 channelInfosSetter(this, channels);
@@ -165,11 +162,6 @@ namespace WeaverCore
                         PlayerDataBoolKey = alternatives_PlayerDataBoolKey[i],
                         Cue = alternatives_Cue[i]
                     };
-                }
-
-                if (alternativesSetter == null)
-                {
-                    Init();
                 }
 
                 alternativesSetter(this, alternatives);

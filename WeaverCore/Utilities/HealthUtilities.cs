@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Utilities
@@ -22,6 +23,25 @@ namespace WeaverCore.Utilities
         public static HealthComponentType GetHealthComponentType(GameObject obj) => impl.GetHealthComponentType(obj);
         public static bool TrySetHealth(GameObject obj, int newHealth) => impl.TrySetHealth(obj, newHealth);
         public static bool TryGetHealth(GameObject obj, out int result) => impl.TryGetHealth(obj, out result);
+
+        /// <summary>
+        /// Gets the Type of EntityHealth, which is WeaverCore's implementation of health for enemies.
+        /// </summary>
+        /// <returns>The Type of the EntityHealth class</returns>
+        public static Type GetEntityHealthType() => impl.GetEntityHealthType();
+
+        /// <summary>
+        /// Gets the Type of HealthManager, which is Hollow Knight's native implementation of health.
+        /// Returns null when used in the editor since HealthManager is only available in-game.
+        /// </summary>
+        /// <returns>The Type of the HealthManager class when in-game, or null when in editor</returns>
+        public static Type GetHealthManagerType() => impl.GetHealthManagerType();
+
+        /// <summary>
+        /// Gets an array of all available health component types.
+        /// </summary>
+        /// <returns>An array containing the Types of all available health components</returns>
+        public static Type[] GetHealthTypes() => impl.GetHealthTypes();
 
         public static MonoBehaviour GetHealthComponentInParent(GameObject obj)
         {

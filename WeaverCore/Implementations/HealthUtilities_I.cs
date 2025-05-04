@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using WeaverCore.Interfaces;
 using static WeaverCore.Utilities.HealthUtilities;
 
@@ -17,6 +18,9 @@ namespace WeaverCore.Implementations
 		public bool TrySetHealth(GameObject obj, int newHealth) => TrySetHealth(GetHealthComponent(obj), newHealth);
 		public bool TryGetHealth(GameObject obj, out int result) => TryGetHealth(GetHealthComponent(obj), out result);
 
+        public abstract Type GetEntityHealthType();
+        public abstract Type GetHealthManagerType();
+        public abstract Type[] GetHealthTypes();
 
         public abstract int GetSmallGeo(GameObject obj);
         public abstract int SetSmallGeo(GameObject obj, int geo);

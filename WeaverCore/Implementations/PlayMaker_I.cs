@@ -74,5 +74,12 @@ namespace WeaverCore.Implementations
 		public abstract Enum GetFsmEnum(GameObject obj, string fsmName, string varName);
 
 		public abstract void SetFsmEnum(GameObject obj, string fsmName, string varName, Enum value);
+
+	/// <summary>
+	/// Creates a PlayMaker FSM action from a WeaverFSMAction
+	/// </summary>
+	/// <param name="action">The WeaverFSMAction to convert</param>
+	/// <returns>Returns the created FSM action object or null if not available</returns>
+	public abstract object CreateFSMActionFromWeaverAction(WeaverCore.Playmaker.WeaverFSMAction action);
 	}
 }

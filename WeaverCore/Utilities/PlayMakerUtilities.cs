@@ -1353,6 +1353,69 @@ namespace WeaverCore.Utilities
 			return variables != null ? new FsmVariablesWrapper(variables) : default;
 		}
 
+
+		/// <summary>
+		/// Gets a array variable's value from an FSM.
+		/// </summary>
+		/// <param name="fsm">The Fsm object.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <returns>The value of the variable.</returns>
+		public static object[] GetArrayVariable(object fsm, string variableName)
+		{
+			if (fsm == null || string.IsNullOrEmpty(variableName))
+			{
+				return null;
+			}
+
+			MethodInfo getBoolMethod = FsmType.GetMethod("GetFsmArray", new[] { typeof(string) });
+			object fsmArray = getBoolMethod.Invoke(fsm, new object[] { variableName });
+			
+			PropertyInfo valueProperty = fsmArray.GetType().GetProperty("Values");
+			return (object[])valueProperty.GetValue(fsmArray, null);
+		}
+
+		/// <summary>
+		/// Gets a array variable's value from an FSM using the wrapper type.
+		/// </summary>
+		/// <param name="fsm">The Fsm wrapper.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <returns>The value of the variable.</returns>
+		public static object[] GetArrayVariable(FsmWrapper fsm, string variableName)
+		{
+			return GetArrayVariable(fsm.InternalFsm, variableName);
+		}
+
+		/// <summary>
+		/// Sets a array variable's value in an FSM.
+		/// </summary>
+		/// <param name="fsm">The Fsm object.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <param name="value">The value to set.</param>
+		public static void SetArrayVariable(object fsm, string variableName, object[] value)
+		{
+			if (fsm == null || string.IsNullOrEmpty(variableName))
+			{
+				return;
+			}
+
+			MethodInfo getArrayMethod = FsmType.GetMethod("GetFsmArray", new[] { typeof(string) });
+			object fsmBool = getArrayMethod.Invoke(fsm, new object[] { variableName });
+			
+			PropertyInfo valueProperty = fsmBool.GetType().GetProperty("Values");
+			valueProperty.SetValue(fsmBool, value, null);
+		}
+
+		/// <summary>
+		/// Sets a array variable's value in an FSM using the wrapper type.
+		/// </summary>
+		/// <param name="fsm">The Fsm wrapper.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <param name="value">The value to set.</param>
+		public static void SetBoolVariable(FsmWrapper fsm, string variableName, object[] value)
+		{
+			SetArrayVariable(fsm.InternalFsm, variableName, value);
+		}
+
 		/// <summary>
 		/// Gets a boolean variable's value from an FSM.
 		/// </summary>
@@ -1413,6 +1476,193 @@ namespace WeaverCore.Utilities
 		public static void SetBoolVariable(FsmWrapper fsm, string variableName, bool value)
 		{
 			SetBoolVariable(fsm.InternalFsm, variableName, value);
+		}
+
+		/// <summary>
+		/// Gets a color variable's value from an FSM.
+		/// </summary>
+		/// <param name="fsm">The Fsm object.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <returns>The value of the variable.</returns>
+		public static Color GetColorVariable(object fsm, string variableName)
+		{
+			if (fsm == null || string.IsNullOrEmpty(variableName))
+			{
+				return default;
+			}
+
+			MethodInfo getColorMethod = FsmType.GetMethod("GetFsmColor", new[] { typeof(string) });
+			object fsmColor = getColorMethod.Invoke(fsm, new object[] { variableName });
+			
+			PropertyInfo valueProperty = fsmColor.GetType().GetProperty("Value");
+			return (Color)valueProperty.GetValue(fsmColor, null);
+		}
+
+		/// <summary>
+		/// Gets a color variable's value from an FSM using the wrapper type.
+		/// </summary>
+		/// <param name="fsm">The Fsm wrapper.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <returns>The value of the variable.</returns>
+		public static Color GetColorVariable(FsmWrapper fsm, string variableName)
+		{
+			return GetColorVariable(fsm.InternalFsm, variableName);
+		}
+
+		/// <summary>
+		/// Sets a color variable's value in an FSM.
+		/// </summary>
+		/// <param name="fsm">The Fsm object.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <param name="value">The value to set.</param>
+		public static void SetColorVariable(object fsm, string variableName, Color value)
+		{
+			if (fsm == null || string.IsNullOrEmpty(variableName))
+			{
+				return;
+			}
+
+			MethodInfo getColorMethod = FsmType.GetMethod("GetFsmColor", new[] { typeof(string) });
+			object fsmColor = getColorMethod.Invoke(fsm, new object[] { variableName });
+			
+			PropertyInfo valueProperty = fsmColor.GetType().GetProperty("Value");
+			valueProperty.SetValue(fsmColor, value, null);
+		}
+
+		/// <summary>
+		/// Sets a color variable's value in an FSM using the wrapper type.
+		/// </summary>
+		/// <param name="fsm">The Fsm wrapper.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <param name="value">The value to set.</param>
+		public static void SetColorVariable(FsmWrapper fsm, string variableName, Color value)
+		{
+			SetColorVariable(fsm.InternalFsm, variableName, value);
+		}
+
+		/// <summary>
+		/// Gets a enum variable's value from an FSM.
+		/// </summary>
+		/// <param name="fsm">The Fsm object.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <returns>The value of the variable.</returns>
+		public static Enum GetEnumVariable(object fsm, string variableName)
+		{
+			if (fsm == null || string.IsNullOrEmpty(variableName))
+			{
+				return default;
+			}
+
+			MethodInfo getEnumMethod = FsmType.GetMethod("GetFsmEnum", new[] { typeof(string) });
+			object fsmColor = getEnumMethod.Invoke(fsm, new object[] { variableName });
+			
+			PropertyInfo valueProperty = fsmColor.GetType().GetProperty("Value");
+			return (Enum)valueProperty.GetValue(fsmColor, null);
+		}
+
+		/// <summary>
+		/// Gets a enum variable's value from an FSM using the wrapper type.
+		/// </summary>
+		/// <param name="fsm">The Fsm wrapper.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <returns>The value of the variable.</returns>
+		public static Enum GetEnumVariable(FsmWrapper fsm, string variableName)
+		{
+			return GetEnumVariable(fsm.InternalFsm, variableName);
+		}
+
+		/// <summary>
+		/// Sets a enum variable's value in an FSM.
+		/// </summary>
+		/// <param name="fsm">The Fsm object.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <param name="value">The value to set.</param>
+		public static void SetEnumVariable(object fsm, string variableName, Enum value)
+		{
+			if (fsm == null || string.IsNullOrEmpty(variableName))
+			{
+				return;
+			}
+
+			MethodInfo getEnumMethod = FsmType.GetMethod("GetFsmEnum", new[] { typeof(string) });
+			object fsmColor = getEnumMethod.Invoke(fsm, new object[] { variableName });
+			
+			PropertyInfo valueProperty = fsmColor.GetType().GetProperty("Value");
+			valueProperty.SetValue(fsmColor, value, null);
+		}
+
+		/// <summary>
+		/// Sets a enum variable's value in an FSM using the wrapper type.
+		/// </summary>
+		/// <param name="fsm">The Fsm wrapper.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <param name="value">The value to set.</param>
+		public static void SetEnumVariable(FsmWrapper fsm, string variableName, Enum value)
+		{
+			SetEnumVariable(fsm.InternalFsm, variableName, value);
+		}
+
+
+		/// <summary>
+		/// Gets a object variable's value from an FSM.
+		/// </summary>
+		/// <param name="fsm">The Fsm object.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <returns>The value of the variable.</returns>
+		public static UnityEngine.Object GetObjectVariable(object fsm, string variableName)
+		{
+			if (fsm == null || string.IsNullOrEmpty(variableName))
+			{
+				return default;
+			}
+
+			MethodInfo getObjectMethod = FsmType.GetMethod("GetFsmObject", new[] { typeof(string) });
+			object fsmColor = getObjectMethod.Invoke(fsm, new object[] { variableName });
+			
+			PropertyInfo valueProperty = fsmColor.GetType().GetProperty("Value");
+			return (UnityEngine.Object)valueProperty.GetValue(fsmColor, null);
+		}
+
+		/// <summary>
+		/// Gets a object variable's value from an FSM using the wrapper type.
+		/// </summary>
+		/// <param name="fsm">The Fsm wrapper.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <returns>The value of the variable.</returns>
+		public static UnityEngine.Object GetObjectVariable(FsmWrapper fsm, string variableName)
+		{
+			return GetObjectVariable(fsm.InternalFsm, variableName);
+		}
+
+		/// <summary>
+		/// Sets a object variable's value in an FSM.
+		/// </summary>
+		/// <param name="fsm">The Fsm object.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <param name="value">The value to set.</param>
+		public static void SetObjectVariable(object fsm, string variableName, UnityEngine.Object value)
+		{
+			if (fsm == null || string.IsNullOrEmpty(variableName))
+			{
+				return;
+			}
+
+			MethodInfo getObjectMethod = FsmType.GetMethod("GetFsmObject", new[] { typeof(string) });
+			object fsmColor = getObjectMethod.Invoke(fsm, new object[] { variableName });
+			
+			PropertyInfo valueProperty = fsmColor.GetType().GetProperty("Value");
+			valueProperty.SetValue(fsmColor, value, null);
+		}
+
+		/// <summary>
+		/// Sets a object variable's value in an FSM using the wrapper type.
+		/// </summary>
+		/// <param name="fsm">The Fsm wrapper.</param>
+		/// <param name="variableName">The name of the variable.</param>
+		/// <param name="value">The value to set.</param>
+		public static void SetObjectVariable(FsmWrapper fsm, string variableName, UnityEngine.Object value)
+		{
+			SetObjectVariable(fsm.InternalFsm, variableName, value);
 		}
 
 		/// <summary>
@@ -1740,7 +1990,7 @@ namespace WeaverCore.Utilities
 				return default;
 			}
 
-			return psFSM.GetFsm().GetGameObjectVariable(varName);
+			return psFSM.GetFsm().GetObjectVariable(varName);
 		}
 
 		/// <summary>
@@ -1750,15 +2000,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Object variable</param>
 		/// <param name="value">The value to set in the Object variable</param>
-		public static void SetFsmObject(GameObject obj, string fsmName, string varName, UnityEngine.Object value)
+		public static bool SetFsmObject(GameObject obj, string fsmName, string varName, UnityEngine.Object value)
 		{
 			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
 			if (psFSM == default)
 			{
-				return default;
+				return false;
 			}
 
-			return psFSM.GetFsm().SetGameObjectVariable(varName, value);
+			psFSM.GetFsm().SetObjectVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1770,7 +2021,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Material value of the variable</returns>
 		public static Material GetFsmMaterial(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetMaterialVariable(varName);
 		}
 
 		/// <summary>
@@ -1780,9 +2037,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Material variable</param>
 		/// <param name="value">The value to set in the Material variable</param>
-		public static void SetFsmMaterial(GameObject obj, string fsmName, string varName, Material value)
+		public static bool SetFsmMaterial(GameObject obj, string fsmName, string varName, Material value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetMaterialVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1794,7 +2058,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Texture value of the variable</returns>
 		public static Texture GetFsmTexture(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetTextureVariable(varName);
 		}
 
 		/// <summary>
@@ -1804,9 +2074,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Texture variable</param>
 		/// <param name="value">The value to set in the Texture variable</param>
-		public static void SetFsmTexture(GameObject obj, string fsmName, string varName, Texture value)
+		public static bool SetFsmTexture(GameObject obj, string fsmName, string varName, Texture value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetTextureVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1818,7 +2095,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Float value of the variable</returns>
 		public static float GetFsmFloat(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetFloatVariable(varName);
 		}
 
 		/// <summary>
@@ -1828,9 +2111,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Float variable</param>
 		/// <param name="value">The value to set in the Float variable</param>
-		public static void SetFsmFloat(GameObject obj, string fsmName, string varName, float value)
+		public static bool SetFsmFloat(GameObject obj, string fsmName, string varName, float value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetFloatVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1842,7 +2132,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Int value of the variable</returns>
 		public static int GetFsmInt(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetIntVariable(varName);
 		}
 
 		/// <summary>
@@ -1852,9 +2148,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Int variable</param>
 		/// <param name="value">The value to set in the Int variable</param>
-		public static void SetFsmInt(GameObject obj, string fsmName, string varName, int value)
+		public static bool SetFsmInt(GameObject obj, string fsmName, string varName, int value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetIntVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1866,7 +2169,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Bool value of the variable</returns>
 		public static bool GetFsmBool(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetBoolVariable(varName);
 		}
 
 		/// <summary>
@@ -1876,9 +2185,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Bool variable</param>
 		/// <param name="value">The value to set in the Bool variable</param>
-		public static void SetFsmBool(GameObject obj, string fsmName, string varName, bool value)
+		public static bool SetFsmBool(GameObject obj, string fsmName, string varName, bool value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetBoolVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1890,7 +2206,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the String value of the variable</returns>
 		public static string GetFsmString(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetStringVariable(varName);
 		}
 
 		/// <summary>
@@ -1900,9 +2222,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the String variable</param>
 		/// <param name="value">The value to set in the String variable</param>
-		public static void SetFsmString(GameObject obj, string fsmName, string varName, string value)
+		public static bool SetFsmString(GameObject obj, string fsmName, string varName, string value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetStringVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1914,7 +2243,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Vector2 value of the variable</returns>
 		public static Vector2 GetFsmVector2(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetVector2Variable(varName);
 		}
 
 		/// <summary>
@@ -1924,9 +2259,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Vector2 variable</param>
 		/// <param name="value">The value to set in the Vector2 variable</param>
-		public static void SetFsmVector2(GameObject obj, string fsmName, string varName, Vector2 value)
+		public static bool SetFsmVector2(GameObject obj, string fsmName, string varName, Vector2 value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetVector2Variable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1938,7 +2280,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Vector3 value of the variable</returns>
 		public static Vector3 GetFsmVector3(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetVector3Variable(varName);
 		}
 
 		/// <summary>
@@ -1948,9 +2296,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Vector3 variable</param>
 		/// <param name="value">The value to set in the Vector3 variable</param>
-		public static void SetFsmVector3(GameObject obj, string fsmName, string varName, Vector3 value)
+		public static bool SetFsmVector3(GameObject obj, string fsmName, string varName, Vector3 value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetVector3Variable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1962,7 +2317,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Rect value of the variable</returns>
 		public static Rect GetFsmRect(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetRectVariable(varName);
 		}
 
 		/// <summary>
@@ -1972,9 +2333,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Rect variable</param>
 		/// <param name="value">The value to set in the Rect variable</param>
-		public static void SetFsmRect(GameObject obj, string fsmName, string varName, Rect value)
+		public static bool SetFsmRect(GameObject obj, string fsmName, string varName, Rect value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetRectVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -1986,7 +2354,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Quaternion value of the variable</returns>
 		public static Quaternion GetFsmQuaternion(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetQuaternionVariable(varName);
 		}
 
 		/// <summary>
@@ -1996,9 +2370,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Quaternion variable</param>
 		/// <param name="value">The value to set in the Quaternion variable</param>
-		public static void SetFsmQuaternion(GameObject obj, string fsmName, string varName, Quaternion value)
+		public static bool SetFsmQuaternion(GameObject obj, string fsmName, string varName, Quaternion value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetQuaternionVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -2010,7 +2391,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Color value of the variable</returns>
 		public static Color GetFsmColor(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetColorVariable(varName);
 		}
 
 		/// <summary>
@@ -2018,11 +2405,18 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		/// <param name="obj">The object to check</param>
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
-		/// <param name="varName">The name of the Color variable</param>
+		/// <param name="varName">The name of the Color variable</param
 		/// <param name="value">The value to set in the Color variable</param>
-		public static void SetFsmColor(GameObject obj, string fsmName, string varName, Color value)
+		public static bool SetFsmColor(GameObject obj, string fsmName, string varName, Color value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetColorVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -2034,7 +2428,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the GameObject value of the variable</returns>
 		public static GameObject GetFsmGameObject(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetGameObjectVariable(varName);
 		}
 
 		/// <summary>
@@ -2044,9 +2444,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the GameObject variable</param>
 		/// <param name="value">The value to set in the GameObject variable</param>
-		public static void SetFsmGameObject(GameObject obj, string fsmName, string varName, GameObject value)
+		public static bool SetFsmGameObject(GameObject obj, string fsmName, string varName, GameObject value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetGameObjectVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -2058,7 +2465,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Array value of the variable</returns>
 		public static object[] GetFsmArray(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetArrayVariable(varName);
 		}
 
 		/// <summary>
@@ -2068,9 +2481,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Array variable</param>
 		/// <param name="value">The value to set in the Array variable</param>
-		public static void SetFsmArray(GameObject obj, string fsmName, string varName, object[] value)
+		public static bool SetFsmArray(GameObject obj, string fsmName, string varName, object[] value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetArrayVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>
@@ -2082,7 +2502,13 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the Enum value of the variable</returns>
 		public static Enum GetFsmEnum(GameObject obj, string fsmName, string varName)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return default;
+			}
+
+			return psFSM.GetFsm().GetEnumVariable(varName);
 		}
 
 		/// <summary>
@@ -2092,9 +2518,16 @@ namespace WeaverCore.Utilities
 		/// <param name="fsmName">The name of the PlayMakerFSM to set</param>
 		/// <param name="varName">The name of the Enum variable</param>
 		/// <param name="value">The value to set in the Enum variable</param>
-		public static void SetFsmEnum(GameObject obj, string fsmName, string varName, Enum value)
+		public static bool SetFsmEnum(GameObject obj, string fsmName, string varName, Enum value)
 		{
-			
+			var psFSM = FindPlayMakerFSMWrapper(obj, fsmName);
+			if (psFSM == default)
+			{
+				return false;
+			}
+
+			psFSM.GetFsm().SetEnumVariable(varName, value);
+			return true;
 		}
 
 		/// <summary>

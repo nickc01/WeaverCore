@@ -7,7 +7,7 @@ namespace WeaverCore.Playmaker
 	{
 		public object InternalEvent { get; }
 		
-		internal FsmEventWrapper(object fsmEvent)
+		public FsmEventWrapper(object fsmEvent)
 		{
 			InternalEvent = fsmEvent;
 		}

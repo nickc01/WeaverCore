@@ -7,7 +7,7 @@ namespace WeaverCore.Playmaker
 	{
 		public object InternalVariables { get; }
 		
-		internal FsmVariablesWrapper(object variables)
+		public FsmVariablesWrapper(object variables)
 		{
 			InternalVariables = variables;
 		}

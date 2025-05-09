@@ -12,7 +12,7 @@ namespace WeaverCore.Playmaker
     {
         public object InternalFsm { get; }
 
-        internal FsmWrapper(object fsm)
+        public FsmWrapper(object fsm)
         {
             InternalFsm = fsm;
         }
@@ -25,9 +25,18 @@ namespace WeaverCore.Playmaker
 
         public FsmStateWrapper GetState(string stateName)
         {
+            //WeaverLog.Log($"GET State - Internal FSM = {(InternalFsm?.GetType().Name ?? "null")}");
+            //WeaverLog.Log($"GET State - State Name = {(stateName ?? "null")}");
             object state = PlayMakerUtilities.GetState(InternalFsm, stateName);
+            //WeaverLog.Log($"GET State - State Value = {(state?.GetType().Name ?? "null")}");
             return new FsmStateWrapper(state);
         }
+
+        public bool TryGetState(string stateName, out FsmStateWrapper state)
+        {
+            return (state = GetState(stateName)) != default;
+        }
+
 
         public FsmStateWrapper AddState(string stateName, Vector2 position)
         {
@@ -198,6 +207,56 @@ namespace WeaverCore.Playmaker
         public void SetArrayVariable(string variableName, object[] value)
         {
             PlayMakerUtilities.SetArrayVariable(InternalFsm, variableName, value);
+        }
+
+		public Material GetMaterialVariable(string variableName)
+		{
+			return PlayMakerUtilities.GetMaterialVariable(InternalFsm, variableName);
+		}
+
+		public void SetMaterialVariable(string variableName, Material value)
+        {
+            PlayMakerUtilities.SetMaterialVariable(InternalFsm, variableName, value);
+        }
+
+		public Vector2 GetVector2Variable(string variableName)
+		{
+			return PlayMakerUtilities.GetVector2Variable(InternalFsm, variableName);
+		}
+
+		public void SetVector2Variable(string variableName, Vector2 value)
+        {
+            PlayMakerUtilities.SetVector2Variable(InternalFsm, variableName, value);
+        }
+
+		public Rect GetRectVariable(string variableName)
+		{
+			return PlayMakerUtilities.GetRectVariable(InternalFsm, variableName);
+		}
+
+		public void SetRectVariable(string variableName, Rect value)
+        {
+            PlayMakerUtilities.SetRectVariable(InternalFsm, variableName, value);
+        }
+
+		public Quaternion GetQuaternionVariable(string variableName)
+		{
+			return PlayMakerUtilities.GetQuaternionVariable(InternalFsm, variableName);
+		}
+
+		public void SetQuaternionVariable(string variableName, Quaternion value)
+        {
+            PlayMakerUtilities.SetQuaternionVariable(InternalFsm, variableName, value);
+        }
+
+		public Texture GetTextureVariable(string variableName)
+		{
+			return PlayMakerUtilities.GetTextureVariable(InternalFsm, variableName);
+		}
+
+		public void SetTextureVariable(string variableName, Texture value)
+        {
+            PlayMakerUtilities.SetTextureVariable(InternalFsm, variableName, value);
         }
 
         public override bool Equals(object obj)

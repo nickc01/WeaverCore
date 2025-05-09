@@ -9,7 +9,7 @@ namespace WeaverCore.Playmaker
 	{
 		public object InternalAction { get; }
 		
-		internal FsmActionWrapper(object action)
+		public FsmActionWrapper(object action)
 		{
 			InternalAction = action;
 		}

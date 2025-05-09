@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 
 namespace WeaverCore
-{
+{    
     /// <summary>
     /// Used for dealing damage to enemies
     /// </summary>
@@ -25,4 +25,4 @@ namespace WeaverCore
             return impl.Hit(target, attacker, damage, type, hitDirection);
         }
     }
-}
+}*/

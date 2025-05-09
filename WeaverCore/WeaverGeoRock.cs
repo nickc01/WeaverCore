@@ -465,7 +465,7 @@ namespace WeaverCore
         {
             //PlayMakerFSM playMakerFSM = FSMUtility.LocateFSM(go, fsmName.Value);
 #if !UNITY_EDITOR
-            if (PlayMakerUtilities.GetPlaymakerFSMOnObject(go, "damages_enemy") != null && PlayMakerUtilities.GetFsmInt(go, "damages_enemy", "damageDealt") > 0)
+            if (PlayMakerUtilities.FindPlayMakerFSM(go, "damages_enemy") != null && PlayMakerUtilities.GetFsmInt(go, "damages_enemy", "damageDealt") > 0)
             {
                 damager = go;
                 hitByDamager = true;

@@ -1,4 +1,4 @@
-﻿using Modding;
+﻿/*using Modding;
 using System;
 using System.Reflection;
 using UnityEngine;
@@ -45,4 +45,4 @@ namespace WeaverCore.Game.Implementations
 			return false;
         }
     }
-}
+}*/

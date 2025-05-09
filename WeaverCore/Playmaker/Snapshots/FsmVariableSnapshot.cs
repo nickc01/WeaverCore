@@ -1,4 +1,5 @@
-using UnityEngine;
+/*using UnityEngine;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Playmaker.Snapshots
 {
@@ -68,4 +69,4 @@ namespace WeaverCore.Playmaker.Snapshots
 			}
 		}
 		
-}
+}*/

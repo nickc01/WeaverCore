@@ -165,11 +165,11 @@ namespace WeaverCore.Components.Colosseum
                 instance = GameObject.Instantiate(prefab, transform.TransformPoint(EntitySpawnOffset), prefab.transform.rotation);
             }
 
-            if (resetEntityGeo && HealthUtilities.HasHealthComponent(instance))
+            if (resetEntityGeo && EnemyHealthUtilities.TryGetHealthComponent(instance, out var health))
             {
-                HealthUtilities.SetSmallGeo(instance, 0);
-                HealthUtilities.SetMediumGeo(instance, 0);
-                HealthUtilities.SetLargeGeo(instance, 0);
+                health.SmallGeo = 0;
+                health.MediumGeo = 0;
+                health.LargeGeo = 0;
             }
 
             return instance;

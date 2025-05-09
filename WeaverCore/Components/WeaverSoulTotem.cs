@@ -255,7 +255,7 @@ namespace WeaverCore.Components
         {
             if (!activated)
             {
-                if (hit.AttackType == Enums.AttackType.Nail)
+                if (hit.AttackType == AttackTypes.Nail)
                 {
                     hitReceived = true;
                     lastHit = hit;

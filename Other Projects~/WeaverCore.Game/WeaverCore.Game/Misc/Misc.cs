@@ -14,7 +14,7 @@ namespace WeaverCore.Game
 		{
 			int instanceAttackType = (int)hitInstance.AttackType;
 
-			var attackType = (AttackType)instanceAttackType;
+			var attackType = (AttackTypes)instanceAttackType;
 
 			return new HitInfo()
 			{

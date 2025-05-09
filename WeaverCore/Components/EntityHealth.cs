@@ -310,7 +310,7 @@ namespace WeaverCore.Components
             {
                 return HitResult.Invalid;
             }
-            if (!Invincible || ((hit.AttackType == AttackType.Spell || hit.AttackType == AttackType.SharpShadow) && gameObject.CompareTag("Spell Vulnerable")))
+            if (!Invincible || ((hit.AttackType == AttackTypes.Spell || hit.AttackType == AttackTypes.SharpShadow) && gameObject.CompareTag("Spell Vulnerable")))
             {
                 return HitResult.Valid;
             }
@@ -333,18 +333,18 @@ namespace WeaverCore.Components
 
             switch (hit.AttackType)
             {
-                case AttackType.NailBeam:
-                case AttackType.Generic:
-                case AttackType.Nail:
+                case AttackTypes.NailBeam:
+                case AttackTypes.Generic:
+                case AttackTypes.Nail:
                     if (player != null)
                     {
                         player.PlayAttackSlash(gameObject, hit);
                     }
                     break;
-                case AttackType.Spell:
+                case AttackTypes.Spell:
                     Pooling.Instantiate(WeaverCore.Assets.EffectAssets.FireballHitPrefab, transform.TransformPoint(EffectsOffset + new Vector3(0f, -0.2f, -0.0031f)), Quaternion.identity);
                     break;
-                case AttackType.SharpShadow:
+                case AttackTypes.SharpShadow:
                     Pooling.Instantiate(WeaverCore.Assets.EffectAssets.SharpShadowImpactPrefab, transform.TransformPoint(EffectsOffset + new Vector3(0f, -0.2f, -0.0031f)), Quaternion.identity);
                     break;
                 default:
@@ -353,7 +353,7 @@ namespace WeaverCore.Components
 
 
             /*IHitEffects hitEffects = GetComponent<IHitEffects>();
-            if (hitEffects != null && hit.AttackType != AttackType.RuinsWater)
+            if (hitEffects != null && hit.AttackTypes != AttackTypes.RuinsWater)
             {
                 hitEffects.PlayHitEffect(hit, EffectsOffset);
             }*/
@@ -434,7 +434,7 @@ namespace WeaverCore.Components
             CardinalDirection cardinalDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
             if (DeflectBlows)
             {
-                if (hit.AttackType == AttackType.Nail)
+                if (hit.AttackType == AttackTypes.Nail)
                 {
                     switch (cardinalDirection)
                     {
@@ -470,7 +470,7 @@ namespace WeaverCore.Components
         {
             Player player = hit.GetAttackingPlayer();
             //If acid is ignored
-            /*if (hitInstance.AttackType == AttackTypes.Acid && this.ignoreAcid)
+            /*if (hitInstance.AttackTypes == AttackTypess.Acid && this.ignoreAcid)
 			{
 				return;
 			}*/
@@ -487,7 +487,7 @@ namespace WeaverCore.Components
 
             if (player != null)
             {
-                if (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam)
+                if (hit.AttackType == AttackTypes.Nail || hit.AttackType == AttackTypes.NailBeam)
                 {
                     if (GainSoul)
                     {

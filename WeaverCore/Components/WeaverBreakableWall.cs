@@ -298,13 +298,13 @@ namespace WeaverCore.Components
             if (canTakeHit)
             {
                 canTakeHit = false;
-                if (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam || hit.AttackType == AttackType.Generic)
+                if (hit.AttackType == AttackTypes.Nail || hit.AttackType == AttackTypes.NailBeam || hit.AttackType == AttackTypes.Generic)
                 {
                     var strikeEffect = Pooling.Instantiate(EffectAssets.NailStrikePrefab, transform.position, Quaternion.identity);
                     strikeEffect.transform.localScale = new Vector3(1.5f, 1.5f, 0f);
                     TakeDamage(DirectionUtilities.DegreesToDirection(hit.Direction + 180f));
                 }
-                else if (hit.AttackType == AttackType.Spell)
+                else if (hit.AttackType == AttackTypes.Spell)
                 {
                     Pooling.Instantiate(EffectAssets.FireballHitPrefab, transform.position, Quaternion.identity);
                     Break();

@@ -1,4 +1,4 @@
-﻿using GlobalEnums;
+﻿/*using GlobalEnums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -188,4 +188,4 @@ namespace WeaverCore.Utilities
             ApplyEnemyDamageModifier(info.Attacker, go, ref info.AttackType, ref info.Damage, ref info.Direction, ref info.IgnoreInvincible, ref info.AttackStrength);
         }
     }
-}
+}*/

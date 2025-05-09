@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace WeaverCore.Utilities
 {
-
     /// <summary>
     /// Contains utility functions related to types
     /// </summary>

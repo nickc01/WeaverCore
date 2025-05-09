@@ -10,7 +10,7 @@ namespace WeaverCore.Playmaker
 	{
 		public Component InternalComponent { get; }
 		
-		internal PlayMakerFsmWrapper(Component component)
+		public PlayMakerFsmWrapper(Component component)
 		{
 			InternalComponent = component;
 		}

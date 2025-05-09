@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using UnityEngine;
 using WeaverCore.Implementations;
 
@@ -73,4 +73,4 @@ namespace WeaverCore.Utilities
         public static int GetLargeGeo(GameObject obj) => impl.GetLargeGeo(obj);
         public static int SetLargeGeo(GameObject obj, int geo) => impl.SetLargeGeo(obj, geo);
     }
-}
+}*/

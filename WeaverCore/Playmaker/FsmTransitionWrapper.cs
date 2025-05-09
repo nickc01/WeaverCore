@@ -7,7 +7,7 @@ namespace WeaverCore.Playmaker
 	{
 		public object InternalTransition { get; }
 		
-		internal FsmTransitionWrapper(object transition)
+		public FsmTransitionWrapper(object transition)
 		{
 			InternalTransition = transition;
 		}

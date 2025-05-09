@@ -8,7 +8,6 @@ using WeaverCore.Implementations;
 
 namespace WeaverCore
 {
-
     /// <summary>
     /// Contains groups and snapshots that are related to the Actors AudioMixer
     /// 

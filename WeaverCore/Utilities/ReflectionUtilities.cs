@@ -702,6 +702,19 @@ namespace WeaverCore.Utilities
 			return property?.GetValue(obj);
         }
 
+		/// <summary>
+        /// Gets the value of a property using reflection.
+        /// </summary>
+        /// <param name="obj">The object containing the property.</param>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The value of the specified property.</returns>
+        public static T ReflectGetProperty<T>(this object obj, string propertyName, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+			var property = GetPropertyCached(obj.GetType(), propertyName, flags);
+			return (T)property?.GetValue(obj);
+        }
+
         /// <summary>
         /// Sets the value of a property using reflection.
         /// </summary>

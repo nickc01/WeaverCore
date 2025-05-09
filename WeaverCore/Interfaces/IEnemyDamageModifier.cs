@@ -17,6 +17,6 @@ namespace WeaverCore.Interfaces
         /// <param name="direction">The direction in degrees the attack is coming from</param>
         /// <param name="ignoreInvincible">Hits the enemy, even if the enemy is supposed to be invincible</param>
         /// <param name="attackStrength">How strong the attack was. Used for enemy recoil</param>
-        void OnHit(GameObject attacker, ref AttackType attackType, ref int damage, ref float direction, ref bool ignoreInvincible, ref float attackStrength);
+        void OnHit(GameObject attacker, ref AttackTypes attackType, ref int damage, ref float direction, ref bool ignoreInvincible, ref float attackStrength);
     }
 }

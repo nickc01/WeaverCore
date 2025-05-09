@@ -112,7 +112,7 @@ namespace WeaverCore.Components.DeathEffects
             {
                 HunterJournal.RecordKillFor(JournalEntryName);
             }
-            if (finalBlow.AttackType != AttackType.Acid && finalBlow.AttackType != AttackType.RuinsWater)
+            if (finalBlow.AttackType != AttackTypes.Acid && finalBlow.AttackType != AttackTypes.RuinsWater)
             {
                 EmitEffects();
             }

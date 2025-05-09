@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +6,15 @@ using System.Text;
 namespace WeaverCore.Interfaces
 {
 	/// <summary>
-	/// Interface for anything that the player can hit
+	/// Interface for objects that can take damage and process hits
 	/// </summary>
     public interface IHittable
 	{
 		/// <summary>
-		/// Called when the player hits the object
+		/// Called when the object is hit
 		/// </summary>
-		/// <param name="hit">Information about how the player hit the object</param>
-		/// <returns>Returns whether the hit was a valid hit or not</returns>
+		/// <param name="hit">Information about the hit</param>
+		/// <returns>Returns true if damage was dealt, false otherwise</returns>
 		bool Hit(HitInfo hit);
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace WeaverCore.Enums
+﻿/*namespace WeaverCore.Enums
 {
 	/// <summary>
 	/// What type of attack is being dealt
@@ -14,4 +14,4 @@
 		SharpShadow,
 		NailBeam
 	}
-}
+}*/

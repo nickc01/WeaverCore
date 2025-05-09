@@ -22,7 +22,7 @@ namespace WeaverCore.Components
 
         public bool Hit(HitInfo hit)
         {
-			if ((IsPartOfPlayer1(hit.Attacker.transform)) && (hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam || hit.AttackType == AttackType.Generic))
+			if ((IsPartOfPlayer1(hit.Attacker.transform)) && (hit.AttackType == AttackTypes.Nail || hit.AttackType == AttackTypes.NailBeam || hit.AttackType == AttackTypes.Generic))
 			{
                 if (deflectTimer <= 0f)
                 {
@@ -136,17 +136,21 @@ namespace WeaverCore.Components
 
 		static bool IsPartOfPlayer1(Transform transform)
 		{
-			// Replace this with your actual way to reference Player1
 			Transform player1Transform = Player.Player1.transform;
 
 			while (transform != null)
 			{
-				if (transform == player1Transform)
+                WeaverLog.Log("Current Transform = " + transform);
+				if (transform == player1Transform || transform.CompareTag("Nail Attack"))
+                {
+                    WeaverLog.Log("Current Transform VALID = " + transform);
 					return true;
+                }
 
 				transform = transform.parent;
 			}
 
+            WeaverLog.Log("TRANSFORM INVALID");
 			return false;
 		}
 

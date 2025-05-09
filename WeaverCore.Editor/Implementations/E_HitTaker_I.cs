@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 
@@ -11,4 +11,4 @@ namespace WeaverCore.Editor.Implementations
             return HitDefault(target, attacker, damage, type, hitDirection);
         }
     }
-}
+}*/

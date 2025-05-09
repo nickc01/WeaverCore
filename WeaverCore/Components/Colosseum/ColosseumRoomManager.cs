@@ -384,9 +384,9 @@ namespace WeaverCore.Components.Colosseum
                         isAlive = sceneBounds.IsWithin(e.transform.position);
                     }
 
-                    if (isAlive && HealthUtilities.TryGetHealth(e, out var health))
+                    if (isAlive && EnemyHealthUtilities.TryGetHealthComponent(e, out var health))
                     {
-                        isAlive = health > 0;
+                        isAlive = health.Health > 0;
                         /*if (e.TryGetComponent<PoolableObject>(out var pool))
                         {
                             //return health > 0 && !pool.InPool;

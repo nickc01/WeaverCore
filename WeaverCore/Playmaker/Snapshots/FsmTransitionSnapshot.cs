@@ -1,4 +1,4 @@
-namespace WeaverCore.Playmaker.Snapshots
+/*namespace WeaverCore.Playmaker.Snapshots
 {
     /// <summary>
     /// Represents a snapshot of an FSM transition
@@ -28,4 +28,4 @@ namespace WeaverCore.Playmaker.Snapshots
 			}
 		}
 		
-}
+}*/

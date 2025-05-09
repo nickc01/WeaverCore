@@ -22,19 +22,42 @@ namespace WeaverCore.Assets.Components
 		/// <summary>
 		/// The type of attack on the enemy
 		/// </summary>
-		public AttackType attackType;
+		public AttackTypes attackType;
 
 		/// <summary>
-		/// In which direction is the attack going towards?
+		/// In which direction is the attack going towards? Only used if <see cref="EnemyDamager.ForceHitDirection"/> is set to true
 		/// </summary>
-		//[HideInInspector]
 		public CardinalDirection hitDirection;
+
+		/// <summary>
+		/// If true, the hit direction will always be in a particular direction
+		/// </summary>
+		
+		public bool ForcedHitDirection = false;
+
+		public bool IsContinuous = true;
+
+		public float ContinousHitRate = 0.2f;
 
 		const int DEFAULT_RECURSION_DEPTH = 3;
 
 		public UnityEvent<GameObject, float> OnHitObject;
 
+		private readonly HashSet<Collider2D> collidingObjects = new HashSet<Collider2D>();
+        private Coroutine continuousDamageCoroutine;
+
 		void OnTriggerEnter2D(Collider2D collider)
+        {
+            collidingObjects.Add(collider);
+            ApplyDamage(collider);
+        }
+
+        void OnTriggerExit2D(Collider2D collider)
+        {
+            collidingObjects.Remove(collider);
+        }
+
+		/*void OnTriggerEnter2D(Collider2D collider)
 		{
 			var obj = collider.transform;
 
@@ -62,7 +85,72 @@ namespace WeaverCore.Assets.Components
                     OnHitObject.Invoke(c.gameObject, damage);
                 }
             }
-		}
+		}*/
+
+		void OnEnable()
+        {
+            if (IsContinuous)
+            {
+                continuousDamageCoroutine = StartCoroutine(ApplyContinuousDamage());
+            }
+        }
+
+        void OnDisable()
+        {
+            if (continuousDamageCoroutine != null)
+            {
+                StopCoroutine(continuousDamageCoroutine);
+            }
+            collidingObjects.Clear();
+        }
+
+		IEnumerator ApplyContinuousDamage()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(ContinousHitRate);
+
+                foreach (var collider in collidingObjects)
+                {
+                    if (collider != null)
+                    {
+                        ApplyDamage(collider);
+                    }
+					else
+					{
+						collidingObjects.Remove(collider);
+					}
+                }
+            }
+        }
+
+		private void ApplyDamage(Collider2D collider)
+        {
+            var obj = collider.transform;
+            var hitVector = (collider.transform.position - transform.position).normalized;
+            var angle = VectorUtilities.VectorToDegrees(hitVector);
+			
+			WeaverLog.Log("Attemping Damage to Object = " + obj);
+            var hits = EnemyHealthUtilities.DealDamage(obj, gameObject, damage, attackType, angle);
+			var extras = EnemyHealthUtilities.TriggerOtherHittables(obj, gameObject, damage, attackType, angle);
+            if (attackType == AttackTypes.Acid)
+            {
+                EventManager.SendEventToGameObject("ACID", collider.gameObject, gameObject);
+            }
+
+            foreach (var hit in hits)
+            {
+                OnHitObject.Invoke(hit.gameObject, damage);
+            }
+
+			foreach (var hit in extras)
+            {
+				if (hit.SourceObj is Component c)
+				{
+					OnHitObject.Invoke(c.gameObject, damage);
+				}
+            }
+        }
 
         /// <summary>
         /// Hits a specified enemy
@@ -73,7 +161,7 @@ namespace WeaverCore.Assets.Components
         /// <param name="type">The type of attack.</param>
         /// <param name="hitDirection">The cardinal direction of the attack.</param>
         /// <returns>A list of IHittable objects that were successfully hit.</returns>
-        public static System.Collections.Generic.List<IHittable> HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
+        /*public static System.Collections.Generic.List<IHittable> HitEnemy(Transform obj, GameObject attacker, int damage, AttackType type, CardinalDirection hitDirection)
         {
 			return HitEnemy(obj, attacker, damage, type, hitDirection.ToDegrees());
         }
@@ -101,8 +189,7 @@ namespace WeaverCore.Assets.Components
 							IgnoreInvincible = false
 						};
 
-						//TODO - MAKE SURE TO DO THE SAME THING FOR WEAVERCORE.GAME TOO
-						DamageUtilities.ApplyEnemyDamageModifier(obj.gameObject, ref hitInfo);
+						EnemyHealthUtilities.ApplyEnemyDamageModifier(obj.gameObject, ref hitInfo);
 
                         hittable.Hit(hitInfo);
                         hitObjects.Add(hittable);
@@ -116,6 +203,6 @@ namespace WeaverCore.Assets.Components
                 }
 			}
 			return hitObjects;
-        }
+        }*/
 	}
 }

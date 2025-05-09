@@ -49,7 +49,7 @@ namespace WeaverCore.Components
                 return false;
             }
 
-            if (!(hit.AttackType == AttackType.Nail || hit.AttackType == AttackType.NailBeam))
+            if (!(hit.AttackType == AttackTypes.Nail || hit.AttackType == AttackTypes.NailBeam))
             {
                 return false;
             }

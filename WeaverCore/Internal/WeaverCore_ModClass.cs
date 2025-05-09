@@ -112,19 +112,21 @@ namespace WeaverCore.Internal
 
             if (preloadedObjects.TryGetValue("Crossroads_37", out var crossroadsDict) && crossroadsDict.TryGetValue("Vessel Fragment", out var fragment))
             {
-                var fsmName = PlayMakerUtilities.GetAllFsmsOnObject(fragment).FirstOrDefault(n => n == "Vessel Fragment Control");
+                /*var fsmName = PlayMakerUtilities.GetAllFsmsOnObject(fragment).FirstOrDefault(n => n == "Vessel Fragment Control");
                 var fsmComp = PlayMakerUtilities.GetPlaymakerFSMOnObject(fragment, fsmName);
                 var fsm = PlayMakerUtilities.GetFSMOnPlayMakerComponent(fsmComp);
                 var uiState = PlayMakerUtilities.FindStateOnFSM(fsm, "UI");
-                var actions = PlayMakerUtilities.GetStateActions(uiState);
+                var actions = PlayMakerUtilities.GetStateActions(uiState);*/
+
+                var actions = PlayMakerUtilities.FindPlayMakerFSMWrapper(fragment, "Vessel Fragment Control").GetFsm().GetState("UI").GetActions();
 
                 object action = null;
 
                 foreach (var a in actions)
                 {
-                    if (a != null && a.GetType().Name == "CreateObject")
+                    if (a.InternalAction != null && a.InternalAction.GetType().Name == "CreateObject")
                     {
-                        action = a;
+                        action = a.InternalAction;
                         break;
                     }
                 }
@@ -188,10 +190,10 @@ namespace WeaverCore.Internal
 
                 if (tutorialSceneDict.TryGetValue("_Props/Chest", out var chestObj))
                 {
-                    var pmFSM = PlayMakerUtilities.GetPlaymakerFSMOnObject(chestObj, "Chest Control");
-                    var fsm = PlayMakerUtilities.GetFSMOnPlayMakerComponent(pmFSM);
-                    var spawnItemState = PlayMakerUtilities.FindStateOnFSM(fsm, "Spawn Items");
-                    var actionData = PlayMakerUtilities.GetActionData(spawnItemState);
+                    var actionData = PlayMakerUtilities.FindPlayMakerFSMWrapper(chestObj, "Chest Control").GetFsm().GetState("Spawn Items").GetActionData();
+                    //var fsm = PlayMakerUtilities.GetFSMOnPlayMakerComponent(pmFSM);
+                    //var spawnItemState = PlayMakerUtilities.FindStateOnFSM(fsm, "Spawn Items");
+                    //var actionData = PlayMakerUtilities.GetActionData(spawnItemState);
 
                     var fsmObjects = (IList)actionData.GetType().GetField("fsmGameObjectParams", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(actionData);
                     Type fsmObjectType = null;
@@ -233,11 +235,12 @@ namespace WeaverCore.Internal
             {
                 if (townSceneDict.TryGetValue("_NPCs/Elderbug/Dream Dialogue", out var dreamDialogueObj))
                 {
-                    var npcPlayMakerFSM = PlayMakerUtilities.GetPlaymakerFSMOnObject(dreamDialogueObj, "npc_dream_dialogue");
+                    var actionData = PlayMakerUtilities.FindPlayMakerFSMWrapper(dreamDialogueObj, "npc_dream_dialogue").GetFsm().GetState("Impact").GetActionData();
+                    /*var npcPlayMakerFSM = PlayMakerUtilities.GetPlaymakerFSMOnObject(dreamDialogueObj, "npc_dream_dialogue");
 
                     var impactState = PlayMakerUtilities.FindStateOnFSM(PlayMakerUtilities.GetFSMOnPlayMakerComponent(npcPlayMakerFSM), "Impact");
 
-                    var actionData = PlayMakerUtilities.GetActionData(impactState);
+                    var actionData = PlayMakerUtilities.GetActionData(impactState);*/
 
                     var fsmObjects = (IList)actionData.GetType().GetField("fsmGameObjectParams", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(actionData);
 

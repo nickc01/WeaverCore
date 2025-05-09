@@ -16,7 +16,7 @@ namespace WeaverCore
 		/// <summary>
 		/// The type of attack that is being done
 		/// </summary>
-		public AttackType AttackType;
+		public AttackTypes AttackType;
 		/// <summary>
 		/// How much damage the attack is doing
 		/// </summary>

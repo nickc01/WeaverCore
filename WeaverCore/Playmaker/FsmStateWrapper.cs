@@ -1,4 +1,5 @@
 using System.Linq;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Playmaker
 {
@@ -9,15 +10,27 @@ namespace WeaverCore.Playmaker
 	{
 		public object InternalState { get; }
 		
-		internal FsmStateWrapper(object state)
+		public FsmStateWrapper(object state)
 		{
 			InternalState = state;
+		}
+
+		public string Name => InternalState.ReflectGetField<string>("name");
+
+		public FsmWrapper GetFsm()
+		{
+			return PlayMakerUtilities.GetStateFsm(this);
 		}
 		
 		public FsmActionWrapper[] GetActions()
 		{
 			object[] actions = PlayMakerUtilities.GetActions(InternalState);
 			return actions.Select(a => new FsmActionWrapper(a)).ToArray();
+		}
+
+		public object GetActionData()
+		{
+			return PlayMakerUtilities.GetActionData(InternalState);
 		}
 		
 		public int GetActionIndex(FsmActionWrapper action)

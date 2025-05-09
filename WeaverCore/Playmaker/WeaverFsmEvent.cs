@@ -30,7 +30,7 @@ namespace WeaverCore.Playmaker
 
         static WeaverFsmEvent()
         {
-            if (PlayMakerUtilities.IsAvailable)
+            if (PlayMakerUtilities.PlayMakerAvailable)
             {
                 if (fsmEventType == null)
                 {

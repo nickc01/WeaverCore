@@ -6,6 +6,7 @@ using WeaverCore.Utilities;
 using System;
 using TMPro;
 using UnityEngine.Events;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -157,8 +158,8 @@ namespace WeaverCore.Components.Colosseum
 
             LoopKind currentLoopKind = LoopKind.Both;
 
-            List<MonoBehaviour> prioritizedEnemies = new List<MonoBehaviour>();
-            Dictionary<MonoBehaviour, (Vector3, float)> lastPositions = new Dictionary<MonoBehaviour, (Vector3, float)>();
+            List<HealthWrapper> prioritizedEnemies = new List<HealthWrapper>();
+            Dictionary<HealthWrapper, (Vector3, float)> lastPositions = new Dictionary<HealthWrapper, (Vector3, float)>();
 
             int enemyCount = -1;
 
@@ -273,7 +274,7 @@ namespace WeaverCore.Components.Colosseum
 
                             awaitingSummons.Remove(currentSummon);
 
-                            var hComponent = HealthUtilities.GetHealthComponent(gm);
+                            var hComponent = EnemyHealthUtilities.GetHealthComponent(gm);
 
                             // If prioritized, add to the list
                             if (enemyEntry.isPrioritized && hComponent != null)
@@ -331,7 +332,7 @@ namespace WeaverCore.Components.Colosseum
                     while (true)
                     //while (prioritizedEnemies.Exists(e => HealthUtilities.TryGetHealth(e, out var health) && health > 0 || (e.TryGetComponent<PoolableObject>(out var pool) && pool.InPool)))
                     {
-                        bool IsAlive(MonoBehaviour e)
+                        bool IsAlive(HealthWrapper e)
                         {
                             bool isAlive = true;
                             if (e == null || e.gameObject == null)
@@ -339,7 +340,7 @@ namespace WeaverCore.Components.Colosseum
                                 isAlive = false;
                             }
 
-                            if (isAlive && e.TryGetComponent<PoolableObject>(out var poolableObject))
+                            if (isAlive && e.gameObject.TryGetComponent<PoolableObject>(out var poolableObject))
                             {
                                 isAlive = !poolableObject.InPool;
                             }
@@ -363,9 +364,9 @@ namespace WeaverCore.Components.Colosseum
                                 isAlive = sceneBounds.IsWithin(e.transform.position);
                             }
 
-                            if (isAlive && HealthUtilities.TryGetHealth(e, out var health))
+                            if (isAlive)
                             {
-                                isAlive = health > 0;
+                                isAlive = e.Health > 0;
                             }
 
                             return isAlive;
@@ -416,7 +417,7 @@ namespace WeaverCore.Components.Colosseum
                 while (true)
                 //while (prioritizedEnemies.Exists(e => HealthUtilities.TryGetHealth(e, out var health) && health > 0 || (e.TryGetComponent<PoolableObject>(out var pool) && pool.InPool)))
                 {
-                    bool IsAlive(MonoBehaviour e)
+                    bool IsAlive(HealthWrapper e)
                     {
                         bool isAlive = true;
                         if (e == null || e.gameObject == null)
@@ -424,7 +425,7 @@ namespace WeaverCore.Components.Colosseum
                             isAlive = false;
                         }
 
-                        if (isAlive && e.TryGetComponent<PoolableObject>(out var poolableObject))
+                        if (isAlive && e.gameObject.TryGetComponent<PoolableObject>(out var poolableObject))
                         {
                             isAlive = !poolableObject.InPool;
                         }
@@ -448,9 +449,9 @@ namespace WeaverCore.Components.Colosseum
                             isAlive = sceneBounds.IsWithin(e.transform.position);
                         }
 
-                        if (isAlive && HealthUtilities.TryGetHealth(e, out var health))
+                        if (isAlive)
                         {
-                            isAlive = health > 0;
+                            isAlive = e.Health > 0;
                         }
 
                         return isAlive;

@@ -14,6 +14,7 @@ namespace WeaverCore.Game.Patches
 	{
 		private static void HitTaker_Hit(On.HitTaker.orig_Hit orig, UnityEngine.GameObject targetGameObject, HitInstance damageInstance, int recursionDepth)
 		{
+            WeaverLog.Log("ATTEMPTING HIT PATCH on obj = " + targetGameObject);
 			HitInfo info = Misc.ConvertHitInstance(damageInstance);
 			if (targetGameObject != null)
 			{
@@ -26,7 +27,7 @@ namespace WeaverCore.Game.Patches
                         foreach (var hittable in hittables)
                         {
                             var infoCopy = info;
-                            DamageUtilities.ApplyEnemyDamageModifier(transform.gameObject, ref infoCopy);
+                            EnemyHealthUtilities.ApplyEnemyDamageModifier(transform.gameObject, ref infoCopy);
                             hittable.Hit(infoCopy);
                         }
                     }

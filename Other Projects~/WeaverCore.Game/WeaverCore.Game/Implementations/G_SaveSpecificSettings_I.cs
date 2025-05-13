@@ -22,10 +22,17 @@ namespace WeaverCore.Game.Implementations
 		Dictionary<string,JToken> GetModData()
 		{
 			var field = typeof(GameManager).GetField("moddedData",BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+			WeaverLog.Log("MODDED DATA FIELD = " + field);
 			var saveDataType = field.FieldType;
+			WeaverLog.Log("MODDED DATA FIELD TYPE = " + saveDataType);
+			WeaverLog.Log("GAMEMANAGER = " + GameManager.instance);
 			var value = field.GetValue(GameManager.instance);
 
+			WeaverLog.Log("MODDED DATA VALUE = " + value);
+			WeaverLog.Log("MODDED DATA VALUE TYPE = " + value?.GetType().FullName ?? "null");
+
 			var modDataF = saveDataType.GetField("modData", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+			WeaverLog.Log("ModData Field = " + modDataF);
 			return (Dictionary<string, JToken>)modDataF.GetValue(value);
 		}
 

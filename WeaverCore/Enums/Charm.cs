@@ -1,0 +1,48 @@
+namespace WeaverCore.Enums
+{
+    public enum Charm
+    {
+        None,
+        GatheringSwarm,
+        WaywardCompass,
+        Grubsong,
+        StalwartShell,
+        BaldurShell,
+        FuryOfTheFallen,
+        QuickFocus,
+        LifebloodHeart,
+        LifebloodCore,
+        DefendersCrest,
+        Flukenest,
+        ThornsOfAgony,
+        MarkOfPride,
+        SteadyBody,
+        HeavyBlow,
+        SharpShadow,
+        Sporeshroom,
+        Longnail,
+        ShamanStone,
+        SoulCatcher,
+        SoulEater,
+        GlowingWomb,
+        UnbreakableHeart,
+        UnbreakableGreed,
+        UnbreakableStrength,
+        NailmastersGlory,
+        JonisBlessing,
+        ShapeOfUnn,
+        Hiveblood,
+        DreamWielder,
+        Dashmaster,
+        Quickslash,
+        SpellTwister,
+        DeepFocus,
+        GrubberflysElegy,
+        VoidHeart,
+        SprintMaster,
+        Dreamshield,
+        Weaversong,
+        Grimmchild
+    }
+
+}

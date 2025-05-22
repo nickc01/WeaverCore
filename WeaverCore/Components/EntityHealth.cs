@@ -66,6 +66,7 @@ namespace WeaverCore.Components
             {
                 if (_health != value)
                 {
+                    WeaverLog.Log("SETTING HEALTH = " + value);
                     int oldHealth = _health;
                     _health = value;
 
@@ -190,7 +191,7 @@ namespace WeaverCore.Components
         {
             LastAttackInfo = hit;
             LastAttackDirection = DirectionUtilities.DegreesToDirection(hit.Direction);
-            HitResult hitResult = IsValidHit(hit);
+            HitResult hitResult = IsValidHit(ref hit);
             impl.OnHit(hit, hitResult);
             switch (hitResult)
             {
@@ -303,7 +304,7 @@ namespace WeaverCore.Components
         /// </summary>
         /// <param name="hit">The hit to check for</param>
         /// <returns>Returns whether this hit is valid</returns>
-        public virtual HitResult IsValidHit(HitInfo hit)
+        public virtual HitResult IsValidHit(ref HitInfo hit)
         {
             bool validHit = !((Health <= 0 && !HasModifier<InfiniteHealthModifier>()) || EvasionTimeLeft > 0.0f || hit.Damage <= 0 || gameObject.activeSelf == false);
             if (!validHit)

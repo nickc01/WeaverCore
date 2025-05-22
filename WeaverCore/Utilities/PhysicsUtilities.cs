@@ -18,17 +18,16 @@ namespace WeaverCore.Utilities
 
             //const int DEGREE_INTERVAL = 90;
             float degreeInterval = 360f / intervals;
-            
+
             for (float i = 0; i < 360; i += degreeInterval)
             {
                 var currentAngle = dirAngle + i;
                 var currentDirOffset = MathUtilities.PolarToCartesian(currentAngle, radius);
                 var startPoint = start + currentDirOffset;
 
-                //Debug.DrawRay(startPoint, direction * distance, Color.red, 1f);
-                if (Physics2D.RaycastNonAlloc(startPoint, direction, hitCache, distance, layerMask) > 0 && (filter == null || filter(hitCache[0])))
+                Debug.DrawRay(startPoint, direction * distance, Color.Lerp(Color.blue, Color.red, 0.5f), 0);
+                if (Physics2D.RaycastNonAlloc(startPoint, direction, hitCache, distance, layerMask, -900) > 0 && (filter == null || filter(hitCache[0])))
                 {
-                    WeaverLog.Log("HIT OBJECT = " + hitCache[0].collider.gameObject);
                     hitPoints.Add(hitCache[0].point - currentDirOffset);
                 }
                 else
@@ -66,7 +65,7 @@ namespace WeaverCore.Utilities
             for (int i = 0; i < corners.Length; i++)
             {
                 //Debug.DrawRay(corners[i], direction * distance, Color.Lerp(Color.red, Color.yellow, 0.5f), 1f);
-                if (Physics2D.RaycastNonAlloc(corners[i], direction, hitCache, distance, layerMask) > 0 && (filter == null || filter(hitCache[0])))
+                if (Physics2D.RaycastNonAlloc(corners[i], direction, hitCache, distance, layerMask, -900) > 0 && (filter == null || filter(hitCache[0])))
                 {
                     Debug.DrawLine(corners[i], hitCache[0].point - (corners[i] - center), Color.Lerp(Color.red, Color.yellow, 0.5f), 1f);
                     hitPoints.Add(hitCache[0].point - (corners[i] - center));
@@ -106,6 +105,86 @@ namespace WeaverCore.Utilities
                 point.x * cos - point.y * sin,
                 point.x * sin + point.y * cos
             );
+        }
+
+        public static Vector2 GetClosestContactPointOnCircle(CircleCollider2D circle, Collider2D other)
+        {
+            if (circle == null) throw new ArgumentNullException(nameof(circle));
+            if (other == null) throw new ArgumentNullException(nameof(other));
+
+            ColliderDistance2D distInfo = Physics2D.Distance(circle, other);
+
+            if (distInfo.isValid)
+            {
+                return distInfo.pointA;
+            }
+
+            Vector2 circleCenter = circle.transform.TransformPoint(circle.offset);
+            Vector2 closestOnOther = other.ClosestPoint(circleCenter);
+
+            Vector2 dir = closestOnOther - circleCenter;
+            if (dir.sqrMagnitude < Mathf.Epsilon) dir = Vector2.right;
+
+            float worldRadius =
+                circle.radius *
+                Mathf.Max(circle.transform.lossyScale.x, circle.transform.lossyScale.y);
+
+            return circleCenter + dir.normalized * worldRadius;
+        }
+
+        public static void GetClosestContactAndNormal(CircleCollider2D circle, Collider2D other, out Vector2 pointOnCircle, out Vector2 surfaceNormalOnOther)
+        {
+            if (circle == null) throw new ArgumentNullException(nameof(circle));
+            if (other == null) throw new ArgumentNullException(nameof(other));
+
+            ColliderDistance2D d = Physics2D.Distance(circle, other);
+
+            if (d.isValid)
+            {
+                pointOnCircle = d.pointA;
+                surfaceNormalOnOther = -d.normal;
+                return;
+            }
+
+            Vector2 circleCenter = circle.transform.TransformPoint(circle.offset);
+            Vector2 closestOnOther = other.ClosestPoint(circleCenter);
+
+            Vector2 dir = closestOnOther - circleCenter;
+            if (dir.sqrMagnitude < Mathf.Epsilon)
+                dir = Vector2.right;
+
+            float worldRadius =
+                circle.radius *
+                Mathf.Max(circle.transform.lossyScale.x, circle.transform.lossyScale.y);
+
+            pointOnCircle = circleCenter + dir.normalized * worldRadius;
+            surfaceNormalOnOther = (circleCenter - closestOnOther).normalized;
+        }
+        
+        public static Vector2 ReflectWithLimiter(Vector2 incoming, Vector2 surfaceNormal, float angleLimiterDeg)
+        {
+            if (incoming.sqrMagnitude < Mathf.Epsilon)
+                return incoming;
+
+            Vector2 n = surfaceNormal.normalized;
+            Vector2 reflected = Vector2.Reflect(incoming, n);
+
+            float signedAngleToNormal = Vector2.SignedAngle(n, reflected);
+            float absAngleToNormal = Mathf.Abs(signedAngleToNormal);
+            float angleToPlane = 90f - absAngleToNormal;
+
+            if (angleToPlane < angleLimiterDeg)
+            {
+                float targetAbsAngleToNormal = 90f - angleLimiterDeg;
+
+                float desiredSignedAngle = Mathf.Sign(signedAngleToNormal) * targetAbsAngleToNormal;
+
+                float delta = desiredSignedAngle - signedAngleToNormal;
+
+                reflected = Quaternion.AngleAxis(delta, Vector3.forward) * reflected;
+            }
+
+            return reflected;
         }
     }
 }

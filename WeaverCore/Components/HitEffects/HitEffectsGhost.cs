@@ -71,7 +71,7 @@ namespace WeaverCore.Components.HitEffects
         /// <param name="effectsOffset">Offset for hit effects.</param>
         public void PlayHitEffect(HitInfo hit, Vector3 effectsOffset = default)
         {
-            if (!didFireThisFrame)
+            if (enabled && !didFireThisFrame)
             {
                 EventManager.SendEventToGameObject("DAMAGE FLASH", gameObject);
                 //enemyDamage.SpawnAndPlayOneShot(audioPlayerPrefab, transform.position);

@@ -75,7 +75,7 @@ namespace WeaverCore.Components
                 }
                 else
                 {
-                    var validity = healthManager.IsValidHit(hit);
+                    var validity = healthManager.IsValidHit(ref hit);
                     if (validity == EntityHealth.HitResult.Valid)
                     {
                         OnTink?.Invoke(this, hit);

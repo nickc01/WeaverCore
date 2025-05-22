@@ -454,5 +454,30 @@ namespace WeaverCore
 
             return height;
         }
+        
+        public bool IsPartOfPlayer(Transform t)
+		{
+			Transform player1Transform = this.transform;
+
+			while (t != null)
+			{
+                WeaverLog.Log("Current Transform = " + t);
+				if (t == player1Transform || t.CompareTag("Nail Attack"))
+                {
+                    WeaverLog.Log("Current Transform VALID = " + t);
+					return true;
+                }
+
+				t = t.parent;
+			}
+
+            WeaverLog.Log("TRANSFORM INVALID");
+			return false;
+		}
+
+        public static bool IsPartOfPlayer1(Transform transform)
+        {
+            return Player.Player1.IsPartOfPlayer(transform);
+        }
     }
 }

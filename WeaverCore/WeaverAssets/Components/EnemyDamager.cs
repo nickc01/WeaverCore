@@ -104,11 +104,15 @@ namespace WeaverCore.Assets.Components
             collidingObjects.Clear();
         }
 
+        HashSet<Collider2D> collidersToRemove = new HashSet<Collider2D>();
+
 		IEnumerator ApplyContinuousDamage()
         {
             while (true)
             {
                 yield return new WaitForSeconds(ContinousHitRate);
+
+                collidersToRemove.Clear();
 
                 foreach (var collider in collidingObjects)
                 {
@@ -116,10 +120,16 @@ namespace WeaverCore.Assets.Components
                     {
                         ApplyDamage(collider);
                     }
-					else
-					{
-						collidingObjects.Remove(collider);
-					}
+                    else
+                    {
+                        collidersToRemove.Add(collider);
+                        //collidingObjects.Remove(collider);
+                    }
+                }
+
+                foreach (var c in collidersToRemove)
+                {
+                    collidingObjects.Remove(c);
                 }
             }
         }

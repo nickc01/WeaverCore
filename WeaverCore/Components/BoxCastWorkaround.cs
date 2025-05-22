@@ -74,7 +74,7 @@ namespace WeaverCore.Components
 				{
 					var layerName = LayerMask.LayerToName(i);
 					var childObj = new GameObject($"{layerName} TRIGGER WORKAROUND");
-					childObj.transform.position = transform.position;
+					childObj.transform.position = transform.position + new Vector3(0f, 0f, -9999f);
 					childObj.transform.rotation = transform.rotation;
 					childObj.transform.localScale = transform.localScale;
 					childObj.layer = i;

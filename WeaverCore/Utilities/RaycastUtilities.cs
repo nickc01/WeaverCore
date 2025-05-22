@@ -31,7 +31,7 @@ namespace WeaverCore.Utilities
             {
                 layerMask = TerrainMask;
             }
-            var count = Physics2D.RaycastNonAlloc(origin, direction, hitCache, distance, layerMask);
+            var count = Physics2D.RaycastNonAlloc(origin, direction, hitCache, distance, layerMask, -900);
 
             if (count > 0)
             {
@@ -47,7 +47,7 @@ namespace WeaverCore.Utilities
 
         static int TryRaycast(Vector2 center, Vector2 direction, RaycastHit2D[] hitCache, float distance, int terrainMask)
 		{
-			var result = Physics2D.RaycastNonAlloc(center, direction, hitCache, distance, terrainMask);
+			var result = Physics2D.RaycastNonAlloc(center, direction, hitCache, distance, terrainMask, -900);
 
 			if (result > 0)
 			{
@@ -64,7 +64,7 @@ namespace WeaverCore.Utilities
 		static bool SingleRaycast(Vector2 center, Vector2 direction, float distance, int terrainMask, out Vector2 hit, Func<RaycastHit2D, bool> filter = null)
 		{
 			var cache = HitCache.GetMultiCachedArray(20);
-			var count = Physics2D.RaycastNonAlloc(center, direction, cache, distance, terrainMask);
+			var count = Physics2D.RaycastNonAlloc(center, direction, cache, distance, terrainMask, -900);
 
 			for (int i = 0; i < count; i++)
 			{

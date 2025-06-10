@@ -25,39 +25,39 @@ namespace WeaverCore
 			public float Tension;
 			public float Extra;
 
-            public SnapshotVolumeLevels(float master, float main, float mainAlt, float action, float sub, float tension, float extra)
-            {
-                Master = master;
-                Main = main;
-                MainAlt = mainAlt;
-                Action = action;
-                Sub = sub;
-                Tension = tension;
-                Extra = extra;
-            }
+			public SnapshotVolumeLevels(float master, float main, float mainAlt, float action, float sub, float tension, float extra)
+			{
+				Master = master;
+				Main = main;
+				MainAlt = mainAlt;
+				Action = action;
+				Sub = sub;
+				Tension = tension;
+				Extra = extra;
+			}
 
 			public static SnapshotVolumeLevels Lerp(SnapshotVolumeLevels from, SnapshotVolumeLevels to, float t)
 			{
 				return new SnapshotVolumeLevels(
 					Mathf.Lerp(from.Master, to.Master, t),
-                    Mathf.Lerp(from.Main, to.Main, t),
-                    Mathf.Lerp(from.MainAlt, to.MainAlt, t),
-                    Mathf.Lerp(from.Action, to.Action, t),
-                    Mathf.Lerp(from.Sub, to.Sub, t),
-                    Mathf.Lerp(from.Tension, to.Tension, t),
-                    Mathf.Lerp(from.Extra, to.Extra, t));
+					Mathf.Lerp(from.Main, to.Main, t),
+					Mathf.Lerp(from.MainAlt, to.MainAlt, t),
+					Mathf.Lerp(from.Action, to.Action, t),
+					Mathf.Lerp(from.Sub, to.Sub, t),
+					Mathf.Lerp(from.Tension, to.Tension, t),
+					Mathf.Lerp(from.Extra, to.Extra, t));
 			}
 
 			public SnapshotVolumeLevels ApplyCurve(AnimationCurve curve)
 			{
 				return new SnapshotVolumeLevels(
 					curve.Evaluate(Master),
-                    curve.Evaluate(Main),
-                    curve.Evaluate(MainAlt),
-                    curve.Evaluate(Action),
-                    curve.Evaluate(Sub),
-                    curve.Evaluate(Tension),
-                    curve.Evaluate(Extra)
+					curve.Evaluate(Main),
+					curve.Evaluate(MainAlt),
+					curve.Evaluate(Action),
+					curve.Evaluate(Sub),
+					curve.Evaluate(Tension),
+					curve.Evaluate(Extra)
 				);
 			}
 
@@ -72,7 +72,7 @@ namespace WeaverCore
 					from.Tension * mult,
 					from.Extra * mult);
 			}
-        }
+		}
 
 		public enum SnapshotType
 		{
@@ -313,7 +313,7 @@ namespace WeaverCore
 			return false;
 		}
 
-        public static AudioMixerGroup GetGroup(GroupType type)
+		public static AudioMixerGroup GetGroup(GroupType type)
 		{
 			switch (type)
 			{
@@ -373,17 +373,34 @@ namespace WeaverCore
 		/// Applies a music pack to change what music channels are being played
 		/// </summary>
 		/// <param name="pack">The pack to be applied</param>
+		[System.Obsolete("MusicPack is deprecated. Use MusicCue with PlayMusicCue instead.")]
 		public static void PlayMusicPack(MusicPack pack)
 		{
 			PlayMusicPack(pack, pack.delay, pack.snapshotTransitionTime, pack.applySnapshot);
 		}
 
+		/// <summary>
+		/// Gets the currently active music cue
+		/// </summary>
 		public static MusicCue ActiveMusicCue => AudioMixer_I.Instance.ActiveMusicCue;
 
-        public static void PlayMusicCue(MusicCue musicCue, float delayTime = 0f, float transitionTime = 0f, bool applySnapshot = true)
-        {
-            AudioMixer_I.Instance.PlayMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
-        }
+		/// <summary>
+		/// Gets the currently playing music cue (same as ActiveMusicCue)
+		/// </summary>
+		public static MusicCue CurrentMusicCue => ActiveMusicCue;
+
+		public static void PlayMusicCue(MusicCue musicCue, float delayTime = 0f, float transitionTime = 0f, bool applySnapshot = true)
+		{
+			AudioMixer_I.Instance.PlayMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
+		}
+
+		/// <summary>
+		/// Stops the currently playing music cue
+		/// </summary>
+		public static void StopMusic()
+		{
+			AudioMixer_I.Instance.StopMusic();
+		}
 
 		/// <summary>
 		/// Applies a music pack to change what music channels are being played
@@ -392,9 +409,10 @@ namespace WeaverCore
 		/// <param name="delayTime">The delay before the music pack is applied</param>
 		/// <param name="snapshotTransitionTime">The time it will take to transition to the new snapshots</param>
 		/// <param name="applySnapshot">Should the snapshots in the music pack also be applied?</param>
+		[System.Obsolete("MusicPack is deprecated. Use MusicCue with PlayMusicCue instead.")]
 		public static void PlayMusicPack(MusicPack pack, float delayTime, float snapshotTransitionTime, bool applySnapshot = true)
 		{
-            AudioMixer_I.Instance.PlayMusicPack(pack, delayTime, snapshotTransitionTime, applySnapshot);
+			AudioMixer_I.Instance.PlayMusicPack(pack, delayTime, snapshotTransitionTime, applySnapshot);
 		}
 
 		/// <summary>
@@ -418,5 +436,7 @@ namespace WeaverCore
 		{
 			AudioMixer_I.Instance.ApplyMusicSnapshot(snapshot, delayTime, transitionTime);
 		}
+
+		public static object InternalAudioObject => AudioMixer_I.Instance.GetInternalAudioObject();
 	}
 }

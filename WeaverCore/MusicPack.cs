@@ -11,6 +11,7 @@ namespace WeaverCore
 	/// <summary>
 	/// An object that contains a list of music tracks to be played, and what music snapshot should be applied
 	/// </summary>
+	[System.Obsolete("MusicPack is deprecated. Use MusicCue or WeaverMusicCue instead.")]
 	public class MusicPack : ScriptableObject
 	{
 		public static MusicPack None => WeaverAssets.LoadWeaverAsset<MusicPack>("None Music Pack");

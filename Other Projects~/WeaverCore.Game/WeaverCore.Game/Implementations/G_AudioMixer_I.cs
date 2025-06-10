@@ -219,5 +219,32 @@ namespace WeaverCore.Game.Implementations
                 }
             }
         }
+
+		public override void StopMusic()
+		{
+			// Create an empty music cue to stop all music
+			var emptyCue = CreateEmptyMusicCue();
+			GameManager.instance.AudioManager.ApplyMusicCue(emptyCue, 0f, 0f, false);
+		}
+
+		private MusicCue CreateEmptyMusicCue()
+		{
+			LoadAssets();
+			var cue = ScriptableObject.CreateInstance<MusicCue>();
+
+			MusicCue.MusicChannelInfo[] channelInfos = new MusicCue.MusicChannelInfo[6];
+
+			for (int i = 0; i < channelInfos.Length; i++)
+			{
+				channelInfos[i] = new MusicCue.MusicChannelInfo();
+				// Leave all channels empty (null clips)
+			}
+
+			SetChannelInfos(cue, channelInfos);
+			SetAlternatives(cue, new MusicCue.Alternative[0]);
+			SetSnapshot(cue, null);
+			CreatedCues.Add(cue);
+			return cue;
+		}
     }
 }

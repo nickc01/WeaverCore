@@ -7,7 +7,7 @@ using WeaverCore.Interfaces;
 
 namespace WeaverCore.Implementations
 {
-    public abstract class AudioMixer_I : IImplementation
+	public abstract class AudioMixer_I : IImplementation
 	{
 		public static AudioMixer_I Instance = ImplFinder.GetImplementation<AudioMixer_I>();
 
@@ -23,8 +23,12 @@ namespace WeaverCore.Implementations
 
 		public abstract void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot);
 
-        public abstract void ApplyMusicSnapshot(AudioMixerSnapshot snapshot, float delayTime, float transitionTime);
+		public abstract void StopMusic();
+
+		public abstract void ApplyMusicSnapshot(AudioMixerSnapshot snapshot, float delayTime, float transitionTime);
 
 		public abstract void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources);
+
+		public abstract object GetInternalAudioObject();
 	}
 }

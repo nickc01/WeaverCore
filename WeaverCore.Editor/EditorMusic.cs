@@ -170,7 +170,14 @@ namespace WeaverCore.Editor
                 ApplyMusicRoutine = null;
             }
 
-            ApplyMusicRoutine = StartCoroutine(ApplyMusicCue(musicCue, delayTime, transitionTime, applySnapshot));
+			if (musicCue is AdvancedMusicCue advancedMusicCue)
+			{
+				ApplyMusicRoutine = StartCoroutine(advancedMusicCue.BeginApplyMusicCue(musicCue, delayTime, transitionTime, applySnapshot, () => Sources.ToArray(), (a, b) => { }));
+			}
+			else
+			{
+				ApplyMusicRoutine = StartCoroutine(ApplyMusicCue(musicCue, delayTime, transitionTime, applySnapshot));
+			}
         }
 
 		public void ApplyMusicSnapshot(Music.SnapshotType snapshot, float delayTime, float transitionTime)
@@ -201,6 +208,7 @@ namespace WeaverCore.Editor
 
         IEnumerator ApplyMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot = true)
         {
+			ActiveMusicCue = musicCue;
             yield return new WaitForSeconds(delayTime);
             foreach (var source in Sources)
             {
@@ -213,8 +221,6 @@ namespace WeaverCore.Editor
             ApplyClipToSource(MainAlt, musicCue.GetChannelInfo(MusicChannels.MainAlt));
             ApplyClipToSource(Sub, musicCue.GetChannelInfo(MusicChannels.Sub));
             ApplyClipToSource(Tension, musicCue.GetChannelInfo(MusicChannels.Tension));
-
-			ActiveMusicCue = musicCue;
 
             if (applySnapshot)
             {
@@ -304,6 +310,23 @@ namespace WeaverCore.Editor
 				ApplyAtmosRoutine = null;
 			}
 			ApplyAtmosRoutine = StartCoroutine(ApplyAtmosPackRoutine(snapshot, transitionTime, enabledSources));
+		}
+
+		public void StopMusic()
+		{
+			if (ApplyMusicRoutine != null)
+			{
+				StopCoroutine(ApplyMusicRoutine);
+				ApplyMusicRoutine = null;
+			}
+
+			foreach (var source in Sources)
+			{
+				source.Stop();
+				source.clip = null;
+			}
+
+			ActiveMusicCue = null;
 		}
 
 		protected IEnumerator ApplyAtmosPackRoutine(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)

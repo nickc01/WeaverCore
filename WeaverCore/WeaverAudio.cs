@@ -270,7 +270,7 @@ namespace WeaverCore
             remove => Impl.OnPauseStateUpdate -= value;
         }
 
-		public static List<AudioPlayer> PlayAudioGroup(bool play, Transform transform, IEnumerable<AudioClip> clips, Vector2 pitchRange, float volume) 
+		public static List<AudioPlayer> PlayAudioGroup(bool play, Transform transform, IEnumerable<AudioClip> clips, Vector2 pitchRange, float volume, AudioChannel channel = AudioChannel.Sound) 
         {
             if (!play)
             {
@@ -279,7 +279,7 @@ namespace WeaverCore
             List<AudioPlayer> instances = new List<AudioPlayer>();
             foreach (var clip in clips)
             {
-                var instance = WeaverAudio.PlayAtPoint(clip, transform.position, volume);
+                var instance = WeaverAudio.PlayAtPoint(clip, transform.position, volume, channel);
                 instance.AudioSource.pitch = pitchRange.RandomInRange();
                 instances.Add(instance);
             }
@@ -287,7 +287,7 @@ namespace WeaverCore
             return instances;
         }
 
-        public static List<AudioPlayer> PlayAudioGroupLooped(bool play, Transform transform, IEnumerable<AudioClip> clips, Vector2 pitchRange, float volume) 
+        public static List<AudioPlayer> PlayAudioGroupLooped(bool play, Transform transform, IEnumerable<AudioClip> clips, Vector2 pitchRange, float volume, AudioChannel channel = AudioChannel.Sound) 
         {
             if (!play)
             {
@@ -296,7 +296,7 @@ namespace WeaverCore
             List<AudioPlayer> instances = new List<AudioPlayer>();
             foreach (var clip in clips)
             {
-                var instance = WeaverAudio.PlayAtPointLooped(clip, transform.position, volume);
+                var instance = WeaverAudio.PlayAtPointLooped(clip, transform.position, volume, channel);
                 instance.AudioSource.pitch = pitchRange.RandomInRange();
                 instances.Add(instance);
             }
@@ -310,7 +310,10 @@ namespace WeaverCore
             {
                 foreach (var instance in players)
                 {
-                    instance.Delete();
+					if (instance != null)
+					{
+						instance.Delete();
+					}
                 }
                 players = null;
             }

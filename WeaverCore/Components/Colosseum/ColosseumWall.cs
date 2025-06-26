@@ -45,15 +45,6 @@ namespace WeaverCore.Components.Colosseum
 
         [NonSerialized]
         ParticleSystem wholeDust;
-        
-        //[NonSerialized]
-        //Vector3 jitterEndPos = default;
-
-        //[NonSerialized]
-        //float distance = default;
-
-        //[NonSerialized]
-        //float wallPos = default;
 
         public Vector2 StoredPosition { get; private set; }
 
@@ -73,10 +64,16 @@ namespace WeaverCore.Components.Colosseum
             wholeDust = wall.transform.Find("Whole Dust").GetComponent<ParticleSystem>();
             wall.transform.localPosition = startPosition;
             StoredPosition = new Vector2(float.NaN, float.NaN);
-            if (debugTesting)
+            /*if (debugTesting)
             {
                 StartCoroutine(DebugRoutine());
-            }
+            }*/
+        }
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+            currentRoutine = null;
         }
 
         IEnumerator DebugRoutine()
@@ -107,20 +104,14 @@ namespace WeaverCore.Components.Colosseum
         {
             StoredPosition = StoredPosition.With(x: x);
 
-            if (!Moving)
-            {
-                MoveWallToLocalPos(new Vector2(float.NaN, float.NaN));
-            }
+            MoveWallToLocalPos(new Vector2(float.NaN, float.NaN));
         }
 
         public void SetLocalY(float y)
         {
             StoredPosition = StoredPosition.With(y: y);
 
-            if (!Moving)
-            {
-                MoveWallToLocalPos(new Vector2(float.NaN, float.NaN));
-            }
+            MoveWallToLocalPos(new Vector2(float.NaN, float.NaN));
         }
 
         public void MoveWallTo(float localX)
@@ -142,16 +133,6 @@ namespace WeaverCore.Components.Colosseum
                 currentRoutine = null;
             }
             currentRoutine = StartCoroutine(MoveWallRoutine(localPosition));
-
-            /*wall.transform.localPosition = jitterEndPos;
-            wall.velocity = default;
-            wall.transform.localPosition = new Vector3(distance, 0f, 0f);
-            jitterEndPos = wall.transform.localPosition;
-            wholeDust.Play();
-            var instance = WeaverAudio.PlayAtPoint(movingSound, transform.position);
-            instance.AudioSource.pitch = movingSoundPitchRange.RandomInRange();
-
-            currentRoutine = StartCoroutine(MoveWallRoutine(moveRelativePosition));*/
         }
 
         IEnumerator MoveWallRoutine(Vector3 localPosition)
@@ -188,7 +169,6 @@ namespace WeaverCore.Components.Colosseum
                 instance.AudioSource.pitch = movingSoundPitchRange.RandomInRange();
             }
 
-            //yield return VelocityMoveInDirection((localPosition - wall.transform.localPosition).normalized * movementSpeed, Vector2.Distance(localPosition, wall.transform.localPosition));
             yield return VelocityMoveInDirection(wall.transform.localPosition, localPosition, movementSpeed);
 
             wholeDust.Play();
@@ -200,15 +180,6 @@ namespace WeaverCore.Components.Colosseum
 
 
             yield return Shake(shakeIntensity, impactShakeDuration);
-
-            /*if (wallPos < distance)
-            {
-                //OUT
-            }
-            else if (wallPos > distance)
-            {
-                //IN
-            }*/
 
             if (currentRoutine != null)
             {
@@ -257,19 +228,8 @@ namespace WeaverCore.Components.Colosseum
 
             wall.velocity = default;
             wall.transform.localPosition = endPos;
-
-            /*wall.velocity = velocity;
-            var startPos = wall.transform.localPosition;
-
-
-
-            while (Vector2.Distance(startPos, wall.transform.localPosition) < maxDistance)
-            {
-                yield return null;
-            }
-            wall.velocity = default;
-            wall.transform.localPosition = startPos + (Vector3)(velocity.normalized * maxDistance);*/
         }
 
     }
 }
+

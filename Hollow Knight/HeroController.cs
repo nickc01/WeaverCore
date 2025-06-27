@@ -1154,12 +1154,12 @@ return fsmBool.Value;
 
     public void SetBenchRespawn(string spawnMarker, string sceneName, int spawnType, bool facingRight)
     {
-        //this.playerData.SetBenchRespawn(spawnMarker, sceneName, spawnType, facingRight);
+        this.playerData.SetBenchRespawn(spawnMarker, sceneName, spawnType, facingRight);
     }
 
     public void SetHazardRespawn(Vector3 position, bool facingRight)
     {
-        //this.playerData.SetHazardRespawn(position, facingRight);
+        this.playerData.SetHazardRespawn(position, facingRight);
     }
 
     public void AddGeo(int amount)
@@ -2256,7 +2256,7 @@ return fsmBool.Value;
         enteringVertically = false;
         airDashed = false;
         doubleJumped = false;
-        //Debug.Log("HazardRespawn() Respawn Loc = " + playerData.hazardRespawnLocation);
+        Debug.Log("HazardRespawn() Respawn Loc = " + playerData.hazardRespawnLocation);
         transform.SetPosition2D(FindGroundPoint(playerData.hazardRespawnLocation, true));
         gameObject.layer = 9;
         renderer.enabled = true;

@@ -7,12 +7,15 @@ using WeaverCore.Utilities;
 using TMPro;
 
 
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 namespace WeaverCore.Components.Colosseum
 {
+
     public class ColosseumPlatform : MonoBehaviour, IColosseumIdentifier
     {
         [SerializeField, Tooltip("Enable testing mode to repeatedly expand and retract the platform.")]
@@ -20,6 +23,12 @@ namespace WeaverCore.Components.Colosseum
 
         [SerializeField, Tooltip("Indicates whether the platform starts in an activated (expanded) state.")]
         bool startActivated = false;
+
+        //[SerializeField, Tooltip("Shake intensity of the wall during movement.")]
+        //float shakeIntensity = 0.075f;
+
+        //[SerializeField]
+        //bool doShake = true;
 
         [SerializeField, Tooltip("The primary collider for the platform.")]
         Collider2D _mainCollider;
@@ -45,8 +54,8 @@ namespace WeaverCore.Components.Colosseum
         [SerializeField, Tooltip("Duration for the platform retraction.")]
         float retractTime = 0.6f;
 
-        [SerializeField, Tooltip("Default delay before retracting the platform.")]
-        float defaultRetractAnticDelay = 1.5f;
+        //[SerializeField, Tooltip("Default delay before retracting the platform.")]
+        //float defaultRetractAnticDelay = 1.5f;
 
         [SerializeField, Tooltip("Random jitter applied to the platform during the retraction anticipation phase.")]
         Vector2 retractAnticJitter = new Vector2(0.1f, 0.1f);
@@ -121,6 +130,23 @@ namespace WeaverCore.Components.Colosseum
             }
         }
 
+        /*public void SetShakeIntensity(float intensity)
+        {
+            shakeIntensity = intensity;
+        }*/
+
+        /*IEnumerator Shake(Vector2 intensity, float time)
+        {
+            var start = platform.transform.localPosition;
+            for (float t = 0; t < time; t += Time.deltaTime)
+            {
+                platform.transform.localPosition = start + new Vector3(intensity.x * UnityEngine.Random.value, intensity.y * UnityEngine.Random.value);
+                yield return null;
+            }
+
+            platform.transform.localPosition = start;
+        }*/
+
         /*private void SetDefaultCurves()
         {
             // Initialize expand curve
@@ -178,8 +204,8 @@ namespace WeaverCore.Components.Colosseum
         public void ExpandWithRand() => ExpandWithDelay(UnityEngine.Random.value);
         public void RetractWithRand() => RetractWithDelay(UnityEngine.Random.value);
 
-        public void RetractSlow() => RetractSlowWithDelay(0f, defaultRetractAnticDelay);
-        public void RetractSlowWithRand() => RetractSlowWithDelay(UnityEngine.Random.value, defaultRetractAnticDelay);
+        public void RetractSlow() => RetractSlowWithDelay(0f);
+        public void RetractSlowWithRand() => RetractSlowWithDelay(UnityEngine.Random.value);
 
         public void ExpandWithDelay(float delay)
         {
@@ -195,9 +221,9 @@ namespace WeaverCore.Components.Colosseum
             }
         }
 
-        public void RetractWithDelay(float delay) => RetractSlowWithDelay(delay, 0f);
+        public void RetractWithDelay(float delay) => RetractSlowWithDelay(delay);
 
-        public void RetractSlowWithDelay(float delay, float anticDelay)
+        public void RetractSlowWithDelay(float delay)
         {
             gameObject.SetActive(true);
             if (!Changing)
@@ -207,7 +233,7 @@ namespace WeaverCore.Components.Colosseum
                 {
                     _startTime = Time.time;
                 }
-                StartCoroutine(RetractRoutine(delay, anticDelay));
+                StartCoroutine(RetractRoutine(delay));
             }
         }
 
@@ -237,6 +263,11 @@ namespace WeaverCore.Components.Colosseum
                 yield return new WaitForSeconds(delay);
             }
 
+            /*if (delay > 0f)
+            {
+                yield return Shake(new Vector2(shakeIntensity, shakeIntensity), delay);
+            }*/
+
             platform.gameObject.SetActive(true);
             platform.transform.localPosition = platform.PlatformStartPos;
             platform.Animator.PlayAnimation("Retracted");
@@ -252,13 +283,13 @@ namespace WeaverCore.Components.Colosseum
             Expanded = true;
         }
 
-        IEnumerator RetractRoutine(float delay, float anticDelay)
+        IEnumerator RetractRoutine(float delay)
         {
             if (platform == null)
             {
                 yield return null;
             }
-            
+
             if (Time.time <= _startTime + INSTANT_TIME)
             {
                 MainCollider.enabled = false;
@@ -272,15 +303,15 @@ namespace WeaverCore.Components.Colosseum
                 yield break;
             }
 
-            if (delay > 0f)
+            /*if (delay > 0f)
             {
                 yield return new WaitForSeconds(delay);
-            }
+            }*/
 
-            if (anticDelay > 0f)
+            if (delay > 0f)
             {
                 var origPos = platform.transform.localPosition;
-                for (float t = 0; t < anticDelay; t += Time.deltaTime)
+                for (float t = 0; t < delay; t += Time.deltaTime)
                 {
                     platform.transform.localPosition = origPos + new Vector3(UnityEngine.Random.Range(-retractAnticJitter.x, retractAnticJitter.x), UnityEngine.Random.Range(-retractAnticJitter.y, retractAnticJitter.y));
                     yield return null;

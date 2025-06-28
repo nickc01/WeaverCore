@@ -40,7 +40,7 @@ namespace WeaverCore.Components.Colosseum
         );
 
         [SerializeField, Tooltip("Duration for the platform expansion.")]
-        float expandTime = 0.6f;
+        public float expandTime = 0.6f;
 
         [SerializeField, Tooltip("List of audio clips to play during platform expansion.")]
         List<AudioClip> expandSounds;
@@ -52,7 +52,7 @@ namespace WeaverCore.Components.Colosseum
         );
 
         [SerializeField, Tooltip("Duration for the platform retraction.")]
-        float retractTime = 0.6f;
+        public float retractTime = 0.6f;
 
         //[SerializeField, Tooltip("Default delay before retracting the platform.")]
         //float defaultRetractAnticDelay = 1.5f;
@@ -72,7 +72,7 @@ namespace WeaverCore.Components.Colosseum
         ColosseumPlatformController platform;
 
 
-        const float INSTANT_TIME = 0.5f;
+        public float INSTANT_TIME = 0.5f;
 
         public Collider2D MainCollider
         {

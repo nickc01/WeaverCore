@@ -30,36 +30,45 @@ namespace WeaverCore.Components.Colosseum
 
         static bool HazardRespawn_Prefix(HeroController __instance)
         {
-            Vector3 currentRespawnLocation = PlayerData.instance.hazardRespawnLocation;
-            
-            bool isCurrentLocationSafe = TryFindGroundPoint(currentRespawnLocation, out Vector3 _);
-            
-            if (isCurrentLocationSafe)
+            var oldState = Physics2D.queriesHitTriggers;
+            try
             {
-                return true;
-            }
+                Physics2D.queriesHitTriggers = true;
+                Vector3 currentRespawnLocation = PlayerData.instance.hazardRespawnLocation;
 
-            var fallbackLocations = FindObjectsOfType<FallbackSpawnLocation>(false);
-            if (fallbackLocations.Length == 0)
-            {
-                return true;
-            }
-            
-            Vector3 playerPos = __instance.transform.position;
-            
-            System.Array.Sort(fallbackLocations, (a, b) => 
-                Vector3.Distance(playerPos, a.transform.position).CompareTo(Vector3.Distance(playerPos, b.transform.position)));
-            
-            foreach (var location in fallbackLocations)
-            {
-                if (TryFindGroundPoint(location.transform.position, out Vector3 groundPoint))
+                bool isCurrentLocationSafe = TryFindGroundPoint(currentRespawnLocation, out Vector3 _);
+
+                if (isCurrentLocationSafe)
                 {
-                    __instance.SetHazardRespawn(groundPoint, true);
                     return true;
                 }
+
+                var fallbackLocations = FindObjectsOfType<FallbackSpawnLocation>(false);
+                if (fallbackLocations.Length == 0)
+                {
+                    return true;
+                }
+
+                Vector3 playerPos = __instance.transform.position;
+
+                System.Array.Sort(fallbackLocations, (a, b) =>
+                    Vector3.Distance(playerPos, a.transform.position).CompareTo(Vector3.Distance(playerPos, b.transform.position)));
+
+                foreach (var location in fallbackLocations)
+                {
+                    if (TryFindGroundPoint(location.transform.position, out Vector3 groundPoint))
+                    {
+                        __instance.SetHazardRespawn(groundPoint, true);
+                        return true;
+                    }
+                }
+
+                return true;
             }
-            
-            return true;
+            finally
+            {
+                Physics2D.queriesHitTriggers = false;
+            }
         }
 
         public static bool TryFindGroundPoint(Vector2 startPoint, out Vector3 grounPoint, bool useExtended = false)

@@ -534,7 +534,7 @@ namespace WeaverCore.Utilities
 
         public static HealthWrapper GetHealthComponent(this GameObject gameObject)
         {
-            if (HealthManagerType != null && gameObject.TryGetComponent(HealthManagerType, out var c))
+            if (HealthManagerType != null && gameObject.TryGetComponent(HealthManagerType, out var c) && !c.GetType().Name.Contains("HealthManagerProxy"))
             {
                 return new HealthManagerWrapper(c as MonoBehaviour);
             }
@@ -548,7 +548,7 @@ namespace WeaverCore.Utilities
 
         public static HealthWrapper GetHealthComponent(this Component component)
         {
-            if (HealthManagerType != null && component.TryGetComponent(HealthManagerType, out var c))
+            if (HealthManagerType != null && component.TryGetComponent(HealthManagerType, out var c) && !c.GetType().Name.Contains("HealthManagerProxy"))
             {
                 return new HealthManagerWrapper(c as MonoBehaviour);
             }

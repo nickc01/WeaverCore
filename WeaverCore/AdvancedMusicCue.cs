@@ -62,8 +62,6 @@ namespace WeaverCore
 
                 return (IEnumerator)originalApplyMusicCue.Invoke(baseAudioObject, new object[] { musicCue, delayTime, transitionTime, applySnapshot });
             }
-
-            return null;
 #else
             if (baseAudioObject == null)
             {
@@ -79,6 +77,8 @@ namespace WeaverCore
                 return (IEnumerator)originalApplyMusicCue.Invoke(baseAudioObject, new object[] { musicCue, delayTime, transitionTime, applySnapshot });
             }
 #endif
+
+            return null;
         }
     }
 }

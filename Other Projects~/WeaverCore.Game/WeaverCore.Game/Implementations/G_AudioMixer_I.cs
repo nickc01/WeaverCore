@@ -11,7 +11,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Game.Implementations
 {
-    public class G_AudioMixer_I : AudioMixer_I
+	public class G_AudioMixer_I : AudioMixer_I
 	{
 		static AudioMixer[] Mixers;
 		static AudioMixerGroup[] Groups;
@@ -148,7 +148,7 @@ namespace WeaverCore.Game.Implementations
 			{
 				if (cue != GameManager.instance.AudioManager.CurrentMusicCue)
 				{
-					GameObject.Destroy(cue,Time.unscaledDeltaTime * 2f);
+					GameObject.Destroy(cue, Time.unscaledDeltaTime * 2f);
 				}
 			}
 			CreatedCues.RemoveWhere(c => c != GameManager.instance.AudioManager.CurrentMusicCue);
@@ -179,7 +179,7 @@ namespace WeaverCore.Game.Implementations
 
 		public override MusicCue ActiveMusicCue => GameManager.instance.AudioManager.CurrentMusicCue;
 
-        public override void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
+		public override void ApplyAtmosSnapshot(Atmos.SnapshotType snapshot, float transitionTime, Atmos.AtmosSources enabledSources)
 		{
 			if (currentCue != null)
 			{
@@ -207,18 +207,18 @@ namespace WeaverCore.Game.Implementations
 			GameManager.instance.AudioManager.ApplyAtmosCue(currentCue, transitionTime);
 		}
 
-        public override void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot)
-        {
-            GameManager.instance.AudioManager.ApplyMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
-            if (applySnapshot)
-            {
+		public override void PlayMusicCue(MusicCue musicCue, float delayTime, float transitionTime, bool applySnapshot)
+		{
+			GameManager.instance.AudioManager.ApplyMusicCue(musicCue, delayTime, transitionTime, applySnapshot);
+			if (applySnapshot)
+			{
 				var snapshot = musicCue.Snapshot;
 				if (snapshot != null)
 				{
-                    snapshot.TransitionTo(transitionTime);
-                }
-            }
-        }
+					snapshot.TransitionTo(transitionTime);
+				}
+			}
+		}
 
 		public override void StopMusic()
 		{
@@ -246,5 +246,10 @@ namespace WeaverCore.Game.Implementations
 			CreatedCues.Add(cue);
 			return cue;
 		}
+
+        public override object GetInternalAudioObject()
+        {
+			return GameManager.instance.AudioManager;
+        }
     }
 }

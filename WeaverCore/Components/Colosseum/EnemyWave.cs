@@ -242,7 +242,7 @@ namespace WeaverCore.Components.Colosseum
                         bool IsAlive(HealthWrapper e)
                         {
                             bool isAlive = true;
-                            if (e == null || e.gameObject == null)
+                            if (e == null || e.gameObject == null || !e.isActiveAndEnabled)
                             {
                                 isAlive = false;
                             }

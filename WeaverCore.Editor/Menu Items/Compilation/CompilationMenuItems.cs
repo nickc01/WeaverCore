@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,63 @@ namespace WeaverCore.Editor.Compilation
         public static void CompileWeaverCoreGame()
         {
             BuildTools.BuildPartialWeaverCore(BuildTools.WeaverCoreBuildLocation);
+        }
+
+        [MenuItem("WeaverCore/Compilation/Quick Compile Mod %F6")]
+        public static void QuickCompileMod()
+        {
+            try
+            {
+                var outputPath = new FileInfo(BuildTools.GetModBuildFileLocation());
+                QuickCompileSystem.QuickCompileMod(outputPath);
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError($"Quick Compile failed: {e.Message}");
+            }
+        }
+
+        [MenuItem("WeaverCore/Compilation/Quick Compile Mod %F6", validate = true)]
+        public static bool ValidateQuickCompileMod()
+        {
+            try
+            {
+                var outputPath = new FileInfo(BuildTools.GetModBuildFileLocation());
+                return QuickCompileSystem.CanQuickCompile(outputPath);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        [MenuItem("WeaverCore/Compilation/Quick Compile WeaverCore")]
+        public static void QuickCompileWeaverCore()
+        {
+            try
+            {
+                var outputPath = new FileInfo(BuildTools.GetModBuildFolder() + "WeaverCore/WeaverCore.dll");
+                QuickCompileSystem.QuickCompileWeaverCore(outputPath);
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError($"Quick Compile WeaverCore failed: {e.Message}");
+            }
+        }
+
+        [MenuItem("WeaverCore/Compilation/Quick Compile WeaverCore", validate = true)]
+        public static bool ValidateQuickCompileWeaverCore()
+        {
+            try
+            {
+                var modBuildFolder = BuildTools.GetModBuildFolder();
+                var outputPath = new FileInfo(modBuildFolder + "WeaverCore/WeaverCore.dll");
+                return QuickCompileSystem.CanQuickCompileWeaverCore(outputPath);
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

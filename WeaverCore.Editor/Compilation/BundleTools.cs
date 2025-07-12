@@ -626,13 +626,13 @@ namespace WeaverCore.Editor.Compilation
 		static object embedLock = new object();
 
 		/// <summary>
-		/// Embeds the built asset bundles into the mod assemblies
+		/// Embeds the built asset bundles into the mod assemblies using batch embedding
 		/// </summary>
 		/// <param name="assemblies">The file paths of the mod assemblies to put the asset bundles into</param>
 		/// <param name="builtBundles">The asset bundles that have been built</param>
 		static void EmbedAssetBundles(System.Collections.Generic.List<FileInfo> assemblies, IEnumerable<BuiltAssetBundle> builtBundles)
 		{
-            Debug.Log("Embedding Asset Bundles");
+            Debug.Log("Embedding Asset Bundles using batch embedding");
 			var assemblyReplacements = new Dictionary<string, string>
 			{
 				{"Assembly-CSharp", Data.ModName },
@@ -654,29 +654,38 @@ namespace WeaverCore.Editor.Compilation
                 customizer.ChangeBundleAssemblyPairings(bundlePairs, assemblyNames);
             }
 
+            // Group bundles by target assembly for batch embedding
+            var bundlesByAssembly = new Dictionary<FileInfo, List<EmbedResourceBatchCMD.ResourceToEmbed>>();
+
             foreach (var bundle in builtBundles.Distinct())
 			{
 				//Debug.Log("LOOKING AT BUNDLE = " + bundle.File.Name);
 				if (bundlePairs.ContainsKey(bundle.File.Name))
 				{
 					var asmName = bundlePairs[bundle.File.Name];
-
 					var asmDllName = asmName.Name + ".dll";
-
 					var asmFile = assemblies.FirstOrDefault(a => a.Name == asmDllName);
 
-					try
+					if (asmFile != null)
 					{
-						if (asmFile != null)
+						if (!bundlesByAssembly.ContainsKey(asmFile))
 						{
-							var processedBundleLocation = PostProcessBundle(bundle, assemblyReplacements);
-							lock (embedLock)
-							{
-								EmbedResourceCMD.EmbedResource(asmFile.FullName, processedBundleLocation, bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
-							}
+							bundlesByAssembly[asmFile] = new List<EmbedResourceBatchCMD.ResourceToEmbed>();
+						}
 
+						try
+						{
+							// Process main bundle
+							var processedBundleLocation = PostProcessBundle(bundle, assemblyReplacements);
+							bundlesByAssembly[asmFile].Add(new EmbedResourceBatchCMD.ResourceToEmbed
+							{
+								ResourceName = bundle.File.Name + PlatformUtilities.GetBuildTargetExtension(bundle.Target),
+								FilePath = processedBundleLocation,
+								Compression = CompressionMethod.NoCompression
+							});
+
+							// Process scene bundle if it exists
 							var sceneBundleName = bundle.File.Name.Replace("_bundle", "_scenes_bundle");
-							//Look for Scene Bundle if there is one
 							var sceneBundle = new BuiltAssetBundle
 							{
 								File = new FileInfo(bundle.File.Directory.AddSlash() + sceneBundleName),
@@ -686,30 +695,48 @@ namespace WeaverCore.Editor.Compilation
 							if (sceneBundle.File.Exists)
 							{
 								var processedSceneBundleLocation = PostProcessBundle(sceneBundle, assemblyReplacements);
-								lock (embedLock)
+								bundlesByAssembly[asmFile].Add(new EmbedResourceBatchCMD.ResourceToEmbed
 								{
-									EmbedResourceCMD.EmbedResource(asmFile.FullName, processedSceneBundleLocation, sceneBundle.File.Name + PlatformUtilities.GetBuildTargetExtension(sceneBundle.Target), compression: WeaverBuildTools.Enums.CompressionMethod.NoCompression);
-								}
+									ResourceName = sceneBundle.File.Name + PlatformUtilities.GetBuildTargetExtension(sceneBundle.Target),
+									FilePath = processedSceneBundleLocation,
+									Compression = CompressionMethod.NoCompression
+								});
 							}
 						}
+						catch (Exception e)
+						{
+							Debug.LogException(e);
+							EditorUtility.ClearProgressBar();
+							throw;
+						}
 					}
-					catch (Exception e)
-					{
-						Debug.LogException(e);
-						EditorUtility.ClearProgressBar();
-						throw;
-					}
+				}
+			}
+
+			// Batch embed all resources for each assembly
+			foreach (var assemblyGroup in bundlesByAssembly)
+			{
+				try
+				{
+					Debug.Log($"Batch embedding {assemblyGroup.Value.Count} bundles into {assemblyGroup.Key.Name}");
+					EmbedResourceBatchCMD.EmbedResourcesBatch(assemblyGroup.Key.FullName, assemblyGroup.Value);
+				}
+				catch (Exception e)
+				{
+					Debug.LogError($"Failed to batch embed bundles into {assemblyGroup.Key.Name}: {e.Message}");
+					Debug.LogException(e);
+					EditorUtility.ClearProgressBar();
+					throw;
 				}
 			}
 		}
 
 
 		/// <summary>
-		/// Embeds some assemblies and resources into WeaverCore.dll. These are needed for WeaverCore to function when running in Hollow Knight
+		/// Embeds some assemblies and resources into WeaverCore.dll using batch embedding. These are needed for WeaverCore to function when running in Hollow Knight
 		/// </summary>
 		static void EmbedWeaverCoreResources()
 		{
-
 			var sep = Path.DirectorySeparatorChar;
 
 			var weaverGameLocation = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{sep}WeaverCore.Game{sep}WeaverCore.Game{sep}bin{sep}WeaverCore.Game.dll");
@@ -719,12 +746,43 @@ namespace WeaverCore.Editor.Compilation
 			var ktxUnityMac = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}ktx_unity.bundle{sep}Contents{sep}MacOS{sep}ktx_unity");
 			var ktxUnityLinux = new FileInfo($"{BuildTools.WeaverCoreFolder.AddSlash()}Other Tools{sep}KtxUnity{sep}Runtime{sep}Plugins{sep}x86_64{sep}libktx_unity.so");
 
-            EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, weaverGameLocation.FullName, "WeaverCore.Game", compression: CompressionMethod.NoCompression);
-			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, harmonyLocation.FullName, "0Harmony", compression: CompressionMethod.NoCompression);
+			// Batch embed all WeaverCore resources in one operation
+			var weaverCoreResources = new List<EmbedResourceBatchCMD.ResourceToEmbed>
+			{
+				new EmbedResourceBatchCMD.ResourceToEmbed
+				{
+					ResourceName = "WeaverCore.Game",
+					FilePath = weaverGameLocation.FullName,
+					Compression = CompressionMethod.NoCompression
+				},
+				new EmbedResourceBatchCMD.ResourceToEmbed
+				{
+					ResourceName = "0Harmony",
+					FilePath = harmonyLocation.FullName,
+					Compression = CompressionMethod.NoCompression
+				},
+				new EmbedResourceBatchCMD.ResourceToEmbed
+				{
+					ResourceName = "ktx_unity.windows.dll",
+					FilePath = ktxUnityWindows.FullName,
+					Compression = CompressionMethod.NoCompression
+				},
+				new EmbedResourceBatchCMD.ResourceToEmbed
+				{
+					ResourceName = "ktx_unity.mac.dylib",
+					FilePath = ktxUnityMac.FullName,
+					Compression = CompressionMethod.NoCompression
+				},
+				new EmbedResourceBatchCMD.ResourceToEmbed
+				{
+					ResourceName = "ktx_unity.linux.so",
+					FilePath = ktxUnityLinux.FullName,
+					Compression = CompressionMethod.NoCompression
+				}
+			};
 
-			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityWindows.FullName, "ktx_unity.windows.dll", compression: CompressionMethod.NoCompression);
-			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityMac.FullName, "ktx_unity.mac.dylib", compression: CompressionMethod.NoCompression);
-			EmbedResourceCMD.EmbedResource(Data.WeaverCoreDLL, ktxUnityLinux.FullName, "ktx_unity.linux.so", compression: CompressionMethod.NoCompression);
+			Debug.Log($"Batch embedding {weaverCoreResources.Count} WeaverCore system resources");
+			EmbedResourceBatchCMD.EmbedResourcesBatch(Data.WeaverCoreDLL, weaverCoreResources);
         }
 
 		/// <summary>

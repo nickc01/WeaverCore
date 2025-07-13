@@ -24,10 +24,10 @@ namespace WeaverCore
 		public Coroutine StartCoroutine(IEnumerator routine) => HealthComponent.StartCoroutine(routine);
 		public void StopCoroutine(IEnumerator routine) => HealthComponent.StopCoroutine(routine);
 		public void StopCoroutine(Coroutine routine) => HealthComponent.StopCoroutine(routine);
-		public bool enabled { get => HealthComponent.enabled; set => HealthComponent.enabled = value; }
-		public bool isActiveAndEnabled => HealthComponent.isActiveAndEnabled;
-		public Transform transform => HealthComponent.transform;
-		public GameObject gameObject => HealthComponent.gameObject;
-		public string tag { get => gameObject.tag; set => gameObject.tag = value; }
+		public bool enabled { get => HealthComponent == null ? default : HealthComponent.enabled; set => HealthComponent.enabled = value; }
+		public bool isActiveAndEnabled => HealthComponent == null ? default : HealthComponent.isActiveAndEnabled;
+		public Transform transform => HealthComponent == null ? default : HealthComponent.transform;
+		public GameObject gameObject => HealthComponent == null ? default : HealthComponent.gameObject;
+		public string tag { get => HealthComponent == null ? default : gameObject.tag; set => gameObject.tag = value; }
 	}
 }

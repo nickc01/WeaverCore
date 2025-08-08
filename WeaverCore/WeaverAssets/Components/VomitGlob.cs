@@ -18,6 +18,9 @@ namespace WeaverCore.Assets.Components
         static CachedPrefab<VomitGlob> Prefab = new CachedPrefab<VomitGlob>();
 
         [SerializeField]
+        float normalAngleOffset = -90f;
+
+        [SerializeField]
         Vector2 randomZRange = new Vector2(0.0041f,0.00499f);
 
         [SerializeField]
@@ -162,20 +165,27 @@ namespace WeaverCore.Assets.Components
 
         void OnOtherLand(Collision2D collision, bool finish)
         {
-            oldDamage = damager.damageDealt;
+            if (damager != null)
+            {
+                oldDamage = damager.damageDealt;
+            }
             transform.SetZPosition(randomZRange.RandomInRange());
             RB.velocity = default;
             airSteamParticles.Stop();
 
+            if (collision != null)
+            {
+                var contact = collision.GetContact(0);
+                var normal = contact.normal;
 
-            var contact = collision.GetContact(0);
-            var normal = contact.normal;
+                var normalAngle = MathUtilities.CartesianToPolar(normal).x + normalAngleOffset;
 
-            var normalAngle = MathUtilities.CartesianToPolar(normal).x - 90f;
+                var bounds = MainCollider.bounds;
 
-            var bounds = MainCollider.bounds;
-
-            transform.RotateAround(bounds.center,Vector3.forward, normalAngle);
+                transform.RotateAround(bounds.center, Vector3.forward, normalAngle);
+                
+                Debug.DrawRay(contact.point, normal * 5f, Color.red, 10f);
+            }
 
             MainCollider.enabled = false;
             //transform.rotation = Quaternion.Euler(0f, 0f, normalAngle);
@@ -190,7 +200,10 @@ namespace WeaverCore.Assets.Components
                 WeaverAudio.PlayAtPoint(landSound, transform.position);
             }
 
-            transform.SetParent(collision.transform);
+            if (collision != null)
+            {
+                transform.SetParent(collision.transform);
+            }
 
             foreach (var obj in enableOnLand)
             {
@@ -265,6 +278,11 @@ namespace WeaverCore.Assets.Components
 
         IEnumerator HaloFadeRoutine(float time, Color from, Color to)
         {
+            if (halo == null)
+            {
+                halo = transform.Find("Halo").GetComponent<SpriteRenderer>();
+                oldHaloColor = halo.color;
+            }
             for (float t = 0; t < time; t += Time.deltaTime)
             {
                 halo.color = Color.Lerp(from, to, t / time);
@@ -304,7 +322,10 @@ namespace WeaverCore.Assets.Components
                 yield return null;
             }
 
-            damager.damageDealt = oldDamage;
+            if (damager != null)
+            {
+                damager.damageDealt = oldDamage;
+            }
 
             steamParticles.Stop();
             MainRenderer.enabled = false;
@@ -315,16 +336,19 @@ namespace WeaverCore.Assets.Components
             Pooling.Destroy(this);
         }
 
-        void Init()
+        public void Init()
         {
-            initialized = true;
+            if (!initialized)
+            {
+                initialized = true;
 
-            var scale = UnityEngine.Random.Range(randomScaleRange.x, randomScaleRange.y);
-            transform.SetLocalScaleXY(scale, scale);
+                var scale = UnityEngine.Random.Range(randomScaleRange.x, randomScaleRange.y);
+                transform.SetLocalScaleXY(scale, scale);
 
-            puddleCollider.gameObject.SetActive(false);
-            puddleCollider.enabled = true;
-            MainCollider.enabled = true;
+                puddleCollider.gameObject.SetActive(false);
+                puddleCollider.enabled = true;
+                MainCollider.enabled = true;
+            }
         }
 
         public void SetScale(float scale)
@@ -405,6 +429,11 @@ namespace WeaverCore.Assets.Components
             instance.PlaySounds = playSounds;
 
             return instance;
+        }
+
+        public void ForceLand(Collision2D collision)
+        {
+            OnTerrainLand(collision);
         }
 
 

@@ -66,7 +66,6 @@ namespace WeaverCore.Components
             {
                 if (_health != value)
                 {
-                    WeaverLog.Log("SETTING HEALTH = " + value);
                     int oldHealth = _health;
                     _health = value;
 
@@ -365,6 +364,7 @@ namespace WeaverCore.Components
             {
                 if (!(_hitEffectsCache[i] is MonoBehaviour) || (_hitEffectsCache[i] is MonoBehaviour c && c.enabled))
                 {
+                    //WeaverLog.Log("PLAYING HIT EFFECTS");
                     _hitEffectsCache[i].PlayHitEffect(hit, EffectsOffset);
                 }
             }
@@ -469,6 +469,7 @@ namespace WeaverCore.Components
 
         protected virtual void NormalHit(HitInfo hit)
         {
+            //WeaverLog.Log("GETTING HIT FROM = " + hit.Attacker);
             Player player = hit.GetAttackingPlayer();
             //If acid is ignored
             /*if (hitInstance.AttackTypes == AttackTypess.Acid && this.ignoreAcid)

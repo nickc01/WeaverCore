@@ -2150,7 +2150,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SaveGame(int saveSlot, Action<bool> callback)
+    private void SaveGame(int saveSlot, Action<bool> callback)
     {
         /*if (saveSlot >= 0)
 		{

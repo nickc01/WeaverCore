@@ -73,6 +73,10 @@ namespace WeaverCore.Components
         [SerializeField]
         float deathSound2_Volume;
 
+        [SerializeField]
+        [Tooltip("If true, attacks from player spells will be ignored")]
+        bool skipSpells = false;
+
 
         [OnHarmonyPatch]
         static void Patch(HarmonyPatcher patcher)
@@ -198,9 +202,37 @@ namespace WeaverCore.Components
 #if !UNITY_EDITOR
         return false;
 #else
+            // Check if we should skip spell attacks
+            if (skipSpells && IsAttackFromSpell(hit))
+            {
+                return false;
+            }
+
             ManageHit((int)hit.AttackType, hit.Direction);
             return true;
 #endif
+        }
+
+        private bool IsAttackFromSpell(HitInfo hit)
+        {
+            if (hit.Attacker != null)
+            {
+                Transform current = hit.Attacker.transform;
+                
+                while (current != null)
+                {
+                    if (current.name == "Spells")
+                    {
+                        if (current.parent != null && current.parent.GetComponent<HeroController>() != null)
+                        {
+                            return true;
+                        }
+                    }
+                    current = current.parent;
+                }
+            }
+            
+            return false;
         }
 
         void ISerializationCallbackReceiver.OnBeforeSerialize()

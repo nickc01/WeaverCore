@@ -37,6 +37,8 @@ namespace WeaverCore.Assets.Components
 
 		public bool IsContinuous = true;
 
+        public float AttackStrength = 1f;
+
 		public float ContinousHitRate = 0.2f;
 
 		const int DEFAULT_RECURSION_DEPTH = 3;
@@ -48,12 +50,14 @@ namespace WeaverCore.Assets.Components
 
 		void OnTriggerEnter2D(Collider2D collider)
         {
+            //WeaverLog.Log("TOUCHED OBJ = " + collider);
             collidingObjects.Add(collider);
             ApplyDamage(collider);
         }
 
         void OnTriggerExit2D(Collider2D collider)
         {
+            //WeaverLog.Log("UNTOUCHED OBJ = " + collider);
             collidingObjects.Remove(collider);
         }
 
@@ -106,6 +110,8 @@ namespace WeaverCore.Assets.Components
 
         HashSet<Collider2D> collidersToRemove = new HashSet<Collider2D>();
 
+        HashSet<Collider2D> collidingObjectsCopy = new HashSet<Collider2D>();
+
 		IEnumerator ApplyContinuousDamage()
         {
             while (true)
@@ -114,18 +120,24 @@ namespace WeaverCore.Assets.Components
 
                 collidersToRemove.Clear();
 
+                collidingObjectsCopy.Clear();
+
                 foreach (var collider in collidingObjects)
                 {
-                    if (collider != null)
-                    {
-                        ApplyDamage(collider);
-                    }
-                    else
-                    {
-                        collidersToRemove.Add(collider);
-                        //collidingObjects.Remove(collider);
-                    }
+                    collidingObjectsCopy.Add(collider);
                 }
+
+                foreach (var collider in collidingObjectsCopy)
+                    {
+                        if (collider != null)
+                        {
+                            ApplyDamage(collider);
+                        }
+                        else
+                        {
+                            collidersToRemove.Add(collider);
+                        }
+                    }
 
                 foreach (var c in collidersToRemove)
                 {
@@ -140,9 +152,9 @@ namespace WeaverCore.Assets.Components
             var hitVector = (collider.transform.position - transform.position).normalized;
             var angle = VectorUtilities.VectorToDegrees(hitVector);
 			
-			WeaverLog.Log("Attemping Damage to Object = " + obj);
-            var hits = EnemyHealthUtilities.DealDamage(obj, gameObject, damage, attackType, angle);
-			var extras = EnemyHealthUtilities.TriggerOtherHittables(obj, gameObject, damage, attackType, angle);
+			//WeaverLog.Log("Attemping Damage to Object = " + obj);
+            var hits = EnemyHealthUtilities.DealDamage(obj, gameObject, damage, attackType, angle, AttackStrength);
+			var extras = EnemyHealthUtilities.TriggerOtherHittables(obj, gameObject, damage, attackType, angle, AttackStrength);
             if (attackType == AttackTypes.Acid)
             {
                 EventManager.SendEventToGameObject("ACID", collider.gameObject, gameObject);

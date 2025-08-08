@@ -165,7 +165,7 @@ namespace WeaverCore
 				canvas.sortingLayerName = "HUD";
 				canvas.sortingOrder = 1;
 				canvas.normalizedSortingGridSize = 0.1f;
-				Debug.Log(WeaverCamera.Instance);
+				//Debug.Log(WeaverCamera.Instance);
 				//WeaverCamera.Instance.
 				//canvas.worldCamera = GameObject.FindObjectOfType<HUDCamera>().GetComponent<Camera>();
 				canvas.worldCamera = WeaverCamera.Instance.Cameras.hudCamera;

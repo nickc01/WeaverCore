@@ -473,10 +473,18 @@ namespace WeaverCore.Editor
 					var verticalppu = texture.height / ((double)trPos.y - blPos.y);
 
 					var averagePPU = (horizontalppu + verticalppu) / 2.0;
+
+					var diffPPU = (float)(settings.spritePixelsPerUnit - averagePPU);
+					var ppuScaling = (float)(settings.spritePixelsPerUnit / averagePPU);
+
+					WeaverLog.Log("DIFF PPU = " + diffPPU);
+					WeaverLog.Log("DIFF PPU Scaling = " + ppuScaling);
+
+					ppuScaling = 1f;
 					settings.spriteAlignment = (int)SpriteAlignment.Custom;
 					settings.spritePixelsPerUnit = (float)averagePPU;
 					settings.filterMode = FilterMode.Bilinear;
-					settings.spritePivot = new Vector2(UnclampedInverseLerp(blPos.x,trPos.x,0f),UnclampedInverseLerp(blPos.y,trPos.y,0f));
+					settings.spritePivot = new Vector2(UnclampedInverseLerp(blPos.x * ppuScaling,trPos.x * ppuScaling,0f),UnclampedInverseLerp(blPos.y * ppuScaling,trPos.y * ppuScaling,0f));
 
 					if (UnpackTK2DWindow.Settings.UnpackMode == UnpackTK2DWindow.UnpackMode.ToSprite)
 					{

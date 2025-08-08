@@ -12,7 +12,6 @@ namespace WeaverCore.Components
     /// </summary>
     public class Shockwave : MonoBehaviour, IOnPool
     {
-
         private static CachedPrefab<Shockwave> shockwaveSmall = new CachedPrefab<Shockwave>();
         /// <summary>
         /// The default prefab for a small shockwave
@@ -71,6 +70,12 @@ namespace WeaverCore.Components
         }
 
         [SerializeField]
+        float travelTime = 0f;
+
+        [SerializeField]
+        float minTimeBeforeCollisionCheck = 0f;
+
+        [SerializeField]
         [Tooltip("Prefab for the left spurt of the shockwave. Used only if the shockwave is travelling to the left")]
         private ShockwaveSpurt spurtLeftPrefab;
 
@@ -97,11 +102,19 @@ namespace WeaverCore.Components
         [NonSerialized]
         private float speed = 1f;
 
+        float _startTime = 0f;
+
+        Collider2D _collider;
+
         /// <summary>
         /// Awake is called when the script instance is being loaded.
         /// </summary>
         private void Awake()
         {
+            _collider = GetComponent<Collider2D>();
+            _startTime = Time.time;
+
+            _collider.enabled = minTimeBeforeCollisionCheck <= 0f;
             if (particles.Count == 0)
             {
                 gameObject.GetComponentsInChildren(particles);
@@ -112,6 +125,11 @@ namespace WeaverCore.Components
             }
             StopAllCoroutines();
             StartCoroutine(MainRoutine());
+        }
+
+        void Update()
+        {
+            travelTime = Time.time - _startTime;
         }
 
         /// <summary>
@@ -162,7 +180,12 @@ namespace WeaverCore.Components
 
                 var hitCache = HitCache.GetSingleCachedArray();
 
-                if (Physics2D.RaycastNonAlloc((Vector2)transform.position + raycastFrom, Vector2.left, hitCache, 2f, 8) > 0)
+                if (!_collider.enabled && Time.time - _startTime >= minTimeBeforeCollisionCheck)
+                {
+                    _collider.enabled = true;
+                }
+
+                if (Time.time - _startTime >= minTimeBeforeCollisionCheck && Physics2D.RaycastNonAlloc((Vector2)transform.position + raycastFrom, Vector2.left, hitCache, 2f, 8) > 0)
                 {
                     hitType = CollisionType.Hit;
                 }
@@ -184,6 +207,8 @@ namespace WeaverCore.Components
 
                 yield return null;
             }
+
+            _collider.enabled = false;
 
             foreach (var particle in particles)
             {
@@ -262,6 +287,8 @@ namespace WeaverCore.Components
             var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
             instance.transform.localScale = prefab.transform.localScale;
             instance.speed = speed;
+            instance._collider = instance.GetComponent<Collider2D>();
+            instance._collider.enabled = instance.minTimeBeforeCollisionCheck <= 0f;
             if (!faceRight && instance.transform.localScale.x >= 0f)
             {
                 instance.transform.SetXLocalScale(-instance.transform.GetXLocalScale());

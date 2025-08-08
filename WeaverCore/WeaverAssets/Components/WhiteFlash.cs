@@ -50,12 +50,22 @@ namespace WeaverCore.Assets.Components
 
 		void Awake()
 		{
-            MainRenderer.color = default;
+			MainRenderer.color = default;
+			
+			if (FadeInTime <= 0)
+			{
+				MainRenderer.color = FlashColor;
+			}
 		}
 
-		void Start()
+		void OnEnable()
 		{
 			StartCoroutine(Fader());
+		}
+
+		void OnDisable()
+		{
+			StopAllCoroutines();
 		}
 
 		IEnumerator Fader()

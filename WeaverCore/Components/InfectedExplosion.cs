@@ -142,7 +142,7 @@ namespace WeaverCore.Components
             }
             var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
 
-            instance.DefaultScale = instance.transform.GetXLocalScale();
+            instance.DefaultScale = prefab.transform.GetXLocalScale();
 
             instance.transform.SetLocalScaleXY(scale, scale);
 

@@ -285,7 +285,6 @@ namespace WeaverCore.Components
 		/// <exception cref="Exception">Throws if the clip doesn't exist in <see cref="AnimationData"/></exception>
 		public void PlayAnimation(string clipName, bool forceOnce = false)
 		{
-			//WeaverLog.Log("PLAYING ANIMATION + " + clipName);
 			this.forceOnce = forceOnce;
 			if (!HasAnimationClip(clipName))
 			{

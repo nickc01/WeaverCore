@@ -635,6 +635,75 @@ namespace WeaverCore.Utilities
 			return SetActionProperty(action.InternalAction, propertyName, value);
 		}
 
+		/// <summary>
+		/// Gets whether the specified FSM action is enabled
+		/// </summary>
+		/// <param name="action">The FSM action to check</param>
+		/// <returns>True if the action is enabled, false otherwise</returns>
+		public static bool GetActionEnabled(object action)
+		{
+			if (action == null)
+			{
+				return false;
+			}
+
+			// Try to get the "Enabled" property from the action
+			PropertyInfo enabledProperty = action.GetType().GetProperty("Enabled", BindingFlags.Public | BindingFlags.Instance);
+			if (enabledProperty != null && enabledProperty.PropertyType == typeof(bool))
+			{
+				return (bool)enabledProperty.GetValue(action, null);
+			}
+
+			// If no Enabled property found, assume the action is enabled by default
+			return true;
+		}
+
+		/// <summary>
+		/// Sets whether the specified FSM action is enabled
+		/// </summary>
+		/// <param name="action">The FSM action to modify</param>
+		/// <param name="enabled">Whether the action should be enabled</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionEnabled(object action, bool enabled)
+		{
+			if (action == null)
+			{
+				return false;
+			}
+
+			// Try to set the "Enabled" property on the action
+			PropertyInfo enabledProperty = action.GetType().GetProperty("Enabled", BindingFlags.Public | BindingFlags.Instance);
+			if (enabledProperty != null && enabledProperty.PropertyType == typeof(bool) && enabledProperty.CanWrite)
+			{
+				enabledProperty.SetValue(action, enabled, null);
+				return true;
+			}
+
+			// If no writable Enabled property found, return false
+			return false;
+		}
+
+		/// <summary>
+		/// Gets whether the specified FSM action wrapper is enabled
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to check</param>
+		/// <returns>True if the action is enabled, false otherwise</returns>
+		public static bool GetActionEnabled(FsmActionWrapper action)
+		{
+			return GetActionEnabled(action.InternalAction);
+		}
+
+		/// <summary>
+		/// Sets whether the specified FSM action wrapper is enabled
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to modify</param>
+		/// <param name="enabled">Whether the action should be enabled</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionEnabled(FsmActionWrapper action, bool enabled)
+		{
+			return SetActionEnabled(action.InternalAction, enabled);
+		}
+
 		#endregion
 
 		#region Transition Management
@@ -672,37 +741,37 @@ namespace WeaverCore.Utilities
 			return transitions.Select(t => new FsmTransitionWrapper(t)).ToArray();
 		}
 
-		public static object AddTransition(object state, string eventName, string toState)
+		public static object AddTransition(object state, string eventName, string toState, int index = -1)
 		{
 			if (state == null || string.IsNullOrEmpty(eventName) || string.IsNullOrEmpty(toState))
-			{
 				return null;
-			}
 
-			// Get the current transitions
-			object[] currentTransitions = GetTransitions(state);
-			
-			// Create a new transitions array with one more element
-			Array newTransitions = Array.CreateInstance(FsmTransitionType, currentTransitions.Length + 1);
-			Array.Copy(currentTransitions, newTransitions, currentTransitions.Length);
+			var current = GetTransitions(state) ?? Array.Empty<object>();
+			var newArray = Array.CreateInstance(FsmTransitionType, current.Length + 1);
 
-			// Create a new transition
-			object newTransition = Activator.CreateInstance(FsmTransitionType);
+			if (index < 0 || index > current.Length)
+				index = current.Length;
 
-			var stateWrapper = new FsmStateWrapper(state);
+			Array.Copy(current, 0, newArray, 0, index);
+			Array.Copy(current, index, newArray, index + 1, current.Length - index);
 
-			var fsm = stateWrapper.GetFsm();
+			object t = Activator.CreateInstance(FsmTransitionType);
+			var fsm = new FsmStateWrapper(state).GetFsm();
 
-			newTransition.ReflectSetProperty("FsmEvent", GetFsmEvent(eventName));
-			newTransition.ReflectSetProperty("ToState", toState);
-			newTransition.ReflectSetProperty("ToFsmState", GetState(fsm.InternalFsm, toState));
+			t.ReflectSetProperty("FsmEvent", GetFsmEvent(eventName));
+			t.ReflectSetProperty("ToState", toState);
+			t.ReflectSetProperty("ToFsmState", GetState(fsm.InternalFsm, toState));
 
-			return newTransition;
+			newArray.SetValue(t, index);
+			state.ReflectSetProperty("Transitions", newArray);
+
+			return t;
 		}
 
-		public static FsmTransitionWrapper AddTransition(FsmStateWrapper state, string eventName, string toState)
+
+		public static FsmTransitionWrapper AddTransition(FsmStateWrapper state, string eventName, string toState, int index = -1)
 		{
-			object transition = AddTransition(state.InternalState, eventName, toState);
+			object transition = AddTransition(state.InternalState, eventName, toState, index);
 			return transition != null ? new FsmTransitionWrapper(transition) : default;
 		}
 
@@ -715,7 +784,7 @@ namespace WeaverCore.Utilities
 
 			// Get the current global transitions
 			object[] currentTransitions = GetGlobalTransitions(fsm);
-			
+
 			// Create a new transitions array with one more element
 			Array newTransitions = Array.CreateInstance(FsmTransitionType, currentTransitions.Length + 1);
 			Array.Copy(currentTransitions, newTransitions, currentTransitions.Length);
@@ -776,10 +845,11 @@ namespace WeaverCore.Utilities
 
 			// Get the current transitions
 			object[] currentTransitions = GetTransitions(state);
-			
-			if (transitionIndex >= currentTransitions.Length)
+
+			if (transitionIndex >= currentTransitions.Length || transitionIndex < 0)
 			{
-				return false;
+				transitionIndex = currentTransitions.Length - 1;
+				//return false;
 			}
 
 			// Create a new transitions array without the transition to remove
@@ -815,10 +885,15 @@ namespace WeaverCore.Utilities
 
 			// Get the current global transitions
 			object[] currentTransitions = GetGlobalTransitions(fsm);
-			
-			if (transitionIndex >= currentTransitions.Length)
+
+			/*if (transitionIndex >= currentTransitions.Length)
 			{
 				return false;
+			}*/
+			
+			if (transitionIndex < 0 || transitionIndex >= currentTransitions.Length)
+			{
+				transitionIndex = currentTransitions.Length - 1;
 			}
 
 			// Create a new transitions array without the transition to remove

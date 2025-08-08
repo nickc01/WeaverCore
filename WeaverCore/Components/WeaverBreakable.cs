@@ -10,7 +10,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
     /// <summary>
     /// WeaverCore's implementation of breakable objects. Used for implementing grass and breakable props
     /// </summary>

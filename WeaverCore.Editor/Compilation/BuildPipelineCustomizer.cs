@@ -118,5 +118,23 @@ namespace WeaverCore.Editor.Compilation
             return Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Called before quick compile begins. Allows customizers to prepare for quick compilation.
+        /// </summary>
+        /// <returns>True if successful, false if an error occurs</returns>
+        public virtual Task<bool> BeforeQuickCompile()
+        {
+            return Task.FromResult(true);
+        }
+
+        /// <summary>
+        /// Called after quick compile finishes. Allows customizers to perform post-processing steps like ILRepack.
+        /// </summary>
+        /// <returns>True if successful, false if an error occurs</returns>
+        public virtual Task<bool> AfterQuickCompile()
+        {
+            return Task.FromResult(true);
+        }
+
     }
 }

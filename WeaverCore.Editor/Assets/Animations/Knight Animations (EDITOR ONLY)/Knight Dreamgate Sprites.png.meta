@@ -170,31 +170,7 @@ TextureImporter:
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 1024
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 1024
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -208,12 +184,12 @@ TextureImporter:
       name: Knight_Dream_Gate_Create0004
       rect:
         serializedVersion: 2
-        x: 235
-        y: 340
+        x: 128
+        y: 246
         width: 92
         height: 132
       alignment: 9
-      pivot: {x: 0.3586956, y: 0.22727275}
+      pivot: {x: 0.3586956, y: 0.77272725}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,12 +205,12 @@ TextureImporter:
       name: Knight_Dream_Gate_Create0006
       rect:
         serializedVersion: 2
-        x: 685
+        x: 790
         y: 0
         width: 79
         height: 106
       alignment: 9
-      pivot: {x: 0.41772157, y: 0.13207555}
+      pivot: {x: 0.41772157, y: 0.86792445}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -255,7 +231,7 @@ TextureImporter:
         width: 107
         height: 124
       alignment: 9
-      pivot: {x: 0.5233644, y: 0.47580647}
+      pivot: {x: 0.5233644, y: 0.5241935}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,12 +247,12 @@ TextureImporter:
       name: Knight_Dream_Gate_Create0003
       rect:
         serializedVersion: 2
-        x: 128
-        y: 246
+        x: 327
+        y: 0
         width: 99
         height: 114
       alignment: 9
-      pivot: {x: 0.48484844, y: 0.35964906}
+      pivot: {x: 0.48484844, y: 0.64035094}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -292,12 +268,12 @@ TextureImporter:
       name: Knight_Dream_Gate_Create0007
       rect:
         serializedVersion: 2
-        x: 604
-        y: 229
+        x: 426
+        y: 226
         width: 77
         height: 130
       alignment: 9
-      pivot: {x: 0.2987012, y: 0.30769223}
+      pivot: {x: 0.2987012, y: 0.6923078}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -313,12 +289,12 @@ TextureImporter:
       name: Knight_Dream_Gate_Create0005
       rect:
         serializedVersion: 2
-        x: 330
-        y: 252
+        x: 235
+        y: 0
         width: 92
         height: 126
       alignment: 9
-      pivot: {x: 0.3586956, y: 0.26984125}
+      pivot: {x: 0.3586956, y: 0.73015875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -334,12 +310,12 @@ TextureImporter:
       name: Knight_Dream_Gate_Create0000
       rect:
         serializedVersion: 2
-        x: 514
-        y: 108
+        x: 606
+        y: 214
         width: 90
         height: 108
       alignment: 9
-      pivot: {x: 0.44444445, y: 0.18518513}
+      pivot: {x: 0.44444445, y: 0.81481487}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -355,12 +331,12 @@ TextureImporter:
       name: Knight_Dream_Gate_Create0001
       rect:
         serializedVersion: 2
-        x: 422
-        y: 219
+        x: 606
+        y: 0
         width: 92
         height: 106
       alignment: 9
-      pivot: {x: 0.50000006, y: 0.16037738}
+      pivot: {x: 0.50000006, y: 0.8396226}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -376,12 +352,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0007
       rect:
         serializedVersion: 2
-        x: 422
-        y: 0
+        x: 235
+        y: 366
         width: 92
         height: 113
       alignment: 9
-      pivot: {x: 0.4130434, y: 0.30088496}
+      pivot: {x: 0.4130434, y: 0.69911504}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -397,12 +373,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0006
       rect:
         serializedVersion: 2
-        x: 235
-        y: 0
+        x: 327
+        y: 227
         width: 95
         height: 114
       alignment: 9
-      pivot: {x: 0.41052634, y: 0.30701762}
+      pivot: {x: 0.41052634, y: 0.6929824}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -423,7 +399,7 @@ TextureImporter:
         width: 128
         height: 357
       alignment: 9
-      pivot: {x: 0.4140625, y: 0.49299717}
+      pivot: {x: 0.4140625, y: 0.50700283}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -439,12 +415,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0009
       rect:
         serializedVersion: 2
-        x: 235
-        y: 114
+        x: 426
+        y: 0
         width: 95
         height: 113
       alignment: 9
-      pivot: {x: 0.38947362, y: 0.30088496}
+      pivot: {x: 0.38947362, y: 0.69911504}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -460,12 +436,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0000
       rect:
         serializedVersion: 2
-        x: 514
-        y: 0
+        x: 606
+        y: 106
         width: 90
         height: 108
       alignment: 9
-      pivot: {x: 0.44444445, y: 0.18518513}
+      pivot: {x: 0.44444445, y: 0.81481487}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -486,7 +462,7 @@ TextureImporter:
         width: 125
         height: 153
       alignment: 9
-      pivot: {x: 0.424, y: 0.33986932}
+      pivot: {x: 0.424, y: 0.6601307}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -502,12 +478,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0004
       rect:
         serializedVersion: 2
-        x: 330
-        y: 378
+        x: 235
+        y: 252
         width: 92
         height: 114
       alignment: 9
-      pivot: {x: 0.33695653, y: 0.30701762}
+      pivot: {x: 0.33695653, y: 0.6929824}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -523,12 +499,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0013
       rect:
         serializedVersion: 2
-        x: 828
-        y: 234
+        x: 769
+        y: 232
         width: 31
         height: 272
       alignment: 9
-      pivot: {x: 0.1935482, y: 0.47426468}
+      pivot: {x: 0.1935482, y: 0.5257353}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -544,12 +520,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0008
       rect:
         serializedVersion: 2
-        x: 514
-        y: 216
+        x: 426
+        y: 356
         width: 87
         height: 114
       alignment: 9
-      pivot: {x: 0.39080453, y: 0.30701762}
+      pivot: {x: 0.39080453, y: 0.6929824}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -565,12 +541,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0002
       rect:
         serializedVersion: 2
-        x: 422
-        y: 325
+        x: 426
+        y: 113
         width: 91
         height: 113
       alignment: 9
-      pivot: {x: 0.41758233, y: 0.28318578}
+      pivot: {x: 0.41758233, y: 0.7168142}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -586,12 +562,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0003
       rect:
         serializedVersion: 2
-        x: 128
-        y: 360
+        x: 327
+        y: 114
         width: 99
         height: 113
       alignment: 9
-      pivot: {x: 0.39393944, y: 0.30088496}
+      pivot: {x: 0.39393944, y: 0.69911504}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -607,12 +583,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0005
       rect:
         serializedVersion: 2
-        x: 235
-        y: 227
+        x: 327
+        y: 341
         width: 95
         height: 113
       alignment: 9
-      pivot: {x: 0.38947362, y: 0.30088496}
+      pivot: {x: 0.38947362, y: 0.69911504}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -633,7 +609,7 @@ TextureImporter:
         width: 101
         height: 122
       alignment: 9
-      pivot: {x: 0.41584158, y: 0.32786876}
+      pivot: {x: 0.41584158, y: 0.67213124}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -649,12 +625,12 @@ TextureImporter:
       name: Knight_dream_gate_enter0001
       rect:
         serializedVersion: 2
-        x: 422
-        y: 113
+        x: 698
+        y: 0
         width: 92
         height: 106
       alignment: 9
-      pivot: {x: 0.50000006, y: 0.16037738}
+      pivot: {x: 0.50000006, y: 0.8396226}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -670,12 +646,12 @@ TextureImporter:
       name: Knight_Dream_Gate_Create0005_b
       rect:
         serializedVersion: 2
-        x: 330
+        x: 235
         y: 126
         width: 92
         height: 126
       alignment: 9
-      pivot: {x: 0.3586956, y: 0.26984125}
+      pivot: {x: 0.3586956, y: 0.73015875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -691,12 +667,12 @@ TextureImporter:
       name: Knight_Dream_Gate_Create0005_c
       rect:
         serializedVersion: 2
-        x: 330
-        y: 0
+        x: 128
+        y: 378
         width: 92
         height: 126
       alignment: 9
-      pivot: {x: 0.3586956, y: 0.26984125}
+      pivot: {x: 0.3586956, y: 0.73015875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -712,12 +688,12 @@ TextureImporter:
       name: knight_sprint0000
       rect:
         serializedVersion: 2
-        x: 604
-        y: 359
+        x: 521
+        y: 115
         width: 75
         height: 124
       alignment: 9
-      pivot: {x: 0.53333324, y: 0.27419353}
+      pivot: {x: 0.53333324, y: 0.7258065}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -733,12 +709,12 @@ TextureImporter:
       name: knight_sprint0002
       rect:
         serializedVersion: 2
-        x: 683
-        y: 234
+        x: 521
+        y: 356
         width: 73
         height: 125
       alignment: 9
-      pivot: {x: 0.5479452, y: 0.27999997}
+      pivot: {x: 0.5479452, y: 0.72}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -754,12 +730,12 @@ TextureImporter:
       name: knight_sprint0004
       rect:
         serializedVersion: 2
-        x: 683
-        y: 112
+        x: 768
+        y: 106
         width: 74
         height: 122
       alignment: 9
-      pivot: {x: 0.5405406, y: 0.25409836}
+      pivot: {x: 0.5405406, y: 0.74590164}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -775,12 +751,12 @@ TextureImporter:
       name: knight_sprint0005
       rect:
         serializedVersion: 2
-        x: 756
-        y: 234
+        x: 916
+        y: 106
         width: 72
         height: 124
       alignment: 9
-      pivot: {x: 0.5555555, y: 0.2822581}
+      pivot: {x: 0.5555555, y: 0.7177419}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -796,12 +772,12 @@ TextureImporter:
       name: knight_sprint0001
       rect:
         serializedVersion: 2
-        x: 831
-        y: 112
+        x: 696
+        y: 232
         width: 73
         height: 121
       alignment: 9
-      pivot: {x: 0.5479452, y: 0.25619835}
+      pivot: {x: 0.5479452, y: 0.74380165}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -817,12 +793,12 @@ TextureImporter:
       name: knight_sprint0003
       rect:
         serializedVersion: 2
-        x: 683
-        y: 359
+        x: 696
+        y: 106
         width: 72
         height: 126
       alignment: 9
-      pivot: {x: 0.5555555, y: 0.28571427}
+      pivot: {x: 0.5555555, y: 0.71428573}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -838,12 +814,12 @@ TextureImporter:
       name: Knight_idle_to_sprint0000
       rect:
         serializedVersion: 2
-        x: 604
-        y: 112
+        x: 521
+        y: 239
         width: 79
         height: 117
       alignment: 9
-      pivot: {x: 0.49367088, y: 0.23076922}
+      pivot: {x: 0.49367088, y: 0.7692308}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -859,12 +835,12 @@ TextureImporter:
       name: Knight_idle_to_sprint0002
       rect:
         serializedVersion: 2
-        x: 514
-        y: 330
+        x: 521
+        y: 0
         width: 85
         height: 115
       alignment: 9
-      pivot: {x: 0.47058824, y: 0.21739131}
+      pivot: {x: 0.47058824, y: 0.7826087}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -880,12 +856,12 @@ TextureImporter:
       name: Knight_idle_to_sprint0003
       rect:
         serializedVersion: 2
-        x: 757
-        y: 112
+        x: 842
+        y: 106
         width: 74
         height: 121
       alignment: 9
-      pivot: {x: 0.5675675, y: 0.25619835}
+      pivot: {x: 0.5675675, y: 0.74380165}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -901,12 +877,12 @@ TextureImporter:
       name: Knight_idle_to_sprint0001
       rect:
         serializedVersion: 2
-        x: 604
-        y: 0
+        x: 606
+        y: 322
         width: 81
         height: 112
       alignment: 9
-      pivot: {x: 0.48148155, y: 0.1964286}
+      pivot: {x: 0.48148155, y: 0.8035714}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -934,3 +910,4 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+

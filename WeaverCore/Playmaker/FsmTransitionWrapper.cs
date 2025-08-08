@@ -1,3 +1,5 @@
+using WeaverCore.Utilities;
+
 namespace WeaverCore.Playmaker
 {
     /// <summary>
@@ -21,6 +23,12 @@ namespace WeaverCore.Playmaker
 
 			return false;
 		}
+
+		public FsmEventWrapper FsmEvent => new FsmEventWrapper(InternalTransition.ReflectGetProperty("FsmEvent"));
+
+		public string ToState => InternalTransition.ReflectGetProperty<string>("ToState");
+
+		public FsmStateWrapper ToFsmState => new FsmStateWrapper(InternalTransition.ReflectGetProperty("ToFsmState"));
 		
 		public override int GetHashCode()
 		{

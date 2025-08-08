@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467cfd72665795c4f89e874c3c17252a, type: 3}
+  m_Name: Mega Mantis Animations
+  m_EditorClassIdentifier: 
+  clipNames:
+  - Mantis Loop
+  clipFrameStartIndexes: 00000000
+  clipFrameCounts: 04000000
+  frames:
+  - {fileID: 21300000, guid: 3d8fd2fb5d693fa40ae45d2ba5aaa991, type: 2}
+  - {fileID: 21300000, guid: ff5c9c1212bf00747bd7f56e6b0752b6, type: 2}
+  - {fileID: 21300000, guid: 9559a609a6adacd42b87610e74bb8c9c, type: 2}
+  - {fileID: 21300000, guid: 6104d3d4a7d470447a33eec655c8f4c6, type: 2}
+  clipFPSs:
+  - 20
+  clipWrapModes: 01000000
+  clipLoopStarts: 00000000

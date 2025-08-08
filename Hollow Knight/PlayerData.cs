@@ -52,6 +52,18 @@ public class PlayerData
     public string bossReturnEntryGate;
     public List<string> scenesEncounteredCocoon;
 
+    public int CurrentMaxHealth
+	{
+		get
+		{
+			if (BossSequenceController.BoundShell)
+			{
+				return Mathf.Min(maxHealth, BossSequenceController.BoundMaxHealth);
+			}
+			return maxHealth;
+		}
+	}
+
     protected PlayerData()
     {
         SetupNewPlayerData();
@@ -292,6 +304,30 @@ public class PlayerData
     internal void SetVariableSwappedArgs<T0>(T0 value, string name)
     {
         SetVariable<T0>(name, value);
+    }
+
+    public void AddToMaxHealth(int amount)
+	{
+		SetIntSwappedArgs(GetInt("maxHealthBase") + amount, "maxHealthBase");
+		if (!GetBool("equippedCharm_27"))
+		{
+			SetIntSwappedArgs(GetInt("maxHealth") + amount, "maxHealth");
+		}
+		SetIntSwappedArgs(GetInt("health"), "prevHealth");
+		SetIntSwappedArgs(GetInt("maxHealth"), "health");
+		if (GetInt("maxHealthBase") == GetInt("maxHealthCap"))
+		{
+			SetBoolSwappedArgs(true, "heartPieceMax");
+		}
+	}
+
+    public void AddToMaxMPReserve(int amount)
+    {
+        SetInt("MPReserveMax", amount);
+        if (GetInt("MPReserveMax") == GetInt("MPReserveCap"))
+        {
+            SetBool("vesselFragmentMax", true);
+        }
     }
 
     public void AddHealth(int amount)

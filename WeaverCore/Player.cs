@@ -450,8 +450,6 @@ namespace WeaverCore
 
             //var height = transform.position - bounds.min;
 
-            WeaverLog.Log("Height = " + height);
-
             return height;
         }
         
@@ -461,19 +459,51 @@ namespace WeaverCore
 
 			while (t != null)
 			{
-                WeaverLog.Log("Current Transform = " + t);
 				if (t == player1Transform || t.CompareTag("Nail Attack"))
                 {
-                    WeaverLog.Log("Current Transform VALID = " + t);
 					return true;
                 }
 
 				t = t.parent;
 			}
 
-            WeaverLog.Log("TRANSFORM INVALID");
 			return false;
 		}
+
+#if UNITY_EDITOR
+        BoxCollider2D _validatedBoxCollider;
+        void OnValidate()
+        {
+            if (_validatedBoxCollider == null)
+            {
+                _validatedBoxCollider = GetComponent<BoxCollider2D>();
+            }
+            
+            if (_validatedBoxCollider != null && Vector2.Distance(_validatedBoxCollider.size, new Vector2(0.4554138f, 1.169786f)) < 0.001f && Vector2.Distance(_validatedBoxCollider.offset, new Vector2(0f, 0f)) < 0.001f)
+            {
+                var heroBox = transform.Find("HeroBox").GetComponent<BoxCollider2D>();
+
+                if (heroBox != null && Vector2.Distance(_validatedBoxCollider.size, new Vector2(0.4554138f, 1.169786f)) < 0.001f && Vector2.Distance(_validatedBoxCollider.offset, new Vector2(0f, 0f)) < 0.001f)
+                {
+                    _validatedBoxCollider.offset = new Vector2(0f, -0.75f);
+                    _validatedBoxCollider.size = new Vector2(0.5f, 1.28125f);
+                    _validatedBoxCollider.edgeRadius = 0.0025f;
+
+                    heroBox.offset = new Vector2(0.005573273f, -0.6942673f);
+                    heroBox.size = new Vector2(0.4554138f, 1.169786f);
+
+                    transform.SetPositionY(transform.GetPositionY() + 0.75f);
+
+                    var slash = transform.Find("Slash");
+
+                    if (slash != null)
+                    {
+                        slash.SetPositionY(slash.GetPositionY() - 0.75f);
+                    }
+                }
+            }
+        }
+#endif
 
         public static bool IsPartOfPlayer1(Transform transform)
         {

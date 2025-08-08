@@ -466,6 +466,7 @@
     <Compile Include="Patches\TK2DCamera_Patches.cs" />
     <Compile Include="Patches\TMP_Text_Patches.cs" />
     <Compile Include="Implementations\G_UnboundCoroutine_I.cs" />
+    <Compile Include="Implementations\G_HKMPIntegration_I.cs" />
     <Compile Include="Implementations\G_Boss_I.cs" />
     <Compile Include="Implementations\G_Enemy_I.cs" />
     <Compile Include="Implementations\G_EventManager_I.cs" />
@@ -503,5 +504,5 @@
   <!--<Target Name="AfterBuild">
     <Exec Command="%22$(SolutionDir)..\WeaverBuildTools\bin\$(ConfigurationName)\WeaverBuildTools.exe%22 embedresource %22$(SolutionDir)WeaverCore\bin\$(ConfigurationName)\WeaverCore.dll%22 %22$(TargetPath)%22 %22$(TargetName)%22 false" />
   </Target>-->
-  <Import Project="$(SolutionDir)..\Weaver.targets" />
+  <Import Project="../../Weaver.targets" />
 </Project>

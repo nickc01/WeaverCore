@@ -24,7 +24,7 @@ namespace WeaverCore.Components
 		[SerializeField]
 		Color flashColor = Color.white;
 		[SerializeField]
-		[Range(0f,1f)]
+		[Range(0f, 1f)]
 		float flashIntensity;
 
 		Coroutine currentFlashRoutine;
@@ -33,7 +33,7 @@ namespace WeaverCore.Components
 		bool ranOnce = false;
 
 		public Material CustomFlasherMaterial;
-		
+
 		/// <summary>
 		/// The color of the flash
 		/// </summary>
@@ -63,10 +63,10 @@ namespace WeaverCore.Components
 			set
 			{
 				value = Mathf.Clamp01(value);
-                Start();
-                flashIntensity = value;
-                UpdateMaterial();
-            }
+				Start();
+				flashIntensity = value;
+				UpdateMaterial();
+			}
 		}
 
 		new SpriteRenderer renderer;
@@ -88,7 +88,7 @@ namespace WeaverCore.Components
 			if (impl == null)
 			{
 				impl = ImplFinder.GetImplementation<SpriteFlasher_I>();
-            }
+			}
 
 			if (!ranOnce)
 			{
@@ -125,7 +125,7 @@ namespace WeaverCore.Components
 				}
 				renderer.sharedMaterial = CustomFlasherMaterial == null ? flasherMaterial : CustomFlasherMaterial;
 			}
-        }
+		}
 
 		void OnDisable()
 		{
@@ -253,14 +253,14 @@ namespace WeaverCore.Components
 			}
 		}
 
-        private void OnValidate()
-        {
-            Start();
-            UpdateMaterial();
-        }
+		private void OnValidate()
+		{
+			Start();
+			UpdateMaterial();
+		}
 
 
-        public void FlashNormalHit() => flashFocusHeal();
+		public void FlashNormalHit() => flashFocusHeal();
 		public void FlashingSuperDash() => DoFlash(0.1f, 0.1f, 0.7f, new Color(1f, 1f, 1f), 0.01f);
 		public void FlashingGhostWounded() => DoFlash(0.5f, 0.5f, 0.7f, new Color(1f, 1f, 1f), 0.01f);
 		public void FlashingWhiteStay() => DoFlash(0.01f, 0.01f, 0.6f, new Color(1f, 1f, 1f), 999f);
@@ -289,5 +289,40 @@ namespace WeaverCore.Components
 		public void flashInfectedLoop() => DoFlash(0.2f, 0.2f, 0.9f, new Color(1f, 0.31f, 0f), 0.01f);
 		public void FlashGrimmflame() => DoFlash(0.01f, 1f, 0.75f, new Color(1f, 0.25f, 0.25f), 0.01f);
 		public void FlashGrimmHit() => DoFlash(0.01f, 0.25f, 0.75f, new Color(1f, 0.25f, 0.25f), 0.01f);
+
+		public float FlashOutOfExistence()
+		{
+			DoFlash(0.1f, 0.05f, 1f, Color.white, 0.01f);
+
+			StartCoroutine(flashOutOfExistenceRoutine());
+
+			return 0.1f;
+		}
+
+		IEnumerator flashOutOfExistenceRoutine()
+		{
+			yield return new WaitForSeconds(0.1f);
+
+			Renderer.color = new Color(1f, 1f, 1f, 0f);
+		}
+
+		public float FlashIntoExistence()
+		{
+			DoFlash(0.1f, 0.05f, 1f, Color.white, 0.01f);
+
+			StartCoroutine(flashIntoExistenceRoutine());
+
+			return 0.1f;
+		}
+
+		IEnumerator flashIntoExistenceRoutine()
+		{
+			Renderer.color = new Color(1f, 1f, 1f, 0f);
+
+			yield return new WaitForSeconds(0.1f);
+
+			Renderer.color = new Color(1f, 1f, 1f, 1f);
+			yield return new WaitForSeconds(0.1f);
+		}
 	}
 }

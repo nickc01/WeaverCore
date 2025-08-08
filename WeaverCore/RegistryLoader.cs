@@ -108,8 +108,10 @@ namespace WeaverCore
                 if (assembly != typeof(WeaverMod).Assembly)
                 {
                     results = new System.Collections.Generic.List<AssetBundle>();
+                    //Initialization.PerformanceLog("Finding embedded resources in " + assembly.Location);
                     foreach (var name in assembly.GetManifestResourceNames())
                     {
+                        //Initialization.PerformanceLog("Found Resource = " + name);
                         if (name.EndsWith(extension))
                         {
                             //WeaverLog.Log("Loading embedded bundle stream : " + name);
@@ -119,6 +121,7 @@ namespace WeaverCore
                             if (bundle != null)
                             {
                                 results.Add(bundle);
+                                Initialization.PerformanceLog("Adding bundle " + bundle.name);
                             }
 
                             Initialization.PerformanceLog("Finished Loading embedded bundle stream : " + name);

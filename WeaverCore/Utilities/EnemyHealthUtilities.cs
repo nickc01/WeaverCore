@@ -292,9 +292,10 @@ namespace WeaverCore.Utilities
             object _sourceObj;
             public IHitResponderWrapper(object sourceObj)
             {
-                if (sourceObj.GetType() != IHitResponderType)
+                //if (sourceObj.GetType() != IHitResponderType)
+                if (!IHitResponderType.IsAssignableFrom(sourceObj.GetType()))
                 {
-                    throw new Exception($"Component {sourceObj?.GetType().FullName ?? "null"} isn't a {HealthManagerType.Name}");
+                    throw new Exception($"Component {sourceObj?.GetType().FullName ?? "null"} isn't a {IHitResponderType.Name}");
                 }
                 _sourceObj = sourceObj;
             }
@@ -309,7 +310,7 @@ namespace WeaverCore.Utilities
                     WeaverLog.LogError("Could not find HitInstance type");
                     return;
                 }
-                
+
                 // Get AttackTypes enum type through reflection
                 Type attackTypesEnumType = HealthManagerType.Assembly.GetType("AttackTypes");
                 if (attackTypesEnumType == null)
@@ -317,10 +318,10 @@ namespace WeaverCore.Utilities
                     WeaverLog.LogError("Could not find AttackTypes enum type");
                     return;
                 }
-                
+
                 // Create a HitInstance through reflection
                 object hitInstance = Activator.CreateInstance(HitInstanceType);
-                
+
                 // Set the fields using reflection
                 hitInstance.ReflectSetField("Source", hit.Attacker);
                 hitInstance.ReflectSetField("AttackType", hit.AttackType);
@@ -330,7 +331,8 @@ namespace WeaverCore.Utilities
                 hitInstance.ReflectSetField("MagnitudeMultiplier", 1.0f);
                 hitInstance.ReflectSetField("Multiplier", hit.AttackStrength);
 
-                SourceObj.ReflectCallMethod("Hit", CacheUtilities.GetTempSingleArray(hitInstance));
+                //SourceObj.ReflectCallMethod("Hit", CacheUtilities.GetTempSingleArray(hitInstance));
+                IHitResponderType.GetMethod("Hit", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(SourceObj, CacheUtilities.GetTempSingleArray(hitInstance));
             }
         }
 
@@ -503,12 +505,12 @@ namespace WeaverCore.Utilities
 			return DealDamage(obj, attacker, damage, type, hitDirection.ToDegrees());
         }
 
-		public static List<HealthWrapper> DealDamage(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees)
+		public static List<HealthWrapper> DealDamage(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f)
         {
             return DealDamage(obj, new HitInfo {
                 Attacker = attacker,
                 Damage = damage,
-                AttackStrength = 1f,
+                AttackStrength = attackStrength,
                 AttackType = type,
                 Direction = hitDirectionDegrees,
                 IgnoreInvincible = false
@@ -529,6 +531,166 @@ namespace WeaverCore.Utilities
                 {
                     enemies.Add(et);
                 }
+            }
+        }
+
+        static Collider2D[] cache = new Collider2D[20];
+        static int terrainMask = -1;
+
+        /// <summary>
+        /// Finds the nearest enemy to a given position within a specified radius
+        /// </summary>
+        /// <param name="position">The position to search from</param>
+        /// <param name="radius">The maximum search radius</param>
+        /// <param name="includeInactive">Whether to include inactive enemies</param>
+        /// <returns>The Transform of the nearest enemy, or null if none found</returns>
+        public static Transform FindNearestEnemy(Vector3 position, float radius, bool includeInactive = false, bool lineOfSight = false)
+        {
+            float nearestDistance = radius;
+            Transform nearestEnemy = null;
+
+            var oldQuery = Physics2D.queriesHitTriggers;
+
+            try
+            {
+                Physics2D.queriesHitTriggers = true;
+                int enemyLayerMask = LayerMask.GetMask("Enemies");
+                int hitCount = Physics2D.OverlapCircleNonAlloc(position, radius, cache, enemyLayerMask);
+
+                //foreach (var collider in colliders)
+                for (int i = 0; i < hitCount; i++)
+                {
+                    var collider = cache[i];
+                    // Skip if this is the player
+                    if (collider.gameObject == Player.Player1?.gameObject)
+                    {
+                        continue;
+                    }
+
+                    // Check if this object has a health component
+                    if (TryGetHealthComponent(collider, out var healthComponent))
+                    {
+                        // Skip dead enemies
+                        if (healthComponent.IsDead)
+                        {
+                            continue;
+                        }
+
+                        // Skip inactive enemies if not requested
+                        if (!includeInactive && !collider.gameObject.activeInHierarchy)
+                        {
+                            continue;
+                        }
+
+                        if (lineOfSight)
+                        {
+                            var dir = (collider.gameObject.transform.position - position).normalized;
+                            var startPos = position + (dir * 0.1f);
+                            var endPos = collider.gameObject.transform.position - (dir * 0.1f);
+                            var cache = HitCache.GetSingleCachedArray();
+                            if (terrainMask == -1)
+                            {
+                                terrainMask = LayerMask.GetMask("Terrain");
+                            }
+                            if (Physics2D.RaycastNonAlloc(startPos, dir, cache, (endPos - startPos).magnitude, terrainMask) != 0)
+                            {
+                                continue;
+                            }
+                        }
+
+                        float distance = Vector3.Distance(position, collider.transform.position);
+                        if (distance < nearestDistance)
+                        {
+                            nearestDistance = distance;
+                            nearestEnemy = collider.transform;
+                        }
+                    }
+                }
+
+                return nearestEnemy;
+            }
+            finally
+            {
+                Physics2D.queriesHitTriggers = oldQuery;
+            }
+        }
+
+        /// <summary>
+        /// Finds all enemies within a specified radius using NonAlloc methods for better performance
+        /// </summary>
+        /// <param name="position">The position to search from</param>
+        /// <param name="radius">The maximum search radius</param>
+        /// <param name="results">List to store the found enemy transforms (will be cleared)</param>
+        /// <param name="includeInactive">Whether to include inactive enemies</param>
+        /// <param name="lineOfSight">Whether to check line of sight</param>
+        /// <returns>The number of enemies found</returns>
+        public static int FindNearbyEnemies(Vector3 position, float radius, List<Transform> results, bool includeInactive = false, bool lineOfSight = false)
+        {
+            if (results == null)
+            {
+                throw new System.ArgumentNullException(nameof(results));
+            }
+
+            results.Clear();
+
+            var oldQuery = Physics2D.queriesHitTriggers;
+
+            try
+            {
+                Physics2D.queriesHitTriggers = true;
+                int enemyLayerMask = LayerMask.GetMask("Enemies");
+                int hitCount = Physics2D.OverlapCircleNonAlloc(position, radius, cache, enemyLayerMask);
+
+                for (int i = 0; i < hitCount; i++)
+                {
+                    var collider = cache[i];
+
+                    // Skip if this is the player
+                    if (collider.gameObject == Player.Player1?.gameObject)
+                    {
+                        continue;
+                    }
+
+                    // Check if this object has a health component
+                    if (TryGetHealthComponent(collider, out var healthComponent))
+                    {
+                        // Skip dead enemies
+                        if (healthComponent.IsDead)
+                        {
+                            continue;
+                        }
+
+                        // Skip inactive enemies if not requested
+                        if (!includeInactive && !collider.gameObject.activeInHierarchy)
+                        {
+                            continue;
+                        }
+
+                        if (lineOfSight)
+                        {
+                            var dir = (collider.gameObject.transform.position - position).normalized;
+                            var startPos = position + (dir * 0.1f);
+                            var endPos = collider.gameObject.transform.position - (dir * 0.1f);
+                            var rayCache = HitCache.GetSingleCachedArray();
+                            if (terrainMask == -1)
+                            {
+                                terrainMask = LayerMask.GetMask("Terrain");
+                            }
+                            if (Physics2D.RaycastNonAlloc(startPos, dir, rayCache, (endPos - startPos).magnitude, terrainMask) != 0)
+                            {
+                                continue;
+                            }
+                        }
+
+                        results.Add(collider.transform);
+                    }
+                }
+
+                return results.Count;
+            }
+            finally
+            {
+                Physics2D.queriesHitTriggers = oldQuery;
             }
         }
 
@@ -729,12 +891,12 @@ namespace WeaverCore.Utilities
 			return TriggerOtherHittables(obj, attacker, damage, type, hitDirection.ToDegrees());
         }
 
-		public static List<ExtraHitWrapper> TriggerOtherHittables(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees)
+		public static List<ExtraHitWrapper> TriggerOtherHittables(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f)
         {
             return TriggerOtherHittables(obj, new HitInfo {
                 Attacker = attacker,
                 Damage = damage,
-                AttackStrength = 1f,
+                AttackStrength = attackStrength,
                 AttackType = type,
                 Direction = hitDirectionDegrees,
                 IgnoreInvincible = false

@@ -217,7 +217,21 @@ namespace WeaverCore.Components.Colosseum
                 {
                     _startTime = Time.time;
                 }
-                StartCoroutine(ExpandRoutine(delay));
+                StartCoroutine(ExpandRoutine(delay, 0f));
+            }
+        }
+
+        public void ExpandWithDelayAndShake(float delay, float shakeDuration)
+        {
+            gameObject.SetActive(true);
+            if (!Changing)
+            {
+                Changing = true;
+                if (_startTime < 0)
+                {
+                    _startTime = Time.time;
+                }
+                StartCoroutine(ExpandRoutine(delay, shakeDuration));
             }
         }
 
@@ -237,7 +251,7 @@ namespace WeaverCore.Components.Colosseum
             }
         }
 
-        IEnumerator ExpandRoutine(float delay)
+        IEnumerator ExpandRoutine(float delay, float shakeDuration)
         {
             if (platform == null)
             {

@@ -81,7 +81,7 @@ public static class HealthCocoon_Patches
     static void AwakePostfix(HealthCocoon __instance)
     {
         WeaverPersistentBoolItem component = __instance.GetComponent<WeaverPersistentBoolItem>();
-        WeaverLog.Log("FOUND PERSISTENT COMPONENT = " + component);
+        //WeaverLog.Log("FOUND PERSISTENT COMPONENT = " + component);
         if (!component)
         {
             return;

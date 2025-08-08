@@ -89,7 +89,7 @@ public class TexturesToAtlasConverter : EditorWindow
 		{
 			closed = true;
 			Close();
-			UnboundCoroutine.Start(Convert(textureList, destroyOriginalTextures, outputAtlasName,cropTextures));
+			UnboundCoroutine.Start(Convert(textureList, destroyOriginalTextures, outputAtlasName, cropTextures));
 		}
 
 		EditorGUILayout.EndScrollView();
@@ -100,7 +100,7 @@ public class TexturesToAtlasConverter : EditorWindow
 	}
 
 	static TextureImporterSettings GetImportData(Texture tex)
-    {
+	{
 		var texImport = (TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(tex));
 		var texSettings = new TextureImporterSettings();
 		texImport.ReadTextureSettings(texSettings);
@@ -108,7 +108,7 @@ public class TexturesToAtlasConverter : EditorWindow
 	}
 
 	static Texture2D CropTexture(Texture2D input, Vector2 oldPivotCoordinates, out Vector2 newPivotCoordinates, int pixelPadding = 1)
-    {
+	{
 		var width = input.width;
 		var height = input.height;
 		var halfHeight = height / 2;
@@ -123,8 +123,8 @@ public class TexturesToAtlasConverter : EditorWindow
 
 		for (int i = 0; i < width; i++)
 		{
-            for (int y = 0; y < height; y++)
-            {
+			for (int y = 0; y < height; y++)
+			{
 				var color = input.GetPixel(i, y);
 				if (color.a >= alphaThreshold)
 				{
@@ -137,7 +137,7 @@ public class TexturesToAtlasConverter : EditorWindow
 				}
 			}
 		}
-		LeftLoopEnd:
+	LeftLoopEnd:
 
 		newPivotCoordinates.x -= leftPoint;
 
@@ -146,7 +146,7 @@ public class TexturesToAtlasConverter : EditorWindow
 		for (int i = width - 1; i >= 0; i--)
 		{
 			for (int y = 0; y < height; y++)
-            {
+			{
 				var color = input.GetPixel(i, y);
 				if (color.a >= alphaThreshold)
 				{
@@ -159,14 +159,14 @@ public class TexturesToAtlasConverter : EditorWindow
 				}
 			}
 		}
-		RightLoopEnd:
+	RightLoopEnd:
 
 		int bottomPoint = 0;
 
 		for (int i = 0; i < height; i++)
 		{
 			for (int x = 0; x < width; x++)
-            {
+			{
 				var color = input.GetPixel(x, i);
 				if (color.a >= alphaThreshold)
 				{
@@ -179,7 +179,7 @@ public class TexturesToAtlasConverter : EditorWindow
 				}
 			}
 		}
-		BottomLoopEnd:
+	BottomLoopEnd:
 
 		newPivotCoordinates.y -= bottomPoint;
 
@@ -188,7 +188,7 @@ public class TexturesToAtlasConverter : EditorWindow
 		for (int i = height - 1; i >= 0; i--)
 		{
 			for (int x = 0; x < width; x++)
-            {
+			{
 				var color = input.GetPixel(x, i);
 				if (color.a >= alphaThreshold)
 				{
@@ -201,7 +201,7 @@ public class TexturesToAtlasConverter : EditorWindow
 				}
 			}
 		}
-		TopLoopEnd:
+	TopLoopEnd:
 
 		var newWidth = rightPoint - leftPoint + 1;
 		var newHeight = topPoint - bottomPoint + 1;
@@ -229,12 +229,12 @@ public class TexturesToAtlasConverter : EditorWindow
 	}
 
 	static Vector2 GetPivot(TextureImporterSettings settings)
-    {
-        switch ((SpriteAlignment)settings.spriteAlignment)
-        {
-            case SpriteAlignment.Center:
-				return new Vector2(0.5f,0.5f);
-            case SpriteAlignment.TopLeft:
+	{
+		switch ((SpriteAlignment)settings.spriteAlignment)
+		{
+			case SpriteAlignment.Center:
+				return new Vector2(0.5f, 0.5f);
+			case SpriteAlignment.TopLeft:
 				return new Vector2(0f, 1f);
 			case SpriteAlignment.TopCenter:
 				return new Vector2(0.5f, 1f);
@@ -251,11 +251,11 @@ public class TexturesToAtlasConverter : EditorWindow
 			case SpriteAlignment.BottomRight:
 				return new Vector2(1f, 0f);
 			case SpriteAlignment.Custom:
-				return new Vector2(settings.spritePivot.x,settings.spritePivot.y);
-            default:
+				return new Vector2(settings.spritePivot.x, settings.spritePivot.y);
+			default:
 				return default;
-        }
-    }
+		}
+	}
 
 	static IEnumerator Convert(System.Collections.Generic.List<Texture2D> textures, bool destroyOriginalTextures, string outputAtlasName, bool cropTextures)
 	{
@@ -273,7 +273,7 @@ public class TexturesToAtlasConverter : EditorWindow
 		Vector2 atlasSize = default;
 
 		float averagePPU = 0;
-        System.Collections.Generic.List<Vector2> pivots = new System.Collections.Generic.List<Vector2>();
+		System.Collections.Generic.List<Vector2> pivots = new System.Collections.Generic.List<Vector2>();
 		bool editing = false;
 		try
 		{
@@ -283,18 +283,18 @@ public class TexturesToAtlasConverter : EditorWindow
 				var texSettings = new TextureImporterSettings();
 				texImport.ReadTextureSettings(texSettings);
 				averagePPU += texSettings.spritePixelsPerUnit;
-				var spriteRect = new Rect(0f,0f, tex.width, tex.height);
+				var spriteRect = new Rect(0f, 0f, tex.width, tex.height);
 				var spritePivot = GetPivot(texSettings);
 				pivots.Add(new Vector2(LerpUtilities.UnclampedLerp(spriteRect.xMin, spriteRect.xMax, spritePivot.x), LerpUtilities.UnclampedLerp(spriteRect.yMin, spriteRect.yMax, spritePivot.y)));
 			}
 			averagePPU /= textures.Count;
 
-            System.Collections.Generic.List<Texture2D> resizedTextures = new System.Collections.Generic.List<Texture2D>();
+			System.Collections.Generic.List<Texture2D> resizedTextures = new System.Collections.Generic.List<Texture2D>();
 			using (var context = new ReadableTextureContext(textures))
 			{
-                //AssetDatabase.StartAssetEditing();
-                if (cropTextures)
-                {
+				//AssetDatabase.StartAssetEditing();
+				if (cropTextures)
+				{
 					for (int i = 0; i < textures.Count; i++)
 					{
 						resizedTextures.Add(CropTexture(textures[i], pivots[i], out var newPivot));
@@ -305,8 +305,8 @@ public class TexturesToAtlasConverter : EditorWindow
 				editing = true;
 				AssetDatabase.StartAssetEditing();
 				var atlas = new Texture2D(8192, 8192, TextureFormat.RGBA32, false);
-				uvs = atlas.PackTextures(cropTextures ? resizedTextures.ToArray() : textures.ToArray(), 0,8192);
-				atlasSize = new Vector2(atlas.width,atlas.height);
+				uvs = atlas.PackTextures(cropTextures ? resizedTextures.ToArray() : textures.ToArray(), 0, 8192);
+				atlasSize = new Vector2(atlas.width, atlas.height);
 				using (var handle = File.Create(outputPath))
 				{
 					var pngData = ImageConversion.EncodeToPNG(atlas);
@@ -319,8 +319,8 @@ public class TexturesToAtlasConverter : EditorWindow
 		}
 		finally
 		{
-            if (editing)
-            {
+			if (editing)
+			{
 				AssetDatabase.StopAssetEditing();
 			}
 		}
@@ -328,7 +328,7 @@ public class TexturesToAtlasConverter : EditorWindow
 		try
 		{
 			AssetDatabase.StartAssetEditing();
-            /*
+			/*
 			 AssetDatabase.StartAssetEditing();
 			float averagePPU = 0;
 			List<Vector2> pivots = new List<Vector2>();
@@ -358,7 +358,7 @@ public class TexturesToAtlasConverter : EditorWindow
 				{
 					alignment = (int)SpriteAlignment.Custom,
 					name = textures[i].name,
-					pivot = new Vector2(LerpUtilities.UnclampedInverseLerp(0f, spriteRect.width, pivots[i].x), LerpUtilities.UnclampedInverseLerp(0f,spriteRect.height, pivots[i].y)),
+					pivot = new Vector2(LerpUtilities.UnclampedInverseLerp(0f, spriteRect.width, pivots[i].x), LerpUtilities.UnclampedInverseLerp(0f, spriteRect.height, pivots[i].y)),
 					rect = spriteRect,
 					border = Vector4.zero
 				};

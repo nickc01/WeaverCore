@@ -14,6 +14,7 @@ using WeaverCore.Editor.Utilities;
 using WeaverCore.Utilities;
 using WeaverBuildTools.Commands;
 using WeaverBuildTools.Enums;
+using System.IO.Compression;
 
 namespace WeaverCore.Editor.Compilation
 {
@@ -33,6 +34,8 @@ namespace WeaverCore.Editor.Compilation
             public string SourceAssemblyPath { get; set; }
             public BuildTarget Platform { get; set; }
             public string Hash { get; set; }
+            public bool IsCompressed { get; set; }
+            public CompressionMethod OriginalCompression { get; set; }
         }
 
         /// <summary>
@@ -51,14 +54,28 @@ namespace WeaverCore.Editor.Compilation
         {
             Debug.Log("<b>Starting Quick Compile...</b>");
             
-            // 1. Validate existing mod assemblies exist
+            // 1. Call BeforeQuickCompile hook
+            if (BuildPipelineCustomizer.TryGetCurrentCustomizer(out var customizer))
+            {
+                Debug.Log("Running BeforeQuickCompile customizer hook...");
+                var beforeTask = customizer.BeforeQuickCompile();
+                yield return new WaitUntil(() => beforeTask.IsCompleted);
+                
+                if (!beforeTask.Result)
+                {
+                    Debug.LogError("BeforeQuickCompile customizer hook failed.");
+                    yield break;
+                }
+            }
+            
+            // 2. Validate existing mod assemblies exist
             if (!HasExistingBuild(outputPath))
             {
                 Debug.LogError("No existing build found with embedded asset bundles. Please run a full build first.");
                 yield break;
             }
 
-            // 2. Extract existing embedded resources
+            // 3. Extract existing embedded resources
             Debug.Log("Extracting existing embedded resources...");
             List<ExtractedResource> extractedResources = null;
             
@@ -81,7 +98,7 @@ namespace WeaverCore.Editor.Compilation
 
             Debug.Log($"Extracted {extractedResources.Count} embedded resources");
 
-            // 3. Compile only the code assemblies
+            // 4. Compile only the code assemblies
             Debug.Log("Compiling code assemblies...");
             List<FileInfo> newAssemblies = null;
             bool compilationSuccessful = false;
@@ -99,13 +116,13 @@ namespace WeaverCore.Editor.Compilation
                 yield break;
             }
 
-            // 4. Force garbage collection to release assembly references
+            // 5. Force garbage collection to release assembly references
             Debug.Log("Releasing assembly references...");
             System.GC.Collect();
             System.GC.WaitForPendingFinalizers();
             yield return new WaitForSeconds(1f); // Give time for file handles to release
 
-            // 5. Re-embed the extracted resources
+            // 6. Re-embed the extracted resources
             Debug.Log("Re-embedding resources...");
             bool reEmbedSuccess = false;
             yield return ReEmbedResourcesRoutine(newAssemblies, extractedResources, success => reEmbedSuccess = success);
@@ -117,7 +134,22 @@ namespace WeaverCore.Editor.Compilation
                 yield break;
             }
 
-            // 6. Cleanup temporary files
+            // 7. Call AfterQuickCompile hook
+            if (customizer != null)
+            {
+                Debug.Log("Running AfterQuickCompile customizer hook...");
+                var afterTask = customizer.AfterQuickCompile();
+                yield return new WaitUntil(() => afterTask.IsCompleted);
+                
+                if (!afterTask.Result)
+                {
+                    Debug.LogError("AfterQuickCompile customizer hook failed.");
+                    CleanupTemporaryFiles(extractedResources);
+                    yield break;
+                }
+            }
+
+            // 8. Cleanup temporary files
             CleanupTemporaryFiles(extractedResources);
 
             Debug.Log("<b>Quick Compile Complete!</b>");
@@ -319,16 +351,66 @@ namespace WeaverCore.Editor.Compilation
                 {
                     var embeddedResources = assemblyDefinition.MainModule.Resources
                         .OfType<Mono.Cecil.EmbeddedResource>()
+                        .Where(r => !r.Name.EndsWith("_meta")) // Skip meta files, they'll be handled separately
                         .ToList();
 
                     foreach (var embeddedResource in embeddedResources)
                     {
                         var tempFile = Path.Combine(tempDir, embeddedResource.Name);
                         
-                        using (var resourceStream = embeddedResource.GetResourceStream())
-                        using (var fileStream = File.Create(tempFile))
+                        // Check for corresponding meta file
+                        var metaResource = assemblyDefinition.MainModule.Resources
+                            .OfType<Mono.Cecil.EmbeddedResource>()
+                            .FirstOrDefault(r => r.Name == embeddedResource.Name + "_meta");
+                        
+                        bool isCompressed = false;
+                        string originalHash = null;
+                        CompressionMethod originalCompression = CompressionMethod.NoCompression;
+                        
+                        if (metaResource != null)
                         {
-                            resourceStream.CopyTo(fileStream);
+                            try
+                            {
+                                using (var metaStream = metaResource.GetResourceStream())
+                                {
+                                    var meta = ResourceMetaData.FromStream(metaStream);
+                                    isCompressed = meta.compressed;
+                                    originalHash = meta.hash;
+                                    originalCompression = meta.compressed ? CompressionMethod.UseCompression : CompressionMethod.NoCompression;
+                                }
+                            }
+                            catch (Exception metaEx)
+                            {
+                                Debug.LogWarning($"Failed to read meta for {embeddedResource.Name}: {metaEx.Message}");
+                            }
+                        }
+                        
+                        // Extract and decompress the resource if necessary
+                        using (var resourceStream = embeddedResource.GetResourceStream())
+                        {
+                            if (isCompressed)
+                            {
+                                // Decompress the resource before writing to temp file
+                                using (var decompressedStream = new GZipStream(resourceStream, CompressionMode.Decompress))
+                                using (var fileStream = File.Create(tempFile))
+                                {
+                                    decompressedStream.CopyTo(fileStream);
+                                }
+                            }
+                            else
+                            {
+                                // Write resource as-is
+                                using (var fileStream = File.Create(tempFile))
+                                {
+                                    resourceStream.CopyTo(fileStream);
+                                }
+                            }
+                        }
+                        
+                        // Calculate hash of the decompressed file if not available from meta
+                        if (string.IsNullOrEmpty(originalHash))
+                        {
+                            originalHash = GetFileHash(tempFile);
                         }
 
                         extractedResources.Add(new ExtractedResource
@@ -337,7 +419,9 @@ namespace WeaverCore.Editor.Compilation
                             TempFilePath = tempFile,
                             SourceAssemblyPath = assemblyFile.FullName,
                             Platform = GetPlatformFromResourceName(embeddedResource.Name),
-                            Hash = GetFileHash(tempFile)
+                            Hash = originalHash,
+                            IsCompressed = isCompressed,
+                            OriginalCompression = originalCompression
                         });
                     }
                 }
@@ -659,7 +743,7 @@ namespace WeaverCore.Editor.Compilation
                                 ResourceName = r.ResourceName,
                                 FilePath = r.TempFilePath,
                                 Hash = r.Hash,
-                                Compression = CompressionMethod.NoCompression
+                                Compression = r.OriginalCompression
                             }).ToList();
 
                         // Embed all resources for this assembly in one operation

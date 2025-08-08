@@ -143,7 +143,7 @@ namespace WeaverCore.Components.Colosseum
 
         static List<(string, string)> GetPreloadNames()
         {
-            WeaverLog.Log("GETTING PRELOAD NAMES");
+            //WeaverLog.Log("GETTING PRELOAD NAMES");
             List<(string, string)> preloadNames = new List<(string, string)>();
             foreach (var bundle in WeaverAssets.AllBundles())
             {
@@ -155,10 +155,10 @@ namespace WeaverCore.Components.Colosseum
                     foreach (var p in preloads)
                     {
                         loadedPreloads.Add(p);
-                        WeaverLog.Log("Preload = " + p);
+                        //WeaverLog.Log("Preload = " + p);
                         foreach (var path in p.preloadPaths)
                         {
-                            WeaverLog.Log("PATH = " + path);
+                            //WeaverLog.Log("PATH = " + path);
                             var scene = GetSceneInPath(path);
                             var other = GetPathExcludingScene(path);
 
@@ -196,7 +196,7 @@ namespace WeaverCore.Components.Colosseum
 
                         if (preloadedObjects.TryGetValue(scene, out var others) && others.TryGetValue(other, out var loadedObj))
                         {
-                            WeaverLog.Log($"Found Loaded Object {loadedObj.name} for {scene}:{other}");
+                            //WeaverLog.Log($"Found Loaded Object {loadedObj.name} for {scene}:{other}");
                             //p.preloadedObjects[i] = loadedObj;
                             if (!LoadedObjects.ContainsKey(name))
                             {

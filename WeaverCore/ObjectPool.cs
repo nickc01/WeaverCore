@@ -599,6 +599,11 @@ namespace WeaverCore
 					((MonoBehaviour)component).StopAllCoroutines();
 				}
 
+				if (component is ParticleSystem && component != null)
+				{
+					((ParticleSystem)component).Stop();
+				}
+
 				int hash = CreateHierarchyHash(componentPath);
 				HierarchicalData hData;
 				if (HierarchyData.TryGetValue(hash, out hData))
@@ -682,6 +687,16 @@ namespace WeaverCore
 						if (cData.AwakeFunction != null)
 						{
 							cData.AwakeFunction(component);
+						}
+
+						if (component is ParticleSystem && component != null)
+						{
+							var particles = (ParticleSystem)component;
+							if (particles.main.playOnAwake)
+							{
+								particles.Stop();
+								particles.Play();
+							}
 						}
 					}
 				}
@@ -857,11 +872,11 @@ namespace WeaverCore
 		{
 			for (float i = 0; i < time; i += Time.deltaTime)
 			{
+				yield return null;
 				if (poolableObject == null || poolableObject.gameObject == null || poolableObject.InPool)
 				{
 					yield break;
 				}
-				yield return null;
 			}
 			SendBackToPool(poolableObject);
 		}
@@ -896,6 +911,16 @@ namespace WeaverCore
 			ReturnToPool(obj, time);
 		}
 
+		static bool IsExcluded(Type componentType, FieldInfo field)
+		{
+			if (field.Name.ToLower().Contains("prefab"))
+			{
+				return true;
+			}
+
+			return false;
+		}
+
 		/// <summary>
 		/// Creates a function that will copy the fields of one component to another of the same type. This is used to reset a component back to what it was on the prefab
 		/// </summary>
@@ -913,33 +938,33 @@ namespace WeaverCore
 
 			FieldCopierBuilder<Component> copier = new FieldCopierBuilder<Component>(componentType);
 
-            foreach (FieldInfo field in componentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-            {
-                if (!field.IsDefined(typeof(ExcludeFieldFromPoolAttribute), false) && !field.IsInitOnly && !field.IsLiteral)
-                {
-                    if (field.FieldType.IsValueType || field.FieldType.IsEnum)
-                    {
-                        if (!MultiThreaded)
-                        {
-                            WeaverLog.Log($"Adding Field {field.Name}");
-                        }
-                        copier.AddField(field);
-                    }
-                    else if (field.FieldType.IsClass && (field.IsPublic || field.IsDefined(typeof(SerializeField), true)))
-                    {
-                        if (!typeof(Component).IsAssignableFrom(field.FieldType) && !typeof(GameObject).IsAssignableFrom(field.FieldType))
-                        {
-                            if (!MultiThreaded)
-                            {
-                                WeaverLog.Log($"Adding Field {field.Name}");
-                            }
-                            copier.AddField(field);
-                        }
-                    }
-                }
-            }
+			foreach (FieldInfo field in componentType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+			{
+				if (!field.IsDefined(typeof(ExcludeFieldFromPoolAttribute), false) && !field.IsInitOnly && !field.IsLiteral && !IsExcluded(componentType, field))
+				{
+					if (field.FieldType.IsValueType || field.FieldType.IsEnum)
+					{
+						if (!MultiThreaded)
+						{
+							WeaverLog.Log($"Adding Field {field.Name}");
+						}
+						copier.AddField(field);
+					}
+					else if (field.FieldType.IsClass && (field.IsPublic || field.IsDefined(typeof(SerializeField), true)))
+					{
+						if (!typeof(Component).IsAssignableFrom(field.FieldType) && !typeof(GameObject).IsAssignableFrom(field.FieldType))
+						{
+							if (!MultiThreaded)
+							{
+								WeaverLog.Log($"Adding Field {field.Name}");
+							}
+							copier.AddField(field);
+						}
+					}
+				}
+			}
 
-            var finalFunc = copier.Finish();
+			var finalFunc = copier.Finish();
 			CopierCache.CacheObject(componentType, finalFunc);
 			return finalFunc;
 		}

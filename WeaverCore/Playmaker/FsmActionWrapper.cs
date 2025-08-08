@@ -23,6 +23,21 @@ namespace WeaverCore.Playmaker
 		{
 			return PlayMakerUtilities.SetActionProperty(InternalAction, propertyName, value);
 		}
+		
+		/// <summary>
+		/// Gets whether this FSM action is enabled
+		/// </summary>
+		public bool Enabled
+		{
+			get
+			{
+				return PlayMakerUtilities.GetActionEnabled(InternalAction);
+			}
+			set
+			{
+				PlayMakerUtilities.SetActionEnabled(InternalAction, value);
+			}
+		}
 
 		public override bool Equals(object obj)
 		{

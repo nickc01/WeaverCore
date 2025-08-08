@@ -23,7 +23,7 @@ namespace WeaverCore.Playmaker
         private static PropertyInfo ownerProperty;
         private static PropertyInfo fsmStateProperty;
         private static PropertyInfo fsmProperty;
-        private static PropertyInfo fsmComponentProperty;
+        private static FieldInfo fsmComponentProperty;
         
         // Cached method infos
         private static MethodInfo finishMethod;
@@ -54,7 +54,7 @@ namespace WeaverCore.Playmaker
                     ownerProperty = fsmActionType.GetProperty("Owner");
                     fsmStateProperty = fsmActionType.GetProperty("FsmState");
                     fsmProperty = fsmActionType.GetProperty("Fsm");
-                    fsmComponentProperty = fsmActionType.GetProperty("FsmComponent");
+                    fsmComponentProperty = fsmActionType.GetField("fsmComponent", BindingFlags.NonPublic | BindingFlags.Instance);
                     
                     // Cache method infos
                     finishMethod = fsmActionType.GetMethod("Finish");
@@ -157,6 +157,16 @@ namespace WeaverCore.Playmaker
         public MonoBehaviour FsmComponent
         {
             get => FSMActionBase != null && fsmComponentProperty != null ? fsmComponentProperty.GetValue(FSMActionBase) as MonoBehaviour : null;
+        }
+
+        public FsmWrapper FsmWrapper
+        {
+            get => new FsmWrapper(FSMActionBase != null && fsmProperty != null ? fsmProperty.GetValue(FSMActionBase) : null);
+        }
+
+        public PlayMakerFsmWrapper FsmComponentWrapper
+        {
+            get => new PlayMakerFsmWrapper(FSMActionBase != null && fsmComponentProperty != null ? fsmComponentProperty.GetValue(FSMActionBase) as MonoBehaviour : null);
         }
 
 

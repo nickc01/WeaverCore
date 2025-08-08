@@ -7,7 +7,7 @@
 	The directory where the Unity Editor DLLs are located
   -->
 	<Target Name="Setup">
-		<ReadLinesFromFile File="$(SolutionDir)Settings.txt">
+		<ReadLinesFromFile File="$(MSBuildThisFileDirectory)WeaverCore.Game/Settings.txt">
 		  <Output TaskParameter="Lines" ItemName="ItemsFromFile" />
 		</ReadLinesFromFile>
 		

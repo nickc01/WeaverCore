@@ -1,3 +1,5 @@
+using WeaverCore.Utilities;
+
 namespace WeaverCore.Playmaker
 {
     /// <summary>
@@ -21,6 +23,12 @@ namespace WeaverCore.Playmaker
 
 			return false;
 		}
+
+		public string Name => InternalEvent.ReflectGetProperty<string>("Name");
+
+		public bool IsSystemEvent => InternalEvent.ReflectGetProperty<bool>("IsSystemEvent");
+
+		public bool IsGlobal => InternalEvent.ReflectGetProperty<bool>("IsGlobal");
 		
 		public override int GetHashCode()
 		{

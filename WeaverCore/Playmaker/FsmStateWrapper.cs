@@ -47,6 +47,11 @@ namespace WeaverCore.Playmaker
 		{
 			return new FsmActionWrapper(PlayMakerUtilities.AddActionAtIndex(InternalState, action.InternalAction, index));
 		}
+
+		public void RemoveAllActions()
+		{
+			PlayMakerUtilities.RemoveAllActions(InternalState);
+		}
 		
 		public bool RemoveAction(int actionIndex)
 		{

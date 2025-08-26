@@ -299,6 +299,15 @@ namespace WeaverCore.Components
 			return 0.1f;
 		}
 
+		public float FlashOutOfExistence(Color color)
+		{
+			DoFlash(0.1f, 0.05f, 1f, color, 0.01f);
+
+			StartCoroutine(flashOutOfExistenceRoutine());
+
+			return 0.1f;
+		}
+
 		IEnumerator flashOutOfExistenceRoutine()
 		{
 			yield return new WaitForSeconds(0.1f);
@@ -309,6 +318,15 @@ namespace WeaverCore.Components
 		public float FlashIntoExistence()
 		{
 			DoFlash(0.1f, 0.05f, 1f, Color.white, 0.01f);
+
+			StartCoroutine(flashIntoExistenceRoutine());
+
+			return 0.1f;
+		}
+
+		public float FlashIntoExistence(Color color)
+		{
+			DoFlash(0.1f, 0.05f, 1f, color, 0.01f);
 
 			StartCoroutine(flashIntoExistenceRoutine());
 

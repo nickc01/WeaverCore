@@ -533,6 +533,20 @@ namespace WeaverCore.Utilities
 			return GetActionIndex(state.InternalState, action.InternalAction);
 		}
 
+		public static void RemoveAllActions(object state)
+		{
+			// Create a new actions array without the action to remove
+			Array newActions = Array.CreateInstance(FsmStateActionType, 0);
+
+			// Update the state's Actions property
+			PropertyInfo actionsProperty = FsmStateType.GetProperty("Actions");
+			actionsProperty.SetValue(state, newActions, null);
+
+			// Save the actions to the state's action data
+			MethodInfo saveActionsMethod = FsmStateType.GetMethod("SaveActions");
+			saveActionsMethod.Invoke(state, null);
+		}
+
 		public static bool RemoveAction(object state, int actionIndex)
 		{
 			if (state == null)
@@ -547,7 +561,7 @@ namespace WeaverCore.Utilities
 			{
 				actionIndex = currentActions.Length - 1;
 			}
-			
+
 			if (actionIndex >= currentActions.Length)
 			{
 				return false;
@@ -555,7 +569,7 @@ namespace WeaverCore.Utilities
 
 			// Create a new actions array without the action to remove
 			Array newActions = Array.CreateInstance(FsmStateActionType, currentActions.Length - 1);
-			
+
 			// Copy all actions except the one to remove
 			for (int i = 0, j = 0; i < currentActions.Length; i++)
 			{

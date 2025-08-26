@@ -112,7 +112,7 @@ namespace WeaverCore.Utilities
 
 		public static MonoBehaviour FindPlayMakerFSM(GameObject gameObject, string fsmName)
 		{
-			if (gameObject == null)
+			if (gameObject == null || PlayMakerFSMType == null)
 			{
 				return null;
 			}

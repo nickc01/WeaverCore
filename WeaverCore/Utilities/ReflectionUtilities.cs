@@ -677,6 +677,34 @@ namespace WeaverCore.Utilities
 		}
 
         /// <summary>
+        /// Gets the value of a field using reflection from a specific type.
+        /// </summary>
+        /// <param name="obj">The object containing the field.</param>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="searchType">The specific type to search for the field (useful for base class fields).</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The value of the specified field.</returns>
+        public static object ReflectGetField(this object obj, string fieldName, Type searchType, BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public)
+		{
+			var field = GetFieldCached(searchType, fieldName, flags);
+			return field?.GetValue(obj);
+		}
+
+        /// <summary>
+        /// Gets the value of a field using reflection from a specific type.
+        /// </summary>
+        /// <param name="obj">The object containing the field.</param>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="searchType">The specific type to search for the field (useful for base class fields).</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The value of the specified field.</returns>
+        public static T ReflectGetField<T>(this object obj, string fieldName, Type searchType, BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public)
+		{
+			var field = GetFieldCached(searchType, fieldName, flags);
+			return (T)field?.GetValue(obj);
+		}
+
+        /// <summary>
         /// Sets the value of a field using reflection.
         /// </summary>
         /// <param name="obj">The object containing the field.</param>
@@ -686,6 +714,20 @@ namespace WeaverCore.Utilities
         public static void ReflectSetField(this object obj, string fieldName, object value, BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public)
 		{
 			var field = GetFieldCached(obj.GetType(), fieldName, flags);
+			field?.SetValue(obj, value);
+		}
+
+        /// <summary>
+        /// Sets the value of a field using reflection from a specific type.
+        /// </summary>
+        /// <param name="obj">The object containing the field.</param>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="value">The value to set.</param>
+        /// <param name="searchType">The specific type to search for the field (useful for base class fields).</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        public static void ReflectSetField(this object obj, string fieldName, object value, Type searchType, BindingFlags flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public)
+		{
+			var field = GetFieldCached(searchType, fieldName, flags);
 			field?.SetValue(obj, value);
 		}
 
@@ -716,6 +758,34 @@ namespace WeaverCore.Utilities
         }
 
         /// <summary>
+        /// Gets the value of a property using reflection from a specific type.
+        /// </summary>
+        /// <param name="obj">The object containing the property.</param>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="searchType">The specific type to search for the property (useful for base class properties).</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The value of the specified property.</returns>
+        public static object ReflectGetProperty(this object obj, string propertyName, Type searchType, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+			var property = GetPropertyCached(searchType, propertyName, flags);
+			return property?.GetValue(obj);
+        }
+
+        /// <summary>
+        /// Gets the value of a property using reflection from a specific type.
+        /// </summary>
+        /// <param name="obj">The object containing the property.</param>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="searchType">The specific type to search for the property (useful for base class properties).</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The value of the specified property.</returns>
+        public static T ReflectGetProperty<T>(this object obj, string propertyName, Type searchType, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+			var property = GetPropertyCached(searchType, propertyName, flags);
+			return (T)property?.GetValue(obj);
+        }
+
+        /// <summary>
         /// Sets the value of a property using reflection.
         /// </summary>
         /// <param name="obj">The object containing the property.</param>
@@ -731,6 +801,22 @@ namespace WeaverCore.Utilities
         }
 
         /// <summary>
+        /// Sets the value of a property using reflection from a specific type.
+        /// </summary>
+        /// <param name="obj">The object containing the property.</param>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <param name="value">The value to set.</param>
+        /// <param name="searchType">The specific type to search for the property (useful for base class properties).</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>True if the property was successfully set; otherwise, false.</returns>
+        public static bool ReflectSetProperty(this object obj, string propertyName, object value, Type searchType, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+			var property = GetPropertyCached(searchType, propertyName, flags);
+			property?.SetValue(obj, value);
+			return property != null;
+        }
+
+        /// <summary>
         /// Calls a method using reflection.
         /// </summary>
         /// <param name="obj">The object containing the method.</param>
@@ -741,6 +827,21 @@ namespace WeaverCore.Utilities
         public static object ReflectCallMethod(this object obj, string methodName, object[] parameters = null, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
         {
 			var method = GetMethodCached(obj.GetType(), methodName, flags);
+			return method.Invoke(obj, parameters);
+        }
+
+        /// <summary>
+        /// Calls a method using reflection from a specific type.
+        /// </summary>
+        /// <param name="obj">The object containing the method.</param>
+        /// <param name="methodName">The name of the method.</param>
+        /// <param name="searchType">The specific type to search for the method (useful for base class methods).</param>
+        /// <param name="parameters">An array of parameters to pass to the method.</param>
+        /// <param name="flags">Binding flags for reflection (default is Static, NonPublic, Public, Instance).</param>
+        /// <returns>The result of the method invocation.</returns>
+        public static object ReflectCallMethod(this object obj, string methodName, Type searchType, object[] parameters = null, BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+        {
+			var method = GetMethodCached(searchType, methodName, flags);
 			return method.Invoke(obj, parameters);
         }
 

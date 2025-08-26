@@ -115,6 +115,14 @@ namespace WeaverCore.Components
 
                 patcher.Patch(orig, prefix, null);
             }
+
+            //ManageHit()
+            /*{
+                var orig = typeof(ScuttlerControl).GetMethod("ManageHit", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+                var prefix = typeof(WeaverScuttlerControl).GetMethod(nameof(Run_Prefix), BindingFlags.NonPublic | BindingFlags.Static);
+
+                patcher.Patch(orig, prefix, null);
+            }*/
         }
 
         static bool Awake_Prefix(ScuttlerControl __instance)
@@ -135,6 +143,20 @@ namespace WeaverCore.Components
             {
                 __result = NewLandRoutine(wsc);
                 return false;
+            }
+
+            return true;
+        }
+
+        static bool ManageHit_Prefix(ScuttlerControl __instance)
+        {
+            if (__instance is WeaverScuttlerControl wsc)
+            {
+                /*// Check if we should skip spell attacks
+                if (wsc.skipSpells && IsAttackFromSpell(hit))
+                {
+                    return false;
+                }*/
             }
 
             return true;
@@ -202,12 +224,6 @@ namespace WeaverCore.Components
 #if !UNITY_EDITOR
         return false;
 #else
-            // Check if we should skip spell attacks
-            if (skipSpells && IsAttackFromSpell(hit))
-            {
-                return false;
-            }
-
             ManageHit((int)hit.AttackType, hit.Direction);
             return true;
 #endif

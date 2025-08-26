@@ -21,7 +21,7 @@ namespace WeaverCore.Utilities
         public static Type IHittableType = typeof(IHittable);
         public static Type IHitResponderType;
         public static Type HitInstanceType;
-        
+
         // Dictionary to store death event handlers for HealthManager instances
         private static readonly Dictionary<MonoBehaviour, List<Action<HitInfo>>> healthManagerWrappers = new Dictionary<MonoBehaviour, List<Action<HitInfo>>>();
 
@@ -194,8 +194,8 @@ namespace WeaverCore.Utilities
 
             public override int Health { get => HealthComponent.ReflectGetField<int>("hp"); set => HealthComponent.ReflectSetField("hp", value); }
             public override int SmallGeo { get => HealthComponent.ReflectGetField<int>("smallGeoDrops"); set => HealthComponent.ReflectCallMethod("SetGeoSmall", CacheUtilities.GetTempSingleArray<object>(value)); }
-            public override int MediumGeo { get => HealthComponent.ReflectGetField<int>("mediumGeoDrops"); set => HealthComponent.ReflectCallMethod("SetGeoMedium", CacheUtilities.GetTempSingleArray<object>(value));  }
-            public override int LargeGeo { get => HealthComponent.ReflectGetField<int>("largeGeoDrops"); set => HealthComponent.ReflectCallMethod("SetGeoLarge", CacheUtilities.GetTempSingleArray<object>(value));  }
+            public override int MediumGeo { get => HealthComponent.ReflectGetField<int>("mediumGeoDrops"); set => HealthComponent.ReflectCallMethod("SetGeoMedium", CacheUtilities.GetTempSingleArray<object>(value)); }
+            public override int LargeGeo { get => HealthComponent.ReflectGetField<int>("largeGeoDrops"); set => HealthComponent.ReflectCallMethod("SetGeoLarge", CacheUtilities.GetTempSingleArray<object>(value)); }
             public override bool Invincible { get => HealthComponent.ReflectGetField<bool>("invincible"); set => HealthComponent.ReflectSetField("invincible", value); }
 
             public override bool IsDead => HealthComponent.ReflectGetField<bool>("isDead");
@@ -209,7 +209,7 @@ namespace WeaverCore.Utilities
                         callbacks = new List<Action<HitInfo>>();
                         healthManagerWrappers[HealthComponent] = callbacks;
                     }
-                    
+
                     if (!callbacks.Contains(value))
                     {
                         callbacks.Add(value);
@@ -221,7 +221,7 @@ namespace WeaverCore.Utilities
                     if (healthManagerWrappers.TryGetValue(HealthComponent, out var callbacks))
                     {
                         callbacks.Remove(value);
-                        
+
                         // Clean up empty lists
                         if (callbacks.Count == 0)
                         {
@@ -233,21 +233,21 @@ namespace WeaverCore.Utilities
 
             public override void Die(HitInfo hit)
             {
-                HealthComponent.ReflectCallMethod("Die", new object[]{ new float?(hit.Direction), hit.AttackType, hit.IgnoreInvincible });
+                HealthComponent.ReflectCallMethod("Die", new object[] { new float?(hit.Direction), hit.AttackType, hit.IgnoreInvincible });
             }
 
             public override bool Hit(HitInfo hit)
             {
                 // Store the health before hit
                 int healthBefore = Health;
-                
+
                 // Get HitInstance type through reflection
                 if (HitInstanceType == null)
                 {
                     WeaverLog.LogError("Could not find HitInstance type");
                     return false;
                 }
-                
+
                 // Get AttackTypes enum type through reflection
                 Type attackTypesEnumType = HealthManagerType.Assembly.GetType("AttackTypes");
                 if (attackTypesEnumType == null)
@@ -255,18 +255,18 @@ namespace WeaverCore.Utilities
                     WeaverLog.LogError("Could not find AttackTypes enum type");
                     return false;
                 }
-                
+
                 // Create a HitInstance through reflection
                 object hitInstance = Activator.CreateInstance(HitInstanceType);
-                
+
                 // Set the fields using reflection
                 hitInstance.ReflectSetField("Source", hit.Attacker);
                 hitInstance.ReflectSetField("AttackType", hit.AttackType);
                 hitInstance.ReflectSetField("DamageDealt", hit.Damage);
                 hitInstance.ReflectSetField("Direction", hit.Direction);
                 hitInstance.ReflectSetField("IgnoreInvulnerable", hit.IgnoreInvincible);
-                hitInstance.ReflectSetField("MagnitudeMultiplier", 1.0f);
-                hitInstance.ReflectSetField("Multiplier", hit.AttackStrength);
+                hitInstance.ReflectSetField("MagnitudeMultiplier", hit.AttackStrength);
+                hitInstance.ReflectSetField("Multiplier", 1f);
 
                 HealthComponent.ReflectCallMethod("Hit", CacheUtilities.GetTempSingleArray(hitInstance));
 
@@ -502,12 +502,13 @@ namespace WeaverCore.Utilities
         /// <returns>A list of IHittable objects that were successfully hit.</returns>
         public static List<HealthWrapper> DealDamage(Transform obj, GameObject attacker, int damage, AttackTypes type, CardinalDirection hitDirection)
         {
-			return DealDamage(obj, attacker, damage, type, hitDirection.ToDegrees());
+            return DealDamage(obj, attacker, damage, type, hitDirection.ToDegrees());
         }
 
-		public static List<HealthWrapper> DealDamage(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f)
+        public static List<HealthWrapper> DealDamage(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f)
         {
-            return DealDamage(obj, new HitInfo {
+            return DealDamage(obj, new HitInfo
+            {
                 Attacker = attacker,
                 Damage = damage,
                 AttackStrength = attackStrength,
@@ -859,11 +860,12 @@ namespace WeaverCore.Utilities
 
             int depth = 0;
 
-			while (obj != null)
-			{
-				if (TryGetHealthComponent(obj, out var hittable))
-				{
-					var hitInfo = new HitInfo {
+            while (obj != null)
+            {
+                if (TryGetHealthComponent(obj, out var hittable))
+                {
+                    var hitInfo = new HitInfo
+                    {
                         Attacker = hit.Attacker,
                         Damage = hit.Damage,
                         AttackStrength = hit.AttackStrength,
@@ -876,24 +878,25 @@ namespace WeaverCore.Utilities
                     hittable.Hit(hit);
                     hitObjects.Add(hittable);
                 }
-				obj = obj.parent;
-				depth += 1;
+                obj = obj.parent;
+                depth += 1;
                 if (depth == DEFAULT_RECURSION_DEPTH)
                 {
-					break;
+                    break;
                 }
-			}
-			return hitObjects;
+            }
+            return hitObjects;
         }
 
         public static List<ExtraHitWrapper> TriggerOtherHittables(Transform obj, GameObject attacker, int damage, AttackTypes type, CardinalDirection hitDirection)
         {
-			return TriggerOtherHittables(obj, attacker, damage, type, hitDirection.ToDegrees());
+            return TriggerOtherHittables(obj, attacker, damage, type, hitDirection.ToDegrees());
         }
 
-		public static List<ExtraHitWrapper> TriggerOtherHittables(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f)
+        public static List<ExtraHitWrapper> TriggerOtherHittables(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f)
         {
-            return TriggerOtherHittables(obj, new HitInfo {
+            return TriggerOtherHittables(obj, new HitInfo
+            {
                 Attacker = attacker,
                 Damage = damage,
                 AttackStrength = attackStrength,
@@ -909,11 +912,12 @@ namespace WeaverCore.Utilities
 
             int depth = 0;
 
-			while (obj != null)
-			{
+            while (obj != null)
+            {
                 foreach (var hittable in GetOtherHittables(obj))
                 {
-                    var hitInfo = new HitInfo {
+                    var hitInfo = new HitInfo
+                    {
                         Attacker = hit.Attacker,
                         Damage = hit.Damage,
                         AttackStrength = hit.AttackStrength,
@@ -926,15 +930,39 @@ namespace WeaverCore.Utilities
                     hittable.Hit(hit);
                     hitObjects.Add(hittable);
                 }
-                
-				obj = obj.parent;
-				depth += 1;
+
+                obj = obj.parent;
+                depth += 1;
                 if (depth == DEFAULT_RECURSION_DEPTH)
                 {
-					break;
+                    break;
                 }
-			}
-			return hitObjects;
+            }
+            return hitObjects;
+        }
+
+        public static bool TryGetDamager(GameObject gameObject, out HazardType hazard, out int damageDealt)
+        {
+            var fsm = PlayMakerUtilities.FindPlayMakerFSMWrapper(gameObject, "damages_hero");
+
+            if (fsm != null)
+            {
+                hazard = (HazardType)fsm.GetFsm().GetIntVariable("hazardType");
+                damageDealt = fsm.GetFsm().GetIntVariable("damageDealt");
+                return true;
+            }
+            else if (gameObject.TryGetComponent<DamageHero>(out var damager))
+            {
+                hazard = (HazardType)damager.hazardType;
+                damageDealt = damager.damageDealt;
+                return true;
+            }
+            else
+            {
+                hazard = default;
+                damageDealt = default;
+                return false;
+            }
         }
     }
 }

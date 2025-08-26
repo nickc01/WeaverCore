@@ -2505,7 +2505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd11a7a3b9c16940bc7acd10ca21a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageDealt: 2
+  damageDealt: 1
   hazardType: 2
   shadowDashHazard: 0
   resetOnEnable: 0
@@ -2539,6 +2539,10 @@ MonoBehaviour:
   damage: 32
   attackType: 0
   hitDirection: 0
+  ForcedHitDirection: 0
+  IsContinuous: 1
+  AttackStrength: 1
+  ContinousHitRate: 0.2
   OnHitObject:
     m_PersistentCalls:
       m_Calls: []

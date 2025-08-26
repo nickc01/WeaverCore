@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using GlobalEnums;
 using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Attributes;
+using WeaverCore.Components;
 using WeaverCore.Enums;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;
@@ -452,23 +454,23 @@ namespace WeaverCore
 
             return height;
         }
-        
-        public bool IsPartOfPlayer(Transform t)
-		{
-			Transform player1Transform = this.transform;
 
-			while (t != null)
-			{
-				if (t == player1Transform || t.CompareTag("Nail Attack"))
+        public bool IsPartOfPlayer(Transform t)
+        {
+            Transform player1Transform = this.transform;
+
+            while (t != null)
+            {
+                if (t == player1Transform || t.CompareTag("Nail Attack"))
                 {
-					return true;
+                    return true;
                 }
 
-				t = t.parent;
-			}
+                t = t.parent;
+            }
 
-			return false;
-		}
+            return false;
+        }
 
 #if UNITY_EDITOR
         BoxCollider2D _validatedBoxCollider;
@@ -478,7 +480,7 @@ namespace WeaverCore
             {
                 _validatedBoxCollider = GetComponent<BoxCollider2D>();
             }
-            
+
             if (_validatedBoxCollider != null && Vector2.Distance(_validatedBoxCollider.size, new Vector2(0.4554138f, 1.169786f)) < 0.001f && Vector2.Distance(_validatedBoxCollider.offset, new Vector2(0f, 0f)) < 0.001f)
             {
                 var heroBox = transform.Find("HeroBox").GetComponent<BoxCollider2D>();
@@ -508,6 +510,28 @@ namespace WeaverCore
         public static bool IsPartOfPlayer1(Transform transform)
         {
             return Player.Player1.IsPartOfPlayer(transform);
+        }
+
+        public static bool TryGetPlayerDamager(GameObject obj, out int damage, out HazardType hazardType)
+        {
+            if (obj.TryGetComponent<DamageHero>(out var damager))
+            {
+                damage = damager.damageDealt;
+                hazardType = (HazardType)damager.hazardType;
+                return true;
+            }
+
+            var damagerFSM = PlayMakerUtilities.FindPlayMakerFSMWrapper(obj, "damages_hero");
+            if (damagerFSM != default)
+            {
+                damage = damagerFSM.GetFsm().GetIntVariable("damageDealt");
+                hazardType = (HazardType)damagerFSM.GetFsm().GetIntVariable("hazardType");
+                return true;
+            }
+
+            damage = default;
+            hazardType = default;
+            return false;
         }
     }
 }

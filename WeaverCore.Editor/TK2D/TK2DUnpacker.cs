@@ -390,6 +390,7 @@ namespace WeaverCore.Editor
 			EditorUtility.DisplayProgressBar("Unpacking Sprites", "", 0f);
             System.Collections.Generic.List<string> spritePaths = new System.Collections.Generic.List<string>();
             System.Collections.Generic.List<Texture2D> spriteTextures = new System.Collections.Generic.List<Texture2D>();
+            System.Collections.Generic.List<Vector2Int> spriteDimensions = new System.Collections.Generic.List<Vector2Int>();
 			try
 			{
 				AssetDatabase.StartAssetEditing();
@@ -400,6 +401,7 @@ namespace WeaverCore.Editor
 					{
 						spritePaths.Add(null);
 						spriteTextures.Add(null);
+						spriteDimensions.Add(default);
 						continue;
 					}
 					EditorUtility.DisplayProgressBar("Unpacking Sprites", map.name, (float)i / spriteMap.collection.spriteDefinitions.GetLength(0));
@@ -409,6 +411,7 @@ namespace WeaverCore.Editor
 					var spritePath = $"{relativeDir}{Path.DirectorySeparatorChar}{map.name}.png";
 					spritePaths.Add(spritePath);
 					spriteTextures.Add(spriteTexture);
+					spriteDimensions.Add(new Vector2Int(spriteTexture.width, spriteTexture.height));
 					File.WriteAllBytes(spritePath, spriteTexture.EncodeToPNG());
 					AssetDatabase.ImportAsset(spritePath);
 				}
@@ -418,7 +421,7 @@ namespace WeaverCore.Editor
 				AssetDatabase.StopAssetEditing();
 				EditorUtility.ClearProgressBar();
 			}
-			yield return PostUnpackSprites(name, spriteMap, importedTextures, spritePaths, spriteTextures, outputDir);
+			yield return PostUnpackSprites(name, spriteMap, importedTextures, spritePaths, spriteTextures, spriteDimensions, outputDir);
 		}
 
 		static float UnclampedLerp(float A, float B, float T)
@@ -441,7 +444,7 @@ namespace WeaverCore.Editor
 		/// <param name="spriteTextures">A list of textures extracted from the spritemap</param>
 		/// <param name="outputDir">The output location where all the extracted sprites are located</param>
 		/// <returns></returns>
-		static IEnumerator PostUnpackSprites(string name, SpriteMapImport spriteMap, System.Collections.Generic.List<Texture2D> importedTextures, System.Collections.Generic.List<string> spritePaths, System.Collections.Generic.List<Texture2D> spriteTextures, DirectoryInfo outputDir)
+		static IEnumerator PostUnpackSprites(string name, SpriteMapImport spriteMap, System.Collections.Generic.List<Texture2D> importedTextures, System.Collections.Generic.List<string> spritePaths, System.Collections.Generic.List<Texture2D> spriteTextures, System.Collections.Generic.List<Vector2Int> spriteDimensions, DirectoryInfo outputDir)
 		{
 			var relativeDir = PathUtilities.ConvertToProjectPath(outputDir.FullName);
 			yield return null;
@@ -469,16 +472,13 @@ namespace WeaverCore.Editor
 					var blPos = definition.positions[0];
 					var trPos = definition.positions[3];
 
-					var horizontalppu = texture.width / (((double)trPos.x) - blPos.x);
-					var verticalppu = texture.height / ((double)trPos.y - blPos.y);
+					var horizontalppu = spriteDimensions[i].x / (((double)trPos.x) - blPos.x);
+					var verticalppu = spriteDimensions[i].y / ((double)trPos.y - blPos.y);
 
 					var averagePPU = (horizontalppu + verticalppu) / 2.0;
 
 					var diffPPU = (float)(settings.spritePixelsPerUnit - averagePPU);
 					var ppuScaling = (float)(settings.spritePixelsPerUnit / averagePPU);
-
-					WeaverLog.Log("DIFF PPU = " + diffPPU);
-					WeaverLog.Log("DIFF PPU Scaling = " + ppuScaling);
 
 					ppuScaling = 1f;
 					settings.spriteAlignment = (int)SpriteAlignment.Custom;

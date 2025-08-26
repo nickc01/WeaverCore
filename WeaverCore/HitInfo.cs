@@ -32,9 +32,14 @@ namespace WeaverCore
 		public bool IgnoreInvincible;
 
 		/// <summary>
-		/// How strong the attack was. Used for enemy recoil
+		/// How strong the attack was. This is multplied with the damage
 		/// </summary>
 		public float AttackStrength;
+
+		/// <summary>
+		/// How strong the recoil effect should be
+		/// </summary>
+		public float RecoilStrength;
 
 		public override string ToString()
 		{
@@ -46,6 +51,7 @@ namespace WeaverCore
 			final = string.Concat(final, "Direction = " + Direction, ", ");
 			final = string.Concat(final, "IgnoreInvincible = " + IgnoreInvincible, ", ");
 			final = string.Concat(final, "AttackStrength = " + AttackStrength, "}");
+			final = string.Concat(final, "RecoilStrength = " + RecoilStrength, "}");
 			return final;
 		}
 

@@ -110,7 +110,7 @@ namespace WeaverCore.Utilities
 				else if (instruction is IEnumerator)
 				{
 					var e = instruction as IEnumerator;
-					yield return RunWhile(e,predicate);
+					yield return RunWhile(e, predicate);
 				}
 				else
 				{
@@ -192,16 +192,16 @@ namespace WeaverCore.Utilities
 			action();
 		}
 
-        /// <summary>
-        /// Runs a function after a specified amount of time
-        /// </summary>
-        /// <param name="time">The time to wait</param>
-        /// <param name="action">The function to run</param>
-        public static IEnumerator RunAfter(float time, Func<IEnumerator> action)
-        {
-            yield return new WaitForSeconds(time);
-            yield return action();
-        }
+		/// <summary>
+		/// Runs a function after a specified amount of time
+		/// </summary>
+		/// <param name="time">The time to wait</param>
+		/// <param name="action">The function to run</param>
+		public static IEnumerator RunAfter(float time, Func<IEnumerator> action)
+		{
+			yield return new WaitForSeconds(time);
+			yield return action();
+		}
 
 		/// <summary>
 		/// Waits until either the predicate returns true or if the time has elapsed
@@ -220,6 +220,46 @@ namespace WeaverCore.Utilities
 				{
 					yield return null;
 				}
+			}
+		}
+
+		public static IEnumerator TriggerImmediate(IEnumerator routine) => TriggerImmediate(routine, out var _);
+
+		public static IEnumerator TriggerImmediate(IEnumerator routine, out bool canContinue)
+		{
+			if (routine.MoveNext())
+			{
+				IEnumerator Continue()
+				{
+					yield return routine.Current;
+					while (routine.MoveNext())
+					{
+						yield return routine.Current;
+					}
+				}
+
+				canContinue = true;
+
+				return Continue();
+			}
+			else
+			{
+				canContinue = false;
+				return Enumerable.Empty<object>().GetEnumerator();
+			}
+		}
+
+		public static Coroutine TriggerImmediate(IEnumerator routine, MonoBehaviour coroutineSource)
+		{
+			var wrapper = TriggerImmediate(routine, out var canContinue);
+			if (canContinue)
+			{
+				WeaverLog.Log("Continuing Routine");
+				return coroutineSource.StartCoroutine(wrapper);
+			}
+			else
+			{
+				return null;
 			}
 		}
     }

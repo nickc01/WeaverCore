@@ -29,12 +29,30 @@ namespace WeaverCore.Utilities
         private static readonly PropertyInfo ClipFpsProperty;
         private static readonly PropertyInfo SpriteProperty;
 
-        private static readonly MethodInfo BuildMethod;
-        private static readonly MethodInfo SetSpriteMethod;
-        private static readonly MethodInfo PlayMethod;
-        private static readonly MethodInfo StopMethod;
-        private static readonly MethodInfo PauseMethod;
-        private static readonly MethodInfo ResumeMethod;
+        internal static readonly MethodInfo BuildMethod;
+        internal static readonly MethodInfo SetSpriteMethod;
+        internal static readonly MethodInfo PlayMethod;
+        internal static readonly MethodInfo StopMethod;
+        internal static readonly MethodInfo PauseMethod;
+        internal static readonly MethodInfo ResumeMethod;
+        
+        // Additional methods for resolving ambiguous method calls
+        internal static readonly MethodInfo SetSpriteIntMethod;
+        internal static readonly MethodInfo SetSpriteStringMethod;
+        internal static readonly MethodInfo PlayNoArgsMethod;
+        internal static readonly MethodInfo PlayStringMethod;
+        internal static readonly MethodInfo PlayObjectMethod;
+        internal static readonly MethodInfo PlayFromFrameIntMethod;
+        internal static readonly MethodInfo PlayFromFrameStringIntMethod;
+        internal static readonly MethodInfo PlayFromFrameObjectIntMethod;
+        internal static readonly MethodInfo PlayFromFloatMethod;
+        internal static readonly MethodInfo PlayFromStringFloatMethod;
+        internal static readonly MethodInfo PlayFromObjectFloatMethod;
+        internal static readonly MethodInfo IsPlayingStringMethod;
+        internal static readonly MethodInfo IsPlayingObjectMethod;
+        internal static readonly MethodInfo SetFrameIntMethod;
+        internal static readonly MethodInfo SetFrameIntBoolMethod;
+        internal static readonly MethodInfo ForceBuildMethod;
 
         private static readonly string SPRITE_ID_PROP_NAME = "spriteId";
         private static readonly string COLLECTION_PROP_NAME = "Collection";
@@ -77,6 +95,11 @@ namespace WeaverCore.Utilities
                 // Cache commonly used methods for tk2dSprite
                 BuildMethod = Tk2dSpriteType?.GetMethod("Build");
                 SetSpriteMethod = Tk2dBaseSpriteType?.GetMethod("SetSprite", new[] { Tk2dSpriteCollectionDataType, typeof(int) });
+                ForceBuildMethod = Tk2dSpriteType?.GetMethod("ForceBuild");
+
+                // Cache SetSprite overloads to avoid ambiguous matches
+                SetSpriteIntMethod = Tk2dBaseSpriteType?.GetMethod("SetSprite", new[] { Tk2dSpriteCollectionDataType, typeof(int) });
+                SetSpriteStringMethod = Tk2dBaseSpriteType?.GetMethod("SetSprite", new[] { Tk2dSpriteCollectionDataType, typeof(string) });
 
                 // Cache commonly used properties for tk2dSpriteAnimator
                 LibraryProperty = Tk2dSpriteAnimatorType?.GetProperty(LIBRARY_PROP_NAME);
@@ -91,6 +114,29 @@ namespace WeaverCore.Utilities
                 StopMethod = Tk2dSpriteAnimatorType?.GetMethod("Stop");
                 PauseMethod = Tk2dSpriteAnimatorType?.GetMethod("Pause");
                 ResumeMethod = Tk2dSpriteAnimatorType?.GetMethod("Resume");
+
+                // Cache Play overloads to avoid ambiguous matches
+                PlayNoArgsMethod = Tk2dSpriteAnimatorType?.GetMethod("Play", Type.EmptyTypes);
+                PlayStringMethod = Tk2dSpriteAnimatorType?.GetMethod("Play", new[] { typeof(string) });
+                PlayObjectMethod = Tk2dSpriteAnimatorType?.GetMethod("Play", new[] { Tk2dSpriteAnimationClipType });
+
+                // Cache PlayFromFrame overloads to avoid ambiguous matches
+                PlayFromFrameIntMethod = Tk2dSpriteAnimatorType?.GetMethod("PlayFromFrame", new[] { typeof(int) });
+                PlayFromFrameStringIntMethod = Tk2dSpriteAnimatorType?.GetMethod("PlayFromFrame", new[] { typeof(string), typeof(int) });
+                PlayFromFrameObjectIntMethod = Tk2dSpriteAnimatorType?.GetMethod("PlayFromFrame", new[] { Tk2dSpriteAnimationClipType, typeof(int) });
+
+                // Cache PlayFrom overloads to avoid ambiguous matches
+                PlayFromFloatMethod = Tk2dSpriteAnimatorType?.GetMethod("PlayFrom", new[] { typeof(float) });
+                PlayFromStringFloatMethod = Tk2dSpriteAnimatorType?.GetMethod("PlayFrom", new[] { typeof(string), typeof(float) });
+                PlayFromObjectFloatMethod = Tk2dSpriteAnimatorType?.GetMethod("PlayFrom", new[] { Tk2dSpriteAnimationClipType, typeof(float) });
+
+                // Cache IsPlaying overloads to avoid ambiguous matches
+                IsPlayingStringMethod = Tk2dSpriteAnimatorType?.GetMethod("IsPlaying", new[] { typeof(string) });
+                IsPlayingObjectMethod = Tk2dSpriteAnimatorType?.GetMethod("IsPlaying", new[] { Tk2dSpriteAnimationClipType });
+
+                // Cache SetFrame overloads to avoid ambiguous matches
+                SetFrameIntMethod = Tk2dSpriteAnimatorType?.GetMethod("SetFrame", new[] { typeof(int) });
+                SetFrameIntBoolMethod = Tk2dSpriteAnimatorType?.GetMethod("SetFrame", new[] { typeof(int), typeof(bool) });
             }
         }
 
@@ -120,19 +166,19 @@ namespace WeaverCore.Utilities
 
         #region Component Finding
 
-        public static Component FindTk2dSprite(GameObject gameObject)
+        public static MonoBehaviour FindTk2dSprite(GameObject gameObject)
         {
             if (gameObject == null || Tk2dSpriteType == null)
             {
                 return null;
             }
 
-            return gameObject.GetComponent(Tk2dSpriteType);
+            return gameObject.GetComponent(Tk2dSpriteType) as MonoBehaviour;
         }
 
         public static Tk2dSpriteWrapper FindTk2dSpriteWrapper(GameObject gameObject)
         {
-            Component component = FindTk2dSprite(gameObject);
+            MonoBehaviour component = FindTk2dSprite(gameObject);
             return component != null ? new Tk2dSpriteWrapper(component) : default;
         }
 
@@ -157,11 +203,11 @@ namespace WeaverCore.Utilities
 
     #region Wrapper Structs
 
-    public struct Tk2dSpriteWrapper
+    public class Tk2dSpriteWrapper
     {
-        public Component InternalComponent { get; private set; }
+        public MonoBehaviour InternalComponent { get; private set; }
 
-        public Tk2dSpriteWrapper(Component component)
+        public Tk2dSpriteWrapper(MonoBehaviour component)
         {
             if (!Tk2dUtilities.IsTk2dSprite(component))
             {
@@ -174,52 +220,58 @@ namespace WeaverCore.Utilities
 
         public int SpriteId
         {
-            get => InternalComponent.ReflectGetProperty<int>("spriteId");
-            set => InternalComponent.ReflectSetProperty("spriteId", value);
+            get => InternalComponent.ReflectGetProperty<int>("spriteId", Tk2dUtilities.Tk2dBaseSpriteType);
+            set => InternalComponent.ReflectSetProperty("spriteId", value, Tk2dUtilities.Tk2dBaseSpriteType);
         }
 
         public object Collection
         {
-            get => InternalComponent.ReflectGetProperty("Collection");
-            set => InternalComponent.ReflectSetProperty("Collection", value);
+            get => InternalComponent.ReflectGetProperty("Collection", Tk2dUtilities.Tk2dBaseSpriteType);
+            set => InternalComponent.ReflectSetProperty("Collection", value, Tk2dUtilities.Tk2dBaseSpriteType);
         }
 
         public Vector3 Scale
         {
-            get => InternalComponent.ReflectGetProperty<Vector3>("scale");
-            set => InternalComponent.ReflectSetProperty("scale", value);
+            get => InternalComponent.ReflectGetProperty<Vector3>("scale", Tk2dUtilities.Tk2dBaseSpriteType);
+            set => InternalComponent.ReflectSetProperty("scale", value, Tk2dUtilities.Tk2dBaseSpriteType);
         }
 
         public Color Color
         {
-            get => InternalComponent.ReflectGetProperty<Color>("color");
-            set => InternalComponent.ReflectSetProperty("color", value);
+            get => InternalComponent.ReflectGetProperty<Color>("color", Tk2dUtilities.Tk2dBaseSpriteType);
+            set => InternalComponent.ReflectSetProperty("color", value, Tk2dUtilities.Tk2dBaseSpriteType);
+        }
+
+        public bool enabled
+        {
+            get => InternalComponent.enabled;
+            set => InternalComponent.enabled = value;
         }
 
         public void Build()
         {
-            InternalComponent.ReflectCallMethod("Build");
+            Tk2dUtilities.BuildMethod?.Invoke(InternalComponent, null);
         }
 
         public void SetSprite(object spriteCollection, int spriteId)
         {
-            InternalComponent.ReflectCallMethod("SetSprite", new object[] { spriteCollection, spriteId });
+            Tk2dUtilities.SetSpriteIntMethod?.Invoke(InternalComponent, new object[] { spriteCollection, spriteId });
         }
 
         public void SetSprite(object spriteCollection, string spriteName)
         {
-            InternalComponent.ReflectCallMethod("SetSprite", new object[] { spriteCollection, spriteName });
+            Tk2dUtilities.SetSpriteStringMethod?.Invoke(InternalComponent, new object[] { spriteCollection, spriteName });
         }
 
         public void ForceBuild()
         {
-            InternalComponent.ReflectCallMethod("ForceBuild");
+            Tk2dUtilities.ForceBuildMethod?.Invoke(InternalComponent, null);
         }
 
         public static implicit operator bool(Tk2dSpriteWrapper wrapper) => wrapper.IsValid;
     }
 
-    public struct Tk2dSpriteAnimatorWrapper
+    public class Tk2dSpriteAnimatorWrapper
     {
         public Component InternalComponent { get; private set; }
 
@@ -236,166 +288,166 @@ namespace WeaverCore.Utilities
 
         public object Library
         {
-            get => InternalComponent.ReflectGetProperty("Library");
-            set => InternalComponent.ReflectSetProperty("Library", value);
+            get => InternalComponent.ReflectGetProperty("Library", Tk2dUtilities.Tk2dSpriteAnimatorType);
+            set => InternalComponent.ReflectSetProperty("Library", value, Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public object CurrentClip
         {
-            get => InternalComponent.ReflectGetProperty("CurrentClip");
+            get => InternalComponent.ReflectGetProperty("CurrentClip", Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public bool Playing
         {
-            get => InternalComponent.ReflectGetProperty<bool>("Playing");
+            get => InternalComponent.ReflectGetProperty<bool>("Playing", Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public bool Paused
         {
-            get => InternalComponent.ReflectGetProperty<bool>("Paused");
-            set => InternalComponent.ReflectSetProperty("Paused", value);
+            get => InternalComponent.ReflectGetProperty<bool>("Paused", Tk2dUtilities.Tk2dSpriteAnimatorType);
+            set => InternalComponent.ReflectSetProperty("Paused", value, Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public float ClipFps
         {
-            get => InternalComponent.ReflectGetProperty<float>("ClipFps");
-            set => InternalComponent.ReflectSetProperty("ClipFps", value);
+            get => InternalComponent.ReflectGetProperty<float>("ClipFps", Tk2dUtilities.Tk2dSpriteAnimatorType);
+            set => InternalComponent.ReflectSetProperty("ClipFps", value, Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public object Sprite
         {
-            get => InternalComponent.ReflectGetProperty("Sprite");
+            get => InternalComponent.ReflectGetProperty("Sprite", Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public int DefaultClipId
         {
-            get => InternalComponent.ReflectGetProperty<int>("DefaultClipId");
-            set => InternalComponent.ReflectSetProperty("DefaultClipId", value);
+            get => InternalComponent.ReflectGetProperty<int>("DefaultClipId", Tk2dUtilities.Tk2dSpriteAnimatorType);
+            set => InternalComponent.ReflectSetProperty("DefaultClipId", value, Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public object DefaultClip
         {
-            get => InternalComponent.ReflectGetProperty("DefaultClip");
+            get => InternalComponent.ReflectGetProperty("DefaultClip", Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public int CurrentFrame
         {
-            get => InternalComponent.ReflectGetProperty<int>("CurrentFrame");
+            get => InternalComponent.ReflectGetProperty<int>("CurrentFrame", Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public float ClipTimeSeconds
         {
-            get => InternalComponent.ReflectGetProperty<float>("ClipTimeSeconds");
+            get => InternalComponent.ReflectGetProperty<float>("ClipTimeSeconds", Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public void Play()
         {
-            InternalComponent.ReflectCallMethod("Play");
+            Tk2dUtilities.PlayNoArgsMethod?.Invoke(InternalComponent, null);
         }
 
         public void Play(string clipName)
         {
-            InternalComponent.ReflectCallMethod("Play", new object[] { clipName });
+            Tk2dUtilities.PlayStringMethod?.Invoke(InternalComponent, new object[] { clipName });
         }
 
         public void Play(object clip)
         {
-            InternalComponent.ReflectCallMethod("Play", new object[] { clip });
+            Tk2dUtilities.PlayObjectMethod?.Invoke(InternalComponent, new object[] { clip });
         }
 
         public void PlayFromFrame(int frame)
         {
-            InternalComponent.ReflectCallMethod("PlayFromFrame", new object[] { frame });
+            Tk2dUtilities.PlayFromFrameIntMethod?.Invoke(InternalComponent, new object[] { frame });
         }
 
         public void PlayFromFrame(string clipName, int frame)
         {
-            InternalComponent.ReflectCallMethod("PlayFromFrame", new object[] { clipName, frame });
+            Tk2dUtilities.PlayFromFrameStringIntMethod?.Invoke(InternalComponent, new object[] { clipName, frame });
         }
 
         public void PlayFromFrame(object clip, int frame)
         {
-            InternalComponent.ReflectCallMethod("PlayFromFrame", new object[] { clip, frame });
+            Tk2dUtilities.PlayFromFrameObjectIntMethod?.Invoke(InternalComponent, new object[] { clip, frame });
         }
 
         public void PlayFrom(float clipStartTime)
         {
-            InternalComponent.ReflectCallMethod("PlayFrom", new object[] { clipStartTime });
+            Tk2dUtilities.PlayFromFloatMethod?.Invoke(InternalComponent, new object[] { clipStartTime });
         }
 
         public void PlayFrom(string clipName, float clipStartTime)
         {
-            InternalComponent.ReflectCallMethod("PlayFrom", new object[] { clipName, clipStartTime });
+            Tk2dUtilities.PlayFromStringFloatMethod?.Invoke(InternalComponent, new object[] { clipName, clipStartTime });
         }
 
         public void PlayFrom(object clip, float clipStartTime)
         {
-            InternalComponent.ReflectCallMethod("PlayFrom", new object[] { clip, clipStartTime });
+            Tk2dUtilities.PlayFromObjectFloatMethod?.Invoke(InternalComponent, new object[] { clip, clipStartTime });
         }
 
         public void Stop()
         {
-            InternalComponent.ReflectCallMethod("Stop");
+            Tk2dUtilities.StopMethod?.Invoke(InternalComponent, null);
         }
 
         public void StopAndResetFrame()
         {
-            InternalComponent.ReflectCallMethod("StopAndResetFrame");
+            InternalComponent.ReflectCallMethod("StopAndResetFrame", Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
         public void Pause()
         {
-            InternalComponent.ReflectCallMethod("Pause");
+            Tk2dUtilities.PauseMethod?.Invoke(InternalComponent, null);
         }
 
         public void Resume()
         {
-            InternalComponent.ReflectCallMethod("Resume");
+            Tk2dUtilities.ResumeMethod?.Invoke(InternalComponent, null);
         }
 
         public bool IsPlaying(string clipName)
         {
-            return (bool)InternalComponent.ReflectCallMethod("IsPlaying", new object[] { clipName });
+            return (bool)(Tk2dUtilities.IsPlayingStringMethod?.Invoke(InternalComponent, new object[] { clipName }) ?? false);
         }
 
         public bool IsPlaying(object clip)
         {
-            return (bool)InternalComponent.ReflectCallMethod("IsPlaying", new object[] { clip });
+            return (bool)(Tk2dUtilities.IsPlayingObjectMethod?.Invoke(InternalComponent, new object[] { clip }) ?? false);
         }
 
         public object GetClipById(int id)
         {
-            return InternalComponent.ReflectCallMethod("GetClipById", new object[] { id });
+            return InternalComponent.ReflectCallMethod("GetClipById", Tk2dUtilities.Tk2dSpriteAnimatorType, new object[] { id });
         }
 
         public int GetClipIdByName(string name)
         {
-            return (int)InternalComponent.ReflectCallMethod("GetClipIdByName", new object[] { name });
+            return (int)InternalComponent.ReflectCallMethod("GetClipIdByName", Tk2dUtilities.Tk2dSpriteAnimatorType, new object[] { name });
         }
 
         public object GetClipByName(string name)
         {
-            return InternalComponent.ReflectCallMethod("GetClipByName", new object[] { name });
+            return InternalComponent.ReflectCallMethod("GetClipByName", Tk2dUtilities.Tk2dSpriteAnimatorType, new object[] { name });
         }
 
         public void SetFrame(int frame)
         {
-            InternalComponent.ReflectCallMethod("SetFrame", new object[] { frame });
+            Tk2dUtilities.SetFrameIntMethod?.Invoke(InternalComponent, new object[] { frame });
         }
 
         public void SetFrame(int frame, bool triggerEvent)
         {
-            InternalComponent.ReflectCallMethod("SetFrame", new object[] { frame, triggerEvent });
+            Tk2dUtilities.SetFrameIntBoolMethod?.Invoke(InternalComponent, new object[] { frame, triggerEvent });
         }
 
         public void UpdateAnimation(float deltaTime)
         {
-            InternalComponent.ReflectCallMethod("UpdateAnimation", new object[] { deltaTime });
+            InternalComponent.ReflectCallMethod("UpdateAnimation", Tk2dUtilities.Tk2dSpriteAnimatorType, new object[] { deltaTime });
         }
 
         public void SetSprite(object spriteCollection, int spriteId)
         {
-            InternalComponent.ReflectCallMethod("SetSprite", new object[] { spriteCollection, spriteId });
+            Tk2dUtilities.SetSpriteIntMethod?.Invoke(InternalComponent, new object[] { spriteCollection, spriteId });
         }
 
         public static implicit operator bool(Tk2dSpriteAnimatorWrapper wrapper) => wrapper.IsValid;

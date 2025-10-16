@@ -476,6 +476,7 @@
     <Compile Include="Implementations\G_Player_I.cs" />
     <Compile Include="Misc\Misc.cs" />
     <Compile Include="Patches\CameraController_Patches.cs" />
+    <Compile Include="Patches\SceneLoad_Patches.cs" />
     <Compile Include="Patches\EnemyDreamNailReaction_Patches.cs" />
     <Compile Include="Patches\EventRegister_Patches.cs" />
     <Compile Include="Patches\HealthManager_Patches.cs" />

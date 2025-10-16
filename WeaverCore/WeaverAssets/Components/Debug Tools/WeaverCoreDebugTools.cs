@@ -82,6 +82,7 @@ namespace WeaverCore.Assets
 		public static void Open()
 		{
 			GameObject.Instantiate(WeaverAssets.LoadWeaverAsset<GameObject>("WeaverCore Debug Tools"), WeaverDebugCanvas.Content);
+			var audioListners = GameObject.FindObjectsOfType<AudioListener>();
 		}
 
 		/// <summary>

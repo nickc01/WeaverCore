@@ -349,10 +349,10 @@ public class GameManager : MonoBehaviour
         {
             SetupSceneRefs(false);
             BeginScene();
-            /*if (this.gameMap != null)
+            if (this.gameMap != null)
 			{
 				this.gameMap.GetComponent<GameMap>().LevelReady();
-			}*/
+			}
         };
         sceneLoad.Finish += delegate ()
         {
@@ -762,13 +762,12 @@ public class GameManager : MonoBehaviour
 
     public bool UpdateGameMap()
     {
-        return false;
-        //return this.playerData.UpdateGameMap();
+        return this.playerData.UpdateGameMap();
     }
 
     public void CheckAllMaps()
     {
-        //this.playerData.CheckAllMaps();
+        this.playerData.CheckAllMaps();
     }
 
     public void AddToScenesVisited(string scene)
@@ -797,10 +796,10 @@ public class GameManager : MonoBehaviour
         if (!playerData.GetVariable<List<string>>("scenesGrubRescued").Contains(GetSceneNameString()))
         {
             playerData.GetVariable<List<string>>("scenesGrubRescued").Add(GetSceneNameString());
-            /*if (this.gameMap != null)
+            if (this.gameMap != null)
 			{
 				this.gameMap.GetComponent<GameMap>().SetupMap(true);
-			}*/
+			}
         }
     }
 

@@ -3423,6 +3423,7 @@ MonoBehaviour:
   <Inspectable>k__BackingField: 1
   exitRangeEvent: 
   enterRangeEvent: 
+  sidePositions: 2
   moveToOffset: 0.25
   heroLooksUp: 1
   <EnableKnightDamageInterrupt>k__BackingField: 1
@@ -14040,6 +14041,7 @@ MonoBehaviour:
   <Inspectable>k__BackingField: 1
   exitRangeEvent: 
   enterRangeEvent: 
+  sidePositions: 2
   moveToOffset: 1.5
   heroLooksUp: 0
   <EnableKnightDamageInterrupt>k__BackingField: 1

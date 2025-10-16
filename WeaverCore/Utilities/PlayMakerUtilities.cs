@@ -602,10 +602,10 @@ namespace WeaverCore.Utilities
 				return null;
 			}
 
-			PropertyInfo property = action.GetType().GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
+			PropertyInfo property = FsmStateActionType.GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
 			if (property == null)
 			{
-				FieldInfo field = action.GetType().GetField(propertyName, BindingFlags.Public | BindingFlags.Instance);
+				FieldInfo field = FsmStateActionType.GetField(propertyName, BindingFlags.Public | BindingFlags.Instance);
 				if (field == null)
 				{
 					return null;
@@ -716,6 +716,276 @@ namespace WeaverCore.Utilities
 		public static bool SetActionEnabled(FsmActionWrapper action, bool enabled)
 		{
 			return SetActionEnabled(action.InternalAction, enabled);
+		}
+
+		/// <summary>
+		/// Gets the name of the specified FSM action
+		/// </summary>
+		/// <param name="action">The FSM action to check</param>
+		/// <returns>The name of the action, or null if not available</returns>
+		public static string GetActionName(object action)
+		{
+			return GetActionProperty(action, "Name") as string;
+		}
+
+		/// <summary>
+		/// Gets the name of the specified FSM action wrapper
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to check</param>
+		/// <returns>The name of the action, or null if not available</returns>
+		public static string GetActionName(FsmActionWrapper action)
+		{
+			return GetActionName(action.InternalAction);
+		}
+
+		/// <summary>
+		/// Sets the name of the specified FSM action
+		/// </summary>
+		/// <param name="action">The FSM action to modify</param>
+		/// <param name="name">The name to set</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionName(object action, string name)
+		{
+			return SetActionProperty(action, "Name", name);
+		}
+
+		/// <summary>
+		/// Sets the name of the specified FSM action wrapper
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to modify</param>
+		/// <param name="name">The name to set</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionName(FsmActionWrapper action, string name)
+		{
+			return SetActionName(action.InternalAction, name);
+		}
+
+		/// <summary>
+		/// Gets the display name of the specified FSM action
+		/// </summary>
+		/// <param name="action">The FSM action to check</param>
+		/// <returns>The display name of the action, or null if not available</returns>
+		public static string GetActionDisplayName(object action)
+		{
+			return GetActionProperty(action, "DisplayName") as string;
+		}
+
+		/// <summary>
+		/// Gets the display name of the specified FSM action wrapper
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to check</param>
+		/// <returns>The display name of the action, or null if not available</returns>
+		public static string GetActionDisplayName(FsmActionWrapper action)
+		{
+			return GetActionDisplayName(action.InternalAction);
+		}
+
+		/// <summary>
+		/// Sets the display name of the specified FSM action
+		/// </summary>
+		/// <param name="action">The FSM action to modify</param>
+		/// <param name="displayName">The display name to set</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionDisplayName(object action, string displayName)
+		{
+			return SetActionProperty(action, "DisplayName", displayName);
+		}
+
+		/// <summary>
+		/// Sets the display name of the specified FSM action wrapper
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to modify</param>
+		/// <param name="displayName">The display name to set</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionDisplayName(FsmActionWrapper action, string displayName)
+		{
+			return SetActionDisplayName(action.InternalAction, displayName);
+		}
+
+		/// <summary>
+		/// Gets the FSM that owns the specified action
+		/// </summary>
+		/// <param name="action">The FSM action to check</param>
+		/// <returns>The FSM object that owns this action, or null if not available</returns>
+		public static object GetActionFsm(object action)
+		{
+			return GetActionProperty(action, "Fsm");
+		}
+
+		/// <summary>
+		/// Gets the FSM that owns the specified action wrapper
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to check</param>
+		/// <returns>The FSM object that owns this action, or null if not available</returns>
+		public static object GetActionFsm(FsmActionWrapper action)
+		{
+			return GetActionFsm(action.InternalAction);
+		}
+
+		/// <summary>
+		/// Gets the GameObject owner of the specified action
+		/// </summary>
+		/// <param name="action">The FSM action to check</param>
+		/// <returns>The GameObject that owns this action, or null if not available</returns>
+		public static GameObject GetActionOwner(object action)
+		{
+			return GetActionProperty(action, "Owner") as GameObject;
+		}
+
+		/// <summary>
+		/// Gets the GameObject owner of the specified action wrapper
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to check</param>
+		/// <returns>The GameObject that owns this action, or null if not available</returns>
+		public static GameObject GetActionOwner(FsmActionWrapper action)
+		{
+			return GetActionOwner(action.InternalAction);
+		}
+
+		/// <summary>
+		/// Gets the state that contains the specified action
+		/// </summary>
+		/// <param name="action">The FSM action to check</param>
+		/// <returns>The state object that contains this action, or null if not available</returns>
+		public static object GetActionState(object action)
+		{
+			return GetActionProperty(action, "State");
+		}
+
+		/// <summary>
+		/// Gets the state that contains the specified action wrapper
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to check</param>
+		/// <returns>The state object that contains this action, or null if not available</returns>
+		public static object GetActionState(FsmActionWrapper action)
+		{
+			return GetActionState(action.InternalAction);
+		}
+
+		/// <summary>
+		/// Gets whether the specified FSM action is currently active
+		/// </summary>
+		/// <param name="action">The FSM action to check</param>
+		/// <returns>True if the action is active, false otherwise</returns>
+		public static bool GetActionActive(object action)
+		{
+			return (bool)(GetActionProperty(action, "Active") ?? false);
+		}
+
+		/// <summary>
+		/// Gets whether the specified FSM action wrapper is currently active
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to check</param>
+		/// <returns>True if the action is active, false otherwise</returns>
+		public static bool GetActionActive(FsmActionWrapper action)
+		{
+			return GetActionActive(action.InternalAction);
+		}
+
+		/// <summary>
+		/// Sets whether the specified FSM action is currently active
+		/// </summary>
+		/// <param name="action">The FSM action to modify</param>
+		/// <param name="active">Whether the action should be active</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionActive(object action, bool active)
+		{
+			return SetActionProperty(action, "Active", active);
+		}
+
+		/// <summary>
+		/// Sets whether the specified FSM action wrapper is currently active
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to modify</param>
+		/// <param name="active">Whether the action should be active</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionActive(FsmActionWrapper action, bool active)
+		{
+			return SetActionActive(action.InternalAction, active);
+		}
+
+		/// <summary>
+		/// Gets whether the specified FSM action has finished execution
+		/// </summary>
+		/// <param name="action">The FSM action to check</param>
+		/// <returns>True if the action has finished, false otherwise</returns>
+		public static bool GetActionFinished(object action)
+		{
+			return (bool)(GetActionProperty(action, "Finished") ?? false);
+		}
+
+		/// <summary>
+		/// Gets whether the specified FSM action wrapper has finished execution
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to check</param>
+		/// <returns>True if the action has finished, false otherwise</returns>
+		public static bool GetActionFinished(FsmActionWrapper action)
+		{
+			return GetActionFinished(action.InternalAction);
+		}
+
+		/// <summary>
+		/// Sets whether the specified FSM action has finished execution
+		/// </summary>
+		/// <param name="action">The FSM action to modify</param>
+		/// <param name="finished">Whether the action should be marked as finished</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionFinished(object action, bool finished)
+		{
+			return SetActionProperty(action, "Finished", finished);
+		}
+
+		/// <summary>
+		/// Sets whether the specified FSM action wrapper has finished execution
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to modify</param>
+		/// <param name="finished">Whether the action should be marked as finished</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionFinished(FsmActionWrapper action, bool finished)
+		{
+			return SetActionFinished(action.InternalAction, finished);
+		}
+
+		/// <summary>
+		/// Gets whether the specified FSM action has been entered
+		/// </summary>
+		/// <param name="action">The FSM action to check</param>
+		/// <returns>True if the action has been entered, false otherwise</returns>
+		public static bool GetActionEntered(object action)
+		{
+			return (bool)(GetActionProperty(action, "Entered") ?? false);
+		}
+
+		/// <summary>
+		/// Gets whether the specified FSM action wrapper has been entered
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to check</param>
+		/// <returns>True if the action has been entered, false otherwise</returns>
+		public static bool GetActionEntered(FsmActionWrapper action)
+		{
+			return GetActionEntered(action.InternalAction);
+		}
+
+		/// <summary>
+		/// Sets whether the specified FSM action has been entered
+		/// </summary>
+		/// <param name="action">The FSM action to modify</param>
+		/// <param name="entered">Whether the action should be marked as entered</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionEntered(object action, bool entered)
+		{
+			return SetActionProperty(action, "Entered", entered);
+		}
+
+		/// <summary>
+		/// Sets whether the specified FSM action wrapper has been entered
+		/// </summary>
+		/// <param name="action">The FSM action wrapper to modify</param>
+		/// <param name="entered">Whether the action should be marked as entered</param>
+		/// <returns>True if the property was successfully set, false otherwise</returns>
+		public static bool SetActionEntered(FsmActionWrapper action, bool entered)
+		{
+			return SetActionEntered(action.InternalAction, entered);
 		}
 
 		#endregion

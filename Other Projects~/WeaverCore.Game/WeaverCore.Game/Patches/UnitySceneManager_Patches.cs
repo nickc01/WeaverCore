@@ -11,7 +11,7 @@ using WeaverCore.Utilities;
 namespace WeaverCore.Game.Patches
 {
 
-    public static class UnitySceneManager_Patches
+	public static class UnitySceneManager_Patches
 	{
 		[OnHarmonyPatch]
 		static void Patch(HarmonyPatcher patcher)
@@ -20,7 +20,7 @@ namespace WeaverCore.Game.Patches
 			var patchType = typeof(UnitySceneManager_Patches);
 			var orig = smType.GetMethod("LoadScene", new Type[] { typeof(string), typeof(LoadSceneParameters) });
 			var pre = patchType.GetMethod("LoadScene_Prefix");
-			patcher.Patch(orig,pre,null);
+			patcher.Patch(orig, pre, null);
 
 			orig = smType.GetMethod("LoadSceneAsync", new Type[] { typeof(string), typeof(LoadSceneParameters) });
 			pre = patchType.GetMethod("LoadSceneAsync_Prefix");
@@ -50,8 +50,8 @@ namespace WeaverCore.Game.Patches
 				unionizedScenes.Remove(arg0.path);
 				try
 				{
-                    //Debug.Log($"MERGING {arg0.path} with {destination.path}");
-                    UnityEngine.SceneManagement.SceneManager.MergeScenes(arg0, destination);
+					//Debug.Log($"MERGING {arg0.path} with {destination.path}");
+					UnityEngine.SceneManagement.SceneManager.MergeScenes(arg0, destination);
 				}
 				catch (Exception e)
 				{
@@ -67,8 +67,8 @@ namespace WeaverCore.Game.Patches
 						if (replacement.SceneToUnionize == arg0.name || replacement.SceneToUnionize == arg0.path)
 						{
 							unionizedScenes.Add(replacement.SceneUnion, arg0);
-                            //Debug.Log($"LOADING SCENE UNION {replacement.SceneUnion} to combine with {arg0.path}");
-                            UnityEngine.SceneManagement.SceneManager.LoadScene(replacement.SceneUnion, LoadSceneMode.Additive);
+							//Debug.Log($"LOADING SCENE UNION {replacement.SceneUnion} to combine with {arg0.path}");
+							UnityEngine.SceneManagement.SceneManager.LoadScene(replacement.SceneUnion, LoadSceneMode.Additive);
 							//var loadedScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(replacement.SceneUnion);
 							//UnityEngine.SceneManagement.SceneManager.MergeScenes(loadedScene, arg0);
 						}
@@ -103,6 +103,28 @@ namespace WeaverCore.Game.Patches
 				}
 			}
 			return false;
+		}
+
+		public static string ReplaceScene(string sceneName)
+		{
+			return ReplaceScene(sceneName, out var _);
+		}
+
+		public static string ReplaceScene(string sceneName, out bool replaced)
+		{
+			foreach (var record in Registry.GetAllFeatures<SceneRecord>())
+			{
+				foreach (var replacement in record.SceneReplacements)
+				{
+					if (replacement.SceneToReplace == sceneName)
+					{
+						replaced = true;
+						return replacement.Replacement;
+					}
+				}
+			}
+			replaced = false;
+			return sceneName;
 		}
 	}
 }

@@ -7,9 +7,9 @@ using UnityEngine;
 namespace WeaverCore.Utilities
 {
     public static class ComponentUtilities
-	{
-		public static IEnumerable<T> GetComponentsInChildrenList<T>(IEnumerable<GameObject> rootObjects)
-		{
+    {
+        public static IEnumerable<T> GetComponentsInChildrenList<T>(IEnumerable<GameObject> rootObjects)
+        {
             foreach (var gm in rootObjects)
             {
                 foreach (var c in GetComponentsInChildren<T>(gm.transform))
@@ -17,7 +17,7 @@ namespace WeaverCore.Utilities
                     yield return c;
                 }
             }
-		}
+        }
 
         public static IEnumerable<T> GetComponentsInChildren<T>(Component obj)
         {
@@ -50,7 +50,7 @@ namespace WeaverCore.Utilities
 
 
         public static IEnumerable<Component> GetComponentsInChildrenList(Type componentType, IEnumerable<GameObject> rootObjects)
-		{
+        {
             foreach (var gm in rootObjects)
             {
                 foreach (var c in GetComponentsInChildren(componentType, gm.transform))
@@ -58,7 +58,7 @@ namespace WeaverCore.Utilities
                     yield return c;
                 }
             }
-		}
+        }
 
         public static IEnumerable<Component> GetComponentsInChildren(Type componentType, Component obj)
         {
@@ -86,6 +86,32 @@ namespace WeaverCore.Utilities
         public static Component GetComponentInChildren(Type componentType, Component obj)
         {
             return GetComponentsInChildren(componentType, obj).FirstOrDefault();
+        }
+
+        public static T AddComponentCopy<T>(this GameObject dest, T original) where T : Component
+        {
+            var copy = dest.AddComponent<T>();
+            JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(original), copy);
+            return copy;
+        }
+
+        public static T CopyComponentDataFrom<T>(this T dest, T original) where T : Component
+        {
+            JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(original), dest);
+            return dest;
+        }
+
+        public static Component AddComponentCopy(this GameObject dest, Component original, Type componentType)
+        {
+            var copy = dest.AddComponent(componentType);
+            JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(original), copy);
+            return copy;
+        }
+        
+        public static Component CopyComponentDataFrom(this Component dest, Component original)
+        {
+            JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(original), dest);
+            return dest;
         }
     }
 }

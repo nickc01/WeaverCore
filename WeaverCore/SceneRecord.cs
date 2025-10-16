@@ -33,6 +33,15 @@ namespace WeaverCore
 		[Tooltip("The scene to combine to. This scene will be loaded when \"Scene To Unite With\" is also loaded, combining the contents of the two scenes together")]
 		public UnityEditor.SceneAsset UnionScene;
 	}
+
+	[Serializable]
+	struct InverseSceneUnion
+	{
+		[Tooltip("The scene that will receive the merged content from an in-game scene")]
+		public UnityEditor.SceneAsset DestinationScene;
+		[Tooltip("The name of the in-game scene to merge into the destination scene")]
+		public string GameSceneToMerge;
+	}
 #endif
 
 	/// <summary>
@@ -57,6 +66,10 @@ namespace WeaverCore
 		[SerializeField]
 		[Tooltip("A list of scenes to combine with in game")]
         System.Collections.Generic.List<SceneUnion> sceneUnions = new System.Collections.Generic.List<SceneUnion>();
+
+		[SerializeField]
+		[Tooltip("A list of inverse scene unions where in-game scenes are merged into mod scenes")]
+        System.Collections.Generic.List<InverseSceneUnion> inverseSceneUnions = new System.Collections.Generic.List<InverseSceneUnion>();
 
 		[SerializeField]
 		[Tooltip("A list of all the gates that are being changed to point to new destinations")]
@@ -99,6 +112,12 @@ namespace WeaverCore
 		[SerializeField]
         System.Collections.Generic.List<string> sceneUnionPaths = new System.Collections.Generic.List<string>();
 
+		[HideInInspector]
+		[SerializeField]
+        System.Collections.Generic.List<string> inverseDestinationScenePaths = new System.Collections.Generic.List<string>();
+		[HideInInspector]
+		[SerializeField]
+        System.Collections.Generic.List<string> inverseGameSceneToMergePaths = new System.Collections.Generic.List<string>();
 
 		[HideInInspector]
 		[SerializeField]
@@ -143,6 +162,20 @@ namespace WeaverCore
 				for (int i = 0; i < sceneToUnionizePaths.Count; i++)
 				{
 					yield return (sceneToUnionizePaths[i], sceneUnionPaths[i]);
+				}
+			}
+		}
+
+		/// <summary>
+		/// A list of all the inverse scene unions where in-game scenes are merged into mod scenes
+		/// </summary>
+		public IEnumerable<(string DestinationScene, string GameSceneToMerge)> InverseSceneUnions
+		{
+			get
+			{
+				for (int i = 0; i < inverseDestinationScenePaths.Count; i++)
+				{
+					yield return (inverseDestinationScenePaths[i], inverseGameSceneToMergePaths[i]);
 				}
 			}
 		}
@@ -252,6 +285,50 @@ namespace WeaverCore
 			return false;
 		}
 
+		/// <summary>
+		/// Creates an inverse scene union where the contents of <paramref name="gameScene"/> will be merged into <paramref name="destinationScene"/>. When the destination scene is loaded, the game scene will also get loaded and merged into it.
+		/// </summary>
+		/// <param name="destinationScene">The mod scene that will receive the merged content</param>
+		/// <param name="gameScene">The in-game scene to merge into the destination scene</param>
+		/// <returns></returns>
+		public bool AddInverseSceneUnion(string destinationScene, string gameScene)
+		{
+			for (int i = 0; i < inverseDestinationScenePaths.Count; i++)
+			{
+				if (inverseDestinationScenePaths[i] == destinationScene && inverseGameSceneToMergePaths[i] == gameScene)
+				{
+					return false;
+				}
+			}
+
+			inverseDestinationScenePaths.Add(destinationScene);
+			inverseGameSceneToMergePaths.Add(gameScene);
+
+			return true;
+		}
+
+		/// <summary>
+		/// Removes an inverse scene union
+		/// </summary>
+		/// <param name="destinationScene">The mod scene that was to receive the merged content</param>
+		/// <param name="gameScene">The in-game scene that was to be merged</param>
+		/// <returns></returns>
+		public bool RemoveInverseSceneUnion(string destinationScene, string gameScene)
+		{
+			for (int i = 0; i < inverseDestinationScenePaths.Count; i++)
+			{
+				if (inverseDestinationScenePaths[i] == destinationScene && inverseGameSceneToMergePaths[i] == gameScene)
+				{
+					inverseDestinationScenePaths.RemoveAt(i);
+					inverseGameSceneToMergePaths.RemoveAt(i);
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+
 #if UNITY_EDITOR
 
 		[BeforeBuild]
@@ -282,6 +359,11 @@ namespace WeaverCore
 						foreach (var sceneAsset in record.sceneUnions)
 						{
 							SetAssetBundleName(newBundleName, sceneAsset.UnionScene);
+						}
+
+						foreach (var sceneAsset in record.inverseSceneUnions)
+						{
+							SetAssetBundleName(newBundleName, sceneAsset.DestinationScene);
 						}
 					}
 				}
@@ -318,6 +400,9 @@ namespace WeaverCore
 
 			sceneToUnionizePaths = sceneUnions.Select(s => s.SceneToUniteWith).ToList();
 			sceneUnionPaths = sceneUnions.Select(s => AssetDatabase.GetAssetPath(s.UnionScene)).ToList();
+
+			inverseDestinationScenePaths = inverseSceneUnions.Select(s => AssetDatabase.GetAssetPath(s.DestinationScene)).ToList();
+			inverseGameSceneToMergePaths = inverseSceneUnions.Select(s => s.GameSceneToMerge).ToList();
 
 			transitionRedirects_containingScenes = transitionRedirects.Select(s => s.GateScene).ToList();
 			transitionRedirects_gatesToRedirect = transitionRedirects.Select(s => s.GateToChange).ToList();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Interfaces;
@@ -89,6 +90,20 @@ namespace WeaverCore.Features
 
             set
             {
+                var equippedCharms = PlayerData.instance.GetVariable<List<int>>("equippedCharms");
+
+                if (equippedCharms != null)
+                {
+                    var id = CharmUtilities.GetCustomCharmID(this);
+                    if (value && !equippedCharms.Contains(id))
+                    {
+                        equippedCharms.Add(id);
+                    }
+                    else if (!value && equippedCharms.Contains(id))
+                    {
+                        equippedCharms.Remove(id);
+                    }
+                }
                 if (settingsStorage.HasField(equipped_settingsField))
                 {
                     settingsStorage.SetFieldValue(equipped_settingsField, value);

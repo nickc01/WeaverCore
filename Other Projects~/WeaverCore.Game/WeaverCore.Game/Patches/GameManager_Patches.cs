@@ -180,6 +180,7 @@ namespace WeaverCore.Game.Patches
 
 		private static void GameManager_RefreshTilemapInfo(On.GameManager.orig_RefreshTilemapInfo orig, GameManager self, string targetScene)
 		{
+			WeaverLog.Log("REFRESH TILEMAP INFO TARGET SCENE = " + targetScene);
 			for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
 			{
 				var scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
@@ -188,7 +189,7 @@ namespace WeaverCore.Game.Patches
 					var rootObjs = scene.GetRootGameObjects();
 					for (int j = 0; j < rootObjs.GetLength(0); j++)
 					{
-						var sm = rootObjs[i].GetComponent<WeaverSceneManager>();
+						var sm = rootObjs[j].GetComponent<WeaverSceneManager>();
 						if (sm != null)
 						{
 							WeaverSceneManager.CurrentSceneManager = sm;

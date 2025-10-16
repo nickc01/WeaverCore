@@ -9,7 +9,7 @@ namespace WeaverCore.Assets.Components
 	/// <summary>
 	/// Used to play a wave effect upon death
 	/// </summary>
-    public class DeathWave : MonoBehaviour
+	public class DeathWave : MonoBehaviour
 	{
 		//static ObjectPool DeathWavePool;
 		static CachedPrefab<DeathWave> Prefab = new CachedPrefab<DeathWave>();
@@ -82,7 +82,7 @@ namespace WeaverCore.Assets.Components
 			if (Prefab.Value == null)
 			{
 				Prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Death Wave Infected").GetComponent<DeathWave>();
-            }
+			}
 			var instance = Pooling.Instantiate(Prefab.Value, position, Quaternion.identity);
 			instance.SizeMultiplier = sizeMultiplier;
 			instance.TransparencyMultiplier = 1f;

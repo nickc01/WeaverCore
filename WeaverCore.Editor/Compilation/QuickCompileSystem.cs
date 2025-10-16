@@ -231,7 +231,19 @@ namespace WeaverCore.Editor.Compilation
                 yield break;
             }
 
-            // 5. Re-embed WeaverCore system resources
+            // 5. Rebuild WeaverCore.Game assembly
+            Debug.Log("Rebuilding WeaverCore.Game assembly...");
+            bool weaverGameBuildSuccess = false;
+            yield return RebuildWeaverCoreGameRoutine(success => weaverGameBuildSuccess = success);
+            
+            if (!weaverGameBuildSuccess)
+            {
+                Debug.LogError("Failed to rebuild WeaverCore.Game assembly");
+                CleanupTemporaryFiles(extractedResources);
+                yield break;
+            }
+
+            // 6. Re-embed WeaverCore system resources
             Debug.Log("Re-embedding WeaverCore system resources...");
             try
             {
@@ -245,7 +257,7 @@ namespace WeaverCore.Editor.Compilation
                 yield break;
             }
 
-            // 6. Cleanup temporary files
+            // 7. Cleanup temporary files
             CleanupTemporaryFiles(extractedResources);
 
             Debug.Log("<b>Quick Compile WeaverCore Complete!</b>");
@@ -551,6 +563,78 @@ namespace WeaverCore.Editor.Compilation
             }
 
             onComplete(compiledAssemblies);
+        }
+
+        /// <summary>
+        /// Rebuilds WeaverCore.Game assembly
+        /// </summary>
+        private static IEnumerator RebuildWeaverCoreGameRoutine(Action<bool> onComplete)
+        {
+            Debug.Log("Building WeaverCore.Game assembly...");
+            
+            // Use a simple approach - start the build and monitor a file watcher or timeout
+            var sep = Path.DirectorySeparatorChar;
+            var weaverGameOutputPath = new FileInfo(BuildTools.WeaverCoreFolder.AddSlash() + $"Other Projects~{sep}WeaverCore.Game{sep}WeaverCore.Game{sep}bin{sep}WeaverCore.Game.dll");
+            
+            // Store the last write time to detect when build completes
+            DateTime lastWriteTime;
+            bool buildStarted = false;
+            
+            try
+            {
+                lastWriteTime = weaverGameOutputPath.Exists ? weaverGameOutputPath.LastWriteTime : DateTime.MinValue;
+                
+                // Start the build asynchronously
+                BuildTools.BuildWeaverCoreGameAsm(null);
+                buildStarted = true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Exception while starting WeaverCore.Game build: {e.Message}");
+                Debug.LogException(e);
+                onComplete(false);
+                yield break;
+            }
+            
+            if (!buildStarted)
+            {
+                onComplete(false);
+                yield break;
+            }
+            
+            // Wait for the build to complete by monitoring the output file
+            var timeout = 60f; // 60 second timeout
+            var elapsed = 0f;
+            
+            while (elapsed < timeout)
+            {
+                yield return new WaitForSeconds(1f);
+                elapsed += 1f;
+                
+                try
+                {
+                    weaverGameOutputPath.Refresh();
+                    
+                    if (weaverGameOutputPath.Exists && weaverGameOutputPath.LastWriteTime > lastWriteTime)
+                    {
+                        // File was updated, build completed
+                        Debug.Log("WeaverCore.Game assembly built successfully");
+                        onComplete(true);
+                        yield break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Exception while monitoring WeaverCore.Game build: {e.Message}");
+                    Debug.LogException(e);
+                    onComplete(false);
+                    yield break;
+                }
+            }
+            
+            // Timeout occurred
+            Debug.LogError("WeaverCore.Game build timed out after 60 seconds");
+            onComplete(false);
         }
 
         /// <summary>

@@ -117,27 +117,38 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns a function that when invoked, will retrieve the field value</returns>
 		public static Func<SourceType, FieldType> CreateFieldGetter<SourceType, FieldType>(FieldInfo field)
 		{
+			try
+			{
 #if NET_4_6
-			string methodName = field.ReflectedType.FullName + ".get_" + field.Name;
-			DynamicMethod setterMethod = new DynamicMethod(methodName, typeof(FieldType), new Type[1] { typeof(SourceType) }, true);
-			ILGenerator gen = setterMethod.GetILGenerator();
-			if (field.IsStatic)
-			{
-				gen.Emit(OpCodes.Ldsfld, field);
-			}
-			else
-			{
-				gen.Emit(OpCodes.Ldarg_0);
-				gen.Emit(OpCodes.Ldfld, field);
-			}
-			gen.Emit(OpCodes.Ret);
-			return (Func<SourceType, FieldType>)setterMethod.CreateDelegate(typeof(Func<SourceType, FieldType>));
+				string methodName = field.ReflectedType.FullName + ".get_" + field.Name;
+				DynamicMethod setterMethod = new DynamicMethod(methodName, typeof(FieldType), new Type[1] { typeof(SourceType) }, true);
+				ILGenerator gen = setterMethod.GetILGenerator();
+				if (field.IsStatic)
+				{
+					gen.Emit(OpCodes.Ldsfld, field);
+				}
+				else
+				{
+					gen.Emit(OpCodes.Ldarg_0);
+					gen.Emit(OpCodes.Ldfld, field);
+				}
+				gen.Emit(OpCodes.Ret);
+				return (Func<SourceType, FieldType>)setterMethod.CreateDelegate(typeof(Func<SourceType, FieldType>));
 #else
-			return (source) =>
-			{
-				return (FieldType)field.GetValue(source);
-			};
+				return (source) =>
+				{
+					return (FieldType)field.GetValue(source);
+				};
 #endif
+			}
+			catch (Exception)
+			{
+				if (field != null)
+				{
+					WeaverLog.LogError($"Failed to create field getter for \"{field.Name}\": on type \"{typeof(SourceType)}\"");
+				}
+				throw;
+			}
 		}
 
 		/// <summary>
@@ -150,7 +161,15 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns a function that when invoked, will retrieve the field value</returns>
 		public static Func<SourceType, FieldType> CreateFieldGetter<SourceType, FieldType>(string fieldName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
 		{
-			return CreateFieldGetter<SourceType, FieldType>(typeof(SourceType).GetField(fieldName, flags));
+			try
+			{
+				return CreateFieldGetter<SourceType, FieldType>(typeof(SourceType).GetField(fieldName, flags));
+			}
+			catch (Exception)
+			{
+				WeaverLog.LogError($"Failed to create field getter for \"{fieldName}\": on type \"{typeof(SourceType)}\"");
+				throw;
+			}
 		}
 
 		/// <summary>
@@ -162,23 +181,25 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns a function that when invoked, will set the field value</returns>
 		public static Action<SourceType, FieldType> CreateFieldSetter<SourceType, FieldType>(FieldInfo field)
 		{
+			try
+			{
 #if NET_4_6
-			string methodName = field.ReflectedType.FullName + ".set_" + field.Name;
-			DynamicMethod setterMethod = new DynamicMethod(methodName, null, new Type[2] { typeof(SourceType), typeof(FieldType) }, true);
-			ILGenerator gen = setterMethod.GetILGenerator();
-			if (field.IsStatic)
-			{
-				gen.Emit(OpCodes.Ldarg_1);
-				gen.Emit(OpCodes.Stsfld, field);
-			}
-			else
-			{
-				gen.Emit(OpCodes.Ldarg_0);
-				gen.Emit(OpCodes.Ldarg_1);
-				gen.Emit(OpCodes.Stfld, field);
-			}
-			gen.Emit(OpCodes.Ret);
-			return (Action<SourceType, FieldType>)setterMethod.CreateDelegate(typeof(Action<SourceType, FieldType>));
+				string methodName = field.ReflectedType.FullName + ".set_" + field.Name;
+				DynamicMethod setterMethod = new DynamicMethod(methodName, null, new Type[2] { typeof(SourceType), typeof(FieldType) }, true);
+				ILGenerator gen = setterMethod.GetILGenerator();
+				if (field.IsStatic)
+				{
+					gen.Emit(OpCodes.Ldarg_1);
+					gen.Emit(OpCodes.Stsfld, field);
+				}
+				else
+				{
+					gen.Emit(OpCodes.Ldarg_0);
+					gen.Emit(OpCodes.Ldarg_1);
+					gen.Emit(OpCodes.Stfld, field);
+				}
+				gen.Emit(OpCodes.Ret);
+				return (Action<SourceType, FieldType>)setterMethod.CreateDelegate(typeof(Action<SourceType, FieldType>));
 #else
 			return (source, value) =>
 			{
@@ -186,6 +207,15 @@ namespace WeaverCore.Utilities
 				//return (FieldType)field.GetValue(source);
 			};
 #endif
+			}
+			catch (Exception)
+			{
+				if (field != null)
+				{
+					WeaverLog.LogError($"Failed to create field setter for \"{field.Name}\": on type \"{typeof(SourceType)}\"");
+				}
+				throw;
+			}
 		}
 
 		/// <summary>
@@ -198,7 +228,113 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns a function that when invoked, will set the field value</returns>
 		public static Action<SourceType, FieldType> CreateFieldSetter<SourceType, FieldType>(string fieldName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
 		{
-			return CreateFieldSetter<SourceType, FieldType>(typeof(SourceType).GetField(fieldName, flags));
+			try
+			{
+				return CreateFieldSetter<SourceType, FieldType>(typeof(SourceType).GetField(fieldName, flags));
+			}
+			catch (Exception)
+			{
+				WeaverLog.LogError($"Failed to create field setter for \"{fieldName}\": on type \"{typeof(SourceType)}\"");
+				throw;
+			}
+		}
+
+		/// <summary>
+		/// Creates a function that retrives a property value
+		/// </summary>
+		/// <typeparam name="SourceType">The type that contains the property</typeparam>
+		/// <typeparam name="PropertyType">The type of the property</typeparam>
+		/// <param name="property">The property to create a getter for</param>
+		/// <returns>Returns a function that when invoked, will retrieve the property value</returns>
+		public static Func<SourceType, PropertyType> CreatePropertyGetter<SourceType, PropertyType>(PropertyInfo property)
+		{
+			try
+			{
+				if (property.GetMethod == null)
+				{
+					throw new ArgumentException($"Property '{property.Name}' has no getter method");
+				}
+
+				return MethodToDelegate<Func<SourceType, PropertyType>>(property.GetGetMethod(true));
+			}
+			catch (Exception)
+			{
+				if (property != null)
+				{
+					WeaverLog.LogError($"Failed to create property getter for \"{property.Name}\": on type \"{typeof(SourceType)}\"");
+				}
+				throw;
+			}
+		}
+
+		/// <summary>
+		/// Creates a function that retrives a property value
+		/// </summary>
+		/// <typeparam name="SourceType">The type that contains the property</typeparam>
+		/// <typeparam name="PropertyType">The type of the property</typeparam>
+		/// <param name="propertyName">The name of the property to create a getter for</param>
+		/// <param name="flags">The binding flags used to find the property</param>
+		/// <returns>Returns a function that when invoked, will retrieve the property value</returns>
+		public static Func<SourceType, PropertyType> CreatePropertyGetter<SourceType, PropertyType>(string propertyName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+		{
+			try
+			{
+				return CreatePropertyGetter<SourceType, PropertyType>(typeof(SourceType).GetProperty(propertyName, flags));
+			}
+			catch (Exception)
+			{
+				WeaverLog.LogError($"Failed to create property getter for \"{propertyName}\": on type \"{typeof(SourceType)}\"");
+				throw;
+			}
+		}
+
+		/// <summary>
+		/// Creates a function that sets a property value
+		/// </summary>
+		/// <typeparam name="SourceType">The type that contains the property</typeparam>
+		/// <typeparam name="PropertyType">The type of the property</typeparam>
+		/// <param name="property">The property to create a setter for</param>
+		/// <returns>Returns a function that when invoked, will set the property value</returns>
+		public static Action<SourceType, PropertyType> CreatePropertySetter<SourceType, PropertyType>(PropertyInfo property)
+		{
+			try
+			{
+				if (property.SetMethod == null)
+				{
+					throw new ArgumentException($"Property '{property.Name}' has no setter method");
+				}
+
+				return MethodToDelegate<Action<SourceType, PropertyType>>(property.GetSetMethod(true));
+			}
+			catch (Exception)
+			{
+				if (property != null)
+				{
+					WeaverLog.LogError($"Failed to create property setter for \"{property.Name}\": on type \"{typeof(SourceType)}\"");
+				}
+				throw;
+			}
+		}
+
+		/// <summary>
+		/// Creates a function that sets a property value
+		/// </summary>
+		/// <typeparam name="SourceType">The type that contains the property</typeparam>
+		/// <typeparam name="PropertyType">The type of the property</typeparam>
+		/// <param name="propertyName">The name of the property to create a setter for</param>
+		/// <param name="flags">The binding flags used to find the property</param>
+		/// <returns>Returns a function that when invoked, will set the property value</returns>
+		public static Action<SourceType, PropertyType> CreatePropertySetter<SourceType, PropertyType>(string propertyName, BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+		{
+			try
+			{
+				return CreatePropertySetter<SourceType, PropertyType>(typeof(SourceType).GetProperty(propertyName, flags));
+			}
+			catch (Exception)
+			{
+				WeaverLog.LogError($"Failed to create property setter for \"{propertyName}\": on type \"{typeof(SourceType)}\"");
+				throw;
+			}
 		}
 
 		/// <summary>

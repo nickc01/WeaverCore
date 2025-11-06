@@ -118,7 +118,7 @@ public static class SceneLoad_Patches
     {
         IEnumerator Func()
         {
-            WeaverLog.Log("BEGINNING CUSTOM ROUTINE!!!");
+            //WeaverLog.Log("BEGINNING CUSTOM ROUTINE!!!");
             SceneAdditiveLoadConditional.loadInSequence = true;
             yield return getRunner(__instance).StartCoroutine(ScenePreloader.FinishPendingOperations());
             recordBeginTime(__instance, SceneLoad.Phases.FetchBlocked);
@@ -128,7 +128,7 @@ public static class SceneLoad_Patches
             }
             recordEndTime(__instance, SceneLoad.Phases.FetchBlocked);
             recordBeginTime(__instance, SceneLoad.Phases.Fetch);
-            WeaverLog.Log("LOADING CUSTOM SCENE = " + getTargetSceneName(__instance));
+            //WeaverLog.Log("LOADING CUSTOM SCENE = " + getTargetSceneName(__instance));
             AsyncOperation loadOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(getTargetSceneName(__instance), LoadSceneMode.Additive);
             //setTargetSceneName(__instance, UnitySceneManager_Patches.ReplaceScene(getTargetSceneName(__instance)));
             loadOperation.allowSceneActivation = false;
@@ -138,10 +138,10 @@ public static class SceneLoad_Patches
             {
                 foreach (var isu in record.InverseSceneUnions)
                 {
-                    WeaverLog.Log("ISU SOURCE = " + isu.GameSceneToMerge + ", dest = " + isu.DestinationScene);
+                    //WeaverLog.Log("ISU SOURCE = " + isu.GameSceneToMerge + ", dest = " + isu.DestinationScene);
                     if (isu.DestinationScene == getTargetSceneName(__instance) || GetSceneNameOrSelf(isu.DestinationScene) == getTargetSceneName(__instance))
                     {
-                        WeaverLog.Log("LOADING ISU = " + isu.GameSceneToMerge);
+                        //WeaverLog.Log("LOADING ISU = " + isu.GameSceneToMerge);
                         var op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(isu.GameSceneToMerge, LoadSceneMode.Additive);
                         op.allowSceneActivation = false;
                         inverseScenes.Add(isu.GameSceneToMerge);
@@ -212,7 +212,7 @@ public static class SceneLoad_Patches
             {
                 var destScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(getTargetSceneName(__instance));
                 var sourceScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(inverseScenes[i]);
-                WeaverLog.Log($"MERGING SCENE {sourceScene.name} into {destScene.name}");
+                //WeaverLog.Log($"MERGING SCENE {sourceScene.name} into {destScene.name}");
                 UnityEngine.SceneManagement.SceneManager.MergeScenes(sourceScene, destScene);
                 yield return null;
             }
@@ -321,7 +321,7 @@ public static class SceneLoad_Patches
             }
         }
 
-        WeaverLog.Log("CUSTOM LOAD SCENE PREFIX CALLED!!!");
+        //WeaverLog.Log("CUSTOM LOAD SCENE PREFIX CALLED!!!");
 
         __result = Func();
         return false;

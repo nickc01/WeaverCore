@@ -70,6 +70,9 @@ namespace WeaverCore.Assets.Components
         [SerializeField]
         float stopDelay = 3f;
 
+        [SerializeField]
+        bool waitForPlayerInput = true;
+
         public HeroActionButton ButtonIconAction
         {
             get => buttonIconAction;
@@ -284,9 +287,12 @@ namespace WeaverCore.Assets.Components
 
             yield return new WaitForSeconds(0.25f);
 
-            while (!(PlayerInput.jump.IsPressed || PlayerInput.attack.IsPressed || PlayerInput.pause.IsPressed || PlayerInput.jump.WasPressed || PlayerInput.attack.WasPressed || PlayerInput.jump.WasPressed))
+            if (waitForPlayerInput)
             {
-                yield return null;
+                while (!(PlayerInput.jump.IsPressed || PlayerInput.attack.IsPressed || PlayerInput.pause.IsPressed || PlayerInput.jump.WasPressed || PlayerInput.attack.WasPressed || PlayerInput.jump.WasPressed))
+                {
+                    yield return null;
+                }
             }
 
             if (doFadeOut)

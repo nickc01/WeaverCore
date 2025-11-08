@@ -77,13 +77,18 @@ namespace WeaverCore.Assets.Components
 		/// <param name="position">The position the death wave will spawn</param>
 		/// <param name="sizeMultiplier">A multiplier applied to the scale of the object</param>
 		/// <returns></returns>
-		public static DeathWave Spawn(Vector3 position, float sizeMultiplier)
+		public static DeathWave Spawn(Vector3 position, float sizeMultiplier, DeathWave prefab = null)
 		{
 			if (Prefab.Value == null)
 			{
 				Prefab.Value = WeaverAssets.LoadWeaverAsset<GameObject>("Death Wave Infected").GetComponent<DeathWave>();
 			}
-			var instance = Pooling.Instantiate(Prefab.Value, position, Quaternion.identity);
+
+			if (prefab == null)
+			{
+				prefab = Prefab.Value;
+			}
+			var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
 			instance.SizeMultiplier = sizeMultiplier;
 			instance.TransparencyMultiplier = 1f;
 			instance.UpdateVisuals();

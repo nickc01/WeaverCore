@@ -18,6 +18,9 @@ namespace WeaverCore.Components
         [SerializeField]
         GameObject pulseWave = null;
 
+        [SerializeField]
+        bool playPickupEffects = true;
+
         [Space]
         [Header("Appear")]
         [SerializeField]
@@ -292,9 +295,12 @@ namespace WeaverCore.Components
             {
                 audio.Stop();
             }
-            EventManager.SendEventToGameObject("FSM CANCEL", Player.Player1.gameObject);
-            PlayerData.instance.SetBool("isInvincible", true);
-            PlayerData.instance.SetBool("disablePause", true);
+            if (playPickupEffects)
+            {
+                EventManager.SendEventToGameObject("FSM CANCEL", Player.Player1.gameObject);
+                PlayerData.instance.SetBool("isInvincible", true);
+                PlayerData.instance.SetBool("disablePause", true);
+            }
 
             foreach (var sound in collectSounds)
             {
@@ -307,12 +313,16 @@ namespace WeaverCore.Components
 
             //Vessel Fragment Collected
             HasBeenCollected = true;
-            HeroController.instance.RelinquishControl();
-            HeroController.instance.StopAnimationControl();
-            HeroUtilities.PlayPlayerClip("Collect Heart Piece");
-            if (Player.Player1.TryGetComponent<Rigidbody2D>(out var playerRB))
+
+            if (playPickupEffects)
             {
-                playerRB.gravityScale = 0f;
+                HeroController.instance.RelinquishControl();
+                HeroController.instance.StopAnimationControl();
+                HeroUtilities.PlayPlayerClip("Collect Heart Piece");
+                if (Player.Player1.TryGetComponent<Rigidbody2D>(out var playerRB))
+                {
+                    playerRB.gravityScale = 0f;
+                }
             }
 
             //GET Event
@@ -322,21 +332,24 @@ namespace WeaverCore.Components
 
             idleParticles.Stop();
             MainRenderer.enabled = false;
-            getAnim.SetActive(true);
-            CameraShaker.Instance.Shake(ShakeType.AverageShake);
-
-            if (heartPieceOrbPrefab != null)
+            if (playPickupEffects)
             {
-                var spawnAmount = orbSpawnAmount.RandomInRange();
-                for (int i = 0; i < spawnAmount; i++)
+                getAnim.SetActive(true);
+                CameraShaker.Instance.Shake(ShakeType.AverageShake);
+
+                if (heartPieceOrbPrefab != null)
                 {
-                    GameObject orb = Instantiate(heartPieceOrbPrefab, transform);
+                    var spawnAmount = orbSpawnAmount.RandomInRange();
+                    for (int i = 0; i < spawnAmount; i++)
+                    {
+                        GameObject orb = Instantiate(heartPieceOrbPrefab, transform);
 
-                    float angle = UnityEngine.Random.Range(orbAngleRange.x, orbAngleRange.y) * Mathf.Deg2Rad;
+                        float angle = UnityEngine.Random.Range(orbAngleRange.x, orbAngleRange.y) * Mathf.Deg2Rad;
 
-                    orb.transform.localPosition = orbOriginVariation * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                        orb.transform.localPosition = orbOriginVariation * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-                    orb.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * orbSpeedRange.RandomInRange();
+                        orb.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * orbSpeedRange.RandomInRange();
+                    }
                 }
             }
 
@@ -345,9 +358,12 @@ namespace WeaverCore.Components
 
         IEnumerator PickupRoutine()
         {
-            yield return new WaitForSeconds(0.6f);
+            if (playPickupEffects)
+            {
+                yield return new WaitForSeconds(0.6f);
+            }
 
-            if (Player.Player1.TryGetComponent<Rigidbody2D>(out var playerRB))
+            if (playPickupEffects && Player.Player1.TryGetComponent<Rigidbody2D>(out var playerRB))
             {
                 playerRB.velocity = default;
             }
@@ -357,15 +373,18 @@ namespace WeaverCore.Components
                 OnEnd();
                 yield break;
             }
-            yield return HeroUtilities.PlayPlayerClipTillDone("Collect Heart Piece End");
-            if (Player.Player1.TryGetComponent<Rigidbody2D>(out playerRB))
+            if (playPickupEffects)
             {
-                playerRB.gravityScale = 0.79f;
+                yield return HeroUtilities.PlayPlayerClipTillDone("Collect Heart Piece End");
+                if (Player.Player1.TryGetComponent<Rigidbody2D>(out playerRB))
+                {
+                    playerRB.gravityScale = 0.79f;
+                }
+                PlayerData.instance.SetBool("isInvincible", false);
+                HeroController.instance.RegainControl();
+                HeroController.instance.StartAnimationControl();
+                PlayerData.instance.SetBool("disablePause", false);
             }
-            PlayerData.instance.SetBool("isInvincible", false);
-            HeroController.instance.RegainControl();
-            HeroController.instance.StartAnimationControl();
-            PlayerData.instance.SetBool("disablePause", false);
             OnEnd();
         }
 

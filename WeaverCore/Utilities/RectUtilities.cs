@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
@@ -157,6 +159,43 @@ namespace WeaverCore.Utilities
 		public static Vector2 RandomPointWithin(this Bounds rect)
 		{
 			return new Vector2(UnityEngine.Random.Range(rect.min.x, rect.max.x), UnityEngine.Random.Range(rect.min.y, rect.max.y));
+		}
+
+		/// <summary>
+		/// Returns a single axis-aligned Bounds that tightly contains every Bounds in <paramref name="bounds"/>.
+		/// Throws if the sequence is empty.
+		/// </summary>
+		public static Bounds EncompassAll(IEnumerable<Bounds> bounds)
+		{
+			if (bounds == null) throw new ArgumentNullException(nameof(bounds));
+
+			bool hasAny = false;
+			Vector3 min = default, max = default;
+
+			foreach (var b in bounds)
+			{
+				//WeaverLog.Log("FOUND BOUNDS = " + b);
+				if (!hasAny)
+				{
+					min = b.min;   // lowest corner of this AABB
+					max = b.max;   // highest corner of this AABB
+					hasAny = true;
+				}
+				else
+				{
+					min = Vector3.Min(min, b.min);
+					max = Vector3.Max(max, b.max);
+				}
+			}
+
+			if (!hasAny)
+				throw new ArgumentException("Sequence contains no elements.", nameof(bounds));
+
+			var combined = new Bounds();
+			combined.SetMinMax(min, max); // assign final corners efficiently
+
+			//WeaverLog.Log("COMBINED BOUNDS = " + combined);
+			return combined;
 		}
 	}
 }

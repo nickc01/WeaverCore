@@ -482,7 +482,7 @@ namespace WeaverCore.Utilities
 
 			return action;
 		}
-		
+
 		public static object AddActionAtIndex(object state, object action, int index)
 		{
 			if (state == null || action == null)
@@ -516,16 +516,76 @@ namespace WeaverCore.Utilities
 			saveActionsMethod.Invoke(state, null);
 			return action;
 		}
+		
+		class QuickWeaverAction1 : WeaverFSMAction
+        {
+            public readonly Action MainAction;
+            public QuickWeaverAction1(Action action)
+            {
+                MainAction = action;
+            }
 
+            public override void OnEnter()
+            {
+                MainAction?.Invoke();
+            }
+        }
+
+        class QuickWeaverAction2 : WeaverFSMAction
+        {
+            public readonly Action<FsmWrapper> MainAction;
+            public QuickWeaverAction2(Action<FsmWrapper> action)
+            {
+                MainAction = action;
+            }
+
+            public override void OnEnter()
+            {
+                MainAction?.Invoke(FsmWrapper);
+            }
+        }
 
 		public static FsmActionWrapper AddAction(FsmStateWrapper state, FsmActionWrapper action)
 		{
 			return new FsmActionWrapper(AddAction(state.InternalState, action.InternalAction));
 		}
-		
+
 		public static FsmActionWrapper AddActionAtIndex(FsmStateWrapper state, FsmActionWrapper action, int index)
 		{
 			return new FsmActionWrapper(AddActionAtIndex(state.InternalState, action.InternalAction, index));
+		}
+		
+
+		public static FsmActionWrapper AddAction(FsmStateWrapper state, WeaverFSMAction action)
+		{
+			return new FsmActionWrapper(AddAction(state, CreateFSMActionWrapperFromWeaverAction(action)));
+		}
+
+		public static FsmActionWrapper AddActionAtIndex(FsmStateWrapper state, WeaverFSMAction action, int index)
+		{
+			return new FsmActionWrapper(AddActionAtIndex(state, CreateFSMActionWrapperFromWeaverAction(action), index));
+		}
+		
+
+		public static FsmActionWrapper AddAction(FsmStateWrapper state, Action action)
+		{
+			return new FsmActionWrapper(AddAction(state, CreateFSMActionWrapperFromWeaverAction(new QuickWeaverAction1(action))));
+		}
+
+		public static FsmActionWrapper AddActionAtIndex(FsmStateWrapper state, Action action, int index)
+		{
+			return new FsmActionWrapper(AddActionAtIndex(state, CreateFSMActionWrapperFromWeaverAction(new QuickWeaverAction1(action)), index));
+		}
+		
+
+		public static FsmActionWrapper AddAction(FsmStateWrapper state, Action<FsmWrapper> action)
+		{
+			return new FsmActionWrapper(AddAction(state, CreateFSMActionWrapperFromWeaverAction(new QuickWeaverAction2(action))));
+		}
+		
+		public static FsmActionWrapper AddActionAtIndex(FsmStateWrapper state, Action<FsmWrapper> action, int index)
+		{
+			return new FsmActionWrapper(AddActionAtIndex(state, CreateFSMActionWrapperFromWeaverAction(new QuickWeaverAction2(action)), index));
 		}
 		
 		public static int GetActionIndex(FsmStateWrapper state, FsmActionWrapper action)

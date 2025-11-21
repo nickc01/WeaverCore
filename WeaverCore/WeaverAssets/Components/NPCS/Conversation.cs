@@ -40,6 +40,9 @@ namespace WeaverCore.Assets.Components
         [field: SerializeField]
         public bool ShowBoxOnStart { get; set; } = true;
 
+        [field: SerializeField]
+        public float BeginConvoDelay { get; set; } = 0.3f;
+
         /// <summary>
         /// The result of the yes/no dialog box
         /// </summary>
@@ -113,7 +116,7 @@ namespace WeaverCore.Assets.Components
             {
                 ShowConversationBox();
             }
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(BeginConvoDelay);
             yield return DoConversation();
             onDone?.Invoke();
 

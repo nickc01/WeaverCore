@@ -65,6 +65,10 @@ namespace WeaverCore.Assets.Components
         [Tooltip("If set to true, the GameObject's layer will be set to the \"Hero Detector\" layer upon Awake")]
         bool updateLayer = true;
 
+        [SerializeField]
+        [Tooltip("If set to true, then the player will look upwards when starting the conversation")]
+        bool makePlayerLookUp = true;
+
         /// <summary>
         /// Is the player able to talk to this NPC?
         /// </summary>
@@ -255,7 +259,7 @@ namespace WeaverCore.Assets.Components
             {
                 throw new Exception($"Error: No Conversation Component is attached to object {gameObject.name}. One is needed in order to talk to the WeaverNPC");
             }
-            yield return conversation.StartConversationRoutine();
+            yield return conversation.StartConversationRoutine(makePlayerLookUp);
             conversation.HideConversationBox();
             yield return EndConvo();
         }

@@ -86,11 +86,60 @@ namespace WeaverCore.Utilities
             AddActionAtIndex(stateName, action, -1);
         }
 
+        class QuickWeaverAction1 : WeaverFSMAction
+        {
+            public readonly Action MainAction;
+            public QuickWeaverAction1(Action action)
+            {
+                MainAction = action;
+            }
+
+            public override void OnEnter()
+            {
+                MainAction?.Invoke();
+            }
+        }
+
+        class QuickWeaverAction2 : WeaverFSMAction
+        {
+            public readonly Action<FsmWrapper> MainAction;
+            public QuickWeaverAction2(Action<FsmWrapper> action)
+            {
+                MainAction = action;
+            }
+
+            public override void OnEnter()
+            {
+                MainAction?.Invoke(FsmWrapper);
+            }
+        }
+
+        public void AddAction(string stateName, Action action)
+        {
+            AddAction(stateName, new QuickWeaverAction1(action));
+        }
+
+
+        public void AddAction(string stateName, Action<FsmWrapper> action)
+        {
+            AddAction(stateName, new QuickWeaverAction2(action));
+        }
+
         public FsmActionWrapper AddAction(string stateName, WeaverFSMAction action)
         {
             var fsmAction = PlayMakerUtilities.CreateFSMActionWrapperFromWeaverAction(action);
             AddActionAtIndex(stateName, fsmAction, -1);
             return fsmAction;
+        }
+
+        public FsmActionWrapper AddActionAtIndex(string stateName, Action action, int index)
+        {
+            return AddActionAtIndex(stateName, new QuickWeaverAction1(action), index);
+        }
+
+        public FsmActionWrapper AddActionAtIndex(string stateName, Action<FsmWrapper> action, int index)
+        {
+            return AddActionAtIndex(stateName, new QuickWeaverAction2(action), index);
         }
 
         public FsmActionWrapper AddActionAtIndex(string stateName, WeaverFSMAction action, int index)

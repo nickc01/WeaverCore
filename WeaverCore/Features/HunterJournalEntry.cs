@@ -17,7 +17,7 @@ namespace WeaverCore.Features
         }
 
         /// <summary>
-        /// The internal name of this journal entry
+        /// The internal name of this journal entry (Must be consistent and unique)
         /// </summary>
         public abstract string EntryName { get; }
 

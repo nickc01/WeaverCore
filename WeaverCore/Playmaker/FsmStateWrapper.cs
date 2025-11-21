@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using WeaverCore.Utilities;
 
@@ -32,21 +33,88 @@ namespace WeaverCore.Playmaker
 		{
 			return PlayMakerUtilities.GetActionData(InternalState);
 		}
-		
+
 		public int GetActionIndex(FsmActionWrapper action)
 		{
 			return PlayMakerUtilities.GetActionIndex(InternalState, action.InternalAction);
 		}
 		
+		class QuickWeaverAction1 : WeaverFSMAction
+        {
+            public readonly Action MainAction;
+            public QuickWeaverAction1(Action action)
+            {
+                MainAction = action;
+            }
+
+            public override void OnEnter()
+            {
+                MainAction?.Invoke();
+            }
+        }
+
+        class QuickWeaverAction2 : WeaverFSMAction
+        {
+            public readonly Action<FsmWrapper> MainAction;
+            public QuickWeaverAction2(Action<FsmWrapper> action)
+            {
+                MainAction = action;
+            }
+
+            public override void OnEnter()
+            {
+                MainAction?.Invoke(FsmWrapper);
+            }
+        }
+		
 		public FsmActionWrapper AddAction(FsmActionWrapper action)
 		{
 			return new FsmActionWrapper(PlayMakerUtilities.AddAction(InternalState, action.InternalAction));
 		}
-		
+
 		public FsmActionWrapper AddActionAtIndex(FsmActionWrapper action, int index)
 		{
 			return new FsmActionWrapper(PlayMakerUtilities.AddActionAtIndex(InternalState, action.InternalAction, index));
 		}
+		
+
+
+		public FsmActionWrapper AddAction(WeaverFSMAction action)
+		{
+			return new FsmActionWrapper(PlayMakerUtilities.AddAction(InternalState, PlayMakerUtilities.CreateFSMActionFromWeaverAction(action)));
+		}
+
+		public FsmActionWrapper AddActionAtIndex(WeaverFSMAction action, int index)
+		{
+			return new FsmActionWrapper(PlayMakerUtilities.AddActionAtIndex(InternalState, PlayMakerUtilities.CreateFSMActionFromWeaverAction(action), index));
+		}
+		
+
+
+
+		public FsmActionWrapper AddAction(Action action)
+		{
+			return new FsmActionWrapper(PlayMakerUtilities.AddAction(InternalState, PlayMakerUtilities.CreateFSMActionFromWeaverAction(new QuickWeaverAction1(action))));
+		}
+
+		public FsmActionWrapper AddActionAtIndex(Action action, int index)
+		{
+			return new FsmActionWrapper(PlayMakerUtilities.AddActionAtIndex(InternalState, PlayMakerUtilities.CreateFSMActionFromWeaverAction(new QuickWeaverAction1(action)), index));
+		}
+		
+
+
+
+		public FsmActionWrapper AddAction(Action<FsmWrapper> action)
+		{
+			return new FsmActionWrapper(PlayMakerUtilities.AddAction(InternalState, PlayMakerUtilities.CreateFSMActionFromWeaverAction(new QuickWeaverAction2(action))));
+		}
+		
+		public FsmActionWrapper AddActionAtIndex(Action<FsmWrapper> action, int index)
+		{
+			return new FsmActionWrapper(PlayMakerUtilities.AddActionAtIndex(InternalState, PlayMakerUtilities.CreateFSMActionFromWeaverAction(new QuickWeaverAction2(action)), index));
+		}
+		
 
 		public void RemoveAllActions()
 		{

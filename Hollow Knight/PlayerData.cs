@@ -1531,6 +1531,11 @@ public class PlayerData
 		return true;
 	}
 
+	public void CountJournalEntries()
+	{
+
+	}
+
     public bool UpdateGameMap()
 	{
 		bool result = false;

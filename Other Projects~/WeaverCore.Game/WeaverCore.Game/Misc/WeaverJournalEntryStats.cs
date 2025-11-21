@@ -1,6 +1,6 @@
 ﻿using InControl;
 using Modding;
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -132,7 +132,7 @@ namespace WeaverCore.Game
 
         private static Sprite JournalEntryStats_GetSprite(On.JournalEntryStats.orig_GetSprite orig, JournalEntryStats self)
         {
-            if (self is WeaverJournalEntryStats wjes && wjes.JournalEntry != null)
+            if (self is EntryStats wjes && wjes.JournalEntry != null)
             {
                 return wjes.JournalEntry.Sprite;
             }
@@ -333,4 +333,4 @@ namespace WeaverCore.Game
 			JournalEntry = null;
 		}
 	}
-}
+}*/

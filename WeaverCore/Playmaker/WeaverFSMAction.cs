@@ -52,7 +52,7 @@ namespace WeaverCore.Playmaker
                     finishedProperty = fsmActionType.GetProperty("Finished");
                     autoNameProperty = fsmActionType.GetProperty("AutoName");
                     ownerProperty = fsmActionType.GetProperty("Owner");
-                    fsmStateProperty = fsmActionType.GetProperty("FsmState");
+                    fsmStateProperty = fsmActionType.GetProperty("State");
                     fsmProperty = fsmActionType.GetProperty("Fsm");
                     fsmComponentProperty = fsmActionType.GetField("fsmComponent", BindingFlags.NonPublic | BindingFlags.Instance);
                     

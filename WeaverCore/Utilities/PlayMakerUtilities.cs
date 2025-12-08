@@ -528,6 +528,7 @@ namespace WeaverCore.Utilities
             public override void OnEnter()
             {
                 MainAction?.Invoke();
+				Finish();
             }
         }
 
@@ -542,6 +543,7 @@ namespace WeaverCore.Utilities
             public override void OnEnter()
             {
                 MainAction?.Invoke(FsmWrapper);
+				Finish();
             }
         }
 

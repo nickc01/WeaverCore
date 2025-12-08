@@ -112,6 +112,32 @@ namespace WeaverCore.Utilities
                 }
             }
         }
+
+        public static IEnumerable<T> GetLoadedCharms<T>()
+        {
+            foreach (var pair in addedCustomCharms)
+            {
+                if (!disabledCharms.Contains(pair.Value) && pair.Value is T)
+                {
+                    yield return (T)pair.Value;
+                }
+            }
+        }
+
+        public static bool TryGetLoadedCharm<T>(out T value)
+        {
+            foreach (var pair in addedCustomCharms)
+            {
+                if (!disabledCharms.Contains(pair.Value) && pair.Value is T)
+                {
+                    value = (T)pair.Value;
+                    return true;
+                }
+            }
+            value = default;
+
+            return false;
+        }
         
         public static int GetLoadedCharmCount()
         {

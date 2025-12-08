@@ -28,7 +28,15 @@ namespace RuntimeInspectorNamespace
 
 		public override Transform GetChild( int index )
 		{
-			return rootObjects[index].transform;
+			if (index >= 0 && index < rootObjects.Count)
+			{
+				var gm = rootObjects[index];
+				if (gm != null)
+				{
+					return gm.transform;
+				}
+			}
+			return null;
 		}
 	}
 }

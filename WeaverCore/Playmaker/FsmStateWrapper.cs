@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using WeaverCore.Utilities;
 
@@ -16,7 +18,7 @@ namespace WeaverCore.Playmaker
 			InternalState = state;
 		}
 
-		public string Name => InternalState.ReflectGetField<string>("name");
+		public string Name => InternalState.ReflectGetProperty<string>("Name");
 
 		public FsmWrapper GetFsm()
 		{
@@ -28,6 +30,26 @@ namespace WeaverCore.Playmaker
 			object[] actions = PlayMakerUtilities.GetActions(InternalState);
 			return actions.Select(a => new FsmActionWrapper(a)).ToArray();
 		}
+
+		public bool HasAction(Type actionType)
+        {
+            return GetActions().Any(a => actionType.IsAssignableFrom(a.InternalAction.GetType()));
+        }
+
+		public FsmActionWrapper GetActionByType(Type actionType)
+        {
+            return GetActions().FirstOrDefault(a => actionType.IsAssignableFrom(a.InternalAction.GetType()));
+        }
+
+		public FsmActionWrapper GetActionByType(string typeName)
+        {
+            return GetActions().FirstOrDefault(a => a.GetType().FullName.Contains(typeName));
+        }
+
+		public IEnumerable<FsmActionWrapper> GetActionsByType(Type actionType)
+        {
+            return GetActions().Where(a => actionType.IsAssignableFrom(a.InternalAction.GetType()));
+        }
 
 		public object GetActionData()
 		{
@@ -50,6 +72,7 @@ namespace WeaverCore.Playmaker
             public override void OnEnter()
             {
                 MainAction?.Invoke();
+				Finish();
             }
         }
 
@@ -64,6 +87,7 @@ namespace WeaverCore.Playmaker
             public override void OnEnter()
             {
                 MainAction?.Invoke(FsmWrapper);
+				Finish();
             }
         }
 		

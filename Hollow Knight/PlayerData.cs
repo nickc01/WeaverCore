@@ -67,6 +67,9 @@ public class PlayerData
     public BossSequenceController.BossSequenceData currentBossSequence;
     public int MPCharge;
     public int MPReserve;
+	public int MPReserveMax;
+	public int MPReserveCap;
+	public int maxMP;
     public string bossReturnEntryGate;
     public List<string> scenesEncounteredCocoon;
     public bool mapDirtmouth;
@@ -120,6 +123,11 @@ public class PlayerData
 		}
 	}
 
+	public void AddGGPlayerDataOverrides()
+    {
+        
+    }
+
     private void SetupNewPlayerData()
     {
         atBench = false;
@@ -150,6 +158,9 @@ public class PlayerData
         bossReturnEntryGate = "";
         MPCharge = 0;
         MPReserve = 0;
+		MPReserveCap = 99;
+		MPReserve = 99;
+		maxMP = 99;
         scenesEncounteredCocoon = new List<string>();
     }
 
@@ -1553,11 +1564,94 @@ public class PlayerData
 		return result;
 	}
 
+	public bool WouldDie(int damage)
+	{
+		if (health - damage <= 0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public bool AddMPCharge(int amount)
+	{
+		bool result = false;
+		if (PlayerData.instance.GetBool("soulLimited") && maxMP != 66)
+		{
+			maxMP = 66;
+		}
+		if (!PlayerData.instance.GetBool("soulLimited") && maxMP != 99)
+		{
+			maxMP = 99;
+		}
+		if (BossSequenceController.BoundSoul && maxMP != 33)
+		{
+			maxMP = 33;
+		}
+		if (MPCharge + amount > maxMP)
+		{
+			if (MPReserve < MPReserveMax && !BossSequenceController.BoundSoul)
+			{
+				MPReserve += amount - (maxMP - MPCharge);
+				result = true;
+				if (MPReserve > MPReserveMax)
+				{
+					MPReserve = MPReserveMax;
+				}
+			}
+			MPCharge = maxMP;
+		}
+		else
+		{
+			MPCharge += amount;
+			result = true;
+		}
+		return result;
+	}
+
+	public void TakeMP(int amount)
+	{
+		if (amount <= MPCharge)
+		{
+			MPCharge -= amount;
+			if (MPCharge < 0)
+			{
+				MPCharge = 0;
+			}
+		}
+		else
+		{
+			MPCharge = 0;
+		}
+	}
+
+	public void TakeReserveMP(int amount)
+	{
+		MPReserve -= amount;
+		if (MPReserve < 0)
+		{
+			MPReserve = 0;
+		}
+	}
+
     public void ClearMP()
     {
         MPCharge = 0;
         MPReserve = 0;
     }
+
+	public void UpdateBlueHealth()
+	{
+		healthBlue = 0;
+		if (PlayerData.instance.GetBool("equippedCharm_8"))
+		{
+			healthBlue += 2;
+		}
+		if (PlayerData.instance.GetBool("equippedCharm_9"))
+		{
+			healthBlue += 4;
+		}
+	}
 
     public bool GetBool(string boolName)
     {

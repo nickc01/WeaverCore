@@ -97,10 +97,12 @@ namespace WeaverCore.Assets.Components
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            WeaverLog.Log("AUTO REFLECTOR FOUND = " + collision.gameObject.name);
             if (reflector != null)
             {
                 if (!excludedObjects.Contains(collision.gameObject.name) && !excludedTags.Contains(collision.gameObject.tag))
                 {
+                    WeaverLog.Log("AUTO REFLECTOR ADDED = " + collision.gameObject.name);
                     reflector.AddObjectToReflect(collision.gameObject);
                 }
             }

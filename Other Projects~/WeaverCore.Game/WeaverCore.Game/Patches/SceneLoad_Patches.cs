@@ -118,7 +118,7 @@ public static class SceneLoad_Patches
     {
         IEnumerator Func()
         {
-            //WeaverLog.Log("BEGINNING CUSTOM ROUTINE!!!");
+            //WeaverLog.Log("BEGINNING CUSTOM ROUTINE!!! = " +  __instance);
             SceneAdditiveLoadConditional.loadInSequence = true;
             yield return getRunner(__instance).StartCoroutine(ScenePreloader.FinishPendingOperations());
             recordBeginTime(__instance, SceneLoad.Phases.FetchBlocked);
@@ -130,19 +130,25 @@ public static class SceneLoad_Patches
             recordBeginTime(__instance, SceneLoad.Phases.Fetch);
             //WeaverLog.Log("LOADING CUSTOM SCENE = " + getTargetSceneName(__instance));
             AsyncOperation loadOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(getTargetSceneName(__instance), LoadSceneMode.Additive);
+            //WeaverLog.Log("Load Operation = " + loadOperation);
+            //WeaverLog.Log("Load Operation Is Null = " + (loadOperation == null));
             //setTargetSceneName(__instance, UnitySceneManager_Patches.ReplaceScene(getTargetSceneName(__instance)));
             loadOperation.allowSceneActivation = false;
             List<AsyncOperation> inverseSceneUnions = new List<AsyncOperation>();
             List<string> inverseScenes = new List<string>();
             foreach (var record in Registry.GetAllFeatures<SceneRecord>())
             {
+                //WeaverLog.Log("Record = " + record);
                 foreach (var isu in record.InverseSceneUnions)
                 {
+                    //WeaverLog.Log("ISU = " + isu);
                     //WeaverLog.Log("ISU SOURCE = " + isu.GameSceneToMerge + ", dest = " + isu.DestinationScene);
                     if (isu.DestinationScene == getTargetSceneName(__instance) || GetSceneNameOrSelf(isu.DestinationScene) == getTargetSceneName(__instance))
                     {
                         //WeaverLog.Log("LOADING ISU = " + isu.GameSceneToMerge);
                         var op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(isu.GameSceneToMerge, LoadSceneMode.Additive);
+                        //WeaverLog.Log("Load Operation 2 = " + op);
+                        //WeaverLog.Log("Load Operation 2 Is Null = " + (op == null));
                         op.allowSceneActivation = false;
                         inverseScenes.Add(isu.GameSceneToMerge);
                         inverseSceneUnions.Add(op);
@@ -207,6 +213,7 @@ public static class SceneLoad_Patches
             }
 
             var sourceSceneName = getTargetSceneName(__instance);
+            //WeaverLog.Log("Source Scene Name = " + sourceSceneName);
 
             for (int i = 0; i < inverseScenes.Count; i++)
             {

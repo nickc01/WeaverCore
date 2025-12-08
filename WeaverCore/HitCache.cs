@@ -19,7 +19,11 @@ namespace WeaverCore
 		public static RaycastHit2D[] GetMultiCachedArray(int minimumSize)
 		{
 			return ListCache<RaycastHit2D>.GetCachedList(minimumSize);
+        }
 
+		public static Collider2D[] GetMultiCachedColliderArray(int minimumSize)
+		{
+			return ListCache<Collider2D>.GetCachedList(minimumSize);
         }
     }
 }

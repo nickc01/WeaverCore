@@ -812,7 +812,7 @@ MonoBehaviour:
   m_text: Tools
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 89aa440df0446804d9d2aff314ee9456, type: 2}
-  m_sharedMaterial: {fileID: 21799866445890638, guid: 89aa440df0446804d9d2aff314ee9456, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: b45b849756804b640a8d223855a6ee5f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1086,7 +1086,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692019d993041f54e825fdf242f524a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 6901000388686450715, guid: 37b364af775d1da47838d5b59ca41ca0, type: 3}
+  buttonPrefab: {fileID: 6901000388686450715, guid: 37b364af775d1da47838d5b59ca41ca0,
+    type: 3}
 --- !u!1 &2070646735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,7 +1417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 472.96494}
   m_SizeDelta: {x: 0, y: 660}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &9070621508175569479
@@ -2820,9 +2821,12 @@ MonoBehaviour:
   selectedPathBackground: {fileID: 8967188733486001285}
   selectedPathText: {fileID: 8970994365523211857}
   dragDropListener: {fileID: 8967162271491686015}
-  drawerPrefab: {fileID: 114163117979347852, guid: bcc0e6fb439ccc74c850c0ecc139d80e, type: 3}
-  m_sceneDrawerBackground: {fileID: 21300000, guid: f9d6f86e92bf32541a59e77402db62c1, type: 3}
-  m_transformDrawerBackground: {fileID: 21300000, guid: 796112823cc06244c9a472de097830dd, type: 3}
+  drawerPrefab: {fileID: 114163117979347852, guid: bcc0e6fb439ccc74c850c0ecc139d80e,
+    type: 3}
+  m_sceneDrawerBackground: {fileID: 21300000, guid: f9d6f86e92bf32541a59e77402db62c1,
+    type: 3}
+  m_transformDrawerBackground: {fileID: 21300000, guid: 796112823cc06244c9a472de097830dd,
+    type: 3}
 --- !u!222 &9147924420792873379
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2967,8 +2971,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8966880776541613557}
   m_HandleRect: {fileID: 9149614165168546015}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 0.057773016
+  m_Size: 0.23944703
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3373,7 +3377,7 @@ MonoBehaviour:
   m_text: Search...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
-  m_sharedMaterial: {fileID: 2565833734971123819, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 2732e1543abded44dbbddf80637d734f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3684,7 +3688,7 @@ MonoBehaviour:
   m_text: "\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
-  m_sharedMaterial: {fileID: 2565833734971123819, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 2732e1543abded44dbbddf80637d734f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3847,7 +3851,7 @@ MonoBehaviour:
   m_text: Inspector
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60325ca7b249a814aa6777a5c2b42cd4, type: 2}
-  m_sharedMaterial: {fileID: -66614887950001482, guid: 60325ca7b249a814aa6777a5c2b42cd4, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 323aeaabb32203f4594e6f7fe6baf671, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4061,7 +4065,7 @@ MonoBehaviour:
   m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60325ca7b249a814aa6777a5c2b42cd4, type: 2}
-  m_sharedMaterial: {fileID: -66614887950001482, guid: 60325ca7b249a814aa6777a5c2b42cd4, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 323aeaabb32203f4594e6f7fe6baf671, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4674,7 +4678,7 @@ MonoBehaviour:
   m_text: WeaverCore Debug Tools
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60325ca7b249a814aa6777a5c2b42cd4, type: 2}
-  m_sharedMaterial: {fileID: -66614887950001482, guid: 60325ca7b249a814aa6777a5c2b42cd4, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 323aeaabb32203f4594e6f7fe6baf671, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4837,7 +4841,7 @@ MonoBehaviour:
   m_text: Hierarchy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60325ca7b249a814aa6777a5c2b42cd4, type: 2}
-  m_sharedMaterial: {fileID: -66614887950001482, guid: 60325ca7b249a814aa6777a5c2b42cd4, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 323aeaabb32203f4594e6f7fe6baf671, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

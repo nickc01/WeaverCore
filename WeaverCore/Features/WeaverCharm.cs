@@ -140,5 +140,45 @@ namespace WeaverCore.Features
                 }
             }
         }
+
+        [OnPlayerInit]
+        static void OnPlayerInit()
+        {
+            foreach (IWeaverCharm charm in CharmUtilities.GetLoadedCharms())
+            {
+                if (charm is WeaverCharm wCharm && wCharm.Equipped)
+                {
+                    wCharm.OnPlayerInitEquipped();
+                }
+            }
+        }
+
+        [OnPlayerUninit]
+        static void OnPlayerUninit()
+        {
+            foreach (IWeaverCharm charm in CharmUtilities.GetLoadedCharms())
+            {
+                if (charm is WeaverCharm wCharm && wCharm.Equipped)
+                {
+                    wCharm.OnPlayerUninitEquipped();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when the player initializes, and this charm is equipped
+        /// </summary>
+        protected virtual void OnPlayerInitEquipped()
+        {
+            
+        }
+
+        /// <summary>
+        /// Called when the player uninitializes, and this charm is equipped
+        /// </summary>
+        protected virtual void OnPlayerUninitEquipped()
+        {
+            
+        }
     }
 }

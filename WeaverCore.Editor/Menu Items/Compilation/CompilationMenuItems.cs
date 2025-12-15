@@ -33,6 +33,10 @@ namespace WeaverCore.Editor.Compilation
         {
             try
             {
+                if (!BuildTools.BuildLocationSet())
+                {
+                    return;
+                }
                 var outputPath = new FileInfo(BuildTools.GetModBuildFileLocation());
                 QuickCompileSystem.QuickCompileMod(outputPath);
             }
@@ -47,6 +51,10 @@ namespace WeaverCore.Editor.Compilation
         {
             try
             {
+                if (!BuildTools.BuildLocationSet())
+                {
+                    return false;
+                }
                 var outputPath = new FileInfo(BuildTools.GetModBuildFileLocation());
                 return QuickCompileSystem.CanQuickCompile(outputPath);
             }
@@ -61,6 +69,10 @@ namespace WeaverCore.Editor.Compilation
         {
             try
             {
+                if (!BuildTools.BuildLocationSet())
+                {
+                    return;
+                }
                 var outputPath = new FileInfo(BuildTools.GetModBuildFolder() + "WeaverCore/WeaverCore.dll");
                 QuickCompileSystem.QuickCompileWeaverCore(outputPath);
             }
@@ -75,6 +87,10 @@ namespace WeaverCore.Editor.Compilation
         {
             try
             {
+                if (!BuildTools.BuildLocationSet())
+                {
+                    return false;
+                }
                 var modBuildFolder = BuildTools.GetModBuildFolder();
                 var outputPath = new FileInfo(modBuildFolder + "WeaverCore/WeaverCore.dll");
                 return QuickCompileSystem.CanQuickCompileWeaverCore(outputPath);

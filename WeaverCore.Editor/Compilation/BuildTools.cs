@@ -856,6 +856,11 @@ namespace WeaverCore.Editor.Compilation
 			return PathUtilities.AddSlash(compileLocation);
 		}
 
+		public static bool BuildLocationSet()
+		{
+			return !string.IsNullOrEmpty(BuildScreen.BuildSettings?.BuildLocation);
+		}
+
 		/// <summary>
 		/// Gets the full path of where the mod assembly is going to be placed in
 		/// </summary>

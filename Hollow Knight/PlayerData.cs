@@ -1653,6 +1653,11 @@ public class PlayerData
 		}
 	}
 
+	public void GetAllPowerups()
+    {
+        
+    }
+
     public bool GetBool(string boolName)
     {
         return ModHooks.GetPlayerBool(boolName);

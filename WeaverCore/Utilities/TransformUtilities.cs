@@ -571,5 +571,69 @@ namespace WeaverCore.Utilities
 		{
 			return RecursivelyFindChildren(t, name).FirstOrDefault();
 		}
+
+		public static Transform FindChildViaPath(this Transform transform, string path)
+		{
+			if (transform == null)
+			{
+				return null;
+			}
+
+			if (string.IsNullOrEmpty(path))
+			{
+				return transform;
+			}
+
+			var pieces = path.Split(new char[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries);
+
+			if (pieces.Length == 0)
+			{
+				return transform;
+			}
+
+			Transform current = transform;
+
+			int startIndex = 0;
+
+			for (int i = startIndex; i < pieces.Length; i++)
+			{
+				var part = pieces[i];
+
+				//Allow relative path navigation
+				if (part == ".")
+				{
+					continue;
+				}
+				else if (part == "..")
+				{
+					current = current.parent;
+					if (current == null)
+					{
+						return null;
+					}
+					continue;
+				}
+
+				bool found = false;
+
+				for (int c = 0; c < current.childCount; c++)
+				{
+					var child = current.GetChild(c);
+					if (child.name == part)
+					{
+						current = child;
+						found = true;
+						break;
+					}
+				}
+
+				if (!found)
+				{
+					return null;
+				}
+			}
+
+			return current;
+		}
 	}
 }

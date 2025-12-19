@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	public class TMPro_TexturePostProcessor : AssetPostprocessor
 	{

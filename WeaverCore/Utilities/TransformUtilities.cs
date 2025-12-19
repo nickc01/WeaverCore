@@ -487,7 +487,7 @@ namespace WeaverCore.Utilities
 				var rigid = instance.GetComponent<Rigidbody2D>();
 				if (rigid != null)
 				{
-					rigid.velocity = new Vector2(Mathf.Cos(angleNum) * Mathf.Deg2Rad, Mathf.Sin(angleNum) * Mathf.Deg2Rad);
+					rigid.linearVelocity = new Vector2(Mathf.Cos(angleNum) * Mathf.Deg2Rad, Mathf.Sin(angleNum) * Mathf.Deg2Rad);
 				}
 			}
 			return instances;
@@ -521,7 +521,7 @@ namespace WeaverCore.Utilities
 				var rigid = instance.GetComponent<Rigidbody2D>();
 				if (rigid != null)
 				{
-					rigid.velocity = new Vector2(Mathf.Cos(angleNum) * Mathf.Deg2Rad, Mathf.Sin(angleNum) * Mathf.Deg2Rad);
+					rigid.linearVelocity = new Vector2(Mathf.Cos(angleNum) * Mathf.Deg2Rad, Mathf.Sin(angleNum) * Mathf.Deg2Rad);
 				}
 			}
 			return instances;

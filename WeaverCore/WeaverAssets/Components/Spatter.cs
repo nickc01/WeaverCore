@@ -92,15 +92,15 @@ namespace WeaverCore.Assets.Components
 
 		private void FaceAngle()
 		{
-			Vector2 velocity = body.velocity;
+			Vector2 velocity = body.linearVelocity;
 			float z = Mathf.Atan2(velocity.y, velocity.x) * 57.295776f;
 			transform.localEulerAngles = new Vector3(0f, 0f, z);
 		}
 
 		private void ProjectileSquash()
 		{
-			float num = 1f - body.velocity.magnitude * stretchFactor * 0.01f;
-			float num2 = 1f + body.velocity.magnitude * stretchFactor * 0.01f;
+			float num = 1f - body.linearVelocity.magnitude * stretchFactor * 0.01f;
+			float num2 = 1f + body.linearVelocity.magnitude * stretchFactor * 0.01f;
 			if (num2 < stretchMinX)
 			{
 				num2 = stretchMinX;
@@ -157,7 +157,7 @@ namespace WeaverCore.Assets.Components
 			transform.localScale = new Vector2(num, num);
 			circleCollider.enabled = false;
 			body.isKinematic = true;
-			body.velocity = new Vector2(0f, 0f);
+			body.linearVelocity = new Vector2(0f, 0f);
 			spriteRenderer.sprite = sprites[1];
 		}
 

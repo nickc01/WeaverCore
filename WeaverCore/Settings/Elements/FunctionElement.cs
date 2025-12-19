@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using TMPro;
+using TMProOld;
 using UnityEngine.Events;
 using UnityEngine.UI;
 

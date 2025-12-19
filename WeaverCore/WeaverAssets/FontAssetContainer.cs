@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using WeaverCore.Utilities;
 
@@ -71,7 +71,7 @@ namespace WeaverCore.Assets
 
             oldMaterial.CopyPropertiesFromMaterial(dest.material);
 
-			if (dest is WeaverCore.Assets.TMPro.TMP_FontAsset weaverFont)
+			if (dest is WeaverCore.Assets.TMProOld.TMP_FontAsset weaverFont)
 			{
 				weaverFont.FontReplaced = true;
 			}

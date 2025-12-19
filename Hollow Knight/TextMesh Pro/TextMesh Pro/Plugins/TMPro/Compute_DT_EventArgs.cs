@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	public class Compute_DT_EventArgs
 	{

@@ -255,7 +255,7 @@ namespace WeaverCore.Components
                 Player.Player1.transform.SetScaleX(-1f);
                 HeroController.instance.FaceRight();
                 HeroUtilities.PlayPlayerClip("Walk");
-                heroRB.velocity = new Vector2(6f, 0f);
+                heroRB.linearVelocity = new Vector2(6f, 0f);
                 for (float t = 0; t < 1; t += Time.deltaTime)
                 {
                     if (Player.Player1.transform.position.x >= rightProx)
@@ -271,7 +271,7 @@ namespace WeaverCore.Components
                 Player.Player1.transform.SetScaleX(1f);
                 HeroController.instance.FaceLeft();
                 HeroUtilities.PlayPlayerClip("Walk");
-                heroRB.velocity = new Vector2(-6f, 0f);
+                heroRB.linearVelocity = new Vector2(-6f, 0f);
                 for (float t = 0; t < 1; t += Time.deltaTime)
                 {
                     if (Player.Player1.transform.position.x <= leftProx)
@@ -290,7 +290,7 @@ namespace WeaverCore.Components
             if (forceTurnLeft || (playerFacingRight && playerOnRight))
             {
                 //TURN HERO LEFT
-                heroRB.velocity = default;
+                heroRB.linearVelocity = default;
                 HeroController.instance.FaceLeft();
                 Player.Player1.transform.SetScaleX(1f);
                 yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
@@ -298,7 +298,7 @@ namespace WeaverCore.Components
             else if (forceTurnRight || (!playerFacingRight && !playerOnRight))
             {
                 //TURN HERO RIGHT
-                heroRB.velocity = default;
+                heroRB.linearVelocity = default;
                 HeroController.instance.FaceRight();
                 Player.Player1.transform.SetScaleX(-1f);
                 yield return HeroUtilities.PlayPlayerClipTillDone("Turn");

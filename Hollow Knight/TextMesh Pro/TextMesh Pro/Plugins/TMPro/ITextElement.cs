@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TMPro
+namespace TMProOld
 {
 	public interface ITextElement
 	{

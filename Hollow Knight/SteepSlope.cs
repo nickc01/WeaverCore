@@ -6,7 +6,7 @@ public class SteepSlope : MonoBehaviour
 	{
 		GameObject gameObject = collision.gameObject;
 		Rigidbody2D component = gameObject.GetComponent<Rigidbody2D>();
-		component.velocity = new Vector2(component.velocity.x, -20f);
+		component.linearVelocity = new Vector2(component.linearVelocity.x, -20f);
 		if (gameObject.CompareTag("Player"))
 		{
 			HeroController.instance.ResetHardLandingTimer();

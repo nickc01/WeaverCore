@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace TMPro
+namespace TMProOld
 {
 	internal struct FloatTween : ITweenValue
 	{

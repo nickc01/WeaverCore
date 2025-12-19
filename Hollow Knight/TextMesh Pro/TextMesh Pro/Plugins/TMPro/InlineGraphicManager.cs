@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TMPro
+namespace TMProOld
 {
 	[ExecuteInEditMode]
 	public class InlineGraphicManager : MonoBehaviour

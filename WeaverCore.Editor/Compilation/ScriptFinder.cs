@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Reflection;
 using System.Text;
 using UnityEditor;
@@ -61,6 +62,39 @@ namespace WeaverCore.Editor.Compilation
 	/// </summary>
 	public static class ScriptFinder
 	{
+		static System.Collections.Generic.List<string> GetScriptsForAsmDef(string asmDefPath)
+		{
+			System.Collections.Generic.List<string> results = new System.Collections.Generic.List<string>();
+
+			void GatherScripts(DirectoryInfo dir, DirectoryInfo root)
+			{
+				// Skip any folders marked with "~" (e.g. "Other Projects~")
+				if (dir.Name.EndsWith("~"))
+				{
+					return;
+				}
+
+				if (dir.FullName != root.FullName && dir.GetFiles("*.asmdef", SearchOption.TopDirectoryOnly).Length > 0)
+				{
+					return;
+				}
+
+				foreach (var file in dir.GetFiles("*.cs", SearchOption.TopDirectoryOnly))
+				{
+					results.Add(WeaverCore.Utilities.PathUtilities.ConvertToProjectPath(file.FullName));
+				}
+
+				foreach (var sub in dir.GetDirectories("*", SearchOption.TopDirectoryOnly))
+				{
+					GatherScripts(sub, root);
+				}
+			}
+
+			var asmDefDir = new FileInfo(asmDefPath).Directory;
+			GatherScripts(asmDefDir, asmDefDir);
+			return results;
+		}
+
 		static System.Collections.Generic.List<AssemblyInformation> infoCache;
 
 		/// <summary>
@@ -79,7 +113,7 @@ namespace WeaverCore.Editor.Compilation
 					AssemblyDefinitionPath = pair.Key,
 					AssemblyGUID = AssetDatabase.AssetPathToGUID(pair.Key).ToString(),
 					Definition = pair.Value,
-					ScriptPaths = new System.Collections.Generic.List<string>()
+					ScriptPaths = GetScriptsForAsmDef(pair.Key)
 				});
 			}
 

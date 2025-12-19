@@ -7,16 +7,16 @@ namespace WeaverCore.Editor
 	{
 		public static AssetTypeValueField Get(this AssetTypeValueField source, Func<string,bool> predicate)
 		{
-            AssetTypeValueField[] array = source.children;
+            var array = source.Children;
             foreach (AssetTypeValueField assetTypeValueField in array)
             {
-                if (predicate(assetTypeValueField.templateField.name))
+                if (predicate(assetTypeValueField.TemplateField.Name))
                 {
                     return assetTypeValueField;
                 }
             }
 
-            return AssetTypeInstance.GetDummyAssetTypeField();
+            return AssetTypeValueField.DUMMY_FIELD;
         }
 	}
 }

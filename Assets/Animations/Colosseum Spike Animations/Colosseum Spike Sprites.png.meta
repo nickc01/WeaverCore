@@ -33,7 +33,7 @@ TextureImporter:
       213: -1928383395145760070
     second: col_spikes0004
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -50,10 +50,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -62,9 +64,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -92,8 +94,10 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -103,6 +107,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -119,6 +137,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50442475, y: 0.5503876}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -140,6 +159,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.00000023841847, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -161,6 +181,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50442475, y: 0.54615384}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -182,6 +203,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50526315, y: 2.4482758}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -203,6 +225,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50549453, y: 3.3809524}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -224,6 +247,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5051546, y: 2.6296296}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -245,6 +269,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50442475, y: 0.56349206}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -266,6 +291,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50442475, y: 0.57258064}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -287,6 +313,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50476193, y: 1.4791666}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -308,6 +335,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50442475, y: 0.50714284}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -319,6 +347,7 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -328,9 +357,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      col_spikes0000: -6164719757290450169
+      col_spikes0001: -3309065645199807752
+      col_spikes0002: 4117438388690523290
+      col_spikes0003: 2894819120505586399
+      col_spikes0004: -1928383395145760070
+      col_spikes0005: 7768927131924909648
+      col_spikes0006: 3229499758232685768
+      col_spikes0007: -681883811432022889
+      col_spikes0008: 7085077753778919679
+      col_spikes0009: 3897055126281487664
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: weavercore_modclass_bundle
   assetBundleVariant: 

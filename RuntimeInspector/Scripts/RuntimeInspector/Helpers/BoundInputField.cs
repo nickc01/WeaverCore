@@ -12,7 +12,7 @@ namespace RuntimeInspectorNamespace
 		private bool inputAltered = false;
 
 		private InputField inputField;
-		private TMPro.TMP_InputField inputFieldTMP;
+		private TMProOld.TMP_InputField inputFieldTMP;
 		private Image inputFieldBackground;
 		public InputField BackingField { get { return inputField; } }
 
@@ -73,7 +73,7 @@ namespace RuntimeInspectorNamespace
 
 					if (inputFieldTMP != null)
 					{
-						var placeholder = inputFieldTMP.placeholder as TMPro.TMP_Text;
+						var placeholder = inputFieldTMP.placeholder as TMProOld.TMP_Text;
 						if (placeholder != null)
 						{
 							float placeholderAlpha = placeholder.color.a;
@@ -116,7 +116,7 @@ namespace RuntimeInspectorNamespace
 				return;
 
 			inputField = GetComponent<InputField>();
-			inputFieldTMP = GetComponent<TMPro.TMP_InputField>();
+			inputFieldTMP = GetComponent<TMProOld.TMP_InputField>();
 			inputFieldBackground = GetComponent<Image>();
 
 			if (inputFieldTMP != null)

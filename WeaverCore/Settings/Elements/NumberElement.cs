@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using UnityEngine.UI;
 using WeaverCore.Utilities;

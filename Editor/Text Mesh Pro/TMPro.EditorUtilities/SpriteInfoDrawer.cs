@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	[CustomPropertyDrawer(typeof(TMP_Sprite))]
 	public class SpriteInfoDrawer : PropertyDrawer

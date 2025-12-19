@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using WeaverCore.Attributes;
 using WeaverCore.Utilities;
@@ -16,14 +16,14 @@ namespace WeaverCore.Game.Patches
 		[OnInit]
 		static void Init()
 		{
-			On.TMPro.TextContainer.Awake += TextContainer_Awake;
+			On.TMProOld.TextContainer.Awake += TextContainer_Awake;
 		}
 
-		private static void TextContainer_Awake(On.TMPro.TextContainer.orig_Awake orig, TMPro.TextContainer self)
+		private static void TextContainer_Awake(On.TMProOld.TextContainer.orig_Awake orig, TMProOld.TextContainer self)
 		{
 			var tmp = self.GetComponent<TextMeshPro>();
 			var rTransform = self.GetComponent<RectTransform>();
-			if (rTransform != null && tmp is WeaverCore.Assets.TMPro.TextMeshPro wtmp)
+			if (rTransform != null && tmp is WeaverCore.Assets.TMProOld.TextMeshPro wtmp)
 			{
 				var oldPivot = self.pivot;
 				var oldRect = self.rect;

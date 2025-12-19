@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace TMPro
+namespace TMProOld
 {
 	internal class TMP_ObjectPool<T> where T : new()
 	{

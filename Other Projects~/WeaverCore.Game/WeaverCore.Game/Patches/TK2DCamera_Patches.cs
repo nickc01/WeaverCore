@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using WeaverCore.Attributes;
 
@@ -10,21 +7,51 @@ namespace WeaverCore.Game.Patches
 {
 	static class TK2DCamera_Patches
 	{
-		[OnInit(-10)]
-		static void Init()
+		[OnHarmonyPatch]
+		static void Init(HarmonyPatcher patcher)
 		{
-			On.tk2dCamera.Awake += Tk2dCamera_Awake;
-			var cam = GameObject.FindObjectOfType<tk2dCamera>();
+			if (tk2dCameraType == null)
+			{
+				Debug.LogError("TK2D camera type not found; skipping TK2DCamera_Patches");
+				return;
+			}
+
+			var awake = tk2dCameraType.GetMethod("Awake", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
+			var prefix = typeof(TK2DCamera_Patches).GetMethod(nameof(Awake_Prefix), System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+			patcher.Patch(awake, prefix, null);
+
+			var cam = GameObject.FindObjectOfType(tk2dCameraType);
 			if (cam != null)
 			{
-				cam.gameObject.AddComponent<WeaverCamera>();
+				((MonoBehaviour)cam).gameObject.AddComponent<WeaverCamera>();
 			}
 		}
 
-        private static void Tk2dCamera_Awake(On.tk2dCamera.orig_Awake orig, tk2dCamera self)
+		static Type tk2dCameraType = FindType("tk2dCamera");
+
+		static Type FindType(string typeName)
 		{
-			orig(self);
-			self.gameObject.AddComponent<WeaverCamera>();
+			foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+			{
+				try
+				{
+					var t = asm.GetType(typeName, throwOnError: false, ignoreCase: false);
+					if (t != null)
+					{
+						return t;
+					}
+				}
+				catch { }
+			}
+			return null;
+		}
+
+		static void Awake_Prefix(MonoBehaviour __instance)
+		{
+			if (__instance != null && __instance.gameObject.GetComponent<WeaverCamera>() == null)
+			{
+				__instance.gameObject.AddComponent<WeaverCamera>();
+			}
 		}
 	}
 }

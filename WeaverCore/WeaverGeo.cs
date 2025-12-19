@@ -327,7 +327,7 @@ namespace WeaverCore
 #if !UNITY_EDITOR
             if (hitGround && !attractedGetter(this))
             {
-                var oldVelocity = RB.velocity;
+                var oldVelocity = RB.linearVelocity;
 
                 if (oldVelocity.x >= 0)
                 {
@@ -345,7 +345,7 @@ namespace WeaverCore
                         oldVelocity.x = 0;
                     }
                 }
-                RB.velocity = oldVelocity;
+                RB.linearVelocity = oldVelocity;
             }
 #endif
         }

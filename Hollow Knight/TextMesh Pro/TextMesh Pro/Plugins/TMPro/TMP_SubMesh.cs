@@ -5,7 +5,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TMPro
+namespace TMProOld
 {
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(MeshRenderer))]

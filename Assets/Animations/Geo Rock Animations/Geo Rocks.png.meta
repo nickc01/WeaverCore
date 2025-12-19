@@ -48,7 +48,7 @@ TextureImporter:
       213: 8314774259530607055
     second: coin_rock_02_0003
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -65,10 +65,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -77,9 +79,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -107,8 +109,10 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -118,6 +122,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -134,6 +152,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50467294, y: 0.5673077}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -155,6 +174,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50467294, y: 0.5673077}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -176,6 +196,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50467294, y: 0.5673077}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -197,6 +218,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50467294, y: 0.5673077}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -218,6 +240,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50467294, y: 0.5673077}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -239,6 +262,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50467294, y: 0.57281554}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -260,6 +284,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50467294, y: 0.5673077}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -281,6 +306,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.48305082, y: 0.5619047}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -302,6 +328,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.48305082, y: 0.5619047}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -323,6 +350,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.48305082, y: 0.5619047}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -344,6 +372,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.48305082, y: 0.5619047}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -365,6 +394,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.48305082, y: 0.5619047}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -386,6 +416,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.48305082, y: 0.5619047}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -407,6 +438,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.48305082, y: 0.5619047}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -428,6 +460,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.48305082, y: 0.5619047}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -439,6 +472,7 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -448,9 +482,26 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      coin_rock_010000: 3978820388861925504
+      coin_rock_010001: 2291394602837889308
+      coin_rock_010002: -1720315830566433301
+      coin_rock_010003: 6643358701515367522
+      coin_rock_010004: -6140214376148329173
+      coin_rock_010005: 317809468072923640
+      coin_rock_02_0000: 6909275899253939517
+      coin_rock_02_0001: -687410334720782735
+      coin_rock_02_0002: 1757835705848681278
+      coin_rock_02_0003: 8314774259530607055
+      coin_rock_02_0004: -2503131321116632599
+      coin_rock_02_0005: 2595151728587857044
+      coin_rock_02_0006: 3684687863634819652
+      coin_rock_base: 6522470137946245734
+      coin_rock_base_02: -3418662516905054671
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: weavercore_modclass_bundle
   assetBundleVariant: 

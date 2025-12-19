@@ -176,7 +176,7 @@ namespace WeaverCore.Components
             while (hitType == CollisionType.None)
             {
                 speed += incrementer;
-                rb.velocity = rb.velocity.With(x: speed);
+                rb.linearVelocity = rb.linearVelocity.With(x: speed);
 
                 var hitCache = HitCache.GetSingleCachedArray();
 

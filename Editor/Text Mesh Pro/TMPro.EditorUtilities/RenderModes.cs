@@ -1,4 +1,4 @@
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	public enum RenderModes
 	{

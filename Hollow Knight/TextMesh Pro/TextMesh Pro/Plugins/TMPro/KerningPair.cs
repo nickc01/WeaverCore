@@ -1,6 +1,6 @@
 using System;
 
-namespace TMPro
+namespace TMProOld
 {
 	[Serializable]
 	public class KerningPair

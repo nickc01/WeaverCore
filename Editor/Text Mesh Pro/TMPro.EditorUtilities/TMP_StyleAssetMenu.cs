@@ -2,7 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	public static class TMP_StyleAssetMenu
 	{

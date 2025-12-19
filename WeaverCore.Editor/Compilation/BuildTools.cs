@@ -16,6 +16,7 @@ using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 
 using System.Threading.Tasks;
+using WeaverCore.Editor.Compilation;
 
 namespace WeaverCore.Editor.Compilation
 {
@@ -290,7 +291,7 @@ namespace WeaverCore.Editor.Compilation
 
 			if (builder.Scripts == null || builder.Scripts.Count == 0)
 			{
-				Debug.LogError("There are no scripts to build");
+				BuildDebugging.LogError("There are no scripts to build");
 				task.Result.Success = false;
 				task.Completed = true;
 				yield break;
@@ -344,7 +345,7 @@ namespace WeaverCore.Editor.Compilation
 				{
 					Success = false
 				};
-                Debug.Log("Failed to build WeaverCore");
+                BuildDebugging.LogError("Failed to build WeaverCore");
 				yield break;
 			}
 
@@ -379,6 +380,7 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		public static void BuildMod()
 		{
+			BuildDebugging.StartNewBatch("WeaverCore_Mod");
 			BuildMod(new FileInfo(GetModBuildFileLocation()));
 		}
 
@@ -469,6 +471,7 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		public static void BuildWeaverCore()
 		{
+			BuildDebugging.StartNewBatch("WeaverCore_Build");
 			BuildWeaverCore(new FileInfo(GetModBuildFolder() + "WeaverCore.dll"));
 		}
 
@@ -628,6 +631,7 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		public static void BuildWeaverCoreGameAsm()
 		{
+			BuildDebugging.StartNewBatch("WeaverCore_GameAsm");
 			BuildWeaverCoreGameAsm(null);
 		}
 
@@ -719,10 +723,54 @@ namespace WeaverCore.Editor.Compilation
 						}
 					}
 
-					foreach (var scriptFile in xmlProjectFile.Directory.GetFiles("*.cs",SearchOption.AllDirectories))
-					{
-						Scripts.Add(scriptFile.FullName);
-					}
+                    // Collect scripts from the csproj Compile includes (avoids obj/bin and generated files)
+                    var projDoc = new XmlDocument();
+                    projDoc.Load(xmlProjectFile.FullName);
+                    foreach (XmlNode compile in projDoc.GetElementsByTagName("Compile"))
+                    {
+                        var include = compile.Attributes?["Include"]?.Value;
+                        if (string.IsNullOrEmpty(include))
+                        {
+                            continue;
+                        }
+
+                        var scriptPath = include;
+                        if (!Path.IsPathRooted(scriptPath))
+                        {
+                            scriptPath = Path.GetFullPath(Path.Combine(xmlProjectFile.Directory.FullName, scriptPath));
+                        }
+
+                        // Skip obj/bin or missing files (allow for both slash styles)
+                        if (scriptPath.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}") ||
+                            scriptPath.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}") ||
+                            scriptPath.Contains("/obj/") || scriptPath.Contains("/bin/") ||
+                            scriptPath.Contains("\\obj\\") || scriptPath.Contains("\\bin\\"))
+                        {
+                            continue;
+                        }
+
+                        if (File.Exists(scriptPath))
+                        {
+                            Scripts.Add(scriptPath);
+                        }
+                    }
+
+                    // If nothing was found, fall back to scanning .cs under the project folder (excluding obj/bin)
+                    if (Scripts.Count == 0)
+                    {
+                        foreach (var scriptFile in xmlProjectFile.Directory.GetFiles("*.cs", SearchOption.AllDirectories))
+                        {
+                            var full = scriptFile.FullName;
+                            if (full.Contains($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}") ||
+                                full.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}") ||
+                                full.Contains("/obj/") || full.Contains("/bin/") ||
+                                full.Contains("\\obj\\") || full.Contains("\\bin\\"))
+                            {
+                                continue;
+                            }
+                            Scripts.Add(full);
+                        }
+                    }
 
 					var managedFolder = PathUtilities.AddSlash(GameBuildSettings.Settings.HollowKnightLocation) + $"hollow_knight_Data{Path.DirectorySeparatorChar}Managed";
 
@@ -735,7 +783,7 @@ namespace WeaverCore.Editor.Compilation
                     Debug.Log("Managed Folder Location = " + managedFolder);
 
 
-                    System.Collections.Generic.List<DirectoryInfo> AssemblySearchDirectories = new System.Collections.Generic.List<DirectoryInfo>
+					System.Collections.Generic.List<DirectoryInfo> AssemblySearchDirectories = new System.Collections.Generic.List<DirectoryInfo>
 					{
 						new DirectoryInfo(managedFolder),
 						new FileInfo(typeof(UnityEditor.EditorWindow).Assembly.Location).Directory
@@ -784,13 +832,13 @@ namespace WeaverCore.Editor.Compilation
 									AssemblyReferences.Add(filePath);
 									break;
 								}
-							}
-							if (!found)
-							{
-								Debug.LogError("Unable to find WeaverCore.Game Reference -> " + xmlRef.AssemblyName);
+								}
+								if (!found)
+								{
+									BuildDebugging.LogError("Unable to find WeaverCore.Game Reference -> " + xmlRef.AssemblyName);
+								}
 							}
 						}
-					}
 
 					var scriptAssemblies = new DirectoryInfo($"Library{Path.DirectorySeparatorChar}ScriptAssemblies").GetFiles("*.dll");
 

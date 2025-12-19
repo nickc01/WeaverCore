@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	[Serializable]
 	public abstract class TMP_InputValidator : ScriptableObject

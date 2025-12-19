@@ -90,7 +90,7 @@ public class AcidCorpseSplash : MonoBehaviour
         {
             if ((bool)body)
             {
-                body.velocity *= 0.1f;
+                body.linearVelocity *= 0.1f;
             }
             yield return new WaitForFixedUpdate();
         }

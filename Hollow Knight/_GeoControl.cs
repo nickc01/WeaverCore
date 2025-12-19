@@ -131,9 +131,9 @@ public class GeoControl : MonoBehaviour
             vector = Vector2.ClampMagnitude(vector, 1f);
             vector = new Vector2(vector.x * 150f, vector.y * 150f);
             body.AddForce(vector);
-            Vector2 velocity = body.velocity;
+            Vector2 velocity = body.linearVelocity;
             velocity = Vector2.ClampMagnitude(velocity, 20f);
-            body.velocity = velocity;
+            body.linearVelocity = velocity;
         }
     }
 

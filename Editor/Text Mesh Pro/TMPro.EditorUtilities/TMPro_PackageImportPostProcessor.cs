@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	public class TMPro_PackageImportPostProcessor : AssetPostprocessor
 	{

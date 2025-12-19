@@ -101,7 +101,7 @@ namespace WeaverCore.Utilities
 			HeroController.instance.RelinquishControl();
 			HeroController.instance.StartAnimationControl();
 			PlayerData.instance.SetBool("disablePause", true);
-			HeroController.instance.GetComponent<Rigidbody2D>().velocity = default;
+			HeroController.instance.GetComponent<Rigidbody2D>().linearVelocity = default;
 			HeroController.instance.AffectedByGravity(true);
 
 			if (playSound)

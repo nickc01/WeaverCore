@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Attributes;

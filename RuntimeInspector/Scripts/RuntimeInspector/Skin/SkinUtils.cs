@@ -28,21 +28,21 @@ namespace RuntimeInspectorNamespace
 
 
 
-		public static void SetSkinText(this TMPro.TMP_Text text, UISkin skin)
+		public static void SetSkinText(this TMProOld.TMP_Text text, UISkin skin)
 		{
 			text.color = skin.TextColor;
 			//text.font = skin.Font;
 			text.fontSize = skin.FontSize;
 		}
 
-		public static void SetSkinInputFieldText(this TMPro.TMP_Text text, UISkin skin)
+		public static void SetSkinInputFieldText(this TMProOld.TMP_Text text, UISkin skin)
 		{
 			text.color = skin.InputFieldTextColor;
 			//text.font = skin.Font;
 			text.fontSize = skin.FontSize;
 		}
 
-		public static void SetSkinButtonText(this TMPro.TMP_Text text, UISkin skin)
+		public static void SetSkinButtonText(this TMProOld.TMP_Text text, UISkin skin)
 		{
 			text.color = skin.ButtonTextColor;
 			//text.font = skin.Font;
@@ -57,7 +57,7 @@ namespace RuntimeInspectorNamespace
 			{
 				text.SetSkinButtonText(skin);
 			}
-			var tm_text = button.GetComponentInChildren<TMPro.TMP_Text>();
+			var tm_text = button.GetComponentInChildren<TMProOld.TMP_Text>();
 			if (tm_text != null)
 			{
 				tm_text.SetSkinButtonText(skin);

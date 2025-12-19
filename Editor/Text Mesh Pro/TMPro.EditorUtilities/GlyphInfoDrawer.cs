@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	[CustomPropertyDrawer(typeof(TMP_Glyph))]
 	public class GlyphInfoDrawer : PropertyDrawer

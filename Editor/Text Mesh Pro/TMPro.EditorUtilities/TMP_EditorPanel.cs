@@ -4,9 +4,9 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
-	[CustomEditor(typeof(WeaverCore.Assets.TMPro.TextMeshPro))]
+	[CustomEditor(typeof(WeaverCore.Assets.TMProOld.TextMeshPro))]
 	public class Weaver_TMP_EditorPanel : TMP_EditorPanel
 	{
 
@@ -675,7 +675,7 @@ namespace TMPro.EditorUtilities
 				Handles.color = Color.yellow;
 				Handles.DrawSolidRectangleWithOutline(handlePoints, new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, 0), new Color32(byte.MaxValue, byte.MaxValue, 0, byte.MaxValue));
 				Vector3 vector = (handlePoints[0] + handlePoints[1]) * 0.5f;
-				Vector3 rhs = Handles.FreeMoveHandle(vector, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
+				var fmh_678_50_639016159028735719 = Quaternion.identity; Vector3 rhs = Handles.FreeMoveHandle(vector, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
 				bool flag = false;
 				if (vector != rhs)
 				{
@@ -684,7 +684,7 @@ namespace TMPro.EditorUtilities
 					flag = true;
 				}
 				Vector3 vector2 = (handlePoints[1] + handlePoints[2]) * 0.5f;
-				Vector3 rhs2 = Handles.FreeMoveHandle(vector2, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
+				var fmh_687_52_639016159028746515 = Quaternion.identity; Vector3 rhs2 = Handles.FreeMoveHandle(vector2, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
 				if (vector2 != rhs2)
 				{
 					float num2 = vector2.y - rhs2.y;
@@ -692,7 +692,7 @@ namespace TMPro.EditorUtilities
 					flag = true;
 				}
 				Vector3 vector3 = (handlePoints[2] + handlePoints[3]) * 0.5f;
-				Vector3 rhs3 = Handles.FreeMoveHandle(vector3, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
+				var fmh_695_52_639016159028750071 = Quaternion.identity; Vector3 rhs3 = Handles.FreeMoveHandle(vector3, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
 				if (vector3 != rhs3)
 				{
 					float num3 = vector3.x - rhs3.x;
@@ -700,7 +700,7 @@ namespace TMPro.EditorUtilities
 					flag = true;
 				}
 				Vector3 vector4 = (handlePoints[3] + handlePoints[0]) * 0.5f;
-				Vector3 rhs4 = Handles.FreeMoveHandle(vector4, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
+				var fmh_703_52_639016159028753329 = Quaternion.identity; Vector3 rhs4 = Handles.FreeMoveHandle(vector4, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
 				if (vector4 != rhs4)
 				{
 					float num4 = vector4.y - rhs4.y;

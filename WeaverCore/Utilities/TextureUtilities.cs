@@ -97,7 +97,7 @@ namespace WeaverCore.Utilities
                     newPixels[newX + (destWidth * newY)] = pixels[x + (texture.width * y)];
                 }
             }
-            texture.Resize(destWidth, destHeight);
+            texture.Reinitialize(destWidth, destHeight);
 
             texture.SetPixels(newPixels);
 

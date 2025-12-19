@@ -314,7 +314,7 @@ namespace WeaverCore.Assets.Components
         IEnumerator TurnPlayerRight()
         {
             var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
-            heroRB.velocity = default;
+            heroRB.linearVelocity = default;
             HeroController.instance.FaceRight();
             yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
         }
@@ -322,7 +322,7 @@ namespace WeaverCore.Assets.Components
         IEnumerator TurnPlayerLeft()
         {
             var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
-            heroRB.velocity = default;
+            heroRB.linearVelocity = default;
             HeroController.instance.FaceLeft();
             yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
         }
@@ -332,17 +332,17 @@ namespace WeaverCore.Assets.Components
             HeroController.instance.FaceRight();
             HeroUtilities.PlayPlayerClip("Walk");
             var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
-            heroRB.velocity = new Vector2(6f,0f);
+            heroRB.linearVelocity = new Vector2(6f,0f);
             for (float t = 0; t < 3f; t += Time.deltaTime)
             {
                 if (HeroController.instance.transform.position.x >= destX)
                 {
                     break;
                 }
-                heroRB.velocity = new Vector2(6f, 0f);
+                heroRB.linearVelocity = new Vector2(6f, 0f);
                 yield return null;
             }
-            heroRB.velocity = new Vector2(0f, 0f);
+            heroRB.linearVelocity = new Vector2(0f, 0f);
         }
 
         IEnumerator MovePlayerLeft(float destX)
@@ -350,17 +350,17 @@ namespace WeaverCore.Assets.Components
             HeroController.instance.FaceLeft();
             HeroUtilities.PlayPlayerClip("Walk");
             var heroRB = HeroController.instance.GetComponent<Rigidbody2D>();
-            heroRB.velocity = new Vector2(-6f, 0f);
+            heroRB.linearVelocity = new Vector2(-6f, 0f);
             for (float t = 0; t < 3f; t += Time.deltaTime)
             {
                 if (HeroController.instance.transform.position.x <= destX)
                 {
                     break;
                 }
-                heroRB.velocity = new Vector2(-6f, 0f);
+                heroRB.linearVelocity = new Vector2(-6f, 0f);
                 yield return null;
             }
-            heroRB.velocity = new Vector2(0f, 0f);
+            heroRB.linearVelocity = new Vector2(0f, 0f);
         }
 
         IEnumerator EndConvo()

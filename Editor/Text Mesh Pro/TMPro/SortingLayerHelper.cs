@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace TMPro
+namespace TMProOld
 {
 	public static class SortingLayerHelper
 	{

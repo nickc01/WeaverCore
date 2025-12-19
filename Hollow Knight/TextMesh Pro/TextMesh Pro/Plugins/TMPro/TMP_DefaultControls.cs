@@ -2,7 +2,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TMPro
+namespace TMProOld
 {
 	public static class TMP_DefaultControls
 	{

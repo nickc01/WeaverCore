@@ -4,7 +4,7 @@ using UnityEditor.AnimatedValues;
 using UnityEditor.UI;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(TMP_InputField), true)]

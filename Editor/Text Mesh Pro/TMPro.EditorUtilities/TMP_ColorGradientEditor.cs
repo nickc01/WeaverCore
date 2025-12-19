@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	[CustomEditor(typeof(TMP_ColorGradient))]
 	public class TMP_ColorGradientEditor : Editor

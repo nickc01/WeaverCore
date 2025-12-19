@@ -9,7 +9,7 @@ public class SetAngleToVelocity : MonoBehaviour
 
     private void Update()
     {
-        Vector2 velocity = rb.velocity;
+        Vector2 velocity = rb.linearVelocity;
         float z = Mathf.Atan2(velocity.y, velocity.x) * (180f / (float)Math.PI) + angleOffset;
         base.transform.localEulerAngles = new Vector3(0f, 0f, z);
     }

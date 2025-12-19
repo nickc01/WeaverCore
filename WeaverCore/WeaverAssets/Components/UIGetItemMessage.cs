@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 using System.Reflection;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using UnityEngine.Serialization;
 using WeaverCore.Enums;

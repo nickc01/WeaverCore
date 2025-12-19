@@ -1,4 +1,4 @@
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	internal class TMP_ResourcesLoader
 	{

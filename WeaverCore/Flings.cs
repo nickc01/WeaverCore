@@ -37,7 +37,7 @@ namespace WeaverCore
                     eulerAngles.z = angle;
                     newFling.transform.eulerAngles = eulerAngles;
 
-                    rigidbody.velocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * velocity;
+                    rigidbody.linearVelocity = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * velocity;
                 }
                 allFlings[i] = newFling;
             }

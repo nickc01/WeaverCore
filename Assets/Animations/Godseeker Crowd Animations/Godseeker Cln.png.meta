@@ -75,7 +75,7 @@ TextureImporter:
       213: -8949320839575613636
     second: Godseeker_sing_back0002
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -92,10 +92,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -104,9 +106,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -134,8 +136,10 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 4096
     resizeAlgorithm: 0
@@ -145,9 +149,10 @@ TextureImporter:
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 4096
     resizeAlgorithm: 0
@@ -157,9 +162,10 @@ TextureImporter:
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 4096
     resizeAlgorithm: 0
@@ -169,6 +175,7 @@ TextureImporter:
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -185,6 +192,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5625, y: 0.50666666}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -206,6 +214,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5390625, y: 0.5080214}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -227,6 +236,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5, y: 0.5093834}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -248,6 +258,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.4923077, y: 0.50666666}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -269,6 +280,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5534591, y: 0.51224947}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -290,6 +302,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.50769234, y: 0.5080214}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -311,6 +324,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.516129, y: 0.5121951}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -332,6 +346,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.4921875, y: 0.50666666}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -353,6 +368,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.6139241, y: 0.51106197}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -374,6 +390,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.6451613, y: 0.5121951}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -395,6 +412,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.516129, y: 0.5121951}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -416,6 +434,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.49624062, y: 0.5444126}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -437,6 +456,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.49624062, y: 0.56379825}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -458,6 +478,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.49624062, y: 0.5588235}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -479,6 +500,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.4516129, y: 0.53971964}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -500,6 +522,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.40740743, y: 0.5675676}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -521,6 +544,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.40740743, y: 0.5703704}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -542,6 +566,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5354839, y: 0.5121951}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -563,6 +588,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.39634144, y: 0.5703704}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -584,6 +610,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.41104296, y: 0.5689655}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -605,6 +632,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.40740743, y: 0.5703704}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -626,6 +654,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5096774, y: 0.5121951}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -647,6 +676,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5096774, y: 0.5121951}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -668,6 +698,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5128205, y: 0.5121951}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -679,6 +710,7 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -688,9 +720,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Godseeker_lookup0000: -8383748131950408713
+      Godseeker_lookup0001: 1471181200998446812
+      Godseeker_lookup0002: 4590240166828661180
+      Godseeker_sing0000: -7241765764352067109
+      Godseeker_sing0001: -7523532063912842325
+      Godseeker_sing0002: -4357751695386617004
+      Godseeker_sing_back0000: -4243553073625099118
+      Godseeker_sing_back0001: 228679855356022127
+      Godseeker_sing_back0002: -8949320839575613636
+      Godseeker_stand_look_up0000: 3363471197620044518
+      Godseeker_stand_look_up0001: -6404548332427579223
+      Godseeker_stand_look_up0002: 8109970214227026753
+      Godseeker_stand_look_up0003: -2401393828393509979
+      Godseeker_watch0002: 4994427561568763872
+      Godseeker_watch0003: 2406411651790891548
+      Godseeker_watch0004: 3840770041035190958
+      Godseeker_watch0005: 4998601028761676195
+      Godseeker_watch0006: -5757071183443775090
+      Godseeker_watch0007: -1638888565655779362
+      Godseeker_young_stand0000: -6309804246776476817
+      Godseeker_young_stand0001: -2621635996262773664
+      Godseeker_young_stand0002: -217092392840974527
+      Godseeker_young_stand0003: -5692984512885134638
+      Godseeker_young_stand_back: -5237698691492409776
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: weavercore_modclass_bundle
   assetBundleVariant: 

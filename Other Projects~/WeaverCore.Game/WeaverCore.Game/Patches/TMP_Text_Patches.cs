@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TMPro;
+using TMProOld;
 using WeaverCore.Attributes;
 using WeaverCore.Utilities;
 
@@ -28,18 +28,18 @@ namespace WeaverCore.Game.Patches
 			SetPreferredHeightDirty = ReflectionUtilities.CreateFieldSetter<TMP_Text, bool>("m_isPreferredHeightDirty");
 
 
-			On.TMPro.TextMeshProUGUI.SetLayoutDirty += TextMeshProUGUI_SetLayoutDirty;
-			On.TMPro.TextMeshPro.SetLayoutDirty += TextMeshPro_SetLayoutDirty;
+			On.TMProOld.TextMeshProUGUI.SetLayoutDirty += TextMeshProUGUI_SetLayoutDirty;
+			On.TMProOld.TextMeshPro.SetLayoutDirty += TextMeshPro_SetLayoutDirty;
 		}
 
-		private static void TextMeshPro_SetLayoutDirty(On.TMPro.TextMeshPro.orig_SetLayoutDirty orig, TMPro.TextMeshPro self)
+		private static void TextMeshPro_SetLayoutDirty(On.TMProOld.TextMeshPro.orig_SetLayoutDirty orig, TMProOld.TextMeshPro self)
 		{
 			SetPreferredWidthDirty(self, true);
 			SetPreferredHeightDirty(self, true);
 			orig(self);
 		}
 
-		private static void TextMeshProUGUI_SetLayoutDirty(On.TMPro.TextMeshProUGUI.orig_SetLayoutDirty orig, TMPro.TextMeshProUGUI self)
+		private static void TextMeshProUGUI_SetLayoutDirty(On.TMProOld.TextMeshProUGUI.orig_SetLayoutDirty orig, TMProOld.TextMeshProUGUI self)
 		{
 			SetPreferredWidthDirty(self, true);
 			SetPreferredHeightDirty(self, true);

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Utilities;

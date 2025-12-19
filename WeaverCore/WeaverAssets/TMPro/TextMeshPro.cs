@@ -1,7 +1,7 @@
-﻿using TMPro;
+﻿using TMProOld;
 using UnityEngine;
 
-namespace WeaverCore.Assets.TMPro
+namespace WeaverCore.Assets.TMProOld
 {
 
 	/*
@@ -17,7 +17,7 @@ namespace WeaverCore.Assets.TMPro
 	[RequireComponent(typeof(MeshRenderer))]
 	[RequireComponent(typeof(MeshFilter))]
 	[AddComponentMenu("Mesh/TextMeshPro - Text")]
-	public class TextMeshPro : global::TMPro.TextMeshPro
+	public class TextMeshPro : global::TMProOld.TextMeshPro
 	{
 		[SerializeField]
 		[HideInInspector]

@@ -91,7 +91,7 @@ namespace WeaverCore.Components
         {
             var rb = orb.GetComponent<Rigidbody2D>();
             yield return new WaitForFixedUpdate();
-            yield return new WaitUntil(() => orb == null || orb.gameObject == null || rb.velocity == Vector2.zero);
+            yield return new WaitUntil(() => orb == null || orb.gameObject == null || rb.linearVelocity == Vector2.zero);
             onDone?.Invoke(orb != null && orb.gameObject != null);
         }
     }

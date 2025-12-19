@@ -1,4 +1,4 @@
-namespace TMPro.SpriteAssetUtilities
+namespace TMProOld.SpriteAssetUtilities
 {
 	public enum SpriteAssetImportFormats
 	{

@@ -165,7 +165,7 @@ namespace UnityEditor
                 return "giparams";
             else if (obj is GUISkin)
                 return "guiskin";
-            else if (obj is PhysicMaterial)
+            else if (obj is PhysicsMaterial)
                 return "physicMaterial";
             else if (obj is PhysicsMaterial2D)
                 return "physicsMaterial2D";

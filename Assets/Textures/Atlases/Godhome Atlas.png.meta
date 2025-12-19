@@ -27,7 +27,7 @@ TextureImporter:
       213: 21300014
     second: black_fader_GG
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -44,10 +44,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -86,8 +88,10 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -97,9 +101,10 @@ TextureImporter:
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -109,6 +114,7 @@ TextureImporter:
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -125,6 +131,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.47416633, y: 0.4495934}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline:
       - - {x: 183.00645, y: -12.975319}
         - {x: 184.00645, y: -15.975319}
@@ -265,6 +272,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5258337, y: 0.5521427}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline:
       - - {x: -183.00645, y: 14.475311}
         - {x: -184.00645, y: 17.475311}
@@ -410,6 +418,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.474076, y: 0.5448997}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline:
       - - {x: 168.03807, y: -91.02468}
         - {x: 184.03807, y: -70.02468}
@@ -543,6 +552,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5258337, y: 0.5467001}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline:
       - - {x: -183.00645, y: 12.475319}
         - {x: -184.00645, y: 15.475319}
@@ -673,6 +683,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline:
       - - {x: 139, y: -98}
         - {x: 142, y: -94}
@@ -747,6 +758,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.49754122, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline:
       - - {x: 101.50099, y: -40.5}
         - {x: 42.50099, y: -41.5}
@@ -1157,6 +1169,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.47416633, y: 0.4604981}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline:
       - - {x: 183.00645, y: -8.975319}
         - {x: 184.00645, y: -11.975319}
@@ -1291,6 +1304,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline:
       - - {x: -83, y: -98.5}
         - {x: -120, y: -45.5}
@@ -1343,6 +1357,7 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: f44b58dd7c167474088b9a7cebcc8b7f
@@ -1352,9 +1367,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GG_crowd0000: 21300012
+      GG_crowd0001: 21300004
+      GG_crowd0002: 21300000
+      GG_crowd0003: 21300002
+      GG_crowd0004: 21300006
+      GG_scenery_0001_1: 21300008
+      GG_statues_0014_13: 21300010
+      black_fader_GG: 21300014
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: weavercore_modclass_bundle
   assetBundleVariant: 

@@ -1,4 +1,4 @@
-namespace TMPro
+namespace TMProOld
 {
 	public struct TMP_SpriteInfo
 	{

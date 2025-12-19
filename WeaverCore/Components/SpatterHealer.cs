@@ -86,7 +86,7 @@ namespace WeaverCore.Components
         {
             for (float f = 0; f < duration; f += Time.deltaTime)
             {
-                Vector2 velocity = Rigidbody2D.velocity;
+                Vector2 velocity = Rigidbody2D.linearVelocity;
                 float z = Mathf.Atan2(velocity.y, velocity.x) * (180f / (float)Math.PI) + angleOffset;
                 transform.localEulerAngles = new Vector3(0f, 0f, z);
 
@@ -97,8 +97,8 @@ namespace WeaverCore.Components
 
         void Squash(float stretchFactor, float stretchMinX, float stretchMaxY)
         {
-            var stretchY = 1f - Rigidbody2D.velocity.magnitude * stretchFactor * 0.01f;
-            var stretchX = 1f + Rigidbody2D.velocity.magnitude * stretchFactor * 0.01f;
+            var stretchY = 1f - Rigidbody2D.linearVelocity.magnitude * stretchFactor * 0.01f;
+            var stretchX = 1f + Rigidbody2D.linearVelocity.magnitude * stretchFactor * 0.01f;
             if (stretchX < stretchMinX)
             {
                 stretchX = stretchMinX;
@@ -114,7 +114,7 @@ namespace WeaverCore.Components
 
         IEnumerator DecelerationRoutine(float deceleration)
         {
-            while (Rigidbody2D.velocity.magnitude > 0.3f)
+            while (Rigidbody2D.linearVelocity.magnitude > 0.3f)
             {
                 DecelerateSelf(deceleration);
             }
@@ -123,7 +123,7 @@ namespace WeaverCore.Components
 
         private void DecelerateSelf(float deceleration)
         {
-            Vector2 velocity = Rigidbody2D.velocity;
+            Vector2 velocity = Rigidbody2D.linearVelocity;
             if (velocity.x < 0f)
             {
                 velocity.x *= deceleration;
@@ -156,7 +156,7 @@ namespace WeaverCore.Components
                     velocity.y = 0f;
                 }
             }
-            Rigidbody2D.velocity = velocity;
+            Rigidbody2D.linearVelocity = velocity;
         }
 
         IEnumerator AttractRoutine()
@@ -195,7 +195,7 @@ namespace WeaverCore.Components
                 Vector2 velocity = default(Vector2);
                 velocity.x = x;
                 velocity.y = y;
-                Rigidbody2D.velocity = velocity;
+                Rigidbody2D.linearVelocity = velocity;
             }
         }
     }

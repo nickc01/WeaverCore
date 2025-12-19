@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	[Serializable]
 	[ExecuteInEditMode]

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace TMPro
+namespace TMProOld
 {
 	public static class TMP_FontUtilities
 	{

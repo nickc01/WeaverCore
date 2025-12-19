@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using TMPro.EditorUtilities;
-using TMPro.SpriteAssetUtilities;
+using TMProOld.EditorUtilities;
+using TMProOld.SpriteAssetUtilities;
 using UnityEditor;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	public class TMP_SpriteAssetImporter : EditorWindow
 	{

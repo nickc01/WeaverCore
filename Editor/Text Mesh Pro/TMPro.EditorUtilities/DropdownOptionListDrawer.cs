@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	[CustomPropertyDrawer(typeof(TMP_Dropdown.OptionDataList), true)]
 	internal class DropdownOptionListDrawer : PropertyDrawer

@@ -220,7 +220,7 @@ namespace WeaverCore.Assets.Components
 				HeroController.instance.AffectedByGravity(false);
 				var playerRB = HeroController.instance.GetComponent<Rigidbody2D>();
 				playerRB.isKinematic = true;
-				playerRB.velocity = default;
+				playerRB.linearVelocity = default;
 			}
 			yield return null;
 
@@ -258,7 +258,7 @@ namespace WeaverCore.Assets.Components
 				//Start Sitting
 				var playerRB = HeroController.instance.GetComponent<Rigidbody2D>();
 				playerRB.isKinematic = true;
-				playerRB.velocity = default;
+				playerRB.linearVelocity = default;
 				playerRB.transform.position = HeroController.instance.FindGroundPoint(transform.position) + benchSitOffset;
 
 				if (tilter)
@@ -286,7 +286,7 @@ namespace WeaverCore.Assets.Components
 
 				HeroController.instance.AffectedByGravity(false);
 				playerRB.isKinematic = true;
-				playerRB.velocity = default;
+				playerRB.linearVelocity = default;
 
 				yield return new WaitForSeconds(1.2f);
 

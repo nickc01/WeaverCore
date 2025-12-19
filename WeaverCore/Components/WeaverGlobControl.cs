@@ -139,7 +139,7 @@ namespace WeaverCore.Components
                             {
                                 anim.PlayAnimation(landAnim);
                                 var rigidBody = GetComponent<Rigidbody2D>();
-                                rigidBody.velocity = rigidBody.velocity.With(x: 0f);
+                                rigidBody.linearVelocity = rigidBody.linearVelocity.With(x: 0f);
                             }
                             else
                             {

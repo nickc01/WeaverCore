@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	internal class TweenRunner<T> where T : struct, ITweenValue
 	{

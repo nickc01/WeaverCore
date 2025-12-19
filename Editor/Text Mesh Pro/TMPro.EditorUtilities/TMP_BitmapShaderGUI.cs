@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	public class TMP_BitmapShaderGUI : TMP_BaseShaderGUI
 	{

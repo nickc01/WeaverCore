@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using WeaverCore.Assets;
 using WeaverCore.Attributes;

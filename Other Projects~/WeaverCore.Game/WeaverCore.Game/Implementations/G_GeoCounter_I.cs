@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TMPro;
+using TMProOld;
 using WeaverCore.Attributes;
 using WeaverCore.Implementations;
 using WeaverCore.Utilities;

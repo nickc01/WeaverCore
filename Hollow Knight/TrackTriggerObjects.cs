@@ -114,7 +114,7 @@ public class TrackTriggerObjects : MonoBehaviour
         Collider2D[] array = components;
         for (int i = 0; i < array.Length; i++)
         {
-            if (array[i].OverlapCollider(new ContactFilter2D
+            if (array[i].Overlap(new ContactFilter2D
             {
                 useTriggers = true,
                 useLayerMask = true,

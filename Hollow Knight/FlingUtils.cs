@@ -90,7 +90,7 @@ public static class FlingUtils
             {
                 float num2 = UnityEngine.Random.Range(config.SpeedMin, config.SpeedMax);
                 float num3 = UnityEngine.Random.Range(config.AngleMin, config.AngleMax);
-                component.velocity = new Vector2(Mathf.Cos(num3 * ((float)Math.PI / 180f)), Mathf.Sin(num3 * ((float)Math.PI / 180f))) * num2;
+                component.linearVelocity = new Vector2(Mathf.Cos(num3 * ((float)Math.PI / 180f)), Mathf.Sin(num3 * ((float)Math.PI / 180f))) * num2;
             }
             array[i] = gameObject;
         }
@@ -115,7 +115,7 @@ public static class FlingUtils
             {
                 float num2 = UnityEngine.Random.Range(config.SpeedMin, config.SpeedMax);
                 float num3 = UnityEngine.Random.Range(config.AngleMin, config.AngleMax);
-                component.velocity = new Vector2(Mathf.Cos(num3 * ((float)Math.PI / 180f)), Mathf.Sin(num3 * ((float)Math.PI / 180f))) * num2;
+                component.linearVelocity = new Vector2(Mathf.Cos(num3 * ((float)Math.PI / 180f)), Mathf.Sin(num3 * ((float)Math.PI / 180f))) * num2;
             }
         }
     }
@@ -133,7 +133,7 @@ public static class FlingUtils
             {
                 float num = UnityEngine.Random.Range(config.SpeedMin, config.SpeedMax);
                 float num2 = UnityEngine.Random.Range(config.AngleMin, config.AngleMax);
-                component.velocity = new Vector2(Mathf.Cos(num2 * ((float)Math.PI / 180f)), Mathf.Sin(num2 * ((float)Math.PI / 180f))) * num;
+                component.linearVelocity = new Vector2(Mathf.Cos(num2 * ((float)Math.PI / 180f)), Mathf.Sin(num2 * ((float)Math.PI / 180f))) * num;
             }
         }
     }

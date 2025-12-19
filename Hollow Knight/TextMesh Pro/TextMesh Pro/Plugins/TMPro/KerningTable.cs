@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TMPro
+namespace TMProOld
 {
 	[Serializable]
 	public class KerningTable

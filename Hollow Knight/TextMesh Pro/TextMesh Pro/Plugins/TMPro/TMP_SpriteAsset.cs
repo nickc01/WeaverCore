@@ -4,7 +4,7 @@ using System.Collections.Generic;
 #endif
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	public class TMP_SpriteAsset : TMP_Asset
 	{

@@ -79,7 +79,7 @@ namespace WeaverCore.Components
 
 		protected virtual void Update()
 		{
-			float rotation = Mathf.Atan2(Rigidbody.velocity.y, Rigidbody.velocity.x) * Mathf.Rad2Deg;
+			float rotation = Mathf.Atan2(Rigidbody.linearVelocity.y, Rigidbody.linearVelocity.x) * Mathf.Rad2Deg;
 			transform.SetZRotation(rotation);
 			Squash();
 		}
@@ -113,8 +113,8 @@ namespace WeaverCore.Components
 
 		void Squash()
 		{
-			var stretchY = 1f - Rigidbody.velocity.magnitude * stretchFactor * 0.01f;
-			var stretchX = 1f + Rigidbody.velocity.magnitude * stretchFactor * 0.01f;
+			var stretchY = 1f - Rigidbody.linearVelocity.magnitude * stretchFactor * 0.01f;
+			var stretchX = 1f + Rigidbody.linearVelocity.magnitude * stretchFactor * 0.01f;
 			if (stretchX < minSquashAmount)
 			{
 				stretchX = minSquashAmount;
@@ -131,7 +131,7 @@ namespace WeaverCore.Components
 		public virtual void OnPool()
 		{
 			Rigidbody.isKinematic = false;
-			Rigidbody.velocity = Vector2.zero;
+			Rigidbody.linearVelocity = Vector2.zero;
 			Rigidbody.angularVelocity = 0f;
 			if (Collider != null)
 			{
@@ -142,7 +142,7 @@ namespace WeaverCore.Components
 		protected virtual void OnHit(GameObject collision)
 		{
 			Rigidbody.isKinematic = true;
-			Rigidbody.velocity = Vector2.zero;
+			Rigidbody.linearVelocity = Vector2.zero;
 			Rigidbody.angularVelocity = 0f;
 			if (Collider != null)
 			{

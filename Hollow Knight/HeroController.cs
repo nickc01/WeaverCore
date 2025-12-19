@@ -322,7 +322,7 @@ return fsmBool.Value;
         }
         if (cState.dead)
         {
-            rb2d.velocity = new Vector2(0f, 0f);
+            rb2d.linearVelocity = new Vector2(0f, 0f);
         }
         if ((hero_state == ActorStates.hard_landing && !cState.onConveyor) || hero_state == ActorStates.dash_landing)
         {
@@ -337,22 +337,22 @@ return fsmBool.Value;
                     AffectedByGravity(false);
                     if (!stopWalkingOut)
                     {
-                        rb2d.velocity = new Vector2(transition_vel.x, transition_vel.y + rb2d.velocity.y);
+                        rb2d.linearVelocity = new Vector2(transition_vel.x, transition_vel.y + rb2d.linearVelocity.y);
                     }
                 }
                 else if (transitionState == HeroTransitionState.ENTERING_SCENE)
                 {
-                    rb2d.velocity = transition_vel;
+                    rb2d.linearVelocity = transition_vel;
                 }
                 else if (transitionState == HeroTransitionState.DROPPING_DOWN)
                 {
-                    rb2d.velocity = new Vector2(transition_vel.x, rb2d.velocity.y);
+                    rb2d.linearVelocity = new Vector2(transition_vel.x, rb2d.linearVelocity.y);
                 }
             }
             else if (cState.recoiling)
             {
                 AffectedByGravity(false);
-                rb2d.velocity = recoilVector;
+                rb2d.linearVelocity = recoilVector;
             }
         }
         else if (hero_state != ActorStates.no_input)
@@ -363,12 +363,12 @@ return fsmBool.Value;
                 {
                     if (CheckForBump(CollisionSide.right))
                     {
-                        rb2d.velocity = new Vector2(rb2d.velocity.x, BUMP_VELOCITY);
+                        rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, BUMP_VELOCITY);
                     }
                 }
                 else if (move_input < 0f && CheckForBump(CollisionSide.left))
                 {
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, BUMP_VELOCITY);
+                    rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, BUMP_VELOCITY);
                 }
             }
             if (!cState.backDashing && !cState.dashing)
@@ -398,13 +398,13 @@ return fsmBool.Value;
                     {
                         num = RECOIL_HOR_VELOCITY;
                     }
-                    if (rb2d.velocity.x > -num)
+                    if (rb2d.linearVelocity.x > -num)
                     {
-                        rb2d.velocity = new Vector2(-num, rb2d.velocity.y);
+                        rb2d.linearVelocity = new Vector2(-num, rb2d.linearVelocity.y);
                     }
                     else
                     {
-                        rb2d.velocity = new Vector2(rb2d.velocity.x - num, rb2d.velocity.y);
+                        rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x - num, rb2d.linearVelocity.y);
                     }
                 }
                 if (cState.recoilingRight)
@@ -418,13 +418,13 @@ return fsmBool.Value;
                     {
                         num2 = RECOIL_HOR_VELOCITY;
                     }
-                    if (rb2d.velocity.x < num2)
+                    if (rb2d.linearVelocity.x < num2)
                     {
-                        rb2d.velocity = new Vector2(num2, rb2d.velocity.y);
+                        rb2d.linearVelocity = new Vector2(num2, rb2d.linearVelocity.y);
                     }
                     else
                     {
-                        rb2d.velocity = new Vector2(rb2d.velocity.x + num2, rb2d.velocity.y);
+                        rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x + num2, rb2d.linearVelocity.y);
                     }
                 }
             }
@@ -450,32 +450,32 @@ return fsmBool.Value;
                 {
                     if (cState.facingRight)
                     {
-                        rb2d.velocity = new Vector2(-CAST_RECOIL_VELOCITY, 0f);
+                        rb2d.linearVelocity = new Vector2(-CAST_RECOIL_VELOCITY, 0f);
                     }
                     else
                     {
-                        rb2d.velocity = new Vector2(CAST_RECOIL_VELOCITY, 0f);
+                        rb2d.linearVelocity = new Vector2(CAST_RECOIL_VELOCITY, 0f);
                     }
                 }
                 else
                 {
-                    rb2d.velocity = Vector2.zero;
+                    rb2d.linearVelocity = Vector2.zero;
                 }
             }
             if (cState.bouncing)
             {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, BOUNCE_VELOCITY);
+                rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, BOUNCE_VELOCITY);
             }
             bool shroomBouncing = cState.shroomBouncing;
             if (wallLocked)
             {
                 if (wallJumpedR)
                 {
-                    rb2d.velocity = new Vector2(currentWalljumpSpeed, rb2d.velocity.y);
+                    rb2d.linearVelocity = new Vector2(currentWalljumpSpeed, rb2d.linearVelocity.y);
                 }
                 else if (wallJumpedL)
                 {
-                    rb2d.velocity = new Vector2(-currentWalljumpSpeed, rb2d.velocity.y);
+                    rb2d.linearVelocity = new Vector2(-currentWalljumpSpeed, rb2d.linearVelocity.y);
                 }
                 wallLockSteps++;
                 if (wallLockSteps > WJLOCK_STEPS_LONG)
@@ -517,9 +517,9 @@ return fsmBool.Value;
                 }
             }
         }
-        if (rb2d.velocity.y < -MAX_FALL_VELOCITY && !inAcid && !controlReqlinquished && !cState.shadowDashing && !cState.spellQuake)
+        if (rb2d.linearVelocity.y < -MAX_FALL_VELOCITY && !inAcid && !controlReqlinquished && !cState.shadowDashing && !cState.spellQuake)
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, -MAX_FALL_VELOCITY);
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, -MAX_FALL_VELOCITY);
         }
         if (jumpQueuing)
         {
@@ -539,20 +539,20 @@ return fsmBool.Value;
         }
         if (cState.wallSliding && !cState.onConveyorV)
         {
-            if (rb2d.velocity.y > WALLSLIDE_SPEED)
+            if (rb2d.linearVelocity.y > WALLSLIDE_SPEED)
             {
-                rb2d.velocity = new Vector3(rb2d.velocity.x, rb2d.velocity.y - WALLSLIDE_DECEL);
-                if (rb2d.velocity.y < WALLSLIDE_SPEED)
+                rb2d.linearVelocity = new Vector3(rb2d.linearVelocity.x, rb2d.linearVelocity.y - WALLSLIDE_DECEL);
+                if (rb2d.linearVelocity.y < WALLSLIDE_SPEED)
                 {
-                    rb2d.velocity = new Vector3(rb2d.velocity.x, WALLSLIDE_SPEED);
+                    rb2d.linearVelocity = new Vector3(rb2d.linearVelocity.x, WALLSLIDE_SPEED);
                 }
             }
-            if (rb2d.velocity.y < WALLSLIDE_SPEED)
+            if (rb2d.linearVelocity.y < WALLSLIDE_SPEED)
             {
-                rb2d.velocity = new Vector3(rb2d.velocity.x, rb2d.velocity.y + WALLSLIDE_DECEL);
-                if (rb2d.velocity.y < WALLSLIDE_SPEED)
+                rb2d.linearVelocity = new Vector3(rb2d.linearVelocity.x, rb2d.linearVelocity.y + WALLSLIDE_DECEL);
+                if (rb2d.linearVelocity.y < WALLSLIDE_SPEED)
                 {
-                    rb2d.velocity = new Vector3(rb2d.velocity.x, WALLSLIDE_SPEED);
+                    rb2d.linearVelocity = new Vector3(rb2d.linearVelocity.x, WALLSLIDE_SPEED);
                 }
             }
         }
@@ -561,50 +561,50 @@ return fsmBool.Value;
             //if (this.inputHandler.inputActions.right.IsPressed && !this.inputHandler.inputActions.left.IsPressed)
             if (RightPressed && !LeftPressed)
             {
-                rb2d.velocity = new Vector3(CYCLONE_HORIZONTAL_SPEED, rb2d.velocity.y);
+                rb2d.linearVelocity = new Vector3(CYCLONE_HORIZONTAL_SPEED, rb2d.linearVelocity.y);
             }
             //else if (this.inputHandler.inputActions.left.IsPressed && !this.inputHandler.inputActions.right.IsPressed)
             else if (LeftPressed && !RightPressed)
             {
-                rb2d.velocity = new Vector3(-CYCLONE_HORIZONTAL_SPEED, rb2d.velocity.y);
+                rb2d.linearVelocity = new Vector3(-CYCLONE_HORIZONTAL_SPEED, rb2d.linearVelocity.y);
             }
             else
             {
-                rb2d.velocity = new Vector3(0f, rb2d.velocity.y);
+                rb2d.linearVelocity = new Vector3(0f, rb2d.linearVelocity.y);
             }
         }
         if (cState.swimming)
         {
-            rb2d.velocity = new Vector3(rb2d.velocity.x, rb2d.velocity.y + SWIM_ACCEL);
-            if (rb2d.velocity.y > SWIM_MAX_SPEED)
+            rb2d.linearVelocity = new Vector3(rb2d.linearVelocity.x, rb2d.linearVelocity.y + SWIM_ACCEL);
+            if (rb2d.linearVelocity.y > SWIM_MAX_SPEED)
             {
-                rb2d.velocity = new Vector3(rb2d.velocity.x, SWIM_MAX_SPEED);
+                rb2d.linearVelocity = new Vector3(rb2d.linearVelocity.x, SWIM_MAX_SPEED);
             }
         }
         if (cState.superDashOnWall && !cState.onConveyorV)
         {
-            rb2d.velocity = new Vector3(0f, 0f);
+            rb2d.linearVelocity = new Vector3(0f, 0f);
         }
         if (cState.onConveyor && ((cState.onGround && !cState.superDashing) || hero_state == ActorStates.hard_landing))
         {
             if (cState.freezeCharge || hero_state == ActorStates.hard_landing || controlReqlinquished)
             {
-                rb2d.velocity = new Vector3(0f, 0f);
+                rb2d.linearVelocity = new Vector3(0f, 0f);
             }
-            rb2d.velocity = new Vector2(rb2d.velocity.x + conveyorSpeed, rb2d.velocity.y);
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x + conveyorSpeed, rb2d.linearVelocity.y);
         }
         if (cState.inConveyorZone)
         {
             if (cState.freezeCharge || hero_state == ActorStates.hard_landing)
             {
-                rb2d.velocity = new Vector3(0f, 0f);
+                rb2d.linearVelocity = new Vector3(0f, 0f);
             }
-            rb2d.velocity = new Vector2(rb2d.velocity.x + conveyorSpeed, rb2d.velocity.y);
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x + conveyorSpeed, rb2d.linearVelocity.y);
             //this.superDash.SendEvent("SLOPE CANCEL");
         }
-        if (cState.slidingLeft && rb2d.velocity.x > -5f)
+        if (cState.slidingLeft && rb2d.linearVelocity.x > -5f)
         {
-            rb2d.velocity = new Vector2(-5f, rb2d.velocity.y);
+            rb2d.linearVelocity = new Vector2(-5f, rb2d.linearVelocity.y);
         }
         if (landingBufferSteps > 0)
         {
@@ -674,25 +674,25 @@ return fsmBool.Value;
         {
             if (cState.inWalkZone)
             {
-                rb2d.velocity = new Vector2(move_direction * WALK_SPEED, rb2d.velocity.y);
+                rb2d.linearVelocity = new Vector2(move_direction * WALK_SPEED, rb2d.linearVelocity.y);
                 return;
             }
             if (inAcid)
             {
-                rb2d.velocity = new Vector2(move_direction * UNDERWATER_SPEED, rb2d.velocity.y);
+                rb2d.linearVelocity = new Vector2(move_direction * UNDERWATER_SPEED, rb2d.linearVelocity.y);
                 return;
             }
             if (playerData.GetBool("equippedCharm_37") && cState.onGround && playerData.GetBool("equippedCharm_31"))
             {
-                rb2d.velocity = new Vector2(move_direction * RUN_SPEED_CH_COMBO, rb2d.velocity.y);
+                rb2d.linearVelocity = new Vector2(move_direction * RUN_SPEED_CH_COMBO, rb2d.linearVelocity.y);
                 return;
             }
             if (playerData.GetBool("equippedCharm_37") && cState.onGround)
             {
-                rb2d.velocity = new Vector2(move_direction * RUN_SPEED_CH, rb2d.velocity.y);
+                rb2d.linearVelocity = new Vector2(move_direction * RUN_SPEED_CH, rb2d.linearVelocity.y);
                 return;
             }
-            rb2d.velocity = new Vector2(move_direction * RUN_SPEED, rb2d.velocity.y);
+            rb2d.linearVelocity = new Vector2(move_direction * RUN_SPEED, rb2d.linearVelocity.y);
         }
     }
 
@@ -702,11 +702,11 @@ return fsmBool.Value;
         {
             if (inAcid)
             {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, JUMP_SPEED_UNDERWATER);
+                rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, JUMP_SPEED_UNDERWATER);
             }
             else
             {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, JUMP_SPEED);
+                rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, JUMP_SPEED);
             }
             jump_steps++;
             jumped_steps++;
@@ -722,7 +722,7 @@ return fsmBool.Value;
         {
             if (doubleJump_steps > 3)
             {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, JUMP_SPEED * 1.1f);
+                rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, JUMP_SPEED * 1.1f);
             }
             doubleJump_steps++;
         }
@@ -928,7 +928,7 @@ return fsmBool.Value;
         }
         Vector2 vector = OrigDashVector();
         vector = ModHooks.DashVelocityChange(vector);
-        rb2d.velocity = vector;
+        rb2d.linearVelocity = vector;
         dash_timer += Time.deltaTime;
     }
 
@@ -1082,9 +1082,9 @@ return fsmBool.Value;
         {
             CancelJump();
             CancelDoubleJump();
-            if (rb2d.velocity.y > 0f)
+            if (rb2d.linearVelocity.y > 0f)
             {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
+                rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0f);
             }
         }
     }
@@ -1386,12 +1386,12 @@ return fsmBool.Value;
                 if (cState.bouncing)
                 {
                     CancelBounce();
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
+                    rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0f);
                 }
                 if (cState.shroomBouncing)
                 {
                     CancelBounce();
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
+                    rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0f);
                 }
                 if (!flag)
                 {
@@ -1687,7 +1687,7 @@ return fsmBool.Value;
             airDashed = false;
             cState.bouncing = true;
             bounceTimer = -0.03f;
-            rb2d.velocity = new Vector2(rb2d.velocity.x, BOUNCE_VELOCITY);
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, BOUNCE_VELOCITY);
         }
     }
 
@@ -1697,7 +1697,7 @@ return fsmBool.Value;
         airDashed = false;
         cState.bouncing = false;
         cState.shroomBouncing = true;
-        rb2d.velocity = new Vector2(rb2d.velocity.x, SHROOM_BOUNCE_VELOCITY);
+        rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, SHROOM_BOUNCE_VELOCITY);
     }
 
     public void RecoilLeft()
@@ -1709,7 +1709,7 @@ return fsmBool.Value;
             cState.recoilingLeft = true;
             cState.recoilingRight = false;
             recoilLarge = false;
-            rb2d.velocity = new Vector2(-RECOIL_HOR_VELOCITY, rb2d.velocity.y);
+            rb2d.linearVelocity = new Vector2(-RECOIL_HOR_VELOCITY, rb2d.linearVelocity.y);
         }
     }
 
@@ -1722,7 +1722,7 @@ return fsmBool.Value;
             cState.recoilingRight = true;
             cState.recoilingLeft = false;
             recoilLarge = false;
-            rb2d.velocity = new Vector2(RECOIL_HOR_VELOCITY, rb2d.velocity.y);
+            rb2d.linearVelocity = new Vector2(RECOIL_HOR_VELOCITY, rb2d.linearVelocity.y);
         }
     }
 
@@ -1736,7 +1736,7 @@ return fsmBool.Value;
             cState.recoilingRight = true;
             cState.recoilingLeft = false;
             recoilLarge = true;
-            rb2d.velocity = new Vector2(RECOIL_HOR_VELOCITY_LONG, rb2d.velocity.y);
+            rb2d.linearVelocity = new Vector2(RECOIL_HOR_VELOCITY_LONG, rb2d.linearVelocity.y);
         }
     }
 
@@ -1750,16 +1750,16 @@ return fsmBool.Value;
             cState.recoilingRight = false;
             cState.recoilingLeft = true;
             recoilLarge = true;
-            rb2d.velocity = new Vector2(-RECOIL_HOR_VELOCITY_LONG, rb2d.velocity.y);
+            rb2d.linearVelocity = new Vector2(-RECOIL_HOR_VELOCITY_LONG, rb2d.linearVelocity.y);
         }
     }
 
     public void RecoilDown()
     {
         CancelJump();
-        if (rb2d.velocity.y > RECOIL_DOWN_VELOCITY && !controlReqlinquished)
+        if (rb2d.linearVelocity.y > RECOIL_DOWN_VELOCITY && !controlReqlinquished)
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, RECOIL_DOWN_VELOCITY);
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, RECOIL_DOWN_VELOCITY);
         }
     }
 
@@ -1846,7 +1846,7 @@ return fsmBool.Value;
             }
             else
             {
-                rb2d.velocity = new Vector2(0f, SPEED_TO_ENTER_SCENE_DOWN);
+                rb2d.linearVelocity = new Vector2(0f, SPEED_TO_ENTER_SCENE_DOWN);
                 transitionState = HeroTransitionState.ENTERING_SCENE;
                 transitionState = HeroTransitionState.DROPPING_DOWN;
                 AffectedByGravity(true);
@@ -1907,7 +1907,7 @@ return fsmBool.Value;
             transitionState = HeroTransitionState.ENTERING_SCENE;
             transform.SetPosition2D(x, y);
             yield return new WaitForSeconds(TIME_TO_ENTER_SCENE_BOT);
-            transition_vel = new Vector2(rb2d.velocity.x, 0f);
+            transition_vel = new Vector2(rb2d.linearVelocity.x, 0f);
             AffectedByGravity(true);
             transitionState = HeroTransitionState.DROPPING_DOWN;
         }
@@ -2471,7 +2471,7 @@ return fsmBool.Value;
 
     public bool CanDreamNail()
     {
-        return !gm.isPaused && hero_state != ActorStates.no_input && !cState.dashing && !cState.backDashing && (!cState.attacking || attack_time >= ATTACK_RECOVERY_TIME) && !controlReqlinquished && !cState.hazardDeath && rb2d.velocity.y > -0.1f && !cState.hazardRespawning && !cState.recoilFrozen && !cState.recoiling && !cState.transitioning && playerData.GetBool("hasDreamNail") && cState.onGround;
+        return !gm.isPaused && hero_state != ActorStates.no_input && !cState.dashing && !cState.backDashing && (!cState.attacking || attack_time >= ATTACK_RECOVERY_TIME) && !controlReqlinquished && !cState.hazardDeath && rb2d.linearVelocity.y > -0.1f && !cState.hazardRespawning && !cState.recoilFrozen && !cState.recoiling && !cState.transitioning && playerData.GetBool("hasDreamNail") && cState.onGround;
     }
 
     public bool CanDreamGate()
@@ -2647,7 +2647,7 @@ return fsmBool.Value;
             }
             else
             {
-                rb2d.velocity = new Vector2(0f, rb2d.velocity.y);
+                rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
                 move_input = 0f;
             }
             vertical_input = lastInputState.y;
@@ -3146,7 +3146,7 @@ return fsmBool.Value;
             StopTilemapTest();
             cState.onConveyor = false;
             cState.onConveyorV = false;
-            rb2d.velocity = new Vector2(0f, 0f);
+            rb2d.linearVelocity = new Vector2(0f, 0f);
             CancelRecoilHorizontal();
             string currentMapZone = gm.GetCurrentMapZone();
             if (currentMapZone == "DREAM_WORLD" || currentMapZone == "GODS_GLORY")
@@ -3290,7 +3290,7 @@ return fsmBool.Value;
 
     private void FallCheck()
     {
-        if (rb2d.velocity.y <= -1E-06f)
+        if (rb2d.linearVelocity.y <= -1E-06f)
         {
             if (!CheckTouchingGround())
             {
@@ -3369,7 +3369,7 @@ return fsmBool.Value;
             {
                 if (!cState.dead)
                 {
-                    rb2d.velocity = Vector2.zero;
+                    rb2d.linearVelocity = Vector2.zero;
                     Debug.LogFormat("Pos: {0} Transition State: {1}", new object[]
                     {
                         transform.position,
@@ -3416,7 +3416,7 @@ return fsmBool.Value;
         {
             hazardDeathTimer = 0f;
         }
-        if (rb2d.velocity.y == 0f && !cState.onGround && !cState.falling && !cState.jumping && !cState.dashing && hero_state != ActorStates.hard_landing && hero_state != ActorStates.no_input)
+        if (rb2d.linearVelocity.y == 0f && !cState.onGround && !cState.falling && !cState.jumping && !cState.dashing && hero_state != ActorStates.hard_landing && hero_state != ActorStates.no_input)
         {
             if (CheckTouchingGround())
             {
@@ -3584,7 +3584,7 @@ return fsmBool.Value;
         CancelBounce();
         CancelRecoilHorizontal();
         CancelWallsliding();
-        rb2d.velocity = Vector2.zero;
+        rb2d.linearVelocity = Vector2.zero;
         transition_vel = Vector2.zero;
         wallLocked = false;
         nailChargeTimer = 0f;
@@ -3653,19 +3653,19 @@ return fsmBool.Value;
 
     private void JumpReleased()
     {
-        if (rb2d.velocity.y > 0f && jumped_steps >= JUMP_STEPS_MIN && !inAcid && !cState.shroomBouncing)
+        if (rb2d.linearVelocity.y > 0f && jumped_steps >= JUMP_STEPS_MIN && !inAcid && !cState.shroomBouncing)
         {
             if (jumpReleaseQueueingEnabled)
             {
                 if (jumpReleaseQueuing && jumpReleaseQueueSteps <= 0)
                 {
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
+                    rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0f);
                     CancelJump();
                 }
             }
             else
             {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
+                rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0f);
                 CancelJump();
             }
         }
@@ -3774,7 +3774,7 @@ return fsmBool.Value;
                     cState.jumping
                 });
                 ResetMotion();
-                rb2d.velocity = Vector2.zero;
+                rb2d.linearVelocity = Vector2.zero;
                 if (cState.dashing)
                 {
                     FinishedDashing();
@@ -4292,12 +4292,12 @@ return fsmBool.Value;
                     if (cState.bouncing)
                     {
                         CancelBounce();
-                        rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
+                        rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0f);
                     }
                     if (cState.shroomBouncing)
                     {
                         CancelBounce();
-                        rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
+                        rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0f);
                     }
                 }
                 if (collisionSide == CollisionSide.bottom)
@@ -4573,7 +4573,7 @@ return fsmBool.Value;
         {
             Update10();
         }
-        current_velocity = rb2d.velocity;
+        current_velocity = rb2d.linearVelocity;
         FallCheck();
         FailSafeChecks();
         if (hero_state == ActorStates.running && !cState.dashing && !cState.backDashing && !controlReqlinquished)
@@ -4588,13 +4588,13 @@ return fsmBool.Value;
 				this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_WALK);
 				this.audioCtrl.PlaySound(HeroSounds.FOOTSTEPS_RUN);
 			}*/
-            if (runMsgSent && rb2d.velocity.x > -0.1f && rb2d.velocity.x < 0.1f)
+            if (runMsgSent && rb2d.linearVelocity.x > -0.1f && rb2d.linearVelocity.x < 0.1f)
             {
                 //this.runEffect.GetComponent<PlayMakerFSM>().SendEvent("RUN STOP");
                 runEffect.transform.SetParent(null, true);
                 runMsgSent = false;
             }
-            if (!runMsgSent && (rb2d.velocity.x < -0.1f || rb2d.velocity.x > 0.1f))
+            if (!runMsgSent && (rb2d.linearVelocity.x < -0.1f || rb2d.linearVelocity.x > 0.1f))
             {
                 //this.runEffect = this.runEffectPrefab.Spawn();
                 /*runEffect = GameObject.Instantiate(runEffectPrefab);
@@ -4680,7 +4680,7 @@ return fsmBool.Value;
                 else
                 {
                     CancelBounce();
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
+                    rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0f);
                 }
             }
             if (cState.shroomBouncing && current_velocity.y <= 0f)
@@ -4958,26 +4958,26 @@ return fsmBool.Value;
         }
         if (dashingDown)
         {
-            rb2d.velocity = new Vector2(0f, -num);
+            rb2d.linearVelocity = new Vector2(0f, -num);
         }
         else if (cState.facingRight)
         {
             if (CheckForBump(CollisionSide.right))
             {
-                rb2d.velocity = new Vector2(num, cState.onGround ? BUMP_VELOCITY : BUMP_VELOCITY_DASH);
+                rb2d.linearVelocity = new Vector2(num, cState.onGround ? BUMP_VELOCITY : BUMP_VELOCITY_DASH);
             }
             else
             {
-                rb2d.velocity = new Vector2(num, 0f);
+                rb2d.linearVelocity = new Vector2(num, 0f);
             }
         }
         else if (CheckForBump(CollisionSide.left))
         {
-            rb2d.velocity = new Vector2(-num, cState.onGround ? BUMP_VELOCITY : BUMP_VELOCITY_DASH);
+            rb2d.linearVelocity = new Vector2(-num, cState.onGround ? BUMP_VELOCITY : BUMP_VELOCITY_DASH);
         }
         else
         {
-            rb2d.velocity = new Vector2(-num, 0f);
+            rb2d.linearVelocity = new Vector2(-num, 0f);
         }
         dash_timer += Time.deltaTime;
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	[DisallowMultipleComponent]
 	public class TMP_SpriteAnimator : MonoBehaviour

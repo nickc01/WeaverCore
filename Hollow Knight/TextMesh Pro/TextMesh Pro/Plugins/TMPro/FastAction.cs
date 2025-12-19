@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TMPro
+namespace TMProOld
 {
 	public class FastAction
 	{

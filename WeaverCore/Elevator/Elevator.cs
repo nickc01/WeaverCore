@@ -609,7 +609,7 @@ namespace WeaverCore.Elevator
                     sticker.ForceUnStickPlayer();
                     yield return null;
                     sticker.ForceStickPlayer();
-                    playerRB.velocity = playerRB.velocity.With(y: 0f) + (Vector2)MovingVelocity;
+                    playerRB.linearVelocity = playerRB.linearVelocity.With(y: 0f) + (Vector2)MovingVelocity;
                     HeroController.instance.SetBackOnGround();
                     PositionPlayer();
                     sticker.enabled = true;

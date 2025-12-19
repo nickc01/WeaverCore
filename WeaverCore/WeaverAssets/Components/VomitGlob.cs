@@ -170,7 +170,7 @@ namespace WeaverCore.Assets.Components
                 oldDamage = damager.damageDealt;
             }
             transform.SetZPosition(randomZRange.RandomInRange());
-            RB.velocity = default;
+            RB.linearVelocity = default;
             airSteamParticles.Stop();
 
             if (collision != null)
@@ -424,7 +424,7 @@ namespace WeaverCore.Assets.Components
             instance.airSteamParticles.Play();
 
             instance.transform.position = position;
-            instance.RB.velocity = velocity;
+            instance.RB.linearVelocity = velocity;
             instance.RB.gravityScale = gravityScale;
             instance.PlaySounds = playSounds;
 
@@ -444,7 +444,7 @@ namespace WeaverCore.Assets.Components
             MainRenderer.enabled = true;
             initialized = false;
             Grounded = false;
-            rb.velocity = default;
+            rb.linearVelocity = default;
             rb.isKinematic = false;
             forceDisappear = false;
             hasLifeTime = true;

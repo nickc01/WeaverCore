@@ -1,6 +1,6 @@
 using System;
 
-namespace TMPro
+namespace TMProOld
 {
 	[Serializable]
 	public class TMP_Glyph : TMP_TextElement

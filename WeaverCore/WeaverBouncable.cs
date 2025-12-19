@@ -75,7 +75,7 @@ namespace WeaverCore.Components
                     Vector2 vector = new Vector2(base.transform.position.x, base.transform.position.y);
                     velocity = vector - lastPos;
                     lastPos = vector;
-                    speed = (rb ? rb.velocity.magnitude : 0f);
+                    speed = (rb ? rb.linearVelocity.magnitude : 0f);
                     stepCounter = 0;
                 }
                 else
@@ -118,7 +118,7 @@ namespace WeaverCore.Components
             }
 
             Vector3 normalized = Vector3.Reflect(velocity.normalized, inNormal).normalized;
-            rb.velocity = new Vector2(normalized.x, normalized.y) * (speed * (bounceFactor * Random.Range(0.8f, 1.2f)));
+            rb.linearVelocity = new Vector2(normalized.x, normalized.y) * (speed * (bounceFactor * Random.Range(0.8f, 1.2f)));
             if (playSound)
             {
                 chooser = Random.Range(1, 100);

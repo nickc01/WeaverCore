@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	[CustomEditor(typeof(TMP_SpriteAsset))]
 	public class TMP_SpriteAssetEditor : Editor

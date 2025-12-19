@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEditor.UI;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	[CanEditMultipleObjects]
 	[CustomEditor(typeof(TMP_Dropdown), true)]

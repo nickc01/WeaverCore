@@ -138,7 +138,7 @@ namespace WeaverCore.Components
             var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
             if (instance.TryGetComponent<Rigidbody2D>(out var rb))
             {
-                rb.velocity = velocity;
+                rb.linearVelocity = velocity;
             }
 
             instance.transform.localScale = scale;

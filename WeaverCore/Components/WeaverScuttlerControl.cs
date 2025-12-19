@@ -179,7 +179,7 @@ namespace WeaverCore.Components
             var anim = wsc.GetComponent<WeaverAnimationPlayer>();
             anim.PlayAnimation(wsc.runAnim);
             sourceGetter(wsc).enabled = true;
-            Vector3 velocity = bodyGetter(wsc).velocity;
+            Vector3 velocity = bodyGetter(wsc).linearVelocity;
             while (true)
             {
                 float num = Mathf.Sign(Player.Player1.transform.position.x - wsc.transform.position.x) * (float)((!reverseRunGetter(wsc)) ? 1 : (-1));
@@ -189,8 +189,8 @@ namespace WeaverCore.Components
                 {
                     velocity.x += accelerationGetter(wsc) * (0f - num);
                     velocity.x = Mathf.Clamp(velocity.x, 0f - maxSpeedGetter(wsc), maxSpeedGetter(wsc));
-                    velocity.y = bodyGetter(wsc).velocity.y;
-                    bodyGetter(wsc).velocity = velocity;
+                    velocity.y = bodyGetter(wsc).linearVelocity.y;
+                    bodyGetter(wsc).linearVelocity = velocity;
                     yield return null;
                     num = Mathf.Sign(Player.Player1.transform.position.x - wsc.transform.position.x) * (float)((!reverseRunGetter(wsc)) ? 1 : (-1));
                 }

@@ -208,17 +208,17 @@ namespace WeaverCore.Components
         {
             for (float t = 0; t < 0.1f; t += Time.deltaTime)
             {
-                MainRigidbody.velocity = recoil;
+                MainRigidbody.linearVelocity = recoil;
                 yield return null;
             }
 
             for (float t = 0; t < 0.1f; t += Time.deltaTime)
             {
-                MainRigidbody.velocity = -recoil;
+                MainRigidbody.linearVelocity = -recoil;
                 yield return null;
             }
 
-            MainRigidbody.velocity = default;
+            MainRigidbody.linearVelocity = default;
             canTakeHit = true;
             yield break;
         }

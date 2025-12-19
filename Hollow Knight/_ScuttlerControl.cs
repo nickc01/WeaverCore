@@ -147,10 +147,10 @@ public class ScuttlerControl : MonoBehaviour
 
     private void Update()
     {
-        if (alive && Physics2D.Raycast((Vector2)base.transform.position + rayOrigin, new Vector2(Mathf.Sign(body.velocity.x), 0f), rayLength, 256).collider != null && bounceRoutine == null && runRoutine != null)
+        if (alive && Physics2D.Raycast((Vector2)base.transform.position + rayOrigin, new Vector2(Mathf.Sign(body.linearVelocity.x), 0f), rayLength, 256).collider != null && bounceRoutine == null && runRoutine != null)
         {
             StopCoroutine(runRoutine);
-            bounceRoutine = StartCoroutine((body.velocity.x > 0f) ? Bounce(110f, 130f) : Bounce(50f, 70f));
+            bounceRoutine = StartCoroutine((body.linearVelocity.x > 0f) ? Bounce(110f, 130f) : Bounce(50f, 70f));
         }
     }
 
@@ -166,7 +166,7 @@ public class ScuttlerControl : MonoBehaviour
     {
         //anim.Play(runAnim);
         source.enabled = true;
-        Vector3 velocity = body.velocity;
+        Vector3 velocity = body.linearVelocity;
         while (true)
         {
             float num = Mathf.Sign(hero.position.x - base.transform.position.x) * (float)((!reverseRun) ? 1 : (-1));
@@ -176,8 +176,8 @@ public class ScuttlerControl : MonoBehaviour
             {
                 velocity.x += acceleration * (0f - num);
                 velocity.x = Mathf.Clamp(velocity.x, 0f - maxSpeed, maxSpeed);
-                velocity.y = body.velocity.y;
-                body.velocity = velocity;
+                velocity.y = body.linearVelocity.y;
+                body.linearVelocity = velocity;
                 yield return null;
                 num = Mathf.Sign(hero.position.x - base.transform.position.x) * (float)((!reverseRun) ? 1 : (-1));
             }
@@ -193,7 +193,7 @@ public class ScuttlerControl : MonoBehaviour
         float num = UnityEngine.Random.Range(angleMin, angleMax);
         zero.x = 5f * Mathf.Cos(num * ((float)Math.PI / 180f));
         zero.y = 5f * Mathf.Sin(num * ((float)Math.PI / 180f));
-        body.velocity = zero;
+        body.linearVelocity = zero;
         yield return new WaitForSeconds(0.5f);
         source.enabled = true;
         bounceRoutine = null;

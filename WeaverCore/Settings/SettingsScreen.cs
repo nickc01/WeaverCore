@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using WeaverCore.Settings.Elements;
 using System;
 using System.Linq;
-using TMPro;
+using TMProOld;
 using System.Reflection;
 using System.Collections.ObjectModel;
 

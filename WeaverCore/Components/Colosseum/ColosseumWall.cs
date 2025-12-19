@@ -217,7 +217,7 @@ namespace WeaverCore.Components.Colosseum
 
             wall.transform.localPosition = startPos;
 
-            wall.velocity = (endWorld - startWorld).normalized * speed;
+            wall.linearVelocity = (endWorld - startWorld).normalized * speed;
 
             var maxDistance = Vector2.Distance(startPos, endPos);
 
@@ -226,7 +226,7 @@ namespace WeaverCore.Components.Colosseum
                 yield return null;
             }
 
-            wall.velocity = default;
+            wall.linearVelocity = default;
             wall.transform.localPosition = endPos;
         }
 

@@ -26,7 +26,7 @@ namespace WeaverCore.Utilities
             Vector2 velocity = new Vector2(speed * Mathf.Cos(angle * (Mathf.PI / 180f)), speed * Mathf.Sin(angle * (Mathf.PI / 180f)));
 
             var rb2d = spawnedObj.GetComponent<Rigidbody2D>();
-            rb2d.velocity = velocity;
+            rb2d.linearVelocity = velocity;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace WeaverCore.Utilities
                 {
                     float num2 = UnityEngine.Random.Range(config.SpeedMin, config.SpeedMax);
                     float num3 = UnityEngine.Random.Range(config.AngleMin, config.AngleMax);
-                    component.velocity = new Vector2(Mathf.Cos(num3 * ((float)Math.PI / 180f)), Mathf.Sin(num3 * ((float)Math.PI / 180f))) * num2;
+                    component.linearVelocity = new Vector2(Mathf.Cos(num3 * ((float)Math.PI / 180f)), Mathf.Sin(num3 * ((float)Math.PI / 180f))) * num2;
                 }
                 array[i] = gameObject;
             }
@@ -94,7 +94,7 @@ namespace WeaverCore.Utilities
                     float speed = speedRange.RandomInRange();
                     float angle = angleRange.RandomInRange();
 
-                    spatterRB.velocity = MathUtilities.PolarToCartesian(angle, speed);
+                    spatterRB.linearVelocity = MathUtilities.PolarToCartesian(angle, speed);
                 }
 
                 objs[i - 1] = spatter;
@@ -134,7 +134,7 @@ namespace WeaverCore.Utilities
                     float speed = speedRange.RandomInRange();
                     float angle = angleRange.RandomInRange();
 
-                    spatterRB.velocity = MathUtilities.PolarToCartesian(speed, angle);
+                    spatterRB.linearVelocity = MathUtilities.PolarToCartesian(speed, angle);
                 }
 
                 objs[i - 1] = spatter;

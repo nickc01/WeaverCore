@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	public static class TMPro_CreateObjectMenu
 	{
@@ -61,7 +61,7 @@ namespace TMPro.EditorUtilities
 			if (gameObject3 == null)
 			{
 				GameObjectUtility.SetParentAndAlign(gameObject2, canvas.gameObject);
-				TextMeshProUGUI textMeshProUGUI = gameObject2.AddComponent<WeaverCore.Assets.TMPro.TextMeshProUGUI>();
+				TextMeshProUGUI textMeshProUGUI = gameObject2.AddComponent<WeaverCore.Assets.TMProOld.TextMeshProUGUI>();
 				textMeshProUGUI.text = "New Text";
 				textMeshProUGUI.alignment = TextAlignmentOptions.TopLeft;
 			}
@@ -71,7 +71,7 @@ namespace TMPro.EditorUtilities
 				rectTransform.anchorMin = Vector2.zero;
 				rectTransform.anchorMax = Vector2.one;
 				GameObjectUtility.SetParentAndAlign(gameObject2, gameObject3);
-				TextMeshProUGUI textMeshProUGUI2 = gameObject2.AddComponent<WeaverCore.Assets.TMPro.TextMeshProUGUI>();
+				TextMeshProUGUI textMeshProUGUI2 = gameObject2.AddComponent<WeaverCore.Assets.TMProOld.TextMeshProUGUI>();
 				textMeshProUGUI2.text = "Button";
 				textMeshProUGUI2.fontSize = 24f;
 				textMeshProUGUI2.alignment = TextAlignmentOptions.Center;
@@ -79,7 +79,7 @@ namespace TMPro.EditorUtilities
 			else
 			{
 				GameObjectUtility.SetParentAndAlign(gameObject2, gameObject3);
-				TextMeshProUGUI textMeshProUGUI3 = gameObject2.AddComponent<WeaverCore.Assets.TMPro.TextMeshProUGUI>();
+				TextMeshProUGUI textMeshProUGUI3 = gameObject2.AddComponent<WeaverCore.Assets.TMProOld.TextMeshProUGUI>();
 				textMeshProUGUI3.text = "New Text";
 				textMeshProUGUI3.alignment = TextAlignmentOptions.TopLeft;
 			}

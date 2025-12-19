@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	[Serializable]
 	public class TMP_FontAsset : TMP_Asset

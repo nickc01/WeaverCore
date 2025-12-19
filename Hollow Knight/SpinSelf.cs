@@ -20,7 +20,7 @@ public class SpinSelf : MonoBehaviour
             if (stepCounter >= 1)
             {
                 Rigidbody2D component = GetComponent<Rigidbody2D>();
-                float torque = component.velocity.x * spinFactor;
+                float torque = component.linearVelocity.x * spinFactor;
                 component.AddTorque(torque);
                 spun = true;
             }

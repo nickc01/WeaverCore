@@ -1,4 +1,4 @@
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	public struct FT_GlyphInfo
 	{

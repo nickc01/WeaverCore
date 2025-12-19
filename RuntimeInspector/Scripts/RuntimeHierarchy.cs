@@ -202,7 +202,7 @@ namespace RuntimeInspectorNamespace
 
 		//TMPro.TMP_InputField
 		[SerializeField]
-		private TMPro.TMP_InputField searchInputField;
+		private TMProOld.TMP_InputField searchInputField;
 
 		[SerializeField]
 		private Image searchIcon;

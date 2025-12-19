@@ -49,7 +49,7 @@ namespace WeaverCore.Components
 
             if (target.TryGetComponent<Rigidbody2D>(out var rb))
             {
-                rb.velocity = default;
+                rb.linearVelocity = default;
             }
 
             OnInspect?.Invoke();

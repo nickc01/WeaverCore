@@ -1,4 +1,4 @@
-namespace TMPro
+namespace TMProOld
 {
 	internal interface ITweenValue
 	{

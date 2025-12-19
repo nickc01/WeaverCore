@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	[Serializable]
 	public class TMP_Sprite : TMP_TextElement

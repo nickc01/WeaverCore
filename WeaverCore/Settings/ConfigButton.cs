@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
-using TMPro;
+using TMProOld;
 
 namespace WeaverCore.Settings
 {

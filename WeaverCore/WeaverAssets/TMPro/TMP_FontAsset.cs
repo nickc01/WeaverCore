@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using WeaverCore.Attributes;
 
-namespace WeaverCore.Assets.TMPro
+namespace WeaverCore.Assets.TMProOld
 {
 	/*
 	 * THIS REPLACES THE DEFAULT TMP_FontAsset OBJECT TO MAKE IT WORK WITH ASSET BUNDLES
@@ -17,7 +17,7 @@ namespace WeaverCore.Assets.TMPro
 	[System.ComponentModel.Browsable(false)]
 	[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
 #endif
-	public class TMP_FontAsset : global::TMPro.TMP_FontAsset
+	public class TMP_FontAsset : global::TMProOld.TMP_FontAsset
 	{
 		[SerializeField]
 		
@@ -159,9 +159,9 @@ namespace WeaverCore.Assets.TMPro
 
 
 		[SerializeField]
-        System.Collections.Generic.List<global::TMPro.TMP_FontAsset> TMP_FontWeights_regularTypeface;
+        System.Collections.Generic.List<global::TMProOld.TMP_FontAsset> TMP_FontWeights_regularTypeface;
 		[SerializeField]
-        System.Collections.Generic.List<global::TMPro.TMP_FontAsset> TMP_FontWeights_italicTypeface;
+        System.Collections.Generic.List<global::TMProOld.TMP_FontAsset> TMP_FontWeights_italicTypeface;
 
 		[SerializeField]
 		string editorAtlasTextureName;
@@ -315,7 +315,7 @@ namespace WeaverCore.Assets.TMPro
 		{
 			var patcher = HarmonyPatcher.Create("WeaverCore.TMPFONT.com");
 
-			var fontType = typeof(global::TMPro.TMP_FontAsset);
+			var fontType = typeof(global::TMProOld.TMP_FontAsset);
 
 			var method = fontType.GetMethod("OnValidate", BindingFlags.NonPublic | BindingFlags.Instance);
 
@@ -350,14 +350,14 @@ namespace WeaverCore.Assets.TMPro
 					{
 						Debug.Log($"Replacing {name} with {source.name}");
 
-						ShallowCopy<global::TMPro.TMP_FontAsset>(source, this);
+						ShallowCopy<global::TMProOld.TMP_FontAsset>(source, this);
 
 						return;
                     }
                 }
 			}
 
-			var type = typeof(global::TMPro.TMP_FontAsset);
+			var type = typeof(global::TMProOld.TMP_FontAsset);
 			var fontInfo = new FaceInfo();
 
 			fontInfo.Name = FaceInfo_Name;
@@ -455,7 +455,7 @@ namespace WeaverCore.Assets.TMPro
 #if UNITY_EDITOR
         void RefreshJaggedFields()
 		{
-            var type = typeof(global::TMPro.TMP_FontAsset);
+            var type = typeof(global::TMProOld.TMP_FontAsset);
 
 
             var fontInfo = (FaceInfo)type.GetField("m_fontInfo", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
@@ -546,8 +546,8 @@ namespace WeaverCore.Assets.TMPro
 
             var fontWeights = (TMP_FontWeights[])type.GetField("fontWeights", BindingFlags.Public | BindingFlags.Instance).GetValue(this);
 
-            this.TMP_FontWeights_italicTypeface = new System.Collections.Generic.List<global::TMPro.TMP_FontAsset>();
-            this.TMP_FontWeights_regularTypeface = new System.Collections.Generic.List<global::TMPro.TMP_FontAsset>();
+            this.TMP_FontWeights_italicTypeface = new System.Collections.Generic.List<global::TMProOld.TMP_FontAsset>();
+            this.TMP_FontWeights_regularTypeface = new System.Collections.Generic.List<global::TMProOld.TMP_FontAsset>();
 
             for (int i = 0; i < fontWeights.GetLength(0); i++)
             {

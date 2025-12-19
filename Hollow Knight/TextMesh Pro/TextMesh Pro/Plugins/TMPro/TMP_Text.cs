@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace TMPro
+namespace TMProOld
 {
 	public class TMP_Text : MaskableGraphic
 	{

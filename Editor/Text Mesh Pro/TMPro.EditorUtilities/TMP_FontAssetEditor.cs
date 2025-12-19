@@ -5,9 +5,9 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
-	[CustomEditor(typeof(WeaverCore.Assets.TMPro.TMP_FontAsset))]
+	[CustomEditor(typeof(WeaverCore.Assets.TMProOld.TMP_FontAsset))]
 	public class TMP_FontAssetEditor_WEAVERCORE : TMP_FontAssetEditor
 	{
 

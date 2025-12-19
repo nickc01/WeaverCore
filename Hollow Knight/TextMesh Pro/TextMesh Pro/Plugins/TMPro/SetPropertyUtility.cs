@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	internal static class SetPropertyUtility
 	{

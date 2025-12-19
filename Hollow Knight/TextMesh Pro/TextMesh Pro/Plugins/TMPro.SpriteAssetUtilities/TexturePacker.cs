@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TMPro.SpriteAssetUtilities
+namespace TMProOld.SpriteAssetUtilities
 {
 	public class TexturePacker
 	{

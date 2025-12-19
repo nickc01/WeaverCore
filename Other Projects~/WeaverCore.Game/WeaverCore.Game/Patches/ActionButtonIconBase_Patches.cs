@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using TMPro;
+using TMProOld;
 using WeaverCore.Attributes;
 
 namespace WeaverCore.Game.Patches

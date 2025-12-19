@@ -487,7 +487,7 @@ public class Breakable : MonoBehaviour//, IHitResponder
                 float num = UnityEngine.Random.Range(flingAngleMin, flingAngleMax);
                 Vector2 vector = new Vector2(Mathf.Cos(num * ((float)Math.PI / 180f)), Mathf.Sin(num * ((float)Math.PI / 180f)));
                 float num2 = UnityEngine.Random.Range(flingSpeedMin, flingSpeedMax) * impactMultiplier;
-                component.velocity = vector * num2;
+                component.linearVelocity = vector * num2;
             }
         }
         if (containingParticles.Length != 0)

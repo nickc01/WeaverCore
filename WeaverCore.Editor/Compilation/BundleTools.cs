@@ -7,7 +7,6 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -598,6 +597,7 @@ namespace WeaverCore.Editor.Compilation
 				}
 				catch (Exception e)
 				{
+					WeaverLog.LogException(e);
                     if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
                     {
                         firstTime = firstBuildData.FirstBuild;
@@ -609,7 +609,7 @@ namespace WeaverCore.Editor.Compilation
 					}
 					else
                     {
-                        EditorDebugUtilities.ClearLog();
+                        //EditorDebugUtilities.ClearLog();
                     }
 				}
 				finally
@@ -925,7 +925,7 @@ namespace WeaverCore.Editor.Compilation
 		/// </summary>
 		static void CompleteBundlingProcess()
 		{
-			var firstTime = true;
+			var firstTime = false;
 			if (PersistentData.TryGetData(out FirstEverBuild firstBuildData))
 			{
 				firstTime = firstBuildData.FirstBuild;
@@ -934,30 +934,30 @@ namespace WeaverCore.Editor.Compilation
 			{
 				FirstBuild = false
 			});
-			PersistentData.SaveData();
-			if (!Data.BundlingSuccessful)
-			{
-                if (firstTime)
-                {
-                    EditorDebugUtilities.ClearLog();
+				PersistentData.SaveData();
+				if (!Data.BundlingSuccessful)
+				{
+	                if (firstTime)
+	                {
+                    //EditorDebugUtilities.ClearLog();
 					//Try Building Again, since the first ever build seems to have issues.
-					if (BuildScreen.BuildSettings.WeaverCoreOnly)
-					{
-						BuildTools.BuildWeaverCore();
+						if (BuildScreen.BuildSettings.WeaverCoreOnly)
+						{
+							BuildTools.BuildWeaverCore();
+						}
+						else
+						{
+							BuildTools.BuildMod();
+						}
 					}
 					else
-					{
-						BuildTools.BuildMod();
+	                {
+						BuildDebugging.LogError("An error occured when creating the asset bundles");
 					}
+					return;
 				}
-				else
-                {
-					Debug.LogError("An error occured when creating the asset bundles");
-				}
-				return;
-			}
 
-            Debug.Log("<b>Asset Bundling Complete</b>");
+	            BuildDebugging.Log("<b>Asset Bundling Complete</b>");
 			foreach (var scene in Data.ClosedScenes)
 			{
 				EditorSceneManager.OpenScene(scene.Path, OpenSceneMode.Additive);
@@ -980,21 +980,19 @@ namespace WeaverCore.Editor.Compilation
 		{
             Debug.Log($"Post Processing Bundle -> {bundle.File}");
 			var am = new AssetsManager();
-			am.LoadClassPackage(BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}classdata.tpk");
+			var classPackagePath = BuildTools.WeaverCoreFolder.AddSlash() + $"Libraries{Path.DirectorySeparatorChar}classdata.tpk";
+			var classPackageLoaded = false;
+			var classPackageLoadFailed = false;
 
 			var bun = am.LoadBundleFile(bundle.File.FullName);
 
-            //am.LoadBundleFile()
-
-            System.Collections.Generic.List<BundleReplacer> bundleReplacers = new System.Collections.Generic.List<BundleReplacer>();
-
 			//
 			//Parallel.For(0, bun.file.bundleInf6.dirInf.GetLength(0), bunIndex =>
-			var bunLength = bun.file.bundleInf6.dirInf.GetLength(0);
+			var bunLength = bun.file.BlockAndDirInfo.DirectoryInfos.Count;
             for (int bunIndex = 0; bunIndex < bunLength; bunIndex++)
             {
-                ConcurrentQueue<AssetsReplacer> assetReplacers = new ConcurrentQueue<AssetsReplacer>();
-                var assetsFileName = bun.file.bundleInf6.dirInf[bunIndex].name; //name of the first entry in the bundle
+                var dirInfo = bun.file.BlockAndDirInfo.DirectoryInfos[bunIndex];
+                var assetsFileName = dirInfo.Name; //name of the first entry in the bundle
 
                 EditorUtility.DisplayProgressBar("Processing Bundles", $"Processing {assetsFileName}", bunIndex / (float)(bunLength - 1));
 
@@ -1009,54 +1007,76 @@ namespace WeaverCore.Editor.Compilation
                 //will only load from file, not from the AssetsFile class. so we just
                 //put it into memory and load from that...
                 var assetsFileInst = am.LoadAssetsFile(new MemoryStream(assetsFileData), "dummypath" + bunIndex, false);
-                var assetsFileTable = assetsFileInst.table;
 
                 //load cldb from classdata.tpk
-                am.LoadClassDatabaseFromPackage(assetsFileInst.file.typeTree.unityVersion);
+				if (!assetsFileInst.file.Metadata.TypeTreeEnabled)
+				{
+					if (!classPackageLoaded && !classPackageLoadFailed)
+					{
+						try
+						{
+							am.LoadClassPackage(classPackagePath);
+							classPackageLoaded = true;
+						}
+						catch (Exception e)
+						{
+							classPackageLoadFailed = true;
+							Debug.LogError($"Failed to load class package at {classPackagePath}");
+							Debug.LogException(e);
+						}
+					}
+
+					if (!classPackageLoaded)
+					{
+						throw new Exception("Assets file has no type tree and classdata.tpk failed to load.");
+					}
+
+					am.LoadClassDatabaseFromPackage(assetsFileInst.file.Metadata.UnityVersion);
+				}
 
 				var getTypeInstanceLock = new object();
 
-				AssetTypeInstance GetTypeInstanceLocked(AssetsFile file, AssetFileInfoEx info)
+				AssetTypeValueField GetTypeInstanceLocked(AssetsFileInstance assetsInst, AssetFileInfo info)
 				{
 					lock (getTypeInstanceLock)
 					{
-                        return am.GetTypeInstance(file, info);
+                        return am.GetBaseField(assetsInst, info);
                     }
                 }
 
-				//foreach (var info in assetsFileTable.assetFileInfo)
-				Parallel.ForEach(assetsFileTable.assetFileInfo, info =>
+				//foreach (var info in assetsFileInst.file.AssetInfos)
+				Parallel.ForEach(assetsFileInst.file.AssetInfos, info =>
                 {
                     //If object is a MonoScript, change the script's "m_AssemblyName" from "Assembly-CSharp" to name of mod assembly
-                    if (info.curFileType == 0x73)
+                    if (info.GetTypeId(assetsFileInst.file) == 0x73)
                     {
                         //MonoDeserializer.GetMonoBaseField
 
-                        var monoScriptInst = GetTypeInstanceLocked(assetsFileInst.file, info).GetBaseField();
-                        var m_AssemblyNameValue = monoScriptInst.Get("m_AssemblyName").GetValue();
+                        var monoScriptInst = GetTypeInstanceLocked(assetsFileInst, info);
+                        var m_AssemblyNameValue = monoScriptInst.Get("m_AssemblyName").Value;
                         foreach (var testAsm in assemblyReplacements)
                         {
-                            var assemblyName = m_AssemblyNameValue.AsString();
+                            var assemblyName = m_AssemblyNameValue.AsString;
                             if (assemblyName.Contains(testAsm.Key))
                             {
                                 var newAsmName = assemblyName.Replace(testAsm.Key, testAsm.Value);
                                 //change m_AssemblyName field
-                                m_AssemblyNameValue.Set(newAsmName);
+                                m_AssemblyNameValue.AsString = newAsmName;
                                 //rewrite the asset and add it to the pending list of changes
-                                assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, 0xffff, monoScriptInst.WriteToByteArray()));
+                                info.SetNewData(monoScriptInst);
                                 break;
                             }
                         }
                     }
                     //If the object is a MonoBehaviour
 #if !REWRITE_REGISTRIES
-                    else if (info.curFileType == 0x72)
+                    else if (info.GetTypeId(assetsFileInst.file) == 0x72)
                     {
                         AssetTypeValueField monoBehaviourInst = null;
 						bool modified = false;
                         try
                         {
-                            monoBehaviourInst = GetTypeInstanceLocked(assetsFileInst.file, info).GetBaseField();
+                            monoBehaviourInst = GetTypeInstanceLocked(assetsFileInst, info);
                         }
                         catch (Exception e)
                         {
@@ -1069,7 +1089,7 @@ namespace WeaverCore.Editor.Compilation
 							return;
                         }
 
-                        var monoBehaviourName = monoBehaviourInst.Get("m_Name").GetValue().AsString();
+                        var monoBehaviourName = monoBehaviourInst.Get("m_Name").Value.AsString;
                         var modName = BuildScreen.BuildSettings.ModName;
 
                         void ProcessUnityEvent(AssetTypeValueField unityEvent)
@@ -1077,7 +1097,7 @@ namespace WeaverCore.Editor.Compilation
 							var calls = unityEvent.Get("m_Calls");
 
 							var arrayField = calls.Get("Array");
-							var arrayValue = arrayField.GetValue().AsArray();
+							var arrayValue = arrayField.Value.AsArray;
 
                             for (int i = 0; i < arrayValue.size; i++)
                             {
@@ -1086,14 +1106,14 @@ namespace WeaverCore.Editor.Compilation
 
 								var targetAssemblyField = indexField.Get("m_TargetAssemblyTypeName");
 
-								var targetAssemblyValue = targetAssemblyField.GetValue();
+								var targetAssemblyValue = targetAssemblyField.Value;
 
 
-								if (string.IsNullOrEmpty(targetAssemblyValue.AsString()))
+								if (string.IsNullOrEmpty(targetAssemblyValue.AsString))
 								{
 									continue;
 								}
-                                var split = targetAssemblyValue.AsString().Split(',');
+                                var split = targetAssemblyValue.AsString.Split(',');
 
 								if (split.Length < 2)
 								{
@@ -1118,7 +1138,7 @@ namespace WeaverCore.Editor.Compilation
                                 if (changed)
                                 {
                                     //valueAtIndex.Set($"{split[0]}:{split[1]}");
-                                    targetAssemblyValue.Set($"{typeName}, {assemblyName}");
+                                    targetAssemblyValue.AsString = $"{typeName}, {assemblyName}";
                                     modified = true;
                                 }
 
@@ -1126,9 +1146,9 @@ namespace WeaverCore.Editor.Compilation
                                 var argumentsField = indexField.Get("m_Arguments");
 
 								var objectArgumentAssemblyField = argumentsField.Get("m_ObjectArgumentAssemblyTypeName");
-								var objectArgumentAssemblyValue = objectArgumentAssemblyField.GetValue();
+								var objectArgumentAssemblyValue = objectArgumentAssemblyField.Value;
 
-								split = objectArgumentAssemblyValue.AsString().Split(',');
+								split = objectArgumentAssemblyValue.AsString.Split(',');
 
 								if (split.Length < 2)
 								{
@@ -1152,7 +1172,7 @@ namespace WeaverCore.Editor.Compilation
                                 if (changed)
                                 {
                                     //valueAtIndex.Set($"{split[0]}:{split[1]}");
-                                    objectArgumentAssemblyValue.Set($"{typeName}, {assemblyName}");
+                                    objectArgumentAssemblyValue.AsString = $"{typeName}, {assemblyName}";
                                     modified = true;
                                 }
 
@@ -1181,19 +1201,19 @@ namespace WeaverCore.Editor.Compilation
 
                         static bool IsUnityEvent(AssetTypeValueField field)
                         {
-                            var children = field.children;
+                            var children = field.Children;
 
                             return field != null &&
-                            field.GetName() == "m_PersistentCalls" &&
-                            field.childrenCount == 1 &&
-                            field.children.First().GetName() == "m_Calls";
+                            field.TemplateField.Name == "m_PersistentCalls" &&
+                            field.Children.Count == 1 &&
+                            field.Children.First().TemplateField.Name == "m_Calls";
                         }
 
                         void SearchForUnityEvents(AssetTypeValueField parent)
 						{
-                            for (int i = 0; i < parent.childrenCount; i++)
+                            for (int i = 0; i < parent.Children.Count; i++)
 							{
-								var child = parent.children[i];
+								var child = parent.Children[i];
 
 								if (IsUnityEvent(child))
 								{
@@ -1216,15 +1236,12 @@ namespace WeaverCore.Editor.Compilation
                             {
                                 var arrayField = monoBehaviourInst.Get(arrayName);
 
-                                if (!arrayField.IsDummy())
+                                if (!arrayField.IsDummy)
                                 {
                                     var arrayPreVal = arrayField.Get("Array");
 
-                                    var children = arrayPreVal.GetChildrenList();
-
-                                    Array.Resize(ref children, 0);
-
-                                    arrayPreVal.SetChildrenList(children);
+                                    arrayPreVal.Children = new System.Collections.Generic.List<AssetTypeValueField>(0);
+                                    arrayPreVal.Value = new AssetTypeValue(AssetValueType.Array, new AssetTypeArrayInfo(0));
                                 }
                             }
 
@@ -1247,7 +1264,7 @@ namespace WeaverCore.Editor.Compilation
                             var reservedObjectGUIDsField = monoBehaviourInst.Get("reservedObjectGUIDs");
 
 							//If IsDummy() is false, then this is a FieldUpdater
-							if (!reservedObjectGUIDsField.IsDummy())
+							if (!reservedObjectGUIDsField.IsDummy)
 							{
                                 //var modName = BuildScreen.BuildSettings.ModName;
 
@@ -1255,15 +1272,15 @@ namespace WeaverCore.Editor.Compilation
 
 								var componentTypeNamesField = monoBehaviourInst.Get("componentTypeNames").Get("Array");
 
-								var componentTypenamesValue = componentTypeNamesField.GetValue();
+								var componentTypenamesValue = componentTypeNamesField.Value;
 
-								var componentTypenamesArray = componentTypenamesValue.AsArray();
+								var componentTypenamesArray = componentTypenamesValue.AsArray;
 
                                 for (int i = 0; i < componentTypenamesArray.size; i++)
                                 {
-									var valueAtIndex = componentTypeNamesField[i].GetValue();
+									var valueAtIndex = componentTypeNamesField[i].Value;
 
-									var split = valueAtIndex.AsString().Split(':');
+									var split = valueAtIndex.AsString.Split(':');
                                     bool changed = false;
                                     if (split[0] == "Assembly-CSharp")
                                     {
@@ -1278,22 +1295,22 @@ namespace WeaverCore.Editor.Compilation
 
                                     if (changed)
                                     {
-										valueAtIndex.Set($"{split[0]}:{split[1]}");
+										valueAtIndex.AsString = $"{split[0]}:{split[1]}";
 										modified = true;
                                     }
                                 }
 
                                 var fieldTypesField = monoBehaviourInst.Get("fieldTypes").Get("Array");
 
-                                var fieldTypesValue = fieldTypesField.GetValue();
+                                var fieldTypesValue = fieldTypesField.Value;
 
-                                var fieldTypesArray = fieldTypesValue.AsArray();
+                                var fieldTypesArray = fieldTypesValue.AsArray;
 
                                 for (int i = 0; i < fieldTypesArray.size; i++)
                                 {
-                                    var valueAtIndex = fieldTypesField[i].GetValue();
+                                    var valueAtIndex = fieldTypesField[i].Value;
 
-                                    var split = valueAtIndex.AsString().Split(':');
+                                    var split = valueAtIndex.AsString.Split(':');
                                     bool changed = false;
                                     if (split[0] == "Assembly-CSharp")
                                     {
@@ -1308,7 +1325,7 @@ namespace WeaverCore.Editor.Compilation
 
                                     if (changed)
                                     {
-                                        valueAtIndex.Set($"{split[0]}:{split[1]}");
+                                        valueAtIndex.AsString = $"{split[0]}:{split[1]}";
                                         modified = true;
                                     }
                                 }
@@ -1353,15 +1370,15 @@ namespace WeaverCore.Editor.Compilation
 							{
                                 var assemblyField = monoBehaviourInst.Get(str => str.StartsWith("__") && str.Contains("AssemblyName"));
 
-                                if (!assemblyField.IsDummy())
+                                if (!assemblyField.IsDummy)
                                 {
                                     //bool modified = false;
-                                    var modAsmNameVal = assemblyField.GetValue();
+                                    var modAsmNameVal = assemblyField.Value;
                                     foreach (var replacement in assemblyReplacements)
                                     {
-                                        if (modAsmNameVal.AsString() == replacement.Key)
+                                        if (modAsmNameVal.AsString == replacement.Key)
                                         {
-                                            modAsmNameVal.Set(replacement.Value);
+                                            modAsmNameVal.AsString = replacement.Value;
                                             Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
                                             modified = true;
                                             break;
@@ -1370,19 +1387,19 @@ namespace WeaverCore.Editor.Compilation
 
                                     var featuresField = monoBehaviourInst.Get("featureAssemblyNames");
 
-                                    if (!featuresField.IsDummy())
+                                    if (!featuresField.IsDummy)
                                     {
                                         var featureAsms = monoBehaviourInst.Get("featureAssemblyNames").Get("Array");
-                                        var featureAsmVals = featureAsms.GetValue();
-                                        var array = featureAsmVals.AsArray();
+                                        var featureAsmVals = featureAsms.Value;
+                                        var array = featureAsmVals.AsArray;
                                         for (int i = 0; i < array.size; i++)
                                         {
-                                            var asmValue = featureAsms[i].GetValue();
+                                            var asmValue = featureAsms[i].Value;
                                             foreach (var replacement in assemblyReplacements)
                                             {
-                                                if (asmValue.AsString() == replacement.Key)
+                                                if (asmValue.AsString == replacement.Key)
                                                 {
-                                                    asmValue.Set(replacement.Value);
+                                                    asmValue.AsString = replacement.Value;
                                                     Debug.Log($"Replacing Assembly Name From {replacement.Key} to {replacement.Value}");
                                                     modified = true;
                                                     break;
@@ -1401,25 +1418,25 @@ namespace WeaverCore.Editor.Compilation
 
 						if (modified)
 						{
-                            assetReplacers.Enqueue(new AssetsReplacerFromMemory(0, info.index, (int)info.curFileType, AssetHelper.GetScriptIndex(assetsFileInst.file, info), monoBehaviourInst.WriteToByteArray()));
+                            info.SetNewData(monoBehaviourInst);
                         }
                         //If this MonoBehaviour has a field called "__modAssemblyName", then it's a Registry object
                         //If MonoBehaviour is a registry, replace the "__modAssemblyName" variable from "Assembly-CSharp"
                         //__modAssemblyName
                     }
                     //If the object is a Texture2D
-                    else if (info.curFileType == 28)
+                    else if (info.GetTypeId(assetsFileInst.file) == 28)
                     {
                         try
                         {
-                            var texture2DInst = GetTypeInstanceLocked(assetsFileInst.file, info).GetBaseField();
+                            var texture2DInst = GetTypeInstanceLocked(assetsFileInst, info);
 
-                            var textureName = texture2DInst.Get("m_Name").GetValue().AsString();
+                            var textureName = texture2DInst.Get("m_Name").Value.AsString;
 
                             if (FontAssetContainer.RemovedTextures.Contains(textureName))
                             {
                                 //("REMOVING Texture = " + textureName);
-                                assetReplacers.Enqueue(new AssetsRemover(0, info.index, (int)info.curFileType, 0xffff));
+                                info.SetRemoved();
                             }
                         }
                         catch (Exception e)
@@ -1441,47 +1458,42 @@ namespace WeaverCore.Editor.Compilation
                 using (MemoryStream ms = new MemoryStream())
                 using (AssetsFileWriter aw = new AssetsFileWriter(ms))
                 {
-                    aw.bigEndian = false;
-                    assetsFileInst.file.Write(aw, 0, assetReplacers.ToList(), 0);
+                    aw.BigEndian = false;
+                    assetsFileInst.file.Write(aw, 0);
                     modifiedAssetsFileBytes = ms.ToArray();
                 }
 
                 //adding the assets file to the pending list of changes for the bundle
-                bundleReplacers.Add(new BundleReplacerFromMemory(assetsFileName, assetsFileName, true, modifiedAssetsFileBytes, modifiedAssetsFileBytes.Length));
+                dirInfo.SetNewData(modifiedAssetsFileBytes);
             };
 
             EditorUtility.DisplayProgressBar("Writing Modifications", "", 0);
 
             //byte[] modifiedBundleBytes;
-            using (HugeMemoryStream ms = new HugeMemoryStream())
-			{
-				using (AssetsFileWriter aw = new AssetsFileWriter(ms))
-				{
-					int replacerCount = bundleReplacers.Count;
-					bun.file.Write(aw, bundleReplacers, replacerIndex =>
-					{
-                        EditorUtility.DisplayProgressBar("Writing Modifications", $"Writing {bundleReplacers[Mathf.Clamp(replacerIndex,0,replacerCount)].GetEntryName()}", replacerIndex / (float)replacerCount);
-                    });
-					//modifiedBundleBytes = ms.ToArray();
-				}
+            byte[] modifiedBundleBytes;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (AssetsFileWriter aw = new AssetsFileWriter(ms))
+                {
+                    bun.file.Write(aw);
+                    aw.Flush();
+                    modifiedBundleBytes = ms.ToArray();
+                }
+            }
 
-				ms.Position = 0;
-				//using (HugeMemoryStream mbms = new HugeMemoryStream())
-				//{
-					using (AssetsFileReader ar = new AssetsFileReader(ms))
-					{
-						AssetBundleFile modifiedBundle = new AssetBundleFile();
-						modifiedBundle.Read(ar);
+            using (MemoryStream readStream = new MemoryStream(modifiedBundleBytes))
+            using (AssetsFileReader ar = new AssetsFileReader(readStream))
+            {
+                AssetBundleFile modifiedBundle = new AssetBundleFile();
+                modifiedBundle.Read(ar);
 
-						//recompress the bundle and write it (this is optional of course)
-						using (FileStream packStream = File.OpenWrite(bundle.File.FullName + ".edit"))
-						using (AssetsFileWriter aw = new AssetsFileWriter(packStream))
-						{
-							bun.file.Pack(modifiedBundle.reader, aw, BuildScreen.BuildSettings.CompressionType);
-						}
-					}
-				//}
-			}
+                //recompress the bundle and write it (this is optional of course)
+                using (FileStream packStream = File.OpenWrite(bundle.File.FullName + ".edit"))
+                using (AssetsFileWriter aw = new AssetsFileWriter(packStream))
+                {
+                    modifiedBundle.Pack(aw, BuildScreen.BuildSettings.CompressionType);
+                }
+            }
 
 			EditorUtility.ClearProgressBar();
 

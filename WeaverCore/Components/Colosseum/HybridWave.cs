@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WeaverCore.Utilities;
 using System;
-using TMPro;
+using TMProOld;
 using UnityEngine.Events;
 
 #if UNITY_EDITOR

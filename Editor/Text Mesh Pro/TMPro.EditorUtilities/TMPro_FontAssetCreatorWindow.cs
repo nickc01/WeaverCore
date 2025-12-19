@@ -7,7 +7,7 @@ using System.Threading;
 using UnityEditor;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	public class TMPro_FontAssetCreatorWindow : EditorWindow
 	{
@@ -659,7 +659,7 @@ namespace TMPro.EditorUtilities
 			TMP_FontAsset tMP_FontAsset = AssetDatabase.LoadAssetAtPath(str + ".asset", typeof(TMP_FontAsset)) as TMP_FontAsset;
 			if (tMP_FontAsset == null)
 			{
-				tMP_FontAsset = ScriptableObject.CreateInstance<WeaverCore.Assets.TMPro.TMP_FontAsset>();
+				tMP_FontAsset = ScriptableObject.CreateInstance<WeaverCore.Assets.TMProOld.TMP_FontAsset>();
 				AssetDatabase.CreateAsset(tMP_FontAsset, str + ".asset");
 				tMP_FontAsset.fontAssetType = TMP_FontAsset.FontAssetTypes.Bitmap;
 				FaceInfo faceInfo = GetFaceInfo(m_font_faceInfo, 1);
@@ -732,7 +732,7 @@ namespace TMPro.EditorUtilities
 			TMP_FontAsset tMP_FontAsset = AssetDatabase.LoadAssetAtPath(str + ".asset", typeof(TMP_FontAsset)) as TMP_FontAsset;
 			if (tMP_FontAsset == null)
 			{
-				tMP_FontAsset = ScriptableObject.CreateInstance<WeaverCore.Assets.TMPro.TMP_FontAsset>();
+				tMP_FontAsset = ScriptableObject.CreateInstance<WeaverCore.Assets.TMProOld.TMP_FontAsset>();
 				AssetDatabase.CreateAsset(tMP_FontAsset, str + ".asset");
 				tMP_FontAsset.fontAssetType = TMP_FontAsset.FontAssetTypes.SDF;
 				int scaleFactor = (font_renderMode >= RenderModes.DistanceField16) ? 1 : font_scaledownFactor;

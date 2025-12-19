@@ -300,7 +300,7 @@ public class HealthCocoon : MonoBehaviour
             Rigidbody2D component = obj.GetComponent<Rigidbody2D>();
             if ((bool)component)
             {
-                component.velocity = velocity;
+                component.linearVelocity = velocity;
             }
         }
     }

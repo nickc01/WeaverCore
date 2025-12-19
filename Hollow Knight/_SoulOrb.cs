@@ -97,7 +97,7 @@ public class SoulOrb : MonoBehaviour
 
     private void Update()
     {
-        if ((bool)body && body.velocity.magnitude < 2.5f && zoomRoutine == null)
+        if ((bool)body && body.linearVelocity.magnitude < 2.5f && zoomRoutine == null)
         {
             zoomRoutine = StartCoroutine(Zoom());
         }
@@ -138,7 +138,7 @@ public class SoulOrb : MonoBehaviour
                 break;
             }
         }
-        body.velocity = Vector2.zero;
+        body.linearVelocity = Vector2.zero;
         /*if ((bool)soulOrbCollectSounds)
         {
             soulOrbCollectSounds.PlayOneShot(source);
@@ -179,20 +179,20 @@ public class SoulOrb : MonoBehaviour
         Vector2 velocity = default(Vector2);
         velocity.x = speed * Mathf.Cos(num * ((float)Math.PI / 180f));
         velocity.y = speed * Mathf.Sin(num * ((float)Math.PI / 180f));
-        body.velocity = velocity;
+        body.linearVelocity = velocity;
     }
 
     private void FaceAngle()
     {
-        Vector2 velocity = body.velocity;
+        Vector2 velocity = body.linearVelocity;
         float z = Mathf.Atan2(velocity.y, velocity.x) * (180f / (float)Math.PI);
         base.transform.localEulerAngles = new Vector3(0f, 0f, z);
     }
 
     private void ProjectileSquash()
     {
-        float num = 1f - body.velocity.magnitude * stretchFactor * 0.01f;
-        float num2 = 1f + body.velocity.magnitude * stretchFactor * 0.01f;
+        float num = 1f - body.linearVelocity.magnitude * stretchFactor * 0.01f;
+        float num2 = 1f + body.linearVelocity.magnitude * stretchFactor * 0.01f;
         if (num2 > stretchMaxX)
         {
             num2 = stretchMaxX;

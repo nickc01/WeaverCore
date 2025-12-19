@@ -18,8 +18,8 @@ namespace WeaverCore.Editor.Patches
 		[OnInit]
 		static void Patch()
 		{
-			TypeReplacements.Add(typeof(TMPro.TextMeshProUGUI),typeof(WeaverCore.Assets.TMPro.TextMeshProUGUI));
-			TypeReplacements.Add(typeof(TMPro.TextMeshPro),typeof(WeaverCore.Assets.TMPro.TextMeshPro));
+			TypeReplacements.Add(typeof(TMProOld.TextMeshProUGUI),typeof(WeaverCore.Assets.TMProOld.TextMeshProUGUI));
+			TypeReplacements.Add(typeof(TMProOld.TextMeshPro),typeof(WeaverCore.Assets.TMProOld.TextMeshPro));
 
 
 			var original = typeof(UnityEngine.GameObject).GetMethod("AddComponent", new Type[] { typeof(Type) });

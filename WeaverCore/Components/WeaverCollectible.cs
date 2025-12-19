@@ -348,7 +348,7 @@ namespace WeaverCore.Components
 
                         orb.transform.localPosition = orbOriginVariation * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-                        orb.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * orbSpeedRange.RandomInRange();
+                        orb.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * orbSpeedRange.RandomInRange();
                     }
                 }
             }
@@ -365,7 +365,7 @@ namespace WeaverCore.Components
 
             if (playPickupEffects && Player.Player1.TryGetComponent<Rigidbody2D>(out var playerRB))
             {
-                playerRB.velocity = default;
+                playerRB.linearVelocity = default;
             }
             yield return OnPickup();
             if (!PlayerData.instance.GetBool("isInvincible") && !PlayerData.instance.GetBool("disablePause"))

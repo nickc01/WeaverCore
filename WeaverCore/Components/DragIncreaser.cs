@@ -45,19 +45,19 @@ namespace WeaverCore.Components
             StopAllCoroutines();
             if (resetDragOnDisable)
             {
-                RB.drag = resetValue;
+                RB.linearDamping = resetValue;
             }
         }
 
         IEnumerator DragRoutine()
         {
             yield return new WaitForSeconds(increaseDragDelay);
-            while (RB.drag < maxDrag)
+            while (RB.linearDamping < maxDrag)
             {
-                RB.drag += increaseDragRate * Time.deltaTime;
+                RB.linearDamping += increaseDragRate * Time.deltaTime;
                 yield return null;
             }
-            RB.drag = maxDrag;
+            RB.linearDamping = maxDrag;
         }
     }
 }

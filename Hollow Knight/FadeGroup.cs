@@ -1,4 +1,4 @@
-using TMPro;
+using TMProOld;
 using UnityEngine;
 
 public class FadeGroup : MonoBehaviour

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	public static class TMPro_ExtensionMethods
 	{

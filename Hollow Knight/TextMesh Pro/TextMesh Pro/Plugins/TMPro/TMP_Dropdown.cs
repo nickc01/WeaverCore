@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace TMPro
+namespace TMProOld
 {
 	[AddComponentMenu("UI/TMP Dropdown", 35)]
 	[RequireComponent(typeof(RectTransform))]

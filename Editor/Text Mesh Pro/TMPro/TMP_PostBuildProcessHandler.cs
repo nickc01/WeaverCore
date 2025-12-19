@@ -2,7 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEditor.Callbacks;
 
-namespace TMPro
+namespace TMProOld
 {
 	public class TMP_PostBuildProcessHandler
 	{

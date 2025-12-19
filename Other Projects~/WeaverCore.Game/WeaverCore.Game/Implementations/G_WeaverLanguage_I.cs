@@ -7,14 +7,14 @@ using WeaverCore.Features;
 using WeaverCore.Implementations;
 
 namespace WeaverCore.Game.Implementations
-{
-	public class G_WeaverLanguage_I : WeaverLanguage_I
 	{
-		[OnRuntimeInit]
-		static void Init()
-        {
-            ModHooks.LanguageGetHook += ModHooks_LanguageGetHook;
-        }
+		public class G_WeaverLanguage_I : WeaverLanguage_I
+		{
+			[OnRuntimeInit]
+			static void Init()
+	        {
+	            ModHooks.LanguageGetHook += ModHooks_LanguageGetHook;
+	        }
 
         private static string ModHooks_LanguageGetHook(string key, string sheetTitle, string orig)
         {

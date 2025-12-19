@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace TMPro
+namespace TMProOld
 {
 	public static class ShaderUtilities
 	{

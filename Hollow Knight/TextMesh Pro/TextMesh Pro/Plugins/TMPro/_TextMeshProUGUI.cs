@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace TMPro
+namespace TMProOld
 {
 	[ExecuteInEditMode]
 	[DisallowMultipleComponent]

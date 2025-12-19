@@ -1,4 +1,4 @@
-namespace TMPro
+namespace TMProOld
 {
 	public static class TMP_Compatibility
 	{

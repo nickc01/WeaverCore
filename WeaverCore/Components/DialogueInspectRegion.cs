@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using WeaverCore.Utilities;
 

@@ -125,7 +125,7 @@ public class Recoil : MonoBehaviour
         state = States.Frozen;
         if (body != null)
         {
-            body.velocity = Vector2.zero;
+            body.linearVelocity = Vector2.zero;
         }
         recoilTimeRemaining = recoilDuration;
         UpdatePhysics(0f);
@@ -142,7 +142,7 @@ public class Recoil : MonoBehaviour
         {
             if (body != null)
             {
-                body.velocity = Vector2.zero;
+                body.linearVelocity = Vector2.zero;
             }
             recoilTimeRemaining -= deltaTime;
             if (recoilTimeRemaining <= 0f)

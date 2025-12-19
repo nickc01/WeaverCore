@@ -114,22 +114,22 @@ public class SpatterOrange : MonoBehaviour
         base.transform.localScale = new Vector2(num, num);
         circleCollider.enabled = false;
         rb2d.isKinematic = true;
-        rb2d.velocity = new Vector2(0f, 0f);
+        rb2d.linearVelocity = new Vector2(0f, 0f);
         spriteRenderer.sprite = sprites[1];
         state = 1f;
     }
 
     private void FaceAngle()
     {
-        Vector2 velocity = rb2d.velocity;
+        Vector2 velocity = rb2d.linearVelocity;
         float z = Mathf.Atan2(velocity.y, velocity.x) * (180f / (float)Math.PI);
         base.transform.localEulerAngles = new Vector3(0f, 0f, z);
     }
 
     private void ProjectileSquash()
     {
-        float num = 1f - rb2d.velocity.magnitude * stretchFactor * 0.01f;
-        float num2 = 1f + rb2d.velocity.magnitude * stretchFactor * 0.01f;
+        float num = 1f - rb2d.linearVelocity.magnitude * stretchFactor * 0.01f;
+        float num2 = 1f + rb2d.linearVelocity.magnitude * stretchFactor * 0.01f;
         if (num2 < stretchMinX)
         {
             num2 = stretchMinX;

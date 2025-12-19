@@ -17,7 +17,7 @@ namespace RuntimeInspectorNamespace
 		private LayoutElement sizeLayoutElement;
 
 		[SerializeField]
-		private TMPro.TextMeshProUGUI sizeText;
+		private TMProOld.TextMeshProUGUI sizeText;
 
 		[SerializeField]
 		private BoundInputField sizeInput;

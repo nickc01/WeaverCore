@@ -16,7 +16,7 @@ namespace RuntimeInspectorNamespace
 		protected LayoutElement layoutElement;
 
 		[SerializeField]
-		protected TMPro.TextMeshProUGUI variableNameText;
+		protected TMProOld.TextMeshProUGUI variableNameText;
 
 		[SerializeField]
 		protected Image variableNameMask;

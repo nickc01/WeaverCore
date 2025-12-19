@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 using UnityEngine.UI;
 using WeaverCore.Editor.Utilities;

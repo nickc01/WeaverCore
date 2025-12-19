@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
 
-namespace TMPro.EditorUtilities
+namespace TMProOld.EditorUtilities
 {
 	[CustomEditor(typeof(TMP_SubMesh))]
 	[CanEditMultipleObjects]

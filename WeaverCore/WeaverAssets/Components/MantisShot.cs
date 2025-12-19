@@ -44,7 +44,7 @@ namespace WeaverCore.Assets.Components
 
         private void OnDisable()
         {
-            RB.velocity = default;
+            RB.linearVelocity = default;
             StopAllCoroutines();
         }
 
@@ -58,16 +58,16 @@ namespace WeaverCore.Assets.Components
             }
             Vector2 targetPos = Player.Player1.transform.position;
 
-            var xSpeed = RB.velocity.x;
+            var xSpeed = RB.linearVelocity.x;
 
             var xForce = -xSpeed;
 
             float startTime = Time.time;
 
-            while (Time.time < startTime + 4f && !(WithinMarginOfError(RB.velocity.x,0f,0.1f) && WithinMarginOfError(RB.velocity.y,0f,0.1f)))
+            while (Time.time < startTime + 4f && !(WithinMarginOfError(RB.linearVelocity.x,0f,0.1f) && WithinMarginOfError(RB.linearVelocity.y,0f,0.1f)))
             {
                 var pos = transform.position;
-                if (RB.velocity.y == 0f || (WithinMarginOfError(pos.x, targetPos.x,2f) && WithinMarginOfError(pos.y,targetPos.y,2f)) || (pos.y < targetPos.y - 0.5f && Time.time < startTime + 2f))
+                if (RB.linearVelocity.y == 0f || (WithinMarginOfError(pos.x, targetPos.x,2f) && WithinMarginOfError(pos.y,targetPos.y,2f)) || (pos.y < targetPos.y - 0.5f && Time.time < startTime + 2f))
                 {
                     yield return ApplyBoomerangForce(xForce);
                     yield break;
@@ -86,7 +86,7 @@ namespace WeaverCore.Assets.Components
             {
                 RB.AddForce(new Vector2(xForce * Time.deltaTime, BoomerangForce * Time.deltaTime));
 
-                if (t > 1f && WithinMarginOfError(RB.velocity.x, 0f, 0.1f) && WithinMarginOfError(RB.velocity.y, 0f, 0.1f))
+                if (t > 1f && WithinMarginOfError(RB.linearVelocity.x, 0f, 0.1f) && WithinMarginOfError(RB.linearVelocity.y, 0f, 0.1f))
                 {
                     break;
                 }
@@ -101,7 +101,7 @@ namespace WeaverCore.Assets.Components
             MainCollider.enabled = false;
             yield return Animator.PlayAnimationTillDone("Shot End");
 
-            RB.velocity = default;
+            RB.linearVelocity = default;
             StopAllCoroutines();
             Pooling.Destroy(this);
         }
@@ -131,7 +131,7 @@ namespace WeaverCore.Assets.Components
             }
 
             var instance = Pooling.Instantiate(prefab, position, Quaternion.identity);
-            instance.RB.velocity = velocity;
+            instance.RB.linearVelocity = velocity;
             instance.PlaySound = playLaunchSound;
             instance.Audio.AudioSource.volume = 1f;
 
@@ -150,7 +150,7 @@ namespace WeaverCore.Assets.Components
         IEnumerator OrbitShieldHit()
         {
             yield return null;
-            RB.velocity = default;
+            RB.linearVelocity = default;
             yield return EndRoutine();
         }
     }

@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using TMProOld;
 using UnityEngine;
 
 
-namespace WeaverCore.Assets.TMPro
+namespace WeaverCore.Assets.TMProOld
 {
 	/*
 	 * THIS REPLACES THE DEFAULT TextMeshProUGUI OBJECT TO MAKE IT WORK WITH ASSET BUNDLES
@@ -19,7 +19,7 @@ namespace WeaverCore.Assets.TMPro
 	[RequireComponent(typeof(RectTransform))]
 	[RequireComponent(typeof(CanvasRenderer))]
 	[AddComponentMenu("UI/TextMeshPro - Text (UI)", 11)]
-	public class TextMeshProUGUI : global::TMPro.TextMeshProUGUI
+	public class TextMeshProUGUI : global::TMProOld.TextMeshProUGUI
 	{
 		[SerializeField]
 		[HideInInspector]

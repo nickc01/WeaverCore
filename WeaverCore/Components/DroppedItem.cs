@@ -98,13 +98,13 @@ namespace WeaverCore.Components
                 float speed = FlingSpeedMinMax.RandomInRange();
                 float angle = FlingAngleMinMax.RandomInRange();
                 Vector2 velocity = new Vector2(speed * Mathf.Cos(angle * Mathf.Deg2Rad), speed * Mathf.Sin(angle * Mathf.Deg2Rad));
-                RB.velocity = velocity;
+                RB.linearVelocity = velocity;
 
                 float idleCounter = 0f;
 
                 while (true)
                 {
-                    if (RB.velocity.y == 0f)
+                    if (RB.linearVelocity.y == 0f)
                     {
                         idleCounter += Time.deltaTime;
                     }
@@ -116,7 +116,7 @@ namespace WeaverCore.Components
                 }
 
                 RB.gravityScale = 0f;
-                RB.velocity = default;
+                RB.linearVelocity = default;
                 particleTrail.Stop();
             }
 

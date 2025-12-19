@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
-using TMPro;
-using TMPro.EditorUtilities;
+using TMProOld;
+using TMProOld.EditorUtilities;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;

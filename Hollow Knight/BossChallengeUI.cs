@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Language;
 using Modding;
 using UnityEngine;
 using UnityEngine.UI;

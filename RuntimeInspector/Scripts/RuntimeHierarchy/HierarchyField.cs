@@ -16,7 +16,7 @@ namespace RuntimeInspectorNamespace
 		private RectTransform contentTransform;
 
 		[SerializeField]
-		private TMPro.TextMeshProUGUI nameText;
+		private TMProOld.TextMeshProUGUI nameText;
 
 		[SerializeField]
 		private PointerEventListener clickListener;

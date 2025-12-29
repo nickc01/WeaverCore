@@ -60,6 +60,11 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		public static IEnumerable<string> AllBundles()
 		{
+			if (Impl == null)
+			{
+				Impl = ImplFinder.GetImplementation<WeaverAssets_I>();
+				Impl.Initialize();
+			}
 			return Impl.AllAssetBundles;
 		}
 

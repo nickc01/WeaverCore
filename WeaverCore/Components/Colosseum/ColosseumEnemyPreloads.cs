@@ -147,6 +147,10 @@ namespace WeaverCore.Components.Colosseum
             List<(string, string)> preloadNames = new List<(string, string)>();
             foreach (var bundle in WeaverAssets.AllBundles())
             {
+                if (bundle.Contains("_scenes_"))
+                {
+                    continue;
+                }
                 var preloads = WeaverAssets.LoadAssetsOfType<ColosseumEnemyPreloads>(bundle);
                 //var preloads = WeaverAssets.LoadAssetsOfType<ChallengeEnemyPreloads>(bundle.GetNameWithType).ToList();
                 //WeaverLog.Log("FOUND PRELOAD OBJECTS = " + preloads != null ? preloads.Count.ToString() : "null");

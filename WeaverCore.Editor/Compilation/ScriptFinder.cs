@@ -136,19 +136,83 @@ namespace WeaverCore.Editor.Compilation
 			});
 
 			var scriptIDs = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets" });
+			var pendingScripts = new System.Collections.Generic.List<string>();
+			var dirAssemblyMap = new System.Collections.Generic.Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 			foreach (var id in scriptIDs)
 			{
 				var path = AssetDatabase.GUIDToAssetPath(id);
 				var scriptAsset = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
-				var scriptAssembly = scriptAsset.GetScriptAssemblyName().Replace(".dll", "");
+				var scriptAssembly = scriptAsset.GetScriptAssemblyName();
+				if (!string.IsNullOrEmpty(scriptAssembly))
+				{
+					scriptAssembly = scriptAssembly.Replace(".dll", "");
+				}
+
+				if (string.IsNullOrEmpty(scriptAssembly))
+				{
+					pendingScripts.Add(path);
+					continue;
+				}
 
 				var foundAsm = AssemblyInfo.FirstOrDefault(asmInfo => asmInfo.AssemblyName == scriptAssembly);
 				if (foundAsm != null)
 				{
 					foundAsm.ScriptPaths.Add(path);
                 }
+				var dir = Path.GetDirectoryName(path);
+				if (!string.IsNullOrEmpty(dir) && !dirAssemblyMap.ContainsKey(dir))
+				{
+					dirAssemblyMap.Add(dir, scriptAssembly);
+				}
+			}
+
+			if (pendingScripts.Count > 0)
+			{
+				foreach (var path in pendingScripts)
+				{
+					var dir = Path.GetDirectoryName(path);
+					var resolvedAssembly = ResolveAssemblyFromDirectory(dir, dirAssemblyMap);
+					if (!string.IsNullOrEmpty(resolvedAssembly))
+					{
+						var foundAsm = AssemblyInfo.FirstOrDefault(asmInfo => asmInfo.AssemblyName == resolvedAssembly);
+						if (foundAsm != null)
+						{
+							foundAsm.ScriptPaths.Add(path);
+						}
+					}
+					else
+					{
+						Debug.LogWarning($"Unable to resolve assembly for script at {path}");
+					}
+				}
 			}
 			return AssemblyInfo;
+		}
+
+		static string ResolveAssemblyFromDirectory(string startDir, System.Collections.Generic.Dictionary<string, string> dirAssemblyMap)
+		{
+			if (string.IsNullOrEmpty(startDir))
+			{
+				return null;
+			}
+
+			var current = startDir;
+			while (!string.IsNullOrEmpty(current))
+			{
+				if (dirAssemblyMap.TryGetValue(current, out var assemblyName))
+				{
+					return assemblyName;
+				}
+
+				var parent = Path.GetDirectoryName(current);
+				if (string.Equals(parent, current, StringComparison.OrdinalIgnoreCase))
+				{
+					break;
+				}
+				current = parent;
+			}
+
+			return null;
 		}
 
 		/// <summary>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -89,7 +89,7 @@ namespace RuntimeInspectorNamespace
 
 		[SerializeField]
 		//[HideInInspector]
-		private TMPro.TextMeshProUGUI[] m_standardDrawers_variableNameText;
+		private TMProOld.TextMeshProUGUI[] m_standardDrawers_variableNameText;
 
 		[SerializeField]
 		//[HideInInspector]
@@ -108,7 +108,7 @@ namespace RuntimeInspectorNamespace
 
 		[SerializeField]
 		[HideInInspector]
-		private TMPro.TextMeshProUGUI[] m_referenceDrawers_variableNameText;
+		private TMProOld.TextMeshProUGUI[] m_referenceDrawers_variableNameText;
 
 		[SerializeField]
 		[HideInInspector]

@@ -11,7 +11,8 @@ using UnityEngine.UI;
 
 namespace TMProOld
 {
-	[AddComponentMenu("UI/TextMeshPro - Input Field", 11)]
+	//[AddComponentMenu("UI/TextMeshPro - Input Field", 11)]
+	[AddComponentMenu("")]
 	public class TMP_InputField : Selectable, IUpdateSelectedHandler, IEventSystemHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler, ISubmitHandler, ICanvasElement, IScrollHandler
 	{
 		public enum ContentType

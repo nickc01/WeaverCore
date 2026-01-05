@@ -1,4 +1,5 @@
-﻿using System;
+#define SKIP_TMPRO_PROCESSING
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -352,7 +353,7 @@ namespace WeaverCore.Editor.Compilation
 			var parameters = new BuildParameters
             {
 				BuildPath = outputPath,
-				Scripts = ScriptFinder.FindAssemblyScripts("Assembly-CSharp"),
+				Scripts = null,
 				Defines = new System.Collections.Generic.List<string>
 				{
 					"GAME_BUILD"
@@ -366,6 +367,8 @@ namespace WeaverCore.Editor.Compilation
 					"Library/ScriptAssemblies/Assembly-CSharp.dll"
 				}
 			};
+
+			parameters.Scripts = ScriptFinder.FindAssemblyScripts("Assembly-CSharp");
 
 			foreach (var outputFile in weaverCoreTask.Result.OutputFiles)
 			{

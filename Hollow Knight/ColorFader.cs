@@ -102,7 +102,7 @@ public class ColorFader : MonoBehaviour
         Color from = (spriteRenderer ? spriteRenderer.color : (textRenderer ? textRenderer.color : (tk2dSprite ? tk2dSprite.color : Color.white)));
         if (delay > 0f)
         {
-            yield return new WaitForSeconds(upDelay);
+            yield return new WaitForSecondsRealtime(upDelay);
         }
         for (float elapsed = 0f; elapsed < time; elapsed += Time.deltaTime)
         {

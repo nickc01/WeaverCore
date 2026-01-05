@@ -52,7 +52,7 @@ public class FadeGroup : MonoBehaviour
         float t = 0f;
         if (state == 1)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             if (timer > fadeInTime)
             {
                 timer = fadeInTime;
@@ -80,7 +80,7 @@ public class FadeGroup : MonoBehaviour
         }
         else if (state == 2)
         {
-            timer -= Time.deltaTime;
+            timer -= Time.unscaledDeltaTime;
             if (timer < 0f)
             {
                 timer = 0f;

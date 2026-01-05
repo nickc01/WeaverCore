@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace TMProOld
@@ -296,7 +297,7 @@ namespace TMProOld
 			{
 				if (s_Instance == null)
 				{
-					s_Instance = (Resources.Load("TMP Settings") as TMP_Settings);
+					s_Instance = Resources.LoadAll<TMP_Settings>("TMP Settings").FirstOrDefault();
 				}
 				return s_Instance;
 			}
@@ -306,7 +307,7 @@ namespace TMProOld
 		{
 			if (s_Instance == null)
 			{
-				TMP_Settings x = Resources.Load("TMP Settings") as TMP_Settings;
+				TMP_Settings x = Resources.LoadAll<TMP_Settings>("TMP Settings").FirstOrDefault();
 				if (x != null)
 				{
 					s_Instance = x;

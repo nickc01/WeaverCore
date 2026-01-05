@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -200,7 +200,7 @@ namespace RuntimeInspectorNamespace
 		[SerializeField]
 		private Image horizontalScrollbar;
 
-		//TMPro.TMP_InputField
+		//TMProOld.TMP_InputField
 		[SerializeField]
 		private TMProOld.TMP_InputField searchInputField;
 

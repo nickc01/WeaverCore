@@ -10,10 +10,11 @@ using UnityEngine.UI;
 namespace TMProOld
 {
 	[ExecuteInEditMode]
-	[DisallowMultipleComponent]
+	//[DisallowMultipleComponent]
 	[RequireComponent(typeof(MeshRenderer))]
 	[RequireComponent(typeof(MeshFilter))]
-	[AddComponentMenu("Mesh/TextMeshPro - Text")]
+	//[AddComponentMenu("Mesh/TextMeshPro - Text")]
+	[AddComponentMenu("")]
 	[SelectionBase]
 	public class TextMeshPro : TMP_Text, ILayoutElement
 	{
@@ -1156,7 +1157,7 @@ namespace TMProOld
 			}
 		}
 
-		// TMPro.TextMeshPro
+		// TMProOld.TextMeshPro
 		// Token: 0x060003F5 RID: 1013 RVA: 0x0002278C File Offset: 0x0002098C
 		protected override void GenerateTextMesh()
 		{

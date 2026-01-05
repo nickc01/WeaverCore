@@ -15,10 +15,11 @@ namespace WeaverCore.Assets.TMProOld
 	[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
 #endif
 	[ExecuteInEditMode]
-	[DisallowMultipleComponent]
+	//[DisallowMultipleComponent]
 	[RequireComponent(typeof(RectTransform))]
 	[RequireComponent(typeof(CanvasRenderer))]
-	[AddComponentMenu("UI/TextMeshPro - Text (UI)", 11)]
+	//[AddComponentMenu("UI/WeaverTextMeshPro - Text (UI)", 11)]
+	[AddComponentMenu("")]
 	public class TextMeshProUGUI : global::TMProOld.TextMeshProUGUI
 	{
 		[SerializeField]

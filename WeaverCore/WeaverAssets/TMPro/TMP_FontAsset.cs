@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -251,7 +251,7 @@ namespace WeaverCore.Assets.TMProOld
 		[BeforeBuild]
 		static void BeforeBuild()
 		{
-			var weaverFontIDs = UnityEditor.AssetDatabase.FindAssets("t:WeaverCore.Assets.TMPro.TMP_FontAsset");
+			var weaverFontIDs = UnityEditor.AssetDatabase.FindAssets("t:WeaverCore.Assets.TMProOld.TMP_FontAsset");
 
 			var trajanProAtlas = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("t:Texture2D \"Trajan Pro Regular SDF Atlas\"")[0]));
 
@@ -275,7 +275,7 @@ namespace WeaverCore.Assets.TMProOld
 		[AfterBuild]
 		static void AfterBuild()
 		{
-            var weaverFontIDs = UnityEditor.AssetDatabase.FindAssets("t:WeaverCore.Assets.TMPro.TMP_FontAsset");
+            var weaverFontIDs = UnityEditor.AssetDatabase.FindAssets("t:WeaverCore.Assets.TMProOld.TMP_FontAsset");
 
             foreach (var id in weaverFontIDs)
             {

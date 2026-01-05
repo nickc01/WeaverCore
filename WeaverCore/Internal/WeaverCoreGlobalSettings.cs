@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.IO;
+using UnityEngine;
 using UnityEngine.Profiling;
 using WeaverCore.Assets;
 using WeaverCore.Settings;
@@ -13,6 +14,11 @@ namespace WeaverCore.Internal
 
 
         static UnboundCoroutine profileRoutine;
+
+        internal protected override void OnRegister()
+        {
+            base.OnRegister();
+        }
 
         [SettingField(EnabledType.AlwaysVisible)]
         public void OpenDebugTools()

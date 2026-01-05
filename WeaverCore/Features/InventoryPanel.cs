@@ -182,7 +182,7 @@ namespace WeaverCore.Features
 
                 foreach (var renderer in contents.GetComponentsInChildren<Renderer>())
                 {
-                    renderer.sortingLayerName = "HUD";
+                    renderer.sortingLayerName = "Inventory";
                     if (renderer.gameObject.layer == defaultLayer)
                     {
                         renderer.gameObject.layer = uiLayer;

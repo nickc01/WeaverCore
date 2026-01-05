@@ -15,9 +15,71 @@ namespace WeaverCore.Utilities
     /// </summary>
     public static class WeaverAssets
 	{
+		static string _extension = null;
+
+		static string Extension
+		{
+			get
+			{
+				if (_extension == null)
+				{
+					if (SystemInfo.operatingSystem.ToLower().Contains("windows"))
+					{
+						_extension = ".bundle.win";
+					}
+					else if (SystemInfo.operatingSystem.ToLower().Contains("mac") || SystemInfo.operatingSystem.ToLower().Contains("apple"))
+					{
+						_extension = ".bundle.mac";
+					}
+					else// if (SystemInfo.operatingSystem.ToLower().Contains("Linux"))
+					{
+						_extension = ".bundle.unix";
+					}
+				}
+				return _extension;
+			}
+		}
 		public static readonly string WeaverAssetBundleName = "weavercore_modclass_bundle";
 
 		static WeaverAssets_I Impl;
+
+		static bool BundleNeedsExtension(string bundleName)
+		{
+			return !bundleName.EndsWith(Extension, StringComparison.OrdinalIgnoreCase);
+		}
+
+		static string AppendExtension(string bundleName)
+		{
+			return $"{bundleName}{Extension}";
+		}
+
+		static T LoadAssetWithExtensionFallback<T>(string bundleName, string assetName) where T : UnityEngine.Object
+		{
+			var result = Impl.LoadAssetFromBundle<T>(bundleName, assetName);
+
+			if (result == null && BundleNeedsExtension(bundleName))
+			{
+				result = Impl.LoadAssetFromBundle<T>(AppendExtension(bundleName), assetName);
+			}
+
+			return result;
+		}
+
+		static IEnumerable<T> LoadAssetsWithExtensionFallback<T>(string bundleName, Func<string, IEnumerable<T>> loader) where T : UnityEngine.Object
+		{
+			var assets = loader(bundleName).ToList();
+
+			if (assets.Count == 0 && BundleNeedsExtension(bundleName))
+			{
+				var extendedAssets = loader(AppendExtension(bundleName)).ToList();
+				if (extendedAssets.Count > 0)
+				{
+					return extendedAssets;
+				}
+			}
+
+			return assets;
+		}
 
 		/// <summary>
 		/// Loads a Asset from a WeaverCore Asset Bundle
@@ -60,6 +122,11 @@ namespace WeaverCore.Utilities
 		/// </summary>
 		public static IEnumerable<string> AllBundles()
 		{
+			if (Impl == null)
+            {
+                Impl = ImplFinder.GetImplementation<WeaverAssets_I>();
+                Impl.Initialize();
+            }
 			return Impl.AllAssetBundles;
 		}
 
@@ -77,7 +144,7 @@ namespace WeaverCore.Utilities
                 Impl = ImplFinder.GetImplementation<WeaverAssets_I>();
                 Impl.Initialize();
             }
-            return Impl.LoadAssetFromBundle<T>(bundleName, name);
+            return LoadAssetWithExtensionFallback<T>(bundleName, name);
 		}
 
 		/// <summary>
@@ -96,7 +163,8 @@ namespace WeaverCore.Utilities
             }
             RegistryLoader.LoadBundlesOnly(modType);
             var bundleName = $"{modType.Name.ToLower()}_bundle";
-			return Impl.LoadAssetFromBundle<T>(bundleName, name);
+			return LoadAssetWithExtensionFallback<T>(bundleName, name);
+
         }
 
 		/// <summary>
@@ -127,7 +195,7 @@ namespace WeaverCore.Utilities
                 Impl = ImplFinder.GetImplementation<WeaverAssets_I>();
                 Impl.Initialize();
             }
-            return Impl.LoadAssetsFromBundle<T>(bundleName, name);
+            return LoadAssetsWithExtensionFallback<T>(bundleName, bundle => Impl.LoadAssetsFromBundle<T>(bundle, name));
 		}
 
 		/// <summary>
@@ -147,7 +215,7 @@ namespace WeaverCore.Utilities
 
             RegistryLoader.LoadBundlesOnly(modType);
             var bundleName = $"{modType.Name.ToLower()}_bundle";
-			return Impl.LoadAssetsFromBundle<T>(bundleName, name);
+			return LoadAssetsFromBundle<T>(bundleName, name);
 		}
 
 		/// <summary>
@@ -182,7 +250,7 @@ namespace WeaverCore.Utilities
                 Impl.Initialize();
             }
 
-            return Impl.LoadAssetsOfType<T>(bundleName);
+            return LoadAssetsWithExtensionFallback<T>(bundleName, Impl.LoadAssetsOfType<T>);
         }
     }
 }

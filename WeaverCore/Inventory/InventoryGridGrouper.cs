@@ -81,7 +81,7 @@ namespace WeaverCore.Inventory
 
         IEnumerator MovementRoutine(Vector3 start, Vector3 end, float time)
         {
-            for (float t = 0; t < time; t += Time.deltaTime)
+            for (float t = 0; t < time; t += Time.unscaledDeltaTime)
             {
                 transform.localPosition = Vector3.Lerp(start, end, MovementCurve.Evaluate(t / time));
                 yield return null;

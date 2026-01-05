@@ -10,10 +10,11 @@ using UnityEngine.UI;
 namespace TMProOld
 {
 	[ExecuteInEditMode]
-	[DisallowMultipleComponent]
+	//[DisallowMultipleComponent]
 	[RequireComponent(typeof(RectTransform))]
 	[RequireComponent(typeof(CanvasRenderer))]
 	//[AddComponentMenu("UI/TextMeshPro - Text (UI)", 11)]
+	[AddComponentMenu("")]
 	[SelectionBase]
 	public class TextMeshProUGUI : TMP_Text, ILayoutElement
 	{
@@ -257,6 +258,7 @@ namespace TMProOld
 #if UNITY_EDITOR
 		protected override void Reset()
 		{
+			Debug.Log("RESET");
 			if (GetType() == typeof(TextMeshProUGUI))
 			{
 				//DestroyImmediate(this);

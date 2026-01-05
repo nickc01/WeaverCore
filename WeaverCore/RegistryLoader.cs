@@ -114,7 +114,7 @@ namespace WeaverCore
                         //Initialization.PerformanceLog("Found Resource = " + name);
                         if (name.EndsWith(extension))
                         {
-                            //WeaverLog.Log("Loading embedded bundle stream : " + name);
+                            WeaverLog.Log("Loading embedded bundle stream : " + name);
                             Initialization.PerformanceLog("Loading embedded bundle stream : " + name);
                             var bundle = AssetBundle.LoadFromStream(assembly.GetManifestResourceStream(name));
 
@@ -122,6 +122,7 @@ namespace WeaverCore
                             {
                                 results.Add(bundle);
                                 Initialization.PerformanceLog("Adding bundle " + bundle.name);
+                                WeaverLog.Log("Loaded Asset Bundle = " + bundle);
                             }
 
                             Initialization.PerformanceLog("Finished Loading embedded bundle stream : " + name);

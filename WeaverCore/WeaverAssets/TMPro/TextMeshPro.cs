@@ -13,10 +13,11 @@ namespace WeaverCore.Assets.TMProOld
 	[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
 #endif
 	[ExecuteInEditMode]
-	[DisallowMultipleComponent]
+	//[DisallowMultipleComponent]
 	[RequireComponent(typeof(MeshRenderer))]
 	[RequireComponent(typeof(MeshFilter))]
-	[AddComponentMenu("Mesh/TextMeshPro - Text")]
+	//[AddComponentMenu("Mesh/TextMeshPro - Text")]
+	[AddComponentMenu("")]
 	public class TextMeshPro : global::TMProOld.TextMeshPro
 	{
 		[SerializeField]

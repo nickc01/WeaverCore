@@ -38,7 +38,7 @@ public class EventRegister : MonoBehaviour
 		SubscribeEvent(this);
 	}
 
-	public static void SendEvent(string eventName)
+	public static void SendEvent(string eventName, GameObject excludeGameObject = null)
 	{
 		if (eventName == "" || !eventRegister.ContainsKey(eventName))
 		{
@@ -46,7 +46,10 @@ public class EventRegister : MonoBehaviour
 		}
 		foreach (EventRegister item in eventRegister[eventName])
 		{
-			item.ReceiveEvent();
+			if (excludeGameObject == null || item.gameObject == excludeGameObject)
+			{
+				item.ReceiveEvent();
+			}
 		}
 	}
 

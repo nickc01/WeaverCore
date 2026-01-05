@@ -135,7 +135,7 @@ namespace TMProOld
 			component.offsetMax = new Vector2(-10f, -7f);
 
 			//var weaverCoreAsm = Assembly.Load("WeaverCore");
-			//var tmProType = weaverCoreAsm.GetType("WeaverCore.Assets.TMPro.TextMeshProUGUI");
+			//var tmProType = weaverCoreAsm.GetType("WeaverCore.Assets.TMProOld.TextMeshProUGUI");
 
 			TextMeshProUGUI textMeshProUGUI = (TextMeshProUGUI)gameObject4.AddComponent<TextMeshProUGUI>();//.AddComponent<TextMeshProUGUI>();
 			textMeshProUGUI.text = "";
@@ -195,7 +195,7 @@ namespace TMProOld
 			component2.sizeDelta = new Vector2(component2.sizeDelta.x, 0f);
 
 			//var weaverCoreAsm = Assembly.Load("WeaverCore");
-			//var tmProType = weaverCoreAsm.GetType("WeaverCore.Assets.TMPro.TextMeshProUGUI");
+			//var tmProType = weaverCoreAsm.GetType("WeaverCore.Assets.TMProOld.TextMeshProUGUI");
 
 			//TextMeshProUGUI textMeshProUGUI = (TextMeshProUGUI)gameObject10.AddComponent(tmProType);//gameObject10.AddComponent<TextMeshProUGUI>();
 			TextMeshProUGUI textMeshProUGUI = gameObject10.AddComponent<TextMeshProUGUI>();

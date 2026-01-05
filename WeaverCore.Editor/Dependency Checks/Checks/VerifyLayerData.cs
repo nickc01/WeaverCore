@@ -132,10 +132,12 @@ namespace WeaverCore.Editor
             new BasicSortingLayer("Tiles", 3868594333),
             new BasicSortingLayer("MID Dressing", 3784110789),
             new BasicSortingLayer("Immediate FG", 31172181),
+            new BasicSortingLayer("Scene Border", 1371964999),
             new BasicSortingLayer("Far FG", 2577183099),
             new BasicSortingLayer("Vignette", 1038907033),
             new BasicSortingLayer("Over", 3945752401),
-            new BasicSortingLayer("HUD", 629535577)
+            new BasicSortingLayer("HUD", 629535577),
+            new BasicSortingLayer("Inventory", 957720295),
         };
 
         public override void StartCheck(Action<DependencyCheckResult> finishCheck)
@@ -155,16 +157,10 @@ namespace WeaverCore.Editor
 			}
 
 			//foreach (string tag in Tags)
-			for (int i = Tags.GetLength(0) - 1; i >= 0; i--)
-			{
-				AddTagIfUnique(Tags[i]);
-			}
+			EnsureTagsInOrder(Tags);
 			Tags = null;
 
-			foreach (var sortingLayer in SortingLayers)
-			{
-				AddSortingLayer(sortingLayer.Name, sortingLayer.UniqueID);
-			}
+			EnsureSortingLayersInOrder(SortingLayers);
 
 			SortingLayers = null;
 
@@ -234,6 +230,142 @@ namespace WeaverCore.Editor
 			{
 				AddTag(tag);
 			}
+		}
+
+		private static void EnsureTagsInOrder(string[] desiredTags)
+		{
+			SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
+			SerializedProperty tagsProp = tagManager.FindProperty("tags");
+			int lastFoundIndex = -1;
+
+			for (int i = 0; i < desiredTags.Length; i++)
+			{
+				string tag = desiredTags[i];
+				int existingIndex = FindTagIndex(tagsProp, tag);
+				if (existingIndex >= 0)
+				{
+					if (existingIndex > lastFoundIndex)
+					{
+						lastFoundIndex = existingIndex;
+					}
+					continue;
+				}
+
+				int nextIndex = FindNextTagIndex(tagsProp, desiredTags, i);
+				int insertIndex;
+				if (nextIndex >= 0 && nextIndex > lastFoundIndex)
+				{
+					insertIndex = nextIndex;
+				}
+				else if (lastFoundIndex >= 0)
+				{
+					insertIndex = Math.Min(tagsProp.arraySize, lastFoundIndex + 1);
+				}
+				else
+				{
+					insertIndex = tagsProp.arraySize;
+				}
+
+				tagsProp.InsertArrayElementAtIndex(insertIndex);
+				tagsProp.GetArrayElementAtIndex(insertIndex).stringValue = tag;
+				lastFoundIndex = insertIndex;
+			}
+
+			tagManager.ApplyModifiedProperties();
+		}
+
+		private static int FindTagIndex(SerializedProperty tagsProp, string tag)
+		{
+			for (int i = 0; i < tagsProp.arraySize; i++)
+			{
+				if (tagsProp.GetArrayElementAtIndex(i).stringValue.Equals(tag))
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
+
+		private static int FindNextTagIndex(SerializedProperty tagsProp, string[] desiredTags, int currentDesiredIndex)
+		{
+			for (int i = currentDesiredIndex + 1; i < desiredTags.Length; i++)
+			{
+				int index = FindTagIndex(tagsProp, desiredTags[i]);
+				if (index >= 0)
+				{
+					return index;
+				}
+			}
+			return -1;
+		}
+
+		private static void EnsureSortingLayersInOrder(BasicSortingLayer[] desiredLayers)
+		{
+			var serializedObject = new SerializedObject(AssetDatabase.LoadMainAssetAtPath("ProjectSettings/TagManager.asset"));
+			var sortingLayers = serializedObject.FindProperty("m_SortingLayers");
+			int lastFoundIndex = -1;
+
+			for (int i = 0; i < desiredLayers.Length; i++)
+			{
+				var sortingLayer = desiredLayers[i];
+				int existingIndex = FindSortingLayerIndex(sortingLayers, sortingLayer.Name);
+				if (existingIndex >= 0)
+				{
+					if (existingIndex > lastFoundIndex)
+					{
+						lastFoundIndex = existingIndex;
+					}
+					continue;
+				}
+
+				int nextIndex = FindNextSortingLayerIndex(sortingLayers, desiredLayers, i);
+				int insertIndex;
+				if (nextIndex >= 0 && nextIndex > lastFoundIndex)
+				{
+					insertIndex = nextIndex;
+				}
+				else if (lastFoundIndex >= 0)
+				{
+					insertIndex = Math.Min(sortingLayers.arraySize, lastFoundIndex + 1);
+				}
+				else
+				{
+					insertIndex = sortingLayers.arraySize;
+				}
+
+				sortingLayers.InsertArrayElementAtIndex(insertIndex);
+				var newLayer = sortingLayers.GetArrayElementAtIndex(insertIndex);
+				newLayer.FindPropertyRelative("name").stringValue = sortingLayer.Name;
+				newLayer.FindPropertyRelative("uniqueID").longValue = sortingLayer.UniqueID;
+				lastFoundIndex = insertIndex;
+			}
+
+			serializedObject.ApplyModifiedProperties();
+		}
+
+		private static int FindSortingLayerIndex(SerializedProperty sortingLayers, string sortingLayerName)
+		{
+			for (int i = 0; i < sortingLayers.arraySize; i++)
+			{
+				if (sortingLayers.GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue.Equals(sortingLayerName))
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
+
+		private static int FindNextSortingLayerIndex(SerializedProperty sortingLayers, BasicSortingLayer[] desiredLayers, int currentDesiredIndex)
+		{
+			for (int i = currentDesiredIndex + 1; i < desiredLayers.Length; i++)
+			{
+				int index = FindSortingLayerIndex(sortingLayers, desiredLayers[i].Name);
+				if (index >= 0)
+				{
+					return index;
+				}
+			}
+			return -1;
 		}
 
 		//Adds a new sorting layer of it's unique in the list

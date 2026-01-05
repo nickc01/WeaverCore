@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 namespace TMProOld
 {
-	[AddComponentMenu("UI/TMP Dropdown", 35)]
+	//[AddComponentMenu("UI/TMP Dropdown", 35)]
+	[AddComponentMenu("")]
 	[RequireComponent(typeof(RectTransform))]
 	public class TMP_Dropdown : Selectable, IPointerClickHandler, IEventSystemHandler, ISubmitHandler, ICancelHandler
 	{

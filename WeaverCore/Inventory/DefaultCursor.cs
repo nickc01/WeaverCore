@@ -28,7 +28,7 @@ namespace WeaverCore.Inventory
         [SerializeField]
         AudioClip uiChangeSelectionClip;
 
-        System.Collections.Generic.List<ColorFader> faders = new System.Collections.Generic.List<ColorFader>();
+        System.Collections.Generic.List<ColorFaderUnscaled> faders = new System.Collections.Generic.List<ColorFaderUnscaled>();
 
         [SerializeField]
         float uiChangeSelectionVolume = 0.75f;
@@ -55,7 +55,7 @@ namespace WeaverCore.Inventory
 
         public override bool CanMove()
         {
-            return Time.time >= moveTimeStamp + 0.120f;
+            return Time.unscaledTime >= moveTimeStamp + 0.120f;
         }
 
         private void Awake()
@@ -135,7 +135,7 @@ namespace WeaverCore.Inventory
 
         protected override void OnMoveTo(InventoryElement element)
         {
-            moveTimeStamp = Time.time;
+            moveTimeStamp = Time.unscaledTime;
             var itemPos = Panel.Navigator.GetCursorPosForElement(element);
             var itemOffset = Panel.Navigator.GetCursorOffsetForElement(element);
             var itemBounds = Panel.Navigator.GetCursorBoundsForElement(element);
@@ -207,7 +207,7 @@ namespace WeaverCore.Inventory
 
         IEnumerator InterpRoutine(Transform obj, Vector3 from, Vector3 to, float time, bool setLastPos = false)
         {
-            for (float t = 0; t < time; t += Time.deltaTime)
+            for (float t = 0; t < time; t += Time.unscaledDeltaTime)
             {
                 obj.localPosition = Vector3.Lerp(from, to, t / time);
                 if (setLastPos)
@@ -221,7 +221,7 @@ namespace WeaverCore.Inventory
 
         IEnumerator InterpScaleRoutine(Transform obj, Vector3 from, Vector3 to, float time)
         {
-            for (float t = 0; t < time; t += Time.deltaTime)
+            for (float t = 0; t < time; t += Time.unscaledDeltaTime)
             {
                 obj.localScale = Vector3.Lerp(from, to, t / time);
                 yield return null;
@@ -248,7 +248,7 @@ namespace WeaverCore.Inventory
             while (true)
             {
                 float halfTime = pulseSpeed / 2f;
-                for (float t = 0; t < halfTime; t += Time.deltaTime)
+                for (float t = 0; t < halfTime; t += Time.unscaledDeltaTime)
                 {
                     if (transform != null)
                     {
@@ -261,7 +261,7 @@ namespace WeaverCore.Inventory
                     yield return null;
                 }
 
-                for (float t = 0; t < halfTime; t += Time.deltaTime)
+                for (float t = 0; t < halfTime; t += Time.unscaledDeltaTime)
                 {
                     if (transform != null)
                     {

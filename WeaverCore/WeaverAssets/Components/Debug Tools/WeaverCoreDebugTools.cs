@@ -16,6 +16,10 @@ namespace WeaverCore.Assets
 	/// </summary>
 	public class WeaverCoreDebugTools : MonoBehaviour
 	{
+		bool cursorStateCaptured;
+		bool previousCursorVisible;
+		CursorLockMode previousCursorLockState;
+
 		class KeyListener : MonoBehaviour
 		{
 			private void Update()
@@ -100,6 +104,47 @@ namespace WeaverCore.Assets
 		private void Awake()
 		{
 			Instance = this;
+			CaptureCursorState();
+			ShowDebugCursor();
+		}
+
+		private void OnDestroy()
+		{
+			if (Instance == this)
+			{
+				Instance = null;
+			}
+			RestoreCursorState();
+		}
+
+		void CaptureCursorState()
+		{
+			if (cursorStateCaptured)
+			{
+				return;
+			}
+
+			previousCursorVisible = Cursor.visible;
+			previousCursorLockState = Cursor.lockState;
+			cursorStateCaptured = true;
+		}
+
+		void ShowDebugCursor()
+		{
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
+		}
+
+		void RestoreCursorState()
+		{
+			if (!cursorStateCaptured)
+			{
+				return;
+			}
+
+			Cursor.visible = previousCursorVisible;
+			Cursor.lockState = previousCursorLockState;
+			cursorStateCaptured = false;
 		}
 
 		public void CloseInterface()

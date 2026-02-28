@@ -37,8 +37,20 @@ namespace WeaverCore.Utilities
 		/// <returns>The IEnumerator that executes the routine</returns>
 		public static IEnumerator RunWhile(IEnumerator routine, Func<bool> predicate)
 		{
-			while (routine.MoveNext())
+			while (true)
+			//while (routine.MoveNext())
 			{
+				try
+				{
+					if (!routine.MoveNext())
+					{
+						yield break;
+					}
+				}
+				catch (Exception e)
+				{
+					WeaverLog.LogException(e);
+				}
 				if (!predicate())
 				{
 					yield break;

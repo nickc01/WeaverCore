@@ -140,13 +140,21 @@ namespace WeaverCore.Editor.Settings
 		/// </summary>
 		public static void Verify(GameBuildSettings settings)
 		{
-			Debug.Log("Verifying Path = " + settings.HollowKnightLocation + " , " + settings.UnityEditorLocation);
-			var hkDirectory = new DirectoryInfo(settings.HollowKnightLocation);
-			var ueDirectory = new DirectoryInfo(settings.UnityEditorLocation);
+			DirectoryInfo hkDirectory = null;
+			DirectoryInfo ueDirectory = null;
+			if (!string.IsNullOrEmpty(settings.HollowKnightLocation))
+			{
+				hkDirectory = new DirectoryInfo(settings.HollowKnightLocation);
+			}
+			
+			if (!string.IsNullOrEmpty(settings.UnityEditorLocation))
+			{
+				ueDirectory = new DirectoryInfo(settings.UnityEditorLocation);
+			}
 
 			bool settingsChanged = false;
 
-			if (!CheckPath(hkDirectory))
+			if (string.IsNullOrEmpty(settings.HollowKnightLocation) || !CheckPath(hkDirectory))
 			{
 				bool validPathFound = false;
 				foreach (var defaultPath in GetDefaultInstallPaths())
@@ -167,7 +175,7 @@ namespace WeaverCore.Editor.Settings
 
 			var currentUEDirectory = new FileInfo(typeof(EditorWindow).Assembly.Location).Directory;
 
-			if (ueDirectory.FullName != currentUEDirectory.FullName)
+			if (ueDirectory == null || string.IsNullOrEmpty(settings.UnityEditorLocation) || ueDirectory.FullName != currentUEDirectory.FullName)
 			{
 				settingsChanged = true;
 				settings.UnityEditorLocation = currentUEDirectory.FullName;
@@ -180,34 +188,16 @@ namespace WeaverCore.Editor.Settings
 
 			static bool CheckPath(DirectoryInfo hkDirectory)
 			{
-				Debug.Log("Checking directory = " + hkDirectory.FullName);
 				if (!hkDirectory.Exists)
 				{
-					Debug.Log("FALSE 1");
 					return false;
 				}
 
 				if (hkDirectory.Name.ToLower().Contains("hollow") && hkDirectory.Name.ToLower().Contains("knight"))
 				{
-					Debug.Log("TRUE 2");
 					return true;
 				}
-				Debug.Log("FALSE 3");
 				return false;
-
-				/*if (SystemInfo.operatingSystem.Contains("Windows") && hkDirectory.Name != "Hollow Knight")
-				{
-					return false;
-				}
-				else if (SystemInfo.operatingSystem.Contains("Linux") && hkDirectory.Name != "Hollow Knight")
-				{
-					return false;
-				}
-				else if (SystemInfo.operatingSystem.Contains("Mac") && hkDirectory.Name != "hollow_knight.app")
-				{
-					return false;
-				}
-				return true;*/
 			}
 		}
 

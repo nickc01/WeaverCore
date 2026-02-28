@@ -267,7 +267,8 @@ public class TexturesToAtlasConverter : EditorWindow
 		{
 			outputAtlasName = "NEW_ATLAS";
 		}
-		var outputPath = AssetDatabase.GenerateUniqueAssetPath("Assets/" + outputAtlasName + ".png");
+		var s = Path.DirectorySeparatorChar;
+		var outputPath = AssetDatabase.GenerateUniqueAssetPath($"Assets{s}" + outputAtlasName + ".png");
 		//("NEWLY CREATED ATLAS = " + atlas);
 		Rect[] uvs = null;
 		Vector2 atlasSize = default;

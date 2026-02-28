@@ -151,6 +151,12 @@ namespace WeaverCore.Components
 			}
 		}*/
 
+		[NonSerialized]
+		int _flashColorID = -1;
+
+		[NonSerialized]
+		int _flashAmountID = -1;
+
 		protected virtual void UpdateMaterial()
 		{
 			if (Renderer != null)
@@ -159,10 +165,15 @@ namespace WeaverCore.Components
 				{
 					propertyBlock = new MaterialPropertyBlock();
 				}
+				if (_flashColorID == -1 || _flashAmountID == -1)
+				{
+					_flashColorID = Shader.PropertyToID("_FlashColor");
+					_flashAmountID = Shader.PropertyToID("_FlashAmount");
+				}
 				Renderer.GetPropertyBlock(propertyBlock);
 
-				propertyBlock.SetColor("_FlashColor", FlashColor);
-				propertyBlock.SetFloat("_FlashAmount", FlashIntensity);
+				propertyBlock.SetColor(_flashColorID, FlashColor);
+				propertyBlock.SetFloat(_flashAmountID, FlashIntensity);
 
 				Renderer.SetPropertyBlock(propertyBlock);
 			}

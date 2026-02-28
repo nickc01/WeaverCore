@@ -208,5 +208,6 @@ namespace WeaverCore.Utilities
 
 			return currentPos + (Vector3)(velocity * t) - (Vector3)(velocity.normalized * deacceleration * t * t * 0.5f);
 		}
+
 	}
 }

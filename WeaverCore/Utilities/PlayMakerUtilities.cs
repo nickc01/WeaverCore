@@ -2398,6 +2398,10 @@ namespace WeaverCore.Utilities
 
 		public static Component[] FindAllFSMsInScene(string fsmName = null)
 		{
+			if (Initialization.Environment == Enums.RunningState.Editor)
+			{
+				return Array.Empty<Component>();
+			}
 			Component[] allFsms = UnityEngine.Object.FindObjectsOfType(PlayMakerFSMType).OfType<Component>().ToArray();
 			
 			if (string.IsNullOrEmpty(fsmName))
@@ -2420,6 +2424,10 @@ namespace WeaverCore.Utilities
 
 		public static PlayMakerFsmWrapper[] FindAllFSMWrappersInScene(string fsmName = null)
 		{
+			if (Initialization.Environment == Enums.RunningState.Editor)
+			{
+				return Array.Empty<PlayMakerFsmWrapper>();
+			}
 			Component[] components = FindAllFSMsInScene(fsmName);
 			return components.Select(c => new PlayMakerFsmWrapper(c)).ToArray();
 		}

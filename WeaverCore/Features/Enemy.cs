@@ -18,7 +18,7 @@ namespace WeaverCore.Features
     /// The base class for all enemies
     /// </summary>
     [ShowFeature]
-	[RequireComponent(typeof(EntityHealth))]
+	//[RequireComponent(typeof(EntityHealth))]
 	public class Enemy : MonoBehaviour
 	{
 		Dictionary<uint, Coroutine> BoundRoutines;

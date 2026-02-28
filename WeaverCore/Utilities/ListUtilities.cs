@@ -197,14 +197,28 @@ namespace WeaverCore.Utilities
 		/// <returns>Returns the index of the value. Returns -1 if the value couldn't be found</returns>
         public static int IndexOf<T>(this T[] values, T value)
         {
-			for (int i = 0; i < values.Length; i++)
-            {
-				if (values[i].Equals(value))
+			if (value is null)
+			{
+				for (int i = 0; i < values.Length; i++)
 				{
-					return i;
+					if (values[i] is null)
+					{
+						return i;
+					}
 				}
-            }
-			return -1;
+				return -1;
+			}
+			else
+			{
+				for (int i = 0; i < values.Length; i++)
+				{
+					if (value.Equals(values[i]))
+					{
+						return i;
+					}
+				}
+				return -1;
+			}
         }
 
         class HashSetGetters<T>

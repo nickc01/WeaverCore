@@ -125,14 +125,15 @@ public class AtlasToTexturesConverter : EditorWindow
 
 	IEnumerator Convert(Texture2D texture, string destFolder, bool deleteOriginal)
 	{
+		var s = Path.DirectorySeparatorChar;
 		if (string.IsNullOrEmpty(destFolder))
 		{
-			destFolder = new DirectoryInfo("Assets\\" + texture.name + "_DUMP").FullName;
+			destFolder = new DirectoryInfo($"Assets{s}" + texture.name + "_DUMP").FullName;
 		}
 
 		new DirectoryInfo(destFolder).Create();
 
-		destFolder = "Assets/" + PathUtilities.ConvertToAssetPath(destFolder);
+		destFolder = $"Assets{s}" + PathUtilities.ConvertToAssetPath(destFolder);
 
         System.Collections.Generic.List<string> CreatedFilePaths = new System.Collections.Generic.List<string>();
 
@@ -169,7 +170,7 @@ public class AtlasToTexturesConverter : EditorWindow
 					}
 					dumpTexture.Apply();
 
-					var dumpTextFile = new FileInfo(destFolder + "/" + sprite.name + ".png");
+					var dumpTextFile = new FileInfo(destFolder + s + sprite.name + ".png");
 
 					using (var handle = dumpTextFile.Create())
 					{
@@ -178,8 +179,8 @@ public class AtlasToTexturesConverter : EditorWindow
 						handle.Close();
 					}
 
-					AssetDatabase.ImportAsset(destFolder + "/" + sprite.name + ".png");
-					CreatedFilePaths.Add(destFolder + "/" + sprite.name + ".png");
+					AssetDatabase.ImportAsset(destFolder + s + sprite.name + ".png");
+					CreatedFilePaths.Add(destFolder + s + sprite.name + ".png");
 				}
 			}
 		}

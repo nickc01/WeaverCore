@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "HollowKnight",
-        "HollowKnight.FirstPass"
+        "HollowKnight.FirstPass",
+        "LoopScrollRect.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

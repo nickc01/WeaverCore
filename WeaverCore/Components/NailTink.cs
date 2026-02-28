@@ -6,6 +6,7 @@ using WeaverCore;
 using WeaverCore.Enums;
 using WeaverCore.Features;
 using WeaverCore.Interfaces;
+using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
@@ -14,6 +15,11 @@ namespace WeaverCore.Components
     /// </summary>
     public class NailTink : MonoBehaviour, IHittable
     {
+        const float EffectOffset = 1.5f;
+
+        static NailTink _global;
+        public static NailTink Global => _global ??= WeaverAssets.LoadWeaverAsset<GameObject>("Global Nail Tink").GetComponent<NailTink>();
+
         [Tooltip("The sound that is played when the player hits this object")]
         public AudioClip TinkSound;
         [Tooltip("The tink prefab that is spawned when the player hits this object")]
@@ -41,6 +47,31 @@ namespace WeaverCore.Components
         public event Action<IHittable, HitInfo> OnTink;
 
         float lastHitTime = 0;
+
+        public static void Play(Vector3 position, float attackDirection)
+        {
+            var global = Global;
+            if (global == null || global.gameObject == null)
+            {
+                return;
+            }
+
+            var instanceObj = Pooling.Instantiate(global.gameObject, position, global.transform.rotation);
+            var instance = instanceObj.GetComponent<NailTink>();
+            if (instance == null)
+            {
+                Pooling.Destroy(instanceObj);
+                return;
+            }
+
+            instance.StartCoroutine(instance.PlayRoutine(attackDirection));
+        }
+
+        public static void Play(float attackDirection)
+        {
+            Vector3 position = Player.Player1 != null ? Player.Player1.transform.position : Vector3.zero;
+            Play(position, attackDirection);
+        }
 
         public bool Hit(HitInfo hit)
         {
@@ -101,52 +132,10 @@ namespace WeaverCore.Components
             CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
 
             //PLAY AUDIO
-            if (TinkSound != null && TinkSoundVolume > 0.01f)
-            {
-                var instance = WeaverAudio.PlayAtPoint(TinkSound, transform.position, TinkSoundVolume);
-                instance.AudioSource.pitch = TinkSoundPitch;
-            }
-
-            var attackDirection = hit.Direction;
-
-            CardinalDirection direction = CardinalDirection.Right;
-
-            if (attackDirection < 360f && attackDirection > 225f)
-            {
-                direction = CardinalDirection.Down;
-            }
-            else if (attackDirection <= 225f && attackDirection > 135f)
-            {
-                direction = CardinalDirection.Left;
-            }
-            else if (attackDirection <= 135 && attackDirection > 45f)
-            {
-                direction = CardinalDirection.Up;
-            }
-            else
-            {
-                direction = CardinalDirection.Right;
-            }
-
-            switch (direction)
-            {
-                case CardinalDirection.Up:
-                    Player.Player1.Recoil(CardinalDirection.Down);
-                    Pooling.Instantiate(TinkEffectPrefab, Player.Player1.transform.position + new Vector3(0f, 1.5f, 0f), Quaternion.identity);
-                    break;
-                case CardinalDirection.Down:
-                    Player.Player1.Recoil(CardinalDirection.Up);
-                    Pooling.Instantiate(TinkEffectPrefab, Player.Player1.transform.position + new Vector3(0f, -1.5f, 0f), Quaternion.identity);
-                    break;
-                case CardinalDirection.Left:
-                    Player.Player1.Recoil(CardinalDirection.Right);
-                    Pooling.Instantiate(TinkEffectPrefab, Player.Player1.transform.position + new Vector3(-1.5f, 0f, 0f), Quaternion.identity);
-                    break;
-                case CardinalDirection.Right:
-                    Player.Player1.Recoil(CardinalDirection.Left);
-                    Pooling.Instantiate(TinkEffectPrefab, Player.Player1.transform.position + new Vector3(1.5f, 0f, 0f), Quaternion.identity);
-                    break;
-            }
+            PlayAudio(transform.position);
+            var direction = ResolveDirection(hit.Direction);
+            ApplyRecoil(direction);
+            SpawnEffect(Player.Player1.transform.position, direction);
 
             yield return null;
 
@@ -163,6 +152,119 @@ namespace WeaverCore.Components
             yield return null;
 
             yield return new WaitForSeconds(0.15f);
+        }
+
+        IEnumerator PlayRoutine(float attackDirection)
+        {
+            WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset3);
+            if (Player.Player1 != null)
+            {
+                Player.Player1.EnterParryState();
+            }
+
+            CameraShaker.Instance.Shake(ShakeType.EnemyKillShake);
+
+            PlayAudio(transform.position);
+            var direction = ResolveDirection(attackDirection);
+            ApplyRecoil(direction);
+            SpawnEffect(transform.position, direction);
+
+            yield return null;
+
+            if (Player.Player1 != null)
+            {
+                Player.Player1.RecoverFromParry();
+            }
+
+            yield return null;
+            yield return new WaitForSeconds(0.15f);
+
+            Pooling.Destroy(gameObject);
+        }
+
+        void PlayAudio(Vector3 origin)
+        {
+            if (TinkSound == null || TinkSoundVolume <= 0.01f)
+            {
+                return;
+            }
+
+            var instance = WeaverAudio.PlayAtPoint(TinkSound, origin, TinkSoundVolume);
+            if (instance != null && instance.AudioSource != null)
+            {
+                instance.AudioSource.pitch = TinkSoundPitch;
+            }
+        }
+
+        static CardinalDirection ResolveDirection(float attackDirection)
+        {
+            if (attackDirection < 360f && attackDirection > 225f)
+            {
+                return CardinalDirection.Down;
+            }
+
+            if (attackDirection <= 225f && attackDirection > 135f)
+            {
+                return CardinalDirection.Left;
+            }
+
+            if (attackDirection <= 135 && attackDirection > 45f)
+            {
+                return CardinalDirection.Up;
+            }
+
+            return CardinalDirection.Right;
+        }
+
+        static void ApplyRecoil(CardinalDirection direction)
+        {
+            if (Player.Player1 == null)
+            {
+                return;
+            }
+
+            switch (direction)
+            {
+                case CardinalDirection.Up:
+                    Player.Player1.Recoil(CardinalDirection.Down);
+                    break;
+                case CardinalDirection.Down:
+                    Player.Player1.Recoil(CardinalDirection.Up);
+                    break;
+                case CardinalDirection.Left:
+                    Player.Player1.Recoil(CardinalDirection.Right);
+                    break;
+                case CardinalDirection.Right:
+                    Player.Player1.Recoil(CardinalDirection.Left);
+                    break;
+            }
+        }
+
+        void SpawnEffect(Vector3 origin, CardinalDirection direction)
+        {
+            if (TinkEffectPrefab == null)
+            {
+                return;
+            }
+
+            Vector3 offset = Vector3.zero;
+            switch (direction)
+            {
+                case CardinalDirection.Up:
+                    offset = new Vector3(0f, EffectOffset, 0f);
+                    break;
+                case CardinalDirection.Down:
+                    offset = new Vector3(0f, -EffectOffset, 0f);
+                    break;
+                case CardinalDirection.Left:
+                    offset = new Vector3(-EffectOffset, 0f, 0f);
+                    break;
+                case CardinalDirection.Right:
+                    offset = new Vector3(EffectOffset, 0f, 0f);
+                    break;
+            }
+
+            Pooling.Instantiate(TinkEffectPrefab, origin + offset, Quaternion.identity);
         }
     }
 }

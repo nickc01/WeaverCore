@@ -29,5 +29,35 @@ namespace WeaverCore
 		public Transform transform => HealthComponent == null ? default : HealthComponent.transform;
 		public GameObject gameObject => HealthComponent == null ? default : HealthComponent.gameObject;
 		public string tag { get => HealthComponent == null ? default : gameObject.tag; set => gameObject.tag = value; }
+
+        /*public override int GetHashCode()
+        {
+            return HealthComponent?.GetHashCode() ?? default;
+        }
+
+        public override bool Equals(object obj)
+        {
+			if (obj is HealthWrapper wrapper)
+			{
+				if (HealthComponent == null)
+				{
+					return wrapper.HealthComponent == null;
+				}
+
+				return wrapper.HealthComponent.Equals(HealthComponent);
+			}
+
+			return false;
+        }
+
+		public static bool operator==(HealthWrapper a, HealthWrapper b)
+		{
+			return a.Equals(b);
+		}
+
+		public static bool operator!=(HealthWrapper a, HealthWrapper b)
+		{
+			return !a.Equals(b);
+		}*/
 	}
 }

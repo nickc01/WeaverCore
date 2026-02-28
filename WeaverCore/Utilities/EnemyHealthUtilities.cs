@@ -751,7 +751,7 @@ namespace WeaverCore.Utilities
 
         public static HealthWrapper GetHealthComponentInParent(this Component component)
         {
-            return GetHealthComponentInParent(component);
+            return GetHealthComponentInParent(component.gameObject);
         }
 
         public static bool TryGetHealthComponentInParent(this GameObject gameObject, out HealthWrapper healthComponent)

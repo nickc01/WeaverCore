@@ -219,6 +219,42 @@ namespace WeaverCore
 			}
 		}
 
+        public static void AddVolumeDistanceControl(AudioPlayer audio, Transform target, Vector2 volumeRange, float baseVolume, Func<Vector3> sourcePosition)
+        {
+            if (audio == null || audio.AudioSource == null)
+            {
+                return;
+            }
+
+            if (baseVolume < 0)
+            {
+                baseVolume = audio.AudioSource.volume;
+            }
+
+            bool distanceEnabled = !(volumeRange.x < 0f && volumeRange.y < 0f);
+
+            if (distanceEnabled && volumeRange.x > volumeRange.y)
+            {
+                var temp = volumeRange.x;
+                volumeRange.x = volumeRange.y;
+                volumeRange.y = temp;
+            }
+
+            if (audio != null && !audio.IsInPool && audio.AudioSource != null && audio.isActiveAndEnabled)
+            {
+                var position = sourcePosition != null ? sourcePosition() : audio.AudioSource.transform.position;
+                audio.transform.position = position;
+
+                if (distanceEnabled && target != null)
+                {
+                    var distance = Vector2.Distance(target.position, position);
+                    audio.AudioSource.volume = (1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance)) * baseVolume;
+                }
+
+                UnboundCoroutine.Start(DistanceVolumeControlRoutine(audio, target, volumeRange, baseVolume, sourcePosition, distanceEnabled));
+            }
+        }
+
 		static IEnumerator DistanceVolumeControlRoutine(AudioPlayer audio, Transform target, Vector2 volumeRange, float baseVolume)
 		{
 			while (true)
@@ -241,6 +277,28 @@ namespace WeaverCore
 
 			//WeaverLog.Log("DISTANCE STUFF DONE");
 		}
+
+        static IEnumerator DistanceVolumeControlRoutine(AudioPlayer audio, Transform target, Vector2 volumeRange, float baseVolume, Func<Vector3> sourcePosition, bool distanceEnabled)
+        {
+            while (true)
+            {
+                if (audio == null || !audio.isActiveAndEnabled || audio.IsInPool || audio.AudioSource == null)
+                {
+                    break;
+                }
+
+                var position = sourcePosition != null ? sourcePosition() : audio.AudioSource.transform.position;
+                audio.transform.position = position;
+
+                if (distanceEnabled && target != null)
+                {
+                    var distance = Vector2.Distance(target.position, position);
+                    audio.AudioSource.volume = (1f - Mathf.InverseLerp(volumeRange.x, volumeRange.y, distance)) * baseVolume;
+                }
+
+                yield return null;
+            }
+        }
 
 		public static float MasterVolume => Impl.MasterVolume;
 		public static float MusicVolume => Impl.MusicVolume;

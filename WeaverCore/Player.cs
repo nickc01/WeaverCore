@@ -461,7 +461,7 @@ namespace WeaverCore
 
             while (t != null)
             {
-                if (t == player1Transform || t.CompareTag("Nail Attack"))
+                if (t == player1Transform || t.CompareTag("Nail Attack") || t.CompareTag("Hero Spell"))
                 {
                     return true;
                 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -30,6 +31,31 @@ namespace WeaverCore.Utilities
 				return true;
 			}
 			return false;
+		}
+
+		public static string Print(this IEnumerable objects, bool newLine = false)
+		{
+			if (objects == null)
+			{
+				return "null";
+			}
+
+			StringBuilder builder = new StringBuilder();
+			bool first = true;
+			string separator = newLine ? Environment.NewLine : ", ";
+
+			foreach (var obj in objects)
+			{
+				if (!first)
+				{
+					builder.Append(separator);
+				}
+
+				builder.Append(obj?.ToString() ?? "null");
+				first = false;
+			}
+
+			return builder.ToString();
 		}
 
 		/// <summary>

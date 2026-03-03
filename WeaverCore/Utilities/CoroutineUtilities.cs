@@ -122,7 +122,12 @@ namespace WeaverCore.Utilities
 				else if (instruction is IEnumerator)
 				{
 					var e = instruction as IEnumerator;
-					yield return RunWhile(e, predicate);
+					//yield return RunWhile(e, predicate);
+					var subIter = RunWhile(e, predicate);
+					while (subIter.MoveNext())
+					{
+						yield return subIter.Current;
+					}
 				}
 				else
 				{

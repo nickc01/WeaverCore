@@ -16,13 +16,13 @@ MonoBehaviour:
   originalMusicTrackNumber: 0
   snapshot: {fileID: 0}
   channelInfos:
+  - clip: {fileID: 0}
+    sync: 0
+  - clip: {fileID: 0}
+    sync: 0
+  - clip: {fileID: 0}
+    sync: 0
   - clip: {fileID: 8300000, guid: 9b3df9f5df90359459616b198515adb2, type: 3}
-    sync: 0
-  - clip: {fileID: 0}
-    sync: 0
-  - clip: {fileID: 0}
-    sync: 0
-  - clip: {fileID: 0}
     sync: 0
   - clip: {fileID: 0}
     sync: 0
@@ -30,12 +30,12 @@ MonoBehaviour:
     sync: 0
   alternatives: []
   useSnapshot: 1
-  m_snapshot: 0
+  m_snapshot: 8
   channelInfos_clip:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 9b3df9f5df90359459616b198515adb2, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   channelInfos_sync: 000000000000000000000000000000000000000000000000

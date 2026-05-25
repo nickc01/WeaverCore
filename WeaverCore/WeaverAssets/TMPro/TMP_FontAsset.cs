@@ -319,7 +319,7 @@ namespace WeaverCore.Assets.TMPro
 
 			var method = fontType.GetMethod("OnValidate", BindingFlags.NonPublic | BindingFlags.Instance);
 
-			patcher.Patch(method, typeof(TMP_FontAsset).GetMethod("PatchedOnValidate", BindingFlags.Static | BindingFlags.NonPublic), null);
+			patcher.Patch(method, typeof(WeaverCore.Assets.TMPro.TMP_FontAsset).GetMethod("PatchedOnValidate", BindingFlags.Static | BindingFlags.NonPublic), null);
 
 		}
 #endif

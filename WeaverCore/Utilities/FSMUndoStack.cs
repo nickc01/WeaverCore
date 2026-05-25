@@ -97,6 +97,7 @@ namespace WeaverCore.Utilities
             public override void OnEnter()
             {
                 MainAction?.Invoke();
+                Finish();
             }
         }
 
@@ -111,6 +112,7 @@ namespace WeaverCore.Utilities
             public override void OnEnter()
             {
                 MainAction?.Invoke(FsmWrapper);
+                Finish();
             }
         }
 
@@ -196,7 +198,11 @@ namespace WeaverCore.Utilities
                 }
                 return () =>
                 {
-                    PlayMakerUtilities.RemoveAction(state, index);
+                    int actionIndex = PlayMakerUtilities.GetActionIndex(state, action);
+                    if (actionIndex >= 0)
+                    {
+                        PlayMakerUtilities.RemoveAction(state, actionIndex);
+                    }
                 };
             });
         }

@@ -69,6 +69,7 @@ public class WeaverPersistentBoolItem : MonoBehaviour, ISerializationCallbackRec
 
     private void Start()
     {
+        var gm = GameManager.instance;
         if (started)
         {
             return;

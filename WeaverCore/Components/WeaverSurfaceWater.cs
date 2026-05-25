@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Reflection;
 using UnityEngine;
 using WeaverCore.Utilities;
 
@@ -48,6 +49,14 @@ namespace WeaverCore.Components
         [SerializeField]
         float heroOffset = 1.53f;
 
+        [SerializeField]
+        [Tooltip("When enabled, entering this water puts the hero into the same underwater movement state used by HeroController.")]
+        bool useSwimPhysics = true;
+
+        [SerializeField]
+        [Tooltip("How far above the surface the hero can be before this water considers them out of the water volume.")]
+        float exitSurfaceBuffer = 0.25f;
+
         //[SerializeField]
         //Vector3 extraSplashOffset = new Vector3(0, -1, 0);
 
@@ -55,11 +64,32 @@ namespace WeaverCore.Components
 
         public float HeroSurfaceY => transform.position.y + heroOffset;
 
+        Collider2D waterRegion;
+        bool appliedSwimState;
+        bool localPlayerInsideTrigger;
+
+        static MethodInfo enterAcidMethod;
+        static MethodInfo exitAcidMethod;
+
         private void OnEnable()
         {
+            waterRegion = GetComponent<Collider2D>();
             StopAllCoroutines();
             PlayerInWater = false;
+            localPlayerInsideTrigger = false;
+            appliedSwimState = false;
             StartCoroutine(MainRoutine());
+        }
+
+        private void OnDisable()
+        {
+            if (appliedSwimState)
+            {
+                SetHeroSwimState(false);
+                appliedSwimState = false;
+            }
+            PlayerInWater = false;
+            localPlayerInsideTrigger = false;
         }
 
         IEnumerator MainRoutine()
@@ -187,7 +217,25 @@ namespace WeaverCore.Components
                     EventManager.SendEventToGameObject("INVENTORY CANCEL", inventory, gameObject);
                 }
 
-                yield return new WaitUntil(() => !PlayerInWater);
+                if (useSwimPhysics && !HeroAlreadyInSwimState())
+                {
+                    SetHeroSwimState(true);
+                    appliedSwimState = true;
+                }
+
+                while (ShouldRemainInWater())
+                {
+                    PlayerInWater = true;
+                    yield return null;
+                }
+
+                if (appliedSwimState)
+                {
+                    SetHeroSwimState(false);
+                    appliedSwimState = false;
+                }
+
+                PlayerInWater = false;
 
                 if (dripParticles != null)
                 {
@@ -213,12 +261,126 @@ namespace WeaverCore.Components
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (!IsPlayerCollider(collision))
+            {
+                return;
+            }
+
+            localPlayerInsideTrigger = true;
             PlayerInWater = true;
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            PlayerInWater = false;
+            if (!IsPlayerCollider(collision))
+            {
+                return;
+            }
+
+            localPlayerInsideTrigger = false;
+            PlayerInWater = ShouldRemainInWater();
+        }
+
+        bool IsPlayerCollider(Collider2D collider)
+        {
+            if (collider == null)
+            {
+                return false;
+            }
+
+            if (collider.CompareTag("Player") || collider.CompareTag("HeroBox"))
+            {
+                return true;
+            }
+
+            return collider.GetComponentInParent<HeroController>() != null;
+        }
+
+        bool ShouldRemainInWater()
+        {
+            var player = Player.Player1Raw;
+            if (player == null)
+            {
+                return localPlayerInsideTrigger;
+            }
+
+            if (localPlayerInsideTrigger)
+            {
+                return true;
+            }
+
+            if (waterRegion == null)
+            {
+                return false;
+            }
+
+            Bounds bounds = waterRegion.bounds;
+            Vector3 pos = player.transform.position;
+
+            bool withinHorizontalRange = pos.x >= bounds.min.x && pos.x <= bounds.max.x;
+            bool belowSurface = pos.y <= HeroSurfaceY + exitSurfaceBuffer;
+
+            return withinHorizontalRange && belowSurface;
+        }
+
+        static void EnsureSwimMethodCache()
+        {
+            if (enterAcidMethod != null && exitAcidMethod != null)
+            {
+                return;
+            }
+
+            var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            enterAcidMethod = typeof(HeroController).GetMethod("EnterAcid", flags);
+            exitAcidMethod = typeof(HeroController).GetMethod("ExitAcid", flags);
+        }
+
+        static bool HeroAlreadyInSwimState()
+        {
+            var hero = HeroController.instance;
+            if (hero == null || hero.cState == null)
+            {
+                return false;
+            }
+
+            return hero.inAcid && hero.cState.inAcid;
+        }
+
+        static void SetHeroSwimState(bool inWater)
+        {
+            var hero = HeroController.instance;
+            if (hero == null)
+            {
+                return;
+            }
+
+            EnsureSwimMethodCache();
+
+            try
+            {
+                if (inWater && enterAcidMethod != null)
+                {
+                    enterAcidMethod.Invoke(hero, null);
+                    return;
+                }
+
+                if (!inWater && exitAcidMethod != null)
+                {
+                    exitAcidMethod.Invoke(hero, null);
+                    return;
+                }
+            }
+            catch
+            {
+            }
+
+            if (hero.TryGetComponent<Rigidbody2D>(out var rb2d))
+            {
+                rb2d.gravityScale = inWater ? hero.UNDERWATER_GRAVITY : hero.DEFAULT_GRAVITY;
+            }
+
+            hero.inAcid = inWater;
+            hero.cState.inAcid = inWater;
         }
     }
 }

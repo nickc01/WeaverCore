@@ -127,14 +127,30 @@ namespace WeaverCore.Editor.Implementations
 						yield return null;
 					}
 				}
-				else if (instruction is CustomYieldInstruction)
-				{
-					var yielder = (CustomYieldInstruction)instruction;
-					while (yielder.keepWaiting)
+					else if (instruction is CustomYieldInstruction)
 					{
-						yield return null;
+						var yielder = (CustomYieldInstruction)instruction;
+						while (true)
+						{
+							bool keepWaiting;
+							try
+							{
+								keepWaiting = yielder.keepWaiting;
+							}
+							catch (Exception e)
+							{
+								Debug.LogException(e);
+								yield break;
+							}
+
+							if (!keepWaiting)
+							{
+								break;
+							}
+
+							yield return null;
+						}
 					}
-				}
 				else if (instruction is WaitForEndOfFrame)
 				{
 					//Do nothing

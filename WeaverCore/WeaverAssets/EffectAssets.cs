@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using WeaverCore.Utilities;
 
@@ -12,21 +11,40 @@ namespace WeaverCore.Assets
 	/// </summary>
 	public static class EffectAssets
 	{
-		public static GameObject NailStrikePrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Nail Strike"); } }
-		public static GameObject SharpShadowImpactPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Sharp Shadow Impact"); } }
-		public static GameObject FireballHitPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Fireball Hit"); } }
+		static readonly Dictionary<string, WeakReference> prefabCache = new Dictionary<string, WeakReference>();
+
+		static GameObject LoadCachedPrefab(string assetName)
+		{
+			return LoadCachedPrefab(assetName, () => WeaverAssets.LoadWeaverAsset<GameObject>(assetName));
+		}
+
+		static GameObject LoadCachedPrefab(string assetName, Func<GameObject> loadFunction)
+		{
+			if (prefabCache.TryGetValue(assetName, out var weakRef) && weakRef.Target is GameObject cachedPrefab && cachedPrefab != null)
+			{
+				return cachedPrefab;
+			}
+
+			var loadedPrefab = loadFunction();
+			prefabCache[assetName] = new WeakReference(loadedPrefab);
+			return loadedPrefab;
+		}
+
+		public static GameObject NailStrikePrefab { get { return LoadCachedPrefab("Nail Strike"); } }
+		public static GameObject SharpShadowImpactPrefab { get { return LoadCachedPrefab("Sharp Shadow Impact"); } }
+		public static GameObject FireballHitPrefab { get { return LoadCachedPrefab("Fireball Hit"); } }
 		//public static GameObject SlashGhost1Prefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Ghost 1"); } }
 		//public static GameObject SlashGhost2Prefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Ghost 2"); } }
-		public static GameObject SlashImpactPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Impact"); } }
-		public static GameObject UninfectedDeathPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Uninfected Death Pt"); } }
-		public static GameObject UninfectedHitPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Uninfected Hit Pt"); } }
-		public static GameObject BlockedHitPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Blocked Hit"); } }
+		public static GameObject SlashImpactPrefab { get { return LoadCachedPrefab("Slash Impact"); } }
+		public static GameObject UninfectedDeathPrefab { get { return LoadCachedPrefab("Uninfected Death Pt"); } }
+		public static GameObject UninfectedHitPrefab { get { return LoadCachedPrefab("Uninfected Hit Pt"); } }
+		public static GameObject BlockedHitPrefab { get { return LoadCachedPrefab("Blocked Hit"); } }
 
-		public static GameObject SlashGhost1Prefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Ghost 1"); } }
-		public static GameObject SlashGhost2Prefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Slash Ghost 2"); } }
+		public static GameObject SlashGhost1Prefab { get { return LoadCachedPrefab("Slash Ghost 1"); } }
+		public static GameObject SlashGhost2Prefab { get { return LoadCachedPrefab("Slash Ghost 2"); } }
 
-		public static GameObject TeleportGlowPrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Death Glow"); } }
-		public static GameObject TeleLinePrefab { get { return WeaverAssets.LoadWeaverAsset<GameObject>("Tele Line"); } }
-		public static GameObject WhiteFlashPrefab { get { return WeaverAssets.LoadWeaverAssets<GameObject>("White Flash Default").First(g => g.name == "White Flash Default"); } }
+		public static GameObject TeleportGlowPrefab { get { return LoadCachedPrefab("Death Glow"); } }
+		public static GameObject TeleLinePrefab { get { return LoadCachedPrefab("Tele Line"); } }
+		public static GameObject WhiteFlashPrefab { get { return LoadCachedPrefab("White Flash Default", () => WeaverAssets.LoadWeaverAssets<GameObject>("White Flash Default").First(g => g.name == "White Flash Default")); } }
 	}
 }

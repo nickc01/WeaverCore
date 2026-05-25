@@ -15,7 +15,7 @@ namespace WeaverCore.Components
     /// <summary>
     /// When attached to an enemy object, this component will cause the enemy to recoil from an attack
     /// </summary>
-    public class Recoiler : Recoil
+	public class Recoiler : Recoil
 	{
 		public class RecoilOverride : IComparable<RecoilOverride>, IDisposable
 		{
@@ -235,4 +235,94 @@ namespace WeaverCore.Components
             }
         }
 	}
+
+    static class Recoiler_Patches
+    {
+        static Func<Recoil, Rigidbody2D> bodyGetter;
+        static Func<Recoil, Vector2> recoilDirectionGetter;
+        static Func<Recoil, float> recoilSpeedGetter;
+        static Func<Recoil, float> recoilTimeRemainingGetter;
+        static Action<Recoil, float> recoilTimeRemainingSetter;
+        static FieldInfo recoilStateField;
+        static object recoilingState;
+
+        static void EnsureReflection()
+        {
+            if (bodyGetter != null)
+            {
+                return;
+            }
+
+            var recoilType = typeof(Recoil);
+            bodyGetter = ReflectionUtilities.CreateFieldGetter<Recoil, Rigidbody2D>(recoilType.GetField("body", BindingFlags.NonPublic | BindingFlags.Instance));
+            recoilDirectionGetter = ReflectionUtilities.CreateFieldGetter<Recoil, Vector2>(recoilType.GetField("recoilDirection", BindingFlags.NonPublic | BindingFlags.Instance));
+            recoilSpeedGetter = ReflectionUtilities.CreateFieldGetter<Recoil, float>(recoilType.GetField("recoilSpeed", BindingFlags.NonPublic | BindingFlags.Instance));
+            recoilTimeRemainingGetter = ReflectionUtilities.CreateFieldGetter<Recoil, float>(recoilType.GetField("recoilTimeRemaining", BindingFlags.NonPublic | BindingFlags.Instance));
+            recoilTimeRemainingSetter = ReflectionUtilities.CreateFieldSetter<Recoil, float>(recoilType.GetField("recoilTimeRemaining", BindingFlags.NonPublic | BindingFlags.Instance));
+            recoilStateField = recoilType.GetField("state", BindingFlags.NonPublic | BindingFlags.Instance);
+            recoilingState = Enum.Parse(recoilStateField.FieldType, "Recoiling");
+        }
+
+        static bool UpdatePhysics_Prefix(Recoil __instance, float deltaTime)
+        {
+            if (!(__instance is Recoiler))
+            {
+                return true;
+            }
+
+            try
+            {
+                EnsureReflection();
+
+                if (!Equals(recoilStateField.GetValue(__instance), recoilingState))
+                {
+                    return true;
+                }
+
+                Vector2 movement = recoilDirectionGetter(__instance) * recoilSpeedGetter(__instance) * Time.deltaTime;
+                var body = bodyGetter(__instance);
+
+                if (body != null && body.simulated && body.bodyType != RigidbodyType2D.Static)
+                {
+                    body.MovePosition(body.position + movement);
+                }
+                else
+                {
+                    __instance.transform.Translate(movement, Space.World);
+                }
+
+                float remainingTime = recoilTimeRemainingGetter(__instance) - deltaTime;
+                recoilTimeRemainingSetter(__instance, remainingTime);
+                if (remainingTime <= 0f)
+                {
+                    __instance.CancelRecoil();
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                WeaverLog.LogError($"Recoiler recoil MovePosition patch failed: {e}");
+                return true;
+            }
+        }
+
+        [OnHarmonyPatch]
+        static void OnHarmonyPatch(HarmonyPatcher patcher)
+        {
+            try
+            {
+                EnsureReflection();
+
+                var updatePhysics = typeof(Recoil).GetMethod("UpdatePhysics", BindingFlags.NonPublic | BindingFlags.Instance);
+                var prefix = typeof(Recoiler_Patches).GetMethod(nameof(UpdatePhysics_Prefix), BindingFlags.NonPublic | BindingFlags.Static);
+
+                patcher.Patch(updatePhysics, prefix, null);
+            }
+            catch (Exception e)
+            {
+                WeaverLog.LogError($"Failed to patch Recoiler recoil movement: {e}");
+            }
+        }
+    }
 }

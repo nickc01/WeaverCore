@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 
@@ -405,5 +406,17 @@ namespace WeaverCore.Utilities
         {
             return new Vector3(v.X, v.Y, v.Z);
         }
+
+		public static void Split(this Vector2 v, out float x, out float y)
+		{
+			x = v.x;
+			y = v.y;
+		}
+
+		public static void SplitMinMax(this Vector2 v, out float min, out float max)
+		{
+			min = Mathf.Min(v.x, v.y);
+			max = Mathf.Max(v.x, v.y);
+		}
     }
 }

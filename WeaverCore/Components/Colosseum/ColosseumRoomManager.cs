@@ -95,6 +95,9 @@ namespace WeaverCore.Components.Colosseum
         [SerializeField, Tooltip("Wait for all enemies to die before proceeding.")]
         private bool waitForAllEnemiesToDie = true;
 
+        [SerializeField, Tooltip("Delay after all enemies are dead before proceeding.")]
+        private float postEnemyDeathDelay = 2f;
+
         [HideInInspector]
         [SerializeField, Tooltip("Position range for ending the cutscene.")]
         private Rect endingCutscenePosRange;
@@ -163,7 +166,13 @@ namespace WeaverCore.Components.Colosseum
         {
             yield return null;
             yield return null;
-            Music.PlayMusicCue(silentCue,0f,0f);
+            StopChallengeMusic(0f);
+        }
+
+        void StopChallengeMusic(float snapshotTransitionTime)
+        {
+            Music.ApplyMusicSnapshot(stopMusicSnapshot, 0f, snapshotTransitionTime);
+            Music.StopMusic();
         }
 
         public void PlayMusic()
@@ -279,7 +288,7 @@ namespace WeaverCore.Components.Colosseum
 
             if (silentCue != null)
             {
-                Music.PlayMusicCue(silentCue,0f,0f);   
+                StopChallengeMusic(0f);
             }
 
             yield return new WaitForSeconds(0.25f);
@@ -413,6 +422,11 @@ namespace WeaverCore.Components.Colosseum
                     }*/
                     yield return new WaitForSeconds(0.5f);
                 }
+
+                if (postEnemyDeathDelay > 0f)
+                {
+                    yield return new WaitForSeconds(postEnemyDeathDelay);
+                }
             }
 
             /*var bl = transform.TransformPoint(endingCutscenePosRange.min);
@@ -432,22 +446,17 @@ namespace WeaverCore.Components.Colosseum
 
             if (stopMusic)
             {
-                Music.ApplyMusicSnapshot(stopMusicSnapshot, 0f, stopMusicDuration);
+                StopChallengeMusic(stopMusicDuration);
             }
 
             if (challengeCompleteSound != null)
             {
-                WeaverAudio.PlayAtPointDelayed(challengeCompleteSoundDelay, challengeCompleteSound, Player.Player1.transform.position, channel: WeaverCore.Enums.AudioChannel.Music);
+                WeaverAudio.PlayAtPointDelayed(challengeCompleteSoundDelay, challengeCompleteSound, Player.Player1.transform.position);
             }
 
             PlayerData.instance.SetBool("disablePause", true);
             HeroController.instance.RelinquishControl();
             HeroController.instance.StopAnimationControl();
-
-            if (silentCue != null)
-            {
-                Music.PlayMusicCue(silentCue,0f, 0.5f);
-            }
 
             if (endCutscene != null)
             {

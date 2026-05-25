@@ -160,7 +160,7 @@ namespace WeaverCore.Utilities
             pointOnCircle = circleCenter + dir.normalized * worldRadius;
             surfaceNormalOnOther = (circleCenter - closestOnOther).normalized;
         }
-        
+
         public static Vector2 ReflectWithLimiter(Vector2 incoming, Vector2 surfaceNormal, float angleLimiterDeg)
         {
             if (incoming.sqrMagnitude < Mathf.Epsilon)

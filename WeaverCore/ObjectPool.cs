@@ -584,11 +584,19 @@ namespace WeaverCore
 				PositionsSet = new HashSet<int>();
 			}
 
-			for (int i = 0; i < objComponents.GetLength(0); i++)
-			{
-				ComponentPath componentPath = objComponents[i];
-				Component component = componentPath.Component;
-				Type type = componentPath.ComponentType;
+				for (int i = 0; i < objComponents.GetLength(0); i++)
+				{
+					ComponentPath componentPath = objComponents[i];
+					Component component = componentPath.Component;
+
+					// Components may have been destroyed while this pooled instance was active.
+					// Skip stale references so reset logic does not throw MissingReferenceException.
+					if (component == null)
+					{
+						continue;
+					}
+
+					Type type = componentPath.ComponentType;
 
 				if (component is IOnPool && component != null)
 				{
@@ -605,13 +613,13 @@ namespace WeaverCore
 				}
 
 				int hash = CreateHierarchyHash(componentPath);
-				HierarchicalData hData;
-				if (HierarchyData.TryGetValue(hash, out hData))
-				{
-					if (component is Behaviour)
+					HierarchicalData hData;
+					if (HierarchyData.TryGetValue(hash, out hData))
 					{
-						((Behaviour)component).enabled = hData.ComponentEnabled;
-					}
+						if (component is Behaviour)
+						{
+							((Behaviour)component).enabled = hData.ComponentEnabled;
+						}
 
 					ComponentTypeData cData;
 					if (ComponentData.TryGetValue(type, out cData))
@@ -625,9 +633,9 @@ namespace WeaverCore
 						}
 					}
 
-					if (ResetPositions)
-					{
-						Transform t = component.transform;
+						if (ResetPositions)
+						{
+							Transform t = component.transform;
 						if (PositionsSet.Add(t.GetInstanceID()))
 						{
 							Transform prefabT = hData.PrefabComponent.transform;

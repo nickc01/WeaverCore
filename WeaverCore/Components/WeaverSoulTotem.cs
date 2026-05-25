@@ -9,7 +9,6 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Components
 {
-
     public class WeaverSoulTotem : MonoBehaviour, IHittable
 	{
         [SerializeField]

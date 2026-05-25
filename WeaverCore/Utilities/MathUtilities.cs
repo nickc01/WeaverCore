@@ -71,6 +71,27 @@ namespace WeaverCore.Utilities
 			return (2 * (targetHeight - startY - (velocityY * time))) / (time * time);
         }
 
+		/// <summary>
+		/// Remaps <paramref name="value"/> from one range into another.
+		/// </summary>
+		/// <param name="value">The value to remap.</param>
+		/// <param name="inputMin">The minimum value of the input range.</param>
+		/// <param name="inputMax">The maximum value of the input range.</param>
+		/// <param name="outputMin">The minimum value of the output range.</param>
+		/// <param name="outputMax">The maximum value of the output range.</param>
+		/// <returns>The remapped value.</returns>
+		public static float Map(float value, float inputMin, float inputMax, float outputMin, float outputMax)
+		{
+			var inputRange = inputMax - inputMin;
+			if (Mathf.Approximately(inputRange, 0f))
+			{
+				return outputMin;
+			}
+
+			var t = (value - inputMin) / inputRange;
+			return Mathf.LerpUnclamped(outputMin, outputMax, t);
+		}
+
         /// <summary>
         /// Calculates the vertical velocity needed to reach the height of <paramref name="endY"/>
         /// </summary>

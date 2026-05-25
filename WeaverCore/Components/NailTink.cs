@@ -48,7 +48,7 @@ namespace WeaverCore.Components
 
         float lastHitTime = 0;
 
-        public static void Play(Vector3 position, float attackDirection)
+        public static void Play(Vector3 position, float attackDirection, bool freezeGame = true, WeaverGameManager.TimeFreezePreset? customFreezePreset = null)
         {
             var global = Global;
             if (global == null || global.gameObject == null)
@@ -64,13 +64,13 @@ namespace WeaverCore.Components
                 return;
             }
 
-            instance.StartCoroutine(instance.PlayRoutine(attackDirection));
+            instance.StartCoroutine(instance.PlayRoutine(attackDirection, freezeGame, customFreezePreset));
         }
 
-        public static void Play(float attackDirection)
+        public static void Play(float attackDirection, bool freezeGame = true, WeaverGameManager.TimeFreezePreset? customFreezePreset = null)
         {
             Vector3 position = Player.Player1 != null ? Player.Player1.transform.position : Vector3.zero;
-            Play(position, attackDirection);
+            Play(position, attackDirection, freezeGame, customFreezePreset);
         }
 
         public bool Hit(HitInfo hit)
@@ -154,9 +154,12 @@ namespace WeaverCore.Components
             yield return new WaitForSeconds(0.15f);
         }
 
-        IEnumerator PlayRoutine(float attackDirection)
+        IEnumerator PlayRoutine(float attackDirection, bool freezeGame = true, WeaverGameManager.TimeFreezePreset? customFreezePreset = null)
         {
-            WeaverGameManager.FreezeGameTime(WeaverGameManager.TimeFreezePreset.Preset3);
+            if (freezeGame)
+            {
+                WeaverGameManager.FreezeGameTime(customFreezePreset ?? WeaverGameManager.TimeFreezePreset.Preset3);
+            }
             if (Player.Player1 != null)
             {
                 Player.Player1.EnterParryState();

@@ -11,7 +11,7 @@ using WeaverCore.Utilities;
 
 namespace WeaverCore.Utilities
 {
-	public static class PlayMakerUtilities
+	public static partial class PlayMakerUtilities
 	{
 		private static PlayMaker_I impl = ImplFinder.GetImplementation<PlayMaker_I>();
 		public static bool PlayMakerAvailable => Initialization.Environment == WeaverCore.Enums.RunningState.Game;
@@ -1104,7 +1104,7 @@ namespace WeaverCore.Utilities
 			object t = Activator.CreateInstance(FsmTransitionType);
 			var fsm = new FsmStateWrapper(state).GetFsm();
 
-			t.ReflectSetProperty("FsmEvent", GetFsmEvent(eventName));
+			t.ReflectSetProperty("FsmEvent", GetTransitionEvent(eventName));
 			t.ReflectSetProperty("ToState", toState);
 			t.ReflectSetProperty("ToFsmState", GetState(fsm.InternalFsm, toState));
 
@@ -1142,7 +1142,7 @@ namespace WeaverCore.Utilities
 
 			//var fsm = stateWrapper.GetFsm();
 
-			newTransition.ReflectSetProperty("FsmEvent", GetFsmEvent(eventName));
+			newTransition.ReflectSetProperty("FsmEvent", GetTransitionEvent(eventName));
 			newTransition.ReflectSetProperty("ToState", toState);
 			newTransition.ReflectSetProperty("ToFsmState", GetState(fsm, toState));
 
@@ -1361,6 +1361,17 @@ namespace WeaverCore.Utilities
 		{
 			object fsmEvent = GetFsmEvent(eventName);
 			return fsmEvent != null ? new FsmEventWrapper(fsmEvent) : default;
+		}
+
+		static object GetTransitionEvent(string eventName)
+		{
+			var systemEvent = WeaverFsmEvent.GetSystemEvent(eventName);
+			if (systemEvent?.FsmEventBase != null)
+			{
+				return systemEvent.FsmEventBase;
+			}
+
+			return GetFsmEvent(eventName);
 		}
 
 		public static object AddEvent(object fsm, string eventName)

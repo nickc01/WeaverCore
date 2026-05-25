@@ -646,6 +646,11 @@ namespace WeaverCore.Components
         /// <param name="finalHit">The final hit on the entity</param>
         protected virtual void OnDeath(HitInfo finalHit)
         {
+            if (TryGetComponent<WeaverPersistentBoolItem>(out var persistence))
+            {
+                persistence.persistentBoolData.activated = true;
+                persistence.SaveState();
+            }
             if (OnDeathEvent != null)
             {
                 OnDeathEvent(finalHit);
@@ -663,6 +668,16 @@ namespace WeaverCore.Components
                     evasionTimer = 0.0f;
                 }
             }
+        }
+
+        static bool IsColosseumMapZone()
+        {
+            if (Initialization.Environment == RunningState.Editor)
+            {
+                return false;
+            }
+
+            return GameManager.instance.GetCurrentMapZone() == "COLOSSEUM";
         }
 
         protected virtual void Awake()
@@ -692,14 +707,14 @@ namespace WeaverCore.Components
             }
             component.OnGetSaveState += delegate (ref bool val)
             {
-                if (GameManager.instance.GetCurrentMapZone() != "COLOSSEUM")
+                if (!IsColosseumMapZone())
                 {
                     val = Health == 0;
                 }
             };
             component.OnSetSaveState += delegate (bool val)
             {
-                if (GameManager.instance.GetCurrentMapZone() != "COLOSSEUM" && val)
+                if (!IsColosseumMapZone() && val)
                 {
                     base.gameObject.SetActive(value: false);
                 }

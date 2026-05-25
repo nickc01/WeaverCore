@@ -139,6 +139,38 @@ namespace WeaverCore.Components
 		/// </summary>
 		public string AutoPlayClip => autoPlayClip;
 
+		public delegate void OnAnimationStartDelegate(string animationName);
+		public delegate void OnAnimationFrameDelegate(string animationName, int frame);
+		public delegate void OnAnimationEndDelegate(string animationName, bool cancelled);
+
+		public event OnAnimationStartDelegate OnAnimationStart;
+		public event OnAnimationEndDelegate OnAnimationEnd;
+		public event OnAnimationFrameDelegate OnAnimationFrame;
+
+		void EndCurrentAnimation(bool cancelled)
+		{
+			if (PlayingGUID == default(Guid))
+			{
+				return;
+			}
+
+			string originalClip = PlayingClip;
+			currentFrame = -1;
+			timer = 0f;
+			frameTime = 0f;
+			PlayingGUID = default(Guid);
+			PlayingClip = null;
+
+			OnAnimationEnd?.Invoke(originalClip, cancelled);
+
+			if (onAnimationDone != null)
+			{
+				onAnimationDone(originalClip);
+				onAnimationDone = null;
+			}
+		}
+
+
 		protected virtual void OnEnable()
 		{
 			if (autoPlay && AnimationData.HasClip(autoPlayClip))
@@ -176,15 +208,7 @@ namespace WeaverCore.Components
         {
             if (PlayingGUID != default)
             {
-				currentFrame = -1;
-				PlayingGUID = default(Guid);
-				string originalClip = PlayingClip;
-				PlayingClip = null;
-				if (onAnimationDone != null)
-				{
-					onAnimationDone(originalClip);
-					onAnimationDone = null;
-				}
+				EndCurrentAnimation(true);
 			}
         }
 
@@ -219,19 +243,13 @@ namespace WeaverCore.Components
                 }
                 if (currentFrame == -1)
                 {
-                    PlayingGUID = default(Guid);
-                    string originalClip = PlayingClip;
-                    PlayingClip = null;
-                    if (onAnimationDone != null)
-                    {
-                        onAnimationDone(originalClip);
-                        onAnimationDone = null;
-                    }
+					EndCurrentAnimation(false);
                 }
                 else
                 {
                     SpriteRenderer.sprite = AnimationData.GetFrameFromClip(PlayingClip, currentFrame);
                     OnPlayingFrame(currentFrame);
+					OnAnimationFrame?.Invoke(PlayingClip, currentFrame);
                 }
             }
         }
@@ -290,11 +308,18 @@ namespace WeaverCore.Components
 			{
 				throw new Exception("The clip " + clipName + " does not exist in the animation data");
 			}
+
+			if (PlayingGUID != default(Guid))
+			{
+				EndCurrentAnimation(true);
+			}
+
 			PlayingGUID = Guid.NewGuid();
 			PlayingClip = clipName;
 			timer = 0f;
 			frameTime = 1f / AnimationData.GetClipFPS(clipName);
 			OnPlayingAnimation(clipName);
+			OnAnimationStart?.Invoke(clipName);
 			if (forceOnce)
 			{
 				currentFrame = AnimationData.GoToNextFrame(clipName, currentFrame, WeaverAnimationData.WrapMode.Once);
@@ -305,19 +330,13 @@ namespace WeaverCore.Components
 			}
 			if (currentFrame == -1)
 			{
-				PlayingGUID = default(Guid);
-				string originalClip = PlayingClip;
-				PlayingClip = null;
-				if (onAnimationDone != null)
-				{
-					onAnimationDone(originalClip);
-					onAnimationDone = null;
-				}
+				EndCurrentAnimation(false);
 			}
 			else
 			{
 				SpriteRenderer.sprite = AnimationData.GetFrameFromClip(clipName, currentFrame);
 				OnPlayingFrame(currentFrame);
+				OnAnimationFrame?.Invoke(PlayingClip, currentFrame);
 			}
 		}
 
@@ -329,8 +348,15 @@ namespace WeaverCore.Components
 		/// <param name="forceOnce">If the clip is set to loop, setting this to true will force it to play once</param>
 		public void PlayAnimation(string clipName, Action<string> OnDone, bool forceOnce = false)
 		{
-			onAnimationDone = OnDone;
 			PlayAnimation(clipName,forceOnce);
+			if (PlayingGUID == default(Guid))
+			{
+				OnDone?.Invoke(clipName);
+			}
+			else
+			{
+				onAnimationDone = OnDone;
+			}
 		}
 
 		/// <summary>
@@ -341,8 +367,15 @@ namespace WeaverCore.Components
 		/// <param name="forceOnce">If the clip is set to loop, setting this to true will force it to play once</param>
 		public void PlayAnimation(string clipName, Action OnDone, bool forceOnce = false)
 		{
-			onAnimationDone = s => OnDone();
 			PlayAnimation(clipName,forceOnce);
+			if (PlayingGUID == default(Guid))
+			{
+				OnDone?.Invoke();
+			}
+			else
+			{
+				onAnimationDone = s => OnDone();
+			}
 		}
 
 		/// <summary>

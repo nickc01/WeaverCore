@@ -38,7 +38,6 @@ namespace WeaverCore.Utilities
 		public static IEnumerator RunWhile(IEnumerator routine, Func<bool> predicate)
 		{
 			while (true)
-			//while (routine.MoveNext())
 			{
 				try
 				{
@@ -78,8 +77,23 @@ namespace WeaverCore.Utilities
 				}
 				else if (instruction is WaitForSecondsRealtime wfsr)
 				{
-					while (wfsr.keepWaiting)
+					while (true)
 					{
+						bool keepWaiting;
+						try
+						{
+							keepWaiting = wfsr.keepWaiting;
+						}
+						catch (Exception e)
+						{
+							WeaverLog.LogException(e);
+							yield break;
+						}
+
+						if (!keepWaiting)
+						{
+							break;
+						}
 						yield return null;
 					}
 				}
@@ -98,8 +112,24 @@ namespace WeaverCore.Utilities
 				else if (instruction is CustomYieldInstruction)
 				{
 					var yielder = (CustomYieldInstruction)instruction;
-					while (yielder.keepWaiting)
+					while (true)
 					{
+						bool keepWaiting;
+						try
+						{
+							keepWaiting = yielder.keepWaiting;
+						}
+						catch (Exception e)
+						{
+							WeaverLog.LogException(e);
+							yield break;
+						}
+
+						if (!keepWaiting)
+						{
+							break;
+						}
+
 						if (!predicate())
 						{
 							yield break;
@@ -277,6 +307,19 @@ namespace WeaverCore.Utilities
 			else
 			{
 				return null;
+			}
+		}
+
+		public static IEnumerator CatchWrap(IEnumerator routine)
+		{
+			return CoroutineUtilities.RunWhile(routine, () => true);
+		}
+
+		public static IEnumerator Infinite()
+		{
+			while (true)
+			{
+				yield return null;
 			}
 		}
     }

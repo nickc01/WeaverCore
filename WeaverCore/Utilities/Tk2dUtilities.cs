@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Reflection;
 using UnityEngine;
 using WeaverCore.Utilities;
@@ -16,6 +17,7 @@ namespace WeaverCore.Utilities
         public static readonly Type Tk2dSpriteCollectionDataType;
         public static readonly Type Tk2dSpriteAnimationClipType;
         public static readonly Type Tk2dSpriteAnimationType;
+        public static readonly Type Tk2dSpriteAnimationFrameType;
 
         // Cache commonly used methods and properties
         private static readonly PropertyInfo SpriteIdProperty;
@@ -28,6 +30,13 @@ namespace WeaverCore.Utilities
         private static readonly PropertyInfo PausedProperty;
         private static readonly PropertyInfo ClipFpsProperty;
         private static readonly PropertyInfo SpriteProperty;
+        internal static readonly FieldInfo ClipNameField;
+        internal static readonly FieldInfo ClipFramesField;
+        internal static readonly FieldInfo ClipFpsField;
+        internal static readonly FieldInfo ClipLoopStartField;
+        internal static readonly FieldInfo ClipWrapModeField;
+        internal static readonly FieldInfo FrameSpriteCollectionField;
+        internal static readonly FieldInfo FrameSpriteIdField;
 
         internal static readonly MethodInfo BuildMethod;
         internal static readonly MethodInfo SetSpriteMethod;
@@ -85,6 +94,7 @@ namespace WeaverCore.Utilities
                 Tk2dSpriteCollectionDataType = TypeUtilities.NameToType("tk2dSpriteCollectionData", Tk2dSpriteType.Assembly.GetName().Name);
                 Tk2dSpriteAnimationClipType = TypeUtilities.NameToType("tk2dSpriteAnimationClip", Tk2dSpriteType.Assembly.GetName().Name);
                 Tk2dSpriteAnimationType = TypeUtilities.NameToType("tk2dSpriteAnimation", Tk2dSpriteType.Assembly.GetName().Name);
+                Tk2dSpriteAnimationFrameType = TypeUtilities.NameToType("tk2dSpriteAnimationFrame", Tk2dSpriteType.Assembly.GetName().Name);
 
                 // Cache commonly used properties for tk2dSprite/tk2dBaseSprite
                 SpriteIdProperty = Tk2dBaseSpriteType?.GetProperty(SPRITE_ID_PROP_NAME);
@@ -108,6 +118,13 @@ namespace WeaverCore.Utilities
                 PausedProperty = Tk2dSpriteAnimatorType?.GetProperty(PAUSED_PROP_NAME);
                 ClipFpsProperty = Tk2dSpriteAnimatorType?.GetProperty(CLIP_FPS_PROP_NAME);
                 SpriteProperty = Tk2dSpriteAnimatorType?.GetProperty(SPRITE_PROP_NAME);
+                ClipNameField = Tk2dSpriteAnimationClipType?.GetField("name", BindingFlags.Public | BindingFlags.Instance);
+                ClipFramesField = Tk2dSpriteAnimationClipType?.GetField("frames", BindingFlags.Public | BindingFlags.Instance);
+                ClipFpsField = Tk2dSpriteAnimationClipType?.GetField("fps", BindingFlags.Public | BindingFlags.Instance);
+                ClipLoopStartField = Tk2dSpriteAnimationClipType?.GetField("loopStart", BindingFlags.Public | BindingFlags.Instance);
+                ClipWrapModeField = Tk2dSpriteAnimationClipType?.GetField("wrapMode", BindingFlags.Public | BindingFlags.Instance);
+                FrameSpriteCollectionField = Tk2dSpriteAnimationFrameType?.GetField("spriteCollection", BindingFlags.Public | BindingFlags.Instance);
+                FrameSpriteIdField = Tk2dSpriteAnimationFrameType?.GetField("spriteId", BindingFlags.Public | BindingFlags.Instance);
 
                 // Cache commonly used methods for tk2dSpriteAnimator
                 PlayMethod = Tk2dSpriteAnimatorType?.GetMethod("Play", new[] { typeof(string) });
@@ -273,7 +290,29 @@ namespace WeaverCore.Utilities
 
     public class Tk2dSpriteAnimatorWrapper
     {
+        enum RawWrapMode
+        {
+            Loop = 0,
+            LoopSection = 1,
+            Once = 2,
+            PingPong = 3,
+            RandomFrame = 4,
+            RandomLoop = 5,
+            Single = 6
+        }
+
+        sealed class RawPlaybackState
+        {
+            public MonoBehaviour Behaviour;
+            public Coroutine Coroutine;
+            public bool Completed;
+            public bool Cancelled;
+        }
+
+        static readonly Func<bool, bool> CompletedRawHandle = _ => true;
+
         public Component InternalComponent { get; private set; }
+        RawPlaybackState rawPlaybackState;
 
         public Tk2dSpriteAnimatorWrapper(Component component)
         {
@@ -342,56 +381,111 @@ namespace WeaverCore.Utilities
 
         public void Play()
         {
+            StopRaw();
             Tk2dUtilities.PlayNoArgsMethod?.Invoke(InternalComponent, null);
+        }
+
+        public Func<bool, bool> PlayRaw()
+        {
+            return PlayRaw(CurrentClip ?? DefaultClip);
+        }
+
+        public Func<bool, bool> PlayRaw(string clipName)
+        {
+            if (!IsValid || string.IsNullOrEmpty(clipName))
+            {
+                return CompletedRawHandle;
+            }
+
+            return PlayRaw(GetClipByName(clipName));
+        }
+
+        public Func<bool, bool> PlayRaw(object clip)
+        {
+            if (!IsValid || clip == null)
+            {
+                return CompletedRawHandle;
+            }
+
+            var behaviour = InternalComponent as MonoBehaviour;
+            if (behaviour == null)
+            {
+                return CompletedRawHandle;
+            }
+
+            Stop();
+            StopRaw();
+            var state = new RawPlaybackState
+            {
+                Behaviour = behaviour
+            };
+            rawPlaybackState = state;
+            state.Coroutine = behaviour.StartCoroutine(PlayRawRoutine(clip, state));
+            return cancel => QueryRawPlayback(state, cancel);
         }
 
         public void Play(string clipName)
         {
+            StopRaw();
             Tk2dUtilities.PlayStringMethod?.Invoke(InternalComponent, new object[] { clipName });
         }
 
         public void Play(object clip)
         {
+            StopRaw();
             Tk2dUtilities.PlayObjectMethod?.Invoke(InternalComponent, new object[] { clip });
         }
 
         public void PlayFromFrame(int frame)
         {
+            StopRaw();
             Tk2dUtilities.PlayFromFrameIntMethod?.Invoke(InternalComponent, new object[] { frame });
         }
 
         public void PlayFromFrame(string clipName, int frame)
         {
+            StopRaw();
             Tk2dUtilities.PlayFromFrameStringIntMethod?.Invoke(InternalComponent, new object[] { clipName, frame });
         }
 
         public void PlayFromFrame(object clip, int frame)
         {
+            StopRaw();
             Tk2dUtilities.PlayFromFrameObjectIntMethod?.Invoke(InternalComponent, new object[] { clip, frame });
         }
 
         public void PlayFrom(float clipStartTime)
         {
+            StopRaw();
             Tk2dUtilities.PlayFromFloatMethod?.Invoke(InternalComponent, new object[] { clipStartTime });
         }
 
         public void PlayFrom(string clipName, float clipStartTime)
         {
+            StopRaw();
             Tk2dUtilities.PlayFromStringFloatMethod?.Invoke(InternalComponent, new object[] { clipName, clipStartTime });
         }
 
         public void PlayFrom(object clip, float clipStartTime)
         {
+            StopRaw();
             Tk2dUtilities.PlayFromObjectFloatMethod?.Invoke(InternalComponent, new object[] { clip, clipStartTime });
         }
 
         public void Stop()
         {
+            StopRaw();
             Tk2dUtilities.StopMethod?.Invoke(InternalComponent, null);
+        }
+
+        public void StopRaw()
+        {
+            CancelRawPlayback(rawPlaybackState);
         }
 
         public void StopAndResetFrame()
         {
+            StopRaw();
             InternalComponent.ReflectCallMethod("StopAndResetFrame", Tk2dUtilities.Tk2dSpriteAnimatorType);
         }
 
@@ -407,12 +501,47 @@ namespace WeaverCore.Utilities
 
         public bool IsPlaying(string clipName)
         {
-            return (bool)(Tk2dUtilities.IsPlayingStringMethod?.Invoke(InternalComponent, new object[] { clipName }) ?? false);
+            if (!IsValid || string.IsNullOrEmpty(clipName))
+            {
+                return false;
+            }
+
+            try
+            {
+                if (!Playing)
+                {
+                    return false;
+                }
+
+                var currentClip = CurrentClip;
+                if (currentClip == null || Tk2dUtilities.ClipNameField == null)
+                {
+                    return false;
+                }
+
+                return string.Equals(Tk2dUtilities.ClipNameField.GetValue(currentClip) as string, clipName, StringComparison.Ordinal);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool IsPlaying(object clip)
         {
-            return (bool)(Tk2dUtilities.IsPlayingObjectMethod?.Invoke(InternalComponent, new object[] { clip }) ?? false);
+            if (!IsValid || clip == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                return Playing && ReferenceEquals(CurrentClip, clip);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public object GetClipById(int id)
@@ -432,11 +561,13 @@ namespace WeaverCore.Utilities
 
         public void SetFrame(int frame)
         {
+            StopRaw();
             Tk2dUtilities.SetFrameIntMethod?.Invoke(InternalComponent, new object[] { frame });
         }
 
         public void SetFrame(int frame, bool triggerEvent)
         {
+            StopRaw();
             Tk2dUtilities.SetFrameIntBoolMethod?.Invoke(InternalComponent, new object[] { frame, triggerEvent });
         }
 
@@ -447,7 +578,183 @@ namespace WeaverCore.Utilities
 
         public void SetSprite(object spriteCollection, int spriteId)
         {
-            Tk2dUtilities.SetSpriteIntMethod?.Invoke(InternalComponent, new object[] { spriteCollection, spriteId });
+            Tk2dUtilities.SetSpriteIntMethod?.Invoke(Sprite, new object[] { spriteCollection, spriteId });
+        }
+
+        bool QueryRawPlayback(RawPlaybackState state, bool cancel)
+        {
+            if (state == null)
+            {
+                return true;
+            }
+
+            if (cancel)
+            {
+                CancelRawPlayback(state);
+            }
+
+            return state.Completed || state.Cancelled;
+        }
+
+        void CancelRawPlayback(RawPlaybackState state)
+        {
+            if (state == null || state.Completed || state.Cancelled)
+            {
+                return;
+            }
+
+            state.Cancelled = true;
+            if (ReferenceEquals(rawPlaybackState, state))
+            {
+                rawPlaybackState = null;
+            }
+
+            var behaviour = state.Behaviour;
+            var coroutine = state.Coroutine;
+            state.Coroutine = null;
+
+            if (behaviour != null && coroutine != null)
+            {
+                behaviour.StopCoroutine(coroutine);
+            }
+        }
+
+        void CompleteRawPlayback(RawPlaybackState state)
+        {
+            if (state == null || state.Cancelled)
+            {
+                return;
+            }
+
+            state.Coroutine = null;
+            state.Completed = true;
+            if (ReferenceEquals(rawPlaybackState, state))
+            {
+                rawPlaybackState = null;
+            }
+        }
+
+        IEnumerator PlayRawRoutine(object clip, RawPlaybackState state)
+        {
+            try
+            {
+                var frames = Tk2dUtilities.ClipFramesField?.GetValue(clip) as Array;
+                if (frames == null || frames.Length == 0)
+                {
+                    yield break;
+                }
+
+                float fps = 30f;
+                if (Tk2dUtilities.ClipFpsField?.GetValue(clip) is float clipFps && clipFps > 0f)
+                {
+                    fps = clipFps;
+                }
+                float frameDuration = 1f / fps;
+
+                int loopStart = 0;
+                if (Tk2dUtilities.ClipLoopStartField?.GetValue(clip) is int clipLoopStart)
+                {
+                    loopStart = Mathf.Clamp(clipLoopStart, 0, frames.Length - 1);
+                }
+
+                var wrapMode = RawWrapMode.Loop;
+                if (Tk2dUtilities.ClipWrapModeField?.GetValue(clip) is Enum wrapModeValue)
+                {
+                    wrapMode = (RawWrapMode)Convert.ToInt32(wrapModeValue);
+                }
+
+                switch (wrapMode)
+                {
+                    case RawWrapMode.Single:
+                        ApplyRawFrame(frames, 0);
+                        break;
+                    case RawWrapMode.RandomFrame:
+                        ApplyRawFrame(frames, UnityEngine.Random.Range(0, frames.Length));
+                        break;
+                    case RawWrapMode.Once:
+                        yield return PlayRawForward(frames, 0, frames.Length - 1, frameDuration, loopLastFrame: false);
+                        break;
+                    case RawWrapMode.Loop:
+                        while (true)
+                        {
+                            yield return PlayRawForward(frames, 0, frames.Length - 1, frameDuration, loopLastFrame: true);
+                        }
+                    case RawWrapMode.LoopSection:
+                        if (loopStart > 0)
+                        {
+                            yield return PlayRawForward(frames, 0, frames.Length - 1, frameDuration, loopLastFrame: false);
+                        }
+                        while (true)
+                        {
+                            yield return PlayRawForward(frames, loopStart, frames.Length - 1, frameDuration, loopLastFrame: true);
+                        }
+                    case RawWrapMode.PingPong:
+                        while (true)
+                        {
+                            yield return PlayRawForward(frames, 0, frames.Length - 1, frameDuration, loopLastFrame: frames.Length == 1);
+                            if (frames.Length <= 1)
+                            {
+                                continue;
+                            }
+
+                            for (int i = frames.Length - 2; i >= 1; i--)
+                            {
+                                ApplyRawFrame(frames, i);
+                                yield return new WaitForSeconds(frameDuration);
+                            }
+                        }
+                    case RawWrapMode.RandomLoop:
+                        while (true)
+                        {
+                            ApplyRawFrame(frames, UnityEngine.Random.Range(0, frames.Length));
+                            yield return new WaitForSeconds(frameDuration);
+                        }
+                }
+            }
+            finally
+            {
+                CompleteRawPlayback(state);
+            }
+        }
+
+        IEnumerator PlayRawForward(Array frames, int startIndex, int endIndex, float frameDuration, bool loopLastFrame)
+        {
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                ApplyRawFrame(frames, i);
+                if (i < endIndex || loopLastFrame)
+                {
+                    yield return new WaitForSeconds(frameDuration);
+                }
+            }
+        }
+
+        void ApplyRawFrame(Array frames, int index)
+        {
+            if (index < 0 || index >= frames.Length)
+            {
+                return;
+            }
+
+            var frame = frames.GetValue(index);
+            if (frame == null)
+            {
+                return;
+            }
+
+            var spriteCollection = Tk2dUtilities.FrameSpriteCollectionField?.GetValue(frame);
+            if (spriteCollection == null)
+            {
+                return;
+            }
+
+            int spriteId = 0;
+            if (Tk2dUtilities.FrameSpriteIdField?.GetValue(frame) is int rawSpriteId)
+            {
+                spriteId = rawSpriteId;
+            }
+
+            SetSprite(spriteCollection, spriteId);
         }
 
         public static implicit operator bool(Tk2dSpriteAnimatorWrapper wrapper) => wrapper.IsValid;

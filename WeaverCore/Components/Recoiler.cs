@@ -236,15 +236,28 @@ namespace WeaverCore.Components
         }
 	}
 
-    static class Recoiler_Patches
-    {
-        static Func<Recoil, Rigidbody2D> bodyGetter;
-        static Func<Recoil, Vector2> recoilDirectionGetter;
-        static Func<Recoil, float> recoilSpeedGetter;
-        static Func<Recoil, float> recoilTimeRemainingGetter;
-        static Action<Recoil, float> recoilTimeRemainingSetter;
-        static FieldInfo recoilStateField;
-        static object recoilingState;
+	    static class Recoiler_Patches
+	    {
+	        enum RecoilPatchMode
+	        {
+	            Unknown,
+	            EditorSimple,
+	            InGameSweep
+	        }
+
+	        static Func<Recoil, Rigidbody2D> bodyGetter;
+	        static Func<Recoil, float> recoilSpeedGetter;
+	        static Func<Recoil, float> recoilTimeRemainingGetter;
+	        static Func<Recoil, bool> isRecoilSweepingGetter;
+	        static Func<Recoil, Vector2> recoilDirectionGetter;
+	        static Action<Recoil, float> recoilTimeRemainingSetter;
+	        static Action<Recoil, bool> isRecoilSweepingSetter;
+	        static FieldInfo recoilSweepField;
+	        static FieldInfo recoilStateField;
+	        static FieldInfo sweepDirectionField;
+	        static MethodInfo sweepCheckMethod;
+	        static object recoilingState;
+	        static RecoilPatchMode patchMode;
 
         static void EnsureReflection()
         {
@@ -253,15 +266,58 @@ namespace WeaverCore.Components
                 return;
             }
 
-            var recoilType = typeof(Recoil);
-            bodyGetter = ReflectionUtilities.CreateFieldGetter<Recoil, Rigidbody2D>(recoilType.GetField("body", BindingFlags.NonPublic | BindingFlags.Instance));
-            recoilDirectionGetter = ReflectionUtilities.CreateFieldGetter<Recoil, Vector2>(recoilType.GetField("recoilDirection", BindingFlags.NonPublic | BindingFlags.Instance));
-            recoilSpeedGetter = ReflectionUtilities.CreateFieldGetter<Recoil, float>(recoilType.GetField("recoilSpeed", BindingFlags.NonPublic | BindingFlags.Instance));
-            recoilTimeRemainingGetter = ReflectionUtilities.CreateFieldGetter<Recoil, float>(recoilType.GetField("recoilTimeRemaining", BindingFlags.NonPublic | BindingFlags.Instance));
-            recoilTimeRemainingSetter = ReflectionUtilities.CreateFieldSetter<Recoil, float>(recoilType.GetField("recoilTimeRemaining", BindingFlags.NonPublic | BindingFlags.Instance));
-            recoilStateField = recoilType.GetField("state", BindingFlags.NonPublic | BindingFlags.Instance);
-            recoilingState = Enum.Parse(recoilStateField.FieldType, "Recoiling");
-        }
+	            var recoilType = typeof(Recoil);
+	            bodyGetter = ReflectionUtilities.CreateFieldGetter<Recoil, Rigidbody2D>(recoilType.GetField("body", BindingFlags.NonPublic | BindingFlags.Instance));
+	            recoilSpeedGetter = ReflectionUtilities.CreateFieldGetter<Recoil, float>(recoilType.GetField("recoilSpeed", BindingFlags.NonPublic | BindingFlags.Instance));
+	            recoilTimeRemainingGetter = ReflectionUtilities.CreateFieldGetter<Recoil, float>(recoilType.GetField("recoilTimeRemaining", BindingFlags.NonPublic | BindingFlags.Instance));
+	            recoilTimeRemainingSetter = ReflectionUtilities.CreateFieldSetter<Recoil, float>(recoilType.GetField("recoilTimeRemaining", BindingFlags.NonPublic | BindingFlags.Instance));
+	            recoilStateField = recoilType.GetField("state", BindingFlags.NonPublic | BindingFlags.Instance);
+	            recoilingState = Enum.Parse(recoilStateField.FieldType, "Recoiling");
+
+	            recoilSweepField = recoilType.GetField("recoilSweep", BindingFlags.NonPublic | BindingFlags.Instance);
+	            var isRecoilSweepingField = recoilType.GetField("isRecoilSweeping", BindingFlags.NonPublic | BindingFlags.Instance);
+	            var recoilDirectionField = recoilType.GetField("recoilDirection", BindingFlags.NonPublic | BindingFlags.Instance);
+
+	            if (recoilSweepField != null && isRecoilSweepingField != null)
+	            {
+	                isRecoilSweepingGetter = ReflectionUtilities.CreateFieldGetter<Recoil, bool>(isRecoilSweepingField);
+	                isRecoilSweepingSetter = ReflectionUtilities.CreateFieldSetter<Recoil, bool>(isRecoilSweepingField);
+
+	                var sweepType = recoilSweepField.FieldType;
+	                sweepDirectionField = sweepType.GetField("Direction", BindingFlags.Public | BindingFlags.Instance);
+	                sweepCheckMethod = sweepType.GetMethod("Check", new[] { typeof(Vector2), typeof(float), typeof(int), typeof(float).MakeByRefType() });
+
+	                if (sweepDirectionField == null || sweepCheckMethod == null)
+	                {
+	                    throw new MissingMemberException(recoilSweepField.FieldType.FullName, "Direction/Check");
+	                }
+
+	                patchMode = RecoilPatchMode.InGameSweep;
+	            }
+	            else if (recoilDirectionField != null)
+	            {
+	                recoilDirectionGetter = ReflectionUtilities.CreateFieldGetter<Recoil, Vector2>(recoilDirectionField);
+	                patchMode = RecoilPatchMode.EditorSimple;
+	            }
+	            else
+	            {
+	                throw new MissingMemberException(recoilType.FullName, "recoilSweep or recoilDirection");
+	            }
+	        }
+
+	        static void MoveRecoil(Recoil recoil, Vector2 movement)
+	        {
+	            var body = bodyGetter(recoil);
+
+	            if (body != null && body.simulated && body.bodyType != RigidbodyType2D.Static)
+	            {
+	                body.MovePosition(body.position + movement);
+	            }
+	            else
+	            {
+	                recoil.transform.Translate(movement, Space.World);
+	            }
+	        }
 
         static bool UpdatePhysics_Prefix(Recoil __instance, float deltaTime)
         {
@@ -275,23 +331,40 @@ namespace WeaverCore.Components
                 EnsureReflection();
 
                 if (!Equals(recoilStateField.GetValue(__instance), recoilingState))
-                {
-                    return true;
-                }
+	                {
+	                    return true;
+	                }
 
-                Vector2 movement = recoilDirectionGetter(__instance) * recoilSpeedGetter(__instance) * Time.deltaTime;
-                var body = bodyGetter(__instance);
+	                if (patchMode == RecoilPatchMode.InGameSweep)
+	                {
+	                    if (isRecoilSweepingGetter(__instance))
+	                    {
+	                        var sweep = recoilSweepField.GetValue(__instance);
+	                        object[] sweepCheckArgs = new object[] { __instance.transform.position, recoilSpeedGetter(__instance) * deltaTime, 256, 0f };
+	                        if ((bool)sweepCheckMethod.Invoke(sweep, sweepCheckArgs))
+	                        {
+	                            isRecoilSweepingSetter(__instance, false);
+	                        }
 
-                if (body != null && body.simulated && body.bodyType != RigidbodyType2D.Static)
-                {
-                    body.MovePosition(body.position + movement);
-                }
-                else
-                {
-                    __instance.transform.Translate(movement, Space.World);
-                }
+	                        float clippedDistance = (float)sweepCheckArgs[3];
+	                        if (clippedDistance > Mathf.Epsilon)
+	                        {
+	                            Vector2 movement = (Vector2)sweepDirectionField.GetValue(sweep) * clippedDistance;
+	                            MoveRecoil(__instance, movement);
+	                        }
+	                    }
+	                }
+	                else if (patchMode == RecoilPatchMode.EditorSimple)
+	                {
+	                    Vector2 movement = recoilDirectionGetter(__instance) * recoilSpeedGetter(__instance) * Time.deltaTime;
 
-                float remainingTime = recoilTimeRemainingGetter(__instance) - deltaTime;
+	                    if (movement.sqrMagnitude > Mathf.Epsilon)
+	                    {
+	                        MoveRecoil(__instance, movement);
+	                    }
+	                }
+
+	                float remainingTime = recoilTimeRemainingGetter(__instance) - deltaTime;
                 recoilTimeRemainingSetter(__instance, remainingTime);
                 if (remainingTime <= 0f)
                 {

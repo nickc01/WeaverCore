@@ -2749,6 +2749,7 @@ MonoBehaviour:
   <Inspectable>k__BackingField: 1
   exitRangeEvent: 
   enterRangeEvent: 
+  sidePositions: 2
   moveToOffset: 0.25
   heroLooksUp: 0
   <EnableKnightDamageInterrupt>k__BackingField: 1
@@ -2771,8 +2772,8 @@ GameObject:
   - component: {fileID: 2206780115879593438}
   - component: {fileID: 2206780115879593422}
   - component: {fileID: 2206780115879593346}
-  - component: {fileID: 2206780115879592096}
   - component: {fileID: 2206780115879592097}
+  - component: {fileID: 406362398614034959}
   m_Layer: 18
   m_Name: Custom Charm Item
   m_TagString: Untagged
@@ -3010,29 +3011,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &2206780115879592096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2206780115879592103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b1a768e91fc3c4d8d834f9a844c469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceFactor: 0.5
-  speedThreshold: 1
-  playSound: 0
-  clips: []
-  chanceToPlay: 100
-  pitchMin: 1
-  pitchMax: 1
-  playAnimationOnBounce: 0
-  animationName: 
-  animPause: 0.5
-  sendFSMEvent: 0
 --- !u!114 &2206780115879592097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3051,4 +3029,30 @@ MonoBehaviour:
   <FlingOnStart>k__BackingField: 1
   FlingSpeedMinMax: {x: 20, y: 20}
   FlingAngleMinMax: {x: 82, y: 86}
+  OnPickup:
+    m_PersistentCalls:
+      m_Calls: []
   charm: {fileID: 0}
+--- !u!114 &406362398614034959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2206780115879592103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ebf4ce6e2f51e742b7618d6a179947b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceFactor: 0.5
+  speedThreshold: 1
+  playSound: 0
+  clips: []
+  chanceToPlay: 100
+  pitchMin: 1
+  pitchMax: 1
+  playAnimationOnBounce: 0
+  animationName: 
+  animPause: 0.5
+  sendFSMEvent: 0

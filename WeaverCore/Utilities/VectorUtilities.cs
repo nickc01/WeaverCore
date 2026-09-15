@@ -42,6 +42,36 @@ namespace WeaverCore.Utilities
             return c;
         }
 
+        /// <summary>
+        /// Creates a new <see cref="Rect"/> based on the input rect, with optional modifications to specific components.
+        /// </summary>
+        /// <param name="rect">The input <see cref="Rect"/> to start with.</param>
+        /// <param name="x">The new X position. If not specified (or set to <see cref="float.NaN"/>), the X position remains unchanged.</param>
+        /// <param name="y">The new Y position. If not specified (or set to <see cref="float.NaN"/>), the Y position remains unchanged.</param>
+        /// <param name="width">The new width. If not specified (or set to <see cref="float.NaN"/>), the width remains unchanged.</param>
+        /// <param name="height">The new height. If not specified (or set to <see cref="float.NaN"/>), the height remains unchanged.</param>
+        /// <returns>A new <see cref="Rect"/> based on the input rect with optional modifications.</returns>
+        public static Rect With(this Rect rect, float x = float.NaN, float y = float.NaN, float width = float.NaN, float height = float.NaN)
+        {
+            if (!float.IsNaN(x))
+            {
+                rect.x = x;
+            }
+            if (!float.IsNaN(y))
+            {
+                rect.y = y;
+            }
+            if (!float.IsNaN(width))
+            {
+                rect.width = width;
+            }
+            if (!float.IsNaN(height))
+            {
+                rect.height = height;
+            }
+            return rect;
+        }
+
 
         /// <summary>
         /// Takes an existing vector, and a returns a new one with some fields modified

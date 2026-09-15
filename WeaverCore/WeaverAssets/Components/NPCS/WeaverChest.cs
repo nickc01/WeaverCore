@@ -52,10 +52,10 @@ namespace WeaverCore.Assets.Components
         }
 
         SpriteRenderer _mainRenderer;
-        public SpriteRenderer MainRenderer => _mainRenderer ??= GetComponent<SpriteRenderer>();
+        public SpriteRenderer MainRenderer => _mainRenderer == null ? _mainRenderer = GetComponent<SpriteRenderer>() : _mainRenderer;
 
         WeaverAnimationPlayer _mainAnimator;
-        public WeaverAnimationPlayer MainAnimator => _mainAnimator ??= GetComponent<WeaverAnimationPlayer>();
+        public WeaverAnimationPlayer MainAnimator => _mainAnimator == null ? _mainAnimator = GetComponent<WeaverAnimationPlayer>() : _mainAnimator;
 
         public bool StruckByNail { get; private set; }
 

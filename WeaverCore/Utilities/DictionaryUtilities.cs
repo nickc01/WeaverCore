@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace WeaverCore.Utilities
@@ -45,6 +46,23 @@ namespace WeaverCore.Utilities
 
             value = defaultVal;
             return false;
+        }
+
+        public sealed class DictionaryValueContext : IDisposable
+        {
+            public Action OnDispose;
+            public void Dispose()
+            {
+                OnDispose?.Invoke();
+            }
+        }
+
+        public static DictionaryValueContext UseKeyIn(this IDictionary dictionary, object key, object value)
+        {
+            dictionary.Add(key, value);
+            return new DictionaryValueContext {
+                OnDispose = () => dictionary.Remove(key)
+            };
         }
     }
 }

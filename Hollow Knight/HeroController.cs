@@ -3,6 +3,7 @@ using Modding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -1395,7 +1396,7 @@ return fsmBool.Value;
                 }
                 if (!flag)
                 {
-                    //this.audioCtrl.PlaySound(HeroSounds.TAKE_HIT);
+                    this.audioCtrl.PlaySound(HeroSounds.TAKE_HIT);
                 }
                 if (!takeNoDamage && !playerData.GetBool("invinciTest"))
                 {
@@ -1474,7 +1475,7 @@ return fsmBool.Value;
                         base.StartCoroutine(Die());
                         return;
                     }
-                    //this.audioCtrl.PlaySound(HeroSounds.TAKE_HIT);
+                    this.audioCtrl.PlaySound(HeroSounds.TAKE_HIT);
                     base.StartCoroutine(DieFromHazard(HazardType.SPIKES, (!(go != null)) ? 0f : go.transform.rotation.z));
                     return;
                 }
@@ -2608,17 +2609,17 @@ return fsmBool.Value;
 
     public void StopPlayingAudio()
     {
-        //this.audioCtrl.StopAllSounds();
+        this.audioCtrl.StopAllSounds();
     }
 
     public void PauseAudio()
     {
-        //this.audioCtrl.PauseAllSounds();
+        this.audioCtrl.PauseAllSounds();
     }
 
     public void UnPauseAudio()
     {
-        //this.audioCtrl.UnPauseAllSounds();
+        this.audioCtrl.UnPauseAllSounds();
     }
 
     private void PauseInput()
@@ -2776,7 +2777,7 @@ return fsmBool.Value;
                 else if (CanInfiniteAirJump())
                 {
                     CancelJump();
-                    //this.audioCtrl.PlaySound(HeroSounds.JUMP);
+                    this.audioCtrl.PlaySound(HeroSounds.JUMP);
                     ResetLook();
                     cState.jumping = true;
                 }
@@ -2852,7 +2853,7 @@ return fsmBool.Value;
     private void HeroJump()
     {
         //this.jumpEffectPrefab.Spawn(this.transform.position);
-        //this.audioCtrl.PlaySound(HeroSounds.JUMP);
+        this.audioCtrl.PlaySound(HeroSounds.JUMP);
         ResetLook();
         cState.recoiling = false;
         cState.jumping = true;
@@ -2874,7 +2875,7 @@ return fsmBool.Value;
     private void DoWallJump()
     {
         //this.wallPuffPrefab.SetActive(true);
-        //this.audioCtrl.PlaySound(HeroSounds.WALLJUMP);
+        this.audioCtrl.PlaySound(HeroSounds.WALLJUMP);
         //VibrationManager.PlayVibrationClipOneShot(this.wallJumpVibration, null, false, "");
         if (touchingWallL)
         {
@@ -2928,7 +2929,7 @@ return fsmBool.Value;
         SetState(ActorStates.hard_landing);
         CancelAttack();
         hardLanded = true;
-        //this.audioCtrl.PlaySound(HeroSounds.HARD_LANDING);
+        this.audioCtrl.PlaySound(HeroSounds.HARD_LANDING);
         //this.hardLandingEffectPrefab.Spawn(this.transform.position);
     }
 
@@ -2946,9 +2947,9 @@ return fsmBool.Value;
         }
         ResetAttacksDash();
         CancelBounce();
-        //this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_RUN);
-        //this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_WALK);
-        //this.audioCtrl.PlaySound(HeroSounds.DASH);
+        this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_RUN);
+        this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_WALK);
+        this.audioCtrl.PlaySound(HeroSounds.DASH);
         ResetLook();
         cState.recoiling = false;
         if (cState.wallSliding)
@@ -3040,7 +3041,7 @@ return fsmBool.Value;
     private void StartFallRumble()
     {
         fallRumble = true;
-        //this.audioCtrl.PlaySound(HeroSounds.FALLING);
+        this.audioCtrl.PlaySound(HeroSounds.FALLING);
         //GameCameras.instance.cameraShakeFSM.Fsm.Variables.FindFsmBool("RumblingFall").Value = true;
     }
 
@@ -3553,7 +3554,7 @@ return fsmBool.Value;
     private void CancelFallEffects()
     {
         fallRumble = false;
-        //this.audioCtrl.StopSound(HeroSounds.FALLING);
+        this.audioCtrl.StopSound(HeroSounds.FALLING);
         //GameCameras.instance.cameraShakeFSM.Fsm.Variables.FindFsmBool("RumblingFall").Value = false;
     }
 
@@ -4428,6 +4429,23 @@ return fsmBool.Value;
 
     private void SetupGameRefs()
     {
+#if UNITY_EDITOR
+        if (nailTerrainImpactEffectPrefab == null)
+        {
+            var guids = UnityEditor.AssetDatabase.FindAssets("t:Prefab Nail Terrain Hit Effect");
+            Debug.Log("GUIDS = " + guids.Length);
+            foreach (var guid in guids)
+            {
+                var path = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+                Debug.Log("PATH = " + path);
+                if (path.Contains("WeaverCore.Editor"))
+                {
+                    nailTerrainImpactEffectPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                    break;
+                }
+            }
+        }
+#endif
         if (cState == null)
         {
             cState = new HeroControllerStates();
@@ -4439,7 +4457,11 @@ return fsmBool.Value;
         col2d = base.GetComponent<Collider2D>();
         transform = base.GetComponent<Transform>();
         renderer = base.GetComponent<Renderer>();
-        //this.audioCtrl = base.GetComponent<HeroAudioController>();
+        this.audioCtrl = base.GetComponent<HeroAudioController>();
+        if (this.audioCtrl == null)
+        {
+            this.audioCtrl = base.gameObject.AddComponent<HeroAudioController>();
+        }
         //this.inputHandler = this.gm.GetComponent<InputHandler>();
         //this.proxyFSM = FSMUtility.LocateFSM(base.gameObject, "ProxyFSM");
         audioSource = base.GetComponent<AudioSource>();
@@ -4578,7 +4600,7 @@ return fsmBool.Value;
         FailSafeChecks();
         if (hero_state == ActorStates.running && !cState.dashing && !cState.backDashing && !controlReqlinquished)
         {
-            /*if (this.cState.inWalkZone)
+            if (this.cState.inWalkZone)
 			{
 				this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_RUN);
 				this.audioCtrl.PlaySound(HeroSounds.FOOTSTEPS_WALK);
@@ -4587,7 +4609,7 @@ return fsmBool.Value;
 			{
 				this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_WALK);
 				this.audioCtrl.PlaySound(HeroSounds.FOOTSTEPS_RUN);
-			}*/
+			}
             if (runMsgSent && rb2d.velocity.x > -0.1f && rb2d.velocity.x < 0.1f)
             {
                 //this.runEffect.GetComponent<PlayMakerFSM>().SendEvent("RUN STOP");
@@ -4604,8 +4626,8 @@ return fsmBool.Value;
         }
         else
         {
-            /*this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_RUN);
-			this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_WALK);*/
+            this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_RUN);
+			this.audioCtrl.StopSound(HeroSounds.FOOTSTEPS_WALK);
             if (runMsgSent)
             {
                 //this.runEffect.GetComponent<PlayMakerFSM>().SendEvent("RUN STOP");
@@ -4797,7 +4819,7 @@ return fsmBool.Value;
                 else
                 {
                     wallslideClipTimer = 0f;
-                    //this.audioCtrl.PlaySound(HeroSounds.WALLSLIDE);
+                    this.audioCtrl.PlaySound(HeroSounds.WALLSLIDE);
                     playingWallslideClip = true;
                 }
             }
@@ -4808,7 +4830,7 @@ return fsmBool.Value;
         }
         if (!cState.wallSliding && playingWallslideClip)
         {
-            //this.audioCtrl.StopSound(HeroSounds.WALLSLIDE);
+            this.audioCtrl.StopSound(HeroSounds.WALLSLIDE);
             playingWallslideClip = false;
         }
         if (!cState.wallSliding && wallslideClipTimer > 0f)
@@ -5490,7 +5512,7 @@ return fsmBool.Value;
 
     public PlayerData playerData;
 
-    //private HeroAudioController audioCtrl;
+    private HeroAudioController audioCtrl;
 
     private AudioSource audioSource;
 
@@ -6306,4 +6328,3 @@ public class HeroController : MonoBehaviour
 		}
 	}
 }*/
-

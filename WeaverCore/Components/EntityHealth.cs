@@ -481,7 +481,7 @@ namespace WeaverCore.Components
             //Apply recoil if used
             if (recoil != null)
             {
-                recoil.RecoilByDirection(cardinalDirection, hit.AttackStrength);
+                recoil.RecoilByDirection(cardinalDirection, hit.RecoilStrength);
             }
             //Play Attack Effects
 
@@ -491,7 +491,7 @@ namespace WeaverCore.Components
             {
                 if (hit.AttackType == AttackTypes.Nail || hit.AttackType == AttackTypes.NailBeam)
                 {
-                    if (GainSoul)
+                    if (GainSoul && hit.GivesSoul)
                     {
                         //Cause the player to gain soul
                         player.SoulGain();
@@ -504,7 +504,7 @@ namespace WeaverCore.Components
 
             evasionTimer = EvasionTime;
 
-            Health -= hit.Damage;
+            Health -= Mathf.RoundToInt(hit.Damage * hit.AttackStrength);
         }
 
         public void AddHealthMilestone(int health, Action action)

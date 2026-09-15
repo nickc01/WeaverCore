@@ -39,26 +39,105 @@ namespace WeaverCore
                 if (_players == null)
                 {
                     _players = new System.Collections.Generic.List<Player>();
-                    _players.AddRange(GameObject.FindObjectsOfType<Player>());
-
-                    foreach (var player in _players)
+                    foreach (var player in GameObject.FindObjectsOfType<Player>())
                     {
-                        paramCache[0] = player;
-                        foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>(Initialization.GetWeaverCoreAssemblies()))
+                        // HeroController owns the game Knight's lifecycle. Registering it
+                        // during a property read would run init hooks before HeroController.Start.
+                        if (!player.UsesHeroControllerLifecycle)
                         {
-                            if (method.GetParameters().Length == 1)
-                            {
-                                method.Invoke(null, paramCache);
-                            }
-                            else
-                            {
-                                method.Invoke(null, null);
-                            }
+                            RegisterPlayer(player);
                         }
                     }
                 }
                 return _players;
             }
+        }
+
+        bool UsesHeroControllerLifecycle =>
+            Initialization.Environment == RunningState.Game && heroCtrl != null;
+
+        /// <summary>
+        /// Registers a player and invokes all <see cref="OnPlayerInitAttribute"/> callbacks.
+        /// </summary>
+        /// <remarks>
+        /// Game integrations should call this only after their native player initialization has completed.
+        /// Repeated calls for the same player are ignored.
+        /// </remarks>
+        public static bool RegisterPlayer(Player player)
+        {
+            if (player == null)
+            {
+                return false;
+            }
+
+            if (_players == null)
+            {
+                _players = new System.Collections.Generic.List<Player>();
+            }
+
+            if (!_players.AddIfNotContained(player))
+            {
+                return false;
+            }
+
+            paramCache[0] = player;
+            var methods = new List<(MethodInfo method, OnPlayerInitAttribute attribute)>(
+                ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>(
+                    Initialization.GetWeaverCoreAssemblies()
+                )
+            );
+            methods.Sort(new PriorityAttribute.MethodSorter<OnPlayerInitAttribute>());
+
+            foreach (var (method, _) in methods)
+            {
+                if (method.GetParameters().Length == 1)
+                {
+                    method.Invoke(null, paramCache);
+                }
+                else
+                {
+                    method.Invoke(null, null);
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Unregisters a player and invokes all <see cref="OnPlayerUninitAttribute"/> callbacks.
+        /// </summary>
+        /// <remarks>
+        /// Game integrations should call this only after their native player shutdown behavior has completed.
+        /// Repeated calls for the same player are ignored.
+        /// </remarks>
+        public static bool UnregisterPlayer(Player player)
+        {
+            if (player == null || _players == null || !_players.Remove(player))
+            {
+                return false;
+            }
+
+            paramCache[0] = player;
+            var methods = new List<(MethodInfo method, OnPlayerUninitAttribute attribute)>(
+                ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>(
+                    Initialization.GetWeaverCoreAssemblies()
+                )
+            );
+            methods.Sort(new PriorityAttribute.MethodSorter<OnPlayerUninitAttribute>());
+
+            foreach (var (method, _) in methods)
+            {
+                if (method.GetParameters().Length == 1)
+                {
+                    method.Invoke(null, paramCache);
+                }
+                else
+                {
+                    method.Invoke(null, null);
+                }
+            }
+
+            return true;
         }
         Player_I _impl;
 
@@ -211,101 +290,33 @@ namespace WeaverCore
 
         private void Start()
         {
-            if (Player.Players.AddIfNotContained(this))
+            if (!UsesHeroControllerLifecycle)
             {
-                paramCache[0] = this;
-                //WeaverLog.Log("P_INIT_A");
-                /*foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>(Initialization.GetWeaverCoreAssemblies()))
-				{
-					method.Invoke(null, paramCache);
-				}*/
-
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>(Initialization.GetWeaverCoreAssemblies()))
-                {
-                    if (method.GetParameters().Length == 1)
-                    {
-                        method.Invoke(null, paramCache);
-                    }
-                    else
-                    {
-                        method.Invoke(null, null);
-                    }
-                }
+                RegisterPlayer(this);
             }
         }
 
         private void OnEnable()
         {
-            if (Player.Players.AddIfNotContained(this))
+            if (!UsesHeroControllerLifecycle)
             {
-                paramCache[0] = this;
-                //WeaverLog.Log("P_INIT_B");
-                /*foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>(Initialization.GetWeaverCoreAssemblies()))
-                {
-                    method.Invoke(null, paramCache);
-                }*/
-
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerInitAttribute>(Initialization.GetWeaverCoreAssemblies()))
-                {
-                    if (method.GetParameters().Length == 1)
-                    {
-                        method.Invoke(null, paramCache);
-                    }
-                    else
-                    {
-                        method.Invoke(null, null);
-                    }
-                }
+                RegisterPlayer(this);
             }
         }
 
         private void OnDisable()
         {
-            if (Player.Players.Remove(this))
+            if (!UsesHeroControllerLifecycle)
             {
-                paramCache[0] = this;
-                //WeaverLog.Log("P_INIT_C");
-                /*foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>(Initialization.GetWeaverCoreAssemblies()))
-                {
-                    method.Invoke(null, paramCache);
-                }*/
-
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>(Initialization.GetWeaverCoreAssemblies()))
-                {
-                    if (method.GetParameters().Length == 1)
-                    {
-                        method.Invoke(null, paramCache);
-                    }
-                    else
-                    {
-                        method.Invoke(null, null);
-                    }
-                }
+                UnregisterPlayer(this);
             }
         }
 
         private void OnDestroy()
         {
-            if (Player.Players.Remove(this))
+            if (!UsesHeroControllerLifecycle)
             {
-                paramCache[0] = this;
-                //WeaverLog.Log("P_INIT_D");
-                /*foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>(Initialization.GetWeaverCoreAssemblies()))
-                {
-                    method.Invoke(null, paramCache);
-                }*/
-
-                foreach (var (method, _) in ReflectionUtilities.GetMethodsWithAttribute<OnPlayerUninitAttribute>(Initialization.GetWeaverCoreAssemblies()))
-                {
-                    if (method.GetParameters().Length == 1)
-                    {
-                        method.Invoke(null, paramCache);
-                    }
-                    else
-                    {
-                        method.Invoke(null, null);
-                    }
-                }
+                UnregisterPlayer(this);
             }
         }
 

@@ -48,12 +48,12 @@ namespace WeaverCore.Implementations
 
         [NonSerialized]
         InventoryInputManager _inputManager;
-        public InventoryInputManager InputManager => _inputManager ??= GetComponent<InventoryInputManager>();
+        public InventoryInputManager InputManager => _inputManager == null ? _inputManager = GetComponent<InventoryInputManager>() : _inputManager;
 
 
         [NonSerialized]
         InventoryPanel _panel;
-        public InventoryPanel MainPanel => _panel ??= GetComponent<InventoryPanel>();
+        public InventoryPanel MainPanel => _panel == null ? _panel = GetComponent<InventoryPanel>() : _panel;
 
         /// <summary>
         /// The main fade group that is used to fade in and out the inventory panel

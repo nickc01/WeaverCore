@@ -34,10 +34,16 @@ namespace WeaverCore.Components
         List<AudioClip> hitSounds;
 
         [SerializeField]
+        float hitVolume = 1f;
+
+        [SerializeField]
         Vector2 hitSoundPitchRange = new Vector2(0.85f, 1.15f);
 
         [SerializeField]
         List<AudioClip> breakSounds;
+
+        [SerializeField]
+        float breakVolume = 1f;
 
         [SerializeField]
         List<ParticleSystem> hitParticles;
@@ -71,6 +77,7 @@ namespace WeaverCore.Components
         [SerializeField]
         List<GameObject> hiddenWhenBroken;
 
+        public UnityEvent OnHitEvent;
         public UnityEvent<bool> OnBrokenEvent;
 
         [NonSerialized]
@@ -79,11 +86,11 @@ namespace WeaverCore.Components
 
         [NonSerialized]
         Collider2D _mainCollider;
-        public Collider2D MainCollider => _mainCollider ??= GetComponent<Collider2D>();
+        public Collider2D MainCollider => _mainCollider == null ? _mainCollider = GetComponent<Collider2D>() : _mainCollider;
 
         [NonSerialized]
         Rigidbody2D _mainRigidBody;
-        public Rigidbody2D MainRigidbody => _mainRigidBody ??= GetComponent<Rigidbody2D>();
+        public Rigidbody2D MainRigidbody => _mainRigidBody == null ? _mainRigidBody = GetComponent<Rigidbody2D>() : _mainRigidBody;
 
 
         [NonSerialized]
@@ -139,7 +146,7 @@ namespace WeaverCore.Components
         public void TakeDamage(CardinalDirection hitDirection)
         {
             {
-                var instance = WeaverAudio.PlayAtPoint(hitSounds.GetRandomElement(), transform.position);
+                var instance = WeaverAudio.PlayAtPoint(hitSounds.GetRandomElement(), transform.position, hitVolume);
                 instance.AudioSource.pitch = hitSoundPitchRange.RandomInRange();
             }
 
@@ -286,7 +293,7 @@ namespace WeaverCore.Components
             }
             foreach (var s in breakSounds)
             {
-                WeaverAudio.PlayAtPoint(s, transform.position);
+                WeaverAudio.PlayAtPoint(s, transform.position, breakVolume);
             }
 
             CameraShaker.Instance.Shake(breakShakeType);
@@ -300,12 +307,14 @@ namespace WeaverCore.Components
                 canTakeHit = false;
                 if (hit.AttackType == AttackTypes.Nail || hit.AttackType == AttackTypes.NailBeam || hit.AttackType == AttackTypes.Generic)
                 {
+                    OnHitEvent?.Invoke();
                     var strikeEffect = Pooling.Instantiate(EffectAssets.NailStrikePrefab, transform.position, Quaternion.identity);
                     strikeEffect.transform.localScale = new Vector3(1.5f, 1.5f, 0f);
                     TakeDamage(DirectionUtilities.DegreesToDirection(hit.Direction + 180f));
                 }
                 else if (hit.AttackType == AttackTypes.Spell)
                 {
+                    OnHitEvent?.Invoke();
                     Pooling.Instantiate(EffectAssets.FireballHitPrefab, transform.position, Quaternion.identity);
                     Break();
                     //TakeDamage(DirectionUtilities.DegreesToDirection(hit.Direction + 180f), 9999);

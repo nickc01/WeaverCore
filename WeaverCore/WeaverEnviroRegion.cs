@@ -1,20 +1,22 @@
-﻿using WeaverCore.Enums;
+﻿using UnityEngine;
+using WeaverCore.Enums;
 
 namespace WeaverCore
 {
     public class WeaverEnviroRegion : EnviroRegion
     {
-        public EnvironmentType EnvironmentTypeName;
+        public int EnvironmentTypeName = (int)EnvironmentType.Dust;
 
         private void Awake()
         {
-            this.environmentType = (int)EnvironmentTypeName;
+            gameObject.layer = LayerMask.NameToLayer("Hero Detector");
+            environmentType = EnvironmentTypeName;
         }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            environmentType = (int)EnvironmentTypeName;
+            environmentType = EnvironmentTypeName;
         }
 #endif
     }

@@ -36,6 +36,28 @@ namespace WeaverCore.Components
         [SerializeField]
         float breakAudioEvent_Volume;
 
+        [Tooltip("Additional audio events to play when the object breaks.")]
+        public List<AudioEvent> extraBreakSounds = new List<AudioEvent>();
+
+        [Tooltip("If enabled, only one extra break sound is chosen at random. If disabled, every extra break sound is played.")]
+        public bool extrasGetRandomlyPicked;
+
+        [HideInInspector]
+        [SerializeField]
+        AudioClip[] extraBreakSounds_Clips;
+
+        [HideInInspector]
+        [SerializeField]
+        float[] extraBreakSounds_PitchMin;
+
+        [HideInInspector]
+        [SerializeField]
+        float[] extraBreakSounds_PitchMax;
+
+        [HideInInspector]
+        [SerializeField]
+        float[] extraBreakSounds_Volume;
+
         [OnHarmonyPatch]
         static void Patch(HarmonyPatcher patcher)
         {
@@ -68,9 +90,7 @@ namespace WeaverCore.Components
             {
                 if (!isBrokenGetter(wb))
                 {
-                    //var soundPrefab = wb.breakSounds.GetRandomElement();
-                    //var soundInstance = WeaverAudio.PlayAtPoint(soundPrefab, wb.transform.position);
-                    //soundInstance.AudioSource.pitch = wb.pitchMinMax.RandomInRange();
+                    wb.PlayExtraBreakSounds();
                 }
             }
 
@@ -113,10 +133,39 @@ namespace WeaverCore.Components
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
 #if UNITY_EDITOR
-            breakAudioEvent_Clip = breakAudioEventGetter(this).Clip;
-            breakAudioEvent_PitchMin = breakAudioEventGetter(this).PitchMin;
-            breakAudioEvent_PitchMax = breakAudioEventGetter(this).PitchMax;
-            breakAudioEvent_Volume = breakAudioEventGetter(this).Volume;
+            var breakAudioEvent = breakAudioEventGetter(this);
+
+            breakAudioEvent_Clip = breakAudioEvent.Clip;
+            breakAudioEvent_PitchMin = breakAudioEvent.PitchMin;
+            breakAudioEvent_PitchMax = breakAudioEvent.PitchMax;
+            breakAudioEvent_Volume = breakAudioEvent.Volume;
+
+            if (extraBreakSounds == null || extraBreakSounds.Count == 0)
+            {
+                extraBreakSounds_Clips = Array.Empty<AudioClip>();
+                extraBreakSounds_PitchMin = Array.Empty<float>();
+                extraBreakSounds_PitchMax = Array.Empty<float>();
+                extraBreakSounds_Volume = Array.Empty<float>();
+            }
+            else
+            {
+                var soundCount = extraBreakSounds.Count;
+
+                extraBreakSounds_Clips = new AudioClip[soundCount];
+                extraBreakSounds_PitchMin = new float[soundCount];
+                extraBreakSounds_PitchMax = new float[soundCount];
+                extraBreakSounds_Volume = new float[soundCount];
+
+                for (int i = 0; i < soundCount; i++)
+                {
+                    var extraSound = extraBreakSounds[i];
+
+                    extraBreakSounds_Clips[i] = extraSound.Clip;
+                    extraBreakSounds_PitchMin[i] = extraSound.PitchMin;
+                    extraBreakSounds_PitchMax[i] = extraSound.PitchMax;
+                    extraBreakSounds_Volume[i] = extraSound.Volume;
+                }
+            }
 #endif
         }
 
@@ -132,8 +181,51 @@ namespace WeaverCore.Components
             });
 
             audioSourcePrefabSetter(this, GG_Preloads.AudioPlayerPrefab);
+
+            var soundCount = extraBreakSounds_Clips?.Length ?? 0;
+            extraBreakSounds = new List<AudioEvent>(soundCount);
+
+            for (int i = 0; i < soundCount; i++)
+            {
+                extraBreakSounds.Add(new AudioEvent()
+                {
+                    Clip = extraBreakSounds_Clips[i],
+                    PitchMin = GetArrayValue(extraBreakSounds_PitchMin, i),
+                    PitchMax = GetArrayValue(extraBreakSounds_PitchMax, i),
+                    Volume = GetArrayValue(extraBreakSounds_Volume, i)
+                });
+            }
 #endif
 
+        }
+
+        void PlayExtraBreakSounds()
+        {
+            if (extraBreakSounds == null || extraBreakSounds.Count == 0)
+            {
+                return;
+            }
+
+            if (extrasGetRandomlyPicked)
+            {
+                extraBreakSounds[UnityEngine.Random.Range(0, extraBreakSounds.Count)].SpawnAndPlayOneShot(GG_Preloads.AudioPlayerPrefab, transform.position);
+                return;
+            }
+
+            for (int i = 0; i < extraBreakSounds.Count; i++)
+            {
+                extraBreakSounds[i].SpawnAndPlayOneShot(GG_Preloads.AudioPlayerPrefab, transform.position);
+            }
+        }
+
+        static float GetArrayValue(float[] values, int index)
+        {
+            if (values == null || index < 0 || index >= values.Length)
+            {
+                return 0f;
+            }
+
+            return values[index];
         }
     }
 }

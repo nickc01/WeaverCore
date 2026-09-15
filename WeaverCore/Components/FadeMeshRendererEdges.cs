@@ -9,12 +9,12 @@ namespace WeaverCore.Components
         [NonSerialized]
         MeshRenderer _mainRenderer;
 
-        public MeshRenderer MainRenderer => _mainRenderer ??= GetComponent<MeshRenderer>();
+        public MeshRenderer MainRenderer => _mainRenderer == null ? _mainRenderer = GetComponent<MeshRenderer>() : _mainRenderer;
 
         [NonSerialized]
         MeshFilter _filter;
 
-        public MeshFilter Filter => _filter ??= GetComponent<MeshFilter>();
+        public MeshFilter Filter => _filter == null ? _filter = GetComponent<MeshFilter>() : _filter;
 
         [SerializeField]
         [Range(1,10)]

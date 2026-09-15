@@ -24,7 +24,28 @@ namespace WeaverCore.Game.Patches
             On.GameManager.OnNextLevelReady += After_FixRespawnType;
 
             //On.HeroController.Pause += HeroController_Pause;
-            //On.HeroController.UnPause += HeroController_UnPause;
+			//On.HeroController.UnPause += HeroController_UnPause;
+		}
+
+		[OnHarmonyPatch]
+		static void PatchPlayerUninitialization(HarmonyPatcher patcher)
+		{
+			var onDisable = typeof(HeroController).GetMethod(
+				"OnDisable",
+				BindingFlags.NonPublic | BindingFlags.Instance
+			);
+			var postfix = typeof(HeroController_Player).GetMethod(
+				nameof(HeroController_OnDisable_Postfix),
+				BindingFlags.NonPublic | BindingFlags.Static
+			);
+
+			if (onDisable == null)
+			{
+				WeaverLog.LogWarning("Unable to patch HeroController.OnDisable for player uninitialization");
+				return;
+			}
+
+			patcher.Patch(onDisable, null, postfix);
 		}
 
         /*private static void HeroController_UnPause(On.HeroController.orig_UnPause orig, HeroController self)
@@ -107,14 +128,16 @@ namespace WeaverCore.Game.Patches
 			}
 		}
 
-		private static IEnumerator HeroController_Respawn(On.HeroController.orig_Respawn orig, HeroController self)
-		{
-			var iter = orig(self);
-			while (iter.MoveNext())
+			private static IEnumerator HeroController_Respawn(On.HeroController.orig_Respawn orig, HeroController self)
 			{
-				yield return iter.Current;
-			}
-			var spawnPoint = self.LocateSpawnPoint();
+				var iter = orig(self);
+				if (iter != null)
+				{
+					// Yield the original state machine so other On.HeroController.Respawn hooks
+					// can still inspect and edit the underlying HeroController.Respawn enumerator.
+					yield return iter;
+				}
+				var spawnPoint = self.LocateSpawnPoint();
 
 			if (PlayerData.instance.respawnType == 1 && spawnPoint != null)
 			{
@@ -149,8 +172,20 @@ namespace WeaverCore.Game.Patches
 
 		static void HeroController_Start(On.HeroController.orig_Start orig, HeroController self)
 		{
-			self.gameObject.AddComponent<Player>();
 			orig(self);
+
+			var player = self.GetComponent<Player>();
+			if (player == null)
+			{
+				player = self.gameObject.AddComponent<Player>();
+			}
+
+			Player.RegisterPlayer(player);
+		}
+
+		static void HeroController_OnDisable_Postfix(HeroController __instance)
+		{
+			Player.UnregisterPlayer(__instance.GetComponent<Player>());
 		}
 	}
 }

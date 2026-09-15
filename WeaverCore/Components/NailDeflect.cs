@@ -20,21 +20,26 @@ namespace WeaverCore.Components
 		public bool ApplyCameraShake {get; private set;} = true;
 
 
-        public bool Hit(HitInfo hit)
-        {
+		public virtual bool Hit(HitInfo hit)
+		{
 			if ((Player.IsPartOfPlayer1(hit.Attacker.transform)) && (hit.AttackType == AttackTypes.Nail || hit.AttackType == AttackTypes.NailBeam || hit.AttackType == AttackTypes.Generic))
 			{
-                if (deflectTimer <= 0f)
-                {
-                    deflectTimer = repeatDelay;
-                    OnDeflect(hit);
-                    return true;
-                }
-            }
-            return false;
-        }
+				if (deflectTimer <= 0f)
+				{
+					deflectTimer = repeatDelay;
+					OnDeflect(hit);
+					return true;
+				}
+			}
+			return false;
+		}
 
-        private void Update()
+        protected virtual void OnEnable()
+        {
+			deflectTimer = 0f;
+		}
+
+		protected virtual void Update()
         {
             if (deflectTimer > 0f)
             {

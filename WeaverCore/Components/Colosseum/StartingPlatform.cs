@@ -26,11 +26,11 @@ namespace WeaverCore.Components.Colosseum
 
         [NonSerialized]
         SpriteRenderer _renderer;
-        public SpriteRenderer Renderer => _renderer ??= GetComponent<SpriteRenderer>();
+        public SpriteRenderer Renderer => _renderer == null ? _renderer = GetComponent<SpriteRenderer>() : _renderer;
 
         [NonSerialized]
         SpriteFlasher _flasher;
-        public SpriteFlasher Flasher => _flasher ??= GetComponent<SpriteFlasher>();
+        public SpriteFlasher Flasher => _flasher == null ? _flasher = GetComponent<SpriteFlasher>() : _flasher;
 
         private void Awake() 
         {

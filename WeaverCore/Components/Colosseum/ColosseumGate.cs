@@ -62,7 +62,7 @@ namespace WeaverCore.Components.Colosseum
 
         [NonSerialized]
         WeaverAnimationPlayer _animator;
-        public WeaverAnimationPlayer Animator => _animator ??= GetComponent<WeaverAnimationPlayer>();
+        public WeaverAnimationPlayer Animator => _animator == null ? _animator = GetComponent<WeaverAnimationPlayer>() : _animator;
 
         protected virtual void Awake()
         {
@@ -277,7 +277,7 @@ namespace WeaverCore.Components.Colosseum
 
         [NonSerialized]
         WeaverAnimationPlayer _animator;
-        public WeaverAnimationPlayer Animator => _animator ??= GetComponent<WeaverAnimationPlayer>();
+        public WeaverAnimationPlayer Animator => _animator == null ? _animator = GetComponent<WeaverAnimationPlayer>() : _animator;
 
         void Awake()
         {

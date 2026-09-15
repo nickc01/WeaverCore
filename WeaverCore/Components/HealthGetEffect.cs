@@ -40,11 +40,11 @@ namespace WeaverCore.Components
 
         [NonSerialized]
         SpriteRenderer _mainRenderer;
-        public SpriteRenderer MainRenderer => _mainRenderer ??= GetComponent<SpriteRenderer>();
+        public SpriteRenderer MainRenderer => _mainRenderer == null ? _mainRenderer = GetComponent<SpriteRenderer>() : _mainRenderer;
 
         [NonSerialized]
         WeaverAnimationPlayer _animator;
-        public WeaverAnimationPlayer Animator => _animator ??= GetComponent<WeaverAnimationPlayer>();
+        public WeaverAnimationPlayer Animator => _animator == null ? _animator = GetComponent<WeaverAnimationPlayer>() : _animator;
 
         private void OnEnable()
         {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using WeaverCore.Utilities;
 
@@ -19,6 +20,11 @@ namespace WeaverCore.Playmaker
 		{
 			return new FsmWrapper(PlayMakerUtilities.GetFsm(InternalComponent));
 		}
+
+		public FsmTemplateWrapper GetFsmTemplate()
+		{
+			return PlayMakerUtilities.GetFsmTemplateWrapper(InternalComponent);
+		}
 		
 		public string GetName()
 		{
@@ -34,6 +40,11 @@ namespace WeaverCore.Playmaker
 		{
 			PlayMakerUtilities.SendEvent(InternalComponent, eventName);
 		}
+
+		// public void WaitForInit(Action action)
+		// {
+		// 	PlayMakerUtilities.WaitForInit(InternalComponent, action);
+		// }
 
 		public override bool Equals(object obj)
 		{

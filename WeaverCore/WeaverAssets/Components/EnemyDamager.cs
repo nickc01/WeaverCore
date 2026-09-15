@@ -39,7 +39,14 @@ namespace WeaverCore.Assets.Components
 
         public float AttackStrength = 1f;
 
+        public float RecoilStrength = 1f;
+
 		public float ContinousHitRate = 0.2f;
+
+		/// <summary>
+		/// Whether hits from this damager should award soul when the target would normally grant it.
+		/// </summary>
+		public bool GivesSoul = true;
 
 		const int DEFAULT_RECURSION_DEPTH = 3;
 
@@ -153,8 +160,8 @@ namespace WeaverCore.Assets.Components
             var angle = VectorUtilities.VectorToDegrees(hitVector);
 			
 			//WeaverLog.Log("Attemping Damage to Object = " + obj);
-            var hits = EnemyHealthUtilities.DealDamage(obj, gameObject, damage, attackType, angle, AttackStrength);
-			var extras = EnemyHealthUtilities.TriggerOtherHittables(obj, gameObject, damage, attackType, angle, AttackStrength);
+            var hits = EnemyHealthUtilities.DealDamage(obj, gameObject, damage, attackType, angle, AttackStrength, GivesSoul, RecoilStrength);
+			var extras = EnemyHealthUtilities.TriggerOtherHittables(obj, gameObject, damage, attackType, angle, AttackStrength, RecoilStrength);
             if (attackType == AttackTypes.Acid)
             {
                 EventManager.SendEventToGameObject("ACID", collider.gameObject, gameObject);

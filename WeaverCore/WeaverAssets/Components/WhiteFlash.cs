@@ -34,13 +34,15 @@ namespace WeaverCore.Assets.Components
 		public float StayTime = 0f;
 		public float FadeOutTime = 0f;
 		public Color FlashColor;
+        public bool UseCustomAwakeColor = false;
+        public Color CustomAwakeColor = Color.white;
 		public OnDoneBehaviour OnDone = OnDoneBehaviour.DestroyOrPool;
 
 
         //SpriteRenderer sprite;
         [NonSerialized]
         SpriteRenderer _mainRenderer;
-        public SpriteRenderer MainRenderer => _mainRenderer ??= GetComponent<SpriteRenderer>();
+        public SpriteRenderer MainRenderer => _mainRenderer == null ? _mainRenderer = GetComponent<SpriteRenderer>() : _mainRenderer;
 
         public Color SpriteColor
 		{
@@ -52,9 +54,16 @@ namespace WeaverCore.Assets.Components
 		{
 			MainRenderer.color = default;
 			
-			if (FadeInTime <= 0)
+			if (FadeInTime <= 0 || UseCustomAwakeColor)
 			{
-				MainRenderer.color = FlashColor;
+                if (UseCustomAwakeColor)
+                {
+					MainRenderer.color = CustomAwakeColor;
+                }
+            	else
+				{
+					MainRenderer.color = FlashColor;
+				}
 			}
 		}
 

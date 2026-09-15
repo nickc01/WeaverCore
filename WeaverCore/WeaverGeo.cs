@@ -153,10 +153,10 @@ namespace WeaverCore
         System.Collections.Generic.List<int> size_value = new System.Collections.Generic.List<int>();
 
         WeaverAnimationPlayer _weaver_anim;
-        WeaverAnimationPlayer Weaver_Anim => _weaver_anim ??= GetComponent<WeaverAnimationPlayer>();
+        WeaverAnimationPlayer Weaver_Anim => _weaver_anim == null ? _weaver_anim = GetComponent<WeaverAnimationPlayer>() : _weaver_anim;
 
         SpriteFlasher _weaver_flash;
-        SpriteFlasher Weaver_Flash => _weaver_flash ??= GetComponent<SpriteFlasher>();
+        SpriteFlasher Weaver_Flash => _weaver_flash == null ? _weaver_flash = GetComponent<SpriteFlasher>() : _weaver_flash;
 
         static Func<GeoControl, Size> sizeGetter;
 

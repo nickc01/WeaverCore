@@ -1,7 +1,8 @@
-using Modding;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using Modding;
 using UnityEngine;
 using WeaverCore.Assets.Components;
 using WeaverCore.Attributes;
@@ -14,23 +15,30 @@ namespace WeaverCore.Utilities
     /// </summary>
     public static class CharmUtilities
     {
-        static Dictionary<int, IWeaverCharm> addedCustomCharms = new Dictionary<int, IWeaverCharm>();
+        static Dictionary<int, IWeaverCharm> addedCustomCharms =
+            new Dictionary<int, IWeaverCharm>();
 
         static Dictionary<IWeaverCharm, int> charmsToID = new Dictionary<IWeaverCharm, int>();
 
         static HashSet<IWeaverCharm> disabledCharms = new HashSet<IWeaverCharm>();
 
-#if UNITY_EDITOR
-        static int editor_counter = 0;
-#else
         static Assembly sfCoreAssembly;
+
+#if UNITY_EDITOR
+        static int editor_counter = 40;
+#else
+        static Type charmHelper;
         delegate List<int> AddSpritesDelegate(params Sprite[] charmSprites);
 
         static AddSpritesDelegate AddSprites;
+        static FieldInfo customSprites;
 #endif
 
+        public static Assembly SFCoreAssembly =>
+            sfCoreAssembly ??= ReflectionUtilities.FindLoadedAssembly("SFCore");
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="charm">The charm to add</param>
         /// <param name="charmSprite">The sprite of the charm</param>
@@ -42,7 +50,9 @@ namespace WeaverCore.Utilities
         {
             if (CharmRegistered(charm))
             {
-                throw new System.Exception($"The charm \"{charm.Name}\" : {charm.GetType()} is being added multiple times");
+                throw new System.Exception(
+                    $"The charm \"{charm.Name}\" : {charm.GetType()} is being added multiple times"
+                );
             }
 #if UNITY_EDITOR
             int id = ++editor_counter;
@@ -58,33 +68,161 @@ namespace WeaverCore.Utilities
                 sfCoreAssembly = ReflectionUtilities.FindLoadedAssembly("SFCore");
                 if (sfCoreAssembly == null)
                 {
-                    throw new System.Exception("Attempting to add a charm without SFCore installed. Install SFCore to fix this issue");
+                    throw new System.Exception(
+                        "Attempting to add a charm without SFCore installed. Install SFCore to fix this issue"
+                    );
                 }
+            }
 
-                var charmHelper = sfCoreAssembly.GetType("SFCore.CharmHelper");
+            if (charmHelper == null)
+            {
+                charmHelper = sfCoreAssembly.GetType("SFCore.CharmHelper");
 
                 if (charmHelper == null)
                 {
                     throw new System.Exception("Unable to find the CharmHelper class");
                 }
+            }
 
+            if (AddSprites == null)
+            {
                 var addSpritesMethod = charmHelper.GetMethod("AddSprites");
 
                 if (addSpritesMethod == null)
                 {
-                    throw new System.Exception("Unable to find the AddSprites method on the CharmHelper class");
+                    throw new System.Exception(
+                        "Unable to find the AddSprites method on the CharmHelper class"
+                    );
                 }
 
-                AddSprites = ReflectionUtilities.MethodToDelegate<AddSpritesDelegate>(addSpritesMethod);
+                AddSprites = ReflectionUtilities.MethodToDelegate<AddSpritesDelegate>(
+                    addSpritesMethod
+                );
             }
 
             var ids = AddSprites(charmSprite);
 
             addedCustomCharms.Add(ids[0], charm);
             charmsToID.Add(charm, ids[0]);
-            Debug.Log($"Registered Charm {charm.GetType().FullName} - {ids[0]}");
+            WeaverLog.Log($"Registered Charm {charm.GetType().FullName} - {ids[0]}");
 
             return ids[0];
+#endif
+        }
+
+        public static IEnumerable<int> GetAllActiveSFCoreCharmIDs()
+        {
+            var startCharmID = 40;
+            int endCharmID;
+#if UNITY_EDITOR
+            endCharmID = editor_counter;
+#else
+            if (sfCoreAssembly == null)
+            {
+                sfCoreAssembly = ReflectionUtilities.FindLoadedAssembly("SFCore");
+                if (sfCoreAssembly == null)
+                {
+                    throw new System.Exception(
+                        "Attempting to add a charm without SFCore installed. Install SFCore to fix this issue"
+                    );
+                }
+            }
+
+            if (charmHelper == null)
+            {
+                charmHelper = sfCoreAssembly.GetType("SFCore.CharmHelper");
+
+                if (charmHelper == null)
+                {
+                    throw new System.Exception("Unable to find the CharmHelper class");
+                }
+            }
+
+            if (customSprites == null)
+            {
+                customSprites = charmHelper.GetField(
+                    "CustomSprites",
+                    BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Public
+                );
+
+                if (customSprites == null)
+                {
+                    throw new System.Exception(
+                        "Unable to find the CustomSprites field on the CharmHelper class"
+                    );
+                }
+            }
+
+            endCharmID = startCharmID + (customSprites.GetValue(null) as List<Sprite>).Count + 1;
+#endif
+            List<int> disabledCharmIDs = disabledCharms
+                .Select(c => c != null && charmsToID.TryGetValue(c, out var charmID) ? charmID : -1)
+                .ToList();
+            for (int i = startCharmID + 1; i < endCharmID; i++)
+            {
+                if (!disabledCharmIDs.Contains(i))
+                {
+                    yield return i;
+                }
+            }
+        }
+
+        public static Sprite GetSpriteForCharmID(int id)
+        {
+#if UNITY_EDITOR
+            var charm = GetLoadedCharms().FirstOrDefault(c => c != null && charmsToID.TryGetValue(c, out var cID) && cID == id);
+
+            if (charm != null)
+            {
+                return charm.CharmSprite;
+            }
+
+            return null;
+#else
+            if (sfCoreAssembly == null)
+            {
+                sfCoreAssembly = ReflectionUtilities.FindLoadedAssembly("SFCore");
+                if (sfCoreAssembly == null)
+                {
+                    throw new System.Exception(
+                        "Attempting to add a charm without SFCore installed. Install SFCore to fix this issue"
+                    );
+                }
+            }
+
+            if (charmHelper == null)
+            {
+                charmHelper = sfCoreAssembly.GetType("SFCore.CharmHelper");
+
+                if (charmHelper == null)
+                {
+                    throw new System.Exception("Unable to find the CharmHelper class");
+                }
+            }
+
+            if (customSprites == null)
+            {
+                customSprites = charmHelper.GetField(
+                    "CustomSprites",
+                    BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Public
+                );
+
+                if (customSprites == null)
+                {
+                    throw new System.Exception(
+                        "Unable to find the CustomSprites field on the CharmHelper class"
+                    );
+                }
+            }
+            var customSpritesList = customSprites.GetValue(null) as List<Sprite>;
+
+            var customIndex = id - 41;
+            if (customSpritesList != null && customIndex >= 0 && customIndex < customSpritesList.Count)
+            {
+                return customSpritesList[customIndex];
+            }
+
+            return null;
 #endif
         }
 
@@ -95,11 +233,36 @@ namespace WeaverCore.Utilities
 
         public static int GetCustomCharmID(IWeaverCharm charm)
         {
-            if (charmsToID.TryGetValue(charm, out var id))
+            charm = ResolveToRegisteredCharm(charm);
+            if (charm != null && charmsToID.TryGetValue(charm, out var id))
             {
                 return id;
             }
             return -1;
+        }
+
+        public static IWeaverCharm ResolveToRegisteredCharm(IWeaverCharm charm)
+        {
+            if (charm == null)
+            {
+                return null;
+            }
+
+            if (charmsToID.ContainsKey(charm))
+            {
+                return charm;
+            }
+
+            var charmType = charm.GetType();
+            foreach (var registeredCharm in Registry.GetAllFeatures<IWeaverCharm>())
+            {
+                if (registeredCharm != null && registeredCharm.GetType() == charmType)
+                {
+                    return registeredCharm;
+                }
+            }
+
+            return charm;
         }
 
         public static IEnumerable<IWeaverCharm> GetLoadedCharms()
@@ -138,7 +301,7 @@ namespace WeaverCore.Utilities
 
             return false;
         }
-        
+
         public static int GetLoadedCharmCount()
         {
             int count = 0;
@@ -155,8 +318,6 @@ namespace WeaverCore.Utilities
         [OnFeatureLoad(priority: int.MinValue)]
         static void OnCharmLoad(IWeaverCharm charm)
         {
-            //sWeaverLog.Log($"LOADING CHARM {charm.GetType()}");
-
             if (disabledCharms.Contains(charm))
             {
                 disabledCharms.Remove(charm);
@@ -169,7 +330,9 @@ namespace WeaverCore.Utilities
                 }
                 catch (Exception e)
                 {
-                    WeaverLog.LogError($"Error: Failed to instantiate charm \"{charm.GetType().FullName}\". Make sure it has a default constructor");
+                    WeaverLog.LogError(
+                        $"Error: Failed to instantiate charm \"{charm.GetType().FullName}\". Make sure it has a default constructor"
+                    );
                     WeaverLog.LogException(e);
                 }
             }
@@ -195,9 +358,18 @@ namespace WeaverCore.Utilities
             return disabledCharms.Contains(charm);
         }
 
-        static bool TryParseCharm(string key, string strToFind, out int charmNumber, out IWeaverCharm charm)
+        static bool TryParseCharm(
+            string key,
+            string strToFind,
+            out int charmNumber,
+            out IWeaverCharm charm
+        )
         {
-            if (key.TryFind(strToFind, out _, out var end) && int.TryParse(key.Substring(end), out charmNumber) && addedCustomCharms.TryGetValue(charmNumber, out charm))
+            if (
+                key.TryFind(strToFind, out _, out var end)
+                && int.TryParse(key.Substring(end), out charmNumber)
+                && addedCustomCharms.TryGetValue(charmNumber, out charm)
+            )
             {
                 return true;
             }
@@ -225,6 +397,11 @@ namespace WeaverCore.Utilities
         private static bool ModHooks_SetPlayerBoolHook(string name, bool newValue)
         {
             IWeaverCharm charm;
+
+            if (name.Contains("equippedCharm_"))
+            {
+                WeaverLog.Log("RECEIVED EQUIPPED CHARM CALL = " + name + " with value = " + newValue);
+            }
 
             if (TryParseCharm(name, "gotCharm_", out _, out charm))
             {
@@ -254,6 +431,7 @@ namespace WeaverCore.Utilities
 
             if (TryParseCharm(name, "equippedCharm_", out _, out charm))
             {
+                WeaverLog.Log($"Setting Equipped Charm = [Name = {name}, Type = equippedCharm_, charm = {charm.GetType().FullName}]");
                 if (CharmDisabled(charm))
                 {
                     return newValue;
@@ -329,13 +507,13 @@ namespace WeaverCore.Utilities
 
         public static bool GiveCharmToPlayer(IWeaverCharm charm, bool displayCollectMessage = true)
         {
-            //WeaverLog.Log($"GIVING CHARM {charm} to player");
-            return GiveCharmToPlayer(GetCustomCharmID(charm), displayCollectMessage);
+            charm = ResolveToRegisteredCharm(charm);
+            var charmID = GetCustomCharmID(charm);
+            return GiveCharmToPlayer(charmID, displayCollectMessage);
         }
 
         public static bool GiveCharmToPlayer(int charmID, bool displayCollectMessage = true)
         {
-            //WeaverLog.Log($"GIVING CHARM ID {charmID} to player");
             bool alreadyCollected = false;
             if (PlayerData.instance.GetBool($"gotCharm_{charmID}") == true)
             {
@@ -360,15 +538,9 @@ namespace WeaverCore.Utilities
 
             if (displayCollectMessage)
             {
-                //WeaverLog.Log("SPAWNING COLLECT MESSAGE");
                 ItemGetMessage.SpawnCharm(charmID);
             }
-            //else
-            //{
-                //WeaverLog.Log("NOT SPAWNING COLLECT MESSAGE");
-            //}
             return alreadyCollected;
         }
     }
-
 }

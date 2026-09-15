@@ -14,16 +14,16 @@ namespace WeaverCore.Assets.Components
         static CachedPrefab<MantisShot> cachedPrefab = new CachedPrefab<MantisShot>();
 
         BoxCollider2D _mainCollider;
-        public BoxCollider2D MainCollider => _mainCollider ??= GetComponent<BoxCollider2D>();
+        public BoxCollider2D MainCollider => _mainCollider == null ? _mainCollider = GetComponent<BoxCollider2D>() : _mainCollider;
 
         Rigidbody2D _rb;
-        public Rigidbody2D RB => _rb ??= GetComponent<Rigidbody2D>();
+        public Rigidbody2D RB => _rb == null ? _rb = GetComponent<Rigidbody2D>() : _rb;
 
         WeaverAnimationPlayer _animator;
-        public WeaverAnimationPlayer Animator => _animator ??= GetComponent<WeaverAnimationPlayer>();
+        public WeaverAnimationPlayer Animator => _animator == null ? _animator = GetComponent<WeaverAnimationPlayer>() : _animator;
 
         AudioPlayer _audio;
-        public AudioPlayer Audio => _audio ??= GetComponent<AudioPlayer>();
+        public AudioPlayer Audio => _audio == null ? _audio = GetComponent<AudioPlayer>() : _audio;
 
         /// <summary>
         /// The amount of force that is applied on the y-axis when the mantis shot reaches the player

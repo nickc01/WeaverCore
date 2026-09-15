@@ -94,6 +94,15 @@ namespace WeaverCore.Editor.Compilation
         }
 
         /// <summary>
+        /// Called after Unity has built a batch of asset bundles, but before they get embedded into the final assemblies.
+        /// Returns false if the build should stop.
+        /// </summary>
+        public virtual bool BeforeBundlesEmbedded(List<BuiltAssetBundle> builtBundles)
+        {
+            return true;
+        }
+
+        /// <summary>
         /// After all the assemblies have been build, the names of these assemblies will get changed. This is useful for making sure assetbundles point to the right assemblies when finding scripts
         /// </summary>
         public virtual void ChangeAssemblyNames(Dictionary<string, string> assemblyNamesToChange)

@@ -8,7 +8,7 @@ namespace WeaverCore.Components.Colosseum
     {
         [NonSerialized]
         Collider2D _trigger;
-        public Collider2D Trigger => _trigger ??= GetComponent<Collider2D>();
+        public Collider2D Trigger => _trigger == null ? _trigger = GetComponent<Collider2D>() : _trigger;
 
         string IColosseumIdentifier.Identifier => "Colosseum Zones";
 

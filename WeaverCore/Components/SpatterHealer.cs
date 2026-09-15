@@ -25,7 +25,7 @@ namespace WeaverCore.Components
 
         [NonSerialized]
         Rigidbody2D _rigidbody;
-        public Rigidbody2D Rigidbody2D => _rigidbody ??= GetComponent<Rigidbody2D>();
+        public Rigidbody2D Rigidbody2D => _rigidbody == null ? _rigidbody = GetComponent<Rigidbody2D>() : _rigidbody;
 
         GameObject healthGetEffect;
 

@@ -621,7 +621,7 @@ public class GameManager : MonoBehaviour
 
     public void CalculateNotchesUsed()
     {
-        //this.playerData.CalculateNotchesUsed();
+        this.playerData.CalculateNotchesUsed();
     }
 
     public string GetLanguageAsString()

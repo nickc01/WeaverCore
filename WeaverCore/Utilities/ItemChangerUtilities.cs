@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Reflection;
+using UnityEngine;
 
 namespace WeaverCore.Utilities
 {
@@ -143,6 +144,64 @@ namespace WeaverCore.Utilities
                 WeaverLog.LogError($"ItemChanger GetItem failed for \"{itemName}\":\n{e}");
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Attempts to give an ItemChanger item directly by name, without creating a hard dependency.
+        /// </summary>
+        /// <param name="itemName">The ItemChanger item name to look up.</param>
+        /// <param name="transform">Optional transform used for fling-style item effects.</param>
+        /// <param name="containerType">The container context passed to ItemChanger. Defaults to Unknown.</param>
+        /// <param name="messageType">The allowed ItemChanger message type. Defaults to Any.</param>
+        /// <param name="flingType">The allowed ItemChanger fling behavior. Defaults to DirectDeposit.</param>
+        public static bool TryGiveItem(string itemName, Transform transform = null, string containerType = "Unknown", string messageType = "Any", string flingType = "DirectDeposit")
+        {
+            if (!IsAvailable || string.IsNullOrWhiteSpace(itemName))
+            {
+                return false;
+            }
+
+            if (!TryGetItem(itemName, out var item) || item == null)
+            {
+                WeaverLog.LogWarning($"ItemChanger item \"{itemName}\" could not be found.");
+                return false;
+            }
+
+            try
+            {
+                var giveInfoType = ItemChangerAssembly?.GetType("ItemChanger.GiveInfo");
+                if (giveInfoType == null)
+                {
+                    WeaverLog.LogWarning("ItemChanger GiveInfo type could not be located.");
+                    return false;
+                }
+
+                var giveInfo = Activator.CreateInstance(giveInfoType);
+                TrySetProperty(giveInfo, "Container", containerType);
+                TrySetEnumProperty(giveInfo, "FlingType", "ItemChanger.FlingType", flingType);
+                TrySetProperty(giveInfo, "Transform", transform);
+                TrySetEnumProperty(giveInfo, "MessageType", "ItemChanger.MessageType", messageType);
+
+                var giveMethod = item.GetType().GetMethod("Give", BindingFlags.Public | BindingFlags.Instance, null, new[] { AbstractPlacementType, giveInfoType }, null);
+                if (giveMethod == null)
+                {
+                    WeaverLog.LogWarning($"ItemChanger Give method could not be located on item type \"{item.GetType().FullName}\".");
+                    return false;
+                }
+
+                giveMethod.Invoke(item, new[] { null, giveInfo });
+                return true;
+            }
+            catch (TargetInvocationException e)
+            {
+                WeaverLog.LogError($"ItemChanger Give threw an exception for \"{itemName}\":\n{e.InnerException ?? e}");
+            }
+            catch (Exception e)
+            {
+                WeaverLog.LogError($"ItemChanger Give failed for \"{itemName}\":\n{e}");
+            }
+
+            return false;
         }
 
         /// <summary>

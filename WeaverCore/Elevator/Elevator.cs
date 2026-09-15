@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using WeaverCore.Components;
 using WeaverCore.Utilities;
 
@@ -63,6 +64,10 @@ namespace WeaverCore.Elevator
 
         Coroutine movementRoutine;
         Coroutine playerLockRoutine;
+
+        [SerializeField]
+        [FormerlySerializedAs("audioActivationDelay")]
+        float activationSoundDelay = 0f;
 
         [SerializeField]
         float lockOffset = 2.470994f;
@@ -388,7 +393,7 @@ namespace WeaverCore.Elevator
 
         protected virtual IEnumerator ElevatorMovementRoutine(ElevatorInfo info)
         {
-            if (!SilentMode && info.DoActivateSound && LiftActivateSound != null)
+            if (!SilentMode && info.DoActivateSound && LiftActivateSound != null && (activationSoundDelay <= 0f || Time.time >= startTime + activationSoundDelay))
             {
                 var instance = WeaverAudio.PlayAtPoint(LiftActivateSound, transform.position);
                 instance.AudioSource.pitch = LiftActivateSoundPitchRange.RandomInRange();

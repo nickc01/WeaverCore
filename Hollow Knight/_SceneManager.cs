@@ -149,6 +149,11 @@ public class SceneManager : MonoBehaviour
 			{
 				enviroTimer += Time.deltaTime;
 			}
+			else if (!enviroSent && heroCtrl != null)
+			{
+				heroCtrl.checkEnvironment();
+				enviroSent = true;
+			}
 			if (!setSaturation)
 			{
 				if (AdjustSaturation(saturation) != gc.colorCorrectionCurves.saturation)

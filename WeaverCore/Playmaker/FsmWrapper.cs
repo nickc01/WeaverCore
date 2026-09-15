@@ -23,6 +23,11 @@ namespace WeaverCore.Playmaker
             return states.Select(s => new FsmStateWrapper(s)).ToArray();
         }
 
+        public FsmTemplateWrapper GetFsmTemplate()
+        {
+            return PlayMakerUtilities.GetFsmTemplateWrapper(this);
+        }
+
         public FsmStateWrapper GetState(string stateName)
         {
             //WeaverLog.Log($"GET State - Internal FSM = {(InternalFsm?.GetType().Name ?? "null")}");

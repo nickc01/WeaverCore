@@ -898,6 +898,60 @@ namespace WeaverCore.Editor.Compilation
 		/// <summary>
 		/// Called when a mod assembly build is completed
 		/// </summary>
+		static FileInfo FindHollowKnightExecutable(DirectoryInfo installDirectory)
+		{
+			if (installDirectory == null || !installDirectory.Exists)
+			{
+				return null;
+			}
+
+			switch (NativeLibraryLoader.GetCurrentOS())
+			{
+				case NativeLibraryLoader.OS.Windows:
+					return installDirectory.GetFiles("*.exe").FirstOrDefault(file =>
+						file.Name.IndexOf("hollow", StringComparison.OrdinalIgnoreCase) >= 0 &&
+						file.Name.IndexOf("knight", StringComparison.OrdinalIgnoreCase) >= 0);
+
+				case NativeLibraryLoader.OS.Mac:
+					var macOSDirectory = new DirectoryInfo(Path.Combine(installDirectory.FullName, "Contents", "MacOS"));
+					return macOSDirectory.Exists ? macOSDirectory.GetFiles().FirstOrDefault(file =>
+						file.Name.Equals("hollow_knight", StringComparison.OrdinalIgnoreCase) ||
+						(file.Name.IndexOf("hollow", StringComparison.OrdinalIgnoreCase) >= 0 &&
+						 file.Name.IndexOf("knight", StringComparison.OrdinalIgnoreCase) >= 0)) : null;
+
+				case NativeLibraryLoader.OS.Linux:
+					return installDirectory.GetFiles().FirstOrDefault(file =>
+						file.Name.Equals("hollow_knight.x86_64", StringComparison.OrdinalIgnoreCase));
+			}
+
+			return null;
+		}
+
+		static void StartHollowKnight()
+		{
+			var installLocation = GameBuildSettings.Settings.HollowKnightLocation;
+			var executable = string.IsNullOrEmpty(installLocation) ? null : FindHollowKnightExecutable(new DirectoryInfo(installLocation));
+			if (executable == null)
+			{
+				Debug.LogError("Could not find the Hollow Knight executable. Check the Hollow Knight Location in WeaverCore/Settings/General Settings.");
+				return;
+			}
+
+			try
+			{
+				System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+				{
+					FileName = executable.FullName,
+					WorkingDirectory = executable.DirectoryName,
+					UseShellExecute = false
+				});
+			}
+			catch (Exception e)
+			{
+				Debug.LogError($"Could not start Hollow Knight at {executable.FullName}: {e.Message}");
+			}
+		}
+
 		public static void OnBuildFinish()
 		{
             Action onPostBuildSuccess = () =>
@@ -905,70 +959,7 @@ namespace WeaverCore.Editor.Compilation
                 if (BuildScreen.BuildSettings.StartGame)
                 {
                     Debug.Log("<b>Starting Game</b>");
-
-					if (NativeLibraryLoader.GetCurrentOS() == NativeLibraryLoader.OS.Windows)
-					{
-						var exeDir = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
-
-						var exes = exeDir.EnumerateFileSystemInfos("*.exe", SearchOption.TopDirectoryOnly);
-
-						foreach (var hkEXE in exes)
-						{
-							if (hkEXE.Name.ToLower().Contains("hollow") && hkEXE.Name.ToLower().Contains("knight"))
-							{
-								if (hkEXE.FullName.Contains("steamapps"))
-								{
-									var steamDirectory = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
-									while (steamDirectory.Name != "Steam")
-									{
-										steamDirectory = steamDirectory.Parent;
-										if (steamDirectory == null)
-										{
-											break;
-										}
-									}
-									if (steamDirectory != null)
-									{
-										System.Diagnostics.Process.Start(steamDirectory.FullName + "\\steam.exe", "steam://rungameid/367520");
-										return;
-									}
-								}
-								System.Diagnostics.Process.Start(hkEXE.FullName);
-								return;
-							}
-						}
-					}
-					else {
-						var parent = new DirectoryInfo(GameBuildSettings.Settings.HollowKnightLocation);
-
-						var hkExecutable = parent.GetFiles("hollow_knight.x86_64").FirstOrDefault();
-
-						if (hkExecutable != null)
-						{
-							//Stop any existing Hollow Knight instance if any
-							System.Diagnostics.Process.Start("killall", hkExecutable.Name);
-							System.Diagnostics.Process.Start(hkExecutable.FullName);
-						}
-						else
-						{
-							while (parent != null) {
-								if (parent.Name == "Steam")
-								{
-									var steamExe = parent.EnumerateFileSystemInfos("*.sh", SearchOption.TopDirectoryOnly).FirstOrDefault(e => e.Name == "steam.sh");
-
-									if (steamExe != null) {
-										System.Diagnostics.Process.Start(steamExe.FullName, "steam://rungameid/367520");
-									}
-
-									return;
-								}
-								else 
-								{
-									parent = parent.Parent;
-								}
-							}
-						}
-					}
+					StartHollowKnight();
                 }
 
                 DependencyChecker.CheckDependencies();

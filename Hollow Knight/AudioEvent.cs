@@ -44,8 +44,6 @@ public struct AudioEvent
 
             }
 
-            Debug.Log("SOUND = " + Clip.name);
-
             var instance = playAtPointMethod.Invoke(null, new object[] {Clip, position, Volume, 2});
 
             if (audioSourceProperty == null)

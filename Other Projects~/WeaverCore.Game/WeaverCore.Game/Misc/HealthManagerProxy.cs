@@ -21,6 +21,12 @@ public class HealthManagerProxy : HealthManager
 
 	int previousHP;
 
+	/// <summary>Raised after any HealthManager has completed its Awake handling.</summary>
+	public static event Action<GameObject> HealthManagerAwake;
+
+	/// <summary>Raised after any HealthManager has completed its OnEnable handling.</summary>
+	public static event Action<GameObject> HealthManagerEnabled;
+
 	static MethodInfo GetProxyMethod(string name)
 	{
 		return typeof(HealthManagerProxy).GetMethod(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
@@ -40,7 +46,6 @@ public class HealthManagerProxy : HealthManager
 		On.HealthManager.GetIsDead += HealthManager_GetIsDead;
 		On.HealthManager.CheckInvincible += HealthManager_CheckInvincible;
 		On.SetHP.OnEnter += SetHP_OnEnter;
-		//On.HealthManager.CheckPersistence += HealthManager_CheckPersistence;
 
 		var invisProp = typeof(HealthManager).GetProperty("IsInvincible");
 
@@ -275,6 +280,13 @@ public class HealthManagerProxy : HealthManager
 		}
 		else
 		{
+			var hitInfo = Misc.ConvertHitInstance(hitInstance, self.transform);
+			EnemyHealthUtilities.ApplyEnemyDamageModifier(self.gameObject, ref hitInfo);
+
+			hitInstance.AttackType = (AttackTypes)(int)hitInfo.AttackType;
+			hitInstance.DamageDealt = hitInfo.Damage;
+			hitInstance.IgnoreInvulnerable = hitInfo.IgnoreInvincible;
+			hitInstance.MagnitudeMultiplier = hitInfo.AttackStrength;
 			orig(self,hitInstance);
 		}
 	}
@@ -285,6 +297,7 @@ public class HealthManagerProxy : HealthManager
 		{
 			orig(self);
 		}
+		HealthManagerEnabled?.Invoke(self.gameObject);
 	}
 
 	private static void HealthManager_Awake(On.HealthManager.orig_Awake orig, HealthManager self)
@@ -298,6 +311,7 @@ public class HealthManagerProxy : HealthManager
 		{
 			orig(self);
 		}
+		HealthManagerAwake?.Invoke(self.gameObject);
 	}
 
 	static bool InvisGetPrefix(ref bool __result, HealthManager __instance)
@@ -376,4 +390,3 @@ public class HealthManagerProxy : HealthManager
 		}
 	}
 }
-

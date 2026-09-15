@@ -11,7 +11,7 @@ namespace WeaverCore.Components
 		[NonSerialized]
 		SpriteRenderer _mainRenderer;
 
-		public SpriteRenderer MainRenderer => _mainRenderer ??= GetComponent<SpriteRenderer>();
+		public SpriteRenderer MainRenderer => _mainRenderer == null ? _mainRenderer = GetComponent<SpriteRenderer>() : _mainRenderer;
 
 		[NonSerialized]
 		Sprite prevSprite;

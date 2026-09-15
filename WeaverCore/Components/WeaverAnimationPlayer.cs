@@ -374,7 +374,7 @@ namespace WeaverCore.Components
 			}
 			else
 			{
-				onAnimationDone = s => OnDone();
+				onAnimationDone = s => OnDone?.Invoke();
 			}
 		}
 
@@ -399,6 +399,11 @@ namespace WeaverCore.Components
 					yield return null;
 				}
 			}
+		}
+
+		public void PlayAnimationSimple(string clipName)
+		{
+			PlayAnimation(clipName);
 		}
 
 		/// <summary>

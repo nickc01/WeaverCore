@@ -1,24 +1,14 @@
 ﻿using UnityEditor;
 using WeaverCore.Components;
+using WeaverCore.Utilities;
 
 [CustomEditor(typeof(WeaverSceneManager))]
 public class WeaverSceneManagerEditor : Editor
 {
-	//Set environment type on scene entry. 0 = Dust, 1 = Grass, 2 = Bone, 3 = Spa, 4 = Metal, 5 = No Effect, 6 = Wet
-	enum EnvironmentType
-	{
-		Dust = 0,
-		Grass = 1,
-		Bone = 2,
-		Spa = 3,
-		Metal = 4,
-		NoEffect = 5,
-		Wet = 6,
-	}
-
-
 	public override void OnInspectorGUI()
 	{
+		serializedObject.UpdateIfRequiredOrScript();
+
 		using (new EditorGUI.DisabledScope(true))
 		{
 			EditorGUILayout.PropertyField(serializedObject.FindProperty("m_Script"), true);
@@ -50,7 +40,12 @@ public class WeaverSceneManagerEditor : Editor
 
 			if (iterator.name == "environmentType")
 			{
-				iterator.intValue = (int)(EnvironmentType)EditorGUILayout.EnumPopup("Environment Type", (EnvironmentType)iterator.intValue);
+				EditorGUI.BeginChangeCheck();
+				var newValue = EnvironmentTypeEditorUtilities.DrawEnvironmentTypePopup("Environment Type", iterator.intValue);
+				if (EditorGUI.EndChangeCheck())
+				{
+					iterator.intValue = newValue;
+				}
 				continue;
 			}
 			EditorGUILayout.PropertyField(iterator, true);
@@ -60,3 +55,40 @@ public class WeaverSceneManagerEditor : Editor
 	}
 }
 
+internal static class EnvironmentTypeEditorUtilities
+{
+	public static int DrawEnvironmentTypePopup(string label, int currentValue)
+	{
+		EnvironmentTypeUtilities.GetAllEnvironmentTypes(out var environmentIndexes, out var environmentNames);
+
+		bool foundCurrentValue = false;
+		for (int i = 0; i < environmentIndexes.Length; i++)
+		{
+			if (environmentIndexes[i] == currentValue)
+			{
+				foundCurrentValue = true;
+				break;
+			}
+		}
+
+		if (!foundCurrentValue)
+		{
+			var newIndexes = new int[environmentIndexes.Length + 1];
+			var newNames = new string[environmentNames.Length + 1];
+
+			for (int i = 0; i < environmentIndexes.Length; i++)
+			{
+				newIndexes[i] = environmentIndexes[i];
+				newNames[i] = environmentNames[i];
+			}
+
+			newIndexes[newIndexes.Length - 1] = currentValue;
+			newNames[newNames.Length - 1] = $"Environment {currentValue}";
+
+			environmentIndexes = newIndexes;
+			environmentNames = newNames;
+		}
+
+		return EditorGUILayout.IntPopup(label, currentValue, environmentNames, environmentIndexes);
+	}
+}

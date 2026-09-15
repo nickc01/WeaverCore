@@ -1,8 +1,6 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,9 +14,6 @@ public static class SceneLoad_Patches
     // Field getters
     static Func<SceneLoad, MonoBehaviour> getRunner;
     static Func<SceneLoad, string> getTargetSceneName;
-
-    // Field setters
-    static Action<SceneLoad, string> setTargetSceneName;
 
     // Property getters
     static Func<SceneLoad, bool> getIsFetchAllowed;
@@ -48,9 +43,6 @@ public static class SceneLoad_Patches
         // Initialize field accessors
         getRunner = ReflectionUtilities.CreateFieldGetter<SceneLoad, MonoBehaviour>("runner");
         getTargetSceneName = ReflectionUtilities.CreateFieldGetter<SceneLoad, string>("targetSceneName");
-
-        // Initialize field setters
-        setTargetSceneName = ReflectionUtilities.CreateFieldSetter<SceneLoad, string>("targetSceneName");
 
         // Initialize property accessors
         getIsFetchAllowed = ReflectionUtilities.CreatePropertyGetter<SceneLoad, bool>("IsFetchAllowed");
@@ -87,26 +79,6 @@ public static class SceneLoad_Patches
         }
     }
     
-    public static string GetSceneNameOrSelf(string input)
-    {
-        if (string.IsNullOrWhiteSpace(input)) return input;
-
-        var trimmed = input.Trim()
-                           .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-
-        bool looksLikePath = trimmed.IndexOf(Path.DirectorySeparatorChar) >= 0
-                             || trimmed.IndexOf(Path.AltDirectorySeparatorChar) >= 0;
-        bool hasExtension = Path.HasExtension(trimmed);
-
-        if (looksLikePath || hasExtension)
-        {
-            var name = Path.GetFileNameWithoutExtension(trimmed);
-            return string.IsNullOrEmpty(name) ? input : name;
-        }
-
-        return input;
-    }
-
     private static bool BeginSceneTransitionRoutine_Prefix(GameManager.SceneLoadInfo info)
     {
         //WeaverLog.Log("CHANGING SCENE LOAD SCENE FROM " + info.SceneName + " to " + UnitySceneManager_Patches.ReplaceScene(info.SceneName));
@@ -128,44 +100,16 @@ public static class SceneLoad_Patches
             }
             recordEndTime(__instance, SceneLoad.Phases.FetchBlocked);
             recordBeginTime(__instance, SceneLoad.Phases.Fetch);
-            //WeaverLog.Log("LOADING CUSTOM SCENE = " + getTargetSceneName(__instance));
-            AsyncOperation loadOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(getTargetSceneName(__instance), LoadSceneMode.Additive);
+            var targetSceneName = getTargetSceneName(__instance);
+            var resolvedTargetSceneName = UnitySceneManager_Patches.ReplaceScene(targetSceneName, out _);
+            // Inverse scene unions are baked into normal replacements during the build.
+            AsyncOperation loadOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(resolvedTargetSceneName, LoadSceneMode.Additive);
             //WeaverLog.Log("Load Operation = " + loadOperation);
             //WeaverLog.Log("Load Operation Is Null = " + (loadOperation == null));
-            //setTargetSceneName(__instance, UnitySceneManager_Patches.ReplaceScene(getTargetSceneName(__instance)));
             loadOperation.allowSceneActivation = false;
-            List<AsyncOperation> inverseSceneUnions = new List<AsyncOperation>();
-            List<string> inverseScenes = new List<string>();
-            foreach (var record in Registry.GetAllFeatures<SceneRecord>())
-            {
-                //WeaverLog.Log("Record = " + record);
-                foreach (var isu in record.InverseSceneUnions)
-                {
-                    //WeaverLog.Log("ISU = " + isu);
-                    //WeaverLog.Log("ISU SOURCE = " + isu.GameSceneToMerge + ", dest = " + isu.DestinationScene);
-                    if (isu.DestinationScene == getTargetSceneName(__instance) || GetSceneNameOrSelf(isu.DestinationScene) == getTargetSceneName(__instance))
-                    {
-                        //WeaverLog.Log("LOADING ISU = " + isu.GameSceneToMerge);
-                        var op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(isu.GameSceneToMerge, LoadSceneMode.Additive);
-                        //WeaverLog.Log("Load Operation 2 = " + op);
-                        //WeaverLog.Log("Load Operation 2 Is Null = " + (op == null));
-                        op.allowSceneActivation = false;
-                        inverseScenes.Add(isu.GameSceneToMerge);
-                        inverseSceneUnions.Add(op);
-                    }
-                }
-            }
             while (loadOperation.progress < 0.9f)
             {
                 yield return null;
-            }
-
-            foreach (var op in inverseSceneUnions)
-            {
-                while (op.progress < 0.9f)
-                {
-                    yield return null;
-                }
             }
 
             recordEndTime(__instance, SceneLoad.Phases.Fetch);
@@ -201,28 +145,7 @@ public static class SceneLoad_Patches
                 }
             }
             loadOperation.allowSceneActivation = true;
-            foreach (var op in inverseSceneUnions)
-            {
-                op.allowSceneActivation = true;
-            }
             yield return loadOperation;
-
-            foreach (var op in inverseSceneUnions)
-            {
-                yield return op;
-            }
-
-            var sourceSceneName = getTargetSceneName(__instance);
-            //WeaverLog.Log("Source Scene Name = " + sourceSceneName);
-
-            for (int i = 0; i < inverseScenes.Count; i++)
-            {
-                var destScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(getTargetSceneName(__instance));
-                var sourceScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(inverseScenes[i]);
-                //WeaverLog.Log($"MERGING SCENE {sourceScene.name} into {destScene.name}");
-                UnityEngine.SceneManagement.SceneManager.MergeScenes(sourceScene, destScene);
-                yield return null;
-            }
 
             /*foreach (var listener in GameObject.FindObjectsOfType<AudioListener>())
             {

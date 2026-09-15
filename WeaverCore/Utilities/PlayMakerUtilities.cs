@@ -25,6 +25,7 @@ namespace WeaverCore.Utilities
 		public static readonly Type FsmTransitionType;
 		public static readonly Type FsmStateActionType;
 		public static readonly Type FsmEventType;
+		public static readonly Type FsmTemplateType;
 		public static readonly Type ActionDataType;
 		public static readonly Type FsmVariablesType;
 
@@ -44,6 +45,7 @@ namespace WeaverCore.Utilities
 		private static readonly string ACTIVE_STATE_NAME_PROP_NAME = "ActiveStateName";
 		private static readonly string FSM_NAME_PROP_NAME = "FsmName";
 		private static readonly string PS_FSM_NAME_PROP_NAME = "Fsm";
+		private static readonly string PS_FSM_TEMPLATE_PROP_NAME = "FsmTemplate";
 
 		static PlayMakerUtilities()
 		{
@@ -67,6 +69,7 @@ namespace WeaverCore.Utilities
 			FsmTransitionType = TypeUtilities.NameToType("HutongGames.PlayMaker.FsmTransition", PlayMakerFSMType.Assembly.GetName().Name);
 			FsmStateActionType = TypeUtilities.NameToType("HutongGames.PlayMaker.FsmStateAction", PlayMakerFSMType.Assembly.GetName().Name);
 			FsmEventType = TypeUtilities.NameToType("HutongGames.PlayMaker.FsmEvent", PlayMakerFSMType.Assembly.GetName().Name);
+			FsmTemplateType = TypeUtilities.NameToType("HutongGames.PlayMaker.FsmTemplate", PlayMakerFSMType.Assembly.GetName().Name);
 			ActionDataType = TypeUtilities.NameToType("HutongGames.PlayMaker.ActionData", PlayMakerFSMType.Assembly.GetName().Name);
 			FsmVariablesType = TypeUtilities.NameToType("HutongGames.PlayMaker.FsmVariables", PlayMakerFSMType.Assembly.GetName().Name);
 
@@ -103,6 +106,9 @@ namespace WeaverCore.Utilities
 
 		public static bool IsFsmEvent(object obj) =>
 			obj != null && FsmEventType.IsAssignableFrom(obj.GetType());
+
+		public static bool IsFsmTemplate(object obj) =>
+			obj != null && FsmTemplateType != null && FsmTemplateType.IsAssignableFrom(obj.GetType());
 
 		public static bool IsActionData(object obj) =>
 			obj != null && obj.GetType() == ActionDataType;
@@ -183,6 +189,73 @@ namespace WeaverCore.Utilities
 			return fsm != null ? new FsmWrapper(fsm) : default;
 		}
 
+		public static object GetFsmTemplate(Component playMakerFSM)
+		{
+			if (!IsPlayMakerFSM(playMakerFSM))
+			{
+				return null;
+			}
+
+			object template = TryGetMemberValue(playMakerFSM, PS_FSM_TEMPLATE_PROP_NAME);
+			if (template != null)
+			{
+				return template;
+			}
+
+			object fsm = GetFsm(playMakerFSM);
+			return fsm != null ? GetFsmTemplate(fsm) : null;
+		}
+
+		public static FsmTemplateWrapper GetFsmTemplateWrapper(Component playMakerFSM)
+		{
+			object template = GetFsmTemplate(playMakerFSM);
+			return template != null ? new FsmTemplateWrapper(template) : default;
+		}
+
+		public static FsmTemplateWrapper GetFsmTemplateWrapper(PlayMakerFsmWrapper playMakerFSM)
+		{
+			return GetFsmTemplateWrapper(playMakerFSM.InternalComponent);
+		}
+
+		public static object GetFsmTemplate(object fsm)
+		{
+			if (!IsFsm(fsm))
+			{
+				return null;
+			}
+
+			return TryGetMemberValue(fsm, "usedInTemplate")
+				?? TryGetMemberValue(fsm, "UsedInTemplate");
+		}
+
+		public static FsmTemplateWrapper GetFsmTemplateWrapper(FsmWrapper fsm)
+		{
+			object template = GetFsmTemplate(fsm.InternalFsm);
+			return template != null ? new FsmTemplateWrapper(template) : default;
+		}
+
+		public static object GetTemplateFsm(object fsmTemplate)
+		{
+			if (!IsFsmTemplate(fsmTemplate))
+			{
+				return null;
+			}
+
+			return TryGetMemberValue(fsmTemplate, "Fsm")
+				?? TryGetMemberValue(fsmTemplate, "fsm");
+		}
+
+		public static FsmWrapper GetTemplateFsmWrapper(object fsmTemplate)
+		{
+			object fsm = GetTemplateFsm(fsmTemplate);
+			return fsm != null ? new FsmWrapper(fsm) : default;
+		}
+
+		public static FsmWrapper GetTemplateFsmWrapper(FsmTemplateWrapper fsmTemplate)
+		{
+			return GetTemplateFsmWrapper(fsmTemplate.InternalTemplate);
+		}
+
 		public static string GetFsmName(Component playMakerFSM)
 		{
 			if (!IsPlayMakerFSM(playMakerFSM))
@@ -212,6 +285,26 @@ namespace WeaverCore.Utilities
 		public static void SetFsmName(PlayMakerFsmWrapper playMakerFSM, string newName)
 		{
 			SetFsmName(playMakerFSM.InternalComponent, newName);
+		}
+
+		static object TryGetMemberValue(object instance, string memberName)
+		{
+			if (instance == null || string.IsNullOrEmpty(memberName))
+			{
+				return null;
+			}
+
+			const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+			var type = instance.GetType();
+
+			var property = type.GetProperty(memberName, flags);
+			if (property != null)
+			{
+				return property.GetValue(instance, null);
+			}
+
+			var field = type.GetField(memberName, flags);
+			return field != null ? field.GetValue(instance) : null;
 		}
 
 		#endregion
@@ -1075,16 +1168,81 @@ namespace WeaverCore.Utilities
 		{
 			if (fsm == null)
 			{
-				return new object[0];
+				return Array.Empty<object>();
 			}
 
-			return (object[])GlobalTransitionsProperty.GetValue(fsm, null);
+			return (object[])GlobalTransitionsProperty.GetValue(fsm, null) ?? Array.Empty<object>();
 		}
 
 		public static FsmTransitionWrapper[] GetGlobalTransitions(FsmWrapper fsm)
 		{
 			object[] transitions = GetGlobalTransitions(fsm.InternalFsm);
 			return transitions.Select(t => new FsmTransitionWrapper(t)).ToArray();
+		}
+
+		public static bool HasGlobalTransition(object fsm, string eventName, string toState)
+		{
+			if (fsm == null || string.IsNullOrEmpty(eventName) || string.IsNullOrEmpty(toState))
+			{
+				return false;
+			}
+
+			foreach (object transition in GetGlobalTransitions(fsm))
+			{
+				if (transition == null)
+				{
+					continue;
+				}
+
+				var transitionWrapper = new FsmTransitionWrapper(transition);
+				if (transitionWrapper.FsmEvent.InternalEvent != null &&
+					transitionWrapper.FsmEvent.Name == eventName &&
+					transitionWrapper.ToState == toState)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public static bool HasGlobalTransition(FsmWrapper fsm, string eventName, string toState)
+		{
+			return HasGlobalTransition(fsm.InternalFsm, eventName, toState);
+		}
+
+		public static object EnsureGlobalTransition(object fsm, string eventName, string toState)
+		{
+			if (fsm == null || string.IsNullOrEmpty(eventName) || string.IsNullOrEmpty(toState) || GetState(fsm, toState) == null)
+			{
+				return null;
+			}
+
+			AddEvent(fsm, eventName);
+
+			foreach (object transition in GetGlobalTransitions(fsm))
+			{
+				if (transition == null)
+				{
+					continue;
+				}
+
+				var transitionWrapper = new FsmTransitionWrapper(transition);
+				if (transitionWrapper.FsmEvent.InternalEvent != null &&
+					transitionWrapper.FsmEvent.Name == eventName &&
+					transitionWrapper.ToState == toState)
+				{
+					return transition;
+				}
+			}
+
+			return AddGlobalTransition(fsm, eventName, toState);
+		}
+
+		public static FsmTransitionWrapper EnsureGlobalTransition(FsmWrapper fsm, string eventName, string toState)
+		{
+			object transition = EnsureGlobalTransition(fsm.InternalFsm, eventName, toState);
+			return transition != null ? new FsmTransitionWrapper(transition) : default;
 		}
 
 		public static object AddTransition(object state, string eventName, string toState, int index = -1)
@@ -1128,52 +1286,25 @@ namespace WeaverCore.Utilities
 				return null;
 			}
 
-			// Get the current global transitions
-			object[] currentTransitions = GetGlobalTransitions(fsm);
+			object targetState = GetState(fsm, toState);
+			if (targetState == null)
+			{
+				return null;
+			}
 
-			// Create a new transitions array with one more element
+			object[] currentTransitions = GetGlobalTransitions(fsm);
 			Array newTransitions = Array.CreateInstance(FsmTransitionType, currentTransitions.Length + 1);
 			Array.Copy(currentTransitions, newTransitions, currentTransitions.Length);
-
-			// Create a new transition
 			object newTransition = Activator.CreateInstance(FsmTransitionType);
-
-			//var stateWrapper = new FsmStateWrapper(state);
-
-			//var fsm = stateWrapper.GetFsm();
 
 			newTransition.ReflectSetProperty("FsmEvent", GetTransitionEvent(eventName));
 			newTransition.ReflectSetProperty("ToState", toState);
-			newTransition.ReflectSetProperty("ToFsmState", GetState(fsm, toState));
+			newTransition.ReflectSetProperty("ToFsmState", targetState);
 
-			return newTransition;
-
-			// Set the transition properties
-			/*PropertyInfo eventNameProperty = FsmTransitionType.GetProperty("EventName");
-			eventNameProperty.SetValue(newTransition, eventName, null);
-
-			PropertyInfo toStateProperty = FsmTransitionType.GetProperty("ToState");
-			toStateProperty.SetValue(newTransition, toState, null);
-
-			// Get the FsmEvent for this event name
-			object fsmEvent = GetFsmEventMethod.Invoke(null, new object[] { eventName });
-			
-			PropertyInfo fsmEventProperty = FsmTransitionType.GetProperty("FsmEvent");
-			fsmEventProperty.SetValue(newTransition, fsmEvent, null);
-
-			// Get the target state object
-			object targetState = GetState(fsm, toState);
-			
-			PropertyInfo toFsmStateProperty = FsmTransitionType.GetProperty("ToFsmState");
-			toFsmStateProperty.SetValue(newTransition, targetState, null);
-
-			// Add the new transition to the array
 			newTransitions.SetValue(newTransition, currentTransitions.Length);
-
-			// Update the FSM's GlobalTransitions property
 			GlobalTransitionsProperty.SetValue(fsm, newTransitions, null);
 
-			return newTransition;*/
+			return newTransition;
 		}
 
 		public static FsmTransitionWrapper AddGlobalTransition(FsmWrapper fsm, string eventName, string toState)
@@ -1229,17 +1360,10 @@ namespace WeaverCore.Utilities
 				return false;
 			}
 
-			// Get the current global transitions
 			object[] currentTransitions = GetGlobalTransitions(fsm);
-
-			/*if (transitionIndex >= currentTransitions.Length)
+			if (transitionIndex >= currentTransitions.Length)
 			{
 				return false;
-			}*/
-			
-			if (transitionIndex < 0 || transitionIndex >= currentTransitions.Length)
-			{
-				transitionIndex = currentTransitions.Length - 1;
 			}
 
 			// Create a new transitions array without the transition to remove

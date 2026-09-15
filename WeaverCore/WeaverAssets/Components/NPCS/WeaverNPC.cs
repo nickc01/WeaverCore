@@ -191,7 +191,7 @@ namespace WeaverCore.Assets.Components
                     prompt.Show();
                     while (true)
                     {
-                        if (!PlayerInRange)
+                        if (!PlayerInRange || !canTalk)
                         {
                             prompt.Hide();
                             break;

@@ -193,6 +193,11 @@ namespace WeaverCore.Editor.Compilation
 			public System.Collections.Generic.List<RegistryInfo> Registries;
 
 			/// <summary>
+			/// Stores the data needed to bake inverse scene unions into normal scene replacements during the build.
+			/// </summary>
+			public SceneBakeBuildData SceneBakeData;
+
+			/// <summary>
 			/// Stores a list of all the scenes that have been closed down.
 			/// </summary>
 			public System.Collections.Generic.List<SceneData> ClosedScenes;
@@ -297,6 +302,8 @@ namespace WeaverCore.Editor.Compilation
 					Path = path
 				});
 			}
+
+			SceneBakeTools.PrepareForBuild(Data);
 			bool assetsChanged = false;
 			try
 			{
@@ -555,6 +562,14 @@ namespace WeaverCore.Editor.Compilation
 								});
 							}
 						}
+
+						SceneBakeTools.PatchBuiltSceneBundles(builtBundles, Data.SceneBakeData);
+
+                        if (BuildPipelineCustomizer.TryGetCurrentCustomizer(out var customizer) && !customizer.BeforeBundlesEmbedded(builtBundles))
+                        {
+							throw new Exception("Build pipeline customizer failed while preparing asset bundles for embedding");
+                        }
+
 						embeddingTasks.Add(Task.Run(() =>
 						{
 							try
@@ -579,6 +594,13 @@ namespace WeaverCore.Editor.Compilation
 					}
 
 #if !MULTI_THREADED_EMBEDDING
+                    SceneBakeTools.PatchBuiltSceneBundles(builtAssetBundles, Data.SceneBakeData);
+
+                    if (BuildPipelineCustomizer.TryGetCurrentCustomizer(out var customizer) && !customizer.BeforeBundlesEmbedded(builtAssetBundles))
+                    {
+						throw new Exception("Build pipeline customizer failed while preparing asset bundles for embedding");
+                    }
+
 					if (Data.WeaverCoreOnly)
 					{
 						EmbedAssetBundles(assemblies, builtAssetBundles.Where(a => a.File.Name.ToLower().Contains("weavercore_bundle")));
@@ -844,7 +866,7 @@ namespace WeaverCore.Editor.Compilation
         /// Called when asset bundling is done. This is used for clean up and to undo what <see cref="PrepareForAssetBundling(System.Collections.Generic.List{string}, MethodInfo)"/> has done
         /// </summary>
         /// <param name="whenFinished">The function to call when this is done</param>
-        static void DoneWithAssetBundling(MethodInfo whenFinished)
+		static void DoneWithAssetBundling(MethodInfo whenFinished)
 		{
 #if REWRITE_REGISTRIES
 			foreach (var registry in RegistryChecker.LoadAllRegistries())
@@ -853,6 +875,7 @@ namespace WeaverCore.Editor.Compilation
 				registry.ApplyChanges();
 			}
 #endif
+			SceneBakeTools.CleanupTemporaryReplacements();
 			bool assetsChanged = false;
 			try
 			{

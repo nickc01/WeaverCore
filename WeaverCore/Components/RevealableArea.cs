@@ -22,7 +22,7 @@ namespace WeaverCore.Components
         Color defaultColor;
         [NonSerialized]
         SpriteRenderer _renderer;
-        public SpriteRenderer Renderer => _renderer ??= GetComponent<SpriteRenderer>();
+        public SpriteRenderer Renderer => _renderer == null ? _renderer = GetComponent<SpriteRenderer>() : _renderer;
 
         Coroutine fadeRoutine;
 

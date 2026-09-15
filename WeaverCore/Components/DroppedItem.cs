@@ -40,6 +40,14 @@ namespace WeaverCore.Components
         public Vector2 FlingAngleMinMax = new Vector2(82, 86);
 
         [field: SerializeField]
+        [field: Tooltip("If true, then the dropped item will lock it's position once it has settled down")]
+        public bool LockPositionOnLand = true;
+
+        [field: SerializeField]
+        [field: Tooltip("Can this item be inspected or not")]
+        public bool CanBeInspected = true;
+
+        [field: SerializeField]
         public UnityEvent OnPickup;
 
         [NonSerialized]
@@ -115,8 +123,12 @@ namespace WeaverCore.Components
                     yield return null;
                 }
 
-                RB.gravityScale = 0f;
-                RB.velocity = default;
+                if (LockPositionOnLand)
+                {
+                    RB.gravityScale = 0f;
+                    RB.velocity = default;
+                }
+
                 particleTrail.Stop();
             }
 
@@ -125,7 +137,10 @@ namespace WeaverCore.Components
                 bouncer.StopBounce();
             }
 
-            InspectionRegion.Inspectable = true;
+            if (CanBeInspected)
+            {
+                InspectionRegion.Inspectable = true;
+            }
         }
 
         /// <summary>
@@ -135,6 +150,10 @@ namespace WeaverCore.Components
         {
             try
             {
+                if (!ItemActive)
+                {
+                    return;
+                }
                 ItemActive = false;
                 GetComponent<SpriteRenderer>().enabled = false;
                 if (TryGetComponent<AudioSource>(out var audio))
@@ -179,9 +198,7 @@ namespace WeaverCore.Components
             {
                 if (SettingsStorage.HasField<bool>(SettingsField))
                 {
-                    var result = SettingsStorage.GetFieldValue<bool>(SettingsField);
-                    WeaverLog.Log($"{SettingsField} = {result}");
-                    WeaverLog.Log("CAN SPAWN RESULT = " + !result);
+                    //var result = SettingsStorage.GetFieldValue<bool>(SettingsField);
                     return !SettingsStorage.GetFieldValue<bool>(SettingsField);
                 }
                 else

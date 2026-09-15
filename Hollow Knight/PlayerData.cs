@@ -89,6 +89,8 @@ public class PlayerData
     public bool hasMap;
 	public bool mapAllRooms;
 	public bool atMapPrompt;
+	public int environmentType;
+	public int environmentTypeDefault;
 	public List<string> scenesMapped;
 	public List<string> scenesGrubRescued;
 	public List<string> scenesFlameCollected;
@@ -166,7 +168,168 @@ public class PlayerData
 
 	public void CalculateNotchesUsed()
 	{
-		
+		int num = 0;
+		if (this.GetBool("equippedCharm_1"))
+		{
+			num += this.GetInt("charmCost_1");
+		}
+		if (this.GetBool("equippedCharm_2"))
+		{
+			num += this.GetInt("charmCost_2");
+		}
+		if (this.GetBool("equippedCharm_3"))
+		{
+			num += this.GetInt("charmCost_3");
+		}
+		if (this.GetBool("equippedCharm_4"))
+		{
+			num += this.GetInt("charmCost_4");
+		}
+		if (this.GetBool("equippedCharm_5"))
+		{
+			num += this.GetInt("charmCost_5");
+		}
+		if (this.GetBool("equippedCharm_6"))
+		{
+			num += this.GetInt("charmCost_6");
+		}
+		if (this.GetBool("equippedCharm_7"))
+		{
+			num += this.GetInt("charmCost_7");
+		}
+		if (this.GetBool("equippedCharm_8"))
+		{
+			num += this.GetInt("charmCost_8");
+		}
+		if (this.GetBool("equippedCharm_9"))
+		{
+			num += this.GetInt("charmCost_9");
+		}
+		if (this.GetBool("equippedCharm_10"))
+		{
+			num += this.GetInt("charmCost_10");
+		}
+		if (this.GetBool("equippedCharm_11"))
+		{
+			num += this.GetInt("charmCost_11");
+		}
+		if (this.GetBool("equippedCharm_12"))
+		{
+			num += this.GetInt("charmCost_12");
+		}
+		if (this.GetBool("equippedCharm_13"))
+		{
+			num += this.GetInt("charmCost_13");
+		}
+		if (this.GetBool("equippedCharm_14"))
+		{
+			num += this.GetInt("charmCost_14");
+		}
+		if (this.GetBool("equippedCharm_15"))
+		{
+			num += this.GetInt("charmCost_15");
+		}
+		if (this.GetBool("equippedCharm_16"))
+		{
+			num += this.GetInt("charmCost_16");
+		}
+		if (this.GetBool("equippedCharm_17"))
+		{
+			num += this.GetInt("charmCost_17");
+		}
+		if (this.GetBool("equippedCharm_18"))
+		{
+			num += this.GetInt("charmCost_18");
+		}
+		if (this.GetBool("equippedCharm_19"))
+		{
+			num += this.GetInt("charmCost_19");
+		}
+		if (this.GetBool("equippedCharm_20"))
+		{
+			num += this.GetInt("charmCost_20");
+		}
+		if (this.GetBool("equippedCharm_21"))
+		{
+			num += this.GetInt("charmCost_21");
+		}
+		if (this.GetBool("equippedCharm_22"))
+		{
+			num += this.GetInt("charmCost_22");
+		}
+		if (this.GetBool("equippedCharm_23"))
+		{
+			num += this.GetInt("charmCost_23");
+		}
+		if (this.GetBool("equippedCharm_24"))
+		{
+			num += this.GetInt("charmCost_24");
+		}
+		if (this.GetBool("equippedCharm_25"))
+		{
+			num += this.GetInt("charmCost_25");
+		}
+		if (this.GetBool("equippedCharm_26"))
+		{
+			num += this.GetInt("charmCost_26");
+		}
+		if (this.GetBool("equippedCharm_27"))
+		{
+			num += this.GetInt("charmCost_27");
+		}
+		if (this.GetBool("equippedCharm_28"))
+		{
+			num += this.GetInt("charmCost_28");
+		}
+		if (this.GetBool("equippedCharm_29"))
+		{
+			num += this.GetInt("charmCost_29");
+		}
+		if (this.GetBool("equippedCharm_30"))
+		{
+			num += this.GetInt("charmCost_30");
+		}
+		if (this.GetBool("equippedCharm_31"))
+		{
+			num += this.GetInt("charmCost_31");
+		}
+		if (this.GetBool("equippedCharm_32"))
+		{
+			num += this.GetInt("charmCost_32");
+		}
+		if (this.GetBool("equippedCharm_33"))
+		{
+			num += this.GetInt("charmCost_33");
+		}
+		if (this.GetBool("equippedCharm_34"))
+		{
+			num += this.GetInt("charmCost_34");
+		}
+		if (this.GetBool("equippedCharm_35"))
+		{
+			num += this.GetInt("charmCost_35");
+		}
+		if (this.GetBool("equippedCharm_36"))
+		{
+			num += this.GetInt("charmCost_36");
+		}
+		if (this.GetBool("equippedCharm_37"))
+		{
+			num += this.GetInt("charmCost_37");
+		}
+		if (this.GetBool("equippedCharm_38"))
+		{
+			num += this.GetInt("charmCost_38");
+		}
+		if (this.GetBool("equippedCharm_39"))
+		{
+			num += this.GetInt("charmCost_39");
+		}
+		if (this.GetBool("equippedCharm_40"))
+		{
+			num += this.GetInt("charmCost_40");
+		}
+		this.SetIntSwappedArgs(num, "charmSlotsFilled");
 	}
 
     private Dictionary<string, MapBools> InitMapBools()

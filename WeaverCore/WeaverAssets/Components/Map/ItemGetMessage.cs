@@ -260,11 +260,20 @@ namespace WeaverCore.Assets.Components
         {
             Sprite charmIcon = null;
 
+            bool vanillaIconResolved = false;
+
             if (CharmIconList.Instance != null)
             {
-                charmIcon = CharmIconList.Instance.GetSprite(charmID);
+                var spriteList = CharmIconList.Instance.spriteList;
+
+                if (spriteList != null && charmID >= 0 && charmID < spriteList.Length)
+                {
+                    charmIcon = CharmIconList.Instance.GetSprite(charmID);
+                    vanillaIconResolved = true;
+                }
             }
-            else
+
+            if (!vanillaIconResolved)
             {
                 foreach (var charm in Registry.GetAllFeatures<IWeaverCharm>())
                 {
@@ -294,7 +303,10 @@ namespace WeaverCore.Assets.Components
             //var prefab = ;
 
             var instance = GameObject.Instantiate(prefab.Value).GetComponent<ItemGetMessage>();
-            instance.Icon = itemSprite;
+            if (itemSprite != null)
+            {
+                instance.Icon = itemSprite;
+            }
             instance.Text = itemText;
             instance.HideInstant();
             return instance;

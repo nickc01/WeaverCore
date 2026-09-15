@@ -9,6 +9,8 @@ namespace WeaverCore
 	/// </summary>
 	public struct HitInfo
 	{
+		private byte givesSoulState;
+
 		/// <summary>
 		/// The attacker that is initiating the hit
 		/// </summary>
@@ -41,6 +43,16 @@ namespace WeaverCore
 		/// </summary>
 		public float RecoilStrength;
 
+		/// <summary>
+		/// Whether this hit should award soul if the target's health implementation would normally do so.
+		/// Defaults to true when left unset.
+		/// </summary>
+		public bool GivesSoul
+		{
+			get => givesSoulState != 2;
+			set => givesSoulState = (byte)(value ? 1 : 2);
+		}
+
 		public override string ToString()
 		{
 			string final = "{ ";
@@ -50,7 +62,8 @@ namespace WeaverCore
 			final = string.Concat(final, "Damage = " + Damage, ", ");
 			final = string.Concat(final, "Direction = " + Direction, ", ");
 			final = string.Concat(final, "IgnoreInvincible = " + IgnoreInvincible, ", ");
-			final = string.Concat(final, "AttackStrength = " + AttackStrength, "}");
+			final = string.Concat(final, "AttackStrength = " + AttackStrength, ", ");
+			final = string.Concat(final, "GivesSoul = " + GivesSoul, "}");
 			final = string.Concat(final, "RecoilStrength = " + RecoilStrength, "}");
 			return final;
 		}

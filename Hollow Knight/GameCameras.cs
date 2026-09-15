@@ -41,6 +41,13 @@ public class GameCameras : MonoBehaviour
 
     private void Awake()
 	{
+#if UNITY_EDITOR
+        if (hudCanvas == null)
+        {
+            hudCanvas = GameObject.Find("Hud Canvas");
+        }
+#endif
+
 		if (GameCameras._instance == null)
 		{
 			GameCameras._instance = this;
@@ -178,6 +185,9 @@ public class GameCameras : MonoBehaviour
 	public CameraController cameraController;
 
 	public CameraTarget cameraTarget;
+
+	[Header("Other")]
+    public GameObject hudCanvas;
 
 	[Header("Cameras")]
 	public Camera hudCamera;

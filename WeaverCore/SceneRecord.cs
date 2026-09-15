@@ -68,7 +68,7 @@ namespace WeaverCore
         System.Collections.Generic.List<SceneUnion> sceneUnions = new System.Collections.Generic.List<SceneUnion>();
 
 		[SerializeField]
-		[Tooltip("A list of inverse scene unions where in-game scenes are merged into mod scenes")]
+		[Tooltip("A list of inverse scene unions where in-game scenes are merged into mod scenes.")]
         System.Collections.Generic.List<InverseSceneUnion> inverseSceneUnions = new System.Collections.Generic.List<InverseSceneUnion>();
 
 		[SerializeField]
@@ -167,7 +167,7 @@ namespace WeaverCore
 		}
 
 		/// <summary>
-		/// A list of all the inverse scene unions where in-game scenes are merged into mod scenes
+		/// A list of all the inverse scene unions where in-game scenes are merged into mod scenes.
 		/// </summary>
 		public IEnumerable<(string DestinationScene, string GameSceneToMerge)> InverseSceneUnions
 		{
@@ -330,6 +330,82 @@ namespace WeaverCore
 		}
 
 #if UNITY_EDITOR
+
+		public bool AddSceneReplacement(string oldScene, UnityEditor.SceneAsset newScene)
+		{
+			for (int i = 0; i < sceneReplacements.Count; i++)
+			{
+				if (sceneReplacements[i].SceneToReplace == oldScene && sceneReplacements[i].Replacement == newScene)
+				{
+					return false;
+				}
+			}
+
+			sceneReplacements.Add(new SceneReplacement
+			{
+				SceneToReplace = oldScene,
+				Replacement = newScene
+			});
+
+			EditorUtility.SetDirty(this);
+			return true;
+		}
+
+		public bool RemoveSceneReplacement(string oldScene, UnityEditor.SceneAsset newScene)
+		{
+			for (int i = 0; i < sceneReplacements.Count; i++)
+			{
+				if (sceneReplacements[i].SceneToReplace == oldScene && sceneReplacements[i].Replacement == newScene)
+				{
+					sceneReplacements.RemoveAt(i);
+					EditorUtility.SetDirty(this);
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public bool AddSceneUnion(string oldScene, UnityEditor.SceneAsset newScene)
+		{
+			for (int i = 0; i < sceneUnions.Count; i++)
+			{
+				if (sceneUnions[i].SceneToUniteWith == oldScene && sceneUnions[i].UnionScene == newScene)
+				{
+					return false;
+				}
+			}
+
+			sceneUnions.Add(new SceneUnion
+			{
+				SceneToUniteWith = oldScene,
+				UnionScene = newScene
+			});
+
+			EditorUtility.SetDirty(this);
+			return true;
+		}
+
+		public bool RemoveSceneUnion(string oldScene, UnityEditor.SceneAsset newScene)
+		{
+			for (int i = 0; i < sceneUnions.Count; i++)
+			{
+				if (sceneUnions[i].SceneToUniteWith == oldScene && sceneUnions[i].UnionScene == newScene)
+				{
+					sceneUnions.RemoveAt(i);
+					EditorUtility.SetDirty(this);
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public void ClearEditorSceneReplacements()
+		{
+			sceneReplacements.Clear();
+			EditorUtility.SetDirty(this);
+		}
 
 		[BeforeBuild]
 		static void SetBundles()

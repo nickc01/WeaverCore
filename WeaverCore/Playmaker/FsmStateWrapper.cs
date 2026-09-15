@@ -43,7 +43,7 @@ namespace WeaverCore.Playmaker
 
 		public FsmActionWrapper GetActionByType(string typeName)
         {
-            return GetActions().FirstOrDefault(a => a.GetType().FullName.Contains(typeName));
+            return GetActions().FirstOrDefault(a => a.InternalAction.GetType().FullName.Contains(typeName));
         }
 
 		public IEnumerable<FsmActionWrapper> GetActionsByType(Type actionType)

@@ -89,7 +89,7 @@ namespace WeaverCore
 
         [NonSerialized]
         WeaverAnimationPlayer _animator;
-        public WeaverAnimationPlayer Animator => _animator ??= GetComponent<WeaverAnimationPlayer>();
+        public WeaverAnimationPlayer Animator => _animator == null ? _animator = GetComponent<WeaverAnimationPlayer>() : _animator;
 
 
         int hits_remaining_internal = 0;

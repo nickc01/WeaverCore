@@ -61,6 +61,10 @@ public static class WeaverTypeHelpers
 
 	public static void SendEventToGameObject(string eventName, GameObject destination, GameObject source = null)
 	{
+		if (eventManagerType == null)
+		{
+			eventManagerType = GetWeaverType("WeaverCore.EventManager");
+		}
 		if (sendEventToGameObjectMethod == null)
 		{
 			sendEventToGameObjectMethod = eventManagerType.GetMethods().FirstOrDefault(m => m.Name == "SendEventToGameObject" && m.GetParameters().Length == 3);

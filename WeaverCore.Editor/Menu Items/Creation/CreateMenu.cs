@@ -44,6 +44,12 @@ namespace WeaverCore.Editor
             AssetUtilities.CreateScriptableObject<CustomMapZone>();
         }
 
+        [MenuItem("WeaverCore/Create/Basic Environment Type")]
+        static void CreateBasicEnvironmentTypeMenuItem()
+        {
+            AssetUtilities.CreateScriptableObject<BasicEnvironmentType>();
+        }
+
         [MenuItem("WeaverCore/Create/Scene Record")]
 		static void CreateSceneRecordMenuItem()
 		{

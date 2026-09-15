@@ -24,6 +24,8 @@ namespace WeaverCore.Utilities
 
         // Dictionary to store death event handlers for HealthManager instances
         private static readonly Dictionary<MonoBehaviour, List<Action<HitInfo>>> healthManagerWrappers = new Dictionary<MonoBehaviour, List<Action<HitInfo>>>();
+        private static readonly Dictionary<object, bool> hitInstanceSoulPolicy = new Dictionary<object, bool>();
+        private static int suppressSoulGainDepth;
 
         const int DEFAULT_RECURSION_DEPTH = 3;
 
@@ -48,7 +50,16 @@ namespace WeaverCore.Utilities
                 var postfix = typeof(EnemyHealthUtilities).GetMethod(nameof(HealthManagerDie_Postfix), BindingFlags.NonPublic | BindingFlags.Static);
 
                 patcher.Patch(orig, prefix, postfix);
+
+                var takeDamageMethod = HealthManagerType.GetMethod("TakeDamage", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var takeDamagePrefix = typeof(EnemyHealthUtilities).GetMethod(nameof(HealthManagerTakeDamage_Prefix), BindingFlags.NonPublic | BindingFlags.Static);
+                var takeDamagePostfix = typeof(EnemyHealthUtilities).GetMethod(nameof(HealthManagerTakeDamage_Postfix), BindingFlags.NonPublic | BindingFlags.Static);
+                patcher.Patch(takeDamageMethod, takeDamagePrefix, takeDamagePostfix);
             }
+
+            var soulGainMethod = typeof(HeroController).GetMethod("SoulGain", BindingFlags.Instance | BindingFlags.Public);
+            var soulGainPrefix = typeof(EnemyHealthUtilities).GetMethod(nameof(HeroControllerSoulGain_Prefix), BindingFlags.NonPublic | BindingFlags.Static);
+            patcher.Patch(soulGainMethod, soulGainPrefix, null);
 
             AddGlobalPlayerModifier(new LocalPlayerDamageModifier(), -9999);
             AddGlobalEnemyModifier(new LocalEnemyDamageModifier(), -9999);
@@ -144,6 +155,29 @@ namespace WeaverCore.Utilities
         {
             ApplyPlayerDamageModifier(__instance, ref go, ref damageSide, ref damageAmount, ref hazardType);
             return true;
+        }
+
+        static void HealthManagerTakeDamage_Prefix(object hitInstance, out bool __state)
+        {
+            __state = false;
+            if (hitInstance != null && hitInstanceSoulPolicy.TryGetValue(hitInstance, out var givesSoul) && !givesSoul)
+            {
+                suppressSoulGainDepth++;
+                __state = true;
+            }
+        }
+
+        static void HealthManagerTakeDamage_Postfix(bool __state)
+        {
+            if (__state)
+            {
+                suppressSoulGainDepth = Mathf.Max(0, suppressSoulGainDepth - 1);
+            }
+        }
+
+        static bool HeroControllerSoulGain_Prefix()
+        {
+            return suppressSoulGainDepth <= 0;
         }
 
         public class EntityHealthWrapper : HealthWrapper
@@ -265,10 +299,18 @@ namespace WeaverCore.Utilities
                 hitInstance.ReflectSetField("DamageDealt", hit.Damage);
                 hitInstance.ReflectSetField("Direction", hit.Direction);
                 hitInstance.ReflectSetField("IgnoreInvulnerable", hit.IgnoreInvincible);
-                hitInstance.ReflectSetField("MagnitudeMultiplier", hit.AttackStrength);
-                hitInstance.ReflectSetField("Multiplier", 1f);
+                hitInstance.ReflectSetField("MagnitudeMultiplier", hit.RecoilStrength);
+                hitInstance.ReflectSetField("Multiplier", hit.AttackStrength);
 
-                HealthComponent.ReflectCallMethod("Hit", CacheUtilities.GetTempSingleArray(hitInstance));
+                hitInstanceSoulPolicy[hitInstance] = hit.GivesSoul;
+                try
+                {
+                    HealthComponent.ReflectCallMethod("Hit", CacheUtilities.GetTempSingleArray(hitInstance));
+                }
+                finally
+                {
+                    hitInstanceSoulPolicy.Remove(hitInstance);
+                }
 
                 return Health < healthBefore;
             }
@@ -328,10 +370,9 @@ namespace WeaverCore.Utilities
                 hitInstance.ReflectSetField("DamageDealt", hit.Damage);
                 hitInstance.ReflectSetField("Direction", hit.Direction);
                 hitInstance.ReflectSetField("IgnoreInvulnerable", hit.IgnoreInvincible);
-                hitInstance.ReflectSetField("MagnitudeMultiplier", 1.0f);
+                hitInstance.ReflectSetField("MagnitudeMultiplier", hit.RecoilStrength);
                 hitInstance.ReflectSetField("Multiplier", hit.AttackStrength);
 
-                //SourceObj.ReflectCallMethod("Hit", CacheUtilities.GetTempSingleArray(hitInstance));
                 IHitResponderType.GetMethod("Hit", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(SourceObj, CacheUtilities.GetTempSingleArray(hitInstance));
             }
         }
@@ -359,7 +400,7 @@ namespace WeaverCore.Utilities
         {
             public void OnHit(GameObject attacker, GameObject go, ref AttackTypes attackType, ref int damage, ref float direction, ref bool ignoreInvincible, ref float attackStrength)
             {
-                foreach (var modifier in go.GetComponents<IEnemyDamageModifier>())
+                foreach (var modifier in go.GetComponentsInParent<IEnemyDamageModifier>(true))
                 {
                     try
                     {
@@ -505,7 +546,7 @@ namespace WeaverCore.Utilities
             return DealDamage(obj, attacker, damage, type, hitDirection.ToDegrees());
         }
 
-        public static List<HealthWrapper> DealDamage(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f)
+        public static List<HealthWrapper> DealDamage(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f, bool givesSoul = true, float recoilStrength = 1f)
         {
             return DealDamage(obj, new HitInfo
             {
@@ -514,7 +555,9 @@ namespace WeaverCore.Utilities
                 AttackStrength = attackStrength,
                 AttackType = type,
                 Direction = hitDirectionDegrees,
-                IgnoreInvincible = false
+                IgnoreInvincible = false,
+                GivesSoul = givesSoul,
+                RecoilStrength = recoilStrength,
             });
         }
 
@@ -568,8 +611,8 @@ namespace WeaverCore.Utilities
                         continue;
                     }
 
-                    // Check if this object has a health component
-                    if (TryGetHealthComponent(collider, out var healthComponent))
+                    // Child colliders are common on enemies, so resolve health from parents too.
+                    if (TryGetHealthComponentInParent(collider, out var healthComponent))
                     {
                         // Skip dead enemies
                         if (healthComponent.IsDead)
@@ -578,16 +621,17 @@ namespace WeaverCore.Utilities
                         }
 
                         // Skip inactive enemies if not requested
-                        if (!includeInactive && !collider.gameObject.activeInHierarchy)
+                        if (!includeInactive && !healthComponent.gameObject.activeInHierarchy)
                         {
                             continue;
                         }
 
                         if (lineOfSight)
                         {
-                            var dir = (collider.gameObject.transform.position - position).normalized;
+                            var targetTransform = healthComponent.transform;
+                            var dir = (targetTransform.position - position).normalized;
                             var startPos = position + (dir * 0.1f);
-                            var endPos = collider.gameObject.transform.position - (dir * 0.1f);
+                            var endPos = targetTransform.position - (dir * 0.1f);
                             var cache = HitCache.GetSingleCachedArray();
                             if (terrainMask == -1)
                             {
@@ -599,11 +643,11 @@ namespace WeaverCore.Utilities
                             }
                         }
 
-                        float distance = Vector3.Distance(position, collider.transform.position);
+                        float distance = Vector3.Distance(position, healthComponent.transform.position);
                         if (distance < nearestDistance)
                         {
                             nearestDistance = distance;
-                            nearestEnemy = collider.transform;
+                            nearestEnemy = healthComponent.transform;
                         }
                     }
                 }
@@ -652,8 +696,8 @@ namespace WeaverCore.Utilities
                         continue;
                     }
 
-                    // Check if this object has a health component
-                    if (TryGetHealthComponent(collider, out var healthComponent))
+                    // Child colliders are common on enemies, so resolve health from parents too.
+                    if (TryGetHealthComponentInParent(collider, out var healthComponent))
                     {
                         // Skip dead enemies
                         if (healthComponent.IsDead)
@@ -662,16 +706,17 @@ namespace WeaverCore.Utilities
                         }
 
                         // Skip inactive enemies if not requested
-                        if (!includeInactive && !collider.gameObject.activeInHierarchy)
+                        if (!includeInactive && !healthComponent.gameObject.activeInHierarchy)
                         {
                             continue;
                         }
 
                         if (lineOfSight)
                         {
-                            var dir = (collider.gameObject.transform.position - position).normalized;
+                            var targetTransform = healthComponent.transform;
+                            var dir = (targetTransform.position - position).normalized;
                             var startPos = position + (dir * 0.1f);
-                            var endPos = collider.gameObject.transform.position - (dir * 0.1f);
+                            var endPos = targetTransform.position - (dir * 0.1f);
                             var rayCache = HitCache.GetSingleCachedArray();
                             if (terrainMask == -1)
                             {
@@ -683,7 +728,10 @@ namespace WeaverCore.Utilities
                             }
                         }
 
-                        results.Add(collider.transform);
+                        if (!results.Contains(healthComponent.transform))
+                        {
+                            results.Add(healthComponent.transform);
+                        }
                     }
                 }
 
@@ -871,11 +919,13 @@ namespace WeaverCore.Utilities
                         AttackStrength = hit.AttackStrength,
                         AttackType = hit.AttackType,
                         Direction = hit.Direction,
-                        IgnoreInvincible = hit.IgnoreInvincible
+                        IgnoreInvincible = hit.IgnoreInvincible,
+                        GivesSoul = hit.GivesSoul,
+                        RecoilStrength = hit.RecoilStrength
                     };
                     ApplyEnemyDamageModifier(obj.gameObject, ref hitInfo);
 
-                    hittable.Hit(hit);
+                    hittable.Hit(hitInfo);
                     hitObjects.Add(hittable);
                 }
                 obj = obj.parent;
@@ -893,7 +943,7 @@ namespace WeaverCore.Utilities
             return TriggerOtherHittables(obj, attacker, damage, type, hitDirection.ToDegrees());
         }
 
-        public static List<ExtraHitWrapper> TriggerOtherHittables(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f)
+        public static List<ExtraHitWrapper> TriggerOtherHittables(Transform obj, GameObject attacker, int damage, AttackTypes type, float hitDirectionDegrees, float attackStrength = 1f, float recoilStrength = 1f)
         {
             return TriggerOtherHittables(obj, new HitInfo
             {
@@ -902,7 +952,8 @@ namespace WeaverCore.Utilities
                 AttackStrength = attackStrength,
                 AttackType = type,
                 Direction = hitDirectionDegrees,
-                IgnoreInvincible = false
+                IgnoreInvincible = false,
+                RecoilStrength = recoilStrength,
             });
         }
 
@@ -923,11 +974,13 @@ namespace WeaverCore.Utilities
                         AttackStrength = hit.AttackStrength,
                         AttackType = hit.AttackType,
                         Direction = hit.Direction,
-                        IgnoreInvincible = hit.IgnoreInvincible
+                        IgnoreInvincible = hit.IgnoreInvincible,
+                        GivesSoul = hit.GivesSoul,
+                        RecoilStrength = hit.RecoilStrength
                     };
                     ApplyEnemyDamageModifier(obj.gameObject, ref hitInfo);
 
-                    hittable.Hit(hit);
+                    hittable.Hit(hitInfo);
                     hitObjects.Add(hittable);
                 }
 

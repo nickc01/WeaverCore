@@ -70,7 +70,7 @@ namespace WeaverCore.Assets.Components
 		/// <summary>
 		/// The main sprite of the prompt
 		/// </summary>
-		public SpriteRenderer Renderer => _renderer ??= GetComponent<SpriteRenderer>();
+		public SpriteRenderer Renderer => _renderer == null ? _renderer = GetComponent<SpriteRenderer>() : _renderer;
 
 		/// <summary>
 		/// Is the prompt currently visible?
@@ -79,7 +79,7 @@ namespace WeaverCore.Assets.Components
 
 		[NonSerialized]
 		WeaverAnimationPlayer _animator;
-		public WeaverAnimationPlayer Animator => _animator ??= GetComponent<WeaverAnimationPlayer>();
+		public WeaverAnimationPlayer Animator => _animator == null ? _animator = GetComponent<WeaverAnimationPlayer>() : _animator;
 
 		private void Awake()
 		{
@@ -202,6 +202,11 @@ namespace WeaverCore.Assets.Components
 		/// </summary>
 		public void Hide()
 		{
+			if (!IsVisible)
+			{
+				return;
+			}
+
 			Animator.PlayAnimation("Down");
 			IsVisible = false;
 			StopAllCoroutines();

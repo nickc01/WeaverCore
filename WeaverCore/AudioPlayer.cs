@@ -254,5 +254,10 @@ namespace WeaverCore
 				poolComponent = GetComponent<PoolableObject>();
 			}
 		}
+
+		public void SetToRandomPitch(float diffFrom1)
+		{
+			AudioSource.pitch = new Vector2(1 - diffFrom1, 1 + diffFrom1).RandomInRange();
+		}
 	}
 }

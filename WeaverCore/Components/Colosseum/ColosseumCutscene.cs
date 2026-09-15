@@ -31,6 +31,9 @@ namespace WeaverCore.Components.Colosseum
         [SerializeField, Tooltip("Delay before the cutscene ends.")]
         float endDelay = 0.5f;
 
+        [SerializeField, Tooltip("Optional cutscene to run immediately after this one finishes.")]
+        ColosseumCutscene nextCutscene;
+
         public IEnumerator CutsceneRoutine()
         {
             yield return new WaitForSeconds(beginDelay);
@@ -58,14 +61,24 @@ namespace WeaverCore.Components.Colosseum
             yield return new WaitForSeconds(endDelay);
         }
 
-        public override IEnumerator RunWave(ColosseumRoomManager challenge)
+        IEnumerator RunCutsceneChain(ColosseumRoomManager challenge)
         {
             yield return CutsceneRoutine();
+
+            if (nextCutscene != null && nextCutscene != this)
+            {
+                yield return nextCutscene.RunWave(challenge);
+            }
+        }
+
+        public override IEnumerator RunWave(ColosseumRoomManager challenge)
+        {
+            yield return RunCutsceneChain(challenge);
         }
 
         protected override IEnumerator ManuallyRunRoutine(ColosseumRoomManager challenge, Func<ManualStopType> doStop)
         {
-            yield return CutsceneRoutine();
+            yield return RunCutsceneChain(challenge);
         }
     }
 }

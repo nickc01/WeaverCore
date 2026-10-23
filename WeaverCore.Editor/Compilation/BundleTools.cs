@@ -403,6 +403,7 @@ namespace WeaverCore.Editor.Compilation
 		static void BuildAssetBundles(BuildTarget target, BuildTargetGroup group, DirectoryInfo outputDirectory)
 		{
 			var buildInput = ContentBuildInterface.GenerateAssetBundleBuilds().ToList();
+			EnsureSceneBundleBuildInputs(buildInput);
 
 			if (Data.WeaverCoreOnly)
 			{
@@ -445,7 +446,16 @@ namespace WeaverCore.Editor.Compilation
 
 			var parameters = new object[] { buildParameters,bundleBuildContent,null };
 
-			var code = buildAssetBundlesF.Invoke(null, parameters);
+			object code;
+			try
+			{
+				WeaverCore.Assets.TMPro.TMP_FontAsset.PrepareForBundleBuild();
+				code = buildAssetBundlesF.Invoke(null, parameters);
+			}
+			finally
+			{
+				WeaverCore.Assets.TMPro.TMP_FontAsset.RestoreEditorFonts();
+			}
 
 			var codeType = code.GetType();
 
@@ -475,6 +485,44 @@ namespace WeaverCore.Editor.Compilation
 					throw new BundleException("Some required objects are missing");
 				default:
 					break;
+			}
+		}
+
+		static void EnsureSceneBundleBuildInputs(List<AssetBundleBuild> buildInput)
+		{
+			foreach (var bundleName in AssetDatabase.GetAllAssetBundleNames())
+			{
+				var scenePaths = AssetDatabase.GetAssetPathsFromAssetBundle(bundleName)
+					.Where(path => path.EndsWith(".unity", StringComparison.OrdinalIgnoreCase))
+					.ToArray();
+				if (scenePaths.Length == 0)
+				{
+					continue;
+				}
+
+				int existingIndex = buildInput.FindIndex(build =>
+					string.Equals(build.assetBundleName, bundleName, StringComparison.OrdinalIgnoreCase));
+				if (existingIndex >= 0)
+				{
+					var existing = buildInput[existingIndex];
+					if (existing.assetNames != null &&
+						existing.assetNames.All(path => path.EndsWith(".unity", StringComparison.OrdinalIgnoreCase)))
+					{
+						existing.assetNames = scenePaths;
+						buildInput[existingIndex] = existing;
+						Debug.Log("Ensured scene bundle input -> " + bundleName +
+							" (" + scenePaths.Length + " scene(s))");
+					}
+					continue;
+				}
+
+				buildInput.Add(new AssetBundleBuild
+				{
+					assetBundleName = bundleName,
+					assetNames = scenePaths
+				});
+				Debug.Log("Added explicit scene bundle input -> " + bundleName +
+					" (" + scenePaths.Length + " scene(s))");
 			}
 		}
 

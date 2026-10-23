@@ -86,6 +86,34 @@ namespace WeaverCore.Assets.Components
             StartCoroutine(StartConversationRoutine(makePlayerLookUp, onDone));
         }
 
+        public static IEnumerator OneShotConversation(
+            MonoBehaviour host,
+            IEnumerable<string> pages,
+            float beginDelay = 0.3f,
+            float endDelay = 0.3f)
+        {
+            if (host == null)
+            {
+                yield break;
+            }
+
+            var runner = host.GetComponent<OneShotConversationRunner>();
+            if (runner == null)
+            {
+                runner = host.gameObject.AddComponent<OneShotConversationRunner>();
+            }
+
+            yield return runner.Run(pages, beginDelay, endDelay);
+        }
+
+        public static IEnumerator OneShotConversation(IEnumerable<string> pages, float beginDelay = 0.3f, float endDelay = 0.3f)
+        {
+            var temp = new GameObject("TEMP_RUNNER");
+            var runner = temp.AddComponent<OneShotConversationRunner>();
+            yield return OneShotConversation(runner, pages, beginDelay, endDelay);
+            GameObject.Destroy(temp);
+        }
+
         private void EventReceiver_OnReceivedEvent(string eventName, GameObject source)
         {
             if (eventName == "YES")
@@ -566,6 +594,44 @@ namespace WeaverCore.Assets.Components
         protected void DisplayTitle(string title, string minorText = "")
         {
             WeaverBossTitle.Spawn(minorText,title);
+        }
+    }
+
+    public sealed class OneShotConversationRunner : Conversation
+    {
+        readonly List<string> pages = new List<string>();
+        float endDelay;
+
+        public IEnumerator Run(IEnumerable<string> messagePages, float beginDelay, float endDelay)
+        {
+            pages.Clear();
+            if (messagePages != null)
+            {
+                foreach (var page in messagePages)
+                {
+                    if (page != null)
+                    {
+                        pages.Add(page);
+                    }
+                }
+            }
+
+            ShowBoxOnStart = true;
+            BeginConvoDelay = Mathf.Max(0f, beginDelay);
+            this.endDelay = Mathf.Max(0f, endDelay);
+
+            yield return StartConversationRoutine(makePlayerLookUp: false);
+            HideConversationBox();
+
+            if (this.endDelay > 0f)
+            {
+                yield return new WaitForSeconds(this.endDelay);
+            }
+        }
+
+        protected override IEnumerator DoConversation()
+        {
+            yield return Speak(pages);
         }
     }
 }

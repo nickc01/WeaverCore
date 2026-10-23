@@ -217,6 +217,18 @@ namespace WeaverCore.Editor.Compilation
             {
 				return;
             }
+
+			var selectedBuildTargets = BuildSettings.GetBuildModes().ToList();
+			if (selectedBuildTargets.Count == 0)
+			{
+				const string message =
+					"Cannot compile because no target platform is selected. " +
+					"Enable Windows, Mac, or Linux support in the build settings first.";
+				Debug.LogError(message);
+				EditorUtility.DisplayDialog("No Build Target Selected", message, "OK");
+				return;
+			}
+
             Close();
 			BuildSettings.ModName = BuildSettings.ModName.Replace(" ", "");
 

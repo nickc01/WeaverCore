@@ -26,7 +26,14 @@ namespace WeaverCore.Editor.Implementations
 		{
 			if (obj == PlayModeStateChange.ExitingPlayMode)
 			{
-				SaveSpecificSettings.SaveAllSettings();
+				try
+				{
+					SaveSpecificSettings.SaveAllSettings();
+				}
+				finally
+				{
+					SaveSpecificSettings.UnloadSaveSlot();
+				}
 			}
 		}
 

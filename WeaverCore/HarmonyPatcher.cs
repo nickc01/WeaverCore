@@ -85,11 +85,16 @@ namespace WeaverCore
         /// <exception cref="ArgumentNullException">Throws if the original method is null</exception>
         public void Patch(MethodBase original, MethodInfo prefix, MethodInfo postfix)
         {
+            Patch(original, prefix, postfix, null);
+        }
+
+        public void Patch(MethodBase original, MethodInfo prefix, MethodInfo postfix, MethodInfo finalizer)
+        {
             if (harmonyInstance == null)
             {
                 throw new Exception("This patcher is null");
             }
-            if (prefix == null && postfix == null)
+            if (prefix == null && postfix == null && finalizer == null)
             {
                 return;
             }
@@ -108,8 +113,13 @@ namespace WeaverCore
             {
                 postfixInstance = Activator.CreateInstance(HarmonyMethodType, new object[] { postfix });
             }
+            object finalizerInstance = null;
+            if (finalizer != null)
+            {
+                finalizerInstance = Activator.CreateInstance(HarmonyMethodType, new object[] { finalizer });
+            }
 
-            PatchMethod.Invoke(harmonyInstance, new object[] { original, prefixInstance, postfixInstance, null, null });
+            PatchMethod.Invoke(harmonyInstance, new object[] { original, prefixInstance, postfixInstance, null, finalizerInstance });
         }
     }
 }

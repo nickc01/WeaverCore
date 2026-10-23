@@ -31,6 +31,54 @@ namespace WeaverCore.Components
 
         private Transform promptMarker;
 
+        [SerializeField, Tooltip("Leave empty to use the localized Inspect label.")] string promptText;
+        [SerializeField] Vector2 promptScale = Vector2.one;
+        [SerializeField, Tooltip("Use local, mirrored stand positions instead of the original inspection movement.")] bool useCustomInteractionPosition;
+        [SerializeField, Tooltip("Local horizontal offset of the interaction center. Used only with custom interaction positioning.")] float interactionCenterXOffset;
+
+        public string PromptText
+        {
+            get => promptText;
+            set { promptText = value; RefreshPrompt(); }
+        }
+
+        public Vector2 PromptScale
+        {
+            get => promptScale;
+            set { promptScale = new Vector2(Mathf.Max(0.01f, value.x), Mathf.Max(0.01f, value.y)); RefreshPrompt(); }
+        }
+
+        public bool UseCustomInteractionPosition { get => useCustomInteractionPosition; set => useCustomInteractionPosition = value; }
+        public float InteractionCenterXOffset { get => interactionCenterXOffset; set => interactionCenterXOffset = value; }
+        public float InteractionStandOffDistance { get => moveToOffset; set => moveToOffset = Mathf.Max(0f, value); }
+        public HeroSidePositions InteractionSide { get => sidePositions; set => sidePositions = value; }
+
+        public float InteractionCenterX => useCustomInteractionPosition
+            ? transform.TransformPoint(new Vector3(interactionCenterXOffset, 0f, 0f)).x
+            : transform.position.x;
+
+        public float GetInteractionTargetX(HeroSidePositions side)
+        {
+            return CalculateInteractionTargetX(transform, useCustomInteractionPosition, interactionCenterXOffset, moveToOffset, side);
+        }
+
+        public static float CalculateInteractionTargetX(Transform region, bool customPosition, float centerOffset, float distance, HeroSidePositions side)
+        {
+            float offset = side == HeroSidePositions.Left ? -distance : distance;
+            return customPosition
+                ? region.TransformPoint(new Vector3(centerOffset + offset, 0f, 0f)).x
+                : region.position.x + offset;
+        }
+
+        void RefreshPrompt()
+        {
+            if (prompt == null) return;
+            if (string.IsNullOrEmpty(promptText)) prompt.SetLabelTextLang("INSPECT");
+            else prompt.SetLabelText(promptText);
+            var template = promptPrefab != null ? promptPrefab : WeaverArrowPrompt.DefaultPrefab;
+            prompt.transform.localScale = Vector3.Scale(template.transform.localScale, new Vector3(promptScale.x, promptScale.y, 1f));
+        }
+
         /// <summary>
         /// Is set to true if the player is currently within range of inspecting.
         /// </summary>
@@ -144,7 +192,7 @@ namespace WeaverCore.Components
             prompt = WeaverArrowPrompt.Spawn(promptPrefab ?? WeaverArrowPrompt.DefaultPrefab, gameObject, promptMarker.position);
             prompt.DestroyOnHide = false;
             prompt.HideInstant();
-            prompt.SetLabelTextLang("INSPECT");
+            RefreshPrompt();
 
             StartCoroutine(MainRoutine());
             yield break;
@@ -221,6 +269,109 @@ namespace WeaverCore.Components
             HeroController.instance.StopAnimationControl();
             prompt.Hide();
 
+            if (useCustomInteractionPosition) yield return WalkToInteractionPosition();
+            else yield return WalkToLegacyInteractionPosition();
+
+            HeroUtilities.PlayPlayerClip("Idle");
+
+            if (heroLooksUp)
+            {
+                HeroUtilities.PlayPlayerClip("LookUp");
+            }
+
+            HashSet<Guid> runningRoutines = new HashSet<Guid>();
+
+            void RunRoutine(IEnumerator routine)
+            {
+
+                var id = Guid.NewGuid();
+
+                runningRoutines.Add(id);
+                IEnumerator Runner(IEnumerator routine)
+                {
+                    try
+                    {
+                        yield return routine;
+                    }
+                    finally
+                    {
+                        runningRoutines.Remove(id);
+                    }
+                }
+
+                StartCoroutine(Runner(routine));
+            }
+
+            RunRoutine(OnInspectRoutine());
+
+            /*if (OnInspectWaitEvent != null)
+            {
+                foreach (var d in OnInspectWaitEvent.GetInvocationList())
+                {
+                    var routine = ((Func<IEnumerator>)d).Invoke();
+
+                    if (routine != null)
+                    {
+                        RunRoutine(routine);
+                    }
+                }
+            }*/
+
+            yield return new WaitUntil(() => runningRoutines.Count == 0);
+
+            HeroController.instance.RegainControl();
+            PlayerData.instance.SetBool("disablePause", false);
+            HeroController.instance.StartAnimationControl();
+            yield return new WaitForSeconds(1f);
+        }
+
+        /// <summary>
+        /// Called to play the default item pickup animation and trigger the OnInspect UnityEvent. You can override this to provide your own custom animations
+        /// </summary>
+        protected abstract IEnumerator OnInspectRoutine();
+
+        IEnumerator WalkToInteractionPosition()
+        {
+            var hero = HeroController.instance;
+            var body = hero.GetComponent<Rigidbody2D>();
+            float leftX = GetInteractionTargetX(HeroSidePositions.Left);
+            float rightX = GetInteractionTargetX(HeroSidePositions.Right);
+            float targetX = sidePositions == HeroSidePositions.Left ? leftX
+                : sidePositions == HeroSidePositions.Right ? rightX
+                : Mathf.Abs(hero.transform.position.x - leftX) <= Mathf.Abs(hero.transform.position.x - rightX) ? leftX : rightX;
+            float direction = Mathf.Sign(targetX - hero.transform.position.x);
+            float timeout = Mathf.Abs(targetX - hero.transform.position.x) / 6f + 1f;
+
+            try
+            {
+                if (Mathf.Abs(targetX - hero.transform.position.x) > 0.05f)
+                {
+                    if (direction > 0f) hero.FaceRight();
+                    else hero.FaceLeft();
+                    HeroUtilities.PlayPlayerClip("Walk");
+                    for (float elapsed = 0f; elapsed < timeout; elapsed += Time.deltaTime)
+                    {
+                        float remaining = targetX - hero.transform.position.x;
+                        if (Mathf.Abs(remaining) <= 0.05f || Mathf.Sign(remaining) != direction) break;
+                        body.velocity = new Vector2(direction * 6f, body.velocity.y);
+                        yield return null;
+                    }
+                }
+            }
+            finally
+            {
+                if (body != null) body.velocity = new Vector2(0f, body.velocity.y);
+            }
+
+            bool faceRight = targetX < InteractionCenterX;
+            bool turn = hero.cState.facingRight != faceRight;
+            if (faceRight) hero.FaceRight();
+            else hero.FaceLeft();
+            if (turn) yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
+        }
+
+        IEnumerator WalkToLegacyInteractionPosition()
+        {
             var selfX = transform.position.x;
             var playerX = Player.Player1.transform.position.x;
 
@@ -304,63 +455,7 @@ namespace WeaverCore.Components
                 yield return HeroUtilities.PlayPlayerClipTillDone("Turn");
             }
 
-            HeroUtilities.PlayPlayerClip("Idle");
-
-            if (heroLooksUp)
-            {
-                HeroUtilities.PlayPlayerClip("LookUp");
-            }
-
-            HashSet<Guid> runningRoutines = new HashSet<Guid>();
-
-            void RunRoutine(IEnumerator routine)
-            {
-
-                var id = Guid.NewGuid();
-
-                runningRoutines.Add(id);
-                IEnumerator Runner(IEnumerator routine)
-                {
-                    try
-                    {
-                        yield return routine;
-                    }
-                    finally
-                    {
-                        runningRoutines.Remove(id);
-                    }
-                }
-
-                StartCoroutine(Runner(routine));
-            }
-
-            RunRoutine(OnInspectRoutine());
-
-            /*if (OnInspectWaitEvent != null)
-            {
-                foreach (var d in OnInspectWaitEvent.GetInvocationList())
-                {
-                    var routine = ((Func<IEnumerator>)d).Invoke();
-
-                    if (routine != null)
-                    {
-                        RunRoutine(routine);
-                    }
-                }
-            }*/
-
-            yield return new WaitUntil(() => runningRoutines.Count == 0);
-
-            HeroController.instance.RegainControl();
-            PlayerData.instance.SetBool("disablePause", false);
-            HeroController.instance.StartAnimationControl();
-            yield return new WaitForSeconds(1f);
         }
-
-        /// <summary>
-        /// Called to play the default item pickup animation and trigger the OnInspect UnityEvent. You can override this to provide your own custom animations
-        /// </summary>
-        protected abstract IEnumerator OnInspectRoutine();
 
         /*protected virtual void OnTriggerEnter2D(Collider2D collision)
         {

@@ -6,7 +6,7 @@ namespace WeaverCore.Components
     public class SetPromptLangKey : MonoBehaviour
     {
         [SerializeField]
-        string interactLangKey = "INTERACT";
+        string interactLangKey = "PROMPT_INTERACT";
 
         [SerializeField]
         string sheetTitle = "Prompts";

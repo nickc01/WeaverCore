@@ -226,30 +226,63 @@ namespace WeaverCore.Editor.Compilation
                 return;
             }
 
-            var patchedScenes = new HashSet<string>(StringComparer.Ordinal);
-            var sceneBundles = builtBundles
+            var patchedScenes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var builtBundleFiles = builtBundles
                 .Select(bundle => bundle.File)
-                .Where(file => file.Exists && file.Name.EndsWith("_scenes_bundle", StringComparison.OrdinalIgnoreCase))
+                .Where(file => file != null)
+                .ToList();
+
+            var sceneBundles = builtBundleFiles
+                .Where(file => file.Exists && IsSceneBundle(file))
+                .Concat(builtBundleFiles
+                    .Select(file => file.Directory)
+                    .Where(directory => directory != null && directory.Exists)
+                    .GroupBy(directory => directory.FullName, StringComparer.OrdinalIgnoreCase)
+                    .Select(group => group.First())
+                    .SelectMany(directory => directory.GetFiles("*", SearchOption.AllDirectories))
+                    .Where(IsSceneBundle))
+                .GroupBy(file => file.FullName, StringComparer.OrdinalIgnoreCase)
+                .Select(group => group.First())
                 .ToList();
 
             foreach (var sceneBundle in sceneBundles)
             {
                 foreach (var patchedScene in PatchSceneBundle(sceneBundle.FullName, buildData.BundlePatches))
                 {
-                    patchedScenes.Add(patchedScene);
+                    patchedScenes.Add(NormalizeScenePath(patchedScene));
                 }
             }
 
             var missingScenes = buildData.BundlePatches
                 .Select(scene => scene.CloneScenePath)
-                .Where(scene => !patchedScenes.Contains(scene))
+                .Where(scene => !patchedScenes.Contains(NormalizeScenePath(scene)))
                 .Distinct()
                 .ToList();
 
             if (missingScenes.Count > 0)
             {
-                throw new InvalidOperationException($"The built scene bundle did not contain the expected clone scenes: {string.Join(", ", missingScenes)}");
+                var bundleNames = sceneBundles.Count == 0
+                    ? "<none discovered>"
+                    : string.Join(", ", sceneBundles.Select(bundle => bundle.FullName));
+                throw new InvalidOperationException(
+                    $"The built scene bundle did not contain the expected clone scenes: " +
+                    $"{string.Join(", ", missingScenes)}. Scene bundles searched: {bundleNames}");
             }
+        }
+
+        static bool IsSceneBundle(FileInfo file)
+        {
+            return file != null &&
+                file.Exists &&
+                Path.GetFileNameWithoutExtension(file.Name)
+                    .EndsWith("_scenes_bundle", StringComparison.OrdinalIgnoreCase);
+        }
+
+        static string NormalizeScenePath(string scenePath)
+        {
+            return string.IsNullOrEmpty(scenePath)
+                ? string.Empty
+                : scenePath.Replace('\\', '/');
         }
 
         static IEnumerable<SceneRecordReference> GetSceneRecords()
@@ -367,7 +400,7 @@ namespace WeaverCore.Editor.Compilation
 
             foreach (var bundlePatch in bundlePatches)
             {
-                if (!sceneHashes.TryGetValue(bundlePatch.CloneScenePath, out var sceneHash))
+                if (!sceneHashes.TryGetValue(NormalizeScenePath(bundlePatch.CloneScenePath), out var sceneHash))
                 {
                     continue;
                 }
@@ -412,7 +445,7 @@ namespace WeaverCore.Editor.Compilation
 
         static Dictionary<string, string> LoadSceneHashes(string sceneBundlePath, BundleFileInstance bundleInstance, AssetsManager assetsManager)
         {
-            var sceneHashes = new Dictionary<string, string>(StringComparer.Ordinal);
+            var sceneHashes = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             var bundle = bundleInstance.file;
             var entryCount = bundle.bundleInf6.dirInf.GetLength(0);
 
@@ -445,7 +478,7 @@ namespace WeaverCore.Editor.Compilation
 
                         if (!string.IsNullOrEmpty(scenePath) && !string.IsNullOrEmpty(sceneHash))
                         {
-                            sceneHashes[scenePath] = sceneHash;
+                            sceneHashes[NormalizeScenePath(scenePath)] = sceneHash;
                         }
                     }
 

@@ -216,9 +216,13 @@ namespace WeaverCore.Assets.Components
             }
         }
 
-        protected void StartFadeIn()
+        protected void StartFadeIn(bool fadeBackground = true, bool fadeIcon = true,
+            bool fadeTitle = true, bool fadeTitlePrefix = true, bool fadeFleur = true)
         {
-            NullPass(Background)?.Fade(true);
+            if (fadeBackground)
+            {
+                NullPass(Background)?.Fade(true);
+            }
             GameManager.instance.SaveGame();
             if (OnOpenSound != null)
             {
@@ -226,12 +230,24 @@ namespace WeaverCore.Assets.Components
                 instance.AudioSource.pitch = openSoundPitch;
             }
 
-            NullPass(IconRenderer)?.GetComponent<ColorFader>().Fade(true);
-            NullPass(ItemNameRenderer)?.GetComponent<ColorFader>().Fade(true);
-            NullPass(ItemNamePrefixRenderer)?.GetComponent<ColorFader>().Fade(true);
+            if (fadeIcon)
+            {
+                NullPass(IconRenderer)?.GetComponent<ColorFader>().Fade(true);
+            }
 
-            NullPass(Fleur)?.gameObject.SetActive(true);
-            NullPass(Fleur)?.Fade(true);
+            if (fadeTitle)
+            {
+                NullPass(ItemNameRenderer)?.GetComponent<ColorFader>().Fade(true);
+            }
+            if (fadeTitlePrefix)
+            {
+                NullPass(ItemNamePrefixRenderer)?.GetComponent<ColorFader>().Fade(true);
+            }
+            if (fadeFleur)
+            {
+                NullPass(Fleur)?.gameObject.SetActive(true);
+                NullPass(Fleur)?.Fade(true);
+            }
 
             if (actionButtonInstance != null)
             {
@@ -280,6 +296,16 @@ namespace WeaverCore.Assets.Components
             NullPass(Button)?.Fade(true);
             NullPass(ButtonCharacter)?.Fade(true);
 
+            yield return WaitForInputPrompt();
+
+            if (doFadeOut)
+            {
+                yield return EndFadeOut();
+            }
+        }
+
+        protected IEnumerator WaitForInputPrompt(bool forceWaitForPlayerInput = false)
+        {
             yield return new WaitForSeconds(stopDelay);
 
             NullPass(Stop)?.gameObject.SetActive(true);
@@ -287,17 +313,12 @@ namespace WeaverCore.Assets.Components
 
             yield return new WaitForSeconds(0.25f);
 
-            if (waitForPlayerInput)
+            if (forceWaitForPlayerInput || waitForPlayerInput)
             {
-                while (!(PlayerInput.jump.IsPressed || PlayerInput.attack.IsPressed || PlayerInput.pause.IsPressed || PlayerInput.jump.WasPressed || PlayerInput.attack.WasPressed || PlayerInput.jump.WasPressed))
+                while (!(PlayerInput.jump.IsPressed || PlayerInput.attack.IsPressed || PlayerInput.pause.IsPressed || PlayerInput.jump.WasPressed || PlayerInput.attack.WasPressed || PlayerInput.pause.WasPressed))
                 {
                     yield return null;
                 }
-            }
-
-            if (doFadeOut)
-            {
-                yield return EndFadeOut();
             }
         }
 

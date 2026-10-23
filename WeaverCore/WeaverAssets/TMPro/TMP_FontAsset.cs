@@ -248,67 +248,137 @@ namespace WeaverCore.Assets.TMPro
 
 #if UNITY_EDITOR
 
-		[BeforeBuild]
-		static void BeforeBuild()
-		{
-			var weaverFontIDs = UnityEditor.AssetDatabase.FindAssets("t:WeaverCore.Assets.TMPro.TMP_FontAsset");
+        static bool bundleBuildInProgress;
 
-			var trajanProAtlas = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("t:Texture2D \"Trajan Pro Regular SDF Atlas\"")[0]));
-
-			foreach (var id in weaverFontIDs)
-			{
-				var font = UnityEditor.AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(UnityEditor.AssetDatabase.GUIDToAssetPath(id));
-
-				if (font != null)
-				{
-					if (!string.IsNullOrEmpty(font.editorAtlasTextureName) && !string.IsNullOrEmpty(font.editorMaterialName))
-					{
-                        font.atlas = trajanProAtlas;
-						font.material.mainTexture = trajanProAtlas;
-                    }
-				}
-			}
-
-
-		}
-
-		[AfterBuild]
-		static void AfterBuild()
-		{
-            var weaverFontIDs = UnityEditor.AssetDatabase.FindAssets("t:WeaverCore.Assets.TMPro.TMP_FontAsset");
-
-            foreach (var id in weaverFontIDs)
+        [UnityEditor.InitializeOnLoadMethod]
+        static void RestoreEditorFontsOnLoad()
+        {
+            // Recover saved placeholder references after an interrupted build or editor crash.
+            // Asset loading/saving must wait until the import/reload callback has finished.
+            UnityEditor.EditorApplication.delayCall += () =>
             {
-                var font = UnityEditor.AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(UnityEditor.AssetDatabase.GUIDToAssetPath(id));
-
-                if (font != null)
+                if (!bundleBuildInProgress)
                 {
-                    if (!string.IsNullOrEmpty(font.editorAtlasTextureName) && !string.IsNullOrEmpty(font.editorMaterialName))
-                    {
-						font.material = LoadEditorAsset<Material>("Material", font.editorMaterialName);
-						font.atlas = LoadEditorAsset<Texture2D>("Texture2D", font.editorAtlasTextureName);
-						if (font.material != null)
-						{
-							font.material.mainTexture = font.atlas;
-						}
-                    }
+                    RestoreEditorFonts();
+                }
+            };
+        }
+
+        static IEnumerable<TMP_FontAsset> GetEditorFonts()
+        {
+            var ids = UnityEditor.AssetDatabase.FindAssets("t:WeaverCore.Assets.TMPro.TMP_FontAsset");
+            foreach (var id in ids)
+            {
+                var font = UnityEditor.AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(
+                    UnityEditor.AssetDatabase.GUIDToAssetPath(id));
+                if (font != null && !string.IsNullOrEmpty(font.editorAtlasTextureName) &&
+                    !string.IsNullOrEmpty(font.editorMaterialName))
+                {
+                    yield return font;
                 }
             }
         }
 
-		static T LoadEditorAsset<T>(string type, string name) where T : UnityEngine.Object
-		{
-			var guids = UnityEditor.AssetDatabase.FindAssets($"t:{type} \"{name}\"");
+        /// <summary>
+        /// Substitute game-owned atlases only while synchronously writing a bundle.
+        /// The caller must invoke RestoreEditorFonts in a finally block.
+        /// </summary>
+        public static void PrepareForBundleBuild()
+        {
+            RestoreEditorFonts();
+            bundleBuildInProgress = true;
+            var placeholder = LoadEditorAsset<Texture2D>("Texture2D", "Trajan Pro Regular SDF Atlas");
+            if (placeholder == null)
+            {
+                throw new InvalidOperationException("The Trajan Pro Regular SDF placeholder atlas was not found.");
+            }
 
-			var guid = guids.FirstOrDefault();
+            foreach (var font in GetEditorFonts())
+            {
+                if (font.material == null)
+                {
+                    throw new InvalidOperationException("No material is assigned to font " + font.name);
+                }
+                font.atlas = placeholder;
+                font.material.mainTexture = placeholder;
+                UnityEditor.EditorUtility.SetDirty(font);
+                UnityEditor.EditorUtility.SetDirty(font.material);
+            }
+            // SBP uses serialized assets and their dependency hashes, including on cached builds.
+            UnityEditor.AssetDatabase.SaveAssets();
+        }
 
-			if (string.IsNullOrEmpty(guid))
-			{
-				return default;
-			}
+        [AfterBuild]
+        static void AfterBuild()
+        {
+            RestoreEditorFonts();
+        }
 
-			return UnityEditor.AssetDatabase.LoadAssetAtPath<T>(UnityEditor.AssetDatabase.GUIDToAssetPath(guid));
-		}
+        [UnityEditor.MenuItem("WeaverCore/Tools/Restore TMP Font Atlases")]
+        public static void RestoreEditorFonts()
+        {
+            bundleBuildInProgress = false;
+            var changedFonts = new List<TMP_FontAsset>();
+            foreach (var font in GetEditorFonts())
+            {
+                var editorMaterial = LoadEditorAsset<Material>("Material", font.editorMaterialName);
+                var editorAtlas = LoadEditorAsset<Texture2D>("Texture2D", font.editorAtlasTextureName);
+                if (editorMaterial == null || editorAtlas == null)
+                {
+                    Debug.LogError("Cannot restore font " + font.name + ": missing editor material or atlas.", font);
+                    continue;
+                }
+
+                bool fontChanged = font.material != editorMaterial || font.atlas != editorAtlas;
+                bool materialChanged = editorMaterial.mainTexture != editorAtlas;
+                font.material = editorMaterial;
+                font.atlas = editorAtlas;
+                editorMaterial.mainTexture = editorAtlas;
+                font.loadedMaterial = editorMaterial;
+                font.loadedAtlas = editorAtlas;
+                font.materialRefreshed = font.atlasRefreshed = true;
+
+                if (fontChanged)
+                {
+                    UnityEditor.EditorUtility.SetDirty(font);
+                }
+                if (materialChanged)
+                {
+                    UnityEditor.EditorUtility.SetDirty(editorMaterial);
+                }
+                if (fontChanged || materialChanged)
+                {
+                    changedFonts.Add(font);
+                }
+            }
+
+            if (changedFonts.Count != 0)
+            {
+                UnityEditor.AssetDatabase.SaveAssets();
+                foreach (var font in changedFonts)
+                {
+                    TMPro_EventManager.ON_FONT_PROPERTY_CHANGED(true, font);
+                }
+                UnityEditor.EditorApplication.QueuePlayerLoopUpdate();
+                UnityEditor.SceneView.RepaintAll();
+            }
+        }
+
+        static T LoadEditorAsset<T>(string type, string name) where T : UnityEngine.Object
+        {
+            var guids = UnityEditor.AssetDatabase.FindAssets($"t:{type} \"{name}\"");
+            foreach (var guid in guids)
+            {
+                var asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(
+                    UnityEditor.AssetDatabase.GUIDToAssetPath(guid));
+                // FindAssets matches partial names too (e.g. regular vs. bold atlases).
+                if (asset != null && string.Equals(asset.name, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    return asset;
+                }
+            }
+            return null;
+        }
 
         [OnInit]
 		static void Init()

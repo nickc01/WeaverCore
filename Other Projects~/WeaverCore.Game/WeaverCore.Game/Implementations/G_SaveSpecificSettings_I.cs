@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using WeaverCore.Attributes;
 using WeaverCore.Implementations;
 using WeaverCore.Settings;
@@ -99,8 +100,6 @@ namespace WeaverCore.Game.Implementations
 			return (Dictionary<string, JToken>)modDataF.GetValue(value);
 		}
 
-		static Dictionary<Type, string> defaultState = new Dictionary<Type, string>();
-
 		public override void LoadSettings(SaveSpecificSettings settings)
 		{
 			if (settings.Enabled)
@@ -108,9 +107,9 @@ namespace WeaverCore.Game.Implementations
                 var modData = GetModData();
                 var settingsType = settings.GetType();
                 var key = settingsType.FullName;
-                if (!defaultState.ContainsKey(settingsType))
+                if (!baseInformation.ContainsKey(settingsType))
                 {
-                    defaultState.Add(settingsType, JsonUtility.ToJson(settings));
+                    baseInformation.Add(settingsType, JsonUtility.ToJson(settings));
                 }
                 if (modData.ContainsKey(key))
                 {
@@ -119,7 +118,7 @@ namespace WeaverCore.Game.Implementations
                 }
                 else
                 {
-                    JsonUtility.FromJsonOverwrite(defaultState[settingsType], settings);
+                    JsonUtility.FromJsonOverwrite(baseInformation[settingsType], settings);
                 }
             }
 		}
@@ -153,22 +152,65 @@ namespace WeaverCore.Game.Implementations
 			ModHooks.AfterSavegameLoadHook += ModHooks_AfterSavegameLoadHook;
 			On.GameManager.LoadGame += GameManager_LoadGame;
 			On.GameManager.StartNewGame += GameManager_StartNewGame;
+			UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneLoaded;
+		}
+
+		private static void EndSaveSession()
+		{
+			_saveSlot = -1;
+			SaveSpecificSettings.UnloadSaveSlot();
+		}
+
+		private static void SceneLoaded(Scene scene, LoadSceneMode mode)
+		{
+			if (scene.name == "Quit_To_Menu" || scene.name.StartsWith("Menu_Title", StringComparison.Ordinal))
+			{
+				EndSaveSession();
+			}
 		}
 
 		private static void GameManager_StartNewGame(On.GameManager.orig_StartNewGame orig, GameManager self, bool permadeathMode, bool bossRushMode)
 		{
+			EndSaveSession();
 			ResetAllSaveSpecificSettingsToBaseState();
-			orig(self, permadeathMode, bossRushMode);
+			try
+			{
+				if (Platform.IsSaveSlotIndexValid(self.profileID))
+				{
+					_saveSlot = self.profileID;
+					SaveSpecificSettings.InitializeNewSaveSlot(_saveSlot);
+				}
+				orig(self, permadeathMode, bossRushMode);
+			}
+			catch
+			{
+				EndSaveSession();
+				throw;
+			}
 		}
 
 		private static void GameManager_LoadGame(On.GameManager.orig_LoadGame orig, GameManager self, int saveSlot, Action<bool> callback)
 		{
-			if (Platform.IsSaveSlotIndexValid(saveSlot))
+			if (!Platform.IsSaveSlotIndexValid(saveSlot))
 			{
-				_saveSlot = saveSlot;
+				orig(self, saveSlot, callback);
+				return;
 			}
-
-			orig(self,saveSlot,callback);
+			EndSaveSession();
+			_saveSlot = saveSlot;
+			try
+			{
+				orig(self, saveSlot, loaded =>
+				{
+					if (!loaded && _saveSlot == saveSlot) EndSaveSession();
+					callback?.Invoke(loaded);
+				});
+			}
+			catch
+			{
+				EndSaveSession();
+				throw;
+			}
 		}
 
 		private static void ModHooks_AfterSavegameLoadHook(SaveGameData obj)

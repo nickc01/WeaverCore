@@ -30,7 +30,7 @@ namespace WeaverCore.Settings
 		/// </summary>
 		public static bool SaveCurrentlyLoaded { get; private set; }
 
-		public static int CurrentSaveSlot { get; private set; }
+		public static int CurrentSaveSlot { get; private set; } = -1;
 
 		[OnFeatureLoad]
 		static void SaveRegistered(SaveSpecificSettings settings)
@@ -172,12 +172,13 @@ namespace WeaverCore.Settings
 
 		public static void LoadSaveSlot(int slot)
 		{
+			if (slot < 0) throw new ArgumentOutOfRangeException(nameof(slot));
 			SaveCurrentlyLoaded = true;
 			CurrentSaveSlot = slot;
 
 
 			WeaverLog.Log("Loading WeaverCore Save data for slot " + CurrentSaveSlot);
-			foreach (var save in saveData)
+			foreach (var save in saveData.ToArray())
 			{
 				impl.LoadSettings(save);
 				save.OnSaveLoaded(CurrentSaveSlot);
@@ -187,8 +188,32 @@ namespace WeaverCore.Settings
 #endif
 		}
 
+		/// <summary>
+		/// Activates a new save using settings already reset to their defaults, without loading saved data.
+		/// </summary>
+		public static void InitializeNewSaveSlot(int slot)
+		{
+			if (slot < 0) throw new ArgumentOutOfRangeException(nameof(slot));
+			SaveCurrentlyLoaded = true;
+			CurrentSaveSlot = slot;
+			foreach (var save in saveData.ToArray())
+			{
+				save.OnSaveLoaded(slot);
+			}
+		}
+
+		/// <summary>
+		/// Clears the active save without saving or reloading settings.
+		/// </summary>
+		public static void UnloadSaveSlot()
+		{
+			SaveCurrentlyLoaded = false;
+			CurrentSaveSlot = -1;
+		}
+
 		public static void SaveAllSettings()
 		{
+			if (!SaveCurrentlyLoaded) return;
 			WeaverLog.Log("Saving WeaverCore Save data for slot " + CurrentSaveSlot);
 			foreach (var save in saveData)
 			{

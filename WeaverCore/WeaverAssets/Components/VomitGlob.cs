@@ -26,6 +26,9 @@ namespace WeaverCore.Assets.Components
         [SerializeField]
         Vector2 randomScaleRange = new Vector2(1f,1.75f);
 
+        [SerializeField]
+        Vector2 landExtraOffset = new Vector2(0f, 0.25f);
+
         [field: SerializeField]
         public Vector2 lifeTimeRange { get; set; } = new Vector2(1.75f,2.0f);
 
@@ -42,6 +45,15 @@ namespace WeaverCore.Assets.Components
 
         WeaverAnimationPlayer animator;
         public WeaverAnimationPlayer Animator => animator ??= GetComponent<WeaverAnimationPlayer>();
+
+        [SerializeField]
+        Transform airTransform;
+
+        [SerializeField]
+        Transform landTransform;
+
+        [SerializeField]
+        Transform mainTransform;
 
         [SerializeField]
         Collider2D puddleCollider;
@@ -63,6 +75,10 @@ namespace WeaverCore.Assets.Components
 
         [SerializeField]
         [ExcludeFieldFromPool]
+        public UnityEvent onSpawn;
+
+        [SerializeField]
+        [ExcludeFieldFromPool]
         public UnityEvent onDisappear;
 
         [SerializeField]
@@ -78,7 +94,7 @@ namespace WeaverCore.Assets.Components
 
         PlayerDamager damager;
 
-        [NonSerialized]
+        [SerializeField]
         [ExcludeFieldFromPool]
         SpriteRenderer halo;
 
@@ -116,6 +132,8 @@ namespace WeaverCore.Assets.Components
         [ExcludeFieldFromPool]
         Color oldHaloColor;
 
+        bool oldHaloColorInit = false;
+
         IEnumerator MaxLifetimeRoutine(float time)
         {
             yield return new WaitForSeconds(time);
@@ -132,6 +150,11 @@ namespace WeaverCore.Assets.Components
             if (halo == null)
             {
                 halo = transform.Find("Halo").GetComponent<SpriteRenderer>();
+            }
+
+            if (!oldHaloColorInit)
+            {
+                oldHaloColorInit = true;
                 oldHaloColor = halo.color;
             }
 
@@ -141,6 +164,13 @@ namespace WeaverCore.Assets.Components
             {
                 Init();
             }
+
+            if (mainTransform != null && airTransform != null)
+            {
+                mainTransform.localPosition = airTransform.localPosition;
+            }
+
+            onSpawn?.Invoke();
 
             StartCoroutine(MaxLifetimeRoutine(10));
         }
@@ -190,11 +220,15 @@ namespace WeaverCore.Assets.Components
             MainCollider.enabled = false;
             //transform.rotation = Quaternion.Euler(0f, 0f, normalAngle);
 
-            transform.Translate(new Vector3(0f, 0.25f), Space.Self);
+            transform.Translate(landExtraOffset, Space.Self);
             steamParticles.Play();
             puddleCollider.gameObject.SetActive(true);
             puddleCollider.enabled = true;
             Animator.PlayAnimation("Land");
+            if (mainTransform != null && landTransform != null)
+            {
+                mainTransform.localPosition = landTransform.localPosition;
+            }
             if (PlaySounds)
             {
                 WeaverAudio.PlayAtPoint(landSound, transform.position);

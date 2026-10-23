@@ -75,71 +75,62 @@ namespace WeaverCore.Components
         [OnPlayerInit(-10)]
         static void OnPlayerInit(Player player)
         {
-            // Only patch if we're in the game and there are zones in the scene
             if (Initialization.Environment != WeaverCore.Enums.RunningState.Game)
             {
                 return;
             }
 
-            // Find the Hero Death prefab - it's a child of the player
             Transform heroDeathTransform = player.transform.Find("Hero Death");
             if (heroDeathTransform == null)
             {
-                //Debug.LogError("[ShadeZone] Could not find 'Hero Death' prefab in player");
                 return;
             }
 
-            // Create the FSMUndoStack for the Hero Death Anim FSM
-            //heroDeathUndoStack = new FSMUndoStack(heroDeathTransform.gameObject, "Hero Death Anim");
-
             var fsm = PlayMakerUtilities.FindPlayMakerFSMWrapper(heroDeathTransform.gameObject, "Hero Death Anim");
+            var deathFsm = fsm.GetFsm();
+            const string zoneStateName = "Apply Shade Zone";
 
-            // Get the "Set Shade" state and insert our custom action at the beginning
-            if (fsm.GetFsm().TryGetState("Set Shade", out var setState))
+            if (deathFsm.TryGetState(zoneStateName, out _))
             {
-                // Insert our custom action at index 0 (before the default shade position logic)
-                setState.AddAction(fsm =>
+                return;
+            }
+
+            if (!deathFsm.TryGetState("Shade Marker Check", out var markerCheck))
+            {
+                Debug.LogError("[ShadeZone] Could not find 'Shade Marker Check' state in Hero Death Anim FSM");
+                return;
+            }
+
+            var transitions = markerCheck.GetTransitions();
+            for (int i = 0; i < transitions.Length; i++)
+            {
+                if (transitions[i].FsmEvent.Name != "FINISHED")
                 {
-                    // Check if there are any ShadeZones in the scene
-                    if (allZones.Count == 0)
+                    continue;
+                }
+
+                var zoneState = deathFsm.AddState(zoneStateName, Vector2.zero);
+                zoneState.AddAction(() =>
+                {
+                    var targetZone = FindZoneForPosition(player.transform.position);
+                    if (targetZone == null)
                     {
-                        // No zones, let default HK logic handle it
                         return;
                     }
 
-                    // Get the player's current position
-                    Vector2 playerPosition = Player.Player1.transform.position;
-
-                    // Find the appropriate shade zone
-                    ShadeZone targetZone = FindZoneForPosition(playerPosition);
-
-                    if (targetZone != null)
-                    {
-                        // Override the shade position with the ShadeZone's spawn position
-                        Vector3 shadeSpawnPos = targetZone.ShadeSpawnPosition;
-
-                        // Set the shade position in PlayerData
-                        // These will be read by SceneManager when spawning the shade
-                        PlayerData.instance.SetFloat("shadePositionX", shadeSpawnPos.x);
-                        PlayerData.instance.SetFloat("shadePositionY", shadeSpawnPos.y);
-
-                        // Also set the current scene as the shade scene
-                        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-                        PlayerData.instance.SetString("shadeScene", currentScene);
-
-                        var mapZone = fsm.GetStringVariable("Map Zone");
-                        PlayerData.instance.SetString("shadeMapZone", mapZone);
-
-                        Debug.Log($"[ShadeZone] Player died at {playerPosition}, shade will spawn at {shadeSpawnPos}");
-                    }
+                    Vector3 shadeSpawnPos = targetZone.ShadeSpawnPosition;
+                    PlayerData.instance.SetFloat("shadePositionX", shadeSpawnPos.x);
+                    PlayerData.instance.SetFloat("shadePositionY", shadeSpawnPos.y);
+                    PlayerData.instance.SetString("shadeScene", UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+                    PlayerData.instance.SetString("shadeMapZone", deathFsm.GetStringVariable("Map Zone"));
                 });
+                zoneState.AddTransition("FINISHED", transitions[i].ToState);
+                markerCheck.RemoveTransition(i);
+                markerCheck.AddTransition("FINISHED", zoneStateName);
+                return;
+            }
 
-                Debug.Log("[ShadeZone] Successfully patched Hero Death Anim FSM");
-            }
-            else
-            {
-                Debug.LogError("[ShadeZone] Could not find 'Set Shade' state in Hero Death Anim FSM");
-            }
+            Debug.LogError("[ShadeZone] Could not find 'FINISHED' transition in Shade Marker Check");
         }
 
         /// <summary>

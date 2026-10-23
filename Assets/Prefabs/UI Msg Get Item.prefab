@@ -520,6 +520,7 @@ MonoBehaviour:
   openSoundPitch: 1
   extraTextDelay: 2.5
   stopDelay: 3
+  waitForPlayerInput: 1
   IconRenderer: {fileID: 3626213800179653617}
   ItemNameRenderer: {fileID: 3626213800399855970}
   ItemNamePrefixRenderer: {fileID: 3626213800872140303}

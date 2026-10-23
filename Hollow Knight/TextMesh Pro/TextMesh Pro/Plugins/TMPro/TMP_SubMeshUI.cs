@@ -9,6 +9,7 @@ using UnityEngine.UI;
 namespace TMPro
 {
 	[ExecuteInEditMode]
+	[RequireComponent(typeof(CanvasRenderer))]
 	public class TMP_SubMeshUI : MaskableGraphic, IClippable, IMaskable, IMaterialModifier
 	{
 		[SerializeField]
@@ -45,6 +46,10 @@ namespace TMPro
 		private bool m_isRegisteredForEvents;
 
 		private bool m_materialDirty;
+
+#if UNITY_EDITOR
+		private bool m_rendererRepairScheduled;
+#endif
 
 		[SerializeField]
 		private int m_materialReferenceIndex;
@@ -374,7 +379,7 @@ namespace TMPro
 
 		private void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset font)
 		{
-			if (font.GetInstanceID() == m_fontAsset.GetInstanceID() && m_fallbackMaterial != null)
+			if (m_fontAsset != null && font == m_fontAsset && m_fallbackMaterial != null)
 			{
 				m_fallbackMaterial.SetFloat(ShaderUtilities.ID_WeightNormal, m_fontAsset.normalStyle);
 				m_fallbackMaterial.SetFloat(ShaderUtilities.ID_WeightBold, m_fontAsset.boldStyle);
@@ -502,6 +507,21 @@ namespace TMPro
 			{
 				m_canvasRenderer = canvasRenderer;
 			}
+			if (m_canvasRenderer == null)
+			{
+#if UNITY_EDITOR
+				// Existing prefabs may lack the newly required component. OnValidate can
+				// reach this method during reload, when adding components is forbidden.
+				if (!m_rendererRepairScheduled)
+				{
+					m_rendererRepairScheduled = true;
+					UnityEditor.EditorApplication.delayCall += RepairCanvasRenderer;
+				}
+				return;
+#else
+				m_canvasRenderer = gameObject.AddComponent<CanvasRenderer>();
+#endif
+			}
 			m_canvasRenderer.materialCount = 1;
 			m_canvasRenderer.SetMaterial(((Graphic)this).materialForRendering, 0);
 			m_canvasRenderer.SetTexture(((Graphic)this).mainTexture);
@@ -511,10 +531,26 @@ namespace TMPro
 			}
 		}
 
+#if UNITY_EDITOR
+		private void RepairCanvasRenderer()
+		{
+			m_rendererRepairScheduled = false;
+			if (this == null || !isActiveAndEnabled)
+			{
+				return;
+			}
+			m_canvasRenderer = GetComponent<CanvasRenderer>();
+			if (m_canvasRenderer == null)
+			{
+				m_canvasRenderer = gameObject.AddComponent<CanvasRenderer>();
+			}
+			UpdateMaterial();
+		}
+#endif
+
 		public override void RecalculateClipping()
 		{
-			//((MaskableGraphic)this).RecalculateClipping();
-			RecalculateClipping();
+			base.RecalculateClipping();
 		}
 
 		public override void RecalculateMasking()
